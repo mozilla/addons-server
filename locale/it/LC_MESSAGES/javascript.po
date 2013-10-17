@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27 16:47-0700\n"
+"POT-Creation-Date: 2013-10-17 08:27-0700\n"
 "PO-Revision-Date: 2013-09-29 07:52+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -53,33 +53,33 @@ msgid "This system does not support installing apps"
 msgstr "Questo sistema non supporta l'installazione di app"
 
 #. L10n: {0} is an app name like Firefox.
-#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:109 media/js/zamboni/discovery-all.js:10619
+#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Accept and Install"
 msgstr "Accetta e installa"
 
-#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:109 media/js/zamboni/discovery-all.js:10619
+#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Add to {0}"
 msgstr "Aggiungi a {0}"
 
-#: media/js/common-all.js:10682 media/js/common-min.js:23 media/js/impala-all.js:1732 media/js/impala-min.js:1 media/js/zamboni/buttons.js:114 media/js/zamboni/discovery-all.js:10624
+#: media/js/common-all.js:10682 media/js/common-min.js:23 media/js/impala-all.js:1732 media/js/impala-min.js:1 media/js/zamboni/buttons.js:113 media/js/zamboni/discovery-all.js:10624
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download Now"
 msgstr "Scarica ora"
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:250 media/js/zamboni/discovery-all.js:10715
+#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Install for {0} anyway"
 msgstr "Installa comunque per {0}"
 
-#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:250 media/js/zamboni/discovery-all.js:10715
+#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download for {0} anyway"
 msgstr "Scarica comunque per {0}"
 
-#: media/js/common-all.js:10824 media/js/common-min.js:23 media/js/impala-all.js:1874 media/js/impala-min.js:1 media/js/zamboni/buttons.js:307 media/js/zamboni/discovery-all.js:10766
+#: media/js/common-all.js:10824 media/js/common-min.js:23 media/js/impala-all.js:1874 media/js/impala-min.js:1 media/js/zamboni/buttons.js:306 media/js/zamboni/discovery-all.js:10766
 #: media/js/zamboni/discovery-min.js:23
 msgid "Not available for your platform"
 msgstr "Non disponibile per la tua piattaforma"
@@ -90,12 +90,12 @@ msgid "May be incompatible with {0} {1}"
 msgstr "Potrebbe essere non compatibile con {0}{1}"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/common-all.js:10840 media/js/common-min.js:23 media/js/impala-all.js:1890 media/js/impala-min.js:1 media/js/zamboni/buttons.js:318 media/js/zamboni/buttons.js:355
+#: media/js/common-all.js:10840 media/js/common-min.js:23 media/js/impala-all.js:1890 media/js/impala-min.js:1 media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
 #: media/js/zamboni/discovery-all.js:10782 media/js/zamboni/discovery-min.js:23
 msgid "Not available for {0} {1}"
 msgstr "Non disponibile per {0} {1}"
 
-#: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:601 media/js/zamboni/discovery-all.js:11020
+#: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:597 media/js/zamboni/discovery-all.js:11020
 #: media/js/zamboni/discovery-min.js:23 media/js/zamboni/mobile-all.js:11127 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Bisogna utilizzare un browser, come Firefox, basato su Mozilla per installare un plugin di ricerca."
@@ -105,7 +105,7 @@ msgid "Loading..."
 msgstr "Caricamento…"
 
 #. L10n: {0} is the number of characters left.
-#: media/js/common-all.js:16220 media/js/common-min.js:56 media/js/impala-all.js:7769 media/js/impala-min.js:34 media/js/zamboni/global.js:487
+#: media/js/common-all.js:16220 media/js/common-min.js:56 media/js/impala-all.js:7769 media/js/impala-min.js:34 media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> carattere disponibile."
@@ -227,11 +227,11 @@ msgstr[1] "Almeno {0} caratteri ancora disponibili."
 msgid "Search personas for <b>{0}</b>"
 msgstr "Cerca tema Persona per <b>{0}</b>"
 
-#: media/js/common-all.js:19705 media/js/common-min.js:56 media/js/impala-all.js:12800 media/js/impala-min.js:34 media/js/impala/suggestions.js:41
+#: media/js/common-all.js:19705 media/js/common-min.js:56 media/js/impala-all.js:12800 media/js/impala-min.js:34 media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "Cerca app per <b>{0}</b>"
 
-#: media/js/common-all.js:19707 media/js/common-min.js:56 media/js/impala-all.js:12802 media/js/impala-min.js:34 media/js/impala/suggestions.js:43
+#: media/js/common-all.js:19707 media/js/common-min.js:56 media/js/impala-all.js:12802 media/js/impala-min.js:34 media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Cerca componenti aggiuntivi per <b>{0}</b>"
 
@@ -561,21 +561,39 @@ msgstr "Codice bancario iracheno"
 msgid "Detected: {0}"
 msgstr "Rilevati: {0}"
 
-#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:76 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:27
+msgid "that"
+msgid_plural "those"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/devreg/payments-manage.js:28
+msgid "app"
+msgid_plural "apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/devreg/payments-manage.js:29
+msgid "it"
+msgid_plural "they"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "Errore"
 
-#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:77
+#: media/js/devreg/payments-manage.js:54 media/js/devreg/payments-manage.js:98
 msgid "There was a problem contacting the payment server."
 msgstr "Si è verificato un errore durante la connessione al server per i pagamenti."
 
-#: media/js/devreg/payments-manage.js:55
+#: media/js/devreg/payments-manage.js:76
 msgid "Authentication error"
 msgstr "Errore durante l'autenticazione"
 
-#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:118
 msgid "You do not currently have any payment accounts."
 msgstr "Al momento non disponi di un conto pagamenti."
 
@@ -629,7 +647,7 @@ msgstr "Impossibile completare il controllo o controllo completato con errori"
 msgid "Your Theme's Name"
 msgstr "Il nome del tema"
 
-#: media/js/impala/suggestions.js:39
+#: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "Cerca temi per <b>{0}</b>"
 
@@ -1247,6 +1265,14 @@ msgstr "Identificazione con Persona non riuscita. Sei sicuro di aver registrato 
 msgid "Persona login failed. A server error was encountered."
 msgstr "Identificazione con Persona non riuscita. Si è verificato un errore col server."
 
+#: media/js/mkt/lookup-tool.js:63
+msgid "Show All Results"
+msgstr ""
+
+#: media/js/mkt/lookup-tool.js:66
+msgid "Over {0} results found, consider refining your search."
+msgstr ""
+
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
 msgstr "Permessi richiesti:"
@@ -1543,23 +1569,23 @@ msgstr "Installazione app non riuscita."
 msgid "This system does not support installing apps."
 msgstr "Questo sistema non supporta l'installazione di app."
 
-#: media/js/zamboni/buttons.js:155
+#: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Questo componente aggiuntivo non è stato aggiornato per essere sempre compatibile come impostazione predefinita."
 
-#: media/js/zamboni/buttons.js:160
+#: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "È necessario utilizzare Firefox 10 o superiore."
 
-#: media/js/zamboni/buttons.js:172
+#: media/js/zamboni/buttons.js:171
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla ha contrassegnato questa versione come non compatibile con la versione di Firefox in uso."
 
-#: media/js/zamboni/buttons.js:381
+#: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
 msgstr "Compatibile con {app} {min} - {max}"
 
-#: media/js/zamboni/buttons.js:383
+#: media/js/zamboni/buttons.js:382
 msgid "View other versions"
 msgstr "Mostra altre versioni"
 
@@ -1717,7 +1743,7 @@ msgstr "Personas richiede {0}"
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Questo componente aggiuntivo è stato sottoposto a una revisione preliminare da Mozilla."
 
-#: media/js/zamboni/mobile-all.js:11379 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:300
+#: media/js/zamboni/mobile-all.js:11379 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
 msgstr "Mantieni"
 

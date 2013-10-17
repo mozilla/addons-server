@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"POT-Creation-Date: 2013-10-17 08:27-0700\n"
 "PO-Revision-Date: 2013-09-16 18:35+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -14,773 +14,400 @@ msgstr ""
 "X-Generator: Translate Toolkit 1.6.0\n"
 "X-POOTLE-MTIME: 1379356539.0\n"
 
-#: media/js/common-all.js:10109
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1159
-#: media/js/impala-min.js:1
-#: media/js/devreg/init.js:35
-#: media/js/mkt/init.js:47
-#: media/js/zamboni/discovery-all.js:10076
-#: media/js/zamboni/discovery-min.js:23
-#: media/js/zamboni/init.js:32
-#: media/js/zamboni/mobile-all.js:10912
-#: media/js/zamboni/mobile-min.js:32
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
+#: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
+#: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "我們正在維護網站，這個功能暫時無法使用。請您稍後再試。"
 
-#: media/js/common-all.js:10509
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1559
-#: media/js/impala-min.js:1
-#: media/js/zamboni/mobile-all.js:10654
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/common-all.js:10509 media/js/common-min.js:23 media/js/impala-all.js:1559 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10654 media/js/zamboni/mobile-min.js:32
 msgid "App installation not allowed"
 msgstr "不允許安裝應用程式"
 
-#: media/js/common-all.js:10512
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1562
-#: media/js/impala-min.js:1
-#: media/js/zamboni/mobile-all.js:10657
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/common-all.js:10512 media/js/common-min.js:23 media/js/impala-all.js:1562 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10657 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is malformed"
 msgstr "應用程式安裝資訊已毀損"
 
-#: media/js/common-all.js:10515
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1565
-#: media/js/impala-min.js:1
-#: media/js/zamboni/mobile-all.js:10660
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/common-all.js:10515 media/js/common-min.js:23 media/js/impala-all.js:1565 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10660 media/js/zamboni/mobile-min.js:32
 msgid "App host could not be reached"
 msgstr "無法連絡應用程式主機"
 
-#: media/js/common-all.js:10518
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1568
-#: media/js/impala-min.js:1
-#: media/js/zamboni/mobile-all.js:10663
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/common-all.js:10518 media/js/common-min.js:23 media/js/impala-all.js:1568 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10663 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is unparsable"
 msgstr "無法剖析應用程式安裝資訊"
 
-#: media/js/common-all.js:10521
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1571
-#: media/js/impala-min.js:1
-#: media/js/zamboni/mobile-all.js:10666
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/common-all.js:10521 media/js/common-min.js:23 media/js/impala-all.js:1571 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10666 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is invalid"
 msgstr "無效的應用程式安裝資訊"
 
-#: media/js/common-all.js:10524
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1574
-#: media/js/impala-min.js:1
-#: media/js/zamboni/mobile-all.js:10669
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/common-all.js:10524 media/js/common-min.js:23 media/js/impala-all.js:1574 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10669 media/js/zamboni/mobile-min.js:32
 msgid "Unknown error"
 msgstr "未知錯誤"
 
-#: media/js/common-all.js:10535
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1585
-#: media/js/impala-min.js:1
-#: media/js/zamboni/mobile-all.js:10680
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/common-all.js:10535 media/js/common-min.js:23 media/js/impala-all.js:1585 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10680 media/js/zamboni/mobile-min.js:32
 msgid "App installation failed"
 msgstr "應用程式安裝失敗"
 
-#: media/js/common-all.js:10536
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1586
-#: media/js/impala-min.js:1
-#: media/js/zamboni/mobile-all.js:10681
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/common-all.js:10536 media/js/common-min.js:23 media/js/impala-all.js:1586 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10681 media/js/zamboni/mobile-min.js:32
 msgid "This system does not support installing apps"
 msgstr "此系統不支援應用程式安裝"
 
 #. L10n: {0} is an app name like Firefox.
-#: media/js/common-all.js:10677
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1727
-#: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:109
-#: media/js/zamboni/discovery-all.js:10619
+#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Accept and Install"
 msgstr "接受並安裝"
 
-#: media/js/common-all.js:10677
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1727
-#: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:109
-#: media/js/zamboni/discovery-all.js:10619
+#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Add to {0}"
 msgstr "新增至 {0}"
 
-#: media/js/common-all.js:10682
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1732
-#: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:114
-#: media/js/zamboni/discovery-all.js:10624
+#: media/js/common-all.js:10682 media/js/common-min.js:23 media/js/impala-all.js:1732 media/js/impala-min.js:1 media/js/zamboni/buttons.js:113 media/js/zamboni/discovery-all.js:10624
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download Now"
 msgstr "立刻下載"
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: media/js/common-all.js:10773
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1823
-#: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:250
-#: media/js/zamboni/discovery-all.js:10715
+#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Install for {0} anyway"
 msgstr "繼續安裝 {0} 版本"
 
-#: media/js/common-all.js:10773
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1823
-#: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:250
-#: media/js/zamboni/discovery-all.js:10715
+#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download for {0} anyway"
 msgstr "仍然下載 {0}"
 
-#: media/js/common-all.js:10824
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1874
-#: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:307
-#: media/js/zamboni/discovery-all.js:10766
+#: media/js/common-all.js:10824 media/js/common-min.js:23 media/js/impala-all.js:1874 media/js/impala-min.js:1 media/js/zamboni/buttons.js:306 media/js/zamboni/discovery-all.js:10766
 #: media/js/zamboni/discovery-min.js:23
 msgid "Not available for your platform"
 msgstr "與您的作業系統不相容"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/common-all.js:10830
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1880
-#: media/js/impala-min.js:1
-#: media/js/zamboni/discovery-all.js:10772
-#: media/js/zamboni/discovery-min.js:23
+#: media/js/common-all.js:10830 media/js/common-min.js:23 media/js/impala-all.js:1880 media/js/impala-min.js:1 media/js/zamboni/discovery-all.js:10772 media/js/zamboni/discovery-min.js:23
 msgid "May be incompatible with {0} {1}"
 msgstr "可能不相容於 {0} {1}"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/common-all.js:10840
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:1890
-#: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:318
-#: media/js/zamboni/buttons.js:355
-#: media/js/zamboni/discovery-all.js:10782
-#: media/js/zamboni/discovery-min.js:23
+#: media/js/common-all.js:10840 media/js/common-min.js:23 media/js/impala-all.js:1890 media/js/impala-min.js:1 media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+#: media/js/zamboni/discovery-all.js:10782 media/js/zamboni/discovery-min.js:23
 msgid "Not available for {0} {1}"
 msgstr "無法使用於 {0} {1}"
 
-#: media/js/common-all.js:11078
-#: media/js/common-min.js:23
-#: media/js/impala-all.js:2128
-#: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:601
-#: media/js/zamboni/discovery-all.js:11020
-#: media/js/zamboni/discovery-min.js:23
-#: media/js/zamboni/mobile-all.js:11127
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:39
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
+#: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:597 media/js/zamboni/discovery-all.js:11020
+#: media/js/zamboni/discovery-min.js:23 media/js/zamboni/mobile-all.js:11127 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要 Mozilla 系列的瀏覽器 (像是 Firefox) 才能安裝此搜尋外掛。"
 
-#: media/js/common-all.js:16149
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:7698
-#: media/js/impala-min.js:34
-#: media/js/zamboni/global.js:416
+#: media/js/common-all.js:16149 media/js/common-min.js:56 media/js/impala-all.js:7698 media/js/impala-min.js:34 media/js/zamboni/global.js:416
 msgid "Loading..."
 msgstr "載入中..."
 
 #. L10n: {0} is the number of characters left.
-#: media/js/common-all.js:16220
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:7769
-#: media/js/impala-min.js:34
-#: media/js/zamboni/global.js:487
+#: media/js/common-all.js:16220 media/js/common-min.js:56 media/js/impala-all.js:7769 media/js/impala-min.js:34 media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "還剩下 <b>{0}</b> 個字元可以輸入。"
 
-#: media/js/common-all.js:16654
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:8112
-#: media/js/impala-min.js:34
-#: media/js/common/ratingwidget.js:31
-#: media/js/zamboni/mobile-all.js:12005
+#: media/js/common-all.js:16654 media/js/common-min.js:56 media/js/impala-all.js:8112 media/js/impala-min.js:34 media/js/common/ratingwidget.js:31 media/js/zamboni/mobile-all.js:12005
 #: media/js/zamboni/mobile-min.js:32
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} 顆星"
 
-#: media/js/common-all.js:16798
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:8256
-#: media/js/impala-min.js:34
-#: media/js/devreg/l10n.js:45
-#: media/js/zamboni/l10n.js:45
+#: media/js/common-all.js:16798 media/js/common-min.js:56 media/js/impala-all.js:8256 media/js/impala-min.js:34 media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "移除此語系"
 
-#: media/js/common-all.js:17907
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:9379
-#: media/js/impala-min.js:34
-#: media/js/zamboni/contributions.js:134
+#: media/js/common-all.js:17907 media/js/common-min.js:56 media/js/impala-all.js:9379 media/js/impala-min.js:34 media/js/zamboni/contributions.js:134
 msgid "Install App"
 msgstr "安裝應用程式"
 
-#: media/js/common-all.js:18147
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:9743
-#: media/js/impala-min.js:34
-#: media/js/impala/reviews.js:23
-#: media/js/zamboni/reviews.js:18
+#: media/js/common-all.js:18147 media/js/common-min.js:56 media/js/impala-all.js:9743 media/js/impala-min.js:34 media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "評論已被標記"
 
-#: media/js/common-all.js:18163
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:9760
-#: media/js/impala-min.js:34
-#: media/js/impala/reviews.js:40
-#: media/js/zamboni/reviews.js:34
+#: media/js/common-all.js:18163 media/js/common-min.js:56 media/js/impala-all.js:9760 media/js/impala-min.js:34 media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "必填"
 
-#: media/js/common-all.js:18232
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:9846
-#: media/js/impala-min.js:34
-#: media/js/impala/reviews.js:133
-#: media/js/zamboni/reviews.js:103
+#: media/js/common-all.js:18232 media/js/common-min.js:56 media/js/impala-all.js:9846 media/js/impala-min.js:34 media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "標示刪除"
 
-#: media/js/common-all.js:18756
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:11799
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:193
+#: media/js/common-all.js:18756 media/js/common-min.js:56 media/js/impala-all.js:11799 media/js/impala-min.js:34 media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
 msgstr "清除最近瀏覽"
 
-#: media/js/common-all.js:18928
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:11971
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:365
+#: media/js/common-all.js:18928 media/js/common-min.js:56 media/js/impala-all.js:11971 media/js/impala-min.js:34 media/js/zamboni/collections.js:365
 msgid "Adding to Favorites&hellip;"
 msgstr "加入至我的最愛&hellip;"
 
-#: media/js/common-all.js:18931
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:11974
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:368
+#: media/js/common-all.js:18931 media/js/common-min.js:56 media/js/impala-all.js:11974 media/js/impala-min.js:34 media/js/zamboni/collections.js:368
 msgid "Removing Favorite&hellip;"
 msgstr "從我的最愛中移除&hellip;"
 
-#: media/js/common-all.js:18934
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:11977
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:371
+#: media/js/common-all.js:18934 media/js/common-min.js:56 media/js/impala-all.js:11977 media/js/impala-min.js:34 media/js/zamboni/collections.js:371
 msgid "Add to Favorites"
 msgstr "加入至我的最愛"
 
-#: media/js/common-all.js:18937
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:11980
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:374
+#: media/js/common-all.js:18937 media/js/common-min.js:56 media/js/impala-all.js:11980 media/js/impala-min.js:34 media/js/zamboni/collections.js:374
 msgid "Remove from Favorites"
 msgstr "從我的最愛中移除"
 
-#: media/js/common-all.js:19000
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12043
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:437
+#: media/js/common-all.js:19000 media/js/common-min.js:56 media/js/impala-all.js:12043 media/js/impala-min.js:34 media/js/zamboni/collections.js:437
 msgid "Pending"
 msgstr "擱置"
 
-#: media/js/common-all.js:19001
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12044
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:438
+#: media/js/common-all.js:19001 media/js/common-min.js:56 media/js/impala-all.js:12044 media/js/impala-min.js:34 media/js/zamboni/collections.js:438
 msgid "Add a comment"
 msgstr "新增一個意見"
 
-#: media/js/common-all.js:19001
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12044
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:438
+#: media/js/common-all.js:19001 media/js/common-min.js:56 media/js/impala-all.js:12044 media/js/impala-min.js:34 media/js/zamboni/collections.js:438
 msgid "Comment"
 msgstr "意見"
 
-#: media/js/common-all.js:19002
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12045
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:439
+#: media/js/common-all.js:19002 media/js/common-min.js:56 media/js/impala-all.js:12045 media/js/impala-min.js:34 media/js/zamboni/collections.js:439
 msgid "Remove this add-on from the collection"
 msgstr "從收藏集中移除此附加元件"
 
-#: media/js/common-all.js:19002
-#: media/js/common-all.js:19031
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12045
-#: media/js/impala-all.js:12074
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:439
-#: media/js/zamboni/collections.js:468
+#: media/js/common-all.js:19002 media/js/common-all.js:19031 media/js/common-min.js:56 media/js/impala-all.js:12045 media/js/impala-all.js:12074 media/js/impala-min.js:34
+#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
 msgid "Remove"
 msgstr "移除"
 
-#: media/js/common-all.js:19031
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12074
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:468
+#: media/js/common-all.js:19031 media/js/common-min.js:56 media/js/impala-all.js:12074 media/js/impala-min.js:34 media/js/zamboni/collections.js:468
 msgid "Remove this user as a contributor"
 msgstr "剝奪這位使用者的貢獻者資格"
 
-#: media/js/common-all.js:19043
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12086
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:480
+#: media/js/common-all.js:19043 media/js/common-min.js:56 media/js/impala-all.js:12086 media/js/impala-min.js:34 media/js/zamboni/collections.js:480
 msgid "An email address is required."
 msgstr "必須輸入電子郵件地址。"
 
-#: media/js/common-all.js:19061
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12104
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:500
+#: media/js/common-all.js:19061 media/js/common-min.js:56 media/js/impala-all.js:12104 media/js/impala-min.js:34 media/js/zamboni/collections.js:500
 msgid "You have already added that user."
 msgstr "您已經新增該使用者。"
 
-#: media/js/common-all.js:19264
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12307
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:703
+#: media/js/common-all.js:19264 media/js/common-min.js:56 media/js/impala-all.js:12307 media/js/impala-min.js:34 media/js/zamboni/collections.js:703
 msgid "Add to favorites"
 msgstr "加入至我的最愛"
 
-#: media/js/common-all.js:19268
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12311
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:707
+#: media/js/common-all.js:19268 media/js/common-min.js:56 media/js/impala-all.js:12311 media/js/impala-min.js:34 media/js/zamboni/collections.js:707
 msgid "Remove from favorites"
 msgstr "從我的最愛移除"
 
-#: media/js/common-all.js:19286
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12329
-#: media/js/impala-all.js:12395
-#: media/js/impala-min.js:34
-#: media/js/impala/collections.js:10
+#: media/js/common-all.js:19286 media/js/common-min.js:56 media/js/impala-all.js:12329 media/js/impala-all.js:12395 media/js/impala-min.js:34 media/js/impala/collections.js:10
 #: media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
 msgstr "追蹤這個收藏集"
 
-#: media/js/common-all.js:19295
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12338
-#: media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:734
+#: media/js/common-all.js:19295 media/js/common-min.js:56 media/js/impala-all.js:12338 media/js/impala-min.js:34 media/js/zamboni/collections.js:734
 msgid "Stop following"
 msgstr "停止追蹤"
 
-#: media/js/common-all.js:19371
-#: media/js/common-all.js:19384
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12446
-#: media/js/impala-all.js:12459
-#: media/js/impala-min.js:34
-#: media/js/zamboni/perf.js:29
+#: media/js/common-all.js:19371 media/js/common-all.js:19384 media/js/common-min.js:56 media/js/impala-all.js:12446 media/js/impala-all.js:12459 media/js/impala-min.js:34 media/js/zamboni/perf.js:29
 #: media/js/zamboni/perf.js:42
 msgid "All"
 msgstr "全部"
 
-#: media/js/common-all.js:19526
-#: media/js/common-min.js:56
-#: media/js/zamboni/password-strength.js:20
+#: media/js/common-all.js:19526 media/js/common-min.js:56 media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
 msgstr "密碼強度:"
 
-#: media/js/common-all.js:19532
-#: media/js/common-min.js:56
-#: media/js/zamboni/password-strength.js:26
+#: media/js/common-all.js:19532 media/js/common-min.js:56 media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "至少還需要再輸入 {0} 個字元。"
 
-#: media/js/common-all.js:19703
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12798
-#: media/js/impala-min.js:34
+#: media/js/common-all.js:19703 media/js/common-min.js:56 media/js/impala-all.js:12798 media/js/impala-min.js:34
 msgid "Search personas for <b>{0}</b>"
 msgstr "搜尋含有 <b>{0}</b> 的個性面板"
 
-#: media/js/common-all.js:19705
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12800
-#: media/js/impala-min.js:34
-#: media/js/impala/suggestions.js:41
+#: media/js/common-all.js:19705 media/js/common-min.js:56 media/js/impala-all.js:12800 media/js/impala-min.js:34 media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "搜尋含有 <b>{0}</b>的應用程式"
 
-#: media/js/common-all.js:19707
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12802
-#: media/js/impala-min.js:34
-#: media/js/impala/suggestions.js:43
+#: media/js/common-all.js:19707 media/js/common-min.js:56 media/js/impala-all.js:12802 media/js/impala-min.js:34 media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "搜尋含有 <b>{0}</b> 的附加元件"
 
-#: media/js/common-all.js:19844
-#: media/js/common-min.js:56
-#: media/js/impala-all.js:12939
-#: media/js/impala-min.js:34
-#: media/js/impala/site_suggestions.js:46
-#: media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/common-all.js:19844 media/js/common-min.js:56 media/js/impala-all.js:12939 media/js/impala-min.js:34 media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
 msgstr "分類"
 
-#: media/js/impala-all.js:2446
-#: media/js/impala-min.js:1
-#: media/js/zamboni/browserid_support.js:32
-#: media/js/zamboni/mobile-all.js:12078
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
 msgid "Admins and editors must provide a password to log in."
 msgstr "管理員與審核者必須輸入密碼才能登入。"
 
-#: media/js/impala-all.js:2451
-#: media/js/impala-min.js:1
-#: media/js/zamboni/browserid_support.js:37
-#: media/js/zamboni/mobile-all.js:12083
-#: media/js/zamboni/mobile-min.js:32
-msgid ""
-"BrowserID login failed. Maybe you don't have an account under that email "
-"address?"
+#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr "BrowserID 登入失敗。或許您並沒有使用該電子郵件帳號來註冊帳號?"
 
-#: media/js/impala-all.js:2584
-#: media/js/impala-min.js:1
-#: media/js/devreg/validator.js:458
-#: media/js/zamboni/devhub-all.js:2864
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/mobile-all.js:12216
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/validator.js:466
+#: media/js/impala-all.js:2584 media/js/impala-min.js:1 media/js/devreg/validator.js:458 media/js/zamboni/devhub-all.js:2864 media/js/zamboni/devhub-min.js:1 media/js/zamboni/mobile-all.js:12216
+#: media/js/zamboni/mobile-min.js:32 media/js/zamboni/validator.js:466
 msgid "Internal server error"
 msgstr "伺服器內部錯誤"
 
 #. L10n: {0} is an app name.
-#: media/js/impala-all.js:9874
-#: media/js/impala-min.js:34
-#: media/js/impala/listing.js:17
-#: media/js/zamboni/themes.js:13
+#: media/js/impala-all.js:9874 media/js/impala-min.js:34 media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "這個佈景主題與您所使用的 {0} 版本不相容"
 
-#: media/js/impala-all.js:10293
-#: media/js/impala-min.js:34
-#: media/js/common/upload-base.js:61
-#: media/js/zamboni/devhub-all.js:127
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/impala-all.js:10293 media/js/impala-min.js:34 media/js/common/upload-base.js:61 media/js/zamboni/devhub-all.js:127 media/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
 msgstr "無法辨識您上傳的檔案格式。"
 
-#: media/js/impala-all.js:10315
-#: media/js/impala-min.js:34
-#: media/js/common/upload-base.js:83
-#: media/js/zamboni/devhub-all.js:149
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/impala-all.js:10315 media/js/impala-min.js:34 media/js/common/upload-base.js:83 media/js/zamboni/devhub-all.js:149 media/js/zamboni/devhub-min.js:1
 msgid "You cancelled the upload."
 msgstr "您已經取消上傳了。"
 
-#: media/js/impala-all.js:10372
-#: media/js/impala-all.js:10807
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:34
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
-#: media/js/zamboni/devhub-all.js:206
-#: media/js/zamboni/devhub-all.js:641
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/impala-all.js:10372 media/js/impala-all.js:10807 media/js/impala-min.js:34 media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/zamboni/devhub-all.js:206 media/js/zamboni/devhub-all.js:641 media/js/zamboni/devhub-min.js:1
 msgid "There was a problem contacting the server."
 msgstr "連線到伺服器時發生問題。"
 
-#: media/js/impala-all.js:10390
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:52
-#: media/js/common/upload-packaged-app.js:52
-#: media/js/zamboni/devhub-all.js:224
+#: media/js/impala-all.js:10390 media/js/impala-min.js:34 media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52 media/js/zamboni/devhub-all.js:224
 #: media/js/zamboni/devhub-min.js:1
 msgid "Select a file..."
 msgstr "選擇一個檔案..."
 
-#: media/js/impala-all.js:10391
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:53
-#: media/js/zamboni/devhub-all.js:225
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/impala-all.js:10391 media/js/impala-min.js:34 media/js/common/upload-addon.js:53 media/js/zamboni/devhub-all.js:225 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "您的附加元件應該以 .xpi、.jar，或 .xml 為副檔名"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/impala-all.js:10425
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:87
-#: media/js/common/upload-packaged-app.js:89
-#: media/js/zamboni/devhub-all.js:259
+#: media/js/impala-all.js:10425 media/js/impala-min.js:34 media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89 media/js/zamboni/devhub-all.js:259
 #: media/js/zamboni/devhub-min.js:1
 msgid "{0}% complete"
 msgstr "{0}% 完成"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/impala-all.js:10428
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:90
-#: media/js/common/upload-packaged-app.js:92
-#: media/js/zamboni/devhub-all.js:262
+#: media/js/impala-all.js:10428 media/js/impala-min.js:34 media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92 media/js/zamboni/devhub-all.js:262
 #: media/js/zamboni/devhub-min.js:1
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: media/js/impala-all.js:10456
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:120
-#: media/js/common/upload-packaged-app.js:120
-#: media/js/zamboni/devhub-all.js:290
+#: media/js/impala-all.js:10456 media/js/impala-min.js:34 media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120 media/js/zamboni/devhub-all.js:290
 #: media/js/zamboni/devhub-min.js:1
 msgid "Cancel"
 msgstr "取消"
 
-#: media/js/impala-all.js:10478
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:142
-#: media/js/common/upload-packaged-app.js:142
-#: media/js/zamboni/devhub-all.js:312
+#: media/js/impala-all.js:10478 media/js/impala-min.js:34 media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142 media/js/zamboni/devhub-all.js:312
 #: media/js/zamboni/devhub-min.js:1
 msgid "Uploading {0}"
 msgstr "正在上傳 {0}"
 
-#: media/js/impala-all.js:10500
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:169
-#: media/js/common/upload-packaged-app.js:164
-#: media/js/zamboni/devhub-all.js:334
+#: media/js/impala-all.js:10500 media/js/impala-min.js:34 media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164 media/js/zamboni/devhub-all.js:334
 #: media/js/zamboni/devhub-min.js:1
 msgid "Error with {0}"
 msgstr "{0} 發生錯誤"
 
-#: media/js/impala-all.js:10505
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:174
-#: media/js/zamboni/devhub-all.js:339
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/impala-all.js:10505 media/js/impala-min.js:34 media/js/common/upload-addon.js:174 media/js/zamboni/devhub-all.js:339 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "您的附加元件未通過驗證，有 {0} 個錯誤。"
 
-#: media/js/impala-all.js:10519
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:188
-#: media/js/common/upload-packaged-app.js:183
-#: media/js/zamboni/devhub-all.js:353
+#: media/js/impala-all.js:10519 media/js/impala-min.js:34 media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183 media/js/zamboni/devhub-all.js:353
 #: media/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;還有 {0} 個"
 
-#: media/js/impala-all.js:10533
-#: media/js/impala-all.js:10654
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:202
-#: media/js/common/upload-addon.js:329
-#: media/js/common/upload-packaged-app.js:197
-#: media/js/common/upload-packaged-app.js:323
-#: media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub-all.js:367
-#: media/js/zamboni/devhub-all.js:488
-#: media/js/zamboni/devhub-all.js:1026
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:162
+#: media/js/impala-all.js:10533 media/js/impala-all.js:10654 media/js/impala-min.js:34 media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329
+#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143 media/js/zamboni/devhub-all.js:367 media/js/zamboni/devhub-all.js:488
+#: media/js/zamboni/devhub-all.js:1026 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:162
 msgid "See full validation report"
 msgstr "檢視完整的驗證報告"
 
-#: media/js/impala-all.js:10545
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:214
-#: media/js/common/upload-packaged-app.js:209
-#: media/js/zamboni/devhub-all.js:379
+#: media/js/impala-all.js:10545 media/js/impala-min.js:34 media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209 media/js/zamboni/devhub-all.js:379
 #: media/js/zamboni/devhub-min.js:1
 msgid "Validating {0}"
 msgstr "{0} 驗證中"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/impala-all.js:10579
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:252
-#: media/js/common/upload-packaged-app.js:245
-#: media/js/zamboni/devhub-all.js:413
+#: media/js/impala-all.js:10579 media/js/impala-min.js:34 media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245 media/js/zamboni/devhub-all.js:413
 #: media/js/zamboni/devhub-min.js:1
 msgid "Received an empty response from the server; status: {0}"
 msgstr "從伺服器收到一個空白的回覆; 狀態:{0}"
 
-#: media/js/impala-all.js:10590
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:263
-#: media/js/common/upload-packaged-app.js:255
-#: media/js/zamboni/devhub-all.js:424
+#: media/js/impala-all.js:10590 media/js/impala-min.js:34 media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255 media/js/zamboni/devhub-all.js:424
 #: media/js/zamboni/devhub-min.js:1
 msgid "Unexpected server error while validating."
 msgstr "在驗證時發生了不可預見的伺服器錯誤。"
 
-#: media/js/impala-all.js:10626
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:301
-#: media/js/common/upload-packaged-app.js:292
-#: media/js/zamboni/devhub-all.js:460
+#: media/js/impala-all.js:10626 media/js/impala-min.js:34 media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292 media/js/zamboni/devhub-all.js:460
 #: media/js/zamboni/devhub-min.js:1
 msgid "Finished validating {0}"
 msgstr "已完成驗證 {0}"
 
-#: media/js/impala-all.js:10632
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:307
-#: media/js/zamboni/devhub-all.js:466
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/impala-all.js:10632 media/js/impala-min.js:34 media/js/common/upload-addon.js:307 media/js/zamboni/devhub-all.js:466 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} warning."
 msgid_plural "Your add-on passed validation with no errors and {0} warnings."
 msgstr[0] "您的附加元件已經通過驗證，沒有發現錯誤與 {0} 警告。"
 
 # 86%
 # 100%
-#: media/js/impala-all.js:10637
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:312
-#: media/js/zamboni/devhub-all.js:471
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/impala-all.js:10637 media/js/impala-min.js:34 media/js/common/upload-addon.js:312 media/js/zamboni/devhub-all.js:471 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "您的附加元件已經通過驗證，沒有發現錯誤或產生警告。"
 
-#: media/js/impala-all.js:10688
-#: media/js/impala-min.js:34
-#: media/js/common/upload-addon.js:363
-#: media/js/zamboni/devhub-all.js:522
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/impala-all.js:10688 media/js/impala-min.js:34 media/js/common/upload-addon.js:363 media/js/zamboni/devhub-all.js:522 media/js/zamboni/devhub-min.js:1
 msgid "Some platforms are not available for this type of add-on."
 msgstr "此類型的附加元件無法在某些平台上運作。"
 
-#: media/js/impala-all.js:10782
-#: media/js/impala-min.js:34
-#: media/js/zamboni/devhub-all.js:616
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/impala-all.js:10782 media/js/impala-min.js:34 media/js/zamboni/devhub-all.js:616 media/js/zamboni/devhub-min.js:1
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示的檔案格式必須為 PNG 或 JPG。"
 
-#: media/js/impala-all.js:11442
-#: media/js/impala-min.js:34
-#: media/js/impala/persona_creation.js:102
+#: media/js/impala-all.js:11442 media/js/impala-min.js:34 media/js/impala/persona_creation.js:102
 msgid "All Rights Reserved"
 msgstr "保留所有權利"
 
-#: media/js/impala-all.js:11446
-#: media/js/impala-min.js:34
-#: media/js/impala/persona_creation.js:106
+#: media/js/impala-all.js:11446 media/js/impala-min.js:34 media/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons 姓名標示 3.0"
 
-#: media/js/impala-all.js:11451
-#: media/js/impala-min.js:34
-#: media/js/impala/persona_creation.js:111
+#: media/js/impala-all.js:11451 media/js/impala-min.js:34 media/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons 姓名標示-非商業性 3.0"
 
-#: media/js/impala-all.js:11456
-#: media/js/impala-min.js:34
-#: media/js/impala/persona_creation.js:116
+#: media/js/impala-all.js:11456 media/js/impala-min.js:34 media/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons 姓名標示-非商業性-禁止改作 3.0"
 
-#: media/js/impala-all.js:11461
-#: media/js/impala-min.js:34
-#: media/js/impala/persona_creation.js:121
+#: media/js/impala-all.js:11461 media/js/impala-min.js:34 media/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons 姓名標示-非商業性-相同方式分享 3.0"
 
-#: media/js/impala-all.js:11466
-#: media/js/impala-min.js:34
-#: media/js/impala/persona_creation.js:126
+#: media/js/impala-all.js:11466 media/js/impala-min.js:34 media/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons 姓名標示-禁止改作 3.0"
 
-#: media/js/impala-all.js:11471
-#: media/js/impala-min.js:34
-#: media/js/impala/persona_creation.js:131
+#: media/js/impala-all.js:11471 media/js/impala-min.js:34 media/js/impala/persona_creation.js:131
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons 姓名標示-相同方式分享 3.0"
 
-#: media/js/impala-all.js:11532
-#: media/js/impala-min.js:34
+#: media/js/impala-all.js:11532 media/js/impala-min.js:34
 msgid "Your Persona's Name"
 msgstr "您的個性面板的名稱"
 
-#: media/js/impala-all.js:12404
-#: media/js/impala-min.js:34
-#: media/js/impala/collections.js:19
+#: media/js/impala-all.js:12404 media/js/impala-min.js:34 media/js/impala/collections.js:19
 msgid "Stop Following"
 msgstr "停止訂閱"
 
-#: media/js/impala-all.js:12405
-#: media/js/impala-min.js:34
-#: media/js/impala/collections.js:20
+#: media/js/impala-all.js:12405 media/js/impala-min.js:34 media/js/impala/collections.js:20
 msgid "Following"
 msgstr "訂閱中"
 
-#: media/js/impala-all.js:12538
-#: media/js/impala-min.js:34
-#: media/js/impala/users.js:33
+#: media/js/impala-all.js:12538 media/js/impala-min.js:34 media/js/impala/users.js:33
 msgid "use original"
 msgstr "使用原始的"
 
-#: media/js/impala-all.js:12556
-#: media/js/impala-min.js:34
-#: media/js/common/upload-image.js:98
-#: media/js/impala/users.js:51
+#: media/js/impala-all.js:12556 media/js/impala-min.js:34 media/js/common/upload-image.js:98 media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "圖片必須是 PNG 或 JPG 格式。"
 
-#: media/js/impala-all.js:12697
-#: media/js/impala-min.js:34
-#: media/js/impala/search.js:104
+#: media/js/impala-all.js:12697 media/js/impala-min.js:34 media/js/impala/search.js:104
 msgid "Updating results&hellip;"
 msgstr "正在更新搜尋結果&hellip;"
 
@@ -792,11 +419,7 @@ msgstr "影片必須為 WebM 格式。"
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "您已封裝的應用程式之副檔名應為<code>.zip</code>。"
 
-#: media/js/common/upload-packaged-app.js:169
-#: media/js/devreg/devhub.js:181
-#: media/js/zamboni/devhub-all.js:1033
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub-all.js:1033 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "您的應用程式沒有通過驗證，有 {0} 個錯誤。"
@@ -815,25 +438,16 @@ msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "您的應用程式驗證失敗，有 {0} 筆錯誤與 {1} 筆訊息。"
 
-#: media/js/devreg/devhub.js:200
-#: media/js/zamboni/devhub-all.js:1047
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "您的應用程式通過驗證，沒有錯誤與 {0} 個訊息。"
 
-#: media/js/devreg/devhub.js:205
-#: media/js/zamboni/devhub-all.js:1052
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "您的應用程式通過驗證，沒有錯誤或訊息。"
 
-#: media/js/devreg/devhub.js:419
-#: media/js/zamboni/devhub-all.js:1336
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub-all.js:1336 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
 msgstr "修改已儲存"
 
@@ -845,31 +459,19 @@ msgstr "請輸入新成員的電子郵件信箱地址"
 msgid "Refreshed"
 msgstr "已重新整理"
 
-#: media/js/devreg/devhub.js:614
-#: media/js/zamboni/devhub-all.js:1499
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:614 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "上傳您的檔案時發生錯誤。"
 
-#: media/js/devreg/devhub.js:896
-#: media/js/zamboni/devhub-all.js:1774
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:884 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "了解詳情"
 
-#: media/js/devreg/devhub.js:900
-#: media/js/zamboni/devhub-all.js:1778
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:888 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "範例"
 
-#: media/js/devreg/devhub.js:1203
-#: media/js/zamboni/devhub-all.js:2125
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1190 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "正在處理圖片更改"
 
@@ -946,106 +548,84 @@ msgid "Iraqi Bank Code"
 msgstr "Iraqi Bank Code"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:160
+#: media/js/devreg/payments-enroll.js:135
 msgid "Detected: {0}"
 msgstr "偵測到: {0}"
 
-#: media/js/devreg/payments-manage.js:32
-#: media/js/devreg/payments-manage.js:67
-#: media/js/devreg/validator.js:193
-#: media/js/devreg/validator.js:438
-#: media/js/devreg/validator.js:457
-#: media/js/mkt/buttons.js:85
-#: media/js/mkt/buttons.js:94
-#: media/js/zamboni/devhub-all.js:2597
-#: media/js/zamboni/devhub-all.js:2844
-#: media/js/zamboni/devhub-all.js:2863
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:193
-#: media/js/zamboni/validator.js:446
-#: media/js/zamboni/validator.js:465
+#: media/js/devreg/payments-manage.js:27
+msgid "that"
+msgid_plural "those"
+msgstr[0] ""
+
+#: media/js/devreg/payments-manage.js:28
+msgid "app"
+msgid_plural "apps"
+msgstr[0] ""
+
+#: media/js/devreg/payments-manage.js:29
+msgid "it"
+msgid_plural "they"
+msgstr[0] ""
+
+#: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
+#: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "錯誤"
 
-#: media/js/devreg/payments-manage.js:33
-#: media/js/devreg/payments-manage.js:68
+#: media/js/devreg/payments-manage.js:54 media/js/devreg/payments-manage.js:98
 msgid "There was a problem contacting the payment server."
 msgstr "與付款伺服器連線時發生錯誤。"
 
-#: media/js/devreg/payments-manage.js:88
+#: media/js/devreg/payments-manage.js:76
+msgid "Authentication error"
+msgstr ""
+
+#: media/js/devreg/payments-manage.js:118
 msgid "You do not currently have any payment accounts."
 msgstr "你目前沒有任何付款帳號。"
 
-#: media/js/devreg/validator.js:71
-#: media/js/zamboni/devhub-all.js:2475
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71 media/js/zamboni/devhub-all.js:2475 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
 msgstr "成功通過所有的測試。"
 
-#: media/js/devreg/validator.js:74
-#: media/js/devreg/validator.js:358
-#: media/js/zamboni/devhub-all.js:2478
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:74
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/devhub-all.js:2478 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:74
 #: media/js/zamboni/validator.js:366
 msgid "These tests were not run."
 msgstr "這些測試沒有執行。"
 
-#: media/js/devreg/validator.js:119
-#: media/js/devreg/validator.js:132
-#: media/js/zamboni/devhub-all.js:2523
-#: media/js/zamboni/devhub-all.js:2536
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:119
-#: media/js/zamboni/validator.js:132
+#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/devhub-all.js:2523 media/js/zamboni/devhub-all.js:2536 media/js/zamboni/devhub-min.js:1
+#: media/js/zamboni/validator.js:119 media/js/zamboni/validator.js:132
 msgid "Tests"
 msgstr "測試"
 
-#: media/js/devreg/validator.js:194
-#: media/js/zamboni/devhub-all.js:2598
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:194
+#: media/js/devreg/validator.js:194 media/js/zamboni/devhub-all.js:2598 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:194
 msgid "Warning"
 msgstr "警告"
 
-#: media/js/devreg/validator.js:281
-#: media/js/zamboni/devhub-all.js:2682
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:281
+#: media/js/devreg/validator.js:281 media/js/zamboni/devhub-all.js:2682 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:281
 msgid "Compatibility Tests"
 msgstr "相容性測試"
 
-#: media/js/devreg/validator.js:329
-#: media/js/zamboni/validator.js:330
+#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:330
 msgid "App failed validation."
 msgstr "應用程式驗證失敗。"
 
-#: media/js/devreg/validator.js:331
-#: media/js/zamboni/validator.js:332
+#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:332
 msgid "App passed validation."
 msgstr "應用程式通過驗證。"
 
-#: media/js/devreg/validator.js:361
-#: media/js/zamboni/devhub-all.js:2767
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:369
+#: media/js/devreg/validator.js:361 media/js/zamboni/devhub-all.js:2767 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:369
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 個錯誤"
 
-#: media/js/devreg/validator.js:363
-#: media/js/zamboni/devhub-all.js:2769
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:371
+#: media/js/devreg/validator.js:363 media/js/zamboni/devhub-all.js:2769 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:371
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-#: media/js/devreg/validator.js:440
-#: media/js/zamboni/devhub-all.js:2846
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:448
+#: media/js/devreg/validator.js:440 media/js/zamboni/devhub-all.js:2846 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:448
 msgid "Validation task could not complete or completed with errors"
 msgstr "驗證工作無法完成或是完成時發生錯誤"
 
@@ -1053,12 +633,11 @@ msgstr "驗證工作無法完成或是完成時發生錯誤"
 msgid "Your Theme's Name"
 msgstr "您的佈景主題名稱"
 
-#: media/js/impala/suggestions.js:39
+#: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "搜尋符合<b>{0}</b>的佈景主題"
 
-#: media/js/impala/stats/chart.js:267
-#: media/js/mkt/stats/chart.js:320
+#: media/js/impala/stats/chart.js:267 media/js/mkt/stats/chart.js:320
 msgid "Week of {0}"
 msgstr "第 {0} 週"
 
@@ -1066,8 +645,7 @@ msgstr "第 {0} 週"
 msgid "downloads"
 msgstr "下載"
 
-#: media/js/impala/stats/chart.js:270
-#: media/js/mkt/stats/chart.js:326
+#: media/js/impala/stats/chart.js:270 media/js/mkt/stats/chart.js:326
 msgid "{0} users"
 msgstr "{0} 位使用者"
 
@@ -1079,74 +657,47 @@ msgstr "{0} 個附加元件"
 msgid "{0} collections"
 msgstr "{0} 個收藏集"
 
-#: media/js/impala/stats/chart.js:273
-#: media/js/mkt/stats/chart.js:328
+#: media/js/impala/stats/chart.js:273 media/js/mkt/stats/chart.js:328
 msgid "{0} reviews"
 msgstr "{0} 個評論"
 
-#: media/js/impala/stats/chart.js:275
-#: media/js/mkt/stats/chart.js:323
-#: media/js/mkt/stats/chart_column.js:125
+#: media/js/impala/stats/chart.js:275 media/js/mkt/stats/chart.js:323 media/js/mkt/stats/chart_column.js:125
 msgid "{0} sales"
 msgstr "{0} 筆銷售"
 
-#: media/js/impala/stats/chart.js:276
-#: media/js/mkt/stats/chart.js:324
-#: media/js/mkt/stats/chart_column.js:126
+#: media/js/impala/stats/chart.js:276 media/js/mkt/stats/chart.js:324 media/js/mkt/stats/chart_column.js:126
 msgid "{0} refunds"
 msgstr "{0} 筆退費"
 
-#: media/js/impala/stats/chart.js:277
-#: media/js/mkt/stats/chart.js:325
+#: media/js/impala/stats/chart.js:277 media/js/mkt/stats/chart.js:325
 msgid "{0} installs"
 msgstr "{0} 個安裝數"
 
-#: media/js/impala/stats/chart.js:369
-#: media/js/impala/stats/csv_keys.js:3
-#: media/js/impala/stats/csv_keys.js:102
-#: media/js/mkt/stats/csv_keys.js:128
-#: media/js/zamboni/stats-all.js:11201
-#: media/js/zamboni/stats-all.js:11267
-#: media/js/zamboni/stats-all.js:12578
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102 media/js/mkt/stats/csv_keys.js:128 media/js/zamboni/stats-all.js:11201
+#: media/js/zamboni/stats-all.js:11267 media/js/zamboni/stats-all.js:12578 media/js/zamboni/stats-min.js:10
 msgid "Downloads"
 msgstr "下載數"
 
-#: media/js/impala/stats/chart.js:379
-#: media/js/impala/stats/csv_keys.js:6
-#: media/js/impala/stats/csv_keys.js:103
-#: media/js/mkt/stats/csv_keys.js:6
-#: media/js/mkt/stats/csv_keys.js:129
-#: media/js/zamboni/stats-all.js:11204
-#: media/js/zamboni/stats-all.js:11268
-#: media/js/zamboni/stats-all.js:12588
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:6 media/js/mkt/stats/csv_keys.js:129
+#: media/js/zamboni/stats-all.js:11204 media/js/zamboni/stats-all.js:11268 media/js/zamboni/stats-all.js:12588 media/js/zamboni/stats-min.js:10
 msgid "Daily Users"
 msgstr "每日使用者"
 
-#: media/js/impala/stats/chart.js:410
-#: media/js/zamboni/stats-all.js:12613
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/chart.js:410 media/js/zamboni/stats-all.js:12613 media/js/zamboni/stats-min.js:10
 msgid "Amount, in USD"
 msgstr "金額，以美元計價"
 
-#: media/js/impala/stats/chart.js:421
-#: media/js/impala/stats/csv_keys.js:97
-#: media/js/mkt/stats/csv_keys.js:123
-#: media/js/zamboni/stats-all.js:11262
-#: media/js/zamboni/stats-all.js:12624
+#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:123 media/js/zamboni/stats-all.js:11262 media/js/zamboni/stats-all.js:12624
 #: media/js/zamboni/stats-min.js:10
 msgid "Number of Contributions"
 msgstr "捐款次數"
 
-#: media/js/impala/stats/chart.js:447
-#: media/js/mkt/stats/chart.js:395
+#: media/js/impala/stats/chart.js:447 media/js/mkt/stats/chart.js:395
 msgid "More Info..."
 msgstr "更多資訊..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: media/js/impala/stats/chart.js:451
-#: media/js/mkt/stats/chart.js:399
+#: media/js/impala/stats/chart.js:451 media/js/mkt/stats/chart.js:399
 msgid "Details for {0}"
 msgstr "{0} 的詳細資訊"
 
@@ -1186,363 +737,194 @@ msgstr "訂閱者"
 msgid "Ratings"
 msgstr "評分"
 
-#: media/js/impala/stats/csv_keys.js:36
-#: media/js/impala/stats/csv_keys.js:107
-#: media/js/mkt/stats/chart_column.js:147
+#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107 media/js/mkt/stats/chart_column.js:147
 msgid "Sales"
 msgstr "銷售"
 
-#: media/js/impala/stats/csv_keys.js:39
-#: media/js/impala/stats/csv_keys.js:106
-#: media/js/mkt/stats/chart.js:364
-#: media/js/mkt/stats/csv_keys.js:3
-#: media/js/mkt/stats/csv_keys.js:132
+#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106 media/js/mkt/stats/chart.js:364 media/js/mkt/stats/csv_keys.js:3 media/js/mkt/stats/csv_keys.js:132
 msgid "Installs"
 msgstr "安裝數"
 
-#: media/js/impala/stats/csv_keys.js:42
-#: media/js/mkt/stats/csv_keys.js:57
-#: media/js/zamboni/stats-all.js:11207
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57 media/js/zamboni/stats-all.js:11207 media/js/zamboni/stats-min.js:10
 msgid "Unknown"
 msgstr "未知"
 
-#: media/js/impala/stats/csv_keys.js:43
-#: media/js/mkt/stats/csv_keys.js:58
-#: media/js/zamboni/stats-all.js:11208
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58 media/js/zamboni/stats-all.js:11208 media/js/zamboni/stats-min.js:10
 msgid "Add-ons Manager"
 msgstr "附加元件管理員"
 
-#: media/js/impala/stats/csv_keys.js:44
-#: media/js/mkt/stats/csv_keys.js:59
-#: media/js/zamboni/stats-all.js:11209
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59 media/js/zamboni/stats-all.js:11209 media/js/zamboni/stats-min.js:10
 msgid "Search Results"
 msgstr "搜尋結果"
 
-#: media/js/impala/stats/csv_keys.js:45
-#: media/js/impala/stats/csv_keys.js:46
-#: media/js/impala/stats/csv_keys.js:47
-#: media/js/mkt/stats/csv_keys.js:60
-#: media/js/mkt/stats/csv_keys.js:61
-#: media/js/mkt/stats/csv_keys.js:62
-#: media/js/zamboni/stats-all.js:11210
-#: media/js/zamboni/stats-all.js:11211
-#: media/js/zamboni/stats-all.js:11212
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
+#: media/js/mkt/stats/csv_keys.js:62 media/js/zamboni/stats-all.js:11210 media/js/zamboni/stats-all.js:11211 media/js/zamboni/stats-all.js:11212 media/js/zamboni/stats-min.js:10
 msgid "Homepage Promo"
 msgstr "首頁促銷"
 
-#: media/js/impala/stats/csv_keys.js:48
-#: media/js/impala/stats/csv_keys.js:49
-#: media/js/mkt/stats/csv_keys.js:63
-#: media/js/mkt/stats/csv_keys.js:64
-#: media/js/zamboni/stats-all.js:11213
-#: media/js/zamboni/stats-all.js:11214
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64 media/js/zamboni/stats-all.js:11213
+#: media/js/zamboni/stats-all.js:11214 media/js/zamboni/stats-min.js:10
 msgid "Homepage Featured"
 msgstr "首頁精選"
 
-#: media/js/impala/stats/csv_keys.js:50
-#: media/js/impala/stats/csv_keys.js:51
-#: media/js/mkt/stats/csv_keys.js:65
-#: media/js/mkt/stats/csv_keys.js:66
-#: media/js/zamboni/stats-all.js:11215
-#: media/js/zamboni/stats-all.js:11216
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66 media/js/zamboni/stats-all.js:11215
+#: media/js/zamboni/stats-all.js:11216 media/js/zamboni/stats-min.js:10
 msgid "Homepage Up and Coming"
 msgstr "首頁嶄露頭角"
 
-#: media/js/impala/stats/csv_keys.js:52
-#: media/js/mkt/stats/csv_keys.js:67
-#: media/js/zamboni/stats-all.js:11217
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67 media/js/zamboni/stats-all.js:11217 media/js/zamboni/stats-min.js:10
 msgid "Homepage Most Popular"
 msgstr "首頁最熱門"
 
-#: media/js/impala/stats/csv_keys.js:53
-#: media/js/impala/stats/csv_keys.js:55
-#: media/js/mkt/stats/csv_keys.js:68
-#: media/js/mkt/stats/csv_keys.js:70
-#: media/js/zamboni/stats-all.js:11218
-#: media/js/zamboni/stats-all.js:11220
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70 media/js/zamboni/stats-all.js:11218
+#: media/js/zamboni/stats-all.js:11220 media/js/zamboni/stats-min.js:10
 msgid "Detail Page"
 msgstr "詳細資訊頁面"
 
-#: media/js/impala/stats/csv_keys.js:54
-#: media/js/impala/stats/csv_keys.js:56
-#: media/js/mkt/stats/csv_keys.js:69
-#: media/js/mkt/stats/csv_keys.js:71
-#: media/js/zamboni/stats-all.js:11219
-#: media/js/zamboni/stats-all.js:11221
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71 media/js/zamboni/stats-all.js:11219
+#: media/js/zamboni/stats-all.js:11221 media/js/zamboni/stats-min.js:10
 msgid "Detail Page (bottom)"
 msgstr "詳細資訊頁面 (底端)"
 
-#: media/js/impala/stats/csv_keys.js:57
-#: media/js/mkt/stats/csv_keys.js:72
-#: media/js/zamboni/stats-all.js:11222
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72 media/js/zamboni/stats-all.js:11222 media/js/zamboni/stats-min.js:10
 msgid "Detail Page (Development Channel)"
 msgstr "詳細資訊頁面 (開發頻道)"
 
-#: media/js/impala/stats/csv_keys.js:58
-#: media/js/impala/stats/csv_keys.js:59
-#: media/js/impala/stats/csv_keys.js:60
-#: media/js/mkt/stats/csv_keys.js:73
-#: media/js/mkt/stats/csv_keys.js:74
-#: media/js/mkt/stats/csv_keys.js:75
-#: media/js/zamboni/stats-all.js:11223
-#: media/js/zamboni/stats-all.js:11224
-#: media/js/zamboni/stats-all.js:11225
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
+#: media/js/mkt/stats/csv_keys.js:75 media/js/zamboni/stats-all.js:11223 media/js/zamboni/stats-all.js:11224 media/js/zamboni/stats-all.js:11225 media/js/zamboni/stats-min.js:10
 msgid "Often Used With"
 msgstr "常與以下元件混用"
 
-#: media/js/impala/stats/csv_keys.js:61
-#: media/js/impala/stats/csv_keys.js:62
-#: media/js/mkt/stats/csv_keys.js:76
-#: media/js/mkt/stats/csv_keys.js:77
-#: media/js/zamboni/stats-all.js:11226
-#: media/js/zamboni/stats-all.js:11227
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62 media/js/mkt/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:77 media/js/zamboni/stats-all.js:11226
+#: media/js/zamboni/stats-all.js:11227 media/js/zamboni/stats-min.js:10
 msgid "Others By Author"
 msgstr "由我建立的元件"
 
-#: media/js/impala/stats/csv_keys.js:63
-#: media/js/impala/stats/csv_keys.js:64
-#: media/js/mkt/stats/csv_keys.js:78
-#: media/js/mkt/stats/csv_keys.js:79
-#: media/js/zamboni/stats-all.js:11228
-#: media/js/zamboni/stats-all.js:11229
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79 media/js/zamboni/stats-all.js:11228
+#: media/js/zamboni/stats-all.js:11229 media/js/zamboni/stats-min.js:10
 msgid "Dependencies"
 msgstr "相依性"
 
-#: media/js/impala/stats/csv_keys.js:65
-#: media/js/impala/stats/csv_keys.js:66
-#: media/js/mkt/stats/csv_keys.js:80
-#: media/js/mkt/stats/csv_keys.js:81
-#: media/js/zamboni/stats-all.js:11230
-#: media/js/zamboni/stats-all.js:11231
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81 media/js/zamboni/stats-all.js:11230
+#: media/js/zamboni/stats-all.js:11231 media/js/zamboni/stats-min.js:10
 msgid "Upsell"
 msgstr "付費升級"
 
-#: media/js/impala/stats/csv_keys.js:68
-#: media/js/mkt/stats/csv_keys.js:83
-#: media/js/zamboni/stats-all.js:11233
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83 media/js/zamboni/stats-all.js:11233 media/js/zamboni/stats-min.js:10
 msgid "Sharing"
 msgstr "分享"
 
-#: media/js/impala/stats/csv_keys.js:69
-#: media/js/mkt/stats/csv_keys.js:84
-#: media/js/zamboni/stats-all.js:11234
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84 media/js/zamboni/stats-all.js:11234 media/js/zamboni/stats-min.js:10
 msgid "Category Pages"
 msgstr "類別頁面"
 
-#: media/js/impala/stats/csv_keys.js:70
-#: media/js/mkt/stats/csv_keys.js:85
-#: media/js/zamboni/stats-all.js:11235
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:70 media/js/mkt/stats/csv_keys.js:85 media/js/zamboni/stats-all.js:11235 media/js/zamboni/stats-min.js:10
 msgid "Collections"
 msgstr "收藏集"
 
-#: media/js/impala/stats/csv_keys.js:71
-#: media/js/impala/stats/csv_keys.js:72
-#: media/js/mkt/stats/csv_keys.js:86
-#: media/js/zamboni/stats-all.js:11236
-#: media/js/zamboni/stats-all.js:11237
+#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86 media/js/zamboni/stats-all.js:11236 media/js/zamboni/stats-all.js:11237
 #: media/js/zamboni/stats-min.js:10
 msgid "Category Landing Featured Carousel"
 msgstr "分類 Landing 精選旋轉木馬"
 
-#: media/js/impala/stats/csv_keys.js:73
-#: media/js/impala/stats/csv_keys.js:74
-#: media/js/mkt/stats/csv_keys.js:89
-#: media/js/mkt/stats/csv_keys.js:90
-#: media/js/zamboni/stats-all.js:11238
-#: media/js/zamboni/stats-all.js:11239
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90 media/js/zamboni/stats-all.js:11238
+#: media/js/zamboni/stats-all.js:11239 media/js/zamboni/stats-min.js:10
 msgid "Category Landing Top Rated"
 msgstr "分類 Landing 評分最高"
 
-#: media/js/impala/stats/csv_keys.js:75
-#: media/js/impala/stats/csv_keys.js:76
-#: media/js/mkt/stats/csv_keys.js:91
-#: media/js/mkt/stats/csv_keys.js:92
-#: media/js/zamboni/stats-all.js:11240
-#: media/js/zamboni/stats-all.js:11241
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92 media/js/zamboni/stats-all.js:11240
+#: media/js/zamboni/stats-all.js:11241 media/js/zamboni/stats-min.js:10
 msgid "Category Landing Most Popular"
 msgstr "分類 Landing 最熱門"
 
-#: media/js/impala/stats/csv_keys.js:77
-#: media/js/impala/stats/csv_keys.js:78
-#: media/js/mkt/stats/csv_keys.js:93
-#: media/js/mkt/stats/csv_keys.js:94
-#: media/js/zamboni/stats-all.js:11242
-#: media/js/zamboni/stats-all.js:11243
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94 media/js/zamboni/stats-all.js:11242
+#: media/js/zamboni/stats-all.js:11243 media/js/zamboni/stats-min.js:10
 msgid "Category Landing Recently Added"
 msgstr "分類 Landing 最近新增"
 
-#: media/js/impala/stats/csv_keys.js:79
-#: media/js/impala/stats/csv_keys.js:80
-#: media/js/mkt/stats/csv_keys.js:95
-#: media/js/mkt/stats/csv_keys.js:96
-#: media/js/zamboni/stats-all.js:11244
-#: media/js/zamboni/stats-all.js:11245
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96 media/js/zamboni/stats-all.js:11244
+#: media/js/zamboni/stats-all.js:11245 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Featured Sort"
 msgstr "瀏覽頁面精選類別"
 
-#: media/js/impala/stats/csv_keys.js:81
-#: media/js/impala/stats/csv_keys.js:82
-#: media/js/mkt/stats/csv_keys.js:97
-#: media/js/mkt/stats/csv_keys.js:98
-#: media/js/zamboni/stats-all.js:11246
-#: media/js/zamboni/stats-all.js:11247
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98 media/js/zamboni/stats-all.js:11246
+#: media/js/zamboni/stats-all.js:11247 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Users Sort"
 msgstr "瀏覽頁面使用者類別"
 
-#: media/js/impala/stats/csv_keys.js:83
-#: media/js/impala/stats/csv_keys.js:84
-#: media/js/mkt/stats/csv_keys.js:99
-#: media/js/mkt/stats/csv_keys.js:100
-#: media/js/zamboni/stats-all.js:11248
-#: media/js/zamboni/stats-all.js:11249
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100 media/js/zamboni/stats-all.js:11248
+#: media/js/zamboni/stats-all.js:11249 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Rating Sort"
 msgstr "瀏覽頁面評分類別"
 
-#: media/js/impala/stats/csv_keys.js:85
-#: media/js/impala/stats/csv_keys.js:86
-#: media/js/mkt/stats/csv_keys.js:101
-#: media/js/mkt/stats/csv_keys.js:102
-#: media/js/zamboni/stats-all.js:11250
-#: media/js/zamboni/stats-all.js:11251
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102 media/js/zamboni/stats-all.js:11250
+#: media/js/zamboni/stats-all.js:11251 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Created Sort"
 msgstr "瀏覽頁面 Created 類別"
 
-#: media/js/impala/stats/csv_keys.js:87
-#: media/js/impala/stats/csv_keys.js:88
-#: media/js/mkt/stats/csv_keys.js:103
-#: media/js/mkt/stats/csv_keys.js:104
-#: media/js/zamboni/stats-all.js:11252
-#: media/js/zamboni/stats-all.js:11253
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104 media/js/zamboni/stats-all.js:11252
+#: media/js/zamboni/stats-all.js:11253 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Name Sort"
 msgstr "瀏覽頁面名稱類別"
 
-#: media/js/impala/stats/csv_keys.js:89
-#: media/js/impala/stats/csv_keys.js:90
-#: media/js/mkt/stats/csv_keys.js:105
-#: media/js/mkt/stats/csv_keys.js:106
-#: media/js/zamboni/stats-all.js:11254
-#: media/js/zamboni/stats-all.js:11255
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106 media/js/zamboni/stats-all.js:11254
+#: media/js/zamboni/stats-all.js:11255 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Popular Sort"
 msgstr "瀏覽頁面熱門類別"
 
-#: media/js/impala/stats/csv_keys.js:91
-#: media/js/impala/stats/csv_keys.js:92
-#: media/js/mkt/stats/csv_keys.js:107
-#: media/js/mkt/stats/csv_keys.js:108
-#: media/js/zamboni/stats-all.js:11256
-#: media/js/zamboni/stats-all.js:11257
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108 media/js/zamboni/stats-all.js:11256
+#: media/js/zamboni/stats-all.js:11257 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Updated Sort"
 msgstr "瀏覽頁面已更新類別"
 
-#: media/js/impala/stats/csv_keys.js:93
-#: media/js/impala/stats/csv_keys.js:94
-#: media/js/mkt/stats/csv_keys.js:109
-#: media/js/mkt/stats/csv_keys.js:110
-#: media/js/zamboni/stats-all.js:11258
-#: media/js/zamboni/stats-all.js:11259
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110 media/js/zamboni/stats-all.js:11258
+#: media/js/zamboni/stats-all.js:11259 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Up and Coming Sort"
 msgstr "瀏覽頁面嶄露頭角類別"
 
-#: media/js/impala/stats/csv_keys.js:98
-#: media/js/mkt/stats/csv_keys.js:124
-#: media/js/zamboni/stats-all.js:11263
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124 media/js/zamboni/stats-all.js:11263 media/js/zamboni/stats-min.js:10
 msgid "Total Amount Contributed"
 msgstr "總共貢獻量"
 
-#: media/js/impala/stats/csv_keys.js:99
-#: media/js/mkt/stats/csv_keys.js:125
-#: media/js/zamboni/stats-all.js:11264
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125 media/js/zamboni/stats-all.js:11264 media/js/zamboni/stats-min.js:10
 msgid "Average Contribution"
 msgstr "平均貢獻"
 
-#: media/js/impala/stats/csv_keys.js:108
-#: media/js/mkt/stats/csv_keys.js:133
+#: media/js/impala/stats/csv_keys.js:108 media/js/mkt/stats/csv_keys.js:133
 msgid "Usage"
 msgstr "使用情況"
 
-#: media/js/impala/stats/csv_keys.js:111
-#: media/js/mkt/stats/csv_keys.js:137
-#: media/js/zamboni/stats-all.js:11271
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137 media/js/zamboni/stats-all.js:11271 media/js/zamboni/stats-min.js:10
 msgid "Firefox"
 msgstr "Firefox"
 
-#: media/js/impala/stats/csv_keys.js:112
-#: media/js/mkt/stats/csv_keys.js:138
-#: media/js/zamboni/stats-all.js:11272
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:112 media/js/mkt/stats/csv_keys.js:138 media/js/zamboni/stats-all.js:11272 media/js/zamboni/stats-min.js:10
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: media/js/impala/stats/csv_keys.js:113
-#: media/js/mkt/stats/csv_keys.js:139
-#: media/js/zamboni/stats-all.js:11273
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:113 media/js/mkt/stats/csv_keys.js:139 media/js/zamboni/stats-all.js:11273 media/js/zamboni/stats-min.js:10
 msgid "Thunderbird"
 msgstr "thunderbird"
 
-#: media/js/impala/stats/csv_keys.js:114
-#: media/js/mkt/stats/csv_keys.js:140
-#: media/js/zamboni/stats-all.js:11274
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:114 media/js/mkt/stats/csv_keys.js:140 media/js/zamboni/stats-all.js:11274 media/js/zamboni/stats-min.js:10
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: media/js/impala/stats/csv_keys.js:115
-#: media/js/mkt/stats/csv_keys.js:141
-#: media/js/zamboni/stats-all.js:11275
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:115 media/js/mkt/stats/csv_keys.js:141 media/js/zamboni/stats-all.js:11275 media/js/zamboni/stats-min.js:10
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: media/js/impala/stats/csv_keys.js:116
-#: media/js/mkt/stats/csv_keys.js:142
-#: media/js/zamboni/stats-all.js:11276
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:116 media/js/mkt/stats/csv_keys.js:142 media/js/zamboni/stats-all.js:11276 media/js/zamboni/stats-min.js:10
 msgid "Fennec"
 msgstr "Fennec"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:121
-#: media/js/zamboni/stats-all.js:11281
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:121 media/js/zamboni/stats-all.js:11281 media/js/zamboni/stats-min.js:10
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "下載數與每日使用者數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:123
-#: media/js/zamboni/stats-all.js:11283
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:123 media/js/zamboni/stats-all.js:11283 media/js/zamboni/stats-min.js:10
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "下載數與每日使用者數，從 {0} 至 {1}"
 
@@ -1557,130 +939,92 @@ msgid "Installs and Daily Users from {0} to {1}"
 msgstr "安裝數與每日使用者數，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:133
-#: media/js/zamboni/stats-all.js:11287
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:133 media/js/zamboni/stats-all.js:11287 media/js/zamboni/stats-min.js:10
 msgid "Downloads, last {0} days"
 msgstr "下載數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:135
-#: media/js/zamboni/stats-all.js:11289
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:135 media/js/zamboni/stats-all.js:11289 media/js/zamboni/stats-min.js:10
 msgid "Downloads from {0} to {1}"
 msgstr "下載數，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:139
-#: media/js/mkt/stats/csv_keys.js:152
-#: media/js/zamboni/stats-all.js:11293
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:139 media/js/mkt/stats/csv_keys.js:152 media/js/zamboni/stats-all.js:11293 media/js/zamboni/stats-min.js:10
 msgid "Daily Users, last {0} days"
 msgstr "每日使用者數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:141
-#: media/js/mkt/stats/csv_keys.js:153
-#: media/js/zamboni/stats-all.js:11295
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:141 media/js/mkt/stats/csv_keys.js:153 media/js/zamboni/stats-all.js:11295 media/js/zamboni/stats-min.js:10
 msgid "Daily Users from {0} to {1}"
 msgstr "每日使用者數，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:145
-#: media/js/zamboni/stats-all.js:11299
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:145 media/js/zamboni/stats-all.js:11299 media/js/zamboni/stats-min.js:10
 msgid "Applications, last {0} days"
 msgstr "應用程式，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:147
-#: media/js/zamboni/stats-all.js:11301
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:147 media/js/zamboni/stats-all.js:11301 media/js/zamboni/stats-min.js:10
 msgid "Applications from {0} to {1}"
 msgstr "應用程式，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:151
-#: media/js/zamboni/stats-all.js:11305
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:151 media/js/zamboni/stats-all.js:11305 media/js/zamboni/stats-min.js:10
 msgid "Platforms, last {0} days"
 msgstr "平台，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:153
-#: media/js/zamboni/stats-all.js:11307
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:153 media/js/zamboni/stats-all.js:11307 media/js/zamboni/stats-min.js:10
 msgid "Platforms from {0} to {1}"
 msgstr "平台，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:157
-#: media/js/zamboni/stats-all.js:11311
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:157 media/js/zamboni/stats-all.js:11311 media/js/zamboni/stats-min.js:10
 msgid "Languages, last {0} days"
 msgstr "語言，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:159
-#: media/js/zamboni/stats-all.js:11313
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:159 media/js/zamboni/stats-all.js:11313 media/js/zamboni/stats-min.js:10
 msgid "Languages from {0} to {1}"
 msgstr "語言，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:163
-#: media/js/zamboni/stats-all.js:11317
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:163 media/js/zamboni/stats-all.js:11317 media/js/zamboni/stats-min.js:10
 msgid "Add-on Versions, last {0} days"
 msgstr "附加元件版本，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:165
-#: media/js/zamboni/stats-all.js:11319
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:165 media/js/zamboni/stats-all.js:11319 media/js/zamboni/stats-min.js:10
 msgid "Add-on Versions from {0} to {1}"
 msgstr "附加元件版本，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:169
-#: media/js/zamboni/stats-all.js:11323
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:169 media/js/zamboni/stats-all.js:11323 media/js/zamboni/stats-min.js:10
 msgid "Add-on Status, last {0} days"
 msgstr "附加元件狀態，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:171
-#: media/js/zamboni/stats-all.js:11325
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:171 media/js/zamboni/stats-all.js:11325 media/js/zamboni/stats-min.js:10
 msgid "Add-on Status from {0} to {1}"
 msgstr "附加元件狀態，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:175
-#: media/js/zamboni/stats-all.js:11329
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:175 media/js/zamboni/stats-all.js:11329 media/js/zamboni/stats-min.js:10
 msgid "Download Sources, last {0} days"
 msgstr "下載來源，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:177
-#: media/js/zamboni/stats-all.js:11331
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:177 media/js/zamboni/stats-all.js:11331 media/js/zamboni/stats-min.js:10
 msgid "Download Sources from {0} to {1}"
 msgstr "下載來源，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:181
-#: media/js/zamboni/stats-all.js:11335
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:181 media/js/zamboni/stats-all.js:11335 media/js/zamboni/stats-min.js:10
 msgid "Contributions, last {0} days"
 msgstr "貢獻，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:183
-#: media/js/zamboni/stats-all.js:11337
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:183 media/js/zamboni/stats-all.js:11337 media/js/zamboni/stats-min.js:10
 msgid "Contributions from {0} to {1}"
 msgstr "從 {0} 至 {1} 的貢獻"
 
@@ -1795,62 +1139,40 @@ msgid "Sales from {0} to {1}"
 msgstr "銷售，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:253
-#: media/js/mkt/stats/csv_keys.js:147
+#: media/js/impala/stats/csv_keys.js:253 media/js/mkt/stats/csv_keys.js:147
 msgid "Installs, last {0} days"
 msgstr "安裝數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:255
-#: media/js/mkt/stats/csv_keys.js:149
+#: media/js/impala/stats/csv_keys.js:255 media/js/mkt/stats/csv_keys.js:149
 msgid "Installs from {0} to {1}"
 msgstr "安裝數，從 {0} 至 {1}"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:261
-#: media/js/mkt/stats/csv_keys.js:223
-#: media/js/zamboni/stats-all.js:11343
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:261 media/js/mkt/stats/csv_keys.js:223 media/js/zamboni/stats-all.js:11343 media/js/zamboni/stats-min.js:10
 msgid "<b>{0}</b> in last {1} days"
 msgstr "最近 {1} 天有 <b>{0}</b> 個"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263
-#: media/js/impala/stats/csv_keys.js:269
-#: media/js/mkt/stats/csv_keys.js:225
-#: media/js/mkt/stats/csv_keys.js:231
-#: media/js/zamboni/stats-all.js:11345
-#: media/js/zamboni/stats-all.js:11351
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269 media/js/mkt/stats/csv_keys.js:225 media/js/mkt/stats/csv_keys.js:231 media/js/zamboni/stats-all.js:11345
+#: media/js/zamboni/stats-all.js:11351 media/js/zamboni/stats-min.js:10
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "從 {1} 至 {2} 的 <b>{0}</b>"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:267
-#: media/js/mkt/stats/csv_keys.js:229
-#: media/js/zamboni/stats-all.js:11349
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:267 media/js/mkt/stats/csv_keys.js:229 media/js/zamboni/stats-all.js:11349 media/js/zamboni/stats-min.js:10
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "最近 {1} 天平均有 <b>{0}</b> 個"
 
-#: media/js/impala/stats/overview.js:19
-#: media/js/mkt/stats/overview.js:17
-#: media/js/zamboni/stats-all.js:12193
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/overview.js:19 media/js/mkt/stats/overview.js:17 media/js/zamboni/stats-all.js:12193 media/js/zamboni/stats-min.js:10
 msgid "No data available."
 msgstr "沒有資料。"
 
-#: media/js/impala/stats/table.js:74
-#: media/js/mkt/stats/table.js:88
-#: media/js/zamboni/stats-all.js:12742
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88 media/js/zamboni/stats-all.js:12742 media/js/zamboni/stats-min.js:10
 msgid "Date"
 msgstr "日期"
 
-#: media/js/impala/stats/topchart.js:96
-#: media/js/mkt/stats/topchart.js:96
-#: media/js/zamboni/stats-all.js:12324
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96 media/js/zamboni/stats-all.js:12324 media/js/zamboni/stats-min.js:10
 msgid "Other"
 msgstr "其他"
 
@@ -1858,18 +1180,15 @@ msgstr "其他"
 msgid "The manifest could not be found at the given location."
 msgstr "無法於所指定的位置找到安裝資訊檔。"
 
-#: media/js/mkt/apps.js:87
-#: media/js/zamboni/apps.js:60
+#: media/js/mkt/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr "無法連絡應用程式主機。"
 
-#: media/js/mkt/apps.js:90
-#: media/js/zamboni/apps.js:63
+#: media/js/mkt/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr "無法剖析應用程式資訊檔。"
 
-#: media/js/mkt/apps.js:93
-#: media/js/zamboni/apps.js:66
+#: media/js/mkt/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr "無效的應用程式資訊檔。"
 
@@ -1885,8 +1204,7 @@ msgstr "伺服器內部錯誤。"
 msgid "Internal server error on app installation."
 msgstr "安裝應用程式時發生伺服器內部錯誤。"
 
-#: media/js/mkt/apps.js:106
-#: media/js/zamboni/apps.js:69
+#: media/js/mkt/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr "安裝失敗。請稍後再試一次。"
 
@@ -1922,15 +1240,21 @@ msgstr "Flash Player</a>。"
 msgid "Message must not be empty."
 msgstr "訊息不能為空白。"
 
-#: media/js/mkt/login.js:62
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
+#: media/js/mkt/login.js:73
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 登入失敗。或許您並沒有使用此電子郵件地址作為帳號?"
 
-#: media/js/mkt/login.js:67
+#: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 登入失敗。伺服器發生錯誤。"
+
+#: media/js/mkt/lookup-tool.js:63
+msgid "Show All Results"
+msgstr ""
+
+#: media/js/mkt/lookup-tool.js:66
+msgid "Over {0} results found, consider refining your search."
+msgstr ""
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
@@ -2034,25 +1358,15 @@ msgstr "月"
 msgid "Day"
 msgstr "日"
 
-#: media/js/mkt/stats/chart.js:352
-#: media/js/mkt/stats/csv_keys.js:9
-#: media/js/mkt/stats/csv_keys.js:18
-#: media/js/mkt/stats/csv_keys.js:27
+#: media/js/mkt/stats/chart.js:352 media/js/mkt/stats/csv_keys.js:9 media/js/mkt/stats/csv_keys.js:18 media/js/mkt/stats/csv_keys.js:27
 msgid "Amount Earned"
 msgstr "收入"
 
-#: media/js/mkt/stats/chart.js:356
-#: media/js/mkt/stats/csv_keys.js:12
-#: media/js/mkt/stats/csv_keys.js:21
-#: media/js/mkt/stats/csv_keys.js:30
-#: media/js/mkt/stats/csv_keys.js:134
+#: media/js/mkt/stats/chart.js:356 media/js/mkt/stats/csv_keys.js:12 media/js/mkt/stats/csv_keys.js:21 media/js/mkt/stats/csv_keys.js:30 media/js/mkt/stats/csv_keys.js:134
 msgid "Units Sold"
 msgstr "銷售量"
 
-#: media/js/mkt/stats/chart.js:360
-#: media/js/mkt/stats/csv_keys.js:15
-#: media/js/mkt/stats/csv_keys.js:24
-#: media/js/mkt/stats/csv_keys.js:33
+#: media/js/mkt/stats/chart.js:360 media/js/mkt/stats/csv_keys.js:15 media/js/mkt/stats/csv_keys.js:24 media/js/mkt/stats/csv_keys.js:33
 msgid "Units Refunded"
 msgstr "退費量"
 
@@ -2072,13 +1386,11 @@ msgstr "依照貨幣 {0}"
 msgid "by source {0}"
 msgstr "依照來源 {0}"
 
-#: media/js/mkt/stats/chart_column.js:131
-#: media/js/mkt/stats/table.js:95
+#: media/js/mkt/stats/chart_column.js:131 media/js/mkt/stats/table.js:95
 msgid "Currency"
 msgstr "幣別"
 
-#: media/js/mkt/stats/chart_column.js:135
-#: media/js/mkt/stats/table.js:98
+#: media/js/mkt/stats/chart_column.js:135 media/js/mkt/stats/table.js:98
 msgid "Source"
 msgstr "來源"
 
@@ -2090,39 +1402,27 @@ msgstr "營收"
 msgid "Refunds"
 msgstr "退費"
 
-#: media/js/mkt/stats/csv_keys.js:36
-#: media/js/mkt/stats/csv_keys.js:192
-#: media/js/mkt/stats/csv_keys.js:193
+#: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
 msgid "Apps Added"
 msgstr "新增的應用程式"
 
-#: media/js/mkt/stats/csv_keys.js:39
-#: media/js/mkt/stats/csv_keys.js:196
-#: media/js/mkt/stats/csv_keys.js:197
+#: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
 msgid "Apps Installed"
 msgstr "已安裝的應用程式"
 
-#: media/js/mkt/stats/csv_keys.js:42
-#: media/js/mkt/stats/csv_keys.js:200
-#: media/js/mkt/stats/csv_keys.js:201
+#: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
 msgid "Reviews"
 msgstr "評論"
 
-#: media/js/mkt/stats/csv_keys.js:45
-#: media/js/mkt/stats/csv_keys.js:208
-#: media/js/mkt/stats/csv_keys.js:209
+#: media/js/mkt/stats/csv_keys.js:45 media/js/mkt/stats/csv_keys.js:208 media/js/mkt/stats/csv_keys.js:209
 msgid "New Users"
 msgstr "新使用者"
 
-#: media/js/mkt/stats/csv_keys.js:48
-#: media/js/mkt/stats/csv_keys.js:204
-#: media/js/mkt/stats/csv_keys.js:205
+#: media/js/mkt/stats/csv_keys.js:48 media/js/mkt/stats/csv_keys.js:204 media/js/mkt/stats/csv_keys.js:205
 msgid "Total Users"
 msgstr "總使用者數"
 
-#: media/js/mkt/stats/csv_keys.js:51
-#: media/js/mkt/stats/csv_keys.js:212
-#: media/js/mkt/stats/csv_keys.js:213
+#: media/js/mkt/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:212 media/js/mkt/stats/csv_keys.js:213
 msgid "Total Visitors"
 msgstr "總瀏覽次數"
 
@@ -2190,64 +1490,46 @@ msgstr "退費量，最近 {0} 日"
 msgid "Units Refunded from {0} to {1}"
 msgstr "從 {0} 至 {1} 的退費量"
 
-#: media/js/mkt/stats/csv_keys.js:168
-#: media/js/mkt/stats/csv_keys.js:169
+#: media/js/mkt/stats/csv_keys.js:168 media/js/mkt/stats/csv_keys.js:169
 msgid "Total Units Sold by Currency"
 msgstr "總銷售量 (按幣別)"
 
-#: media/js/mkt/stats/csv_keys.js:172
-#: media/js/mkt/stats/csv_keys.js:173
+#: media/js/mkt/stats/csv_keys.js:172 media/js/mkt/stats/csv_keys.js:173
 msgid "Total Amount Earned by Currency"
 msgstr "總銷售額 (按幣別)"
 
-#: media/js/mkt/stats/csv_keys.js:176
-#: media/js/mkt/stats/csv_keys.js:177
+#: media/js/mkt/stats/csv_keys.js:176 media/js/mkt/stats/csv_keys.js:177
 msgid "Total Units Refunded by Currency"
 msgstr "總退費量 (按幣別)"
 
-#: media/js/mkt/stats/csv_keys.js:180
-#: media/js/mkt/stats/csv_keys.js:181
+#: media/js/mkt/stats/csv_keys.js:180 media/js/mkt/stats/csv_keys.js:181
 msgid "Total Units Sold by Source"
 msgstr "總銷售量 (按來源)"
 
-#: media/js/mkt/stats/csv_keys.js:184
-#: media/js/mkt/stats/csv_keys.js:185
+#: media/js/mkt/stats/csv_keys.js:184 media/js/mkt/stats/csv_keys.js:185
 msgid "Total Amount Earned by Source"
 msgstr "總銷售額 (按來源)"
 
-#: media/js/mkt/stats/csv_keys.js:188
-#: media/js/mkt/stats/csv_keys.js:189
+#: media/js/mkt/stats/csv_keys.js:188 media/js/mkt/stats/csv_keys.js:189
 msgid "Total Units Refunded by Source"
 msgstr "總退費量 (按來源)"
 
-#: media/js/mkt/stats/csv_keys.js:216
-#: media/js/mkt/stats/csv_keys.js:217
+#: media/js/mkt/stats/csv_keys.js:216 media/js/mkt/stats/csv_keys.js:217
 msgid "Total Installs"
 msgstr "總安裝次數"
 
-#: media/js/zamboni/admin-all.js:179
-#: media/js/zamboni/admin-min.js:1
-#: media/js/zamboni/admin_validation.js:24
-#: media/js/zamboni/devhub-all.js:2278
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1438
-#: media/js/zamboni/editors-all.js:296
-#: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:329
+#: media/js/zamboni/admin-all.js:179 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub-all.js:2278 media/js/zamboni/devhub-min.js:1
+#: media/js/zamboni/devhub.js:1438 media/js/zamboni/editors-all.js:296 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:329
 msgid "Select an application first"
 msgstr "請先選擇一份申請書"
 
-#: media/js/zamboni/admin-all.js:208
-#: media/js/zamboni/admin-min.js:1
-#: media/js/zamboni/admin_validation.js:53
+#: media/js/zamboni/admin-all.js:208 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "把 {0} 個附加元件的最大版本設定為 {1} 並用電子郵件通知作者。"
 
 # 100%
-#: media/js/zamboni/admin-all.js:214
-#: media/js/zamboni/admin-min.js:1
-#: media/js/zamboni/admin_validation.js:59
+#: media/js/zamboni/admin-all.js:214 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
 msgid_plural "This will send emails to the authors of {0} files."
 msgstr[0] "這將會寄送電子郵件給 {0} 個檔案的作者。"
@@ -2268,24 +1550,23 @@ msgstr "應用程式安裝失敗。"
 msgid "This system does not support installing apps."
 msgstr "此系統不支援安裝應用程式。"
 
-#: media/js/zamboni/buttons.js:155
+#: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "附加元件未被更新為預設相容版本。"
 
-#: media/js/zamboni/buttons.js:160
+#: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "您必須使用 Firefox 10.0 或更新版本。"
 
-#: media/js/zamboni/buttons.js:172
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+#: media/js/zamboni/buttons.js:171
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla 已將此版本標示為與您的 Firefox 版本不相容。"
 
-#: media/js/zamboni/buttons.js:381
+#: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
 msgstr "可於 {app} {min} - {max} 使用"
 
-#: media/js/zamboni/buttons.js:383
+#: media/js/zamboni/buttons.js:382
 msgid "View other versions"
 msgstr "檢視其他版本"
 
@@ -2293,74 +1574,50 @@ msgstr "檢視其他版本"
 msgid "You cannot add yourself as a contributor."
 msgstr "您不能新增自己為貢獻者。"
 
-#: media/js/zamboni/devhub-all.js:1106
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub-all.js:1106 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:242
 msgid "Your browser does not support the video tag"
 msgstr "您的瀏覽器不支援此視訊標籤"
 
-#: media/js/zamboni/devhub-all.js:1352
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub-all.js:1352 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:503
 msgid "Enter a new author's email address"
 msgstr "輸入新作者的電子郵件地址"
 
-#: media/js/zamboni/devhub-all.js:1642
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub-all.js:1642 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:793
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個檔案"
 
-#: media/js/zamboni/devhub-all.js:1645
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub-all.js:1645 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} 個審核"
 
-#: media/js/zamboni/devhub-all.js:2306
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1466
+#: media/js/zamboni/devhub-all.js:2306 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
 msgstr "開始測試..."
 
-#: media/js/zamboni/devhub-all.js:2313
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1473
+#: media/js/zamboni/devhub-all.js:2313 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1473
 msgid "Waiting for test results..."
 msgstr "正在等待測試結果出爐..."
 
-#: media/js/zamboni/devhub-all.js:2315
-#: media/js/zamboni/devhub-all.js:2320
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1475
-#: media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub-all.js:2315 media/js/zamboni/devhub-all.js:2320 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
 msgid "Internal Server Error"
 msgstr "內部伺服器錯誤"
 
-#: media/js/zamboni/devhub-all.js:2355
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub-all.js:2355 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1515
 msgid "Must be a valid e-mail address."
 msgstr "必須為有效的電子郵件地址。"
 
-#: media/js/zamboni/devhub-all.js:2737
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:336
+#: media/js/zamboni/devhub-all.js:2737 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:336
 msgid "Add-on failed validation."
 msgstr "附加元件無法通過驗證。"
 
-#: media/js/zamboni/devhub-all.js:2739
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:338
+#: media/js/zamboni/devhub-all.js:2739 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:338
 msgid "Add-on passed validation."
 msgstr "附加元件通過驗證。"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
-#: media/js/zamboni/devhub-all.js:2910
-#: media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/packager.js:31
+#: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:1 media/js/zamboni/packager.js:31
 msgid "Download {0}"
 msgstr "下載 {0}"
 
@@ -2368,63 +1625,43 @@ msgstr "下載 {0}"
 msgid "No results found."
 msgstr "找不到結果。"
 
-#: media/js/zamboni/discovery-all.js:12097
-#: media/js/zamboni/discovery-min.js:23
-#: media/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+#: media/js/zamboni/discovery-all.js:12097 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr "抱歉，我們無法給您任何好建議。<br>請蒞臨 <a href=\"{0}\">附加元件網站</a> 以搜尋哪套附加元件適合您。"
 
-#: media/js/zamboni/discovery-all.js:12127
-#: media/js/zamboni/discovery-min.js:23
-#: media/js/zamboni/discovery_pane.js:247
+#: media/js/zamboni/discovery-all.js:12127 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
 msgstr "正在搜尋建議&hellip;"
 
-#: media/js/zamboni/discovery-all.js:12129
-#: media/js/zamboni/discovery-min.js:23
-#: media/js/zamboni/discovery_pane.js:249
+#: media/js/zamboni/discovery-all.js:12129 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
 msgstr "正在更新建議&hellip;"
 
-#: media/js/zamboni/editors-all.js:140
-#: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:160
+#: media/js/zamboni/editors-all.js:140 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
 msgstr "{name} 最先檢視此頁面。"
 
-#: media/js/zamboni/editors-all.js:249
-#: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:289
+#: media/js/zamboni/editors-all.js:249 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:289
 msgid "Loading&hellip;"
 msgstr "載入中&hellip;"
 
-#: media/js/zamboni/editors-all.js:254
-#: media/js/zamboni/editors-min.js:1
+#: media/js/zamboni/editors-all.js:254 media/js/zamboni/editors-min.js:1
 msgid "Release Notes"
 msgstr "新鮮事"
 
-#: media/js/zamboni/editors-all.js:259
-#: media/js/zamboni/editors-min.js:1
+#: media/js/zamboni/editors-all.js:259 media/js/zamboni/editors-min.js:1
 msgid "Approval Notes"
 msgstr "核准說明"
 
-#: media/js/zamboni/editors-all.js:264
-#: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:304
+#: media/js/zamboni/editors-all.js:264 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:304
 msgid "No version notes found"
 msgstr "找不到版本紀錄"
 
-#: media/js/zamboni/editors-all.js:355
-#: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:364
+#: media/js/zamboni/editors-all.js:355 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:364
 msgid "Average Reviews"
 msgstr "平均評分"
 
-#: media/js/zamboni/editors-all.js:411
-#: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:420
+#: media/js/zamboni/editors-all.js:411 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:420
 msgid "Number of Reviews"
 msgstr "評論次數"
 
@@ -2448,77 +1685,53 @@ msgstr "版本資訊"
 msgid "Notes for Reviewers"
 msgstr "給審核者的筆記"
 
-#: media/js/zamboni/mobile-all.js:11158
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:75
+#: media/js/zamboni/mobile-all.js:11158 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
 msgstr "未為 {0} {1} 更新"
 
-#: media/js/zamboni/mobile-all.js:11159
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:76
+#: media/js/zamboni/mobile-all.js:11159 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
 msgstr "需要安裝 {0} 的較新版本"
 
-#: media/js/zamboni/mobile-all.js:11160
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:77
+#: media/js/zamboni/mobile-all.js:11160 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
 msgstr "尚未審核"
 
-#: media/js/zamboni/mobile-all.js:11161
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:78
+#: media/js/zamboni/mobile-all.js:11161 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "實驗中 <span>(更多資訊)</span>"
 
 # 80%
 # 100%
-#: media/js/zamboni/mobile-all.js:11162
-#: media/js/zamboni/mobile-all.js:11163
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:79
-#: media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile-all.js:11162 media/js/zamboni/mobile-all.js:11163 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "無法使用於 {0}"
 
-#: media/js/zamboni/mobile-all.js:11164
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:81
+#: media/js/zamboni/mobile-all.js:11164 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
 msgstr "實驗中"
 
-#: media/js/zamboni/mobile-all.js:11165
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/zamboni/mobile-all.js:11165 media/js/zamboni/mobile-min.js:32
 msgid "Personas Require Newer Version of {0}"
 msgstr "個性面板需要較新的 {0} 版本"
 
-#: media/js/zamboni/mobile-all.js:11166
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/zamboni/mobile-all.js:11166 media/js/zamboni/mobile-min.js:32
 msgid "Personas Require {0}"
 msgstr "個性面板需要 {0}"
 
-#: media/js/zamboni/mobile-all.js:11244
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:165
+#: media/js/zamboni/mobile-all.js:11244 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "此附加元件已經通過 Mozilla 初步審核。"
 
-#: media/js/zamboni/mobile-all.js:11379
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:300
+#: media/js/zamboni/mobile-all.js:11379 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
 msgstr "保留它"
 
-#: media/js/zamboni/mobile-all.js:11950
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/general.js:338
+#: media/js/zamboni/mobile-all.js:11950 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/general.js:338
 msgid "You're trying it on!"
 msgstr "您正在試穿它!"
 
-#: media/js/zamboni/mobile-all.js:11962
-#: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/general.js:350
+#: media/js/zamboni/mobile-all.js:11962 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/general.js:350
 msgid "Added to Firefox"
 msgstr "已新增至 Firefox"
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"POT-Creation-Date: 2013-10-17 08:27-0700\n"
 "PO-Revision-Date: 2013-10-02 13:59+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
@@ -11,8 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1380722391.0\n"
 
@@ -54,33 +53,33 @@ msgid "This system does not support installing apps"
 msgstr "Ta sistem ne podpira nameščanja aplikacij"
 
 #. L10n: {0} is an app name like Firefox.
-#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:109 media/js/zamboni/discovery-all.js:10619
+#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Accept and Install"
 msgstr "Sprejmi in namesti"
 
-#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:109 media/js/zamboni/discovery-all.js:10619
+#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Add to {0}"
 msgstr "Dodaj v {0}"
 
-#: media/js/common-all.js:10682 media/js/common-min.js:23 media/js/impala-all.js:1732 media/js/impala-min.js:1 media/js/zamboni/buttons.js:114 media/js/zamboni/discovery-all.js:10624
+#: media/js/common-all.js:10682 media/js/common-min.js:23 media/js/impala-all.js:1732 media/js/impala-min.js:1 media/js/zamboni/buttons.js:113 media/js/zamboni/discovery-all.js:10624
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download Now"
 msgstr "Prenesi zdaj"
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:250 media/js/zamboni/discovery-all.js:10715
+#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Install for {0} anyway"
 msgstr "Namesti vseeno za {0}"
 
-#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:250 media/js/zamboni/discovery-all.js:10715
+#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download for {0} anyway"
 msgstr "Prenesi vseeno za {0}"
 
-#: media/js/common-all.js:10824 media/js/common-min.js:23 media/js/impala-all.js:1874 media/js/impala-min.js:1 media/js/zamboni/buttons.js:307 media/js/zamboni/discovery-all.js:10766
+#: media/js/common-all.js:10824 media/js/common-min.js:23 media/js/impala-all.js:1874 media/js/impala-min.js:1 media/js/zamboni/buttons.js:306 media/js/zamboni/discovery-all.js:10766
 #: media/js/zamboni/discovery-min.js:23
 msgid "Not available for your platform"
 msgstr "Ni na voljo za vašo platformo"
@@ -91,12 +90,12 @@ msgid "May be incompatible with {0} {1}"
 msgstr "Lahko da ni združljiv z {0} {1}"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/common-all.js:10840 media/js/common-min.js:23 media/js/impala-all.js:1890 media/js/impala-min.js:1 media/js/zamboni/buttons.js:318 media/js/zamboni/buttons.js:355
+#: media/js/common-all.js:10840 media/js/common-min.js:23 media/js/impala-all.js:1890 media/js/impala-min.js:1 media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
 #: media/js/zamboni/discovery-all.js:10782 media/js/zamboni/discovery-min.js:23
 msgid "Not available for {0} {1}"
 msgstr "Ni na voljo za {0} {1}"
 
-#: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:601 media/js/zamboni/discovery-all.js:11020
+#: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:597 media/js/zamboni/discovery-all.js:11020
 #: media/js/zamboni/discovery-min.js:23 media/js/zamboni/mobile-all.js:11127 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Za namestitev vstavka za iskanje žal potrebujete brskalnik na osnovi Mozille (kot je Firefox)."
@@ -106,7 +105,7 @@ msgid "Loading..."
 msgstr "Nalaganje..."
 
 #. L10n: {0} is the number of characters left.
-#: media/js/common-all.js:16220 media/js/common-min.js:56 media/js/impala-all.js:7769 media/js/impala-min.js:34 media/js/zamboni/global.js:487
+#: media/js/common-all.js:16220 media/js/common-min.js:56 media/js/impala-all.js:7769 media/js/impala-min.js:34 media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "ostal <b>{0}</b> znak."
@@ -234,11 +233,11 @@ msgstr[3] "Ostala najmanj {0} znaka."
 msgid "Search personas for <b>{0}</b>"
 msgstr "Iščite po personah za <b>{0}</b>"
 
-#: media/js/common-all.js:19705 media/js/common-min.js:56 media/js/impala-all.js:12800 media/js/impala-min.js:34 media/js/impala/suggestions.js:41
+#: media/js/common-all.js:19705 media/js/common-min.js:56 media/js/impala-all.js:12800 media/js/impala-min.js:34 media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "Iščite po aplikacijah za <b>{0}</b>"
 
-#: media/js/common-all.js:19707 media/js/common-min.js:56 media/js/impala-all.js:12802 media/js/impala-min.js:34 media/js/impala/suggestions.js:43
+#: media/js/common-all.js:19707 media/js/common-min.js:56 media/js/impala-all.js:12802 media/js/impala-min.js:34 media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Iščite po dodatkih za <b>{0}</b>"
 
@@ -246,11 +245,11 @@ msgstr "Iščite po dodatkih za <b>{0}</b>"
 msgid "Category"
 msgstr "Kategorija"
 
-#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:32 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
 msgid "Admins and editors must provide a password to log in."
 msgstr "Administratorji in uredniki za prijavo potrebujejo geslo."
 
-#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr "Prijava z BrowserID ni uspela. Morda računa nimate pod tem email naslovom?"
 
@@ -493,15 +492,15 @@ msgstr ""
 msgid "There was an error uploading your file."
 msgstr "Pri nalaganju datoteke je prišlo do napake."
 
-#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:884 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Več o tem"
 
-#: media/js/devreg/devhub.js:900 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:888 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Primer"
 
-#: media/js/devreg/devhub.js:1203 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1190 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "Obdelava sprememb v slikah."
 
@@ -578,21 +577,49 @@ msgid "Iraqi Bank Code"
 msgstr ""
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:160
+#: media/js/devreg/payments-enroll.js:135
 msgid "Detected: {0}"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:67 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:27
+msgid "that"
+msgid_plural "those"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: media/js/devreg/payments-manage.js:28
+msgid "app"
+msgid_plural "apps"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: media/js/devreg/payments-manage.js:29
+msgid "it"
+msgid_plural "they"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "Napaka"
 
-#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:68
+#: media/js/devreg/payments-manage.js:54 media/js/devreg/payments-manage.js:98
 msgid "There was a problem contacting the payment server."
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:88
+#: media/js/devreg/payments-manage.js:76
+msgid "Authentication error"
+msgstr ""
+
+#: media/js/devreg/payments-manage.js:118
 msgid "You do not currently have any payment accounts."
 msgstr ""
 
@@ -650,7 +677,7 @@ msgstr "Postopek validiranja ni bilo mogoče končati oziroma je končal z napak
 msgid "Your Theme's Name"
 msgstr "Ime vaše Teme"
 
-#: media/js/impala/suggestions.js:39
+#: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "Išči teme za <b>{0}</b>"
 
@@ -1257,13 +1284,21 @@ msgstr "Flash Player</a>."
 msgid "Message must not be empty."
 msgstr "Sporočilo ne sme biti prazno."
 
-#: media/js/mkt/login.js:62
+#: media/js/mkt/login.js:73
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Prijava pod Persono ni uspela. Morda računa nimate pod tem email naslovom?"
 
-#: media/js/mkt/login.js:67
+#: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
 msgstr "Prijava pod Persono ni uspela. Prišlo je do napake na strežniku."
+
+#: media/js/mkt/lookup-tool.js:63
+msgid "Show All Results"
+msgstr ""
+
+#: media/js/mkt/lookup-tool.js:66
+msgid "Over {0} results found, consider refining your search."
+msgstr ""
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
@@ -1567,23 +1602,23 @@ msgstr "Namestitev aplikacije ni uspela."
 msgid "This system does not support installing apps."
 msgstr "Ta sistem ne podpira nameščanja aplikacij."
 
-#: media/js/zamboni/buttons.js:155
+#: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Ta dodatek ni bil posodobljen za podporo default-to-compatible."
 
-#: media/js/zamboni/buttons.js:160
+#: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Uporabljati morate Firefox 10.0 ali več."
 
-#: media/js/zamboni/buttons.js:172
+#: media/js/zamboni/buttons.js:171
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla je to različico zaznamovala kot nezdružljivo z vašo različico Firefoxa."
 
-#: media/js/zamboni/buttons.js:381
+#: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
 msgstr "Dela z {app} {min} - {max}"
 
-#: media/js/zamboni/buttons.js:383
+#: media/js/zamboni/buttons.js:382
 msgid "View other versions"
 msgstr "Prikaži druge različice"
 
@@ -1744,7 +1779,7 @@ msgstr "Personas potrebujejo {0}"
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Ta dodatek je Mozilla predhodno pregledala."
 
-#: media/js/zamboni/mobile-all.js:11379 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:300
+#: media/js/zamboni/mobile-all.js:11379 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
 msgstr "Obdrži"
 

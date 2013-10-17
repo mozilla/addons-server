@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27 16:47-0700\n"
+"POT-Creation-Date: 2013-10-17 08:27-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,7 +107,7 @@ msgstr "Ŧħīş şẏşŧḗḿ ḓǿḗş ƞǿŧ şŭƥƥǿřŧ īƞşŧȧŀŀ
 #: media/js/common-min.js:23
 #: media/js/impala-all.js:1727
 #: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:109
+#: media/js/zamboni/buttons.js:108
 #: media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Accept and Install"
@@ -117,7 +117,7 @@ msgstr "Ȧƈƈḗƥŧ ȧƞḓ Īƞşŧȧŀŀ"
 #: media/js/common-min.js:23
 #: media/js/impala-all.js:1727
 #: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:109
+#: media/js/zamboni/buttons.js:108
 #: media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Add to {0}"
@@ -127,7 +127,7 @@ msgstr "Ȧḓḓ ŧǿ {0}"
 #: media/js/common-min.js:23
 #: media/js/impala-all.js:1732
 #: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:114
+#: media/js/zamboni/buttons.js:113
 #: media/js/zamboni/discovery-all.js:10624
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download Now"
@@ -138,7 +138,7 @@ msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
 #: media/js/common-min.js:23
 #: media/js/impala-all.js:1823
 #: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:250
+#: media/js/zamboni/buttons.js:249
 #: media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Install for {0} anyway"
@@ -148,7 +148,7 @@ msgstr "Īƞşŧȧŀŀ ƒǿř {0} ȧƞẏẇȧẏ"
 #: media/js/common-min.js:23
 #: media/js/impala-all.js:1823
 #: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:250
+#: media/js/zamboni/buttons.js:249
 #: media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download for {0} anyway"
@@ -158,7 +158,7 @@ msgstr "Ḓǿẇƞŀǿȧḓ ƒǿř {0} ȧƞẏẇȧẏ"
 #: media/js/common-min.js:23
 #: media/js/impala-all.js:1874
 #: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:307
+#: media/js/zamboni/buttons.js:306
 #: media/js/zamboni/discovery-all.js:10766
 #: media/js/zamboni/discovery-min.js:23
 msgid "Not available for your platform"
@@ -179,8 +179,8 @@ msgstr "Ḿȧẏ ƀḗ īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ {0} {1}"
 #: media/js/common-min.js:23
 #: media/js/impala-all.js:1890
 #: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:318
-#: media/js/zamboni/buttons.js:355
+#: media/js/zamboni/buttons.js:317
+#: media/js/zamboni/buttons.js:354
 #: media/js/zamboni/discovery-all.js:10782
 #: media/js/zamboni/discovery-min.js:23
 msgid "Not available for {0} {1}"
@@ -190,7 +190,7 @@ msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř {0} {1}"
 #: media/js/common-min.js:23
 #: media/js/impala-all.js:2128
 #: media/js/impala-min.js:1
-#: media/js/zamboni/buttons.js:601
+#: media/js/zamboni/buttons.js:597
 #: media/js/zamboni/discovery-all.js:11020
 #: media/js/zamboni/discovery-min.js:23
 #: media/js/zamboni/mobile-all.js:11127
@@ -216,7 +216,7 @@ msgstr "Ŀǿȧḓīƞɠ..."
 #: media/js/common-min.js:56
 #: media/js/impala-all.js:7769
 #: media/js/impala-min.js:34
-#: media/js/zamboni/global.js:487
+#: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> ƈħȧřȧƈŧḗř ŀḗƒŧ."
@@ -456,6 +456,7 @@ msgstr "Şḗȧřƈħ ƥḗřşǿƞȧş ƒǿř <b>{0}</b>"
 #: media/js/impala-all.js:12800
 #: media/js/impala-min.js:34
 #: media/js/impala/suggestions.js:41
+#: media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ȧƥƥş ƒǿř <b>{0}</b>"
 
@@ -464,6 +465,7 @@ msgstr "Şḗȧřƈħ ȧƥƥş ƒǿř <b>{0}</b>"
 #: media/js/impala-all.js:12802
 #: media/js/impala-min.js:34
 #: media/js/impala/suggestions.js:43
+#: media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ȧḓḓ-ǿƞş ƒǿř <b>{0}</b>"
 
@@ -962,8 +964,26 @@ msgstr "Īřȧɋī Ɓȧƞķ Ƈǿḓḗ"
 msgid "Detected: {0}"
 msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 
-#: media/js/devreg/payments-manage.js:32
-#: media/js/devreg/payments-manage.js:76
+#: media/js/devreg/payments-manage.js:27
+msgid "that"
+msgid_plural "those"
+msgstr[0] "ŧħȧŧ"
+msgstr[1] "ŧħǿşḗ"
+
+#: media/js/devreg/payments-manage.js:28
+msgid "app"
+msgid_plural "apps"
+msgstr[0] "ȧƥƥ"
+msgstr[1] "ȧƥƥş"
+
+#: media/js/devreg/payments-manage.js:29
+msgid "it"
+msgid_plural "they"
+msgstr[0] "īŧ"
+msgstr[1] "ŧħḗẏ"
+
+#: media/js/devreg/payments-manage.js:53
+#: media/js/devreg/payments-manage.js:97
 #: media/js/devreg/validator.js:193
 #: media/js/devreg/validator.js:438
 #: media/js/devreg/validator.js:457
@@ -979,16 +999,16 @@ msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 msgid "Error"
 msgstr "Ḗřřǿř"
 
-#: media/js/devreg/payments-manage.js:33
-#: media/js/devreg/payments-manage.js:77
+#: media/js/devreg/payments-manage.js:54
+#: media/js/devreg/payments-manage.js:98
 msgid "There was a problem contacting the payment server."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ ƥȧẏḿḗƞŧ şḗřṽḗř."
 
-#: media/js/devreg/payments-manage.js:55
+#: media/js/devreg/payments-manage.js:76
 msgid "Authentication error"
 msgstr "Ȧŭŧħḗƞŧīƈȧŧīǿƞ ḗřřǿř"
 
-#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:118
 msgid "You do not currently have any payment accounts."
 msgstr "Ẏǿŭ ḓǿ ƞǿŧ ƈŭřřḗƞŧŀẏ ħȧṽḗ ȧƞẏ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş."
 
@@ -1072,6 +1092,7 @@ msgid "Your Theme's Name"
 msgstr "Ẏǿŭř Ŧħḗḿḗ'ş Ƞȧḿḗ"
 
 #: media/js/impala/suggestions.js:39
+#: media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ŧħḗḿḗş ƒǿř <b>{0}</b>"
 
@@ -1952,6 +1973,14 @@ msgstr ""
 msgid "Persona login failed. A server error was encountered."
 msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ȧ şḗřṽḗř ḗřřǿř ẇȧş ḗƞƈǿŭƞŧḗřḗḓ."
 
+#: media/js/mkt/lookup-tool.js:63
+msgid "Show All Results"
+msgstr "Şħǿẇ Ȧŀŀ Řḗşŭŀŧş"
+
+#: media/js/mkt/lookup-tool.js:66
+msgid "Over {0} results found, consider refining your search."
+msgstr "Ǿṽḗř {0} řḗşŭŀŧş ƒǿŭƞḓ, ƈǿƞşīḓḗř řḗƒīƞīƞɠ ẏǿŭř şḗȧřƈħ."
+
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
 msgstr "Řḗɋŭḗşŧḗḓ Ƥḗřḿīşşīǿƞş:"
@@ -2290,25 +2319,25 @@ msgstr "Ȧƥƥ īƞşŧȧŀŀȧŧīǿƞ ƒȧīŀḗḓ."
 msgid "This system does not support installing apps."
 msgstr "Ŧħīş şẏşŧḗḿ ḓǿḗş ƞǿŧ şŭƥƥǿřŧ īƞşŧȧŀŀīƞɠ ȧƥƥş."
 
-#: media/js/zamboni/buttons.js:155
+#: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Ȧḓḓ-ǿƞ ħȧş ƞǿŧ ƀḗḗƞ ŭƥḓȧŧḗḓ ŧǿ şŭƥƥǿřŧ ḓḗƒȧŭŀŧ-ŧǿ-ƈǿḿƥȧŧīƀŀḗ."
 
-#: media/js/zamboni/buttons.js:160
+#: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ŭşīƞɠ Ƒīřḗƒǿẋ 10.0 ǿř ħīɠħḗř."
 
-#: media/js/zamboni/buttons.js:172
+#: media/js/zamboni/buttons.js:171
 msgid ""
 "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
 "Ḿǿzīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
 
-#: media/js/zamboni/buttons.js:381
+#: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
 msgstr "Ẇǿřķş ẇīŧħ {ȧƥƥ} {ḿīƞ} - {ḿȧẋ}"
 
-#: media/js/zamboni/buttons.js:383
+#: media/js/zamboni/buttons.js:382
 msgid "View other versions"
 msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
 
@@ -2531,7 +2560,7 @@ msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ ƥřḗŀīḿīƞȧřīŀẏ �
 
 #: media/js/zamboni/mobile-all.js:11379
 #: media/js/zamboni/mobile-min.js:32
-#: media/js/zamboni/mobile/buttons.js:300
+#: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
 msgstr "Ķḗḗƥ īŧ"
 

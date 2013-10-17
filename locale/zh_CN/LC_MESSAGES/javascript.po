@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27 16:47-0700\n"
+"POT-Creation-Date: 2013-10-17 08:27-0700\n"
 "PO-Revision-Date: 2013-10-17 11:15+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -52,33 +52,33 @@ msgid "This system does not support installing apps"
 msgstr "此系统不支持安装应用"
 
 #. L10n: {0} is an app name like Firefox.
-#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:109 media/js/zamboni/discovery-all.js:10619
+#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Accept and Install"
 msgstr "同意并安装"
 
-#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:109 media/js/zamboni/discovery-all.js:10619
+#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
 #: media/js/zamboni/discovery-min.js:23
 msgid "Add to {0}"
 msgstr "添加到 {0}"
 
-#: media/js/common-all.js:10682 media/js/common-min.js:23 media/js/impala-all.js:1732 media/js/impala-min.js:1 media/js/zamboni/buttons.js:114 media/js/zamboni/discovery-all.js:10624
+#: media/js/common-all.js:10682 media/js/common-min.js:23 media/js/impala-all.js:1732 media/js/impala-min.js:1 media/js/zamboni/buttons.js:113 media/js/zamboni/discovery-all.js:10624
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download Now"
 msgstr "立即下载"
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:250 media/js/zamboni/discovery-all.js:10715
+#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Install for {0} anyway"
 msgstr "继续安装 {0} 版本"
 
-#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:250 media/js/zamboni/discovery-all.js:10715
+#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
 #: media/js/zamboni/discovery-min.js:23
 msgid "Download for {0} anyway"
 msgstr "坚持下载 {0}"
 
-#: media/js/common-all.js:10824 media/js/common-min.js:23 media/js/impala-all.js:1874 media/js/impala-min.js:1 media/js/zamboni/buttons.js:307 media/js/zamboni/discovery-all.js:10766
+#: media/js/common-all.js:10824 media/js/common-min.js:23 media/js/impala-all.js:1874 media/js/impala-min.js:1 media/js/zamboni/buttons.js:306 media/js/zamboni/discovery-all.js:10766
 #: media/js/zamboni/discovery-min.js:23
 msgid "Not available for your platform"
 msgstr "不适用于您的操作系统"
@@ -89,12 +89,12 @@ msgid "May be incompatible with {0} {1}"
 msgstr "可能与 {0} {1} 不兼容"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/common-all.js:10840 media/js/common-min.js:23 media/js/impala-all.js:1890 media/js/impala-min.js:1 media/js/zamboni/buttons.js:318 media/js/zamboni/buttons.js:355
+#: media/js/common-all.js:10840 media/js/common-min.js:23 media/js/impala-all.js:1890 media/js/impala-min.js:1 media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
 #: media/js/zamboni/discovery-all.js:10782 media/js/zamboni/discovery-min.js:23
 msgid "Not available for {0} {1}"
 msgstr "不适用于 {0} {1}"
 
-#: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:601 media/js/zamboni/discovery-all.js:11020
+#: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:597 media/js/zamboni/discovery-all.js:11020
 #: media/js/zamboni/discovery-min.js:23 media/js/zamboni/mobile-all.js:11127 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要一个基于 Mozilla 的浏览器（例如 Firefox）才能安装此搜索插件。"
@@ -104,7 +104,7 @@ msgid "Loading..."
 msgstr "正在加载..."
 
 #. L10n: {0} is the number of characters left.
-#: media/js/common-all.js:16220 media/js/common-min.js:56 media/js/impala-all.js:7769 media/js/impala-min.js:34 media/js/zamboni/global.js:487
+#: media/js/common-all.js:16220 media/js/common-min.js:56 media/js/impala-all.js:7769 media/js/impala-min.js:34 media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "剩余 <b>{0}</b> 个字符。"
@@ -223,11 +223,11 @@ msgstr[0] "至少还需要输入 {0} 个字符。"
 msgid "Search personas for <b>{0}</b>"
 msgstr "搜索包含关键字 <b>{0}</b> 的炫彩风格"
 
-#: media/js/common-all.js:19705 media/js/common-min.js:56 media/js/impala-all.js:12800 media/js/impala-min.js:34 media/js/impala/suggestions.js:41
+#: media/js/common-all.js:19705 media/js/common-min.js:56 media/js/impala-all.js:12800 media/js/impala-min.js:34 media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "搜索包含关键字 <b>{0}</b> 的应用"
 
-#: media/js/common-all.js:19707 media/js/common-min.js:56 media/js/impala-all.js:12802 media/js/impala-min.js:34 media/js/impala/suggestions.js:43
+#: media/js/common-all.js:19707 media/js/common-min.js:56 media/js/impala-all.js:12802 media/js/impala-min.js:34 media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "搜索包含关键字 <b>{0}</b> 的附加组件"
 
@@ -550,21 +550,36 @@ msgstr "伊拉克银行代码"
 msgid "Detected: {0}"
 msgstr "已删除：{0}"
 
-#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:76 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:27
+msgid "that"
+msgid_plural "those"
+msgstr[0] ""
+
+#: media/js/devreg/payments-manage.js:28
+msgid "app"
+msgid_plural "apps"
+msgstr[0] ""
+
+#: media/js/devreg/payments-manage.js:29
+msgid "it"
+msgid_plural "they"
+msgstr[0] ""
+
+#: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "错误"
 
-#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:77
+#: media/js/devreg/payments-manage.js:54 media/js/devreg/payments-manage.js:98
 msgid "There was a problem contacting the payment server."
 msgstr "联系支付服务器时遇到问题。"
 
-#: media/js/devreg/payments-manage.js:55
+#: media/js/devreg/payments-manage.js:76
 msgid "Authentication error"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:118
 msgid "You do not currently have any payment accounts."
 msgstr "你还没有支付账号。"
 
@@ -616,7 +631,7 @@ msgstr "验证任务无法完成或完成时发生错误"
 msgid "Your Theme's Name"
 msgstr "您的主题名称"
 
-#: media/js/impala/suggestions.js:39
+#: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "搜索匹配 <b>{0}</b> 的主题"
 
@@ -1231,6 +1246,14 @@ msgstr "Persona 登录失败。或许您并没有这个邮件地址下的帐户�
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 登录失败。服务器发生错误。"
 
+#: media/js/mkt/lookup-tool.js:63
+msgid "Show All Results"
+msgstr ""
+
+#: media/js/mkt/lookup-tool.js:66
+msgid "Over {0} results found, consider refining your search."
+msgstr ""
+
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
 msgstr "请求的权限："
@@ -1524,23 +1547,23 @@ msgstr "应用安装失败。"
 msgid "This system does not support installing apps."
 msgstr "该系统不支持正在安装的应用。"
 
-#: media/js/zamboni/buttons.js:155
+#: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "附加组件尚未更新以支持默认兼容。"
 
-#: media/js/zamboni/buttons.js:160
+#: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "您需要使用 Firefox 10.0 或更高的版本。"
 
-#: media/js/zamboni/buttons.js:172
+#: media/js/zamboni/buttons.js:171
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla 已标记此版本为不兼容您的 Firefox 版本。"
 
-#: media/js/zamboni/buttons.js:381
+#: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
 msgstr "兼容于 {app} {min} - {max}"
 
-#: media/js/zamboni/buttons.js:383
+#: media/js/zamboni/buttons.js:382
 msgid "View other versions"
 msgstr "查看其他版本"
 
@@ -1695,7 +1718,7 @@ msgstr "炫彩风格需要 {0}"
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "此附加组件已通过 Mozilla 的初步审核。"
 
-#: media/js/zamboni/mobile-all.js:11379 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:300
+#: media/js/zamboni/mobile-all.js:11379 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
 msgstr "保留它"
 
