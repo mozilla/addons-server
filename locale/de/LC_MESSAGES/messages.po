@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-17 08:28-0700\n"
-"PO-Revision-Date: 2013-09-28 22:42+0000\n"
+"PO-Revision-Date: 2013-10-17 16:19+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: Mozilla Add-ons <amo-editors@mozilla.org>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1380408127.0\n"
+"X-POOTLE-MTIME: 1382026751.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -4432,7 +4432,7 @@ msgstr "Änderungen erfolgreich gespeichert."
 
 #: apps/devhub/views.py:342 apps/devhub/views.py:1736
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Bitte prüfen Sie das Formular auf Fehler."
 
 #: apps/devhub/views.py:360
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -13929,11 +13929,11 @@ msgstr "Benutzer seit"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
-msgstr ""
+msgstr "Zeitpunkt der letzten Anmeldung"
 
 #: apps/users/templates/users/vcard.html:46
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP-Adresse der letzten Anmeldung"
 
 #: apps/users/templates/users/vcard.html:53
 msgid "Number of add-ons developed"
@@ -15550,11 +15550,13 @@ msgstr "Diese App erfordert, dass die Plattform das öffnen von Raw TCP Sockets 
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Unterstützung für Tastaturen von Drittanbietern"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
 msgstr ""
+"Diese App erfordert, dass die Plattform Tastaturen von Drittanbietern "
+"unterstützt."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15810,23 +15812,23 @@ msgstr "Transaktionstyp"
 
 #: mkt/developers/forms.py:915
 msgid "I agree to the Terms and Conditions"
-msgstr ""
+msgstr "Ich stimme den Nutzungsbedingungen zu"
 
 #: mkt/developers/forms.py:917
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "Laden Sie Ihren Testplan hoch (.pdf, .xls, weniger als 2.5 MB)"
 
 #: mkt/developers/forms.py:926
 msgid "Test plan required."
-msgstr ""
+msgstr "Testplan erforderlich."
 
 #: mkt/developers/forms.py:933
 msgid "File too large. Keep size under %s. Current size %s."
-msgstr ""
+msgstr "Datei zu groß. Sie darf höchstens %s groß sein. Aktuelle Größe: %s."
 
 #: mkt/developers/forms.py:939
 msgid "Invalid file type. Only %s files are supported."
-msgstr ""
+msgstr "Ungültiger Dateityp. Es werden nur %s-Dateien unterstützt."
 
 #: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:261
 msgid "App Price"
@@ -16068,11 +16070,11 @@ msgstr "Neue Version erfolgreich hinzugefügt."
 
 #: mkt/developers/views.py:322
 msgid "Application for preinstall successfully submitted."
-msgstr ""
+msgstr "Anwendung für Vorabinstallation erfolgreich übermittelt."
 
 #: mkt/developers/views.py:325
 msgid "There was an error with the form."
-msgstr ""
+msgstr "Es gab einen Fehler mit dem formular."
 
 #: mkt/developers/views.py:359
 msgid "Version successfully edited."
@@ -16188,7 +16190,7 @@ msgstr "Sie müssen sich anmelden, um fortzufahren."
 
 #: mkt/developers/templates/developers/nav.html:36 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Testen von Apps"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -16257,11 +16259,13 @@ msgstr "Sie haben dieser Entwicklervereinbarung bereits zugestimmt."
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_addon.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "Testen"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
 msgstr ""
+"Verwenden Sie diese Werkzeuge, um Ihre Apps zu testen, bevor Sie sie beim "
+"Firefox Marketplace einreichen."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -16291,7 +16295,7 @@ msgstr "Betrag"
 
 #: mkt/developers/templates/developers/validate_addon.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "App-Validierung testen"
 
 #: mkt/developers/templates/developers/validate_addon.html:17 mkt/submit/templates/submit/manifest.html:57
 msgid "Submit your app manifest URL"
@@ -16440,31 +16444,34 @@ msgstr "App veröffentlichen"
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Pre-Installed App Status"
-msgstr ""
+msgstr "Status als vorabinstallierte App"
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
 msgstr ""
+"<strong class=\"submitted\">App übermittelt</strong> am %(last_submission)s"
 
 #: mkt/developers/templates/developers/apps/status.html:122
 msgid "Not Submitted"
-msgstr ""
+msgstr "Nicht übermittelt"
 
 #: mkt/developers/templates/developers/apps/status.html:126
 msgid "New version of the test plan available"
-msgstr ""
+msgstr "Neue Version des Testplans verfügbar"
 
 #: mkt/developers/templates/developers/apps/status.html:131
 msgid "View your most recently submitted test plan"
-msgstr ""
+msgstr "Sehen Sie sich Ihren neuesten übermittelten Testplan an"
 
 #: mkt/developers/templates/developers/apps/status.html:135
 msgid "Learn how to get your app pre-installed on FirefoxOS devices"
 msgstr ""
+"Erfahren Sie, wie Sie Ihre App auf Firefox-OS-Geräten vorab installieren "
+"lassen können"
 
 #: mkt/developers/templates/developers/apps/status.html:138
 msgid "Update your test plan"
-msgstr ""
+msgstr "Aktualisieren Sie Ihren Testplan"
 
 #: mkt/developers/templates/developers/apps/status.html:150 mkt/developers/templates/developers/apps/status.html:167
 msgid "List App"
@@ -16846,7 +16853,7 @@ msgstr "Transaktionen"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:81
 msgid "Communication"
-msgstr ""
+msgstr "Kommunikation"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:11
 msgid "This app will be deleted automatically after a few days if the submission process is not completed."
@@ -16875,23 +16882,23 @@ msgstr "Geräte ändern"
 
 #: mkt/developers/templates/developers/apps/preinstall/home.html:10 mkt/developers/templates/developers/apps/preinstall/submit.html:10
 msgid "Preinstalled"
-msgstr ""
+msgstr "Vorab installiert"
 
 #: mkt/developers/templates/developers/apps/preinstall/home.html:16
 msgid "Preinstalled App"
-msgstr ""
+msgstr "Vorab installierte App"
 
 #: mkt/developers/templates/developers/apps/preinstall/home.html:21
 msgid "Download the test plan"
-msgstr ""
+msgstr "Laden Sie den Testplan herunter"
 
 #: mkt/developers/templates/developers/apps/preinstall/home.html:27
 msgid "Testing Finished?"
-msgstr ""
+msgstr "Test abgeschlossen?"
 
 #: mkt/developers/templates/developers/apps/preinstall/home.html:30 mkt/developers/templates/developers/apps/preinstall/submit.html:36
 msgid "Submit your app for preinstall"
-msgstr ""
+msgstr "Übermitteln Sie Ihre App zur Vorabinstallation"
 
 #: mkt/developers/templates/developers/apps/preinstall/home_help.html:1
 msgid ""
@@ -16899,10 +16906,19 @@ msgid ""
 "from us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preinstall submission form</a>. We will store your test results on "
 "our servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"Sie können Ihre App übermitteln, damit sie möglicherweise von Handy-"
+"Anbietern <strong>vorab installiert und auf Firefox-OS-Geräten ausgeliefert "
+"wird</strong>. Um sich für die Vorabinstallation anzumelden, können Sie im "
+"Folgenden eine unser Testvorlagen herunterladen, Ihre App testen, die "
+"Vorlage ausfüllen und uns Ihre Ergebnisse über das <a href=\"%"
+"(submit_url)s\">Einreichungsformular zur Vorabinstallation von Apps</a> "
+"hochladen. Wir speichern Ihre Testergebnisse auf unseren Servern, wo sie von "
+"interessierten Handy-Anbietern geprüft werden. Wenn Sie weitere Fragen "
+"haben, schreiben Sie eine E-Mail an %(email)s."
 
 #: mkt/developers/templates/developers/apps/preinstall/submit.html:18
 msgid "Preinstalled App Terms and Conditions"
-msgstr ""
+msgstr "Nutzungsbedingungen für vorab installierte Apps"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -16922,7 +16938,7 @@ msgstr "Transaktionen anzeigen"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:36
 msgid "View Communication Dashboard"
-msgstr ""
+msgstr "Kommunikationsübersicht ansehen"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
@@ -16952,11 +16968,11 @@ msgstr "Alle ausblenden"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "App-Installation testen"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:7 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "App-interne Zahlungen testen"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:22
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -17033,6 +17049,8 @@ msgstr "Ihre App ist derzeit unvollständig. Wählen Sie eine Zahlungsmethode un
 #: mkt/developers/templates/developers/payments/premium.html:127
 msgid "Add, manage or view transactions for your payment account"
 msgstr ""
+"Hinzufügen, Verwalten oder Betrachten von Transaktionen für Ihr "
+"Zahlungskonto"
 
 #: mkt/developers/templates/developers/payments/premium.html:143
 msgid "Prices and countries"
@@ -17061,6 +17079,8 @@ msgstr "Verfügbare Regionen"
 #: mkt/developers/templates/developers/payments/premium.html:183
 msgid "Check out the <a href=\"%(status_url)s\">status page</a> to see what countries are currently enabled for sale."
 msgstr ""
+"Sehen Sie sich die <a href=\"%(status_url)s\">Statusseite</a> an, um zu sehen, "
+"welche Länder derzeit für den Verkauf zur Verfügung stehen"
 
 #: mkt/developers/templates/developers/payments/premium.html:191
 msgid "Your app will be available in the following selected regions:"
@@ -17148,7 +17168,7 @@ msgstr "Modifizieren"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:46
 msgid "View transactions"
-msgstr ""
+msgstr "Transaktionen ansehen"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a new payment account"
@@ -17160,7 +17180,7 @@ msgstr "Nutzungsbedingungen akzeptieren"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:55
 msgid "Payment Account deletion"
-msgstr ""
+msgstr "Löschung des Zahlungskontos"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
@@ -17321,7 +17341,7 @@ msgstr "Gestalten"
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/design_concept.html:5 mkt/ecosystem/templates/ecosystem/design_concept.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:13
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "Konzept: Eine großartige App"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:5 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:20
@@ -17356,7 +17376,7 @@ msgstr "Referenz-Apps"
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:245
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5 mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
 msgid "Deploying Your App"
-msgstr ""
+msgstr "Verteilen Ihrer App"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:253
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:23 mkt/ecosystem/templates/ecosystem/publish_hosted.html:5 mkt/ecosystem/templates/ecosystem/publish_hosted.html:13
@@ -17370,7 +17390,7 @@ msgstr "Gepackte Apps"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:276
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "Anstecker, Banner und Symbole"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5 mkt/ecosystem/templates/ecosystem/build_app_generator.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:26
 #: mkt/ecosystem/templates/ecosystem/macros.html:199
@@ -19305,16 +19325,28 @@ msgid ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</"
 "a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Kaufen im US-Laden</a> <a href=\"%"
+"(uk_ebay_url)s\" class=\"button\">Kaufen im UK-Laden</a> <a href=\"%"
+"(hk_ebay_url)s\" class=\"button\">Kaufen im HK-Laden</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid ""
 "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"Nach viel harter Arbeit mit ZTE sind wir stolz darauf, die Veröffentlichung "
+"des Firefox-OS-Handys ZTE OPEN bekannt zu geben, einem mächtigen Gerät, das "
+"Entwickler und frühe Anwender weltweit zur Zielgruppe hat. Diese Geräte sind "
+"über die eBay-Laden von ZTE in den USA, dem Vereinigten Königreich und Hong "
+"Kong erhältlich. Sie kosten 79,99 $/59,99 £ und werden zum Testen und "
+"Experimentieren freigeschaltet und offen sein. <a href=\"%(zte_url)s\">Lesen "
+"Sie weitere Details.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
 msgstr ""
+"HINWEIS: Neue Geräte stehen aus Hong Kong bereits zur Verfügung, um die "
+"Versandkosten für Nutzer aus Asien und Ozeanien zu senken."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:77
 msgid "Peak"
@@ -19339,6 +19371,11 @@ msgid ""
 "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-"
 "to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
 msgstr ""
+"<strong>Wenn Sie gerade ein Geeksphone Keon oder Peak erhalten haben, "
+"verwendet es vermutlich noch die veraltete Firefox-OS-Version 1.0.1. Bevor "
+"Sie es verwenden, sollten Sie eine aktuelle Version von Firefox OS "
+"installieren, wie in unserer <a href=\"%(geeksphone_update_url)s\">Anleitung "
+"zum Aktualisieren des Geeksphone</a> beschrieben.</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
@@ -19885,7 +19922,7 @@ msgstr "Abgesehen von der Bildschirmgröße simuliert der Simulator keine Hardwa
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:382
 msgid "Audio/video codecs"
-msgstr ""
+msgstr "Audio-/Video-Codecs"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:383
 msgid "The following codecs depend on hardware-accelerated decoding and are therefore not yet supported:"
@@ -19906,23 +19943,23 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:402
 msgid "Telephony"
-msgstr ""
+msgstr "Telefonie"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:403
 msgid "WebSMS"
-msgstr ""
+msgstr "WebSMS"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:404
 msgid "WebBluetooth"
-msgstr ""
+msgstr "WebBluetooth"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:405
 msgid "Ambient Light"
-msgstr ""
+msgstr "Umgebungslicht"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:408
 msgid "navigator.onLine and offline events"
-msgstr ""
+msgstr "navigator.onLine und Offline-Ereignisse"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:411
 msgid "Getting help"
@@ -19943,14 +19980,20 @@ msgstr "Entwickeln Sie HTML5-Web-Apps für einen offenen Marktplatz."
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
 msgstr ""
+"Erfahren Sie, wie Sie Apps gestalten, die ein für Firefox OS &amp; Mobile "
+"optimiertes Nutzererlebnis bieten"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
 msgstr ""
+"Alle Werkzeuge, Dokumentationen und Quellen, die Sie zur Entwicklung und zum "
+"Testen Ihrer App benötigen"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
 msgstr ""
+"Erfahren Sie, wie Sie Ihre Apps in einem offenen Marktplatz verteilen, für "
+"den Anwender und Entwickler zuerst kommen"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -19976,13 +20019,16 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
-msgstr ""
+msgstr "Die Mozilla-Apps-Plattform"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
 msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
+"Entwickeln von Apps für das Web gibt Entwicklern die volle Kontrolle über "
+"Inhalt, Funktionalität und die Verteilung der Apps, einschließlich Zugang zu "
+"hunderten Millionen Firefox-Nutzern über den Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -19997,30 +20043,44 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
+"Der Firefox Marketplace gibt Nutzern die Möglichkeit, Apps und für sie "
+"wichtige Inhalte zu finden, auszuprobieren und zu kaufen. Das bedeutet "
+"aufregende, nützliche und qualitativ hochwertige Apps, die für die lokalen "
+"Märkte in allen Kategorien relevant sind, mit denen Nutzer das Meiste aus "
+"ihrem täglichen Leben herausholen können."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
+"Mozillas globale Reichweite umfasst hunderte Millionen Firefox-Nutzer "
+"weltweit. Durch intelligente Verwaltung des Marketplace und effektive "
+"Nutzung von Mozillas Marketing-Kanälen kann Mozilla den Entwicklern helfen, "
+"ihre App in die Hände der Anwender ihrer Zielgruppe auf der ganzen Welt zu "
+"legen."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid ""
 "Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your "
 "app to:"
 msgstr ""
+"Vor der öffentlichen Freigabe später in diesem Jahr öffnet Mozilla den "
+"Marketplace für Tests durch Anwender. Nutzen Sie dies, indem Sie einer der "
+"ersten App-Entwickler sind, der sich eine Nutzerbasis aufbaut. Übermitteln "
+"Sie Ihre App, um:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:200
 msgid "Test your app with a committed group of early adopters."
-msgstr ""
+msgstr "Ihre App mit einer engagierten Gruppe früher Nutzer zu testen."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:205
 msgid "Build an early fan base and gain popularity."
-msgstr "Bauen Sie sich eine frühe Fan-Gemeinde auf und erlangen Sie Beliebtheit."
+msgstr "Sich früh eine Fan-Gemeinde aufzubauen und Beliebtheit zu erlangen."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:208
 msgid "Target tech savvy consumers with your app."
-msgstr ""
+msgstr "Sich technikversierte Anwender mit Ihrer App zur Zielgruppe zu nehmen."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Firefox Apps &amp; Hacks"
@@ -20029,6 +20089,9 @@ msgstr "Firefox-Apps &amp; Hacks"
 #: mkt/ecosystem/templates/ecosystem/landing.html:236
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
+"Melden Sie sich für unseren monatlichen Newsletter über Firefox OS, "
+"Marketplace und das Apps-Ökosystem an. <a href=\"%(dev_phone_url)s\">Sehen Sie "
+"sich die Entwicklervorschau des Handys an</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:247
 msgid "Developer Devices"
@@ -20052,7 +20115,7 @@ msgstr "Schreibt mich auf die Liste!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:65
 msgid "Intro to Open Web Apps"
-msgstr ""
+msgstr "Einführung in Apps des offenen Web"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:231 mkt/ecosystem/templates/ecosystem/publish_submit.html:5 mkt/ecosystem/templates/ecosystem/publish_submit.html:13
 msgid "Marketplace Submission"
@@ -21901,7 +21964,7 @@ msgstr "Beschreibung:"
 
 #: mkt/reviewers/forms.py:50
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Anhang überschreitet die maximale Größe von %s."
 
 #: mkt/reviewers/forms.py:77 mkt/reviewers/templates/reviewers/review.html:221
 msgid "Device Types:"
@@ -21947,11 +22010,11 @@ msgstr "Jemand anderes überprüft dieses Theme."
 
 #: mkt/reviewers/forms.py:286
 msgid "Has Editor Comment"
-msgstr ""
+msgstr "Hat Kommentar eines Redakteurs"
 
 #: mkt/reviewers/forms.py:290
 msgid "More Info Requested"
-msgstr ""
+msgstr "Weitere Infos angefordert"
 
 #: mkt/reviewers/helpers.py:33 mkt/reviewers/helpers.py:66 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"

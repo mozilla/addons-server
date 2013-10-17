@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-17 08:27-0700\n"
-"PO-Revision-Date: 2013-09-28 08:33+0000\n"
+"PO-Revision-Date: 2013-10-17 15:43+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1380357226.0\n"
+"X-POOTLE-MTIME: 1382024632.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -563,20 +563,20 @@ msgstr "Erkannt: {0}"
 #: media/js/devreg/payments-manage.js:27
 msgid "that"
 msgid_plural "those"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "diese"
+msgstr[1] "diese"
 
 #: media/js/devreg/payments-manage.js:28
 msgid "app"
 msgid_plural "apps"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "App"
+msgstr[1] "Apps"
 
 #: media/js/devreg/payments-manage.js:29
 msgid "it"
 msgid_plural "they"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "sie"
+msgstr[1] "die"
 
 #: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
@@ -1263,11 +1263,11 @@ msgstr "Persona-Anmeldung fehlgeschlagen. Es ist ein Server-Fehler aufgetreten."
 
 #: media/js/mkt/lookup-tool.js:63
 msgid "Show All Results"
-msgstr ""
+msgstr "Alle Ergebnisse anzeigen"
 
 #: media/js/mkt/lookup-tool.js:66
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Über {0} Ergebnisse gefunden, Sie sollten Ihre Suchanfrage präzisieren."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
