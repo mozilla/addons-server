@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-17 11:14+0000\n"
+"PO-Revision-Date: 2013-10-17 11:15+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382008483.0\n"
+"X-POOTLE-MTIME: 1382008513.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -1277,7 +1277,7 @@ msgstr "包含编辑注解"
 
 #: media/js/mkt/reviewers.js:112
 msgid "Premium App"
-msgstr " "
+msgstr ""
 
 #: media/js/mkt/reviewers.js:115
 msgid "Escalated"
