@@ -706,9 +706,10 @@ class EditThemeForm(AddonFormBase):
             addon_cat.save()
 
         # Theme reupload.
-        if data['header_hash'] or data['footer_hash']:
-            save_theme_reupload.delay(data['header_hash'], data['footer_hash'],
-                                      addon)
+        if not addon.is_pending():
+            if data['header_hash'] or data['footer_hash']:
+                save_theme_reupload.delay(
+                    data['header_hash'], data['footer_hash'], addon)
 
         return data
 

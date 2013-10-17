@@ -1319,3 +1319,18 @@ class TestThemeEdit(amo.tests.TestCase):
         r = edit_theme(req, self.addon.slug, self.addon)
         doc = pq(r.content)
         assert 'characters' in doc('#trans-description + ul li').text()
+
+    def test_no_reupload_on_pending(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        req = req_factory_factory(
+            self.addon.get_dev_url('edit'), user=self.user)
+        r = edit_theme(req, self.addon.slug, self.addon)
+        doc = pq(r.content)
+        assert not doc('a.reupload')
+
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        req = req_factory_factory(
+            self.addon.get_dev_url('edit'), user=self.user)
+        r = edit_theme(req, self.addon.slug, self.addon)
+        doc = pq(r.content)
+        assert doc('a.reupload')
