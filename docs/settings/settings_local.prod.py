@@ -40,9 +40,6 @@ CACHES = {
 # This is used to hash some things in Django.
 SECRET_KEY = 'replace me with something long'
 
-# Remove any apps that are only needed for development.
-INSTALLED_APPS = tuple(app for app in INSTALLED_APPS if app not in DEV_APPS)
-
 LOG_LEVEL = logging.WARNING
 
 DEBUG_PROPAGATE_EXCEPTIONS = DEBUG

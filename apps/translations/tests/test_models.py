@@ -2,7 +2,6 @@
 from contextlib import nested
 
 import django
-from django import test
 from django.conf import settings
 from django.db import connections, reset_queries
 from django.test.utils import override_settings
@@ -13,8 +12,8 @@ import jinja2
 import multidb
 from mock import patch
 from nose import SkipTest
-from nose.tools import eq_, ok_
-from test_utils import ExtraAppTestCase, trans_eq
+from nose.tools import eq_
+from test_utils import trans_eq, TestCase
 
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
 from translations.models import (Translation, PurifiedTranslation,
@@ -27,7 +26,7 @@ def ids(qs):
     return [o.id for o in qs]
 
 
-class TranslationFixturelessTestCase(test.TestCase):
+class TranslationFixturelessTestCase(TestCase):
     "We want to be able to rollback stuff."
 
     def test_whitespace(self):
@@ -36,7 +35,7 @@ class TranslationFixturelessTestCase(test.TestCase):
         eq_('khaaaaaan!', t.localized_string)
 
 
-class TranslationSequenceTestCase(test.TestCase):
+class TranslationSequenceTestCase(TestCase):
     """
     Make sure automatic translation sequence generation works
     as expected.
@@ -69,9 +68,8 @@ class TranslationSequenceTestCase(test.TestCase):
             'Translation sequence needs to keep increasing.')
 
 
-class TranslationTestCase(ExtraAppTestCase):
+class TranslationTestCase(TestCase):
     fixtures = ['testapp/test_models.json']
-    extra_apps = ['translations.tests.testapp']
 
     def setUp(self):
         super(TranslationTestCase, self).setUp()
@@ -354,52 +352,6 @@ class TranslationTestCase(ExtraAppTestCase):
         eq_(unicode(obj.no_locale), 'blammo')
         eq_(obj.no_locale.locale, 'fr')
 
-    @property
-    def mocked_dbs(self):
-        return {
-            'default': settings.DATABASES['default'].copy(),
-            'slave-1': settings.DATABASES['default'].copy(),
-            'slave-2': settings.DATABASES['default'].copy(),
-        }
-
-    @override_settings(DEBUG=True)
-    def test_translations_reading_from_multiple_db(self):
-        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
-            # Make sure we are in a clean environnement.
-            reset_queries()
-
-            with patch('multidb.get_slave', lambda: 'slave-2'):
-                TranslatedModel.objects.get(pk=1)
-                eq_(len(connections['default'].queries), 0)
-                eq_(len(connections['slave-1'].queries), 0)
-                eq_(len(connections['slave-2'].queries), 3)
-
-    @override_settings(DEBUG=True)
-    def test_translations_reading_from_multiple_db_using(self):
-        raise SkipTest('Will need a django-queryset-transform patch to work')
-        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
-            # Make sure we are in a clean environnement.
-            reset_queries()
-
-            with patch('multidb.get_slave', lambda: 'slave-2'):
-                TranslatedModel.objects.no_cache().using('slave-1').get(pk=1)
-                eq_(len(connections['default'].queries), 0)
-                eq_(len(connections['slave-1'].queries), 3)
-                eq_(len(connections['slave-2'].queries), 0)
-
-    @override_settings(DEBUG=True)
-    def test_translations_reading_from_multiple_db_pinning(self):
-        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
-            # Make sure we are in a clean environnement.
-            reset_queries()
-
-            with nested(patch('multidb.get_slave', lambda: 'slave-2'),
-                        multidb.pinning.use_master):
-                TranslatedModel.objects.get(pk=1)
-                eq_(len(connections['default'].queries), 3)
-                eq_(len(connections['slave-1'].queries), 0)
-                eq_(len(connections['slave-2'].queries), 0)
-
     def test_delete_set_null(self):
         """
         Test that deleting a translation sets the corresponding FK to NULL,
@@ -439,6 +391,76 @@ class TranslationTestCase(ExtraAppTestCase):
         # We should find a Translation.
         eq_(obj.name.id, orig_name_id)
         eq_(obj.name.locale, 'de')
+
+
+class TranslationMultiDbTests(TestCase):
+    fixtures = ['testapp/test_models.json']
+
+    def setUp(self):
+        super(TranslationMultiDbTests, self).setUp()
+        translation.activate('en-US')
+
+    def tearDown(self):
+        self.cleanup_fake_connections()
+        super(TranslationMultiDbTests, self).tearDown()
+
+    @property
+    def mocked_dbs(self):
+        return {
+            'default': settings.DATABASES['default'],
+            'slave-1': settings.DATABASES['default'].copy(),
+            'slave-2': settings.DATABASES['default'].copy(),
+        }
+
+    def cleanup_fake_connections(self):
+        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
+            for key in ('default', 'slave-1', 'slave-2'):
+                connections[key].close()
+
+    @override_settings(DEBUG=True)
+    def test_translations_queries(self):
+        # Make sure we are in a clean environnement.
+        reset_queries()
+        TranslatedModel.objects.get(pk=1)
+        eq_(len(connections['default'].queries), 3)
+
+    @override_settings(DEBUG=True)
+    def test_translations_reading_from_multiple_db(self):
+        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
+            # Make sure we are in a clean environnement.
+            reset_queries()
+
+            with patch('multidb.get_slave', lambda: 'slave-2'):
+                TranslatedModel.objects.get(pk=1)
+                eq_(len(connections['default'].queries), 0)
+                eq_(len(connections['slave-1'].queries), 0)
+                eq_(len(connections['slave-2'].queries), 3)
+
+    @override_settings(DEBUG=True)
+    def test_translations_reading_from_multiple_db_using(self):
+        raise SkipTest('Will need a django-queryset-transform patch to work')
+        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
+            # Make sure we are in a clean environnement.
+            reset_queries()
+
+            with patch('multidb.get_slave', lambda: 'slave-2'):
+                TranslatedModel.objects.using('slave-1').get(pk=1)
+                eq_(len(connections['default'].queries), 0)
+                eq_(len(connections['slave-1'].queries), 3)
+                eq_(len(connections['slave-2'].queries), 0)
+
+    @override_settings(DEBUG=True)
+    def test_translations_reading_from_multiple_db_pinning(self):
+        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
+            # Make sure we are in a clean environnement.
+            reset_queries()
+
+            with nested(patch('multidb.get_slave', lambda: 'slave-2'),
+                        multidb.pinning.use_master):
+                TranslatedModel.objects.get(pk=1)
+                eq_(len(connections['default'].queries), 3)
+                eq_(len(connections['slave-1'].queries), 0)
+                eq_(len(connections['slave-2'].queries), 0)
 
 
 def test_translation_bool():
