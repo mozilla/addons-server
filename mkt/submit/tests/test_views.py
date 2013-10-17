@@ -711,8 +711,6 @@ class TestDetails(TestSubmit):
 
         eq_(self.webapp.status, amo.STATUS_NULL)
         eq_(self.webapp.highest_status, amo.STATUS_PENDING)
-        self.assertSetEqual(
-            self.webapp.get_region_ids(), mkt.regions.ALL_PAID_REGION_IDS)
 
     def test_success_prefill_device_types_if_empty(self):
         """

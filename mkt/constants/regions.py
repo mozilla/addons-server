@@ -44,7 +44,6 @@ class REGION(object):
     mcc = None
     weight = 0
     ratingsbodies = ()
-    has_payments = False
 
 
 class WORLDWIDE(REGION):
@@ -60,7 +59,6 @@ class US(REGION):
     slug = 'us'
     mcc = 310
     weight = 1
-    has_payments = True
 
 
 class UK(REGION):
@@ -69,7 +67,6 @@ class UK(REGION):
     slug = 'uk'
     default_currency = 'GBP'
     mcc = 235
-    has_payments = True
 
 
 class BR(REGION):
@@ -80,7 +77,6 @@ class BR(REGION):
     default_language = 'pt-BR'
     mcc = 724
     ratingsbodies = (ratingsbodies.DJCTQ,)
-    has_payments = False
 
 
 class SPAIN(REGION):
@@ -90,7 +86,6 @@ class SPAIN(REGION):
     default_currency = 'EUR'
     default_language = 'es'
     mcc = 214
-    has_payments = True
 
 
 class CO(REGION):
@@ -100,7 +95,6 @@ class CO(REGION):
     default_currency = 'COP'
     default_language = 'es'
     mcc = 732
-    has_payments = True
 
 
 class VE(REGION):
@@ -110,7 +104,6 @@ class VE(REGION):
     default_currency = 'USD'
     default_language = 'es'
     mcc = 734
-    has_payments = True
 
 
 class PL(REGION):
@@ -120,7 +113,6 @@ class PL(REGION):
     default_currency = 'PLN'
     default_language = 'pl'
     mcc = 260
-    has_payments = True
 
 
 class MX(REGION):
@@ -130,7 +122,6 @@ class MX(REGION):
     default_currency = 'MXN'
     default_language = 'es'
     mcc = 334
-    has_payments = False
 
 
 class HU(REGION):
@@ -140,7 +131,6 @@ class HU(REGION):
     default_currency = 'HUF'
     default_language = 'hu'
     mcc = 216
-    has_payments = False
 
 
 class DE(REGION):
@@ -150,7 +140,6 @@ class DE(REGION):
     default_currency = 'EUR'
     default_language = 'de'
     mcc = 262
-    has_payments = False
 
 
 class ME(REGION):
@@ -160,7 +149,6 @@ class ME(REGION):
     default_currency = 'EUR'
     default_language = 'srp'
     mcc = 297
-    has_payments = False
 
 
 class RS(REGION):
@@ -170,7 +158,6 @@ class RS(REGION):
     default_currency = 'RSD'
     default_language = 'sr'
     mcc = 220
-    has_payments = False
 
 
 class GR(REGION):
@@ -180,7 +167,6 @@ class GR(REGION):
     default_currency = 'EUR'
     default_language = 'el'
     mcc = 202
-    has_payments = False
 
 
 class PE(REGION):
@@ -208,6 +194,15 @@ class AR(REGION):
     default_currency = 'ARS'
     default_language = 'es'
     mcc = 722
+
+
+class CN(REGION):
+    id = 21
+    name = _lazy(u'China')
+    slug = 'cn'
+    default_currency = 'RMB'
+    default_language = 'zh-CN'
+    mcc = 460
 
 
 # Create a list of tuples like so (in alphabetical order):
@@ -240,9 +235,6 @@ REGIONS_DICT = dict(REGIONS_CHOICES)
 REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
-
-ALL_PAID_REGIONS = frozenset(r for r in ALL_REGIONS if r.has_payments)
-ALL_PAID_REGION_IDS = sorted(r.id for r in ALL_PAID_REGIONS)
 
 # Regions not including worldwide.
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]

@@ -35,7 +35,6 @@ from versions.models import Version
 
 import mkt
 from mkt.constants import MAX_PACKAGED_APP_SIZE
-from mkt.constants.regions import ALL_PAID_REGION_IDS
 from mkt.developers import tasks
 from mkt.developers.views import _filter_transactions, _get_transactions
 from mkt.site.fixtures import fixture
@@ -342,8 +341,7 @@ class MarketplaceMixin(object):
                                  password='password')
 
     def get_price_regions(self, price):
-        prices = set([p['region'] for p in price.prices()])
-        return sorted(set(ALL_PAID_REGION_IDS).intersection(prices))
+        return sorted(set([p['region'] for p in price.prices() if p['paid']]))
 
     def setup_premium(self):
         self.price = Price.objects.get(pk=1)
