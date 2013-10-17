@@ -335,8 +335,8 @@ def save_theme_reupload(header, footer, addon, **kw):
 
     if header_dst or footer_dst:
         theme = addon.persona
-        header = 'pending_header.png' if header_dst else 'header.png'
-        footer = 'pending_footer.png' if footer_dst else 'footer.png'
+        header = 'pending_header.png' if header_dst else theme.header
+        footer = 'pending_footer.png' if footer_dst else theme.footer
 
         # Store pending header and/or footer file paths for review.
         RereviewQueueTheme.objects.filter(theme=theme).delete()

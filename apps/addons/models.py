@@ -1788,6 +1788,14 @@ class Persona(caching.CachingMixin, models.Model):
             return self._image_url('preview.jpg')
 
     @amo.cached_property
+    def thumb_path(self):
+        """Path to Persona's thumbnail preview."""
+        if self.is_new():
+            return self._image_path('preview.png')
+        else:
+            return self._image_path('preview.jpg')
+
+    @amo.cached_property
     def icon_url(self):
         """URL to personas square preview."""
         if self.is_new():
@@ -1796,12 +1804,28 @@ class Persona(caching.CachingMixin, models.Model):
             return self._image_url('preview_small.jpg')
 
     @amo.cached_property
+    def icon_path(self):
+        """Path to personas square preview."""
+        if self.is_new():
+            return self._image_path('icon.png')
+        else:
+            return self._image_path('preview_small.jpg')
+
+    @amo.cached_property
     def preview_url(self):
         """URL to Persona's big, 680px, preview."""
         if self.is_new():
             return self._image_url('preview.png')
         else:
             return self._image_url('preview_large.jpg')
+
+    @amo.cached_property
+    def preview_path(self):
+        """Path to Persona's big, 680px, preview."""
+        if self.is_new():
+            return self._image_path('preview.png')
+        else:
+            return self._image_path('preview_large.jpg')
 
     @amo.cached_property
     def header_url(self):

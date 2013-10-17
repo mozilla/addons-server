@@ -396,7 +396,7 @@ class TestEditThemeForm(amo.tests.TestCase):
             type=amo.ADDON_PERSONA, name='xxxx')
         self.instance.addoncategory_set.create(category=self.cat)
         self.license = amo.LICENSE_CC_BY.id
-        Persona.objects.create(
+        self.theme = Persona.objects.create(
             persona_id=0, addon_id=self.instance.id, license=self.license,
             accentcolor='C0FFEE', textcolor='EFFFFF')
         Tag(tag_text='sw').save_tag(self.instance)
@@ -522,12 +522,10 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(rqt[0].footer, 'pending_footer.png')
         assert not rqt[0].dupe_persona
 
+    @mock.patch('addons.tasks.create_persona_preview_images', new=mock.Mock)
+    @mock.patch('addons.tasks.save_persona_image', new=mock.Mock)
     @mock.patch('addons.tasks.make_checksum')
-    @mock.patch('addons.tasks.create_persona_preview_images')
-    @mock.patch('addons.tasks.save_persona_image')
-    def test_reupload_duplicate(self, save_persona_image_mock,
-                                create_persona_preview_images_mock,
-                                make_checksum_mock):
+    def test_reupload_duplicate(self, make_checksum_mock):
         make_checksum_mock.return_value = 'checksumbeforeyouwrecksome'
 
         theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
@@ -542,6 +540,34 @@ class TestEditThemeForm(amo.tests.TestCase):
 
         rqt = RereviewQueueTheme.objects.get(theme=self.instance.persona)
         eq_(rqt.dupe_persona, theme.persona)
+
+    @mock.patch('addons.tasks.make_checksum', new=mock.Mock)
+    @mock.patch('addons.tasks.create_persona_preview_images', new=mock.Mock)
+    @mock.patch('addons.tasks.save_persona_image', new=mock.Mock)
+    def test_reupload_legacy_header_only(self):
+        """
+        STR the bug this test fixes:
+
+        - Reupload a legacy theme (/w footer == leg.png) legacy, header only.
+        - The header would get saved as 'pending_header.png'.
+        - The footer would get saved as 'footer.png'.
+        - On approving, it would see 'footer.png' !== 'leg.png'
+        - It run move_stored_file('footer.png', 'leg.png').
+        - But footer.png does not exist. BAM BUG.
+        """
+        self.theme.header = 'Legacy-header3H.png'
+        self.theme.footer = 'Legacy-footer3H-Copy.jpg'
+        self.theme.save()
+
+        data = self.get_dict(header_hash='arthro')
+        self.form = EditThemeForm(data, request=self.request,
+                                  instance=self.instance)
+        eq_(self.form.is_valid(), True)
+        self.form.save()
+
+        rqt = RereviewQueueTheme.objects.get()
+        eq_(rqt.header, 'pending_header.png')
+        eq_(rqt.footer, 'Legacy-footer3H-Copy.jpg')
 
 
 class TestEditThemeOwnerForm(amo.tests.TestCase):
