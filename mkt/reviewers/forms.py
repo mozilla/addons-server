@@ -6,6 +6,7 @@ from django.conf import settings
 from django.forms import ValidationError
 
 import happyforms
+from jinja2.filters import do_filesizeformat
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
@@ -45,8 +46,8 @@ class ReviewAppAttachmentForm(happyforms.Form):
         max_size = self.max_upload_size
         if attachment and attachment.size > max_size:
             # Translators: Error raised when review attachment is too large.
-            exc = _('Attachment exceeds maximum size of %dMB.' %
-                    (self.max_upload_size / 1024 / 1024))
+            exc = _('Attachment exceeds maximum size of %s.' %
+                    do_filesizeformat(self.max_upload_size))
             raise ValidationError(exc)
         return data
 
