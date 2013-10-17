@@ -100,7 +100,9 @@ define('payments', [], function() {
                    'zIndex': zIndex});
 
         element.hide();
-        $temp.animate({'top': parseInt(newOffset.top, 10), 'left': parseInt(newOffset.left, 10) }, 'slow', function(){
+        $temp.animate({top: parseInt(newOffset.top, 10),
+                       left: parseInt(newOffset.left, 10)},
+                      'slow', function() {
             $temp.remove();
             $element.show();
             if ($elmToRemove) {
@@ -253,6 +255,36 @@ define('payments', [], function() {
             $paid_island.toggle(tab.id == 'paid-tab-header');
             $free_island.toggle(tab.id == 'free-tab-header');
         });
+
+        if ($('#paid-regions-island').length) {
+            // Paid apps for the time being must be restricted.
+            var $restricted = $('input[name=restricted]');
+
+            // Remove the first radio button for
+            // "Make my app available everywhere."
+            $restricted.filter('[value="0"]').closest('li').remove();
+
+            // Keep the label but hide the radio button for
+            // "Choose where my app is available."
+            $restricted.filter('[value="1"]').prop('checked', true).hide();
+
+            // Show the restricted fields (the checkboxes) which would be
+            // otherwise hidden (for free apps).
+            $('.restricted').removeClass('hidden');
+        } else {
+            // Free apps can toggle between restricted and not.
+            z.doc.on('change', '#regions input[name=restricted]:checked', function() {
+                // Coerce string ('0' or '1') to boolean ('true' or 'false').
+                var restricted = !!+$(this).val();
+                $('.restricted').toggle(restricted);
+                if (!restricted) {
+                    $('input.restricted:not([disabled])').prop('checked', true);
+                    $('input[name="enable_new_regions"]').prop('checked', true);
+                }
+                window.location.hash = 'regions-island';
+            });
+            $('#regions input[name=restricted]:checked').trigger('change');
+        }
 
         // Only update if we can edit. If the user can't edit all fields will be disabled.
         if (!z.body.hasClass('no-edit')) {

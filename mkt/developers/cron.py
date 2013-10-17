@@ -3,7 +3,6 @@ import cronjobs
 
 from amo.utils import chunked
 
-import mkt
 from mkt.developers.tasks import region_email, region_exclude
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
@@ -35,8 +34,7 @@ def _region_exclude(ids, regions):
 @cronjobs.register
 def exclude_new_region(regions):
     """
-    Update regional blacklist for app developers who opted out of being
-    automatically added to new regions.
+    Update regional blacklist based on a list of regions to exclude.
     """
     excluded = (AddonExcludedRegion.objects
                 .filter(region__in=[r.id for r in regions])

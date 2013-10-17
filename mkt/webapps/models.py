@@ -155,6 +155,10 @@ class Webapp(Addon):
             # Set the slug once we have an id to keep things in order.
             self.update(slug='app-%s' % self.id)
 
+            # Create Geodata object (a 1-to-1 relationship).
+            if not hasattr(self, '_geodata'):
+                Geodata.objects.create(addon=self)
+
     @staticmethod
     def transformer(apps):
         # I think we can do less than the Addon transformer, so at some point
@@ -203,6 +207,12 @@ class Webapp(Addon):
         for t in transforms:
             qs = apps.transform(t)
         return qs
+
+    @property
+    def geodata(self):
+        if hasattr(self, '_geodata'):
+            return self._geodata
+        return Geodata.objects.create(addon=self)
 
     def get_api_url(self, action=None, api=None, resource=None, pk=False):
         """Reverse a URL for the API."""
@@ -1618,3 +1628,18 @@ class AppManifest(amo.models.ModelBase):
 
     class Meta:
         db_table = 'app_manifest'
+
+
+class Geodata(amo.models.ModelBase):
+    """TODO: Forgo AER and use bool columns for every region and carrier."""
+    addon = models.OneToOneField('addons.Addon', related_name='_geodata')
+    restricted = models.BooleanField(default=False)
+    popular_region = models.CharField(max_length=10, null=True)
+
+    class Meta:
+        db_table = 'webapps_geodata'
+
+    def __unicode__(self):
+        return u'%s (%s): <Webapp %s>' % (self.id,
+            'restricted' if self.restricted else 'unrestricted',
+            self.addon.id)

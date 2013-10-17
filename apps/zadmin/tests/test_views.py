@@ -318,7 +318,7 @@ class TestBulkValidation(BulkValidationTest):
         self.assertNoFormErrors(r)
         self.assertRedirects(r, reverse('zadmin.validation'))
         assert bulk_validate_file.delay.called, (
-                    'Addon with status %s should be validated' % status)
+            'Addon with status %s should be validated' % self.addon.status)
 
     def test_grid(self):
         job = self.create_job()
@@ -1847,12 +1847,8 @@ class TestEmailDevs(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-        ad = Addon.objects.get(pk=3615)
-        ad.eula = 'Accept this license'
-        ad.save()
-        self.addon = ad
+        self.login('admin')
+        self.addon = Addon.objects.get(pk=3615)
 
     def post(self, recipients='eula', subject='subject', message='msg',
              preview_only=False):
@@ -1915,6 +1911,26 @@ class TestEmailDevs(amo.tests.TestCase):
         mail.outbox = []
         self.addon.update(status=amo.STATUS_DELETED)
         res = self.post(recipients='payments')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 0)
+
+    def test_only_free_apps_with_new_regions(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        res = self.post(recipients='free_apps_region_enabled')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 0)
+        mail.outbox = []
+        res = self.post(recipients='free_apps_region_disabled')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+
+        mail.outbox = []
+        self.addon.update(enable_new_regions=True)
+        res = self.post(recipients='free_apps_region_enabled')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+        mail.outbox = []
+        res = self.post(recipients='free_apps_region_disabled')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
 

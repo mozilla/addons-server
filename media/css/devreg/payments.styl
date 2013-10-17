@@ -120,9 +120,6 @@
             margin-bottom: .25em;
         }
     }
-    #regions button {
-        margin-top: 14px;
-    }
 }
 
 .devhub-form .learn-more {
@@ -429,9 +426,9 @@ label.disabled {
     color: #ccc;
 }
 
-.devhub-form table td.region-container {
-    border: 0;
-    padding-top: 0;
+#page .devhub-form table td.region-container h3 {
+    color: $dark-gray;
+    font-weight: 600;
 }
 
 .devhub-form table th.region-toggle {
@@ -444,16 +441,31 @@ label.disabled {
         hidetext();
     }
     .local-currency-heading,
-    .my-currency {
-        display: block;
-    }
+    .my-currency,
     td .local-retail {
         display: block;
     }
+    .local-currency-heading {
+        color: $note-gray;
+        padding-top: 2px;
+    }
+    th {
+        color: $dark-gray;
+        width: 40%;
+
+        &:last-child {
+            width: 20%;
+        }
+    }
     table td {
+        border-color: $faint-gray;
         line-height: 1.5em;
         min-height: 1.5em;
         padding: 1em 0;
+    }
+    table {
+        border-bottom: 1px dotted $faint-gray;
+        margin: 20px 0;
     }
 }
 
@@ -469,6 +481,69 @@ body > label {
     margin-bottom: 1em;
 }
 
+#regions {
+    // Less room to breathe for radios.
+    input[type=radio] {
+        margin: 1px 3px 1px 1px;
+    }
+    li + li input[type=radio] {
+        margin-top: 6px;
+    }
+    // More room to breathe for region checkboxes.
+    [data-region] input[type=checkbox] {
+        margin-right: 6px;
+    }
+}
+
+#regions-island {
+    h2 {
+        margin-top: 1.5em;
+    }
+
+    #regions {
+        // Some nicer formatting around the radio buttons.
+        > ul {
+            margin: 2px 2px 0;
+        }
+        header,
+        .region-choices,
+        .disabled-regions,
+        .other-regions {
+            margin: 10px 22px 5px;
+        }
+        header {
+            margin-top: 0;
+        }
+        .toggles {
+            padding-top: 0;
+        }
+        .other-regions {
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+    }
+}
+
+.region-cb.disabled:after {
+    content: " *";
+}
+
+.disabled-regions:before {
+    color: $note-gray;
+    content: "* ";
+    font-size: 14px;
+    font-weight: 600;
+    vertical-align: top;
+}
+
+.paid-regions {
+    margin-top: 15px;
+}
+
 .region-choices li {
     min-height: 19px;
+}
+
+#regions li label {
+    font-weight: normal;
 }

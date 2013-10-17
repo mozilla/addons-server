@@ -650,22 +650,24 @@ class RegionForm(forms.Form):
             _lazy(u'You must select at least one region.')})
     enable_new_regions = forms.BooleanField(required=False,
         label=_lazy(u'Enable new regions'))
+    restricted = forms.ChoiceField(required=False,
+        choices=[(0, _lazy('Make my app available everywhere')),
+                 (1, _lazy('Choose where my app is made available'))],
+        widget=forms.RadioSelect(attrs={'class': 'choices'}),
+        initial=0)
 
     def __init__(self, *args, **kw):
         self.product = kw.pop('product', None)
         self.request = kw.pop('request', None)
-        self.region_ids = self.product.get_region_ids(worldwide=True)
         super(RegionForm, self).__init__(*args, **kw)
 
         # If we have excluded regions, uncheck those.
         # Otherwise, default to everything checked.
         self.regions_before = self.product.get_region_ids(worldwide=True)
 
-        # If we have future excluded regions, uncheck box.
-        self.future_exclusions = self.product.enable_new_regions
-
         self.initial = {
             'regions': self.regions_before,
+            'restricted': int(self.product.geodata.restricted),
             'enable_new_regions': self.product.enable_new_regions,
         }
 
@@ -696,7 +698,7 @@ class RegionForm(forms.Form):
 
     def clean(self):
         data = self.cleaned_data
-        if (not data.get('regions') and not self.is_toggling()):
+        if not data.get('regions') and not self.is_toggling():
             raise forms.ValidationError(
                 _('You must select at least one region.'))
         return data
@@ -706,24 +708,38 @@ class RegionForm(forms.Form):
         if self.is_toggling():
             return
 
-        before = set(self.regions_before)
-        after = set(map(int, self.cleaned_data['regions']))
+        restricted = int(self.cleaned_data['restricted'])
 
-        # Add new region exclusions.
-        to_add = before - after
-        for region in to_add:
-            aer, created = AddonExcludedRegion.objects.get_or_create(
-                addon=self.product, region=region)
-            if created:
-                log.info(u'[Webapp:%s] Excluded from new region (%s).'
+        if restricted:
+            before = set(self.regions_before)
+            after = set(map(int, self.cleaned_data['regions']))
+
+            log.info(u'[Webapp:%s] App mark as restricted.' % self.product)
+
+            # Add new region exclusions.
+            to_add = before - after
+            for region in to_add:
+                aer, created = AddonExcludedRegion.objects.get_or_create(
+                    addon=self.product, region=region)
+                if created:
+                    log.info(u'[Webapp:%s] Excluded from new region (%s).'
+                             % (self.product, region))
+
+            # Remove old region exclusions.
+            to_remove = after - before
+            for region in to_remove:
+                self.product.addonexcludedregion.filter(
+                    region=region).delete()
+                log.info(u'[Webapp:%s] No longer exluded from region (%s).'
                          % (self.product, region))
+        else:
+            self.product.addonexcludedregion.all().delete()
+            log.info(u'[Webapp:%s] App mark as unrestricted.' % self.product)
 
-        # Remove old region exclusions.
-        to_remove = after - before
-        for region in to_remove:
-            self.product.addonexcludedregion.filter(region=region).delete()
-            log.info(u'[Webapp:%s] No longer exluded from region (%s).'
-                     % (self.product, region))
+        self.product.geodata.update(restricted=restricted)
+
+        # TODO: Stop saving AddonExcludedRegion objects when IARC work lands.
+        ban_unrated_game(self.product)
 
         if self.cleaned_data['enable_new_regions']:
             self.product.update(enable_new_regions=True)
@@ -733,8 +749,6 @@ class RegionForm(forms.Form):
             self.product.update(enable_new_regions=False)
             log.info(u'[Webapp:%s] will not be added to future regions.'
                      % self.product)
-
-        ban_unrated_game(self.product)
 
 
 class CategoryForm(happyforms.Form):

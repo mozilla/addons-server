@@ -40,7 +40,7 @@ import amo
 import amo.search
 import stats.search
 from access.models import Group, GroupUser
-from addons.models import (Addon, AddonCategory, Category, Persona,
+from addons.models import (Addon, Category, Persona,
                            update_search_index as addon_update_search_index)
 from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
@@ -371,7 +371,7 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
 
         scheme, netloc, path, query, fragment = urlsplit(url)
         e_scheme, e_netloc, e_path, e_query, e_fragment = urlsplit(
-                                                              expected_url)
+            expected_url)
         if (scheme and not e_scheme) and (netloc and not e_netloc):
             expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
                                        e_fragment))
@@ -507,8 +507,10 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         return days_ago(days)
 
     def login(self, profile):
-        assert self.client.login(username=getattr(profile, 'email', profile),
-                                 password='password')
+        email = getattr(profile, 'email', profile)
+        if '@' not in email:
+            email += '@mozilla.com'
+        assert self.client.login(username=email, password='password')
 
     def trans_eq(self, trans, locale, localized_string):
         eq_(Translation.objects.get(id=trans.id,
@@ -852,15 +854,20 @@ class WebappTestCase(TestCase):
     def get_app(self):
         return Addon.objects.get(id=337141)
 
-    def make_game(self, rated=False):
-        cat, created = Category.objects.get_or_create(slug='games',
-            type=amo.ADDON_WEBAPP)
-        AddonCategory.objects.get_or_create(addon=self.app, category=cat)
-        if rated:
-            ContentRating.objects.get_or_create(
-                addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
-                rating=mkt.ratingsbodies.CLASSIND_18.id)
-            ContentRating.objects.get_or_create(
-                addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
-                rating=mkt.ratingsbodies.CLASSIND_L.id)
-        self.app = self.get_app()
+    def make_game(self, app=None, rated=False):
+        app = make_game(self.app or app, rated)
+
+
+def make_game(app, rated):
+    cat, created = Category.objects.get_or_create(slug='games',
+        type=amo.ADDON_WEBAPP)
+    app.addoncategory_set.create(category=cat)
+    if rated:
+        ContentRating.objects.get_or_create(
+            addon=app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            rating=mkt.ratingsbodies.CLASSIND_18.id)
+        ContentRating.objects.get_or_create(
+            addon=app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            rating=mkt.ratingsbodies.CLASSIND_L.id)
+    app = app.reload()
+    return app

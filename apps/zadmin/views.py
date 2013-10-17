@@ -115,9 +115,9 @@ def langpacks(request):
         return redirect('zadmin.langpacks')
 
     addons = (Addon.objects.no_cache()
-                   .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
-                           type=amo.ADDON_LPAPP)
-                   .order_by('name'))
+              .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
+                      type=amo.ADDON_LPAPP)
+              .order_by('name'))
 
     data = {'addons': addons, 'base_url': settings.LANGPACK_DOWNLOAD_BASE,
             'default_path': settings.LANGPACK_PATH_DEFAULT % (
@@ -630,8 +630,13 @@ def email_devs(request):
                 qs = qs.filter(addon__enable_new_regions=True)
             elif data['recipients'] == 'payments_region_disabled':
                 qs = qs.filter(addon__enable_new_regions=False)
-        elif data['recipients'] == 'apps':
+        elif data['recipients'] in ('apps', 'free_apps_region_enabled',
+                                    'free_apps_region_disabled'):
             qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
+            if data['recipients'] == 'free_apps_region_enabled':
+                qs = qs.filter(addon__enable_new_regions=True)
+            elif data['recipients'] == 'free_apps_region_disabled':
+                qs = qs.filter(addon__enable_new_regions=False)
         elif data['recipients'] == 'desktop_apps':
             qs = (qs.filter(addon__type=amo.ADDON_WEBAPP,
                 addon__addondevicetype__device_type=amo.DEVICE_DESKTOP.id))

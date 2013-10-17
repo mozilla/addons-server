@@ -42,8 +42,9 @@ from mkt.constants.ratingsdescriptors import RATING_DESCS
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
-                                ContentRating, get_excluded_in, Installed,
-                                RatingDescriptors, Webapp, WebappIndexer)
+                                ContentRating, Geodata, get_excluded_in,
+                                Installed, RatingDescriptors, Webapp,
+                                WebappIndexer)
 
 
 class TestWebapp(amo.tests.TestCase):
@@ -116,6 +117,11 @@ class TestWebapp(amo.tests.TestCase):
         w = Webapp(app_slug='slug')
         w.save()
         eq_(w.app_slug, 'slug~')
+
+    def test_geodata_upon_app_creation(self):
+        app = Webapp.objects.create(type=amo.ADDON_WEBAPP)
+        assert app.geodata, (
+            'Geodata was not created with Webapp.')
 
     def test_get_url_path(self):
         webapp = Webapp(app_slug='woo')
@@ -1507,3 +1513,13 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         version = app.current_version.reload()
         eq_(version.version, '4.1')
         eq_(version.developer_name, truncated_developer_name)
+
+
+class TestGeodata(amo.tests.WebappTestCase):
+
+    def setUp(self):
+        super(TestGeodata, self).setUp()
+        self.geo = self.app.geodata
+
+    def test_app_geodata(self):
+         assert isinstance(Webapp(id=337141).geodata, Geodata)

@@ -172,24 +172,23 @@
                        data-payment-methods="{{ payment_methods|json }}"
                        data-pricelist-api-url="{{ api_pricelist_url }}"
                        data-tier-zero-id="{{ tier_zero_id }}">
+                    <h3>{{ _('Regions') }}</h3>
                     {{ region_form.regions.errors }}
 
                     {% include 'developers/payments/includes/regions_toggle.html' %}
 
                     <div class="paid-regions">
-                      <h3>{{ _('Available Regions') }}</h3>
-                      <div class="hint note">
-                        <p>
-                          {% trans status_url='/developers/docs/payments/status' %}
-                            Check out the <a href="{{ status_url }}">status page</a> to see what
-                            countries are currently enabled for sale.
-                          {% endtrans %}
-                        </p>
-                      </div>
+                      <h4>{{ _('Available Regions') }}</h4>
+                      <p class="hint note">
+                        {% trans status_url='/developers/docs/payments/status' %}
+                          Check out the <a href="{{ status_url }}">status page</a> to see what
+                          countries are currently enabled for sale.
+                        {% endtrans %}
+                      </p>
 
-                      <div class="hint note">
-                        <p>{{ _('Your app will be available in the following selected regions:') }}</p>
-                      </div>
+                      <p class="hint note">
+                        {{ _('Your app will be available in the following selected regions:') }}
+                      </p>
                       <table id="paid-regions">
                         <thead>
                           <tr>
@@ -207,16 +206,16 @@
                       </table>
                     </div>
 
-                    <h3>{{ _("Other regions") }}</h3>
-                    <div class="hint note">
-                      <p>
-                        {% trans %}
-                          Your app will be available in the following selected regions in the future when payments are available based on your chosen price point.
-                          To exclude your app from appearing in a region please un-check that region before saving.
-                        {% endtrans %}
-                      </p>
-                    </div>
-
+                    <h4>{{ _("Other regions") }}</h4>
+                    <p class="hint note">
+                      {% trans %}
+                        Your app will become available in the following
+                        selected regions once payments become available
+                        based on your chosen price point. To exclude
+                        your app from appearing in a region, you may
+                        uncheck that region before saving.
+                      {% endtrans %}
+                    </p>
                     {% include 'developers/payments/includes/region_form.html' %}
 
                   </div>
@@ -232,11 +231,13 @@
       {% else %}
       {# Non-paid app region lists #}
       <div id="regions-island">
+        <h2>{{ _('Regions and listings') }}</h2>
         <section id="regions" class="island">
-          <h2>{{ _('Regions and listings') }}</h2>
           {% include 'developers/payments/includes/regions_toggle.html' %}
           {% include 'developers/payments/includes/region_form.html' %}
-          <button>{{ _('Save Changes') }}</button>
+          <div class="listing-footer">
+            <button class="button">{{ _('Save Changes') }}</button>
+          </div>
         </section>
       </div>
       {% endif %}
