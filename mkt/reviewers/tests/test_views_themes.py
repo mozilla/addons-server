@@ -60,6 +60,7 @@ class ThemeReviewTestMixin(object):
                 theme=addon.persona, header='pending_header',
                 footer='pending_footer')
         persona = addon.persona
+        persona.persona_id = 0
         persona.header = 'header'
         persona.footer = 'footer'
         persona.save()
@@ -166,9 +167,9 @@ class ThemeReviewTestMixin(object):
             assert copy_mock.call_args_list[1][0][1].endswith('footer')
 
             create_preview_args = create_preview_mock.call_args_list[0][1]
-            assert '/header' in create_preview_args['src']
-            assert '/preview' in create_preview_args['full_dst'][0]
-            assert '/icon' in create_preview_args['full_dst'][1]
+            assert create_preview_args['src'].endswith('header')
+            assert create_preview_args['full_dst'][0].endswith('preview.png')
+            assert create_preview_args['full_dst'][1].endswith('icon.png')
 
             # Approved/rejected/dupe themes have their images deleted
             # leaving only 2 RQT objects. Can't flag a rereview theme yet, and
