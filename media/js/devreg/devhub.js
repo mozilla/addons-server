@@ -573,13 +573,15 @@ function initUploadPreview() {
 
         var $thumb = form.show().find('.preview-thumb');
         $thumb.addClass('loading');
-        if (file.type.indexOf('video') > -1) {
-            $thumb.replaceWith(format(
-                '<video controls class="preview-thumb loading" src="{0}" ' +
-                'preload="auto" type="video/webm"></video>', file.dataURL));
-        } else {
-            handle_landscape_class($thumb, file.dataURL);
-            $thumb.css('background-image', 'url(' + file.dataURL + ')');
+        if (file.dataURL) {
+            if (file.type.indexOf('video') > -1) {
+                $thumb.replaceWith(format(
+                    '<video controls class="preview-thumb loading" src="{0}" ' +
+                    'preload="auto" type="video/webm"></video>', file.dataURL));
+            } else {
+                handle_landscape_class($thumb, file.dataURL);
+                $thumb.css('background-image', 'url(' + file.dataURL + ')');
+            }
         }
         renumberPreviews();
     }
