@@ -519,7 +519,7 @@ def upload_for_addon(request, addon_id, addon):
 @dev_required
 def refresh_manifest(request, addon_id, addon, webapp=False):
     log.info('Manifest %s refreshed for %s' % (addon.manifest_url, addon))
-    _update_manifest(addon_id, True, ())
+    _update_manifest(addon_id, True, {})
     return http.HttpResponse(status=204)
 
 
