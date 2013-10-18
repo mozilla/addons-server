@@ -315,7 +315,14 @@ def send_notifications(signal=None, sender=None, **kw):
     if sender.is_beta:
         return
 
+    # See bug 741679 for implementing this in Marketplace. This is deactivated
+    # in the meantime because EditorSubscription.send_notification() uses
+    # AMO-specific code.
+    if settings.MARKETPLACE:
+        return
+
     subscribers = sender.addon.editorsubscription_set.all()
+
     if not subscribers:
         return
 
