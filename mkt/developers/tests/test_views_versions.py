@@ -12,7 +12,7 @@ from amo.tests import req_factory_factory
 from addons.models import Addon, AddonUser
 from comm.models import CommunicationNote
 from devhub.models import ActivityLog, AppLog
-from editors.models import EscalationQueue
+from editors.models import EscalationQueue, EditorSubscription
 from files.models import File
 from users.models import UserProfile
 from versions.models import Version
@@ -173,6 +173,19 @@ class TestAddVersion(BasePackagedAppTest):
         return res
 
     def test_post(self):
+        self.app.current_version.update(version='0.9',
+                                        created=self.days_ago(1))
+        self._post(302)
+        version = self.app.versions.latest()
+        eq_(version.version, '1.0')
+        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+
+    def test_post_subscribers(self):
+        # Same test as above, but add a suscriber. We only want to make sure
+        # we are not causing a traceback because of that.
+        reviewer = UserProfile.objects.create(email='foo@example.com')
+        self.grant_permission(reviewer, 'Apps:Review')
+        EditorSubscription.objects.create(addon=self.app, user=reviewer)
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
         self._post(302)
