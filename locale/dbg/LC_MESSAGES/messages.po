@@ -1,16 +1,15 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 08:28-0700\n"
+"POT-Creation-Date: 2013-10-18 16:48-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"X-Generator: Translate Toolkit 1.9.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -27,7 +26,6 @@ msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:92
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:199
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:86
-#: templates/global/menu_links.html:18
 msgid "Download"
 msgstr "Ḓǿẇƞŀǿȧḓ"
 
@@ -132,7 +130,7 @@ msgstr ""
 
 #. L10n: {0} is the number of categories.
 #: apps/addons/forms.py:256
-#: mkt/developers/forms.py:755
+#: mkt/developers/forms.py:756
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Ẏǿŭ ƈȧƞ ħȧṽḗ ǿƞŀẏ {0} ƈȧŧḗɠǿřẏ."
@@ -201,7 +199,7 @@ msgstr "Ŭşḗřş ħȧṽḗ ŧħḗ ǿƥŧīǿƞ ǿƒ ƈǿƞŧřīƀŭŧīƞ�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ƀḗ ȧşķḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř (Ƒīřḗƒǿẋ 4 ȧƞḓ ȧƀǿṽḗ)"
 
-#: apps/addons/models.py:1964
+#: apps/addons/models.py:1988
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
@@ -366,7 +364,6 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/base.html:33
 #: mkt/reviewers/templates/reviewers/performance.html:28
 #: templates/menu_links.html:9
-#: templates/global/menu_links.html:35
 msgid "Themes"
 msgstr "Ŧħḗḿḗş"
 
@@ -459,7 +456,7 @@ msgstr "Ƈǿƞŧřīƀŭŧḗ"
 #: mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:80
 #: mkt/developers/templates/developers/apps/edit/technical.html:68
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:163
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:129
@@ -691,7 +688,6 @@ msgstr "Ȧƀŭşḗ Řḗƥǿřŧş"
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:134
 #: mkt/site/templates/site/privacy-policy.html:5
 #: mkt/templates/mkt/footer.html:15
-#: templates/global/copyright.html:4
 #: templates/mobile/base_addons.html:90
 #: templates/mobile/base_apps.html:74
 msgid "Privacy Policy"
@@ -1396,7 +1392,7 @@ msgstr "Şḗƞḓ Řḗƥǿřŧ"
 #: mkt/developers/templates/developers/apps/edit/details.html:81
 #: mkt/developers/templates/developers/apps/edit/support.html:82
 #: mkt/developers/templates/developers/apps/edit/technical.html:70
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:165
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:166
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:27
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:12
@@ -2027,8 +2023,6 @@ msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ {0} Ȧḓḓ-ǿƞş ħǿḿḗƥȧɠḗ"
 #: mkt/reviewers/templates/reviewers/base.html:29
 #: mkt/reviewers/templates/reviewers/performance.html:26
 #: templates/menu_links.html:4
-#: templates/global/menu_links.html:30
-#: templates/global/mobile/header.html:6
 #: templates/impala/header_title.html:9
 #: templates/impala/header_title.html:11
 #: templates/impala/header_title.html:15
@@ -2174,7 +2168,6 @@ msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ŧħḗḿḗ"
 #: mkt/templates/mkt/base_desktop.html:53
 #: templates/footer.html:6
 #: templates/menu_links.html:14
-#: templates/global/menu_links.html:41
 msgid "Developer Hub"
 msgstr "Ḓḗṽḗŀǿƥḗř Ħŭƀ"
 
@@ -2222,7 +2215,6 @@ msgstr "Ḗƞŧḗř ȧŧ ŀḗȧşŧ ǿƞḗ ṽȧŀŭḗ."
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3
 #: apps/stats/templates/stats/stats.html:77
 #: templates/menu_links.html:12
-#: templates/global/menu_links.html:39
 msgid "Collections"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
@@ -2916,7 +2908,6 @@ msgstr "Ḗẋƥŀǿřḗ"
 #: apps/browse/templates/browse/impala/base_listing.html:47
 #: apps/constants/base.py:186
 #: templates/menu_links.html:8
-#: templates/global/menu_links.html:34
 msgid "Extensions"
 msgstr "Ḗẋŧḗƞşīǿƞş"
 
@@ -2958,7 +2949,6 @@ msgstr "Ȧḓḓ-ǿƞş ƒǿř Ḿǿƀīŀḗ"
 #: apps/browse/templates/browse/search_tools.html:3
 #: apps/constants/base.py:189
 #: templates/menu_links.html:10
-#: templates/global/menu_links.html:37
 msgid "Search Tools"
 msgstr "Şḗȧřƈħ Ŧǿǿŀş"
 
@@ -3142,6 +3132,10 @@ msgid "Versions"
 msgstr "Ṽḗřşīǿƞş"
 
 #: apps/applications/templates/applications/appversions.html:31
+msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+
+#: apps/applications/templates/applications/appversions.html:31
 msgid ""
 "If your supported application does not require an install.rdf file, you "
 "still must include one with the required properties as specified <a href=\"%"
@@ -3150,10 +3144,6 @@ msgstr ""
 "Īƒ ẏǿŭř şŭƥƥǿřŧḗḓ ȧƥƥŀīƈȧŧīǿƞ ḓǿḗş ƞǿŧ řḗɋŭīřḗ ȧƞ īƞşŧȧŀŀ.řḓƒ ƒīŀḗ, ẏǿŭ "
 "şŧīŀŀ ḿŭşŧ īƞƈŀŭḓḗ ǿƞḗ ẇīŧħ ŧħḗ řḗɋŭīřḗḓ ƥřǿƥḗřŧīḗş ȧş şƥḗƈīƒīḗḓ <a href=\"%"
 "(url)s\">ħḗřḗ</a>."
-
-#: apps/applications/templates/applications/appversions.html:31
-msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
@@ -3675,7 +3665,7 @@ msgstr "Ƈǿƞŧřīƀŭŧǿřş & Ḿǿřḗ"
 #: mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:80
 #: mkt/developers/templates/developers/apps/edit/technical.html:68
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:163
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48
 #: mkt/developers/templates/developers/payments/premium.html:67
 #: mkt/developers/templates/developers/payments/premium.html:135
@@ -3782,12 +3772,12 @@ msgstr ""
 #: apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/devhub/templates/devhub/payments/upsell.html:19
 #: mkt/developers/templates/developers/apps/status.html:260
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:170
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:171
 #: mkt/reviewers/templates/reviewers/themes/themes.html:110
 #: mkt/reviewers/templates/reviewers/themes/themes.html:127
 #: mkt/reviewers/templates/reviewers/themes/themes.html:133
 #: mkt/reviewers/templates/reviewers/themes/themes.html:140
-#: mkt/submit/templates/submit/details.html:174
+#: mkt/submit/templates/submit/details.html:175
 #: mkt/submit/templates/submit/manifest.html:119
 #: mkt/submit/templates/submit/payments-upsell.html:36
 #: mkt/submit/templates/submit/payments.html:31
@@ -4095,7 +4085,6 @@ msgstr "{0}: Ƒḗȧŧŭřḗḓ Ȧḓḓ-ǿƞş"
 #: apps/discovery/modules.py:338
 #: apps/discovery/templates/discovery/pane.html:53
 #: templates/menu_links.html:7
-#: templates/global/menu_links.html:33
 msgid "Featured Add-ons"
 msgstr "Ƒḗȧŧŭřḗḓ Ȧḓḓ-ǿƞş"
 
@@ -4483,7 +4472,7 @@ msgstr "Ȧŀŀ ȧƈŧīṽḗ ȧḓḓ-ǿƞş"
 #: apps/compat/templates/compat/index.html:23
 #: apps/constants/base.py:180
 #: apps/constants/base.py:421
-#: mkt/developers/forms.py:859
+#: mkt/developers/forms.py:863
 #: mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:26
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:22
@@ -4608,8 +4597,6 @@ msgstr "Ƞǿ řḗƥǿřŧş ƒǿŭƞḓ."
 
 #: apps/constants/applications.py:18
 #: mkt/constants/platforms.py:32
-#: templates/global/footer.html:6
-#: templates/global/header.html:7
 msgid "Firefox"
 msgstr "Ƒīřḗƒǿẋ"
 
@@ -4628,7 +4615,6 @@ msgstr "Şŭƞƀīřḓ"
 
 #: apps/constants/applications.py:89
 #: mkt/search/forms.py:48
-#: templates/global/menu_links.html:15
 msgid "Mobile"
 msgstr "Ḿǿƀīŀḗ"
 
@@ -4649,7 +4635,6 @@ msgstr "Ŭƞķƞǿẇƞ"
 #: apps/constants/applications.py:154
 #: mkt/ecosystem/templates/ecosystem/partners.html:104
 #: mkt/search/forms.py:47
-#: templates/global/mobile/header.html:5
 #: templates/mobile/header.html:5
 msgid "Desktop"
 msgstr "Ḓḗşķŧǿƥ"
@@ -4756,8 +4741,6 @@ msgstr "Ṽīḗẇḗř"
 #: mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13
 #: mkt/templates/mkt/base_desktop.html:55
-#: templates/global/menu_links.html:46
-#: templates/global/mobile/header.html:7
 #: templates/mobile/header.html:7
 msgid "Support"
 msgstr "Şŭƥƥǿřŧ"
@@ -8275,7 +8258,6 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:76
-#: templates/global/menu_links.html:6
 msgid "Security"
 msgstr "Şḗƈŭřīŧẏ"
 
@@ -9035,6 +9017,10 @@ msgid "Add-on Editorial Concerns"
 msgstr "Ȧḓḓ-ǿƞ Ḗḓīŧǿřīȧŀ Ƈǿƞƈḗřƞş"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
+msgid "amo-editors at mozilla dot org"
+msgstr "ȧḿǿ-ḗḓīŧǿřş ȧŧ ḿǿzīŀŀȧ ḓǿŧ ǿřɠ"
+
+#: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid ""
 "If you have a question about an Editor's review of an add-on or want to "
 "report a policy violation, please email %(mail_editors)s. <strong>Almost all "
@@ -9048,13 +9034,13 @@ msgstr ""
 "ȧ ŀīƞķ ŧǿ ŧħḗ ȧḓḓ-ǿƞ īƞ ɋŭḗşŧīǿƞ ȧƞḓ ȧ ḓḗŧȧīŀḗḓ ḓḗşƈřīƥŧīǿƞ ǿƒ ẏǿŭř "
 "ɋŭḗşŧīǿƞ ǿř ƈǿḿḿḗƞŧ."
 
-#: apps/devhub/templates/devhub/docs/policies-contact.html:26
-msgid "amo-editors at mozilla dot org"
-msgstr "ȧḿǿ-ḗḓīŧǿřş ȧŧ ḿǿzīŀŀȧ ḓǿŧ ǿřɠ"
-
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
 msgstr "Ȧḓḓ-ǿƞ Şḗƈŭřīŧẏ Ṽŭŀƞḗřȧƀīŀīŧīḗş"
+
+#: apps/devhub/templates/devhub/docs/policies-contact.html:36
+msgid "marketplace-staff at mozilla dot org"
+msgstr "ḿȧřķḗŧƥŀȧƈḗ-şŧȧƒƒ ȧŧ ḿǿzīŀŀȧ ḓǿŧ ǿřɠ"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -9073,10 +9059,6 @@ msgstr ""
 "href=\"http://www.mozilla.org/projects/security/security-bugs-"
 "policy.html\">ƈǿƞƒīḓḗƞŧīȧŀŀẏ</a> īƞ <a href=\"%(link_bugzilla)s\">Ɓŭɠzīŀŀȧ</a> "
 "ǿř ƀẏ ḗḿȧīŀīƞɠ %(mail_admins)s."
-
-#: apps/devhub/templates/devhub/docs/policies-contact.html:36
-msgid "marketplace-staff at mozilla dot org"
-msgstr "ḿȧřķḗŧƥŀȧƈḗ-şŧȧƒƒ ȧŧ ḿǿzīŀŀȧ ḓǿŧ ǿřɠ"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
@@ -9429,16 +9411,16 @@ msgid "Nominating an Add-on"
 msgstr "Ƞǿḿīƞȧŧīƞɠ ȧƞ Ȧḓḓ-ǿƞ"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:56
+msgid "amo-featured at mozilla dot org"
+msgstr "ȧḿǿ-ƒḗȧŧŭřḗḓ ȧŧ ḿǿzīŀŀȧ ḓǿŧ ǿřɠ"
+
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:56
 msgid ""
 "If you wish to nominate an add-on to be featured and it meets the criteria "
 "above, send an email to %(mail_featured)s with:"
 msgstr ""
 "Īƒ ẏǿŭ ẇīşħ ŧǿ ƞǿḿīƞȧŧḗ ȧƞ ȧḓḓ-ǿƞ ŧǿ ƀḗ ƒḗȧŧŭřḗḓ ȧƞḓ īŧ ḿḗḗŧş ŧħḗ ƈřīŧḗřīȧ "
 "ȧƀǿṽḗ, şḗƞḓ ȧƞ ḗḿȧīŀ ŧǿ %(mail_featured)s ẇīŧħ:"
-
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:56
-msgid "amo-featured at mozilla dot org"
-msgstr "ȧḿǿ-ƒḗȧŧŭřḗḓ ȧŧ ḿǿzīŀŀȧ ḓǿŧ ǿřɠ"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:61
 msgid "the add-on name, URL, and whether you are its developer"
@@ -11741,7 +11723,7 @@ msgid "Manage Refunds"
 msgstr "Ḿȧƞȧɠḗ Řḗƒŭƞḓş"
 
 #: apps/devhub/templates/devhub/payments/refunds.html:12
-#: mkt/developers/forms.py:864
+#: mkt/developers/forms.py:868
 #: mkt/developers/templates/developers/transactions.html:44
 #: mkt/developers/templates/developers/payments/refunds.html:7
 #: mkt/lookup/templates/lookup/transaction_summary.html:19
@@ -12579,7 +12561,6 @@ msgstr "Ṽȧŀīḓȧŧīǿƞ"
 #: apps/devhub/templates/devhub/versions/list.html:179
 #: apps/editors/templates/editors/base.html:45
 #: apps/editors/templates/editors/performance.html:6
-#: templates/global/menu_links.html:7
 msgid "Performance"
 msgstr "Ƥḗřƒǿřḿȧƞƈḗ"
 
@@ -16085,7 +16066,6 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:303
 #: templates/menu_links.html:13
-#: templates/global/menu_links.html:40
 #: templates/impala/header_title.html:13
 msgid "Mobile Add-ons"
 msgstr "Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş"
@@ -17147,12 +17127,12 @@ msgid "Custom Date Range"
 msgstr "Ƈŭşŧǿḿ Ḓȧŧḗ Řȧƞɠḗ"
 
 #: apps/stats/templates/stats/popup.html:12
-#: mkt/developers/forms.py:870
+#: mkt/developers/forms.py:874
 msgid "From"
 msgstr "Ƒřǿḿ"
 
 #: apps/stats/templates/stats/popup.html:19
-#: mkt/developers/forms.py:873
+#: mkt/developers/forms.py:877
 msgid "To"
 msgstr "Ŧǿ"
 
@@ -18720,7 +18700,7 @@ msgid "Antigua and Barbuda"
 msgstr "Ȧƞŧīɠŭȧ ȧƞḓ Ɓȧřƀŭḓȧ"
 
 #: mkt/constants/bango.py:49
-#: mkt/constants/regions.py:192
+#: mkt/constants/regions.py:193
 msgid "Argentina"
 msgstr "Ȧřɠḗƞŧīƞȧ"
 
@@ -18862,7 +18842,7 @@ msgid "Chile"
 msgstr "Ƈħīŀḗ"
 
 #: mkt/constants/bango.py:84
-#: mkt/constants/regions.py:201
+#: mkt/constants/regions.py:202
 msgid "China"
 msgstr "Ƈħīƞȧ"
 
@@ -19026,7 +19006,7 @@ msgid "Gibraltar"
 msgstr "Ɠīƀřȧŀŧȧř"
 
 #: mkt/constants/bango.py:124
-#: mkt/constants/regions.py:165
+#: mkt/constants/regions.py:166
 msgid "Greece"
 msgstr "Ɠřḗḗƈḗ"
 
@@ -19285,7 +19265,7 @@ msgid "Mongolia"
 msgstr "Ḿǿƞɠǿŀīȧ"
 
 #: mkt/constants/bango.py:188
-#: mkt/constants/regions.py:147
+#: mkt/constants/regions.py:148
 msgid "Montenegro"
 msgstr "Ḿǿƞŧḗƞḗɠřǿ"
 
@@ -19386,7 +19366,7 @@ msgid "Paraguay"
 msgstr "Ƥȧřȧɠŭȧẏ"
 
 #: mkt/constants/bango.py:213
-#: mkt/constants/regions.py:174
+#: mkt/constants/regions.py:175
 msgid "Peru"
 msgstr "Ƥḗřŭ"
 
@@ -19481,7 +19461,7 @@ msgid "Senega"
 msgstr "Şḗƞḗɠȧ"
 
 #: mkt/constants/bango.py:236
-#: mkt/constants/regions.py:156
+#: mkt/constants/regions.py:157
 msgid "Serbia"
 msgstr "Şḗřƀīȧ"
 
@@ -19656,7 +19636,7 @@ msgid "United States Minor Outlying Islands"
 msgstr "Ŭƞīŧḗḓ Şŧȧŧḗş Ḿīƞǿř Ǿŭŧŀẏīƞɠ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:278
-#: mkt/constants/regions.py:183
+#: mkt/constants/regions.py:184
 msgid "Uruguay"
 msgstr "Ŭřŭɠŭȧẏ"
 
@@ -20153,33 +20133,43 @@ msgstr "Ȧƞḓřǿīḓ şḿȧřŧƥħǿƞḗş"
 msgid "Android tablets"
 msgstr "Ȧƞḓřǿīḓ ŧȧƀŀḗŧş"
 
-#: mkt/constants/ratingsbodies.py:8
+#: mkt/constants/ratingsbodies.py:16
+#: mkt/constants/ratingsbodies.py:70
 msgid "General Audiences"
 msgstr "Ɠḗƞḗřȧŀ Ȧŭḓīḗƞƈḗş"
 
-#: mkt/constants/ratingsbodies.py:14
+#: mkt/constants/ratingsbodies.py:22
+#: mkt/constants/ratingsbodies.py:76
 msgid "Not recommended for viewers younger than 10 years of age"
 msgstr "Ƞǿŧ řḗƈǿḿḿḗƞḓḗḓ ƒǿř ṽīḗẇḗřş ẏǿŭƞɠḗř ŧħȧƞ 10 ẏḗȧřş ǿƒ ȧɠḗ"
 
-#: mkt/constants/ratingsbodies.py:21
+#: mkt/constants/ratingsbodies.py:29
 msgid "Not recommended for viewers younger than 12 years of age"
 msgstr "Ƞǿŧ řḗƈǿḿḿḗƞḓḗḓ ƒǿř ṽīḗẇḗřş ẏǿŭƞɠḗř ŧħȧƞ 12 ẏḗȧřş ǿƒ ȧɠḗ"
 
-#: mkt/constants/ratingsbodies.py:28
+#: mkt/constants/ratingsbodies.py:36
 msgid "Not recommended for viewers younger than 14 years of age"
 msgstr "Ƞǿŧ řḗƈǿḿḿḗƞḓḗḓ ƒǿř ṽīḗẇḗřş ẏǿŭƞɠḗř ŧħȧƞ 14 ẏḗȧřş ǿƒ ȧɠḗ"
 
-#: mkt/constants/ratingsbodies.py:35
+#: mkt/constants/ratingsbodies.py:43
 msgid "Not recommended for viewers younger than 16 years of age"
 msgstr "Ƞǿŧ řḗƈǿḿḿḗƞḓḗḓ ƒǿř ṽīḗẇḗřş ẏǿŭƞɠḗř ŧħȧƞ 16 ẏḗȧřş ǿƒ ȧɠḗ"
 
-#: mkt/constants/ratingsbodies.py:42
+#: mkt/constants/ratingsbodies.py:50
 msgid "Not recommended for viewers younger than 18 years of age"
 msgstr "Ƞǿŧ řḗƈǿḿḿḗƞḓḗḓ ƒǿř ṽīḗẇḗřş ẏǿŭƞɠḗř ŧħȧƞ 18 ẏḗȧřş ǿƒ ȧɠḗ"
 
-#: mkt/constants/ratingsbodies.py:53
+#: mkt/constants/ratingsbodies.py:61
 msgid "Department of Justice, Rating, Titles and Qualification"
 msgstr "Ḓḗƥȧřŧḿḗƞŧ ǿƒ Ĵŭşŧīƈḗ, Řȧŧīƞɠ, Ŧīŧŀḗş ȧƞḓ Ɋŭȧŀīƒīƈȧŧīǿƞ"
+
+#: mkt/constants/ratingsbodies.py:83
+msgid "Not recommended for viewers younger than 13 years of age"
+msgstr "Ƞǿŧ řḗƈǿḿḿḗƞḓḗḓ ƒǿř ṽīḗẇḗřş ẏǿŭƞɠḗř ŧħȧƞ 13 ẏḗȧřş ǿƒ ȧɠḗ"
+
+#: mkt/constants/ratingsbodies.py:94
+msgid "Generic"
+msgstr "Ɠḗƞḗřīƈ"
 
 #: mkt/constants/regions.py:51
 msgid "Worldwide"
@@ -20397,7 +20387,7 @@ msgid "Choose the regions your app will be listed in:"
 msgstr "Ƈħǿǿşḗ ŧħḗ řḗɠīǿƞş ẏǿŭř ȧƥƥ ẇīŀŀ ƀḗ ŀīşŧḗḓ īƞ:"
 
 #: mkt/developers/forms.py:639
-#: mkt/developers/forms.py:689
+#: mkt/developers/forms.py:690
 msgid "You must select at least one region."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŀḗƈŧ ȧŧ ŀḗȧşŧ ǿƞḗ řḗɠīǿƞ."
 
@@ -20405,53 +20395,53 @@ msgstr "Ẏǿŭ ḿŭşŧ şḗŀḗƈŧ ȧŧ ŀḗȧşŧ ǿƞḗ řḗɠīǿƞ.
 msgid "Enable new regions"
 msgstr "Ḗƞȧƀŀḗ ƞḗẇ řḗɠīǿƞş"
 
-#: mkt/developers/forms.py:798
+#: mkt/developers/forms.py:802
 msgid "Agree"
 msgstr "Ȧɠřḗḗ"
 
-#: mkt/developers/forms.py:815
+#: mkt/developers/forms.py:819
 msgid "Please enter a valid email address."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ ṽȧŀīḓ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: mkt/developers/forms.py:818
+#: mkt/developers/forms.py:822
 msgid "Your email address"
 msgstr "Ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: mkt/developers/forms.py:821
+#: mkt/developers/forms.py:825
 msgid "Text"
 msgstr "Ŧḗẋŧ"
 
-#: mkt/developers/forms.py:825
+#: mkt/developers/forms.py:829
 msgid "You must agree to the Privacy Policy."
 msgstr "Ẏǿŭ ḿŭşŧ ȧɠřḗḗ ŧǿ ŧħḗ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ."
 
-#: mkt/developers/forms.py:826
+#: mkt/developers/forms.py:830
 #: mkt/developers/forms_payments.py:396
 #: mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Ƈǿŭƞŧřẏ"
 
-#: mkt/developers/forms.py:861
+#: mkt/developers/forms.py:865
 msgid "Transaction Type"
 msgstr "Ŧřȧƞşȧƈŧīǿƞ Ŧẏƥḗ"
 
-#: mkt/developers/forms.py:915
+#: mkt/developers/forms.py:919
 msgid "I agree to the Terms and Conditions"
 msgstr "Ī ȧɠřḗḗ ŧǿ ŧħḗ Ŧḗřḿş ȧƞḓ Ƈǿƞḓīŧīǿƞş"
 
-#: mkt/developers/forms.py:917
+#: mkt/developers/forms.py:921
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "Ŭƥŀǿȧḓ Ẏǿŭř Ŧḗşŧ Ƥŀȧƞ (.ƥḓƒ, .ẋŀş ŭƞḓḗř 2.5ḾƁ)"
 
-#: mkt/developers/forms.py:926
+#: mkt/developers/forms.py:930
 msgid "Test plan required."
 msgstr "Ŧḗşŧ ƥŀȧƞ řḗɋŭīřḗḓ."
 
-#: mkt/developers/forms.py:933
+#: mkt/developers/forms.py:937
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "Ƒīŀḗ ŧǿǿ ŀȧřɠḗ. Ķḗḗƥ şīzḗ ŭƞḓḗř %s. Ƈŭřřḗƞŧ şīzḗ %s."
 
-#: mkt/developers/forms.py:939
+#: mkt/developers/forms.py:943
 msgid "Invalid file type. Only %s files are supported."
 msgstr "Īƞṽȧŀīḓ ƒīŀḗ ŧẏƥḗ. Ǿƞŀẏ %s ƒīŀḗş ȧřḗ şŭƥƥǿřŧḗḓ."
 
@@ -21628,12 +21618,12 @@ msgstr "Şƈřḗḗƞşħǿŧş ǿř Ṽīḓḗǿş"
 msgid "Please provide at least one screenshot or video of your app:"
 msgstr "Ƥŀḗȧşḗ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ şƈřḗḗƞşħǿŧ ǿř ṽīḓḗǿ ǿƒ ẏǿŭř ȧƥƥ:"
 
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:138
-#: mkt/submit/templates/submit/details.html:157
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:139
+#: mkt/submit/templates/submit/details.html:158
 msgid "Add a Screenshot or Video..."
 msgstr "Ȧḓḓ ȧ Şƈřḗḗƞşħǿŧ ǿř Ṽīḓḗǿ..."
 
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:142
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 msgid ""
 "Screenshots and videos must be at least 320px by 480px. Media proportional "
 "to 320px by 480px is optimal. Video must be encoded as WebM."
@@ -22380,10 +22370,6 @@ msgid "App Generator"
 msgstr "Ȧƥƥ Ɠḗƞḗřȧŧǿř"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:34
-#: templates/global/menu_links.html:3
-#: templates/global/menu_links.html:5
-#: templates/global/menu_links.html:19
-#: templates/global/mobile/header.html:4
 #: templates/mobile/header.html:4
 msgid "Features"
 msgstr "Ƒḗȧŧŭřḗş"
@@ -29933,7 +29919,7 @@ msgstr "Şƈřḗḗƞşħǿŧ ǿř ṽīḓḗǿ ǿƒ ẏǿŭř ȧƥƥ:"
 msgid "You must provide at least one."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ."
 
-#: mkt/submit/templates/submit/details.html:164
+#: mkt/submit/templates/submit/details.html:165
 msgid ""
 "PNG and JPG supported. Screenshots must be at least 320px by 480px. "
 "Screenshots proportional to 320px by 480px are optimal. WebM supported for "
@@ -30116,7 +30102,6 @@ msgstr ""
 "Şħȧřḗ-Ȧŀīķḗ Ŀīƈḗƞşḗ ṽ3.0</a> ǿř ȧƞẏ ŀȧŧḗř ṽḗřşīǿƞ."
 
 #: mkt/templates/mkt/footer.html:19
-#: templates/global/copyright.html:6
 msgid "Report Trademark Abuse"
 msgstr "Řḗƥǿřŧ Ŧřȧḓḗḿȧřķ Ȧƀŭşḗ"
 
@@ -30198,19 +30183,15 @@ msgstr "ɠḗŧ ŧǿ ķƞǿẇ <b>ȧḓḓ-ǿƞş</b>"
 
 #: templates/footer.html:4
 #: templates/menu_links.html:20
-#: templates/global/menu_links.html:55
 msgid "About"
 msgstr "Ȧƀǿŭŧ"
 
 #: templates/footer.html:5
 #: templates/menu_links.html:32
-#: templates/global/menu_links.html:25
-#: templates/global/menu_links.html:64
 msgid "Blog"
 msgstr "Ɓŀǿɠ"
 
 #: templates/footer.html:7
-#: templates/global/menu_links.html:24
 msgid "FAQ"
 msgstr "ƑȦɊ"
 
@@ -30239,17 +30220,14 @@ msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Ȧḓḓ-ǿƞş"
 
 #: templates/menu_links.html:6
-#: templates/global/menu_links.html:32
 msgid "Firefox Add-ons"
 msgstr "Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş"
 
 #: templates/menu_links.html:11
-#: templates/global/menu_links.html:38
 msgid "Language Support"
 msgstr "Ŀȧƞɠŭȧɠḗ Şŭƥƥǿřŧ"
 
 #: templates/menu_links.html:22
-#: templates/global/menu_links.html:57
 msgid "About Firefox"
 msgstr "Ȧƀǿŭŧ Ƒīřḗƒǿẋ"
 
@@ -30258,7 +30236,6 @@ msgid "Join Mozilla"
 msgstr "Ĵǿīƞ Ḿǿzīŀŀȧ"
 
 #: templates/menu_links.html:24
-#: templates/global/menu_links.html:58
 msgid "Participate"
 msgstr "Ƥȧřŧīƈīƥȧŧḗ"
 
@@ -30271,22 +30248,18 @@ msgid "Brand Toolkit"
 msgstr "Ɓřȧƞḓ Ŧǿǿŀķīŧ"
 
 #: templates/menu_links.html:28
-#: templates/global/menu_links.html:60
 msgid "Careers"
 msgstr "Ƈȧřḗḗřş"
 
 #: templates/menu_links.html:29
-#: templates/global/menu_links.html:61
 msgid "Partnerships"
 msgstr "Ƥȧřŧƞḗřşħīƥş"
 
 #: templates/menu_links.html:30
-#: templates/global/menu_links.html:62
 msgid "Legal"
 msgstr "Ŀḗɠȧŀ"
 
 #: templates/menu_links.html:31
-#: templates/global/menu_links.html:63
 msgid "Contact Us"
 msgstr "Ƈǿƞŧȧƈŧ Ŭş"
 
@@ -30298,113 +30271,6 @@ msgstr "Ẇḗŀƈǿḿḗ, {0}"
 #: templates/impala/user_login.html:26
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Řḗɠīşŧḗř</a> ǿř <a href=\"%(login)s\">Ŀǿɠ īƞ</a>"
-
-#: templates/global/copyright.html:5
-#: templates/mobile/base_addons.html:91
-#: templates/mobile/base_apps.html:75
-msgid "Legal Notices"
-msgstr "Ŀḗɠȧŀ Ƞǿŧīƈḗş"
-
-#: templates/global/copyright.html:11
-msgid ""
-"Except where otherwise <a "
-"href=\"http://mozilla.com/about/legal.html#site\">noted</a>, content on this "
-"site is licensed under the <br /> <a "
-"href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons "
-"Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"Ḗẋƈḗƥŧ ẇħḗřḗ ǿŧħḗřẇīşḗ <a "
-"href=\"http://mozilla.com/about/legal.html#site\">ƞǿŧḗḓ</a>, ƈǿƞŧḗƞŧ ǿƞ ŧħīş "
-"şīŧḗ īş ŀīƈḗƞşḗḓ ŭƞḓḗř ŧħḗ <br /> <a "
-"href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş "
-"Ȧŧŧřīƀŭŧīǿƞ Şħȧřḗ-Ȧŀīķḗ Ŀīƈḗƞşḗ ṽ3.0 </a> ǿř ȧƞẏ ŀȧŧḗř ṽḗřşīǿƞ."
-
-#: templates/global/footer.html:6
-msgid "Back to home page"
-msgstr "Ɓȧƈķ ŧǿ ħǿḿḗ ƥȧɠḗ"
-
-#: templates/global/header.html:3
-msgid "skip to navigation"
-msgstr "şķīƥ ŧǿ ƞȧṽīɠȧŧīǿƞ"
-
-#: templates/global/header.html:4
-msgid "switch language"
-msgstr "şẇīŧƈħ ŀȧƞɠŭȧɠḗ"
-
-#: templates/global/header.html:7
-msgid "Back to Mozilla.com"
-msgstr "Ɓȧƈķ ŧǿ Ḿǿzīŀŀȧ.ƈǿḿ"
-
-#: templates/global/header.html:8
-#: templates/global/minimal-header.html:2
-msgid "visit <span>mozilla.org</span>"
-msgstr "ṽīşīŧ <span>ḿǿzīŀŀȧ.ǿřɠ</span>"
-
-#: templates/global/menu_links.html:8
-msgid "Customization"
-msgstr "Ƈŭşŧǿḿīzȧŧīǿƞ"
-
-#: templates/global/menu_links.html:9
-msgid "Videos"
-msgstr "Ṽīḓḗǿş"
-
-#: templates/global/menu_links.html:10
-msgid "Tour"
-msgstr "Ŧǿŭř"
-
-#: templates/global/menu_links.html:17
-msgid "Mobile Overview"
-msgstr "Ḿǿƀīŀḗ Ǿṽḗřṽīḗẇ"
-
-#: templates/global/menu_links.html:20
-msgid "Customize"
-msgstr "Ƈŭşŧǿḿīzḗ"
-
-#: templates/global/menu_links.html:21
-msgid "Sync"
-msgstr "Şẏƞƈ"
-
-#: templates/global/menu_links.html:22
-msgid "Develop"
-msgstr "Ḓḗṽḗŀǿƥ"
-
-#: templates/global/menu_links.html:23
-msgid "Get Involved"
-msgstr "Ɠḗŧ Īƞṽǿŀṽḗḓ"
-
-#: templates/global/menu_links.html:36
-msgid "Personas"
-msgstr "Ƥḗřşǿƞȧş"
-
-#: templates/global/menu_links.html:48
-msgid "Firefox Support"
-msgstr "Ƒīřḗƒǿẋ Şŭƥƥǿřŧ"
-
-#: templates/global/menu_links.html:49
-msgid "Mobile Support"
-msgstr "Ḿǿƀīŀḗ Şŭƥƥǿřŧ"
-
-#: templates/global/menu_links.html:50
-msgid "Thunderbird Support"
-msgstr "Ŧħŭƞḓḗřƀīřḓ Şŭƥƥǿřŧ"
-
-#: templates/global/menu_links.html:59
-msgid "Communications"
-msgstr "Ƈǿḿḿŭƞīƈȧŧīǿƞş"
-
-#: templates/global/mobile/header.html:3
-#: templates/mobile/header.html:3
-msgid "Mozilla Firefox"
-msgstr "Ḿǿzīŀŀȧ Ƒīřḗƒǿẋ"
-
-#: templates/global/mobile/header.html:8
-#: templates/mobile/header.html:8
-msgid "Visit Mozilla"
-msgstr "Ṽīşīŧ Ḿǿzīŀŀȧ"
-
-#: templates/global/mobile/header.html:10
-msgid "Menu"
-msgstr "Ḿḗƞŭ"
 
 #: templates/impala/base.html:135
 msgid ""
@@ -30463,13 +30329,26 @@ msgstr "Ḿǿƀīŀḗ Ħǿḿḗ"
 msgid "View full site"
 msgstr "Ṽīḗẇ ƒŭŀŀ şīŧḗ"
 
+#: templates/mobile/base_addons.html:91
+#: templates/mobile/base_apps.html:75
+msgid "Legal Notices"
+msgstr "Ŀḗɠȧŀ Ƞǿŧīƈḗş"
+
 #: templates/mobile/base_apps.html:40
 msgid "Return to the Apps homepage"
 msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ Ȧƥƥş ħǿḿḗƥȧɠḗ"
 
+#: templates/mobile/header.html:3
+msgid "Mozilla Firefox"
+msgstr "Ḿǿzīŀŀȧ Ƒīřḗƒǿẋ"
+
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
 msgstr "Ȧḓḓ-Ǿƞş"
+
+#: templates/mobile/header.html:8
+msgid "Visit Mozilla"
+msgstr "Ṽīşīŧ Ḿǿzīŀŀȧ"
 
 #. a link
 #: templates/mobile/header.html:10

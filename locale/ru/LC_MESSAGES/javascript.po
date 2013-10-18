@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 08:27-0700\n"
+"POT-Creation-Date: 2013-10-18 16:48-0700\n"
 "PO-Revision-Date: 2013-07-29 12:14+0400\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -15,412 +15,109 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
-#: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
-#: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Пока мы производим техническое обслуживание веб-сайта, эта возможность временно отключена. Пожалуйста, зайдите попозже."
-
-#: media/js/common-all.js:10509 media/js/common-min.js:23 media/js/impala-all.js:1559 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10654 media/js/zamboni/mobile-min.js:32
-msgid "App installation not allowed"
-msgstr "Установка приложения не разрешена"
-
-#: media/js/common-all.js:10512 media/js/common-min.js:23 media/js/impala-all.js:1562 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10657 media/js/zamboni/mobile-min.js:32
-msgid "App manifest is malformed"
-msgstr "Искажённый манифест приложения"
-
-#: media/js/common-all.js:10515 media/js/common-min.js:23 media/js/impala-all.js:1565 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10660 media/js/zamboni/mobile-min.js:32
-msgid "App host could not be reached"
-msgstr "Не удалось связаться с хостом приложения"
-
-#: media/js/common-all.js:10518 media/js/common-min.js:23 media/js/impala-all.js:1568 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10663 media/js/zamboni/mobile-min.js:32
-msgid "App manifest is unparsable"
-msgstr "Не удалось распарсить манифест приложения"
-
-#: media/js/common-all.js:10521 media/js/common-min.js:23 media/js/impala-all.js:1571 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10666 media/js/zamboni/mobile-min.js:32
-msgid "App manifest is invalid"
-msgstr "Некорректный манифест приложения"
-
-#: media/js/common-all.js:10524 media/js/common-min.js:23 media/js/impala-all.js:1574 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10669 media/js/zamboni/mobile-min.js:32
-msgid "Unknown error"
-msgstr "Неизвестная ошибка"
-
-#: media/js/common-all.js:10535 media/js/common-min.js:23 media/js/impala-all.js:1585 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10680 media/js/zamboni/mobile-min.js:32
-msgid "App installation failed"
-msgstr "Не удалось установить приложение"
-
-#: media/js/common-all.js:10536 media/js/common-min.js:23 media/js/impala-all.js:1586 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10681 media/js/zamboni/mobile-min.js:32
-msgid "This system does not support installing apps"
-msgstr "Эта система не поддерживает установку приложений"
-
-#. L10n: {0} is an app name like Firefox.
-#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
-#: media/js/zamboni/discovery-min.js:23
-msgid "Accept and Install"
-msgstr "Принять и установить"
-
-#: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:108 media/js/zamboni/discovery-all.js:10619
-#: media/js/zamboni/discovery-min.js:23
-msgid "Add to {0}"
-msgstr "Добавить в {0}"
-
-#: media/js/common-all.js:10682 media/js/common-min.js:23 media/js/impala-all.js:1732 media/js/impala-min.js:1 media/js/zamboni/buttons.js:113 media/js/zamboni/discovery-all.js:10624
-#: media/js/zamboni/discovery-min.js:23
-msgid "Download Now"
-msgstr "Загрузить сейчас"
-
-#. L10n: {0} is an platform like Windows or Linux.
-#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
-#: media/js/zamboni/discovery-min.js:23
-msgid "Install for {0} anyway"
-msgstr "Всё равно установить для {0}"
-
-#: media/js/common-all.js:10773 media/js/common-min.js:23 media/js/impala-all.js:1823 media/js/impala-min.js:1 media/js/zamboni/buttons.js:249 media/js/zamboni/discovery-all.js:10715
-#: media/js/zamboni/discovery-min.js:23
-msgid "Download for {0} anyway"
-msgstr "Всё равно загрузить для {0}"
-
-#: media/js/common-all.js:10824 media/js/common-min.js:23 media/js/impala-all.js:1874 media/js/impala-min.js:1 media/js/zamboni/buttons.js:306 media/js/zamboni/discovery-all.js:10766
-#: media/js/zamboni/discovery-min.js:23
-msgid "Not available for your platform"
-msgstr "Недоступно для вашей платформы"
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: media/js/common-all.js:10830 media/js/common-min.js:23 media/js/impala-all.js:1880 media/js/impala-min.js:1 media/js/zamboni/discovery-all.js:10772 media/js/zamboni/discovery-min.js:23
-msgid "May be incompatible with {0} {1}"
-msgstr "Может быть несовместимо с {0} {1}"
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: media/js/common-all.js:10840 media/js/common-min.js:23 media/js/impala-all.js:1890 media/js/impala-min.js:1 media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
-#: media/js/zamboni/discovery-all.js:10782 media/js/zamboni/discovery-min.js:23
-msgid "Not available for {0} {1}"
-msgstr "Недоступно для {0} {1}"
-
-#: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:597 media/js/zamboni/discovery-all.js:11020
-#: media/js/zamboni/discovery-min.js:23 media/js/zamboni/mobile-all.js:11127 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Извините, для установки поискового плагина вам нужен браузер из семейства Mozilla (например, Firefox)."
-
-#: media/js/common-all.js:16149 media/js/common-min.js:56 media/js/impala-all.js:7698 media/js/impala-min.js:34 media/js/zamboni/global.js:416
-msgid "Loading..."
-msgstr "Загрузка..."
-
-#. L10n: {0} is the number of characters left.
-#: media/js/common-all.js:16220 media/js/common-min.js:56 media/js/impala-all.js:7769 media/js/impala-min.js:34 media/js/zamboni/global.js:489
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "остался <b>{0}</b> символ."
-msgstr[1] "осталось <b>{0}</b> символа."
-msgstr[2] "осталось <b>{0}</b> символов."
-
-#: media/js/common-all.js:16654 media/js/common-min.js:56 media/js/impala-all.js:8112 media/js/impala-min.js:34 media/js/common/ratingwidget.js:31 media/js/zamboni/mobile-all.js:12005
-#: media/js/zamboni/mobile-min.js:32
+#: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} звезда"
 msgstr[1] "{0} звезды"
 msgstr[2] "{0} звёзд"
 
-#: media/js/common-all.js:16798 media/js/common-min.js:56 media/js/impala-all.js:8256 media/js/impala-min.js:34 media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "Удалить эту локализацию"
-
-#: media/js/common-all.js:17907 media/js/common-min.js:56 media/js/impala-all.js:9379 media/js/impala-min.js:34 media/js/zamboni/contributions.js:134
-msgid "Install App"
-msgstr "Установить приложение"
-
-#: media/js/common-all.js:18147 media/js/common-min.js:56 media/js/impala-all.js:9743 media/js/impala-min.js:34 media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
-msgid "Flagged for review"
-msgstr "Отмечено для проверки"
-
-#: media/js/common-all.js:18163 media/js/common-min.js:56 media/js/impala-all.js:9760 media/js/impala-min.js:34 media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
-msgid "Your input is required"
-msgstr "Требуется ваш отзыв"
-
-#: media/js/common-all.js:18232 media/js/common-min.js:56 media/js/impala-all.js:9846 media/js/impala-min.js:34 media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
-msgid "Marked for deletion"
-msgstr "Помечено для удаления"
-
-#: media/js/common-all.js:18756 media/js/common-min.js:56 media/js/impala-all.js:11799 media/js/impala-min.js:34 media/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "очистить недавно просмотренные"
-
-#: media/js/common-all.js:18928 media/js/common-min.js:56 media/js/impala-all.js:11971 media/js/impala-min.js:34 media/js/zamboni/collections.js:365
-msgid "Adding to Favorites&hellip;"
-msgstr "Добавляю в Избранное&hellip;"
-
-#: media/js/common-all.js:18931 media/js/common-min.js:56 media/js/impala-all.js:11974 media/js/impala-min.js:34 media/js/zamboni/collections.js:368
-msgid "Removing Favorite&hellip;"
-msgstr "Удаляю из Избранного&hellip;"
-
-#: media/js/common-all.js:18934 media/js/common-min.js:56 media/js/impala-all.js:11977 media/js/impala-min.js:34 media/js/zamboni/collections.js:371
-msgid "Add to Favorites"
-msgstr "Добавить в избранное"
-
-#: media/js/common-all.js:18937 media/js/common-min.js:56 media/js/impala-all.js:11980 media/js/impala-min.js:34 media/js/zamboni/collections.js:374
-msgid "Remove from Favorites"
-msgstr "Удалить из избранного"
-
-#: media/js/common-all.js:19000 media/js/common-min.js:56 media/js/impala-all.js:12043 media/js/impala-min.js:34 media/js/zamboni/collections.js:437
-msgid "Pending"
-msgstr "В ожидании"
-
-#: media/js/common-all.js:19001 media/js/common-min.js:56 media/js/impala-all.js:12044 media/js/impala-min.js:34 media/js/zamboni/collections.js:438
-msgid "Add a comment"
-msgstr "Добавить комментарий"
-
-#: media/js/common-all.js:19001 media/js/common-min.js:56 media/js/impala-all.js:12044 media/js/impala-min.js:34 media/js/zamboni/collections.js:438
-msgid "Comment"
-msgstr "Комментарий"
-
-#: media/js/common-all.js:19002 media/js/common-min.js:56 media/js/impala-all.js:12045 media/js/impala-min.js:34 media/js/zamboni/collections.js:439
-msgid "Remove this add-on from the collection"
-msgstr "Удалить это дополнение из подборки"
-
-#: media/js/common-all.js:19002 media/js/common-all.js:19031 media/js/common-min.js:56 media/js/impala-all.js:12045 media/js/impala-all.js:12074 media/js/impala-min.js:34
-#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
-msgid "Remove"
-msgstr "Удалить"
-
-#: media/js/common-all.js:19031 media/js/common-min.js:56 media/js/impala-all.js:12074 media/js/impala-min.js:34 media/js/zamboni/collections.js:468
-msgid "Remove this user as a contributor"
-msgstr "Удалить этого пользователя как помощника"
-
-#: media/js/common-all.js:19043 media/js/common-min.js:56 media/js/impala-all.js:12086 media/js/impala-min.js:34 media/js/zamboni/collections.js:480
-msgid "An email address is required."
-msgstr "Требуется адрес электронной почты."
-
-#: media/js/common-all.js:19061 media/js/common-min.js:56 media/js/impala-all.js:12104 media/js/impala-min.js:34 media/js/zamboni/collections.js:500
-msgid "You have already added that user."
-msgstr "Вы уже добавили этого пользователя."
-
-#: media/js/common-all.js:19264 media/js/common-min.js:56 media/js/impala-all.js:12307 media/js/impala-min.js:34 media/js/zamboni/collections.js:703
-msgid "Add to favorites"
-msgstr "Добавить в избранное"
-
-#: media/js/common-all.js:19268 media/js/common-min.js:56 media/js/impala-all.js:12311 media/js/impala-min.js:34 media/js/zamboni/collections.js:707
-msgid "Remove from favorites"
-msgstr "Удалить из избранного"
-
-#: media/js/common-all.js:19286 media/js/common-min.js:56 media/js/impala-all.js:12329 media/js/impala-all.js:12395 media/js/impala-min.js:34 media/js/impala/collections.js:10
-#: media/js/zamboni/collections.js:725
-msgid "Follow this Collection"
-msgstr "Следовать за этой подборкой"
-
-#: media/js/common-all.js:19295 media/js/common-min.js:56 media/js/impala-all.js:12338 media/js/impala-min.js:34 media/js/zamboni/collections.js:734
-msgid "Stop following"
-msgstr "Перестать следовать"
-
-#: media/js/common-all.js:19371 media/js/common-all.js:19384 media/js/common-min.js:56 media/js/impala-all.js:12446 media/js/impala-all.js:12459 media/js/impala-min.js:34 media/js/zamboni/perf.js:29
-#: media/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Все"
-
-#: media/js/common-all.js:19526 media/js/common-min.js:56 media/js/zamboni/password-strength.js:20
-msgid "Password strength:"
-msgstr "Стойкость пароля:"
-
-#: media/js/common-all.js:19532 media/js/common-min.js:56 media/js/zamboni/password-strength.js:26
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Остался по меньшей мере {0} символ."
-msgstr[1] "Осталось по меньшей мере {0} символа."
-msgstr[2] "Осталось по меньшей мере {0} символов."
-
-#: media/js/common-all.js:19703 media/js/common-min.js:56 media/js/impala-all.js:12798 media/js/impala-min.js:34
-msgid "Search personas for <b>{0}</b>"
-msgstr "Искать в обоях <b>{0}</b>"
-
-#: media/js/common-all.js:19705 media/js/common-min.js:56 media/js/impala-all.js:12800 media/js/impala-min.js:34 media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
-msgid "Search apps for <b>{0}</b>"
-msgstr "Искать в приложениях <b>{0}</b>"
-
-#: media/js/common-all.js:19707 media/js/common-min.js:56 media/js/impala-all.js:12802 media/js/impala-min.js:34 media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Искать в дополнениях <b>{0}</b>"
-
-#: media/js/common-all.js:19844 media/js/common-min.js:56 media/js/impala-all.js:12939 media/js/impala-min.js:34 media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
-msgid "Category"
-msgstr "Категория"
-
-#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
-msgid "Admins and editors must provide a password to log in."
-msgstr "Админы и редакторы для входа должны ввести пароль."
-
-#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Вход через BrowserID не удался. Может быть у вас нет учётной записи для этого адреса эл. почты?"
-
-#: media/js/impala-all.js:2584 media/js/impala-min.js:1 media/js/devreg/validator.js:458 media/js/zamboni/devhub-all.js:2864 media/js/zamboni/devhub-min.js:1 media/js/zamboni/mobile-all.js:12216
-#: media/js/zamboni/mobile-min.js:32 media/js/zamboni/validator.js:466
-msgid "Internal server error"
-msgstr "Внутренняя ошибка сервера"
-
-#. L10n: {0} is an app name.
-#: media/js/impala-all.js:9874 media/js/impala-min.js:34 media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Эта тема несовместима с вашей версией {0}"
-
-#: media/js/impala-all.js:10293 media/js/impala-min.js:34 media/js/common/upload-base.js:61 media/js/zamboni/devhub-all.js:127 media/js/zamboni/devhub-min.js:1
-msgid "The filetype you uploaded isn't recognized."
-msgstr "Тип загруженного вами файла не распознан."
-
-#: media/js/impala-all.js:10315 media/js/impala-min.js:34 media/js/common/upload-base.js:83 media/js/zamboni/devhub-all.js:149 media/js/zamboni/devhub-min.js:1
-msgid "You cancelled the upload."
-msgstr "Вы отменили загрузку."
-
-#: media/js/impala-all.js:10372 media/js/impala-all.js:10807 media/js/impala-min.js:34 media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
-#: media/js/zamboni/devhub-all.js:206 media/js/zamboni/devhub-all.js:641 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Проблема связи с сервером."
 
-#: media/js/impala-all.js:10390 media/js/impala-min.js:34 media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52 media/js/zamboni/devhub-all.js:224
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
 msgstr "Выбрать файл..."
 
-#: media/js/impala-all.js:10391 media/js/impala-min.js:34 media/js/common/upload-addon.js:53 media/js/zamboni/devhub-all.js:225 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Ваше дополнение должно заканчиваться на .xpi, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/impala-all.js:10425 media/js/impala-min.js:34 media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89 media/js/zamboni/devhub-all.js:259
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
 msgstr "{0}% завершено"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/impala-all.js:10428 media/js/impala-min.js:34 media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92 media/js/zamboni/devhub-all.js:262
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
 msgstr "{0} из {1}"
 
-#: media/js/impala-all.js:10456 media/js/impala-min.js:34 media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120 media/js/zamboni/devhub-all.js:290
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "Отмена"
 
-#: media/js/impala-all.js:10478 media/js/impala-min.js:34 media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142 media/js/zamboni/devhub-all.js:312
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
 msgstr "Загрузка {0}"
 
-#: media/js/impala-all.js:10500 media/js/impala-min.js:34 media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164 media/js/zamboni/devhub-all.js:334
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
 msgstr "Ошибка с {0}"
 
-#: media/js/impala-all.js:10505 media/js/impala-min.js:34 media/js/common/upload-addon.js:174 media/js/zamboni/devhub-all.js:339 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ваше дополнение не смогло пройти валидацию, в нём найдена {0} ошибка."
 msgstr[1] "Ваше дополнение не смогло пройти валидацию, в нём найдено {0} ошибки."
 msgstr[2] "Ваше дополнение не смогло пройти валидацию, в нём найдено {0} ошибок."
 
-#: media/js/impala-all.js:10519 media/js/impala-min.js:34 media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183 media/js/zamboni/devhub-all.js:353
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;и ещё {0}"
 msgstr[1] "&hellip;и ещё {0}"
 msgstr[2] "&hellip;и ещё {0}"
 
-#: media/js/impala-all.js:10533 media/js/impala-all.js:10654 media/js/impala-min.js:34 media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329
-#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143 media/js/zamboni/devhub-all.js:367 media/js/zamboni/devhub-all.js:488
-#: media/js/zamboni/devhub-all.js:1026 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:162
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/zamboni/devhub.js:162
 msgid "See full validation report"
 msgstr "Прочесть весь отчёт о валидации"
 
-#: media/js/impala-all.js:10545 media/js/impala-min.js:34 media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209 media/js/zamboni/devhub-all.js:379
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
 msgstr "Валидация {0}"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/impala-all.js:10579 media/js/impala-min.js:34 media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245 media/js/zamboni/devhub-all.js:413
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен пустой ответ от сервера; статус: {0}"
 
-#: media/js/impala-all.js:10590 media/js/impala-min.js:34 media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255 media/js/zamboni/devhub-all.js:424
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "При валидации произошла неожиданная ошибка сервера."
 
-#: media/js/impala-all.js:10626 media/js/impala-min.js:34 media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292 media/js/zamboni/devhub-all.js:460
-#: media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "Закончена валидация {0}"
 
-#: media/js/impala-all.js:10632 media/js/impala-min.js:34 media/js/common/upload-addon.js:307 media/js/zamboni/devhub-all.js:466 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} warning."
 msgid_plural "Your add-on passed validation with no errors and {0} warnings."
 msgstr[0] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждением."
 msgstr[1] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
 msgstr[2] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
 
-#: media/js/impala-all.js:10637 media/js/impala-min.js:34 media/js/common/upload-addon.js:312 media/js/zamboni/devhub-all.js:471 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Ваше дополнение прошло валидацию без ошибок или предупреждений."
 
-#: media/js/impala-all.js:10688 media/js/impala-min.js:34 media/js/common/upload-addon.js:363 media/js/zamboni/devhub-all.js:522 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Для этого типа дополнения некоторые платформы недоступны."
 
-#: media/js/impala-all.js:10782 media/js/impala-min.js:34 media/js/zamboni/devhub-all.js:616 media/js/zamboni/devhub-min.js:1
-msgid "Icons must be either PNG or JPG."
-msgstr "Значки могут быть либо в PNG либо в JPG."
+#: media/js/common/upload-base.js:61
+msgid "The filetype you uploaded isn't recognized."
+msgstr "Тип загруженного вами файла не распознан."
 
-#: media/js/impala-all.js:11442 media/js/impala-min.js:34 media/js/impala/persona_creation.js:102
-msgid "All Rights Reserved"
-msgstr "Все права защищены"
+#: media/js/common/upload-base.js:83
+msgid "You cancelled the upload."
+msgstr "Вы отменили загрузку."
 
-#: media/js/impala-all.js:11446 media/js/impala-min.js:34 media/js/impala/persona_creation.js:106
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Атрибуция 3.0"
-
-#: media/js/impala-all.js:11451 media/js/impala-min.js:34 media/js/impala/persona_creation.js:111
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Атрибуция — Некоммерческое использование 3.0"
-
-#: media/js/impala-all.js:11456 media/js/impala-min.js:34 media/js/impala/persona_creation.js:116
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Атрибуция — Некоммерческое использование — Без производных произведений 3.0"
-
-#: media/js/impala-all.js:11461 media/js/impala-min.js:34 media/js/impala/persona_creation.js:121
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Атрибуция — Некоммерческое использование — С сохранением условий 3.0"
-
-#: media/js/impala-all.js:11466 media/js/impala-min.js:34 media/js/impala/persona_creation.js:126
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Атрибуция — Без производных произведений 3.0"
-
-#: media/js/impala-all.js:11471 media/js/impala-min.js:34 media/js/impala/persona_creation.js:131
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Атрибуция — С сохранением условий 3.0"
-
-#: media/js/impala-all.js:11532 media/js/impala-min.js:34
-msgid "Your Persona's Name"
-msgstr "Имя ваших обоев"
-
-#: media/js/impala-all.js:12404 media/js/impala-min.js:34 media/js/impala/collections.js:19
-msgid "Stop Following"
-msgstr "Перестать следовать"
-
-#: media/js/impala-all.js:12405 media/js/impala-min.js:34 media/js/impala/collections.js:20
-msgid "Following"
-msgstr "Следовать"
-
-#: media/js/impala-all.js:12538 media/js/impala-min.js:34 media/js/impala/users.js:33
-msgid "use original"
-msgstr "использовать оригинал"
-
-#: media/js/impala-all.js:12556 media/js/impala-min.js:34 media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "Изображения должны быть в PNG или JPG."
-
-#: media/js/impala-all.js:12697 media/js/impala-min.js:34 media/js/impala/search.js:104
-msgid "Updating results&hellip;"
-msgstr "Обновление результатов по&hellip;"
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
@@ -430,7 +127,7 @@ msgstr "Видео должно быть в формате WebM."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Ваше упакованное приложение должно заканчиваться на <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub-all.js:1033 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ваше приложение не смогло пройти валидацию, в нём найдена {0} ошибка."
@@ -455,18 +152,18 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ваше приложение прошло валидацию без ошибок и с {0} сообщением."
 msgstr[1] "Ваше приложение прошло валидацию без ошибок и с {0} сообщениями."
 msgstr[2] "Ваше приложение прошло валидацию без ошибок и с {0} сообщениями."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ваше приложение прошло валидацию без ошибок или сообщений."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub-all.js:1336 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
 msgstr "Изменения сохранены"
 
@@ -478,19 +175,19 @@ msgstr "Введите адрес эл. почты нового члена ко�
 msgid "Refreshed"
 msgstr "Обновлено"
 
-#: media/js/devreg/devhub.js:614 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "При загрузке вашего файла произошла ошибка."
 
-#: media/js/devreg/devhub.js:884 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Подробнее"
 
-#: media/js/devreg/devhub.js:888 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1190 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
 
@@ -501,6 +198,14 @@ msgstr "больше..."
 #: media/js/devreg/expandable.js:18
 msgid "less..."
 msgstr "меньше..."
+
+#: media/js/devreg/init.js:35 media/js/mkt/init.js:47 media/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Пока мы производим техническое обслуживание веб-сайта, эта возможность временно отключена. Пожалуйста, зайдите попозже."
+
+#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Удалить эту локализацию"
 
 #: media/js/devreg/mobile_review_actions.js:6
 msgid "Keep review; remove flags"
@@ -593,8 +298,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
-#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
+#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "Ошибка"
 
@@ -610,25 +314,23 @@ msgstr ""
 msgid "You do not currently have any payment accounts."
 msgstr "Сейчас у вас нет ни одного счёта для платежей."
 
-#: media/js/devreg/validator.js:71 media/js/zamboni/devhub-all.js:2475 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
 msgstr "Все тесты пройдены успешно."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/devhub-all.js:2478 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:74
-#: media/js/zamboni/validator.js:366
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:366
 msgid "These tests were not run."
 msgstr "Эти тесты не были запущены."
 
-#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/devhub-all.js:2523 media/js/zamboni/devhub-all.js:2536 media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/validator.js:119 media/js/zamboni/validator.js:132
+#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:119 media/js/zamboni/validator.js:132
 msgid "Tests"
 msgstr "Тесты"
 
-#: media/js/devreg/validator.js:194 media/js/zamboni/devhub-all.js:2598 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:194
+#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:194
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: media/js/devreg/validator.js:281 media/js/zamboni/devhub-all.js:2682 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:281
+#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:281
 msgid "Compatibility Tests"
 msgstr "Тесты совместимости"
 
@@ -640,31 +342,112 @@ msgstr "Приложение не прошло валидацию."
 msgid "App passed validation."
 msgstr "Приложение прошло валидацию."
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/devhub-all.js:2767 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:369
+#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:369
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ошибка"
 msgstr[1] "{0} ошибки"
 msgstr[2] "{0} ошибок"
 
-#: media/js/devreg/validator.js:363 media/js/zamboni/devhub-all.js:2769 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:371
+#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:371
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} предупреждение"
 msgstr[1] "{0} предупреждения"
 msgstr[2] "{0} предупреждений"
 
-#: media/js/devreg/validator.js:440 media/js/zamboni/devhub-all.js:2846 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:448
+#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:448
 msgid "Validation task could not complete or completed with errors"
 msgstr "Валидация не смогла завершиться или завершилась с ошибками"
+
+#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:466
+msgid "Internal server error"
+msgstr "Внутренняя ошибка сервера"
+
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+msgid "Follow this Collection"
+msgstr "Следовать за этой подборкой"
+
+#: media/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "Перестать следовать"
+
+#: media/js/impala/collections.js:20
+msgid "Following"
+msgstr "Следовать"
+
+#. L10n: {0} is an app name.
+#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "Эта тема несовместима с вашей версией {0}"
+
+#: media/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr "Все права защищены"
+
+#: media/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Атрибуция 3.0"
+
+#: media/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Атрибуция — Некоммерческое использование 3.0"
+
+#: media/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Атрибуция — Некоммерческое использование — Без производных произведений 3.0"
+
+#: media/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Атрибуция — Некоммерческое использование — С сохранением условий 3.0"
+
+#: media/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Атрибуция — Без производных произведений 3.0"
+
+#: media/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Атрибуция — С сохранением условий 3.0"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
 msgstr "Имя вашей темы"
 
+#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "Отмечено для проверки"
+
+#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "Требуется ваш отзыв"
+
+#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "Помечено для удаления"
+
+#: media/js/impala/search.js:104
+msgid "Updating results&hellip;"
+msgstr "Обновление результатов по&hellip;"
+
+#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+msgid "Category"
+msgstr "Категория"
+
 #: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "Поиск <b>{0}</b>  в темах"
+
+#: media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
+msgid "Search apps for <b>{0}</b>"
+msgstr "Искать в приложениях <b>{0}</b>"
+
+#: media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Искать в дополнениях <b>{0}</b>"
+
+#: media/js/impala/users.js:33
+msgid "use original"
+msgstr "использовать оригинал"
 
 #: media/js/impala/stats/chart.js:267 media/js/mkt/stats/chart.js:320
 msgid "Week of {0}"
@@ -702,22 +485,19 @@ msgstr "{0} возмещений"
 msgid "{0} installs"
 msgstr "{0} установок"
 
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102 media/js/mkt/stats/csv_keys.js:128 media/js/zamboni/stats-all.js:11201
-#: media/js/zamboni/stats-all.js:11267 media/js/zamboni/stats-all.js:12578 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102 media/js/mkt/stats/csv_keys.js:128
 msgid "Downloads"
 msgstr "Загрузки"
 
 #: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:6 media/js/mkt/stats/csv_keys.js:129
-#: media/js/zamboni/stats-all.js:11204 media/js/zamboni/stats-all.js:11268 media/js/zamboni/stats-all.js:12588 media/js/zamboni/stats-min.js:10
 msgid "Daily Users"
 msgstr "Ежедневных пользователей"
 
-#: media/js/impala/stats/chart.js:410 media/js/zamboni/stats-all.js:12613 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
 msgstr "Сумма, в долларах США"
 
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:123 media/js/zamboni/stats-all.js:11262 media/js/zamboni/stats-all.js:12624
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:123
 msgid "Number of Contributions"
 msgstr "Число взносов"
 
@@ -774,148 +554,129 @@ msgstr "Продажи"
 msgid "Installs"
 msgstr "Установки"
 
-#: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57 media/js/zamboni/stats-all.js:11207 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58 media/js/zamboni/stats-all.js:11208 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58
 msgid "Add-ons Manager"
 msgstr "Управление дополнениями"
 
-#: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59 media/js/zamboni/stats-all.js:11209 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59
 msgid "Search Results"
 msgstr "Результаты поиска"
 
 #: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
-#: media/js/mkt/stats/csv_keys.js:62 media/js/zamboni/stats-all.js:11210 media/js/zamboni/stats-all.js:11211 media/js/zamboni/stats-all.js:11212 media/js/zamboni/stats-min.js:10
+#: media/js/mkt/stats/csv_keys.js:62
 msgid "Homepage Promo"
 msgstr "Промо домашней страницы"
 
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64 media/js/zamboni/stats-all.js:11213
-#: media/js/zamboni/stats-all.js:11214 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64
 msgid "Homepage Featured"
 msgstr "Избранные домашней страницы"
 
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66 media/js/zamboni/stats-all.js:11215
-#: media/js/zamboni/stats-all.js:11216 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66
 msgid "Homepage Up and Coming"
 msgstr "Набирающие популярность домашней страницы"
 
-#: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67 media/js/zamboni/stats-all.js:11217 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67
 msgid "Homepage Most Popular"
 msgstr "Самые популярные домашней страницы"
 
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70 media/js/zamboni/stats-all.js:11218
-#: media/js/zamboni/stats-all.js:11220 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70
 msgid "Detail Page"
 msgstr "Страница информации"
 
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71 media/js/zamboni/stats-all.js:11219
-#: media/js/zamboni/stats-all.js:11221 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71
 msgid "Detail Page (bottom)"
 msgstr "Страница информации (внизу)"
 
-#: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72 media/js/zamboni/stats-all.js:11222 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72
 msgid "Detail Page (Development Channel)"
 msgstr "Страница информации (канал разработки)"
 
 #: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
-#: media/js/mkt/stats/csv_keys.js:75 media/js/zamboni/stats-all.js:11223 media/js/zamboni/stats-all.js:11224 media/js/zamboni/stats-all.js:11225 media/js/zamboni/stats-min.js:10
+#: media/js/mkt/stats/csv_keys.js:75
 msgid "Often Used With"
 msgstr "Часто используется с"
 
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62 media/js/mkt/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:77 media/js/zamboni/stats-all.js:11226
-#: media/js/zamboni/stats-all.js:11227 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62 media/js/mkt/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:77
 msgid "Others By Author"
 msgstr "Другие от автора"
 
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79 media/js/zamboni/stats-all.js:11228
-#: media/js/zamboni/stats-all.js:11229 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79
 msgid "Dependencies"
 msgstr "Зависимости"
 
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81 media/js/zamboni/stats-all.js:11230
-#: media/js/zamboni/stats-all.js:11231 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81
 msgid "Upsell"
 msgstr "Upsell"
 
-#: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83 media/js/zamboni/stats-all.js:11233 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83
 msgid "Sharing"
 msgstr "Разделение"
 
-#: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84 media/js/zamboni/stats-all.js:11234 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84
 msgid "Category Pages"
 msgstr "Страницы категорий"
 
-#: media/js/impala/stats/csv_keys.js:70 media/js/mkt/stats/csv_keys.js:85 media/js/zamboni/stats-all.js:11235 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:70 media/js/mkt/stats/csv_keys.js:85
 msgid "Collections"
 msgstr "Подборки"
 
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86 media/js/zamboni/stats-all.js:11236 media/js/zamboni/stats-all.js:11237
-#: media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86
 msgid "Category Landing Featured Carousel"
 msgstr "Размещение в категории Карусель избранных"
 
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90 media/js/zamboni/stats-all.js:11238
-#: media/js/zamboni/stats-all.js:11239 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90
 msgid "Category Landing Top Rated"
 msgstr "Размещение в категории Самая рейтинговая"
 
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92 media/js/zamboni/stats-all.js:11240
-#: media/js/zamboni/stats-all.js:11241 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92
 msgid "Category Landing Most Popular"
 msgstr "Размещение в категории Наиболее популярная"
 
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94 media/js/zamboni/stats-all.js:11242
-#: media/js/zamboni/stats-all.js:11243 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94
 msgid "Category Landing Recently Added"
 msgstr "Размещение в категории Недавно добавленная"
 
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96 media/js/zamboni/stats-all.js:11244
-#: media/js/zamboni/stats-all.js:11245 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96
 msgid "Browse Listing Featured Sort"
 msgstr "Обзор дополнений Сортировка по избранным"
 
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98 media/js/zamboni/stats-all.js:11246
-#: media/js/zamboni/stats-all.js:11247 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98
 msgid "Browse Listing Users Sort"
 msgstr "Обзор дополнений Сортировка по пользователям"
 
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100 media/js/zamboni/stats-all.js:11248
-#: media/js/zamboni/stats-all.js:11249 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100
 msgid "Browse Listing Rating Sort"
 msgstr "Обзор дополнений Сортировка по рейтингу"
 
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102 media/js/zamboni/stats-all.js:11250
-#: media/js/zamboni/stats-all.js:11251 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102
 msgid "Browse Listing Created Sort"
 msgstr "Обзор дополнений Сортировка по дате создания"
 
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104 media/js/zamboni/stats-all.js:11252
-#: media/js/zamboni/stats-all.js:11253 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104
 msgid "Browse Listing Name Sort"
 msgstr "Обзор дополнений Сортировка по имени"
 
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106 media/js/zamboni/stats-all.js:11254
-#: media/js/zamboni/stats-all.js:11255 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106
 msgid "Browse Listing Popular Sort"
 msgstr "Обзор дополнений Сортировка по популярности"
 
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108 media/js/zamboni/stats-all.js:11256
-#: media/js/zamboni/stats-all.js:11257 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108
 msgid "Browse Listing Updated Sort"
 msgstr "Обзор дополнений Сортировка по дате обновления"
 
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110 media/js/zamboni/stats-all.js:11258
-#: media/js/zamboni/stats-all.js:11259 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Обзор дополнений Сортировка по набору популярности"
 
-#: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124 media/js/zamboni/stats-all.js:11263 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124
 msgid "Total Amount Contributed"
 msgstr "Общая сумма взносов"
 
-#: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125 media/js/zamboni/stats-all.js:11264 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125
 msgid "Average Contribution"
 msgstr "Средний взнос"
 
@@ -923,37 +684,37 @@ msgstr "Средний взнос"
 msgid "Usage"
 msgstr "Использование"
 
-#: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137 media/js/zamboni/stats-all.js:11271 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137
 msgid "Firefox"
 msgstr "Firefox"
 
-#: media/js/impala/stats/csv_keys.js:112 media/js/mkt/stats/csv_keys.js:138 media/js/zamboni/stats-all.js:11272 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:112 media/js/mkt/stats/csv_keys.js:138
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: media/js/impala/stats/csv_keys.js:113 media/js/mkt/stats/csv_keys.js:139 media/js/zamboni/stats-all.js:11273 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:113 media/js/mkt/stats/csv_keys.js:139
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: media/js/impala/stats/csv_keys.js:114 media/js/mkt/stats/csv_keys.js:140 media/js/zamboni/stats-all.js:11274 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:114 media/js/mkt/stats/csv_keys.js:140
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: media/js/impala/stats/csv_keys.js:115 media/js/mkt/stats/csv_keys.js:141 media/js/zamboni/stats-all.js:11275 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:115 media/js/mkt/stats/csv_keys.js:141
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: media/js/impala/stats/csv_keys.js:116 media/js/mkt/stats/csv_keys.js:142 media/js/zamboni/stats-all.js:11276 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:116 media/js/mkt/stats/csv_keys.js:142
 msgid "Fennec"
 msgstr "Fennec"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:121 media/js/zamboni/stats-all.js:11281 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:121
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Загрузки и ежедневные пользователи, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:123 media/js/zamboni/stats-all.js:11283 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:123
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Загрузки и ежедневные пользователи, с {0} по {1}"
 
@@ -968,92 +729,92 @@ msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Установки и ежедневные пользователи, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:133 media/js/zamboni/stats-all.js:11287 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:133
 msgid "Downloads, last {0} days"
 msgstr "Загрузки, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:135 media/js/zamboni/stats-all.js:11289 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:135
 msgid "Downloads from {0} to {1}"
 msgstr "Загрузки, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:139 media/js/mkt/stats/csv_keys.js:152 media/js/zamboni/stats-all.js:11293 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:139 media/js/mkt/stats/csv_keys.js:152
 msgid "Daily Users, last {0} days"
 msgstr "Ежедневные пользователи, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:141 media/js/mkt/stats/csv_keys.js:153 media/js/zamboni/stats-all.js:11295 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:141 media/js/mkt/stats/csv_keys.js:153
 msgid "Daily Users from {0} to {1}"
 msgstr "Ежедневные пользователи, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:145 media/js/zamboni/stats-all.js:11299 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:145
 msgid "Applications, last {0} days"
 msgstr "Приложения, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:147 media/js/zamboni/stats-all.js:11301 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:147
 msgid "Applications from {0} to {1}"
 msgstr "Приложения, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:151 media/js/zamboni/stats-all.js:11305 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:151
 msgid "Platforms, last {0} days"
 msgstr "Платформы, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:153 media/js/zamboni/stats-all.js:11307 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:153
 msgid "Platforms from {0} to {1}"
 msgstr "Платформы, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:157 media/js/zamboni/stats-all.js:11311 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:157
 msgid "Languages, last {0} days"
 msgstr "Языки, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:159 media/js/zamboni/stats-all.js:11313 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:159
 msgid "Languages from {0} to {1}"
 msgstr "Языки, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:163 media/js/zamboni/stats-all.js:11317 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:163
 msgid "Add-on Versions, last {0} days"
 msgstr "Версии дополнения, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:165 media/js/zamboni/stats-all.js:11319 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:165
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Версии дополнения, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:169 media/js/zamboni/stats-all.js:11323 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:169
 msgid "Add-on Status, last {0} days"
 msgstr "Статус дополнения, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:171 media/js/zamboni/stats-all.js:11325 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:171
 msgid "Add-on Status from {0} to {1}"
 msgstr "Статус дополнения, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:175 media/js/zamboni/stats-all.js:11329 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:175
 msgid "Download Sources, last {0} days"
 msgstr "Источники загрузок, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:177 media/js/zamboni/stats-all.js:11331 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:177
 msgid "Download Sources from {0} to {1}"
 msgstr "Источники загрузок, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:181 media/js/zamboni/stats-all.js:11335 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:181
 msgid "Contributions, last {0} days"
 msgstr "Взносы, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:183 media/js/zamboni/stats-all.js:11337 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:183
 msgid "Contributions from {0} to {1}"
 msgstr "Взносы, с {0} по {1}"
 
@@ -1178,30 +939,29 @@ msgid "Installs from {0} to {1}"
 msgstr "Установки, с {0} по {1}"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:261 media/js/mkt/stats/csv_keys.js:223 media/js/zamboni/stats-all.js:11343 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:261 media/js/mkt/stats/csv_keys.js:223
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> за последние {1} дней"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269 media/js/mkt/stats/csv_keys.js:225 media/js/mkt/stats/csv_keys.js:231 media/js/zamboni/stats-all.js:11345
-#: media/js/zamboni/stats-all.js:11351 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269 media/js/mkt/stats/csv_keys.js:225 media/js/mkt/stats/csv_keys.js:231
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b>, с {1} по {2}"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:267 media/js/mkt/stats/csv_keys.js:229 media/js/zamboni/stats-all.js:11349 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/csv_keys.js:267 media/js/mkt/stats/csv_keys.js:229
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "в среднем <b>{0}</b> за последние {1} дней"
 
-#: media/js/impala/stats/overview.js:19 media/js/mkt/stats/overview.js:17 media/js/zamboni/stats-all.js:12193 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/overview.js:19 media/js/mkt/stats/overview.js:17
 msgid "No data available."
 msgstr "Данные недоступны."
 
-#: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88 media/js/zamboni/stats-all.js:12742 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88
 msgid "Date"
 msgstr "Дата"
 
-#: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96 media/js/zamboni/stats-all.js:12324 media/js/zamboni/stats-min.js:10
+#: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96
 msgid "Other"
 msgstr "Другое"
 
@@ -1549,19 +1309,18 @@ msgstr "Всего копий за которые возвращены день�
 msgid "Total Installs"
 msgstr "Всего установок"
 
-#: media/js/zamboni/admin-all.js:179 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub-all.js:2278 media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1438 media/js/zamboni/editors-all.js:296 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:329
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:329
 msgid "Select an application first"
 msgstr "Сначала выберите приложение"
 
-#: media/js/zamboni/admin-all.js:208 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:53
+#: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Установить для {0} дополнения максимальную версию {1} и отправить письмо автору."
 msgstr[1] "Установить для {0} дополнений максимальную версию {1} и отправить письмо авторам."
 msgstr[2] "Установить для {0} дополнений максимальную версию {1} и отправить письмо авторам."
 
-#: media/js/zamboni/admin-all.js:214 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:59
+#: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
 msgid_plural "This will send emails to the authors of {0} files."
 msgstr[0] "Это отправит письма авторам файла {0}."
@@ -1584,6 +1343,27 @@ msgstr "Не удалось установить приложение."
 msgid "This system does not support installing apps."
 msgstr "Эта система не поддерживает установку приложений."
 
+#: media/js/zamboni/browserid_support.js:37
+msgid "Admins and editors must provide a password to log in."
+msgstr "Админы и редакторы для входа должны ввести пароль."
+
+#: media/js/zamboni/browserid_support.js:42
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "Вход через BrowserID не удался. Может быть у вас нет учётной записи для этого адреса эл. почты?"
+
+#. L10n: {0} is an app name like Firefox.
+#: media/js/zamboni/buttons.js:108
+msgid "Accept and Install"
+msgstr "Принять и установить"
+
+#: media/js/zamboni/buttons.js:108
+msgid "Add to {0}"
+msgstr "Добавить в {0}"
+
+#: media/js/zamboni/buttons.js:113
+msgid "Download Now"
+msgstr "Загрузить сейчас"
+
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Дополнение не было обновлено для поддержки совместимости-по-умолчанию."
@@ -1596,6 +1376,24 @@ msgstr "Вам необходимо использовать Firefox 10.0 или
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla отметила эту версию как несовместимую с вашей версией Firefox."
 
+#. L10n: {0} is an platform like Windows or Linux.
+#: media/js/zamboni/buttons.js:249
+msgid "Install for {0} anyway"
+msgstr "Всё равно установить для {0}"
+
+#: media/js/zamboni/buttons.js:249
+msgid "Download for {0} anyway"
+msgstr "Всё равно загрузить для {0}"
+
+#: media/js/zamboni/buttons.js:306
+msgid "Not available for your platform"
+msgstr "Недоступно для вашей платформы"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+msgid "Not available for {0} {1}"
+msgstr "Недоступно для {0} {1}"
+
 #: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
 msgstr "Работает с {app} {min} - {max}"
@@ -1604,104 +1402,139 @@ msgstr "Работает с {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Просмотреть другие версии"
 
+#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Извините, для установки поискового плагина вам нужен браузер из семейства Mozilla (например, Firefox)."
+
+#: media/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "очистить недавно просмотренные"
+
+#: media/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "Добавляю в Избранное&hellip;"
+
+#: media/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr "Удаляю из Избранного&hellip;"
+
+#: media/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "Добавить в избранное"
+
+#: media/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "Удалить из избранного"
+
+#: media/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "В ожидании"
+
+#: media/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "Добавить комментарий"
+
+#: media/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "Комментарий"
+
+#: media/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "Удалить это дополнение из подборки"
+
+#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "Удалить"
+
+#: media/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr "Удалить этого пользователя как помощника"
+
+#: media/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "Требуется адрес электронной почты."
+
 #: media/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
 msgstr "Вы не можете добавить себя как помощника."
 
-#: media/js/zamboni/devhub-all.js:1106 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:242
+#: media/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "Вы уже добавили этого пользователя."
+
+#: media/js/zamboni/collections.js:703
+msgid "Add to favorites"
+msgstr "Добавить в избранное"
+
+#: media/js/zamboni/collections.js:707
+msgid "Remove from favorites"
+msgstr "Удалить из избранного"
+
+#: media/js/zamboni/collections.js:734
+msgid "Stop following"
+msgstr "Перестать следовать"
+
+#: media/js/zamboni/contributions.js:134
+msgid "Install App"
+msgstr "Установить приложение"
+
+#: media/js/zamboni/devhub.js:242
 msgid "Your browser does not support the video tag"
 msgstr "Ваш браузер не поддерживает тег видео"
 
-#: media/js/zamboni/devhub-all.js:1352 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub.js:503
 msgid "Enter a new author's email address"
 msgstr "Введите новый адрес эл. почты автора"
 
-#: media/js/zamboni/devhub-all.js:1642 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub.js:793
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} файл"
 msgstr[1] "{files} файла"
 msgstr[2] "{files} файлов"
 
-#: media/js/zamboni/devhub-all.js:1645 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} отзыв"
 msgstr[1] "{reviews} отзыва"
 msgstr[2] "{reviews} отзывов"
 
-#: media/js/zamboni/devhub-all.js:2306 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1466
+#: media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
 msgstr "Начинаю тесты..."
 
-#: media/js/zamboni/devhub-all.js:2313 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1473
+#: media/js/zamboni/devhub.js:1473
 msgid "Waiting for test results..."
 msgstr "Жду результаты теста..."
 
-#: media/js/zamboni/devhub-all.js:2315 media/js/zamboni/devhub-all.js:2320 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
 msgid "Internal Server Error"
 msgstr "Внутренняя ошибка сервера"
 
-#: media/js/zamboni/devhub-all.js:2355 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub.js:1515
 msgid "Must be a valid e-mail address."
 msgstr "Должен быть корректным адресом эл. почты."
-
-#: media/js/zamboni/devhub-all.js:2737 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:336
-msgid "Add-on failed validation."
-msgstr "Дополнение не прошло валидацию."
-
-#: media/js/zamboni/devhub-all.js:2739 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:338
-msgid "Add-on passed validation."
-msgstr "Дополнение прошло валидацию."
-
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:1 media/js/zamboni/packager.js:31
-msgid "Download {0}"
-msgstr "Загрузить {0}"
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
 msgstr "Результаты не найдены."
 
-#: media/js/zamboni/discovery-all.js:12097 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:217
+#: media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr "Извините, но мы не можем найти для вас каких-либо рекомендаций.<br>Пожалуйста, посетите <a href=\"{0}\">сайт дополнений</a>, чтобы найти подходящее вам дополнение."
 
-#: media/js/zamboni/discovery-all.js:12127 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:247
+#: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
 msgstr "Поиск рекомендаций&hellip;"
 
-#: media/js/zamboni/discovery-all.js:12129 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:249
+#: media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
 msgstr "Обновление рекомендаций&hellip;"
 
-#: media/js/zamboni/editors-all.js:140 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:160
+#: media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
 msgstr "{name} просматривал эту страницу первым."
-
-#: media/js/zamboni/editors-all.js:249 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:289
-msgid "Loading&hellip;"
-msgstr "Загрузка&hellip;"
-
-#: media/js/zamboni/editors-all.js:254 media/js/zamboni/editors-min.js:1
-msgid "Release Notes"
-msgstr "Примечания к выпуску"
-
-#: media/js/zamboni/editors-all.js:259 media/js/zamboni/editors-min.js:1
-msgid "Approval Notes"
-msgstr "Примечания для редактора"
-
-#: media/js/zamboni/editors-all.js:264 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:304
-msgid "No version notes found"
-msgstr "Примечаний к версии не найдено"
-
-#: media/js/zamboni/editors-all.js:355 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:364
-msgid "Average Reviews"
-msgstr "Средние отзывы"
-
-#: media/js/zamboni/editors-all.js:411 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:420
-msgid "Number of Reviews"
-msgstr "Число отзывов"
 
 #: media/js/zamboni/editors.js:210
 msgid "Receipt checked by app."
@@ -1715,6 +1548,10 @@ msgstr "Квитанция не была проверена приложение
 msgid "{name} was viewing this add-on first."
 msgstr "{name} просматривал это дополнение первым."
 
+#: media/js/zamboni/editors.js:289
+msgid "Loading&hellip;"
+msgstr "Загрузка&hellip;"
+
 #: media/js/zamboni/editors.js:294
 msgid "Version Notes"
 msgstr "Примечания к версии"
@@ -1723,53 +1560,81 @@ msgstr "Примечания к версии"
 msgid "Notes for Reviewers"
 msgstr "Примечания для проверяющих"
 
-#: media/js/zamboni/mobile-all.js:11158 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:75
+#: media/js/zamboni/editors.js:304
+msgid "No version notes found"
+msgstr "Примечаний к версии не найдено"
+
+#: media/js/zamboni/editors.js:364
+msgid "Average Reviews"
+msgstr "Средние отзывы"
+
+#: media/js/zamboni/editors.js:420
+msgid "Number of Reviews"
+msgstr "Число отзывов"
+
+#: media/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#. L10n: {0} is the number of characters left.
+#: media/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "остался <b>{0}</b> символ."
+msgstr[1] "осталось <b>{0}</b> символа."
+msgstr[2] "осталось <b>{0}</b> символов."
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: media/js/zamboni/packager.js:31
+msgid "Download {0}"
+msgstr "Загрузить {0}"
+
+#: media/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "Стойкость пароля:"
+
+#: media/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "Остался по меньшей мере {0} символ."
+msgstr[1] "Осталось по меньшей мере {0} символа."
+msgstr[2] "Осталось по меньшей мере {0} символов."
+
+#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
+msgid "All"
+msgstr "Все"
+
+#: media/js/zamboni/validator.js:336
+msgid "Add-on failed validation."
+msgstr "Дополнение не прошло валидацию."
+
+#: media/js/zamboni/validator.js:338
+msgid "Add-on passed validation."
+msgstr "Дополнение прошло валидацию."
+
+#: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
 msgstr "Не обновлено для {0} {1}"
 
-#: media/js/zamboni/mobile-all.js:11159 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:76
+#: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
 msgstr "Требует новой версии {0}"
 
-#: media/js/zamboni/mobile-all.js:11160 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:77
+#: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
 msgstr "Не проверено"
 
-#: media/js/zamboni/mobile-all.js:11161 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:78
+#: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Экспериментальное <span>(Подробнее)</span>"
 
-#: media/js/zamboni/mobile-all.js:11162 media/js/zamboni/mobile-all.js:11163 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "Недоступно для {0}"
 
-#: media/js/zamboni/mobile-all.js:11164 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:81
+#: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
 msgstr "Экспериментальное"
-
-#: media/js/zamboni/mobile-all.js:11165 media/js/zamboni/mobile-min.js:32
-msgid "Personas Require Newer Version of {0}"
-msgstr "Для обоев необходима более новая версия {0}"
-
-#: media/js/zamboni/mobile-all.js:11166 media/js/zamboni/mobile-min.js:32
-msgid "Personas Require {0}"
-msgstr "Для обоев необходим {0}"
-
-#: media/js/zamboni/mobile-all.js:11244 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:165
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Это дополнение было предварительно проверено Mozilla."
-
-#: media/js/zamboni/mobile-all.js:11379 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:299
-msgid "Keep it"
-msgstr "Сохранить это"
-
-#: media/js/zamboni/mobile-all.js:11950 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/general.js:338
-msgid "You're trying it on!"
-msgstr "Вы их пробуете!"
-
-#: media/js/zamboni/mobile-all.js:11962 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/general.js:350
-msgid "Added to Firefox"
-msgstr "Добавлено в Firefox"
 
 #: media/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
@@ -1786,3 +1651,19 @@ msgstr "Установка..."
 #: media/js/zamboni/mobile/buttons.js:136
 msgid "Purchasing..."
 msgstr "Покупка..."
+
+#: media/js/zamboni/mobile/buttons.js:165
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr "Это дополнение было предварительно проверено Mozilla."
+
+#: media/js/zamboni/mobile/buttons.js:299
+msgid "Keep it"
+msgstr "Сохранить это"
+
+#: media/js/zamboni/mobile/general.js:338
+msgid "You're trying it on!"
+msgstr "Вы их пробуете!"
+
+#: media/js/zamboni/mobile/general.js:350
+msgid "Added to Firefox"
+msgstr "Добавлено в Firefox"
