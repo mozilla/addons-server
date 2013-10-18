@@ -51,19 +51,19 @@ from . import tasks
 log = commonware.log.getLogger('mkt.developers')
 
 
-def ban_game_in_brazil(app):
-    # Disallow games in Brazil without a rating.
+def ban_unrated_game(app):
+    """Disallow games in Brazil/Germany without a rating."""
     games = Webapp.category('games')
     if games:
-        r = mkt.regions.BR
-        if (app.categories.filter(id=games.id) and app.listed_in(r) and
-            not app.content_ratings_in(r)):
+        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+            if (app.categories.filter(id=games.id) and
+                app.listed_in(region) and not app.content_ratings_in(region)):
 
-            g, c = AddonExcludedRegion.objects.get_or_create(
-                addon=app, region=r.id)
-            if c:
-                log.info(u'[Webapp:%s] Game excluded from new region '
-                         u'(%s).' % (app, r.id))
+                aer, created = AddonExcludedRegion.objects.get_or_create(
+                    addon=app, region=region.id)
+                if created:
+                    log.info(u'[Webapp:%s] Game excluded from new region '
+                             u'(%s).' % (app, region.id))
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -327,7 +327,7 @@ class AdminSettingsForm(PreviewForm):
                                              ratings_body=r.ratingsbody.id)
         else:
             addon.content_ratings.all().delete()
-        ban_game_in_brazil(addon)
+        ban_unrated_game(addon)
         uses_flash = self.cleaned_data.get('flash')
         af = addon.get_latest_file()
         if af is not None:
@@ -663,12 +663,13 @@ class RegionForm(forms.Form):
     def _disabled_regions(self):
         disabled_regions = set()
 
-        # Games cannot be listed in Brazil without a content rating.
+        # Games cannot be listed in Brazil/Germany without a content rating.
         games = Webapp.category('games')
-        if (games and
-            self.product.categories.filter(id=games.id).exists() and
-                not self.product.content_ratings_in(mkt.regions.BR)):
-            disabled_regions.add(mkt.regions.BR.id)
+
+        if games and self.product.categories.filter(id=games.id).exists():
+            for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+                if not self.product.content_ratings_in(region):
+                    disabled_regions.add(region.id)
 
         return disabled_regions
 
@@ -699,19 +700,19 @@ class RegionForm(forms.Form):
 
         # Add new region exclusions.
         to_add = before - after
-        for r in to_add:
-            g, c = AddonExcludedRegion.objects.get_or_create(
-                addon=self.product, region=r)
-            if c:
+        for region in to_add:
+            aer, created = AddonExcludedRegion.objects.get_or_create(
+                addon=self.product, region=region)
+            if created:
                 log.info(u'[Webapp:%s] Excluded from new region (%s).'
-                         % (self.product, r))
+                         % (self.product, region))
 
         # Remove old region exclusions.
         to_remove = after - before
-        for r in to_remove:
-            self.product.addonexcludedregion.filter(region=r).delete()
+        for region in to_remove:
+            self.product.addonexcludedregion.filter(region=region).delete()
             log.info(u'[Webapp:%s] No longer exluded from region (%s).'
-                     % (self.product, r))
+                     % (self.product, region))
 
         if self.cleaned_data['enable_new_regions']:
             self.product.update(enable_new_regions=True)
@@ -722,7 +723,7 @@ class RegionForm(forms.Form):
             log.info(u'[Webapp:%s] will not be added to future regions.'
                      % self.product)
 
-        ban_game_in_brazil(self.product)
+        ban_unrated_game(self.product)
 
 
 class CategoryForm(happyforms.Form):
@@ -776,22 +777,25 @@ class CategoryForm(happyforms.Form):
 
         # Disallow games in Brazil without a rating.
         games = Webapp.category('games')
-        if (games and self.product.listed_in(mkt.regions.BR) and
-            not self.product.content_ratings_in(mkt.regions.BR)):
+        if not games:
+            return
 
-            r = mkt.regions.BR.id
+        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+            if (self.product.listed_in(region) and
+                not self.product.content_ratings_in(region)):
 
-            if games.id in to_add:
-                g, c = AddonExcludedRegion.objects.get_or_create(
-                    addon=self.product, region=r)
-                if c:
-                    log.info(u'[Webapp:%s] Game excluded from new region '
-                              '(%s).' % (self.product, r))
+                if games.id in to_add:
+                    aer, created = AddonExcludedRegion.objects.get_or_create(
+                        addon=self.product, region=region.id)
+                    if created:
+                        log.info(u'[Webapp:%s] Game excluded from new region '
+                                 u'(%s).' % (self.product, region.slug))
 
-            elif games.id in to_remove:
-                self.product.addonexcludedregion.filter(region=r).delete()
-                log.info(u'[Webapp:%s] Game no longer exluded from region '
-                          '(%s).' % (self.product, r))
+                elif games.id in to_remove:
+                    self.product.addonexcludedregion.filter(
+                        region=region.id).delete()
+                    log.info(u'[Webapp:%s] Game no longer exluded from region'
+                             u' (%s).' % (self.product, region.slug))
 
 
 class DevAgreementForm(happyforms.Form):

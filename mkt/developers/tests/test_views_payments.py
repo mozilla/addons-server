@@ -808,7 +808,7 @@ class TestRegions(amo.tests.TestCase):
         self.assertNoFormErrors(r)
         eq_(AER.objects.count(), 0)
 
-    def test_brazil_games_form_disabled(self):
+    def test_games_form_disabled(self):
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.webapp, category=games)
 
@@ -816,27 +816,31 @@ class TestRegions(amo.tests.TestCase):
         self.assertNoFormErrors(r)
 
         td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled-regions]').attr('data-disabled-regions'),
-            '[%d]' % mkt.regions.BR.id)
+        eq_(td.find('div[data-disabled-regions]')
+              .attr('data-disabled-regions'),
+            '[%d, %d]' % (mkt.regions.BR.id, mkt.regions.DE.id))
         eq_(td.find('.note.disabled-regions').length, 1)
 
-    def test_brazil_games_form_enabled_with_content_rating(self):
-        rb = mkt.regions.BR.ratingsbodies[0]
-        ContentRating.objects.create(
-            addon=self.webapp, ratings_body=rb.id, rating=rb.ratings[0].id)
+    def test_games_form_enabled_with_content_rating(self):
+        for region in (mkt.regions.BR, mkt.regions.DE):
+            rb = region.ratingsbodies[0]
+            ContentRating.objects.create(
+                addon=self.webapp, ratings_body=rb.id, rating=rb.ratings[0].id)
 
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.webapp, category=games)
 
         r = self.client.get(self.url)
         td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled-regions]').attr('data-disabled-regions'), '[]')
+        eq_(td.find('div[data-disabled-regions]')
+              .attr('data-disabled-regions'), '[]')
         eq_(td.find('.note.disabled-regions').length, 0)
 
     def test_brazil_other_cats_form_enabled(self):
         r = self.client.get(self.url)
         td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled-regions]').attr('data-disabled-regions'), '[]')
+        eq_(td.find('div[data-disabled-regions]')
+              .attr('data-disabled-regions'), '[]')
         eq_(td.find('.note.disabled-regions').length, 0)
 
 

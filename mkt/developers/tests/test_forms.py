@@ -137,7 +137,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.initial['enable_new_regions'], False)
 
     def test_initial_excluded_in_regions_and_future_regions(self):
-        for region in [mkt.regions.BR, mkt.regions.UK, mkt.regions.WORLDWIDE]:
+        regions = [mkt.regions.BR, mkt.regions.UK, mkt.regions.WORLDWIDE]
+        for region in regions:
             AER.objects.create(addon=self.app, region=region.id)
 
         regions = list(mkt.regions.ALL_REGION_IDS)
@@ -185,12 +186,12 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
             eq_(self.app.get_region_ids(True), to_exclude)
 
-    def test_brazil_games_excluded(self):
+    def test_unrated_games_excluded(self):
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.app, category=games)
 
-        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'enable_new_regions': True}, **self.kwargs)
+        form = forms.RegionForm({'regions': mkt.regions.REGION_IDS,
+                                 'enable_new_regions': True}, **self.kwargs)
 
         # Developers should still be able to save form OK, even
         # if they pass a bad region. Think of the grandfathered developers.
@@ -198,21 +199,24 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form.save()
 
         # No matter what the developer tells us, still exclude Brazilian
-        # games.
+        # and German games.
         form = forms.RegionForm(data=None, **self.kwargs)
         eq_(set(form.initial['regions']),
             set(mkt.regions.REGION_IDS) -
-            set([mkt.regions.BR.id, mkt.regions.WORLDWIDE.id]))
+            set([mkt.regions.BR.id, mkt.regions.DE.id,
+                 mkt.regions.WORLDWIDE.id]))
         eq_(form.initial['enable_new_regions'], True)
 
-    def test_brazil_games_already_excluded(self):
-        AER.objects.create(addon=self.app, region=mkt.regions.BR.id)
+    def test_unrated_games_already_excluded(self):
+        regions = [x.id for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS]
+        for region in regions:
+            AER.objects.create(addon=self.app, region=region)
 
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.app, category=games)
 
-        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'enable_new_regions': True}, **self.kwargs)
+        form = forms.RegionForm({'regions': mkt.regions.REGION_IDS,
+                                 'enable_new_regions': True}, **self.kwargs)
 
         assert form.is_valid()
         form.save()
@@ -220,28 +224,29 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form = forms.RegionForm(data=None, **self.kwargs)
         eq_(set(form.initial['regions']),
             set(mkt.regions.REGION_IDS) -
-            set([mkt.regions.BR.id, mkt.regions.WORLDWIDE.id]))
+            set(regions + [mkt.regions.WORLDWIDE.id]))
         eq_(form.initial['enable_new_regions'], True)
 
-    def test_brazil_games_with_content_rating(self):
+    def test_rated_games_with_content_rating(self):
         # This game has a government content rating!
-        rb = mkt.regions.BR.ratingsbodies[0]
-        ContentRating.objects.create(
-            addon=self.app, ratings_body=rb.id, rating=rb.ratings[0].id)
+        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+            rb = region.ratingsbodies[0]
+            ContentRating.objects.create(
+                addon=self.app, ratings_body=rb.id, rating=rb.ratings[0].id)
 
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.app, category=games)
 
-        form = forms.RegionForm(data={'regions': mkt.regions.ALL_REGION_IDS,
-                                      'enable_new_regions': 'on'}, **self.kwargs)
+        form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
+                                 'enable_new_regions': 'on'}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
 
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
     def test_exclude_worldwide(self):
-        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'enable_new_regions': False}, **self.kwargs)
+        form = forms.RegionForm({'regions': mkt.regions.REGION_IDS,
+                                 'enable_new_regions': False}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.REGION_IDS)
@@ -249,8 +254,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
     def test_reinclude_region(self):
         AER.objects.create(addon=self.app, region=mkt.regions.BR.id)
 
-        form = forms.RegionForm(data={'regions': mkt.regions.ALL_REGION_IDS,
-                                      'enable_new_regions': True}, **self.kwargs)
+        form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
+                                 'enable_new_regions': True}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
@@ -258,8 +263,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
     def test_reinclude_worldwide(self):
         AER.objects.create(addon=self.app, region=mkt.regions.WORLDWIDE.id)
 
-        form = forms.RegionForm(data={'regions': mkt.regions.ALL_REGION_IDS},
-                                                               **self.kwargs)
+        form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS},
+                                **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
@@ -267,12 +272,12 @@ class TestRegionForm(amo.tests.WebappTestCase):
     def test_worldwide_valid_choice_paid(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         form = forms.RegionForm(
-            data={'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
+            {'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
         assert form.is_valid(), form.errors
 
     def test_worldwide_valid_choice_free(self):
         form = forms.RegionForm(
-            data={'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
+            {'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
         assert form.is_valid(), form.errors
 
 

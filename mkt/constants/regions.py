@@ -140,6 +140,7 @@ class DE(REGION):
     default_currency = 'EUR'
     default_language = 'de'
     mcc = 262
+    ratingsbodies = (ratingsbodies.GENERIC,)
 
 
 class ME(REGION):
@@ -238,3 +239,6 @@ ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
 
 # Regions not including worldwide.
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]
+
+# Regions that have ratings bodies.
+ALL_REGIONS_WITH_CONTENT_RATINGS = [x for x in ALL_REGIONS if x.ratingsbodies]
