@@ -15554,9 +15554,7 @@ msgstr "Unterstützung für Tastaturen von Drittanbietern"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
-"Diese App erfordert, dass die Plattform Tastaturen von Drittanbietern "
-"unterstützt."
+msgstr "Diese App erfordert, dass die Plattform Tastaturen von Drittanbietern unterstützt."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -16263,9 +16261,7 @@ msgstr "Testen"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
-msgstr ""
-"Verwenden Sie diese Werkzeuge, um Ihre Apps zu testen, bevor Sie sie beim "
-"Firefox Marketplace einreichen."
+msgstr "Verwenden Sie diese Werkzeuge, um Ihre Apps zu testen, bevor Sie sie beim Firefox Marketplace einreichen."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -16448,8 +16444,7 @@ msgstr "Status als vorabinstallierte App"
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
-msgstr ""
-"<strong class=\"submitted\">App übermittelt</strong> am %(last_submission)s"
+msgstr "<strong class=\"submitted\">App übermittelt</strong> am %(last_submission)s"
 
 #: mkt/developers/templates/developers/apps/status.html:122
 msgid "Not Submitted"
@@ -16465,9 +16460,7 @@ msgstr "Sehen Sie sich Ihren neuesten übermittelten Testplan an"
 
 #: mkt/developers/templates/developers/apps/status.html:135
 msgid "Learn how to get your app pre-installed on FirefoxOS devices"
-msgstr ""
-"Erfahren Sie, wie Sie Ihre App auf Firefox-OS-Geräten vorab installieren "
-"lassen können"
+msgstr "Erfahren Sie, wie Sie Ihre App auf Firefox-OS-Geräten vorab installieren lassen können"
 
 #: mkt/developers/templates/developers/apps/status.html:138
 msgid "Update your test plan"
@@ -16906,15 +16899,10 @@ msgid ""
 "from us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preinstall submission form</a>. We will store your test results on "
 "our servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
-"Sie können Ihre App übermitteln, damit sie möglicherweise von Handy-"
-"Anbietern <strong>vorab installiert und auf Firefox-OS-Geräten ausgeliefert "
-"wird</strong>. Um sich für die Vorabinstallation anzumelden, können Sie im "
-"Folgenden eine unser Testvorlagen herunterladen, Ihre App testen, die "
-"Vorlage ausfüllen und uns Ihre Ergebnisse über das <a href=\"%"
-"(submit_url)s\">Einreichungsformular zur Vorabinstallation von Apps</a> "
-"hochladen. Wir speichern Ihre Testergebnisse auf unseren Servern, wo sie von "
-"interessierten Handy-Anbietern geprüft werden. Wenn Sie weitere Fragen "
-"haben, schreiben Sie eine E-Mail an %(email)s."
+"Sie können Ihre App übermitteln, damit sie möglicherweise von Handy-Anbietern <strong>vorab installiert und auf Firefox-OS-Geräten ausgeliefert wird</strong>. Um sich für die Vorabinstallation "
+"anzumelden, können Sie im Folgenden eine unser Testvorlagen herunterladen, Ihre App testen, die Vorlage ausfüllen und uns Ihre Ergebnisse über das <a href=\"%(submit_url)s\">Einreichungsformular "
+"zur Vorabinstallation von Apps</a> hochladen. Wir speichern Ihre Testergebnisse auf unseren Servern, wo sie von interessierten Handy-Anbietern geprüft werden. Wenn Sie weitere Fragen haben, "
+"schreiben Sie eine E-Mail an %(email)s."
 
 #: mkt/developers/templates/developers/apps/preinstall/submit.html:18
 msgid "Preinstalled App Terms and Conditions"
@@ -17048,9 +17036,7 @@ msgstr "Ihre App ist derzeit unvollständig. Wählen Sie eine Zahlungsmethode un
 
 #: mkt/developers/templates/developers/payments/premium.html:127
 msgid "Add, manage or view transactions for your payment account"
-msgstr ""
-"Hinzufügen, Verwalten oder Betrachten von Transaktionen für Ihr "
-"Zahlungskonto"
+msgstr "Hinzufügen, Verwalten oder Betrachten von Transaktionen für Ihr Zahlungskonto"
 
 #: mkt/developers/templates/developers/payments/premium.html:143
 msgid "Prices and countries"
@@ -17078,9 +17064,7 @@ msgstr "Verfügbare Regionen"
 
 #: mkt/developers/templates/developers/payments/premium.html:183
 msgid "Check out the <a href=\"%(status_url)s\">status page</a> to see what countries are currently enabled for sale."
-msgstr ""
-"Sehen Sie sich die <a href=\"%(status_url)s\">Statusseite</a> an, um zu sehen, "
-"welche Länder derzeit für den Verkauf zur Verfügung stehen"
+msgstr "Sehen Sie sich die <a href=\"%(status_url)s\">Statusseite</a> an, um zu sehen, welche Länder derzeit für den Verkauf zur Verfügung stehen"
 
 #: mkt/developers/templates/developers/payments/premium.html:191
 msgid "Your app will be available in the following selected regions:"
@@ -19325,28 +19309,21 @@ msgid ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</"
 "a>"
 msgstr ""
-"<a href=\"%(us_ebay_url)s\" class=\"button\">Kaufen im US-Laden</a> <a href=\"%"
-"(uk_ebay_url)s\" class=\"button\">Kaufen im UK-Laden</a> <a href=\"%"
-"(hk_ebay_url)s\" class=\"button\">Kaufen im HK-Laden</a>"
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Kaufen im US-Laden</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Kaufen im UK-Laden</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Kaufen im HK-"
+"Laden</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid ""
 "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
-"Nach viel harter Arbeit mit ZTE sind wir stolz darauf, die Veröffentlichung "
-"des Firefox-OS-Handys ZTE OPEN bekannt zu geben, einem mächtigen Gerät, das "
-"Entwickler und frühe Anwender weltweit zur Zielgruppe hat. Diese Geräte sind "
-"über die eBay-Laden von ZTE in den USA, dem Vereinigten Königreich und Hong "
-"Kong erhältlich. Sie kosten 79,99 $/59,99 £ und werden zum Testen und "
-"Experimentieren freigeschaltet und offen sein. <a href=\"%(zte_url)s\">Lesen "
-"Sie weitere Details.</a>"
+"Nach viel harter Arbeit mit ZTE sind wir stolz darauf, die Veröffentlichung des Firefox-OS-Handys ZTE OPEN bekannt zu geben, einem mächtigen Gerät, das Entwickler und frühe Anwender weltweit zur "
+"Zielgruppe hat. Diese Geräte sind über die eBay-Laden von ZTE in den USA, dem Vereinigten Königreich und Hong Kong erhältlich. Sie kosten 79,99 $/59,99 £ und werden zum Testen und Experimentieren "
+"freigeschaltet und offen sein. <a href=\"%(zte_url)s\">Lesen Sie weitere Details.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
-msgstr ""
-"HINWEIS: Neue Geräte stehen aus Hong Kong bereits zur Verfügung, um die "
-"Versandkosten für Nutzer aus Asien und Ozeanien zu senken."
+msgstr "HINWEIS: Neue Geräte stehen aus Hong Kong bereits zur Verfügung, um die Versandkosten für Nutzer aus Asien und Ozeanien zu senken."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:77
 msgid "Peak"
@@ -19371,11 +19348,8 @@ msgid ""
 "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-"
 "to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
 msgstr ""
-"<strong>Wenn Sie gerade ein Geeksphone Keon oder Peak erhalten haben, "
-"verwendet es vermutlich noch die veraltete Firefox-OS-Version 1.0.1. Bevor "
-"Sie es verwenden, sollten Sie eine aktuelle Version von Firefox OS "
-"installieren, wie in unserer <a href=\"%(geeksphone_update_url)s\">Anleitung "
-"zum Aktualisieren des Geeksphone</a> beschrieben.</strong>"
+"<strong>Wenn Sie gerade ein Geeksphone Keon oder Peak erhalten haben, verwendet es vermutlich noch die veraltete Firefox-OS-Version 1.0.1. Bevor Sie es verwenden, sollten Sie eine aktuelle Version "
+"von Firefox OS installieren, wie in unserer <a href=\"%(geeksphone_update_url)s\">Anleitung zum Aktualisieren des Geeksphone</a> beschrieben.</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
@@ -19979,21 +19953,15 @@ msgstr "Entwickeln Sie HTML5-Web-Apps für einen offenen Marktplatz."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr ""
-"Erfahren Sie, wie Sie Apps gestalten, die ein für Firefox OS &amp; Mobile "
-"optimiertes Nutzererlebnis bieten"
+msgstr "Erfahren Sie, wie Sie Apps gestalten, die ein für Firefox OS &amp; Mobile optimiertes Nutzererlebnis bieten"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr ""
-"Alle Werkzeuge, Dokumentationen und Quellen, die Sie zur Entwicklung und zum "
-"Testen Ihrer App benötigen"
+msgstr "Alle Werkzeuge, Dokumentationen und Quellen, die Sie zur Entwicklung und zum Testen Ihrer App benötigen"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr ""
-"Erfahren Sie, wie Sie Ihre Apps in einem offenen Marktplatz verteilen, für "
-"den Anwender und Entwickler zuerst kommen"
+msgstr "Erfahren Sie, wie Sie Ihre Apps in einem offenen Marktplatz verteilen, für den Anwender und Entwickler zuerst kommen"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -20026,9 +19994,8 @@ msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
-"Entwickeln von Apps für das Web gibt Entwicklern die volle Kontrolle über "
-"Inhalt, Funktionalität und die Verteilung der Apps, einschließlich Zugang zu "
-"hunderten Millionen Firefox-Nutzern über den Firefox Marketplace."
+"Entwickeln von Apps für das Web gibt Entwicklern die volle Kontrolle über Inhalt, Funktionalität und die Verteilung der Apps, einschließlich Zugang zu hunderten Millionen Firefox-Nutzern über den "
+"Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -20043,32 +20010,24 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
-"Der Firefox Marketplace gibt Nutzern die Möglichkeit, Apps und für sie "
-"wichtige Inhalte zu finden, auszuprobieren und zu kaufen. Das bedeutet "
-"aufregende, nützliche und qualitativ hochwertige Apps, die für die lokalen "
-"Märkte in allen Kategorien relevant sind, mit denen Nutzer das Meiste aus "
-"ihrem täglichen Leben herausholen können."
+"Der Firefox Marketplace gibt Nutzern die Möglichkeit, Apps und für sie wichtige Inhalte zu finden, auszuprobieren und zu kaufen. Das bedeutet aufregende, nützliche und qualitativ hochwertige Apps, "
+"die für die lokalen Märkte in allen Kategorien relevant sind, mit denen Nutzer das Meiste aus ihrem täglichen Leben herausholen können."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
-"Mozillas globale Reichweite umfasst hunderte Millionen Firefox-Nutzer "
-"weltweit. Durch intelligente Verwaltung des Marketplace und effektive "
-"Nutzung von Mozillas Marketing-Kanälen kann Mozilla den Entwicklern helfen, "
-"ihre App in die Hände der Anwender ihrer Zielgruppe auf der ganzen Welt zu "
-"legen."
+"Mozillas globale Reichweite umfasst hunderte Millionen Firefox-Nutzer weltweit. Durch intelligente Verwaltung des Marketplace und effektive Nutzung von Mozillas Marketing-Kanälen kann Mozilla den "
+"Entwicklern helfen, ihre App in die Hände der Anwender ihrer Zielgruppe auf der ganzen Welt zu legen."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid ""
 "Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your "
 "app to:"
 msgstr ""
-"Vor der öffentlichen Freigabe später in diesem Jahr öffnet Mozilla den "
-"Marketplace für Tests durch Anwender. Nutzen Sie dies, indem Sie einer der "
-"ersten App-Entwickler sind, der sich eine Nutzerbasis aufbaut. Übermitteln "
-"Sie Ihre App, um:"
+"Vor der öffentlichen Freigabe später in diesem Jahr öffnet Mozilla den Marketplace für Tests durch Anwender. Nutzen Sie dies, indem Sie einer der ersten App-Entwickler sind, der sich eine "
+"Nutzerbasis aufbaut. Übermitteln Sie Ihre App, um:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:200
 msgid "Test your app with a committed group of early adopters."
@@ -20089,9 +20048,7 @@ msgstr "Firefox-Apps &amp; Hacks"
 #: mkt/ecosystem/templates/ecosystem/landing.html:236
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
-"Melden Sie sich für unseren monatlichen Newsletter über Firefox OS, "
-"Marketplace und das Apps-Ökosystem an. <a href=\"%(dev_phone_url)s\">Sehen Sie "
-"sich die Entwicklervorschau des Handys an</a>"
+"Melden Sie sich für unseren monatlichen Newsletter über Firefox OS, Marketplace und das Apps-Ökosystem an. <a href=\"%(dev_phone_url)s\">Sehen Sie sich die Entwicklervorschau des Handys an</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:247
 msgid "Developer Devices"

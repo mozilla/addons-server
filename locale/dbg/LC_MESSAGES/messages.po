@@ -5958,7 +5958,7 @@ msgid ""
 "find out how to help <a href='%(url_wiki)s'>here</a>."
 msgstr ""
 "Īƞŧḗřḗşŧḗḓ īƞ ḿȧķīƞɠ ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ ḗṽḗƞ ƀḗŧŧḗř? Ɠřȧƀ ŧħḗ şǿŭřƈḗ ƈǿḓḗ, ȧƞḓ "
-"ƒīƞḓ ǿŭŧ ħǿẇ ŧǿ ħḗŀƥ <ȧ ħřḗƒ='%(url_wiki)s'>ħḗřḗ</a>."
+"ƒīƞḓ ǿŭŧ ħǿẇ ŧǿ ħḗŀƥ <a href='%(url_wiki)s'>ħḗřḗ</a>."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
