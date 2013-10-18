@@ -118,7 +118,6 @@ fi
 echo "Calculating changes...."
 pushd locale > /dev/null
 CHANGES=$(cat <<MAIL
-CHANGES=$(cat <<MAIL
 From: $EMAIL_FROM
 To: $EMAIL_TO
 Subject: $EMAIL_SUBJECT
