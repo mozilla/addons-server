@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-17 16:19+0000\n"
+"PO-Revision-Date: 2013-10-19 09:09+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: Mozilla Add-ons <amo-editors@mozilla.org>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382026751.0\n"
+"X-POOTLE-MTIME: 1382173768.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -15604,11 +15604,11 @@ msgstr "Abteilung für Justiz, Bewertung, Titel und Qualifikation (DEJUS)"
 
 #: mkt/constants/ratingsbodies.py:83
 msgid "Not recommended for viewers younger than 13 years of age"
-msgstr ""
+msgstr "Nicht für Benutzer unter 13 Jahren empfohlen."
 
 #: mkt/constants/ratingsbodies.py:94
 msgid "Generic"
-msgstr ""
+msgstr "Allgemein"
 
 #: mkt/constants/regions.py:51
 msgid "Worldwide"
