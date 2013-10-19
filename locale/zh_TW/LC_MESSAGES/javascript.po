@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-09-16 18:35+0000\n"
+"PO-Revision-Date: 2013-10-19 00:12+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
-"X-POOTLE-MTIME: 1379356539.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1382141571.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -264,17 +264,17 @@ msgstr "偵測到: {0}"
 #: media/js/devreg/payments-manage.js:27
 msgid "that"
 msgid_plural "those"
-msgstr[0] ""
+msgstr[0] "那些"
 
 #: media/js/devreg/payments-manage.js:28
 msgid "app"
 msgid_plural "apps"
-msgstr[0] ""
+msgstr[0] "應用程式"
 
 #: media/js/devreg/payments-manage.js:29
 msgid "it"
 msgid_plural "they"
-msgstr[0] ""
+msgstr[0] "他"
 
 #: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
@@ -287,7 +287,7 @@ msgstr "與付款伺服器連線時發生錯誤。"
 
 #: media/js/devreg/payments-manage.js:76
 msgid "Authentication error"
-msgstr ""
+msgstr "驗證錯誤"
 
 #: media/js/devreg/payments-manage.js:118
 msgid "You do not currently have any payment accounts."
@@ -1014,7 +1014,7 @@ msgstr "Persona 登入失敗。伺服器發生錯誤。"
 
 #: media/js/mkt/lookup-tool.js:63
 msgid "Show All Results"
-msgstr ""
+msgstr "顯示所有結果"
 
 #: media/js/mkt/lookup-tool.js:66
 msgid "Over {0} results found, consider refining your search."
