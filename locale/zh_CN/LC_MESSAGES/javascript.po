@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-19 02:45+0000\n"
+"PO-Revision-Date: 2013-10-19 02:49+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382150730.0\n"
+"X-POOTLE-MTIME: 1382150962.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -791,7 +791,7 @@ msgstr "依赖"
 #: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81 media/js/zamboni/stats-all.js:11230
 #: media/js/zamboni/stats-all.js:11231 media/js/zamboni/stats-min.js:10
 msgid "Upsell"
-msgstr "追加销售"
+msgstr "增值销售"
 
 #: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83 media/js/zamboni/stats-all.js:11233 media/js/zamboni/stats-min.js:10
 msgid "Sharing"
@@ -1427,7 +1427,7 @@ msgstr "市场详情页面"
 
 #: media/js/mkt/stats/csv_keys.js:117
 msgid "Marketplace Detail Page, Upsell"
-msgstr "市场详情页面，热销"
+msgstr "市场详情页面，增值销售"
 
 #: media/js/mkt/stats/csv_keys.js:118
 msgid "Marketplace Home Page"
