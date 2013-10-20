@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-09-30 05:49+0000\n"
+"PO-Revision-Date: 2013-10-20 11:25+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1380520140.0\n"
+"X-POOTLE-MTIME: 1382268350.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -267,23 +267,25 @@ msgstr "Iraaks BC-nummer"
 msgid "Detected: {0}"
 msgstr "Gedetecteerd: {0}"
 
+# aangenomen dat dit over betaling(en) gaat
 #: media/js/devreg/payments-manage.js:27
 msgid "that"
 msgid_plural "those"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "die"
+msgstr[1] "die"
 
 #: media/js/devreg/payments-manage.js:28
 msgid "app"
 msgid_plural "apps"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "app"
+msgstr[1] "apps"
 
+# Aangenomen dat dit over betaling(en) gaat
 #: media/js/devreg/payments-manage.js:29
 msgid "it"
 msgid_plural "they"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "de"
+msgstr[1] "zij"
 
 #: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
@@ -1027,11 +1029,12 @@ msgstr "Persona-aanmelding mislukt. Er is een serverfout opgetreden."
 
 #: media/js/mkt/lookup-tool.js:63
 msgid "Show All Results"
-msgstr ""
+msgstr "Alle resultaten weergeven"
 
 #: media/js/mkt/lookup-tool.js:66
 msgid "Over {0} results found, consider refining your search."
 msgstr ""
+"Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
