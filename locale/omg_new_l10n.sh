@@ -66,7 +66,6 @@ fi
 
 if confirm "Extract new strings?"; then
     ./manage.py extract
-    commonplace extract_strings
 fi
 
 if confirm "Merge new strings to .po files?"; then
