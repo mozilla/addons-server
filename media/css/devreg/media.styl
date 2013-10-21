@@ -55,7 +55,10 @@
 }
 
 #file-list .preview .edit-previews-text {
+    border-box();
     display: inline-block;
+    width: -webkit-calc(unquote('100% - 190px'));
+    width: calc(unquote('100% - 190px'));
 }
 
 .edit-previews-submit {
