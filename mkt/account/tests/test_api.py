@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 import collections
 import json
 import uuid
 
 from django.conf import settings
 from django.core import mail
+from django.utils.http import urlencode
 
 from mock import patch
 from nose.tools import eq_, ok_
@@ -264,8 +266,8 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.default_data = {
             'chromeless': 'no',
-            'feedback': 'Here is what I really think.',
-            'platform': 'Desktop',
+            'feedback': u'Hér€ is whàt I rælly think.',
+            'platform': u'Desktøp',
             'from_url': '/feedback',
             'sprout': 'potato'
         }
@@ -303,6 +305,16 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
 
     def test_send(self):
         res, data = self._call()
+        self._test_success(res, data)
+        eq_(unicode(self.user), data['user'])
+        eq_(mail.outbox[0].from_email, self.user.email)
+
+    def test_send_urlencode(self):
+        self.headers['CONTENT_TYPE'] = 'application/x-www-form-urlencoded'
+        post_data = self.default_data.copy()
+        res = self.client.post(self.list_url, data=urlencode(post_data),
+                               **self.headers)
+        data = json.loads(res.content)
         self._test_success(res, data)
         eq_(unicode(self.user), data['user'])
         eq_(mail.outbox[0].from_email, self.user.email)

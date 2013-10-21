@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 from decimal import Decimal
 import json
-import urllib
 
 from django.test import TestCase
+from django.utils.http import urlencode
 
 from nose.tools import eq_
 from simplejson import JSONDecodeError
@@ -27,9 +28,13 @@ class TestSerializer(TestCase):
             json.dumps({'foo': '5.00'}))
 
     def test_url(self):
-        eq_(self.s.deserialize(urllib.urlencode({'foo': 'bar'}),
+        eq_(self.s.deserialize(urlencode({'foo': 'bar'}),
                                'application/x-www-form-urlencoded'),
             {'foo': 'bar'})
+
+        eq_(self.s.deserialize(urlencode({'foo': u'baré'}),
+                               'application/x-www-form-urlencoded'),
+            {'foo': u'baré'})
 
     def test_from_url(self):
         with self.assertRaises(UnsupportedFormat):

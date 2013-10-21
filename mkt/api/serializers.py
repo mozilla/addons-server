@@ -1,5 +1,4 @@
-from urlparse import parse_qsl
-
+from django.http import QueryDict
 from django.utils.simplejson import JSONDecodeError
 
 from tastypie.serializers import Serializer
@@ -17,7 +16,7 @@ class Serializer(Serializer):
     }
 
     def from_urlencode(self, data):
-        return dict(parse_qsl(data))
+        return QueryDict(data).dict()
 
     def to_urlencode(self, data, options=None):
         raise UnsupportedFormat
