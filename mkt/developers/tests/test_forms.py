@@ -451,33 +451,52 @@ class TestAdminSettingsForm(TestAdmin):
         super(TestAdminSettingsForm, self).setUp()
         self.data = {'position': 1}
         self.user = UserProfile.objects.get(username='admin')
-        self.app = Webapp.objects.get(pk=337141)
         self.request = RequestFactory()
         self.request.user = self.user
         self.request.groups = ()
         self.kwargs = {'instance': self.webapp, 'request': self.request}
 
-    def test_exclude_brazil_games_when_removing_content_rating(self):
+    @mock.patch('mkt.developers.forms.index_webapps.delay')
+    def test_reindexed(self, index_webapps_mock):
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+        index_webapps_mock.assert_called_with([self.webapp.id])
+
+    def test_exclude_unrated_games_when_removing_content_rating(self):
         """
         Removing a content rating for a game in Brazil should exclude that
-        game in Brazil.
+        game in Brazil only.
         """
 
         self.log_in_with('Apps:Configure')
-        rb = mkt.regions.BR.ratingsbodies[0]
-        ContentRating.objects.create(addon=self.webapp, ratings_body=rb.id,
-                                     rating=rb.ratings[0].id)
+        rb_br = mkt.regions.BR.ratingsbodies[0]
+        ContentRating.objects.create(addon=self.webapp, ratings_body=rb_br.id,
+                                     rating=rb_br.ratings[0].id)
+
+        rb_de = mkt.regions.DE.ratingsbodies[0]
+        ContentRating.objects.create(addon=self.webapp, ratings_body=rb_de.id,
+                                     rating=rb_de.ratings[0].id)
 
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        # Remove Brazil but keep Germany.
+        de_0_idx = mkt.ratingsbodies.ALL_RATINGS.index(rb_de.ratings[0])
+        self.data['app_ratings'] = [de_0_idx]
 
         form = forms.AdminSettingsForm(self.data, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save(self.webapp)
 
         regions = self.webapp.get_region_ids()
-        assert regions
-        assert mkt.regions.BR.id not in regions
+        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+            if region == mkt.regions.BR:
+                assert region.id not in regions, (
+                    'should not be listed in %s' % region.slug)
+            else:
+                assert region.id in regions, (
+                    'should be listed in %s' % region.slug)
 
     def test_adding_tags(self):
         self.data.update({'tags': 'tag one, tag two'})

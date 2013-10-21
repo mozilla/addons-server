@@ -312,9 +312,6 @@ class AdminSettingsForm(PreviewForm):
             for t in del_tags:
                 Tag(tag_text=t).remove_tag(addon)
 
-            if add_tags or del_tags:
-                index_webapps.delay([addon.id])
-
         ratings = self.cleaned_data.get('app_ratings')
         if ratings:
             before = set(addon.content_ratings.filter(rating__in=ratings)
@@ -327,6 +324,9 @@ class AdminSettingsForm(PreviewForm):
                                              ratings_body=r.ratingsbody.id)
         else:
             addon.content_ratings.all().delete()
+
+        index_webapps.delay([addon.id])
+
         ban_unrated_game(addon)
         uses_flash = self.cleaned_data.get('flash')
         af = addon.get_latest_file()
