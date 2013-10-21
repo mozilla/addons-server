@@ -29,6 +29,8 @@ from market.models import AddonPaymentData, Refund
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.account.utils import purchase_list
+from mkt.developers.models import AddonPaymentAccount
+from mkt.developers.views_payments import _redirect_to_bango_portal
 import mkt.lookup.constants as lkp
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
                               TransactionSearchForm)
@@ -85,6 +87,7 @@ def user_summary(request, user_id):
     except IndexError:
         delete_log = None
 
+    payment_accounts = user.paymentaccount_set.all()
     return jingo.render(request, 'lookup/user_summary.html',
                         {'account': user,
                          'app_summary': app_summary,
@@ -95,8 +98,8 @@ def user_summary(request, user_id):
                          'refund_summary': refund_summary,
                          'user_addons': user_addons,
                          'payment_data': payment_data,
-                         'paypal_ids': paypal_ids})
-
+                         'paypal_ids': paypal_ids,
+                         'payment_accounts': payment_accounts})
 
 @login_required
 @permission_required('AccountLookup', 'View')
@@ -251,6 +254,10 @@ def app_summary(request, addon_id):
         price = None
 
     purchases, refunds = _app_purchases_and_refunds(app)
+    try:
+        payment_account = app.app_payment_account.payment_account
+    except AddonPaymentAccount.DoesNotExist:
+        payment_account = False
     return jingo.render(request, 'lookup/app_summary.html',
                         {'abuse_reports': app.abuse_reports.count(),
                          'app': app,
@@ -258,7 +265,15 @@ def app_summary(request, addon_id):
                          'downloads': _app_downloads(app),
                          'purchases': purchases,
                          'refunds': refunds,
-                         'price': price})
+                         'price': price,
+                         'payment_account': payment_account})
+
+
+@login_required
+@permission_required('BangoPortal', 'Redirect')
+def bango_portal_from_package(request, package_id):
+    return _redirect_to_bango_portal(int(package_id),
+                                     'package_id: %s' % package_id)
 
 
 @login_required

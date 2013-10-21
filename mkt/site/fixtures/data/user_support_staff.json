@@ -55,7 +55,7 @@
         "pk": 50059,
         "model": "access.group",
         "fields": {
-            "rules": "AccountLookup:View,Apps:Configure,Transaction:Refund,Transaction:View,Lookup:View,AppLookup:View",
+            "rules": "AccountLookup:View,Apps:Configure,Transaction:Refund,Transaction:View,Lookup:View,AppLookup:View,BangoPortal:Redirect",
             "notes": "",
             "modified": "2012-05-22 17:53:57",
             "name": "Support Staff",

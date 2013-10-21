@@ -152,6 +152,10 @@ class PaymentAccount(amo.models.ModelBase):
     def get_agreement_url(self):
         return reverse('mkt.developers.bango.agreement', args=[self.pk])
 
+    def get_lookup_portal_url(self):
+        return reverse('lookup.bango_portal_from_package',
+                       args=[self.bango_package_id])
+
 
 class AddonPaymentAccount(amo.models.ModelBase):
     addon = models.OneToOneField(
