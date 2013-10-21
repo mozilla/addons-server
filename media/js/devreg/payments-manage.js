@@ -38,6 +38,7 @@ define('payments-manage', ['payments'], function(payments) {
 
     function setupAgreementOverlay(data, onsubmit) {
         var $waiting_overlay = payments.getOverlay('bango-waiting');
+        var $portal_link = data['portal-link'];
 
         $.getJSON(data['agreement-url'], function(response) {
             var $overlay = payments.getOverlay('show-agreement');
@@ -47,11 +48,13 @@ define('payments-manage', ['payments'], function(payments) {
                 // Assume the POST below was a success, and close the modal.
                 $overlay.trigger('overlay_dismissed').detach();
                 onsubmit.apply($form, data);
+                $portal_link.css('display', 'inline');
 
                 // If the POST failed, we show an error message.
                 $.post(data['agreement-url'], $form.serialize(), refreshAccountForm).fail(function() {
                     $waiting_overlay.find('h2').text(gettext('Error'));
                     $waiting_overlay.find('p').text(gettext('There was a problem contacting the payment server.'));
+                    $portal_link.css('display', 'none');
                 });
             }));
 
@@ -139,7 +142,11 @@ define('payments-manage', ['payments'], function(payments) {
                 // the function to handle the Edit overlay.
                 editBangoPaymentAccount($(this).closest('tr').data('account-url'))();
             })).on('click', '.accept-tos', _pd(function() {
-                showAgreement({'agreement-url': $(this).closest('tr').data('agreement-url')});
+                var $tr = $(this).closest('tr');
+                showAgreement({
+                    'agreement-url': $tr.data('agreement-url'),
+                    'portal-link': $tr.closest('.portal-link')
+                });
             })).on('click', '.portal-account', _pd(function() {
                 var $this = $(this);
                 portalRedirect({
