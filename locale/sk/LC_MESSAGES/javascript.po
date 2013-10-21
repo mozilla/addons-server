@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-09-28 20:42+0000\n"
+"PO-Revision-Date: 2013-10-21 12:44+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1380400974.0\n"
+"X-POOTLE-MTIME: 1382359477.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -278,23 +278,23 @@ msgstr "Rozpoznané: {0}"
 #: media/js/devreg/payments-manage.js:27
 msgid "that"
 msgid_plural "those"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "to"
+msgstr[1] "tie"
+msgstr[2] "tie"
 
 #: media/js/devreg/payments-manage.js:28
 msgid "app"
 msgid_plural "apps"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "aplikácia"
+msgstr[1] "aplikácie"
+msgstr[2] "aplikácií"
 
 #: media/js/devreg/payments-manage.js:29
 msgid "it"
 msgid_plural "they"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "to"
+msgstr[1] "tie"
+msgstr[2] "tie"
 
 #: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
@@ -1038,11 +1038,13 @@ msgstr "Prihlásenie pomocou služby Persona zlyhalo. Nastala chyba servera."
 
 #: media/js/mkt/lookup-tool.js:63
 msgid "Show All Results"
-msgstr ""
+msgstr "Zobraziť všetky výsledky"
 
 #: media/js/mkt/lookup-tool.js:66
 msgid "Over {0} results found, consider refining your search."
 msgstr ""
+"Bolo nájdených viac ako {0} výsledkov, skúste viac špecifikovať výraz "
+"vyhľadávania."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
