@@ -296,11 +296,8 @@ class Webapp(Addon):
                        args=[self.app_slug] + (args or []))
 
     def get_comm_thread_url(self):
-        threads = self.threads.order_by('-created')
-        if threads.exists():
-            return reverse('commonplace.commbadge.show_thread',
-                           args=[threads[0].id])
-        return reverse('commonplace.commbadge')
+        return reverse('commonplace.commbadge.app_dashboard',
+                       args=[self.app_slug])
 
     @staticmethod
     def domain_from_url(url, allow_none=False):

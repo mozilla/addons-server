@@ -27,11 +27,13 @@ from comm.models import (CommunicationNote, CommunicationNoteRead,
                          user_has_perm_thread)
 from comm.tasks import consume_email, mark_thread_read
 from comm.utils import filter_notes_by_read_status
+from comm.utils import filter_notes_by_read_status, ThreadObjectPermission
+
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, SilentListModelMixin
+from mkt.comm.forms import AppSlugForm
 from mkt.reviewers.utils import send_note_emails
-from mkt.webpay.forms import PrepareForm
 
 
 class AuthorSerializer(ModelSerializer):
@@ -229,7 +231,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
 
         # This gives 404 when an app with given slug/id is not found.
         if 'app' in request.GET:
-            form = PrepareForm(request.GET)
+            form = AppSlugForm(request.GET)
             if not form.is_valid():
                 raise Http404()
 

@@ -193,6 +193,16 @@ class TestThreadList(RestOAuth):
         res = self.client.get(self.list_url, {'app': '1000'})
         eq_(res.status_code, 404)
 
+    def test_app_slug(self):
+        thread = CommunicationThread.objects.create(addon=self.addon)
+        CommunicationNote.objects.create(author=self.profile, thread=thread,
+            note_type=0, body='something')
+
+        res = self.client.get(self.list_url, {'app': self.addon.app_slug})
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'][0]['addon_meta']['app_slug'],
+            self.addon.app_slug)
+
     def test_creation(self):
         version = self.addon.current_version
         res = self.client.post(self.list_url, data=json.dumps(
