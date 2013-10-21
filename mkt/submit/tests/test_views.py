@@ -127,13 +127,16 @@ class TestTerms(TestSubmit):
     def test_progress_display(self):
         self._test_progress_display([], 'terms')
 
-    def test_agree(self):
+    @mock.patch('basket.subscribe')
+    def test_agree(self, subscribe_mock):
         self.client.post(self.url, {'read_dev_agreement': True})
         dt = self.get_user().read_dev_agreement
         self.assertCloseToNow(dt)
         eq_(UserNotification.objects.count(), 0)
+        assert not subscribe_mock.called
 
-    def test_agree_and_sign_me_up(self):
+    @mock.patch('basket.subscribe')
+    def test_agree_and_sign_me_up(self, subscribe_mock):
         self.client.post(self.url, {'read_dev_agreement':
                                     datetime.datetime.now(),
                                     'newsletter': True})
@@ -143,6 +146,7 @@ class TestTerms(TestSubmit):
         notes = UserNotification.objects.filter(user=self.user, enabled=True,
                                                 notification_id=app_surveys.id)
         eq_(notes.count(), 1, 'Expected to not be subscribed to newsletter')
+        assert subscribe_mock.called
 
     def test_disagree(self):
         r = self.client.post(self.url)

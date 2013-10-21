@@ -1,8 +1,11 @@
 import datetime
+import os
 from collections import defaultdict
 
 from django import forms
+from django.conf import settings
 
+import basket
 import happyforms
 import waffle
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -156,6 +159,11 @@ class DevAgreementForm(happyforms.Form):
         if self.cleaned_data.get('newsletter'):
             UserNotification.update_or_create(user=self.instance,
                 notification_id=app_surveys.id, update={'enabled': True})
+            basket.subscribe(self.instance.email,
+                             'app-dev',
+                             format='H',
+                             source_url=os.path.join(settings.SITE_URL,
+                                                     'developers/submit'))
 
 
 class NewWebappVersionForm(happyforms.Form):
