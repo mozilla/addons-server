@@ -931,14 +931,14 @@ class TestDetails(TestSubmit):
         # `cat2` should get removed.
         self._post_cats([self.cat1.id])
 
-    def test_games_default_excluded_in_brazil(self):
+    def test_games_default_excluded_in_regions(self):
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         self._step()
 
         r = self.client.post(self.url, self.get_dict(categories=[games.id]))
         self.assertNoFormErrors(r)
-        eq_(list(AER.objects.values_list('region', flat=True)),
-            [mkt.regions.BR.id])
+        self.assertSetEqual(AER.objects.values_list('region', flat=True),
+            [x.id for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS])
 
     def test_other_categories_are_not_excluded(self):
         # Keep the category around for good measure.
