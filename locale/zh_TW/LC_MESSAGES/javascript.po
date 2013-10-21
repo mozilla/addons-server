@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-19 00:12+0000\n"
+"PO-Revision-Date: 2013-10-21 05:15+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382141571.0\n"
+"X-POOTLE-MTIME: 1382332508.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1018,7 +1018,7 @@ msgstr "顯示所有結果"
 
 #: media/js/mkt/lookup-tool.js:66
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "找到超過 {0} 筆結果，請考慮使用更仔細的搜尋條件。"
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
