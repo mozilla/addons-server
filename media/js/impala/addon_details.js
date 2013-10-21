@@ -137,28 +137,4 @@ $(function () {
     }
 
     $('#abuse-modal').modal('#report-abuse', {delegate: '#page'});
-
-    // I Get Satisfaction.
-    var btn = $('#feedback-btn');
-    if (btn.length) {
-        var widget_options = {
-            'company': btn.attr('data-company'),
-            'placement': 'hidden',
-            'style': 'question',
-            'container': 'get-satisfaction'
-        };
-        if (btn.attr('data-product')) {
-            widget_options.product = btn.attr('data-product');
-        }
-        var feedback_widget = new GSFN.feedback_widget(widget_options);
-
-        // The feedback widget expects to be right before the end of <body>.
-        // Otherwise its 100% width overlay isn't across the whole page.
-        $('#fdbk_overlay').prependTo('body');
-
-        btn.click(_pd(function() {
-            feedback_widget.show();
-        }));
-    }
-
 });

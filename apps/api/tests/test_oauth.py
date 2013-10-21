@@ -435,8 +435,7 @@ class TestAddon(BaseOAuth):
         id = data['id']
 
         # icon, homepage, support email,
-        # support website, get satisfaction, gs_optional field, allow source
-        # viewing, set flags
+        # support website, allow source, viewing, set flags
         data = dict(
                 name='fu',
                 default_locale='fr',
@@ -454,8 +453,6 @@ class TestAddon(BaseOAuth):
                 prerelease=1,
                 binary=False,
                 site_specific=1,
-                get_satisfaction_company='yermom',
-                get_satisfaction_product='yer face',
         )
 
         current_count = activitylog_count()

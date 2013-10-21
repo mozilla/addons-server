@@ -951,25 +951,6 @@ class TestEditSupport(TestEdit):
         r = self.client.post(self.support_edit_url, data)
         assert 'support_email' in r.context['form'].errors
 
-    def test_edit_support_getsatisfaction(self):
-        urls = [("http://getsatisfaction.com/abc/products/def", 'abcdef'),
-                ("http://getsatisfaction.com/abc/", 'abc'),  # No company
-                ("http://google.com", None)]  # Delete GS
-
-        for (url, val) in urls:
-            data = dict(support_email='abc@def.com', support_url=url)
-
-            r = self.client.post(self.support_edit_url, data)
-            eq_(r.context['form'].errors, {})
-
-            result = pq(r.content)('.addon_edit_gs').eq(0).text()
-            doc = pq(r.content)
-            result = doc('.addon_edit_gs').eq(0).text()
-
-            result = re.sub('\W', '', result) if result else None
-
-            eq_(result, val)
-
     def test_edit_support_optional_url(self):
         data = dict(support_email='sjobs@apple.com',
                     support_url='')

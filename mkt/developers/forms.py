@@ -595,13 +595,6 @@ class AppFormSupport(addons.forms.AddonFormBase):
         model = Addon
         fields = ('support_email', 'support_url')
 
-    def save(self, addon, commit=True):
-        i = self.instance
-        url = addon.support_url.localized_string
-        (i.get_satisfaction_company,
-         i.get_satisfaction_product) = addons.forms.get_satisfaction(url)
-        return super(AppFormSupport, self).save(commit)
-
 
 class AppAppealForm(happyforms.Form):
     """

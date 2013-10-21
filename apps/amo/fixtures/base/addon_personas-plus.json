@@ -181,7 +181,6 @@
             "_current_version": 117388,
             "total_contributions": "934395",
             "default_locale": "en-US",
-            "get_satisfaction_product": "mozilla_personas",
             "prerelease": false,
             "total_reviews": 724,
             "admin_review": false,
@@ -196,7 +195,6 @@
             "modified": "2010-11-12 15:24:28",
             "summary": 333179,
             "site_specific": false,
-            "get_satisfaction_company": "mozilla",
             "hotness": -0.015205202186527499
         }
     },

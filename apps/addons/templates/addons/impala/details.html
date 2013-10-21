@@ -202,13 +202,6 @@
       <li>{{ emaillink(addon.support_email.localized_string,
                        _('Support E-mail')) }}</li>
     {% endif %}
-    {% if addon.has_satisfaction %}
-      {# get satisfaction only supports en-US so no L10n here #}
-      <li><a href="#" id="feedback-btn" class="support-gs"
-           data-company="{{ addon.get_satisfaction_company }}"
-           data-product="{{ addon.get_satisfaction_product }}">Get Satisfaction</a>
-      </li>
-    {% endif %}
   </ul>
   {% if version %}
     <ul>
