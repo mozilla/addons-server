@@ -53,17 +53,32 @@ log = commonware.log.getLogger('mkt.developers')
 
 def ban_unrated_game(app):
     """Disallow games in Brazil/Germany without a rating."""
-    games = Webapp.category('games')
-    if games:
-        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
-            if (app.categories.filter(id=games.id) and
-                app.listed_in(region) and not app.content_ratings_in(region)):
+    if not Webapp.category('games'):
+        return
+    for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+        if (app.listed_in(category='games') and
+            app.listed_in(region=region) and
+            not app.content_ratings_in(region)):
 
-                aer, created = AddonExcludedRegion.objects.get_or_create(
-                    addon=app, region=region.id)
-                if created:
-                    log.info(u'[Webapp:%s] Game excluded from new region '
-                             u'(%s).' % (app, region.id))
+            aer, created = AddonExcludedRegion.objects.get_or_create(
+                addon=app, region=region.id)
+            if created:
+                log.info(u'[Webapp:%s] Game excluded from new region '
+                         u'(%s).' % (app, region.id))
+
+
+def unban_rated_game(app):
+    """Allow games in Brazil/Germany with a rating."""
+    if not Webapp.category('games'):
+        return
+    for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+        if (app.listed_in(category='games') and
+            app.content_ratings_in(region)):
+            aer = app.addonexcludedregion.filter(region=region.id)
+            if aer.exists():
+                aer.delete()
+                log.info(u'[Webapp:%s] Game included for new region '
+                         u'(%s).' % (app, region.id))
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -318,10 +333,13 @@ class AdminSettingsForm(PreviewForm):
                          .values_list('rating', flat=True))
             after = set(int(r) for r in ratings)
             addon.content_ratings.exclude(rating__in=after).delete()
-            for i in after - before:
-                r = ALL_RATINGS[i]
-                ContentRating.objects.create(addon=addon, rating=r.id,
-                                             ratings_body=r.ratingsbody.id)
+            new_ratings = after - before
+            for i in new_ratings:
+                rb = ALL_RATINGS[i]
+                ContentRating.objects.create(addon=addon, rating=rb.id,
+                                             ratings_body=rb.ratingsbody.id)
+            if new_ratings:
+                unban_rated_game(addon)
         else:
             addon.content_ratings.all().delete()
 

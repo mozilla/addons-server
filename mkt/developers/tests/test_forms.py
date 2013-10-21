@@ -463,6 +463,49 @@ class TestAdminSettingsForm(TestAdmin):
         form.save(self.webapp)
         index_webapps_mock.assert_called_with([self.webapp.id])
 
+    def test_reinclude_rated_games(self):
+        """
+        Adding a content rating for a game in a region should remove the
+        regional exclusion for that region.
+        """
+
+        # List it in the Games category.
+        cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        self.webapp.addoncategory_set.create(category=cat)
+
+        self.log_in_with('Apps:Configure')
+
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        excluded_regions = [
+            x.id for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS
+        ]
+
+        # After the form was saved, it should be excluded in Brazil.
+        self.assertSetEqual(
+            self.webapp.addonexcludedregion.values_list('region', flat=True),
+            excluded_regions)
+
+        # Add Brazil content rating.
+        rb_br = mkt.regions.BR.ratingsbodies[0]
+        br_0_idx = mkt.ratingsbodies.ALL_RATINGS.index(rb_br.ratings[0])
+        self.data['app_ratings'] = [br_0_idx]
+
+        # Post the form again.
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        self.webapp = self.webapp.reload()
+
+        # Notice the Brazilian region exclusion is now gone.
+        excluded_regions.remove(mkt.regions.BR.id)
+        self.assertSetEqual(
+            self.webapp.addonexcludedregion.values_list('region', flat=True),
+            excluded_regions)
+
     def test_exclude_unrated_games_when_removing_content_rating(self):
         """
         Removing a content rating for a game in Brazil should exclude that
