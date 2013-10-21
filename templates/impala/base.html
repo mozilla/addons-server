@@ -206,19 +206,6 @@
         {% block popups %}
         {% endblock %}
       </div>
-      {% block footer %}
-        <div id="footer" role="contentinfo">
-          <div class="section">
-            {% block footer_extras %}
-              <img class="footerlogo" src="{{ media('img/zamboni/footer-logo-med.png') }}" alt="">
-            {% endblock %}
-            {% with hide_mobile_link=hide_mobile_link %}
-              {% include 'footer.html' %}
-            {% endwith %}
-          </div> {# section #}
-        </div> {# footer #}
-      {% endblock %}
-      <div id="get-satisfaction"></div>
     </div>
     {% block footer %}
       <div id="footer" role="contentinfo">
