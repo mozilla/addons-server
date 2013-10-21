@@ -33,7 +33,7 @@
 {% endif %}
 {% if waffle.switch('comm-dashboard') %}
   {% do urls.append(
-    (addon.get_comm_thread_url(), _('View Communication Dashboard'))
+    (addon.get_comm_thread_url(), _('View Messages'))
   ) %}
 {% endif %}
 

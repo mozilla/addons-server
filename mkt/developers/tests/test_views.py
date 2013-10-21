@@ -195,7 +195,7 @@ class TestAppDashboard(AppHubTest):
             ('Statistics', app.get_stats_url()),
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
-            ('Communication', app.get_comm_thread_url()),
+            ('Messages', app.get_comm_thread_url()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
@@ -219,7 +219,7 @@ class TestAppDashboard(AppHubTest):
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
             ('Manage In-App Payments', app.get_dev_url('in_app_config')),
-            ('Communication', app.get_comm_thread_url()),
+            ('Messages', app.get_comm_thread_url()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
@@ -240,7 +240,7 @@ class TestAppDashboard(AppHubTest):
             ('Statistics', app.get_stats_url()),
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
-            ('Communication', app.get_comm_thread_url()),
+            ('Messages', app.get_comm_thread_url()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
