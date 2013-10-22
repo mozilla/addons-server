@@ -1559,6 +1559,7 @@ JINGO_MINIFY_USE_STATIC = False
 
 # Monolith settings.
 MONOLITH_SERVER = None
+MONOLITH_INDEX = 'time_*'
 MONOLITH_MAX_DATE_RANGE = 365
 
 # These are useful services, like error generation, getting settings and the

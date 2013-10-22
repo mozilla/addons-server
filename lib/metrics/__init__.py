@@ -34,15 +34,14 @@ def get_monolith_client():
     _locals = threading.local()
     if not hasattr(_locals, 'monolith'):
         server = getattr(settings, 'MONOLITH_SERVER', None)
+        index = getattr(settings, 'MONOLITH_INDEX', 'time_*')
         if server is None:
             raise ValueError('You need to configure MONOLITH_SERVER')
 
-        # XXX will use later
-        max_range = getattr(settings, 'MONOLITH_MAX_DATE_RANGE', 365)
         statsd = {'statsd.host': getattr(settings, 'STATSD_HOST', 'localhost'),
                   'statsd.port': getattr(settings, 'STATSD_PORT', 8125)}
 
         from monolith.client import Client as MonolithClient
-        _locals.monolith = MonolithClient(server, **statsd)
+        _locals.monolith = MonolithClient(server, index, **statsd)
 
     return _locals.monolith

@@ -58,7 +58,7 @@ metlog-cef==0.2
 metlog-raven==0.5
 python-mimeparse==0.1.4
 mock==1.0.1
-monolith.client==0.8
+monolith.client==0.9
 moz-addon-packager==1.0.1
 mozpay==2.0.0
 m2secret==0.1.1
