@@ -139,3 +139,9 @@ class TestModelBase(TestCase):
         # Reload. And it's magically now a persona.
         eq_(addon.reload().type, amo.ADDON_PERSONA)
         eq_(addon.type, amo.ADDON_PERSONA)
+
+
+def test_cache_key():
+    # Test that we are not taking the db into account when building our
+    # cache keys for django-cache-machine. See bug 928881.
+    eq_(Addon._cache_key(1, 'default'), Addon._cache_key(1, 'slave'))

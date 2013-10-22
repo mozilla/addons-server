@@ -3,7 +3,7 @@ import threading
 
 from django.conf import settings
 from django.db import models, transaction
-from django.utils import translation
+from django.utils import encoding, translation
 
 import caching.base
 import multidb.pinning
@@ -347,6 +347,16 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
 
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
+
+    @classmethod
+    def _cache_key(cls, pk, db):
+        """
+        Custom django-cache-machine cache key implementation that avoids having
+        the real db in the key, since we are only using master-slaves we don't
+        need it and it avoids invalidation bugs with FETCH_BY_ID.
+        """
+        key_parts = ('o', cls._meta, pk, 'default')
+        return ':'.join(map(encoding.smart_unicode, key_parts))
 
     def reload(self):
         """Reloads the instance from the database."""
