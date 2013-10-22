@@ -17,10 +17,10 @@ from nose.tools import eq_, ok_
 from test_utils import ExtraAppTestCase, trans_eq
 
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
-from translations.models import (Translation, PurifiedTranslation,
-                                 TranslationSequence)
 from translations import widgets
 from translations.query import order_by_translation
+from translations.models import (LinkifiedTranslation, PurifiedTranslation,
+                                 Translation, TranslationSequence)
 
 
 def ids(qs):
@@ -477,3 +477,17 @@ def test_comparison_with_lazy():
     lazy_u = lazy(lambda x: x, unicode)
     x == lazy_u('xxx')
     lazy_u('xxx') == x
+
+
+def test_cache_key():
+    # Test that we are not taking the db into account when building our
+    # cache keys for django-cache-machine. See bug 928881.
+    eq_(Translation._cache_key(1, 'default'),
+        Translation._cache_key(1, 'slave'))
+
+    # Test that we are using the same cache no matter what Translation class
+    # we use.
+    eq_(PurifiedTranslation._cache_key(1, 'default'),
+        Translation._cache_key(1, 'default'))
+    eq_(LinkifiedTranslation._cache_key(1, 'default'),
+        Translation._cache_key(1, 'default'))

@@ -91,7 +91,10 @@ class Translation(amo.models.ModelBase):
     def _cache_key(cls, pk, db):
         # Hard-coding the class name here so that subclasses don't try to cache
         # themselves under something like "o:translations.purifiedtranslation".
-        key_parts = ('o', 'translations.translation', pk, db)
+        #
+        # Like in ModelBase, we avoid putting the real db in the key because it
+        # does us more harm than good.
+        key_parts = ('o', 'translations.translation', pk, 'default')
         return ':'.join(map(encoding.smart_unicode, key_parts))
 
     @classmethod
