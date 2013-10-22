@@ -50,10 +50,10 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   AppFormDetails, AppFormMedia,
                                   AppFormSupport, AppFormTechnical,
                                   AppVersionForm, CategoryForm,
-                                  NewPackagedAppForm, PreinstallTestPlanForm,
+                                  NewPackagedAppForm, PreloadTestPlanForm,
                                   PreviewFormSet, TransactionFilterForm,
                                   trap_duplicate)
-from mkt.developers.models import PreinstallTestPlan
+from mkt.developers.models import PreloadTestPlan
 from mkt.developers.utils import check_upload
 from mkt.developers.tasks import run_validator, save_test_plan
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
@@ -272,8 +272,8 @@ def status(request, addon_id, addon, webapp=False):
         # This contains the rejection reason and timestamp.
         ctx['rejection'] = entry and entry.activity_log
 
-    if waffle.switch_is_active('preinstall-apps'):
-        test_plan = PreinstallTestPlan.objects.filter(addon=addon)
+    if waffle.switch_is_active('preload-apps'):
+        test_plan = PreloadTestPlan.objects.filter(addon=addon)
         if test_plan.exists():
             test_plan = test_plan[0]
             if (test_plan.last_submission <
@@ -284,22 +284,22 @@ def status(request, addon_id, addon, webapp=False):
     return jingo.render(request, 'developers/apps/status.html', ctx)
 
 
-@waffle_switch('preinstall-apps')
+@waffle_switch('preload-apps')
 @dev_required
-def preinstall_home(request, addon_id, addon):
+def preload_home(request, addon_id, addon):
     """
-    Gives information on the preinstall process, links to test plan template.
+    Gives information on the preload process, links to test plan template.
     """
-    return jingo.render(request, 'developers/apps/preinstall/home.html', {
+    return jingo.render(request, 'developers/apps/preload/home.html', {
         'addon': addon,
     })
 
 
-@waffle_switch('preinstall-apps')
+@waffle_switch('preload-apps')
 @dev_required(owner_for_post=True, webapp=True)
-def preinstall_submit(request, addon_id, addon, webapp):
+def preload_submit(request, addon_id, addon, webapp):
     if request.method == 'POST':
-        form = PreinstallTestPlanForm(request.POST, request.FILES)
+        form = PreloadTestPlanForm(request.POST, request.FILES)
         if form.is_valid():
             # Save test plan file.
             test_plan = request.FILES['test_plan']
@@ -313,20 +313,21 @@ def preinstall_submit(request, addon_id, addon, webapp):
             save_test_plan(request.FILES['test_plan'], filename, addon)
 
             # Log test plan.
-            PreinstallTestPlan.objects.get_or_create(
-                addon=addon, filename=filename,
-                last_submission=datetime.datetime.now())
+            PreloadTestPlan.objects.filter(addon=addon).update(
+                status=amo.STATUS_DISABLED
+            )
+            PreloadTestPlan.objects.create(addon=addon, filename=filename)
 
             messages.success(
                 request,
-                _('Application for preinstall successfully submitted.'))
+                _('Application for preload successfully submitted.'))
             return redirect(addon.get_dev_url('versions'))
         else:
             messages.error(request, _('There was an error with the form.'))
     else:
-        form = PreinstallTestPlanForm()
+        form = PreloadTestPlanForm()
 
-    return jingo.render(request, 'developers/apps/preinstall/submit.html', {
+    return jingo.render(request, 'developers/apps/preload/submit.html', {
         'addon': addon,
         'form': form,
     })

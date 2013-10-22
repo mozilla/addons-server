@@ -61,10 +61,10 @@ app_detail_patterns = patterns('',
     url('^status$', views.status, name='mkt.developers.apps.versions'),
     url('^blocklist$', views.blocklist, name='mkt.developers.apps.blocklist'),
 
-    url('^status/preinstall/$', views.preinstall_home,
-        name='mkt.developers.apps.preinstall_home'),
-    url('^status/preinstall/submit/$', views.preinstall_submit,
-        name='mkt.developers.apps.preinstall_submit'),
+    url('^status/preload/$', views.preload_home,
+        name='mkt.developers.apps.preload_home'),
+    url('^status/preload/submit/$', views.preload_submit,
+        name='mkt.developers.apps.preload_submit'),
 
     # TODO: '^versions/$'
     url('^versions/(?P<version_id>\d+)$', views.version_edit,

@@ -14,11 +14,12 @@ from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
 from mkt.abuse.urls import api_patterns as abuse_api_patterns
 from mkt.account.urls import api_patterns as account_api_patterns
+from mkt.api import oauth
 from mkt.comm.urls import api_patterns as comm_api_patterns
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
 from mkt.developers.urls import api_patterns as payments_api_patterns
-from mkt.api import oauth
+from mkt.operators.urls import url_patterns as operator_patterns
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.receipts.urls import receipt_api_patterns
 from mkt.reviewers.urls import (api_patterns as reviewer_api_patterns,
@@ -103,6 +104,9 @@ urlpatterns = patterns('',
 
     # Account lookup.
     ('^lookup/', include('mkt.lookup.urls')),
+
+    # Bootstrapped operator dashboard.
+    ('^operators/', include(operator_patterns)),
 
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),

@@ -55,7 +55,7 @@
         "pk": 322,
         "model": "access.group",
         "fields": {
-            "rules": "AppLookup:View,Lookup:View",
+            "rules": "AppLookup:View,Lookup:View,Operators:*",
             "notes": "",
             "modified": "2012-05-22 17:53:57",
             "name": "Operators",

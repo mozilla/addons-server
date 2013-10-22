@@ -136,7 +136,12 @@ CSS = {
         'css/gaia/action_menu.css',
         'css/gaia/switches.css',
         'css/gaia/value_selector.css',
-    )
+    ),
+    'mkt/operators': (
+        'css/devreg/legacy-paginator.styl',
+        'css/devreg/data-grid.styl',
+        'css/devreg/operators.styl',
+    ),
 }
 
 # Bundle extensions (e.g., desktop).
