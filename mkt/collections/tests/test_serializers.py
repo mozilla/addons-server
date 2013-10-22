@@ -9,7 +9,9 @@ import amo.tests
 from addons.models import Category
 from amo.urlresolvers import reverse
 
+import mkt
 from mkt.api.resources import AppResource
+from mkt.search.api import WithFeaturedResource
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_OPERATOR)
 from mkt.constants.features import FeatureProfile
@@ -28,16 +30,23 @@ class CollectionDataMixin(object):
     }
 
 
-class TestCollectionMembershipField(CollectionDataMixin, amo.tests.TestCase):
+class BaseTestCollectionMembershipField(object):
 
     def setUp(self):
         self.collection = Collection.objects.create(**self.collection_data)
         self.app = amo.tests.app_factory()
-        self.collection.add_app(self.app)
+        self.collection.add_app(self.app, order=1)
         self.field = CollectionMembershipField()
+        self.field.context = {}
         self.membership = CollectionMembership.objects.all()[0]
-        self.request = RequestFactory()
         self.profile = FeatureProfile(apps=True).to_signature()
+        self.create_switch('buchets')
+
+    def get_request(self, query_string):
+        request = RequestFactory().get('/', query_string)
+        request.REGION = mkt.regions.WORLDWIDE
+        request.API = True
+        return request
 
     def test_to_native(self):
         resource = AppResource().full_dehydrate(Bundle(obj=self.app))
@@ -48,39 +57,75 @@ class TestCollectionMembershipField(CollectionDataMixin, amo.tests.TestCase):
             else:
                 eq_(value, resource.data[key])
 
-    def test_field_to_native(self):
+    def _field_to_native_profile(self, profile='0.0'):
+        request = self.get_request({'pro': profile, 'dev': 'firefoxos'})
         self.field.parent = self.collection
         self.field.source = 'collectionmembership_set'
-        self.field.context = {
-            'request': self.request.get('/', {'pro': self.profile})
-        }
+        self.field.context['request'] = request
 
-        # Ensure that the one app is included in the default response.
-        native = self.field.field_to_native(self.collection,
-                                           'collectionmembership_set')
-        eq_(len(native), 1)
-        eq_(int(native[0]['id']), self.app.id)
+        return self.field.field_to_native(self.collection,
+                                          'collectionmembership_set')
 
-        # ...but is not included when there is a feature profile mismatch.
+    def test_ordering(self):
+        self.app2 = amo.tests.app_factory()
+        self.collection.add_app(self.app2, order=0)
+        result = self._field_to_native_profile()
+        eq_(len(result), 2)
+        eq_(int(result[0]['id']), self.app2.id)
+        eq_(int(result[1]['id']), self.app.id)
+
+    def test_field_to_native_profile(self):
+        result = self._field_to_native_profile(self.profile)
+        eq_(len(result), 1)
+        eq_(int(result[0]['id']), self.app.id)
+
+    def test_field_to_native_profile_mismatch(self):
         self.app.current_version.features.update(has_geolocation=True)
-        native_without = self.field.field_to_native(self.collection,
-                                                    'collectionmembership_set')
-        eq_(len(native_without), 0)
+        result = self._field_to_native_profile(self.profile)
+        eq_(len(result), 0)
 
     def test_field_to_native_invalid_profile(self):
-        self.field.parent = self.collection
-        self.field.source = 'collectionmembership_set'
-        self.field.context = {
-            'request': self.request.get('/', {'pro': 'muahaha'})
-        }
-
-        # Ensure that no exceptions were raised.
-        native = self.field.field_to_native(self.collection,
-                                            'collectionmembership_set')
-
+        result = self._field_to_native_profile('muahahah')
         # Ensure that no filtering took place.
-        eq_(len(native), 1)
-        eq_(int(native[0]['id']), self.app.id)
+        eq_(len(result), 1)
+        eq_(int(result[0]['id']), self.app.id)
+
+
+class TestCollectionMembershipField(BaseTestCollectionMembershipField,
+                                    CollectionDataMixin, amo.tests.TestCase):
+    pass
+
+
+class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
+                                      CollectionDataMixin,
+                                      amo.tests.ESTestCase):
+    """ Same tests as TestCollectionMembershipField above, but we need a
+        different setUp and more importantly, we need to force a sync refresh
+        in ES when we modify our app """
+
+    def setUp(self):
+        self.create_switch('collections-use-es-for-apps')
+        super(TestCollectionMembershipFieldES, self).setUp()
+        self.field.context['search_resource'] = WithFeaturedResource()
+        self.refresh('webapp')
+
+    def test_field_to_native_profile_mismatch(self):
+        self.app.current_version.features.update(has_geolocation=True)
+        # FIXME: a simple refresh() wasn't enough, don't we reindex apps when
+        # feature profiles change ? Investigate.
+        self.reindex(self.app.__class__, 'webapp')
+        result = self._field_to_native_profile(self.profile)
+        eq_(len(result), 0)
+
+    def test_ordering(self):
+        self.app2 = amo.tests.app_factory()
+        amo.tests.app_factory()  # Extra app not belonging to a collection.
+        self.collection.add_app(self.app2, order=0)
+        self.refresh('webapp')
+        result = self._field_to_native_profile()
+        eq_(len(result), 2)
+        eq_(int(result[0]['id']), self.app2.id)
+        eq_(int(result[1]['id']), self.app.id)
 
 
 class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):

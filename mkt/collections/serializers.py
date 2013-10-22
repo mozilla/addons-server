@@ -8,9 +8,11 @@ from rest_framework.compat import smart_text
 from rest_framework.reverse import reverse
 from tastypie.bundle import Bundle
 from tower import ugettext_lazy as _
+import waffle
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import (ImproperlyConfigured, ObjectDoesNotExist,
+                                    ValidationError)
 from django.core.files.base import File
 from django.core.files.storage import default_storage as storage
 
@@ -24,7 +26,8 @@ import mkt
 from addons.models import Category
 from mkt.api.fields import TranslationSerializerField
 from mkt.api.resources import AppResource
-from mkt.constants.features import FeatureProfile
+from mkt.features.utils import get_feature_profile
+from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
 from .models import Collection
@@ -44,21 +47,48 @@ class CollectionMembershipField(serializers.RelatedField):
         return AppResource().full_dehydrate(bundle).data
 
     def field_to_native(self, obj, field_name):
+        if not hasattr(self, 'context') or not 'request' in self.context:
+            raise ImproperlyConfigured('Pass request in self.context when'
+                                       ' using CollectionMembershipField.')
+
+        request = self.context['request']
+
+        # If we have a search resource in the context, we should try to use ES
+        # to fetch the apps, if the waffle flag is active.
+        if ('search_resource' in self.context
+            and waffle.switch_is_active('collections-use-es-for-apps')):
+            return self.field_to_native_es(obj, request)
+
         value = get_component(obj, self.source)
 
         # Filter apps based on feature profiles.
-        if hasattr(self, 'context') and 'request' in self.context:
-            sig = self.context['request'].GET.get('pro')
-            if sig:
-                try:
-                    profile = FeatureProfile.from_signature(sig)
-                except ValueError:
-                    pass
-                else:
-                    value = value.filter(**profile.to_kwargs(
-                        prefix='app___current_version__features__has_'))
+        profile = get_feature_profile(request)
+        if profile and waffle.switch_is_active('buchets'):
+            value = value.filter(**profile.to_kwargs(
+                prefix='app___current_version__features__has_'))
 
         return [self.to_native(item) for item in value.all()]
+
+    def field_to_native_es(self, obj, request):
+        """
+        A version of field_to_native that uses ElasticSearch to fetch the apps
+        belonging to the collection instead of SQL.
+
+        Relies on a SearchResource instance in self.context['search_resource']
+        to properly rehydrate results returned by ES.
+        """
+        search_resource = self.context['search_resource']
+        profile = get_feature_profile(request)
+        region = search_resource.get_region(request)
+
+        qs = Webapp.from_search(request, region=region)
+        filters = {'collection.id': obj.pk}
+        if profile and waffle.switch_is_active('buchets'):
+            filters.update(**profile.to_kwargs(prefix='features.has_'))
+        qs = qs.filter(**filters).order_by('collection.order')
+
+        return [bundle.data
+                for bundle in search_resource.rehydrate_results(request, qs)]
 
 
 class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):

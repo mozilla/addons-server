@@ -1,6 +1,5 @@
 from django.conf.urls import url
 
-import waffle
 from tastypie.authorization import ReadOnlyAuthorization
 from tastypie.throttle import BaseThrottle
 from tastypie.utils import trailing_slash
@@ -19,7 +18,7 @@ from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
 from mkt.collections.filters import CollectionFilterSetWithFallback
 from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
-from mkt.constants.features import FeatureProfile
+from mkt.features.utils import get_feature_profile
 from mkt.search.views import _filter_search
 from mkt.search.forms import ApiSearchForm
 from mkt.webapps.models import Webapp
@@ -50,14 +49,6 @@ class SearchResource(CORSResource, MarketplaceResource):
             raise self.form_errors(form)
         return form.cleaned_data
 
-    def get_feature_profile(self, request):
-        profile = None
-        if request.GET.get('dev') in ('firefoxos', 'android'):
-            sig = request.GET.get('pro')
-            if sig:
-                profile = FeatureProfile.from_signature(sig)
-        return profile
-
     def get_region(self, request):
         return getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
@@ -69,7 +60,7 @@ class SearchResource(CORSResource, MarketplaceResource):
 
     def apply_filters(self, request, qs, data=None):
         # Build device features profile filter.
-        profile = self.get_feature_profile(request)
+        profile = get_feature_profile(request)
 
         # Build region filter.
         region = self.get_region(request)
@@ -158,7 +149,8 @@ class WithFeaturedResource(SearchResource):
             qs = Collection.public.all()
         qs = CollectionFilterSetWithFallback(filters, queryset=qs).qs
         serializer = CollectionSerializer(qs[:limit],
-                                          context={'request': request})
+                                          context={'request': request,
+                                                   'search_resource': self})
         return serializer.data, getattr(qs, 'filter_fallback', None)
 
     def alter_list_data_to_serialize(self, request, data):
