@@ -30,6 +30,8 @@ Thread
     :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`threads <thread-response-label>`.
     :type objects: array
+    :param app_threads: If given the **app** parameter, a list of the app's thread IDs and their respective version numbers. The same object is found in the :ref:`thread response <thread-response-label>`.
+    :type app_threads: array of objects
 
 .. _thread-response-label:
 
@@ -58,6 +60,11 @@ Thread
                 "url": "/app/test-app-kinkajou3969/"
                 "review_url": "/reviewers/apps/review/test-app-kinkajou3969/"
             },
+            "app_threads": [
+                {"id": 1, "version__version": "1.3"},
+                {"id": 2, "version__version": "1.6"},
+                {"id": 3, "version__version": "1.7"}
+            ],
             "created": "2013-06-14T11:54:24",
             "id": 2,
             "modified": "2013-06-24T22:01:37",
@@ -88,13 +95,21 @@ Thread
                 ...
                 ...
             ],
-            "version": null
+            "version": null,
+            "version": "1.6",
+            "version_is_obsolete": false
         }
 
     Notes on the response.
 
     :param recent_notes: contain 5 recently created notes.
     :type recent_notes: array
+    :param app_threads: list of app-related thread IDs and their respective version numbers.
+    :type app_threads: array of objects
+    :param version_number: Version number noted from the app manifest.
+    :type version: string
+    :param version_is_obsolete: Whether the version of the app of the note is out-of-date.
+    :type version: boolean
 
 .. _note-patch-label:
 
