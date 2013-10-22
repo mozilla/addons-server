@@ -3,6 +3,7 @@ import hashlib
 import json
 import logging
 import os
+import shutil
 import subprocess
 
 from django.conf import settings
@@ -358,8 +359,15 @@ def dump_app(id, **kw):
     json.dump(res[0], open(target_file, 'w'), cls=JSONEncoder)
     return target_file
 
-
 @task
+def clean_apps(pks, **kw):
+    app_dir = os.path.join(settings.DUMPED_APPS_PATH, 'apps')
+    if os.path.exists(app_dir):
+        shutil.rmtree(app_dir)
+    return pks
+
+
+@task(ignore_result=False)
 def dump_apps(ids, **kw):
     task_log.info(u'Dumping apps {0} to {0}. [{0}]'
                   .format(ids[0], ids[-1], len(ids)))
