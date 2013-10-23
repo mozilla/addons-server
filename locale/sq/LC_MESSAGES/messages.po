@@ -1,21 +1,22 @@
 # Albanian translation of addons.mozilla.org package.
 # Copyright (C) 2009 THE addons.mozilla.org'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the addons.mozilla.org package.
-# Besnik Bleta <besnik@programeshqip.org>, 2006-2010.
+# Besnik Bleta <besnik@programeshqip.org>, 2006-2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2011-05-19 14:28+0200\n"
-"Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
+"PO-Revision-Date: 2012-04-21 23:44+0000\n"
+"Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.8.1\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1335051892.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -557,10 +558,11 @@ msgstr "Version {0}:"
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "Këtu nuk ka gjë për t'u parë. Programuesi nuk ka treguar ndonjë hollësi."
 
+# 100%
 #: apps/addons/templates/addons/details_box.html:246
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr ""
+msgstr "Shënime Versioni"
 
 #: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:110
 #: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
@@ -1049,7 +1051,7 @@ msgstr "Shfaqe përgjigjen e zhvilluesit për këtë shqyrtim"
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Shihni krejt shqyrtimet e kësaj shtese"
-msgstr[1] "Shihni krejt %(cnt) shqyrtimet e kësaj shtese"
+msgstr[1] "Shihni krejt %(cnt)s shqyrtimet e kësaj shtese"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -1187,9 +1189,10 @@ msgstr ""
 msgid "Support E-mail"
 msgstr ""
 
+# 100%
 #: apps/addons/templates/addons/impala/details.html:215 apps/devhub/models.py:382
 msgid "Version {0}"
-msgstr ""
+msgstr "Version {0}"
 
 #: apps/addons/templates/addons/impala/details.html:215
 msgid "Info"
@@ -1393,7 +1396,7 @@ msgstr "Ende e Pavlerësuar"
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> shkarkim i përjavshëm"
-msgstr[1] "<strong>%1$s</strong> shkarkime të përjavshme"
+msgstr[1] "<strong>{0}</strong> shkarkime të përjavshme"
 
 #: apps/addons/templates/addons/listing/items_mobile.html:63
 msgid "Purchase Refunded"
@@ -11876,7 +11879,7 @@ msgstr "Shihni Historikun për këtë Shtesë"
 #. L10n: This describes the number of stars given out of 5
 #: apps/reviews/feeds.py:53
 msgid "Rated %d out of 5 stars"
-msgstr "Vlerësuar me %s nga 5 yje të mundshëm"
+msgstr "Vlerësuar me %d nga 5 yje të mundshëm"
 
 #: apps/reviews/forms.py:120
 msgid "Keep review; remove flags"
@@ -11945,8 +11948,8 @@ msgstr "Ky shqyrtim është për një version të mëparshëm të shtesës {0}."
 #: apps/reviews/templates/reviews/review.html:51
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Ky përdorues ka <a href=\"%(user_review_url)s\">shqyrtim të mëparshëm</a> për këtë shtesë."
-msgstr[1] "Ky përdorues ka <a href=\"%(user_review_url)s\">shqyrtime të mëparshme</a> për këtë shtesë."
+msgstr[0] "Ky përdorues ka <a href=\"%(user_review_url)s\">shqyrtim të mëparshëm</a> të kësaj shtese."
+msgstr[1] "Ky përdorues ka <a href=\"%(user_review_url)s\">%(cnt)s shqyrtime të mëparshme</a> të kësaj shtesë."
 
 #: apps/reviews/templates/reviews/review.html:57
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
@@ -22067,7 +22070,7 @@ msgstr "Shtesa për <img alt=\"SeaMonkey\" src=\"{0}\">"
 
 #: templates/header_title.html:16
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "Shtesa <img alt=\"\" src=\"%1$s\">"
+msgstr "<img alt=\"\" src=\"{0}\"> Shtesa"
 
 #: templates/menu_links.html:6
 msgid "Firefox Add-ons"
