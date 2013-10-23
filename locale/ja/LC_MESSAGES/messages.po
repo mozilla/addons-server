@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-23 11:20+0000\n"
+"PO-Revision-Date: 2013-10-23 11:31+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Kohei Yoshino <yoshino@mozilla-japan.org>\n"
 "Language: ja\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382527218.0\n"
+"X-POOTLE-MTIME: 1382527882.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1046,7 +1046,7 @@ msgstr "このレビューに対する開発者の返答を表示"
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "このアドオンの %(cnt)s 件のレビューをすべて表示"
+msgstr[0] "このアドオンのレビューをすべて表示"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -1154,7 +1154,7 @@ msgstr "再起動不要"
 #: apps/addons/templates/addons/impala/details.html:137
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "<a href=\"%(url)s\">開発者紹介</a>"
+msgstr[0] "開発者紹介: <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:148
 msgid "Learn why {0} was created and find out what's next for this app."
@@ -1312,7 +1312,7 @@ msgstr "固定リンク"
 #: apps/addons/templates/addons/impala/review_list_box.html:31
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "%(cnt)s 件のすべてのユーザレビューを見る"
+msgstr[0] "すべてのユーザレビューを見る"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:43
 msgid "This app has not yet been reviewed."
@@ -1664,7 +1664,7 @@ msgstr "{addon} のステータスが {0} に変更されました。"
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr "{0} にプレビュー画像が追加されました。"
+msgstr "{addon} にプレビュー画像が追加されました。"
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
@@ -7612,13 +7612,13 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:38
 msgid "XUL Reference"
-msgstr ""
+msgstr "XUL リファレンス"
 
 #: apps/devhub/templates/devhub/docs/reference.html:41 apps/devhub/templates/devhub/docs/reference.html:56
 msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a></span>"
 msgstr ""
 "出典: <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla "
-"Developer Center</a>"
+"Developer Center</a></span>"
 
 #: apps/devhub/templates/devhub/docs/reference.html:45
 msgid "A list of all available XUL elements."
@@ -10085,7 +10085,7 @@ msgstr "アドオンポリシー"
 
 #: apps/editors/templates/editors/queue.html:179 mkt/reviewers/templates/reviewers/queue.html:117 mkt/reviewers/templates/reviewers/themes/queue_list.html:92
 msgid "Editors' Guide"
-msgstr "エディタガイド"
+msgstr "編集者ガイド"
 
 #. "Review [add-on name]"
 #: apps/editors/templates/editors/review.html:20
@@ -12074,7 +12074,7 @@ msgstr ""
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "%(cnt)s 件のレビューをすべて表示"
+msgstr[0] "レビューをすべて表示"
 
 #: apps/search/forms.py:12
 msgid "Most popular this week"
