@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-23 07:38+0000\n"
-"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
+"PO-Revision-Date: 2013-10-23 09:29+0000\n"
+"Last-Translator: xcffl <hc5023295@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382513900.0\n"
+"X-POOTLE-MTIME: 1382520553.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -14917,7 +14917,7 @@ msgstr ""
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr ""
+msgstr "此应用程序需要可以解码并播放 MP3 文件的平台。"
 
 #: mkt/constants/features.py:167
 msgid "Audio"
@@ -14957,7 +14957,7 @@ msgstr "游戏手柄"
 
 #: mkt/constants/features.py:199
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
-msgstr ""
+msgstr "此应用程序需要支持 gmaepad API （`navigator.getGamepads`） 的平台。"
 
 #: mkt/constants/features.py:204
 msgid "Quota Management"
@@ -14969,7 +14969,7 @@ msgstr "该应用需要允许应用持续存储限制超过正常允许水平（
 
 #: mkt/constants/features.py:213
 msgid "Camera"
-msgstr ""
+msgstr "摄像头"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
@@ -15607,11 +15607,11 @@ msgstr "连接到支付服务器时遇到了问题。"
 
 #: mkt/developers/views_payments.py:144 mkt/ecosystem/templates/ecosystem/publish_payments.html:37
 msgid "Credit card"
-msgstr ""
+msgstr "信用卡"
 
 #: mkt/developers/views_payments.py:145
 msgid "Carrier"
-msgstr ""
+msgstr "运营商"
 
 #: mkt/developers/views_payments.py:244
 msgid "Secret was reset successfully."
