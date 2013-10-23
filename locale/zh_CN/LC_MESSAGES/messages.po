@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-23 09:42+0000\n"
+"PO-Revision-Date: 2013-10-23 11:45+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382521350.0\n"
+"X-POOTLE-MTIME: 1382528704.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -15033,11 +15033,11 @@ msgstr ""
 
 #: mkt/constants/features.py:266
 msgid "Pointer Lock"
-msgstr ""
+msgstr "指针锁"
 
 #: mkt/constants/features.py:267
 msgid "The app requires the platform to provide additional information and control about the pointer."
-msgstr ""
+msgstr "此应用程序需要平台提供指针额外的信息以及控制功能。"
 
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
@@ -15289,7 +15289,7 @@ msgstr "您必须选择至少一个地区。"
 
 #: mkt/developers/forms.py:676
 msgid "Enable new regions"
-msgstr ""
+msgstr "启用新地区"
 
 #: mkt/developers/forms.py:819
 msgid "Categories cannot be changed while your app is featured."
@@ -15329,19 +15329,19 @@ msgstr "应用价格"
 
 #: mkt/developers/forms_payments.py:107
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "免费（使用应用程序内付款）"
 
 #: mkt/developers/forms_payments.py:118
 msgid "Promotional Pricing"
-msgstr ""
+msgstr "优惠价格"
 
 #: mkt/developers/forms_payments.py:131
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "仅支持通过电信营运商支付"
 
 #: mkt/developers/forms_payments.py:134
 msgid "Only supports credit-card billing"
-msgstr ""
+msgstr "仅支持信用卡支付"
 
 #: mkt/developers/forms_payments.py:138
 msgid "Supports all billing methods"
@@ -15957,7 +15957,7 @@ msgstr "封包版本"
 
 #: mkt/developers/templates/developers/apps/status.html:166
 msgid "Submission date"
-msgstr ""
+msgstr "提交日期"
 
 #: mkt/developers/templates/developers/apps/status.html:190 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:224
@@ -16029,7 +16029,7 @@ msgstr "可选的，可以输入任何有助于审核者审核这款应用的信
 
 #: mkt/developers/templates/developers/apps/version_edit.html:52 mkt/developers/templates/developers/apps/edit/technical.html:48
 msgid "Minimum Requirements"
-msgstr ""
+msgstr "最低需求"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:49
 msgid "Device features required for this app to function."
@@ -16037,13 +16037,13 @@ msgstr "此应用的某些功能需要设备支持才能运行。"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:66
 msgid "Auto-publish when approved"
-msgstr ""
+msgstr "审核通过后自动发布"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:67
 msgid ""
 "If selected this version will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about this version's approval and you will "
 "need to log in and manually publish it."
-msgstr ""
+msgstr "若选择此选项，此版本将在通过审核后立刻公开发布。如果您不选择此选项，则会收到邮件告知您已经通过审核，但是您还需要登录并手动公开发布。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
@@ -16075,7 +16075,7 @@ msgstr "这个字段只能在更新时通过清单修改。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:75 mkt/reviewers/templates/reviewers/includes/mobile_details.html:97
 msgid "Developer Name"
-msgstr ""
+msgstr "开发人员名称"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:46 mkt/submit/templates/submit/details.html:65
 msgid "App URL"
@@ -16360,7 +16360,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:130
 msgid "Hide all"
-msgstr ""
+msgstr "全部隐藏"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:22
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -16478,11 +16478,11 @@ msgstr "了解<a href=\"%(payments_url)s\" target=\"_blank\">不同的付款类�
 
 #: mkt/developers/templates/developers/payments/premium.html:108
 msgid "Payment accounts"
-msgstr ""
+msgstr "付款帐号"
 
 #: mkt/developers/templates/developers/payments/premium.html:111
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr ""
+msgstr "您的应用程序目前不完整。请选择一个付款帐号以及价位来恢复它。"
 
 #: mkt/developers/templates/developers/payments/premium.html:129
 msgid "Add or manage payment accounts"
@@ -16490,7 +16490,7 @@ msgstr "添加或管理付款帐号"
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Prices and countries"
-msgstr ""
+msgstr "价格及国家"
 
 #: mkt/developers/templates/developers/payments/premium.html:159
 msgid "In-App Payments"
@@ -16502,19 +16502,19 @@ msgstr "您的应用是否使用 Mozilla 的应用内支付平台？"
 
 #: mkt/developers/templates/developers/payments/premium.html:170
 msgid "A server error occurred. Please try again later."
-msgstr ""
+msgstr "服务器发生错误。请稍后重试。"
 
 #: mkt/developers/templates/developers/payments/premium.html:173
 msgid "Not applicable"
-msgstr ""
+msgstr "不适用"
 
 #: mkt/developers/templates/developers/payments/premium.html:182
 msgid "Available Regions"
-msgstr ""
+msgstr "可用地区"
 
 #: mkt/developers/templates/developers/payments/premium.html:184
 msgid "Your app will be available in the following selected regions:"
-msgstr ""
+msgstr "您的应用程序将在下列选中的地区可用："
 
 #: mkt/developers/templates/developers/payments/premium.html:189
 msgid "Region"
@@ -16522,15 +16522,15 @@ msgstr "地区"
 
 #: mkt/developers/templates/developers/payments/premium.html:190
 msgid "Retail price"
-msgstr ""
+msgstr "零售价格"
 
 #: mkt/developers/templates/developers/payments/premium.html:191
 msgid "local currency"
-msgstr ""
+msgstr "当地货币"
 
 #: mkt/developers/templates/developers/payments/premium.html:192
 msgid "Billing method"
-msgstr ""
+msgstr "付款方式"
 
 #: mkt/developers/templates/developers/payments/premium.html:203
 msgid "Other regions"
