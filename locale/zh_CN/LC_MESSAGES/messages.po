@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-23 01:33+0000\n"
+"PO-Revision-Date: 2013-10-23 01:36+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382492021.0\n"
+"X-POOTLE-MTIME: 1382492173.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -14809,7 +14809,7 @@ msgstr "存储设备"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
-msgstr ""
+msgstr "这个应用程序需要设备存储 API 来存取文件系统中的文件。"
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
@@ -14901,7 +14901,7 @@ msgstr "该应用需要支持触控事件的平台。此选项表示该应用在
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "智能手机尺寸的显示屏 （qHD）"
 
 #: mkt/constants/features.py:152
 msgid ""
