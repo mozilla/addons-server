@@ -434,13 +434,14 @@ INSTALLED_APPS = (
     'django_statsd',
 )
 
-# These apps will be removed from INSTALLED_APPS in a production environment.
-DEV_APPS = (
-    'django_nose',
+# These apps are only needed in a testing environment. They are added to
+# INSTALLED_APPS by the RadicalTestSuiteRunnerWithExtraApps test runner.
+TEST_INSTALLED_APPS = (
+    'translations.tests.testapp',
 )
 
 # Tests
-TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
+TEST_RUNNER = 'amo.runner.RadicalTestSuiteRunnerWithExtraApps'
 NOSE_ARGS = [
     '--with-fixture-bundling',
     '--exclude=mkt/*',
