@@ -11,3 +11,9 @@
 #global-header-tab a {
     color: #fff;
 }
+
+/* Temp fix while mozorg.cdn.mozilla.net/media/css/tabzilla-min.css has a
+#tabzilla {z-index: 999} */
+#tabzilla {
+    z-index: inherit;
+}
