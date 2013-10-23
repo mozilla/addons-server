@@ -3,7 +3,7 @@ from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
-from celery import chord
+from celery import chord, group
 
 import amo
 from addons.models import Addon
@@ -105,6 +105,7 @@ class Command(BaseCommand):
             post = None
             if 'post' in task:
                 post = task['post'].subtask(args=[], kwargs=kw, immutable=True)
-
-            ts = chord(grouping, post)
+                ts = chord(grouping, post)
+            else:
+                ts = group(grouping)
             ts.apply_async()
