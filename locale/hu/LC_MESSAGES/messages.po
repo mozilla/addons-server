@@ -12,16 +12,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-07-01 00:01+0200\n"
-"Last-Translator: Kalman Kemenczy <kkemenczy@opensuse.org>\n"
+"PO-Revision-Date: 2013-10-23 18:11+0000\n"
+"Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
+"X-POOTLE-MTIME: 1382551874.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -358,7 +359,9 @@ msgstr "A kiegészítő fejlesztője kéri, hogy amennyiben elégedett munkájá
 
 #: apps/addons/templates/addons/contribution.html:69
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "A kiegészítő fejlesztője kéri, hogy amennyiben elégedett munkájával, támogassa azt: <a href=\"(charity_url)s\">(charity_name)s</a>."
+msgstr ""
+"A kiegészítő fejlesztője kéri, hogy amennyiben elégedett munkájával, "
+"támogassa azt: <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
@@ -384,8 +387,9 @@ msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
-"A fejlesztő adományt kér a(z) <b>(addon_name)s</b> kiegészítő fejlesztéséért, <a href=\"(paypal_url)s\">Paypal</a>on keresztül a(z) <a href=\"%(charity_url)s\">%(charity_name)s</a> szervezet "
-"számára."
+"A fejlesztő adományt kér a(z) <b>%(addon_name)s</b> kiegészítő "
+"fejlesztéséért, <a href=\"%(paypal_url)s\">Paypal</a>on keresztül a(z) <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> szervezet számára."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -924,7 +928,9 @@ msgstr "vagy nézze meg a <a href=\"%(href)s\">kiegészítő régebbi verzióit<
 
 #: apps/addons/templates/addons/popups.html:97
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "A persona számára a %(app)s {new_version} verzióra van szükség. Jelenleg a %(app)s {old_version} verzióját használja."
+msgstr ""
+"A persona számára a %(app)s %{new_version}s verzióra van szükség. Jelenleg a "
+"%(app)s {old_version} verzióját használja."
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
@@ -1143,7 +1149,7 @@ msgstr "Gyűjtemény része"
 msgid "Other apps by %(author)s"
 msgid_plural "Other apps by these authors"
 msgstr[0] "%(author)s további alkalmazásai"
-msgstr[1] "%(author)s további alkalmazásai"
+msgstr[1] "Ezen szerzők további alkalmazásai"
 
 #: apps/addons/templates/addons/impala/details.html:41
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -1167,7 +1173,7 @@ msgstr "Nincs újraindítás"
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Ismerje meg a fejlesztőt: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "Ismerje meg a fejlesztőket: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Ismerje meg a fejlesztőket</a>"
 
 #: apps/addons/templates/addons/impala/details.html:148
 msgid "Learn why {0} was created and find out what's next for this app."
@@ -1325,8 +1331,8 @@ msgstr "közvetlen hivatkozás"
 #: apps/addons/templates/addons/impala/review_list_box.html:31
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Összes értékelés megtekintése"
-msgstr[1] "Mind a %(cnt)s felhasználó értékelésének megtekintése"
+msgstr[0] "Összes felhasználói értékelés megtekintése"
+msgstr[1] "Összes felhasználói értékelés (%(cnt)s) megtekintése"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:43
 msgid "This app has not yet been reviewed."
@@ -1697,7 +1703,7 @@ msgstr "{0} verzió törlése a(z) {addon} kiegészítőtől."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
-msgstr "{0.name} hozzáadása a(z) {addon} kiegészítőhöz."
+msgstr "{0.name} fájl hozzáadva a(z) {addon} kiegészítő {version} változatához."
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
@@ -2998,8 +3004,12 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Amikor a Mozilla tudomást szerez arról, hogy valamely kiegészítő, bővítmény vagy más gyártók szoftverkomponense komolyan veszélyezteti a %(app)s biztonságát, a stabilitását vagy teljesítményét, és "
-"megfelel <a href=\"%(criteria)s\">bizonyos kritériumok </ a> a szoftver általános használata blokkolásra kerül. További információkért kérjük, olvassa el <a href=\"%(support)s\">ezt a leírást</ a>."
+"Amikor a Mozilla tudomást szerez arról, hogy valamely kiegészítő, bővítmény "
+"vagy más gyártók szoftverkomponense komolyan veszélyezteti a %(app)s "
+"biztonságát, a stabilitását vagy teljesítményét, és megfelel <a href=\"%"
+"(criteria)s\">bizonyos kritériumok </a> a szoftver általános használata "
+"blokkolásra kerül. További információkért kérjük, olvassa el <a href=\"%"
+"(support)s\">ezt a leírást</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -12135,7 +12145,7 @@ msgstr "Tovább&nbsp;&raquo;"
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] "Összes értékelés megtekintése"
-msgstr[1] "Összes %(cnt)s értékelés megtekintése"
+msgstr[1] "Összes értékelés (%(cnt)s) megtekintése"
 
 #: apps/search/forms.py:12
 msgid "Most popular this week"
