@@ -552,6 +552,20 @@ class TestDumpApps(amo.tests.TestCase):
         call_command('process_addons', task='dump_apps')
         assert not dump_app.called
 
+    def test_removed(self):
+        # At least one public app must exist for dump_apps to run.
+        amo.tests.app_factory(name="second app", status=amo.STATUS_PUBLIC)
+        app_path = os.path.join(settings.DUMPED_APPS_PATH, 'apps', '337',
+                                '337141.json')
+        app = Addon.objects.get(pk=337141)
+        app.update(status=amo.STATUS_PUBLIC)
+        call_command('process_addons', task='dump_apps')
+        assert os.path.exists(app_path)
+
+        app.update(status=amo.STATUS_PENDING)
+        call_command('process_addons', task='dump_apps')
+        assert not os.path.exists(app_path)
+
     @mock.patch('mkt.webapps.tasks.dump_app')
     def test_public(self, dump_app):
         call_command('process_addons', task='dump_apps')

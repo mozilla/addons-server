@@ -3,7 +3,7 @@ from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
-from celery import group
+from celery import chord
 
 import amo
 from addons.models import Addon
@@ -11,9 +11,10 @@ from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 from market.tasks import check_paypal, check_paypal_multiple
 
-from mkt.webapps.tasks import (add_uuids, dump_apps, fix_missing_icons,
-                               import_manifests, update_manifests,
-                               update_supported_locales, zip_apps)
+from mkt.webapps.tasks import (add_uuids, clean_apps, dump_apps,
+                               fix_missing_icons, import_manifests,
+                               update_manifests, update_supported_locales,
+                               zip_apps)
 
 
 tasks = {
@@ -51,6 +52,7 @@ tasks = {
     'dump_apps': {'method': dump_apps,
                   'qs': [Q(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
                            disabled_by_user=False)],
+                  'pre': clean_apps,
                   'post': zip_apps},
     'fix_missing_icons': {'method': fix_missing_icons,
                           'qs': [Q(type=amo.ADDON_WEBAPP,
@@ -102,7 +104,7 @@ class Command(BaseCommand):
             # Add the post task on to the end.
             post = None
             if 'post' in task:
-                post = task['post'].subtask(args=[], kwargs=kw)
+                post = task['post'].subtask(args=[], kwargs=kw, immutable=True)
 
-            ts = group(grouping)
-            ts.apply_async(link=post)
+            ts = chord(grouping, post)
+            ts.apply_async()
