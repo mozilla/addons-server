@@ -238,7 +238,7 @@ class ReviewApp(ReviewBase):
             EscalationQueue.objects.filter(addon=self.addon).delete()
 
         # Assign reviewer incentive scores.
-        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
+        return ReviewerScore.award_points(self.request.amo_user, self.addon, status)
 
     def process_public_waiting(self):
         """Make an app pending."""
@@ -308,8 +308,8 @@ class ReviewApp(ReviewBase):
         log.info(u'Sending email for %s' % self.addon)
 
         # Assign reviewer incentive scores.
-        ReviewerScore.award_points(self.request.amo_user, self.addon, status,
-                                   in_rereview=self.in_rereview)
+        return ReviewerScore.award_points(self.request.amo_user, self.addon, status,
+                                          in_rereview=self.in_rereview)
 
     def process_escalate(self):
         """Ask for escalation for an app."""
@@ -336,8 +336,8 @@ class ReviewApp(ReviewBase):
         self.log_action(amo.LOG.REREVIEW_CLEARED)
         log.info(u'Re-review cleared for app: %s' % self.addon)
         # Assign reviewer incentive scores.
-        ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                   self.addon.status, in_rereview=True)
+        return ReviewerScore.award_points(self.request.amo_user, self.addon,
+                                          self.addon.status, in_rereview=True)
 
     def process_disable(self):
         """Disables app."""

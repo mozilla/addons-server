@@ -1336,11 +1336,12 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert not AppLog.objects.filter(
             addon=self.app, activity_log__action=action_id).exists()
 
+    @mock.patch('mkt.reviewers.views.messages.success')
     @mock.patch('addons.tasks.index_addons')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_pending_to_public(self, update_name, update_locales,
-                               index_addons):
+                               index_addons, messages):
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1362,6 +1363,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         # It's zero for the view but happens after the transaction commits. If
         # this increases we could get tasks being called with stale data.
         eq_(index_addons.delay.call_count, 0)
+
+        eq_(messages.call_args_list[0][0][1],
+            '"Web App Review" successfully processed (+60 points, 60 total).')
 
     def test_notification_email_translation(self):
         """Test that the app name is translated with the app's default_locale
@@ -1523,7 +1527,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
 
-    def test_pending_to_escalation(self):
+    @mock.patch('mkt.reviewers.views.messages.success')
+    def test_pending_to_escalation(self, messages):
         data = {'action': 'escalate', 'comments': 'soup her man'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
@@ -1535,6 +1540,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email(dev_msg, 'Submission Update')
         adm_msg = mail.outbox[1]
         self._check_admin_email(adm_msg, 'Escalated Review Requested')
+
+        eq_(messages.call_args_list[0][0][1], 'Review successfully processed.')
 
     def test_pending_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
