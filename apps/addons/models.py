@@ -37,7 +37,6 @@ from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from market.models import AddonPremium, Price
-import mkt.constants
 from reviews.models import Review
 import sharing.utils as sharing
 from stats.models import AddonShareCountTotal
@@ -428,15 +427,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             """ % context
             log.debug('Sending delete email for %(atype)s %(id)s' % context)
             subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
-            if waffle.switch_is_active('soft_delete'):
-                models.signals.pre_delete.send(sender=Addon, instance=self)
-                self.status = amo.STATUS_DELETED
-                self.slug = self.app_slug = self.app_domain = None
-                self._current_version = None
-                self.save()
-                models.signals.post_delete.send(sender=Addon, instance=self)
-            else:
-                super(Addon, self).delete()
+
+            # Update or NULL out various fields.
+            models.signals.pre_delete.send(sender=Addon, instance=self)
+            self.status = amo.STATUS_DELETED
+            self.slug = self.app_slug = self.app_domain = None
+            self._current_version = None
+            self.save()
+            models.signals.post_delete.send(sender=Addon, instance=self)
+
             send_mail(subject, email_msg, recipient_list=to)
         else:
             super(Addon, self).delete()
@@ -1210,11 +1209,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.is_premium() and self.status in amo.REVIEWED_STATUSES
 
     def can_be_deleted(self):
-        """Only incomplete or free addons can be deleted."""
-        if waffle.switch_is_active('soft_delete'):
-            return not self.is_deleted
-        return self.is_incomplete() or not (
-            self.is_premium() or self.is_webapp())
+        return not self.is_deleted
 
     @classmethod
     def featured_random(cls, app, lang):
@@ -2281,7 +2276,7 @@ class AddonUpsell(amo.models.ModelBase):
 
 
 def cleanup_upsell(sender, instance, **kw):
-    if 'raw' in kw or not waffle.switch_is_active('soft_delete'):
+    if 'raw' in kw:
         return
 
     both = Q(free=instance) | Q(premium=instance)

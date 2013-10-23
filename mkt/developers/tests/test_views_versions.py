@@ -44,16 +44,6 @@ class TestVersion(amo.tests.TestCase):
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#version-status').length, 1)
         eq_(doc('#version-list').length, 0)
-        eq_(doc('#delete-addon').length, 0)
-        eq_(doc('#modal-delete').length, 0)
-        eq_(doc('#modal-disable').length, 1)
-        eq_(doc('#modal-delete-version').length, 0)
-
-    def test_soft_delete_items(self):
-        self.create_switch(name='soft_delete')
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('#version-status').length, 1)
-        eq_(doc('#version-list').length, 0)
         eq_(doc('#delete-addon').length, 1)
         eq_(doc('#modal-delete').length, 1)
         eq_(doc('#modal-disable').length, 1)
@@ -274,7 +264,6 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         self.delete_url = self.app.get_dev_url('versions.delete')
 
     def test_items_packaged(self):
-        self.create_switch(name='soft_delete')
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#version-status').length, 1)
         eq_(doc('#version-list').length, 1)

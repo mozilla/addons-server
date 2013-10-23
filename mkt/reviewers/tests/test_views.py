@@ -649,7 +649,6 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
     def test_addon_deleted(self):
-        self.create_switch(name='soft_delete')
         app = self.apps[0]
         app.delete()
         eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
@@ -1030,7 +1029,6 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         eq_(tds.eq(0).text(), '1')
 
     def test_addon_deleted(self):
-        self.create_switch(name='soft_delete')
         app = self.apps[0]
         app.delete()
         eq_(EscalationQueue.objects.filter(addon=app).exists(), False)

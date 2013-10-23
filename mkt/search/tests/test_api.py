@@ -36,7 +36,6 @@ class TestApi(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.create_switch('soft_delete')
         self.client = OAuthClient(None)
         self.url = list_url('search')
         self.webapp = Webapp.objects.get(pk=337141)

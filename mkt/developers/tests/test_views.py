@@ -587,7 +587,6 @@ class TestStatus(amo.tests.TestCase):
         self.file = self.webapp.versions.latest().all_files[0]
         self.file.update(status=amo.STATUS_DISABLED)
         self.status_url = self.webapp.get_dev_url('versions')
-        self.create_switch('soft_delete')
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
 
@@ -644,14 +643,7 @@ class TestDelete(amo.tests.TestCase):
     def get_webapp(self):
         return Addon.objects.no_cache().get(id=337141)
 
-    def test_post_not(self):
-        # Update this test when BrowserID re-auth is available.
-        r = self.client.post(self.url, follow=True)
-        eq_(pq(r.content)('.notification-box').text(),
-            'Paid apps cannot be deleted. Disable this app instead.')
-
     def test_post(self):
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(), 'App deleted.')
         self.assertRaises(Addon.DoesNotExist, self.get_webapp)
@@ -908,7 +900,6 @@ class TestDeleteApp(amo.tests.TestCase):
         self.versions_url = self.webapp.get_dev_url('versions')
         self.dev_url = reverse('mkt.developers.apps')
         self.client.login(username='admin@mozilla.com', password='password')
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
 
     def test_delete_get(self):
         eq_(self.client.get(self.url).status_code, 405)

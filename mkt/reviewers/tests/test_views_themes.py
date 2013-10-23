@@ -494,8 +494,6 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         Test soft-deleted add-ons don't cause trouble like they did to me
         for the last 6 months! #liberation
         """
-        self.create_switch('soft_delete')
-
         # Normal RQT object.
         RereviewQueueTheme.objects.create(
             theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
@@ -513,29 +511,6 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         doc = pq(r.content)
         eq_(doc('.theme').length, 1)
         eq_(RereviewQueueTheme.with_deleted.count(), 2)
-
-    def test_hard_deleted_addon(self):
-        """
-        Test soft-deleted add-ons don't cause trouble like they did to me
-        for the last 6 months! #liberation
-        """
-        # Normal RQT object.
-        RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
-
-        # Deleted add-on RQT object.
-        addon = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(theme=addon.persona, header='',
-                                          footer='')
-        addon.delete()
-
-        self.login('senior_persona_reviewer@mozilla.com')
-        r = self.client.get(self.queue_url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('.theme').length, 1)
-        eq_(RereviewQueueTheme.with_deleted.count(), 1)
 
     @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
     @mock.patch('mkt.reviewers.tasks.send_mail_jinja')

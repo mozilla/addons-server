@@ -15,7 +15,6 @@ from django.db.models.signals import post_delete, post_save
 from django.utils.translation import ugettext_lazy as _
 
 import mock
-import waffle
 from nose.tools import eq_, ok_, raises
 
 import amo
@@ -49,16 +48,6 @@ from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
 class TestWebapp(amo.tests.TestCase):
     fixtures = fixture('prices')
 
-    def test_hard_deleted(self):
-        w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
-        # Until bug 755214 is fixed, `len` that ish.
-        eq_(len(Webapp.objects.all()), 1)
-        eq_(len(Webapp.with_deleted.all()), 1)
-
-        w.delete('boom shakalakalaka')
-        eq_(len(Webapp.objects.all()), 0)
-        eq_(len(Webapp.with_deleted.all()), 0)
-
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
         reason = u'trêason'
@@ -70,8 +59,6 @@ class TestWebapp(amo.tests.TestCase):
         assert reason in mail.outbox[0].body
 
     def test_soft_deleted(self):
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
-
         w = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
                                   app_domain='http://omg.org/yes',
                                   status=amo.STATUS_PENDING)
@@ -89,8 +76,6 @@ class TestWebapp(amo.tests.TestCase):
             eq_(getattr(post_mortem[0], attr), None)
 
     def test_with_deleted_count(self):
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
-
         w = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
                                   app_domain='http://omg.org/yes',
                                   status=amo.STATUS_PENDING)
@@ -489,7 +474,6 @@ class TestWebapp(amo.tests.TestCase):
 class DeletedAppTests(amo.tests.ESTestCase):
 
     def test_soft_deleted_no_current_version(self):
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
         webapp = amo.tests.app_factory()
         webapp._current_version = None
         webapp.save()
@@ -497,7 +481,6 @@ class DeletedAppTests(amo.tests.ESTestCase):
         eq_(webapp.current_version, None)
 
     def test_soft_deleted_no_latest_version(self):
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
         webapp = amo.tests.app_factory()
         webapp._latest_version = None
         webapp.save()

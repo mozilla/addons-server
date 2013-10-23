@@ -637,7 +637,6 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.test_by_name_part()
 
     def test_by_deleted_app(self):
-        self.create_switch('soft_delete')
         self.app.delete()
         self.refresh('webapp')
         data = self.search(q='something')
@@ -701,7 +700,6 @@ class TestAppSummary(AppSummaryTest):
         self._setUp()
 
     def test_app_deleted(self):
-        self.create_switch('soft_delete')
         self.app.delete()
         self.summary()
 

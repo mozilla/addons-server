@@ -140,7 +140,6 @@ class TestVersionViewSet(RestOAuth):
         res = self.client.get(url)
         eq_(res.status_code, 200)
 
-        self.create_switch('soft_delete')
         self.app.delete()
 
         res = self.client.get(url)
