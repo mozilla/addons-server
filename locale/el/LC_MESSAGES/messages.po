@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
 "PO-Revision-Date: 2011-10-28 22:44+0200\n"
-"Last-Translator: Γιώργος Φιωτάκης <fiotakis@otenet.gr>\n"
+"Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -362,24 +362,24 @@ msgstr "Κάντε μια δωρεά"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Βοηθήστε στην υποστήριξη της συνεχούς ανάπτυξης του <strong>%(addon_name)</strong> κάνοντας μια μικρή συνεισφορά μέσω του <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Βοηθήστε στην υποστήριξη της συνεχούς ανάπτυξης του/των <strong>%(addon_name)s</strong> κάνοντας μια μικρή συνεισφορά μέσω του <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Για να δείξετε την υποστήριξη σας στο <b>%(addon_name)</b>, ο προγραμματιστής ζητά να κάνετε μια δωρεά στο <a href=\"%(charity_url)s\">%(charity_name)</a> <a href=\"%(paypal_url)s\">PayPal</a>."
+"Για να δείξετε την υποστήριξη σας στο/στα <b>%(addon_name)s</b>, ο προγραμματιστής ζητά να κάνετε μια δωρεά στο <a href=\"%(charity_url)s\">%(charity_name)</a> <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
-"Για να δείξετε την υποστήριξη σας στο <b>%(addon_name)</b>, ο προγραμματιστής ζητά να κάνετε μια δωρεά στο <a href=\"%(charity_url)s\">%(charity_name)</a> <a href=\"%(paypal_url)s\">PayPal</a>."
+"Για να δείξετε την υποστήριξη σας στο/στα <b>%(addon_name)s</b>, ο προγραμματιστής ζητά να κάνετε μια δωρεά στο <a href=\"%(charity_url)s\">%(charity_name)</a> <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
-msgstr "Τί ποσό θα θέλατε να κάνετε δωρεά;"
+msgstr "Τι ποσό θα θέλατε να κάνετε δωρεά;"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
@@ -660,14 +660,14 @@ msgstr "Προστέθηκε {0}"
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num) εβδομαδιαία λήψη"
-msgstr[1] "%(num) ενδομαδιαίες λήψεις"
+msgstr[0] "%(num)s εβδομαδιαία λήψη"
+msgstr[1] "%(num)s εβδομαδιαίες λήψεις"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] "%(num) χρήστης"
-msgstr[1] "%(num) χρήστες"
+msgstr[0] "%(num)s χρήστης"
+msgstr[1] "%(num)s χρήστες"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:61 mkt/detail/helpers.py:22
@@ -928,7 +928,7 @@ msgstr "<strong>Παρακαλούμε σημειώστε ότι:</strong> Αυ�
 
 #: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:74
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του %(app) εξαιτίας των παρακάτω:"
+msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του %(app)s εξαιτίας των παρακάτω:"
 
 #: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
@@ -936,7 +936,7 @@ msgstr "Προβολή άλλων εκδόσεων"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του %(app)."
+msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του %(app)s."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
@@ -1136,8 +1136,8 @@ msgstr "Τμήμα αυτών των συλλογών"
 #: apps/addons/templates/addons/impala/details-more.html:87
 msgid "Other apps by %(author)s"
 msgid_plural "Other apps by these authors"
-msgstr[0] "Άλλες εφαρμογές από %(author)"
-msgstr[1] "Άλλες εφαρμογές από αυτούς τους συντάκτες"
+msgstr[0] "Άλλες εφαρμογές από %(author)s"
+msgstr[1] "Άλλες εφαρμογές από αυτούς τους δημιουργούς"
 
 #: apps/addons/templates/addons/impala/details.html:41
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -2026,15 +2026,15 @@ msgstr "Ο χρήστης {user} επεξεργάστηκε, αιτία: {1}"
 
 #: apps/amo/log.py:577
 msgid "User {user} anonymized."
-msgstr "Ο χρήστης {user} ανώνυμος."
+msgstr "Ο χρήστης {user} είναι ανώνυμος."
 
 #: apps/amo/log.py:583
 msgid "User {user} restricted."
-msgstr "Ο χρήστης {user} περιορισμένος."
+msgstr "Ο χρήστης {user} περιορίστηκε."
 
 #: apps/amo/log.py:589
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "Ο διαχειριστής {0} πρόβαλλε την καταγραφή δραστηριότητας για τον χρήστη {user}."
+msgstr "Ο διαχειριστής {0} προέβαλε την καταγραφή δραστηριότητας για τον χρήστη {user}."
 
 #: apps/amo/log.py:596
 msgid "{review} for {addon} updated."
@@ -22264,7 +22264,7 @@ msgstr "Διαλέξτε μεταξύ χιλιάδων επιπλέον χαρα
 
 #: templates/impala/base.html:154
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Προσθέστε επιπλέον χαρακτηριστικά και στυλ για κάνετε το %(app) δικό σας."
+msgstr "Προσθέστε επιπλέον χαρακτηριστικά και στυλ για κάνετε το %(app)s δικό σας."
 
 #: templates/impala/base.html:162
 msgid "On the go?"
