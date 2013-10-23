@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2012-07-21 07:28+0200\n"
+"PO-Revision-Date: 2013-10-23 11:10+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -11,7 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1382526649.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -125,16 +126,16 @@ msgstr[0] "アプリの検証に失敗しました。{0} 個のエラーがあ�
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "アプリの検証に合格しました。エラーなし、{0} 個の警告があります。"
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "アプリの検証に合格しました。エラーや警告はありません。"
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
+msgstr[0] "アプリの検証に失敗しました。{0} 個のエラーと {1} 個のメッセージがあります。"
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -151,7 +152,7 @@ msgstr "変更が保存されました"
 
 #: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "新しいチームメンバーのメールアドレスを入力してください"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
