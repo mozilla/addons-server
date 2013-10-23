@@ -423,6 +423,7 @@ class ReviewerScore(amo.models.ModelBase):
             user_log.info(
                 u'Awarding %s points to user %s for "%s" for addon %s' % (
                     score, user, amo.REVIEWED_CHOICES[event], addon.id))
+        return score
 
     @classmethod
     def award_moderation_points(cls, user, addon, review_id):
