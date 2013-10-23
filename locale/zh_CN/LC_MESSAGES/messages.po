@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-23 04:36+0000\n"
+"PO-Revision-Date: 2013-10-23 07:11+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382502993.0\n"
+"X-POOTLE-MTIME: 1382512283.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -5010,8 +5010,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"该add-on与最新 %(app_name)s的发布版本 <b>%(app_name)s %(app_version)s</b"
-">不兼容。请慎重考虑更新您的add-on信息，或者上传一个新版本的add-on。"
+"此附加组件与 <b>%(app_name)s %(app_version)s</b>，最新的 %(app_name)s "
+"正式版不兼容。请考虑更新您的附加组件兼容性信息，或者上传一份此附加组件的新版本。"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid ""
@@ -6717,7 +6717,7 @@ msgstr "更多资源"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:38 apps/devhub/templates/devhub/docs/reference.html:308
 msgid "Already know what you're looking for? <a href=\"%(link_search)s\">Search for it!</a>"
-msgstr "如何为您的移动版扩展设计界面。"
+msgstr "已经知道您要找什么了？<a href=\"%(link_search)s\">去搜索吧！</a>"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:43
 msgid "Browse through <a href=\"%(link_reference)s\">API & Language References</a> to find that interface you hope exists"
@@ -14983,7 +14983,7 @@ msgstr ""
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
-msgstr ""
+msgstr "屏幕截图"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
@@ -15043,7 +15043,7 @@ msgstr ""
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
-msgstr ""
+msgstr "告警"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
