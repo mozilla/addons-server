@@ -11,15 +11,16 @@ msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2012-07-09 15:10+0200\n"
-"Last-Translator: Eduard <edu@eduard-gamonal.net>\n"
+"PO-Revision-Date: 2013-10-23 18:28+0000\n"
+"Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1382552883.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 # %$1s is an optional string that only appears if the add-on is only available for
@@ -1160,7 +1161,7 @@ msgstr "Forma part d'aquestes col·leccions"
 #: apps/addons/templates/addons/impala/details-more.html:87
 msgid "Other apps by %(author)s"
 msgid_plural "Other apps by these authors"
-msgstr[0] "Altres aplicacions de %(autor)s"
+msgstr[0] "Altres aplicacions de %(author)s"
 msgstr[1] "Altres aplicacions d'aquests autors"
 
 #: apps/addons/templates/addons/impala/details.html:41
@@ -1715,7 +1716,7 @@ msgstr "S'ha editat la versió {version} del complement {addon}."
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr "S'ha suprimit la versió {version} del complement {addon}."
+msgstr "S'ha suprimit la versió {0} del complement {addon}."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
@@ -1723,7 +1724,8 @@ msgstr "S'ha afegit el fitxer {0.name} a la versió {version} del complement {ad
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
-msgstr "S'ha suprimit el fitxer {0.name} de la versió {version} del complement {addon}."
+msgstr ""
+"S'ha suprimit el fitxer {0} de la versió {version} del complement {addon}."
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
@@ -1860,7 +1862,7 @@ msgstr "L'usuari {user} ha aprovat el comentari {review} del complement {addon}.
 
 #: apps/amo/log.py:344
 msgid "Review {0} for {addon} deleted."
-msgstr "S'ha suprimit el comentari {review} del complement {addon}."
+msgstr "S'ha suprimit el comentari {0} del complement {addon}."
 
 #: apps/amo/log.py:345
 msgid "{user} deleted {0} for {addon}."
@@ -1868,11 +1870,13 @@ msgstr "{user} suprimit {0} per {addon}."
 
 #: apps/amo/log.py:352
 msgid "Application max version for {version} updated."
-msgstr "Versió màxima d'aplicació de la (version) actualitzada."
+msgstr "Versió màxima d'aplicació de la {version} actualitzada."
 
 #: apps/amo/log.py:357
 msgid "Authors emailed about compatibility of {version}."
-msgstr "S'ha enviat un missatge de correu als autors sobre la compatibilitat de {versió}"
+msgstr ""
+"S'ha enviat un missatge de correu als autors sobre la compatibilitat de "
+"{version}."
 
 #: apps/amo/log.py:362
 msgid "Password changed."
