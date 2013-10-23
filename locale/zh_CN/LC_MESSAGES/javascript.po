@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-19 02:49+0000\n"
+"PO-Revision-Date: 2013-10-22 13:25+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382150962.0\n"
+"X-POOTLE-MTIME: 1382448341.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -25,7 +25,7 @@ msgstr "不允许安装应用"
 
 #: media/js/common-all.js:10512 media/js/common-min.js:23 media/js/impala-all.js:1562 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10657 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is malformed"
-msgstr "应用部件清单异常"
+msgstr "应用资源配置异常"
 
 #: media/js/common-all.js:10515 media/js/common-min.js:23 media/js/impala-all.js:1565 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10660 media/js/zamboni/mobile-min.js:32
 msgid "App host could not be reached"
@@ -33,11 +33,11 @@ msgstr "应用的主机无法连接"
 
 #: media/js/common-all.js:10518 media/js/common-min.js:23 media/js/impala-all.js:1568 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10663 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is unparsable"
-msgstr "应用清单无法解析"
+msgstr "应用资源配置文件无法解析"
 
 #: media/js/common-all.js:10521 media/js/common-min.js:23 media/js/impala-all.js:1571 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10666 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is invalid"
-msgstr "应用部件清单无效"
+msgstr "应用资源配置文件无效"
 
 #: media/js/common-all.js:10524 media/js/common-min.js:23 media/js/impala-all.js:1574 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10669 media/js/zamboni/mobile-min.js:32
 msgid "Unknown error"
@@ -575,7 +575,7 @@ msgstr "成功通过全部测试。"
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/devhub-all.js:2478 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:74
 #: media/js/zamboni/validator.js:366
 msgid "These tests were not run."
-msgstr "这些测试都未运行。"
+msgstr "这些测试没有运行。"
 
 #: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/devhub-all.js:2523 media/js/zamboni/devhub-all.js:2536 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:119 media/js/zamboni/validator.js:132
@@ -622,7 +622,7 @@ msgstr "搜索匹配 <b>{0}</b> 的主题"
 
 #: media/js/impala/stats/chart.js:267 media/js/mkt/stats/chart.js:320
 msgid "Week of {0}"
-msgstr "第 {0} 周"
+msgstr "每周有{0}次"
 
 #: media/js/impala/stats/chart.js:269
 msgid "downloads"
@@ -650,7 +650,7 @@ msgstr "{0} 份售出"
 
 #: media/js/impala/stats/chart.js:276 media/js/mkt/stats/chart.js:324 media/js/mkt/stats/chart_column.js:126
 msgid "{0} refunds"
-msgstr "{0} 个退款"
+msgstr "{0}次退款"
 
 #: media/js/impala/stats/chart.js:277 media/js/mkt/stats/chart.js:325
 msgid "{0} installs"
@@ -757,12 +757,12 @@ msgstr "主页新秀"
 
 #: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67 media/js/zamboni/stats-all.js:11217 media/js/zamboni/stats-min.js:10
 msgid "Homepage Most Popular"
-msgstr "首页最热门"
+msgstr "主页流行榜"
 
 #: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70 media/js/zamboni/stats-all.js:11218
 #: media/js/zamboni/stats-all.js:11220 media/js/zamboni/stats-min.js:10
 msgid "Detail Page"
-msgstr "详细信息页面"
+msgstr "详情页面"
 
 #: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71 media/js/zamboni/stats-all.js:11219
 #: media/js/zamboni/stats-all.js:11221 media/js/zamboni/stats-min.js:10
@@ -771,7 +771,7 @@ msgstr "详情页面（底部）"
 
 #: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72 media/js/zamboni/stats-all.js:11222 media/js/zamboni/stats-min.js:10
 msgid "Detail Page (Development Channel)"
-msgstr "详情页面（开发频道）"
+msgstr "详细信息页面（开发通道）"
 
 #: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
 #: media/js/mkt/stats/csv_keys.js:75 media/js/zamboni/stats-all.js:11223 media/js/zamboni/stats-all.js:11224 media/js/zamboni/stats-all.js:11225 media/js/zamboni/stats-min.js:10
@@ -791,7 +791,7 @@ msgstr "依赖"
 #: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81 media/js/zamboni/stats-all.js:11230
 #: media/js/zamboni/stats-all.js:11231 media/js/zamboni/stats-min.js:10
 msgid "Upsell"
-msgstr "增值销售"
+msgstr "追加销售"
 
 #: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83 media/js/zamboni/stats-all.js:11233 media/js/zamboni/stats-min.js:10
 msgid "Sharing"
@@ -828,17 +828,17 @@ msgstr "分类首页最新添加展示"
 #: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96 media/js/zamboni/stats-all.js:11244
 #: media/js/zamboni/stats-all.js:11245 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Featured Sort"
-msgstr "按精选排序的浏览列表"
+msgstr "按精选顺序浏览"
 
 #: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98 media/js/zamboni/stats-all.js:11246
 #: media/js/zamboni/stats-all.js:11247 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Users Sort"
-msgstr "按最热门排序的浏览列表"
+msgstr "按用户量的顺序浏览"
 
 #: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100 media/js/zamboni/stats-all.js:11248
 #: media/js/zamboni/stats-all.js:11249 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Rating Sort"
-msgstr "按评分最高排序的浏览列表"
+msgstr "按评分顺序浏览"
 
 #: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102 media/js/zamboni/stats-all.js:11250
 #: media/js/zamboni/stats-all.js:11251 media/js/zamboni/stats-min.js:10
@@ -853,12 +853,12 @@ msgstr "按名称排序的浏览列表"
 #: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106 media/js/zamboni/stats-all.js:11254
 #: media/js/zamboni/stats-all.js:11255 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Popular Sort"
-msgstr "按周下载量排序的浏览列表"
+msgstr "按热门程度浏览"
 
 #: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108 media/js/zamboni/stats-all.js:11256
 #: media/js/zamboni/stats-all.js:11257 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Updated Sort"
-msgstr "按最近更新排序的浏览列表"
+msgstr "按更新顺序浏览"
 
 #: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110 media/js/zamboni/stats-all.js:11258
 #: media/js/zamboni/stats-all.js:11259 media/js/zamboni/stats-min.js:10
@@ -984,7 +984,7 @@ msgstr "{0} 至 {1} 的附加组件版本"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:169 media/js/zamboni/stats-all.js:11323 media/js/zamboni/stats-min.js:10
 msgid "Add-on Status, last {0} days"
-msgstr "过去 {0} 天的附加组件状态"
+msgstr "最近 {0} 天的附加组件状态"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:171 media/js/zamboni/stats-all.js:11325 media/js/zamboni/stats-min.js:10
@@ -1084,7 +1084,7 @@ msgstr "{0} 至 {1} 的用户注册量"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:229
 msgid "Collections Created, last {0} days"
-msgstr "过去 {0} 天的收藏集创建量"
+msgstr "最近 {0} 天的收藏集创建"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:231
@@ -1094,7 +1094,7 @@ msgstr "{0} 至 {1} 的收藏集创建量"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:235
 msgid "Subscribers, last {0} days"
-msgstr "过去 {0} 天的订阅者量"
+msgstr "最近 {0} 天的订阅者量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:237
@@ -1104,12 +1104,12 @@ msgstr "{0} 至 {1} 的订阅者量"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:241
 msgid "Ratings, last {0} days"
-msgstr "过去 {0} 天的评分量"
+msgstr "最近 {0} 天的评分"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:243
 msgid "Ratings from {0} to {1}"
-msgstr "{0} 至 {1} 的评分量"
+msgstr "从 {0} 至 {1} 的评分"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:247
@@ -1209,7 +1209,7 @@ msgstr "点击这里查看移动版“市场”！"
 
 #: media/js/mkt/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "此视频需要能够打开视频的浏览器的支持。"
+msgstr "此视频需要支持开放视频格式的浏览器。"
 
 #: media/js/mkt/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -1407,31 +1407,31 @@ msgstr "应用安装量"
 
 #: media/js/mkt/stats/csv_keys.js:112
 msgid "Marketplace Browse Page"
-msgstr "市场浏览页面"
+msgstr "应用市场浏览页面"
 
 #: media/js/mkt/stats/csv_keys.js:113
 msgid "Marketplace Browse Page, Featured"
-msgstr "市场浏览页面，精选"
+msgstr "应用市场浏览页面，精选"
 
 #: media/js/mkt/stats/csv_keys.js:114
 msgid "Marketplace Category Page"
-msgstr "市场分类页面"
+msgstr "应用市场分类页面"
 
 #: media/js/mkt/stats/csv_keys.js:115
 msgid "Marketplace Category Page, Featured"
-msgstr "市场分类页面，精选"
+msgstr "应用市场分类页面，精选"
 
 #: media/js/mkt/stats/csv_keys.js:116
 msgid "Marketplace Detail Page"
-msgstr "市场详情页面"
+msgstr "应用市场详情页面"
 
 #: media/js/mkt/stats/csv_keys.js:117
 msgid "Marketplace Detail Page, Upsell"
-msgstr "市场详情页面，增值销售"
+msgstr "应用市场详情页面，热销"
 
 #: media/js/mkt/stats/csv_keys.js:118
 msgid "Marketplace Home Page"
-msgstr "市场首页"
+msgstr "应用市场首页"
 
 #: media/js/mkt/stats/csv_keys.js:119
 msgid "Marketplace Search Results"
@@ -1601,7 +1601,7 @@ msgstr "找不到结果。"
 
 #: media/js/zamboni/discovery-all.js:12097 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "抱歉，我们未找到任何可为您推荐的内容。<br>请访问<a href=\"{0}\">附加组件网站</a>寻找适合您的附加组件。"
+msgstr "抱歉，我们无法为您推荐内容。<br>请访问<a href=\"{0}\">附加组件网站</a>寻找适合您的附加组件。"
 
 #: media/js/zamboni/discovery-all.js:12127 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-19 02:51+0000\n"
+"PO-Revision-Date: 2013-10-23 01:33+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382151119.0\n"
+"X-POOTLE-MTIME: 1382492021.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -403,17 +403,17 @@ msgstr "捐款金额必须是数字。"
 #. {0} is a currency amount (e.g., $5.00)
 #: apps/addons/templates/addons/contributions_lightbox.html:52
 msgid "A one-time suggested contribution of {0}"
-msgstr "单次捐款金额建议为 {0}"
+msgstr "建议一次捐助 {0}"
 
 #. {0} is a currency symbol (e.g., $),
 #.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
-msgstr "单次捐款 {0} {1}"
+msgstr "一次捐助 {0} {1}"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
-msgstr "捐款的同时可以留下您的说明、意见或需求。"
+msgstr "在捐助的同时写下您的评论或需求。"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:74 apps/bandwagon/templates/bandwagon/ajax_new.html:20 apps/bandwagon/templates/bandwagon/includes/addedit.html:34
 #: apps/reviews/templates/reviews/mobile/add_form.html:13 templates/includes/forms.html:10
@@ -594,11 +594,11 @@ msgstr "最终用户许可协议"
 
 #: apps/addons/templates/addons/eula.html:24 apps/discovery/templates/discovery/addons/eula.html:13
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s 需要您在安装前同意接受下面的“最终用户许可协议”才能继续："
+msgstr "安装进行之前，%(addon_name)s 需要您接受以下最终用户许可协议："
 
 #: apps/addons/templates/addons/eula.html:35 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr "返回 {0}…"
+msgstr "返回 {0}..."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -2035,29 +2035,29 @@ msgstr "用户 {0.name} 已从组 {group} 移除。"
 
 #: apps/amo/log.py:623
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "审核者修改了 {addon} 的最低版本需求。"
 
 #: apps/amo/log.py:624
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "审核者修改了版本需求"
 
 #: apps/amo/log.py:631
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "{addon} 最低版本需求已被手动修改。"
 
 #: apps/amo/log.py:632
 msgid "Requirements Changed"
-msgstr ""
+msgstr "版本需求已修改"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "{version} 状态已更改为 {0} 。"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:646
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "已通过查找工具删除用户 {0.name} {0.id} 。"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4673,15 +4673,15 @@ msgstr "查看所有附加组件►"
 
 #: apps/devhub/templates/devhub/index.html:87
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO 审核者"
 
 #: apps/devhub/templates/devhub/index.html:89
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "出发！今天就成为 AMO 审核者，让附加组件审核得更快。"
 
 #: apps/devhub/templates/devhub/index.html:92
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "成为 AMO 审核者"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Add-on Builder and SDK:"
@@ -5594,7 +5594,7 @@ msgstr "查看这个主题的公开列表页。"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "查看这款主题随时间推移的传播情况。"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:29
 msgid "Change the owner of this theme."
@@ -5747,11 +5747,11 @@ msgstr "查看相似审核队列的<a href=\"{0}\">等待时间</a>。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:57
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "在审核队列中排在前面！"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:59
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "今天就成为 AMO 审核者，让附加组件审核得更快。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:68
 msgid "Enrolling in Marketplace"
@@ -6261,7 +6261,7 @@ msgstr "本文讲述了 Components.utils.evalInSandbox 的使用，这是一种�
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
-msgstr ""
+msgstr "这篇文章说明了如何在沙盒中创建 HTTP 连接又不影响到用户 cookie 。"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -9270,15 +9270,15 @@ msgstr "立即获取最新且不可或缺的附加组件。"
 
 #: apps/discovery/modules.py:331
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "无忧浏览"
 
 #: apps/discovery/modules.py:332
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "用这个收藏集中的附加组件保护你的隐私。"
 
 #: apps/discovery/modules.py:341
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "助力工作、娱乐、隐私和工作效率等各个方面的优秀附加组件。"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -9351,23 +9351,23 @@ msgstr "放弃安装"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:6
 msgid "Amp Your Firefox Contest"
-msgstr ""
+msgstr "强我火狐大赛"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
 msgid "Best Overall Add-on"
-msgstr ""
+msgstr "综合最优附加组件"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
 msgid "Thumbnail Zoom Plus"
-msgstr ""
+msgstr "Thumbnail Zoom Plus"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
 msgid "Shows a full-size image popup when<br> you hover over a thumbnail or image link."
-msgstr ""
+msgstr "当鼠标移动到缩略图或者图片链接上时<br>显示出完整尺寸的图片。"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
 msgid "Get it now!"
-msgstr ""
+msgstr "立即下载！"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -9548,7 +9548,7 @@ msgstr "等待全面审核"
 
 #: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "已拒绝或未审核"
 
 #: apps/editors/helpers.py:106
 msgid "Queue"
@@ -10286,15 +10286,15 @@ msgstr "您所指定的应用语言格式不正确。"
 
 #: apps/files/utils.py:277
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
-msgstr ""
+msgstr "资源配置文件中必须有开发者的名字以便显示在应用列表中。"
 
 #: apps/files/utils.py:328
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "无效文件名存在于压缩包：{0}"
 
 #: apps/files/utils.py:336
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "超过体积限制的文件存在于压缩包：{0}"
 
 #: apps/files/utils.py:386
 msgid "Invalid archive."
@@ -11176,7 +11176,7 @@ msgstr "我可以让我的附加组件被列入推荐吗？"
 
 #: apps/pages/templates/pages/dev_faq.html:542 apps/pages/templates/pages/dev_faq.html:552
 msgid "<a href=\"%(url)s\">This page</a> describes the process by which the Recommended lists are managed."
-msgstr ""
+msgstr "<a href=\"%(url)s\">本页</a>面说明了推荐列表的管理流程。"
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -12735,6 +12735,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>什么是每日用户数？</h2><p>从这个网站安装的主题每天都会检查一次更新。被检查更新的次数就视为每日活跃用户数，或者说是逐日统计的此主题的用户"
+"总数。</p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid ""
@@ -12828,7 +12830,7 @@ msgstr "不能使用该用户名。"
 
 #: apps/users/forms.py:171
 msgid "This username is already in use."
-msgstr ""
+msgstr "这个用户名已经被使用。"
 
 #: apps/users/forms.py:182 apps/users/templates/users/edit.html:92 mkt/account/forms.py:20 mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
@@ -13633,31 +13635,31 @@ msgstr "反馈"
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "基础收藏集"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
-msgstr ""
+msgstr "精选应用列表"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "Operator Shelf"
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "16进制颜色"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "必须为有效的16进制颜色代码，例如：#FF0035 。"
 
 #: mkt/collections/serializers.py:186
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
-msgstr ""
+msgstr "在相同分类、运营商、地区下，你最多只能有一个精选应用/Operator Shelf 收藏集组合。"
 
 #: mkt/commonplace/templates/commonplace/index.html:15
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
+msgstr "火狐应用市场是网络平台下应用的官方来源。"
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:49
@@ -14739,19 +14741,19 @@ msgstr "津巴布韦"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "应用程序管理 API"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
-msgstr ""
+msgstr "这个应用程序需要 `navigator.mozApps` API 以安装并管理其他应用程序。"
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "已打包应用程序安装 API"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
-msgstr ""
+msgstr "这个应用程序需要 `navigator.mozApps.installPackage` API 以安装其他应用程序。"
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
@@ -14783,7 +14785,7 @@ msgstr "存档"
 
 #: mkt/constants/features.py:52
 msgid "Battery"
-msgstr ""
+msgstr "电池"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
@@ -15249,7 +15251,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:436
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "从 zip 文件中解压缩资源配置时出错。"
 
 #: mkt/developers/forms.py:489
 msgid "Provide a detailed description of your app"
@@ -20029,7 +20031,7 @@ msgstr "我如何将我的应用上传到 Firefox 市场？"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
 msgid "I need help with the App Manifest."
-msgstr "我需要有关应用清单的帮助。"
+msgstr "我需要有关应用资源配置的帮助。"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
 msgid "How do I create an installable App?"
@@ -20119,7 +20121,7 @@ msgstr "第三方库"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:93
 msgid "Uses a volo.js script to optimize app before release, i.e. by auto-generating an appcache manifest."
-msgstr "在发布前使用 volo.js 脚本优化应用，例如自动生成应用缓存清单。"
+msgstr "在发布前使用 volo.js 脚本优化应用，例如自动生成应用缓存资源配置。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:102 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:93
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:70
@@ -20557,7 +20559,7 @@ msgstr "全天"
 
 #: mkt/lookup/templates/lookup/app_summary.html:34
 msgid "Manifest"
-msgstr "清单"
+msgstr "资源配置"
 
 #: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:33 mkt/reviewers/templates/reviewers/includes/mobile_details.html:55
 msgid "View"
@@ -20912,7 +20914,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:80
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr "清单下次更新时通知我。（随后的更新将不再产生邮件）"
+msgstr "下次更新资源配置文件时通知我。（随后的更新将不再产生邮件）"
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:136
@@ -21818,7 +21820,7 @@ msgstr "提交一个应用"
 
 #: mkt/submit/templates/submit/details.html:23
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
-msgstr "请检查下面列出的您的信息，我们已经尽量根据您的清单预先填入了一些。"
+msgstr "请检查下面列出的您的信息，我们已经尽量根据您的资源配置文件预先填入了一些。"
 
 #: mkt/submit/templates/submit/details.html:48
 msgid "Open details page"
