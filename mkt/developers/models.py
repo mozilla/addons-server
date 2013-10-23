@@ -61,6 +61,8 @@ class PaymentAccount(amo.models.ModelBase):
     inactive = models.BooleanField(default=False)
     bango_package_id = models.IntegerField(blank=True, null=True)
 
+    shared = models.BooleanField(default=False)
+
     BANGO_PACKAGE_VALUES = (
         'adminEmailAddress', 'supportEmailAddress', 'financeEmailAddress',
         'paypalEmailAddress', 'vendorName', 'companyName', 'address1',
