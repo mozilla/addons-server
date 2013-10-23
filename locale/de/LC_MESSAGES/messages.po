@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-19 09:09+0000\n"
+"PO-Revision-Date: 2013-10-23 18:52+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: Mozilla Add-ons <amo-editors@mozilla.org>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382173768.0\n"
+"X-POOTLE-MTIME: 1382554350.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -370,7 +370,10 @@ msgstr "Helfen Sie, die weitere Entwicklung von <strong>%(addon_name)s</strong> 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Um Ihre Unterstützung für <b>%(addon_name)s</b> zu zeigen, bittet Sie der Entwickler, per PayPal eine Spende an die <a href=\"%(charity_url)s\">%(charity_name)s</a> zu geben."
+msgstr ""
+"Um Ihre Unterstützung für <b>%(addon_name)s</b> zu zeigen, bittet Sie der "
+"Entwickler, per <a href=\"%(paypal_url)s\">PayPal</a> eine Spende an die <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> zu geben."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
@@ -1996,7 +1999,8 @@ msgstr "Gerät(e) hinzugefügt"
 
 #: apps/amo/log.py:527
 msgid "{addon} device support manually changed by reviewer."
-msgstr "Geräteunterstützung von {0} wurde manuell durch den Überprüfer geändert."
+msgstr ""
+"Geräteunterstützung von {addon} wurde manuell durch den Überprüfer geändert."
 
 #: apps/amo/log.py:528
 msgid "Device(s) Changed by Reviewer"
@@ -11273,8 +11277,10 @@ msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please "
 "note that Mozilla does not offer developer recommendations."
 msgstr ""
-"Ja. Sie könnten externe Entwickler über die <a href=\"%(list_url)s\">Liste „mozilla.jobs“</a>, <a href=\"%(mz_url)s\">mozillaZine-Foren</a> oder <a href=\"%(list_url)s\">das Mozilla-Wiki</a> "
-"finden. Beachten Sie bitte, dass Mozilla keine Empfehlungen für Entwickler bietet."
+"Ja. Sie könnten externe Entwickler über die <a href=\"%(list_url)s\">Liste "
+"„mozilla.jobs“</a>, <a href=\"%(mz_url)s\">mozillaZine-Foren</a> oder <a "
+"href=\"%(wiki_url)s\">das Mozilla-Wiki</a> finden. Beachten Sie bitte, dass "
+"Mozilla keine Empfehlungen für Entwickler bietet."
 
 #: apps/pages/templates/pages/dev_faq.html:284
 msgid "Can I host my own add-on?"
@@ -18702,8 +18708,11 @@ msgid ""
 "Since Firefox OS is an open source platform, code and tools are available to build and install Firefox OS on your own device. Build and installation instructions can be found on <a href=\"%(url_mdn)"
 "s\">MDN</a>. Firefox OS preview devices will be available via <a href=\"%(url_phone)s\">Geeksphone</a> soon."
 msgstr ""
-"Da Firefox OS eine quelloffene Plattform ist, gibt es Quelltext und Werkzeuge, um Firefox OS zu erstellen und auf Ihrem eigenen Gerät zu installieren. Anleitungen zum Erstellen und Installieren "
-"gibt es im <a href=\"%(url_mdn)s\">MDN</a>. Firefox-OS-Vorschaugeräte gibt es bald über <a href=\"%(url_mdn)s\">Geeksphone</a>."
+"Da Firefox OS eine quelloffene Plattform ist, gibt es Quelltext und "
+"Werkzeuge, um Firefox OS zu erstellen und auf Ihrem eigenen Gerät zu "
+"installieren. Anleitungen zum Erstellen und Installieren gibt es im <a "
+"href=\"%(url_mdn)s\">MDN</a>. Firefox-OS-Vorschaugeräte gibt es bald über <a "
+"href=\"%(url_phone)s\">Geeksphone</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:216
 msgid "App Submission and Distribution"
@@ -19949,8 +19958,10 @@ msgid ""
 "If you find any bugs, please <a href=\"%(issues)s\">file them on GitHub</a>. If you have a question, try asking us on the <a href=\"%(mailing_list)s\"> dev-developer-tools mailing list</a> or on <a "
 "href=\"%(irc)s\">#devtools on irc.mozilla.org</a>."
 msgstr ""
-"Wenn Sie Fehler finden, <a href=\"%(issues)s\">melden Sie sie bitte auf GitHub</a>. Wenn Sie Fragen haben, fragen Sie auf der <a href=\"%(dev_tools_list)s\">dev-developer-tools-Mailingliste</a> "
-"oder in <a href=\"%(irc)s\">#devtools bei irc.mozilla.org</a>."
+"Wenn Sie Fehler finden, <a href=\"%(issues)s\">melden Sie sie bitte auf "
+"GitHub</a>. Wenn Sie Fragen haben, fragen Sie auf der <a href=\"%"
+"(mailing_list)s\">dev-developer-tools-Mailingliste</a> oder in <a href=\"%"
+"(irc)s\">#devtools bei irc.mozilla.org</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
