@@ -5,11 +5,10 @@ import commonware.log
 from email_reply_parser import EmailReplyParser
 import waffle
 
-from access import acl
 from access.models import Group
 from comm.models import (CommunicationNote, CommunicationNoteRead,
                          CommunicationThreadCC, CommunicationThread,
-                         CommunicationThreadToken)
+                         CommunicationThreadToken, user_has_perm_thread)
 from mkt.constants import comm
 from users.models import UserProfile
 
@@ -24,70 +23,6 @@ action_note_types = {
     'reject': comm.REJECTION,
     'resubmit': comm.RESUBMISSION
 }
-
-
-class ThreadObjectPermission(object):
-    """
-    Class for determining user permissions on a thread.
-    """
-
-    def check_acls(self, acl_type):
-        """Check ACLs."""
-        user = self.user_profile
-        obj = self.thread_obj
-        if acl_type == 'moz_contact':
-            return user.email in obj.addon.get_mozilla_contacts()
-        elif acl_type == 'admin':
-            return acl.action_allowed_user(user, 'Admin', '%')
-        elif acl_type == 'reviewer':
-            return acl.action_allowed_user(user, 'Apps', 'Review')
-        elif acl_type == 'senior_reviewer':
-            return acl.action_allowed_user(user, 'Apps', 'ReviewEscalated')
-        else:
-            raise 'Invalid ACL lookup.'
-
-        return False
-
-    def user_has_permission(self, thread, profile):
-        """
-        Check if the user has read/write permissions on the given thread.
-
-        Developers of the add-on used in the thread, users in the CC list,
-        and users who post to the thread are allowed to access the object.
-
-        Moreover, other object permissions are also checked agaisnt the ACLs
-        of the user.
-        """
-        self.thread_obj = thread
-        self.user_profile = profile
-        user_post = CommunicationNote.objects.filter(author=profile,
-            thread=thread)
-        user_cc = CommunicationThreadCC.objects.filter(user=profile,
-            thread=thread)
-
-        if user_post.exists() or user_cc.exists():
-            return True
-
-        # User is a developer of the add-on and has the permission to read.
-        user_is_author = profile.addons.filter(pk=thread.addon_id)
-        if thread.read_permission_developer and user_is_author.exists():
-            return True
-
-        if thread.read_permission_reviewer and self.check_acls('reviewer'):
-            return True
-
-        if (thread.read_permission_senior_reviewer and
-            self.check_acls('senior_reviewer')):
-            return True
-
-        if (thread.read_permission_mozilla_contact and
-            self.check_acls('moz_contact')):
-            return True
-
-        if thread.read_permission_staff and self.check_acls('admin'):
-            return True
-
-        return False
 
 
 class CommEmailParser(object):
@@ -128,8 +63,7 @@ def save_from_email_reply(reply_text):
         log.error('An email was skipped with non-existing uuid %s' % uuid)
         return False
 
-    if (ThreadObjectPermission().user_has_permission(tok.thread, tok.user) and
-        tok.is_valid()):
+    if (user_has_perm_thread(tok.thread, tok.user) and tok.is_valid()):
         n = CommunicationNote.objects.create(note_type=comm.NO_ACTION,
             thread=tok.thread, author=tok.user, body=parser.get_body())
         log.info('A new note has been created (from %s using tokenid %s)' %
