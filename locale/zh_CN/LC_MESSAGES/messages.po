@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-23 09:29+0000\n"
-"Last-Translator: xcffl <hc5023295@gmail.com>\n"
+"PO-Revision-Date: 2013-10-23 09:42+0000\n"
+"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382520553.0\n"
+"X-POOTLE-MTIME: 1382521350.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -14993,7 +14993,7 @@ msgstr ""
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC 媒体流"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
@@ -15017,7 +15017,7 @@ msgstr ""
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Web 语音合成"
 
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
@@ -15025,7 +15025,7 @@ msgstr ""
 
 #: mkt/constants/features.py:260
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Web 语音识别"
 
 #: mkt/constants/features.py:261
 msgid "The app requires the platform to allow the use of speech-to-text."
@@ -15053,7 +15053,7 @@ msgstr ""
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
@@ -15061,7 +15061,7 @@ msgstr ""
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP 套接字"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
@@ -15253,7 +15253,7 @@ msgstr "您至少应该上传一个截屏或视频。"
 
 #: mkt/developers/forms.py:424
 msgid "Packaged app too large for submission. Packages must be less than %s."
-msgstr ""
+msgstr "打包的应用程序太大，无法提交。包的大小必须小于 %s。"
 
 #: mkt/developers/forms.py:436
 msgid "Error extracting manifest from zip file."
@@ -15261,7 +15261,7 @@ msgstr "从 zip 文件中解压缩资源配置时出错。"
 
 #: mkt/developers/forms.py:489
 msgid "Provide a detailed description of your app"
-msgstr ""
+msgstr "在修改预设语言之前，您必须有该语言的名称和说明。您目前还缺少 %s。"
 
 #: mkt/developers/forms.py:490 mkt/submit/forms.py:359
 msgid "This description will appear on the details page."
