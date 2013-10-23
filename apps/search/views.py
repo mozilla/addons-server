@@ -54,7 +54,7 @@ def _personas(request):
     results = _filter_search(request, qs, form.cleaned_data, filters,
                              sorting=mapping, types=[amo.ADDON_PERSONA])
 
-    query = form.cleaned_data.get('q', '')
+    form_data = form.cleaned_data.get('q', '')
 
     search_opts = {}
     search_opts['limit'] = form.cleaned_data.get('pp', DEFAULT_NUM_PERSONAS)
@@ -63,7 +63,7 @@ def _personas(request):
 
     pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
     categories, filter, base, category = browse.views.personas_listing(request)
-    c = dict(pager=pager, form=form, categories=categories, query=query,
+    c = dict(pager=pager, form=form, categories=categories, query=form_data,
              filter=filter, search_placeholder='themes')
     return jingo.render(request, 'search/personas.html', c)
 
@@ -95,7 +95,7 @@ def _collections(request):
                              sorting_default='-weekly_subscribers',
                              types=amo.COLLECTION_SEARCH_CHOICES)
 
-    query = form.cleaned_data.get('q', '')
+    form_data = form.cleaned_data.get('q', '')
 
     search_opts = {}
     search_opts['limit'] = form.cleaned_data.get('pp', DEFAULT_NUM_COLLECTIONS)
@@ -104,7 +104,7 @@ def _collections(request):
     search_opts['sort'] = form.cleaned_data.get('sort')
 
     pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
-    c = dict(pager=pager, form=form, query=query, opts=search_opts,
+    c = dict(pager=pager, form=form, query=form_data, opts=search_opts,
              filter=bandwagon.views.get_filter(request),
              search_placeholder='collections')
     return jingo.render(request, 'search/collections.html', c)
@@ -409,17 +409,17 @@ def search(request, tag_name=None, template=None):
     form = ESSearchForm(request.GET or {})
     form.is_valid()  # Let the form try to clean data.
 
-    query = form.cleaned_data
+    form_data = form.cleaned_data
     if tag_name:
-        query['tag'] = tag_name
+        form_data['tag'] = tag_name
 
     if category == 'collections':
         return _collections(request)
-    elif category == 'themes' or query.get('atype') == amo.ADDON_PERSONA:
+    elif category == 'themes' or form_data.get('atype') == amo.ADDON_PERSONA:
         return _personas(request)
 
     sort, extra_sort = split_choices(form.sort_choices, 'created')
-    if query.get('atype') == amo.ADDON_SEARCH:
+    if form_data.get('atype') == amo.ADDON_SEARCH:
         # Search add-ons should not be searched by ADU, so replace 'Users'
         # sort with 'Weekly Downloads'.
         sort, extra_sort = list(sort), list(extra_sort)
@@ -443,28 +443,28 @@ def search(request, tag_name=None, template=None):
                'downloads': '-weekly_downloads',
                'updated': '-last_updated',
                'hotness': '-hotness'}
-    qs = _filter_search(request, qs, query, filters, mapping, types=types)
+    qs = _filter_search(request, qs, form_data, filters, mapping, types=types)
 
     pager = amo.utils.paginate(request, qs)
 
     ctx = {
         'is_pjax': request.META.get('HTTP_X_PJAX'),
         'pager': pager,
-        'query': query,
+        'query': form_data,
         'form': form,
         'sort_opts': sort,
         'extra_sort_opts': extra_sort,
-        'sorting': sort_sidebar(request, query, form),
-        'sort': query.get('sort'),
+        'sorting': sort_sidebar(request, form_data, form),
+        'sort': form_data.get('sort'),
     }
     if not ctx['is_pjax']:
         facets = pager.object_list.facets
         ctx.update({
             'tag': tag_name,
-            'categories': category_sidebar(request, query, facets),
-            'platforms': platform_sidebar(request, query, facets),
-            'versions': version_sidebar(request, query, facets),
-            'tags': tag_sidebar(request, query, facets),
+            'categories': category_sidebar(request, form_data, facets),
+            'platforms': platform_sidebar(request, form_data, facets),
+            'versions': version_sidebar(request, form_data, facets),
+            'tags': tag_sidebar(request, form_data, facets),
         })
     return jingo.render(request, template, ctx)
 
@@ -478,15 +478,15 @@ class FacetLink(object):
         self.children = children or []
 
 
-def sort_sidebar(request, query, form):
-    sort = query.get('sort')
+def sort_sidebar(request, form_data, form):
+    sort = form_data.get('sort')
     return [FacetLink(text, dict(sort=key), key == sort)
             for key, text in form.sort_choices]
 
 
-def category_sidebar(request, query, facets):
+def category_sidebar(request, form_data, facets):
     APP = request.APP
-    qatype, qcat = query.get('atype'), query.get('cat')
+    qatype, qcat = form_data.get('atype'), form_data.get('cat')
     webapp = qatype == amo.ADDON_WEBAPP
     cats = [f['term'] for f in facets['categories']]
     categories = Category.objects.filter(id__in=cats)
@@ -532,10 +532,15 @@ def category_sidebar(request, query, facets):
     return rv
 
 
-def version_sidebar(request, query, facets):
-    appver = query.get('appver') or request.session.get('search.appver')
-    if query.get('appver'):
+def version_sidebar(request, form_data, facets):
+    # If no appver is in the request we read it from the session.
+    # If appver is in the request, we read it cleaned via form_data.
+    if 'appver' in request.GET or form_data.get('appver'):
+        appver = form_data.get('appver')
         request.session['search.appver'] = appver
+    else:
+        appver = request.session.get('search.appver')
+
     app = unicode(request.APP.pretty)
     exclude_versions = getattr(request.APP, 'exclude_versions', [])
     # L10n: {0} is an application, such as Firefox. This means "any version of
@@ -562,8 +567,8 @@ def version_sidebar(request, query, facets):
     return rv
 
 
-def platform_sidebar(request, query, facets):
-    qplatform = query.get('platform')
+def platform_sidebar(request, form_data, facets):
+    qplatform = form_data.get('platform')
     app_platforms = request.APP.platforms.values()
     ALL = app_platforms.pop(0)
 
@@ -583,8 +588,8 @@ def platform_sidebar(request, query, facets):
     return rv
 
 
-def tag_sidebar(request, query, facets):
-    qtag = query.get('tag')
+def tag_sidebar(request, form_data, facets):
+    qtag = form_data.get('tag')
     tags = [facet['term'] for facet in facets['tags']]
     rv = [FacetLink(_(u'All Tags'), dict(tag=None), not qtag)]
     rv += [FacetLink(tag, dict(tag=tag), tag == qtag) for tag in tags]
