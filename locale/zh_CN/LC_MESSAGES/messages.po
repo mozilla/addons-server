@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-23 01:36+0000\n"
+"PO-Revision-Date: 2013-10-23 04:36+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382492173.0\n"
+"X-POOTLE-MTIME: 1382502993.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -1603,11 +1603,11 @@ msgstr "{addon} 已创建。"
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr "{addons} 的属性已编辑。"
+msgstr "{addon} 的属性已编辑。"
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr "{addons} 的描述已编辑。"
+msgstr "{addon} 的描述已编辑。"
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
@@ -1694,7 +1694,7 @@ msgstr "已通过初步审核"
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
-msgstr "{addon} {verion} 被退回。"
+msgstr "{addon} {version} 已被退回。"
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
@@ -1777,11 +1777,11 @@ msgstr "{addon} 已从分类 {0} 精选中移除。"
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr "{addons} 已加入精选附加组件。"
+msgstr "{addon} 已加入精选附加组件。"
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr "{addons} 已从精选附加组件中移除。"
+msgstr "{addon} 已不再是精选项目。"
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
@@ -5009,7 +5009,9 @@ msgstr "订阅此收取点"
 msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
-msgstr "该add-on与最新 %(app_name)s的发布版本 <b>%(app_name)s %(app_version)</b>不兼容。请慎重考虑更新您的add-on信息，或者上传一个新版本的add-on。"
+msgstr ""
+"该add-on与最新 %(app_name)s的发布版本 <b>%(app_name)s %(app_version)s</b"
+">不兼容。请慎重考虑更新您的add-on信息，或者上传一个新版本的add-on。"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid ""
@@ -6723,7 +6725,7 @@ msgstr "浏览 <a href=\"%(link_reference)s\">API 与语言参考</a>查找您�
 
 #: apps/devhub/templates/devhub/docs/how-to.html:48 apps/devhub/templates/devhub/docs/reference.html:318
 msgid "Need help? <a href=\"https://forums.addons.mozilla.org\">Visit our forums</a>"
-msgstr "已经知道您要找什么了？ <a href=\"%(link_search)s\">去搜索吧！</a>"
+msgstr "需要帮助吗？<a href=\"https://forums.addons.mozilla.org\">请访问我们的论坛</a>"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:77
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides."
@@ -7334,8 +7336,8 @@ msgstr "禁止有以下任何行为的附加组件："
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
 msgstr ""
-"附加组件植入了已知的<a href=\"http://zh.wikipedia.org/wiki/%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6\">间谍软件</a>或<a href=\"http://zh.wikipedia.org/wiki/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6\">恶意软件"
-"</a>"
+"附加组件植入了已知的<a href=\"http://zh.wikipedia.org/wiki/间谍软件\">间谍软件</a>或<a "
+"href=\"http://zh.wikipedia.org/wiki/恶意软件\">恶意软件</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
@@ -14901,7 +14903,9 @@ msgstr "该应用需要支持触控事件的平台。此选项表示该应用在
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr "智能手机尺寸的显示屏 （qHD）"
+msgstr ""
+"此应用程序要求平台必须包含智能手机尺寸的屏幕（有 qHD "
+"分辨率）。此选项表示该应用程序将无法在大尺寸屏幕（例如平板电脑，台式机或者高分辨率屏幕的手机）中使用。"
 
 #: mkt/constants/features.py:152
 msgid ""
