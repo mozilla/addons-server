@@ -1,10 +1,6 @@
 {% extends 'reviewers/themes/base.html' %}
 
 {% block content %}
-  <section id="reviewers-score-bar" class="island full c">
-    {{ reviewers_score_bar(addon_type=amo.ADDON_PERSONA) }}
-  </section>
-
   <div class="queue-search theme-search island c"
        data-api-url="{{ url('reviewers.themes.search') }}"
        data-review-url="{{ url('reviewers.themes.single', '__slug__') }}">

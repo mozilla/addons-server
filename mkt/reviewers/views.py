@@ -327,13 +327,25 @@ def _review(request, addon, version):
                 amo.log(amo.LOG.REVIEW_FEATURES_OVERRIDE, addon,
                         addon.current_version, details={'comments': msg})
 
-        form.helper.process()
+        score = form.helper.process()
 
         if form.cleaned_data.get('notify'):
             EditorSubscription.objects.get_or_create(user=request.amo_user,
                                                      addon=addon)
 
-        messages.success(request, _('Review successfully processed.'))
+        # Success message.
+        if score:
+            score = ReviewerScore.objects.filter(user=request.amo_user)[0]
+            # L10N: {0} is the type of review. {1} is the points they earned.
+            #       {2} is the points they now have total.
+            success = _(
+              '"{0}" successfully processed (+{1} points, {2} total).'.format(
+              unicode(amo.REVIEWED_CHOICES[score.note_key]), score.score,
+              ReviewerScore.get_total(request.amo_user)))
+        else:
+            success = _('Review successfully processed.')
+        messages.success(request, success)
+
         return redirect(redirect_url)
 
     canned = AppCannedResponse.objects.all()
