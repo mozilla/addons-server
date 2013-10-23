@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-17 15:43+0000\n"
+"PO-Revision-Date: 2013-10-23 19:32+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382024632.0\n"
+"X-POOTLE-MTIME: 1382556740.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -461,7 +461,7 @@ msgstr "{0} Bewertungen"
 
 #: media/js/impala/stats/chart.js:275 media/js/mkt/stats/chart.js:323 media/js/mkt/stats/chart_column.js:125
 msgid "{0} sales"
-msgstr "Verkäufe"
+msgstr "{0} Verkäufe"
 
 #: media/js/impala/stats/chart.js:276 media/js/mkt/stats/chart.js:324 media/js/mkt/stats/chart_column.js:126
 msgid "{0} refunds"
@@ -1307,8 +1307,8 @@ msgstr[1] "{0} Add-ons auf eine Max-Version von {1} setzen und Autoren per E-Mai
 #: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
 msgid_plural "This will send emails to the authors of {0} files."
-msgstr[0] "Damit werden E-Mails an die Autoren von [0} Datei geschickt."
-msgstr[1] "Damit werden E-Mails an die Autoren von [0} Dateien geschickt."
+msgstr[0] "Damit werden E-Mails an die Autoren von {0} Datei geschickt."
+msgstr[1] "Damit werden E-Mails an die Autoren von {0} Dateien geschickt."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."

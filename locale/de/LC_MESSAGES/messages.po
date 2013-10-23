@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-23 18:52+0000\n"
+"PO-Revision-Date: 2013-10-23 19:41+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: Mozilla Add-ons <amo-editors@mozilla.org>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382554350.0\n"
+"X-POOTLE-MTIME: 1382557281.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -197,7 +197,7 @@ msgstr "Mein Add-on passt in keine der Kategorien"
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Weitere Add-ons von %(author)s"
-msgstr[1] "Weitere Add-ons von diesen Autoren"
+msgstr[1] "Weitere Add-ons von %(author)s"
 
 #: apps/addons/templates/addons/author_other_addons.html:27
 msgctxt "addons_author_addons_submit"
@@ -379,7 +379,10 @@ msgstr ""
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
-msgstr "Um Ihre Unterstützung für <b>%(addon_name)s</b> zu zeigen, bittet Sie der Entwickler, per PayPal eine kleine Spende an <a href=\"%(charity_url)s\">%(charity_name)s</a> zu geben."
+msgstr ""
+"Um Ihre Unterstützung für <b>%(addon_name)s</b> zu zeigen, bittet Sie der "
+"Entwickler, per <a href=\"%(paypal_url)s\">PayPal</a> eine kleine Spende an <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> zu geben."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -665,7 +668,7 @@ msgstr "Hinzugefügt am {0}"
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
 msgstr[0] "%(num)s Download pro Woche"
-msgstr[1] "%(num)s Downloads pro Woche\t"
+msgstr[1] "%(num)s Downloads pro Woche"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
@@ -860,7 +863,9 @@ msgstr "<b>{0}</b> Benutzer"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Um dieses Add-on und tausende andere zu installieren, <strong>laden Sie Firefox herunter</strong>, einen kostenlosen und offenen Web-Browser von Mozilla."
+msgstr ""
+"Um dieses Add-on und tausende andere zu installieren, <b>laden Sie Firefox "
+"herunter</b>, einen kostenlosen und offenen Web-Browser von Mozilla."
 
 #: apps/addons/templates/addons/popups.html:21 apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
@@ -10220,7 +10225,7 @@ msgstr "Logbuch-Details"
 msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
 msgstr[0] "Vollständige Überprüfung ({num})"
-msgstr[1] "Vollständige Überprüfungen\t ({num})"
+msgstr[1] "Vollständige Überprüfungen ({num})"
 
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
