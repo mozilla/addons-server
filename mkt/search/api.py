@@ -50,7 +50,12 @@ class SearchResource(CORSResource, MarketplaceResource):
         return form.cleaned_data
 
     def get_region(self, request):
+        # Overridden by reviewers search api to disable region filtering.
         return getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+
+    def get_feature_profile(self, request):
+        # Overridden by reviewers search api to disable profile filtering.
+        return get_feature_profile(request)
 
     def get_query(self, request, base_filters=None):
         region = self.get_region(request)
@@ -60,7 +65,7 @@ class SearchResource(CORSResource, MarketplaceResource):
 
     def apply_filters(self, request, qs, data=None):
         # Build device features profile filter.
-        profile = get_feature_profile(request)
+        profile = self.get_feature_profile(request)
 
         # Build region filter.
         region = self.get_region(request)

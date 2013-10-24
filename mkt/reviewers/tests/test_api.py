@@ -243,6 +243,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
 
         res = self.client.get(self.url + (qs,))
         eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
