@@ -14,7 +14,7 @@ from babel import numbers
 from curling.lib import HttpClientError
 from pyquery import PyQuery as pq
 from nose.exc import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from slumber import exceptions
 
 import amo
@@ -236,7 +236,7 @@ class TestBangoRedirect(TestCase):
             'authentication_token': self.authentication_token,
         }
         res = self.client.get(self.portal_url)
-        eq_(res.status_code, 204)
+        eq_(res.status_code, 302)
         eq_(api.bango.login.post.call_args[0][0]['packageId'], TEST_PACKAGE_ID)
         redirect_url = res['Location']
         assert self.authentication_token in redirect_url, redirect_url
@@ -244,11 +244,12 @@ class TestBangoRedirect(TestCase):
 
     @mock.patch('mkt.developers.views_payments.client.api')
     def test_bango_portal_redirect_api_error(self, api):
-        err = {'errors': 'Something went wrong.'}
-        api.bango.login.post.side_effect = HttpClientError(content=err)
-        res = self.client.get(self.portal_url)
-        eq_(res.status_code, 400)
-        eq_(json.loads(res.content), err)
+        message = 'Something went wrong.'
+        error = {'__all__': [message]}
+        api.bango.login.post.side_effect = HttpClientError(content=error)
+        res = self.client.get(self.portal_url, follow=True)
+        eq_(res.redirect_chain, [('http://testserver/lookup/', 302)])
+        ok_(message in [msg.message for msg in res.context['messages']][0])
 
     @mock.patch('mkt.developers.views_payments.client.api')
     def test_bango_portal_redirect_role_error(self, api):
