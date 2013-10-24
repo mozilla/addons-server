@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-24 07:29+0000\n"
-"Last-Translator: saydax <saydax@tnctr.com>\n"
+"PO-Revision-Date: 2013-10-24 20:16+0000\n"
+"Last-Translator: Selim <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382599754.0\n"
+"X-POOTLE-MTIME: 1382645785.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1193,7 +1193,7 @@ msgstr "Destek sitesi"
 
 #: apps/addons/templates/addons/impala/details.html:203
 msgid "Support E-mail"
-msgstr "Destek e-postası"
+msgstr "E-posta desteği"
 
 #: apps/addons/templates/addons/impala/details.html:215 apps/devhub/models.py:382
 msgid "Version {0}"
