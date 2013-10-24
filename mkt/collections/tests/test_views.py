@@ -754,7 +754,7 @@ class TestCollectionViewSetDuplicate(BaseCollectionViewSetTest):
         eq_(res.status_code, 201)
         new_collection = Collection.objects.get(pk=data['id'])
         ok_(new_collection.pk != self.collection.pk)
-        eq_(new_collection.apps.all(), self.collection.apps.all())
+        eq_(list(new_collection.apps.all()), list(self.collection.apps.all()))
         eq_(len(data['apps']), len(self.apps))
         for order, app in enumerate(self.apps):
             eq_(int(data['apps'][order]['id']), self.apps[order].pk)
