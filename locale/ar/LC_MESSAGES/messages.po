@@ -6,19 +6,21 @@
 # Anas Husseini <linux.anas@gmail.com>, 2009.
 # Khaled Hosny <khaledhosny@eglug.org>, 2009.
 # Ibrahim Saed <ibraheem5000@gmail.com>, 2013.
+# Ellery <linux.anas@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-02-27 21:53+0200\n"
-"Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
-"Language-Team: <doc@arabeyes.org>\n"
+"PO-Revision-Date: 2013-10-24 09:38+0300\n"
+"Last-Translator: Ellery <linux.anas@gmail.com>\n"
+"Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Virtaal 0.7.1\n"
 
 #: apps/addons/buttons.py:203
@@ -221,7 +223,7 @@ msgstr "إضافتي لا تناسب أي من التصنيفات"
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "إضافات أخرى من %(author)s"
-msgstr[1] "إضافات أخرى من %(author)s"
+msgstr[1] "إضافات أخرى من هؤلاء المطورين"
 msgstr[2] "إضافات أخرى من هؤلاء المطورين"
 msgstr[3] "إضافات أخرى من هؤلاء المطورين"
 msgstr[4] "إضافات أخرى من هؤلاء المطورين"
@@ -12271,7 +12273,7 @@ msgstr "اقرأ المزيد&nbsp;&raquo;"
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "شاهد كل التعليقات (%(cnt)s)"
+msgstr[0] "شاهد كل التعليقات "
 msgstr[1] "شاهد كل التعليقات (%(cnt)s)"
 msgstr[2] "شاهد كل التعليقات (%(cnt)s)"
 msgstr[3] "شاهد كل التعليقات (%(cnt)s)"
@@ -13705,7 +13707,7 @@ msgstr ""
 
 #: apps/versions/feeds.py:27
 msgid "%s Version History"
-msgstr "تاريخ إصدارات {0}"
+msgstr "تأريخ إصدار %s"
 
 #: apps/versions/feeds.py:35
 msgid "Version History with Changelogs"
