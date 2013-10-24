@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2011-02-23 18:03+0200\n"
+"PO-Revision-Date: 2013-10-24 06:25+0000\n"
 "Last-Translator: Romi <romihardiyanto@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -16,7 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1382595954.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -191,7 +192,7 @@ msgstr "Pengaya saya tidak cocok ke kategori apa pun"
 #: apps/addons/templates/addons/author_other_addons.html:4 apps/addons/templates/addons/impala/details-more.html:93
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Pengaya lain oleh penyusun ini"
+msgstr[0] "Pengaya lain oleh %(author)s"
 
 #: apps/addons/templates/addons/author_other_addons.html:27
 msgctxt "addons_author_addons_submit"
