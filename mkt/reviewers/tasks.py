@@ -79,7 +79,7 @@ def approve_rereview(theme):
         create_persona_preview_images(
             src=reupload.header_path,
             full_dst=[
-                reupload.theme.preview_path,
+                reupload.theme.thumb_path,
                 reupload.theme.icon_path],
             set_modified_on=[reupload.theme.addon])
 
