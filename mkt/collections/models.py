@@ -9,6 +9,7 @@ from addons.models import Category, clean_slug
 from amo.decorators import use_master
 from amo.utils import to_language
 from mkt.webapps.models import Webapp
+from mkt.webapps.tasks import index_webapps
 from translations.fields import PurifiedField, save_signal
 
 from .constants import COLLECTION_TYPES
@@ -42,6 +43,8 @@ class Collection(amo.models.ModelBase):
     can_be_hero = models.BooleanField(default=False, help_text=(
         'Indicates whether an operator shelf collection can be displayed with'
         'a hero graphic'))
+    apps = models.ManyToManyField(Webapp, through='CollectionMembership',
+                                  related_name='appcollections')
 
     objects = amo.models.ManagerBase()
     public = PublicCollectionsManager()
@@ -72,24 +75,20 @@ class Collection(amo.models.ModelBase):
                             str(self.pk / 1000),
                             'app_collection_%s.png' % (self.pk,))
 
-    def apps(self):
-        """
-        Return a list containing all apps in this collection.
-        """
-        return [a.app for a in self.collectionmembership_set.all()]
-
     def add_app(self, app, order=None):
         """
         Add an app to this collection. If specified, the app will be created
         with the specified `order`. If not, it will be added to the end of the
         collection.
         """
-        if not order:
+        if order is None:
             qs = CollectionMembership.objects.filter(collection=self)
             aggregate = qs.aggregate(models.Max('order'))['order__max']
             order = aggregate + 1 if aggregate is not None else 0
-        return CollectionMembership.objects.create(collection=self, app=app,
+        rval = CollectionMembership.objects.create(collection=self, app=app,
                                                    order=order)
+        index_webapps([app.pk])
+        return rval
 
     def remove_app(self, app):
         """
@@ -102,6 +101,7 @@ class Collection(amo.models.ModelBase):
             return False
         else:
             membership.delete()
+            index_webapps([app.pk])
             return True
 
     def reorder(self, new_order):
@@ -114,11 +114,12 @@ class Collection(amo.models.ModelBase):
         passed order. A ValueError will be raised if each app in the
         collection is not included in the ditionary.
         """
-        if set(a.pk for a in self.apps()) != set(new_order):
+        if set(a.pk for a in self.apps.all()) != set(new_order):
             raise ValueError('Not all apps included')
         for order, pk in enumerate(new_order):
             CollectionMembership.objects.get(collection=self,
                                              app_id=pk).update(order=order)
+        index_webapps(new_order)
 
     def has_curator(self, userprofile):
         """

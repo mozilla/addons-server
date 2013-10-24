@@ -487,6 +487,8 @@ class BaseFeaturedTests(BaseOAuth, ESTestCase):
         self.create_switch('buchets')
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
+        AddonDeviceType.objects.create(addon=self.app,
+            device_type=DEVICE_CHOICES_IDS['firefoxos'])
         AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
         self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                       geolocation=True, indexeddb=True,
@@ -508,6 +510,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
             collection_type=self.col_type, category=self.cat, is_public=True,
             region=mkt.regions.US.id)
         self.qs['region'] = mkt.regions.US.slug
+        self.create_switch('collections-use-es-for-apps')
         # FIXME: mock the search part, we don't care about it
 
     def make_request(self):
@@ -524,6 +527,8 @@ class TestFeaturedCollections(BaseFeaturedTests):
 
     def test_apps_included(self):
         self.col.add_app(self.app)
+        self.refresh('webapp')
+
         res, json = self.test_added_to_results()
         eq_(len(json[self.prop_name][0]['apps']), 1)
 
@@ -532,9 +537,9 @@ class TestFeaturedCollections(BaseFeaturedTests):
         Test that the app list is passed through feature profile filtering.
         """
         self.app.current_version.features.update(has_pay=True)
-        self.reindex(Webapp, 'webapp')
-        self.qs.update({'dev': ''})
         self.col.add_app(self.app)
+        self.refresh('webapp')
+
         res, json = self.test_added_to_results()
         eq_(len(json[self.prop_name][0]['apps']), 0)
 

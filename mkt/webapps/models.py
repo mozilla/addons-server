@@ -1047,6 +1047,13 @@ class WebappIndexer(MappingType, Indexable):
                         'type': 'string',
                         'index': 'not_analyzed'
                     },
+                    'collection': {
+                        'type': 'object',
+                        'properties': {
+                            'id': {'type': 'long'},
+                            'order': {'type': 'short'}
+                        }
+                    },
                     'content_ratings': {
                         'type': 'object',
                         'dynamic': 'true',
@@ -1204,6 +1211,8 @@ class WebappIndexer(MappingType, Indexable):
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['category'] = list(obj.categories.values_list('slug', flat=True))
+        d['collection'] = [{'id': cms.collection_id, 'order': cms.order}
+                           for cms in obj.collectionmembership_set.all()]
         d['content_ratings'] = content_ratings if content_ratings else None
         d['current_version'] = version.version if version else None
         d['default_locale'] = obj.default_locale
