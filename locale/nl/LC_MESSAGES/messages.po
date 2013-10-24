@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-24 18:14+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2013-10-24 18:19+0000\n"
+"Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382638459.0\n"
+"X-POOTLE-MTIME: 1382638789.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1678,7 +1678,7 @@ msgstr "Voorbeeld van {addon} verwijderd."
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr "{versie} aan {addon} toegevoegd."
+msgstr "{version} aan {addon} toegevoegd."
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
