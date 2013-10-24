@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-24 11:17+0200\n"
+"PO-Revision-Date: 2013-10-24 11:34+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -189,7 +189,7 @@ msgstr "Jepni adresën email të një anëtari të ri të ekipit"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
-msgstr ""
+msgstr "U rifreskua"
 
 #: media/js/devreg/devhub.js:616
 #: media/js/zamboni/devhub.js:650
@@ -276,15 +276,15 @@ msgstr "HEBIC Grek/Kod Banke Indoneziane"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
+msgstr "Kod Sort UK/Irlande ose Prefiks Llogarie Zelande të re ose Kod BSB Australie"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Kod Banke Austriake/Zvicerane"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Kod Banke Daneze/Zvicerane"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
@@ -1260,7 +1260,7 @@ msgstr "Lypset Më Tepër Informacion"
 
 #: media/js/mkt/reviewers.js:108
 msgid "Contains Editor Comment"
-msgstr "Përmban Koment Redaktor"
+msgstr "Përmban Koment Redaktori"
 
 #: media/js/mkt/reviewers.js:112
 msgid "Premium App"
@@ -1319,7 +1319,7 @@ msgstr "Muaj"
 
 #: media/js/mkt/stats/chart.js:345
 msgid "Day"
-msgstr "Dite"
+msgstr "Ditë"
 
 #: media/js/mkt/stats/chart.js:352
 #: media/js/mkt/stats/csv_keys.js:9
@@ -1450,9 +1450,8 @@ msgid "Marketplace Search Results"
 msgstr "Përfundime Kërkimi te Marketplace"
 
 #: media/js/mkt/stats/csv_keys.js:120
-#, fuzzy
 msgid "Marketplace Search Results, Featured"
-msgstr "Përfundime Kërkimi Koleksionesh për %1$s"
+msgstr "Përfundime Kërkimi te Marketplace, Të zgjedhura"
 
 #: media/js/mkt/stats/csv_keys.js:156
 msgid "Units Sold, last {0} days"
@@ -1591,13 +1590,13 @@ msgstr "Shkarkoje për {0} sido qoftë"
 
 #: media/js/zamboni/buttons.js:306
 msgid "Not available for your platform"
-msgstr "Jo e passhme për platformën tuaj"
+msgstr "Jo i passhëm për platformën tuaj"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/zamboni/buttons.js:317
 #: media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
-msgstr "Joi passhëm për {0} {1}"
+msgstr "Jo i passhëm për {0} {1}"
 
 #: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
@@ -1605,12 +1604,12 @@ msgstr "Funksionon me {app} {min} - {max}"
 
 #: media/js/zamboni/buttons.js:382
 msgid "View other versions"
-msgstr "Shihni versione të tjerë"
+msgstr "Shihni versione të tjera"
 
 #: media/js/zamboni/buttons.js:597
 #: media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Na ndjeni, lypset të kini një shfletues me bazë Mozilla (si Firefox-i) për të instaluar një shtojcë kërkimi."
+msgstr "Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues me bazë Mozilla (si Firefox-i)."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1671,11 +1670,11 @@ msgstr "E keni shtuar një herë atë përdorues."
 
 #: media/js/zamboni/collections.js:703
 msgid "Add to favorites"
-msgstr "Shtojeni te të parapëlqyerat"
+msgstr "Shtojeni te të parapëlqyerit"
 
 #: media/js/zamboni/collections.js:707
 msgid "Remove from favorites"
-msgstr "Hiqe prej të parapëlqyerave"
+msgstr "Hiqe prej të parapëlqyerve"
 
 #: media/js/zamboni/collections.js:734
 msgid "Stop following"
@@ -1744,7 +1743,7 @@ msgstr "{name} po e shihte së pari këtë faqe."
 
 #: media/js/zamboni/editors.js:210
 msgid "Receipt checked by app."
-msgstr "llime mbi WordAds"
+msgstr ""
 
 #: media/js/zamboni/editors.js:212
 msgid "Receipt was not checked by app."
