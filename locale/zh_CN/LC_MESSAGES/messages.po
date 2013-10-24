@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-24 05:07+0000\n"
+"PO-Revision-Date: 2013-10-24 05:13+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382591269.0\n"
+"X-POOTLE-MTIME: 1382591602.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -15000,8 +15000,9 @@ msgid "The app requires the platform to allow web real-time communication browse
 msgstr ""
 
 #: mkt/constants/features.py:240
+#, fuzzy
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
@@ -15345,15 +15346,15 @@ msgstr "仅支持信用卡支付"
 
 #: mkt/developers/forms_payments.py:138
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "支持所有支付方式"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
+msgstr "免费应用的“应用内付款”必须开启"
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
-msgstr ""
+msgstr "不是有效的选项"
 
 #: mkt/developers/forms_payments.py:324 mkt/developers/templates/developers/payments/premium.html:246
 msgid "This is a paid upgrade of"
@@ -17042,11 +17043,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:81
 msgid "Save user data and settings without a server"
-msgstr ""
+msgstr "无需服务器就能保存用户数据与设置"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:84
 msgid "There are many JavaScript APIs for local, persistent storage. From most to least compatible across browers, your options are:"
-msgstr ""
+msgstr "有许多 Javascript API 能让您在本地永久保存信息。从最兼容到最不兼容不同浏览器，您的选择有："
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:91
 msgid ""
@@ -17135,11 +17136,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:233
 msgid "See also: <a href=\"%(url)s\">Online and offline events</a>."
-msgstr ""
+msgstr "请参见：<a href=\"%(url)s\">在线与离线事件</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:238
 msgid "HTTP Requests"
-msgstr ""
+msgstr "HTTP 请求"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:241
 msgid ""
@@ -17150,7 +17151,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:253
 msgid "We'll assume we aren't online."
-msgstr ""
+msgstr "假设我们没有联网。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:256
 msgid "Assume we're a packaged app with systemXHR permissions."
