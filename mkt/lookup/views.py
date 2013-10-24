@@ -1,4 +1,5 @@
 import hashlib
+import json
 import uuid
 from datetime import datetime, timedelta
 
@@ -272,8 +273,15 @@ def app_summary(request, addon_id):
 @login_required
 @permission_required('BangoPortal', 'Redirect')
 def bango_portal_from_package(request, package_id):
-    return _redirect_to_bango_portal(int(package_id),
-                                     'package_id: %s' % package_id)
+    response = _redirect_to_bango_portal(int(package_id),
+                                         'package_id: %s' % package_id)
+    if 'Location' in response:
+        return HttpResponseRedirect(response['Location'])
+    else:
+        message = (json.loads(response.content)
+                       .get('__all__', response.content)[0])
+        messages.error(request, message)
+        return HttpResponseRedirect(reverse('lookup.home'))
 
 
 @login_required
