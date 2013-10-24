@@ -31,7 +31,6 @@ class ThemeReviewTestMixin(object):
 
     def setUp(self):
         self.reviewer_count = 0
-        self.create_switch(name='mkt-themes')
         self.status = amo.STATUS_PENDING
         self.flagged = False
         self.rereview = False
@@ -580,7 +579,6 @@ class TestDeletedThemeLookup(amo.tests.TestCase):
     def setUp(self):
         self.deleted = addon_factory(type=amo.ADDON_PERSONA)
         self.deleted.update(status=amo.STATUS_DELETED)
-        self.create_switch(name='mkt-themes')
 
     def test_table(self):
         self.login('senior_persona_reviewer@mozilla.com')
@@ -599,7 +597,6 @@ class TestThemeSearch(amo.tests.ESTestCase):
     fixtures = fixture('user_senior_persona_reviewer')
 
     def setUp(self):
-        self.create_switch(name='mkt-themes')
         self.addon = addon_factory(type=amo.ADDON_PERSONA, name='themeteam',
                                    status=amo.STATUS_PENDING)
 
