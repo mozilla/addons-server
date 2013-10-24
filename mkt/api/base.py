@@ -405,6 +405,13 @@ class PotatoCaptchaResource(object):
         return self.remove_potato(bundle)
 
 
+def check_potatocaptcha(data):
+        if data.get('tuber', False):
+            return Response(json.dumps({'tuber': 'Invalid value'}), 400)
+        if data.get('sprout', None) != 'potato':
+            return Response(json.dumps({'sprout': 'Invalid value'}), 400)
+
+
 class CompatRelatedField(HyperlinkedRelatedField):
     """
     Upsell field for connecting Tastypie resources to

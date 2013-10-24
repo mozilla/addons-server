@@ -10,7 +10,7 @@ from mkt.account.api import UserSerializer
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import CORSMixin
+from mkt.api.base import check_potatocaptcha, CORSMixin
 from mkt.webapps.api import AppSerializer
 
 
@@ -57,12 +57,9 @@ class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,
     permission_classes = (AllowAny,)
 
     def create(self, request, *a, **kw):
+        check_potatocaptcha(request.DATA)
         # Immutable? *this* *is* PYYYYTHONNNNNNNNNN!
         request.DATA._mutable = True
-        if request.DATA.get('tuber', False):
-            return response.Response(json.dumps({'tuber': 'Invalid value'}), 400)
-        if request.DATA.get('sprout', None) != 'potato':
-            return response.Response(json.dumps({'sprout': 'Invalid value'}), 400)
         if request.amo_user:
             request.DATA['reporter'] = request.amo_user.pk
         else:
