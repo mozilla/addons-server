@@ -2,6 +2,8 @@ from functools import partial
 
 from django.core.exceptions import PermissionDenied
 
+import commonware
+
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.permissions import BasePermission
@@ -23,6 +25,8 @@ from mkt.developers.models import AddonPaymentAccount
 from mkt.webapps.models import Webapp
 
 from lib.pay_server import get_client
+
+log = commonware.log.getLogger('z.api.payments')
 
 
 class PaymentSerializer(HyperlinkedModelSerializer):
@@ -93,22 +97,31 @@ class UpsellViewSet(CreateModelMixin, DestroyModelMixin, RetrieveModelMixin,
             raise PermissionDenied('Not allowed to alter that object')
 
 
-class PaymentAccountPermission(BasePermission):
+class AddonPaymentAccountPermission(BasePermission):
     """
-    Permissions on the payment account object, is determined by permissions on
-    the app the account is being used for.
+    Permissions on the app payment account object, is determined by permissions
+    on the app the account is being used for.
     """
 
-    def check(self, request, app):
+    def check(self, request, app, account):
         if AllowAppOwner().has_object_permission(request, '', app):
-            return True
+            if account.shared or account.user.pk == request.amo_user.pk:
+                return True
+            else:
+                log.info('AddonPaymentAccount access %(account)s denied '
+                         'for %(user)s: wrong user, not shared.'.format(
+                         {'account': account.pk, 'user': request.amo_user.pk}))
+        else:
+            log.info('AddonPaymentAccount access %(account)s denied '
+                     'for %(user)s: no app permission.'.format(
+                     {'account': account.pk, 'user': request.amo_user.pk}))
         return False
 
     def has_object_permission(self, request, view, object):
-        return self.check(request, object.addon)
+        return self.check(request, object.addon, object.payment_account)
 
 
-class PaymentAccountSerializer(HyperlinkedModelSerializer):
+class AddonPaymentAccountSerializer(HyperlinkedModelSerializer):
     addon = CompatRelatedField(
         source='addon',
         tastypie={'resource_name': 'app', 'api_name': 'apps'},
@@ -130,14 +143,15 @@ class PaymentAccountSerializer(HyperlinkedModelSerializer):
         return attrs
 
 
-class PaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
-                            UpdateModelMixin, GenericViewSet):
-    permission_classes = (PaymentAccountPermission,)
+class AddonPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
+                                 UpdateModelMixin, GenericViewSet):
+    permission_classes = (AddonPaymentAccountPermission,)
     queryset = AddonPaymentAccount.objects.filter()
-    serializer_class = PaymentAccountSerializer
+    serializer_class = AddonPaymentAccountSerializer
 
     def pre_save(self, obj):
-        if not PaymentAccountPermission().check(self.request, obj.addon):
+        if not AddonPaymentAccountPermission().check(self.request,
+                obj.addon, obj.payment_account):
             raise PermissionDenied('Not allowed to alter that object.')
 
         if self.request.method != 'POST':
