@@ -24,6 +24,9 @@
 {% endblock %}
 
 {% block js %}
+  <span class="hidden lookup-meta"
+        data-search-limit="{{ mkt.constants.lookup.SEARCH_LIMIT }}"
+        data-max-results="{{ mkt.constants.lookup.MAX_RESULTS }}">
   {{ js('mkt/lookup') }}
 {% endblock %}
 

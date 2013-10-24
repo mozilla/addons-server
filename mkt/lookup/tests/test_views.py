@@ -26,19 +26,19 @@ from amo.tests import (addon_factory, app_factory, ESTestCase,
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
+from stats.models import Contribution, DownloadCount
+from users.cron import reindex_users
+from users.models import Group, GroupUser, UserProfile
+
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.developers.tests.test_views_payments import (TEST_PACKAGE_ID,
                                                       setup_payment_account)
-import mkt.lookup.constants as lkp
 from mkt.lookup.views import (_transaction_summary, transaction_refund,
                               user_delete, user_summary)
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
-from stats.models import Contribution, DownloadCount
-from users.cron import reindex_users
-from users.models import Group, GroupUser, UserProfile
 
 
 @mock.patch.object(settings, 'TASK_USER_ID', 999)
@@ -323,8 +323,8 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
         data = self.search(q='fonzih')
         self.verify_result(data)
 
-    @mock.patch.object(lkp, 'SEARCH_LIMIT', 2)
-    @mock.patch.object(lkp, 'MAX_RESULTS', 3)
+    @mock.patch('mkt.constants.lookup.SEARCH_LIMIT', 2)
+    @mock.patch('mkt.constants.lookup.MAX_RESULTS', 3)
     def test_all_results(self):
         for x in range(4):
             name = 'chr' + str(x)
@@ -671,6 +671,21 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
                                  password='password')
         data = self.search(q=self.app.pk)
         self.verify_result(data)
+
+    @mock.patch('mkt.constants.lookup.SEARCH_LIMIT', 2)
+    @mock.patch('mkt.constants.lookup.MAX_RESULTS', 3)
+    def test_all_results(self):
+        for x in range(4):
+            addon_factory(name='chr' + str(x), type=amo.ADDON_WEBAPP)
+        self.refresh('webapp')
+
+        # Test search limit.
+        data = self.search(q='chr')
+        eq_(len(data['results']), 2)
+
+        # Test maximum search result.
+        data = self.search(q='chr', all_results=True)
+        eq_(len(data['results']), 3)
 
 
 class AppSummaryTest(TestCase):
