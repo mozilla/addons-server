@@ -10,7 +10,7 @@ import amo
 from amo.decorators import write
 from mkt.api.base import AppRouter
 from mkt.developers.api import AccountResource
-from mkt.developers.api_payments import (PaymentAccountViewSet,
+from mkt.developers.api_payments import (AddonPaymentAccountViewSet,
                                          PaymentCheckViewSet,
                                          PaymentDebugViewSet, PaymentViewSet,
                                          UpsellViewSet)
@@ -175,7 +175,7 @@ payments.register(AccountResource())
 
 api_payments = SimpleRouter()
 api_payments.register(r'upsell', UpsellViewSet, base_name='app-upsell')
-api_payments.register(r'app', PaymentAccountViewSet,
+api_payments.register(r'app', AddonPaymentAccountViewSet,
                       base_name='app-payment-account')
 
 app_payments = AppRouter()
