@@ -3,7 +3,6 @@ import tempfile
 
 from django.utils.functional import lazy
 
-from mkt.constants import regions
 
 _tmpdirs = set()
 
