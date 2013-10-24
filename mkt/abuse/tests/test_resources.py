@@ -1,4 +1,5 @@
 import json
+import urllib
 
 from django.core import mail
 from django.core.urlresolvers import reverse
@@ -43,7 +44,8 @@ class AbuseResourceTests(object):
             post_data.update(data)
 
         client = self.anon if anonymous else self.client
-        res = client.post(self.list_url, data=json.dumps(post_data),
+        res = client.post(self.list_url, data=urllib.urlencode(post_data),
+                          content_type='application/x-www-form-urlencoded',
                           **self.headers)
         try:
             res_data = json.loads(res.content)
@@ -96,15 +98,6 @@ class AbuseResourceTests(object):
                                              anonymous=True)
         eq_(tuber_res.status_code, 400)
         eq_(potato_res.status_code, 400)
-
-    def test_send_bad_data(self):
-        """
-        One test to ensure that AbuseForm is running validation. We will rely
-        on its tests for the rest.
-        """
-        res, data = self._call(data={'text': None})
-        eq_(400, res.status_code)
-        assert 'required' in data['text'][0]
 
 
 class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth):

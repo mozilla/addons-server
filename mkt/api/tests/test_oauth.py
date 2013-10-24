@@ -101,16 +101,16 @@ class OAuthClient(Client):
         return wrap(super(OAuthClient, self)
                     .delete(url, **self.kw(headers, **kw)))
 
-    def post(self, url, data='', **kw):
+    def post(self, url, data='', content_type='application/json', **kw):
         url, headers, _ = self.sign('POST', self.get_absolute_url(url))
         return wrap(super(OAuthClient, self).post(url, data=data,
-            content_type='application/json',
+            content_type=content_type,
             **self.kw(headers, **kw)))
 
-    def put(self, url, data='', **kw):
+    def put(self, url, data='', content_type='application/json', **kw):
         url, headers, body = self.sign('PUT', self.get_absolute_url(url))
         return wrap(super(OAuthClient, self).put(url, data=data,
-            content_type='application/json',
+            content_type=content_type,
             **self.kw(headers, **kw)))
 
     def patch(self, url, data='', **kw):

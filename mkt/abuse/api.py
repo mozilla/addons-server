@@ -57,7 +57,9 @@ class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,
     permission_classes = (AllowAny,)
 
     def create(self, request, *a, **kw):
-        check_potatocaptcha(request.DATA)
+        fail = check_potatocaptcha(request.DATA)
+        if fail:
+            return fail
         # Immutable? *this* *is* PYYYYTHONNNNNNNNNN!
         request.DATA._mutable = True
         if request.amo_user:
