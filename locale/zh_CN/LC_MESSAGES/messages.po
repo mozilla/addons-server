@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-23 11:45+0000\n"
+"PO-Revision-Date: 2013-10-24 05:07+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382528704.0\n"
+"X-POOTLE-MTIME: 1382591269.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -15425,7 +15425,7 @@ msgstr "银行帐号"
 
 #: mkt/developers/forms_payments.py:408
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT 码"
 
 #: mkt/developers/forms_payments.py:410
 msgid "Bank Name"
@@ -15469,15 +15469,15 @@ msgstr "不能从一个应用中移除支付帐号。"
 
 #: mkt/developers/forms_payments.py:504
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "您不被允许修改付款帐号。"
 
 #: mkt/developers/forms_payments.py:548
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "该应用程序尚未设置付款帐号。"
 
 #: mkt/developers/forms_payments.py:551
 msgid "Account not set up"
-msgstr ""
+msgstr "未设置帐号"
 
 #: mkt/developers/helpers.py:36 mkt/developers/helpers.py:65 mkt/reviewers/forms.py:69
 msgid "Developers"
@@ -16596,7 +16596,7 @@ msgstr "修改"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:44
 msgid "Portal"
-msgstr ""
+msgstr "门户"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a new payment account"
@@ -16612,11 +16612,11 @@ msgstr "添加 Bango 帐号"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:19
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr ""
+msgstr "通常是 9~11 位数字。例如：0114584906。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:26
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr ""
+msgstr "通常是 8 或 11 个字符。例如：WFBIUS6WPDX。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:36 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:30
 msgid "Optional"
