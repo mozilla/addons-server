@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2011-10-11 20:37+0200\n"
+"PO-Revision-Date: 2013-10-24 06:29+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -17,8 +17,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
+"X-POOTLE-MTIME: 1382596199.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -917,7 +918,9 @@ msgstr "edo ikusi <a href=\"%(href)s\">gehigarri honen bertsio zaharragoak</a>."
 
 #: apps/addons/templates/addons/popups.html:97
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Persona honek %(app)s {new_version} behar du. Une honetan %(app)s {old_version} ari zara erabiltzen."
+msgstr ""
+"Persona honek %(app)s %(new_version)s behar du. Une honetan %(app)s "
+"{old_version} ari zara erabiltzen."
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
@@ -2162,7 +2165,7 @@ msgstr ""
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
 msgid "Top Rated"
-msgstr "Gehien puntuatutakoak"
+msgstr "Ondoen puntuatutakoak"
 
 #: apps/amo/templates/amo/side_nav.html:23
 msgid "Explore"
@@ -2180,16 +2183,16 @@ msgstr ""
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:87
 msgid "Most Followers"
-msgstr ""
+msgstr "Jarraitzaile gehienekoak"
 
 #: apps/amo/templates/amo/site_nav.html:66 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
-msgstr "Nik egin ditudan bildumak"
+msgstr "Egin ditudan bildumak"
 
 #: apps/amo/templates/amo/site_nav.html:68 apps/bandwagon/templates/bandwagon/user_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Jarraitzen ditudan bildumak"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
 #: apps/users/models.py:446
@@ -2208,10 +2211,12 @@ msgstr "Bilaketa-tresnak"
 #: apps/amo/templates/amo/impala/paginator.html:5 apps/amo/templates/amo/mobile/impala_paginator.html:26
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr ""
+"Orria: <a href=\"%(last_pg_url)s\">%(last_pg)s</a> / <a href=\"%"
+"(current_pg_url)s\">%(current_pg)s</a>"
 
 #: apps/amo/templates/amo/impala/paginator.html:16 apps/amo/templates/amo/mobile/impala_paginator.html:6
 msgid "Jump to first page"
-msgstr ""
+msgstr "Joan lehen orrira"
 
 #: apps/amo/templates/amo/impala/paginator.html:22 apps/amo/templates/amo/mobile/impala_paginator.html:12 apps/discovery/templates/discovery/pane.html:45
 #: apps/discovery/templates/discovery/pane.html:71 apps/discovery/templates/discovery/addons/detail.html:53 apps/stats/templates/stats/stats.html:156 mkt/stats/templates/appstats/stats.html:110
@@ -2225,12 +2230,13 @@ msgstr "Aurrekoa"
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr ""
+"<b>%(count)s</b> emaitzatik <b>%(begin)s</b>&ndash;<b>%(end)s</b> erakusten"
 
 #: apps/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
 msgid_plural "Page {n}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}.orria"
+msgstr[1] "{n}.orria"
 
 #: apps/amo/templates/services/install.html:38
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
@@ -2256,15 +2262,15 @@ msgstr ""
 #. L10n: {0} is comma separated data errors.
 #: apps/api/handlers.py:62
 msgid "Invalid data provided: {0}"
-msgstr ""
+msgstr "Datu baliogabeak eman dira: {0}"
 
 #: apps/api/handlers.py:70
 msgid "Add-on did not validate: %s"
-msgstr ""
+msgstr "Gehigarriak ez du balidazioa pasa: %s"
 
 #: apps/api/views.py:246
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Oraindik inplementatu gabe."
 
 #: apps/api/templates/piston/request_token_ready.html:3 apps/api/templates/piston/oauth/authorize.html:6
 msgid "Anonymous Party"
@@ -2388,7 +2394,7 @@ msgstr "Ikonoa"
 
 #: apps/bandwagon/forms.py:160
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "URLa beste bilduma batek darabil"
 
 #: apps/bandwagon/forms.py:170 apps/devhub/views.py:1244 mkt/developers/utils.py:54
 msgid "Icons must be either PNG or JPG."
@@ -2460,6 +2466,8 @@ msgstr "Bilduma sortuta!"
 #: apps/bandwagon/views.py:296
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
 msgstr ""
+"Zure bilduma berria azpian erakusten da. <a href=\"%(url)s\">Ezarpen "
+"gehigarriak editatu</a> ditzakezu nahi baduzu."
 
 #: apps/bandwagon/views.py:300
 msgid "Collection updated!"
@@ -2471,7 +2479,7 @@ msgstr ""
 
 #: apps/bandwagon/views.py:555
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Ikonoa ezabatuta"
 
 #: apps/bandwagon/templates/bandwagon/add.html:3 apps/bandwagon/templates/bandwagon/add.html:11 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 msgid "Create a New Collection"
@@ -2554,7 +2562,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Learn about collections"
-msgstr ""
+msgstr "Bildumei buruzko argibide gehiago"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:93
 msgid "More Options:"
@@ -4635,7 +4643,7 @@ msgstr "Bilatu"
 #: apps/devhub/templates/devhub/devhub_search.html:11 apps/devhub/templates/devhub/devhub_search.html:15 apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:28
 msgid "Search Results"
-msgstr ""
+msgstr "Bilaketaren emaitzak"
 
 #. {0} is a search term, such as Firebug.
 #: apps/devhub/templates/devhub/devhub_search.html:13 apps/search/templates/search/results.html:11
@@ -5411,9 +5419,8 @@ msgstr ""
 
 # %s is the application name (Firefox, Thunderbird).
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:38
-#, fuzzy
 msgid "Select an icon for your add-on:"
-msgstr "Hautatu gehienez ere %s(r)en hiru kategoria zure gehigarriarentzat"
+msgstr "Hautatu ikonoa zure gehigarriarentzat:"
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:51 mkt/developers/templates/developers/apps/forms_shared/media.html:54
@@ -5961,9 +5968,8 @@ msgstr ""
 # 100%
 # 100%
 #: apps/devhub/templates/devhub/addons/submit/start.html:60
-#, fuzzy
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "edo <a href=\"%(url)s\">utzi</a>"
+msgstr "edo <a href=\"{0}\">Utzi</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:3 apps/devhub/templates/devhub/addons/submit/upload_webapp.html:3
 msgid "Step 2"
@@ -9540,9 +9546,8 @@ msgstr "Prozesatu berrikuspenak"
 
 # %1 is the review count
 #: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:40 mkt/reviewers/helpers.py:41
-#, fuzzy
 msgid "Moderated Reviews"
-msgstr "Moderatutako berrikuspenak (%s)"
+msgstr "Moderatutako berrikuspenak"
 
 #: apps/editors/helpers.py:111 apps/editors/templates/editors/base.html:32
 msgid "Fast Track"
@@ -9568,19 +9573,17 @@ msgstr[0] "Eguneraketak zain ({0})"
 msgstr[1] "Eguneraketak zain ({0})"
 
 #: apps/editors/helpers.py:147
-#, fuzzy
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Prozesatu berrikuspenak"
+msgstr[0] ""
 msgstr[1] ""
 
 # %1 is the review count
 #: apps/editors/helpers.py:152
-#, fuzzy
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderatutako berrikuspenak (%s)"
-msgstr[1] "Moderatutako berrikuspenak (%s)"
+msgstr[0] "Moderatutako berrikuspena ({0})"
+msgstr[1] "Moderatutako berrikuspenak ({0})"
 
 #: apps/editors/helpers.py:182
 msgid "Addon"
@@ -9923,10 +9926,9 @@ msgstr[1] "Eguneraketak zain ({0})"
 # 100%
 # 100%
 #: apps/editors/templates/editors/home.html:25
-#, fuzzy
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "Prozesatu berrikuspenak"
+msgstr[0] ""
 msgstr[1] ""
 
 #: apps/editors/templates/editors/home.html:36
@@ -9944,11 +9946,10 @@ msgstr ""
 # 100%
 # 100%
 #: apps/editors/templates/editors/home.html:49
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0}(e)rako gehigarriak"
-msgstr[1] ""
+msgstr[0] "Gehigarri bat"
+msgstr[1] "{0} gehigarri"
 
 #: apps/editors/templates/editors/home.html:50 mkt/reviewers/templates/reviewers/home.html:50
 msgid "{0}%"
@@ -9974,11 +9975,10 @@ msgstr "Editore berriak"
 # 100%
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:119
-#, fuzzy
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Moderatutako berrikuspenak (%s)"
-msgstr[1] "Moderatutako berrikuspenak (%s)"
+msgstr[0] "Moderatutako berrikuspena ({num})"
+msgstr[1] "Moderatutako berrikuspenak ({num})"
 
 #: apps/editors/templates/editors/leaderboard.html:3 apps/editors/templates/editors/includes/reviewers_score_bar.html:57 mkt/reviewers/templates/reviewers/leaderboard.html:3
 msgid "Reviewer Leaderboard"
@@ -11898,7 +11898,7 @@ msgstr "Errendimenduari buruzko argibide gehiago"
 #: apps/reviews/feeds.py:28
 #, fuzzy
 msgid "Reviews for %s"
-msgstr "Berrikuspenak {0} gehigarriarentzat"
+msgstr "Berrikuspenak %s gehigarriarentzat"
 
 #: apps/reviews/feeds.py:36
 msgid "Review History for this Addon"
@@ -15653,7 +15653,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:33
 msgid "API"
-msgstr ""
+msgstr "APIa"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -21290,7 +21290,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:85 mkt/reviewers/templates/reviewers/includes/mobile_details.html:107
 msgid "Total Downloads"
-msgstr ""
+msgstr "Deskargak guztira"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:103 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
 msgid "Device Types"
