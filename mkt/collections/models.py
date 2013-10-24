@@ -43,8 +43,8 @@ class Collection(amo.models.ModelBase):
     can_be_hero = models.BooleanField(default=False, help_text=(
         'Indicates whether an operator shelf collection can be displayed with'
         'a hero graphic'))
-    apps = models.ManyToManyField(Webapp, through='CollectionMembership',
-                                  related_name='appcollections')
+    _apps = models.ManyToManyField(Webapp, through='CollectionMembership',
+                                  related_name='app_collections')
 
     objects = amo.models.ManagerBase()
     public = PublicCollectionsManager()
@@ -74,6 +74,9 @@ class Collection(amo.models.ModelBase):
         return os.path.join(settings.COLLECTIONS_ICON_PATH,
                             str(self.pk / 1000),
                             'app_collection_%s.png' % (self.pk,))
+
+    def apps(self):
+        return self._apps.order_by('collectionmembership')
 
     def add_app(self, app, order=None):
         """
@@ -114,7 +117,7 @@ class Collection(amo.models.ModelBase):
         passed order. A ValueError will be raised if each app in the
         collection is not included in the ditionary.
         """
-        if set(a.pk for a in self.apps.all()) != set(new_order):
+        if set(a.pk for a in self.apps()) != set(new_order):
             raise ValueError('Not all apps included')
         for order, pk in enumerate(new_order):
             CollectionMembership.objects.get(collection=self,

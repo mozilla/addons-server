@@ -53,14 +53,14 @@ class TestCollection(amo.tests.TestCase):
         eq_(added.app, self.apps[2])
         eq_(added.collection, self.collection)
 
-        eq_(self.collection.apps.all(), [self.apps[2], self.apps[1]])
+        eq_(list(self.collection.apps()), [self.apps[2], self.apps[1]])
 
     def test_apps(self):
         self._generate_apps()
 
-        self.assertSetEqual(self.collection.apps.all(), [])
+        self.assertSetEqual(self.collection.apps(), [])
         self._add_apps()
-        self.assertSetEqual(self.collection.apps.all(), self.apps)
+        self.assertSetEqual(self.collection.apps(), self.apps)
         eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
             [0, 1, 2, 3])
 
@@ -70,7 +70,7 @@ class TestCollection(amo.tests.TestCase):
         extra_app = amo.tests.app_factory()
         added = self.collection.add_app(extra_app, order=3)
         eq_(added.order, 3)
-        self.assertSetEqual(self.collection.apps.all(), [extra_app])
+        self.assertSetEqual(self.collection.apps(), [extra_app])
         self._add_apps()
         eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
             [3, 4, 5, 6, 7])

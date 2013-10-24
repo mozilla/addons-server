@@ -146,7 +146,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
             return result
 
         # And now, add apps from the original collection.
-        for app in collection.apps.all():
+        for app in collection.apps():
             self.object.add_app(app)
 
         # Re-Serialize to include apps.

@@ -6,12 +6,12 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from addons.models import Category
+from addons.models import Category, AddonUser
 from amo.urlresolvers import reverse
+from users.models import UserProfile
 
 import mkt
 from mkt.api.resources import AppResource
-from mkt.search.api import WithFeaturedResource
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_OPERATOR)
 from mkt.constants.features import FeatureProfile
@@ -19,6 +19,8 @@ from mkt.collections.models import Collection, CollectionMembership
 from mkt.collections.serializers import (CollectionMembershipField,
                                          CollectionSerializer,
                                          DataURLImageField)
+from mkt.search.api import WithFeaturedResource
+from mkt.site.fixtures import fixture
 
 
 class CollectionDataMixin(object):
@@ -103,10 +105,14 @@ class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
         different setUp and more importantly, we need to force a sync refresh
         in ES when we modify our app """
 
+    fixtures = fixture('user_2519')
+
     def setUp(self):
         self.create_switch('collections-use-es-for-apps')
         super(TestCollectionMembershipFieldES, self).setUp()
         self.field.context['search_resource'] = WithFeaturedResource()
+        self.user = UserProfile.objects.get(pk=2519)
+        AddonUser.objects.create(addon=self.app, user=self.user)
         self.refresh('webapp')
 
     def test_field_to_native_profile_mismatch(self):
