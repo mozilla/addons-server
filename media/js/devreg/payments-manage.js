@@ -150,6 +150,8 @@ define('payments-manage', ['payments'], function(payments) {
                 });
             })).on('click', '.portal-account', _pd(function() {
                 var $this = $(this);
+                // Prevent double-click leading to an authentication error.
+                $this.click(function () { return false; });
                 portalRedirect({
                     'portal-url': $this.closest('tr').data('portal-url'),
                     'el': $this
