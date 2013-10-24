@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-20 11:25+0000\n"
-"Last-Translator: Mark <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2013-10-24 18:14+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382268350.0\n"
+"X-POOTLE-MTIME: 1382638459.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -19996,9 +19996,10 @@ msgstr ""
 "en het apps-ecosysteem. <a href=\"%(dev_phone_url)s\">Bekijk onze "
 "ontwikkelaarstelefoon</a>"
 
+# Zie https://marketplace.firefox.com/developers/ - Hele term past niet, als streepje alleen niet afbreekt, dan ‘Ontwikkelaars- apparaten’ of ‘Apparaten voor ontwikkelaars’
 #: mkt/ecosystem/templates/ecosystem/landing.html:247
 msgid "Developer Devices"
-msgstr "Ontwikkelaarsapparaten"
+msgstr "Ontwikkelaars-apparaten"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:251
 msgid "Code &amp; Tools"
@@ -20010,7 +20011,9 @@ msgstr "Evenementen en ontmoetingen"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:273
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
-msgstr "Mozilla mag van mij deze informatie verwerken zoals uitgelegd in het <a href=\"%(privacy_link)s\">privacybeleid</a>."
+msgstr ""
+"Ik ben het eens met hoe Mozilla met deze gegevens omgaat, zoals uitgelegd in "
+"het <a href=\"%(privacy_link)s\">privacybeleid</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:281
 msgid "Sign me up!"
