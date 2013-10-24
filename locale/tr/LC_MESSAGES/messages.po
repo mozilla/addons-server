@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-24 07:17+0000\n"
-"Last-Translator: Selim <selim@sum.lu>\n"
+"PO-Revision-Date: 2013-10-24 07:29+0000\n"
+"Last-Translator: saydax <saydax@tnctr.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382599047.0\n"
+"X-POOTLE-MTIME: 1382599754.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2271,7 +2271,7 @@ msgstr ""
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53 apps/reviews/templates/reviews/add.html:84 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
 msgid "Title"
-msgstr ""
+msgstr "Başlık"
 
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53
 msgid "Body"
@@ -2618,17 +2618,15 @@ msgstr "Diğer Seçenekler:"
 # 100%
 # 100%
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:94
-#, fuzzy
 msgid "Edit Collection"
-msgstr "Add to Collection"
+msgstr "Koleksiyonu Düzenle"
 
 # 78%
 # 100%
 # 100%
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:96 apps/bandwagon/templates/bandwagon/includes/delete.html:3
-#, fuzzy
 msgid "Delete Collection"
-msgstr "Related Collections"
+msgstr "Koleksiyonu Sil"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
@@ -2976,13 +2974,12 @@ msgid "Enter the name of the add-on to include"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:28
-#, fuzzy
 msgid "Add to Collection"
-msgstr "Add to Collection"
+msgstr "Koleksiyona Ekle"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:116 mkt/constants/payments.py:7 mkt/reviewers/helpers.py:157 mkt/reviewers/helpers.py:177
 msgid "Pending"
-msgstr ""
+msgstr "Beklemede"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47
 msgid "Add a comment"
@@ -2990,7 +2987,7 @@ msgstr "Yorum ekleyin"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Koleksiyondan eklentiyi kaldır"
 
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:7
 msgid "COLLECTIONS"
@@ -3006,7 +3003,7 @@ msgstr "Engellenen Eklentiler"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6 mkt/developers/templates/developers/apps/status.html:281
 msgid "Blocklist"
-msgstr ""
+msgstr "Engellenenler"
 
 #. {0} is an add-on name.
 #: apps/blocklist/templates/blocklist/blocked_detail.html:13
@@ -4190,7 +4187,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:372
 msgid "PayPal ID required to accept contributions."
-msgstr ""
+msgstr "Bağışları kabul etmek için PayPal kimliği gerekiyor."
 
 #: apps/devhub/forms.py:378
 msgid "Could not validate PayPal id."
@@ -4198,7 +4195,7 @@ msgstr "PayPal kimliği doğrulanamadı."
 
 #: apps/devhub/forms.py:429 apps/devhub/forms.py:867
 msgid "Invalid version range."
-msgstr ""
+msgstr "Geçersiz sürüm aralığı."
 
 #: apps/devhub/forms.py:453
 msgid "Need at least one compatible application."
@@ -4522,11 +4519,11 @@ msgstr ""
 
 #: apps/devhub/views.py:591
 msgid "Refund issued."
-msgstr ""
+msgstr "Geri ödeme yapıldı."
 
 #: apps/devhub/views.py:599
 msgid "Refund declined."
-msgstr ""
+msgstr "Geri ödeme reddedildi."
 
 #: apps/devhub/views.py:671
 msgid "Validate Add-on"
@@ -4538,7 +4535,7 @@ msgstr "Eklenti uyumluluğunu denetle"
 
 #: apps/devhub/views.py:800 mkt/developers/views.py:547
 msgid "There was an error with the submission."
-msgstr ""
+msgstr "Gönderimde bir hata oluştu."
 
 #: apps/devhub/views.py:894
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -4550,11 +4547,11 @@ msgstr "Resimler PNG veya JPG formatında olmalıdır."
 
 #: apps/devhub/views.py:1250 mkt/developers/utils.py:61
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Simgeler hareketli olamaz."
 
 #: apps/devhub/views.py:1252 mkt/developers/utils.py:63
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Resimler hareketli olamaz."
 
 #: apps/devhub/views.py:1265
 msgid "Images cannot be larger than %dKB."
@@ -4571,7 +4568,7 @@ msgstr ""
 
 #: apps/devhub/views.py:1372
 msgid "Version %s deleted."
-msgstr ""
+msgstr "%s sürümü silindi."
 
 #: apps/devhub/views.py:1382
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
@@ -8468,7 +8465,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/refunds.html:9 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:55
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:77 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
 msgid "Price"
-msgstr ""
+msgstr "Fiyat"
 
 #: apps/devhub/templates/devhub/payments/refunds.html:15 mkt/developers/templates/developers/payments/refunds.html:10
 msgid "Purchased"
@@ -9552,19 +9549,19 @@ msgstr ""
 
 #: apps/editors/forms.py:235 apps/files/templates/files/viewer.html:50 mkt/files/templates/fileviewer/viewer.html:46
 msgid "Files:"
-msgstr "Files:"
+msgstr "Dosyalar:"
 
 #: apps/editors/forms.py:238 mkt/reviewers/forms.py:73
 msgid "Comments:"
-msgstr "Comments:"
+msgstr "Yorumlar:"
 
 #: apps/editors/forms.py:242
 msgid "Operating systems:"
-msgstr ""
+msgstr "İşletim sistemleri:"
 
 #: apps/editors/forms.py:244
 msgid "Applications:"
-msgstr "Applications:"
+msgstr "Uygulamalar:"
 
 #: apps/editors/forms.py:246
 #, fuzzy
@@ -9581,7 +9578,7 @@ msgstr ""
 
 #: apps/editors/forms.py:299
 msgid "You must select some files."
-msgstr ""
+msgstr "Birkaç dosya seçmek zorundasınız."
 
 #: apps/editors/forms.py:305
 msgid "File %s is not pending review."
@@ -9601,7 +9598,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:106
 msgid "Queue"
-msgstr ""
+msgstr "Kuyruk"
 
 #: apps/editors/helpers.py:107 apps/editors/templates/editors/base.html:36
 msgid "Pending Updates"
@@ -12511,11 +12508,11 @@ msgstr ""
 
 #: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:874
 msgid "From"
-msgstr ""
+msgstr "Kimden"
 
 #: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:877
 msgid "To"
-msgstr ""
+msgstr "Kime"
 
 #: apps/stats/templates/stats/report.html:7 mkt/stats/templates/appstats/report.html:7 mkt/stats/templates/devstats/report.html:7
 msgid "Export"
@@ -12616,7 +12613,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:177 mkt/stats/templates/appstats/stats.html:133
 msgid "Change settings."
-msgstr ""
+msgstr "Ayarları değiştir."
 
 #: apps/stats/templates/stats/reports/addons_created.html:3
 msgid "Add-ons Created by Date"
@@ -12670,12 +12667,12 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> İndirme"
 
 #: apps/stats/templates/stats/reports/overview.html:9 apps/stats/templates/stats/reports/overview.html:13 mkt/stats/templates/appstats/reports/app_overview.html:12
 #: mkt/stats/templates/appstats/reports/app_overview.html:19
 msgid "Loading..."
-msgstr ""
+msgstr "Yükleniyor..."
 
 #: apps/stats/templates/stats/reports/overview.html:12 mkt/stats/templates/appstats/reports/app_overview.html:16
 msgid "<b>{0}</b> Average Daily Users"
@@ -12683,7 +12680,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr ""
+msgstr "En İyi Uygulamalar"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
@@ -12880,7 +12877,7 @@ msgstr ""
 #: apps/users/helpers.py:52
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "diğerleri"
 
 #: apps/users/models.py:91
 msgid "No user with that email."
@@ -12892,7 +12889,7 @@ msgstr ""
 
 #: apps/users/models.py:383
 msgid "Please confirm your email address"
-msgstr ""
+msgstr "Lütfen e-posta adresinizi doğrulayın"
 
 # 75%
 # 78%
@@ -13100,9 +13097,8 @@ msgid "new"
 msgstr "yeni"
 
 #: apps/users/templates/users/delete.html:4 apps/users/templates/users/delete.html:10
-#, fuzzy
 msgid "Delete User Account"
-msgstr "Delete User Account"
+msgstr "Kullanıcı Hesabını Sil"
 
 #: apps/users/templates/users/delete.html:14
 msgid ""
@@ -13307,7 +13303,7 @@ msgstr "Giriş"
 
 #: apps/users/templates/users/login_modal.html:3
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "<strong>%(user_email)s</strong> olarak oturum açtınız."
 
 #: apps/users/templates/users/newpw_sent.html:3 apps/users/templates/users/newpw_sent.html:8 apps/users/templates/users/pwreset_complete.html:3 apps/users/templates/users/pwreset_confirm.html:4
 #: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:8
@@ -13321,11 +13317,11 @@ msgstr "{0} Kullanıcı Bilgileri"
 
 #: apps/users/templates/users/profile.html:12
 msgid "Edit profile"
-msgstr ""
+msgstr "Profili düzenle"
 
 #: apps/users/templates/users/profile.html:17
 msgid "Manage user"
-msgstr ""
+msgstr "Kullanıcıyı yönet"
 
 #: apps/users/templates/users/profile.html:21 apps/users/templates/users/report_abuse_full.html:10
 msgid "Report user"
@@ -13342,7 +13338,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
-msgstr ""
+msgstr "Hakkımda"
 
 #: apps/users/templates/users/profile.html:48
 msgid "In a little more detail..."
@@ -13385,7 +13381,7 @@ msgstr ""
 
 #: apps/users/templates/users/pwreset_complete.html:11
 msgid "Success!"
-msgstr ""
+msgstr "Başarılı!"
 
 #: apps/users/templates/users/pwreset_complete.html:13
 msgid "Password successfully reset."
@@ -15126,11 +15122,11 @@ msgstr ""
 
 #: mkt/constants/platforms.py:54
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac ve Linux"
 
 #: mkt/constants/platforms.py:55 mkt/constants/platforms.py:58 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr ""
+msgstr "Android akıllı telefonlar"
 
 #: mkt/constants/platforms.py:56 mkt/constants/platforms.py:59
 msgid "Android tablets"
@@ -16393,7 +16389,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68
 msgid "Transactions"
-msgstr ""
+msgstr "İşlemler"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:81
 msgid "Communication"
@@ -16410,15 +16406,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:34
 msgid "Packaged App Version:"
-msgstr ""
+msgstr "Paketlenmiş Uygulama Sürümü:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:39
 msgid "Pending Version:"
-msgstr ""
+msgstr "Beklenen Sürüm:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:46
 msgid "Price:"
-msgstr ""
+msgstr "Fiyat:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:51
 msgid "Change Devices"
@@ -16740,7 +16736,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
-msgstr ""
+msgstr "Bango Hesabını Değiştir"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -16764,7 +16760,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:4
 msgid "Select All"
-msgstr ""
+msgstr "Tümünü Seç"
 
 #: mkt/ecosystem/views.py:55
 msgid "Thank you for subscribing!"
@@ -17264,7 +17260,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:39
 msgid "Style Editor"
-msgstr ""
+msgstr "Stil Editörü"
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:41
 msgid ""
@@ -17279,7 +17275,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:56 mkt/ecosystem/templates/ecosystem/build_intro.html:217 mkt/ecosystem/templates/ecosystem/build_manifests.html:242
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:192 mkt/ecosystem/templates/ecosystem/build_web_developers.html:181
 msgid "See also"
-msgstr ""
+msgstr "Ayrıca bkz."
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:5 mkt/ecosystem/templates/ecosystem/build_ffos.html:13 mkt/ecosystem/templates/ecosystem/macros.html:72
 msgid "Intro to Firefox OS"
@@ -17374,7 +17370,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:48
 msgid "View All..."
-msgstr ""
+msgstr "Hepsini Göster..."
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:50
 msgid "Technology reference documentation"
@@ -17382,7 +17378,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:59
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:66
 msgid "WebAPI"
@@ -19322,11 +19318,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:121
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:123
 msgid "Firefox Marketplace YouTube channel"
@@ -20634,15 +20630,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:8
 msgid "last 24 hours"
-msgstr ""
+msgstr "son 24 saat"
 
 #: mkt/lookup/templates/lookup/app_summary.html:9
 msgid "last 7 days"
-msgstr ""
+msgstr "son 7 gün"
 
 #: mkt/lookup/templates/lookup/app_summary.html:10
 msgid "all time"
-msgstr ""
+msgstr "tüm zamanlar"
 
 #: mkt/lookup/templates/lookup/app_summary.html:34
 msgid "Manifest"
@@ -20706,7 +20702,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:22
 msgid "Buyer"
-msgstr ""
+msgstr "Alıcı"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:30
 msgid "Price Tier"
@@ -20754,7 +20750,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:25
 msgid "Groups"
-msgstr ""
+msgstr "Gruplar"
 
 #: mkt/lookup/templates/lookup/user_summary.html:37
 msgid "PayPal linked"
@@ -20957,7 +20953,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:31
 msgid "Any Status"
-msgstr ""
+msgstr "Herhangi bir durum"
 
 #: mkt/reviewers/forms.py:38
 msgid "Attachment:"
@@ -20965,7 +20961,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:39 mkt/submit/forms.py:336
 msgid "Description:"
-msgstr ""
+msgstr "Açıklama:"
 
 #: mkt/reviewers/forms.py:50
 msgid "Attachment exceeds maximum size of %s."
@@ -20973,7 +20969,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:77 mkt/reviewers/templates/reviewers/review.html:221
 msgid "Device Types:"
-msgstr ""
+msgstr "Aygıt Türleri:"
 
 #: mkt/reviewers/forms.py:79 mkt/reviewers/templates/reviewers/review.html:225
 msgid "Browsers:"
@@ -21242,7 +21238,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/logs.html:40
 msgid "App has been deleted."
-msgstr ""
+msgstr "Uygulama silindi."
 
 #: mkt/reviewers/templates/reviewers/performance.html:3
 msgid "Reviewer Scores for {0}"
@@ -21258,7 +21254,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/queue.html:86
 msgid "Abuse Reports:"
-msgstr ""
+msgstr "Suistimal Raporları:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:101 mkt/reviewers/templates/reviewers/themes/queue_list.html:79
 msgid "There are currently no items of this type to review."
@@ -21278,7 +21274,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:60 mkt/reviewers/templates/reviewers/review.html:79
 msgid "App History"
-msgstr ""
+msgstr "Uygulama Geçmişi"
 
 #: mkt/reviewers/templates/reviewers/review.html:87
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -21294,7 +21290,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:258
 msgid "Attach another file"
-msgstr ""
+msgstr "Başka bir dosya ekle"
 
 #: mkt/reviewers/templates/reviewers/review.html:261
 msgid "Device Override:"
@@ -21355,7 +21351,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:18 mkt/reviewers/templates/reviewers/includes/mobile_details.html:29
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:160
 msgid "more..."
-msgstr ""
+msgstr "daha fazla..."
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:34
 msgid "%(stars)s by %(user)s on %(date)s (%(locale)s)"
@@ -21367,7 +21363,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:26 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Sonuç bulunamadı"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
@@ -21531,7 +21527,7 @@ msgstr ""
 
 #: mkt/search/forms.py:27
 msgid "Paid"
-msgstr ""
+msgstr "Ücretli"
 
 #: mkt/search/forms.py:31
 msgid "Any App Type"
@@ -21801,11 +21797,11 @@ msgstr ""
 
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:6
 msgid "Total users"
-msgstr ""
+msgstr "Toplam kullanıcı"
 
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:7
 msgid "Total visitors"
-msgstr ""
+msgstr "Toplam ziyaretçi"
 
 #: mkt/submit/forms.py:30
 msgid "Device(s) changed: {0}"
@@ -21886,7 +21882,7 @@ msgstr ""
 #: mkt/submit/templates/submit/details.html:17 mkt/submit/templates/submit/manifest.html:7 mkt/submit/templates/submit/manifest.html:25 mkt/submit/templates/submit/payments-upsell.html:10
 #: mkt/submit/templates/submit/payments.html:10 mkt/submit/templates/submit/terms.html:3
 msgid "Submit an App"
-msgstr ""
+msgstr "Uygulama Gönder"
 
 #: mkt/submit/templates/submit/details.html:23
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
@@ -22000,7 +21996,7 @@ msgstr ""
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr ""
+msgstr "Hesap Ayarlarını Düzenle"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Return to the Marketplace"
@@ -22008,7 +22004,7 @@ msgstr ""
 
 #: mkt/templates/mkt/account-links.html:15
 msgid "Sign Out"
-msgstr ""
+msgstr "Çıkış Yap"
 
 #: mkt/templates/mkt/base_desktop.html:34
 msgid "Develop apps for<br> the Marketplace!"
@@ -22016,7 +22012,7 @@ msgstr ""
 
 #: mkt/templates/mkt/base_desktop.html:39
 msgid "Visit the Developer Hub"
-msgstr ""
+msgstr "Geliştirici Merkezini Ziyaret Edin"
 
 #: mkt/templates/mkt/base_mobile.html:114
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account."
@@ -22034,15 +22030,15 @@ msgstr "Marka ihlali bildir"
 
 #: mkt/templates/mkt/header.html:5
 msgid "Back"
-msgstr ""
+msgstr "Geri"
 
 #: mkt/templates/mkt/header.html:14
 msgid "Clear"
-msgstr ""
+msgstr "Temizle"
 
 #: mkt/templates/mkt/header.html:17
 msgid "Expand"
-msgstr ""
+msgstr "Genişlet"
 
 #: mkt/webapps/models.py:382
 msgid "You must provide a support email."
@@ -22224,7 +22220,7 @@ msgstr "Android Eklentileri"
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
-msgstr ""
+msgstr "Giriş yap / Kaydol"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
@@ -22248,7 +22244,7 @@ msgstr "Yasal uyarılar"
 
 #: templates/mobile/base_apps.html:40
 msgid "Return to the Apps homepage"
-msgstr ""
+msgstr "Uygulamalar ana sayfasına geri dön"
 
 #: templates/mobile/header.html:3
 msgid "Mozilla Firefox"
