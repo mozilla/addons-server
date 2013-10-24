@@ -20,13 +20,14 @@ define('payments-manage', ['payments'], function(payments) {
         var isPlural = data['app-names'].indexOf(spliter) < 0;
         var $confirm_delete_overlay = payments.getOverlay('payment-account-delete-confirm');
         $confirm_delete_overlay.find('p').text(
-            format('Warning: deleting payment account "{0}" ' +
-                   'will move {1} associated {2} to an incomplete status ' +
-                   'and {3} will no longer be available for sale:',
-                   [data['name'],
-                    ngettext('that', 'those', isPlural),
-                    ngettext('app', 'apps', isPlural),
-                    ngettext('it', 'they', isPlural)]));
+            // L10n: This sentence introduces a list of applications.
+            format(ngettext('Warning: deleting payment account "{0}" ' +
+                            'will move that associated app to an incomplete status ' +
+                            'and it will no longer be available for sale:',
+                            'Warning: deleting payment account "{0}" ' +
+                            'will move those associated apps to an incomplete status ' +
+                            'and they will no longer be available for sale:',
+                            isPlural), [data['name']]));
         $confirm_delete_overlay.find('ul')
                                .html('<li>' + escape_(data['app-names']).split(spliter).join('</li><li>') + '</li>');
         $confirm_delete_overlay.on('click', 'a.payment-account-delete-confirm', _pd(function() {
