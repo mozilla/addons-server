@@ -2,15 +2,19 @@
 from decimal import Decimal
 import json
 
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils.http import urlencode
 
 from nose.tools import eq_
+from rest_framework.serializers import ValidationError
 from simplejson import JSONDecodeError
 from tastypie.exceptions import UnsupportedFormat
 
 from mkt.api.exceptions import DeserializationError
-from mkt.api.serializers import Serializer
+from mkt.api.serializers import Serializer, PotatoCaptchaSerializer
+from mkt.site.fixtures import fixture
+from mkt.site.tests.test_forms import PotatoCaptchaTestCase
 
 
 class TestSerializer(TestCase):
@@ -47,3 +51,37 @@ class TestSerializer(TestCase):
             self.assertIsInstance(e.original, JSONDecodeError)
         else:
             self.fail('DeserializationError not raised')
+
+
+class TestPotatoCaptchaSerializer(PotatoCaptchaTestCase):
+    fixtures = fixture('user_999')
+
+    def test_success_authenticated(self):
+        self.request.user = User.objects.get(id=999)
+        self.request.user.is_authenticated = lambda: True
+        serializer = PotatoCaptchaSerializer(data={}, context=self.context)
+        eq_(serializer.is_valid(), True)
+
+    def test_success_anonymous(self):
+        data = {'tuber': '', 'sprout': 'potato'}
+        serializer = PotatoCaptchaSerializer(data=data, context=self.context)
+        eq_(serializer.is_valid(), True)
+
+    def test_no_context(self):
+        data = {'tuber': '', 'sprout': 'potato'}
+        with self.assertRaises(ValidationError):
+            PotatoCaptchaSerializer(data=data)
+
+    def test_error_anonymous_bad_tuber(self):
+        data = {'tuber': 'HAMMMMMMMMMMMMM', 'sprout': 'potato'}
+        serializer = PotatoCaptchaSerializer(data=data, context=self.context)
+        eq_(serializer.is_valid(), False)
+
+    def test_error_anonymous_bad_sprout(self):
+        data = {'tuber': 'HAMMMMMMMMMMMMM', 'sprout': ''}
+        serializer = PotatoCaptchaSerializer(data=data, context=self.context)
+        eq_(serializer.is_valid(), False)
+
+    def test_error_anonymous_bad_tuber_and_sprout(self):
+        serializer = PotatoCaptchaSerializer(data={}, context=self.context)
+        eq_(serializer.is_valid(), False)

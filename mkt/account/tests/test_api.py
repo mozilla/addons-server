@@ -5,16 +5,15 @@ import uuid
 
 from django.conf import settings
 from django.core import mail
+from django.core.urlresolvers import reverse
 from django.utils.http import urlencode
 
 from mock import patch
 from nose.tools import eq_, ok_
 
 from amo.tests import TestCase
-from mkt.account.api import FeedbackResource
 from mkt.api.base import get_url, list_url
-from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url
-from mkt.api.tests.test_throttle import ThrottleTests
+from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url, RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed
@@ -27,7 +26,8 @@ class TestPotatoCaptcha(object):
         if not data:
             data = json.loads(response.content)
         eq_(400, response.status_code)
-        assert '__all__' in data['error_message']
+        ok_('non_field_errors' in data)
+        eq_(data['non_field_errors'], [u'Form could not be submitted.'])
 
 
 class TestPermission(BaseOAuth):
@@ -257,12 +257,11 @@ class TestLoginHandler(TestCase):
         assert 'assertion' in data['error_message']
 
 
-class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
-    resource = FeedbackResource()
+class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
 
     def setUp(self):
-        super(TestFeedbackHandler, self).setUp(api_name='account')
-        self.list_url = list_url('feedback')
+        super(TestFeedbackHandler, self).setUp()
+        self.url = reverse('account-feedback')
         self.user = UserProfile.objects.get(pk=2519)
         self.default_data = {
             'chromeless': 'no',
@@ -281,21 +280,20 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
         client = self.anon if anonymous else self.client
         if data:
             post_data.update(data)
-        res = client.post(self.list_url, data=json.dumps(post_data),
+        res = client.post(self.url, data=json.dumps(post_data),
                           **self.headers)
-        try:
-            res_data = json.loads(res.content)
-
-        # Pending #855817, some errors will return an empty response body.
-        except ValueError:
-            res_data = res.content
-        return res, res_data
+        return res, json.loads(res.content)
 
     def _test_success(self, res, data):
         eq_(201, res.status_code)
 
         fields = self.default_data.copy()
+
+        # PotatoCaptcha field shouldn't be present in returned data.
         del fields['sprout']
+        ok_('sprout' not in data)
+
+        # Rest of the fields should all be here.
         for name in fields.keys():
             eq_(fields[name], data[name])
 
@@ -312,7 +310,7 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
     def test_send_urlencode(self):
         self.headers['CONTENT_TYPE'] = 'application/x-www-form-urlencoded'
         post_data = self.default_data.copy()
-        res = self.client.post(self.list_url, data=urlencode(post_data),
+        res = self.client.post(self.url, data=urlencode(post_data),
                                **self.headers)
         data = json.loads(res.content)
         self._test_success(res, data)
@@ -321,7 +319,7 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
 
     def test_send_without_platform(self):
         del self.default_data['platform']
-        self.list_url += ({'dev': 'platfoo'}, )
+        self.url += '?dev=platfoo'
 
         res, data = self._call()
         self._test_success(res, data)
@@ -347,12 +345,11 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
 
     def test_send_bad_data(self):
         """
-        One test to ensure that FeedbackForm is doing its validation duties.
-        We'll rely on FeedbackForm tests for the rest.
+        One test to ensure that Feedback API is doing its validation duties.
         """
         res, data = self._call(data={'feedback': None})
         eq_(400, res.status_code)
-        assert 'feedback' in data['error_message']
+        assert 'feedback' in data
 
 
 class TestNewsletter(BaseOAuth):

@@ -7,8 +7,6 @@ import happyforms
 from tower import ugettext_lazy as _lazy
 
 import amo
-from market.models import PriceCurrency
-from mkt.site.forms import PotatoCaptchaForm
 from users.forms import BaseAdminUserEditForm
 from users.models import UserProfile
 
@@ -78,19 +76,6 @@ class UserDeleteForm(forms.Form):
                                                           % self.request.user)
             raise forms.ValidationError('Developers cannot delete their '
                                         'accounts.')
-
-
-class FeedbackForm(PotatoCaptchaForm):
-    """Site feedback form."""
-
-    feedback = forms.CharField(required=True, label='',
-                               widget=forms.Textarea(attrs={'rows': 4}))
-    platform = forms.CharField(required=False, widget=forms.HiddenInput,
-                               label='')
-    chromeless = forms.CharField(required=False, widget=forms.HiddenInput,
-                                 label='')
-    from_url = forms.CharField(required=False, widget=forms.HiddenInput,
-                               label='')
 
 
 class LoginForm(happyforms.Form):
