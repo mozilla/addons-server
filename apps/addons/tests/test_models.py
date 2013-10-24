@@ -16,7 +16,6 @@ from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.utils import translation
 
-import waffle
 from mock import Mock, patch
 from nose.tools import assert_not_equal, eq_, ok_, raises
 
@@ -371,13 +370,7 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         assert BlacklistedGuid.objects.filter(guid=a.guid)
 
-    def test_delete_hard(self):
-        deleted_count = Addon.with_deleted.count()
-        self._delete()
-        eq_(deleted_count, Addon.with_deleted.count() + 1)
-
-    def test_delete_soft(self):
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+    def test_delete(self):
         deleted_count = Addon.with_deleted.count()
         self._delete()
         eq_(deleted_count, Addon.with_deleted.count())
@@ -394,13 +387,7 @@ class TestAddonModels(amo.tests.TestCase):
         a.delete('bye')
         assert absolutify(url) in mail.outbox[0].body
 
-    def test_delete_url_hard(self):
-        count = Addon.with_deleted.count()
-        self._delete_url()
-        eq_(count, Addon.with_deleted.count() + 1)
-
-    def test_delete_url_soft(self):
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+    def test_delete_url(self):
         count = Addon.with_deleted.count()
         self._delete_url()
         eq_(count, Addon.with_deleted.count())
@@ -415,27 +402,18 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         assert reason in mail.outbox[0].body
 
-    def _delete_status_gone_wild(self):
+    def test_delete_status_gone_wild(self):
         """
         Test deleting add-ons where the higheststatus is zero, but there's a
         non-zero status.
         """
+        count = Addon.objects.count()
         a = Addon.objects.get(pk=3615)
         a.status = amo.STATUS_UNREVIEWED
         a.highest_status = 0
         a.delete('bye')
         eq_(len(mail.outbox), 1)
         assert BlacklistedGuid.objects.filter(guid=a.guid)
-
-    def test_delete_status_gone_wild_hard(self):
-        count = Addon.objects.count()
-        self._delete_status_gone_wild()
-        eq_(count, Addon.with_deleted.count() + 1)
-
-    def test_delete_status_gone_wild_soft(self):
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
-        count = Addon.objects.count()
-        self._delete_status_gone_wild()
         eq_(count, Addon.with_deleted.count())
 
     def test_delete_incomplete(self):
@@ -2190,7 +2168,6 @@ class TestAddonUpsell(amo.tests.TestCase):
     def test_delete(self):
         self.upsell = AddonUpsell.objects.create(free=self.two,
                                                  premium=self.one)
-        self.create_switch('soft_delete')
         # Note: delete ignores if status 0.
         self.one.update(status=amo.STATUS_PUBLIC)
         self.one.delete()

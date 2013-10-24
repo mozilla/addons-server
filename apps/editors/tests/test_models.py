@@ -634,8 +634,6 @@ class TestRereviewQueueTheme(amo.tests.TestCase):
 
     def test_manager_soft_delete_addons(self):
         """Test manager excludes soft delete add-ons."""
-        self.create_switch('soft_delete')
-
         # Normal RQT object.
         RereviewQueueTheme.objects.create(
             theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
@@ -648,17 +646,3 @@ class TestRereviewQueueTheme(amo.tests.TestCase):
 
         eq_(RereviewQueueTheme.objects.count(), 1)
         eq_(RereviewQueueTheme.with_deleted.count(), 2)
-
-    def test_manager_hard_delete_addons(self):
-        """Test manager excludes soft delete add-ons."""
-        RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
-
-        # Deleted add-on RQT object.
-        addon = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(theme=addon.persona, header='', footer='')
-        addon.delete()
-
-        eq_(RereviewQueueTheme.objects.count(), 1)
-        eq_(RereviewQueueTheme.with_deleted.count(), 1)

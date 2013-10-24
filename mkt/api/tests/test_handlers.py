@@ -445,14 +445,12 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 404)
 
     def test_delete(self):
-        self.create_switch('soft_delete')
         obj = self.create_app()
         res = self.client.delete(self.get_url)
         eq_(res.status_code, 204)
         assert not Webapp.objects.filter(pk=obj.pk).exists()
 
     def test_delete_not_mine(self):
-        self.create_switch('soft_delete')
         obj = self.create_app()
         obj.authors.clear()
         res = self.client.delete(self.get_url)
