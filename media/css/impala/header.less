@@ -126,7 +126,7 @@
                     background: #fff;
                     position: absolute;
                     top: 18px;
-                    left: 1px;
+                    right: 1px;
                 }
             }
             > ul,
@@ -136,14 +136,15 @@
                 z-index: 59;
             }
             > ul {
-                width: 190px;
-                top: 17px;
-                z-index: 59;
-                padding: 8px;
-                background: #fff;
-                border: 1px solid @shadow-blue;
                 .border-radius(0 3px 3px);
                 .box-shadow(0 0 4px rgba(0, 0, 0, 0.4), 0 -2px 0 @inset-blue inset);
+                background: #fff;
+                border: 1px solid @shadow-blue;
+                padding: 8px;
+                right: 0;
+                top: 17px;
+                width: 190px;
+                z-index: 59;
                 a {
                     text-decoration: none;
                     display: block;
