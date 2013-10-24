@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-12 14:37+0000\n"
-"Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2013-10-24 08:17+0000\n"
+"Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1381588652.0\n"
+"X-POOTLE-MTIME: 1382602623.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -69,7 +69,7 @@ msgstr[1] "&hellip;y {0} más"
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
 msgid "See full validation report"
-msgstr "Ver informe completo de validación"
+msgstr "Ver el informe completo de la validación"
 
 #: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
@@ -78,7 +78,7 @@ msgstr "Validando {0}"
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Se recibió una respuesta vacía del servidor; estado: {0}"
+msgstr "Se ha recibido una respuesta vacía del servidor; estado: {0}"
 
 #: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
@@ -104,7 +104,7 @@ msgstr "Algunas plataformas no están disponibles para este tipo de complemento.
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr "No se reconoce el tipo de archivo que subiste."
+msgstr "No se reconoce el tipo de archivo que has subido."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
@@ -116,7 +116,7 @@ msgstr "Las imágenes deben tener un formato PNG o JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr "Los videos deben estar en WebM."
+msgstr "Los videos deben estar en el formato WebM."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
@@ -141,8 +141,10 @@ msgstr "Tu aplicación se ha validado sin errores ni avisos."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Tu aplicación no ha podido validarse con {0} error y {1} mensaje(s)."
-msgstr[1] "Tu aplicación no ha podido validarse con {0} errores y {1} mensaje(s)."
+msgstr[0] ""
+"La validación de tu aplicación ha fallado con {0} error y {1} mensaje(s)."
+msgstr[1] ""
+"La validación de tu aplicación ha fallado con {0} errores y {1} mensaje(s)."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -156,11 +158,12 @@ msgstr "Tu aplicación se ha validado sin errores ni mensajes."
 
 #: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
-msgstr "Cambios guardados"
+msgstr "Se han guardado los cambios"
 
 #: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
-msgstr "Escribe la dirección de correo de un nuevo miembro del equipo"
+msgstr ""
+"Escribe la dirección de correo electrónico de un nuevo miembro del equipo"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
@@ -180,7 +183,7 @@ msgstr "Ejemplo"
 
 #: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
-msgstr "Procesándose cambios en la imagen"
+msgstr "Se están procesando los cambios en la imagen"
 
 #: media/js/devreg/expandable.js:15
 msgid "more..."
@@ -200,7 +203,7 @@ msgstr "Eliminar esta localización"
 
 #: media/js/devreg/mobile_review_actions.js:6
 msgid "Keep review; remove flags"
-msgstr "Mantener revisión; eliminar indicadores"
+msgstr "Mantener la revisión; eliminar los indicadores"
 
 #: media/js/devreg/mobile_review_actions.js:8
 msgid "Delete review"
@@ -208,7 +211,7 @@ msgstr "Borrar revisión"
 
 #: media/js/devreg/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr "Saltar por ahora"
+msgstr "Omitir por ahora"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
@@ -216,11 +219,11 @@ msgstr "Código bancario español"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr "Código de identificación irlandés"
+msgstr "Código bancario irlandés"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr "Código de identificación belga"
+msgstr "Código bancario belga"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
@@ -228,7 +231,7 @@ msgstr "Código bancario español/francés/italiano/holandés"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr "Código de identificación holandés/estadounidense"
+msgstr "Código bancario holandés/estadounidense"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
@@ -244,7 +247,9 @@ msgstr "HEBIC griego/código bancario indonesio"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Código de identificación inglés/irlandés o prefijo de cuenta neozelandés o código BSB australiano"
+msgstr ""
+"Código bancario inglés/irlandés o prefijo de cuenta neozelandés o código BSB "
+"australiano"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -270,20 +275,20 @@ msgstr "Detectado: {0}"
 #: media/js/devreg/payments-manage.js:27
 msgid "that"
 msgid_plural "those"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "esa"
+msgstr[1] "esas"
 
 #: media/js/devreg/payments-manage.js:28
 msgid "app"
 msgid_plural "apps"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "aplicación"
+msgstr[1] "aplicaciones"
 
 #: media/js/devreg/payments-manage.js:29
 msgid "it"
 msgid_plural "they"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ella"
+msgstr[1] "ellas"
 
 #: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
@@ -1025,11 +1030,11 @@ msgstr "Error al identificarse con Mozilla Persona. Se encontró un error del se
 
 #: media/js/mkt/lookup-tool.js:63
 msgid "Show All Results"
-msgstr ""
+msgstr "Mostrar todos los resultados"
 
 #: media/js/mkt/lookup-tool.js:66
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Más de {0} resultados encontrados, intenta concretar más tu búsqueda."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
