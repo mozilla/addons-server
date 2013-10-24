@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-24 05:13+0000\n"
+"PO-Revision-Date: 2013-10-24 05:22+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382591602.0\n"
+"X-POOTLE-MTIME: 1382592137.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -14977,7 +14977,7 @@ msgstr ""
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
-msgstr ""
+msgstr "麦克风"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
@@ -15000,7 +15000,6 @@ msgid "The app requires the platform to allow web real-time communication browse
 msgstr ""
 
 #: mkt/constants/features.py:240
-#, fuzzy
 msgid "WebRTC DataChannel"
 msgstr "WebRTC DataChannel"
 
@@ -15010,7 +15009,7 @@ msgstr ""
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
@@ -15514,7 +15513,7 @@ msgstr "火狐市场添加了新地区。"
 
 #: mkt/developers/tasks.py:510
 msgid "{app}: {region} region added to the Firefox Marketplace"
-msgstr ""
+msgstr "{app}: {region} 地区已添加至 Firefox 市场"
 
 #: mkt/developers/utils.py:41
 msgid "Video support not enabled."
@@ -15544,7 +15543,7 @@ msgstr "图标必须是正方形。"
 #. in px.
 #: mkt/developers/utils.py:104
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
-msgstr ""
+msgstr "应用程序预览图应至少有 {0}px * {1}px 或 {1}px * {0}px。"
 
 #: mkt/developers/views.py:147
 msgid "Paid apps cannot be deleted. Disable this app instead."
@@ -15572,7 +15571,7 @@ msgstr "版本编辑成功。"
 
 #: mkt/developers/views.py:340
 msgid "Version successfully made public."
-msgstr ""
+msgstr "该版本已成功发布。"
 
 #: mkt/developers/views.py:355
 msgid "Version \"{0}\" deleted."
@@ -15636,11 +15635,12 @@ msgstr "API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
-msgstr ""
+msgstr "要使用 Marketplace API，请用下面的表单建立一对 OAuth 密钥。"
 
 #: mkt/developers/templates/developers/api.html:18
 msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
 msgstr ""
+"要使用 Marketplace API，请先同意<a href=\"%(terms)s\">服务条款</a>并使用下面的表单建立一对 OAuth 密钥。"
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
