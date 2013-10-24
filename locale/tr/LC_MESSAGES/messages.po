@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2012-11-04 16:42+0200\n"
+"PO-Revision-Date: 2013-10-24 07:17+0000\n"
 "Last-Translator: Selim <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1382599047.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -101,7 +102,7 @@ msgstr "Geçersiz karakterler çıkarıldıktan sonra tüm etiketler %s veya dah
 #: apps/addons/forms.py:111
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Tüm etiketler en az %s karakter olmalıdır."
+msgstr[0] "Tüm etiketler en az {0} karakter olmalıdır."
 
 #: apps/addons/forms.py:249
 msgid "Categories cannot be changed while your app is featured for this application."
@@ -674,7 +675,7 @@ msgstr "{0} tarihinde eklendi"
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%{num} haftalık indirme"
+msgstr[0] "%(num)s haftalık indirme"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
@@ -1090,7 +1091,10 @@ msgstr "<a href=\"%(meet_url)s\">Bu eklentinin geliştiricisi</a>, küçük bir 
 
 #: apps/addons/templates/addons/impala/contribution.html:60
 msgid "The <a href=\"%(meet_url)s\">developer of this app</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Bu uygulamanın geliştiricisi</a>, <a href=\"%(charity_url)s\">%(charity_name)</a> kurumuna bağışta bulunarak desteğinizi göstermenizi rica ediyor."
+msgstr ""
+"<a href=\"%(meet_url)s\">Bu uygulamanın geliştiricisi</a>, <a href=\"%"
+"(charity_url)s\">%(charity_name)s</a> kurumuna bağışta bulunarak desteğinizi "
+"göstermenizi rica ediyor."
 
 #: apps/addons/templates/addons/impala/contribution.html:65
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -1098,7 +1102,10 @@ msgstr "<a href=\"%(meet_url)s\">Bu eklentinin geliştiricisi</a>, <a href=\"%(c
 
 #: apps/addons/templates/addons/impala/contribution.html:72
 msgid "The <a href=\"%(meet_url)s\">developer of this app</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Bu uygulamanın geliştiricisi</a>, <a href=\"%(charity_url)s\">%(charity_name)</a> kurumuna küçük bir bağışta bulunarak desteğinizi göstermenizi rica ediyor."
+msgstr ""
+"<a href=\"%(meet_url)s\">Bu uygulamanın geliştiricisi</a>, <a href=\"%"
+"(charity_url)s\">%(charity_name)s</a> kurumuna küçük bir bağışta bulunarak "
+"desteğinizi göstermenizi rica ediyor."
 
 #: apps/addons/templates/addons/impala/contribution.html:77
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -1198,7 +1205,7 @@ msgstr "Bilgi"
 
 #: apps/addons/templates/addons/impala/details.html:221
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)</a> altında yayımlanmıştır"
+msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> altında yayımlanmıştır"
 
 #: apps/addons/templates/addons/impala/details.html:222 apps/addons/templates/addons/impala/details.html:227 apps/amo/helpers.py:405 apps/devhub/forms.py:139 apps/devhub/forms.py:169
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
@@ -1700,7 +1707,7 @@ msgstr "{addon} için {version} düzenlendi."
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr "{addon} eklentisinden {version} sürümü silindi."
+msgstr "{addon} eklentisinden {0} sürümü silindi."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
@@ -1708,7 +1715,7 @@ msgstr "{addon} {version} sürümüne {0.name} dosyası eklendi."
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
-msgstr "{addon} {version} sürümünden {0.name} dosyası silindi."
+msgstr "{addon} {version} sürümünden {0} dosyası silindi."
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
@@ -1868,7 +1875,7 @@ msgstr "Parola değiştirildi."
 
 #: apps/amo/log.py:367
 msgid "{addon} changed to premium."
-msgstr "{Addon} premium olarak değişti."
+msgstr "{addon} premium olarak değişti."
 
 #: apps/amo/log.py:372
 msgid "{addon} failed checks with PayPal."
@@ -3038,7 +3045,7 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
-msgstr "%(date) tarihinde engellendi."
+msgstr "%(date)s tarihinde engellendi."
 
 #: apps/blocklist/templates/blocklist/blocked_list.html:11
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
@@ -13524,7 +13531,7 @@ msgstr ""
 # 100%
 #: apps/versions/feeds.py:27
 msgid "%s Version History"
-msgstr "{0} Sürüm Geçmişi"
+msgstr "%s Sürüm Geçmişi"
 
 #: apps/versions/feeds.py:35
 msgid "Version History with Changelogs"
