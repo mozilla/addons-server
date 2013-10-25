@@ -11,15 +11,12 @@ import commonware.log
 import cronjobs
 from celery.task.sets import TaskSet
 from lib.es.utils import raise_if_reindex_in_progress
-from lib.metrics import get_monolith_client
 
 import amo
 from amo.utils import chunked
 
-import mkt
-
 from .models import Installed, Webapp
-from .tasks import webapp_update_weekly_downloads
+from .tasks import update_trending, webapp_update_weekly_downloads
 
 log = commonware.log.getLogger('z.cron')
 
@@ -52,98 +49,16 @@ def clean_old_signed(seconds=60 * 60):
             shutil.rmtree(full)
 
 
-def _get_trending(app_id, region=None):
-    """
-    Calculate trending.
-
-    a = installs from 7 days ago to now
-    b = installs from 28 days ago to 8 days ago, averaged per week
-
-    trending = (a - b) / b if a > 100 and b > 1 else 0
-
-    """
-    client = get_monolith_client()
-
-    kwargs = {'app-id': app_id}
-    if region:
-        kwargs['region'] = region.slug
-
-    today = datetime.datetime.today()
-    days_ago = lambda d: today - datetime.timedelta(days=d)
-
-    # If we query monolith with interval=week and the past 7 days
-    # crosses a Monday, Monolith splits the counts into two. We want
-    # the sum over the past week so we need to `sum` these.
-    try:
-        count_1 = sum(
-            c['count'] for c in
-            client('app_installs', days_ago(7), today, 'week', **kwargs)
-            if c.get('count'))
-    except ValueError as e:
-        log.info('Call to ES failed: {0}'.format(e))
-        count_1 = 0
-
-    # If count_1 isn't more than 100, stop here to avoid extra Monolith calls.
-    if not count_1 > 100:
-        return 0.0
-
-    # Get the average installs for the prior 3 weeks. Don't use the `len` of
-    # the returned counts because of week boundaries.
-    try:
-        count_3 = sum(
-            c['count'] for c in
-            client('app_installs', days_ago(28), days_ago(8), 'week', **kwargs)
-            if c.get('count')) / 3
-    except ValueError as e:
-        log.info('Call to ES failed: {0}'.format(e))
-        count_3 = 0
-
-    if count_3 > 1:
-        return (count_1 - count_3) / count_3
-    else:
-        return 0.0
-
-
 @cronjobs.register
 def update_app_trending():
-    """Update trending for all apps."""
-    chunk_size = 300
+    """
+    Update trending for all apps.
+
+    In testing on the server, each calculation takes about 2.5s. A chunk size
+    of 50 means each task will take about 2 minutes.
+    """
+    chunk_size = 50
     all_ids = list(Webapp.objects.values_list('id', flat=True))
 
-    count = 0
-    times = []
-
     for ids in chunked(all_ids, chunk_size):
-        apps = Webapp.objects.filter(id__in=ids).no_transforms()
-        for app in apps:
-            count += 1
-            t_start = time.time()
-
-            # Calculate global trending, then per-region trending below.
-            value = _get_trending(app.id)
-            if value:
-                trending, created = app.trending.get_or_create(
-                    region=0, defaults={'value': value})
-                if not created:
-                    trending.update(value=value)
-
-            for region in mkt.regions.REGIONS_DICT.values():
-                value = _get_trending(app.id, region)
-                if value:
-                    trending, created = app.trending.get_or_create(
-                        region=region.id, defaults={'value': value})
-                    if not created:
-                        trending.update(value=value)
-
-            times.append(time.time() - t_start)
-
-            if count % 10 == 0:
-                log.debug('Trending calculated for 10 apps. Avg time overall: '
-                          '%0.2fs' % (sum(times) / len(times)))
-
-        # Let the database catch its breath.
-        if len(all_ids) > chunk_size:
-            time.sleep(10)
-
-    log.debug('Trending calculated for %s apps. Avg time overall: '
-              '%0.2fs' % (len(all_ids), sum(times) / len(times)))
+        update_trending.delay(ids)
