@@ -14,7 +14,7 @@ from babel import numbers
 from curling.lib import HttpClientError
 from pyquery import PyQuery as pq
 from nose.exc import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from slumber import exceptions
 
 import amo
@@ -26,19 +26,19 @@ from amo.tests import (addon_factory, app_factory, ESTestCase,
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
+from stats.models import Contribution, DownloadCount
+from users.cron import reindex_users
+from users.models import Group, GroupUser, UserProfile
+
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.developers.tests.test_views_payments import (TEST_PACKAGE_ID,
                                                       setup_payment_account)
-import mkt.lookup.constants as lkp
 from mkt.lookup.views import (_transaction_summary, transaction_refund,
                               user_delete, user_summary)
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
-from stats.models import Contribution, DownloadCount
-from users.cron import reindex_users
-from users.models import Group, GroupUser, UserProfile
 
 
 @mock.patch.object(settings, 'TASK_USER_ID', 999)
@@ -236,7 +236,7 @@ class TestBangoRedirect(TestCase):
             'authentication_token': self.authentication_token,
         }
         res = self.client.get(self.portal_url)
-        eq_(res.status_code, 204)
+        eq_(res.status_code, 302)
         eq_(api.bango.login.post.call_args[0][0]['packageId'], TEST_PACKAGE_ID)
         redirect_url = res['Location']
         assert self.authentication_token in redirect_url, redirect_url
@@ -244,11 +244,12 @@ class TestBangoRedirect(TestCase):
 
     @mock.patch('mkt.developers.views_payments.client.api')
     def test_bango_portal_redirect_api_error(self, api):
-        err = {'errors': 'Something went wrong.'}
-        api.bango.login.post.side_effect = HttpClientError(content=err)
-        res = self.client.get(self.portal_url)
-        eq_(res.status_code, 400)
-        eq_(json.loads(res.content), err)
+        message = 'Something went wrong.'
+        error = {'__all__': [message]}
+        api.bango.login.post.side_effect = HttpClientError(content=error)
+        res = self.client.get(self.portal_url, follow=True)
+        eq_(res.redirect_chain, [('http://testserver/lookup/', 302)])
+        ok_(message in [msg.message for msg in res.context['messages']][0])
 
     @mock.patch('mkt.developers.views_payments.client.api')
     def test_bango_portal_redirect_role_error(self, api):
@@ -322,8 +323,8 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
         data = self.search(q='fonzih')
         self.verify_result(data)
 
-    @mock.patch.object(lkp, 'SEARCH_LIMIT', 2)
-    @mock.patch.object(lkp, 'MAX_RESULTS', 3)
+    @mock.patch('mkt.constants.lookup.SEARCH_LIMIT', 2)
+    @mock.patch('mkt.constants.lookup.MAX_RESULTS', 3)
     def test_all_results(self):
         for x in range(4):
             name = 'chr' + str(x)
@@ -670,6 +671,21 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
                                  password='password')
         data = self.search(q=self.app.pk)
         self.verify_result(data)
+
+    @mock.patch('mkt.constants.lookup.SEARCH_LIMIT', 2)
+    @mock.patch('mkt.constants.lookup.MAX_RESULTS', 3)
+    def test_all_results(self):
+        for x in range(4):
+            addon_factory(name='chr' + str(x), type=amo.ADDON_WEBAPP)
+        self.refresh('webapp')
+
+        # Test search limit.
+        data = self.search(q='chr')
+        eq_(len(data['results']), 2)
+
+        # Test maximum search result.
+        data = self.search(q='chr', all_results=True)
+        eq_(len(data['results']), 3)
 
 
 class AppSummaryTest(TestCase):

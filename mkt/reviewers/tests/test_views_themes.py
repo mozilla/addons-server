@@ -513,9 +513,11 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
 
     @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
     @mock.patch('mkt.reviewers.tasks.send_mail_jinja')
+    @mock.patch('mkt.reviewers.tasks.copy_stored_file')
     @mock.patch('mkt.reviewers.tasks.create_persona_preview_images')
     @mock.patch('amo.storage_utils.copy_stored_file')
-    def test_update_legacy_theme(self, copy_mock, prev_mock, noop3):
+    def test_update_legacy_theme(self, copy_mock, prev_mock, copy_mock2,
+                                 noop3):
         """
         Test updating themes that were submitted from GetPersonas.
         STR the bug this test fixes:
@@ -523,7 +525,7 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         - Reupload a legacy theme and approve it.
         - On approving, it would make a preview image with the destination as
          'preview.png' and 'icon.png', but legacy themes use
-         'preview_large.jpg' and 'preview_small.png'.
+         'preview.jpg' and 'preview_small.jpg'.
         - Thus the preview images were not being updated, but the header/footer
           images were.
         """
@@ -558,8 +560,10 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         theme.preview_path.endswith('preview_large.jpg')
 
         # Test calling create_persona_preview_images.
-        eq_(prev_mock.call_args_list[0][1]['full_dst'][0], theme.preview_path)
-        eq_(prev_mock.call_args_list[0][1]['full_dst'][1], theme.icon_path)
+        assert (prev_mock.call_args_list[0][1]['full_dst'][0]
+                .endswith('preview.jpg'))
+        assert (prev_mock.call_args_list[0][1]['full_dst'][1]
+                .endswith('preview_small.jpg'))
 
         # pending_header should be mv'ed to Legacy-header3H.png.
         assert copy_mock.call_args_list[0][0][0].endswith('pending_header')
@@ -571,6 +575,10 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         assert (copy_mock.call_args_list[1][0][1]
                 .endswith('Legacy-footer3H-Copy.jpg'))
 
+        assert (copy_mock2.call_args_list[0][0][0]
+                .endswith('preview.jpg'))
+        assert (copy_mock2.call_args_list[0][0][1]
+                .endswith('preview_large.jpg'))
 
 class TestDeletedThemeLookup(amo.tests.TestCase):
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',

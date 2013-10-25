@@ -41,7 +41,7 @@ msgstr "Glac Leis agus Íosluchtaigh"
 
 #: apps/addons/buttons.py:222
 msgid "Install App"
-msgstr "Suiteáil an Feidhmchlár"
+msgstr "Suiteáil an Aip"
 
 #: apps/addons/buttons.py:236
 msgctxt "install_button"
@@ -426,7 +426,7 @@ msgid "A one-time suggested contribution of {0}"
 msgstr "Moltar deontas aonuaire de {0}"
 
 #. {0} is a currency symbol (e.g., $),
-#.                    {1} is an amount input field
+#. {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
 msgstr "Deontas aonuaire de {0} {1}"
@@ -485,7 +485,7 @@ msgstr "Feidhmíonn sé le"
 
 #: apps/addons/templates/addons/details_box.html:60
 msgid "Required Apps"
-msgstr "Feidhmchláir Riachtanacha"
+msgstr "Aipeanna Riachtanacha"
 
 #: apps/addons/templates/addons/details_box.html:62 apps/devhub/templates/devhub/addons/edit/technical.html:54
 msgid "Required Add-ons"
@@ -732,7 +732,7 @@ msgstr "Go raibh maith agat as an mbreiseán seo a cheannach"
 
 #: apps/addons/templates/addons/paypal_result.html:39
 msgid "Return to the app."
-msgstr "Fill ar an bhfeidhmchlár."
+msgstr "Fill ar an aip."
 
 #: apps/addons/templates/addons/paypal_result.html:41
 msgid "Return to the addon."
@@ -740,11 +740,11 @@ msgstr "Fill ar an mbreiseán."
 
 #: apps/addons/templates/addons/paypal_start.html:9
 msgid "Purchased App"
-msgstr "Feidhmchlár Ceannaithe"
+msgstr "Aip Cheannaithe"
 
 #: apps/addons/templates/addons/paypal_start.html:10
 msgid "You've already bought this app!"
-msgstr "Cheannaigh tú an feidhmchlár seo cheana!"
+msgstr "Cheannaigh tú an aip seo cheana!"
 
 #: apps/addons/templates/addons/paypal_start.html:12
 msgid "Purchased Add-on"
@@ -760,7 +760,7 @@ msgstr "<p>Mura dtosóidh an tsuiteáil go huathoibríoch, <a class=\"%(class)s\
 
 #: apps/addons/templates/addons/paypal_start.html:27
 msgid "Purchase App"
-msgstr "Ceannaigh an Feidhmchlár"
+msgstr "Ceannaigh an Aip"
 
 #: apps/addons/templates/addons/paypal_start.html:29
 msgid "Purchase Add-on"
@@ -1102,7 +1102,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/button.html:52
 msgid "This app has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Níl léirmheas déanta ar an bhfeidhmchlár seo ag Mozilla. <a href=\"%(url)s\">Tuilleadh eolais</a>"
+msgstr "Níl léirmheas déanta ar an aip seo ag Mozilla. <a href=\"%(url)s\">Tuilleadh eolais</a>"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1110,7 +1110,7 @@ msgstr "Moltar <b>%(amt)s</b>"
 
 #: apps/addons/templates/addons/impala/contribution.html:39
 msgid "Enjoy this app?"
-msgstr "An dtaitníonn an feidhmchlár seo leat?"
+msgstr "An dtaitníonn an aip seo leat?"
 
 #: apps/addons/templates/addons/impala/contribution.html:41
 msgid "Enjoy this add-on?"
@@ -1118,7 +1118,7 @@ msgstr "An dtaitníonn an breiseán seo leat?"
 
 #: apps/addons/templates/addons/impala/contribution.html:48
 msgid "The <a href=\"%(meet_url)s\">developer of this app</a> asks that you help support its continued development by making a small contribution."
-msgstr "Tá <a href=\"%(meet_url)s\">forbróir an fheidhmchláir seo</a> ag iarraidh go dtacóidh tú lena fhorbairt leanúnach trí dheontas beag a thabhairt."
+msgstr "Tá <a href=\"%(meet_url)s\">forbróir na haipe seo</a> ag iarraidh go dtacóidh tú lena fhorbairt leanúnach trí dheontas beag a thabhairt."
 
 #: apps/addons/templates/addons/impala/contribution.html:53
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
@@ -1126,7 +1126,7 @@ msgstr "Tá <a href=\"%(meet_url)s\">forbróir an bhreiseáin seo</a> ag iarraid
 
 #: apps/addons/templates/addons/impala/contribution.html:60
 msgid "The <a href=\"%(meet_url)s\">developer of this app</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Tá <a href=\"%(meet_url)s\">forbróir an fheidhmchláir seo</a> ag iarraidh go dtacóidh tú leis trí dheontas a thabhairt do <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr "Tá <a href=\"%(meet_url)s\">forbróir na haipe seo</a> ag iarraidh go dtacóidh tú leis trí dheontas a thabhairt do <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:65
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -1134,7 +1134,7 @@ msgstr "Tá <a href=\"%(meet_url)s\">forbróir an bhreiseáin seo</a> ag iarraid
 
 #: apps/addons/templates/addons/impala/contribution.html:72
 msgid "The <a href=\"%(meet_url)s\">developer of this app</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Tá <a href=\"%(meet_url)s\">forbróir an fheidhmchláir seo</a> ag iarraidh go dtacóidh tú leis trí dheontas beag a thabhairt do <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr "Tá <a href=\"%(meet_url)s\">forbróir na haipe seo</a> ag iarraidh go dtacóidh tú leis trí dheontas beag a thabhairt do <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:77
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -1142,7 +1142,7 @@ msgstr "Tá <a href=\"%(meet_url)s\">forbróir an bhreiseáin seo</a> ag iarraid
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:5
 msgid "This app requires the following apps to work properly:"
-msgstr "Teastaíonn ón bhfeidhmchlár seo na feidhmchláir seo a leanas:"
+msgstr "Teastaíonn ón aip seo na haipeanna seo a leanas:"
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:7
 msgid "This add-on requires the following add-ons to work properly:"
@@ -1175,11 +1175,11 @@ msgstr "Cuid de na Bailiúcháin seo"
 #: apps/addons/templates/addons/impala/details-more.html:87
 msgid "Other apps by %(author)s"
 msgid_plural "Other apps by these authors"
-msgstr[0] "Feidhmchláir eile le %(author)s"
-msgstr[1] "Feidhmchláir eile leis na húdair seo"
-msgstr[2] "Feidhmchláir eile leis na húdair seo"
-msgstr[3] "Feidhmchláir eile leis na húdair seo"
-msgstr[4] "Feidhmchláir eile leis na húdair seo"
+msgstr[0] "Aipeanna eile le %(author)s"
+msgstr[1] "Aipeanna eile leis na húdair seo"
+msgstr[2] "Aipeanna eile leis na húdair seo"
+msgstr[3] "Aipeanna eile leis na húdair seo"
+msgstr[4] "Aipeanna eile leis na húdair seo"
 
 #: apps/addons/templates/addons/impala/details.html:41
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -1213,7 +1213,7 @@ msgstr[4] "<a href=\"%(url)s\">Téigh in aithne ar na forbróirí</a>"
 
 #: apps/addons/templates/addons/impala/details.html:148
 msgid "Learn why {0} was created and find out what's next for this app."
-msgstr "Cén fáth a raibh {0} cruthaithe, agus céard atá i ndán don fheidhmchlár seo."
+msgstr "Cén fáth a raibh {0} cruthaithe, agus céard atá i ndán don aip seo."
 
 # {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:151
@@ -1222,7 +1222,7 @@ msgstr "Cén fáth a raibh {0} cruthaithe, agus céard atá i ndán don bhreise�
 
 #: apps/addons/templates/addons/impala/details.html:196
 msgid "App home page"
-msgstr "Leathanach baile an fheidhmchláir"
+msgstr "Leathanach baile na haipe"
 
 #: apps/addons/templates/addons/impala/details.html:196
 msgid "Add-on home page"
@@ -1259,7 +1259,7 @@ msgstr "Ceadúnas: <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:239
 msgid "About this App"
-msgstr "Maidir leis an bhfeidhmchlár seo"
+msgstr "Maidir leis an Aip seo"
 
 #: apps/addons/templates/addons/impala/details.html:241
 msgid "About this Add-on"
@@ -1341,11 +1341,11 @@ msgstr "Cé hé/hí {0}?"
 
 #: apps/addons/templates/addons/impala/disabled.html:20
 msgid "This app has been removed by its author."
-msgstr "Bhain an t-údar an feidhmchlár seo ón suíomh."
+msgstr "Bhain an t-údar an aip seo ón suíomh."
 
 #: apps/addons/templates/addons/impala/disabled.html:22
 msgid "This app has been disabled by an administrator."
-msgstr "Bhí an feidhmchlár seo díchumasaithe ag riarthóir."
+msgstr "Bhí an aip seo díchumasaithe ag riarthóir."
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
@@ -1370,7 +1370,7 @@ msgstr "buan-nasc"
 #: apps/addons/templates/addons/impala/review_list_box.html:31
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Féach ar an %(cnt)s léirmheas"
+msgstr[0] "Féach ar gach léirmheas"
 msgstr[1] "Féach ar an %(cnt)s léirmheas"
 msgstr[2] "Féach ar na %(cnt)s léirmheas"
 msgstr[3] "Féach ar na %(cnt)s léirmheas"
@@ -1378,7 +1378,7 @@ msgstr[4] "Féach ar na %(cnt)s léirmheas"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:43
 msgid "This app has not yet been reviewed."
-msgstr "Níl aon léirmheas déanta ar an bhfeidhmchlár seo."
+msgstr "Níl aon léirmheas déanta ar an aip seo."
 
 #: apps/addons/templates/addons/impala/review_list_box.html:45 apps/reviews/templates/reviews/review_list.html:91
 msgid "This add-on has not yet been reviewed."
@@ -1663,7 +1663,7 @@ msgstr "Margadh Fhirefox"
 
 #: apps/amo/helpers.py:316
 msgid "Apps Marketplace"
-msgstr "Áit Mhargaidh Feidhmchlár"
+msgstr "Áit Mhargaidh Aipeanna"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:435
@@ -1928,11 +1928,11 @@ msgstr "Ceadaithe ach ar feitheamh"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} ceannaithe."
 
 #: apps/amo/log.py:397
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} suiteáilte."
 
 #: apps/amo/log.py:402
 msgid "Refund requested for {addon}"
@@ -1980,7 +1980,7 @@ msgstr ""
 
 #: apps/amo/log.py:456
 msgid "App disabled"
-msgstr ""
+msgstr "Díchumasaíodh an aip"
 
 #: apps/amo/log.py:463
 msgid "{addon} escalated because of high number of abuse reports."
@@ -2004,7 +2004,7 @@ msgstr ""
 
 #: apps/amo/log.py:480
 msgid "Manifest Change"
-msgstr ""
+msgstr "Lastliosta Athraithe"
 
 #: apps/amo/log.py:487
 msgid "{addon} re-reviewed because app upgraded premium type."
@@ -2060,7 +2060,7 @@ msgstr ""
 
 #: apps/amo/log.py:536
 msgid "App Resubmission"
-msgstr ""
+msgstr "Athsheoladh na hAipe"
 
 #: apps/amo/log.py:553
 msgid "Created: {0}."
@@ -2068,7 +2068,7 @@ msgstr "Cruthaithe: {0}."
 
 #: apps/amo/log.py:559
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Réimse athraithe: {2} luach nua: {0}."
 
 #: apps/amo/log.py:565
 msgid "Deleted: {1}."
@@ -2134,7 +2134,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Neamhcheadaithe"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
@@ -2281,8 +2281,8 @@ msgid "Previous"
 msgstr "Siar"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#.                third argument is the number of total results (e.g., 1,000).
-#.              third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> as <b>%(count)s</b> á dtaispeáint"
@@ -2638,11 +2638,11 @@ msgstr "Scrios an Bailiúchán"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "%(num)s Téama sa Bhailiúchán seo"
+msgstr[1] "%(num)s Théama sa Bhailiúchán seo"
+msgstr[2] "%(num)s Théama sa Bhailiúchán seo"
+msgstr[3] "%(num)s dTéama sa Bhailiúchán seo"
+msgstr[4] "%(num)s Téama sa Bhailiúchán seo"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
@@ -2735,8 +2735,8 @@ msgid "Collections are groups of related add-ons that anyone can create and shar
 msgstr ""
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
@@ -2747,7 +2747,7 @@ msgstr[3] "%(num)s leantóir seachtainiúil"
 msgstr[4] "%(num)s leantóir seachtainiúil"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
@@ -2758,8 +2758,8 @@ msgstr[3] "%(num)s leantóir míosúil"
 msgstr[4] "%(num)s leantóir míosúil"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
@@ -3304,31 +3304,31 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:30
 msgid "Featured Apps"
-msgstr "Feidhmchláir Mhór-Le-Rá"
+msgstr "Aipeanna Mór-Le-Rá"
 
 #: apps/browse/templates/browse/impala/base_listing.html:31
 msgid "Apps by Weekly Downloads"
-msgstr ""
+msgstr "Líón Íosluchtuithe sa tSeachtain"
 
 #: apps/browse/templates/browse/impala/base_listing.html:34
 msgid "Top-Rated Apps"
-msgstr ""
+msgstr "Rátálacha is Airde"
 
 #: apps/browse/templates/browse/impala/base_listing.html:35
 msgid "Newest Apps"
-msgstr "Na Feidhmchláir Is Nuaí"
+msgstr "Na Aipeanna Is Nuaí"
 
 #: apps/browse/templates/browse/impala/base_listing.html:36
 msgid "Apps by Name"
-msgstr "Feidhmchláir de réir Ainm"
+msgstr "Aipeanna de réir Ainm"
 
 #: apps/browse/templates/browse/impala/base_listing.html:37
 msgid "Recently Updated Apps"
-msgstr ""
+msgstr "Nuashonraithe Le Déanaí"
 
 #: apps/browse/templates/browse/impala/base_listing.html:38
 msgid "Up & Coming Apps"
-msgstr "Feidhmchláir Ag Teacht Chun Cinn"
+msgstr "Aipeanna Ag Teacht Chun Cinn"
 
 #: apps/browse/templates/browse/impala/category_landing.html:46
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -3342,11 +3342,11 @@ msgstr[4] "Féach ar na %(cnt)s eisínteacht i %(name)s &raquo;"
 #: apps/browse/templates/browse/impala/category_landing.html:52
 msgid "See the %(cnt)s app in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s apps in %(name)s &raquo;"
-msgstr[0] "Féach ar an %(cnt)s fheidhmchlár i %(name)s &raquo;"
-msgstr[1] "Féach ar an %(cnt)s fheidhmchlár i %(name)s &raquo;"
-msgstr[2] "Féach ar na %(cnt)s fheidhmchlár i %(name)s &raquo;"
-msgstr[3] "Féach ar na %(cnt)s bhfeidhmchlár i %(name)s &raquo;"
-msgstr[4] "Féach ar na %(cnt)s feidhmchlár i %(name)s &raquo;"
+msgstr[0] "Féach ar an %(cnt)s aip i %(name)s &raquo;"
+msgstr[1] "Féach ar an %(cnt)s aip i %(name)s &raquo;"
+msgstr[2] "Féach ar na %(cnt)s aip i %(name)s &raquo;"
+msgstr[3] "Féach ar na %(cnt)s n-aip i %(name)s &raquo;"
+msgstr[4] "Féach ar na %(cnt)s aip i %(name)s &raquo;"
 
 #: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47 apps/perf/templates/perf/index.html:109 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
@@ -3471,7 +3471,7 @@ msgstr "Gach breiseán gníomhach"
 #: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/apps_reviewing.html:64
 #: mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr "Feidhmchlár"
+msgstr "Aip"
 
 #: apps/compat/templates/compat/index.html:55
 msgid "Details for add-ons compatible with previous version:"
@@ -3749,7 +3749,7 @@ msgstr "Pacáistí Teanga (Feidhmchlár)"
 #: apps/constants/base.py:193 apps/editors/templates/editors/performance.html:73 mkt/reviewers/helpers.py:36 mkt/reviewers/templates/reviewers/base.html:27
 #: mkt/reviewers/templates/reviewers/performance.html:27 mkt/site/helpers.py:189 templates/mobile/base_apps.html:41
 msgid "Apps"
-msgstr "Feidhmchláir"
+msgstr "Aipeanna"
 
 #: apps/constants/base.py:279 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:52 mkt/search/forms.py:26 mkt/search/forms.py:38
 #: mkt/submit/templates/submit/manifest.html:32
@@ -4176,11 +4176,11 @@ msgstr "Cuir isteach Polasaí Príobháideachta do bhreiseáin:"
 
 #: apps/devhub/forms.py:270
 msgid "Why did you make this app?"
-msgstr "Cén fáth ar chruthaigh tú an feidhmchlár seo?"
+msgstr "Cén fáth ar chruthaigh tú an aip seo?"
 
 #: apps/devhub/forms.py:271
 msgid "What's next for this app?"
-msgstr "Céard atá i ndán don fheidhmchlár seo?"
+msgstr "Céard atá i ndán don aip seo?"
 
 #: apps/devhub/forms.py:273
 msgid "Why did you make this add-on?"
@@ -4412,7 +4412,7 @@ msgstr "Doiciméadú Breiseán :: Lárionad Forbartha."
 
 #: apps/devhub/helpers.py:68 apps/devhub/templates/devhub/nav.html:19 mkt/account/templates/account/purchases.html:3 mkt/account/templates/account/includes/nav.html:5
 msgid "My Apps"
-msgstr "Mo Chuid Feidhmchlár"
+msgstr "Mo Chuid Aipeanna"
 
 #: apps/devhub/helpers.py:72 mkt/developers/helpers.py:66 mkt/developers/templates/developers/nav.html:8 mkt/site/context_processors.py:40 mkt/templates/mkt/account-links.html:10
 msgid "My Submissions"
@@ -4466,11 +4466,11 @@ msgstr "Ní cheadaítear deilbhín atá níos mó ná %s beart."
 
 #: apps/devhub/tasks.py:410
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\"."
-msgstr ""
+msgstr "Is gá an lastliosta a chur ar fáil leis an gceanntásc HTTP \"Content-Type: %s\"."
 
 #: apps/devhub/tasks.py:412
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\". We saw \"%s\"."
-msgstr ""
+msgstr "Is gá an lastliosta a chur ar fáil leis an gceanntásc HTTP \"Content-Type: %s\". Fuarthas \"%s\"."
 
 #: apps/devhub/tasks.py:417 mkt/developers/tasks.py:357
 msgid "Your manifest must be less than %s bytes."
@@ -4511,7 +4511,7 @@ msgstr ""
 
 #: apps/devhub/views.py:360
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Ní féidir an breiseán a scriosadh. Ba chóir duit é a dhíchumasú."
 
 #: apps/devhub/views.py:369
 msgid "Theme deleted."
@@ -4693,7 +4693,7 @@ msgstr "Íosluchtaigh an SDK Breiseáin"
 
 #: apps/devhub/templates/devhub/builder.html:89 mkt/developers/templates/developers/builder.html:89
 msgid "There's Nothing to It"
-msgstr ""
+msgstr "Ní hansa"
 
 #: apps/devhub/templates/devhub/builder.html:91 mkt/developers/templates/developers/builder.html:91
 msgid "If you know HTML, CSS and JavaScript, you can make add-ons. With Builder, you don't even need to set up a build environment. Just log in and go."
@@ -4895,11 +4895,11 @@ msgstr "Lárionad Forbartha <small>Breiseán</small>"
 
 #: apps/devhub/templates/devhub/nav.html:25 mkt/developers/templates/developers/nav.html:14
 msgid "more apps..."
-msgstr "tuilleadh feidhmchlár..."
+msgstr "tuilleadh aipeanna..."
 
 #: apps/devhub/templates/devhub/nav.html:32 apps/devhub/templates/devhub/addons/submit/base.html:4 mkt/developers/templates/developers/nav.html:25 mkt/developers/templates/developers/nav.html:39
 msgid "Submit a New App"
-msgstr "Seol Feidhmchlár Nua Chugainn"
+msgstr "Seol Aip Nua Chugainn"
 
 #: apps/devhub/templates/devhub/nav.html:44
 msgid "more add-ons..."
@@ -5174,11 +5174,11 @@ msgstr "Dún"
 #: apps/devhub/templates/devhub/addons/dashboard.html:21
 msgid "<b>{0}</b> app"
 msgid_plural "<b>{0}</b> apps"
-msgstr[0] "<b>{0}</b> fheidhmchlár"
-msgstr[1] "<b>{0}</b> fheidhmchlár"
-msgstr[2] "<b>{0}</b> fheidhmchlár"
-msgstr[3] "<b>{0}</b> bhfeidhmchlár"
-msgstr[4] "<b>{0}</b> feidhmchlár"
+msgstr[0] "<b>{0}</b> aip"
+msgstr[1] "<b>{0}</b> aip"
+msgstr[2] "<b>{0}</b> aip"
+msgstr[3] "<b>{0}</b> n-aip"
+msgstr[4] "<b>{0}</b> aip"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:32 mkt/developers/templates/developers/apps/dashboard.html:14
 msgid "Welcome to the Developer Dashboard"
@@ -5699,7 +5699,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14 mkt/developers/templates/developers/apps/listing/item_actions_app.html:24
 msgid "Delete this app."
-msgstr ""
+msgstr "Scrios an aip seo."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:24
 msgid "Edit details about this app's listing."
@@ -5715,7 +5715,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:74 mkt/developers/templates/developers/includes/addons_edit_nav.html:11
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 msgid "Manage In-App Payments"
-msgstr ""
+msgstr "Bainistigh Íocaíochtaí Laistigh den Aip"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:56
 msgid "View App Listing"
@@ -5782,7 +5782,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/base.html:14 mkt/submit/templates/submit/details.html:14 mkt/submit/templates/submit/done.html:10 mkt/submit/templates/submit/manifest.html:23
 #: mkt/submit/templates/submit/payments-upsell.html:9 mkt/submit/templates/submit/payments.html:8 mkt/submit/templates/submit/terms.html:8
 msgid "Submit App"
-msgstr ""
+msgstr "Seol Aip Chugainn"
 
 #: apps/devhub/templates/devhub/addons/submit/base.html:14
 msgid "Submit Add-on"
@@ -6008,11 +6008,11 @@ msgstr "Roghnaigh Réamhscrúdú"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:6
 msgid "Link your app"
-msgstr ""
+msgstr "Nasc le d'aip"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Describe your app"
-msgstr ""
+msgstr "Déan cur síos ar d'aip"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:16
 msgid "Add images"
@@ -6097,7 +6097,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload_webapp.html:7
 msgid "Step 2. Link to Your App"
-msgstr ""
+msgstr "Céim 2. Nasc le d'Aip"
 
 # Button text (verb)
 #: apps/devhub/templates/devhub/addons/submit/upload_webapp.html:24 mkt/developers/templates/developers/validate_addon.html:27 mkt/submit/templates/submit/manifest.html:66
@@ -6418,7 +6418,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:170
 msgid "BabelZilla overview"
-msgstr ""
+msgstr "Foramharc BabelZilla"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:173
 msgid "Learn how the BabelZilla localization community works."
@@ -8265,11 +8265,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:3
 msgid "Manage Authors"
-msgstr ""
+msgstr "Bainistigh Údair"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:7
 msgid "Manage App Status"
-msgstr ""
+msgstr "Bainistigh Stádas na hAipe"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:35
 msgid "View Statistics Dashboard"
@@ -8277,7 +8277,7 @@ msgstr "Féach ar Chlár na Staitisticí"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:38
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Tuairiscí Comhoiriúnachta"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "{0} failure reports"
@@ -8313,8 +8313,8 @@ msgid "Remove this application"
 msgstr "Bain an feidhmchlár seo"
 
 #. {0} is the maximum number of add-on categories allowed.
-#.                {1} is the application name.
-#.                  {1} is the application name.
+#. {1} is the application name.
+#. {1} is the application name.
 #: apps/devhub/templates/devhub/includes/macros.html:71 mkt/developers/templates/developers/includes/macros.html:72
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
@@ -8433,7 +8433,7 @@ msgstr "Socraigh Deontais"
 
 #: apps/devhub/templates/devhub/payments/payments.html:91 apps/devhub/templates/devhub/payments/payments.html:147
 msgid "or <a href=\"%(doc_url)s\">learn more</a>"
-msgstr ""
+msgstr "nó <a href=\"%(doc_url)s\">faigh tuilleadh eolais</a>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:103
 msgid "Premium apps can be sold in our marketplace by themselves or as an upgrade to a free version of your app."
@@ -8510,11 +8510,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/refunds.html:78 mkt/developers/templates/developers/payments/refunds.html:75
 msgid "Your app is not currently accepting payments."
-msgstr ""
+msgstr "Ní ghlacann d'aip le híocaíochtaí faoi láthair."
 
 #: apps/devhub/templates/devhub/payments/refunds.html:81 mkt/developers/templates/developers/payments/refunds.html:78
 msgid "Set up payments."
-msgstr ""
+msgstr "Socraigh íocaíochtaí."
 
 #: apps/devhub/templates/devhub/payments/refunds.html:92 mkt/developers/templates/developers/payments/refunds.html:119
 msgid "No pending refunds."
@@ -8975,7 +8975,7 @@ msgstr "Tá an breiseán seo <b>neamhiomlán</b>."
 
 #: apps/devhub/templates/devhub/versions/list.html:40 mkt/developers/templates/developers/apps/status.html:35
 msgid "Please complete your app."
-msgstr ""
+msgstr "Cuir d'aip i gcrích, le do thoil."
 
 #: apps/devhub/templates/devhub/versions/list.html:42
 msgid "Please complete your add-on."
@@ -9371,7 +9371,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/pane.html:114
 msgid "Close Video"
-msgstr ""
+msgstr "Dún an Físeán"
 
 #: apps/discovery/templates/discovery/pane.html:117
 msgid "While the video plays, the add-ons being mentioned will appear here."
@@ -10379,15 +10379,15 @@ msgstr "Níorbh fhéidir an comhad uasluchtaithe a pharsáil."
 
 #: apps/files/utils.py:223
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
-msgstr ""
+msgstr "Níor aimsíodh comhad \"manifest.webapp\" sa bhfréamhchomhadlann san aip phacáistithe."
 
 #: apps/files/utils.py:245
 msgid "Could not decode the webapp manifest file."
-msgstr ""
+msgstr "Níorbh fhéidir an comhad \"manifest.webapp\" a dhíchódú."
 
 #: apps/files/utils.py:251
 msgid "The webapp manifest is not valid JSON."
-msgstr ""
+msgstr "Ní comhad bailí JSON é \"manifest.webapp\"."
 
 #: apps/files/utils.py:260
 msgid "Your specified app locales are not in the correct format."
@@ -10463,7 +10463,7 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:15 mkt/files/templates/fileviewer/viewer.html:15
 msgid "Validation failed:"
-msgstr ""
+msgstr "Theip ar bhailíochtú:"
 
 #: apps/files/templates/files/viewer.html:38
 msgid "Add-on file being processed, please wait."
@@ -10702,7 +10702,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
-msgstr ""
+msgstr "Go raibh maith agat!"
 
 #: apps/pages/templates/pages/credits.html:2
 msgid "Site Credits"
@@ -12062,11 +12062,11 @@ msgstr "Léirmheasanna ar {0}"
 #: apps/reviews/templates/reviews/review_list.html:28
 msgid "<b>{0}</b> review for this app"
 msgid_plural "<b>{0}</b> reviews for this app"
-msgstr[0] "<b>{0}</b> léirmheas ar an bhfeidhmchlár seo"
-msgstr[1] "<b>{0}</b> léirmheas ar an bhfeidhmchlár seo"
-msgstr[2] "<b>{0}</b> léirmheas ar an bhfeidhmchlár seo"
-msgstr[3] "<b>{0}</b> léirmheas ar an bhfeidhmchlár seo"
-msgstr[4] "<b>{0}</b> léirmheas ar an bhfeidhmchlár seo"
+msgstr[0] "<b>{0}</b> léirmheas ar an aip seo"
+msgstr[1] "<b>{0}</b> léirmheas ar an aip seo"
+msgstr[2] "<b>{0}</b> léirmheas ar an aip seo"
+msgstr[3] "<b>{0}</b> léirmheas ar an aip seo"
+msgstr[4] "<b>{0}</b> léirmheas ar an aip seo"
 
 #. {0} is a number.
 #: apps/reviews/templates/reviews/review_list.html:33
@@ -12189,11 +12189,11 @@ msgstr "Lorg bailiúcháin"
 
 #: apps/search/forms.py:26
 msgid "search for themes"
-msgstr ""
+msgstr "Lorg téamaí"
 
 #: apps/search/forms.py:27
 msgid "search for apps"
-msgstr ""
+msgstr "Lorg aipeanna"
 
 #: apps/search/forms.py:52
 msgid "Sort By"
@@ -12246,18 +12246,18 @@ msgstr "Breiseáin {0}"
 
 #: apps/search/views.py:514
 msgid "All Apps"
-msgstr ""
+msgstr "Gach Aip"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: apps/search/views.py:543
 msgid "Any {0}"
-msgstr ""
+msgstr "{0} ar bith"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: apps/search/views.py:578
 msgid "All Systems"
-msgstr ""
+msgstr "Gach Córas"
 
 #: apps/search/views.py:589
 msgid "All Tags"
@@ -12461,7 +12461,7 @@ msgstr[4] ""
 
 #: apps/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this App"
-msgstr "Comhroinn an Feidhmchlár seo"
+msgstr "Comhroinn an Aip seo"
 
 #: apps/sharing/templates/sharing/sharing_widget.html:5
 msgid "Share this Add-on"
@@ -12502,7 +12502,7 @@ msgstr "Foramharc"
 
 #: apps/stats/templates/stats/addon_report_menu.html:12 mkt/stats/templates/appstats/includes/stats_nav.html:34
 msgid "by Source"
-msgstr ""
+msgstr "de réir Foinse"
 
 #: apps/stats/templates/stats/addon_report_menu.html:22
 msgid "by Add-on Version"
@@ -12518,7 +12518,7 @@ msgstr "de réir Teanga"
 
 #: apps/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr ""
+msgstr "de réir Ardáin"
 
 #: apps/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
@@ -12587,11 +12587,11 @@ msgstr "{0} :: Clár na Staitisticí :: Breiseáin {1}"
 
 #: apps/stats/templates/stats/stats.html:20
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Clár na Staitisticí"
 
 #: apps/stats/templates/stats/stats.html:22
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Clár na Staitisticí :: Breiseáin {0}"
 
 #: apps/stats/templates/stats/stats.html:30
 msgid "Controls:"
@@ -12603,7 +12603,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:40 mkt/stats/templates/devstats/includes/criteria.html:35 mkt/stats/templates/includes/criteria.html:35
 msgid "Group by:"
-msgstr ""
+msgstr "Grúpáil de réir:"
 
 #: apps/stats/templates/stats/stats.html:42
 msgid "day"
@@ -12649,7 +12649,7 @@ msgstr "Staitisticí le haghaidh {0}"
 
 #: apps/stats/templates/stats/stats.html:94
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Clár na Staitisticí"
 
 #: apps/stats/templates/stats/stats.html:102 mkt/stats/templates/appstats/stats.html:59 mkt/stats/templates/devstats/stats.html:29 mkt/stats/templates/sitestats/stats.html:34
 msgid "Loading the latest data&hellip;"
@@ -12660,7 +12660,7 @@ msgstr "Sonraí is déanaí á luchtú&hellip;"
 #: mkt/stats/templates/appstats/reports/app_overview.html:47 mkt/stats/templates/appstats/reports/app_overview.html:61 mkt/stats/templates/devstats/stats.html:53
 #: mkt/stats/templates/sitestats/stats.html:51
 msgid "No data available."
-msgstr ""
+msgstr "Níl aon sonraí ar fáil."
 
 #: apps/stats/templates/stats/stats.html:169 mkt/stats/templates/appstats/stats.html:122
 msgid "This dashboard is currently <b>public</b>."
@@ -12792,7 +12792,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr "Stádas an Bhreiseáin: %s"
+msgstr "Stádas an Bhreiseáin de réir Dáta"
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
@@ -12804,7 +12804,7 @@ msgstr "Úsáideoirí Laethúla de réir Dáta"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr ""
+msgstr "Cad is Úsáideoir Laethúil ann?"
 
 #: apps/stats/templates/stats/reports/usage.html:11
 msgid ""
@@ -12899,11 +12899,11 @@ msgstr ""
 
 #: apps/users/forms.py:165
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Ní féidir an t-ainm seo a úsáid."
 
 #: apps/users/forms.py:171
 msgid "This username is already in use."
-msgstr ""
+msgstr "Tá an t-ainm úsáideora in úsáid cheana."
 
 #: apps/users/forms.py:182 apps/users/templates/users/edit.html:92 mkt/account/forms.py:20 mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
@@ -13246,7 +13246,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:114
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Roghnaigh Grianghraf&hellip;"
 
 #: apps/users/templates/users/edit.html:121
 msgid "Delete current photo"
@@ -13274,7 +13274,7 @@ msgstr "Taispeáin na bailiúcháin a leanann mé"
 
 #: apps/users/templates/users/edit.html:167 mkt/constants/features.py:273
 msgid "Notifications"
-msgstr "Fógairt"
+msgstr "Fógraí"
 
 #: apps/users/templates/users/edit.html:169
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
@@ -13294,7 +13294,7 @@ msgstr "Scrios an Cuntas"
 
 #: apps/users/templates/users/edit.html:223 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "Update Account"
-msgstr ""
+msgstr "Nuashonraigh an Cuntas"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
@@ -13327,7 +13327,7 @@ msgstr "Logáil Isteach"
 
 #: apps/users/templates/users/login_form.html:20
 msgid "<a href=\"#\" id=\"show-normal-login\">Are you an admin or editor?</a>"
-msgstr ""
+msgstr "<a href=\"#\" id=\"show-normal-login\">An riarthóir nó eagarthóir thu?</a>"
 
 #: apps/users/templates/users/login_form.html:31 apps/users/templates/users/vcard.html:29 apps/users/templates/users/mobile/login.html:47
 msgid "Email address"
@@ -13684,11 +13684,11 @@ msgstr ""
 
 #: mkt/account/templates/account/purchases.html:27
 msgid "You have no apps."
-msgstr ""
+msgstr "Níl aon aipeanna agat."
 
 #: mkt/account/templates/account/purchases.html:30
 msgid "You must be signed in to view your apps."
-msgstr ""
+msgstr "Ní mór duit logáil isteach chun do chuid aipeanna a fheiceáil."
 
 #: mkt/account/templates/account/purchases.html:31 mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:139
 #: mkt/templates/mkt/base_mobile.html:120
@@ -13725,7 +13725,7 @@ msgstr "Aiseolas"
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "Bunbhailiúchán"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
@@ -13737,7 +13737,7 @@ msgstr ""
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Dath heicsidheachúlach"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
@@ -13759,11 +13759,11 @@ msgstr "Eagarthóir"
 
 #: mkt/constants/bango.py:7 mkt/constants/bango.py:32
 msgid "US Dollars"
-msgstr ""
+msgstr "Dollair SAM"
 
 #: mkt/constants/bango.py:8 mkt/constants/bango.py:20
 msgid "Pounds Sterling"
-msgstr ""
+msgstr "Puint Steirling"
 
 #: mkt/constants/bango.py:9 mkt/constants/bango.py:19
 msgid "Euros"
@@ -13771,59 +13771,59 @@ msgstr "Euro"
 
 #: mkt/constants/bango.py:13
 msgid "Australian Dollars"
-msgstr ""
+msgstr "Dollair na hAstráile"
 
 #: mkt/constants/bango.py:14
 msgid "Canadian Dollars"
-msgstr ""
+msgstr "Dollair Cheanada"
 
 #: mkt/constants/bango.py:15
 msgid "Swiss Francs"
-msgstr ""
+msgstr "Francanna na hEilvéise"
 
 #: mkt/constants/bango.py:16
 msgid "Colombian Pesos"
-msgstr ""
+msgstr "Pesos na Colóime"
 
 #: mkt/constants/bango.py:18
 msgid "Egyptian Pound"
-msgstr ""
+msgstr "Punt na hÉigipte"
 
 #: mkt/constants/bango.py:21
 msgid "Indonesian Rupiah"
-msgstr ""
+msgstr "Rupiah na hIndinéise"
 
 #: mkt/constants/bango.py:22
 msgid "Mexican Pesos"
-msgstr ""
+msgstr "Pesos Mheicsiceo"
 
 #: mkt/constants/bango.py:23
 msgid "Malaysian Ringgits"
-msgstr ""
+msgstr "Ringgits na Malaeisia"
 
 #: mkt/constants/bango.py:25
 msgid "New Zealand Dollars"
-msgstr ""
+msgstr "Dollair na Nua-Shéalainne"
 
 #: mkt/constants/bango.py:27
 msgid "Polish Złoty"
-msgstr ""
+msgstr "Złoty na Polainne"
 
 #: mkt/constants/bango.py:28
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Riyal Chatar"
 
 #: mkt/constants/bango.py:29
 msgid "Swedish Kronor"
-msgstr ""
+msgstr "Kronor na Sualainne"
 
 #: mkt/constants/bango.py:30
 msgid "Singapore Dollars"
-msgstr ""
+msgstr "Dollair Singeapór"
 
 #: mkt/constants/bango.py:33
 msgid "South African Rand"
-msgstr ""
+msgstr "Rand na hAfraice Theas"
 
 #: mkt/constants/bango.py:39
 msgid "Afghanistan"
@@ -13935,7 +13935,7 @@ msgstr "An Bholaiv"
 
 #: mkt/constants/bango.py:66
 msgid "Bonaire, Saint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, San Eustatius agus Saba"
 
 #: mkt/constants/bango.py:67
 msgid "Bosnia and Herzegovina"
@@ -14043,7 +14043,7 @@ msgstr "Cósta Ríce"
 
 #: mkt/constants/bango.py:93
 msgid "Côte d'Ivoire"
-msgstr ""
+msgstr "An Cósta Eabhair"
 
 #: mkt/constants/bango.py:94
 msgid "Croatia"
@@ -14055,7 +14055,7 @@ msgstr "Cúba"
 
 #: mkt/constants/bango.py:96
 msgid "Curaçao"
-msgstr ""
+msgstr "Curasao"
 
 #: mkt/constants/bango.py:97
 msgid "Cyprus"
@@ -14211,11 +14211,11 @@ msgstr "Háití"
 
 #: mkt/constants/bango.py:135
 msgid "Heard and McDonald Islands"
-msgstr ""
+msgstr "Oileáin Heard agus McDonald"
 
 #: mkt/constants/bango.py:136
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "Suí Naofa (Stát Chathair na Vatacáine)"
 
 #: mkt/constants/bango.py:137
 msgid "Honduras"
@@ -14243,7 +14243,7 @@ msgstr "An Indinéis"
 
 #: mkt/constants/bango.py:143
 msgid "Iran, Islamic Republic of"
-msgstr ""
+msgstr "Poblacht Ioslamach na hIaráine"
 
 #: mkt/constants/bango.py:144
 msgid "Iraq"
@@ -14295,11 +14295,11 @@ msgstr "Cireabaití"
 
 #: mkt/constants/bango.py:156
 msgid "Korea, Democratic People's Rep"
-msgstr ""
+msgstr "Daon-Phoblacht Dhaonlathach na Cóiré"
 
 #: mkt/constants/bango.py:157
 msgid "Korea, Republic of"
-msgstr ""
+msgstr "Poblacht na Cóiré"
 
 #: mkt/constants/bango.py:158
 msgid "Kosovo"
@@ -14315,7 +14315,7 @@ msgstr "An Chirgeastáin"
 
 #: mkt/constants/bango.py:161
 msgid "Lao People's Democratic Rep"
-msgstr ""
+msgstr "Daon-Phoblacht Dhaonlathach Laos"
 
 #: mkt/constants/bango.py:162
 msgid "Latvia"
@@ -14335,11 +14335,11 @@ msgstr "An Libéir"
 
 #: mkt/constants/bango.py:166
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "Poblacht Arabach na Libia"
 
 #: mkt/constants/bango.py:167
 msgid "Liechtenstei"
-msgstr ""
+msgstr "Lichtinstéin"
 
 #: mkt/constants/bango.py:168
 msgid "Lithuania"
@@ -14351,11 +14351,11 @@ msgstr "Lucsamburg"
 
 #: mkt/constants/bango.py:170
 msgid "Macao"
-msgstr ""
+msgstr "Macao"
 
 #: mkt/constants/bango.py:171
 msgid "Macedonia, Former Yugoslav Rep"
-msgstr ""
+msgstr "Poblacht Iar-Iúgslavach na Macadóine"
 
 #: mkt/constants/bango.py:172
 msgid "Madagascar"
@@ -14407,11 +14407,11 @@ msgstr "Meicsiceo"
 
 #: mkt/constants/bango.py:184
 msgid "Micronesia, Federated States of"
-msgstr ""
+msgstr "Stáit Chónaidhme na Micrinéise"
 
 #: mkt/constants/bango.py:185
 msgid "Moldova, Republic of"
-msgstr ""
+msgstr "Poblacht na Moldóive"
 
 #: mkt/constants/bango.py:186
 msgid "Monaco"
@@ -14509,7 +14509,7 @@ msgstr "Palau"
 
 #: mkt/constants/bango.py:209
 msgid "Palestinian Territory, Occupied"
-msgstr ""
+msgstr "Críoch na bPalaistíneach faoi fhorghabháil"
 
 #: mkt/constants/bango.py:210
 msgid "Panama"
@@ -14553,7 +14553,7 @@ msgstr "Catar"
 
 #: mkt/constants/bango.py:220
 msgid "Réunion"
-msgstr ""
+msgstr "La Réunion"
 
 #: mkt/constants/bango.py:221
 msgid "Romania"
@@ -14613,7 +14613,7 @@ msgstr "An Araib Shádach"
 
 #: mkt/constants/bango.py:235
 msgid "Senega"
-msgstr ""
+msgstr "An tSeineagáil"
 
 #: mkt/constants/bango.py:236 mkt/constants/regions.py:157
 msgid "Serbia"
@@ -14621,7 +14621,7 @@ msgstr "An tSeirbia"
 
 #: mkt/constants/bango.py:237
 msgid "Serbia and Montenegro"
-msgstr ""
+msgstr "Seirbia agus Montainéagró"
 
 #: mkt/constants/bango.py:238
 msgid "Seychelles"
@@ -14637,7 +14637,7 @@ msgstr "Singeapór"
 
 #: mkt/constants/bango.py:241
 msgid "Sint Maarten (Dutch part)"
-msgstr ""
+msgstr "Sint Maarten (ceantar Ollannach)"
 
 #: mkt/constants/bango.py:242
 msgid "Slovakia"
@@ -14665,7 +14665,7 @@ msgstr "An tSeoirsia Theas agus Oileáin Sandwich Theas"
 
 #: mkt/constants/bango.py:248
 msgid "South Sudan"
-msgstr ""
+msgstr "An tSúdáin Theas"
 
 #: mkt/constants/bango.py:249 mkt/constants/regions.py:84 mkt/ecosystem/templates/ecosystem/publish_payments.html:58
 msgid "Spain"
@@ -14701,11 +14701,11 @@ msgstr "An Eilvéis"
 
 #: mkt/constants/bango.py:257
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Poblacht Arabach na Siria"
 
 #: mkt/constants/bango.py:258
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "An Téaváin, Cúige na Síne"
 
 #: mkt/constants/bango.py:259
 msgid "Tajikistan"
@@ -14713,7 +14713,7 @@ msgstr "An Táidsíceastáin"
 
 #: mkt/constants/bango.py:260
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Poblacht Aontaithe na Tansáine"
 
 #: mkt/constants/bango.py:261
 msgid "Thailand"
@@ -14769,7 +14769,7 @@ msgstr "An Úcráin"
 
 #: mkt/constants/bango.py:274
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Aontas na nÉimíríochtaí Arabacha"
 
 #: mkt/constants/bango.py:275 mkt/constants/regions.py:66 mkt/ecosystem/templates/ecosystem/publish_payments.html:66
 msgid "United Kingdom"
@@ -14797,7 +14797,7 @@ msgstr "Vanuatú"
 
 #: mkt/constants/bango.py:281
 msgid "Venezuela, Bolivarian Republic of"
-msgstr ""
+msgstr "Poblacht Bholavarach Veiniséala"
 
 #: mkt/constants/bango.py:282
 msgid "Vietnam"
@@ -14805,11 +14805,11 @@ msgstr "Vítneam"
 
 #: mkt/constants/bango.py:283
 msgid "Virgin Islands, British"
-msgstr ""
+msgstr "Oileáin Bhriotanacha na Maighdean"
 
 #: mkt/constants/bango.py:284
 msgid "Virgin Islands, U.S."
-msgstr ""
+msgstr "Oileáin Mheiriceánacha na Maighdean"
 
 #: mkt/constants/bango.py:285
 msgid "Wallis and Futuna"
@@ -14849,7 +14849,7 @@ msgstr ""
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
-msgstr ""
+msgstr "Íocaíochtaí Gréasáin"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
@@ -14857,7 +14857,7 @@ msgstr ""
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
-msgstr ""
+msgstr "Gníomhartha Gréasáin"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
@@ -14937,7 +14937,7 @@ msgstr ""
 
 #: mkt/constants/features.py:105 mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:406
 msgid "Proximity"
-msgstr ""
+msgstr "Cóngaracht"
 
 #: mkt/constants/features.py:106
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
@@ -15015,7 +15015,7 @@ msgstr ""
 
 #: mkt/constants/features.py:173
 msgid "Web Audio"
-msgstr ""
+msgstr "Fuaim Ghréasáin"
 
 #: mkt/constants/features.py:174
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
@@ -15055,7 +15055,7 @@ msgstr ""
 
 #: mkt/constants/features.py:213
 msgid "Camera"
-msgstr ""
+msgstr "Ceamara"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
@@ -15063,7 +15063,7 @@ msgstr ""
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
-msgstr ""
+msgstr "Micreafón"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
@@ -15359,7 +15359,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:403
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "Earráid agus an lastliosta á bhaint as an gcomhad zip."
 
 #: mkt/developers/forms.py:456
 msgid "Provide a detailed description of your app"
@@ -15443,11 +15443,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:261
 msgid "App Price"
-msgstr "Praghas an Fheidhmchláir"
+msgstr "Praghas na hAipe"
 
 #: mkt/developers/forms_payments.py:107
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Saor in aisce (íocaíochtaí laistigh den aip)"
 
 #: mkt/developers/forms_payments.py:118
 msgid "Promotional Pricing"
@@ -15471,7 +15471,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Rogha neamhbhailí"
 
 #: mkt/developers/forms_payments.py:324 mkt/developers/templates/developers/payments/premium.html:253
 msgid "This is a paid upgrade of"
@@ -15479,7 +15479,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:325
 msgid "Not an upgrade"
-msgstr ""
+msgstr "Ní nuashonrú é seo"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Account Holder Name"
@@ -15543,35 +15543,35 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:408
 msgid "SWIFT code"
-msgstr ""
+msgstr "Cód SWIFT"
 
 #: mkt/developers/forms_payments.py:410
 msgid "Bank Name"
-msgstr ""
+msgstr "Ainm an Bhainc"
 
 #: mkt/developers/forms_payments.py:412
 msgid "Bank Address"
-msgstr ""
+msgstr "Seoladh an Bhainc"
 
 #: mkt/developers/forms_payments.py:414
 msgid "Bank Address 2"
-msgstr ""
+msgstr "Seoladh an Bhainc 2"
 
 #: mkt/developers/forms_payments.py:416
 msgid "Bank City/Municipality"
-msgstr ""
+msgstr "Cathair an Bhainc"
 
 #: mkt/developers/forms_payments.py:419
 msgid "Bank State/Province/Region"
-msgstr ""
+msgstr "Stát/Réigiún an Bhainc"
 
 #: mkt/developers/forms_payments.py:421
 msgid "Bank Zip/Postal Code"
-msgstr ""
+msgstr "Cód Poist an Bhainc"
 
 #: mkt/developers/forms_payments.py:423
 msgid "Bank Country"
-msgstr ""
+msgstr "Tír an Bhainc"
 
 # Entities for Account name page
 #: mkt/developers/forms_payments.py:425 mkt/developers/templates/developers/payments/includes/account_list.html:12
@@ -15596,7 +15596,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:551
 msgid "Account not set up"
-msgstr ""
+msgstr "Níl aon chuntas socraithe"
 
 #: mkt/developers/helpers.py:36 mkt/developers/helpers.py:65 mkt/reviewers/forms.py:85
 msgid "Developers"
@@ -15666,11 +15666,11 @@ msgstr ""
 
 #: mkt/developers/views.py:160
 msgid "App deleted."
-msgstr ""
+msgstr "Scriosadh an aip."
 
 #: mkt/developers/views.py:165
 msgid "Password was incorrect. App was not deleted."
-msgstr ""
+msgstr "Focal faire mícheart. Níor scriosadh an aip."
 
 #: mkt/developers/views.py:218
 msgid "App successfully resubmitted."
@@ -15812,7 +15812,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Ceadaigh"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
@@ -15828,7 +15828,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:70
 msgid "Submit an app"
-msgstr "Seol feidhmchlár"
+msgstr "Seol aip chugainn"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:74 mkt/templates/mkt/header.html:28
 msgid "Sign In"
@@ -15930,7 +15930,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/dashboard.html:24
 msgid "Submit An App"
-msgstr ""
+msgstr "Seol Aip Chugainn"
 
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:3
 msgid "Manage Team Members"
@@ -15939,7 +15939,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/owner.html:27 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46 mkt/reviewers/templates/reviewers/includes/details.html:118
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:140
 msgid "Team Members"
-msgstr ""
+msgstr "Baill Foirne"
 
 #: mkt/developers/templates/developers/apps/owner.html:28
 msgid "About team member roles"
@@ -15991,7 +15991,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:33
 msgid "This app is <b>incomplete</b>."
-msgstr "Tá an feidhmchlár seo <b>neamhiomlán</b>."
+msgstr "Tá an aip seo <b>neamhiomlán</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:39
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -16003,11 +16003,11 @@ msgstr "Gheobhaidh tú ríomhphost nuair a bheidh an léirmheas déanta."
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "This app is <b>public</b>."
-msgstr ""
+msgstr "Aip <b>phoiblí</b> é seo."
 
 #: mkt/developers/templates/developers/apps/status.html:45
 msgid "This app has been <b>disabled by Mozilla</b>."
-msgstr "Bhí an feidhmchlár seo <b>díchumasaithe ag Mozilla</b>."
+msgstr "Bhí an aip seo <b>díchumasaithe ag Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:46
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
@@ -16015,7 +16015,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app has been <b>blocked by Mozilla</b>."
-msgstr ""
+msgstr "Bhí an aip seo s'agat <b>díchumasaithe ag Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
@@ -16101,7 +16101,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:178 mkt/developers/templates/developers/apps/status.html:186 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
-msgstr ""
+msgstr "Scrios an Aip"
 
 #: mkt/developers/templates/developers/apps/status.html:180
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
@@ -16109,11 +16109,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:194
 msgid "Packaged Versions"
-msgstr ""
+msgstr "Leaganacha Pacáistithe"
 
 #: mkt/developers/templates/developers/apps/status.html:201
 msgid "Submission date"
-msgstr ""
+msgstr "Dáta seolta"
 
 #: mkt/developers/templates/developers/apps/status.html:225 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:224
@@ -16140,7 +16140,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:315
 msgid "Delete Version &quot;{version}&quot;"
-msgstr ""
+msgstr "Scrios Leagan &quot;{version}&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:316
 msgid "Deleting the only version will result in the following:"
@@ -16207,7 +16207,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:71 mkt/lookup/templates/lookup/app_summary.html:25 mkt/reviewers/forms.py:89
 msgid "Mozilla Contact"
-msgstr ""
+msgstr "Teagmháil Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
@@ -16227,15 +16227,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/developers/templates/developers/apps/edit/basic.html:36
 msgid "This field can only be edited by updating it in the manifest."
-msgstr ""
+msgstr "Chun an réimse seo a chur in eagar, caithfidh tú é a athrú sa lastliosta."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:75 mkt/reviewers/templates/reviewers/includes/mobile_details.html:97
 msgid "Developer Name"
-msgstr ""
+msgstr "Ainm an Fhorbróra"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:46 mkt/submit/templates/submit/details.html:65
 msgid "App URL"
-msgstr ""
+msgstr "URL na hAipe"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:47 mkt/submit/templates/submit/details.html:67
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
@@ -16292,7 +16292,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
-msgstr ""
+msgstr "Tír agus Teanga"
 
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
@@ -16325,7 +16325,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:19
 msgid "Uses Flash"
-msgstr ""
+msgstr "Úsáideann sé Flash"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
@@ -16349,7 +16349,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
-msgstr ""
+msgstr "Deilbhín na hAipe"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
@@ -16419,7 +16419,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:45 mkt/developers/templates/developers/apps/listing/item_actions_app.html:51
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:7 mkt/developers/templates/developers/payments/premium.html:4
 msgid "Compatibility & Payments"
-msgstr ""
+msgstr "Comhoiriúnacht agus Íocaíochtaí"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:9
 msgid "Provide payment information for the app."
@@ -16447,7 +16447,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:81
 msgid "Communication"
-msgstr ""
+msgstr "Cumarsáid"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:11
 msgid "This app will be deleted automatically after a few days if the submission process is not completed."
@@ -16464,7 +16464,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:39
 msgid "Pending Version:"
-msgstr ""
+msgstr "Leagan ar feitheamh:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:46
 msgid "Price:"
@@ -16472,15 +16472,15 @@ msgstr "Praghas:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:51
 msgid "Change Devices"
-msgstr ""
+msgstr "Athraigh Gléasanna"
 
 #: mkt/developers/templates/developers/apps/preinstall/home.html:10 mkt/developers/templates/developers/apps/preinstall/submit.html:10
 msgid "Preinstalled"
-msgstr ""
+msgstr "Réamhshuiteáilte"
 
 #: mkt/developers/templates/developers/apps/preinstall/home.html:16
 msgid "Preinstalled App"
-msgstr ""
+msgstr "Aip réamhshuiteáilte"
 
 #: mkt/developers/templates/developers/apps/preinstall/home.html:21
 msgid "Download the test plan"
@@ -16550,7 +16550,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:130
 msgid "Hide all"
-msgstr ""
+msgstr "Folaigh uile"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
@@ -16636,7 +16636,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:157
 msgid "In-App Payments"
-msgstr ""
+msgstr "Íocaíochtaí Laistigh den Aip"
 
 #: mkt/developers/templates/developers/payments/premium.html:158
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -16668,11 +16668,11 @@ msgstr "Réigiún"
 
 #: mkt/developers/templates/developers/payments/premium.html:197
 msgid "Retail price"
-msgstr ""
+msgstr "Praghas miondíola"
 
 #: mkt/developers/templates/developers/payments/premium.html:198
 msgid "local currency"
-msgstr ""
+msgstr "Airgeadra áitiúil"
 
 #: mkt/developers/templates/developers/payments/premium.html:199
 msgid "Billing method"
@@ -16680,7 +16680,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:210
 msgid "Other regions"
-msgstr ""
+msgstr "Réigiúin eile"
 
 #: mkt/developers/templates/developers/payments/premium.html:213
 msgid ""
@@ -16794,7 +16794,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
-msgstr ""
+msgstr "Athraigh Cuntas Bango"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -16907,7 +16907,7 @@ msgstr "Dearadh"
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/design_concept.html:5 mkt/ecosystem/templates/ecosystem/design_concept.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:13
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "Coincheap: Aip Iontach"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:5 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:20
@@ -16947,12 +16947,12 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:253
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:23 mkt/ecosystem/templates/ecosystem/publish_hosted.html:5 mkt/ecosystem/templates/ecosystem/publish_hosted.html:13
 msgid "Hosted Apps"
-msgstr "Feidhmchláir Óstáilte"
+msgstr "Aipeanna Óstáilte"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:260
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:34 mkt/ecosystem/templates/ecosystem/publish_packaged.html:5 mkt/ecosystem/templates/ecosystem/publish_packaged.html:13
 msgid "Packaged Apps"
-msgstr "Feidhmchláir Phacáistithe"
+msgstr "Aipeanna Pacáistithe"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:276
 msgid "Badges, Banners, and Icons"
@@ -16961,7 +16961,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5 mkt/ecosystem/templates/ecosystem/build_app_generator.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:26
 #: mkt/ecosystem/templates/ecosystem/macros.html:199
 msgid "App Generator"
-msgstr "Gineadóir Feidhmchlár"
+msgstr "Gineadóir Aipeanna"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:34 templates/mobile/header.html:4
 msgid "Features"
@@ -17123,7 +17123,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:5 mkt/ecosystem/templates/ecosystem/build_apps_offline.html:13 mkt/ecosystem/templates/ecosystem/macros.html:169
 msgid "Using Apps Offline"
-msgstr "Feidhmchláir a úsáid as líne"
+msgstr "Aipeanna a úsáid as líne"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:15
 msgid ""
@@ -17428,7 +17428,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:48
 msgid "View All..."
-msgstr ""
+msgstr "Taispeáin Uile..."
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:50
 msgid "Technology reference documentation"
@@ -17658,11 +17658,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:54
 msgid "(different port)"
-msgstr ""
+msgstr "(port difriúil)"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:57
 msgid "(different protocol)"
-msgstr ""
+msgstr "(prótacal difriúil)"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:63
 msgid "(subdomain)"
@@ -17910,7 +17910,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:186 mkt/ecosystem/templates/ecosystem/build_web_developers.html:142
 msgid "Useful technologies"
-msgstr ""
+msgstr "Teicneolaíochtaí úsáideacha"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:188
 msgid "See <a href=\"%(url)s\">Useful technologies</a>."
@@ -17945,11 +17945,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:31
 msgid "App Structure"
-msgstr ""
+msgstr "Struchtúr na hAipe"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:32
 msgid "Packaged vs. Hosted Apps"
-msgstr "Feidhmchláir Phacáistithe vs. Óstáilte"
+msgstr "Aipeanna Pacáistithe vs. Óstáilte"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:34
 msgid ""
@@ -18178,7 +18178,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:87
 msgid "rtcamera"
-msgstr ""
+msgstr "rtcamera"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:90
 msgid "rtcamera is a fun camera app to process images in real time."
@@ -18192,7 +18192,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:37 mkt/ecosystem/templates/ecosystem/macros.html:203
 msgid "App Validator"
-msgstr ""
+msgstr "Bailíochtóir Aipeanna"
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:40
 msgid "Is your app ready for the Firefox Marketplace? The App validator will check your manifest and show you any errors it may have, or warnings you should consider."
@@ -18827,7 +18827,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:155
 msgid "Managing apps"
-msgstr "Feidhmchláir a bhainistiú"
+msgstr "Aipeanna a bhainistiú"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:157
 msgid "Once you have added an app, it will appear in the Manager's list of installed apps:"
@@ -19108,7 +19108,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:363
 msgid "Pushing apps to the device"
-msgstr "Feidhmchláir a bhrú chuig an ghléas"
+msgstr "Aipeanna a bhrú chuig an ghléas"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:365
 msgid ""
@@ -19206,7 +19206,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:76
 msgid "Submit your app to the Marketplace"
-msgstr "Cuir an feidhmchlár atá agat ar fáil sa Mhargadh"
+msgstr "Cuir an aip atá agat ar fáil sa Mhargadh"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
@@ -19372,7 +19372,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:116
 msgid "The Apps Blog"
-msgstr "Blag na bhFeidhmchlár"
+msgstr "Blag na nAipeanna"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
@@ -19485,7 +19485,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:65
 msgid "Publishing the app"
-msgstr "An feidhmchlár a fhoilsiú"
+msgstr "An aip a fhoilsiú"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:67
 msgid "Once your Web app has been deployed, you obviously want to make it installable by your intended user base. There are currently two options for publishing your app."
@@ -19547,7 +19547,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:56
 msgid "Privileged app"
-msgstr "Feidhmchlár faoi phribhléid"
+msgstr "Aip faoi phribhléid"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:59
@@ -19579,7 +19579,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:98
 msgid "Certified app"
-msgstr "Feidhmchlár deimhnithe"
+msgstr "Aip dheimhnithe"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:101
@@ -19599,7 +19599,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:128
 msgid "Plain packaged app"
-msgstr "Gnáth-fheidhmchlár pacáistithe"
+msgstr "Gnáth-aip phacáistithe"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:131
@@ -20636,7 +20636,7 @@ msgstr "92%"
 
 #: mkt/files/views.py:49
 msgid "Back to app"
-msgstr "Fill ar an bhfeidhmchlár"
+msgstr "Fill ar an aip"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
@@ -21114,7 +21114,7 @@ msgstr ""
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr "Feidhmchláir ({0})"
+msgstr "Aipeanna ({0})"
 
 #: mkt/reviewers/helpers.py:90
 msgctxt "rereview"
@@ -21210,7 +21210,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:441
 msgid "Disable app"
-msgstr "Díchumasaigh an feidhmchlár"
+msgstr "Díchumasaigh an aip"
 
 #: mkt/reviewers/utils.py:443
 msgid "Disable the app, removing it from public results. Sends comments to author."
@@ -21251,7 +21251,7 @@ msgstr "Gléasanna"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:35 mkt/reviewers/templates/reviewers/apps_reviewing.html:75 mkt/reviewers/templates/reviewers/queue.html:51
 msgid "Packaged App"
-msgstr "Feidhmchlár Pacáistithe"
+msgstr "Aip Phacáistithe"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:38 mkt/reviewers/templates/reviewers/apps_reviewing.html:78 mkt/reviewers/templates/reviewers/queue.html:57
 msgid "Blocklisted App"
@@ -21304,11 +21304,11 @@ msgstr[4] ""
 #: mkt/reviewers/templates/reviewers/home.html:49
 msgid "{0} app"
 msgid_plural "{0} apps"
-msgstr[0] "{0} fheidhmchlár"
-msgstr[1] "{0} fheidhmchlár"
-msgstr[2] "{0} fheidhmchlár"
-msgstr[3] "{0} bhfeidhmchlár"
-msgstr[4] "{0} feidhmchlár"
+msgstr[0] "{0} aip"
+msgstr[1] "{0} aip"
+msgstr[2] "{0} aip"
+msgstr[3] "{0} n-aip"
+msgstr[4] "{0} aip"
 
 #: mkt/reviewers/templates/reviewers/logs.html:4
 msgid "App Review Log"
@@ -21316,7 +21316,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/logs.html:40
 msgid "App has been deleted."
-msgstr "Bhí an feidhmchlár scriosta."
+msgstr "Bhí an aip scriosta."
 
 #: mkt/reviewers/templates/reviewers/performance.html:3
 msgid "Reviewer Scores for {0}"
@@ -21392,11 +21392,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Packaged app"
-msgstr "Feidhmchlár pacáistithe"
+msgstr "Aip phacáistithe"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:16 mkt/reviewers/templates/reviewers/includes/mobile_details.html:48
 msgid "Hosted app"
-msgstr "Feidhmchlár óstáilte"
+msgstr "Aip óstáilte"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:36 mkt/reviewers/templates/reviewers/includes/mobile_details.html:58
 msgid "App domain"
@@ -21424,7 +21424,7 @@ msgstr "Riachtanais"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:162
 msgid "More about this app"
-msgstr "Tuilleadh eolais faoin fheidhmchlár seo"
+msgstr "Tuilleadh eolais faoin aip seo"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:18 mkt/reviewers/templates/reviewers/includes/mobile_details.html:29
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:160
@@ -21669,11 +21669,11 @@ msgstr ""
 
 #: mkt/search/forms.py:99
 msgid "App type"
-msgstr "Cineál an fheidhmchláir"
+msgstr "Cineál na haipe"
 
 #: mkt/search/forms.py:102
 msgid "Supported languages"
-msgstr ""
+msgstr "Teangacha a dtacaítear leo"
 
 #: mkt/site/context_processors.py:34
 msgid "Sign out"
@@ -22025,11 +22025,11 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:53
 msgid "Manage My App"
-msgstr "Bainistigh M'Fheidhmchlár"
+msgstr "Bainistigh M'Aip"
 
 #: mkt/submit/templates/submit/done.html:56
 msgid "Submit Another App"
-msgstr "Seol Feidhmchlár Eile"
+msgstr "Seol Aip Eile"
 
 #: mkt/submit/templates/submit/manifest.html:34
 msgid "Device Type"
@@ -22142,7 +22142,7 @@ msgstr "Caithfidh tú seoladh ríomhphoist a sholáthar."
 
 #: mkt/webapps/models.py:384
 msgid "You must provide an app name."
-msgstr "Caithfidh tú ainm a chur ar an bhfeidhmchlár."
+msgstr "Caithfidh tú ainm a chur ar an aip."
 
 #: mkt/webapps/models.py:386
 msgid "You must provide at least one device type."
@@ -22335,7 +22335,7 @@ msgstr "Fógraí Dlí"
 
 #: templates/mobile/base_apps.html:40
 msgid "Return to the Apps homepage"
-msgstr "Fill ar leathanach baile na bhfeidhmchlár"
+msgstr "Fill ar leathanach baile na nAipeanna"
 
 #: templates/mobile/header.html:3
 msgid "Mozilla Firefox"

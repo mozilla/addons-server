@@ -67,6 +67,7 @@ INSTALLED_APPS += (
     'mkt.files',
     'mkt.lookup',
     'mkt.monolith',
+    'mkt.operators',
     'mkt.purchase',
     'mkt.ratings',
     'mkt.receipts',

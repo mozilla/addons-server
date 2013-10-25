@@ -6,7 +6,7 @@ from tower import ugettext as _
 import amo
 from addons.tasks import create_persona_preview_images
 from amo.decorators import write
-from amo.storage_utils import move_stored_file
+from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.utils import LocalFileStorage, send_mail_jinja
 from editors.models import ReviewerScore
 
@@ -79,9 +79,16 @@ def approve_rereview(theme):
         create_persona_preview_images(
             src=reupload.header_path,
             full_dst=[
-                reupload.theme.preview_path,
+                reupload.theme.thumb_path,
                 reupload.theme.icon_path],
             set_modified_on=[reupload.theme.addon])
+
+        if not reupload.theme.is_new():
+            # Legacy themes also need a preview_large.jpg.
+            # Modern themes use preview.png for both thumb and preview so there
+            # is no problem there.
+            copy_stored_file(reupload.theme.thumb_path,
+                             reupload.theme.preview_path, storage=storage)
 
         move_stored_file(
             reupload.header_path, reupload.theme.header_path,

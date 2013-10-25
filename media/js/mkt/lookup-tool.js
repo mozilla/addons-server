@@ -30,7 +30,8 @@ require(['prefetchManifest']);
         processResults({
             data: {
                 all_results: true,
-                q: searchTerm
+                q: searchTerm,
+                type: $('[name=type] option:selected').val()
             },
             searchTerm: searchTerm,
             $results: $('.search-suggestions', $form)
@@ -41,8 +42,9 @@ require(['prefetchManifest']);
         });
     });
 
-    var searchLimit = parseInt($('form.lookup-search-form').data('search-limit'), 10);
-    var maxResults = parseInt($('form.lookup-search-form').data('max-results'), 10);
+    var $lookupMeta = $('.lookup-meta');
+    var searchLimit = parseInt($lookupMeta.data('search-limit'), 10);
+    var maxResults = parseInt($lookupMeta.data('max-results'), 10);
     function processResults(settings) {
         if (!(settings && settings.constructor === Object)) {
             return;
@@ -63,7 +65,7 @@ require(['prefetchManifest']);
             '<li><a class="show-all no-blur">' + gettext('Show All Results') +
             '</a></li>';
         var maxSearchResultsMsg =
-            '<li class="max">' + format(gettext('Over {0} results found, consider refining your search.'), maxResults) + '</li>'
+            '<li class="max">' + format(gettext('Over {0} results found, consider refining your search.'), maxResults) + '</li>';
 
         $.ajaxCache({
             url: settings.$results.attr('data-src'),

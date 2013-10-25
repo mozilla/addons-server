@@ -217,40 +217,45 @@
         <legend>{{ _('Theme Design') }}</legend>
 
         <!--Theme upload new design/reupload.-->
-        <a class="reupload">{{ _('Upload New Design') }}</a>
-        <a class="reupload cancel">{{ _('Cancel') }}</a>
-        <div class="theme-design c">
-          <h2>{{ _('Upload New Design') }}</h2>
-          <p>
-            {% trans %}
-              Upon upload and form submission, the AMO Team will review your
-              updated design. Your current design will still be public in the
-              meantime.
-            {% endtrans %}
-          </p>
+        {% if not addon.is_pending() %}
+          <a class="reupload">{{ _('Upload New Design') }}</a>
+          <a class="reupload cancel">{{ _('Cancel') }}</a>
+          <div class="theme-design c">
+            <h2>{{ _('Upload New Design') }}</h2>
+            <p>
+              {% trans %}
+                Upon upload and form submission, the AMO Team will review your
+                updated design. Your current design will still be public in the
+                meantime.
+              {% endtrans %}
+            </p>
 
-          <div class="theme-design-form">
-            {% with required = False %}
-              {% include "devhub/personas/includes/theme_design.html" %}
-            {% endwith %}
+            <div class="theme-design-form">
+              {% with required = False %}
+                {% include "devhub/personas/includes/theme_design.html" %}
+              {% endwith %}
+            </div>
+
+            {% set rereview = persona.rereviewqueuetheme_set.all() %}
+            {% if rereview.exists() %}
+              <h3>{{ _('Your previously resubmitted design, '
+                      ' which is under pending review.') }}</h3>
+              <ul class="rereview-preview">
+                <li id="persona-header" class="row">
+                  <h3>{{ _('Pending Header') }}</h3>
+                  <img class="preview loaded" src="{{ rereview[0].header_url }}">
+                </li>
+                <li id="persona-footer" class="row">
+                  <h3>{{ _('Pending Footer') }}</h3>
+                  <img class="preview loaded" src="{{ rereview[0].footer_url }}">
+                </li>
+              </ul>
+            {% endif %}
           </div>
-
-          {% set rereview = persona.rereviewqueuetheme_set.all() %}
-          {% if rereview.exists() %}
-            <h3>{{ _('Your previously resubmitted design, '
-                    ' which is under pending review.') }}</h3>
-            <ul class="rereview-preview">
-              <li id="persona-header" class="row">
-                <h3>{{ _('Pending Header') }}</h3>
-                <img class="preview loaded" src="{{ rereview[0].header_url }}">
-              </li>
-              <li id="persona-footer" class="row">
-                <h3>{{ _('Pending Footer') }}</h3>
-                <img class="preview loaded" src="{{ rereview[0].footer_url }}">
-              </li>
-            </ul>
-          {% endif %}
-        </div>
+        {% else %}
+          <span class="reupload">
+            {{ _('You may update your theme design here once it has been approved.') }}</span>
+        {% endif %}
 
         <ul class="theme-preview">
           <li id="persona-header" class="row">

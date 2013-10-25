@@ -1,4 +1,5 @@
 import hashlib
+import json
 import uuid
 from datetime import datetime, timedelta
 
@@ -26,12 +27,12 @@ from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
 from lib.pay_server import client
 from market.models import AddonPaymentData, Refund
+import mkt.constants.lookup as lkp
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.account.utils import purchase_list
 from mkt.developers.models import AddonPaymentAccount
 from mkt.developers.views_payments import _redirect_to_bango_portal
-import mkt.lookup.constants as lkp
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
                               TransactionSearchForm)
 from mkt.lookup.tasks import (email_buyer_refund_approved,
@@ -50,7 +51,6 @@ def home(request):
     tx_form = TransactionSearchForm()
 
     return jingo.render(request, 'lookup/home.html', {
-        'lkp': lkp,
         'tx_form': tx_form
     })
 
@@ -93,7 +93,6 @@ def user_summary(request, user_id):
                          'app_summary': app_summary,
                          'delete_form': DeleteUserForm(),
                          'delete_log': delete_log,
-                         'lkp': lkp,
                          'is_admin': is_admin,
                          'refund_summary': refund_summary,
                          'user_addons': user_addons,
@@ -272,8 +271,15 @@ def app_summary(request, addon_id):
 @login_required
 @permission_required('BangoPortal', 'Redirect')
 def bango_portal_from_package(request, package_id):
-    return _redirect_to_bango_portal(int(package_id),
-                                     'package_id: %s' % package_id)
+    response = _redirect_to_bango_portal(int(package_id),
+                                         'package_id: %s' % package_id)
+    if 'Location' in response:
+        return HttpResponseRedirect(response['Location'])
+    else:
+        message = (json.loads(response.content)
+                       .get('__all__', response.content)[0])
+        messages.error(request, message)
+        return HttpResponseRedirect(reverse('lookup.home'))
 
 
 @login_required
@@ -287,7 +293,6 @@ def user_purchases(request, user_id):
                         {'pager': products,
                          'account': user,
                          'is_admin': is_admin,
-                         'lkp': lkp,
                          'listing_filter': listing,
                          'contributions': contributions,
                          'single': bool(None),
@@ -313,7 +318,6 @@ def user_activity(request, user_id):
                          'account': user,
                          'is_admin': is_admin,
                          'listing_filter': listing,
-                         'lkp': lkp,
                          'collections': collections,
                          'contributions': contributions,
                          'single': bool(None),
@@ -343,7 +347,6 @@ def _expand_query(q, fields):
 def user_search(request):
     results = []
     q = request.GET.get('q', u'').lower().strip()
-    all_results = request.GET.get('all_results') or False
     fields = ('username', 'display_name', 'email')
 
     if q.isnumeric():
@@ -353,10 +356,7 @@ def user_search(request):
     else:
         qs = (UserProfile.search().query(or_=_expand_query(q, fields))
                                   .values_dict(*fields))
-        if all_results:
-            qs = qs[:lkp.MAX_RESULTS]
-        else:
-            qs = qs[:lkp.SEARCH_LIMIT]
+        qs = _slice_results(request, qs)
     for user in qs:
         user['url'] = reverse('lookup.user_summary', args=[user['id']])
         user['name'] = user['username']
@@ -398,7 +398,8 @@ def app_search(request):
                 qs = S(Addon)
             qs = (qs.filter(type=addon_type)
                     .query(should=True, **_expand_query(q, fields))
-                    .values_dict(*fields)[:20])
+                    .values_dict(*fields))
+        qs = _slice_results(request, qs)
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.
@@ -507,3 +508,10 @@ def _app_purchases_and_refunds(addon):
     refunds['rejected'] = qs.filter(rejected_q).count()
 
     return purchases, refunds
+
+
+def _slice_results(request, qs):
+    if request.GET.get('all_results'):
+        return qs[:lkp.MAX_RESULTS]
+    else:
+        return qs[:lkp.SEARCH_LIMIT]

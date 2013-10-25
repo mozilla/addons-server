@@ -17,8 +17,8 @@ from files.models import File
 from users.models import UserProfile
 from versions.models import Version
 
-from mkt.developers.models import PreinstallTestPlan
-from mkt.developers.views import preinstall_submit, status
+from mkt.developers.models import PreloadTestPlan
+from mkt.developers.views import preload_submit, status
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 
@@ -386,19 +386,19 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         eq_(app.versions.latest().files.latest().status, amo.STATUS_BLOCKED)
 
 
-class TestPreinstallSubmit(amo.tests.TestCase):
+class TestPreloadSubmit(amo.tests.TestCase):
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
                        'webapp_337141')
 
     def setUp(self):
-        self.create_switch('preinstall-apps')
+        self.create_switch('preload-apps')
         self.user = UserProfile.objects.get(username='admin')
         self.login(self.user)
 
         self.webapp = Addon.objects.get(id=337141)
         self.url = self.webapp.get_dev_url('versions')
-        self.home_url = self.webapp.get_dev_url('preinstall_home')
-        self.submit_url = self.webapp.get_dev_url('preinstall_submit')
+        self.home_url = self.webapp.get_dev_url('preload_home')
+        self.submit_url = self.webapp.get_dev_url('preload_submit')
 
         path = os.path.dirname(os.path.abspath(__file__))
         self.test_pdf = path + '/files/test.pdf'
@@ -408,7 +408,7 @@ class TestPreinstallSubmit(amo.tests.TestCase):
         f = open(self.test_pdf, 'r')
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'agree': True, 'test_plan': f})
-        return preinstall_submit(req, self.webapp.slug)
+        return preload_submit(req, self.webapp.slug)
 
     def test_get_200(self):
         eq_(self.client.get(self.home_url).status_code, 200)
@@ -416,25 +416,25 @@ class TestPreinstallSubmit(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.views.save_test_plan')
     @mock.patch('mkt.developers.views.messages')
-    def test_preinstall_on_status_page(self, noop1, noop2):
+    def test_preload_on_status_page(self, noop1, noop2):
         req = req_factory_factory(self.url, user=self.user)
         r = status(req, self.webapp.slug)
         doc = pq(r.content)
-        eq_(doc('#preinstall .listing-footer a').attr('href'),
-            self.webapp.get_dev_url('preinstall_home'))
-        assert doc('#preinstall .not-submitted')
+        eq_(doc('#preload .listing-footer a').attr('href'),
+            self.webapp.get_dev_url('preload_home'))
+        assert doc('#preload .not-submitted')
 
         self._submit_pdf()
 
         req = req_factory_factory(self.url, user=self.user)
         r = status(req, self.webapp.slug)
         doc = pq(r.content)
-        eq_(doc('#preinstall .listing-footer a').attr('href'),
-            self.webapp.get_dev_url('preinstall_submit'))
-        assert doc('#preinstall .submitted')
+        eq_(doc('#preload .listing-footer a').attr('href'),
+            self.webapp.get_dev_url('preload_submit'))
+        assert doc('#preload .submitted')
 
     def _assert_submit(self, endswith, content_type, save_mock):
-        test_plan = PreinstallTestPlan.objects.get()
+        test_plan = PreloadTestPlan.objects.get()
         eq_(test_plan.addon, self.webapp)
         assert test_plan.filename.startswith('test_plan_')
         assert test_plan.filename.endswith(endswith)
@@ -457,7 +457,7 @@ class TestPreinstallSubmit(amo.tests.TestCase):
         f = open(self.test_xls, 'r')
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'agree': True, 'test_plan': f})
-        r = preinstall_submit(req, self.webapp.slug)
+        r = preload_submit(req, self.webapp.slug)
         self.assert3xx(r, self.url)
         self._assert_submit('xls', 'application/vnd.ms-excel', save_mock)
 
@@ -467,9 +467,9 @@ class TestPreinstallSubmit(amo.tests.TestCase):
         f = open(os.path.abspath(__file__), 'r')
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'agree': True, 'test_plan': f})
-        r = preinstall_submit(req, self.webapp.slug)
+        r = preload_submit(req, self.webapp.slug)
         eq_(r.status_code, 200)
-        eq_(PreinstallTestPlan.objects.count(), 0)
+        eq_(PreloadTestPlan.objects.count(), 0)
         assert not save_mock.called
 
         assert ('Invalid file type.' in
@@ -480,9 +480,9 @@ class TestPreinstallSubmit(amo.tests.TestCase):
     def test_submit_no_file(self, noop, save_mock):
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'agree': True})
-        r = preinstall_submit(req, self.webapp.slug)
+        r = preload_submit(req, self.webapp.slug)
         eq_(r.status_code, 200)
-        eq_(PreinstallTestPlan.objects.count(), 0)
+        eq_(PreloadTestPlan.objects.count(), 0)
         assert not save_mock.called
 
         assert 'required' in pq(r.content)('.test_plan .errorlist').text()
@@ -493,9 +493,9 @@ class TestPreinstallSubmit(amo.tests.TestCase):
         f = open(self.test_xls, 'r')
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'test_plan': f})
-        r = preinstall_submit(req, self.webapp.slug)
+        r = preload_submit(req, self.webapp.slug)
         eq_(r.status_code, 200)
-        eq_(PreinstallTestPlan.objects.count(), 0)
+        eq_(PreloadTestPlan.objects.count(), 0)
         assert not save_mock.called
 
         assert 'required' in pq(r.content)('.agree .errorlist').text()
@@ -503,20 +503,20 @@ class TestPreinstallSubmit(amo.tests.TestCase):
     @mock.patch('mkt.developers.views.save_test_plan')
     @mock.patch('mkt.developers.views.messages')
     def test_multiple(self, noop, save_mock):
-        PreinstallTestPlan.objects.create(
+        PreloadTestPlan.objects.create(
             addon=self.webapp, filename='food.pdf',
             last_submission=self.days_ago(10))
-        recent_plan = PreinstallTestPlan.objects.create(
+        recent_plan = PreloadTestPlan.objects.create(
             addon=self.webapp, filename='liquor.xls',
             last_submission=self.days_ago(5))
-        eq_(PreinstallTestPlan.objects.filter(addon=self.webapp).count(), 2)
+        eq_(PreloadTestPlan.objects.filter(addon=self.webapp).count(), 2)
 
         req = req_factory_factory(self.url, user=self.user)
         r = status(req, self.webapp.slug)
         doc = pq(r.content)
 
         eq_(doc('.test-plan-download').attr('href'),
-            recent_plan.preinstall_test_plan_url)
+            recent_plan.preload_test_plan_url)
 
     @mock.patch.object(settings, 'PREINSTALL_TEST_PLAN_LATEST',
                        datetime.datetime.now() + datetime.timedelta(days=1))

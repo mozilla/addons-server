@@ -11,7 +11,7 @@ from market.models import AddonPremium, Price
 
 from mkt.api.base import get_url
 from mkt.api.tests.test_oauth import get_absolute_url, RestOAuth
-from mkt.developers.api_payments import PaymentAccountSerializer
+from mkt.developers.api_payments import AddonPaymentAccountSerializer
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.site.fixtures import fixture
@@ -147,8 +147,8 @@ class AccountCase(TestCase):
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(premium_type=amo.ADDON_PREMIUM)
-        self.seller = SolitudeSeller.objects.create(user_id=999)
-        self.account = PaymentAccount.objects.create(user_id=999,
+        self.seller = SolitudeSeller.objects.create(user_id=2519)
+        self.account = PaymentAccount.objects.create(user_id=2519,
             solitude_seller=self.seller, bango_package_id=123)
         self.payment_list = reverse('app-payment-account-list')
 
@@ -172,14 +172,14 @@ class TestSerializer(AccountCase):
     def test_serialize(self):
         # Just a smoke test that we can serialize this correctly.
         self.create()
-        res = PaymentAccountSerializer(self.payment).data
+        res = AddonPaymentAccountSerializer(self.payment).data
         eq_(res['url'], self.payment_detail)
 
     def test_free(self):
         # Just a smoke test that we can serialize this correctly.
         self.create()
         self.app.update(premium_type=amo.ADDON_FREE)
-        res = PaymentAccountSerializer(self.payment)
+        res = AddonPaymentAccountSerializer(self.payment)
         ok_(not res.is_valid())
 
 
@@ -209,7 +209,6 @@ class TestPaymentAccount(RestOAuth, AccountCase):
     def test_not_allowed(self):
         res = self.client.post(self.payment_list, data=json.dumps(self.data()))
         eq_(res.status_code, 403)
-
 
     def setup_mock(self, client):
         client.api.generic.product.get_object.return_value = {
@@ -242,6 +241,33 @@ class TestPaymentAccount(RestOAuth, AccountCase):
         res = self.client.patch(self.payment_detail, data=json.dumps(data))
         # Ideally we should make this a 400.
         eq_(res.status_code, 403, res.content)
+
+    def other(self, shared=False):
+        other_account = PaymentAccount.objects.create(user_id=31337,
+            solitude_seller=self.seller, bango_package_id=123,
+            seller_uri='seller_uri', uri='uri', shared=shared)
+        other_url = get_absolute_url(
+            get_url('account', pk=other_account.pk),
+            api_name='payments', absolute=False)
+        return self.data(overrides={'payment_account': other_url})
+
+    @patch('mkt.developers.models.client')
+    def test_cant_use_someone_elses(self, client):
+        data = self.other(shared=False)
+        self.setup_mock(client)
+        self.create_price()
+        self.create_user()
+        res = self.client.post(self.payment_list, data=json.dumps(data))
+        eq_(res.status_code, 403, res.content)
+
+    @patch('mkt.developers.models.client')
+    def test_can_shared(self, client):
+        data = self.other(shared=True)
+        self.setup_mock(client)
+        self.create_price()
+        self.create_user()
+        res = self.client.post(self.payment_list, data=json.dumps(data))
+        eq_(res.status_code, 201, res.content)
 
 
 class TestPaymentStatus(RestOAuth, AccountCase):

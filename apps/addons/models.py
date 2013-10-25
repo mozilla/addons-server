@@ -1771,7 +1771,11 @@ class Persona(caching.CachingMixin, models.Model):
 
     @amo.cached_property
     def thumb_url(self):
-        """URL to Persona's thumbnail preview."""
+        """
+        Handles deprecated GetPersonas URL.
+        In days of yore, preview.jpg used to be a separate image.
+        In modern days, we use the same image for big preview + thumb.
+        """
         if self.is_new():
             return self._image_url('preview.png')
         else:
@@ -1779,7 +1783,11 @@ class Persona(caching.CachingMixin, models.Model):
 
     @amo.cached_property
     def thumb_path(self):
-        """Path to Persona's thumbnail preview."""
+        """
+        Handles deprecated GetPersonas path.
+        In days of yore, preview.jpg used to be a separate image.
+        In modern days, we use the same image for big preview + thumb.
+        """
         if self.is_new():
             return self._image_path('preview.png')
         else:
