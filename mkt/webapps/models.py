@@ -989,6 +989,12 @@ class WebappIndexer(MappingType, Indexable):
             'filter': ['word_delimiter', 'icu_folding', 'icu_normalizer'],
         }
 
+        # Customize the word_delimiter filter to set various options.
+        filters['custom_word_delimiter'] = {
+            'type': 'word_delimiter',
+            'preserve_original': True,
+        }
+
         for lang, stemmer in amo.STEMMER_MAP.items():
             filters['%s_stem_filter' % lang] = {
                 'type': 'stemmer',
@@ -1003,8 +1009,10 @@ class WebappIndexer(MappingType, Indexable):
             analyzers['%s_analyzer' % lang] = {
                 'type': 'custom',
                 'tokenizer': 'icu_tokenizer',
-                'filter': ['word_delimiter', 'icu_folding', 'icu_normalizer',
-                           '%s_stop_filter' % lang, '%s_stem_filter' % lang],
+                'filter': [
+                    'custom_word_delimiter', 'icu_folding', 'icu_normalizer',
+                    '%s_stop_filter' % lang, '%s_stem_filter' % lang
+                ],
             }
 
         return {

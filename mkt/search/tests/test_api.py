@@ -402,6 +402,19 @@ class TestApi(BaseOAuth, ESTestCase):
         unknown1.delete()
         unknown2.delete()
 
+    def test_word_delimiter_preserves_original(self):
+        self.webapp.description = {
+            'en-US': 'This is testing word delimiting preservation in long '
+                     'descriptions and here is what we want to find: WhatsApp'
+        }
+        self.webapp.save()
+        self.reindex(Webapp, 'webapp')
+
+        res = self.client.get(self.url + ({'q': 'whatsapp'},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
 
 class TestApiFeatures(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
