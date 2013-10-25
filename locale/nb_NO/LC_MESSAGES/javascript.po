@@ -3,75 +3,77 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-10-25 19:48+0000\n"
+"Last-Translator: Håvard <havard.mork@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1382730508.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} stjerne"
+msgstr[1] "{0} stjerner"
 
 #: media/js/common/upload-addon.js:34
 #: media/js/common/upload-image.js:129
 #: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Et problem oppstod ved forsøk på å kontakte serveren."
 
 #: media/js/common/upload-addon.js:52
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "Velg fil ..."
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
+msgstr "Utvidelsen må ende på .xpi, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-addon.js:87
 #: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0} % fullført"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-addon.js:90
 #: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} av {1}"
 
 #: media/js/common/upload-addon.js:120
 #: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: media/js/common/upload-addon.js:142
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Laster opp {0}"
 
 #: media/js/common/upload-addon.js:169
 #: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "Feil med {0}"
 
 #: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Validering av utvidelsen gav {0} feil."
+msgstr[1] "Validering av utvidelsen gav {0} feil."
 
 #: media/js/common/upload-addon.js:188
 #: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;og {0} flere"
+msgstr[1] "&hellip;og {0} flere"
 
 #: media/js/common/upload-addon.js:202
 #: media/js/common/upload-addon.js:329
@@ -80,140 +82,140 @@ msgstr[1] ""
 #: media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
 msgid "See full validation report"
-msgstr ""
+msgstr "Se fullstendig valideringsrapport"
 
 #: media/js/common/upload-addon.js:214
 #: media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
-msgstr ""
+msgstr "Validerer {0}"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:252
 #: media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Mottok en tom respons fra serveren; status: {0}"
 
 #: media/js/common/upload-addon.js:263
 #: media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Uventet serverfeil ved validering."
 
 #: media/js/common/upload-addon.js:301
 #: media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Fullførte validering av {0}"
 
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} warning."
 msgid_plural "Your add-on passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Utvidelsen fullførte validering med ingen feil og {0} advarsel."
+msgstr[1] "Utvidelsen fullførte validering med ingen feil og {0} advarsler."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Utvidelsen fullførte validering uten feil eller advarsler."
 
 #: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "Noen plattformer er ikke tilgjengelig for denne typen utvidelse."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Filtypen du lastet opp er ikke gjenkjent."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Du avbrøt opplastingen."
 
 #: media/js/common/upload-image.js:98
 #: media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Bilder må være enten PNG eller JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Videoer må være i WebM."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Innpakkede apps må slutte med <code>.zip</code>."
 
 #: media/js/common/upload-packaged-app.js:169
 #: media/js/devreg/devhub.js:181
 #: media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Validering av app mislykket med {0} feil."
+msgstr[1] "Validering av app mislykket med {0} feil."
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Appen fullførte validering uten feil og med {0} advarsel."
+msgstr[1] "Appen fullførte validering uten feil og med {0} advarsler."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Appen fullførte validering uten feil eller advarsler."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Validering av app var mislykket med {0} feil og {1} melding(er)."
+msgstr[1] "Validering av app var mislykket med {0} feil og {1} melding(er)."
 
 #: media/js/devreg/devhub.js:200
 #: media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Appen fullførte validering uten feil og med {0} melding."
+msgstr[1] "Appen fullførte validering uten feil og med {0} meldinger."
 
 #: media/js/devreg/devhub.js:205
 #: media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
-msgstr ""
+msgstr "Appen fullførte validering uten feil eller meldinger."
 
 #: media/js/devreg/devhub.js:419
 #: media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
-msgstr ""
+msgstr "Endringer lagret"
 
 #: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "Skriv inn e-postadresse til nytt teammedlem"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
-msgstr ""
+msgstr "Oppdatert"
 
 #: media/js/devreg/devhub.js:616
 #: media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "En feil oppstod under opplasting av fil."
 
 #: media/js/devreg/devhub.js:886
 #: media/js/zamboni/devhub.js:925
 msgid "Learn more"
-msgstr ""
+msgstr "Les mer"
 
 #: media/js/devreg/devhub.js:890
 #: media/js/zamboni/devhub.js:929
 msgid "Example"
-msgstr ""
+msgstr "Eksempel"
 
 #: media/js/devreg/devhub.js:1192
 #: media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Endringer på bilde blir behandlet"
 
 #: media/js/devreg/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "mer ..."
 
 #: media/js/devreg/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "mindre ..."
 
 #: media/js/devreg/init.js:35
 #: media/js/mkt/init.js:47
@@ -222,98 +224,100 @@ msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please check back a little later."
 msgstr ""
+"Denne funksjonen er midlertidig utilgjengelig mens vi utfører rutinemessig "
+"vedlikehold. Kom tilbake senere."
 
 #: media/js/devreg/l10n.js:45
 #: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Fjern denne oversettelsen"
 
 #: media/js/devreg/mobile_review_actions.js:6
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Behold anmeldelse; fjern flagg"
 
 #: media/js/devreg/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "Slett anmeldelse"
 
 #: media/js/devreg/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr ""
+msgstr "Hopp over for nå"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Spansk bankkode"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Irsk sorteringskode"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Belgisk sorteringskode"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Spansk/fransk/italiensk/nederlandsk bankkode"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Nederlandsk/US sorteringskode"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Kanadisk transitnumber/tysk rutingkode"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Koreansk bank og gren/Indonesisk bankkode"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "Gresk HEBIC/Indonesisk bankkode"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
+msgstr "UK/Irsk sorteringskode eller NZ kontoprefiks eller australsk BSB-kode"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Østerrisk/sveitsisk bankkode"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Dansk/sveitsisk bankkode"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Sveitsisk/irakisk bankkode"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "Irakisk bankkode"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:135
 msgid "Detected: {0}"
-msgstr ""
+msgstr "Oppdaget: {0}"
 
 #: media/js/devreg/payments-manage.js:27
 msgid "that"
 msgid_plural "those"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "den"
+msgstr[1] "de"
 
 #: media/js/devreg/payments-manage.js:28
 msgid "app"
 msgid_plural "apps"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "app"
+msgstr[1] "apper"
 
 #: media/js/devreg/payments-manage.js:29
 msgid "it"
 msgid_plural "they"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "den"
+msgstr[1] "de"
 
 #: media/js/devreg/payments-manage.js:53
 #: media/js/devreg/payments-manage.js:97
@@ -326,228 +330,228 @@ msgstr[1] ""
 #: media/js/zamboni/validator.js:446
 #: media/js/zamboni/validator.js:465
 msgid "Error"
-msgstr ""
+msgstr "Feil"
 
 #: media/js/devreg/payments-manage.js:54
 #: media/js/devreg/payments-manage.js:98
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Et problem oppstod ved forsøk på å kontakte betalingsserver."
 
 #: media/js/devreg/payments-manage.js:76
 msgid "Authentication error"
-msgstr ""
+msgstr "Autentiseringsfeil"
 
 #: media/js/devreg/payments-manage.js:118
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "Du har ingen betalingskonto."
 
 #: media/js/devreg/validator.js:71
 #: media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Alle tester fullført."
 
 #: media/js/devreg/validator.js:74
 #: media/js/devreg/validator.js:358
 #: media/js/zamboni/validator.js:74
 #: media/js/zamboni/validator.js:366
 msgid "These tests were not run."
-msgstr ""
+msgstr "Disse testene ble ikke kjørt."
 
 #: media/js/devreg/validator.js:119
 #: media/js/devreg/validator.js:132
 #: media/js/zamboni/validator.js:119
 #: media/js/zamboni/validator.js:132
 msgid "Tests"
-msgstr ""
+msgstr "Tester"
 
 #: media/js/devreg/validator.js:194
 #: media/js/zamboni/validator.js:194
 msgid "Warning"
-msgstr ""
+msgstr "Advarsel"
 
 #: media/js/devreg/validator.js:281
 #: media/js/zamboni/validator.js:281
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Kompatibilitetstester"
 
 #: media/js/devreg/validator.js:329
 #: media/js/zamboni/validator.js:330
 msgid "App failed validation."
-msgstr ""
+msgstr "App-validering feilet."
 
 #: media/js/devreg/validator.js:331
 #: media/js/zamboni/validator.js:332
 msgid "App passed validation."
-msgstr ""
+msgstr "App-validering fullført."
 
 #: media/js/devreg/validator.js:361
 #: media/js/zamboni/validator.js:369
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} feil"
+msgstr[1] "{0} feil"
 
 #: media/js/devreg/validator.js:363
 #: media/js/zamboni/validator.js:371
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} advarsel"
+msgstr[1] "{0} advarsler"
 
 #: media/js/devreg/validator.js:440
 #: media/js/zamboni/validator.js:448
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Valideringsoppgave kunne ikke fullføre, eller fullførte med feil"
 
 #: media/js/devreg/validator.js:458
 #: media/js/zamboni/validator.js:466
 msgid "Internal server error"
-msgstr ""
+msgstr "Intern serverfeil"
 
 #: media/js/impala/collections.js:10
 #: media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Følg denne samlingen"
 
 #: media/js/impala/collections.js:19
 msgid "Stop Following"
-msgstr ""
+msgstr "Stopp følging"
 
 #: media/js/impala/collections.js:20
 msgid "Following"
-msgstr ""
+msgstr "Følger"
 
 #. L10n: {0} is an app name.
 #: media/js/impala/listing.js:17
 #: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Dette temaet er inkompatibelt med din versjon av {0}"
 
 #: media/js/impala/persona_creation.js:102
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Med enerett"
 
 #: media/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: media/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: media/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: media/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: media/js/impala/persona_creation.js:131
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Navn på temaet"
 
 #: media/js/impala/reviews.js:23
 #: media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
-msgstr ""
+msgstr "Flagget for gjennomgang"
 
 #: media/js/impala/reviews.js:40
 #: media/js/zamboni/reviews.js:34
 msgid "Your input is required"
-msgstr ""
+msgstr "Inndata er påkrevd"
 
 #: media/js/impala/reviews.js:133
 #: media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Markert for sletting"
 
 #: media/js/impala/search.js:104
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Oppdaterer resultater &hellip;"
 
 #: media/js/impala/site_suggestions.js:46
 #: media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: media/js/impala/suggestions.js:39
 #: media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Søk i temaer etter <b>{0}</b>"
 
 #: media/js/impala/suggestions.js:41
 #: media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Søk i apps etter <b>{0}</b>"
 
 #: media/js/impala/suggestions.js:43
 #: media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Søk i utvidelser etter <b>{0}</b>"
 
 #: media/js/impala/users.js:33
 msgid "use original"
-msgstr ""
+msgstr "bruk original"
 
 #: media/js/impala/stats/chart.js:267
 #: media/js/mkt/stats/chart.js:320
 msgid "Week of {0}"
-msgstr ""
+msgstr "Uke {0}"
 
 #: media/js/impala/stats/chart.js:269
 msgid "downloads"
-msgstr ""
+msgstr "nedlastinger"
 
 #: media/js/impala/stats/chart.js:270
 #: media/js/mkt/stats/chart.js:326
 msgid "{0} users"
-msgstr ""
+msgstr "{0} brukere"
 
 #: media/js/impala/stats/chart.js:271
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} utvidelser"
 
 #: media/js/impala/stats/chart.js:272
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} samlinger"
 
 #: media/js/impala/stats/chart.js:273
 #: media/js/mkt/stats/chart.js:328
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} anmeldelser"
 
 #: media/js/impala/stats/chart.js:275
 #: media/js/mkt/stats/chart.js:323
 #: media/js/mkt/stats/chart_column.js:125
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} salg"
 
 #: media/js/impala/stats/chart.js:276
 #: media/js/mkt/stats/chart.js:324
 #: media/js/mkt/stats/chart_column.js:126
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} tilbakebetalinger"
 
 #: media/js/impala/stats/chart.js:277
 #: media/js/mkt/stats/chart.js:325
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} installeringer"
 
 #: media/js/impala/stats/chart.js:369
 #: media/js/impala/stats/csv_keys.js:3
 #: media/js/impala/stats/csv_keys.js:102
 #: media/js/mkt/stats/csv_keys.js:128
 msgid "Downloads"
-msgstr ""
+msgstr "Nedlastinger"
 
 #: media/js/impala/stats/chart.js:379
 #: media/js/impala/stats/csv_keys.js:6
@@ -555,70 +559,70 @@ msgstr ""
 #: media/js/mkt/stats/csv_keys.js:6
 #: media/js/mkt/stats/csv_keys.js:129
 msgid "Daily Users"
-msgstr ""
+msgstr "Daglige brukere"
 
 #: media/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Beløp, i USD"
 
 #: media/js/impala/stats/chart.js:421
 #: media/js/impala/stats/csv_keys.js:97
 #: media/js/mkt/stats/csv_keys.js:123
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Antall bidragsytere"
 
 #: media/js/impala/stats/chart.js:447
 #: media/js/mkt/stats/chart.js:395
 msgid "More Info..."
-msgstr ""
+msgstr "Mer info ..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/impala/stats/chart.js:451
 #: media/js/mkt/stats/chart.js:399
 msgid "Details for {0}"
-msgstr ""
+msgstr "Detaljer for {0}"
 
 #: media/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
-msgstr ""
+msgstr "Samlinger opprettet"
 
 #: media/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Utvidelser i bruk"
 
 #: media/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Utvidelser opprettet"
 
 #: media/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Utvidelser lastet ned"
 
 #: media/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Utvidelser oppdatert"
 
 #: media/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr ""
+msgstr "Anmeldelser skrevet"
 
 #: media/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
-msgstr ""
+msgstr "Brukerregistreringer"
 
 #: media/js/impala/stats/csv_keys.js:30
 msgid "Subscribers"
-msgstr ""
+msgstr "Abonnementer"
 
 #: media/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
-msgstr ""
+msgstr "Rangering"
 
 #: media/js/impala/stats/csv_keys.js:36
 #: media/js/impala/stats/csv_keys.js:107
 #: media/js/mkt/stats/chart_column.js:147
 msgid "Sales"
-msgstr ""
+msgstr "Salg"
 
 #: media/js/impala/stats/csv_keys.js:39
 #: media/js/impala/stats/csv_keys.js:106
@@ -626,22 +630,22 @@ msgstr ""
 #: media/js/mkt/stats/csv_keys.js:3
 #: media/js/mkt/stats/csv_keys.js:132
 msgid "Installs"
-msgstr ""
+msgstr "Installeringer"
 
 #: media/js/impala/stats/csv_keys.js:42
 #: media/js/mkt/stats/csv_keys.js:57
 msgid "Unknown"
-msgstr ""
+msgstr "Ukjent"
 
 #: media/js/impala/stats/csv_keys.js:43
 #: media/js/mkt/stats/csv_keys.js:58
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Utvidelsesbehandler"
 
 #: media/js/impala/stats/csv_keys.js:44
 #: media/js/mkt/stats/csv_keys.js:59
 msgid "Search Results"
-msgstr ""
+msgstr "Søkeresultater"
 
 #: media/js/impala/stats/csv_keys.js:45
 #: media/js/impala/stats/csv_keys.js:46
@@ -650,45 +654,45 @@ msgstr ""
 #: media/js/mkt/stats/csv_keys.js:61
 #: media/js/mkt/stats/csv_keys.js:62
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Hjemmeside-promo"
 
 #: media/js/impala/stats/csv_keys.js:48
 #: media/js/impala/stats/csv_keys.js:49
 #: media/js/mkt/stats/csv_keys.js:63
 #: media/js/mkt/stats/csv_keys.js:64
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Hjemmeside fremhevet"
 
 #: media/js/impala/stats/csv_keys.js:50
 #: media/js/impala/stats/csv_keys.js:51
 #: media/js/mkt/stats/csv_keys.js:65
 #: media/js/mkt/stats/csv_keys.js:66
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Hjemmeside fremgangsrik"
 
 #: media/js/impala/stats/csv_keys.js:52
 #: media/js/mkt/stats/csv_keys.js:67
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Hjemmeside mest populær"
 
 #: media/js/impala/stats/csv_keys.js:53
 #: media/js/impala/stats/csv_keys.js:55
 #: media/js/mkt/stats/csv_keys.js:68
 #: media/js/mkt/stats/csv_keys.js:70
 msgid "Detail Page"
-msgstr ""
+msgstr "Detaljside"
 
 #: media/js/impala/stats/csv_keys.js:54
 #: media/js/impala/stats/csv_keys.js:56
 #: media/js/mkt/stats/csv_keys.js:69
 #: media/js/mkt/stats/csv_keys.js:71
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Detaljside (bunn)"
 
 #: media/js/impala/stats/csv_keys.js:57
 #: media/js/mkt/stats/csv_keys.js:72
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Detaljside (utviklerkanal)"
 
 #: media/js/impala/stats/csv_keys.js:58
 #: media/js/impala/stats/csv_keys.js:59
@@ -697,411 +701,411 @@ msgstr ""
 #: media/js/mkt/stats/csv_keys.js:74
 #: media/js/mkt/stats/csv_keys.js:75
 msgid "Often Used With"
-msgstr ""
+msgstr "Ofte brukt sammen med"
 
 #: media/js/impala/stats/csv_keys.js:61
 #: media/js/impala/stats/csv_keys.js:62
 #: media/js/mkt/stats/csv_keys.js:76
 #: media/js/mkt/stats/csv_keys.js:77
 msgid "Others By Author"
-msgstr ""
+msgstr "Andre av forfatteren"
 
 #: media/js/impala/stats/csv_keys.js:63
 #: media/js/impala/stats/csv_keys.js:64
 #: media/js/mkt/stats/csv_keys.js:78
 #: media/js/mkt/stats/csv_keys.js:79
 msgid "Dependencies"
-msgstr ""
+msgstr "Avhengigheter"
 
 #: media/js/impala/stats/csv_keys.js:65
 #: media/js/impala/stats/csv_keys.js:66
 #: media/js/mkt/stats/csv_keys.js:80
 #: media/js/mkt/stats/csv_keys.js:81
 msgid "Upsell"
-msgstr ""
+msgstr "Oppsalg"
 
 #: media/js/impala/stats/csv_keys.js:68
 #: media/js/mkt/stats/csv_keys.js:83
 msgid "Sharing"
-msgstr ""
+msgstr "Deler"
 
 #: media/js/impala/stats/csv_keys.js:69
 #: media/js/mkt/stats/csv_keys.js:84
 msgid "Category Pages"
-msgstr ""
+msgstr "Kategorisider"
 
 #: media/js/impala/stats/csv_keys.js:70
 #: media/js/mkt/stats/csv_keys.js:85
 msgid "Collections"
-msgstr ""
+msgstr "Samlinger"
 
 #: media/js/impala/stats/csv_keys.js:71
 #: media/js/impala/stats/csv_keys.js:72
 #: media/js/mkt/stats/csv_keys.js:86
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Kategorilanding fremhevet karusell"
 
 #: media/js/impala/stats/csv_keys.js:73
 #: media/js/impala/stats/csv_keys.js:74
 #: media/js/mkt/stats/csv_keys.js:89
 #: media/js/mkt/stats/csv_keys.js:90
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Kategorilanding topprangert"
 
 #: media/js/impala/stats/csv_keys.js:75
 #: media/js/impala/stats/csv_keys.js:76
 #: media/js/mkt/stats/csv_keys.js:91
 #: media/js/mkt/stats/csv_keys.js:92
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Kategorilanding mest populær"
 
 #: media/js/impala/stats/csv_keys.js:77
 #: media/js/impala/stats/csv_keys.js:78
 #: media/js/mkt/stats/csv_keys.js:93
 #: media/js/mkt/stats/csv_keys.js:94
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Kategorilanding nylig lagt til"
 
 #: media/js/impala/stats/csv_keys.js:79
 #: media/js/impala/stats/csv_keys.js:80
 #: media/js/mkt/stats/csv_keys.js:95
 #: media/js/mkt/stats/csv_keys.js:96
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter fremhevet"
 
 #: media/js/impala/stats/csv_keys.js:81
 #: media/js/impala/stats/csv_keys.js:82
 #: media/js/mkt/stats/csv_keys.js:97
 #: media/js/mkt/stats/csv_keys.js:98
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter brukere"
 
 #: media/js/impala/stats/csv_keys.js:83
 #: media/js/impala/stats/csv_keys.js:84
 #: media/js/mkt/stats/csv_keys.js:99
 #: media/js/mkt/stats/csv_keys.js:100
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter rangering"
 
 #: media/js/impala/stats/csv_keys.js:85
 #: media/js/impala/stats/csv_keys.js:86
 #: media/js/mkt/stats/csv_keys.js:101
 #: media/js/mkt/stats/csv_keys.js:102
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter opprettet"
 
 #: media/js/impala/stats/csv_keys.js:87
 #: media/js/impala/stats/csv_keys.js:88
 #: media/js/mkt/stats/csv_keys.js:103
 #: media/js/mkt/stats/csv_keys.js:104
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter navn"
 
 #: media/js/impala/stats/csv_keys.js:89
 #: media/js/impala/stats/csv_keys.js:90
 #: media/js/mkt/stats/csv_keys.js:105
 #: media/js/mkt/stats/csv_keys.js:106
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter popularitet"
 
 #: media/js/impala/stats/csv_keys.js:91
 #: media/js/impala/stats/csv_keys.js:92
 #: media/js/mkt/stats/csv_keys.js:107
 #: media/js/mkt/stats/csv_keys.js:108
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter oppdatert"
 
 #: media/js/impala/stats/csv_keys.js:93
 #: media/js/impala/stats/csv_keys.js:94
 #: media/js/mkt/stats/csv_keys.js:109
 #: media/js/mkt/stats/csv_keys.js:110
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter fremgangsrik"
 
 #: media/js/impala/stats/csv_keys.js:98
 #: media/js/mkt/stats/csv_keys.js:124
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Totalt bidragsbeløp"
 
 #: media/js/impala/stats/csv_keys.js:99
 #: media/js/mkt/stats/csv_keys.js:125
 msgid "Average Contribution"
-msgstr ""
+msgstr "Gjennomsnittelig bidrag"
 
 #: media/js/impala/stats/csv_keys.js:108
 #: media/js/mkt/stats/csv_keys.js:133
 msgid "Usage"
-msgstr ""
+msgstr "Bruk"
 
 #: media/js/impala/stats/csv_keys.js:111
 #: media/js/mkt/stats/csv_keys.js:137
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: media/js/impala/stats/csv_keys.js:112
 #: media/js/mkt/stats/csv_keys.js:138
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: media/js/impala/stats/csv_keys.js:113
 #: media/js/mkt/stats/csv_keys.js:139
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: media/js/impala/stats/csv_keys.js:114
 #: media/js/mkt/stats/csv_keys.js:140
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: media/js/impala/stats/csv_keys.js:115
 #: media/js/mkt/stats/csv_keys.js:141
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: media/js/impala/stats/csv_keys.js:116
 #: media/js/mkt/stats/csv_keys.js:142
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:121
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Nedlastinger og daglige brukere, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:123
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Nedlastinger og daglige brukere fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:127
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Installeringer og daglige brukere, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:129
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Installeringer og daglige brukere fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:133
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Nedlastinger, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:135
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Nedlastinger fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:139
 #: media/js/mkt/stats/csv_keys.js:152
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Daglige brukere, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:141
 #: media/js/mkt/stats/csv_keys.js:153
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Daglige brukere fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:145
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Programmer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:147
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Programmer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:151
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Plattformer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:153
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Plattformer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:157
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Språk, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:159
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Språk fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:163
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Utvidelsesversjoner, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:165
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Utvidelsesversjoner fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:169
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Utvidelsesstatus, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:171
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Utvidelsesstatus fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:175
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Nedlastingskilder, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:177
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Nedlastingskilder fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:181
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Bidrag, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:183
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Bidrag fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:187
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Nettstedsmetrikk, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:189
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Nettstedsmetrikk fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:193
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Utvidelser i bruk, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:195
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Utvidelser i bruk fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:199
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Utvidelser lastet ned, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:201
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Utvidelser lastet ned fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:205
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Utvidelser opprettet, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:207
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Utvidelser opprettet fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:211
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Utvidelser oppdatert, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:213
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Utvidelser oppdatert fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:217
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Anmeldelser skrevet, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:219
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Anmeldelser skrevet fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:223
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Brukerregistreringer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:225
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Brukerregistreringer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:229
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Samlinger opprettet, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:231
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Samlinger opprettet fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:235
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Abonnementer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:237
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Abonnementer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:241
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Rangeringer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:243
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Rangeringer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:247
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Salg, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:249
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Salg fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:253
 #: media/js/mkt/stats/csv_keys.js:147
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Installeringer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:255
 #: media/js/mkt/stats/csv_keys.js:149
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Installeringer fra {0} til {1}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:261
 #: media/js/mkt/stats/csv_keys.js:223
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> de siste {1} dagene"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:263
@@ -1109,224 +1113,226 @@ msgstr ""
 #: media/js/mkt/stats/csv_keys.js:225
 #: media/js/mkt/stats/csv_keys.js:231
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> fra {1} til {2}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:267
 #: media/js/mkt/stats/csv_keys.js:229
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> gjennomsnittelig de siste {1} dagene"
 
 #: media/js/impala/stats/overview.js:19
 #: media/js/mkt/stats/overview.js:17
 msgid "No data available."
-msgstr ""
+msgstr "Ingen data tilgjengelig."
 
 #: media/js/impala/stats/table.js:74
 #: media/js/mkt/stats/table.js:88
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #: media/js/impala/stats/topchart.js:96
 #: media/js/mkt/stats/topchart.js:96
 msgid "Other"
-msgstr ""
+msgstr "Annet"
 
 #: media/js/mkt/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Fant ikke manifestet på den oppgitte adressen."
 
 #: media/js/mkt/apps.js:87
 #: media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Klarte ikke nå app-verten."
 
 #: media/js/mkt/apps.js:90
 #: media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "App-manifestet kan ikke parses."
 
 #: media/js/mkt/apps.js:93
 #: media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "App-manifestet er ugyldig."
 
 #: media/js/mkt/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "Appen er allerede installert."
 
 #: media/js/mkt/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "Intern serverfeil."
 
 #: media/js/mkt/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "Intern serverfeil ved app-installasjon."
 
 #: media/js/mkt/apps.js:106
 #: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Installering mislykket. Prøv igjen senere."
 
 #: media/js/mkt/buttons.js:38
 msgid "Purchasing"
-msgstr ""
+msgstr "Kjøper"
 
 #: media/js/mkt/buttons.js:44
 msgid "Purchased"
-msgstr ""
+msgstr "Kjøpt"
 
 #: media/js/mkt/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "Åpne"
 
 #: media/js/mkt/consumer_init.js:24
 msgid "Click here to view the mobile Marketplace!"
-msgstr ""
+msgstr "Trykk her for å vise den mobile markedsplassen!"
 
 #: media/js/mkt/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "Denne videoen krever en nettleser med støtte for åpen video "
 
 #: media/js/mkt/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "eller <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/mkt/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "Flash Player</a>."
 
 #: media/js/mkt/feedback.js:38
 msgid "Message must not be empty."
-msgstr ""
+msgstr "Meldingen kan ikke være tom."
 
 #: media/js/mkt/login.js:73
 msgid ""
 "Persona login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
+"Persona-innlogging mislykket. Kanskje hadde du ikke en konto med den "
+"e-postadressen?"
 
 #: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "Persona-innlogging mislykket. En serverfeil oppstod."
 
 #: media/js/mkt/lookup-tool.js:63
 msgid "Show All Results"
-msgstr ""
+msgstr "Vis alle resultater."
 
 #: media/js/mkt/lookup-tool.js:66
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Over {0} resultater funnet, prøv å justere søket."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Forespurte tillatelser:"
 
 #: media/js/mkt/manifest.js:54
 msgid "Certified"
-msgstr ""
+msgstr "Sertifisert"
 
 #: media/js/mkt/manifest.js:57
 msgid "Privileged"
-msgstr ""
+msgstr "Priviligert"
 
 #: media/js/mkt/manifest.js:60
 msgid "Unprivileged"
-msgstr ""
+msgstr "Upriviligert"
 
 #: media/js/mkt/manifest.js:66
 msgid "No reason given"
-msgstr ""
+msgstr "Ingen årsak oppgitt"
 
 #: media/js/mkt/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: media/js/mkt/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr ""
+msgstr "Betaling mislykket. Prøv igjen senere."
 
 #: media/js/mkt/reviewers.js:98
 msgid "Packaged App"
-msgstr ""
+msgstr "Innpakket app"
 
 #: media/js/mkt/reviewers.js:102
 msgid "Privileged App"
-msgstr ""
+msgstr "Priviligert app"
 
 #: media/js/mkt/reviewers.js:105
 msgid "More Information Requested"
-msgstr ""
+msgstr "Mer informasjon er forespurt"
 
 #: media/js/mkt/reviewers.js:108
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Inneholder redaktør-kommentar"
 
 #: media/js/mkt/reviewers.js:112
 msgid "Premium App"
-msgstr ""
+msgstr "Premium-app"
 
 #: media/js/mkt/reviewers.js:115
 msgid "Escalated"
-msgstr ""
+msgstr "Eskalert"
 
 #: media/js/mkt/reviewers.js:120
 msgid "Free"
-msgstr ""
+msgstr "Gratis"
 
 #: media/js/mkt/reviewers.js:228
 msgid "Any"
-msgstr ""
+msgstr "Alle"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
-msgstr ""
+msgstr "Forespurt info"
 
 #: media/js/mkt/themes_review.js:175
 msgid "Flagged"
-msgstr ""
+msgstr "Flagget"
 
 #: media/js/mkt/themes_review.js:176
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: media/js/mkt/themes_review.js:177
 msgid "Rejected"
-msgstr ""
+msgstr "Avvist"
 
 #: media/js/mkt/themes_review.js:178
 msgid "Approved"
-msgstr ""
+msgstr "Godkjent"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/mkt/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} tegn igjen."
+msgstr[1] "{0} tegn igjen."
 
 #: media/js/mkt/stats/chart.js:327
 msgid "{0} apps"
-msgstr ""
+msgstr "{0} apps"
 
 #: media/js/mkt/stats/chart.js:339
 msgid "Week"
-msgstr ""
+msgstr "Uke"
 
 #: media/js/mkt/stats/chart.js:342
 msgid "Month"
-msgstr ""
+msgstr "Måned"
 
 #: media/js/mkt/stats/chart.js:345
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: media/js/mkt/stats/chart.js:352
 #: media/js/mkt/stats/csv_keys.js:9
 #: media/js/mkt/stats/csv_keys.js:18
 #: media/js/mkt/stats/csv_keys.js:27
 msgid "Amount Earned"
-msgstr ""
+msgstr "Beløp tjent"
 
 #: media/js/mkt/stats/chart.js:356
 #: media/js/mkt/stats/csv_keys.js:12
@@ -1334,280 +1340,285 @@ msgstr ""
 #: media/js/mkt/stats/csv_keys.js:30
 #: media/js/mkt/stats/csv_keys.js:134
 msgid "Units Sold"
-msgstr ""
+msgstr "Enheter solgt"
 
 #: media/js/mkt/stats/chart.js:360
 #: media/js/mkt/stats/csv_keys.js:15
 #: media/js/mkt/stats/csv_keys.js:24
 #: media/js/mkt/stats/csv_keys.js:33
 msgid "Units Refunded"
-msgstr ""
+msgstr "Enheter tilbakebetalt"
 
 #: media/js/mkt/stats/chart.js:368
 msgid "Users"
-msgstr ""
+msgstr "Brukere"
 
 #: media/js/mkt/stats/chart.js:372
 msgid "Apps"
-msgstr ""
+msgstr "Apps"
 
 #: media/js/mkt/stats/chart_column.js:122
 msgid "by currency {0}"
-msgstr ""
+msgstr "etter valuta {0}"
 
 #: media/js/mkt/stats/chart_column.js:123
 msgid "by source {0}"
-msgstr ""
+msgstr "etter kilde {0}"
 
 #: media/js/mkt/stats/chart_column.js:131
 #: media/js/mkt/stats/table.js:95
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #: media/js/mkt/stats/chart_column.js:135
 #: media/js/mkt/stats/table.js:98
 msgid "Source"
-msgstr ""
+msgstr "Kilde"
 
 #: media/js/mkt/stats/chart_column.js:143
 msgid "Revenue"
-msgstr ""
+msgstr "Inntjening"
 
 #: media/js/mkt/stats/chart_column.js:151
 msgid "Refunds"
-msgstr ""
+msgstr "Tilbakebetalinger"
 
 #: media/js/mkt/stats/csv_keys.js:36
 #: media/js/mkt/stats/csv_keys.js:192
 #: media/js/mkt/stats/csv_keys.js:193
 msgid "Apps Added"
-msgstr ""
+msgstr "Apps lagt til"
 
 #: media/js/mkt/stats/csv_keys.js:39
 #: media/js/mkt/stats/csv_keys.js:196
 #: media/js/mkt/stats/csv_keys.js:197
 msgid "Apps Installed"
-msgstr ""
+msgstr "Apps installert"
 
 #: media/js/mkt/stats/csv_keys.js:42
 #: media/js/mkt/stats/csv_keys.js:200
 #: media/js/mkt/stats/csv_keys.js:201
 msgid "Reviews"
-msgstr ""
+msgstr "Anmeldelser"
 
 #: media/js/mkt/stats/csv_keys.js:45
 #: media/js/mkt/stats/csv_keys.js:208
 #: media/js/mkt/stats/csv_keys.js:209
 msgid "New Users"
-msgstr ""
+msgstr "Nye brukere"
 
 #: media/js/mkt/stats/csv_keys.js:48
 #: media/js/mkt/stats/csv_keys.js:204
 #: media/js/mkt/stats/csv_keys.js:205
 msgid "Total Users"
-msgstr ""
+msgstr "Totalt brukere"
 
 #: media/js/mkt/stats/csv_keys.js:51
 #: media/js/mkt/stats/csv_keys.js:212
 #: media/js/mkt/stats/csv_keys.js:213
 msgid "Total Visitors"
-msgstr ""
+msgstr "Totalt besøkende"
 
 #: media/js/mkt/stats/csv_keys.js:54
 msgid "App Installs"
-msgstr ""
+msgstr "App-installasjoner"
 
 #: media/js/mkt/stats/csv_keys.js:112
 msgid "Marketplace Browse Page"
-msgstr ""
+msgstr "Markedsplass listeside"
 
 #: media/js/mkt/stats/csv_keys.js:113
 msgid "Marketplace Browse Page, Featured"
-msgstr ""
+msgstr "Markedsplass listeside, fremhevet"
 
 #: media/js/mkt/stats/csv_keys.js:114
 msgid "Marketplace Category Page"
-msgstr ""
+msgstr "Markedsplass kategoriside"
 
 #: media/js/mkt/stats/csv_keys.js:115
 msgid "Marketplace Category Page, Featured"
-msgstr ""
+msgstr "Markedsplass kategoriside, fremhevet"
 
 #: media/js/mkt/stats/csv_keys.js:116
 msgid "Marketplace Detail Page"
-msgstr ""
+msgstr "Markedsplass detaljside"
 
 #: media/js/mkt/stats/csv_keys.js:117
 msgid "Marketplace Detail Page, Upsell"
-msgstr ""
+msgstr "Markedsplass detaljside, oppsalg"
 
 #: media/js/mkt/stats/csv_keys.js:118
 msgid "Marketplace Home Page"
-msgstr ""
+msgstr "Markedsplass hjemmeside"
 
 #: media/js/mkt/stats/csv_keys.js:119
 msgid "Marketplace Search Results"
-msgstr ""
+msgstr "Markedsplass søkeresultater"
 
 #: media/js/mkt/stats/csv_keys.js:120
 msgid "Marketplace Search Results, Featured"
-msgstr ""
+msgstr "Markedsplass søkeresultater, fremhevet"
 
 #: media/js/mkt/stats/csv_keys.js:156
 msgid "Units Sold, last {0} days"
-msgstr ""
+msgstr "Enheter solgt, siste {0} dager"
 
 #: media/js/mkt/stats/csv_keys.js:157
 msgid "Units Sold from {0} to {1}"
-msgstr ""
+msgstr "Enheter solgt fra {0} til {1}"
 
 #: media/js/mkt/stats/csv_keys.js:160
 msgid "Amount Earned, last {0} days"
-msgstr ""
+msgstr "Beløp tjent, siste {0} dager"
 
 #: media/js/mkt/stats/csv_keys.js:161
 msgid "Amount Earned {0} to {1}"
-msgstr ""
+msgstr "Beløp tjent {0} til {1}"
 
 #: media/js/mkt/stats/csv_keys.js:164
 msgid "Units Refunded, last {0} days"
-msgstr ""
+msgstr "Enheter tilbakebetalt, siste {0} dager"
 
 #: media/js/mkt/stats/csv_keys.js:165
 msgid "Units Refunded from {0} to {1}"
-msgstr ""
+msgstr "Enheter tilbakebetalt fra {0} til {1}"
 
 #: media/js/mkt/stats/csv_keys.js:168
 #: media/js/mkt/stats/csv_keys.js:169
 msgid "Total Units Sold by Currency"
-msgstr ""
+msgstr "Totalt enheter solgt etter valuta"
 
 #: media/js/mkt/stats/csv_keys.js:172
 #: media/js/mkt/stats/csv_keys.js:173
 msgid "Total Amount Earned by Currency"
-msgstr ""
+msgstr "Totalt beløp tjent etter valuta"
 
 #: media/js/mkt/stats/csv_keys.js:176
 #: media/js/mkt/stats/csv_keys.js:177
 msgid "Total Units Refunded by Currency"
-msgstr ""
+msgstr "Totalt enheter tilbakebetalt etter valuta"
 
 #: media/js/mkt/stats/csv_keys.js:180
 #: media/js/mkt/stats/csv_keys.js:181
 msgid "Total Units Sold by Source"
-msgstr ""
+msgstr "Totalt enheter solgt etter kilde"
 
 #: media/js/mkt/stats/csv_keys.js:184
 #: media/js/mkt/stats/csv_keys.js:185
 msgid "Total Amount Earned by Source"
-msgstr ""
+msgstr "Totalt beløp tjent etter kilde"
 
 #: media/js/mkt/stats/csv_keys.js:188
 #: media/js/mkt/stats/csv_keys.js:189
 msgid "Total Units Refunded by Source"
-msgstr ""
+msgstr "Totalt enheter tilbakebetalt etter kilde"
 
 #: media/js/mkt/stats/csv_keys.js:216
 #: media/js/mkt/stats/csv_keys.js:217
 msgid "Total Installs"
-msgstr ""
+msgstr "Totalt installasjoner"
 
 #: media/js/zamboni/admin_validation.js:24
 #: media/js/zamboni/devhub.js:1438
 #: media/js/zamboni/editors.js:329
 msgid "Select an application first"
-msgstr ""
+msgstr "Velg en applikasjon først"
 
 #: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sett {0} utvidelse til maksversjon {1} og send e-post til forfatteren."
+msgstr[1] "Sett {0} utvidelser til maksversjon {1} og send e-post til forfatterne."
 
 #: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
 msgid_plural "This will send emails to the authors of {0} files."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Dette vil sende e-post til forfatterne av {0} fil."
+msgstr[1] "Dette vil sende e-post til forfatterne av {0} filer."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr ""
+msgstr "App-installasjon ikke tillatt."
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "App-manifestet er feilformatert."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "App-installasjon mislykket."
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Systemet støtter ikke installasjon av apps."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Administratorer og redaktører må oppgi passord for å logge inn."
 
 #: media/js/zamboni/browserid_support.js:42
 msgid ""
 "BrowserID login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
+"BrowserID-innlogging mislykket. Kanskje har du ikke en konto under den "
+"e-postadressen?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
 msgid "Accept and Install"
-msgstr ""
+msgstr "Godta og installer"
 
 #: media/js/zamboni/buttons.js:108
 msgid "Add to {0}"
-msgstr ""
+msgstr "Legg til {0}"
 
 #: media/js/zamboni/buttons.js:113
 msgid "Download Now"
-msgstr ""
+msgstr "Last ned nå"
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
+"Utvidelsen har ikke blitt oppdatert til å støtte kompatibel-som-standard."
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Du må bruke Firefox 10.0 eller nyere."
 
 #: media/js/zamboni/buttons.js:171
 msgid ""
 "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"Mozilla har markert denne versjonen som inkompatibel med din Firefox-"
+"versjon."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Installer for {0} likevel"
 
 #: media/js/zamboni/buttons.js:249
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Last ned for {0} likevel"
 
 #: media/js/zamboni/buttons.js:306
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Ikke tilgjengelig for plattformen din"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/zamboni/buttons.js:317
 #: media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Ikke tilgjengelig for {0} {1}"
 
 #: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Virker med {app} {min} - {max}"
 
 #: media/js/zamboni/buttons.js:382
 msgid "View other versions"
-msgstr ""
+msgstr "Vis andre versjoner"
 
 #: media/js/zamboni/buttons.js:597
 #: media/js/zamboni/mobile/buttons.js:39
@@ -1615,267 +1626,272 @@ msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
 "search plugin."
 msgstr ""
+"Beklager, du trenger en Mozilla-basert nettleser (som Firefox) for å "
+"installere et søketillegg."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
-msgstr ""
+msgstr "tøm nylig vist"
 
 #: media/js/zamboni/collections.js:365
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Legg til i favoritter &hellip;"
 
 #: media/js/zamboni/collections.js:368
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Fjerner favoritt &hellip;"
 
 #: media/js/zamboni/collections.js:371
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Legg til i favoritter"
 
 #: media/js/zamboni/collections.js:374
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Fjern fra favoritter"
 
 #: media/js/zamboni/collections.js:437
 msgid "Pending"
-msgstr ""
+msgstr "Under behandling"
 
 #: media/js/zamboni/collections.js:438
 msgid "Add a comment"
-msgstr ""
+msgstr "Legg til kommentar"
 
 #: media/js/zamboni/collections.js:438
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #: media/js/zamboni/collections.js:439
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Fjern denne utvidelsen fra samlingen"
 
 #: media/js/zamboni/collections.js:439
 #: media/js/zamboni/collections.js:468
 msgid "Remove"
-msgstr ""
+msgstr "Fjern"
 
 #: media/js/zamboni/collections.js:468
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Fjern denne brukeren som bidragsyter"
 
 #: media/js/zamboni/collections.js:480
 msgid "An email address is required."
-msgstr ""
+msgstr "En e-postadresse er påkrevd."
 
 #: media/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Du kan ikke legge til deg selv som bidragsyter."
 
 #: media/js/zamboni/collections.js:500
 msgid "You have already added that user."
-msgstr ""
+msgstr "Du har allerede lagt til denne brukeren."
 
 #: media/js/zamboni/collections.js:703
 msgid "Add to favorites"
-msgstr ""
+msgstr "Legg til i favoritter"
 
 #: media/js/zamboni/collections.js:707
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Fjern fra favoritter"
 
 #: media/js/zamboni/collections.js:734
 msgid "Stop following"
-msgstr ""
+msgstr "Slutt å følge"
 
 #: media/js/zamboni/contributions.js:134
 msgid "Install App"
-msgstr ""
+msgstr "Installer app"
 
 #: media/js/zamboni/devhub.js:242
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Nettleseren din støtter ikke video-taggen"
 
 #: media/js/zamboni/devhub.js:503
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Skriv inn forfatterens nye e-postadresse"
 
 #: media/js/zamboni/devhub.js:793
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} fil"
+msgstr[1] "{files} filer"
 
 #: media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} anmeldelse"
+msgstr[1] "{reviews} anmeldelser"
 
 #: media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
-msgstr ""
+msgstr "Starter tester ..."
 
 #: media/js/zamboni/devhub.js:1473
 msgid "Waiting for test results..."
-msgstr ""
+msgstr "Venter på testresultater ..."
 
 #: media/js/zamboni/devhub.js:1475
 #: media/js/zamboni/devhub.js:1480
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Intern serverfeil"
 
 #: media/js/zamboni/devhub.js:1515
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Må være en gyldig e-postadresse"
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "Ingen resultater funnet."
 
 #: media/js/zamboni/discovery_pane.js:217
 msgid ""
 "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
 "href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"Beklager, vi klarte ikke finne noen anbefalinger for deg. <br>Besøk <a "
+"href=\"{0}\">utvidelsesnettstedet</a> for å finne utvidelsen som er rett for "
+"deg."
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "Finne anbefalinger &hellip;"
 
 #: media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "Oppdatere anbefalinger &hellip;"
 
 #: media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} så på denne siden først."
 
 #: media/js/zamboni/editors.js:210
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Kvittering kontrollert av appen."
 
 #: media/js/zamboni/editors.js:212
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Kvittering ble ikke kontrollert av appen."
 
 #: media/js/zamboni/editors.js:278
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} så på denne utvidelsen først."
 
 #: media/js/zamboni/editors.js:289
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Laster &hellip;"
 
 #: media/js/zamboni/editors.js:294
 msgid "Version Notes"
-msgstr ""
+msgstr "Versjonnotat"
 
 #: media/js/zamboni/editors.js:299
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Notat for redaktører"
 
 #: media/js/zamboni/editors.js:304
 msgid "No version notes found"
-msgstr ""
+msgstr "Versjonsnotat ikke funnet"
 
 #: media/js/zamboni/editors.js:364
 msgid "Average Reviews"
-msgstr ""
+msgstr "Gjennomsnittelig rangering"
 
 #: media/js/zamboni/editors.js:420
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Antall rangeringer"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
-msgstr ""
+msgstr "Laster ..."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> tegn igjen."
+msgstr[1] "<b>{0}</b> tegn igjen."
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
 msgid "Download {0}"
-msgstr ""
+msgstr "Last ned {0}"
 
 #: media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr ""
+msgstr "Passordstyrke:"
 
 #: media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Minst {0} tegn igjen."
+msgstr[1] "Minst {0} tegn igjen."
 
 #: media/js/zamboni/perf.js:29
 #: media/js/zamboni/perf.js:42
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #: media/js/zamboni/validator.js:336
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Validering av utvidelse mislykket."
 
 #: media/js/zamboni/validator.js:338
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Utvidelsevalidering fullført."
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Ikke oppdatert for {0} {1}"
 
 #: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Krever en nyere versjon av {0}"
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
-msgstr ""
+msgstr "Ingen anmeldelser"
 
 #: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Eksperimentell <span>(Les mer)</span>"
 
 #: media/js/zamboni/mobile/buttons.js:79
 #: media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Ikke tilgjengelig for {0}"
 
 #: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimentell"
 
 #: media/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Temaer krever en nyere versjon av {0}"
 
 #: media/js/zamboni/mobile/buttons.js:83
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Temaer krever {0}"
 
 #: media/js/zamboni/mobile/buttons.js:128
 msgid "Installing..."
-msgstr ""
+msgstr "Installerer ..."
 
 #: media/js/zamboni/mobile/buttons.js:136
 msgid "Purchasing..."
-msgstr ""
+msgstr "Kjøper ..."
 
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Denne utvidelsen er midlertidig kontrollert av Mozilla."
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
-msgstr ""
+msgstr "Behold den"
 
 #: media/js/zamboni/mobile/general.js:338
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Du prøver den ut!"
 
 #: media/js/zamboni/mobile/general.js:350
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Lagt til i Firefox"
