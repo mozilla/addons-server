@@ -10,13 +10,11 @@ from lxml import etree
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import RequestFactory
 
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
 
-from mkt.site.urls import template_plus_xframe
 from mkt.webapps.models import Webapp
 
 
