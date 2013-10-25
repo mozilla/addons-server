@@ -27,11 +27,11 @@ msgstr ""
 
 #: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "Roghnaigh comhad..."
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
+msgstr "Ba chóir duit an breiseán a chur i gcomhad .xpi, .jar, nó .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
@@ -45,15 +45,15 @@ msgstr "{0} as {1}"
 
 #: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr ""
+msgstr "Cealaigh"
 
 #: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} á uasluchtú"
 
 #: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "Earráid le {0}"
 
 #: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
@@ -67,11 +67,11 @@ msgstr[4] "Níor éirigh le bailíochtú do bhreiseáin; bhí {0} earráid ann."
 #: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "&hellip;agus ceann amháin eile"
+msgstr[1] "&hellip;agus {0} cheann eile"
+msgstr[2] "&hellip;agus {0} cinn eile"
+msgstr[3] "&hellip;agus {0} gcinn eile"
+msgstr[4] "&hellip;agus {0} ceann eile"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
@@ -85,7 +85,7 @@ msgstr "{0} á bhailíochtú"
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Fuarthas freagra folamh ón bhfreastalaí; stádas: {0}"
 
 #: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
@@ -93,7 +93,7 @@ msgstr "Earráid fhreastalaí gan súil leis le linn bailíochtaithe."
 
 #: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Bailíochtú {0} críochnaithe"
 
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} warning."
@@ -118,7 +118,7 @@ msgstr ""
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Chealaigh tú an t-uasluchtú."
 
 #: media/js/common/upload-image.js:98 media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
@@ -130,16 +130,16 @@ msgstr ""
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Ba chóir duit d'aip phacáistithe a chur i gcomhad <code>.zip</code>."
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Níor éirigh le bailíochtú d'aip; bhí {0} earráid ann."
+msgstr[1] "Níor éirigh le bailíochtú d'aip; bhí {0} earráid ann."
+msgstr[2] "Níor éirigh le bailíochtú d'aip; bhí {0} earráid ann."
+msgstr[3] "Níor éirigh le bailíochtú d'aip; bhí {0} n-earráid ann."
+msgstr[4] "Níor éirigh le bailíochtú d'aip; bhí {0} earráid ann."
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
@@ -178,19 +178,19 @@ msgstr ""
 
 #: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
-msgstr ""
+msgstr "Sábháladh na hAthruithe"
 
 #: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "Cuir seoladh ríomhphoist an bhaill nua isteach"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
-msgstr ""
+msgstr "Athnuaite"
 
 #: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Tharla earráid agus do chomhad á uasluchtú."
 
 #: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
 msgid "Learn more"
@@ -206,11 +206,11 @@ msgstr ""
 
 #: media/js/devreg/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "níos mó..."
 
 #: media/js/devreg/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "níos lú..."
 
 #: media/js/devreg/init.js:35 media/js/mkt/init.js:47 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -226,11 +226,11 @@ msgstr ""
 
 #: media/js/devreg/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "Scrios an léirmheas"
 
 #: media/js/devreg/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr ""
+msgstr "Ná bac leis anois"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
@@ -343,7 +343,7 @@ msgstr ""
 
 #: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:119 media/js/zamboni/validator.js:132
 msgid "Tests"
-msgstr ""
+msgstr "Tástálacha"
 
 #: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:194
 msgid "Warning"
@@ -351,15 +351,15 @@ msgstr "Rabhadh"
 
 #: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:281
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Tástálacha Comhoiriúnachta"
 
 #: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:330
 msgid "App failed validation."
-msgstr ""
+msgstr "Níor éirigh le bailíochtú d'aip."
 
 #: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:332
 msgid "App passed validation."
-msgstr ""
+msgstr "D'éirigh le bailíochtú d'aip."
 
 #: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:369
 msgid "{0} error"
@@ -381,7 +381,7 @@ msgstr[4] "{0} rabhadh"
 
 #: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:448
 msgid "Validation task could not complete or completed with errors"
-msgstr "Níorbh fhéidir an bailíochtú a chur i gcrích, nó chríochnaigh sé le hearráidí"
+msgstr "Níorbh fhéidir an bailíochtú a chur i gcrích, nó chríochnaigh sé le hearráidí"
 
 #: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:466
 msgid "Internal server error"
@@ -410,31 +410,31 @@ msgstr ""
 
 #: media/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: media/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: media/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: media/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: media/js/impala/persona_creation.js:131
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Ainm Do Théama"
 
 #: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
@@ -454,7 +454,7 @@ msgstr ""
 
 #: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
-msgstr ""
+msgstr "Catagóir"
 
 #: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
@@ -526,68 +526,68 @@ msgstr ""
 
 #: media/js/impala/stats/chart.js:447 media/js/mkt/stats/chart.js:395
 msgid "More Info..."
-msgstr ""
+msgstr "Tuilleadh Eolais..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/impala/stats/chart.js:451 media/js/mkt/stats/chart.js:399
 msgid "Details for {0}"
-msgstr ""
+msgstr "Mionsonraí: {0}"
 
 #: media/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
-msgstr ""
+msgstr "Bailiúcháin Cruthaithe"
 
 #: media/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Breiseáin in Úsáid"
 
 #: media/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Breiseáin Cruthaithe"
 
 #: media/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Breiseáin Íosluchtaithe"
 
 #: media/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Breiseáin Nuashonraithe"
 
 #: media/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr ""
+msgstr "Léirmheasanna Scríofa"
 
 #: media/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
-msgstr ""
+msgstr "Úsáideoirí Cláraithe"
 
 #: media/js/impala/stats/csv_keys.js:30
 msgid "Subscribers"
-msgstr ""
+msgstr "Síntiúsóirí"
 
 #: media/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
-msgstr ""
+msgstr "Rátálacha"
 
 #: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107 media/js/mkt/stats/chart_column.js:147
 msgid "Sales"
-msgstr ""
+msgstr "Díolacháin"
 
 #: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106 media/js/mkt/stats/chart.js:364 media/js/mkt/stats/csv_keys.js:3 media/js/mkt/stats/csv_keys.js:132
 msgid "Installs"
-msgstr ""
+msgstr "Suiteáilte"
 
 #: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57
 msgid "Unknown"
-msgstr ""
+msgstr "Anaithnid"
 
 #: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Bainisteoir na mBreiseán"
 
 #: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59
 msgid "Search Results"
-msgstr ""
+msgstr "Torthaí an Chuardaigh"
 
 #: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
 #: media/js/mkt/stats/csv_keys.js:62
@@ -629,7 +629,7 @@ msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79
 msgid "Dependencies"
-msgstr ""
+msgstr "Spleáchóga"
 
 #: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81
 msgid "Upsell"
@@ -637,7 +637,7 @@ msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83
 msgid "Sharing"
-msgstr ""
+msgstr "Comhroinnt"
 
 #: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84
 msgid "Category Pages"
@@ -645,7 +645,7 @@ msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:70 media/js/mkt/stats/csv_keys.js:85
 msgid "Collections"
-msgstr ""
+msgstr "Bailiúcháin"
 
 #: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86
 msgid "Category Landing Featured Carousel"
@@ -705,7 +705,7 @@ msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:108 media/js/mkt/stats/csv_keys.js:133
 msgid "Usage"
-msgstr ""
+msgstr "Úsáid"
 
 #: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137
 msgid "Firefox"
@@ -774,32 +774,32 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:145
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Feidhmchláir, {0} lá is déanaí"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:147
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Feidhmchláir ó {0} go {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:151
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Ardáin, {0} lá is déanaí"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:153
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Ardáin ó {0} go {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:157
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Teangacha, {0} lá is déanaí"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:159
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Teangacha ó {0} go {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:163
@@ -982,7 +982,7 @@ msgstr ""
 
 #: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88
 msgid "Date"
-msgstr ""
+msgstr "Dáta"
 
 #: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96
 msgid "Other"
@@ -1090,7 +1090,7 @@ msgstr ""
 
 #: media/js/mkt/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: media/js/mkt/payments.js:69
 msgid "Payment failed. Try again later."
@@ -1098,7 +1098,7 @@ msgstr ""
 
 #: media/js/mkt/reviewers.js:98
 msgid "Packaged App"
-msgstr ""
+msgstr "Aip Phacáistithe"
 
 #: media/js/mkt/reviewers.js:102
 msgid "Privileged App"
@@ -1122,7 +1122,7 @@ msgstr ""
 
 #: media/js/mkt/reviewers.js:120
 msgid "Free"
-msgstr ""
+msgstr "Saor in Aisce"
 
 #: media/js/mkt/reviewers.js:228
 msgid "Any"
@@ -1142,21 +1142,21 @@ msgstr ""
 
 #: media/js/mkt/themes_review.js:177
 msgid "Rejected"
-msgstr ""
+msgstr "Diúltaithe"
 
 #: media/js/mkt/themes_review.js:178
 msgid "Approved"
-msgstr ""
+msgstr "Ceadaithe"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/mkt/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "{0} charachtar fágtha."
+msgstr[1] "{0} charachtar fágtha."
+msgstr[2] "{0} charachtar fágtha."
+msgstr[3] "{0} gcarachtar fágtha."
+msgstr[4] "{0} carachtar fágtha."
 
 #: media/js/mkt/stats/chart.js:327
 msgid "{0} apps"
@@ -1164,15 +1164,15 @@ msgstr ""
 
 #: media/js/mkt/stats/chart.js:339
 msgid "Week"
-msgstr ""
+msgstr "Seachtain"
 
 #: media/js/mkt/stats/chart.js:342
 msgid "Month"
-msgstr ""
+msgstr "Mí"
 
 #: media/js/mkt/stats/chart.js:345
 msgid "Day"
-msgstr ""
+msgstr "Lá"
 
 #: media/js/mkt/stats/chart.js:352 media/js/mkt/stats/csv_keys.js:9 media/js/mkt/stats/csv_keys.js:18 media/js/mkt/stats/csv_keys.js:27
 msgid "Amount Earned"
@@ -1188,11 +1188,11 @@ msgstr ""
 
 #: media/js/mkt/stats/chart.js:368
 msgid "Users"
-msgstr ""
+msgstr "Úsáideoirí"
 
 #: media/js/mkt/stats/chart.js:372
 msgid "Apps"
-msgstr ""
+msgstr "Aipeanna"
 
 #: media/js/mkt/stats/chart_column.js:122
 msgid "by currency {0}"
@@ -1204,19 +1204,19 @@ msgstr ""
 
 #: media/js/mkt/stats/chart_column.js:131 media/js/mkt/stats/table.js:95
 msgid "Currency"
-msgstr ""
+msgstr "Airgeadra"
 
 #: media/js/mkt/stats/chart_column.js:135 media/js/mkt/stats/table.js:98
 msgid "Source"
-msgstr ""
+msgstr "Foinse"
 
 #: media/js/mkt/stats/chart_column.js:143
 msgid "Revenue"
-msgstr ""
+msgstr "Ioncam"
 
 #: media/js/mkt/stats/chart_column.js:151
 msgid "Refunds"
-msgstr ""
+msgstr "Aisíocaíochtaí"
 
 #: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
 msgid "Apps Added"
@@ -1228,11 +1228,11 @@ msgstr ""
 
 #: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
 msgid "Reviews"
-msgstr ""
+msgstr "Léirmheasanna"
 
 #: media/js/mkt/stats/csv_keys.js:45 media/js/mkt/stats/csv_keys.js:208 media/js/mkt/stats/csv_keys.js:209
 msgid "New Users"
-msgstr ""
+msgstr "Úsáideoirí Nua"
 
 #: media/js/mkt/stats/csv_keys.js:48 media/js/mkt/stats/csv_keys.js:204 media/js/mkt/stats/csv_keys.js:205
 msgid "Total Users"
@@ -1336,7 +1336,7 @@ msgstr ""
 
 #: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:329
 msgid "Select an application first"
-msgstr ""
+msgstr "Roghnaigh feidhmchlár i dtosach báire"
 
 #: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -1358,7 +1358,7 @@ msgstr[4] ""
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Níl cead agat aipeanna a shuiteáil."
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
@@ -1366,19 +1366,19 @@ msgstr ""
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "Níorbh fhéidir an aip a shuiteáil."
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Ní féidir aipeanna a shuiteáil ar an gcóras seo."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Ní mór do riarthóirí agus eagarthóirí focal faire a sholáthar chun logáil isteach."
 
 #: media/js/zamboni/browserid_support.js:42
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr ""
+msgstr "Theip ar logáil isteach trí BrowserID. Seans nach bhfuil cuntas agat leis an seoladh ríomhphoist sin?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
@@ -1425,11 +1425,11 @@ msgstr "Níl sé ar fáil le haghaidh {0} {1}"
 
 #: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Feidhmíonn sé le {app} {min} - {max}"
 
 #: media/js/zamboni/buttons.js:382
 msgid "View other versions"
-msgstr ""
+msgstr "Féach ar leaganacha eile"
 
 #: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -1489,7 +1489,7 @@ msgstr ""
 
 #: media/js/zamboni/collections.js:500
 msgid "You have already added that user."
-msgstr ""
+msgstr "Tá an t-úsáideoir sin ann cheana."
 
 #: media/js/zamboni/collections.js:703
 msgid "Add to favorites"
@@ -1505,11 +1505,11 @@ msgstr "Ná bí dá leanúint"
 
 #: media/js/zamboni/contributions.js:134
 msgid "Install App"
-msgstr ""
+msgstr "Suiteáil an Aip"
 
 #: media/js/zamboni/devhub.js:242
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Ní thacaíonn do bhrabhsálaí leis an gclib 'video'"
 
 #: media/js/zamboni/devhub.js:503
 msgid "Enter a new author's email address"
@@ -1518,28 +1518,28 @@ msgstr ""
 #: media/js/zamboni/devhub.js:793
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "{files} chomhad"
+msgstr[1] "{files} chomhad"
+msgstr[2] "{files} chomhad"
+msgstr[3] "{files} gcomhad"
+msgstr[4] "{files} comhad"
 
 #: media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "{reviews} léirmheas"
+msgstr[1] "{reviews} léirmheas"
+msgstr[2] "{reviews} léirmheas"
+msgstr[3] "{reviews} léirmheas"
+msgstr[4] "{reviews} léirmheas"
 
 #: media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
-msgstr ""
+msgstr "Tástálacha á dtosú..."
 
 #: media/js/zamboni/devhub.js:1473
 msgid "Waiting for test results..."
-msgstr ""
+msgstr "Ag fanacht leis na torthaí..."
 
 #: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
 msgid "Internal Server Error"
@@ -1559,15 +1559,15 @@ msgstr ""
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "Moltaí á n-aimsiú&hellip;"
 
 #: media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "Moltaí á nuashonrú&hellip;"
 
 #: media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "Bhí {name} ag féachaint ar an leathanach seo ar dtús."
 
 #: media/js/zamboni/editors.js:210
 msgid "Receipt checked by app."
@@ -1587,7 +1587,7 @@ msgstr "Á luchtú&hellip;"
 
 #: media/js/zamboni/editors.js:294
 msgid "Version Notes"
-msgstr ""
+msgstr "Nótaí Eisiúna"
 
 #: media/js/zamboni/editors.js:299
 msgid "Notes for Reviewers"
@@ -1607,7 +1607,7 @@ msgstr ""
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
-msgstr ""
+msgstr "Á Luchtú..."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/zamboni/global.js:489
@@ -1622,24 +1622,24 @@ msgstr[4] "<b>{0}</b> carachtar fágtha."
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
 msgid "Download {0}"
-msgstr ""
+msgstr "Íosluchtaigh {0}"
 
 #: media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr ""
+msgstr "Neart an fhocail fhaire:"
 
 #: media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "{0} charachtar fágtha ar a laghad."
+msgstr[1] "{0} charachtar fágtha ar a laghad."
+msgstr[2] "{0} charachtar fágtha ar a laghad."
+msgstr[3] "{0} gcarachtar fágtha ar a laghad."
+msgstr[4] "{0} carachtar fágtha ar a laghad."
 
 #: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
 msgid "All"
-msgstr ""
+msgstr "Uile"
 
 #: media/js/zamboni/validator.js:336
 msgid "Add-on failed validation."
@@ -1659,11 +1659,11 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
-msgstr ""
+msgstr "Gan léirmheas"
 
 #: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Turgnamhach <span>(Tuilleadh Eolais)</span>"
 
 #: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
@@ -1671,7 +1671,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
-msgstr ""
+msgstr "Turgnamhach"
 
 #: media/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
@@ -1683,7 +1683,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:128
 msgid "Installing..."
-msgstr ""
+msgstr "Á Shuiteáil..."
 
 #: media/js/zamboni/mobile/buttons.js:136
 msgid "Purchasing..."
@@ -1695,7 +1695,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
-msgstr ""
+msgstr "Coinnigh é"
 
 #: media/js/zamboni/mobile/general.js:338
 msgid "You're trying it on!"
@@ -1703,4 +1703,4 @@ msgstr ""
 
 #: media/js/zamboni/mobile/general.js:350
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Curtha le Firefox"
