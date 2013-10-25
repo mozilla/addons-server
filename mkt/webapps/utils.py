@@ -58,14 +58,20 @@ def app_to_dict(app, region=None, profile=None, request=None):
 
     supported_locales = getattr(app.current_version, 'supported_locales', '')
 
+    content_ratings = {}
+    for cr in app.content_ratings.all():
+        for region in cr.get_region_slugs():
+            content_ratings.setdefault(region, []).append({
+                'body': cr.get_body().name,
+                'name': cr.get_rating().name,
+                'description': unicode(cr.get_rating().description),
+            })
+
     data = {
         'app_type': app.app_type,
         'author': app.developer_name,
         'categories': list(app.categories.values_list('slug', flat=True)),
-        'content_ratings': dict([(cr.get_body().name, {
-            'name': cr.get_rating().name,
-            'description': unicode(cr.get_rating().description),
-        }) for cr in app.content_ratings.all()]) or None,
+        'content_ratings': content_ratings or None,
         'created': app.created,
         'current_version': (app.current_version.version if
                             getattr(app, 'current_version') else None),

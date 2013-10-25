@@ -1204,11 +1204,15 @@ class WebappIndexer(MappingType, Indexable):
         translations = obj.translations
         installed_ids = list(Installed.objects.filter(addon=obj)
                              .values_list('id', flat=True))
-        content_ratings = dict(
-            (cr.get_body().name, {
-                'name': cr.get_rating().name,
-                'description': unicode(cr.get_rating().description)})
-            for cr in obj.content_ratings.all())
+
+        content_ratings = {}
+        for cr in obj.content_ratings.all():
+            for region in cr.get_region_slugs():
+                content_ratings.setdefault(region, []).append({
+                    'body': cr.get_body().name,
+                    'name': cr.get_rating().name,
+                    'description': unicode(cr.get_rating().description),
+                })
 
         attrs = ('app_slug', 'average_daily_users', 'bayesian_rating',
                  'created', 'id', 'is_disabled', 'last_updated',
@@ -1461,6 +1465,15 @@ class ContentRating(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'%s: %s' % (self.addon, self.get_label())
+
+    def get_regions(self):
+        """Gives us the region classes that use this rating body."""
+        return [x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS
+                if self.get_body() in x.ratingsbodies]
+
+    def get_region_slugs(self):
+        """Gives us the region slugs that use this rating body."""
+        return [x.slug for x in self.get_regions()]
 
     def get_body(self):
         """Gives us something like DEJUS."""

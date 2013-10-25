@@ -20,9 +20,9 @@ from users.models import UserProfile
 from mkt.api.base import get_url, list_url
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth
-from mkt.constants import carriers, regions
+from mkt.constants import carriers, ratingsbodies, regions
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonExcludedRegion, ContentRating, Webapp
+from mkt.webapps.models import AddonExcludedRegion, Webapp
 from reviews.models import Review
 
 
@@ -266,15 +266,23 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
             set([c.pk for c in self.categories]))
 
     def test_get_content_ratings(self):
+        rating = ratingsbodies.DJCTQ_12
         app = self.create_app()
-        ContentRating.objects.create(addon=app, ratings_body=0, rating=2)
+        app.content_ratings.create(
+            ratings_body=ratingsbodies.DJCTQ.id,
+            rating=rating.id)
+        app.save()
+
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         cr = data.get('content_ratings')
-        self.assertIn('DJCTQ', cr.keys())
-        eq_(cr.get('DJCTQ')['name'], u'12')
-        self.assertIn('description', cr.get('DJCTQ'))
+
+        self.assertIn('br', cr.keys())
+        eq_(len(cr['br']), 1)
+        eq_(cr['br'][0]['body'], 'DJCTQ')
+        eq_(cr['br'][0]['name'], rating.name)
+        eq_(cr['br'][0]['description'], unicode(rating.description))
 
     def test_dehydrate(self):
         app = self.create_app()
