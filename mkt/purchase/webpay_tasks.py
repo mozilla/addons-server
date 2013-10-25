@@ -4,10 +4,7 @@ from celeryutils import task
 from jingo.helpers import datetime
 from tower import ugettext as _
 
-import amo
-from amo.decorators import write
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from amo.utils import get_locale_from_lang, send_html_mail_jinja
 from stats.models import Contribution
 
@@ -40,7 +37,7 @@ def send_purchase_receipt(contrib_id, **kw):
             'transaction_id': contrib.uuid,
             'purchases_url': absolutify('/purchases'),
             'support_url': addon.support_url,
-            'terms_of_service_url': absolutify(reverse('site.terms')),
+            'terms_of_service_url': absolutify('/terms-of-use'),
         }
 
         log.info('Sending email about purchase: %s' % contrib_id)
