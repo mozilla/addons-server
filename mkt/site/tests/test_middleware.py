@@ -67,15 +67,15 @@ class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
             self.assert3xx(r, after, 302)
 
     def test_redirect_for_good_locale_and_region(self):
-        r = self.client.get('/en-US/br/privacy-policy?omg=yes',
+        r = self.client.get('/en-US/br/developers/support?omg=yes',
                             follow=True)
         # Can you believe this actually works?
         self.assert3xx(r,
-            '/privacy-policy?lang=en-us&region=br&omg=yes', 302)
+            '/developers/support?lang=en-us&region=br&omg=yes', 302)
 
     def test_preserve_qs_for_region(self):
-        r = self.client.get('/br/privacy-policy?omg=yes')
-        self.assert3xx(r, '/privacy-policy?region=br&omg=yes', 302)
+        r = self.client.get('/br/developers/support?omg=yes')
+        self.assert3xx(r, '/developers/support?region=br&omg=yes', 302)
 
     def test_switch_region(self):
         r = self.client.get('/worldwide/?region=brazil')

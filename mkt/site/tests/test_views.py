@@ -10,13 +10,11 @@ from lxml import etree
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import RequestFactory
 
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
 
-from mkt.site.urls import template_plus_xframe
 from mkt.webapps.models import Webapp
 
 
@@ -184,91 +182,6 @@ class TestRobots(amo.tests.TestCase):
     def test_do_not_engage_robots(self):
         rs = self.client.get('/robots.txt')
         self.assertContains(rs, 'Disallow: /')
-
-
-class TestHeader(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def test_auth(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        res = self.client.get(reverse('site.privacy'))
-        eq_(pq(res.content)('head meta[name="DCS.dcsaut"]').attr('content'),
-            'yes')
-
-    def test_not(self):
-        res = self.client.get(reverse('site.privacy'))
-        eq_(len(pq(res.content)('head meta[name="DCS.dcsaut"]')), 0)
-
-
-class TestFooter(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def test_developers_links_to_dashboard(self):
-        # No footer in current designs.
-        raise SkipTest
-        # I've already submitted an app.
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-        r = self.client.get(reverse('home'))
-        eq_(r.status_code, 200)
-        links = pq(r.content)('#site-footer a[rel=external]')
-        eq_(links.length, 1)
-        eq_(links.attr('href'), reverse('mkt.developers.apps'))
-
-    def test_developers_links_to_landing(self):
-        # No footer in current designs.
-        raise SkipTest
-        # I've ain't got no apps.
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        r = self.client.get(reverse('home'))
-        eq_(r.status_code, 200)
-        links = pq(r.content)('#site-footer a[rel=external]')
-        eq_(links.length, 1)
-        eq_(links.attr('href'), reverse('ecosystem.landing'))
-
-    def test_language_selector(self):
-        # No footer in current designs.
-        raise SkipTest
-        r = self.client.get(reverse('home'))
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#lang-form option[selected]').attr('value'),
-            'en-us')
-
-    def test_language_selector_variables(self):
-        # No footer in current designs.
-        raise SkipTest
-        r = self.client.get(reverse('home'), {'x': 'xxx', 'y': 'yyy'})
-        doc = pq(r.content)('#lang-form')
-        eq_(doc('input[type=hidden][name=x]').attr('value'), 'xxx')
-        eq_(doc('input[type=hidden][name=y]').attr('value'), 'yyy')
-
-
-class TestXLegalFrame(amo.tests.TestCase):
-
-    def setUp(self):
-        self.request = RequestFactory()
-        self.request.groups = ()
-        self.request.user = mock.Mock()
-        self.request.MOBILE = self.request.TABLET = self.request.GAIA = True
-        self.request.is_ajax = mock.Mock()
-        self.request.META = {'HTTP_USER_AGENT': ''}
-
-    @mock.patch.object(settings, 'LEGAL_XFRAME_ALLOW_FROM', ['omg.org'])
-    def test_allow(self):
-        self.request.META['HTTP_REFERER'] = 'http://omg.org/yes'
-        res = template_plus_xframe(self.request, 'site/privacy-policy.html')
-        eq_(res['x-frame-options'], 'allow-from omg.org')
-
-    @mock.patch.object(settings, 'LEGAL_XFRAME_ALLOW_FROM', ['omg.org'])
-    def test_deny(self):
-        for referrer in ('', 'http://omg.xxx/yes', '!#*@ YOU, @#($!#$(&%*#^'):
-            self.request.META['HTTP_REFERER'] = referrer
-            res = template_plus_xframe(self.request,
-                                       'site/privacy-policy.html')
-            assert 'x-frame-options' not in res, (
-                'Unexpected headers for referrer %r: %s' % (referrer,
-                                                            res._headers))
 
 
 class TestOpensearch(amo.tests.TestCase):
