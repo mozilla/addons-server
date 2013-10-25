@@ -106,9 +106,15 @@ def update_app_trending():
     chunk_size = 300
     all_ids = list(Webapp.objects.values_list('id', flat=True))
 
+    count = 0
+    times = []
+
     for ids in chunked(all_ids, chunk_size):
         apps = Webapp.objects.filter(id__in=ids).no_transforms()
         for app in apps:
+            count += 1
+            t_start = time.time()
+
             # Calculate global trending, then per-region trending below.
             value = _get_trending(app.id)
             if value:
@@ -125,6 +131,15 @@ def update_app_trending():
                     if not created:
                         trending.update(value=value)
 
+            times.append(time.time() - t_start)
+
+            if count % 10 == 0:
+                log.debug('Trending calculated for 10 apps. Avg time overall: '
+                          '%0.2fs' % (sum(times) / len(times)))
+
         # Let the database catch its breath.
         if len(all_ids) > chunk_size:
             time.sleep(10)
+
+    log.debug('Trending calculated for %s apps. Avg time overall: '
+              '%0.2fs' % (len(all_ids), sum(times) / len(times)))
