@@ -1,10 +1,7 @@
 {% extends 'base_modal.html' if request.is_ajax() else
-           ('mkt/base.html' if '/developers/' not in request.path else
-            'developers/base_impala.html') %}
+            'developers/base_impala.html' %}
 
 {% set pagetitle = _('Server Error') %}
-
-{# TODO(apps): Finalize copy. #}
 
 {% block content %}
   <section class="main primary">

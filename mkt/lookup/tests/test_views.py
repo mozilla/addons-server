@@ -1080,7 +1080,8 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        eq_(doc('ol.listing a').attr('href'), self.app.get_detail_url())
+        eq_(doc('div.product-lookup-list a').attr('href'),
+            self.app.get_detail_url())
 
     def test_no_support_link(self):
         for type_ in [amo.CONTRIB_PURCHASE]:
