@@ -12,8 +12,8 @@ from market.models import AddonPremium, Price
 from users.models import UserProfile
 
 from devhub.models import ActivityLog
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller)
+from mkt.developers.models import (AddonPaymentAccount, CantCancel,
+                                   PaymentAccount, SolitudeSeller)
 from mkt.site.fixtures import fixture
 
 
@@ -135,6 +135,19 @@ class TestPaymentAccount(amo.tests.TestCase):
         res.cancel()
         assert res.inactive
         assert not AddonPaymentAccount.objects.exists()
+
+    def test_cancel_shared(self):
+        res = PaymentAccount.objects.create(
+            name='asdf', user=self.user, uri='foo',
+            solitude_seller=self.seller, shared=True)
+
+        addon = Addon.objects.get()
+        AddonPaymentAccount.objects.create(
+            addon=addon, provider='bango', account_uri='foo',
+            payment_account=res, product_uri='bpruri')
+
+        with self.assertRaises(CantCancel):
+            res.cancel()
 
     def test_get_details(self):
         package = Mock()

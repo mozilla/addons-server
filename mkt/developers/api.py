@@ -10,7 +10,7 @@ from tower import ugettext as _
 from mkt.api.authentication import OAuthAuthentication
 from mkt.api.base import MarketplaceModelResource
 from mkt.developers.forms_payments import BangoPaymentAccountForm
-from mkt.developers.models import PaymentAccount
+from mkt.developers.models import CantCancel, PaymentAccount
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -73,5 +73,9 @@ class AccountResource(MarketplaceModelResource):
         except PaymentAccount.DoesNotExist:
             raise NotFound('A model instance matching the provided arguments '
                            'could not be found.')
-        account.cancel(disable_refs=True)
+        try:
+            account.cancel(disable_refs=True)
+        except CantCancel:
+            raise ImmediateHttpResponse(http.HttpConflict(
+                _('Cannot delete shared account')))
         log.info('Account cancelled: %s' % account.pk)

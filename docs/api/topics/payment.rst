@@ -118,6 +118,7 @@ Payment accounts can be added and listed.
     **Response**
 
     :status 204: successfully deleted.
+    :status 409: shared accounts cannot be deleted whilst apps are using them.
 
 .. http:get:: /api/v1/payments/account/
 
