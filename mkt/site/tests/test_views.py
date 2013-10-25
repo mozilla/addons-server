@@ -184,64 +184,6 @@ class TestRobots(amo.tests.TestCase):
         self.assertContains(rs, 'Disallow: /')
 
 
-class TestHeader(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def test_auth(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        res = self.client.get(reverse('site.privacy'))
-        eq_(pq(res.content)('head meta[name="DCS.dcsaut"]').attr('content'),
-            'yes')
-
-    def test_not(self):
-        res = self.client.get(reverse('site.privacy'))
-        eq_(len(pq(res.content)('head meta[name="DCS.dcsaut"]')), 0)
-
-
-class TestFooter(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def test_developers_links_to_dashboard(self):
-        # No footer in current designs.
-        raise SkipTest
-        # I've already submitted an app.
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-        r = self.client.get(reverse('home'))
-        eq_(r.status_code, 200)
-        links = pq(r.content)('#site-footer a[rel=external]')
-        eq_(links.length, 1)
-        eq_(links.attr('href'), reverse('mkt.developers.apps'))
-
-    def test_developers_links_to_landing(self):
-        # No footer in current designs.
-        raise SkipTest
-        # I've ain't got no apps.
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        r = self.client.get(reverse('home'))
-        eq_(r.status_code, 200)
-        links = pq(r.content)('#site-footer a[rel=external]')
-        eq_(links.length, 1)
-        eq_(links.attr('href'), reverse('ecosystem.landing'))
-
-    def test_language_selector(self):
-        # No footer in current designs.
-        raise SkipTest
-        r = self.client.get(reverse('home'))
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#lang-form option[selected]').attr('value'),
-            'en-us')
-
-    def test_language_selector_variables(self):
-        # No footer in current designs.
-        raise SkipTest
-        r = self.client.get(reverse('home'), {'x': 'xxx', 'y': 'yyy'})
-        doc = pq(r.content)('#lang-form')
-        eq_(doc('input[type=hidden][name=x]').attr('value'), 'xxx')
-        eq_(doc('input[type=hidden][name=y]').attr('value'), 'yyy')
-
-
 class TestOpensearch(amo.tests.TestCase):
 
     def test_opensearch_declaration(self):
