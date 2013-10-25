@@ -7,7 +7,12 @@ Rocketfuel
 Rocketfuel is the consumer client for the Marketplace Publishing Tool. It has
 some special APIs that are *not recommended* for consumption by other clients.
 
-These APIs will change in conjunction with the Rocketfuel client.
+These APIs will change in conjunction with the Rocketfuel client, which is
+under active development.
+
+.. warning:: This API is for internal use only at this time. It SHOULD NOT be
+    used externally by third parties. It is not considered stable and WILL
+    change over time.
 
 
 Collections
