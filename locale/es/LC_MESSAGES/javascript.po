@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 16:48-0700\n"
+"POT-Creation-Date: 2013-10-25 13:55-0700\n"
 "PO-Revision-Date: 2013-10-24 08:17+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,10 +141,8 @@ msgstr "Tu aplicación se ha validado sin errores ni avisos."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-"La validación de tu aplicación ha fallado con {0} error y {1} mensaje(s)."
-msgstr[1] ""
-"La validación de tu aplicación ha fallado con {0} errores y {1} mensaje(s)."
+msgstr[0] "La validación de tu aplicación ha fallado con {0} error y {1} mensaje(s)."
+msgstr[1] "La validación de tu aplicación ha fallado con {0} errores y {1} mensaje(s)."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -162,8 +160,7 @@ msgstr "Se han guardado los cambios"
 
 #: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
-msgstr ""
-"Escribe la dirección de correo electrónico de un nuevo miembro del equipo"
+msgstr "Escribe la dirección de correo electrónico de un nuevo miembro del equipo"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
@@ -247,9 +244,7 @@ msgstr "HEBIC griego/código bancario indonesio"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-"Código bancario inglés/irlandés o prefijo de cuenta neozelandés o código BSB "
-"australiano"
+msgstr "Código bancario inglés/irlandés o prefijo de cuenta neozelandés o código BSB australiano"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -272,38 +267,27 @@ msgstr "Código bancario iraquí"
 msgid "Detected: {0}"
 msgstr "Detectado: {0}"
 
-#: media/js/devreg/payments-manage.js:27
-msgid "that"
-msgid_plural "those"
-msgstr[0] "esa"
-msgstr[1] "esas"
+#. L10n: This sentence introduces a list of applications.
+#: media/js/devreg/payments-manage.js:24
+msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
+msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
+msgstr[0] ""
+msgstr[1] ""
 
-#: media/js/devreg/payments-manage.js:28
-msgid "app"
-msgid_plural "apps"
-msgstr[0] "aplicación"
-msgstr[1] "aplicaciones"
-
-#: media/js/devreg/payments-manage.js:29
-msgid "it"
-msgid_plural "they"
-msgstr[0] "ella"
-msgstr[1] "ellas"
-
-#: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:56 media/js/devreg/payments-manage.js:101 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "Error"
 
-#: media/js/devreg/payments-manage.js:54 media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:57 media/js/devreg/payments-manage.js:102
 msgid "There was a problem contacting the payment server."
 msgstr "Hubo un problema al contactar con el servidor de pagos."
 
-#: media/js/devreg/payments-manage.js:76
+#: media/js/devreg/payments-manage.js:80
 msgid "Authentication error"
 msgstr "Error de autenticación"
 
-#: media/js/devreg/payments-manage.js:118
+#: media/js/devreg/payments-manage.js:122
 msgid "You do not currently have any payment accounts."
 msgstr "Actualmente no dispones de ninguna cuenta de pago."
 
@@ -1028,11 +1012,11 @@ msgstr "Error al identificarse con Mozilla Persona. ¿Tal vez no tienes una cuen
 msgid "Persona login failed. A server error was encountered."
 msgstr "Error al identificarse con Mozilla Persona. Se encontró un error del servidor."
 
-#: media/js/mkt/lookup-tool.js:63
+#: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
 msgstr "Mostrar todos los resultados"
 
-#: media/js/mkt/lookup-tool.js:66
+#: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
 msgstr "Más de {0} resultados encontrados, intenta concretar más tu búsqueda."
 

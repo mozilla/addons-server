@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 16:48-0700\n"
+"POT-Creation-Date: 2013-10-25 13:55-0700\n"
 "PO-Revision-Date: 2013-10-18 17:25+0200\n"
 "Last-Translator: Alexandre Lissy <lissyx@mozfr.org>\n"
 "Language-Team: français <>\n"
@@ -272,38 +272,27 @@ msgstr "Code bancaire iraquien"
 msgid "Detected: {0}"
 msgstr "Détecté : {0}"
 
-#: media/js/devreg/payments-manage.js:27
-msgid "that"
-msgid_plural "those"
-msgstr[0] "que"
-msgstr[1] "ceux"
+#. L10n: This sentence introduces a list of applications.
+#: media/js/devreg/payments-manage.js:24
+msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
+msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
+msgstr[0] ""
+msgstr[1] ""
 
-#: media/js/devreg/payments-manage.js:28
-msgid "app"
-msgid_plural "apps"
-msgstr[0] "appli"
-msgstr[1] "applis"
-
-#: media/js/devreg/payments-manage.js:29
-msgid "it"
-msgid_plural "they"
-msgstr[0] "il"
-msgstr[1] "ils"
-
-#: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:56 media/js/devreg/payments-manage.js:101 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "Erreur"
 
-#: media/js/devreg/payments-manage.js:54 media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:57 media/js/devreg/payments-manage.js:102
 msgid "There was a problem contacting the payment server."
 msgstr "Une erreur est survenue pendant le contact avec le serveur de paiement."
 
-#: media/js/devreg/payments-manage.js:76
+#: media/js/devreg/payments-manage.js:80
 msgid "Authentication error"
 msgstr "Erreur d'authentification"
 
-#: media/js/devreg/payments-manage.js:118
+#: media/js/devreg/payments-manage.js:122
 msgid "You do not currently have any payment accounts."
 msgstr "Vous n'avez actuellement pas de compte de paiement."
 
@@ -1028,11 +1017,11 @@ msgstr "Connexion avec Persona échouée. Peut-être n'avez-vous pas de compte a
 msgid "Persona login failed. A server error was encountered."
 msgstr "Connexion avec Persona échouée. Une erreur serveur est survenue."
 
-#: media/js/mkt/lookup-tool.js:63
+#: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
 msgstr "Afficher tous les résultats"
 
-#: media/js/mkt/lookup-tool.js:66
+#: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
 msgstr "Plus de {0} résultats trouvés, merci d'affiner votre recherche."
 

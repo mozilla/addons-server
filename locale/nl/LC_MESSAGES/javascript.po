@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 16:48-0700\n"
+"POT-Creation-Date: 2013-10-25 13:55-0700\n"
 "PO-Revision-Date: 2013-10-20 11:25+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -267,40 +267,27 @@ msgstr "Iraaks BC-nummer"
 msgid "Detected: {0}"
 msgstr "Gedetecteerd: {0}"
 
-# aangenomen dat dit over betaling(en) gaat
-#: media/js/devreg/payments-manage.js:27
-msgid "that"
-msgid_plural "those"
-msgstr[0] "die"
-msgstr[1] "die"
+#. L10n: This sentence introduces a list of applications.
+#: media/js/devreg/payments-manage.js:24
+msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
+msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
+msgstr[0] ""
+msgstr[1] ""
 
-#: media/js/devreg/payments-manage.js:28
-msgid "app"
-msgid_plural "apps"
-msgstr[0] "app"
-msgstr[1] "apps"
-
-# Aangenomen dat dit over betaling(en) gaat
-#: media/js/devreg/payments-manage.js:29
-msgid "it"
-msgid_plural "they"
-msgstr[0] "de"
-msgstr[1] "zij"
-
-#: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:56 media/js/devreg/payments-manage.js:101 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "Fout"
 
-#: media/js/devreg/payments-manage.js:54 media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:57 media/js/devreg/payments-manage.js:102
 msgid "There was a problem contacting the payment server."
 msgstr "Er is een probleem opgetreden bij het verbinden met de betalingsserver."
 
-#: media/js/devreg/payments-manage.js:76
+#: media/js/devreg/payments-manage.js:80
 msgid "Authentication error"
 msgstr "Authenticatiefout"
 
-#: media/js/devreg/payments-manage.js:118
+#: media/js/devreg/payments-manage.js:122
 msgid "You do not currently have any payment accounts."
 msgstr "U hebt momenteel geen betalingsaccounts."
 
@@ -1027,14 +1014,13 @@ msgstr "Persona-aanmelding mislukt. Misschien hebt u geen account met dat e-mail
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-aanmelding mislukt. Er is een serverfout opgetreden."
 
-#: media/js/mkt/lookup-tool.js:63
+#: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
 msgstr "Alle resultaten weergeven"
 
-#: media/js/mkt/lookup-tool.js:66
+#: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
-"Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
+msgstr "Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
