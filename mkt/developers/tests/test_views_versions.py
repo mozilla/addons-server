@@ -502,21 +502,25 @@ class TestPreloadSubmit(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.views.save_test_plan')
     @mock.patch('mkt.developers.views.messages')
-    def test_multiple(self, noop, save_mock):
-        PreloadTestPlan.objects.create(
-            addon=self.webapp, filename='food.pdf',
-            last_submission=self.days_ago(10))
-        recent_plan = PreloadTestPlan.objects.create(
-            addon=self.webapp, filename='liquor.xls',
-            last_submission=self.days_ago(5))
-        eq_(PreloadTestPlan.objects.filter(addon=self.webapp).count(), 2)
+    def test_submit_multiple_status(self, noop, save_mock):
+        f = open(self.test_xls, 'r')
+        req = req_factory_factory(self.submit_url, user=self.user, post=True,
+                                  data={'test_plan': f, 'agree': True})
+        preload_submit(req, self.webapp.slug)
+        self._submit_pdf()
 
+        eq_(PreloadTestPlan.objects.count(), 2)
+        xls = PreloadTestPlan.objects.get(filename__contains='xls')
+        pdf = PreloadTestPlan.objects.get(filename__contains='pdf')
+        eq_(xls.status, amo.STATUS_DISABLED)
+        eq_(pdf.status, amo.STATUS_PUBLIC)
+
+        # Check the link points to most recent one.
         req = req_factory_factory(self.url, user=self.user)
         r = status(req, self.webapp.slug)
         doc = pq(r.content)
-
         eq_(doc('.test-plan-download').attr('href'),
-            recent_plan.preload_test_plan_url)
+            pdf.preload_test_plan_url)
 
     @mock.patch.object(settings, 'PREINSTALL_TEST_PLAN_LATEST',
                        datetime.datetime.now() + datetime.timedelta(days=1))

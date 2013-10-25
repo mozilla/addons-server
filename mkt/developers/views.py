@@ -273,7 +273,8 @@ def status(request, addon_id, addon, webapp=False):
         ctx['rejection'] = entry and entry.activity_log
 
     if waffle.switch_is_active('preload-apps'):
-        test_plan = PreloadTestPlan.objects.filter(addon=addon)
+        test_plan = PreloadTestPlan.objects.filter(
+            addon=addon, status=amo.STATUS_PUBLIC)
         if test_plan.exists():
             test_plan = test_plan[0]
             if (test_plan.last_submission <
