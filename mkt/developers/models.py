@@ -315,17 +315,18 @@ class UserInappKey(amo.models.ModelBase):
         db_table = 'user_inapp_keys'
 
 
-class PreinstallTestPlan(amo.models.ModelBase):
+class PreloadTestPlan(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon')
-    last_submission = models.DateTimeField()
+    last_submission = models.DateTimeField(auto_now_add=True)
     filename = models.CharField(max_length=60)
+    status = models.PositiveSmallIntegerField(default=amo.STATUS_PUBLIC)
 
     class Meta:
-        db_table = 'preinstall_test_plan'
+        db_table = 'preload_test_plans'
         ordering = ['-last_submission']
 
     @property
-    def preinstall_test_plan_url(self):
+    def preload_test_plan_url(self):
         host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
                 else settings.LOCAL_MIRROR_URL)
         return posixpath.join(host, str(self.addon.id), self.filename)

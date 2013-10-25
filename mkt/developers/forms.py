@@ -924,7 +924,7 @@ class AppVersionForm(VersionForm):
         return rval
 
 
-class PreinstallTestPlanForm(happyforms.Form):
+class PreloadTestPlanForm(happyforms.Form):
     agree = forms.BooleanField(
         widget=forms.CheckboxInput,
         label=_lazy(u'I agree to the Terms and Conditions'))
