@@ -288,12 +288,18 @@
             }
             &:hover {
                 z-index: 63;
+
+                &:after {
+                    left: auto;
+                    right: 1px;
+                }
             }
             &:after {
                 top: 32px;
             }
             > ul {
                 top: 31px;
+                right: 0;
             }
             &.nomenu {
                 a {
@@ -355,6 +361,10 @@
 }
 .html-rtl {
     #aux-nav > ul > li {
+        &:hover:after {
+            left: 1px;
+            right: auto;
+        }
         &.legacy {
             a {
                 padding: 0 .5em 0 1em;
@@ -367,6 +377,10 @@
             margin: 0 4px 0 0;
             right: 4px;
             left: auto;
+        }
+        > ul {
+            left: 0;
+            right: auto;
         }
     }
 }
