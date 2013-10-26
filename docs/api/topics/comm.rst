@@ -56,6 +56,7 @@ Thread
                 "slug": "app-3",
                 "thumbnail_url": "/media/img/icons/no-preview.png",
                 "url": "/app/test-app-kinkajou3969/"
+                "review_url": "/reviewers/apps/review/test-app-kinkajou3969/"
             },
             "created": "2013-06-14T11:54:24",
             "id": 2,

@@ -20,6 +20,7 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.viewsets import GenericViewSet
 
 from addons.models import Addon
+from amo.urlresolvers import reverse
 from users.models import UserProfile
 from comm.models import (CommunicationNote, CommunicationNoteRead,
                          CommunicationThread)
@@ -60,10 +61,14 @@ class AddonSerializer(ModelSerializer):
     name = CharField()
     thumbnail_url = RelatedField('thumbnail_url')
     url = CharField(source='get_absolute_url')
+    review_url = SerializerMethodField('get_review_url')
 
     class Meta:
         model = Addon
-        fields = ('name', 'url', 'thumbnail_url', 'slug')
+        fields = ('name', 'url', 'thumbnail_url', 'slug', 'review_url')
+
+    def get_review_url(self, obj):
+        return reverse('reviewers.apps.review', args=[obj.app_slug])
 
 
 class ThreadSerializer(ModelSerializer):
