@@ -83,6 +83,10 @@ def _get_trending(app_id, region=None):
         log.info('Call to ES failed: {0}'.format(e))
         count_1 = 0
 
+    # If count_1 isn't more than 100, stop here to avoid extra Monolith calls.
+    if not count_1 > 100:
+        return 0.0
+
     # Get the average installs for the prior 3 weeks. Don't use the `len` of
     # the returned counts because of week boundaries.
     try:
@@ -94,7 +98,7 @@ def _get_trending(app_id, region=None):
         log.info('Call to ES failed: {0}'.format(e))
         count_3 = 0
 
-    if count_1 > 100 and count_3 > 1:
+    if count_3 > 1:
         return (count_1 - count_3) / count_3
     else:
         return 0.0

@@ -34,7 +34,7 @@ function initValidator($doc) {
         this.$results = $('.results', $suite);
         this.app = options.app;
         this.testsWereRun = options.testsWereRun;
-        this.counts = {error: 0, warning: 0};
+        this.counts = {error: 0, warning: 0, notice: 0};
         this.tierId = tierId;
         this.$suite = $suite;
         this.$dom = $('#suite-results-tier-' + tierId, $suite);
@@ -47,7 +47,6 @@ function initValidator($doc) {
     }
 
     ResultsTier.prototype.tallyMsgType = function(type_) {
-        if (type_ == 'notice') type_ = 'warning';
         this.counts[type_] += 1;
     };
 
@@ -58,7 +57,8 @@ function initValidator($doc) {
     }
 
     ResultsTier.prototype.summarize = function() {
-        var sm = resultSummary(this.counts.error, this.counts.warning, this.testsWereRun),
+        var sm = resultSummary(this.counts.error, this.counts.warning, this.counts.notice,
+                               this.testsWereRun),
             resultClass, summaryMsg;
         $('.result-summary', this.$dom).css('visibility', 'visible')
                                        .empty().text(sm);
@@ -90,7 +90,8 @@ function initValidator($doc) {
     ResultsTier.prototype.topSummary = function() {
         var $top = $('[class~="test-tier"]' +
                      '[data-tier="' + this.tierId + '"]', this.$suite),
-            summaryMsg = resultSummary(this.counts.error, this.counts.warning, this.testsWereRun);
+            summaryMsg = resultSummary(this.counts.error, this.counts.warning, this.counts.notice,
+                                       this.testsWereRun);
 
         $('.tier-summary', $top).text(summaryMsg);
         $top.removeClass('ajax-loading', 'tests-failed', 'tests-passed',
@@ -361,7 +362,7 @@ function initValidator($doc) {
         }
     }
 
-    function resultSummary(numErrors, numWarnings, testsWereRun) {
+    function resultSummary(numErrors, numWarnings, numNotices, testsWereRun) {
         if (!testsWereRun) {
             return gettext('These tests were not run.');
         }
@@ -369,8 +370,10 @@ function initValidator($doc) {
         var errors = format(ngettext('{0} error', '{0} errors', numErrors),
                             [numErrors]),
             warnings = format(ngettext('{0} warning', '{0} warnings', numWarnings),
-                              [numWarnings]);
-        return format('{0}, {1}', errors, warnings);
+                              [numWarnings]),
+            notices = format(ngettext('{0} notice', '{0} notices', numNotices),
+                              [numNotices]);
+        return format('{0}, {1}, {2}', errors, warnings, notices);
     }
 
     function joinPaths(parts) {

@@ -305,8 +305,8 @@
                     var warnings = v.warnings + v.notices;
                     if(warnings > 0) {
                         message = format(ngettext(
-                                    "Your add-on passed validation with no errors and {0} warning.",
-                                    "Your add-on passed validation with no errors and {0} warnings.",
+                                    "Your add-on passed validation with no errors and {0} message.",
+                                    "Your add-on passed validation with no errors and {0} messages.",
                                     warnings), [warnings]);
                     } else {
                         message = gettext("Your add-on passed validation with no errors or warnings.");
