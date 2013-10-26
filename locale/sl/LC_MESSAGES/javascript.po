@@ -1,8 +1,9 @@
 # smo <smolejv@gmx.net>, 2013.
 msgid ""
-msgstr "Project-Id-Version: support.mozilla.com\n"
+msgstr ""
+"Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-24 06:28-0700\n"
+"POT-Creation-Date: 2013-10-25 13:55-0700\n"
 "PO-Revision-Date: 2013-02-15 08:36+0200\n"
 "Last-Translator: Vito <smolejv@gmx.net>\n"
 "Language-Team: Slovenian\n"
@@ -13,788 +14,1624 @@ msgstr "Project-Id-Version: support.mozilla.com\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4. 2 : 3);\n"
 "X-Generator: Pootle 2.1.6\n"
 
-#: kitsune/sumo/static/js/aaq.js:49
-msgid "Installing..."
-msgstr "Nameščanje v teku …"
+#: media/js/common/ratingwidget.js:31
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] ""
+msgstr[1] ""
 
-#: kitsune/sumo/static/js/ajaxform.js:16
-msgid "An error occured."
-msgstr "Prišlo je do napake."
+#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+msgid "There was a problem contacting the server."
+msgstr ""
 
-#: kitsune/sumo/static/js/ajaxpreview.js:56
-msgid "There was an error generating the preview."
-msgstr "Med ustvarjanjem predogleda je prišlo do napake."
+#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
+msgid "Select a file..."
+msgstr ""
 
-#: kitsune/sumo/static/js/ajaxvote.js:76
-msgid "There was an error submitting your vote."
-msgstr "Med vašim glasovanjem je prišlo do napake."
+#: media/js/common/upload-addon.js:53
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr ""
 
-#: kitsune/sumo/static/js/browserid.js:49
-msgid "Signing you in..."
-msgstr "Prijava za vas..."
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
+msgid "{0}% complete"
+msgstr ""
 
-#: kitsune/sumo/static/js/browserid.js:53
-msgid "Mozilla Support"
-msgstr "Podpora Mozilla"
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
+msgid "{0} of {1}"
+msgstr ""
 
-#: kitsune/sumo/static/js/customercare.js:138
-msgid "You replied"
-msgstr "Odgovorili ste"
-
-#: kitsune/sumo/static/js/customercare.js:140
-msgid "You and 1 other replied"
-msgstr "Odgovorili ste vi in še 1"
-
-#: kitsune/sumo/static/js/diff.js:203
-msgid "No differences found"
-msgstr "Razlik ni bilo najti"
-
-#: kitsune/sumo/static/js/editable.js:18 kitsune/sumo/static/js/markup.js:322 kitsune/sumo/static/js/markup.js:420 kitsune/sumo/static/js/markup.js:664 kitsune/sumo/static/js/markup.js:852
+#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: kitsune/sumo/static/js/forums.js:40
-msgid "You are not watching this thread"
-msgstr "Te niti ne zasledujete"
+#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
+msgid "Uploading {0}"
+msgstr ""
 
-#: kitsune/sumo/static/js/forums.js:41
-msgid "You are watching this thread"
-msgstr "To nit zasledujete"
+#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
+msgid "Error with {0}"
+msgstr ""
 
-#: kitsune/sumo/static/js/forums.js:63 kitsune/sumo/static/js/upload.js:122
-msgid "Image Attachment"
-msgstr "Slika kot priloga"
+#: media/js/common/upload-addon.js:174
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] ""
+msgstr[1] ""
 
-#: kitsune/sumo/static/js/gallery.js:21
-msgid "Could not upload file. Please try again later."
-msgstr "Datoteke ni bilo mogoče prenesti. Poskusite znova kasneje."
+#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] ""
+msgstr[1] ""
 
-#: kitsune/sumo/static/js/gallery.js:24
-msgid "Invalid image. Please select a valid image file."
-msgstr "Neveljavna slika. Izberi veljavno slikovno datoteko."
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/zamboni/devhub.js:162
+msgid "See full validation report"
+msgstr ""
 
-#: kitsune/sumo/static/js/gallery.js:25
-msgid "Upload cancelled. Please select an image file."
-msgstr "Nalaganje odpovedano. Izberi prosim datoteko s sliko."
+#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
+msgid "Validating {0}"
+msgstr ""
 
-#: kitsune/sumo/static/js/gallery.js:26
-msgid "File deleted. Please select an image file."
-msgstr "Datoteka izbrisana. Izberi prosim datoteko s sliko."
+#. L10n: first argument is an HTTP status code
+#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
+msgid "Received an empty response from the server; status: {0}"
+msgstr ""
 
-#: kitsune/sumo/static/js/gallery.js:27
-msgid "Delete this image"
-msgstr "Izbriši to sliko"
+#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
+msgid "Unexpected server error while validating."
+msgstr ""
 
-#: kitsune/sumo/static/js/gallery.js:228 kitsune/sumo/static/js/upload.js:55
-msgid "Uploading \"%s\"..."
-msgstr "Nalaganje \"%s\"..."
+#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
+msgid "Finished validating {0}"
+msgstr ""
 
-#: kitsune/sumo/static/js/historycharts.js:8 kitsune/sumo/static/js/markup.js:833
+#: media/js/common/upload-addon.js:307
+msgid "Your add-on passed validation with no errors and {0} warning."
+msgid_plural "Your add-on passed validation with no errors and {0} warnings."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/common/upload-addon.js:312
+msgid "Your add-on passed validation with no errors or warnings."
+msgstr ""
+
+#: media/js/common/upload-addon.js:363
+msgid "Some platforms are not available for this type of add-on."
+msgstr ""
+
+#: media/js/common/upload-base.js:61
+msgid "The filetype you uploaded isn't recognized."
+msgstr ""
+
+#: media/js/common/upload-base.js:83
+msgid "You cancelled the upload."
+msgstr ""
+
+#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr ""
+
+#: media/js/common/upload-image.js:102
+msgid "Videos must be in WebM."
+msgstr ""
+
+#: media/js/common/upload-packaged-app.js:53
+msgid "Your packaged app should end with <code>.zip</code>."
+msgstr ""
+
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+msgid "Your app failed validation with {0} error."
+msgid_plural "Your app failed validation with {0} errors."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/common/upload-packaged-app.js:298
+msgid "Your app passed validation with no errors and {0} warning."
+msgid_plural "Your app passed validation with no errors and {0} warnings."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/common/upload-packaged-app.js:303
+msgid "Your app passed validation with no errors or warnings."
+msgstr ""
+
+#: media/js/devreg/devhub.js:186
+msgid "Your app failed validation with {0} error and {1} message(s)."
+msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+msgid "Your app passed validation with no errors and {0} message."
+msgid_plural "Your app passed validation with no errors and {0} messages."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+msgid "Your app passed validation with no errors or messages."
+msgstr ""
+
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+msgid "Changes Saved"
+msgstr ""
+
+#: media/js/devreg/devhub.js:435
+msgid "Enter a new team member's email address"
+msgstr ""
+
+#: media/js/devreg/devhub.js:443
+msgid "Refreshed"
+msgstr ""
+
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+msgid "There was an error uploading your file."
+msgstr ""
+
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+msgid "Learn more"
+msgstr ""
+
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+msgid "Example"
+msgstr ""
+
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+msgid "Image changes being processed"
+msgstr ""
+
+#: media/js/devreg/expandable.js:15
+msgid "more..."
+msgstr ""
+
+#: media/js/devreg/expandable.js:18
+msgid "less..."
+msgstr ""
+
+#: media/js/devreg/init.js:35 media/js/mkt/init.js:47 media/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr ""
+
+#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr ""
+
+#: media/js/devreg/mobile_review_actions.js:6
+msgid "Keep review; remove flags"
+msgstr ""
+
+#: media/js/devreg/mobile_review_actions.js:8
+msgid "Delete review"
+msgstr ""
+
+#: media/js/devreg/mobile_review_actions.js:9
+msgid "Skip for now"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:9
+msgid "Spanish Banking Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:11
+msgid "Irish Sort Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:13
+msgid "Belgian Sort Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:15
+msgid "Spanish/French/Italian/Dutch Banking Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:17
+msgid "Dutch/US Sort Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:19
+msgid "Canadian Transit Number/German Routing Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:21
+msgid "Korean Bank and Branch/Indonesian Bank Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:23
+msgid "Greek HEBIC/Indonesian Bank Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:25
+msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:27
+msgid "Austrian/Swiss Bank Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:29
+msgid "Danish/Swiss Bank Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:31
+msgid "Swiss/Iraqi Bank Code"
+msgstr ""
+
+#: media/js/devreg/payments-enroll.js:33
+msgid "Iraqi Bank Code"
+msgstr ""
+
+#. L10n: {0} is the name of a bank detected from the bank account code.
+#: media/js/devreg/payments-enroll.js:135
+msgid "Detected: {0}"
+msgstr ""
+
+#. L10n: This sentence introduces a list of applications.
+#: media/js/devreg/payments-manage.js:24
+msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
+msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/devreg/payments-manage.js:56 media/js/devreg/payments-manage.js:101 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
+msgid "Error"
+msgstr ""
+
+#: media/js/devreg/payments-manage.js:57 media/js/devreg/payments-manage.js:102
+msgid "There was a problem contacting the payment server."
+msgstr ""
+
+#: media/js/devreg/payments-manage.js:80
+msgid "Authentication error"
+msgstr ""
+
+#: media/js/devreg/payments-manage.js:122
+msgid "You do not currently have any payment accounts."
+msgstr ""
+
+#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr ""
+
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:366
+msgid "These tests were not run."
+msgstr ""
+
+#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:119 media/js/zamboni/validator.js:132
+msgid "Tests"
+msgstr ""
+
+#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:194
+msgid "Warning"
+msgstr ""
+
+#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:281
+msgid "Compatibility Tests"
+msgstr ""
+
+#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:330
+msgid "App failed validation."
+msgstr ""
+
+#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:332
+msgid "App passed validation."
+msgstr ""
+
+#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:369
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:371
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:448
+msgid "Validation task could not complete or completed with errors"
+msgstr ""
+
+#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:466
+msgid "Internal server error"
+msgstr ""
+
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+msgid "Follow this Collection"
+msgstr ""
+
+#: media/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr ""
+
+#: media/js/impala/collections.js:20
+msgid "Following"
+msgstr ""
+
+#. L10n: {0} is an app name.
+#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr ""
+
+#: media/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr ""
+
+#: media/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr ""
+
+#: media/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+#: media/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+#: media/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+#: media/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr ""
+
+#: media/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+#: media/js/impala/persona_creation.js:338
+msgid "Your Theme's Name"
+msgstr ""
+
+#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr ""
+
+#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr ""
+
+#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr ""
+
+#: media/js/impala/search.js:104
+msgid "Updating results&hellip;"
+msgstr ""
+
+#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+msgid "Category"
+msgstr ""
+
+#: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
+msgid "Search themes for <b>{0}</b>"
+msgstr ""
+
+#: media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
+msgid "Search apps for <b>{0}</b>"
+msgstr ""
+
+#: media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
+msgid "Search add-ons for <b>{0}</b>"
+msgstr ""
+
+#: media/js/impala/users.js:33
+msgid "use original"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:267 media/js/mkt/stats/chart.js:320
+msgid "Week of {0}"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:269
+msgid "downloads"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:270 media/js/mkt/stats/chart.js:326
+msgid "{0} users"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:271
+msgid "{0} add-ons"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:272
+msgid "{0} collections"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:273 media/js/mkt/stats/chart.js:328
+msgid "{0} reviews"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:275 media/js/mkt/stats/chart.js:323 media/js/mkt/stats/chart_column.js:125
+msgid "{0} sales"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:276 media/js/mkt/stats/chart.js:324 media/js/mkt/stats/chart_column.js:126
+msgid "{0} refunds"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:277 media/js/mkt/stats/chart.js:325
+msgid "{0} installs"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102 media/js/mkt/stats/csv_keys.js:128
+msgid "Downloads"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:6 media/js/mkt/stats/csv_keys.js:129
+msgid "Daily Users"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:410
+msgid "Amount, in USD"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:123
+msgid "Number of Contributions"
+msgstr ""
+
+#: media/js/impala/stats/chart.js:447 media/js/mkt/stats/chart.js:395
+msgid "More Info..."
+msgstr ""
+
+#. L10n: {0} is an ISO-formatted date.
+#: media/js/impala/stats/chart.js:451 media/js/mkt/stats/chart.js:399
+msgid "Details for {0}"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:9
+msgid "Collections Created"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:12
+msgid "Add-ons in Use"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:15
+msgid "Add-ons Created"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:18
+msgid "Add-ons Downloaded"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:21
+msgid "Add-ons Updated"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:24
+msgid "Reviews Written"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:27
+msgid "User Signups"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:30
+msgid "Subscribers"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:33
+msgid "Ratings"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107 media/js/mkt/stats/chart_column.js:147
+msgid "Sales"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106 media/js/mkt/stats/chart.js:364 media/js/mkt/stats/csv_keys.js:3 media/js/mkt/stats/csv_keys.js:132
+msgid "Installs"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57
+msgid "Unknown"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58
+msgid "Add-ons Manager"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59
+msgid "Search Results"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
+#: media/js/mkt/stats/csv_keys.js:62
+msgid "Homepage Promo"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64
+msgid "Homepage Featured"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66
+msgid "Homepage Up and Coming"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67
+msgid "Homepage Most Popular"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70
+msgid "Detail Page"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71
+msgid "Detail Page (bottom)"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72
+msgid "Detail Page (Development Channel)"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
+#: media/js/mkt/stats/csv_keys.js:75
+msgid "Often Used With"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62 media/js/mkt/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:77
+msgid "Others By Author"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79
+msgid "Dependencies"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81
+msgid "Upsell"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83
+msgid "Sharing"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84
+msgid "Category Pages"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:70 media/js/mkt/stats/csv_keys.js:85
+msgid "Collections"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86
+msgid "Category Landing Featured Carousel"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90
+msgid "Category Landing Top Rated"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92
+msgid "Category Landing Most Popular"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94
+msgid "Category Landing Recently Added"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96
+msgid "Browse Listing Featured Sort"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98
+msgid "Browse Listing Users Sort"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100
+msgid "Browse Listing Rating Sort"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102
+msgid "Browse Listing Created Sort"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104
+msgid "Browse Listing Name Sort"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106
+msgid "Browse Listing Popular Sort"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108
+msgid "Browse Listing Updated Sort"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110
+msgid "Browse Listing Up and Coming Sort"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124
+msgid "Total Amount Contributed"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125
+msgid "Average Contribution"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:108 media/js/mkt/stats/csv_keys.js:133
+msgid "Usage"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137
+msgid "Firefox"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:112 media/js/mkt/stats/csv_keys.js:138
+msgid "Mozilla"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:113 media/js/mkt/stats/csv_keys.js:139
+msgid "Thunderbird"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:114 media/js/mkt/stats/csv_keys.js:140
+msgid "Sunbird"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:115 media/js/mkt/stats/csv_keys.js:141
+msgid "SeaMonkey"
+msgstr ""
+
+#: media/js/impala/stats/csv_keys.js:116 media/js/mkt/stats/csv_keys.js:142
+msgid "Fennec"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:121
+msgid "Downloads and Daily Users, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:123
+msgid "Downloads and Daily Users from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:127
+msgid "Installs and Daily Users, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:129
+msgid "Installs and Daily Users from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:133
+msgid "Downloads, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:135
+msgid "Downloads from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:139 media/js/mkt/stats/csv_keys.js:152
+msgid "Daily Users, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:141 media/js/mkt/stats/csv_keys.js:153
+msgid "Daily Users from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:145
+msgid "Applications, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:147
+msgid "Applications from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:151
+msgid "Platforms, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:153
+msgid "Platforms from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:157
+msgid "Languages, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:159
+msgid "Languages from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:163
+msgid "Add-on Versions, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:165
+msgid "Add-on Versions from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:169
+msgid "Add-on Status, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:171
+msgid "Add-on Status from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:175
+msgid "Download Sources, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:177
+msgid "Download Sources from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:181
+msgid "Contributions, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:183
+msgid "Contributions from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:187
+msgid "Site Metrics, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:189
+msgid "Site Metrics from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:193
+msgid "Add-ons in Use, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:195
+msgid "Add-ons in Use from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:199
+msgid "Add-ons Downloaded, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:201
+msgid "Add-ons Downloaded from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:205
+msgid "Add-ons Created, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:207
+msgid "Add-ons Created from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:211
+msgid "Add-ons Updated, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:213
+msgid "Add-ons Updated from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:217
+msgid "Reviews Written, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:219
+msgid "Reviews Written from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:223
+msgid "User Signups, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:225
+msgid "User Signups from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:229
+msgid "Collections Created, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:231
+msgid "Collections Created from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:235
+msgid "Subscribers, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:237
+msgid "Subscribers from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:241
+msgid "Ratings, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:243
+msgid "Ratings from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:247
+msgid "Sales, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:249
+msgid "Sales from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: media/js/impala/stats/csv_keys.js:253 media/js/mkt/stats/csv_keys.js:147
+msgid "Installs, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:255 media/js/mkt/stats/csv_keys.js:149
+msgid "Installs from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} and {1} are integers.
+#: media/js/impala/stats/csv_keys.js:261 media/js/mkt/stats/csv_keys.js:223
+msgid "<b>{0}</b> in last {1} days"
+msgstr ""
+
+#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269 media/js/mkt/stats/csv_keys.js:225 media/js/mkt/stats/csv_keys.js:231
+msgid "<b>{0}</b> from {1} to {2}"
+msgstr ""
+
+#. L10n: {0} and {1} are integers.
+#: media/js/impala/stats/csv_keys.js:267 media/js/mkt/stats/csv_keys.js:229
+msgid "<b>{0}</b> average in last {1} days"
+msgstr ""
+
+#: media/js/impala/stats/overview.js:19 media/js/mkt/stats/overview.js:17
+msgid "No data available."
+msgstr ""
+
+#: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88
+msgid "Date"
+msgstr ""
+
+#: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96
+msgid "Other"
+msgstr ""
+
+#: media/js/mkt/apps.js:84
+msgid "The manifest could not be found at the given location."
+msgstr ""
+
+#: media/js/mkt/apps.js:87 media/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr ""
+
+#: media/js/mkt/apps.js:90 media/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr ""
+
+#: media/js/mkt/apps.js:93 media/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr ""
+
+#: media/js/mkt/apps.js:96
+msgid "App is already installed."
+msgstr ""
+
+#: media/js/mkt/apps.js:100
+msgid "Internal server error."
+msgstr ""
+
+#: media/js/mkt/apps.js:103
+msgid "Internal server error on app installation."
+msgstr ""
+
+#: media/js/mkt/apps.js:106 media/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr ""
+
+#: media/js/mkt/buttons.js:38
+msgid "Purchasing"
+msgstr ""
+
+#: media/js/mkt/buttons.js:44
+msgid "Purchased"
+msgstr ""
+
+#: media/js/mkt/buttons.js:70
+msgid "Launch"
+msgstr ""
+
+#: media/js/mkt/consumer_init.js:24
+msgid "Click here to view the mobile Marketplace!"
+msgstr ""
+
+#: media/js/mkt/ecosystem.js:26
+msgid "This video requires a browser with support for open video "
+msgstr ""
+
+#: media/js/mkt/ecosystem.js:27
+msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
+msgstr ""
+
+#: media/js/mkt/ecosystem.js:28
+msgid "Flash Player</a>."
+msgstr ""
+
+#: media/js/mkt/feedback.js:38
+msgid "Message must not be empty."
+msgstr ""
+
+#: media/js/mkt/login.js:73
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr ""
+
+#: media/js/mkt/login.js:78
+msgid "Persona login failed. A server error was encountered."
+msgstr ""
+
+#: media/js/mkt/lookup-tool.js:65
+msgid "Show All Results"
+msgstr ""
+
+#: media/js/mkt/lookup-tool.js:68
+msgid "Over {0} results found, consider refining your search."
+msgstr ""
+
+#: media/js/mkt/manifest.js:46
+msgid "Requested Permissions:"
+msgstr ""
+
+#: media/js/mkt/manifest.js:54
+msgid "Certified"
+msgstr ""
+
+#: media/js/mkt/manifest.js:57
+msgid "Privileged"
+msgstr ""
+
+#: media/js/mkt/manifest.js:60
+msgid "Unprivileged"
+msgstr ""
+
+#: media/js/mkt/manifest.js:66
+msgid "No reason given"
+msgstr ""
+
+#: media/js/mkt/overlay.js:41
+msgid "OK"
+msgstr ""
+
+#: media/js/mkt/payments.js:69
+msgid "Payment failed. Try again later."
+msgstr ""
+
+#: media/js/mkt/reviewers.js:98
+msgid "Packaged App"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:102
+msgid "Privileged App"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:105
+msgid "More Information Requested"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:108
+msgid "Contains Editor Comment"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:112
+msgid "Premium App"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:115
+msgid "Escalated"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:120
+msgid "Free"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:228
+msgid "Any"
+msgstr ""
+
+#: media/js/mkt/themes_review.js:174
+msgid "Requested Info"
+msgstr ""
+
+#: media/js/mkt/themes_review.js:175
+msgid "Flagged"
+msgstr ""
+
+#: media/js/mkt/themes_review.js:176
+msgid "Duplicate"
+msgstr ""
+
+#: media/js/mkt/themes_review.js:177
+msgid "Rejected"
+msgstr ""
+
+#: media/js/mkt/themes_review.js:178
+msgid "Approved"
+msgstr ""
+
+#. L10n: {0} is the number of characters left.
+#: media/js/mkt/utils.js:89
+msgid "{0} character left."
+msgid_plural "{0} characters left."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/mkt/stats/chart.js:327
+msgid "{0} apps"
+msgstr ""
+
+#: media/js/mkt/stats/chart.js:339
+msgid "Week"
+msgstr ""
+
+#: media/js/mkt/stats/chart.js:342
+msgid "Month"
+msgstr ""
+
+#: media/js/mkt/stats/chart.js:345
+msgid "Day"
+msgstr ""
+
+#: media/js/mkt/stats/chart.js:352 media/js/mkt/stats/csv_keys.js:9 media/js/mkt/stats/csv_keys.js:18 media/js/mkt/stats/csv_keys.js:27
+msgid "Amount Earned"
+msgstr ""
+
+#: media/js/mkt/stats/chart.js:356 media/js/mkt/stats/csv_keys.js:12 media/js/mkt/stats/csv_keys.js:21 media/js/mkt/stats/csv_keys.js:30 media/js/mkt/stats/csv_keys.js:134
+msgid "Units Sold"
+msgstr ""
+
+#: media/js/mkt/stats/chart.js:360 media/js/mkt/stats/csv_keys.js:15 media/js/mkt/stats/csv_keys.js:24 media/js/mkt/stats/csv_keys.js:33
+msgid "Units Refunded"
+msgstr ""
+
+#: media/js/mkt/stats/chart.js:368
+msgid "Users"
+msgstr ""
+
+#: media/js/mkt/stats/chart.js:372
+msgid "Apps"
+msgstr ""
+
+#: media/js/mkt/stats/chart_column.js:122
+msgid "by currency {0}"
+msgstr ""
+
+#: media/js/mkt/stats/chart_column.js:123
+msgid "by source {0}"
+msgstr ""
+
+#: media/js/mkt/stats/chart_column.js:131 media/js/mkt/stats/table.js:95
+msgid "Currency"
+msgstr ""
+
+#: media/js/mkt/stats/chart_column.js:135 media/js/mkt/stats/table.js:98
+msgid "Source"
+msgstr ""
+
+#: media/js/mkt/stats/chart_column.js:143
+msgid "Revenue"
+msgstr ""
+
+#: media/js/mkt/stats/chart_column.js:151
+msgid "Refunds"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
+msgid "Apps Added"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
+msgid "Apps Installed"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
+msgid "Reviews"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:45 media/js/mkt/stats/csv_keys.js:208 media/js/mkt/stats/csv_keys.js:209
+msgid "New Users"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:48 media/js/mkt/stats/csv_keys.js:204 media/js/mkt/stats/csv_keys.js:205
+msgid "Total Users"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:212 media/js/mkt/stats/csv_keys.js:213
+msgid "Total Visitors"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:54
+msgid "App Installs"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:112
+msgid "Marketplace Browse Page"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:113
+msgid "Marketplace Browse Page, Featured"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:114
+msgid "Marketplace Category Page"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:115
+msgid "Marketplace Category Page, Featured"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:116
+msgid "Marketplace Detail Page"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:117
+msgid "Marketplace Detail Page, Upsell"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:118
+msgid "Marketplace Home Page"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:119
+msgid "Marketplace Search Results"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:120
+msgid "Marketplace Search Results, Featured"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:156
+msgid "Units Sold, last {0} days"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:157
+msgid "Units Sold from {0} to {1}"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:160
+msgid "Amount Earned, last {0} days"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:161
+msgid "Amount Earned {0} to {1}"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:164
+msgid "Units Refunded, last {0} days"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:165
+msgid "Units Refunded from {0} to {1}"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:168 media/js/mkt/stats/csv_keys.js:169
+msgid "Total Units Sold by Currency"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:172 media/js/mkt/stats/csv_keys.js:173
+msgid "Total Amount Earned by Currency"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:176 media/js/mkt/stats/csv_keys.js:177
+msgid "Total Units Refunded by Currency"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:180 media/js/mkt/stats/csv_keys.js:181
+msgid "Total Units Sold by Source"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:184 media/js/mkt/stats/csv_keys.js:185
+msgid "Total Amount Earned by Source"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:188 media/js/mkt/stats/csv_keys.js:189
+msgid "Total Units Refunded by Source"
+msgstr ""
+
+#: media/js/mkt/stats/csv_keys.js:216 media/js/mkt/stats/csv_keys.js:217
+msgid "Total Installs"
+msgstr ""
+
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:329
+msgid "Select an application first"
+msgstr ""
+
+#: media/js/zamboni/admin_validation.js:53
+msgid "Set {0} add-on to a max version of {1} and email the author."
+msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/zamboni/admin_validation.js:59
+msgid "This will send emails to the authors of {0} file."
+msgid_plural "This will send emails to the authors of {0} files."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/zamboni/apps.js:54
+msgid "App installation not allowed."
+msgstr ""
+
+#: media/js/zamboni/apps.js:57
+msgid "App manifest is malformed."
+msgstr ""
+
+#: media/js/zamboni/apps.js:80
+msgid "App installation failed."
+msgstr ""
+
+#: media/js/zamboni/apps.js:81
+msgid "This system does not support installing apps."
+msgstr ""
+
+#: media/js/zamboni/browserid_support.js:37
+msgid "Admins and editors must provide a password to log in."
+msgstr ""
+
+#: media/js/zamboni/browserid_support.js:42
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr ""
+
+#. L10n: {0} is an app name like Firefox.
+#: media/js/zamboni/buttons.js:108
+msgid "Accept and Install"
+msgstr ""
+
+#: media/js/zamboni/buttons.js:108
+msgid "Add to {0}"
+msgstr ""
+
+#: media/js/zamboni/buttons.js:113
+msgid "Download Now"
+msgstr ""
+
+#: media/js/zamboni/buttons.js:154
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr ""
+
+#: media/js/zamboni/buttons.js:159
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr ""
+
+#: media/js/zamboni/buttons.js:171
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: media/js/zamboni/buttons.js:249
+msgid "Install for {0} anyway"
+msgstr ""
+
+#: media/js/zamboni/buttons.js:249
+msgid "Download for {0} anyway"
+msgstr ""
+
+#: media/js/zamboni/buttons.js:306
+msgid "Not available for your platform"
+msgstr ""
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+msgid "Not available for {0} {1}"
+msgstr ""
+
+#: media/js/zamboni/buttons.js:380
+msgid "Works with {app} {min} - {max}"
+msgstr ""
+
+#: media/js/zamboni/buttons.js:382
+msgid "View other versions"
+msgstr ""
+
+#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr ""
+
+#: media/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr ""
+
+#: media/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr ""
+
+#: media/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr ""
+
+#: media/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr ""
+
+#: media/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr ""
+
+#: media/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr ""
+
+#: media/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr ""
+
+#: media/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr ""
+
+#: media/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr ""
+
+#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr ""
+
+#: media/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr ""
+
+#: media/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr ""
+
+#: media/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr ""
+
+#: media/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr ""
+
+#: media/js/zamboni/collections.js:703
+msgid "Add to favorites"
+msgstr ""
+
+#: media/js/zamboni/collections.js:707
+msgid "Remove from favorites"
+msgstr ""
+
+#: media/js/zamboni/collections.js:734
+msgid "Stop following"
+msgstr ""
+
+#: media/js/zamboni/contributions.js:134
+msgid "Install App"
+msgstr ""
+
+#: media/js/zamboni/devhub.js:242
+msgid "Your browser does not support the video tag"
+msgstr ""
+
+#: media/js/zamboni/devhub.js:503
+msgid "Enter a new author's email address"
+msgstr ""
+
+#: media/js/zamboni/devhub.js:793
+msgid "{files} file"
+msgid_plural "{files} files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/zamboni/devhub.js:796
+msgid "{reviews} review"
+msgid_plural "{reviews} reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/zamboni/devhub.js:1466
+msgid "Starting tests..."
+msgstr ""
+
+#: media/js/zamboni/devhub.js:1473
+msgid "Waiting for test results..."
+msgstr ""
+
+#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+msgid "Internal Server Error"
+msgstr ""
+
+#: media/js/zamboni/devhub.js:1515
+msgid "Must be a valid e-mail address."
+msgstr ""
+
+#: media/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr ""
+
+#: media/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr ""
+
+#: media/js/zamboni/discovery_pane.js:247
+msgid "Finding recommendations&hellip;"
+msgstr ""
+
+#: media/js/zamboni/discovery_pane.js:249
+msgid "Updating recommendations&hellip;"
+msgstr ""
+
+#: media/js/zamboni/editors.js:160
+msgid "{name} was viewing this page first."
+msgstr ""
+
+#: media/js/zamboni/editors.js:210
+msgid "Receipt checked by app."
+msgstr ""
+
+#: media/js/zamboni/editors.js:212
+msgid "Receipt was not checked by app."
+msgstr ""
+
+#: media/js/zamboni/editors.js:278
+msgid "{name} was viewing this add-on first."
+msgstr ""
+
+#: media/js/zamboni/editors.js:289
+msgid "Loading&hellip;"
+msgstr ""
+
+#: media/js/zamboni/editors.js:294
+msgid "Version Notes"
+msgstr ""
+
+#: media/js/zamboni/editors.js:299
+msgid "Notes for Reviewers"
+msgstr ""
+
+#: media/js/zamboni/editors.js:304
+msgid "No version notes found"
+msgstr ""
+
+#: media/js/zamboni/editors.js:364
+msgid "Average Reviews"
+msgstr ""
+
+#: media/js/zamboni/editors.js:420
+msgid "Number of Reviews"
+msgstr ""
+
+#: media/js/zamboni/global.js:416
 msgid "Loading..."
 msgstr "Nalaganje..."
 
-#: kitsune/sumo/static/js/historycharts.js:23
-msgid "No votes data"
-msgstr "Podatkov o glasovih ni"
-
-#: kitsune/sumo/static/js/historycharts.js:28
-msgid "Error loading graph"
-msgstr "Napaka pri nalaganju grafa"
-
-#: kitsune/sumo/static/js/historycharts.js:38
-msgid "Votes"
-msgstr "Glasovi"
-
-#: kitsune/sumo/static/js/historycharts.js:39 kitsune/sumo/static/js/historycharts.js:57
-msgid "Percent"
-msgstr "Odstotek"
-
-#: kitsune/sumo/static/js/historycharts.js:43 kitsune/sumo/static/js/kpi.dashboard.js:115
-msgid "Yes"
-msgstr "Da"
-
-#: kitsune/sumo/static/js/historycharts.js:50 kitsune/sumo/static/js/kpi.dashboard.js:121
-msgid "No"
-msgstr "Ne"
-
-#: kitsune/sumo/static/js/karma.dashboard.js:401
-msgid "Answers"
-msgstr "Odgovorov"
-
-#: kitsune/sumo/static/js/karma.dashboard.js:406
-msgid "Unhelpful Answers"
-msgstr "Nekoristni odgovori"
-
-#: kitsune/sumo/static/js/karma.dashboard.js:411
-msgid "Solutions"
-msgstr "Zbirk"
-
-#: kitsune/sumo/static/js/karma.dashboard.js:416
-msgid "Helpful Answers"
-msgstr "Koristni odgovori"
-
-#: kitsune/sumo/static/js/karma.dashboard.js:421
-msgid "First Answers"
-msgstr "Prvih odgovorov"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:8 kitsune/sumo/static/js/questions.metrics-dashboard.js:56
-msgid "Questions"
-msgstr "Vprašanja"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:16 kitsune/sumo/static/js/questions.metrics-dashboard.js:64
-msgid "% Solved"
-msgstr "% rešeno"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:24 kitsune/sumo/static/js/questions.metrics-dashboard.js:72
-msgid "% Responded in 24 hours"
-msgstr "% odgovorjeno v 24 urah"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:32 kitsune/sumo/static/js/questions.metrics-dashboard.js:80
-msgid "% Responded in 72 hours"
-msgstr "% odgovorjeno v 72 urah"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:43 kitsune/sumo/static/js/wiki.dashboard.js:17
-msgid "Article Votes: % Helpful"
-msgstr "Glasovi za članke: % koristnih"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:49
-msgid "Answer Votes: % Helpful"
-msgstr "Glasovi za odgovore: % koristnih"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:58
-msgid "en-US KB"
-msgstr "KB za ZDA"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:63
-msgid "non en-US KB"
-msgstr "KB izven ZDA"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:68
-msgid "Support Forum"
-msgstr "Forum za podporo"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:73
-msgid "Army of Awesome"
-msgstr "Armada pomočnikov"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:81
-msgid "Click Through Rate %"
-msgstr "Clickthrough delež pri iskanju %"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:90
-msgid "Visitors"
-msgstr "Obiskovalcev"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:98
-msgid "L10n Coverage"
-msgstr "Kritje L10n"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:108
-msgid "Percent Yes"
-msgstr "Odstotek Da"
-
-#: kitsune/sumo/static/js/kpi.dashboard.js:127
-msgid "I don't know"
-msgstr "Ne vem"
-
-#: kitsune/sumo/static/js/markup.js:38 kitsune/sumo/static/js/markup.js:81
-msgid "Bold"
-msgstr "Krepko"
-
-#: kitsune/sumo/static/js/markup.js:38 kitsune/sumo/static/js/markup.js:81
-msgid "bold text"
-msgstr "krepko besedilo"
-
-#: kitsune/sumo/static/js/markup.js:40 kitsune/sumo/static/js/markup.js:83
-msgid "Italic"
-msgstr "Ležeče"
-
-#: kitsune/sumo/static/js/markup.js:40 kitsune/sumo/static/js/markup.js:83
-msgid "italic text"
-msgstr "ležeče besedilo"
-
-#: kitsune/sumo/static/js/markup.js:45 kitsune/sumo/static/js/markup.js:89
-msgid "Numbered List"
-msgstr "Oštevilčen seznam"
-
-#: kitsune/sumo/static/js/markup.js:46 kitsune/sumo/static/js/markup.js:90
-msgid "Numbered list item"
-msgstr "Element v oštevilčenem seznamu"
-
-#: kitsune/sumo/static/js/markup.js:47 kitsune/sumo/static/js/markup.js:91
-msgid "Bulleted List"
-msgstr "Označen seznam"
-
-#: kitsune/sumo/static/js/markup.js:48 kitsune/sumo/static/js/markup.js:92
-msgid "Bulleted list item"
-msgstr "Element v označenem seznamu"
-
-#: kitsune/sumo/static/js/markup.js:94
-msgid "Heading 1"
-msgstr "Naslov 1"
-
-#: kitsune/sumo/static/js/markup.js:96
-msgid "Heading 2"
-msgstr "Naslov 2"
-
-#: kitsune/sumo/static/js/markup.js:98
-msgid "Heading 3"
-msgstr "Naslov 3"
-
-#: kitsune/sumo/static/js/markup.js:275
-msgid "Show for..."
-msgstr "Pokaži za..."
-
-#: kitsune/sumo/static/js/markup.js:281
-msgid "Show content only for specific versions of Firefox or operating systems."
-msgstr "Prikaži vsebino samo za posebne različice Firefoxa ali operacijskih sistemov."
-
-#: kitsune/sumo/static/js/markup.js:313
-msgid "Add Rule"
-msgstr "Dodaj pravilo"
-
-#: kitsune/sumo/static/js/markup.js:374
-msgid "Insert a link..."
-msgstr "Vstavi povezavo..."
-
-#: kitsune/sumo/static/js/markup.js:378
-msgid "link text"
-msgstr "besedilo povezave"
-
-#: kitsune/sumo/static/js/markup.js:408
-msgid "Link text:"
-msgstr "Besedilo povezave:"
-
-#: kitsune/sumo/static/js/markup.js:410
-msgid "Link target:"
-msgstr "Ciljna povezava:"
-
-#: kitsune/sumo/static/js/markup.js:412
-msgid "Support article:"
-msgstr "Članek za podporo:"
-
-#: kitsune/sumo/static/js/markup.js:414
-msgid "Enter the name of the article"
-msgstr "Vnesite ime za članek"
-
-#: kitsune/sumo/static/js/markup.js:416
-msgid "External link:"
-msgstr "Zunanja povezava:"
-
-#: kitsune/sumo/static/js/markup.js:418
-msgid "Enter the URL of the external link"
-msgstr "Vnesite URL ta zunanjo povezavo"
-
-#: kitsune/sumo/static/js/markup.js:490
-msgid "No sections found"
-msgstr "Ni najti odsekov"
-
-#: kitsune/sumo/static/js/markup.js:535
-msgid "Insert Link"
-msgstr "Vstavi povezavo"
-
-#: kitsune/sumo/static/js/markup.js:570
-msgid "Knowledge Base Article"
-msgstr "Članek zbirke znanja"
-
-#: kitsune/sumo/static/js/markup.js:617
-msgid "Insert media..."
-msgstr "Vstavi medije..."
-
-#: kitsune/sumo/static/js/markup.js:621
-msgid "media"
-msgstr "mediji"
-
-#: kitsune/sumo/static/js/markup.js:652 kitsune/sumo/static/js/markup.js:653 kitsune/sumo/static/js/markup.js:654
-msgid "Search Gallery"
-msgstr "Iskalna galerija"
-
-#: kitsune/sumo/static/js/markup.js:656
-msgid "Show:"
-msgstr "Pokaži:"
-
-#: kitsune/sumo/static/js/markup.js:657
-msgid "Images"
-msgstr "Slike"
-
-#: kitsune/sumo/static/js/markup.js:658
-msgid "Videos"
-msgstr "Video posnetki"
-
-#: kitsune/sumo/static/js/markup.js:659
-msgid "Show media for:"
-msgstr "Prikaži medije za:"
-
-#: kitsune/sumo/static/js/markup.js:661
-msgid "Insert Media"
-msgstr "Vstavi medije"
-
-#: kitsune/sumo/static/js/markup.js:663
-msgid "Upload Media"
-msgstr "Prenesi medije"
-
-#: kitsune/sumo/static/js/markup.js:727
-msgid "Please select an image or video to insert."
-msgstr "Prosimo, izberite sliko ali video, ki ga želite vstaviti."
-
-#: kitsune/sumo/static/js/markup.js:762
-msgid "Oops, there was an error."
-msgstr "Opla, prišlo je do napake."
-
-#: kitsune/sumo/static/js/markup.js:791
-msgid "Insert a canned response..."
-msgstr "Vstavi standarden odgovor..."
-
-#: kitsune/sumo/static/js/markup.js:795
-msgid "cannedresponses"
-msgstr "stndardniodgovori"
-
-#: kitsune/sumo/static/js/markup.js:827
-msgid "Search for common responses"
-msgstr "Iskanje skupnih odgovorov"
-
-#: kitsune/sumo/static/js/markup.js:831
-msgid "Categories"
-msgstr "Kategorije"
-
-#: kitsune/sumo/static/js/markup.js:836 kitsune/sumo/static/js/markup.js:960
-msgid "Responses"
-msgstr "Odgovori"
-
-#: kitsune/sumo/static/js/markup.js:837
-msgid "Please select a category from the previous column or start a search."
-msgstr "Izberite kategorijo iz prejšnjega stolpca ali začnite iskanje."
-
-#: kitsune/sumo/static/js/markup.js:841 kitsune/sumo/static/js/markup.js:1092
-msgid "Response editor"
-msgstr "Urednik za odgovore"
-
-#: kitsune/sumo/static/js/markup.js:842 kitsune/sumo/static/js/markup.js:1093
-msgid "Switch to preview mode"
-msgstr "Premenjaj v predogled"
-
-#: kitsune/sumo/static/js/markup.js:851
-msgid "Insert Response"
-msgstr "Vstavi odgovor"
-
-#: kitsune/sumo/static/js/markup.js:971
-msgid "Matching responses"
-msgstr "Odgovori, ki ustrezajo"
-
-#: kitsune/sumo/static/js/markup.js:1048
-msgid "There was an error checking for canned responses."
-msgstr "Med kontrolo standardnih odgovorov je prišlo do napake."
-
-#: kitsune/sumo/static/js/markup.js:1085
-msgid "Response preview"
-msgstr "Predogled odgovora"
-
-#: kitsune/sumo/static/js/markup.js:1086
-msgid "Switch to edit mode"
-msgstr "Premenjaj v urejanje"
-
-#: kitsune/sumo/static/js/markup.js:1144
-msgid "Quote previous message..."
-msgstr "Citiraj prejšnje sporočilo ..."
-
-#: kitsune/sumo/static/js/markup.js:1149
-msgid " said"
-msgstr " je bilo rečeno"
-
-#: kitsune/sumo/static/js/messages.js:15
-msgid "Reply..."
-msgstr "Odgovor..."
-
-#: kitsune/sumo/static/js/questions.js:236 kitsune/sumo/static/js/wiki.js:415
-msgid "There was an error."
-msgstr "Prišlo je do napake."
-
-#: kitsune/sumo/static/js/reportabuse.js:37
-msgid "There was an error. Please try again in a moment."
-msgstr "Prišlo je do napake. Poskusite prosim znova čez nekaj trenutkov."
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:333
-msgid "Daily"
-msgstr "Vsakodnevno"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:334
-msgid "Weekly"
-msgstr "Tedensko"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:335
-msgid "Monthly"
-msgstr "Mesečno"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:362
-msgid "Week beginning %(year)s-%(month)s-%(date)s"
-msgstr "Teden %(year)s-%(month)s-%(date)s"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:363
-msgid "Month beginning %(year)s-%(month)s-%(date)s"
-msgstr "Mesec %(year)s-%(month)s-%(date)s"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:454
-msgid "1m"
-msgstr "1m"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:455
-msgid "3m"
-msgstr "3m"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:456
-msgid "6m"
-msgstr "6m"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:457
-msgid "YTD"
-msgstr "doslej letos"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:458
-msgid "1y"
-msgstr "1l"
-
-#: kitsune/sumo/static/js/rickshaw_utils.js:459
+#. L10n: {0} is the number of characters left.
+#: media/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: media/js/zamboni/packager.js:31
+msgid "Download {0}"
+msgstr ""
+
+#: media/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr ""
+
+#: media/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
 msgid "All"
 msgstr "Vse"
 
-#: kitsune/sumo/static/js/rickshaw_utils.js:463
-msgid "From %(from_input)s to %(to_input)s"
-msgstr "Od %(from_input)s do %(to_input)s"
-
-#: kitsune/sumo/static/js/showfor.js:83
-msgid "[missing header]"
-msgstr "[Manjka glava]"
-
-#: kitsune/sumo/static/js/showfor.js:121
-msgid "Table of Contents"
-msgstr "Kazalo"
-
-#: kitsune/sumo/static/js/tags.filter.js:57
-msgid "Invalid tag entered: %s"
-msgstr "Vnesena oznaka je napačna: %s"
-
-#: kitsune/sumo/static/js/tags.filter.js:65
-msgid "No tags entered."
-msgstr "Vneseni oznak ni."
-
-#: kitsune/sumo/static/js/upload.js:4
-msgid "Error uploading image"
-msgstr "Napaka pri nalaganju slike"
-
-#: kitsune/sumo/static/js/upload.js:5
-msgid "Error deleting image"
-msgstr "Napaka pri brisanju slike"
-
-#: kitsune/sumo/static/js/upload.js:6
-msgid "Please check you are logged in, and try again."
-msgstr "Prosimo, preverite, da ste prijavljeni, in poskusite znova."
-
-#: kitsune/sumo/static/js/users.autocomplete.js:32
-msgid "Search for a user..."
-msgstr "Iskanje uporabnika..."
-
-#: kitsune/sumo/static/js/users.js:21
-msgid "WARNING! Are you sure you want to deactivate this user? This cannot be undone!"
-msgstr "OPOZORILO: Res hočete onemogočiti tega uporabnika? Za ta korak ni povratka!"
-
-#: kitsune/sumo/static/js/wiki.dashboard.js:99
-msgid "All Articles: % Localized"
-msgstr "Vsi članki: lokalizirano %"
-
-#: kitsune/sumo/static/js/wiki.dashboard.js:104
-msgid "Top 20 Articles: % Localized"
-msgstr "Top 20 članki: lokalizirano %"
-
-#: kitsune/sumo/static/js/wiki.dashboard.js:119
-msgid "Active Contributors"
-msgstr "Aktivni sodelavci"
-
-#: kitsune/sumo/static/js/wiki.js:299
-msgid "A document with this title already exists in this locale."
-msgstr "Dokument s tem naslovom že obstaja za to območno nastavitev."
-
-#: kitsune/sumo/static/js/wiki.js:304
-msgid "A document with this slug already exists in this locale."
-msgstr "Dokument s to regleto za to območno nastavitev že obstaja."
-
-#: kitsune/sumo/static/js/wiki.js:409
-msgid "Choose revisions to compare"
-msgstr "Izberite različice za primerjavo"
-
-#: kitsune/sumo/static/js/wiki.js:555
-msgid "Toggle syntax highlighting"
-msgstr "Vkl/izkl poudarjanje sintakse"
-
-#: kitsune/sumo/static/js/wiki.js:633
-msgid "Toggle Diff"
-msgstr "Diff vkl/izkl"
-
-#~ msgid "Invalid video. Please select a valid FLV video."
-#~ msgstr "Neveljaven video. Izberite veljaven video FLV."
-
-#~ msgid "Upload cancelled. Please select an FLV video."
-#~ msgstr "Nalaganje odpovedano. Izberite video FLV."
-
-#~ msgid "File deleted. Please select an FLV video."
-#~ msgstr "Datoteka izbrisana. Izberite video FLV."
-
-#~ msgid "Delete FLV video"
-#~ msgstr "IzbriÅ¡i datoteko FLV"
-
-#~ msgid "Invalid video. Please select a valid OGV video."
-#~ msgstr "Neveljaven video. Izberite veljaven video OGV."
-
-#~ msgid "Upload cancelled. Please select an OGV video."
-#~ msgstr "Nalaganje odpovedano. Izberite video OGV."
-
-#~ msgid "File deleted. Please select an OGV video."
-#~ msgstr "Datoteka izbrisana. Izberite video OGV."
-
-#~ msgid "Delete OGV video"
-#~ msgstr "IzbriÅ¡i OGV video"
-
-#~ msgid "Invalid video. Please select a valid WebM video."
-#~ msgstr "Neveljaven video. Izberite veljaven video WebM."
-
-#~ msgid "Upload cancelled. Please select a WebM video."
-#~ msgstr "Nalaganje odpovedano. Izberite video WebM."
-
-#~ msgid "File deleted. Please select a WebM video."
-#~ msgstr "Datoteka izbrisana. Izberite video WebM."
-
-#~ msgid "Delete WebM video"
-#~ msgstr "IzbriÅ¡i video WebM"
-
-#~ msgid "Upgrade Firefox"
-#~ msgstr "Posodobite Firefox"
-
-#~ msgid "Your Firefox is out of date and may contain a security risk!"
-#~ msgstr "VaÃ¼ Firefox je zastarel, lahko da za vas predstavlja tveganje"
-
-#~ msgid "January"
-#~ msgstr "januar"
-
-#~ msgid "February"
-#~ msgstr "februar"
-
-#~ msgid "March"
-#~ msgstr "marec"
-
-#~ msgid "April"
-#~ msgstr "april"
-
-#~ msgid "May"
-#~ msgstr "maj"
-
-#~ msgid "June"
-#~ msgstr "junij"
-
-#~ msgid "July"
-#~ msgstr "julij"
-
-#~ msgid "August"
-#~ msgstr "avgust"
-
-#~ msgid "September"
-#~ msgstr "september"
-
-#~ msgid "October"
-#~ msgstr "oktober"
-
-#~ msgid "November"
-#~ msgstr "november"
-
-#~ msgid "December"
-#~ msgstr "december"
-
-#~ msgid "Sunday"
-#~ msgstr "nedelja"
-
-#~ msgid "Monday"
-#~ msgstr "ponedeljek"
-
-#~ msgid "Tuesday"
-#~ msgstr "torek"
-
-#~ msgid "Wednesday"
-#~ msgstr "sreda"
-
-#~ msgid "Thursday"
-#~ msgstr "Ä�etrtek"
-
-#~ msgid "Friday"
-#~ msgstr "petek"
-
-#~ msgid "Saturday"
-#~ msgstr "sobota"
-
-#~ msgid "Jan"
-#~ msgstr "januar"
-
-#~ msgid "Feb"
-#~ msgstr "februar"
-
-#~ msgid "Mar"
-#~ msgstr "marec"
-
-#~ msgid "Apr"
-#~ msgstr "april"
-
-#~ msgid "Jun"
-#~ msgstr "junij"
-
-#~ msgid "Jul"
-#~ msgstr "julij"
-
-#~ msgid "Aug"
-#~ msgstr "avgust"
-
-#~ msgid "Sep"
-#~ msgstr "september"
-
-#~ msgid "Oct"
-#~ msgstr "oktober"
-
-#~ msgid "Nov"
-#~ msgstr "november"
-
-#~ msgid "Dec"
-#~ msgstr "december"
-
-#~ msgid "From"
-#~ msgstr "Od"
-
-#~ msgid "To"
-#~ msgstr "Komu"
-
-#~ msgid "Zoom"
-#~ msgstr "poveÄ�aj"
-
-#~ msgid "Reset zoom"
-#~ msgstr "ponastavi poveÄ�avo"
-
-#~ msgid "Reset zoom level 1:1"
-#~ msgstr "ponastavi poveÄ�avo na 1:1"
-
-#~ msgid "Error loading chart. (Are you logged in?)"
-#~ msgstr "Napaka pri nalaganju diagrama. (Ali ste prijavljeni?)"
-
-#~ msgid "Helpfulness Votes over 1 Month"
-#~ msgstr "Glasovi za koristno v 1 mescu"
-
-#~ msgid "Current Percent of Helpfulness"
-#~ msgstr "Trenutni odstotek za koristno"
-
-#~ msgid "Percent Change in Helpfulness"
-#~ msgstr "Sprememba za koristno v odstotkih"
-
-#~ msgid "Documents"
-#~ msgstr "Dokumenti"
-
-#~ msgid "%s Votes"
-#~ msgstr "%s glasovi"
-
-#~ msgid "CTR %"
-#~ msgstr "CTR %"
-
-#~ msgid "We're open!"
-#~ msgstr "Odprti smo!"
-
-#~ msgid "Our volunteers are ready to help."
-#~ msgstr "NaÅ¡i prostovoljci so vam pripravljeni pomagati."
-
-#~ msgid "Helpers online: "
-#~ msgstr "PomoÄ�niki online: "
-
-#~ msgid "Users waiting: "
-#~ msgstr "Uporabniki Ä�akajo: "
-
-#~ msgid "Estimated wait: "
-#~ msgstr "Ocena za Ä�as Ä�akanja: "
-
-#~ msgid "Start your Live Chat session."
-#~ msgstr "ZaÄ�nite s sejo v Klepetu v Å¾ivo."
-
-#~ msgid "The queue is full."
-#~ msgstr "ÄŒakalna vrsta je polna."
-
-#~ msgid "Our volunteers are busy helping other users."
-#~ msgstr "NaÅ¡i prostovoljci so trenutno zasedeni s pomoÄ�jo drugim uporabnikom."
-
-#~ msgid "We're closed."
-#~ msgstr "Zaprti smo."
-
-#~ msgid "Live Chat is currently closed."
-#~ msgstr "Klepet v Å¾ivo je trenutno zaprt."
-
-#~ msgid "There was an error checking the queue."
-#~ msgstr "Med preverjanjem Ä�akalne vrste je priÅ¡lo do napake."
-
-#~ msgid "You can try starting a chat session."
-#~ msgstr "Lahko poskusite zaÄ�eti klepet."
-
-#~ msgid "Less than 2 minutes."
-#~ msgstr "Manj kot 2 minuti."
-
-#~ msgid "More than 20 minutes."
-#~ msgstr "Veï¿½ kot 20 minut."
-
-#~ msgid "Daily Unique Visitors"
-#~ msgstr "Obiskovalcev na dan"
-
-#~ msgid "Query took: "
-#~ msgstr "Iskanje je trajalo: "
-
-#~ msgid " seconds"
-#~ msgstr " sekund"
-
-#~ msgid "Helpfulness Votes"
-#~ msgstr "glasovi za koristno"
-
-#~ msgid "Number of Votes"
-#~ msgstr "Å tevilo glasov"
-
-#~ msgid "%s%"
-#~ msgstr "%s%"
-
-#~ msgid "Report this post"
-#~ msgstr "Prijavite to sporoÄ�ilo"
-
-#~ msgid "Toggle L10n"
-#~ msgstr "Diff vkl/izkl"
-
-#~ msgid "Search: "
-#~ msgstr "IÅ¡Ä�i:"
-
-#~ msgid "Type here to filter the list of shown responses"
-#~ msgstr "Tipkajte tu za izbiro v seznamu prikazanih odgovorov"
-
-#~ msgid "Active Support Forum Contributors"
-#~ msgstr "Aktivnih sodelavcev v forumu za podporo"
-
-#~ msgid "Contributors"
-#~ msgstr "Sodelavci"
-
-#~ msgid "Report this Article"
-#~ msgstr "Prijavite ta Ä�lanek"
-
-#~ msgid "Article Link"
-#~ msgstr "Povezava za Ä�lanek"
-
-#~ msgid "External Link"
-#~ msgstr "Zunanja povezava"
-
-#~ msgid "external link"
-#~ msgstr "zunanja povezava"
-
-#~ msgid "Invalid video. Please select a valid video file (%s)."
-#~ msgstr "Neveljaven video. Izberi veljavno video datoteko (%s)."
-
-#~ msgid "Upload cancelled. Please select a video file (%s)."
-#~ msgstr "Nalaganje odpovedano. Izberi prosim video datoteko (%s)."
-
-#~ msgid "Delete %s file"
-#~ msgstr "IzbriÅ¡i datoteko %s"
-
-#~ msgid "There was an error :(."
-#~ msgstr "PriÅ¡lo je do napake :(."
+#: media/js/zamboni/validator.js:336
+msgid "Add-on failed validation."
+msgstr ""
+
+#: media/js/zamboni/validator.js:338
+msgid "Add-on passed validation."
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:75
+msgid "Not Updated for {0} {1}"
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:76
+msgid "Requires Newer Version of {0}"
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:77
+msgid "Unreviewed"
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:78
+msgid "Experimental <span>(Learn More)</span>"
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+msgid "Not Available for {0}"
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:81
+msgid "Experimental"
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:82
+msgid "Themes Require Newer Version of {0}"
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:83
+msgid "Themes Require {0}"
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:128
+msgid "Installing..."
+msgstr "Nameščanje v teku …"
+
+#: media/js/zamboni/mobile/buttons.js:136
+msgid "Purchasing..."
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:165
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr ""
+
+#: media/js/zamboni/mobile/buttons.js:299
+msgid "Keep it"
+msgstr ""
+
+#: media/js/zamboni/mobile/general.js:338
+msgid "You're trying it on!"
+msgstr ""
+
+#: media/js/zamboni/mobile/general.js:350
+msgid "Added to Firefox"
+msgstr ""

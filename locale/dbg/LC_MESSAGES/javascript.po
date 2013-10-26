@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 16:48-0700\n"
+"POT-Creation-Date: 2013-10-25 13:55-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -298,26 +298,23 @@ msgstr "Īřȧɋī Ɓȧƞķ Ƈǿḓḗ"
 msgid "Detected: {0}"
 msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 
-#: media/js/devreg/payments-manage.js:27
-msgid "that"
-msgid_plural "those"
-msgstr[0] "ŧħȧŧ"
-msgstr[1] "ŧħǿşḗ"
+#. L10n: This sentence introduces a list of applications.
+#: media/js/devreg/payments-manage.js:24
+msgid ""
+"Warning: deleting payment account \"{0}\" will move that associated app to an "
+"incomplete status and it will no longer be available for sale:"
+msgid_plural ""
+"Warning: deleting payment account \"{0}\" will move those associated apps to "
+"an incomplete status and they will no longer be available for sale:"
+msgstr[0] ""
+"Ẇȧřƞīƞɠ: ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ ḿǿṽḗ ŧħȧŧ ȧşşǿƈīȧŧḗḓ ȧƥƥ ŧǿ ȧƞ "
+"īƞƈǿḿƥŀḗŧḗ şŧȧŧŭş ȧƞḓ īŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ:"
+msgstr[1] ""
+"Ẇȧřƞīƞɠ: ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ ḿǿṽḗ ŧħǿşḗ ȧşşǿƈīȧŧḗḓ ȧƥƥş ŧǿ "
+"ȧƞ īƞƈǿḿƥŀḗŧḗ şŧȧŧŭş ȧƞḓ ŧħḗẏ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ:"
 
-#: media/js/devreg/payments-manage.js:28
-msgid "app"
-msgid_plural "apps"
-msgstr[0] "ȧƥƥ"
-msgstr[1] "ȧƥƥş"
-
-#: media/js/devreg/payments-manage.js:29
-msgid "it"
-msgid_plural "they"
-msgstr[0] "īŧ"
-msgstr[1] "ŧħḗẏ"
-
-#: media/js/devreg/payments-manage.js:53
-#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:56
+#: media/js/devreg/payments-manage.js:101
 #: media/js/devreg/validator.js:193
 #: media/js/devreg/validator.js:438
 #: media/js/devreg/validator.js:457
@@ -329,16 +326,16 @@ msgstr[1] "ŧħḗẏ"
 msgid "Error"
 msgstr "Ḗřřǿř"
 
-#: media/js/devreg/payments-manage.js:54
-#: media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:57
+#: media/js/devreg/payments-manage.js:102
 msgid "There was a problem contacting the payment server."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ ƥȧẏḿḗƞŧ şḗřṽḗř."
 
-#: media/js/devreg/payments-manage.js:76
+#: media/js/devreg/payments-manage.js:80
 msgid "Authentication error"
 msgstr "Ȧŭŧħḗƞŧīƈȧŧīǿƞ ḗřřǿř"
 
-#: media/js/devreg/payments-manage.js:118
+#: media/js/devreg/payments-manage.js:122
 msgid "You do not currently have any payment accounts."
 msgstr "Ẏǿŭ ḓǿ ƞǿŧ ƈŭřřḗƞŧŀẏ ħȧṽḗ ȧƞẏ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş."
 
@@ -1213,11 +1210,11 @@ msgstr ""
 msgid "Persona login failed. A server error was encountered."
 msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ȧ şḗřṽḗř ḗřřǿř ẇȧş ḗƞƈǿŭƞŧḗřḗḓ."
 
-#: media/js/mkt/lookup-tool.js:63
+#: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
 msgstr "Şħǿẇ Ȧŀŀ Řḗşŭŀŧş"
 
-#: media/js/mkt/lookup-tool.js:66
+#: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
 msgstr "Ǿṽḗř {0} řḗşŭŀŧş ƒǿŭƞḓ, ƈǿƞşīḓḗř řḗƒīƞīƞɠ ẏǿŭř şḗȧřƈħ."
 

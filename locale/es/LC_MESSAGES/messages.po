@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 16:48-0700\n"
+"POT-Creation-Date: 2013-10-25 13:55-0700\n"
 "PO-Revision-Date: 2013-10-24 08:18+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -30,7 +30,7 @@ msgstr "Descargar ahora"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:126
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:115 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:92 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:199
-#: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:86
+#: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:86 mkt/operators/templates/operators/preloads.html:50
 msgid "Download"
 msgstr "Descargar"
 
@@ -73,11 +73,11 @@ msgstr "Agregar a {0}"
 msgid "This name is already in use. Please choose another."
 msgstr "Este nombre ya se utiliza. Por favor, elige otro."
 
-#: apps/addons/forms.py:62 mkt/developers/forms.py:497 mkt/submit/forms.py:399
+#: apps/addons/forms.py:62 mkt/developers/forms.py:515 mkt/submit/forms.py:407
 msgid "This slug is already in use. Please choose another."
 msgstr "Este slug se utiliza. Por favor, elige otro."
 
-#: apps/addons/forms.py:65 mkt/developers/forms.py:500 mkt/submit/forms.py:403
+#: apps/addons/forms.py:65 mkt/developers/forms.py:518 mkt/submit/forms.py:411
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Este slug no puede ser \"%s\". Por favor, elige otro."
 
@@ -120,7 +120,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "Las categorías no pueden cambiarse mientras tu complemento figura destacado para esta aplicación."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:756
+#: apps/addons/forms.py:256 mkt/developers/forms.py:767
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Solo puedes tener {0} categoría."
@@ -134,19 +134,19 @@ msgstr "La categoría miscelánea no puede combinarse con categorías adicionale
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Antes de cambiar tu idioma predeterminado, debes tener un nombre, un resumen y una descripción en dicho idioma. Te falta %s."
 
-#: apps/addons/forms.py:525 apps/addons/forms.py:599
+#: apps/addons/forms.py:510 apps/addons/forms.py:584
 msgid "A license must be selected."
 msgstr "Debe seleccionarse una licencia."
 
-#: apps/addons/forms.py:586
+#: apps/addons/forms.py:571
 msgid "Give Your Theme a Name."
 msgstr "Pon un nombre a tu tema."
 
-#: apps/addons/forms.py:592 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:577 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Describe tu tema."
 
-#: apps/addons/forms.py:726
+#: apps/addons/forms.py:712
 msgid "Enter a new author's email address"
 msgstr "Escribe la dirección de correo de un nuevo autor"
 
@@ -154,45 +154,45 @@ msgstr "Escribe la dirección de correo de un nuevo autor"
 msgid "Not Reviewed"
 msgstr "Sin valoraciones"
 
-#: apps/addons/helpers.py:35 apps/addons/views.py:334 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:35 apps/addons/views.py:329 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:17 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:86 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231 apps/browse/views.py:448
 #: apps/browse/templates/browse/impala/category_landing.html:24 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "Destacados"
 
-#: apps/addons/models.py:292
+#: apps/addons/models.py:291
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Los usuarios tienen la opción de colaborar más o menos que esta cantidad."
 
-#: apps/addons/models.py:301
+#: apps/addons/models.py:300
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Se preguntará siempre a los usuarios en el administrador de complementos (Firefox 4 y posteriores)"
 
 # Column name in a table.
-#: apps/addons/models.py:1988
+#: apps/addons/models.py:1986
 msgid "Listed"
 msgstr "Listado"
 
-#: apps/addons/views.py:335 apps/browse/templates/browse/personas/mobile/category_landing.html:27
+#: apps/addons/views.py:330 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "Popular"
 
-#: apps/addons/views.py:336 apps/browse/views.py:234 apps/browse/views.py:292 apps/browse/views.py:473
+#: apps/addons/views.py:331 apps/browse/views.py:234 apps/browse/views.py:292 apps/browse/views.py:473
 msgid "Recently Added"
 msgstr "Agregados recientemente"
 
 # Acortado para que salga completo el texto en la web
-#: apps/addons/views.py:337 apps/bandwagon/views.py:90 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:17 apps/search/forms.py:95
+#: apps/addons/views.py:332 apps/bandwagon/views.py:90 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:17 apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr "Actualizados recientemente"
 
 # %1 is an add-on name.
-#: apps/addons/views.py:520
+#: apps/addons/views.py:515
 msgid "Contribution for {0}"
 msgstr "Colaboración para {0}"
 
-#: apps/addons/views.py:613
+#: apps/addons/views.py:608
 msgid "Abuse reported."
 msgstr "Informe de abuso enviado."
 
@@ -331,14 +331,14 @@ msgstr "Colabora"
 #. This 'or' goes between two choices in a dialog.
 #: apps/addons/templates/addons/contribution.html:34 apps/addons/templates/addons/report_abuse.html:35 apps/addons/templates/addons/impala/contribution.html:32
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:114
-#: apps/devhub/templates/devhub/addons/edit/basic.html:194 apps/devhub/templates/devhub/addons/edit/details.html:115 apps/devhub/templates/devhub/addons/edit/support.html:88
+#: apps/devhub/templates/devhub/addons/edit/basic.html:194 apps/devhub/templates/devhub/addons/edit/details.html:115 apps/devhub/templates/devhub/addons/edit/support.html:75
 #: apps/devhub/templates/devhub/addons/edit/technical.html:153 apps/devhub/templates/devhub/addons/forms_shared/media.html:180 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:49 apps/devhub/templates/devhub/versions/edit.html:127 apps/devhub/templates/devhub/versions/list.html:276
 #: apps/devhub/templates/devhub/versions/list.html:319 apps/devhub/templates/devhub/versions/list.html:352 apps/reviews/templates/reviews/edit_review.html:16
-#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/account/templates/account/abuse.html:21
-#: mkt/developers/templates/developers/apps/status.html:306 mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/apps/version_edit.html:82
-#: mkt/developers/templates/developers/apps/edit/admin.html:143 mkt/developers/templates/developers/apps/edit/basic.html:147 mkt/developers/templates/developers/apps/edit/details.html:79
-#: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
+#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/developers/templates/developers/apps/status.html:306
+#: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/apps/version_edit.html:82 mkt/developers/templates/developers/apps/edit/admin.html:143
+#: mkt/developers/templates/developers/apps/edit/basic.html:147 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:68
+#: mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:129 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:121
 #: mkt/submit/templates/submit/done.html:50
@@ -494,16 +494,16 @@ msgstr "Ver estadísticas"
 msgid "Average Daily Users"
 msgstr "Promedio de usuarios diarios"
 
-#: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:55 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:39
+#: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:55 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:96 mkt/reviewers/templates/reviewers/includes/mobile_details.html:118
 msgid "Abuse Reports"
 msgstr "Informes de abuso"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:45
-#: apps/addons/templates/addons/impala/details.html:327 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/details.html:112 mkt/reviewers/templates/reviewers/includes/mobile_details.html:134 mkt/site/templates/site/privacy-policy.html:5
-#: mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:90 templates/mobile/base_apps.html:74
+#: apps/addons/templates/addons/impala/details.html:320 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
+#: mkt/reviewers/templates/reviewers/includes/details.html:112 mkt/reviewers/templates/reviewers/includes/mobile_details.html:134 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:90
+#: templates/mobile/base_apps.html:74
 msgid "Privacy Policy"
 msgstr "Política de privacidad"
 
@@ -534,7 +534,7 @@ msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "Comentarios del desarrollador"
 
-#: apps/addons/templates/addons/details_box.html:194 apps/addons/templates/addons/impala/details.html:284
+#: apps/addons/templates/addons/details_box.html:194 apps/addons/templates/addons/impala/details.html:277
 msgid "Development Channel"
 msgstr "Canal de Desarrollo"
 
@@ -546,7 +546,7 @@ msgstr ""
 "El canal de desarrollo te permite probar una nueva versión experimental de este complemento antes de que sea público. Una vez instalada la versión de desarrollo, recibirás las actualizaciones de "
 "este canal."
 
-#: apps/addons/templates/addons/details_box.html:202 apps/addons/templates/addons/impala/details.html:294
+#: apps/addons/templates/addons/details_box.html:202 apps/addons/templates/addons/impala/details.html:287
 msgid "Install development version"
 msgstr "Instalar la versión de desarrollo"
 
@@ -558,7 +558,7 @@ msgstr ""
 "<strong>Atención:</strong> las versiones de pruebas de este complemento no han sido revisadas por Mozilla. Una vez instales la versión de desarrollo, continuarás recibiendo actualizaciones de "
 "desarrollo. Para dejar de recibirlas, reinstala la versión por defecto desde el siguiente enlace."
 
-#: apps/addons/templates/addons/details_box.html:215 apps/addons/templates/addons/impala/details.html:303
+#: apps/addons/templates/addons/details_box.html:215 apps/addons/templates/addons/impala/details.html:296
 msgid "Version {0}:"
 msgstr "Versión {0}:"
 
@@ -663,7 +663,7 @@ msgstr "Actualizadas {0}"
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
 #: apps/addons/templates/addons/listing/items_mobile.html:49 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
-#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:301 mkt/reviewers/views.py:323 mkt/submit/forms.py:31 mkt/submit/forms.py:41
+#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:301 mkt/reviewers/views.py:323 mkt/submit/forms.py:34 mkt/submit/forms.py:44
 msgid "Added {0}"
 msgstr "Agregados {0}"
 
@@ -964,7 +964,7 @@ msgstr ""
 "tienes uno)."
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:339 mkt/account/templates/account/abuse.html:3
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "Informar de abuso"
 
@@ -976,25 +976,25 @@ msgstr ""
 "Si sospechas que este complemento infringe <a href=\"%(url)s\">nuestras políticas</a> o tiene problemas de seguridad o privacidad, utiliza el formulario para describirlo. No uses este formulario "
 "para ningún otro motivo."
 
-#: apps/addons/templates/addons/report_abuse.html:33 apps/users/templates/users/report_abuse.html:18 mkt/account/templates/account/abuse.html:21
+#: apps/addons/templates/addons/report_abuse.html:33 apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
 msgstr "Enviar informe"
 
 #: apps/addons/templates/addons/report_abuse.html:35 apps/addons/templates/addons/mobile/eula.html:16 apps/addons/templates/addons/mobile/persona_confirm.html:7
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:117
-#: apps/devhub/templates/devhub/addons/edit/basic.html:197 apps/devhub/templates/devhub/addons/edit/details.html:118 apps/devhub/templates/devhub/addons/edit/support.html:91
+#: apps/devhub/templates/devhub/addons/edit/basic.html:197 apps/devhub/templates/devhub/addons/edit/details.html:118 apps/devhub/templates/devhub/addons/edit/support.html:78
 #: apps/devhub/templates/devhub/addons/edit/technical.html:156 apps/devhub/templates/devhub/addons/forms_shared/media.html:183 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/personas/edit.html:221 apps/devhub/templates/devhub/versions/add_file_modal.html:50 apps/devhub/templates/devhub/versions/edit.html:128
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:50 apps/devhub/templates/devhub/versions/edit.html:128
 #: apps/devhub/templates/devhub/versions/list.html:276 apps/devhub/templates/devhub/versions/list.html:319 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:110 mkt/account/templates/account/abuse.html:22 mkt/developers/templates/developers/apps/status.html:306
-#: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/apps/version_edit.html:83 mkt/developers/templates/developers/apps/edit/admin.html:145
-#: mkt/developers/templates/developers/apps/edit/basic.html:149 mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:82
-#: mkt/developers/templates/developers/apps/edit/technical.html:70 mkt/developers/templates/developers/apps/forms_shared/media.html:166
-#: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27
-#: mkt/developers/templates/developers/payments/includes/accept_terms.html:12 mkt/developers/templates/developers/payments/includes/account_list.html:60
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:122
-#: mkt/lookup/templates/lookup/user_summary.html:121 mkt/lookup/templates/lookup/user_summary.html:124 mkt/reviewers/templates/reviewers/includes/macros.html:30 mkt/templates/mkt/base_desktop.html:20
+#: apps/zadmin/templates/zadmin/validation.html:110 mkt/developers/templates/developers/apps/status.html:306 mkt/developers/templates/developers/apps/status.html:329
+#: mkt/developers/templates/developers/apps/version_edit.html:83 mkt/developers/templates/developers/apps/edit/admin.html:145 mkt/developers/templates/developers/apps/edit/basic.html:149
+#: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:70 mkt/developers/templates/developers/apps/edit/technical.html:70
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
+#: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
+#: mkt/developers/templates/developers/payments/includes/account_list.html:60 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:122 mkt/lookup/templates/lookup/user_summary.html:128 mkt/lookup/templates/lookup/user_summary.html:131
+#: mkt/reviewers/templates/reviewers/includes/macros.html:30
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1198,48 +1198,48 @@ msgstr "Sitio de asistencia"
 msgid "Support E-mail"
 msgstr "Correo de soporte"
 
-#: apps/addons/templates/addons/impala/details.html:215 apps/devhub/models.py:382
+#: apps/addons/templates/addons/impala/details.html:208 apps/devhub/models.py:382
 msgid "Version {0}"
 msgstr "Versión {0}"
 
-#: apps/addons/templates/addons/impala/details.html:215
+#: apps/addons/templates/addons/impala/details.html:208
 msgid "Info"
 msgstr "Información"
 
-#: apps/addons/templates/addons/impala/details.html:221
+#: apps/addons/templates/addons/impala/details.html:214
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Publicado bajo <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:222 apps/addons/templates/addons/impala/details.html:227 apps/amo/helpers.py:405 apps/devhub/forms.py:139 apps/devhub/forms.py:169
+#: apps/addons/templates/addons/impala/details.html:215 apps/addons/templates/addons/impala/details.html:220 apps/amo/helpers.py:405 apps/devhub/forms.py:139 apps/devhub/forms.py:169
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Licencia personalizada"
 
-#: apps/addons/templates/addons/impala/details.html:226
+#: apps/addons/templates/addons/impala/details.html:219
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Publicado bajo <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:239
+#: apps/addons/templates/addons/impala/details.html:232
 msgid "About this App"
 msgstr "Sobre esta aplicación"
 
-#: apps/addons/templates/addons/impala/details.html:241
+#: apps/addons/templates/addons/impala/details.html:234
 msgid "About this Add-on"
 msgstr "Acerca de este complemento"
 
-#: apps/addons/templates/addons/impala/details.html:258
+#: apps/addons/templates/addons/impala/details.html:251
 msgid "Developer’s Comments"
 msgstr "Comentarios de los desarrolladores"
 
-#: apps/addons/templates/addons/impala/details.html:268
+#: apps/addons/templates/addons/impala/details.html:261
 msgid "Version Information"
 msgstr "Información de la versión"
 
-#: apps/addons/templates/addons/impala/details.html:275
+#: apps/addons/templates/addons/impala/details.html:268
 msgid "See complete version history"
 msgstr "Ver el historial completo de versiones"
 
-#: apps/addons/templates/addons/impala/details.html:287
+#: apps/addons/templates/addons/impala/details.html:280
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
@@ -1247,11 +1247,11 @@ msgstr ""
 "El Canal de desarrollo te permite probar una nueva versión experimental de este complemento antes de su lanzamiento al público en general. Una vez que instales la versión de desarrollo, seguirás "
 "recibiendo actualizaciones de este canal. Para dejar de recibir actualizaciones de desarrollo, reinstala la versión predeterminada desde el enlace anterior."
 
-#: apps/addons/templates/addons/impala/details.html:298
+#: apps/addons/templates/addons/impala/details.html:291
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>Atención:</strong> las versiones de desarrollo de este complemento no han sido valoradas por Mozilla."
 
-#: apps/addons/templates/addons/impala/details.html:326 apps/addons/templates/addons/impala/details.html:338 apps/addons/templates/addons/impala/review_add_box.html:5
+#: apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331 apps/addons/templates/addons/impala/review_add_box.html:5
 #: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:121
 #: mkt/developers/templates/developers/apps/owner.html:74 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:54 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
@@ -1574,7 +1574,7 @@ msgid "Submit a New Theme"
 msgstr "Enviar un nuevo tema"
 
 #: apps/amo/context_processors.py:98 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:71 apps/devhub/helpers.py:105 mkt/site/context_processors.py:37
-#: mkt/templates/mkt/base_desktop.html:53 templates/footer.html:6 templates/menu_links.html:14
+#: templates/footer.html:6 templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "Centro de Desarrolladores"
 
@@ -2323,15 +2323,10 @@ msgstr "Autorizar cadena para {0}"
 #: apps/api/templates/piston/oauth/authorize.html:11
 msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
-"versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul> </li>"
+"versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
-"<p>%(consumer)s quiere autorización para actuar en tu nombre. Esto puede "
-"incluir:</p> <ul><li>Subir, cambiar o eliminar complementos en tu "
-"nombre.</li> <li>Subir, cambiar o eliminar versiones de complementos en tu "
-"nombre.</li> <li>Conocer información personal sobre ti, como tu nombre de "
-"usuario y dirección de correo (pero no tu contraseña).</li> </ul>"
 
-#: apps/api/templates/piston/oauth/authorize.html:30 mkt/developers/templates/developers/payments/includes/account_list.html:61
+#: apps/api/templates/piston/oauth/authorize.html:29 mkt/developers/templates/developers/payments/includes/account_list.html:61
 msgid "Confirm"
 msgstr "Confirmar"
 
@@ -2469,7 +2464,7 @@ msgstr "Eliminar de favoritos"
 #: apps/bandwagon/views.py:89 apps/bandwagon/views.py:174 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:81
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/search/forms.py:18 apps/search/forms.py:92 apps/search/forms.py:105
 #: apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/views.py:73 mkt/developers/views.py:81 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:48 mkt/submit/templates/submit/details.html:55
+#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:44 mkt/submit/templates/submit/details.html:55
 msgid "Name"
 msgstr "Nombre"
 
@@ -2775,12 +2770,12 @@ msgstr "Colaboradores y más"
 #: apps/bandwagon/templates/bandwagon/edit.html:54 apps/bandwagon/templates/bandwagon/edit.html:67 apps/bandwagon/templates/bandwagon/edit.html:82
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:35 apps/devhub/templates/devhub/addons/owner.html:65 apps/devhub/templates/devhub/addons/profile.html:42
 #: apps/devhub/templates/devhub/addons/edit/admin.html:114 apps/devhub/templates/devhub/addons/edit/basic.html:194 apps/devhub/templates/devhub/addons/edit/details.html:115
-#: apps/devhub/templates/devhub/addons/edit/support.html:88 apps/devhub/templates/devhub/addons/edit/technical.html:153 apps/devhub/templates/devhub/addons/forms_shared/media.html:180
+#: apps/devhub/templates/devhub/addons/edit/support.html:75 apps/devhub/templates/devhub/addons/edit/technical.html:153 apps/devhub/templates/devhub/addons/forms_shared/media.html:180
 #: apps/devhub/templates/devhub/payments/in-app-config.html:49 apps/devhub/templates/devhub/payments/premium.html:25 apps/devhub/templates/devhub/payments/voluntary.html:64
-#: apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:295 apps/devhub/templates/devhub/versions/edit.html:127
+#: apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300 apps/devhub/templates/devhub/versions/edit.html:127
 #: apps/translations/templates/translations/trans-menu.html:48 mkt/developers/templates/developers/apps/owner.html:51 mkt/developers/templates/developers/apps/version_edit.html:82
 #: mkt/developers/templates/developers/apps/edit/admin.html:143 mkt/developers/templates/developers/apps/edit/basic.html:147 mkt/developers/templates/developers/apps/edit/details.html:79
-#: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
+#: mkt/developers/templates/developers/apps/edit/support.html:68 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48 mkt/developers/templates/developers/payments/premium.html:67
 #: mkt/developers/templates/developers/payments/premium.html:135 mkt/developers/templates/developers/payments/premium.html:228 mkt/developers/templates/developers/payments/premium.html:239
 #: mkt/developers/templates/developers/payments/premium.html:277
@@ -3416,9 +3411,9 @@ msgstr "Superior al 95% de todos los complementos"
 msgid "All active add-ons"
 msgstr "Todos los complementos activos"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:180 apps/constants/base.py:421 mkt/developers/forms.py:863 mkt/developers/templates/developers/transactions.html:41
-#: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/apps_reviewing.html:64
-#: mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/search_results.html:5
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:180 apps/constants/base.py:421 mkt/developers/forms.py:874 mkt/developers/templates/developers/transactions.html:41
+#: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:22
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:28 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "App"
 
@@ -3568,7 +3563,7 @@ msgstr "Tableta Firefox"
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: apps/constants/base.py:26 mkt/lookup/views.py:159
+#: apps/constants/base.py:26 mkt/lookup/views.py:161
 msgid "Incomplete"
 msgstr "Incompleto"
 
@@ -3628,7 +3623,7 @@ msgstr "Completo"
 msgid "Preliminary"
 msgstr "Preliminar"
 
-#: apps/constants/base.py:146 apps/users/notifications.py:159 mkt/constants/apps.py:10 mkt/developers/templates/developers/apps/owner.html:82
+#: apps/constants/base.py:146 apps/users/notifications.py:159 mkt/constants/apps.py:10 mkt/developers/templates/developers/apps/owner.html:82 mkt/operators/templates/operators/preloads.html:15
 msgid "Developer"
 msgstr "Desarrollador"
 
@@ -3638,7 +3633,7 @@ msgid "Viewer"
 msgstr "Visualizador"
 
 #: apps/constants/base.py:148 mkt/developers/templates/developers/skeleton_impala.html:68 mkt/developers/templates/developers/apps/owner.html:87 mkt/ecosystem/templates/ecosystem/support.html:5
-#: mkt/ecosystem/templates/ecosystem/support.html:13 mkt/templates/mkt/base_desktop.html:55 templates/mobile/header.html:7
+#: mkt/ecosystem/templates/ecosystem/support.html:13 templates/mobile/header.html:7
 msgid "Support"
 msgstr "Asistencia"
 
@@ -3979,7 +3974,7 @@ msgstr "Dólar estadounidense"
 msgid "Chargeback"
 msgstr "Pedir devolución de cargo"
 
-#: apps/constants/payments.py:77 apps/constants/payments.py:84 mkt/receipts/templates/receipts/reissue.html:11
+#: apps/constants/payments.py:77 apps/constants/payments.py:84
 msgid "Purchase"
 msgstr "Adquirir"
 
@@ -4063,7 +4058,7 @@ msgstr "Cambios recientes en %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Cambios recientes en Mis complementos"
 
-#: apps/devhub/forms.py:85 mkt/developers/forms.py:114
+#: apps/devhub/forms.py:85 mkt/developers/forms.py:129
 msgid "Must have at least one owner."
 msgstr "Debe tener al menos un propietario."
 
@@ -4172,7 +4167,7 @@ msgstr "Es necesaria al menos una aplicación compatible."
 msgid "An app already exists on this domain, only one app per domain is allowed."
 msgstr "Ya existe una aplicación en este dominio, sólo se permite una aplicación por dominio."
 
-#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:162 mkt/submit/forms.py:228
+#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:170 mkt/submit/forms.py:236
 msgid "There was an error with your upload. Please try again."
 msgstr "Hay un error con tu envío. Vuelve a intentarlo."
 
@@ -4184,7 +4179,7 @@ msgstr "Ignorar error en la validación"
 msgid "Need at least one platform."
 msgstr "Se necesita al menos una plataforma."
 
-#: apps/devhub/forms.py:545 mkt/submit/forms.py:196
+#: apps/devhub/forms.py:545 mkt/submit/forms.py:204
 msgid "Version %s already exists"
 msgstr "La versión %s ya existe"
 
@@ -4349,7 +4344,7 @@ msgstr "No puede haber más de tres complementos obligatorios."
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Documentación sobre complementos :: Centro de Desarrolladores"
 
-#: apps/devhub/helpers.py:68 apps/devhub/templates/devhub/nav.html:19 mkt/account/templates/account/purchases.html:3 mkt/account/templates/account/includes/nav.html:5
+#: apps/devhub/helpers.py:68 apps/devhub/templates/devhub/nav.html:19 mkt/account/templates/account/includes/nav.html:5
 msgid "My Apps"
 msgstr "Mis aplicaciones"
 
@@ -4432,7 +4427,7 @@ msgid "User Reviews"
 msgstr "Valoraciones de los usuarios"
 
 #: apps/devhub/views.py:335 apps/devhub/views.py:339 apps/devhub/views.py:458 apps/devhub/views.py:481 apps/devhub/views.py:528 apps/devhub/views.py:651 apps/devhub/views.py:1334
-#: mkt/developers/views.py:449 mkt/developers/views_payments.py:102 mkt/developers/views_payments.py:300 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:451 mkt/developers/views_payments.py:102 mkt/developers/views_payments.py:301 mkt/reviewers/views.py:666
 msgid "Changes successfully saved."
 msgstr "Los cambios se han guardado correctamente."
 
@@ -4492,7 +4487,7 @@ msgstr "Validar el complemento"
 msgid "Check Add-on Compatibility"
 msgstr "Comprobar la compatibilidad del complemento"
 
-#: apps/devhub/views.py:800 mkt/developers/views.py:547
+#: apps/devhub/views.py:800 mkt/developers/views.py:549
 msgid "There was an error with the submission."
 msgstr "Ha habido un error en el envío."
 
@@ -4521,7 +4516,7 @@ msgstr "Las imágenes no pueden ser mayores de %dKB."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "La imagen debe ser exactamente de {0} píxeles de ancho y {1} píxeles de alto."
 
-#: apps/devhub/views.py:1279 mkt/developers/views.py:842
+#: apps/devhub/views.py:1279 mkt/developers/views.py:844
 msgid "There was an error uploading your preview."
 msgstr "Ha sucedido un error al subir la vista previa."
 
@@ -4531,9 +4526,7 @@ msgstr "Versión %s borrada."
 
 #: apps/devhub/views.py:1382
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
-"Esta subida ha fallado la validación y puede carecer de resultados de "
-"validación completos. Revísala con atención."
+msgstr "Esta subida ha fallado la validación y puede carecer de resultados de validación completos. Revísala con atención."
 
 #: apps/devhub/views.py:1784
 msgid "Preliminary Review Requested."
@@ -4664,9 +4657,9 @@ msgstr "{0} :: Búsqueda"
 
 #: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/templates/editors/queue.html:27 apps/search/templates/search/collections.html:17
 #: apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18 apps/search/templates/search/mobile/results.html:8 mkt/developers/templates/developers/search.html:9
-#: mkt/lookup/templates/lookup/includes/app_search.html:17 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:7
+#: mkt/lookup/templates/lookup/includes/app_search.html:17 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
 #: mkt/reviewers/forms.py:275 mkt/reviewers/forms.py:277 mkt/reviewers/templates/reviewers/includes/queue_search.html:8 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:9
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:14 mkt/search/forms.py:83 mkt/search/forms.py:85 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:10 mkt/search/forms.py:83 mkt/search/forms.py:85 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
 #: mkt/templates/mkt/header.html:13 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
 msgstr "Buscar"
@@ -5018,15 +5011,11 @@ msgstr "Usa el campo de debajo para subir tu paquete de complemento."
 
 #: apps/devhub/templates/devhub/validate_addon.html:19
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
-"Tras la subida, se ejecuta una serie de pruebas de validación automáticas "
-"para comprobar la compatibilidad con la siguiente versión de la aplicación:"
+msgstr "Tras la subida, se ejecuta una serie de pruebas de validación automáticas para comprobar la compatibilidad con la siguiente versión de la aplicación:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:34
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
-"Tras la subida, se ejecutarán una serie de pruebas de validación automáticas "
-"sobre tu archivo."
+msgstr "Tras la subida, se ejecutarán una serie de pruebas de validación automáticas sobre tu archivo."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5 mkt/developers/templates/developers/validation.html:5
@@ -5119,7 +5108,7 @@ msgstr "Agregar otra aplicación&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:102 apps/devhub/templates/devhub/addons/listing/delete_form.html:47
 #: apps/devhub/templates/devhub/versions/list.html:352 apps/devhub/templates/devhub/versions/list.html:354 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:71
-#: mkt/templates/mkt/base_mobile.html:149 templates/impala/base.html:126 templates/impala/base.html:141 templates/impala/base.html:159 templates/impala/base.html:169
+#: templates/impala/base.html:126 templates/impala/base.html:141 templates/impala/base.html:159 templates/impala/base.html:169
 msgid "Close"
 msgstr "Cerrar"
 
@@ -5168,7 +5157,7 @@ msgstr "Editar lista"
 #: apps/devhub/templates/devhub/addons/edit.html:13 apps/devhub/templates/devhub/includes/macros.html:16 apps/localizers/templates/localizers/categories.html:27
 #: apps/translations/templates/translations/all-locales.html:6 mkt/developers/templates/developers/apps/edit.html:13 mkt/developers/templates/developers/includes/macros.html:17
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:5 mkt/lookup/templates/lookup/app_summary.html:30 mkt/lookup/templates/lookup/user_summary.html:42
-#: mkt/lookup/templates/lookup/user_summary.html:82 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:45
+#: mkt/lookup/templates/lookup/user_summary.html:89 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:45
 msgid "None"
 msgstr "Ninguno"
 
@@ -5337,17 +5326,9 @@ msgstr "Información de ayuda para {0}"
 msgid "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added."
 msgstr "Si deseas mostrar una dirección de correo electrónico para consultas de ayuda, puedes incluirla aquí. Si tienes direcciones diferentes para cada idioma, puedes añadir múltiples traducciones."
 
-#: apps/devhub/templates/devhub/addons/edit/support.html:53 mkt/developers/templates/developers/apps/edit/support.html:48
-msgid ""
-"If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. If you use a "
-"GetSatisfaction URL, users will be able to interact with a GetSatisfaction widget."
+#: apps/devhub/templates/devhub/addons/edit/support.html:52 mkt/developers/templates/developers/apps/edit/support.html:48
+msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
 msgstr ""
-"Si tu complemento tiene un foro o sitio web de asistencia, introduce su dirección aquí. Si tu sitio está traducido a otros idiomas, se pueden añadir múltiples traducciones de este campo. Si usas "
-"una URL de GetSatisfaction, los usuarios podrán interactuar con un widget de GetSatisfaction."
-
-#: apps/devhub/templates/devhub/addons/edit/support.html:74 mkt/developers/templates/developers/apps/edit/support.html:67
-msgid "Get Satisfaction"
-msgstr "Get Satisfaction"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6 mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -5662,8 +5643,8 @@ msgid "Edit details about this app's listing."
 msgstr "Editar detalles sobre la lista de esta aplicación."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:39 mkt/developers/templates/developers/apps/status.html:7
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:57 mkt/developers/templates/developers/apps/preinstall/home.html:3
-#: mkt/developers/templates/developers/apps/preinstall/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:21
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:57 mkt/developers/templates/developers/apps/preload/home.html:3
+#: mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:21
 msgid "Manage Status"
 msgstr "Gestionar estado"
 
@@ -5781,7 +5762,7 @@ msgstr "Escribe una descripción más detallada:"
 msgid "The description will appear on the detail page."
 msgstr "La descripción aparecerá en la página de detalles."
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:75 mkt/submit/forms.py:355
+#: apps/devhub/templates/devhub/addons/submit/describe.html:75 mkt/submit/forms.py:363
 msgid "Support Email:"
 msgstr "Correo de asistencia:"
 
@@ -7060,11 +7041,9 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
-"Many developers provide a support mechanism, such as a forum, discussion group, <a href=\"http://www.getsatisfaction.com\">GetSatisfaction account</a>, or email address. It is recommended that "
-"support questions be posted via those mediums instead of in an add-on's review section."
+"Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
+"review section."
 msgstr ""
-"Muchos desarrolladores proporcionan un mecanismo de asistencia, tal como un foro, un grupo de discusión, una <a href=\"http://www.getsatisfaction.com\">cuenta de GetSatisfaction</a> o una dirección "
-"de correo. Se recomienda que las preguntas de asistencia se envíen a través de estos medios en lugar de la sección de valoración de un complemento."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -8729,7 +8708,7 @@ msgstr "o <a href=\"%(cancel)s\">Cancela</a>"
 msgid "Manage Refunds"
 msgstr "Administrar reembolsos"
 
-#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:868 mkt/developers/templates/developers/transactions.html:44
+#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:879 mkt/developers/templates/developers/transactions.html:44
 #: mkt/developers/templates/developers/payments/refunds.html:7 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
 msgstr "ID de la transacción"
@@ -8872,7 +8851,7 @@ msgstr "Activar colaboradores"
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
 msgstr "o <a id=\"setup-cancel\" href=\"#\">Cancelar</a>"
 
-#: apps/devhub/templates/devhub/payments/includes/paypal.html:13 mkt/submit/forms.py:356
+#: apps/devhub/templates/devhub/payments/includes/paypal.html:13 mkt/submit/forms.py:364
 msgid "The email address used by end users to contact you with support issues and refund requests."
 msgstr "La dirección de correo usada por los usuarios finales para contactar contigo para peticiones de asistencia y solicitudes de reembolso."
 
@@ -8932,7 +8911,7 @@ msgstr "¿Pueden otros compartir tu tema, siempre que se reconozca que tú eres 
 
 #: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
 #: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:231
-#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:302 mkt/submit/forms.py:364
+#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:302 mkt/submit/forms.py:372
 msgid "Yes"
 msgstr "Sí"
 
@@ -8943,7 +8922,7 @@ msgstr "El titular de la licencia permite que otros copien, distribuyan, muestre
 
 #: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
 #: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:232
-#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:64 mkt/reviewers/forms.py:303 mkt/submit/forms.py:365
+#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:303 mkt/submit/forms.py:373
 msgid "No"
 msgstr "No"
 
@@ -8998,65 +8977,67 @@ msgstr "Selecciona una licencia para tu tema."
 msgid "Theme Design"
 msgstr "Diseño de temas"
 
-#: apps/devhub/templates/devhub/personas/edit.html:220 apps/devhub/templates/devhub/personas/edit.html:223
+#: apps/devhub/templates/devhub/personas/edit.html:221 apps/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
 msgstr "Subir un nuevo diseño"
 
-#: apps/devhub/templates/devhub/personas/edit.html:225
+#: apps/devhub/templates/devhub/personas/edit.html:226
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
-"Tras subir el archivo y enviar el formulario, el equipo de AMO revisará tu "
-"diseño actualizado. Tu diseño actual seguirá siendo público mientras tanto."
+msgstr "Tras subir el archivo y enviar el formulario, el equipo de AMO revisará tu diseño actualizado. Tu diseño actual seguirá siendo público mientras tanto."
 
-#: apps/devhub/templates/devhub/personas/edit.html:240
+#: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
 msgstr "Tu diseño reenviado previamente, el cual está pendiente de revisión."
 
-#: apps/devhub/templates/devhub/personas/edit.html:244
+#: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
 msgstr "Cabecera pendiente"
 
-#: apps/devhub/templates/devhub/personas/edit.html:248
+#: apps/devhub/templates/devhub/personas/edit.html:249
 msgid "Pending Footer"
 msgstr "Pie de página pendiente"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
+msgid "You may update your theme design here once it has been approved."
+msgstr ""
+
+#: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
 msgstr "Encabezado"
 
-#: apps/devhub/templates/devhub/personas/edit.html:261
+#: apps/devhub/templates/devhub/personas/edit.html:266
 msgid "Footer"
 msgstr "Pie de página"
 
-#: apps/devhub/templates/devhub/personas/edit.html:265 apps/devhub/templates/devhub/personas/submit.html:167
+#: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
 msgstr "Selecciona colores para tu tema."
 
-#: apps/devhub/templates/devhub/personas/edit.html:267 apps/devhub/templates/devhub/personas/submit.html:169
+#: apps/devhub/templates/devhub/personas/edit.html:272 apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
 msgstr "Texto de primer plano"
 
-#: apps/devhub/templates/devhub/personas/edit.html:268 apps/devhub/templates/devhub/personas/submit.html:170
+#: apps/devhub/templates/devhub/personas/edit.html:273 apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
 msgstr "Este es el color del texto de la pestaña."
 
-#: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:172
+#: apps/devhub/templates/devhub/personas/edit.html:275 apps/devhub/templates/devhub/personas/submit.html:172
 msgid "Background"
 msgstr "Fondo"
 
-#: apps/devhub/templates/devhub/personas/edit.html:271 apps/devhub/templates/devhub/personas/submit.html:173
+#: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:173
 msgid "This is the color of the tabs."
 msgstr "Este es el color de las pestañas."
 
-#: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:178
+#: apps/devhub/templates/devhub/personas/edit.html:281 apps/devhub/templates/devhub/personas/submit.html:178
 msgid "Preview"
 msgstr "Vista previa"
 
-#: apps/devhub/templates/devhub/personas/edit.html:282 apps/devhub/templates/devhub/personas/submit.html:183
+#: apps/devhub/templates/devhub/personas/edit.html:287 apps/devhub/templates/devhub/personas/submit.html:183
 msgid "Your Theme's Name"
 msgstr "Nombre de tu tema"
 
-#: apps/devhub/templates/devhub/personas/edit.html:285 apps/devhub/templates/devhub/personas/submit.html:186
+#: apps/devhub/templates/devhub/personas/edit.html:290 apps/devhub/templates/devhub/personas/submit.html:186
 msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 msgstr "por <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 
@@ -9352,13 +9333,13 @@ msgid "Displayed version: {0}"
 msgstr "Versión mostrada: {0}"
 
 #. {0} is an add-on name.
-#: apps/devhub/templates/devhub/versions/list.html:168 apps/versions/templates/versions/mobile/version_list.html:12 mkt/lookup/templates/lookup/app_summary.html:98
+#: apps/devhub/templates/devhub/versions/list.html:168 apps/versions/templates/versions/mobile/version_list.html:12 mkt/lookup/templates/lookup/app_summary.html:102
 msgid "Version History"
 msgstr "Historial de versiones"
 
 #: apps/devhub/templates/devhub/versions/list.html:176 mkt/developers/templates/developers/apps/status.html:200 mkt/lookup/templates/lookup/app_summary.html:53
-#: mkt/lookup/templates/lookup/app_summary.html:105 mkt/reviewers/forms.py:283 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:19
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7 mkt/reviewers/templates/reviewers/themes/queue_list.html:50
+#: mkt/lookup/templates/lookup/app_summary.html:109 mkt/reviewers/forms.py:283 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:19
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7 mkt/reviewers/templates/reviewers/themes/queue_list.html:46
 msgid "Status"
 msgstr "Estado"
 
@@ -9939,12 +9920,12 @@ msgstr "Complemento"
 msgid "Type"
 msgstr "Tipo"
 
-#: apps/editors/helpers.py:184 mkt/reviewers/templates/reviewers/queue.html:34
+#: apps/editors/helpers.py:184 mkt/reviewers/templates/reviewers/queue.html:30
 msgid "Waiting Time"
 msgstr "Tiempo en espera"
 
 #: apps/editors/helpers.py:185 apps/editors/templates/editors/review.html:280 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/details.html:133 mkt/reviewers/templates/reviewers/includes/mobile_details.html:155
+#: mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/includes/details.html:133 mkt/reviewers/templates/reviewers/includes/mobile_details.html:155
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
 msgstr "Marcas"
@@ -10090,11 +10071,11 @@ msgstr "Complemento que no necesita reiniciar"
 msgid "Premium Add-on"
 msgstr "Complemento Premium"
 
-#: apps/editors/models.py:180 mkt/reviewers/templates/reviewers/apps_reviewing.html:44 mkt/reviewers/templates/reviewers/apps_reviewing.html:84 mkt/reviewers/templates/reviewers/queue.html:63
+#: apps/editors/models.py:180 mkt/reviewers/templates/reviewers/apps_reviewing.html:44 mkt/reviewers/templates/reviewers/apps_reviewing.html:84 mkt/reviewers/templates/reviewers/queue.html:59
 msgid "More Information Requested"
 msgstr "Se ha solicitado más información"
 
-#: apps/editors/models.py:181 mkt/reviewers/templates/reviewers/apps_reviewing.html:47 mkt/reviewers/templates/reviewers/apps_reviewing.html:87 mkt/reviewers/templates/reviewers/queue.html:66
+#: apps/editors/models.py:181 mkt/reviewers/templates/reviewers/apps_reviewing.html:47 mkt/reviewers/templates/reviewers/apps_reviewing.html:87 mkt/reviewers/templates/reviewers/queue.html:62
 msgid "Contains Editor Comment"
 msgstr "Contiene un comentario del editor"
 
@@ -10118,7 +10099,7 @@ msgstr "Ha sucedido un error desconocido."
 msgid "Self-reviews are not allowed."
 msgstr "Las autorevisiones no están permitidas."
 
-#: apps/editors/views.py:501 mkt/reviewers/views.py:336
+#: apps/editors/views.py:501 mkt/reviewers/views.py:350
 msgid "Review successfully processed."
 msgstr "Revisión procesada con éxito."
 
@@ -10197,7 +10178,7 @@ msgstr "Anuncio"
 msgid "Filter"
 msgstr "Filtrar"
 
-#: apps/editors/templates/editors/eventlog.html:30 mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:102
+#: apps/editors/templates/editors/eventlog.html:30 mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:106
 #: mkt/lookup/templates/lookup/transaction_summary.html:20 mkt/reviewers/templates/reviewers/logs.html:16 mkt/reviewers/templates/reviewers/themes/logs.html:16
 msgid "Date"
 msgstr "Fecha"
@@ -10247,7 +10228,7 @@ msgid_plural "{c} unreviewed submissions."
 msgstr[0] "{c} envíos no revisados."
 msgstr[1] "{c} envíos no revisados."
 
-#: apps/editors/templates/editors/home.html:41 mkt/reviewers/templates/reviewers/home.html:41
+#: apps/editors/templates/editors/home.html:41 mkt/reviewers/templates/reviewers/home.html:45
 msgid "Current waiting times:"
 msgstr "Tiempos de espera actuales:"
 
@@ -10257,15 +10238,15 @@ msgid_plural "{0} add-ons"
 msgstr[0] "{0} complemento"
 msgstr[1] "{0} complementos"
 
-#: apps/editors/templates/editors/home.html:50 mkt/reviewers/templates/reviewers/home.html:50
+#: apps/editors/templates/editors/home.html:50 mkt/reviewers/templates/reviewers/home.html:54
 msgid "{0}%"
 msgstr "{0}%"
 
-#: apps/editors/templates/editors/home.html:63 apps/editors/templates/editors/performance.html:37 mkt/reviewers/templates/reviewers/home.html:64 mkt/reviewers/templates/reviewers/themes/home.html:57
+#: apps/editors/templates/editors/home.html:63 apps/editors/templates/editors/performance.html:37 mkt/reviewers/templates/reviewers/home.html:68 mkt/reviewers/templates/reviewers/themes/home.html:61
 msgid "Total Reviews"
 msgstr "Valoraciones totales"
 
-#: apps/editors/templates/editors/home.html:64 mkt/reviewers/templates/reviewers/home.html:65 mkt/reviewers/templates/reviewers/themes/home.html:58
+#: apps/editors/templates/editors/home.html:64 mkt/reviewers/templates/reviewers/home.html:69 mkt/reviewers/templates/reviewers/themes/home.html:62
 msgid "Reviews This Month"
 msgstr "Revisiones este mes"
 
@@ -10405,7 +10386,7 @@ msgstr "Notas de la versión / Notas para el revisor"
 msgid "There are currently no add-ons of this type to review."
 msgstr "No hay ningún complemento de este tipo para revisar."
 
-#: apps/editors/templates/editors/queue.html:176 mkt/reviewers/templates/reviewers/queue.html:116 mkt/reviewers/templates/reviewers/themes/queue_list.html:91
+#: apps/editors/templates/editors/queue.html:176 mkt/reviewers/templates/reviewers/queue.html:112 mkt/reviewers/templates/reviewers/themes/queue_list.html:87
 msgid "Helpful Links:"
 msgstr "Enlaces útiles:"
 
@@ -10413,7 +10394,7 @@ msgstr "Enlaces útiles:"
 msgid "Add-on Policy"
 msgstr "Política sobre complementos"
 
-#: apps/editors/templates/editors/queue.html:179 mkt/reviewers/templates/reviewers/queue.html:117 mkt/reviewers/templates/reviewers/themes/queue_list.html:92
+#: apps/editors/templates/editors/queue.html:179 mkt/reviewers/templates/reviewers/queue.html:113 mkt/reviewers/templates/reviewers/themes/queue_list.html:88
 msgid "Editors' Guide"
 msgstr "Guía de editores"
 
@@ -10848,7 +10829,7 @@ msgid "E-Mail Your Team:"
 msgstr "Envía un correo electrónico a tu equipo:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8 apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12 mkt/constants/submit.py:6
-#: mkt/developers/templates/developers/apps/preinstall/submit.html:11
+#: mkt/developers/templates/developers/apps/preload/submit.html:11
 msgid "Submit"
 msgstr "Enviar"
 
@@ -12666,16 +12647,16 @@ msgstr "Todas las aplicaciones"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
-#: apps/search/views.py:543
+#: apps/search/views.py:548
 msgid "Any {0}"
 msgstr "Cualquier {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
-#: apps/search/views.py:578
+#: apps/search/views.py:583
 msgid "All Systems"
 msgstr "Todos los sistemas"
 
-#: apps/search/views.py:589
+#: apps/search/views.py:594
 msgid "All Tags"
 msgstr "Todas las etiquetas"
 
@@ -12725,7 +12706,7 @@ msgstr[1] "<b>{0}</b> resultados coincidentes"
 msgid "Filter Results"
 msgstr "Filtrar resultados"
 
-#: apps/search/templates/search/results.html:69
+#: apps/search/templates/search/results.html:69 mkt/operators/templates/operators/preloads.html:16
 msgid "Category"
 msgstr "Categoría"
 
@@ -12960,11 +12941,11 @@ msgstr "Registros de usuarios"
 msgid "Custom Date Range"
 msgstr "Rango de fechas personalizado"
 
-#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:874
+#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:885
 msgid "From"
 msgstr "De"
 
-#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:877
+#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:888
 msgid "To"
 msgstr "Para"
 
@@ -14086,23 +14067,6 @@ msgstr "Esto se mostrará públicamente junto con tus calificaciones, coleccione
 msgid "Purchase Date"
 msgstr "Fecha de compra"
 
-#: mkt/account/templates/account/abuse.html:11
-msgid "If you suspect this user violates our policies, please use the form below to describe your concerns. Please do not use this form for any other reason."
-msgstr "Si sospechas que este usuario infringe nuestras políticas, utiliza el formulario para describirlo. No uses este formulario para ningún otro motivo."
-
-#: mkt/account/templates/account/purchases.html:27
-msgid "You have no apps."
-msgstr "No tienes aplicaciones."
-
-#: mkt/account/templates/account/purchases.html:30
-msgid "You must be signed in to view your apps."
-msgstr "Tienes que conectarte para ver tus aplicaciones."
-
-#: mkt/account/templates/account/purchases.html:31 mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:139
-#: mkt/templates/mkt/base_mobile.html:120
-msgid "Sign in / Sign up"
-msgstr "Iniciar sesión / Registrarte"
-
 #: mkt/account/templates/account/helpers/feedback_form.html:15
 msgid "Send"
 msgstr "Enviar"
@@ -14127,7 +14091,7 @@ msgstr "Revertido el %(date)s por %(amt)s"
 msgid "Account"
 msgstr "Cuenta"
 
-#: mkt/account/templates/account/includes/nav.html:6 mkt/templates/mkt/base_desktop.html:19 mkt/templates/mkt/base_desktop.html:54
+#: mkt/account/templates/account/includes/nav.html:6
 msgid "Feedback"
 msgstr "Opinión"
 
@@ -14151,7 +14115,7 @@ msgstr "Color hexadecimal"
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr "Debe ser un código hexadecimal de color válido, p.e. #FF0035."
 
-#: mkt/collections/serializers.py:216
+#: mkt/collections/serializers.py:246
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr "No puedes tener más de una colección de aplicaciones destacadas/estantería del operador en la misma combinación de categoría/operador/región."
 
@@ -14160,7 +14124,7 @@ msgid "The Firefox Marketplace is the official source of apps for the Web Platfo
 msgstr "Firefox Marketplace es la fuente oficial de aplicaciones para la plataforma Web."
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
-#: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:49
+#: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:45
 #: mkt/reviewers/templates/reviewers/themes/single.html:26 mkt/reviewers/templates/reviewers/themes/themes.html:46
 msgid "Reviewer"
 msgstr "Revisor"
@@ -15569,9 +15533,7 @@ msgstr "Compatibilidad con el teclado de terceros"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
-"La aplicación necesita que la plataforma sea compatible teclados de "
-"terceros."
+msgstr "La aplicación necesita que la plataforma sea compatible teclados de terceros."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15717,146 +15679,143 @@ msgstr "(No admitida)"
 msgid "Could not connect to payment server."
 msgstr "No se puede conectar con el servidor de pagos."
 
-#: mkt/developers/forms.py:83
+#: mkt/developers/forms.py:98
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "Todos los miembros del equipo deben haber leído y aceptado el acuerdo para desarrolladores."
 
-#: mkt/developers/forms.py:117
+#: mkt/developers/forms.py:132
 msgid "At least one team member must be listed."
 msgstr "Al menos un miembro del equipo debe aparecer en la lista."
 
-#: mkt/developers/forms.py:121
+#: mkt/developers/forms.py:136
 msgid "A team member can only be listed once."
 msgstr "Los miembros del equipo deben aparecer en la lista sólo una vez."
 
-#: mkt/developers/forms.py:148
+#: mkt/developers/forms.py:163
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr "Vaya, parece que ya enviaste este archivo manifest para %s, que actualmente es público. <a href=\"%s\">Editar aplicación</a>"
 
-#: mkt/developers/forms.py:152
+#: mkt/developers/forms.py:167
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr "Vaya, parece que ya enviaste este archivo manifest para %s, que actualmente está pendiente. <a href=\"%s\">Editar aplicación</a>"
 
-#: mkt/developers/forms.py:156
+#: mkt/developers/forms.py:171
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr "Vaya, parece que ya enviaste este archivo manifest para %s, que actualmente está incompleto. <a href=\"%s\">Reanudar aplicación</a>"
 
-#: mkt/developers/forms.py:160
+#: mkt/developers/forms.py:175
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr "Vaya, parece que ya enviaste este archivo manifest para %s, que actualmente está rechazado. <a href=\"%s\">Editar aplicación</a>"
 
-#: mkt/developers/forms.py:164
+#: mkt/developers/forms.py:179
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled by Mozilla. <a href=\"%s\">Edit app</a>"
 msgstr "Vaya, parece que ya enviaste este archivo manifest para %s, que actualmente está deshabilitado por Mozilla. <a href=\"%s\">Editar aplicación</a>"
 
-#: mkt/developers/forms.py:168
+#: mkt/developers/forms.py:183
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr "Vaya, parece que ya enviaste este archivo manifest para %s, que actualmente está deshabilitado. <a href=\"%s\">Editar aplicación</a>"
 
-#: mkt/developers/forms.py:183
+#: mkt/developers/forms.py:198
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "Ya existe una aplicación en este dominio. Solo se permite una aplicación por dominio."
 
-#: mkt/developers/forms.py:272
+#: mkt/developers/forms.py:287
 msgid "Only one rating from each ratings body may be selected."
 msgstr "Solo se puede seleccionar una valoración de cada organismo de calificación."
 
-#: mkt/developers/forms.py:350 mkt/webapps/models.py:391
+#: mkt/developers/forms.py:368 mkt/webapps/models.py:391
 msgid "You must upload at least one screenshot or video."
 msgstr "Debes subir al menos una captura de pantalla o video."
 
-#: mkt/developers/forms.py:391
+#: mkt/developers/forms.py:409
 msgid "Packaged app too large for submission. Packages must be less than %s."
 msgstr "Aplicación empaquetada demasiado grande para enviarse. Los paquetes no deben exceder %s."
 
-#: mkt/developers/forms.py:403
+#: mkt/developers/forms.py:421
 msgid "Error extracting manifest from zip file."
 msgstr "Error al extraer manifest del archivo zip."
 
-#: mkt/developers/forms.py:456
+#: mkt/developers/forms.py:474
 msgid "Provide a detailed description of your app"
 msgstr "Proporciona una descripción detallada de tu aplicación"
 
-#: mkt/developers/forms.py:457 mkt/submit/forms.py:337
+#: mkt/developers/forms.py:475 mkt/submit/forms.py:345
 msgid "This description will appear on the details page."
 msgstr "Esta descripción aparecerá en la página de detalles."
 
-#: mkt/developers/forms.py:529
+#: mkt/developers/forms.py:547
 msgid "Please specify your app's Privacy Policy"
 msgstr "Especifica la política de privacidad de tu aplicación"
 
-#: mkt/developers/forms.py:550
+#: mkt/developers/forms.py:568
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "Antes de cambiar tu idioma predeterminado, debes tener un nombre y una descripción en dicho idioma. Te falta %s."
 
-#: mkt/developers/forms.py:612
+#: mkt/developers/forms.py:623
 msgid "Your comments"
 msgstr "Tus comentarios"
 
-#: mkt/developers/forms.py:635
+#: mkt/developers/forms.py:646
 msgid "Choose the regions your app will be listed in:"
 msgstr "Elige las regiones en las que se mostrará tu aplicación:"
 
-#: mkt/developers/forms.py:639 mkt/developers/forms.py:690
+#: mkt/developers/forms.py:650 mkt/developers/forms.py:701
 msgid "You must select at least one region."
 msgstr "Debes elegir al menos una región."
 
-#: mkt/developers/forms.py:641
+#: mkt/developers/forms.py:652
 msgid "Enable new regions"
 msgstr "Habilitar nuevas regiones"
 
-#: mkt/developers/forms.py:802
+#: mkt/developers/forms.py:813
 msgid "Agree"
 msgstr "Acepto"
 
-#: mkt/developers/forms.py:819
+#: mkt/developers/forms.py:830
 msgid "Please enter a valid email address."
 msgstr "Introduce una dirección de correo electrónico válida."
 
-#: mkt/developers/forms.py:822
+#: mkt/developers/forms.py:833
 msgid "Your email address"
 msgstr "Tu dirección de correo electrónico"
 
-#: mkt/developers/forms.py:825
+#: mkt/developers/forms.py:836
 msgid "Text"
 msgstr "Texto"
 
-#: mkt/developers/forms.py:829
+#: mkt/developers/forms.py:840
 msgid "You must agree to the Privacy Policy."
 msgstr "Debes aceptar la política de privacidad."
 
-#: mkt/developers/forms.py:830 mkt/developers/forms_payments.py:396 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:841 mkt/developers/forms_payments.py:396 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "País"
 
-#: mkt/developers/forms.py:865
+#: mkt/developers/forms.py:876
 msgid "Transaction Type"
 msgstr "Tipo de transacción"
 
-#: mkt/developers/forms.py:919
+#: mkt/developers/forms.py:930
 msgid "I agree to the Terms and Conditions"
 msgstr "Estoy de acuerdo con los términos y las condiciones"
 
-#: mkt/developers/forms.py:921
+#: mkt/developers/forms.py:932
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "Carga tu plan de pruebas (.pdf, .xls menores de 2.5 MB)"
 
-#: mkt/developers/forms.py:930
+#: mkt/developers/forms.py:941
 msgid "Test plan required."
 msgstr "Se necesita un plan de pruebas."
 
-#: mkt/developers/forms.py:937
+#: mkt/developers/forms.py:948
 msgid "File too large. Keep size under %s. Current size %s."
-msgstr ""
-"El archivo es demasiado grande. Asegúrate de que el tamaño es menor de %s. "
-"Tamaño actual %s."
+msgstr "El archivo es demasiado grande. Asegúrate de que el tamaño es menor de %s. Tamaño actual %s."
 
-#: mkt/developers/forms.py:943
+#: mkt/developers/forms.py:954
 msgid "Invalid file type. Only %s files are supported."
-msgstr ""
-"El tipo del archivo no es válido. Solamente los archivos %s son compatibles."
+msgstr "El tipo del archivo no es válido. Solamente los archivos %s son compatibles."
 
-#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:261
+#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:269
 msgid "App Price"
 msgstr "Precio de la aplicación"
 
@@ -16016,7 +15975,7 @@ msgstr "Cuenta sin configurar"
 msgid "Developers"
 msgstr "Desarrolladores"
 
-#: mkt/developers/models.py:161
+#: mkt/developers/models.py:167
 msgid "Bango"
 msgstr "Bango"
 
@@ -16094,47 +16053,47 @@ msgstr "Aplicación enviada con éxito."
 msgid "New version successfully added."
 msgstr "Se agregó con éxito la versión nueva."
 
-#: mkt/developers/views.py:322
-msgid "Application for preinstall successfully submitted."
-msgstr "La solicitud de preinstalación se ha enviado correctamente."
+#: mkt/developers/views.py:324
+msgid "Application for preload successfully submitted."
+msgstr ""
 
-#: mkt/developers/views.py:325
+#: mkt/developers/views.py:327
 msgid "There was an error with the form."
 msgstr "Ha habido un error en el formulario."
 
-#: mkt/developers/views.py:359
+#: mkt/developers/views.py:361
 msgid "Version successfully edited."
 msgstr "Se hizo pública la versión correctamente."
 
-#: mkt/developers/views.py:400
+#: mkt/developers/views.py:402
 msgid "Version successfully made public."
 msgstr "Se hizo pública la versión correctamente."
 
-#: mkt/developers/views.py:415
+#: mkt/developers/views.py:417
 msgid "Version \"{0}\" deleted."
 msgstr "Versión \"{0}\" eliminada."
 
-#: mkt/developers/views.py:893
+#: mkt/developers/views.py:895
 msgid "Terms of service accepted."
 msgstr "Se aceptaron los términos del servicio."
 
-#: mkt/developers/views.py:906
+#: mkt/developers/views.py:908
 msgid "Users with the admin role cannot use the API."
 msgstr "Los usuarios con derechos de administrador no pueden utilizar la API."
 
-#: mkt/developers/views.py:914
+#: mkt/developers/views.py:916
 msgid "No such API key."
 msgstr "No se encuentra la clave de API."
 
-#: mkt/developers/views.py:926
+#: mkt/developers/views.py:928
 msgid "New API key generated."
 msgstr "Se generó una nueva clave API."
 
-#: mkt/developers/views.py:944
+#: mkt/developers/views.py:946
 msgid "Created blocklisted version."
 msgstr "Versión no listada creada."
 
-#: mkt/developers/views.py:946
+#: mkt/developers/views.py:948
 msgid "App already blocklisted."
 msgstr "La aplicación ya no se lista."
 
@@ -16150,19 +16109,19 @@ msgstr "Tarjeta de crédito"
 msgid "Carrier"
 msgstr "Operador"
 
-#: mkt/developers/views_payments.py:252
+#: mkt/developers/views_payments.py:253
 msgid "Secret was reset successfully."
 msgstr "El secreto ha sido reiniciado con éxito."
 
-#: mkt/developers/views_payments.py:256
+#: mkt/developers/views_payments.py:257
 msgid "Key and secret were created successfully."
 msgstr "La clave y el secreto se han creado con éxito."
 
-#: mkt/developers/views_payments.py:282
+#: mkt/developers/views_payments.py:283
 msgid "Your app is not configured for in-app payments."
 msgstr "Tu aplicación no está configurada para pagos en la aplicación."
 
-#: mkt/developers/views_payments.py:288
+#: mkt/developers/views_payments.py:289
 msgid "No payment account for this app."
 msgstr "No hay cuenta de pago para esta aplicación."
 
@@ -16214,6 +16173,10 @@ msgstr "Iniciar sesión"
 msgid "You must sign in to proceed."
 msgstr "Debes iniciar la sesión para continuar."
 
+#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:139
+msgid "Sign in / Sign up"
+msgstr "Iniciar sesión / Registrarte"
+
 #: mkt/developers/templates/developers/nav.html:36 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
 msgstr "Probar las aplicaciones"
@@ -16262,7 +16225,7 @@ msgstr "Algunas características están temporalmente deshabilitadas mientras re
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr "Los términos del servicio se modificaron desde la última vez que los aceptaste. Lee y acepta los <a href=\"%(url)s\">términos nuevos</a>."
 
-#: mkt/developers/templates/developers/skeleton_impala.html:131 mkt/templates/mkt/base_mobile.html:112
+#: mkt/developers/templates/developers/skeleton_impala.html:131
 msgid "Please sign in"
 msgstr "Por favor, conéctate"
 
@@ -16289,9 +16252,7 @@ msgstr "Probar"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
-msgstr ""
-"Utiliza estas herramientas para probar tus aplicaciones antes de enviarlas "
-"al Marketplace de Firefox."
+msgstr "Utiliza estas herramientas para probar tus aplicaciones antes de enviarlas al Marketplace de Firefox."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -16477,8 +16438,7 @@ msgstr "Estado de la aplicación preinstalada"
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
-msgstr ""
-"<strong class=\"submitted\">Solicitud enviada</strong> el %(last_submission)s"
+msgstr "<strong class=\"submitted\">Solicitud enviada</strong> el %(last_submission)s"
 
 #: mkt/developers/templates/developers/apps/status.html:122
 msgid "Not Submitted"
@@ -16494,9 +16454,7 @@ msgstr "Ver el último plan de pruebas que has enviado"
 
 #: mkt/developers/templates/developers/apps/status.html:135
 msgid "Learn how to get your app pre-installed on FirefoxOS devices"
-msgstr ""
-"Aprende cómo conseguir que tu aplicación esté preinstalada en los "
-"dispositivos FirefoxOS"
+msgstr "Aprende cómo conseguir que tu aplicación esté preinstalada en los dispositivos FirefoxOS"
 
 #: mkt/developers/templates/developers/apps/status.html:138
 msgid "Update your test plan"
@@ -16890,8 +16848,8 @@ msgid "Transactions"
 msgstr "Transacciones"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:81
-msgid "Communication"
-msgstr "Comunicación"
+msgid "Messages"
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:11
 msgid "This app will be deleted automatically after a few days if the submission process is not completed."
@@ -16920,45 +16878,36 @@ msgstr "Precio:"
 msgid "Change Devices"
 msgstr "Cambiar de dispositivos"
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:10 mkt/developers/templates/developers/apps/preinstall/submit.html:10
-msgid "Preinstalled"
-msgstr "Preinstalado"
+#: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
+msgid "Preloaded"
+msgstr ""
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:16
-msgid "Preinstalled App"
-msgstr "Aplicación preinstalada"
+#: mkt/developers/templates/developers/apps/preload/home.html:16
+msgid "Preloaded App"
+msgstr ""
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:21
+#: mkt/developers/templates/developers/apps/preload/home.html:21
 msgid "Download the test plan"
 msgstr "Descargar el plan de pruebas"
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:27
+#: mkt/developers/templates/developers/apps/preload/home.html:27
 msgid "Testing Finished?"
 msgstr "¿Has terminado las pruebas?"
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:30 mkt/developers/templates/developers/apps/preinstall/submit.html:36
-msgid "Submit your app for preinstall"
-msgstr "Propón tu aplicación para preinstalar"
-
-#: mkt/developers/templates/developers/apps/preinstall/home_help.html:1
-msgid ""
-"You can submit your to be considered for being <strong>preinstalled and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preinstallation, you may download a test template "
-"from us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preinstall submission form</a>. We will store your test results on "
-"our servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
+#: mkt/developers/templates/developers/apps/preload/home.html:30 mkt/developers/templates/developers/apps/preload/submit.html:36
+msgid "Submit your app for preload"
 msgstr ""
-"Puedes enviar la tuya para que consideremos si será <strong>preinstalada y "
-"suministrada en los dispositivos con FirefoxOS</strong> por los operadores "
-"de telefonía. Para optar por la preinstalación puedes descargar una de "
-"nuestras plantillas de pruebas, probar tu aplicación, rellenar la plantilla "
-"y devolvernos los resultados desde el <a href=\"%(submit_url)s\">formulario de "
-"propuesta de preinstalación de una aplicación</a>. Guardaremos los "
-"resultados de tu prueba en nuestros servidores, donde serán revisados por "
-"los operadores de telefonía que estén interesados. Si tienes más preguntas, "
-"envíanos un correo electrónico a %(email)s."
 
-#: mkt/developers/templates/developers/apps/preinstall/submit.html:18
-msgid "Preinstalled App Terms and Conditions"
-msgstr "Términos y condiciones para la preinstalación de aplicaciones"
+#: mkt/developers/templates/developers/apps/preload/home_help.html:1
+msgid ""
+"You can submit your to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from us "
+"below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our servers "
+"where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/preload/submit.html:18
+msgid "Preloaded App Terms and Conditions"
+msgstr ""
 
 # 82%
 # 100%
@@ -16983,8 +16932,8 @@ msgid "View Transactions"
 msgstr "Ver transacciones"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:36
-msgid "View Communication Dashboard"
-msgstr "Ver el panel de comunicaciones"
+msgid "View Messages"
+msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
@@ -17122,9 +17071,7 @@ msgstr "Regiones disponibles"
 
 #: mkt/developers/templates/developers/payments/premium.html:183
 msgid "Check out the <a href=\"%(status_url)s\">status page</a> to see what countries are currently enabled for sale."
-msgstr ""
-"Visita la <a href=\"%(status_url)s\">página de estado</a> para ver en qué "
-"países está disponible actualmente la venta."
+msgstr "Visita la <a href=\"%(status_url)s\">página de estado</a> para ver en qué países está disponible actualmente la venta."
 
 #: mkt/developers/templates/developers/payments/premium.html:191
 msgid "Your app will be available in the following selected regions:"
@@ -17217,6 +17164,7 @@ msgid "Modify"
 msgstr "Modificar"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:46
+#: mkt/lookup/templates/lookup/app_summary.html:95
 msgid "View transactions"
 msgstr "Ver las transacciones"
 
@@ -18578,7 +18526,7 @@ msgid "Open Web Apps for Android"
 msgstr "Aplicaciones web abiertas para Android"
 
 #: mkt/ecosystem/templates/ecosystem/build_payments.html:5 mkt/ecosystem/templates/ecosystem/macros.html:183 mkt/lookup/templates/lookup/app_summary.html:69
-#: mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47 mkt/reviewers/templates/reviewers/queue.html:37
+#: mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47 mkt/reviewers/templates/reviewers/queue.html:33
 msgid "Payments"
 msgstr "Pagos"
 
@@ -19391,29 +19339,21 @@ msgid ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</"
 "a>"
 msgstr ""
-"<a href=\"%(us_ebay_url)s\" class=\"button\">Comprar en la tienda de EE.UU.</a> "
-"<a href=\"%(uk_ebay_url)s\" class=\"button\">Comprar en la tienda de Reino "
-"Unido</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Comprar en la tienda de "
-"Hong Kong</a>"
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Comprar en la tienda de EE.UU.</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Comprar en la tienda de Reino Unido</a> <a href=\"%(hk_ebay_url)s\" "
+"class=\"button\">Comprar en la tienda de Hong Kong</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid ""
 "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
-"Después de un arduo trabajo junto a ZTE estamos orgullosos de anunciar el "
-"lanzamiento del teléfono ZTE OPEN con Firefox OS, un potente dispositivo "
-"dirigido a los desarrolladores y pioneros de todo el mundo. Estos "
-"dispositivos están disponibles en las tiendas eBay de ZTE de Estados Unidos, "
-"Reino Unido y Hong Kong, a un precio de $79.99/£59.99, y estarán "
-"desbloqueados y abiertos para hacer pruebas y experimentación. <a href=\"%"
-"(zte_url)s\">Lee más detalles.</a>"
+"Después de un arduo trabajo junto a ZTE estamos orgullosos de anunciar el lanzamiento del teléfono ZTE OPEN con Firefox OS, un potente dispositivo dirigido a los desarrolladores y pioneros de todo "
+"el mundo. Estos dispositivos están disponibles en las tiendas eBay de ZTE de Estados Unidos, Reino Unido y Hong Kong, a un precio de $79.99/£59.99, y estarán desbloqueados y abiertos para hacer "
+"pruebas y experimentación. <a href=\"%(zte_url)s\">Lee más detalles.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
-msgstr ""
-"NOTA: los nuevos dispositivos están disponibles en Hong Kong para reducir "
-"los costes de envío a los usuarios de Asia y Oceanía."
+msgstr "NOTA: los nuevos dispositivos están disponibles en Hong Kong para reducir los costes de envío a los usuarios de Asia y Oceanía."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:77
 msgid "Peak"
@@ -19438,11 +19378,8 @@ msgid ""
 "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-"
 "to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
 msgstr ""
-"<strong>Si acabas de recibir un Geeksphone Keon o Peak, es posible que aún "
-"tenga instalada la versión descatualizada de Firefox OS 1.0.1. Antes de "
-"hacer cualquier otra cosa con él, deberías actualizarlo a la última versión "
-"de Firefox OS, como se describe en nuestra <a href=\"%"
-"(geeksphone_update_url)s\">guía para actualizar tu Geeksphone</a>.</strong>"
+"<strong>Si acabas de recibir un Geeksphone Keon o Peak, es posible que aún tenga instalada la versión descatualizada de Firefox OS 1.0.1. Antes de hacer cualquier otra cosa con él, deberías "
+"actualizarlo a la última versión de Firefox OS, como se describe en nuestra <a href=\"%(geeksphone_update_url)s\">guía para actualizar tu Geeksphone</a>.</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
@@ -20049,21 +19986,15 @@ msgstr "Desarrolla aplicaciones web HTML5 para un mercado abierto."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr ""
-"Aprende a diseñar aplicaciones que proporcionan una experiencia del usuario "
-"optimizada para Firefox OS &amp; Mobile"
+msgstr "Aprende a diseñar aplicaciones que proporcionan una experiencia del usuario optimizada para Firefox OS &amp; Mobile"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr ""
-"Todas las herramientas, documentos y referencias que vas a necesitar para el "
-"desarrollo y las pruebas de tu aplicación"
+msgstr "Todas las herramientas, documentos y referencias que vas a necesitar para el desarrollo y las pruebas de tu aplicación"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr ""
-"Descubre la manera de distribuir tus aplicaciones a un mercado abierto que "
-"sitúa en primer lugar a los usuarios y desarrolladores"
+msgstr "Descubre la manera de distribuir tus aplicaciones a un mercado abierto que sitúa en primer lugar a los usuarios y desarrolladores"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -20094,10 +20025,8 @@ msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
-"Crear aplicaciones para la web proporciona a los desarrolladores un control "
-"total sobre el contenido, la funcionalidad y cómo se distribuyen las "
-"aplicaciones, incluido el acceso a cientos de millones de usuarios de "
-"Firefox a través del Marketplace de Firefox."
+"Crear aplicaciones para la web proporciona a los desarrolladores un control total sobre el contenido, la funcionalidad y cómo se distribuyen las aplicaciones, incluido el acceso a cientos de "
+"millones de usuarios de Firefox a través del Marketplace de Firefox."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -20112,33 +20041,24 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
-"El Marketplace de Firefox ofrece a los usuarios la oportunidad de encontrar, "
-"probar y comprar las aplicaciones y el contenido que más les interese. Esto "
-"quiere decir aplicaciones interesantes, útiles y de alta calidad "
-"relacionadas con los mercados locales a través de todas las categorías que "
-"los usuarios pueden utilizar para sacar el máximo partido a su vida diaria."
+"El Marketplace de Firefox ofrece a los usuarios la oportunidad de encontrar, probar y comprar las aplicaciones y el contenido que más les interese. Esto quiere decir aplicaciones interesantes, "
+"útiles y de alta calidad relacionadas con los mercados locales a través de todas las categorías que los usuarios pueden utilizar para sacar el máximo partido a su vida diaria."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
-"El alcance global de Mozilla se extiende a cientos de millones de usuarios "
-"de Firefox en todo el mundo. A través de una clasificación, organización y "
-"presentación inteligente en Marketplace y un uso eficaz de los canales de "
-"marketing de Mozilla, Mozilla puede ayudar a los desarrolladores a que hagan "
-"llegar sus aplicaciones a las manos de los usuarios finales de todo el "
-"mundo."
+"El alcance global de Mozilla se extiende a cientos de millones de usuarios de Firefox en todo el mundo. A través de una clasificación, organización y presentación inteligente en Marketplace y un "
+"uso eficaz de los canales de marketing de Mozilla, Mozilla puede ayudar a los desarrolladores a que hagan llegar sus aplicaciones a las manos de los usuarios finales de todo el mundo."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid ""
 "Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your "
 "app to:"
 msgstr ""
-"Antes del lanzamiento público a finales de este año, Mozilla abrirá el "
-"Marketplace para las pruebas de usuario. Aprovecha esto para ser uno de los "
-"primeros desarrolladores de aplicaciones en la creación de una base de datos "
-"de usuarios. Envía tu aplicación a:"
+"Antes del lanzamiento público a finales de este año, Mozilla abrirá el Marketplace para las pruebas de usuario. Aprovecha esto para ser uno de los primeros desarrolladores de aplicaciones en la "
+"creación de una base de datos de usuarios. Envía tu aplicación a:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:200
 msgid "Test your app with a committed group of early adopters."
@@ -20150,8 +20070,7 @@ msgstr "Crear una base inicial de fans y ganar popularidad,"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:208
 msgid "Target tech savvy consumers with your app."
-msgstr ""
-"Dirige tu aplicación hacía los consumidores con conocimientos tecnológicos."
+msgstr "Dirige tu aplicación hacía los consumidores con conocimientos tecnológicos."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Firefox Apps &amp; Hacks"
@@ -20160,9 +20079,7 @@ msgstr "Firefox Apps y Hacks"
 #: mkt/ecosystem/templates/ecosystem/landing.html:236
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
-"Suscríbete a nuestro boletín de noticias mensual sobre Firefox OS, "
-"Marketplace y el ecosistema de aplicaciones. <a href=\"%"
-"(dev_phone_url)s\">Échale un vistazo al avance del teléfono para "
+"Suscríbete a nuestro boletín de noticias mensual sobre Firefox OS, Marketplace y el ecosistema de aplicaciones. <a href=\"%(dev_phone_url)s\">Échale un vistazo al avance del teléfono para "
 "desarrolladores</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:247
@@ -21693,27 +21610,27 @@ msgstr "Escribe los datos para reembolsar la transacción"
 msgid "Reason for Deletion"
 msgstr "Motivo para borrarla"
 
-#: mkt/lookup/views.py:149
+#: mkt/lookup/views.py:151
 msgid "Currently unable to retrieve refund status."
 msgstr "En este momento, no es posible saber el estado del reembolso."
 
-#: mkt/lookup/views.py:176
+#: mkt/lookup/views.py:178
 msgid "A refund has already been processed."
 msgstr "Ya se ha procesado un reembolso."
 
-#: mkt/lookup/views.py:199
+#: mkt/lookup/views.py:201
 msgid "You cannot make a refund request for this transaction."
 msgstr "No se puede realizar una solicitud de reembolso de esta transacción."
 
-#: mkt/lookup/views.py:221
+#: mkt/lookup/views.py:223
 msgid "Refund for this transaction now pending."
 msgstr "El reembolso de esta transacción está pendiente."
 
-#: mkt/lookup/views.py:230
+#: mkt/lookup/views.py:232
 msgid "Refund for this transaction successfully approved."
 msgstr "Aprobado el reembolso de esta transacción."
 
-#: mkt/lookup/views.py:235
+#: mkt/lookup/views.py:237
 msgid "Refund request for this transaction failed."
 msgstr "Error al solicitar reembolso de esta transacción."
 
@@ -21769,11 +21686,15 @@ msgstr "{0} aprobados"
 msgid "{0} rejected"
 msgstr "{0} rechazados"
 
-#: mkt/lookup/templates/lookup/app_summary.html:103
+#: mkt/lookup/templates/lookup/app_summary.html:94 mkt/lookup/templates/lookup/user_summary.html:54
+msgid "Bango portal"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "Version (ID)"
 msgstr "Versión (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:104
+#: mkt/lookup/templates/lookup/app_summary.html:108
 msgid "Filename (ID, Size)"
 msgstr "Nombre de archivo (ID, tamaño)"
 
@@ -21827,6 +21748,10 @@ msgstr "Actualizaciones de la cuenta"
 msgid "Purchase results for"
 msgstr "Resultados de compra para"
 
+#: mkt/lookup/templates/lookup/user_purchases.html:25
+msgid "This user has not purchased any apps."
+msgstr ""
+
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
 msgstr "Resultados de búsquedas de cuentas para"
@@ -21863,48 +21788,53 @@ msgstr "solicitado"
 msgid "auto-approved"
 msgstr "aprobado automáticamente"
 
+#. The account is the name of the payment account.
 #: mkt/lookup/templates/lookup/user_summary.html:57
+msgid "View transactions for: {account}"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/user_summary.html:64
 msgid "Developer Program"
 msgstr "Programa de desarrolladores"
 
-#: mkt/lookup/templates/lookup/user_summary.html:59
+#: mkt/lookup/templates/lookup/user_summary.html:66
 msgid "Read agreement"
 msgstr "Leer el acuerdo"
 
-#: mkt/lookup/templates/lookup/user_summary.html:67
+#: mkt/lookup/templates/lookup/user_summary.html:74
 msgid "Addresses"
 msgstr "Direcciones"
 
-#: mkt/lookup/templates/lookup/user_summary.html:86
+#: mkt/lookup/templates/lookup/user_summary.html:93
 msgid "Submissions"
 msgstr "Envíos"
 
-#: mkt/lookup/templates/lookup/user_summary.html:93
+#: mkt/lookup/templates/lookup/user_summary.html:100
 msgid "Unnamed"
 msgstr "Sin nombre"
 
-#: mkt/lookup/templates/lookup/user_summary.html:104 mkt/lookup/templates/lookup/user_summary.html:112 mkt/lookup/templates/lookup/user_summary.html:116
-#: mkt/lookup/templates/lookup/user_summary.html:120
+#: mkt/lookup/templates/lookup/user_summary.html:111 mkt/lookup/templates/lookup/user_summary.html:119 mkt/lookup/templates/lookup/user_summary.html:123
+#: mkt/lookup/templates/lookup/user_summary.html:127
 msgid "Delete User"
 msgstr "Borrar usuario"
 
-#: mkt/lookup/templates/lookup/user_summary.html:107
+#: mkt/lookup/templates/lookup/user_summary.html:114
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
 msgstr "Al borrar este usuario, se eliminará su cuenta de usuario <strong>definitivamente</strong>."
 
-#: mkt/lookup/templates/lookup/user_summary.html:117
+#: mkt/lookup/templates/lookup/user_summary.html:124
 msgid "Are you sure you wish to delete this user?"
 msgstr "¿Seguro que quieres borrar a este usuario?"
 
-#: mkt/lookup/templates/lookup/user_summary.html:127
+#: mkt/lookup/templates/lookup/user_summary.html:134
 msgid "This user has already been deleted."
 msgstr "Este usuario ya ha sido borrado."
 
-#: mkt/lookup/templates/lookup/user_summary.html:129
+#: mkt/lookup/templates/lookup/user_summary.html:136
 msgid "Deleted by"
 msgstr "Borrado por"
 
-#: mkt/lookup/templates/lookup/user_summary.html:132 mkt/reviewers/templates/reviewers/themes/history_table.html:10
+#: mkt/lookup/templates/lookup/user_summary.html:139 mkt/reviewers/templates/reviewers/themes/history_table.html:10
 msgid "Reason"
 msgstr "Motivo"
 
@@ -21936,9 +21866,37 @@ msgstr "Análisis de la ap."
 msgid "Lookup"
 msgstr "Búsqueda"
 
-#: mkt/lookup/templates/lookup/includes/user_search.html:5
+#: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
 msgstr "Búsqueda de cuentas"
+
+#: mkt/operators/helpers.py:12
+msgid "Operator Dashboard"
+msgstr ""
+
+#: mkt/operators/templates/operators/base.html:12
+msgid "<small>Operator</small> Dashboard"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
+msgid "Preload Candidates"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:17
+msgid "Preload Opt-in"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:18
+msgid "Test Plan"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:41
+msgid "{0}, {1}"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:55
+msgid "No preload candidates found"
+msgstr ""
 
 #. L10n: {0} is the addon name.
 #: mkt/purchase/webpay.py:42
@@ -21946,7 +21904,7 @@ msgid "Firefox Marketplace purchase of {0}"
 msgstr "Compra de {0} en Firefox Marketplace"
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/webpay_tasks.py:30
+#: mkt/purchase/webpay_tasks.py:27
 msgid "Receipt for {0}"
 msgstr "Recibo para {0}"
 
@@ -22050,7 +22008,7 @@ msgstr "Cualquier estado"
 msgid "Attachment:"
 msgstr "Adjunto:"
 
-#: mkt/reviewers/forms.py:39 mkt/submit/forms.py:336
+#: mkt/reviewers/forms.py:39 mkt/submit/forms.py:344
 msgid "Description:"
 msgstr "Descripción:"
 
@@ -22265,7 +22223,7 @@ msgstr "Solo los revisores experimentados pueden revisar las aplicaciones de la 
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Dispositivo(s) cambiado(s) por el revisor: {0}"
 
-#: mkt/reviewers/views.py:303 mkt/reviewers/views.py:324 mkt/submit/forms.py:33 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:303 mkt/reviewers/views.py:324 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
 msgstr "Eliminados {0}"
 
@@ -22274,7 +22232,11 @@ msgstr "Eliminados {0}"
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Requisitos modificados por el revisor: {0}"
 
-#: mkt/reviewers/views_themes.py:311
+#: mkt/reviewers/views.py:348
+msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
+msgstr ""
+
+#: mkt/reviewers/views_themes.py:303
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 "Tu tema se ha publicado correctamente. Otros revisores pueden revisar ahora los temas publicados. Es posible que tengas que actualizar la página para ver los cambios reflejados en la siguiente "
@@ -22284,19 +22246,19 @@ msgstr ""
 msgid "You are currently not reviewing any apps."
 msgstr "Actualmente no estás revisando ninguna aplicación."
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/search_results.html:6
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:35 mkt/reviewers/templates/reviewers/apps_reviewing.html:75 mkt/reviewers/templates/reviewers/queue.html:51
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:35 mkt/reviewers/templates/reviewers/apps_reviewing.html:75 mkt/reviewers/templates/reviewers/queue.html:47
 msgid "Packaged App"
 msgstr "Aplicación empaquetada"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:38 mkt/reviewers/templates/reviewers/apps_reviewing.html:78 mkt/reviewers/templates/reviewers/queue.html:57
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:38 mkt/reviewers/templates/reviewers/apps_reviewing.html:78 mkt/reviewers/templates/reviewers/queue.html:53
 msgid "Blocklisted App"
 msgstr "Aplicación en lista de bloqueo"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:41 mkt/reviewers/templates/reviewers/apps_reviewing.html:81 mkt/reviewers/templates/reviewers/queue.html:60
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:41 mkt/reviewers/templates/reviewers/apps_reviewing.html:81 mkt/reviewers/templates/reviewers/queue.html:56
 msgid "Premium App"
 msgstr "Aplicación Premium"
 
@@ -22304,31 +22266,31 @@ msgstr "Aplicación Premium"
 msgid "<small>Marketplace</small> Reviewer Tools"
 msgstr "Herramientas del revisor de <small>Marketplace</small>"
 
-#: mkt/reviewers/templates/reviewers/home.html:13
+#: mkt/reviewers/templates/reviewers/home.html:17
 msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
 msgstr[0] "Revisión de aplicaciones pendiente {num}"
 msgstr[1] "Revisiones de aplicaciones pendientes {num}"
 
-#: mkt/reviewers/templates/reviewers/home.html:20
+#: mkt/reviewers/templates/reviewers/home.html:24
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
 msgstr[0] "{num} re-revisión"
 msgstr[1] "{num} re-revisiones"
 
-#: mkt/reviewers/templates/reviewers/home.html:27
+#: mkt/reviewers/templates/reviewers/home.html:31
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
 msgstr[0] "{num} Actualizar revisión"
 msgstr[1] "{num} Actualizar revisiones"
 
-#: mkt/reviewers/templates/reviewers/home.html:36
+#: mkt/reviewers/templates/reviewers/home.html:40
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
 msgstr[0] "{c} envío de aplicaciones sin revisar esta semana."
 msgstr[1] "{c} envíos de aplicaciones sin revisar esta semana."
 
-#: mkt/reviewers/templates/reviewers/home.html:49
+#: mkt/reviewers/templates/reviewers/home.html:53
 msgid "{0} app"
 msgid_plural "{0} apps"
 msgstr[0] "{0} aplicación"
@@ -22346,19 +22308,19 @@ msgstr "La aplicación ha sido borrada."
 msgid "Reviewer Scores for {0}"
 msgstr "Puntuaciones del revisor por {0}"
 
-#: mkt/reviewers/templates/reviewers/queue.html:53
+#: mkt/reviewers/templates/reviewers/queue.html:49
 msgid "Privileged App"
 msgstr "Aplicación con privilegios"
 
-#: mkt/reviewers/templates/reviewers/queue.html:82
+#: mkt/reviewers/templates/reviewers/queue.html:78
 msgid "Payment Category:"
 msgstr "Categoría de pago:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:86
+#: mkt/reviewers/templates/reviewers/queue.html:82
 msgid "Abuse Reports:"
 msgstr "Informes de abuso:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:101 mkt/reviewers/templates/reviewers/themes/queue_list.html:79
+#: mkt/reviewers/templates/reviewers/queue.html:97 mkt/reviewers/templates/reviewers/themes/queue_list.html:75
 msgid "There are currently no items of this type to review."
 msgstr "No hay más elementos de este tipo para revisar ahora mismo."
 
@@ -22459,7 +22421,7 @@ msgstr "más..."
 msgid "%(stars)s by %(user)s on %(date)s (%(locale)s)"
 msgstr "%(stars)s de %(user)s el %(date)s (%(locale)s)"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:11 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13 mkt/reviewers/templates/reviewers/themes/queue_list.html:15
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:11 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13 mkt/reviewers/templates/reviewers/themes/queue_list.html:11
 msgid "Clear Search"
 msgstr "Borrar búsqueda"
 
@@ -22499,25 +22461,25 @@ msgstr "Fecha de la revisión"
 msgid "There are currently no reviews."
 msgstr "Actualmente no hay ninguna revisión."
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:13
+#: mkt/reviewers/templates/reviewers/themes/home.html:17
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
 msgstr[0] "{num} Revisión de temas pendiente"
 msgstr[1] "{num} Revisiones de temas pendientes"
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:21
+#: mkt/reviewers/templates/reviewers/themes/home.html:25
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
 msgstr[0] "{num} Revisión marcada"
 msgstr[1] "{num} Revisiones marcadas"
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:28
+#: mkt/reviewers/templates/reviewers/themes/home.html:32
 msgid "{num} Update"
 msgid_plural "{num} Updates"
 msgstr[0] "{num} Actualización"
 msgstr[1] "{num} Actualizaciones"
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:43
+#: mkt/reviewers/templates/reviewers/themes/home.html:47
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
 msgstr[0] "{num} envío de temas sin revisar esta semana."
@@ -22575,11 +22537,11 @@ msgstr "{0} de {1} revisados"
 msgid "There are currently no Themes to review."
 msgstr "Actualmente no hay que revisar ningún tema."
 
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:24
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:20
 msgid "Release My Theme Locks"
 msgstr "Liberar los bloqueos de mi tema"
 
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:37
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:33
 msgid "Interactive Theme Queue"
 msgstr "Cola interactiva de temas"
 
@@ -22707,61 +22669,57 @@ msgstr "No se pudo enviar el formulario."
 msgid "Home"
 msgstr "Inicio"
 
-#: mkt/site/templates/site/403.html:5
+#: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
 msgstr "No está permitido"
 
-#: mkt/site/templates/site/403.html:9
+#: mkt/site/templates/site/403.html:8
 msgid "Oops! Not allowed."
 msgstr "¡Uy! No está permitido."
 
-#: mkt/site/templates/site/403.html:10
+#: mkt/site/templates/site/403.html:9
 msgid "You tried to do something that you weren't allowed to."
 msgstr "Intentaste algo que no tienes permitido hacer."
 
-#: mkt/site/templates/site/403.html:12
+#: mkt/site/templates/site/403.html:11
 msgid "Try going back to the previous page, refreshing and trying again."
 msgstr "Prueba a volver a la página anterior, actualizar e inténtalo de nuevo."
 
-#: mkt/site/templates/site/404.html:5
+#: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
 msgstr "Página no encontrada"
 
-#: mkt/site/templates/site/404.html:11
+#: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
 msgstr "Discúlpanos, pero no podemos encontrar lo que buscas."
 
-#: mkt/site/templates/site/404.html:14
+#: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
 msgstr "No se encontró la página o el archivo que solicitaste en nuestro sitio. Es posible que hayas hecho clic en un enlace obsoleto o que hayas escrito mal la dirección."
 
-#: mkt/site/templates/site/404.html:19
+#: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
 msgstr "Si escribiste la dirección, comprueba la ortografía."
 
-#: mkt/site/templates/site/404.html:22
+#: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
 msgstr "Visita la <a class=\"sync\" href=\"%(home)s\">página de inicio de Firefox Marketplace</a>."
 
-#: mkt/site/templates/site/500.html:5
+#: mkt/site/templates/site/500.html:4
 msgid "Server Error"
 msgstr "Error del servidor"
 
-#: mkt/site/templates/site/500.html:11
+#: mkt/site/templates/site/500.html:8
 msgid "Oops! We had an error."
 msgstr "¡Uy! Tuvimos un error."
 
-#: mkt/site/templates/site/500.html:13
+#: mkt/site/templates/site/500.html:10
 msgid "We'll get to fixing that soon."
 msgstr "Pronto nos pondremos a solucionarlo."
 
-#: mkt/site/templates/site/500.html:15
+#: mkt/site/templates/site/500.html:12
 msgid "You can try refreshing the page, or try again later."
 msgstr "Puedes probar a actualizar la página o inténtalo de nuevo pasados unos minutos."
-
-#: mkt/site/templates/site/terms-of-use.html:5 mkt/templates/mkt/footer.html:17
-msgid "Terms of Use"
-msgstr "Términos de uso"
 
 #: mkt/stats/forms.py:9 mkt/stats/templates/devstats/includes/criteria.html:37 mkt/stats/templates/includes/criteria.html:37
 msgid "Day"
@@ -22909,73 +22867,73 @@ msgstr "Total de usuarios"
 msgid "Total visitors"
 msgstr "Total de visitantes"
 
-#: mkt/submit/forms.py:30
+#: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
 msgstr "Dispositivo(s) cambiado(s): {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/submit/forms.py:40
+#: mkt/submit/forms.py:43
 msgid "Requirements changed: {0}"
 msgstr "Requisitos modificados: {0}"
 
-#: mkt/submit/forms.py:48
+#: mkt/submit/forms.py:51
 msgid "Cannot be free and paid."
 msgstr "No puede ser gratuita y de pago."
 
-#: mkt/submit/forms.py:49
+#: mkt/submit/forms.py:52
 msgid "Please select a device."
 msgstr "Selecciona un dispositivo."
 
-#: mkt/submit/forms.py:50
+#: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
 msgstr "Las aplicaciones empaquetadas no son compatibles aún con esas plataformas."
 
-#: mkt/submit/forms.py:144
+#: mkt/submit/forms.py:147
 msgid "Agree and Continue"
 msgstr "Aceptar y continuar"
 
-#: mkt/submit/forms.py:266
+#: mkt/submit/forms.py:274
 msgid "When should your app be made available for sale?"
 msgstr "¿Cuándo debería estar tu aplicación disponible para la venta?"
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
-#: mkt/submit/forms.py:273
+#: mkt/submit/forms.py:281
 msgid "App to upgrade from"
 msgstr "Aplicación desde la cual actualizar"
 
-#: mkt/submit/forms.py:340
+#: mkt/submit/forms.py:348
 msgid "Privacy Policy:"
 msgstr "Política de privacidad:"
 
-#: mkt/submit/forms.py:341
+#: mkt/submit/forms.py:349
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
 msgstr "Es necesaria una política de privacidad que explique qué datos se transmiten desde el equipo de un usuario y cómo se usan."
 
-#: mkt/submit/forms.py:345
+#: mkt/submit/forms.py:353
 msgid "Homepage:"
 msgstr "Página de inicio:"
 
-#: mkt/submit/forms.py:346
+#: mkt/submit/forms.py:354
 msgid "If your app has another homepage, enter its address here."
 msgstr "Si tu aplicación cuenta con otra página de inicio, escribe su dirección aquí."
 
-#: mkt/submit/forms.py:350
+#: mkt/submit/forms.py:358
 msgid "Support Website:"
 msgstr "Sitio web de asistencia:"
 
-#: mkt/submit/forms.py:351
+#: mkt/submit/forms.py:359
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "Si tu aplicación cuenta con un sitio web de asistencia o un foro, ingresa aquí su dirección."
 
-#: mkt/submit/forms.py:361
+#: mkt/submit/forms.py:369
 msgid "Does your app require Flash support?"
 msgstr "¿Tu aplicación requiere que sea compatible con Flash?"
 
-#: mkt/submit/forms.py:369
+#: mkt/submit/forms.py:377
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
 msgstr "Publicar mi aplicación en Firefox Marketplace tan pronto como esté revisada."
 
-#: mkt/submit/forms.py:371
+#: mkt/submit/forms.py:379
 msgid ""
 "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to "
 "log in and manually publish it."
@@ -23113,7 +23071,7 @@ msgstr "Lo primero que debes hacer es leer y aceptar nuestro <strong>Acuerdo par
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla podrá enviarme correos electrónicos con encuestas y noticias relevantes respecto al desarrollo de aplicaciones"
 
-#: mkt/submit/tests/test_forms.py:231 mkt/webapps/tests/test_models.py:1173
+#: mkt/submit/tests/test_forms.py:231 mkt/webapps/tests/test_models.py:1152
 msgid "Héllo"
 msgstr "¡Hola!"
 
@@ -23129,18 +23087,6 @@ msgstr "Volver a Marketplace"
 msgid "Sign Out"
 msgstr "Salir"
 
-#: mkt/templates/mkt/base_desktop.html:34
-msgid "Develop apps for<br> the Marketplace!"
-msgstr "¡Desarrolla aplicaciones para<br> Marketplace!"
-
-#: mkt/templates/mkt/base_desktop.html:39
-msgid "Visit the Developer Hub"
-msgstr "Visitar el Centro de Desarrolladores"
-
-#: mkt/templates/mkt/base_mobile.html:114
-msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account."
-msgstr "Conéctate o regístrate con tu cuenta de <a href=\"%(url)s\">Mozilla Persona</a>."
-
 #: mkt/templates/mkt/footer.html:5
 msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
@@ -23148,6 +23094,10 @@ msgid ""
 msgstr ""
 "Excepto donde se <a href=\"%(legal_url)s\">indique</a> lo contrario, el contenido de este sitio se distribuye bajo la licencia <a href=\"%(cc_url)s\">Creative Commons Reconocimiento-Compartir Igual "
 "v3.0</a> o una versión posterior."
+
+#: mkt/templates/mkt/footer.html:17
+msgid "Terms of Use"
+msgstr "Términos de uso"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
@@ -23185,7 +23135,7 @@ msgstr "Debes proporcionar al menos un tipo de dispositivo."
 msgid "You must provide at least one category."
 msgstr "Debes proporcionar al menos una categoría."
 
-#: mkt/webapps/tasks.py:111
+#: mkt/webapps/tasks.py:112
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Incidencia con tu aplicación \"{app}\" en Firefox Marketplace"
 

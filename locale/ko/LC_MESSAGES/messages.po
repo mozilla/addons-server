@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 16:48-0700\n"
+"POT-Creation-Date: 2013-10-25 13:55-0700\n"
 "PO-Revision-Date: 2013-10-01 08:53+0000\n"
 "Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
 "Language-Team: none\n"
@@ -26,7 +26,7 @@ msgstr "다운로드"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:126
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:115 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:92 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:199
-#: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:86
+#: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:86 mkt/operators/templates/operators/preloads.html:50
 msgid "Download"
 msgstr "다운로드"
 
@@ -67,11 +67,11 @@ msgstr "{0}에 추가"
 msgid "This name is already in use. Please choose another."
 msgstr "이미 사용중인 이름입니다. 다른 이름을 골라주세요."
 
-#: apps/addons/forms.py:62 mkt/developers/forms.py:497 mkt/submit/forms.py:399
+#: apps/addons/forms.py:62 mkt/developers/forms.py:515 mkt/submit/forms.py:407
 msgid "This slug is already in use. Please choose another."
 msgstr "이미 사용중인 주화입니다. 다른걸 사용해 주세요."
 
-#: apps/addons/forms.py:65 mkt/developers/forms.py:500 mkt/submit/forms.py:403
+#: apps/addons/forms.py:65 mkt/developers/forms.py:518 mkt/submit/forms.py:411
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "이 주화는 \"%s\"이(가) 될 수 없습니다. 다른걸 사용해 주세요."
 
@@ -111,7 +111,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "이 애플리케이션의 추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:756
+#: apps/addons/forms.py:256 mkt/developers/forms.py:767
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "{0}개의 분류만 사용할 수 있습니다."
@@ -124,19 +124,19 @@ msgstr "기타 카테고리는 다른 카테고리와 결합할 수 없습니다
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "기본 언어를 변경하려면 먼저 이름, 요약 정보, 설명을 해당 언어로 작성해야 합니다. %s 정보가 현재 빠져 있습니다."
 
-#: apps/addons/forms.py:525 apps/addons/forms.py:599
+#: apps/addons/forms.py:510 apps/addons/forms.py:584
 msgid "A license must be selected."
 msgstr "라이선스를 선택해야 합니다."
 
-#: apps/addons/forms.py:586
+#: apps/addons/forms.py:571
 msgid "Give Your Theme a Name."
 msgstr "테마 이름을 입력하세요."
 
-#: apps/addons/forms.py:592 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:577 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "테마에 대해 설명해 주세요."
 
-#: apps/addons/forms.py:726
+#: apps/addons/forms.py:712
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
@@ -144,44 +144,44 @@ msgstr "새 제작자의 이메일 주소를 입력하세요"
 msgid "Not Reviewed"
 msgstr "미심사"
 
-#: apps/addons/helpers.py:35 apps/addons/views.py:334 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:35 apps/addons/views.py:329 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:17 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:86 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231 apps/browse/views.py:448
 #: apps/browse/templates/browse/impala/category_landing.html:24 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "추천"
 
-#: apps/addons/models.py:292
+#: apps/addons/models.py:291
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "사용자는 이 금액보다 많거나 적게 기부할 수 있는 선택권을 가지고 있습니다."
 
-#: apps/addons/models.py:301
+#: apps/addons/models.py:300
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "사용자는 항상 부가 기능 관리자의 권유를 받게 됩니다 (Firefox 4 이상)"
 
 # Column name in a table.
-#: apps/addons/models.py:1988
+#: apps/addons/models.py:1986
 msgid "Listed"
 msgstr "나열됨"
 
-#: apps/addons/views.py:335 apps/browse/templates/browse/personas/mobile/category_landing.html:27
+#: apps/addons/views.py:330 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "인기"
 
-#: apps/addons/views.py:336 apps/browse/views.py:234 apps/browse/views.py:292 apps/browse/views.py:473
+#: apps/addons/views.py:331 apps/browse/views.py:234 apps/browse/views.py:292 apps/browse/views.py:473
 msgid "Recently Added"
 msgstr "신규 등록"
 
-#: apps/addons/views.py:337 apps/bandwagon/views.py:90 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:17 apps/search/forms.py:95
+#: apps/addons/views.py:332 apps/bandwagon/views.py:90 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:17 apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr "최근 업데이트"
 
 # %1 is an add-on name.
-#: apps/addons/views.py:520
+#: apps/addons/views.py:515
 msgid "Contribution for {0}"
 msgstr "{0}에 기부하기"
 
-#: apps/addons/views.py:613
+#: apps/addons/views.py:608
 msgid "Abuse reported."
 msgstr "위반 사실을 신고했습니다."
 
@@ -320,14 +320,14 @@ msgstr "기부하기"
 #. This 'or' goes between two choices in a dialog.
 #: apps/addons/templates/addons/contribution.html:34 apps/addons/templates/addons/report_abuse.html:35 apps/addons/templates/addons/impala/contribution.html:32
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:114
-#: apps/devhub/templates/devhub/addons/edit/basic.html:194 apps/devhub/templates/devhub/addons/edit/details.html:115 apps/devhub/templates/devhub/addons/edit/support.html:88
+#: apps/devhub/templates/devhub/addons/edit/basic.html:194 apps/devhub/templates/devhub/addons/edit/details.html:115 apps/devhub/templates/devhub/addons/edit/support.html:75
 #: apps/devhub/templates/devhub/addons/edit/technical.html:153 apps/devhub/templates/devhub/addons/forms_shared/media.html:180 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:49 apps/devhub/templates/devhub/versions/edit.html:127 apps/devhub/templates/devhub/versions/list.html:276
 #: apps/devhub/templates/devhub/versions/list.html:319 apps/devhub/templates/devhub/versions/list.html:352 apps/reviews/templates/reviews/edit_review.html:16
-#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/account/templates/account/abuse.html:21
-#: mkt/developers/templates/developers/apps/status.html:306 mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/apps/version_edit.html:82
-#: mkt/developers/templates/developers/apps/edit/admin.html:143 mkt/developers/templates/developers/apps/edit/basic.html:147 mkt/developers/templates/developers/apps/edit/details.html:79
-#: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
+#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/developers/templates/developers/apps/status.html:306
+#: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/apps/version_edit.html:82 mkt/developers/templates/developers/apps/edit/admin.html:143
+#: mkt/developers/templates/developers/apps/edit/basic.html:147 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:68
+#: mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:129 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:121
 #: mkt/submit/templates/submit/done.html:50
@@ -480,16 +480,16 @@ msgstr "통계 보기"
 msgid "Average Daily Users"
 msgstr "평균 일일 사용자 수"
 
-#: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:55 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:39
+#: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:55 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:96 mkt/reviewers/templates/reviewers/includes/mobile_details.html:118
 msgid "Abuse Reports"
 msgstr "정책 위반 신고"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:45
-#: apps/addons/templates/addons/impala/details.html:327 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/details.html:112 mkt/reviewers/templates/reviewers/includes/mobile_details.html:134 mkt/site/templates/site/privacy-policy.html:5
-#: mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:90 templates/mobile/base_apps.html:74
+#: apps/addons/templates/addons/impala/details.html:320 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
+#: mkt/reviewers/templates/reviewers/includes/details.html:112 mkt/reviewers/templates/reviewers/includes/mobile_details.html:134 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:90
+#: templates/mobile/base_apps.html:74
 msgid "Privacy Policy"
 msgstr "개인 정보 보호 정책"
 
@@ -520,7 +520,7 @@ msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "개발자 코멘트"
 
-#: apps/addons/templates/addons/details_box.html:194 apps/addons/templates/addons/impala/details.html:284
+#: apps/addons/templates/addons/details_box.html:194 apps/addons/templates/addons/impala/details.html:277
 msgid "Development Channel"
 msgstr "개발 채널"
 
@@ -530,7 +530,7 @@ msgid ""
 "updates from this channel."
 msgstr "개발 채널은 이 부가 기능이 공개되기 이전의 새 시험용 버전을 테스트해주는 곳입니다. 개발자 버전을 설치하면 이 채널을 통해 업데이트를 지속적으로 받아볼 수 있습니다."
 
-#: apps/addons/templates/addons/details_box.html:202 apps/addons/templates/addons/impala/details.html:294
+#: apps/addons/templates/addons/details_box.html:202 apps/addons/templates/addons/impala/details.html:287
 msgid "Install development version"
 msgstr "개발자 버전 설치"
 
@@ -542,7 +542,7 @@ msgstr ""
 "<strong>주의:</strong> 이 부가 기능의 개발자 버전은 Mozilla의 심사를 거치지 않은 것입니다. 개발자 버전을 설치하면 해당 개발자를 통해 개발자용 업데이트를 계속 받을 수 있습니다. 개발자용 업데이트를 그"
 "만 받으려면 위의 링크를 통해 기본 버전으로 재설치 하시면 됩니다."
 
-#: apps/addons/templates/addons/details_box.html:215 apps/addons/templates/addons/impala/details.html:303
+#: apps/addons/templates/addons/details_box.html:215 apps/addons/templates/addons/impala/details.html:296
 msgid "Version {0}:"
 msgstr "버전 {0}:"
 
@@ -647,7 +647,7 @@ msgstr "최근 업데이트: {0}"
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
 #: apps/addons/templates/addons/listing/items_mobile.html:49 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
-#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:301 mkt/reviewers/views.py:323 mkt/submit/forms.py:31 mkt/submit/forms.py:41
+#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:301 mkt/reviewers/views.py:323 mkt/submit/forms.py:34 mkt/submit/forms.py:44
 msgid "Added {0}"
 msgstr "{0}에 등록"
 
@@ -942,7 +942,7 @@ msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to
 msgstr "모바일용 Firefox에 {0}을(를) 설치하고 싶으세요? 이 QR 코드를 스캔하면 바로 스마트폰에 설치하실 수 있습니다. (QR리더가 필요합니다. 없을 경우 보유하신 스마트폰의 앱스토어에서 찾아보세요.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:339 mkt/account/templates/account/abuse.html:3
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "정책 위반 신고"
 
@@ -954,25 +954,25 @@ msgstr ""
 "이 부가 기능이 <a href=\"%(url)s\">저희의 정책</a>이나 보안 및 개인 정보 정책을 위반하고 있는 것 같으면 아래의 양식을 사용해 우려되는 점을 기입해 주세요. 다른 사유로는 이 기능을 사용하지 말아 주십시"
 "오."
 
-#: apps/addons/templates/addons/report_abuse.html:33 apps/users/templates/users/report_abuse.html:18 mkt/account/templates/account/abuse.html:21
+#: apps/addons/templates/addons/report_abuse.html:33 apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
 msgstr "신고 접수"
 
 #: apps/addons/templates/addons/report_abuse.html:35 apps/addons/templates/addons/mobile/eula.html:16 apps/addons/templates/addons/mobile/persona_confirm.html:7
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:117
-#: apps/devhub/templates/devhub/addons/edit/basic.html:197 apps/devhub/templates/devhub/addons/edit/details.html:118 apps/devhub/templates/devhub/addons/edit/support.html:91
+#: apps/devhub/templates/devhub/addons/edit/basic.html:197 apps/devhub/templates/devhub/addons/edit/details.html:118 apps/devhub/templates/devhub/addons/edit/support.html:78
 #: apps/devhub/templates/devhub/addons/edit/technical.html:156 apps/devhub/templates/devhub/addons/forms_shared/media.html:183 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/personas/edit.html:221 apps/devhub/templates/devhub/versions/add_file_modal.html:50 apps/devhub/templates/devhub/versions/edit.html:128
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:50 apps/devhub/templates/devhub/versions/edit.html:128
 #: apps/devhub/templates/devhub/versions/list.html:276 apps/devhub/templates/devhub/versions/list.html:319 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:110 mkt/account/templates/account/abuse.html:22 mkt/developers/templates/developers/apps/status.html:306
-#: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/apps/version_edit.html:83 mkt/developers/templates/developers/apps/edit/admin.html:145
-#: mkt/developers/templates/developers/apps/edit/basic.html:149 mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:82
-#: mkt/developers/templates/developers/apps/edit/technical.html:70 mkt/developers/templates/developers/apps/forms_shared/media.html:166
-#: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27
-#: mkt/developers/templates/developers/payments/includes/accept_terms.html:12 mkt/developers/templates/developers/payments/includes/account_list.html:60
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:122
-#: mkt/lookup/templates/lookup/user_summary.html:121 mkt/lookup/templates/lookup/user_summary.html:124 mkt/reviewers/templates/reviewers/includes/macros.html:30 mkt/templates/mkt/base_desktop.html:20
+#: apps/zadmin/templates/zadmin/validation.html:110 mkt/developers/templates/developers/apps/status.html:306 mkt/developers/templates/developers/apps/status.html:329
+#: mkt/developers/templates/developers/apps/version_edit.html:83 mkt/developers/templates/developers/apps/edit/admin.html:145 mkt/developers/templates/developers/apps/edit/basic.html:149
+#: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:70 mkt/developers/templates/developers/apps/edit/technical.html:70
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
+#: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
+#: mkt/developers/templates/developers/payments/includes/account_list.html:60 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:122 mkt/lookup/templates/lookup/user_summary.html:128 mkt/lookup/templates/lookup/user_summary.html:131
+#: mkt/reviewers/templates/reviewers/includes/macros.html:30
 msgid "Cancel"
 msgstr "취소"
 
@@ -1172,48 +1172,48 @@ msgstr "기술 지원 사이트"
 msgid "Support E-mail"
 msgstr "기술 지원 이메일"
 
-#: apps/addons/templates/addons/impala/details.html:215 apps/devhub/models.py:382
+#: apps/addons/templates/addons/impala/details.html:208 apps/devhub/models.py:382
 msgid "Version {0}"
 msgstr "버전 {0}"
 
-#: apps/addons/templates/addons/impala/details.html:215
+#: apps/addons/templates/addons/impala/details.html:208
 msgid "Info"
 msgstr "정보"
 
-#: apps/addons/templates/addons/impala/details.html:221
+#: apps/addons/templates/addons/impala/details.html:214
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 라이센스를 사용해서 출시"
 
-#: apps/addons/templates/addons/impala/details.html:222 apps/addons/templates/addons/impala/details.html:227 apps/amo/helpers.py:405 apps/devhub/forms.py:139 apps/devhub/forms.py:169
+#: apps/addons/templates/addons/impala/details.html:215 apps/addons/templates/addons/impala/details.html:220 apps/amo/helpers.py:405 apps/devhub/forms.py:139 apps/devhub/forms.py:169
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "사용자 정의 라이센스"
 
-#: apps/addons/templates/addons/impala/details.html:226
+#: apps/addons/templates/addons/impala/details.html:219
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a>를 사용해서 출시"
 
-#: apps/addons/templates/addons/impala/details.html:239
+#: apps/addons/templates/addons/impala/details.html:232
 msgid "About this App"
 msgstr "앱 정보"
 
-#: apps/addons/templates/addons/impala/details.html:241
+#: apps/addons/templates/addons/impala/details.html:234
 msgid "About this Add-on"
 msgstr "부가 기능 정보"
 
-#: apps/addons/templates/addons/impala/details.html:258
+#: apps/addons/templates/addons/impala/details.html:251
 msgid "Developer’s Comments"
 msgstr "개발자 코멘트"
 
-#: apps/addons/templates/addons/impala/details.html:268
+#: apps/addons/templates/addons/impala/details.html:261
 msgid "Version Information"
 msgstr "버전 정보"
 
-#: apps/addons/templates/addons/impala/details.html:275
+#: apps/addons/templates/addons/impala/details.html:268
 msgid "See complete version history"
 msgstr "전체 버전 기록 보기"
 
-#: apps/addons/templates/addons/impala/details.html:287
+#: apps/addons/templates/addons/impala/details.html:280
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
@@ -1221,11 +1221,11 @@ msgstr ""
 "개발 채널에선 부가 기능의 최신 시험용 버전을 일반에 공개되기 전에 먼저 테스트해 볼 수 있습니다. 개발 버전을 설치하고 나면 이 채널을 통해 업데이트를 지속적으로 받아보실 수 있습니다. 개발 버전의 업데"
 "이트를 그만 받으시려면 위의 링크를 통해 기본 버전을 재설치 하시면 됩니다."
 
-#: apps/addons/templates/addons/impala/details.html:298
+#: apps/addons/templates/addons/impala/details.html:291
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>주의:</strong> 이 부가 기능의 개발용 버전은 Mozilla의 심사를 거치지 않았습니다."
 
-#: apps/addons/templates/addons/impala/details.html:326 apps/addons/templates/addons/impala/details.html:338 apps/addons/templates/addons/impala/review_add_box.html:5
+#: apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331 apps/addons/templates/addons/impala/review_add_box.html:5
 #: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:121
 #: mkt/developers/templates/developers/apps/owner.html:74 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:54 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
@@ -1544,7 +1544,7 @@ msgid "Submit a New Theme"
 msgstr "새로운 테마 올리기"
 
 #: apps/amo/context_processors.py:98 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:71 apps/devhub/helpers.py:105 mkt/site/context_processors.py:37
-#: mkt/templates/mkt/base_desktop.html:53 templates/footer.html:6 templates/menu_links.html:14
+#: templates/footer.html:6 templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "개발자 허브"
 
@@ -2294,12 +2294,10 @@ msgstr "{0}님에게 권한이 주어졌습니다"
 #: apps/api/templates/piston/oauth/authorize.html:11
 msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
-"versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul> </li>"
+"versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
-"<p> %(consumer)s 측에서 당신을 대신해 활동하기 위한 접근 권한을 요구하고 있습니다. 접근 권한 내역: </p> <ul> <li>당신을 대신한 부가 기능의 업로드, 변경 및 삭제.</li> <li>당신을 대신한 특정 부가 기"
-"능 버전의 업로드, 변경 및 삭제.</li> <li> 당신의 사용자 이름과 이메일 주소와 같은 개인 정보 접근. (단 비밀번호는 예외) </li> </ul> </li>"
 
-#: apps/api/templates/piston/oauth/authorize.html:30 mkt/developers/templates/developers/payments/includes/account_list.html:61
+#: apps/api/templates/piston/oauth/authorize.html:29 mkt/developers/templates/developers/payments/includes/account_list.html:61
 msgid "Confirm"
 msgstr "승인"
 
@@ -2433,7 +2431,7 @@ msgstr "선호 목록에서 삭제하기"
 #: apps/bandwagon/views.py:89 apps/bandwagon/views.py:174 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:81
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/search/forms.py:18 apps/search/forms.py:92 apps/search/forms.py:105
 #: apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/views.py:73 mkt/developers/views.py:81 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:48 mkt/submit/templates/submit/details.html:55
+#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:44 mkt/submit/templates/submit/details.html:55
 msgid "Name"
 msgstr "이름"
 
@@ -2733,12 +2731,12 @@ msgstr "기여자 및 그 외"
 #: apps/bandwagon/templates/bandwagon/edit.html:54 apps/bandwagon/templates/bandwagon/edit.html:67 apps/bandwagon/templates/bandwagon/edit.html:82
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:35 apps/devhub/templates/devhub/addons/owner.html:65 apps/devhub/templates/devhub/addons/profile.html:42
 #: apps/devhub/templates/devhub/addons/edit/admin.html:114 apps/devhub/templates/devhub/addons/edit/basic.html:194 apps/devhub/templates/devhub/addons/edit/details.html:115
-#: apps/devhub/templates/devhub/addons/edit/support.html:88 apps/devhub/templates/devhub/addons/edit/technical.html:153 apps/devhub/templates/devhub/addons/forms_shared/media.html:180
+#: apps/devhub/templates/devhub/addons/edit/support.html:75 apps/devhub/templates/devhub/addons/edit/technical.html:153 apps/devhub/templates/devhub/addons/forms_shared/media.html:180
 #: apps/devhub/templates/devhub/payments/in-app-config.html:49 apps/devhub/templates/devhub/payments/premium.html:25 apps/devhub/templates/devhub/payments/voluntary.html:64
-#: apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:295 apps/devhub/templates/devhub/versions/edit.html:127
+#: apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300 apps/devhub/templates/devhub/versions/edit.html:127
 #: apps/translations/templates/translations/trans-menu.html:48 mkt/developers/templates/developers/apps/owner.html:51 mkt/developers/templates/developers/apps/version_edit.html:82
 #: mkt/developers/templates/developers/apps/edit/admin.html:143 mkt/developers/templates/developers/apps/edit/basic.html:147 mkt/developers/templates/developers/apps/edit/details.html:79
-#: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
+#: mkt/developers/templates/developers/apps/edit/support.html:68 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48 mkt/developers/templates/developers/payments/premium.html:67
 #: mkt/developers/templates/developers/payments/premium.html:135 mkt/developers/templates/developers/payments/premium.html:228 mkt/developers/templates/developers/payments/premium.html:239
 #: mkt/developers/templates/developers/payments/premium.html:277
@@ -3368,9 +3366,9 @@ msgstr "모든 부가 기능의 상위 95%"
 msgid "All active add-ons"
 msgstr "활동중인 모든 부가 기능"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:180 apps/constants/base.py:421 mkt/developers/forms.py:863 mkt/developers/templates/developers/transactions.html:41
-#: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/apps_reviewing.html:64
-#: mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/search_results.html:5
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:180 apps/constants/base.py:421 mkt/developers/forms.py:874 mkt/developers/templates/developers/transactions.html:41
+#: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:22
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:28 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "App"
 
@@ -3518,7 +3516,7 @@ msgstr "Firefox 태블릿"
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: apps/constants/base.py:26 mkt/lookup/views.py:159
+#: apps/constants/base.py:26 mkt/lookup/views.py:161
 msgid "Incomplete"
 msgstr "미완료"
 
@@ -3578,7 +3576,7 @@ msgstr "가득 참"
 msgid "Preliminary"
 msgstr "예비 심사"
 
-#: apps/constants/base.py:146 apps/users/notifications.py:159 mkt/constants/apps.py:10 mkt/developers/templates/developers/apps/owner.html:82
+#: apps/constants/base.py:146 apps/users/notifications.py:159 mkt/constants/apps.py:10 mkt/developers/templates/developers/apps/owner.html:82 mkt/operators/templates/operators/preloads.html:15
 msgid "Developer"
 msgstr "개발자"
 
@@ -3588,7 +3586,7 @@ msgid "Viewer"
 msgstr "참관인"
 
 #: apps/constants/base.py:148 mkt/developers/templates/developers/skeleton_impala.html:68 mkt/developers/templates/developers/apps/owner.html:87 mkt/ecosystem/templates/ecosystem/support.html:5
-#: mkt/ecosystem/templates/ecosystem/support.html:13 mkt/templates/mkt/base_desktop.html:55 templates/mobile/header.html:7
+#: mkt/ecosystem/templates/ecosystem/support.html:13 templates/mobile/header.html:7
 msgid "Support"
 msgstr "도움말"
 
@@ -3929,7 +3927,7 @@ msgstr "미국 달러"
 msgid "Chargeback"
 msgstr "입금 취소"
 
-#: apps/constants/payments.py:77 apps/constants/payments.py:84 mkt/receipts/templates/receipts/reissue.html:11
+#: apps/constants/payments.py:77 apps/constants/payments.py:84
 msgid "Purchase"
 msgstr "구입"
 
@@ -4013,7 +4011,7 @@ msgstr "%s의 최근 변경사항"
 msgid "Recent Changes for My Add-ons"
 msgstr "내 부가 기능의 최근 변경사항"
 
-#: apps/devhub/forms.py:85 mkt/developers/forms.py:114
+#: apps/devhub/forms.py:85 mkt/developers/forms.py:129
 msgid "Must have at least one owner."
 msgstr "적어도 한명의 소유자는 있어야 합니다."
 
@@ -4122,7 +4120,7 @@ msgstr "호환되는 애플리케이션이 최소 한개는 있어야 합니다.
 msgid "An app already exists on this domain, only one app per domain is allowed."
 msgstr "이 도메인에는 이미 앱이 있습니다. 도메인당 한개의 앱만 허용됩니다."
 
-#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:162 mkt/submit/forms.py:228
+#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:170 mkt/submit/forms.py:236
 msgid "There was an error with your upload. Please try again."
 msgstr "업로드 도중 오류가 있었습니다. 다시 해주세요."
 
@@ -4134,7 +4132,7 @@ msgstr "Override failed validation"
 msgid "Need at least one platform."
 msgstr "한 개 이상의 플랫폼을 선택해 주세요."
 
-#: apps/devhub/forms.py:545 mkt/submit/forms.py:196
+#: apps/devhub/forms.py:545 mkt/submit/forms.py:204
 msgid "Version %s already exists"
 msgstr "버전 %s이(가) 이미 있습니다"
 
@@ -4300,7 +4298,7 @@ msgstr "설치가 필요한 부가 기능은 3개 이상 지정할 수 없습니
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "부가 기능 문서 자료 :: 개발자 허브"
 
-#: apps/devhub/helpers.py:68 apps/devhub/templates/devhub/nav.html:19 mkt/account/templates/account/purchases.html:3 mkt/account/templates/account/includes/nav.html:5
+#: apps/devhub/helpers.py:68 apps/devhub/templates/devhub/nav.html:19 mkt/account/templates/account/includes/nav.html:5
 msgid "My Apps"
 msgstr "내 앱"
 
@@ -4385,7 +4383,7 @@ msgid "User Reviews"
 msgstr "사용자 평가"
 
 #: apps/devhub/views.py:335 apps/devhub/views.py:339 apps/devhub/views.py:458 apps/devhub/views.py:481 apps/devhub/views.py:528 apps/devhub/views.py:651 apps/devhub/views.py:1334
-#: mkt/developers/views.py:449 mkt/developers/views_payments.py:102 mkt/developers/views_payments.py:300 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:451 mkt/developers/views_payments.py:102 mkt/developers/views_payments.py:301 mkt/reviewers/views.py:666
 msgid "Changes successfully saved."
 msgstr "변경 내역이 성공적으로 저장되었습니다."
 
@@ -4445,7 +4443,7 @@ msgstr "부가 기능 검사"
 msgid "Check Add-on Compatibility"
 msgstr "부가 기능 호환성 검사"
 
-#: apps/devhub/views.py:800 mkt/developers/views.py:547
+#: apps/devhub/views.py:800 mkt/developers/views.py:549
 msgid "There was an error with the submission."
 msgstr "등록 과정에서 오류가 발생했습니다."
 
@@ -4474,7 +4472,7 @@ msgstr "이미지는 %dKB보다 작아야 합니다."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
 
-#: apps/devhub/views.py:1279 mkt/developers/views.py:842
+#: apps/devhub/views.py:1279 mkt/developers/views.py:844
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
 
@@ -4613,9 +4611,9 @@ msgstr "{0} :: 검색"
 
 #: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/templates/editors/queue.html:27 apps/search/templates/search/collections.html:17
 #: apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18 apps/search/templates/search/mobile/results.html:8 mkt/developers/templates/developers/search.html:9
-#: mkt/lookup/templates/lookup/includes/app_search.html:17 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:7
+#: mkt/lookup/templates/lookup/includes/app_search.html:17 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
 #: mkt/reviewers/forms.py:275 mkt/reviewers/forms.py:277 mkt/reviewers/templates/reviewers/includes/queue_search.html:8 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:9
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:14 mkt/search/forms.py:83 mkt/search/forms.py:85 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:10 mkt/search/forms.py:83 mkt/search/forms.py:85 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
 #: mkt/templates/mkt/header.html:13 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
 msgstr "검색"
@@ -5058,7 +5056,7 @@ msgstr "다른 애플리케이션 추가&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:102 apps/devhub/templates/devhub/addons/listing/delete_form.html:47
 #: apps/devhub/templates/devhub/versions/list.html:352 apps/devhub/templates/devhub/versions/list.html:354 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:71
-#: mkt/templates/mkt/base_mobile.html:149 templates/impala/base.html:126 templates/impala/base.html:141 templates/impala/base.html:159 templates/impala/base.html:169
+#: templates/impala/base.html:126 templates/impala/base.html:141 templates/impala/base.html:159 templates/impala/base.html:169
 msgid "Close"
 msgstr "닫기"
 
@@ -5105,7 +5103,7 @@ msgstr "목록 표시 내역 편집하기"
 #: apps/devhub/templates/devhub/addons/edit.html:13 apps/devhub/templates/devhub/includes/macros.html:16 apps/localizers/templates/localizers/categories.html:27
 #: apps/translations/templates/translations/all-locales.html:6 mkt/developers/templates/developers/apps/edit.html:13 mkt/developers/templates/developers/includes/macros.html:17
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:5 mkt/lookup/templates/lookup/app_summary.html:30 mkt/lookup/templates/lookup/user_summary.html:42
-#: mkt/lookup/templates/lookup/user_summary.html:82 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:45
+#: mkt/lookup/templates/lookup/user_summary.html:89 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:45
 msgid "None"
 msgstr "없음"
 
@@ -5268,17 +5266,9 @@ msgstr "{0}의 기술 지원 정보"
 msgid "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added."
 msgstr "기술 지원 질의서에 이메일 주소를 표시하고 싶다면 이곳에 입력해 주세요. 언어별로 여러 이메일 주소를 가지고 있다면 언어별로 입력하실 수도 있습니다."
 
-#: apps/devhub/templates/devhub/addons/edit/support.html:53 mkt/developers/templates/developers/apps/edit/support.html:48
-msgid ""
-"If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. If you use a "
-"GetSatisfaction URL, users will be able to interact with a GetSatisfaction widget."
+#: apps/devhub/templates/devhub/addons/edit/support.html:52 mkt/developers/templates/developers/apps/edit/support.html:48
+msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
 msgstr ""
-"사용자 지원을 위한 웹사이트나 포럼이 있다면 이곳에 주소를 입력해 주세요. 웹사이트가 다른 언어로도 번역되어 있다면 이 항목의 여러가지 언어별로 추가가 가능합니다. GetSatisfaction URL을 사용하고 있을 "
-"경우엔 사용자들이 GetSatisfaction 위젯을 통해 바로 접근이 가능할 것입니다."
-
-#: apps/devhub/templates/devhub/addons/edit/support.html:74 mkt/developers/templates/developers/apps/edit/support.html:67
-msgid "Get Satisfaction"
-msgstr "Get Satisfaction"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6 mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -5594,8 +5584,8 @@ msgid "Edit details about this app's listing."
 msgstr "이 앱의 등록 사항을 편집합니다."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:39 mkt/developers/templates/developers/apps/status.html:7
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:57 mkt/developers/templates/developers/apps/preinstall/home.html:3
-#: mkt/developers/templates/developers/apps/preinstall/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:21
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:57 mkt/developers/templates/developers/apps/preload/home.html:3
+#: mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:21
 msgid "Manage Status"
 msgstr "상태 관리하기"
 
@@ -5712,7 +5702,7 @@ msgstr "좀 더 자세한 설명을 적어주세요:"
 msgid "The description will appear on the detail page."
 msgstr "이 정보는 상세 정보 페이지 상에 노출됩니다."
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:75 mkt/submit/forms.py:355
+#: apps/devhub/templates/devhub/addons/submit/describe.html:75 mkt/submit/forms.py:363
 msgid "Support Email:"
 msgstr "기술 지원 이메일:"
 
@@ -6966,11 +6956,9 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
-"Many developers provide a support mechanism, such as a forum, discussion group, <a href=\"http://www.getsatisfaction.com\">GetSatisfaction account</a>, or email address. It is recommended that "
-"support questions be posted via those mediums instead of in an add-on's review section."
+"Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
+"review section."
 msgstr ""
-"많은 개발자가 포럼, 토론 그룹, <a href=\"http://www.getsatisfaction.com\">GetSatisfaction 계정</a>, 이메일 주소같은 기술 지원 메커니즘을 제공하고 있습니다. 부가 기능 내 평가 항목 대신 이러한 수단을 "
-"통해 질문을 올리는 것을 권장합니다."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -8567,7 +8555,7 @@ msgstr "또는 <a href=\"%(cancel)s\">취소</a>"
 msgid "Manage Refunds"
 msgstr "환불 관리"
 
-#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:868 mkt/developers/templates/developers/transactions.html:44
+#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:879 mkt/developers/templates/developers/transactions.html:44
 #: mkt/developers/templates/developers/payments/refunds.html:7 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
 msgstr "트랜잭션 ID"
@@ -8708,7 +8696,7 @@ msgstr "기부 제도 사용하기"
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
 msgstr "또는 <a id=\"setup-cancel\" href=\"#\">무시</a>"
 
-#: apps/devhub/templates/devhub/payments/includes/paypal.html:13 mkt/submit/forms.py:356
+#: apps/devhub/templates/devhub/payments/includes/paypal.html:13 mkt/submit/forms.py:364
 msgid "The email address used by end users to contact you with support issues and refund requests."
 msgstr "이메일 주소는 기술 지원 문제 및 환불 요청시 연락 용도로 쓰입니다."
 
@@ -8765,7 +8753,7 @@ msgstr "인증받은 사람에 한해 테마를 공유하게 할까요?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
 #: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:231
-#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:302 mkt/submit/forms.py:364
+#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:302 mkt/submit/forms.py:372
 msgid "Yes"
 msgstr "예"
 
@@ -8776,7 +8764,7 @@ msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 전시, 상�
 
 #: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
 #: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:232
-#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:64 mkt/reviewers/forms.py:303 mkt/submit/forms.py:365
+#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:303 mkt/submit/forms.py:373
 msgid "No"
 msgstr "아니오"
 
@@ -8828,63 +8816,67 @@ msgstr "여러분의 테마를 위한 라이선스를 선택하세요."
 msgid "Theme Design"
 msgstr "테마 디자인"
 
-#: apps/devhub/templates/devhub/personas/edit.html:220 apps/devhub/templates/devhub/personas/edit.html:223
+#: apps/devhub/templates/devhub/personas/edit.html:221 apps/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
 msgstr "새 디자인 업로드"
 
-#: apps/devhub/templates/devhub/personas/edit.html:225
+#: apps/devhub/templates/devhub/personas/edit.html:226
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr "업로드 및 양식 제출시 AMO 팀이 업데이트한 디자인을 심사하게 됩니다. 현재 디자인은 심사가 끝날때까지는 계속 공개 상태일 것입니다."
 
-#: apps/devhub/templates/devhub/personas/edit.html:240
+#: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
 msgstr "이전에 다시 제출했던 디자인으로 심사 대기중에 있습니다."
 
-#: apps/devhub/templates/devhub/personas/edit.html:244
+#: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
 msgstr "대기중 상단"
 
-#: apps/devhub/templates/devhub/personas/edit.html:248
+#: apps/devhub/templates/devhub/personas/edit.html:249
 msgid "Pending Footer"
 msgstr "대기중 하단"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
+msgid "You may update your theme design here once it has been approved."
+msgstr ""
+
+#: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
 msgstr "상단"
 
-#: apps/devhub/templates/devhub/personas/edit.html:261
+#: apps/devhub/templates/devhub/personas/edit.html:266
 msgid "Footer"
 msgstr "하단"
 
-#: apps/devhub/templates/devhub/personas/edit.html:265 apps/devhub/templates/devhub/personas/submit.html:167
+#: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
 msgstr "테마에 사용할 색을 설정하세요."
 
-#: apps/devhub/templates/devhub/personas/edit.html:267 apps/devhub/templates/devhub/personas/submit.html:169
+#: apps/devhub/templates/devhub/personas/edit.html:272 apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
 msgstr "글자 전경색"
 
-#: apps/devhub/templates/devhub/personas/edit.html:268 apps/devhub/templates/devhub/personas/submit.html:170
+#: apps/devhub/templates/devhub/personas/edit.html:273 apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
 msgstr "탭 부분의 글자색입니다."
 
-#: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:172
+#: apps/devhub/templates/devhub/personas/edit.html:275 apps/devhub/templates/devhub/personas/submit.html:172
 msgid "Background"
 msgstr "바탕색"
 
-#: apps/devhub/templates/devhub/personas/edit.html:271 apps/devhub/templates/devhub/personas/submit.html:173
+#: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:173
 msgid "This is the color of the tabs."
 msgstr "탭의 색상입니다."
 
-#: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:178
+#: apps/devhub/templates/devhub/personas/edit.html:281 apps/devhub/templates/devhub/personas/submit.html:178
 msgid "Preview"
 msgstr "미리보기"
 
-#: apps/devhub/templates/devhub/personas/edit.html:282 apps/devhub/templates/devhub/personas/submit.html:183
+#: apps/devhub/templates/devhub/personas/edit.html:287 apps/devhub/templates/devhub/personas/submit.html:183
 msgid "Your Theme's Name"
 msgstr "테마의 이름"
 
-#: apps/devhub/templates/devhub/personas/edit.html:285 apps/devhub/templates/devhub/personas/submit.html:186
+#: apps/devhub/templates/devhub/personas/edit.html:290 apps/devhub/templates/devhub/personas/submit.html:186
 msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 msgstr "제작: <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 
@@ -9169,13 +9161,13 @@ msgid "Displayed version: {0}"
 msgstr "표시된 버전: {0}"
 
 #. {0} is an add-on name.
-#: apps/devhub/templates/devhub/versions/list.html:168 apps/versions/templates/versions/mobile/version_list.html:12 mkt/lookup/templates/lookup/app_summary.html:98
+#: apps/devhub/templates/devhub/versions/list.html:168 apps/versions/templates/versions/mobile/version_list.html:12 mkt/lookup/templates/lookup/app_summary.html:102
 msgid "Version History"
 msgstr "버전별 변경 사항"
 
 #: apps/devhub/templates/devhub/versions/list.html:176 mkt/developers/templates/developers/apps/status.html:200 mkt/lookup/templates/lookup/app_summary.html:53
-#: mkt/lookup/templates/lookup/app_summary.html:105 mkt/reviewers/forms.py:283 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:19
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7 mkt/reviewers/templates/reviewers/themes/queue_list.html:50
+#: mkt/lookup/templates/lookup/app_summary.html:109 mkt/reviewers/forms.py:283 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:19
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7 mkt/reviewers/templates/reviewers/themes/queue_list.html:46
 msgid "Status"
 msgstr "상태"
 
@@ -9751,12 +9743,12 @@ msgstr "부가 기능"
 msgid "Type"
 msgstr "종류"
 
-#: apps/editors/helpers.py:184 mkt/reviewers/templates/reviewers/queue.html:34
+#: apps/editors/helpers.py:184 mkt/reviewers/templates/reviewers/queue.html:30
 msgid "Waiting Time"
 msgstr "대기 시간"
 
 #: apps/editors/helpers.py:185 apps/editors/templates/editors/review.html:280 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/details.html:133 mkt/reviewers/templates/reviewers/includes/mobile_details.html:155
+#: mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/includes/details.html:133 mkt/reviewers/templates/reviewers/includes/mobile_details.html:155
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
 msgstr "표시"
@@ -9897,11 +9889,11 @@ msgstr "재시작 없는 부가 기능"
 msgid "Premium Add-on"
 msgstr "프리미엄 부가 기능"
 
-#: apps/editors/models.py:180 mkt/reviewers/templates/reviewers/apps_reviewing.html:44 mkt/reviewers/templates/reviewers/apps_reviewing.html:84 mkt/reviewers/templates/reviewers/queue.html:63
+#: apps/editors/models.py:180 mkt/reviewers/templates/reviewers/apps_reviewing.html:44 mkt/reviewers/templates/reviewers/apps_reviewing.html:84 mkt/reviewers/templates/reviewers/queue.html:59
 msgid "More Information Requested"
 msgstr "추가 정보 필요"
 
-#: apps/editors/models.py:181 mkt/reviewers/templates/reviewers/apps_reviewing.html:47 mkt/reviewers/templates/reviewers/apps_reviewing.html:87 mkt/reviewers/templates/reviewers/queue.html:66
+#: apps/editors/models.py:181 mkt/reviewers/templates/reviewers/apps_reviewing.html:47 mkt/reviewers/templates/reviewers/apps_reviewing.html:87 mkt/reviewers/templates/reviewers/queue.html:62
 msgid "Contains Editor Comment"
 msgstr "편집자 코멘트 있음"
 
@@ -9925,7 +9917,7 @@ msgstr "알 수 없는 오류 발생"
 msgid "Self-reviews are not allowed."
 msgstr "자신의 부가 기능은 심사할 수 없습니다."
 
-#: apps/editors/views.py:501 mkt/reviewers/views.py:336
+#: apps/editors/views.py:501 mkt/reviewers/views.py:350
 msgid "Review successfully processed."
 msgstr "심사 작업을 진행 합니다."
 
@@ -10006,7 +9998,7 @@ msgstr "알림"
 msgid "Filter"
 msgstr "필터"
 
-#: apps/editors/templates/editors/eventlog.html:30 mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:102
+#: apps/editors/templates/editors/eventlog.html:30 mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:106
 #: mkt/lookup/templates/lookup/transaction_summary.html:20 mkt/reviewers/templates/reviewers/logs.html:16 mkt/reviewers/templates/reviewers/themes/logs.html:16
 msgid "Date"
 msgstr "날짜"
@@ -10058,7 +10050,7 @@ msgid "{c} unreviewed submissions."
 msgid_plural "{c} unreviewed submissions."
 msgstr[0] "심사되지 않은 부가 기능은 {c}개 입니다."
 
-#: apps/editors/templates/editors/home.html:41 mkt/reviewers/templates/reviewers/home.html:41
+#: apps/editors/templates/editors/home.html:41 mkt/reviewers/templates/reviewers/home.html:45
 msgid "Current waiting times:"
 msgstr "현재 대기 시간:"
 
@@ -10069,15 +10061,15 @@ msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "부가 기능 {0}개"
 
-#: apps/editors/templates/editors/home.html:50 mkt/reviewers/templates/reviewers/home.html:50
+#: apps/editors/templates/editors/home.html:50 mkt/reviewers/templates/reviewers/home.html:54
 msgid "{0}%"
 msgstr "{0}%"
 
-#: apps/editors/templates/editors/home.html:63 apps/editors/templates/editors/performance.html:37 mkt/reviewers/templates/reviewers/home.html:64 mkt/reviewers/templates/reviewers/themes/home.html:57
+#: apps/editors/templates/editors/home.html:63 apps/editors/templates/editors/performance.html:37 mkt/reviewers/templates/reviewers/home.html:68 mkt/reviewers/templates/reviewers/themes/home.html:61
 msgid "Total Reviews"
 msgstr "총 심사 수"
 
-#: apps/editors/templates/editors/home.html:64 mkt/reviewers/templates/reviewers/home.html:65 mkt/reviewers/templates/reviewers/themes/home.html:58
+#: apps/editors/templates/editors/home.html:64 mkt/reviewers/templates/reviewers/home.html:69 mkt/reviewers/templates/reviewers/themes/home.html:62
 msgid "Reviews This Month"
 msgstr "이달의 심사"
 
@@ -10220,7 +10212,7 @@ msgstr "버전 기록서 / 심사자 메모"
 msgid "There are currently no add-ons of this type to review."
 msgstr "현재 이러한 종류의 부가 기능에선 심사할 수 있는 것이 없습니다."
 
-#: apps/editors/templates/editors/queue.html:176 mkt/reviewers/templates/reviewers/queue.html:116 mkt/reviewers/templates/reviewers/themes/queue_list.html:91
+#: apps/editors/templates/editors/queue.html:176 mkt/reviewers/templates/reviewers/queue.html:112 mkt/reviewers/templates/reviewers/themes/queue_list.html:87
 msgid "Helpful Links:"
 msgstr "도움이 될만한 링크:"
 
@@ -10228,7 +10220,7 @@ msgstr "도움이 될만한 링크:"
 msgid "Add-on Policy"
 msgstr "부가 기능 정책"
 
-#: apps/editors/templates/editors/queue.html:179 mkt/reviewers/templates/reviewers/queue.html:117 mkt/reviewers/templates/reviewers/themes/queue_list.html:92
+#: apps/editors/templates/editors/queue.html:179 mkt/reviewers/templates/reviewers/queue.html:113 mkt/reviewers/templates/reviewers/themes/queue_list.html:88
 msgid "Editors' Guide"
 msgstr "편집 가이드"
 
@@ -10667,7 +10659,7 @@ msgid "E-Mail Your Team:"
 msgstr "팀에 이메일 전송:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8 apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12 mkt/constants/submit.py:6
-#: mkt/developers/templates/developers/apps/preinstall/submit.html:11
+#: mkt/developers/templates/developers/apps/preload/submit.html:11
 msgid "Submit"
 msgstr "입력하기"
 
@@ -12421,16 +12413,16 @@ msgstr "모든 앱"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
-#: apps/search/views.py:543
+#: apps/search/views.py:548
 msgid "Any {0}"
 msgstr "{0} 모든 버전"
 
 #. L10n: "All Systems" means show everything regardless of platform.
-#: apps/search/views.py:578
+#: apps/search/views.py:583
 msgid "All Systems"
 msgstr "모든 운영 체제"
 
-#: apps/search/views.py:589
+#: apps/search/views.py:594
 msgid "All Tags"
 msgstr "모든 태그"
 
@@ -12479,7 +12471,7 @@ msgstr[0] "검색 결과 <b>{0}</b>개"
 msgid "Filter Results"
 msgstr "필터 결과"
 
-#: apps/search/templates/search/results.html:69
+#: apps/search/templates/search/results.html:69 mkt/operators/templates/operators/preloads.html:16
 msgid "Category"
 msgstr "분류"
 
@@ -12711,11 +12703,11 @@ msgstr "등록한 사용자"
 msgid "Custom Date Range"
 msgstr "사용자 정의 날짜 범위"
 
-#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:874
+#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:885
 msgid "From"
 msgstr "시작일"
 
-#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:877
+#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:888
 msgid "To"
 msgstr "종료일"
 
@@ -13840,23 +13832,6 @@ msgstr "별점, 모음집, 그 외 여러 기여한 내역 옆에 공개적으�
 msgid "Purchase Date"
 msgstr "구입일"
 
-#: mkt/account/templates/account/abuse.html:11
-msgid "If you suspect this user violates our policies, please use the form below to describe your concerns. Please do not use this form for any other reason."
-msgstr "이 사용자가 저희 정책을 침해하고 있다고 의심된다면 아래 양식을 사용해서 구체적인 내용을 적어주세요. 다른 이유로는 이 양식을 사용하지 말아 주십시오."
-
-#: mkt/account/templates/account/purchases.html:27
-msgid "You have no apps."
-msgstr "앱이 없습니다."
-
-#: mkt/account/templates/account/purchases.html:30
-msgid "You must be signed in to view your apps."
-msgstr "앱을 조회하려면 로그인해야 합니다."
-
-#: mkt/account/templates/account/purchases.html:31 mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:139
-#: mkt/templates/mkt/base_mobile.html:120
-msgid "Sign in / Sign up"
-msgstr "로그인 / 로그아웃"
-
 # 75%
 #: mkt/account/templates/account/helpers/feedback_form.html:15
 msgid "Send"
@@ -13882,7 +13857,7 @@ msgstr "%(date)s에 구입 취소 (%(amt)s)"
 msgid "Account"
 msgstr "계정"
 
-#: mkt/account/templates/account/includes/nav.html:6 mkt/templates/mkt/base_desktop.html:19 mkt/templates/mkt/base_desktop.html:54
+#: mkt/account/templates/account/includes/nav.html:6
 msgid "Feedback"
 msgstr "피드백"
 
@@ -13906,7 +13881,7 @@ msgstr ""
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr ""
 
-#: mkt/collections/serializers.py:216
+#: mkt/collections/serializers.py:246
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
 
@@ -13915,7 +13890,7 @@ msgid "The Firefox Marketplace is the official source of apps for the Web Platfo
 msgstr ""
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
-#: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:49
+#: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:45
 #: mkt/reviewers/templates/reviewers/themes/single.html:26 mkt/reviewers/templates/reviewers/themes/themes.html:46
 msgid "Reviewer"
 msgstr "심사자"
@@ -15468,143 +15443,143 @@ msgstr "(미지원)"
 msgid "Could not connect to payment server."
 msgstr "지불 서버에 연결 할 수 없습니다."
 
-#: mkt/developers/forms.py:83
+#: mkt/developers/forms.py:98
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "모든 팀 멤버는 개발자 동의서를 읽고 동의해야 합니다."
 
-#: mkt/developers/forms.py:117
+#: mkt/developers/forms.py:132
 msgid "At least one team member must be listed."
 msgstr "팀 멤버 한 명 이상이 등재되어 있어야 합니다."
 
-#: mkt/developers/forms.py:121
+#: mkt/developers/forms.py:136
 msgid "A team member can only be listed once."
 msgstr "팀 멤버는 한번에 한명만 넣을 수 있습니다."
 
-#: mkt/developers/forms.py:148
+#: mkt/developers/forms.py:163
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr "이런, 공개 상태인 %s의 설치 선언문은 이미 올려져 있었습니다. <a href=\"%s\">앱 수정하기</a>"
 
-#: mkt/developers/forms.py:152
+#: mkt/developers/forms.py:167
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr "이런, 심사 대기 상태인 %s의 설치 선언문은 이미 올려져 있었습니다. <a href=\"%s\">앱 수정하기</a>"
 
-#: mkt/developers/forms.py:156
+#: mkt/developers/forms.py:171
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr "이런, 미완료 상태인 %s의 설치 선언문은 이미 올려져 있었습니다. <a href=\"%s\">앱 계속하기</a>"
 
-#: mkt/developers/forms.py:160
+#: mkt/developers/forms.py:175
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr "이런, 승인 거부 상태인 %s의 설치 선언문은 이미 올려져 있었습니다. <a href=\"%s\">앱 수정하기</a>"
 
-#: mkt/developers/forms.py:164
+#: mkt/developers/forms.py:179
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled by Mozilla. <a href=\"%s\">Edit app</a>"
 msgstr "이런, Mozilla에 의해 사용 중단된 %s의 설치 선언문은 이미 올려져 있었습니다. <a href=\"%s\">앱 수정하기</a>"
 
-#: mkt/developers/forms.py:168
+#: mkt/developers/forms.py:183
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr "이런, 현재 사용 중단 상태인 %s의 설치 선언문은 이미 올려져 있었습니다. <a href=\"%s\">앱 수정하기</a>"
 
-#: mkt/developers/forms.py:183
+#: mkt/developers/forms.py:198
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "이 도메인에 대한 앱이 이미 있습니다. 하나의 도메인엔 하나의 앱만 허용됩니다."
 
-#: mkt/developers/forms.py:272
+#: mkt/developers/forms.py:287
 msgid "Only one rating from each ratings body may be selected."
 msgstr "각 등급 대상엔 한 개의 등급만 부여할 수 있습니다."
 
-#: mkt/developers/forms.py:350 mkt/webapps/models.py:391
+#: mkt/developers/forms.py:368 mkt/webapps/models.py:391
 msgid "You must upload at least one screenshot or video."
 msgstr "한 개 이상의 스크린샷이나 동영상을 업로드해야 합니다."
 
-#: mkt/developers/forms.py:391
+#: mkt/developers/forms.py:409
 msgid "Packaged app too large for submission. Packages must be less than %s."
 msgstr ""
 
-#: mkt/developers/forms.py:403
+#: mkt/developers/forms.py:421
 msgid "Error extracting manifest from zip file."
 msgstr ""
 
-#: mkt/developers/forms.py:456
+#: mkt/developers/forms.py:474
 msgid "Provide a detailed description of your app"
 msgstr "앱의 자세한 설명을 입력해 주세요."
 
-#: mkt/developers/forms.py:457 mkt/submit/forms.py:337
+#: mkt/developers/forms.py:475 mkt/submit/forms.py:345
 msgid "This description will appear on the details page."
 msgstr "이 설명은 상세 정보 페이지에 노출됩니다."
 
-#: mkt/developers/forms.py:529
+#: mkt/developers/forms.py:547
 msgid "Please specify your app's Privacy Policy"
 msgstr "앱의 개인 정보 보호 정책을 입력해주세요"
 
-#: mkt/developers/forms.py:550
+#: mkt/developers/forms.py:568
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "기본 언어를 변경하기에 앞서 해당 언어의 이름 및 설명이 입력되야 합니다. %s 부분이 누락됐습니다."
 
-#: mkt/developers/forms.py:612
+#: mkt/developers/forms.py:623
 msgid "Your comments"
 msgstr "당신의 코멘트"
 
-#: mkt/developers/forms.py:635
+#: mkt/developers/forms.py:646
 msgid "Choose the regions your app will be listed in:"
 msgstr "앱이 표시될 지역을 선택하세요:"
 
-#: mkt/developers/forms.py:639 mkt/developers/forms.py:690
+#: mkt/developers/forms.py:650 mkt/developers/forms.py:701
 msgid "You must select at least one region."
 msgstr "한 개 이상의 지역을 선택해야 합니다."
 
-#: mkt/developers/forms.py:641
+#: mkt/developers/forms.py:652
 msgid "Enable new regions"
 msgstr ""
 
-#: mkt/developers/forms.py:802
+#: mkt/developers/forms.py:813
 msgid "Agree"
 msgstr "동의하기"
 
-#: mkt/developers/forms.py:819
+#: mkt/developers/forms.py:830
 msgid "Please enter a valid email address."
 msgstr "올바른 이메일 주소를 입력해 주세요."
 
-#: mkt/developers/forms.py:822
+#: mkt/developers/forms.py:833
 msgid "Your email address"
 msgstr "이메일 주소"
 
-#: mkt/developers/forms.py:825
+#: mkt/developers/forms.py:836
 msgid "Text"
 msgstr "본문"
 
-#: mkt/developers/forms.py:829
+#: mkt/developers/forms.py:840
 msgid "You must agree to the Privacy Policy."
 msgstr "개인 정보 보호 정책에 동의해야 합니다."
 
-#: mkt/developers/forms.py:830 mkt/developers/forms_payments.py:396 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:841 mkt/developers/forms_payments.py:396 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "국가"
 
-#: mkt/developers/forms.py:865
+#: mkt/developers/forms.py:876
 msgid "Transaction Type"
 msgstr "거래 방식"
 
-#: mkt/developers/forms.py:919
+#: mkt/developers/forms.py:930
 msgid "I agree to the Terms and Conditions"
 msgstr ""
 
-#: mkt/developers/forms.py:921
+#: mkt/developers/forms.py:932
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr ""
 
-#: mkt/developers/forms.py:930
+#: mkt/developers/forms.py:941
 msgid "Test plan required."
 msgstr ""
 
-#: mkt/developers/forms.py:937
+#: mkt/developers/forms.py:948
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr ""
 
-#: mkt/developers/forms.py:943
+#: mkt/developers/forms.py:954
 msgid "Invalid file type. Only %s files are supported."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:261
+#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:269
 msgid "App Price"
 msgstr "앱 가격"
 
@@ -15765,7 +15740,7 @@ msgstr ""
 msgid "Developers"
 msgstr "개발자"
 
-#: mkt/developers/models.py:161
+#: mkt/developers/models.py:167
 msgid "Bango"
 msgstr "Bango"
 
@@ -15843,48 +15818,48 @@ msgstr "앱이 다시 제출됐습니다."
 msgid "New version successfully added."
 msgstr "새 버전을 추가했습니다."
 
-#: mkt/developers/views.py:322
-msgid "Application for preinstall successfully submitted."
+#: mkt/developers/views.py:324
+msgid "Application for preload successfully submitted."
 msgstr ""
 
-#: mkt/developers/views.py:325
+#: mkt/developers/views.py:327
 msgid "There was an error with the form."
 msgstr ""
 
-#: mkt/developers/views.py:359
+#: mkt/developers/views.py:361
 msgid "Version successfully edited."
 msgstr "버전을 수정했습니다."
 
-#: mkt/developers/views.py:400
+#: mkt/developers/views.py:402
 msgid "Version successfully made public."
 msgstr ""
 
 # 77%
-#: mkt/developers/views.py:415
+#: mkt/developers/views.py:417
 msgid "Version \"{0}\" deleted."
 msgstr "\"{0}\" 버전이 삭제되었습니다."
 
-#: mkt/developers/views.py:893
+#: mkt/developers/views.py:895
 msgid "Terms of service accepted."
 msgstr "이용 약관에 동의했습니다."
 
-#: mkt/developers/views.py:906
+#: mkt/developers/views.py:908
 msgid "Users with the admin role cannot use the API."
 msgstr "관리자 역할을 맡고 있는 사용자는 API를 사용할 수 없습니다."
 
-#: mkt/developers/views.py:914
+#: mkt/developers/views.py:916
 msgid "No such API key."
 msgstr "API 키가 없습니다."
 
-#: mkt/developers/views.py:926
+#: mkt/developers/views.py:928
 msgid "New API key generated."
 msgstr "새 API 키가 생성됐습니다."
 
-#: mkt/developers/views.py:944
+#: mkt/developers/views.py:946
 msgid "Created blocklisted version."
 msgstr "생성된 블록리스트 버전입니다."
 
-#: mkt/developers/views.py:946
+#: mkt/developers/views.py:948
 msgid "App already blocklisted."
 msgstr "앱이 이미 블록리스트됐습니다."
 
@@ -15900,19 +15875,19 @@ msgstr "신용카드"
 msgid "Carrier"
 msgstr "통신사 요금"
 
-#: mkt/developers/views_payments.py:252
+#: mkt/developers/views_payments.py:253
 msgid "Secret was reset successfully."
 msgstr "시크릿이 초기화됐습니다."
 
-#: mkt/developers/views_payments.py:256
+#: mkt/developers/views_payments.py:257
 msgid "Key and secret were created successfully."
 msgstr "키와 시크릿이 생성됐습니다."
 
-#: mkt/developers/views_payments.py:282
+#: mkt/developers/views_payments.py:283
 msgid "Your app is not configured for in-app payments."
 msgstr "앱에 내부 결제 시스템이 설정되지 않았습니다."
 
-#: mkt/developers/views_payments.py:288
+#: mkt/developers/views_payments.py:289
 msgid "No payment account for this app."
 msgstr "이 앱에는 결제에 쓸 계정이 없습니다."
 
@@ -15964,6 +15939,10 @@ msgstr "로그인"
 msgid "You must sign in to proceed."
 msgstr "계속하려면 로그인해야 합니다."
 
+#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:139
+msgid "Sign in / Sign up"
+msgstr "로그인 / 로그아웃"
+
 #: mkt/developers/templates/developers/nav.html:36 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
 msgstr ""
@@ -16012,7 +15991,7 @@ msgstr "웹사이트 점검 관계로 일부 기능을 잠시동안 사용할 �
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr "이용자 약관이 마지막으로 동의한 이후에 다시 변경됐습니다. 읽어보시고 <a href=\"%(url)s\">새 약관</a>에 동의해 주세요."
 
-#: mkt/developers/templates/developers/skeleton_impala.html:131 mkt/templates/mkt/base_mobile.html:112
+#: mkt/developers/templates/developers/skeleton_impala.html:131
 msgid "Please sign in"
 msgstr "로그인 하세요"
 
@@ -16614,7 +16593,7 @@ msgid "Transactions"
 msgstr "거래 내역"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:81
-msgid "Communication"
+msgid "Messages"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:11
@@ -16643,35 +16622,35 @@ msgstr "가격:"
 msgid "Change Devices"
 msgstr "장치 종류 변경하기"
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:10 mkt/developers/templates/developers/apps/preinstall/submit.html:10
-msgid "Preinstalled"
+#: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
+msgid "Preloaded"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:16
-msgid "Preinstalled App"
+#: mkt/developers/templates/developers/apps/preload/home.html:16
+msgid "Preloaded App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:21
+#: mkt/developers/templates/developers/apps/preload/home.html:21
 msgid "Download the test plan"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:27
+#: mkt/developers/templates/developers/apps/preload/home.html:27
 msgid "Testing Finished?"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/preinstall/home.html:30 mkt/developers/templates/developers/apps/preinstall/submit.html:36
-msgid "Submit your app for preinstall"
+#: mkt/developers/templates/developers/apps/preload/home.html:30 mkt/developers/templates/developers/apps/preload/submit.html:36
+msgid "Submit your app for preload"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/preinstall/home_help.html:1
+#: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
-"You can submit your to be considered for being <strong>preinstalled and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preinstallation, you may download a test template "
-"from us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preinstall submission form</a>. We will store your test results on "
-"our servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
+"You can submit your to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from us "
+"below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our servers "
+"where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/preinstall/submit.html:18
-msgid "Preinstalled App Terms and Conditions"
+#: mkt/developers/templates/developers/apps/preload/submit.html:18
+msgid "Preloaded App Terms and Conditions"
 msgstr ""
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
@@ -16691,7 +16670,7 @@ msgid "View Transactions"
 msgstr "거래 내역 조회"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:36
-msgid "View Communication Dashboard"
+msgid "View Messages"
 msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
@@ -16910,6 +16889,7 @@ msgid "Modify"
 msgstr "수정"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:46
+#: mkt/lookup/templates/lookup/app_summary.html:95
 msgid "View transactions"
 msgstr ""
 
@@ -18190,7 +18170,7 @@ msgid "Open Web Apps for Android"
 msgstr "안드로이드용 오픈 웹 앱"
 
 #: mkt/ecosystem/templates/ecosystem/build_payments.html:5 mkt/ecosystem/templates/ecosystem/macros.html:183 mkt/lookup/templates/lookup/app_summary.html:69
-#: mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47 mkt/reviewers/templates/reviewers/queue.html:37
+#: mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47 mkt/reviewers/templates/reviewers/queue.html:33
 msgid "Payments"
 msgstr "결제"
 
@@ -21069,27 +21049,27 @@ msgstr ""
 msgid "Reason for Deletion"
 msgstr ""
 
-#: mkt/lookup/views.py:149
+#: mkt/lookup/views.py:151
 msgid "Currently unable to retrieve refund status."
 msgstr ""
 
-#: mkt/lookup/views.py:176
+#: mkt/lookup/views.py:178
 msgid "A refund has already been processed."
 msgstr ""
 
-#: mkt/lookup/views.py:199
+#: mkt/lookup/views.py:201
 msgid "You cannot make a refund request for this transaction."
 msgstr ""
 
-#: mkt/lookup/views.py:221
+#: mkt/lookup/views.py:223
 msgid "Refund for this transaction now pending."
 msgstr ""
 
-#: mkt/lookup/views.py:230
+#: mkt/lookup/views.py:232
 msgid "Refund for this transaction successfully approved."
 msgstr ""
 
-#: mkt/lookup/views.py:235
+#: mkt/lookup/views.py:237
 msgid "Refund request for this transaction failed."
 msgstr ""
 
@@ -21145,11 +21125,15 @@ msgstr "{0}건 승인됨"
 msgid "{0} rejected"
 msgstr "{0}건 거부됨"
 
-#: mkt/lookup/templates/lookup/app_summary.html:103
+#: mkt/lookup/templates/lookup/app_summary.html:94 mkt/lookup/templates/lookup/user_summary.html:54
+msgid "Bango portal"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "Version (ID)"
 msgstr "버전 (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:104
+#: mkt/lookup/templates/lookup/app_summary.html:108
 msgid "Filename (ID, Size)"
 msgstr "파일명 (ID, 크기)"
 
@@ -21201,6 +21185,10 @@ msgstr "계정 업데이트"
 msgid "Purchase results for"
 msgstr "구매 결과 :"
 
+#: mkt/lookup/templates/lookup/user_purchases.html:25
+msgid "This user has not purchased any apps."
+msgstr ""
+
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
 msgstr "계좌 검색 결과 :"
@@ -21237,48 +21225,53 @@ msgstr "환불 요청"
 msgid "auto-approved"
 msgstr "자동 승인"
 
+#. The account is the name of the payment account.
 #: mkt/lookup/templates/lookup/user_summary.html:57
+msgid "View transactions for: {account}"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/user_summary.html:64
 msgid "Developer Program"
 msgstr "개발자 프로그램"
 
-#: mkt/lookup/templates/lookup/user_summary.html:59
+#: mkt/lookup/templates/lookup/user_summary.html:66
 msgid "Read agreement"
 msgstr "동의서 읽기"
 
-#: mkt/lookup/templates/lookup/user_summary.html:67
+#: mkt/lookup/templates/lookup/user_summary.html:74
 msgid "Addresses"
 msgstr "주소"
 
-#: mkt/lookup/templates/lookup/user_summary.html:86
+#: mkt/lookup/templates/lookup/user_summary.html:93
 msgid "Submissions"
 msgstr "제출"
 
-#: mkt/lookup/templates/lookup/user_summary.html:93
+#: mkt/lookup/templates/lookup/user_summary.html:100
 msgid "Unnamed"
 msgstr "익명"
 
-#: mkt/lookup/templates/lookup/user_summary.html:104 mkt/lookup/templates/lookup/user_summary.html:112 mkt/lookup/templates/lookup/user_summary.html:116
-#: mkt/lookup/templates/lookup/user_summary.html:120
+#: mkt/lookup/templates/lookup/user_summary.html:111 mkt/lookup/templates/lookup/user_summary.html:119 mkt/lookup/templates/lookup/user_summary.html:123
+#: mkt/lookup/templates/lookup/user_summary.html:127
 msgid "Delete User"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/user_summary.html:107
+#: mkt/lookup/templates/lookup/user_summary.html:114
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
 msgstr ""
 
-#: mkt/lookup/templates/lookup/user_summary.html:117
+#: mkt/lookup/templates/lookup/user_summary.html:124
 msgid "Are you sure you wish to delete this user?"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/user_summary.html:127
+#: mkt/lookup/templates/lookup/user_summary.html:134
 msgid "This user has already been deleted."
 msgstr ""
 
-#: mkt/lookup/templates/lookup/user_summary.html:129
+#: mkt/lookup/templates/lookup/user_summary.html:136
 msgid "Deleted by"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/user_summary.html:132 mkt/reviewers/templates/reviewers/themes/history_table.html:10
+#: mkt/lookup/templates/lookup/user_summary.html:139 mkt/reviewers/templates/reviewers/themes/history_table.html:10
 msgid "Reason"
 msgstr "사유"
 
@@ -21310,9 +21303,37 @@ msgstr ""
 msgid "Lookup"
 msgstr "검색"
 
-#: mkt/lookup/templates/lookup/includes/user_search.html:5
+#: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
 msgstr "계정 검색"
+
+#: mkt/operators/helpers.py:12
+msgid "Operator Dashboard"
+msgstr ""
+
+#: mkt/operators/templates/operators/base.html:12
+msgid "<small>Operator</small> Dashboard"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
+msgid "Preload Candidates"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:17
+msgid "Preload Opt-in"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:18
+msgid "Test Plan"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:41
+msgid "{0}, {1}"
+msgstr ""
+
+#: mkt/operators/templates/operators/preloads.html:55
+msgid "No preload candidates found"
+msgstr ""
 
 #. L10n: {0} is the addon name.
 #: mkt/purchase/webpay.py:42
@@ -21320,7 +21341,7 @@ msgid "Firefox Marketplace purchase of {0}"
 msgstr "Firefox 마켓플레이스 {0} 구매"
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/webpay_tasks.py:30
+#: mkt/purchase/webpay_tasks.py:27
 msgid "Receipt for {0}"
 msgstr ""
 
@@ -21424,7 +21445,7 @@ msgstr ""
 msgid "Attachment:"
 msgstr ""
 
-#: mkt/reviewers/forms.py:39 mkt/submit/forms.py:336
+#: mkt/reviewers/forms.py:39 mkt/submit/forms.py:344
 msgid "Description:"
 msgstr ""
 
@@ -21637,7 +21658,7 @@ msgstr "상급 심사자만 차단 목록에 있는 앱을 심사할 수 있습�
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "장치가 심사자에 의해 변경됨: {0}"
 
-#: mkt/reviewers/views.py:303 mkt/reviewers/views.py:324 mkt/submit/forms.py:33 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:303 mkt/reviewers/views.py:324 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
 msgstr "{0}에 삭제됨"
 
@@ -21646,7 +21667,11 @@ msgstr "{0}에 삭제됨"
 msgid "Requirements changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views_themes.py:311
+#: mkt/reviewers/views.py:348
+msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
+msgstr ""
+
+#: mkt/reviewers/views_themes.py:303
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 
@@ -21654,19 +21679,19 @@ msgstr ""
 msgid "You are currently not reviewing any apps."
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/search_results.html:6
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
 msgstr "장치"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:35 mkt/reviewers/templates/reviewers/apps_reviewing.html:75 mkt/reviewers/templates/reviewers/queue.html:51
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:35 mkt/reviewers/templates/reviewers/apps_reviewing.html:75 mkt/reviewers/templates/reviewers/queue.html:47
 msgid "Packaged App"
 msgstr "패키징된 앱"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:38 mkt/reviewers/templates/reviewers/apps_reviewing.html:78 mkt/reviewers/templates/reviewers/queue.html:57
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:38 mkt/reviewers/templates/reviewers/apps_reviewing.html:78 mkt/reviewers/templates/reviewers/queue.html:53
 msgid "Blocklisted App"
 msgstr "차단목록에 있는 앱"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:41 mkt/reviewers/templates/reviewers/apps_reviewing.html:81 mkt/reviewers/templates/reviewers/queue.html:60
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:41 mkt/reviewers/templates/reviewers/apps_reviewing.html:81 mkt/reviewers/templates/reviewers/queue.html:56
 msgid "Premium App"
 msgstr "프리미엄 앱"
 
@@ -21674,27 +21699,27 @@ msgstr "프리미엄 앱"
 msgid "<small>Marketplace</small> Reviewer Tools"
 msgstr "<small>마켓플레이스</small> 심사 도구"
 
-#: mkt/reviewers/templates/reviewers/home.html:13
+#: mkt/reviewers/templates/reviewers/home.html:17
 msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
 msgstr[0] "대기중인 앱 심사 {num}건"
 
-#: mkt/reviewers/templates/reviewers/home.html:20
+#: mkt/reviewers/templates/reviewers/home.html:24
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
 msgstr[0] ""
 
-#: mkt/reviewers/templates/reviewers/home.html:27
+#: mkt/reviewers/templates/reviewers/home.html:31
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
 msgstr[0] ""
 
-#: mkt/reviewers/templates/reviewers/home.html:36
+#: mkt/reviewers/templates/reviewers/home.html:40
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
 msgstr[0] "이번 주의 미심사 앱 {c}건"
 
-#: mkt/reviewers/templates/reviewers/home.html:49
+#: mkt/reviewers/templates/reviewers/home.html:53
 msgid "{0} app"
 msgid_plural "{0} apps"
 msgstr[0] "앱 {0}개"
@@ -21711,19 +21736,19 @@ msgstr "앱이 삭제됐습니다."
 msgid "Reviewer Scores for {0}"
 msgstr "{0}에 대한 심사자 점수"
 
-#: mkt/reviewers/templates/reviewers/queue.html:53
+#: mkt/reviewers/templates/reviewers/queue.html:49
 msgid "Privileged App"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/queue.html:82
+#: mkt/reviewers/templates/reviewers/queue.html:78
 msgid "Payment Category:"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/queue.html:86
+#: mkt/reviewers/templates/reviewers/queue.html:82
 msgid "Abuse Reports:"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/queue.html:101 mkt/reviewers/templates/reviewers/themes/queue_list.html:79
+#: mkt/reviewers/templates/reviewers/queue.html:97 mkt/reviewers/templates/reviewers/themes/queue_list.html:75
 msgid "There are currently no items of this type to review."
 msgstr "이 장치에선 현재 심사 대상이 없습니다."
 
@@ -21826,7 +21851,7 @@ msgstr ""
 msgid "%(stars)s by %(user)s on %(date)s (%(locale)s)"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:11 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13 mkt/reviewers/templates/reviewers/themes/queue_list.html:15
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:11 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13 mkt/reviewers/templates/reviewers/themes/queue_list.html:11
 msgid "Clear Search"
 msgstr "검색 내역 초기화"
 
@@ -21866,22 +21891,22 @@ msgstr "심사일"
 msgid "There are currently no reviews."
 msgstr "심사중인 테마가 없습니다."
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:13
+#: mkt/reviewers/templates/reviewers/themes/home.html:17
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
 msgstr[0] ""
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:21
+#: mkt/reviewers/templates/reviewers/themes/home.html:25
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
 msgstr[0] ""
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:28
+#: mkt/reviewers/templates/reviewers/themes/home.html:32
 msgid "{num} Update"
 msgid_plural "{num} Updates"
 msgstr[0] ""
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:43
+#: mkt/reviewers/templates/reviewers/themes/home.html:47
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
 msgstr[0] ""
@@ -21938,11 +21963,11 @@ msgstr "{0}건 심사 / {1}"
 msgid "There are currently no Themes to review."
 msgstr "심사할 테마가 없습니다."
 
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:24
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:20
 msgid "Release My Theme Locks"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:37
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:33
 msgid "Interactive Theme Queue"
 msgstr ""
 
@@ -22071,61 +22096,57 @@ msgid "Home"
 msgstr "홈"
 
 # 90%
-#: mkt/site/templates/site/403.html:5
+#: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
 msgstr "허가되지 않음"
 
-#: mkt/site/templates/site/403.html:9
+#: mkt/site/templates/site/403.html:8
 msgid "Oops! Not allowed."
 msgstr "이런! 허가되지 않았습니다."
 
-#: mkt/site/templates/site/403.html:10
+#: mkt/site/templates/site/403.html:9
 msgid "You tried to do something that you weren't allowed to."
 msgstr "허가되지 않은 작업을 시도했습니다."
 
-#: mkt/site/templates/site/403.html:12
+#: mkt/site/templates/site/403.html:11
 msgid "Try going back to the previous page, refreshing and trying again."
 msgstr "이전 페이지로 돌아가서 새로고침 후 다시 해보세요."
 
-#: mkt/site/templates/site/404.html:5
+#: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
 msgstr "페이지가 없습니다"
 
-#: mkt/site/templates/site/404.html:11
+#: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
 msgstr "죄송합니다만 찾으시는걸 발견할 수 없습니다."
 
-#: mkt/site/templates/site/404.html:14
+#: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
 msgstr "요청한 페이지 또는 파일이 저희 사이트엔 없습니다. 오래된 링크를 클릭하셨거나 주소를 잘못 입력하셨을 가능성이 있습니다."
 
-#: mkt/site/templates/site/404.html:19
+#: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
 msgstr "주소를 입력하셨다면 철자를 한번 더 확인해 주세요."
 
-#: mkt/site/templates/site/404.html:22
+#: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
 msgstr "<a class=\"sync\" href=\"%(home)s\">Firefox 마켓플레이스 첫 페이지</a> 가기"
 
-#: mkt/site/templates/site/500.html:5
+#: mkt/site/templates/site/500.html:4
 msgid "Server Error"
 msgstr "서버 오류"
 
-#: mkt/site/templates/site/500.html:11
+#: mkt/site/templates/site/500.html:8
 msgid "Oops! We had an error."
 msgstr "이런! 오류가 발생했습니다."
 
-#: mkt/site/templates/site/500.html:13
+#: mkt/site/templates/site/500.html:10
 msgid "We'll get to fixing that soon."
 msgstr "곧 수정할 예정입니다."
 
-#: mkt/site/templates/site/500.html:15
+#: mkt/site/templates/site/500.html:12
 msgid "You can try refreshing the page, or try again later."
 msgstr "페이지를 새로고침하거나 나중에 다시 시도해 보세요."
-
-#: mkt/site/templates/site/terms-of-use.html:5 mkt/templates/mkt/footer.html:17
-msgid "Terms of Use"
-msgstr "이용 약관"
 
 #: mkt/stats/forms.py:9 mkt/stats/templates/devstats/includes/criteria.html:37 mkt/stats/templates/includes/criteria.html:37
 msgid "Day"
@@ -22273,73 +22294,73 @@ msgstr "총 사용자"
 msgid "Total visitors"
 msgstr "총 방문자"
 
-#: mkt/submit/forms.py:30
+#: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
 msgstr "장치 변경됨: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/submit/forms.py:40
+#: mkt/submit/forms.py:43
 msgid "Requirements changed: {0}"
 msgstr ""
 
-#: mkt/submit/forms.py:48
+#: mkt/submit/forms.py:51
 msgid "Cannot be free and paid."
 msgstr "무료나 유료가 될 수 없습니다."
 
-#: mkt/submit/forms.py:49
+#: mkt/submit/forms.py:52
 msgid "Please select a device."
 msgstr "장치를 선택하세요."
 
-#: mkt/submit/forms.py:50
+#: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
 msgstr ""
 
-#: mkt/submit/forms.py:144
+#: mkt/submit/forms.py:147
 msgid "Agree and Continue"
 msgstr "동의 및 계속"
 
-#: mkt/submit/forms.py:266
+#: mkt/submit/forms.py:274
 msgid "When should your app be made available for sale?"
 msgstr "언제부터 구입 가능하게 할까요?"
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
-#: mkt/submit/forms.py:273
+#: mkt/submit/forms.py:281
 msgid "App to upgrade from"
 msgstr "앱 업그레이드:"
 
-#: mkt/submit/forms.py:340
+#: mkt/submit/forms.py:348
 msgid "Privacy Policy:"
 msgstr "개인 정보 보호 정책:"
 
-#: mkt/submit/forms.py:341
+#: mkt/submit/forms.py:349
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
 msgstr "개인 정보 보호 정책엔 어떤 데이터가 사용자의 컴퓨터에서 전송되고 어떤 용도로 쓰이는 지 설명이 되어 있어야 합니다."
 
-#: mkt/submit/forms.py:345
+#: mkt/submit/forms.py:353
 msgid "Homepage:"
 msgstr "홈페이지:"
 
-#: mkt/submit/forms.py:346
+#: mkt/submit/forms.py:354
 msgid "If your app has another homepage, enter its address here."
 msgstr "앱에 다른 홈페이지가 더 있을 경우 이곳에 주소를 입력하세요."
 
-#: mkt/submit/forms.py:350
+#: mkt/submit/forms.py:358
 msgid "Support Website:"
 msgstr "기술 지원 웹사이트:"
 
-#: mkt/submit/forms.py:351
+#: mkt/submit/forms.py:359
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "앱이 웹사이트가 포럼을 보유하고 있다면 이곳에 주소를 입력하세요."
 
-#: mkt/submit/forms.py:361
+#: mkt/submit/forms.py:369
 msgid "Does your app require Flash support?"
 msgstr "앱이 플래시를 지원합니까?"
 
-#: mkt/submit/forms.py:369
+#: mkt/submit/forms.py:377
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
 msgstr "심사가 되고나면 가능한한 빨리 Firefox 마켓플레이스에 앱을 배포하세요."
 
-#: mkt/submit/forms.py:371
+#: mkt/submit/forms.py:379
 msgid ""
 "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to "
 "log in and manually publish it."
@@ -22463,7 +22484,7 @@ msgstr "시작하려면 <strong>개발자 약관</strong>을 읽고 동의해 �
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla에서 앱 개발자 소식과 설문 조사 관련해서 이메일을 보낼 수도 있습니다."
 
-#: mkt/submit/tests/test_forms.py:231 mkt/webapps/tests/test_models.py:1173
+#: mkt/submit/tests/test_forms.py:231 mkt/webapps/tests/test_models.py:1152
 msgid "Héllo"
 msgstr ""
 
@@ -22479,18 +22500,6 @@ msgstr ""
 msgid "Sign Out"
 msgstr "로그아웃"
 
-#: mkt/templates/mkt/base_desktop.html:34
-msgid "Develop apps for<br> the Marketplace!"
-msgstr "Marketplace에서<br>앱 개발하기"
-
-#: mkt/templates/mkt/base_desktop.html:39
-msgid "Visit the Developer Hub"
-msgstr "개발자 허브 방문하기"
-
-#: mkt/templates/mkt/base_mobile.html:114
-msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account."
-msgstr ""
-
 #: mkt/templates/mkt/footer.html:5
 msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
@@ -22498,6 +22507,10 @@ msgid ""
 msgstr ""
 "특별한 <a href=\"%(legal_url)s\">법적 고지</a>가 없는 한, 본 웹 사이트 정보는 <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> 및 모든 상위 버전하에서 사용 가능합니"
 "다."
+
+#: mkt/templates/mkt/footer.html:17
+msgid "Terms of Use"
+msgstr "이용 약관"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
@@ -22531,7 +22544,7 @@ msgstr "장치 종류를 한 개 이상 설정해야 합니다."
 msgid "You must provide at least one category."
 msgstr "분류를 한 개 이상 설정해야 합니다."
 
-#: mkt/webapps/tasks.py:111
+#: mkt/webapps/tasks.py:112
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr ""
 
