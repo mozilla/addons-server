@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-26 00:28+0000\n"
+"PO-Revision-Date: 2013-10-26 23:49+0000\n"
 "Last-Translator: Håvard <havard.mork@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382747305.0\n"
+"X-POOTLE-MTIME: 1382831373.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1923,7 +1923,6 @@ msgstr "Ingen anmeldelser ennå"
 #: apps/addons/templates/addons/listing/items_mobile.html:32
 #: apps/addons/templates/addons/listing/macros.html:24
 #: apps/devhub/templates/devhub/addons/listing/macros.html:15
-#, fuzzy
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> ukentlig nedlasting"
@@ -2099,7 +2098,7 @@ msgstr "Prøv den på!"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Temainfo &raquo;"
 
 #: apps/amo/context_processors.py:55
 #: apps/devhub/templates/devhub/nav.html:82
@@ -2109,53 +2108,53 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/macros.html:191
 #: mkt/site/context_processors.py:22
 msgid "Tools"
-msgstr ""
+msgstr "Verktøy"
 
 #: apps/amo/context_processors.py:63
 #: apps/discovery/templates/discovery/pane_account.html:8
 #: apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "Min profil"
 
 #: apps/amo/context_processors.py:69
 #: apps/users/templates/users/edit.html:5
 #: apps/users/templates/users/includes/navigation.html:3
 #: mkt/site/context_processors.py:31
 msgid "Account Settings"
-msgstr ""
+msgstr "Kontoinnstillinger"
 
 #: apps/amo/context_processors.py:73
 #: apps/discovery/templates/discovery/pane_account.html:11
 #: apps/users/templates/users/profile.html:86
 #: apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
-msgstr ""
+msgstr "Mine samlinger"
 
 #: apps/amo/context_processors.py:78
 #: apps/discovery/templates/discovery/pane_account.html:10
 #: apps/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
-msgstr ""
+msgstr "Mine favoritter"
 
 #: apps/amo/context_processors.py:83
 #: apps/discovery/templates/discovery/pane_account.html:13
 #: templates/impala/user_login.html:14
 #: templates/mobile/header_auth.html:5
 msgid "Log out"
-msgstr ""
+msgstr "Logg ut"
 
 #: apps/amo/context_processors.py:88
 #: apps/devhub/templates/devhub/addons/dashboard.html:6
 #: mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Behandle mine innsendinger"
 
 #: apps/amo/context_processors.py:90
 #: apps/devhub/templates/devhub/nav.html:51
 #: apps/devhub/templates/devhub/addons/dashboard.html:58
 #: apps/devhub/templates/devhub/addons/submit/base.html:6
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Send inn ny utvidelse"
 
 #: apps/amo/context_processors.py:95
 #: apps/browse/templates/browse/personas/base.html:50
@@ -2163,7 +2162,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/index.html:39
 #: apps/devhub/templates/devhub/addons/dashboard.html:63
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Send inn nytt tema"
 
 #: apps/amo/context_processors.py:98
 #: apps/amo/templates/amo/site_nav.html:85
@@ -2175,32 +2174,32 @@ msgstr ""
 #: templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr ""
+msgstr "Utviklerhubb"
 
 #: apps/amo/context_processors.py:102
 #: apps/editors/helpers.py:73
 #: apps/editors/helpers.py:92
 #: apps/editors/templates/editors/base.html:13
 msgid "Editor Tools"
-msgstr ""
+msgstr "Redigeringsverktøy"
 
 #: apps/amo/context_processors.py:105
 #: mkt/site/context_processors.py:49
 msgid "Localizer Tools"
-msgstr ""
+msgstr "Oversetterverktøy"
 
 #: apps/amo/context_processors.py:109
 #: mkt/site/context_processors.py:55
 msgid "Admin Tools"
-msgstr ""
+msgstr "Adminverktøy"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Dette må være en gyldig hex-fargekode, som for eksempel #000000."
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Skriv inn minst en verdi."
 
 #: apps/amo/helpers.py:176
 #: apps/amo/templates/amo/site_nav.html:59
@@ -2222,13 +2221,13 @@ msgstr ""
 #: apps/stats/templates/stats/stats.html:77
 #: templates/menu_links.html:12
 msgid "Collections"
-msgstr ""
+msgstr "Samlinger"
 
 #: apps/amo/helpers.py:185
 #: apps/amo/templates/amo/site_nav.html:83
 #: apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Ordbøker og språkpakker"
 
 #: apps/amo/helpers.py:273
 #: apps/amo/helpers.py:275
@@ -2243,137 +2242,137 @@ msgstr ""
 #: templates/base.html:9
 #: templates/impala/base.html:9
 msgid "Firefox Marketplace"
-msgstr ""
+msgstr "Firefox Markedsplass"
 
 #: apps/amo/helpers.py:316
 msgid "Apps Marketplace"
-msgstr ""
+msgstr "Apps-markedsplass"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:435
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} siden"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} ble opprettet."
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon}-egenskaper redigert."
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon}-beskrivelse redigert."
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Kategorier endret for {addon}."
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name}({1}) lagt til på {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: apps/amo/log.py:53
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) fjernet fra {addon}."
 
 #: apps/amo/log.py:60
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Bidrag for {addon}."
 
 #: apps/amo/log.py:65
 #: apps/amo/log.py:455
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} avslått."
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} påslått."
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Stats satt til offentlig for {addon}."
 
 #: apps/amo/log.py:85
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "{addon}-stats satt som privat."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon} sin status endret til {0}."
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "Forhåndsvisning lagt til på {addon}."
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Forhåndsvisning redigert for {addon}."
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Forhåndsvisning slettet fra {addon}."
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} lagt til på {addon}."
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} redigert for {addon}."
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Versjon {0} slettet fra {addon}."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Fil {0.name} lagt til {version} av {addon}."
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Fil {0} slettet fra {version} av {addon}."
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} godkjent."
 
 #: apps/amo/log.py:166
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} er foreløpig gjennomgått."
 
 #: apps/amo/log.py:167
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Foreløpig godkjent"
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} avvist."
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} holdt tilbake."
 
 #: apps/amo/log.py:188
 msgid "Retained"
-msgstr ""
+msgstr "Holdt tilbake"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} eskalert."
 
 #: apps/amo/log.py:198
 #: mkt/reviewers/forms.py:294
 msgid "Escalated"
-msgstr ""
+msgstr "Eskalert"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version} gjennomgang er forespurt."
 
 #: apps/amo/log.py:208
 msgid "Review requested"
@@ -2453,9 +2452,8 @@ msgstr "{0} {1} lagt til."
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
-#, fuzzy
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} rolle endret til {1} for {addon}."
+msgstr "{0.name} sin rolle endret til {1} for {addon}."
 
 #: apps/amo/log.py:316
 msgid "{addon} is now licensed under {0.name}."
@@ -2584,155 +2582,157 @@ msgstr "Høyt antall misbruksrapporter"
 
 #: apps/amo/log.py:471
 msgid "{addon} escalated because of high number of refund requests."
-msgstr ""
+msgstr "{addon} eskalert på grunn av stort antall tilbakebetalingsforespørsler."
 
 #: apps/amo/log.py:472
 msgid "High Refund Requests"
-msgstr ""
+msgstr "Mange tilbakebetalingsforespørsler"
 
 #: apps/amo/log.py:479
 msgid "{addon} re-reviewed because of manifest change."
-msgstr ""
+msgstr "{addon} gjennomgått på nytt på grunn av endring i manifestet."
 
 #: apps/amo/log.py:480
 msgid "Manifest Change"
-msgstr ""
+msgstr "Manifest-endring"
 
 #: apps/amo/log.py:487
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr ""
+msgstr "{addon} gjennomgått på nytt fordi app ble oppgradert til premium-type."
 
 #: apps/amo/log.py:488
 msgid "Premium Type Upgrade"
-msgstr ""
+msgstr "Premium-type oppgradering"
 
 #: apps/amo/log.py:495
 msgid "Re-review cleared for {addon}."
-msgstr ""
+msgstr "Ny gjennomgang-flagg fjernet for {addon}."
 
 #: apps/amo/log.py:496
 msgid "Re-review cleared"
-msgstr ""
+msgstr "Ny gjennomgang-flagg fjernet"
 
 #: apps/amo/log.py:503
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "{addon} eskalert av redaktør."
 
 #: apps/amo/log.py:504
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Redaktør-eskalering"
 
 #: apps/amo/log.py:512
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "Video fjernet fra {addon} på grunn av et problem med videoen."
 
 #: apps/amo/log.py:514
 msgid "Video removed"
-msgstr ""
+msgstr "Video fjernet"
 
 #: apps/amo/log.py:519
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "{addon} ny gjennomgang på grunn av nye enheter lagt til."
 
 #: apps/amo/log.py:520
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Enheter lagt til"
 
 #: apps/amo/log.py:527
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "{addon} enhetsstøtte manuelt endret av redaktør."
 
 #: apps/amo/log.py:528
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Enhet(er) endret av redaktør"
 
 #: apps/amo/log.py:535
 msgid "{addon} resubmitted for review."
-msgstr ""
+msgstr "{addon} sendt inn på nytt for gjennomgang."
 
 #: apps/amo/log.py:536
 msgid "App Resubmission"
-msgstr ""
+msgstr "Ny innsending av app"
 
 #: apps/amo/log.py:553
 msgid "Created: {0}."
-msgstr ""
+msgstr "Opprettet: {0}."
 
 #: apps/amo/log.py:559
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Redigerte felt: {2} satt til: {0}."
 
 #: apps/amo/log.py:565
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Slettet: {1}."
 
 #: apps/amo/log.py:571
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Bruker {user} redigerte, årsak: {1}"
 
 #: apps/amo/log.py:577
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Bruker {user} anonymisert."
 
 #: apps/amo/log.py:583
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Bruker {user} begrenset."
 
 #: apps/amo/log.py:589
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Admin {0} viste aktivitetslogg for {user}."
 
 #: apps/amo/log.py:596
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} for {addon} oppdatert."
 
 #: apps/amo/log.py:602
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} gjennomgått."
 
 #: apps/amo/log.py:608
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Bruker {0.name} lagt til i {group}."
 
 #: apps/amo/log.py:616
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Bruker {0.name} fjernet fra {group}."
 
 #: apps/amo/log.py:623
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "{addon} minimumskrav manuelt endret av redaktøren."
 
 #: apps/amo/log.py:624
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Kravene endret av redaktør"
 
 #: apps/amo/log.py:631
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "{addon} minimumskrav manuelt endret."
 
 #: apps/amo/log.py:632
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Krav endret"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "{version} status endret til {0}."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:646
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Bruker {0.name} {0.id} slettet via lookup-verktøy."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Ikke tillatt"
 
 #: apps/amo/templates/amo/403.html:7
 msgid ""
 "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't "
 "allowed to.</p>"
 msgstr ""
+"<h1>Oops! Ikke tillatt.</h1> <p>Du prøvde gjøre noe som du ikke har "
+"tillatelse til.</p>"
 
 #: apps/amo/templates/amo/403.html:12
 #: apps/amo/templates/amo/403_apps.html:17
@@ -2740,15 +2740,17 @@ msgid ""
 "<p>Try going back to the previous page, refreshing and then trying "
 "again.</p>"
 msgstr ""
+"<p>Prøv å gå tilbake til forrige side, oppdatere siden, og deretter prøve "
+"igjen.</p>"
 
 #: apps/amo/templates/amo/403_apps.html:4
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
-msgstr ""
+msgstr "Oops"
 
 #: apps/amo/templates/amo/404.html:3
 msgid "Not Found"
-msgstr ""
+msgstr "Ikke funnet"
 
 #: apps/amo/templates/amo/404.html:6
 msgid ""
@@ -2767,6 +2769,20 @@ msgid ""
 "you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front "
 "page</a>. </li> </ul>"
 msgstr ""
+"<h1>Vi beklager, men vi klarte ikke finne det du lette etter.</h1> <p> Siden "
+"eller filen du spurte om ble ikke funnet på nettstedet. Det er mulig at du "
+"trykket på en lenke som er utdatert, eller at du skrev inn adressen med "
+"feil. </p> <ul> <li>Dersom du skrev inn adressen, dobbeltsjekk "
+"stavingen.</li> <li> Dersom du fulgte en lenke fra et annet sted, fortell "
+"oss på <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Si "
+"hvor du kom fra, og hva du lette etter, så vil vi gjøre vårt beste for å "
+"rette det. </li> </ul> <p>Eller du kan også gå til noen av de populære "
+"sidene på vårt nettsted.</p> <ul> <li>Er du interessert i en <a href=\"%"
+"(rec)s\">liste over fremhevede utvidelser</a>?</li> <li> Ønsker du å <a "
+"href=\"%(search)s\">søke etter utvidelser</a>? Du kan også gå til <a href=\"%"
+"(search)s\">søkesiden</a> eller bare bruke søkefeltene ovenfor. </li> <li> "
+"Dersom du foretrekker å starte fra begynnelsen, gå til <a href=\"%"
+"(home)s\">hjemmesiden for utvidelser</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid ""
@@ -2774,14 +2790,17 @@ msgid ""
 "You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-"
 "ons homepage</a>. </p>"
 msgstr ""
+"<h1>Oops! En feil oppstod.</h1> <p>Vi vil starte å rette den snart.</p> <p> "
+"Du kan prøve å oppdatere siden, eller gå tilbake til <a href=\"%"
+"(home)s\">hjemmesiden for utvidelser</a>. </p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
-msgstr ""
+msgstr "marketplace-staff@mozilla.org"
 
 #: apps/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Noen rettigheter forbeholdt."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6
@@ -2796,7 +2815,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:41
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:54
 msgid "Prev"
-msgstr ""
+msgstr "Forrige"
 
 #: apps/amo/templates/amo/paginator.html:26
 #: apps/amo/templates/amo/impala/paginator.html:26
@@ -2818,7 +2837,7 @@ msgstr ""
 #: mkt/stats/templates/appstats/stats.html:113
 #: mkt/stats/templates/sitestats/stats.html:76
 msgid "Next"
-msgstr ""
+msgstr "Neste"
 
 #: apps/amo/templates/amo/paginator.html:32
 #: apps/editors/templates/editors/includes/paginator_history.html:11
@@ -2826,11 +2845,13 @@ msgid ""
 "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of "
 "<strong>%(count)s</strong>"
 msgstr ""
+"Resultater <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> av "
+"<strong>%(count)s</strong>"
 
 #: apps/amo/templates/amo/read-only.html:3
 #: apps/amo/templates/amo/read-only.html:7
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Vedlikehold pågår"
 
 #: apps/amo/templates/amo/read-only.html:9
 msgid ""
@@ -2983,6 +3004,8 @@ msgid ""
 "If you are not prompted to install %(addon_name)s in a moment, please <a "
 "href=\"%(addon_xpi)s\">click here</a>."
 msgstr ""
+"Dersom du ikke får spørsmål om å installere %(addon_name)s om et øyeblikk, "
+"<a href=\"%(addon_xpi)s\">trykk her</a>."
 
 #: apps/amo/tests/test_messages.py:52
 #: apps/amo/tests/test_messages.py:53
@@ -2990,69 +3013,73 @@ msgstr ""
 #: apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
 msgid "Title"
-msgstr ""
+msgstr "Tittel"
 
 #: apps/amo/tests/test_messages.py:52
 #: apps/amo/tests/test_messages.py:53
 msgid "Body"
-msgstr ""
+msgstr "Innhold"
 
 #: apps/amo/tests/test_messages.py:54
 msgid "Another Title"
-msgstr ""
+msgstr "Annen tittel"
 
 #: apps/amo/tests/test_messages.py:54
 msgid "Another Body"
-msgstr ""
+msgstr "Annet innhold"
 
 #. L10n: {0} is comma separated data errors.
 #: apps/api/handlers.py:62
 msgid "Invalid data provided: {0}"
-msgstr ""
+msgstr "Ugyldig data oppgitt: {0}"
 
 #: apps/api/handlers.py:70
 msgid "Add-on did not validate: %s"
-msgstr ""
+msgstr "Utvidelsen validerte ikke: %s"
 
 #: apps/api/views.py:246
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Ikke implementert ennå."
 
 #: apps/api/templates/piston/request_token_ready.html:3
 #: apps/api/templates/piston/oauth/authorize.html:6
 msgid "Anonymous Party"
-msgstr ""
+msgstr "Anonym part"
 
 #: apps/api/templates/piston/request_token_ready.html:8
 #: apps/api/templates/piston/request_token_ready.html:18
 msgid "Access Granted"
-msgstr ""
+msgstr "Tilgang gitt"
 
 #: apps/api/templates/piston/request_token_ready.html:10
 #: apps/api/templates/piston/request_token_ready.html:29
 msgid "Access Not Granted"
-msgstr ""
+msgstr "Tilgang ikke gitt"
 
 #: apps/api/templates/piston/request_token_ready.html:21
 msgid ""
 "You have chosen to give access to %(consumer)s. They will be able to act on "
 "your behalf or retrieve information about you."
 msgstr ""
+"Du har valgt å gi tilgang til %(consumer)s. De vil være i stand til å handle "
+"på vegne av deg eller hente inn informasjon om deg."
 
 #: apps/api/templates/piston/request_token_ready.html:32
 msgid ""
 "You have chosen to not give access to %(consumer)s. They will not be able to "
 "act on your behalf or retrieve information about you."
 msgstr ""
+"Du har valgt å ikke gi tilgang til %(consumer)s. De vil ikke være i stand "
+"til å handle på vegne av deg, eller hente informasjon om deg."
 
 #: apps/api/templates/piston/oauth/authorize.html:3
 msgid "Authorize access to your data"
-msgstr ""
+msgstr "Autoriser tilgang til dine data"
 
 #. consumer is the Oauth Consumer, e.g. FlightDeck
 #: apps/api/templates/piston/oauth/authorize.html:9
 msgid "Authorize Token for {0}"
-msgstr ""
+msgstr "Autoriser token for {0}"
 
 #: apps/api/templates/piston/oauth/authorize.html:11
 msgid ""
@@ -3062,29 +3089,35 @@ msgid ""
 "behalf.</li> <li> Learning personal information about you, such as your "
 "username and email address (but not your password). </li> </ul> </li>"
 msgstr ""
+"<p> %(consumer)s ønsker å blir autorisert til å handle på vegne av deg. "
+"Dette kan dreie seg om: </p> <ul> <li>Opplasting, endring og fjerning av "
+"utvidelser på vegne av deg.</li> <li>Opplasting, endring eller fjerning av "
+"versjoner av utvidelser på vegne av deg.</li> <li>Se personlig informasjon "
+"om deg, som blant annet brukernavnet og e-postadressen (men ikke "
+"passordet).</li> </ul> </li>"
 
 #: apps/api/templates/piston/oauth/authorize.html:30
 #: mkt/developers/templates/developers/payments/includes/account_list.html:61
 msgid "Confirm"
-msgstr ""
+msgstr "Bekreft"
 
 #: apps/api/templates/piston/oauth/challenge.html:3
 #: apps/api/templates/piston/oauth/challenge.html:6
 msgid "OAuth required"
-msgstr ""
+msgstr "OAuth er påkrevd"
 
 #: apps/applications/views.py:36
 #: apps/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
-msgstr ""
+msgstr "Programversjoner"
 
 #: apps/applications/views.py:42
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Akseptable versjoner for alle applikasjoner på AMO."
 
 #: apps/applications/templates/applications/appversions.html:11
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "Gyldige programversjoner"
 
 #: apps/applications/templates/applications/appversions.html:12
 msgid ""
@@ -3092,20 +3125,23 @@ msgid ""
 "least one of the below applications supported. Only the versions listed "
 "below are allowed for these applications."
 msgstr ""
+"Utvidelser som sendes til Mozilla Add-ons må ha en install.rdf-fil med minst "
+"en av programmene nevnt nedenfor som støttet. Bare versjonene som listes "
+"opp nedenfor er tillatt for disse programmene."
 
 #: apps/applications/templates/applications/appversions.html:25
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #. {0} is an add-on name.
 #: apps/applications/templates/applications/appversions.html:26
 #: apps/versions/templates/versions/version_list.html:18
 msgid "Versions"
-msgstr ""
+msgstr "Versjoner"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr ""
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid ""
@@ -3113,104 +3149,108 @@ msgid ""
 "still must include one with the required properties as specified <a href=\"%"
 "(url)s\">here</a>."
 msgstr ""
+"Dersom programmet du støtter ikke krever en install.rdf-fil, må du likevel "
+"ha med en, med de påkrevde egenskapene som oppgis <a href=\"%(url)s\">her</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Samlinger :: %s"
 
 #: apps/bandwagon/feeds.py:50
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:145
 msgid ""
 "Collections are groups of related add-ons that anyone can create and share."
 msgstr ""
+"Samlinger er grupper av relaterte utvidelser som hvem som helst kan opprette "
+"og dele."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:70
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Samlinger :: {1}"
 
 #: apps/bandwagon/forms.py:19
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Bare jeg kan vise denne samlingen."
 
 #: apps/bandwagon/forms.py:20
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Hvem som helst kan vise denne samlingen."
 
 #: apps/bandwagon/forms.py:121
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Gi samlingen et navn."
 
 #: apps/bandwagon/forms.py:124
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection."
-msgstr ""
+msgstr "Beskriv samlingen."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
-msgstr ""
+msgstr "Personvern:"
 
 #: apps/bandwagon/forms.py:137
 msgid "Icon"
-msgstr ""
+msgstr "Ikon"
 
 #: apps/bandwagon/forms.py:160
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Denne url-en er allerede i bruk av en annen samling"
 
 #: apps/bandwagon/forms.py:170
 #: apps/devhub/views.py:1244
 #: mkt/developers/utils.py:54
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Ikoner må være enten PNG eller JPG."
 
 #: apps/bandwagon/forms.py:175
 #: apps/devhub/views.py:1262
 #: apps/users/forms.py:327
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Bruk bilder mindre enn %d MB."
 
 #: apps/bandwagon/helpers.py:49
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Fjern fra favoritter"
 
 #: apps/bandwagon/helpers.py:53
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Legg til i favoritter"
 
 #: apps/bandwagon/helpers.py:74
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "Legg til en positiv stemme på denne samlingen"
 
 #: apps/bandwagon/helpers.py:75
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "Legg til en negativ stemme på denne samlingen"
 
 #: apps/bandwagon/helpers.py:76
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Fjern stemmen min fra denne samlingen"
 
 #: apps/bandwagon/helpers.py:87
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "Logg inn for å stemme på denne samlingen"
 
 #: apps/bandwagon/helpers.py:146
 #: apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
-msgstr ""
+msgstr "Legg til i favoritter"
 
 #: apps/bandwagon/helpers.py:147
 msgid "Favorite"
-msgstr ""
+msgstr "Favoritt"
 
 #: apps/bandwagon/helpers.py:147
 #: apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Fjern fra favoritter"
 
 #: apps/bandwagon/views.py:89
 #: apps/bandwagon/views.py:174
@@ -3233,55 +3273,57 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:48
 #: mkt/submit/templates/submit/details.html:55
 msgid "Name"
-msgstr ""
+msgstr "Navn"
 
 #: apps/bandwagon/views.py:91
 msgid "Recently Popular"
-msgstr ""
+msgstr "Populære i det siste"
 
 #: apps/bandwagon/views.py:172
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
-msgstr ""
+msgstr "Lagt til"
 
 #: apps/bandwagon/views.py:173
 #: mkt/search/forms.py:15
 msgid "Popularity"
-msgstr ""
+msgstr "Popularitet"
 
 #: apps/bandwagon/views.py:295
 msgid "Collection created!"
-msgstr ""
+msgstr "Samling opprettet!"
 
 #: apps/bandwagon/views.py:296
 msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
 msgstr ""
+"Din nye samling vises nedenfor. Du kan <a href=\"%(url)s\">redigere andre "
+"innstillinger</a> om du vil."
 
 #: apps/bandwagon/views.py:300
 msgid "Collection updated!"
-msgstr ""
+msgstr "Samling oppdatert!"
 
 #: apps/bandwagon/views.py:301
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Vi samlingen</a> for å se endringer."
 
 #: apps/bandwagon/views.py:555
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Ikon slettet"
 
 #: apps/bandwagon/templates/bandwagon/add.html:3
 #: apps/bandwagon/templates/bandwagon/add.html:11
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Lag en ny samling"
 
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/devhub/templates/devhub/personas/submit.html:14
 #: mkt/developers/templates/developers/api.html:43
 msgid "Create"
-msgstr ""
+msgstr "Opprett"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:28
@@ -3290,109 +3332,112 @@ msgid ""
 "arrangements are governed by the Creative Commons Attribution Share-Alike "
 "License"
 msgstr ""
+"Som nevnt i våre <a href=\"%(legal)s\">juridiske merknader</a> er avtaler på "
+"individuelle samlinger styrt av  Creative Commons Attribution Share-Alike-"
+"lisensen."
 
 #: apps/bandwagon/templates/bandwagon/add.html:33
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
-msgstr ""
+msgstr "Opprett samling"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
-msgstr ""
+msgstr "Vis denne samlingen"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Start en ny samling ..."
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:2
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Start en ny samling"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:6
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:4
 msgid "Name:"
-msgstr ""
+msgstr "Navn:"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:39
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "eller <a id=\"collections-new-cancel\" href=\"#\">Avbryt</a>"
 
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "For å rangere samlinger må du først ha en utvidelseskonto."
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:19
 #: templates/base.html:134
 #: templates/impala/base.html:197
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Opprett en utvidelseskonto"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:23
 #: templates/base.html:137
 #: templates/impala/base.html:200
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "eller <a href=\"%(login)s\">logg inn på en eksisterende konto</a>"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Samlinger"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:26
 msgid "private"
-msgstr ""
+msgstr "privat"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:45
 #: apps/bandwagon/templates/bandwagon/mobile/listing_items.html:9
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(num)s</span> følger"
+msgstr[1] "<span>%(num)s</span> følgere"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:62
 msgid "About this Collection"
-msgstr ""
+msgstr "Om denne samlingen"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:68
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Utvidelser synkronisert til min mobile Firefox"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:77
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Gjør denne samlingen privat"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:79
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Gjør denne samlingen offentlig"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Learn about collections"
-msgstr ""
+msgstr "Les om samlinger"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:93
 msgid "More Options:"
-msgstr ""
+msgstr "Flere innstillinger"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:94
 msgid "Edit Collection"
-msgstr ""
+msgstr "Rediger samling"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:96
 #: apps/bandwagon/templates/bandwagon/includes/delete.html:3
 msgid "Delete Collection"
-msgstr ""
+msgstr "Slett samling"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s tema i denne samlingen"
+msgstr[1] "%(num)s temaer i denne samlingen"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s utvidelse i denne samlingen"
+msgstr[1] "%(num)s utvidelser i denne samlingen"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133
 #: apps/compat/templates/compat/index.html:25
@@ -3404,33 +3449,33 @@ msgstr[1] ""
 #: templates/amo_footer.html:22
 #: templates/includes/lang_switcher.html:10
 msgid "Go"
-msgstr ""
+msgstr "Gå"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:144
 msgid "What are Collections?"
-msgstr ""
+msgstr "Hva er samlinger?"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:149
 msgid "Explore Collections"
-msgstr ""
+msgstr "Utforsk samlinger"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:154
 msgid "Common Tags"
-msgstr ""
+msgstr "Vanlige tagger"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "More by this User"
-msgstr ""
+msgstr "Mer av denne brukeren"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:176
 msgid "See all collections by this user"
-msgstr ""
+msgstr "Se alle samlinger av denne brukeren"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:182
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
 msgid "Recently Viewed"
-msgstr ""
+msgstr "Nylig vist"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid ""
@@ -3439,6 +3484,10 @@ msgid ""
 "everyone can see it. If you would like to hide it from public view, click "
 "the button below to make it private."
 msgstr ""
+"Utvidelser som du markerer som favoritter med <b>Legg til i favoritter</b> "
+"vises nedenfor. Denne samlingen er akkurat nå <b>offentlig</b>, som betyr at "
+"alle kan se den. Dersom du ønsker å skjule den fra offentligheten, trykk på "
+"knappen nedenfor for å gjøre den privat."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:203
 msgid ""
@@ -3447,10 +3496,14 @@ msgid ""
 "you can see it. If you would like everyone to be able to see your "
 "favorites, click the button below to make it public."
 msgstr ""
+"Utvidelser som du markerer som favoritter med <b>Legg til i favoritter</b> "
+"vises nedenfor. Denne samlingen er akkurat nå <b>privat</b>, som betyr at "
+"bare du kan se den. Dersom du ønsker at alle skal kunne se dine favoritter, "
+"trykk på knappen nedenfor for å gjøre den offentlig."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Mine favorittutvidelser"
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:24
 msgid "<span>%(addons)s</span> add-on"
