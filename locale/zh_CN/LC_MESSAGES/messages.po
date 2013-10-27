@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-24 09:20+0000\n"
-"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
+"PO-Revision-Date: 2013-10-27 03:46+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382606407.0\n"
+"X-POOTLE-MTIME: 1382845600.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -14917,7 +14917,7 @@ msgstr "摄像头"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
-msgstr ""
+msgstr "该应用程序需要平台允许通过 LocalMediaStream 对象从摄像头访问视频。"
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
@@ -14925,7 +14925,7 @@ msgstr "麦克风"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr ""
+msgstr "该应用程序需要平台允许从麦克风访问音频。"
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
@@ -14933,7 +14933,7 @@ msgstr "屏幕截图"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr ""
+msgstr "该应用程序需要平台允许从屏幕截屏。"
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
@@ -14941,7 +14941,7 @@ msgstr "WebRTC 媒体流"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
-msgstr ""
+msgstr "此应用程序要求平台允许进行网络实时沟通，浏览器至浏览器的媒体流。"
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
@@ -14949,7 +14949,7 @@ msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
-msgstr ""
+msgstr "此应用程序要求平台允许音视频之外的 P2P 数据交换。"
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
@@ -14957,7 +14957,7 @@ msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
-msgstr ""
+msgstr "应用需要借助平台完成节点间地流数据通讯。"
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
@@ -14965,7 +14965,7 @@ msgstr "Web 语音合成"
 
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "应用需要借助平台进行文本—语音转换。"
 
 #: mkt/constants/features.py:260
 msgid "Web Speech Recognition"
@@ -14973,7 +14973,7 @@ msgstr "Web 语音识别"
 
 #: mkt/constants/features.py:261
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr ""
+msgstr "应用需要借助平台进行语音—文本数据转换。"
 
 #: mkt/constants/features.py:266
 msgid "Pointer Lock"
@@ -14985,7 +14985,7 @@ msgstr "此应用程序需要平台提供指针额外的信息以及控制功能
 
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
-msgstr ""
+msgstr "饮用需要借助平台显示手机和桌面通知。"
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
@@ -14993,7 +14993,7 @@ msgstr "告警"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
-msgstr ""
+msgstr "应用需要借助平台访问设备的警告设置以便在指定时间进行通知和时间提醒。"
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
@@ -15001,7 +15001,7 @@ msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
-msgstr ""
+msgstr "应用需要借助平台发送异步 HTTP 请求从而不受到同源策略的限制。"
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
@@ -15009,7 +15009,7 @@ msgstr "TCP 套接字"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "应用需要借助平台打开原始 TCP 套接字。"
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
@@ -15233,7 +15233,7 @@ msgstr "请详细说明您应用的隐私策略"
 
 #: mkt/developers/forms.py:568
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
-msgstr ""
+msgstr "要有那个语种的名称和描述才能改变默认语种。现在缺少 %s 。"
 
 #: mkt/developers/forms.py:623
 msgid "Your comments"
@@ -15626,6 +15626,9 @@ msgid ""
 "<p> Please read the <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentation</a> on how to create a keypair and use it with the "
 "Marketplace API. Any testing should occur on the development server and not the production server. </p>"
 msgstr ""
+"<p>请阅读如何创建密钥对并在应用市场 API 中使用的 <a href=\"https://firefox-marketplace-api.readth"
+"edocs.org/en/latest/topics/authentication.html#oauth\">文档</a>。应该在开发服务器而不是生产服务"
+"器上进行测试。</p>"
 
 #: mkt/developers/templates/developers/api.html:35 mkt/developers/templates/developers/api.html:59
 msgid "Application Name"
@@ -15896,7 +15899,7 @@ msgstr "由<b>%(reviewer)s</b>审查"
 
 #: mkt/developers/templates/developers/apps/status.html:83
 msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
-msgstr ""
+msgstr "一旦确认了这些关心的问题，你可以<a href=\"%(resubmit_url)s\">在下面重新提交应用</a>。"
 
 #: mkt/developers/templates/developers/apps/status.html:88
 msgid "Once you have addressed these concerns, you may resubmit your app below."
@@ -16125,7 +16128,7 @@ msgstr "您的应用提交之后旧不能修改清单网址。如果因为某种
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:105
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
-msgstr ""
+msgstr "性能、功能和其他相关信息的说明。这个字段会显示在应用的详情页面。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:126
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
@@ -16395,11 +16398,11 @@ msgstr[0] "<b>预计等待时间：</b>%(num)s个工作日"
 
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
-msgstr ""
+msgstr "多数应用会在一周左右的时间完成审核。如果发现比这个时间长，您可以发送邮件到 %(email)s 查询状态。"
 
 #: mkt/developers/templates/developers/includes/macros.html:123
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
-msgstr ""
+msgstr "选择你的应用正常运行所需的特性。如果用户设备不支持这些特性，这个应用就会被隐藏。"
 
 #: mkt/developers/templates/developers/includes/macros.html:130
 msgid "Hide all"
@@ -16539,7 +16542,7 @@ msgstr "其他地区"
 msgid ""
 "Your app will be available in the following selected regions in the future when payments are available based on your chosen price point. To exclude your app from appearing in a region please un-"
 "check that region before saving."
-msgstr ""
+msgstr "一旦基于你选择的价格点的支付功能可以使用了，你的应用就会自动发布到下面选中的区域中。要从显示的区域中排除你的应用，请在保存前选空相应的复选框。"
 
 #: mkt/developers/templates/developers/payments/premium.html:235
 msgid "Regions and listings"
@@ -16644,7 +16647,7 @@ msgstr "您没有设置支付帐号。"
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_list.html:4
 msgid "The current payment account was associated with the app by an app owner."
-msgstr ""
+msgstr "当前支付账户已经关联到一位应用程序所有者的应用。"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
@@ -16660,15 +16663,15 @@ msgstr "您的应用不再显示于某些地区，因为那些地区不支持付
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
-msgstr ""
+msgstr "未来任何新开通应用市场的地区都会显示您的应用。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
-msgstr ""
+msgstr "（会受到选定价格点在那个地区是否可用的影响）。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
-msgstr ""
+msgstr "当新增地区时您会收到邮件提示。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:4
 msgid "Select All"
@@ -16867,7 +16870,7 @@ msgstr "你可以直接下载上面的模板，或者在 <a rel=\"external\" hre
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:80
 msgid "<b>Note:</b> Open web apps in general do not require that you use volo and require.js. These are simply useful tools used by many Mozilla developers."
-msgstr ""
+msgstr "<b>提示：</b>一般情况下开放网络应用不一定要使用 volo 和 .js ，他们是很多 Mozilla 开发者选用的简单易用的工具。"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:86
 msgid "Starting with the App Stub Template"
@@ -17004,7 +17007,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:37
 msgid "Access your CSS, JS, and image files offline"
-msgstr ""
+msgstr "离线存取您的 CSS、JS 以及图片文件"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:40
 msgid ""
@@ -17012,6 +17015,10 @@ msgid ""
 "JavaScript, and image files you use. You can <a href=\"%(generator_url)s\" rel=\"external\">use tools</a> to generate your manifest or create one by hand. This is an example of the format, from <a "
 "href=\"%(example_manifest)s\" rel=\"external\">Face Value’s manifest</a>:"
 msgstr ""
+"创建<strong><a href=\"%(appcache_url)s\">Appcache 清单</a></strong> "
+"列出您的应用程序全部需要在离线时需要访问的 URL。一般来说，这个清单将包含所有您会用到的 CSS、字体、JavaScript以及图片。您可以<a "
+"href=\"%(generator_url)s\" rel=\"external\">使用工具</a>来产生这个清单，或者手动创建。下面是一个来自 <a "
+"href=\"%(example_manifest)s\" rel=\"external\">Face Value的清单</a>："
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:73
 msgid ""
@@ -17073,27 +17080,34 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:181
 msgid "A Note on Packaged Apps"
-msgstr ""
+msgstr "封装应用说明"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:184
 msgid "If you’re <a href=\"%(packaged_apps_url)s\">developing a packaged app</a>, you don't need to use an Appcache manifest; all app assets are downloaded to the user’s device during install."
 msgstr ""
+"如果<a href=\"%"
+"(packaged_apps_url)s\">正在开发封装应用</a>，就无需使用应用缓存资源配置；应用的全部资源都会在安装时下载到用户设备中。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:192
 msgid "Managing Offline State and HTTP Requests"
-msgstr ""
+msgstr "管理离线状态和 HTTP 请求"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:195
 msgid ""
 "There are a few APIs available to determine the user's connection status. These are useful because you can skip HTTP requests if you know the user is offline. You can also display less generic "
 "failure messages. For example: if you were writing a Twitter client, a message like “New tweets cannot be loaded while offline” is more informative than “Could not make HTTP connection.”"
 msgstr ""
+"有几个 API 可以判断用户的连接状态。这很有用，如果你知道用户离线了，就可以跳过 HTTP "
+"请求。你还可以更少地显示常规错误信息。例如：如果你正在编写一个 Twitter 客户端，那么作为提示信息，“离线时无法发推”就比“无法建立 HTTP "
+"连接“更有意义。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:206
 msgid ""
 "Try to focus on loading data from your/others' API only when needed, and keep data cached so you don't have to request the same data twice. It can also be helpful to prefetch some data so the user "
 "can use parts of your app offline that they have yet to open."
 msgstr ""
+"尝试仅在需要的时候才从您的或者其他的 API "
+"中载入数据，并将数据保存在缓存中以避免重复请求相同的数据。预先读取一些数据也是很有用的，可以让用户在还没有打开应用的情况下就离线使用部分功能。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:214
 msgid "Checking connectivity"
@@ -17104,6 +17118,8 @@ msgid ""
 "A key factor in working well offline is to check whether the device has connectivity and to respond appropriately when it doesn't. A message to the user that the app won't work offline is better "
 "than getting stuck or getting a generic timeout error."
 msgstr ""
+"要想很好地离线运行，一个关键因素就是检查设备是否联网，并在未联网时做出适当的响应。提示用户应用无法在离线状态下运行，就比遭遇卡顿或者显示一个常规的超时错"
+"误要好。"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:226
@@ -17111,6 +17127,8 @@ msgid ""
 "The simplest way to do this is to check and listen for changes to the <a href=\"%(url)s\"><code>window.navigator.onLine</code></a> property. Note that this value can sometimes return false "
 "positives."
 msgstr ""
+"要做到这一点，最简单的方法就是检查和监听 <a href=\"%"
+"(url)s\"><code>window.navigator.onLine</code></a>属性。注意，有时候这个值可能会不准确。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:233
 msgid "See also: <a href=\"%(url)s\">Online and offline events</a>."
@@ -17126,6 +17144,10 @@ msgid ""
 "your app has <a href=\"%(systemxhr_url)s\">systemXHR privileges</a>, you can check for a connection to a site unlikely to be down to determine if you have an active connection (iOS does this with "
 "Apple.com)."
 msgstr ""
+"如果你正在使用 <a href=\"%"
+"(xhr_url)s\">XMLHttpRequest</a>动态更新数据，可以通过这个返回值判定应用运行期间网络连接是否中断。如果你的应用有 <a "
+"href=\"%(systemxhr_url)s\">systemXHR 权限</a>，你可以通过检查能否连接到一个网站判断是否具备有效的网络连接（iOS "
+"是通过连接 Apple.com ）。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:253
 msgid "We'll assume we aren't online."
@@ -17133,7 +17155,7 @@ msgstr "假设我们没有联网。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:256
 msgid "Assume we're a packaged app with systemXHR permissions."
-msgstr ""
+msgstr "假设一个有 systemXHR 权限的封装应用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:278
 msgid "Resources"
@@ -17504,11 +17526,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:220
 msgid "<a href=\"%(url)s\">Apps: The Web Is The Platform</a>, by Kumar McMillan (the blog post from which lots of the content of this article is borrowed)"
-msgstr ""
+msgstr "<a href=\"%(url)s\">应用：Web 就是平台</a>，作者为 Kumar Mcmillan （这篇文章引用许多该博客文章的内容）"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:227
 msgid "<a href=\"%(url)s\">See the Web platform succeed for applications</a>, by Paul Irish"
-msgstr ""
+msgstr "<a href=\"%(url)s\">看 Web 平台成为一个成功的应用平台</a>，作者为 Paul Irish"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:5 mkt/ecosystem/templates/ecosystem/build_manifests.html:13 mkt/ecosystem/templates/ecosystem/macros.html:148
 msgid "Intro to Manifests"
@@ -17611,7 +17633,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:165
 msgid "Why not just upload the app manifest directly to the Firefox OS Marketplace?"
-msgstr ""
+msgstr "为什么不直接上传应用程序清单至 Firefox OS Marketplace 呢？"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:171
 msgid "There are several benefits to hosting the manifest at your domain and providing the app manifest URL to the Marketplace:"
@@ -19274,7 +19296,7 @@ msgstr "Firefox 市场的 YouTube 频道"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "徽章，广告栏和图标"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
