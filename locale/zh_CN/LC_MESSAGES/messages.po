@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-27 03:46+0000\n"
-"Last-Translator: Shen <steekid@icloud.com>\n"
+"PO-Revision-Date: 2013-10-28 12:39+0000\n"
+"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382845600.0\n"
+"X-POOTLE-MTIME: 1382963950.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -4353,7 +4353,7 @@ msgstr "更改已成功保存。"
 
 #: apps/devhub/views.py:342 apps/devhub/views.py:1736
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "请检查表单中的错误。"
 
 #: apps/devhub/views.py:360
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -5225,7 +5225,7 @@ msgstr "如果您想显示一个电子邮件地址以提供用户支持，请在
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:52 mkt/developers/templates/developers/apps/edit/support.html:48
 msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
-msgstr ""
+msgstr "许多开发者提供了不同的支持方式，例如论坛，讨论组或者电子邮件。我们建议用户支持的问题可以通过这些媒体得到解答而不是通过附加组件的用户评论。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6 mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -6872,6 +6872,7 @@ msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
+"许多开发者提供了不同的支持方式，例如论坛，讨论组或者电子邮件。我们建议用户支持的问题可以通过这些媒体得到解答而不是通过附加组件的用户对软件的评论。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -16381,7 +16382,7 @@ msgstr "查看交易"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:36
 msgid "View Messages"
-msgstr ""
+msgstr "查看消息"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
@@ -16410,11 +16411,11 @@ msgstr "全部隐藏"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "测试应用安装"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:7 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "测试应用内支付"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:22
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -16484,7 +16485,7 @@ msgstr "您的应用程序目前不完整。请选择一个付款帐号以及价
 
 #: mkt/developers/templates/developers/payments/premium.html:127
 msgid "Add, manage or view transactions for your payment account"
-msgstr ""
+msgstr "添加、管理或查看支付账户的交易"
 
 #: mkt/developers/templates/developers/payments/premium.html:143
 msgid "Prices and countries"
@@ -16512,7 +16513,7 @@ msgstr "可用地区"
 
 #: mkt/developers/templates/developers/payments/premium.html:183
 msgid "Check out the <a href=\"%(status_url)s\">status page</a> to see what countries are currently enabled for sale."
-msgstr ""
+msgstr "查看 <a href=\"%(status_url)s\">状态页</a>了解目前可以在哪些国家销售。"
 
 #: mkt/developers/templates/developers/payments/premium.html:191
 msgid "Your app will be available in the following selected regions:"
@@ -16599,7 +16600,7 @@ msgstr "修改"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:46
 #: mkt/lookup/templates/lookup/app_summary.html:95
 msgid "View transactions"
-msgstr ""
+msgstr "查看交易"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a new payment account"
@@ -16611,7 +16612,7 @@ msgstr "接受服务条款"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:55
 msgid "Payment Account deletion"
-msgstr ""
+msgstr "支付账户删除"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
@@ -16764,7 +16765,7 @@ msgstr "设计"
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/design_concept.html:5 mkt/ecosystem/templates/ecosystem/design_concept.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:13
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "理念：优秀应用"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:5 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:20
@@ -16799,7 +16800,7 @@ msgstr "参考应用"
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:245
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5 mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
 msgid "Deploying Your App"
-msgstr ""
+msgstr "部署应用"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:253
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:23 mkt/ecosystem/templates/ecosystem/publish_hosted.html:5 mkt/ecosystem/templates/ecosystem/publish_hosted.html:13
@@ -16813,7 +16814,7 @@ msgstr "打包的应用"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:276
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "徽章、广告条和图标"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5 mkt/ecosystem/templates/ecosystem/build_app_generator.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:26
 #: mkt/ecosystem/templates/ecosystem/macros.html:199
@@ -16997,6 +16998,8 @@ msgid ""
 "The ability to use apps when not connected to the Internet is especially important for mobile devices, which may wander out of coverage areas. Of course, reducing the amount of time your app waits "
 "for data from a server improves the responsiveness of your app. This makes your app <em>feel</em> fast and is one of the most important considerations when developing web apps with HTML5."
 msgstr ""
+"在没有连接到互联网的情况下运行应用，对于移动设备是特别重要的，设备可能处于信号覆盖区域之外。当然，降低应用从服务器获取数据时的等待时间，能够改善应用的自"
+"适应能力。这让你的应用使用起来 <em>感觉上</em> 很快，是用 HTML5 开发网络应用时要考虑的最重要的因素。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:26
 msgid ""
@@ -17004,6 +17007,9 @@ msgid ""
 "current web app. The key to a responsive app experience (similar to iOS and Android) is speed. Using Appcache and JavaScript storage will allow your app to be downloaded and cached until you update "
 "its assets. This means your users can now use your app offline."
 msgstr ""
+"有几项技术可以与 HTML 一道（可以用于 Firefox "
+"OS）帮您的应用在离线状态下正常工作。这些技术可以用于改进现有网络应用的自适应能力。自适应应用体验（类似于 iOS 和 Android "
+"）的关键是速度。使用应用缓存和 JavaScript 存储直到你进行更新。这意味着用户可以离线使用你的应用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:37
 msgid "Access your CSS, JS, and image files offline"
@@ -17025,6 +17031,8 @@ msgid ""
 "If you're using JavaScript templates like <a href=\"%(mustache_url)s\" rel=\"external\">mustache</a>, be sure to include your templates in your Appcache manifest or precompile them into your built "
 "JavaScript files."
 msgstr ""
+"如果您正在使用类似 <a href=\"%(mustache_url)s\" rel=\"external\">mustache</a> 的 "
+"JavaScript 模板，请确保在应用缓存资源配置或者预编译时将模板包含到构建的 JavaScript 文件中。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:81
 msgid "Save user data and settings without a server"
@@ -17499,6 +17507,12 @@ msgid ""
 "system will eventually be supported by all major browsers as a set of standards. From day one Mozilla has included all major HTML5 compliant browsers in its proof of concepts; you can take a look "
 "at this hosted JavaScript <a href=\"%(url_shim)s\">shim</a> for ideas on how to support the apps platform on a non-Firefox browser."
 msgstr ""
+"Mozilla 正在构建让开放网络应用能够在任何 HTML5 设备上运行的基础架构。<a href=\"%(url_features)s\">Android "
+"版 Firefox</a>让你可以安装和运行应用（你现在就可以尝试 <a href=\"%(url_nightly)s\">nightly</a> "
+"版本）。目前只适用于某些版本的 Firefox "
+"。但我们正在努力让开放网络应用系统成为一组标准，从而最终能够在全部主流浏览器上运行。从第一天开始，Mozilla 就将在概念验证中被证明遵循 HTML5 "
+"的所有主流浏览器都包含在内；你可以看一下这个托管的 JavaScript 创意 <a href=\"%(url_shim)s\">shim</a> "
+"展示的如何在非 Firefox 浏览器中支持应用平台。"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:186
 msgid ""
@@ -17617,6 +17631,9 @@ msgid ""
 "requests to each other's APIs, or even steal access to privileged APIs that should have been granted to only one of the apps. This would be especially dangerous for domains that publish user-"
 "generated content from many users."
 msgstr ""
+"不，每个源只能有一个应用。如果单一源可以有多个应用，他们就会运行在单一一个网络沙盒中 &mdash; 就会检测到其他应用的 "
+"localStorage，可以向其他应用的 API 发送 Ajax 请求，甚至窃取仅授予其中一个应用的特权 API "
+"。这对于发布用户生成内容的网站特别危险。"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:148
@@ -17624,12 +17641,15 @@ msgid ""
 "We recommend that you use a separate subdomain for each of your apps. For example, <code>spreadsheet.mycoolapps.com</code> for one app and <code>texteditor.mycoolapps.com</code> for another. For "
 "more information, see <a href=\"%(url)s\">Adding a subdomain for an app</a>."
 msgstr ""
+"我们建议您为每一个应用使用一个单独地子域名。例如一个应用是 <code>spreadsheet.mycoolapps.com</code>，而另一个是 "
+"<code>texteditor.mycoolapps.com</code>。更多信息可以参阅 <a href=\"%"
+"(url)s\">为应用添加子域名</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:157
 msgid ""
 "Many resources and permissions on the Web are already scoped to a single origin. By defining an app and an origin as the same thing we use the same security restrictions that are used elsewhere on "
 "the Web and in HTML5."
-msgstr ""
+msgstr "网络上许多资源和权限都是适用单一源的。通过将应用和源等同起来，无论在网络上还是 HTML5 中，我们都可以使用相同的安全限制。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:165
 msgid "Why not just upload the app manifest directly to the Firefox OS Marketplace?"
@@ -17637,32 +17657,34 @@ msgstr "为什么不直接上传应用程序清单至 Firefox OS Marketplace 呢
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:171
 msgid "There are several benefits to hosting the manifest at your domain and providing the app manifest URL to the Marketplace:"
-msgstr ""
+msgstr "将应用资源配置文件托管在您的域名下而向应用市场提供网址，可以带来几个好处："
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:177
 msgid ""
 "We intend that the Marketplace (and other app stores) will periodically revisit all the app manifests at the provided URLs and check them for updates. This avoids the need for you to re-upload your "
 "app manifest for each update."
-msgstr ""
+msgstr "我们希望应用市场（和其他应用商店）能够根据这个网址定期重新访问全部应用的资源配置文件获取更新。这就避免了您每次更新时都要重新上传这个文件。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:185
 msgid ""
 "The Marketplace will pass both the original app manifest contents as well as its URL to the user's device. This allows the device to check for unexpected changes in the app manifest that might "
 "indicate tampering. This will be especially important for apps that use Web APIs (for geolocation for example)."
 msgstr ""
+"应用市场会同时将应用资源配置文件的内容和网址传送给用户设备。这使得设备能够检查应用资源配置的意外变化以发现可能的篡改。这对于使用 Web API "
+"（例如地理位置）的应用特别重要。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:195
 msgid "<strong>Note:</strong> As of this writing, we are still designing a process by which the Marketplace will pass an updated app manifest to the user's device."
-msgstr ""
+msgstr "<strong>注意：</strong>到撰写此文档时为止，我们依然设计了一个步骤让应用市场向用户设备传送更新的应用资源配置文件。"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:203
 msgid "Why does my Web server have to use the proper HTTP <code>Content-Type</code> header when serving my app manifest?"
-msgstr ""
+msgstr "为什么给应用资源配置文件提供存储服务的网络服务器要使用正确的 HTTP <code>Content-Type</code> ？"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:209
 msgid "This restriction prevents users of a website that allows user-generated content (for example, a pastebin site) from inadvertently or inappropriately claiming that entire website as their app."
-msgstr ""
+msgstr "这个限制可以防止那些存在不应有的或者不适当的用户生成内容（例如 pastebin 网站）的网站，将整个网站声明为应用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:216
 msgid "Should I use HTTPS to serve my app manifest?"
@@ -17673,6 +17695,8 @@ msgid ""
 "Yes, it is a good idea. We anticipate that the Firefox OS Marketplace will require any app using Web APIs (such as geolocation) to serve its app manifest over HTTPS as an additional defense against "
 "man-in-the-middle attacks. If you use HTTPS for your manifest, you must also use it for all the pages on your site."
 msgstr ""
+"是的，不错的注意。我们预计 Firefox OS 应用市场会要求所有使用 Web API （例如地理位置）的应用通过 HTTPS "
+"提供应用资源配置文件，以作为附加的安全措施阻挡中间人攻击。如果你的资源配置文件使用了 HTTPS ，那么你还必须对整个网站的页面都使用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:228
 msgid "What if someone else submits my app to the Firefox OS Marketplace?"

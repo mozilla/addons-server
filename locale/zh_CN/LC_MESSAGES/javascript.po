@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-22 13:25+0000\n"
+"PO-Revision-Date: 2013-10-28 12:30+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382448341.0\n"
+"X-POOTLE-MTIME: 1382963425.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1003,11 +1003,11 @@ msgstr "Persona 登录失败。服务器发生错误。"
 
 #: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "显示全部结果"
 
 #: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "找到超过 {0} 个结果，请考虑使用更精确的搜索条件。"
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
