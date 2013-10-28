@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-28 12:39+0000\n"
+"PO-Revision-Date: 2013-10-28 12:50+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382963950.0\n"
+"X-POOTLE-MTIME: 1382964624.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -8676,7 +8676,7 @@ msgstr "待定页脚"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "一旦审批通过，您就可以在此更新您的主题设计了。"
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
@@ -13418,11 +13418,11 @@ msgstr "用户自"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
-msgstr ""
+msgstr "上次登录时间"
 
 #: apps/users/templates/users/vcard.html:46
 msgid "IP address of last login"
-msgstr ""
+msgstr "上次登录 IP 地址"
 
 #: apps/users/templates/users/vcard.html:53
 msgid "Number of add-ons developed"
@@ -15014,11 +15014,11 @@ msgstr "应用需要借助平台打开原始 TCP 套接字。"
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "第三方键盘支持"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "此应用程序需要平台支持第三方键盘。"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15070,11 +15070,11 @@ msgstr "审批、评级、命名和资格审定部门"
 
 #: mkt/constants/ratingsbodies.py:83
 msgid "Not recommended for viewers younger than 13 years of age"
-msgstr ""
+msgstr "不适合年龄低于 13 岁的少儿"
 
 #: mkt/constants/ratingsbodies.py:94
 msgid "Generic"
-msgstr ""
+msgstr "通用"
 
 #: mkt/constants/regions.py:51
 msgid "Worldwide"
@@ -15282,23 +15282,23 @@ msgstr "交易类型"
 
 #: mkt/developers/forms.py:930
 msgid "I agree to the Terms and Conditions"
-msgstr ""
+msgstr "我同意条款"
 
 #: mkt/developers/forms.py:932
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "上传您的测试计划 (.pdf, .xls 小于 2.5MB)"
 
 #: mkt/developers/forms.py:941
 msgid "Test plan required."
-msgstr ""
+msgstr "测试计划是必须的。"
 
 #: mkt/developers/forms.py:948
 msgid "File too large. Keep size under %s. Current size %s."
-msgstr ""
+msgstr "文件过大。请保持大小小于 %s。当前大小 %s。"
 
 #: mkt/developers/forms.py:954
 msgid "Invalid file type. Only %s files are supported."
-msgstr ""
+msgstr "错误的文件类型。仅支持 %s 文件。"
 
 #: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:269
 msgid "App Price"
@@ -15540,11 +15540,11 @@ msgstr "新版本添加成功。"
 
 #: mkt/developers/views.py:324
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "成功提交预载入应用。"
 
 #: mkt/developers/views.py:327
 msgid "There was an error with the form."
-msgstr ""
+msgstr "表单中存在错误。"
 
 #: mkt/developers/views.py:361
 msgid "Version successfully edited."
@@ -15665,7 +15665,7 @@ msgstr "登录 / 注册"
 
 #: mkt/developers/templates/developers/nav.html:36 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "测试应用"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -15734,11 +15734,11 @@ msgstr "您已经同意这个开发者协议。"
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_addon.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "测试"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
-msgstr ""
+msgstr "提交至 Firefox Marketplace 之前使用这些工具来测试您的应用。"
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -15767,7 +15767,7 @@ msgstr "数量"
 
 #: mkt/developers/templates/developers/validate_addon.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "测试应用验证"
 
 #: mkt/developers/templates/developers/validate_addon.html:17 mkt/submit/templates/submit/manifest.html:57
 msgid "Submit your app manifest URL"
@@ -15916,31 +15916,31 @@ msgstr "公开应用"
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Pre-Installed App Status"
-msgstr ""
+msgstr "预安装应用程序状态"
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
-msgstr ""
+msgstr "<strong class=\"submitted\">已提交应用</strong> 于 %(last_submission)s"
 
 #: mkt/developers/templates/developers/apps/status.html:122
 msgid "Not Submitted"
-msgstr ""
+msgstr "未提交"
 
 #: mkt/developers/templates/developers/apps/status.html:126
 msgid "New version of the test plan available"
-msgstr ""
+msgstr "新版本的测试计划已经可用"
 
 #: mkt/developers/templates/developers/apps/status.html:131
 msgid "View your most recently submitted test plan"
-msgstr ""
+msgstr "查看您最近提交的测试计划"
 
 #: mkt/developers/templates/developers/apps/status.html:135
 msgid "Learn how to get your app pre-installed on FirefoxOS devices"
-msgstr ""
+msgstr "学习如何将您的应用程序预安装至 FirefoxOS 设备中"
 
 #: mkt/developers/templates/developers/apps/status.html:138
 msgid "Update your test plan"
-msgstr ""
+msgstr "更新您的测试计划"
 
 #: mkt/developers/templates/developers/apps/status.html:150 mkt/developers/templates/developers/apps/status.html:167
 msgid "List App"
@@ -16308,7 +16308,7 @@ msgstr "流程"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:81
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:11
 msgid "This app will be deleted automatically after a few days if the submission process is not completed."
@@ -16337,23 +16337,23 @@ msgstr "更改设备"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr ""
+msgstr "已预载入"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr ""
+msgstr "预载入应用程序"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:21
 msgid "Download the test plan"
-msgstr ""
+msgstr "下载测试计划"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:27
 msgid "Testing Finished?"
-msgstr ""
+msgstr "测试已完成？"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:30 mkt/developers/templates/developers/apps/preload/submit.html:36
 msgid "Submit your app for preload"
-msgstr ""
+msgstr "提交需要预载入的应用"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
