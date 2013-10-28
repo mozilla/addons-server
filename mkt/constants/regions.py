@@ -59,6 +59,7 @@ class US(REGION):
     slug = 'us'
     mcc = 310
     weight = 1
+    ratingsbodies = (ratingsbodies.ESRB,)
 
 
 class UK(REGION):
@@ -67,6 +68,7 @@ class UK(REGION):
     slug = 'uk'
     default_currency = 'GBP'
     mcc = 235
+    ratingsbodies = (ratingsbodies.PEGI,)
 
 
 class BR(REGION):
@@ -76,7 +78,7 @@ class BR(REGION):
     default_currency = 'BRL'
     default_language = 'pt-BR'
     mcc = 724
-    ratingsbodies = (ratingsbodies.DJCTQ,)
+    ratingsbodies = (ratingsbodies.CLASSIND,)
 
 
 class SPAIN(REGION):
@@ -86,6 +88,7 @@ class SPAIN(REGION):
     default_currency = 'EUR'
     default_language = 'es'
     mcc = 214
+    ratingsbodies = (ratingsbodies.PEGI,)
 
 
 class CO(REGION):
@@ -113,6 +116,7 @@ class PL(REGION):
     default_currency = 'PLN'
     default_language = 'pl'
     mcc = 260
+    ratingsbodies = (ratingsbodies.PEGI,)
 
 
 class MX(REGION):
@@ -131,6 +135,7 @@ class HU(REGION):
     default_currency = 'HUF'
     default_language = 'hu'
     mcc = 216
+    ratingsbodies = (ratingsbodies.PEGI,)
 
 
 class DE(REGION):
@@ -140,7 +145,7 @@ class DE(REGION):
     default_currency = 'EUR'
     default_language = 'de'
     mcc = 262
-    ratingsbodies = (ratingsbodies.GENERIC,)
+    ratingsbodies = (ratingsbodies.USK,)
 
 
 class ME(REGION):
@@ -168,6 +173,7 @@ class GR(REGION):
     default_currency = 'EUR'
     default_language = 'el'
     mcc = 202
+    ratingsbodies = (ratingsbodies.PEGI,)
 
 
 class PE(REGION):

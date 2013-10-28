@@ -266,10 +266,10 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
             set([c.pk for c in self.categories]))
 
     def test_get_content_ratings(self):
-        rating = ratingsbodies.DJCTQ_12
+        rating = ratingsbodies.CLASSIND_12
         app = self.create_app()
         app.content_ratings.create(
-            ratings_body=ratingsbodies.DJCTQ.id,
+            ratings_body=ratingsbodies.CLASSIND.id,
             rating=rating.id)
         app.save()
 
@@ -280,7 +280,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
         self.assertIn('br', cr.keys())
         eq_(len(cr['br']), 1)
-        eq_(cr['br'][0]['body'], 'DJCTQ')
+        eq_(cr['br'][0]['body'], 'CLASSIND')
         eq_(cr['br'][0]['name'], rating.name)
         eq_(cr['br'][0]['description'], unicode(rating.description))
 
