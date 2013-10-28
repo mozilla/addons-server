@@ -143,7 +143,7 @@ SHORTER_LANGUAGES = {
 
 # Not shown on the site, but .po files exist and these are available on the
 # L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
-HIDDEN_LANGUAGES = ('cy', 'sr', 'sr-Latn', 'tr')
+HIDDEN_LANGUAGES = ('cy', 'hr', 'sr', 'sr-Latn', 'tr')
 
 
 def lazy_langs(languages):
