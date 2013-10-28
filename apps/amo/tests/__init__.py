@@ -853,10 +853,10 @@ class WebappTestCase(TestCase):
             type=amo.ADDON_WEBAPP)
         AddonCategory.objects.get_or_create(addon=self.app, category=cat)
         if rated:
-            ContentRating.objects.get_or_create(addon=self.app,
-                ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            ContentRating.objects.get_or_create(
+                addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
                 rating=mkt.ratingsbodies.CLASSIND_18.id)
-            ContentRating.objects.get_or_create(addon=self.app,
-                ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            ContentRating.objects.get_or_create(
+                addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
                 rating=mkt.ratingsbodies.CLASSIND_L.id)
         self.app = self.get_app()
