@@ -19,7 +19,6 @@ define('payments-manage', ['payments'], function(payments) {
         var spliter = ', ';
         var isPlural = data['app-names'].indexOf(spliter) < 0;
         var $confirm_delete_overlay = payments.getOverlay('payment-account-delete-confirm');
-        console.log(data['shared']);
         $confirm_delete_overlay.find('p').text(
             // L10n: This sentence introduces a list of applications.
             format(ngettext('Warning: deleting payment account "{0}" ' +
