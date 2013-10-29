@@ -136,7 +136,7 @@ define('payments-manage', ['payments'], function(payments) {
                     $.post(delete_url)
                      .fail(function() {
                          // TODO: figure out how to display a failure.
-                     });
+                     })
                      .success(function() {
                          parent.remove();
                          refreshAccountForm();
