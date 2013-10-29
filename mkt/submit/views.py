@@ -79,46 +79,54 @@ def terms(request):
 @login_required
 @read_dev_agreement_required
 @submit_step('manifest')
-@transaction.commit_on_success
 def manifest(request):
+
     form = forms.NewWebappForm(request.POST or None, request=request)
 
     features_form = forms.AppFeaturesForm(request.POST or None)
-    features_form_valid = (True if not waffle.switch_is_active('buchets') else
-                           features_form.is_valid())
+    features_form_valid = (True if not waffle.switch_is_active('buchets')
+                           else features_form.is_valid())
 
-    if (request.method == 'POST' and form.is_valid() and features_form_valid):
+    if (request.method == 'POST' and form.is_valid()
+        and features_form_valid):
 
-        addon = Addon.from_upload(
-            form.cleaned_data['upload'],
-            [Platform.objects.get(id=amo.PLATFORM_ALL.id)],
-            is_packaged=form.is_packaged())
+        with transaction.commit_on_success():
 
-        # Set the device type.
-        for device in form.get_devices():
-            addon.addondevicetype_set.get_or_create(device_type=device.id)
+            addon = Addon.from_upload(
+                form.cleaned_data['upload'],
+                [Platform.objects.get(id=amo.PLATFORM_ALL.id)],
+                is_packaged=form.is_packaged())
 
-        # Set the premium type, only bother if it's not free.
-        premium = form.get_paid()
-        if premium:
-            addon.update(premium_type=premium)
+            # Set the device type.
+            for device in form.get_devices():
+                addon.addondevicetype_set.get_or_create(
+                    device_type=device.id)
 
-        if addon.has_icon_in_manifest():
-            # Fetch the icon, do polling.
-            addon.update(icon_type='image/png')
-            tasks.fetch_icon.delay(addon)
-        else:
-            # In this case there is no need to do any polling.
-            addon.update(icon_type='')
+            # Set the premium type, only bother if it's not free.
+            premium = form.get_paid()
+            if premium:
+                addon.update(premium_type=premium)
 
-        AddonUser(addon=addon, user=request.amo_user).save()
-        # Checking it once. Checking it twice.
-        AppSubmissionChecklist.objects.create(addon=addon, terms=True,
-                                              manifest=True)
+            if addon.has_icon_in_manifest():
+                # Fetch the icon, do polling.
+                addon.update(icon_type='image/png')
+            else:
+                # In this case there is no need to do any polling.
+                addon.update(icon_type='')
 
-        # Create feature profile.
-        if waffle.switch_is_active('buchets'):
-            addon.current_version.features.update(**features_form.cleaned_data)
+            AddonUser(addon=addon, user=request.amo_user).save()
+            # Checking it once. Checking it twice.
+            AppSubmissionChecklist.objects.create(addon=addon, terms=True,
+                                                  manifest=True)
+
+            # Create feature profile.
+            if waffle.switch_is_active('buchets'):
+                addon.current_version.features.update(
+                    **features_form.cleaned_data)
+
+        # Call task outside of `commit_on_success` to avoid it running before
+        # the transaction is committed and not finding the app.
+        tasks.fetch_icon.delay(addon)
 
         return redirect('submit.app.details', addon.app_slug)
 

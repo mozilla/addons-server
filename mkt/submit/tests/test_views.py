@@ -271,11 +271,14 @@ class TestCreateWebApp(BaseWebAppTest):
         super(TestCreateWebApp, self).setUp()
         self.create_switch('buchets')
 
-    def test_post_app_redirect(self):
+    @mock.patch('mkt.developers.tasks.fetch_icon')
+    def test_post_app_redirect(self, fi_mock):
         r = self.post()
         webapp = Webapp.objects.get()
         self.assert3xx(r,
             reverse('submit.app.details', args=[webapp.app_slug]))
+        assert fi_mock.delay.called, (
+            'The fetch_icon task was expected to be called')
 
     def test_no_hint(self):
         self.post_addon()
@@ -294,11 +297,14 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(res.context['form'].errors,
             {'upload': NewWebappVersionForm.upload_error})
 
-    def test_bad_upload(self):
+    @mock.patch('mkt.developers.tasks.fetch_icon')
+    def test_bad_upload(self, fi_mock):
         data = {'free_platforms': ['free-desktop'], 'upload': 'foo'}
         res = self.client.post(self.url, data, follow=True)
         eq_(res.context['form'].errors,
             {'upload': NewWebappVersionForm.upload_error})
+        assert not fi_mock.delay.called, (
+            'The fetch_icon task was not expected to be called')
 
     def test_hint_for_same_manifest(self):
         self.create_switch(name='webapps-unique-by-domain')
@@ -550,15 +556,10 @@ class TestDetails(TestSubmit):
     fixtures = fixture('webapp_337141', 'user_999', 'user_10482')
 
     def setUp(self):
-        self.fi_mock = mock.patch(
-            'mkt.developers.tasks.fetch_icon').__enter__()
         super(TestDetails, self).setUp()
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_NULL)
         self.url = reverse('submit.app.details', args=[self.webapp.app_slug])
-
-    def tearDown(self):
-        self.fi_mock.__exit__()
 
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
