@@ -36,7 +36,7 @@ class AppOwnerAuthorization(OwnerAuthorization):
             if object.authors.filter(user__id=request.amo_user.pk):
                 return True
 
-        # Appropriately handles AnonymousUsers.
+        # Appropriately handles AnonymousUsers when `amo_user` is None.
         except AttributeError:
             return False
 
@@ -113,7 +113,23 @@ class AllowAppOwner(BasePermission):
         try:
             return object.authors.filter(user__id=request.amo_user.pk).exists()
 
-        # Appropriately handles AnonymousUsers.
+        # Appropriately handles AnonymousUsers when `amo_user` is None.
+        except AttributeError:
+            return False
+
+
+class AllowAppOwnerOrAdmin(BasePermission):
+    """Permission class that allows app owners or admins."""
+    def has_permission(self, request, view):
+        return not request.user.is_anonymous()
+
+    def has_object_permission(self, request, view, object):
+        try:
+            return (
+                acl.action_allowed(request, 'Admin', '%') or
+                object.authors.filter(user__id=request.amo_user.pk).exists())
+
+        # Appropriately handles AnonymousUsers when `amo_user` is None.
         except AttributeError:
             return False
 

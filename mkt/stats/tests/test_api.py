@@ -115,7 +115,8 @@ class TestGlobalStatsResource(RestOAuth):
 @mock.patch('monolith.client.Client')
 @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
 class TestAppStatsResource(RestOAuth):
-    fixtures = fixture('user_2519')
+    fixtures = fixture('user_2519', 'group_admin', 'user_admin',
+                       'user_admin_group')
 
     def setUp(self):
         super(TestAppStatsResource, self).setUp()
@@ -145,6 +146,16 @@ class TestAppStatsResource(RestOAuth):
     def test_anon(self, mocked):
         res = self.anon.get(self.url())
         eq_(res.status_code, 403)
+
+    def test_owner(self, mocked):
+        res = self.client.get(self.url(), data=self.data)
+        eq_(res.status_code, 200)
+
+    def test_admin(self, mocked):
+        self.app.addonuser_set.all().delete()
+        self.grant_permission(self.profile, 'Admin:%')
+        res = self.client.get(self.url(), data=self.data)
+        eq_(res.status_code, 200)
 
     def test_bad_app(self, mocked):
         res = self.client.get(self.url(pk=99999999))
