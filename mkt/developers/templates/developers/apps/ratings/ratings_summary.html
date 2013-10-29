@@ -1,0 +1,29 @@
+<h2>{{ _('Summary') }}</h2>
+<a class="toggle-ratings-page button">{{ _('Edit') }}</a>
+
+<table class="ratings-summary data-grid">
+  <thead>
+    <th>{{ _('Rating System') }}</th>
+    <th>{{ _('Region') }}</th>
+    <th>{{ _('Rating Category') }}</th>
+    <th>{{ _('Descriptions') }}</th>
+  </thead>
+  <tbody>
+    {% for cr in addon.content_ratings.order_by('ratings_body') %}
+      {% set ratings_body = cr.get_body() %}
+      {% set rating = cr.get_rating() %}
+      <tr>
+        <td class="name">{{ ratings_body.name }}</td>
+        <td class="regions">{{ ratings_body.region_description }}</td>
+        <td class="content-rating">
+          <div class="icon icon-{{ rating.name|replace('+', '') }}">
+            {{ rating.name }}
+          </div>
+        </td>
+        <td class="desc">
+          {{ rating.description or '--' }}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

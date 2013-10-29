@@ -285,6 +285,15 @@ def status(request, addon_id, addon, webapp=False):
     return jingo.render(request, 'developers/apps/status.html', ctx)
 
 
+@waffle_switch('iarc')
+@dev_required
+def ratings(request, addon_id, addon):
+    """IARC ratings."""
+    return jingo.render(request, 'developers/apps/ratings.html', {
+        'addon': addon
+    })
+
+
 @waffle_switch('preload-apps')
 @dev_required
 def preload_home(request, addon_id, addon):

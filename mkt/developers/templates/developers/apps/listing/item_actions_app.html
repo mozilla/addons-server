@@ -3,12 +3,13 @@
 {% if addon.is_incomplete() %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     {% if addon.is_complete()[0] and addon.needs_payment() %}
+      {# TODO: display whether app needs to be rated. #}
       {# The app just needs payments information. #}
-    <li>
-      <a href="{{ addon.get_dev_url('payments') }}" class="tooltip"
-         title="{{ _('Provide payment information for the app.') }}">
-      {{ _('Set Up Payments') }}</a>
-    </li>
+      <li>
+        <a href="{{ addon.get_dev_url('payments') }}" class="tooltip"
+           title="{{ _('Provide payment information for the app.') }}">
+        {{ _('Set Up Payments') }}</a>
+      </li>
     {% else %}
       {# The app's submission is incomplete. #}
       <li>
@@ -45,6 +46,13 @@
   <li>
     <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ _('Team Members') }}</a>
   </li>
+  {% if waffle.switch('iarc') %}
+    <li>
+      <a class="action-link" href="{{ addon.get_dev_url('ratings') }}">
+        {{ _('Content Ratings') }}</a>
+      {# TODO: red cross-mark if the app hasn't been rated yet. #}
+    </li>
+  {% endif %}
   {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
     <li>
       <a class="action-link{{ ' alert' if waffle.switch('disabled-payments') and addon.is_premium() }}" href="{{ addon.get_dev_url('payments') }}">

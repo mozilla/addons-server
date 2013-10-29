@@ -1,0 +1,45 @@
+<div class="island">
+  <h2>{{ _('Get My App Rated') }}</h2>
+  <p>
+    {% trans %}
+      To have your app listed on the Marketplace, you must attain an
+      International Age Rating Coalition (IARC) certificate. Clicking on
+      the button below will open a new window where you can fill out a
+      short yes-or-no questionnaire about the contents of your app. Upon
+      completion, the window will close and your app will then have an age
+      rating.
+    {% endtrans %}
+  </p>
+  <p>
+    {% trans %}
+      By using IARC ratings certificate tool, you agree to abide by their
+      <a href="{{ privacy_url }}">privacy policy</a> and
+      <a href="{{ tos_url }}">Terms of Service agreement</a>.
+    {% endtrans %}
+  </p>
+  <p class="listing-footer">
+    <a class="create-iarc-rating button">
+      {{ _('Create an IARC Ratings Certificate') }}
+    </a>
+  </p>
+</div>
+
+<div class="island">
+  <h3>{{ _('Already Have Your App Rated?') }}</h3>
+  <p>
+    {% trans %}
+      If you have already gotten your app rated via the IARC Global Ratings
+      Tool above and already have an IARC security code, you can manually
+      enter it here.
+    {% endtrans %}
+  </p>
+  <div class="iarc-sec-code">
+    <!-- style element temporary! once we get a form, we can use pretty_field. -->
+    {# TODO: IARC security code form. #}
+    <label>Enter Security Code</label>
+    <input type="text">
+  </div>
+  <p class="listing-footer">
+    <input type="submit" value="{{ _('Submit') }}">
+  </p>
+</div>

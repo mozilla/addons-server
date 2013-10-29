@@ -205,7 +205,7 @@ class TestEditWebappAuthors(amo.tests.TestCase):
         assert 'license_form' not in r.context, 'Unexpected license form'
         assert 'policy_form' not in r.context, 'Unexpected policy form'
         doc = pq(r.content)
-        eq_(doc('#edit-addon-nav ul').eq(0).find('a').eq(1).attr('href'),
+        eq_(doc('.edit-addon-nav ul').eq(0).find('a').eq(1).attr('href'),
             self.url)
 
     def test_success_add_owner(self):
