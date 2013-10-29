@@ -30,7 +30,8 @@ from lib.pay_server import client
 from market.models import Price
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
-from mkt.developers.models import PaymentAccount, UserInappKey, uri_to_pk
+from mkt.developers.models import (CantCancel, PaymentAccount, UserInappKey,
+                                   uri_to_pk)
 
 from . import forms, forms_payments
 
@@ -173,7 +174,8 @@ def payment_accounts(request):
                 reverse('mkt.developers.bango.delete_payment_account',
                         args=[acc.pk]),
             'agreement-url': acc.get_agreement_url(),
-            'agreement': 'accepted' if acc.agreed_tos else 'rejected'
+            'agreement': 'accepted' if acc.agreed_tos else 'rejected',
+            'shared': acc.shared
         }
         if waffle.switch_is_active('bango-portal') and app_slug:
             data['portal-url'] = reverse(
@@ -232,7 +234,12 @@ def payments_account(request, id):
 @login_required
 def payments_accounts_delete(request, id):
     account = get_object_or_404(PaymentAccount, pk=id, user=request.user)
-    account.cancel(disable_refs=True)
+    try:
+        account.cancel(disable_refs=True)
+    except CantCancel:
+        log.info('Could not cancel account.')
+        return http.HttpResponse('Cannot cancel account', status=409)
+
     log.info('Account cancelled: %s' % id)
     return http.HttpResponse('success')
 
@@ -328,6 +335,7 @@ def bango_portal_from_addon(request, addon_id, addon, webapp=True):
 
     package_id = addon.app_payment_account.payment_account.bango_package_id
     return _redirect_to_bango_portal(package_id, 'addon_id: %s' % addon_id)
+
 
 def _redirect_to_bango_portal(package_id, source):
     try:

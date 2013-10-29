@@ -157,3 +157,8 @@ class AccountTests(BaseOAuth):
         eq_(rdel.status_code, 204)
 
         eq_(self.app.reload().status, amo.STATUS_NULL)
+
+    def test_delete_shared(self, client):
+        self.account.update(shared=True)
+        rdel = self.client.delete(get_url('account', self.account.pk))
+        eq_(rdel.status_code, 409)

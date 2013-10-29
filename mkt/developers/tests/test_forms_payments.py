@@ -316,15 +316,17 @@ class TestBangoAccountListForm(amo.tests.TestCase):
             'addon': self.addon,
         }
 
-    def create_user_account(self, user):
+    def create_user_account(self, user, **kwargs):
         """Create a user account"""
         seller = models.SolitudeSeller.objects.create(
             resource_uri='/path/to/sel', user=user, uuid='uuid-%s' % user.pk)
 
-        return models.PaymentAccount.objects.create(
-            user=user, uri='asdf-%s' % user.pk, name='test', inactive=False,
-            solitude_seller=seller, seller_uri='suri-%s' % user.pk,
-            bango_package_id=123, agreed_tos=True)
+        data = dict(user=user, uri='asdf-%s' % user.pk, name='test',
+                    inactive=False, solitude_seller=seller,
+                    seller_uri='suri-%s' % user.pk, bango_package_id=123,
+                    agreed_tos=True, shared=False)
+        data.update(**kwargs)
+        return models.PaymentAccount.objects.create(**data)
 
     def make_owner(self, user):
         AddonUser.objects.create(addon=self.addon,
@@ -336,11 +338,8 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.models.client')
     def associate_owner_account(self, client):
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
+        self.setup_mock(client)
+
         owner_account = self.create_user_account(self.user)
         form = forms_payments.BangoAccountListForm(
             data={'accounts': owner_account.pk}, user=self.user, **self.kwargs)
@@ -348,16 +347,20 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         form.save()
         return owner_account
 
-    @mock.patch('mkt.developers.models.client')
-    def test_with_owner_account(self, client):
-        user = self.user
-        account = self.create_user_account(user)
-        assert self.is_owner(user)
+    def setup_mock(self, client):
         client.get_product.return_value = {'meta': {'total_count': 0}}
         client.post_product.return_value = {'resource_uri': 'gpuri'}
         client.get_product_bango.return_value = {'meta': {'total_count': 0}}
         client.post_product_bango.return_value = {
             'resource_uri': 'bpruri', 'bango_id': 123}
+
+    @mock.patch('mkt.developers.models.client')
+    def test_with_owner_account(self, client):
+        self.setup_mock(client)
+
+        user = self.user
+        account = self.create_user_account(user)
+        assert self.is_owner(user)
         form = forms_payments.BangoAccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         eq_(form.current_payment_account, None)
@@ -370,15 +373,34 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         eq_(form.initial['accounts'], account)
 
     @mock.patch('mkt.developers.models.client')
+    def test_with_shared_account(self, client):
+        self.setup_mock(client)
+
+        account = self.create_user_account(self.user)
+        shared = self.create_user_account(self.other, shared=True)
+        form = forms_payments.BangoAccountListForm(user=self.user,
+                                                   **self.kwargs)
+        self.assertSetEqual(form.fields['accounts'].queryset,
+                            (account, shared))
+
+    @mock.patch('mkt.developers.models.client')
+    def test_set_shared_account(self, client):
+        self.setup_mock(client)
+
+        shared = self.create_user_account(self.other, shared=True)
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': shared.pk}, user=self.user, **self.kwargs)
+        assert form.is_valid()
+        form.save()
+        eq_(self.addon.app_payment_account.payment_account.pk, shared.pk)
+
+    @mock.patch('mkt.developers.models.client')
     def test_with_non_owner_account(self, client):
+        self.setup_mock(client)
+
         user = self.other
         account = self.create_user_account(user)
         assert not self.is_owner(user)
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
         form = forms_payments.BangoAccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         eq_(form.current_payment_account, None)
@@ -387,14 +409,11 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.models.client')
     def test_with_non_owner_admin_account(self, client):
+        self.setup_mock(client)
+
         user = self.admin
         account = self.create_user_account(user)
         assert not self.is_owner(user)
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
         form = forms_payments.BangoAccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         eq_(form.current_payment_account, None)
@@ -403,15 +422,11 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.models.client')
     def test_admin_account_no_data(self, client):
+        self.setup_mock(client)
+
         self.associate_owner_account()
         user = self.admin
         assert not self.is_owner(user)
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
-
         form = forms_payments.BangoAccountListForm(
             data={}, user=user, **self.kwargs)
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
@@ -419,15 +434,11 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.models.client')
     def test_admin_account_empty_string(self, client):
+        self.setup_mock(client)
+
         self.associate_owner_account()
         user = self.admin
         assert not self.is_owner(user)
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
-
         form = forms_payments.BangoAccountListForm(
             data={'accounts': ''}, user=user, **self.kwargs)
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
@@ -435,15 +446,12 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.models.client')
     def test_with_other_owner_account(self, client):
+        self.setup_mock(client)
+
         user = self.other
         account = self.create_user_account(user)
         self.make_owner(user)
         assert self.is_owner(user)
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
         form = forms_payments.BangoAccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         assert form.is_valid(), form.errors
@@ -457,16 +465,12 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.models.client')
     def test_with_non_owner_account_existing_account(self, client):
+        self.setup_mock(client)
+
         owner_account = self.associate_owner_account()
         user = self.other
         account = self.create_user_account(user)
         assert not self.is_owner(user)
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
-
         form = forms_payments.BangoAccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
 
@@ -476,15 +480,12 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.models.client')
     def test_with_non_owner_admin_account_existing_account(self, client):
+        self.setup_mock(client)
+
         owner_account = self.associate_owner_account()
         user = self.admin
         account = self.create_user_account(user)
         assert not self.is_owner(user)
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
         form = forms_payments.BangoAccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
 
@@ -494,16 +495,13 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.models.client')
     def test_with_other_owner_account_existing_account(self, client):
+        self.setup_mock(client)
+
         owner_account = self.associate_owner_account()
         user = self.other
         account = self.create_user_account(user)
         self.make_owner(user)
         assert self.is_owner(user)
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
         form = forms_payments.BangoAccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         eq_(form.current_payment_account, owner_account)
