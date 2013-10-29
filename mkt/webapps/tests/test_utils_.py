@@ -266,15 +266,15 @@ class TestESAppToDict(amo.tests.ESTestCase):
                     (expected[k], k, v))
 
     def test_content_ratings(self):
-        rating = ratingsbodies.DJCTQ_18
+        rating = ratingsbodies.CLASSIND_18
         self.app.content_ratings.create(
-            ratings_body=ratingsbodies.DJCTQ.id,
+            ratings_body=ratingsbodies.CLASSIND.id,
             rating=rating.id)
         self.app.save()
         self.refresh('webapp')
         res = es_app_to_dict(self.get_obj())
         eq_(res['content_ratings'],
-            {'br': [{'body': 'DJCTQ',
+            {'br': [{'body': 'CLASSIND',
                      'name': rating.name,
                      'description': unicode(rating.description)}]})
 
