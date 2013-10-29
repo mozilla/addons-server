@@ -6,15 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
 "PO-Revision-Date: 2013-10-24 20:16+0000\n"
 "Last-Translator: Selim <selim@sum.lu>\n"
-=======
-"POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-24 07:29+0000\n"
-"Last-Translator: saydax <saydax@tnctr.com>\n"
->>>>>>> 7ecc1d0b7d88ea94b6375b5c53e79734a9955935
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
