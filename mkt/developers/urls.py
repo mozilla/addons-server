@@ -61,6 +61,9 @@ app_detail_patterns = patterns('',
     url('^status$', views.status, name='mkt.developers.apps.versions'),
     url('^blocklist$', views.blocklist, name='mkt.developers.apps.blocklist'),
 
+    # IARC content ratings.
+    url('^ratings/$', views.ratings, name='mkt.developers.apps.ratings'),
+
     url('^status/preload/$', views.preload_home,
         name='mkt.developers.apps.preload_home'),
     url('^status/preload/submit/$', views.preload_submit,

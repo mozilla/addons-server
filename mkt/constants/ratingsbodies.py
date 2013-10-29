@@ -85,6 +85,7 @@ class CLASSIND(RATING_BODY):
     name = 'CLASSIND'
     full_name = _lazy(u'Department of Justice, Rating, Titles and '
                       u'Qualification')
+    region_description = _lazy(u'Brazil')
     url = ('http://portal.mj.gov.br/classificacao/data/Pages/'
            'MJ6BC270E8PTBRNN.htm')
 
@@ -125,8 +126,9 @@ class GENERIC(RATING_BODY):
     """
     id = 1
     ratings = (GENERIC_3, GENERIC_7, GENERIC_12, GENERIC_16, GENERIC_18)
-    name = 'GENERIC'
+    name = _lazy(u'Generic')
     full_name = _lazy(u'Generic')
+    region_description = ''  # No comment.
 
 
 class USK_0(RATING):
@@ -174,6 +176,7 @@ class USK(RATING_BODY):
     ratings = (USK_0, USK_6, USK_12, USK_16, USK_18, USK_REJECTED)
     name = 'USK'
     full_name = _lazy(u'Entertainment Software Self-Regulation Body')
+    region_description = _lazy(u'Germany')
     url = 'http://www.usk.de/en/'
 
 
@@ -219,6 +222,8 @@ class ESRB(RATING_BODY):
     ratings = (ESRB_E, ESRB_10, ESRB_T, ESRB_M, ESRB_A)
     name = 'ESRB'
     full_name = _lazy(u'Entertainment Software Rating Board')
+    # L10N: `N.` stands for North.
+    region_description = _lazy(u'N. America')
     url = 'http://esrb.org'
 
 
@@ -254,6 +259,7 @@ class PEGI(RATING_BODY):
     ratings = (PEGI_3, PEGI_10, PEGI_13, PEGI_18)
     name = 'PEGI'
     full_name = _lazy(u'Pan European Game Information')
+    region_description = _lazy(u'Europe')
     url = 'http://www.pegi.info'
 
 

@@ -18,8 +18,8 @@
     <h1>{{ title }}</h1>
   </header>
   <section id="edit-addon" class="primary devhub-form manage">
-    <h2>{{ _('Current Status') }}</h2>
     <div class="island" id="version-status" data-status="{{ addon.status }}">
+      <h2>{{ _('Current Status') }}</h2>
       <div class="status-info">
         {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
           {{ status(_('You have <b>delisted</b> this app.')|safe) }}

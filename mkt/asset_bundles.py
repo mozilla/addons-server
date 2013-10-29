@@ -50,6 +50,7 @@ CSS = {
         'css/devreg/refunds.styl',
         'css/devreg/transactions.styl',
         'css/devreg/status.styl',
+        'css/devreg/ratings.styl',
 
         # Image Uploads (used for "Edit Listing" Images and Submission).
         'css/devreg/media.styl',
@@ -210,6 +211,9 @@ JS = {
         # For testing installs.
         'js/mkt/apps.js',
         'js/devreg/test-install.js',
+
+        # IARC.
+        'js/devreg/ratings.js',
 
         # Module initialization.
         'js/devreg/devreg_init.js',

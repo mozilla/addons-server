@@ -232,8 +232,8 @@
       {% else %}
       {# Non-paid app region lists #}
       <div id="regions-island">
-        <h2>{{ _('Regions and listings') }}</h2>
         <section id="regions" class="island">
+          <h2>{{ _('Regions and listings') }}</h2>
           {% include 'developers/payments/includes/regions_toggle.html' %}
           {% include 'developers/payments/includes/region_form.html' %}
           <button>{{ _('Save Changes') }}</button>

@@ -37,7 +37,7 @@ class TestVersion(amo.tests.TestCase):
 
     def test_nav_link(self):
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#edit-addon-nav li.selected a').attr('href'),
+        eq_(pq(r.content)('.edit-addon-nav li.selected a').attr('href'),
             self.url)
 
     def test_items(self):
