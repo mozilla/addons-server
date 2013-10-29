@@ -44,6 +44,7 @@ from versions.models import Version
 
 import mkt
 from mkt.constants import APP_FEATURES, apps
+from mkt.constants.ratingsdescriptors import RATING_DESCS
 from mkt.search.utils import S
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
 
@@ -1517,26 +1518,45 @@ class ContentRating(amo.models.ModelBase):
         return u'%s - %s' % (self.get_body().name, self.get_rating().name)
 
 
+# The RatingDescriptors table is created with dynamic fields based on
+# mkt.constants.ratingsdescriptors.
+class RatingDescriptors(amo.models.ModelBase,
+                        amo.models.DynamicFieldMixin):
+    """
+    A dynamically generated model that contains a set of boolean values
+    stating if an app requires a particular descriptor.
+    """
+    addon = models.OneToOneField(Addon, related_name='rating_descriptors')
+    field_source = RATING_DESCS
+
+    class Meta:
+        db_table = 'webapps_rating_descriptors'
+
+    def __unicode__(self):
+        return u'%s: %s' % (self.id, self.addon.name)
+
+
+# Add a dynamic field to `RatingDescriptors` model for each rating descriptor.
+for k, v in mkt.ratingsdescriptors.RATING_DESCS.iteritems():
+    field = models.BooleanField(default=False, help_text=v['name'])
+    field.contribute_to_class(RatingDescriptors, 'has_%s' % k.lower())
+
+
 # The AppFeatures table is created with dynamic fields based on
 # mkt.constants.features, which requires some setup work before we call `type`.
-class AppFeatures(amo.models.ModelBase):
+class AppFeatures(amo.models.ModelBase, amo.models.DynamicFieldMixin):
     """
     A dynamically generated model that contains a set of boolean values
     stating if an app requires a particular feature.
     """
     version = models.OneToOneField(Version, related_name='features')
+    field_source = APP_FEATURES
 
     class Meta:
         db_table = 'addons_features'
 
     def __unicode__(self):
         return u'Version: %s: %s' % (self.version.id, self.to_signature())
-
-    def _fields(self):
-        """
-        Returns array of all field names starting with 'has'.
-        """
-        return [f.name for f in self._meta.fields if f.name.startswith('has')]
 
     def set_flags(self, signature):
         """
@@ -1556,19 +1576,6 @@ class AppFeatures(amo.models.ModelBase):
                 setattr(self, f, bool(int(profile, 2) & 2 ** (n - i)))
         except ValueError as e:
             log.error(u'ValueError converting %s. %s' % (signature, e))
-
-    def to_dict(self):
-        return dict((f, getattr(self, f)) for f in self._fields())
-
-    def to_keys(self):
-        return [k for k, v in self.to_dict().iteritems() if v]
-
-    def to_list(self):
-        features = self.to_keys()
-        # Strip `has_` from each feature.
-        feature_names = [APP_FEATURES[f[4:].upper()]['name']
-                         for f in features]
-        return sorted(feature_names)
 
     def to_signature(self):
         """
