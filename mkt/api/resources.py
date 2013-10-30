@@ -262,6 +262,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
     def dehydrate_extra(self, bundle):
         if bundle.obj.upsold:
             bundle.data['upsold'] = self.get_resource_uri(bundle.obj.upsold.free)
+        bundle.data['tags'] = [t.tag_text for t in bundle.obj.tags.all()]
 
     def hydrate_premium_type(self, bundle):
         typ = amo.ADDON_PREMIUM_API_LOOKUP.get(bundle.data['premium_type'],
