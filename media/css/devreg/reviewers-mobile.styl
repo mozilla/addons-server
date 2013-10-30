@@ -84,16 +84,14 @@ $mobileborder = #d7d2c3;
         margin-bottom: 15px;
     }
     #actions li {
-        width: 50%;
+        margin: 5px 5px 5px 0;
+        width: 48%;
 
+        + li {
+            padding-left: 0;
+        }
         &.app-install .button {
             display: block;
-        }
-        &:first-child {
-            padding-right: 3px;
-        }
-        &:last-child {
-            padding-left: 3px;
         }
         &.app-install button.product, .button {
             border: 0;
@@ -206,7 +204,7 @@ $mobileborder = #d7d2c3;
     }
     // No mobile man is an island.
     .island {
-        &:not(.mobile-island) {
+        &:not(.mobile-island, .summary) {
             background: transparent;
             border: 0;
             border-radius: 0;

@@ -1348,8 +1348,8 @@ class TestWebappIndexer(amo.tests.TestCase):
     @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
                        (mkt.ratingsbodies.PEGI,))
     @mock.patch.object(mkt.ratingsbodies.PEGI, 'name', 'peggyhill')
-    @mock.patch.object(mkt.ratingsbodies.PEGI_13, 'name', '9000+')
-    @mock.patch.object(mkt.ratingsbodies.PEGI_13, 'description', 'be old')
+    @mock.patch.object(mkt.ratingsbodies.PEGI_12, 'name', '9000+')
+    @mock.patch.object(mkt.ratingsbodies.PEGI_12, 'description', 'be old')
     def test_extract_content_ratings(self):
         # These ones shouldn't appear, outside region.
         ContentRating.objects.create(
@@ -1362,7 +1362,7 @@ class TestWebappIndexer(amo.tests.TestCase):
         # This one should appear in `gr` since we set Greece to use PEGI.
         ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
-            rating=mkt.ratingsbodies.PEGI_13.id)
+            rating=mkt.ratingsbodies.PEGI_12.id)
         obj, doc = self._get_doc()
         eq_(doc['content_ratings']['br'][0], {
             'body': 'peggyhill',

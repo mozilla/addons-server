@@ -1,4 +1,6 @@
 {% from 'detail/includes/price.html' import price %}
+{% from 'developers/includes/macros.html' import iarc_rating_icon %}
+
 <div id="summary">
   <h2>{{ _('Details') }}</h2>
   <dl>
@@ -59,6 +61,14 @@
         <span id="receipt-check-result"
               data-url="{{ url('receipt.check', product.guid) }}"></span>
       {% endif %}
+    </dd>
+    <dt>{{ _('Ratings') }}</dt>
+    <dd class="content-ratings">
+      {% for content_rating in product.content_ratings.order_by('ratings_body') %}
+        {{ iarc_rating_icon(content_rating) }}
+      {% else %}
+        <strong>{{ _('This app has not yet been rated') }}</strong>
+      {% endfor %}
     </dd>
     <dt>{{ _('Updated') }}</dt>
     <dd class="addon-updated">

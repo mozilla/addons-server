@@ -76,6 +76,57 @@ header {
     }
 }
 
+
+.island ul.statuslist {
+    border: 0;
+}
+.summary {
+    line-height: 16px;
+
+    .price {
+        font-size: 13px;
+    }
+    .content-ratings {
+        display: inline;
+        margin-bottom: 0;
+        position: relative;
+
+        .content-rating {
+            display: inline-block;
+            float: left;
+            margin-bottom: 0;
+            max-height: 44px;
+            max-width: 40px;
+        }
+        .icon {
+            bottom: 12px;
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            right: 15px;
+
+            &.icon-body-classind, &.icon-body-generic {
+                transform(scale(.5));
+            }
+            &.icon-body-esrb {
+                transform(scale(.36));
+                bottom: 25px;
+                right: 17px;
+            }
+            &.icon-body-usk {
+                transform(scale(.47));
+                bottom: 14px;
+                right: 16px;
+            }
+            &.icon-body-pegi {
+                transform(scale(.44));
+                bottom: 16px;
+                right: 24px;
+            }
+        }
+    }
+}
+
 .html-rtl header {
     .icon {
         margin-left: 5px;
@@ -85,31 +136,6 @@ header {
     }
     #actions {
         float: left;
-    }
-}
-
-.theme-list-hat {
-    position: relative;
-}
-a.release-theme-lock {
-    height: 30px;
-    padding: 0 10px;
-    position: absolute;
-    top: 7px;
-    right: 3px;
-
-    span {
-        bottom: 8px;
-        position: relative;
-    }
-}
-h3.theme-queue-link {
-    a {
-        float: right;
-    }
-    img {
-        position: relative;
-        top: 4px;
     }
 }
 
