@@ -16,41 +16,6 @@ import cronjobs
 
 task_log = commonware.log.getLogger('z.task')
 
-
-# TODO(davedash): remove when EB is fully in place.
-# Migration tasks
-
-@cronjobs.register
-def migrate_collection_users():
-    """For all non-anonymous collections with no author, populate the author
-    with the first CollectionUser.  Set all other CollectionUsers to
-    publishers."""
-    # Don't touch the modified date.
-    Collection._meta.get_field('modified').auto_now = False
-    # Check author_id in extra so Django doesn't join on the users table.
-    qs = (Collection.objects.no_cache().using('default')
-          .filter(users__isnull=False)
-          .extra(where=['author_id IS NULL']))
-
-    # Order by -id so we end up with the lowest user_id in the dict for each
-    # collection.
-    cu = (CollectionUser.objects.filter(collection__in=[c.id for c in qs])
-          .order_by('-id'))
-    users = {}
-    for user in cu:
-        users[user.collection_id] = user
-
-    task_log.info('Fixing users for %s collections.' % len(qs))
-    for collection in qs:
-        if collection.id in users:
-            user = users[collection.id]
-            collection.author_id = user.user_id
-            collection.save()
-            user.delete()
-
-# /Migration tasks
-
-
 @cronjobs.register
 def update_collections_subscribers():
     """Update collections subscribers totals."""

@@ -6,10 +6,8 @@ HOME=/tmp
 
 # Every minute!
 * * * * * %(z_cron)s fast_current_version
-* * * * * %(z_cron)s migrate_collection_users
 
 # Every 30 minutes.
-*/30 * * * * %(z_cron)s tag_jetpacks
 */30 * * * * %(z_cron)s update_addons_current_version
 
 #once per hour
@@ -55,7 +53,6 @@ HOME=/tmp
 30 17 * * * %(z_cron)s share_count_totals
 30 18 * * * %(z_cron)s recs
 30 6 * * * %(z_cron)s deliver_hotness
-40 7 * * * %(z_cron)s update_compat_info_for_fx4
 45 7 * * * %(django)s dump_apps
 
 # Collect visitor stats from Google Analytics once per day.

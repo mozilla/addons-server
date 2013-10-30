@@ -337,8 +337,9 @@ def deliver_hotness():
     b = avg(users three weeks before this week)
     hotness = (a-b) / b if a > 1000 and b > 1 else 0
     """
-    frozen = [f.id for f in FrozenAddon.objects.all()]
+    frozen = set(f.id for f in FrozenAddon.objects.all())
     all_ids = list((Addon.objects.exclude(type=amo.ADDON_PERSONA)
+                   .exclude(type=amo.ADDON_WEBAPP)
                    .values_list('id', flat=True)))
     now = datetime.now()
     one_week = now - timedelta(days=7)
