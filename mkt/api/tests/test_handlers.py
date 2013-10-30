@@ -15,6 +15,7 @@ from addons.models import (Addon, AddonDeviceType, AddonUpsell,
 from amo.tests import AMOPaths, app_factory
 from files.models import FileUpload
 from market.models import Price, PriceCurrency
+from tags.models import AddonTag, Tag
 from users.models import UserProfile
 
 from mkt.api.base import get_url, list_url
@@ -637,6 +638,16 @@ class TestAppDetail(BaseOAuth, AMOPaths):
         eq_(res.json['upsold'],
             self.client.get_absolute_url(get_url('app', pk=free.pk),
                                          absolute=False))
+
+    def test_tags(self):
+        app = Webapp.objects.get(pk=337141)
+        tag1 = Tag.objects.create(tag_text='example1')
+        tag2 = Tag.objects.create(tag_text='example2')
+        AddonTag.objects.create(tag=tag1, addon=app)
+        AddonTag.objects.create(tag=tag2, addon=app)
+        res = self.client.get(self.get_url, pk=app.pk)
+        data = json.loads(res.content)
+        eq_(data['tags'], ['example1', 'example2'])
 
 
 class TestCategoryHandler(RestOAuth):
