@@ -12460,8 +12460,8 @@ msgstr[1] "<b>{0}</b> critiques pour cette application"
 #: apps/reviews/templates/reviews/review_list.html:33
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> vérification de ce module"
-msgstr[1] "<b>{0}</b> vérifications de ce module"
+msgstr[0] "<b>{0}</b> critique de ce module"
+msgstr[1] "<b>{0}</b> critiques de ce module"
 
 #. {0} is a developer's name.
 #: apps/reviews/templates/reviews/review_list.html:40
@@ -12471,12 +12471,12 @@ msgstr "Réponse du développeur par {0}"
 #: apps/reviews/templates/reviews/review_list.html:42
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Vérification de %(addon)s par %(user)s"
-msgstr[1] "Vérifications de %(addon)s par %(user)s"
+msgstr[0] "Critique de %(addon)s par %(user)s"
+msgstr[1] "Critiques de %(addon)s par %(user)s"
 
 #: apps/reviews/templates/reviews/review_list.html:49
 msgid "No reviews found."
-msgstr "Pas de vérification trouvée."
+msgstr "Pas de critique trouvée."
 
 #: apps/reviews/templates/reviews/review_list.html:64
 msgid "<strong>Average</strong> (%(total)s)"

@@ -160,3 +160,5 @@ if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/marketplace.firefox.com.ini'
 
 ES_USE_PLUGINS = True
+
+BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'

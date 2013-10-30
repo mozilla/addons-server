@@ -120,6 +120,16 @@ class TestThreadDetail(RestOAuth):
         assert n1.read_by_users.filter(user=self.profile).exists()
         assert n2.read_by_users.filter(user=self.profile).exists()
 
+    def test_review_url(self):
+        thread = CommunicationThread.objects.create(addon=self.addon)
+        CommunicationNote.objects.create(
+            thread=thread, author=self.profile, note_type=0, body='something')
+        res = self.client.get(reverse('comm-thread-detail',
+                                      kwargs={'pk': thread.pk}))
+        eq_(res.status_code, 200)
+        eq_(res.json['addon_meta']['review_url'],
+            reverse('reviewers.apps.review', args=[self.addon.app_slug]))
+
 
 class TestThreadList(RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')

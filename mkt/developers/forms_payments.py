@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from django import forms
+from django.db.models import Q
 from django.core.exceptions import ValidationError
 
 import commonware
@@ -462,8 +463,10 @@ class BangoAccountListForm(happyforms.Form):
             self.is_owner = self.addon.authors.filter(user=user,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()
 
-        self.fields['accounts'].queryset = PaymentAccount.objects.filter(
-            user=user, inactive=False, agreed_tos=True)
+        self.fields['accounts'].queryset = (PaymentAccount.objects
+            .filter(Q(user=user, inactive=False, agreed_tos=True) |
+                    Q(shared=True, inactive=False, agreed_tos=True))
+            .order_by('name', 'shared'))
 
         if self.is_owner is False:
             self.fields['accounts'].widget.attrs['disabled'] = ''

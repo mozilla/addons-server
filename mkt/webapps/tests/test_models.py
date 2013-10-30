@@ -41,8 +41,8 @@ from mkt.constants import APP_FEATURES, apps
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
-                                get_excluded_in, Installed, Webapp,
-                                WebappIndexer)
+                                ContentRating, get_excluded_in, Installed,
+                                Webapp, WebappIndexer)
 
 
 class TestWebapp(amo.tests.TestCase):
@@ -933,6 +933,55 @@ class TestAddonExcludedRegion(amo.tests.WebappTestCase):
         eq_(unicode(self.er), '%s: %s' % (self.app, mkt.regions.UK.slug))
 
 
+class TestContentRating(amo.tests.WebappTestCase):
+
+    def setUp(self):
+        self.app = self.get_app()
+
+    @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
+                       (mkt.ratingsbodies.CLASSIND,))
+    @mock.patch.object(mkt.regions.US, 'ratingsbodies',
+                       (mkt.ratingsbodies.ESRB,))
+    @mock.patch.object(mkt.regions.VE, 'ratingsbodies',
+                       (mkt.ratingsbodies.GENERIC,))
+    def test_get_regions_and_slugs(self):
+        classind_rating = ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            rating=0)
+        regions = classind_rating.get_regions()
+        assert mkt.regions.BR in regions
+        assert mkt.regions.US not in regions
+        assert mkt.regions.VE not in regions
+
+        slugs = classind_rating.get_region_slugs()
+        assert mkt.regions.BR.slug in slugs
+        assert mkt.regions.US.slug not in slugs
+        assert mkt.regions.VE.slug not in slugs
+
+    @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
+                       (mkt.ratingsbodies.CLASSIND,))
+    @mock.patch.object(mkt.regions.DE, 'ratingsbodies',
+                       (mkt.ratingsbodies.ESRB,))
+    @mock.patch.object(mkt.regions.VE, 'ratingsbodies',
+                       (mkt.ratingsbodies.GENERIC,))
+    def test_get_regions_and_slugs_generic_fallback(self):
+        gen_rating = ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
+            rating=0)
+        regions = gen_rating.get_regions()
+        assert mkt.regions.BR not in regions
+        assert mkt.regions.DE not in regions
+        assert mkt.regions.VE in regions
+
+        slugs = gen_rating.get_region_slugs()
+        assert mkt.regions.BR.slug not in slugs
+        assert mkt.regions.DE.slug not in slugs
+        assert mkt.regions.VE.slug not in slugs
+
+        # We have a catch-all 'generic' region for all regions wo/ r.body.
+        assert mkt.regions.GENERIC_RATING_REGION_SLUG in slugs
+
+
 class TestContentRatingsIn(amo.tests.WebappTestCase):
 
     def test_not_in_region(self):
@@ -965,6 +1014,19 @@ class TestContentRatingsIn(amo.tests.WebappTestCase):
             eq_(self.app.content_ratings_in(region=region, category='games'),
                 [])
             eq_(self.app.content_ratings_in(region=region, category=cat), [])
+
+    @mock.patch.object(mkt.regions.CO, 'ratingsbodies', ())
+    @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
+                       (mkt.ratingsbodies.CLASSIND,))
+    def test_generic_fallback(self):
+        # Test region with no rating body returns generic content rating.
+        crs = ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
+            rating=mkt.ratingsbodies.GENERIC_3.id)
+        eq_(self.app.content_ratings_in(region=mkt.regions.CO), [crs])
+
+        # Test region with rating body does not include generic content rating.
+        assert crs not in self.app.content_ratings_in(region=mkt.regions.BR)
 
 
 class TestQueue(amo.tests.WebappTestCase):
@@ -1270,6 +1332,61 @@ class TestWebappIndexer(amo.tests.TestCase):
         EscalationQueue.objects.create(addon=self.app)
         obj, doc = self._get_doc()
         eq_(doc['is_escalated'], True)
+
+    @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
+                       (mkt.ratingsbodies.PEGI,))
+    @mock.patch.object(mkt.ratingsbodies.PEGI, 'name', 'peggyhill')
+    @mock.patch.object(mkt.ratingsbodies.PEGI_13, 'name', '9000+')
+    @mock.patch.object(mkt.ratingsbodies.PEGI_13, 'description', 'be old')
+    def test_extract_content_ratings(self):
+        # These ones shouldn't appear, outside region.
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            rating=0)
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
+            rating=0)
+
+        # This one should appear in `gr` since we set Greece to use PEGI.
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
+            rating=mkt.ratingsbodies.PEGI_13.id)
+        obj, doc = self._get_doc()
+        eq_(doc['content_ratings']['br'][0], {
+            'body': 'peggyhill',
+            'name': '9000+',
+            'description': unicode('be old')})
+
+    @mock.patch.object(mkt.regions.VE, 'ratingsbodies', ())
+    @mock.patch.object(mkt.regions.RS, 'ratingsbodies', ())
+    @mock.patch.object(mkt.ratingsbodies.GENERIC, 'name', 'genny')
+    @mock.patch.object(mkt.ratingsbodies.GENERIC_12, 'name', 'genny-name')
+    @mock.patch.object(mkt.ratingsbodies.GENERIC_12, 'description', 'g-desc')
+    def test_extract_content_ratings_generic_fallback(self):
+        # These ones shouldn't appear, they are associated w/ region.
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            rating=0)
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
+            rating=0)
+
+        # This one should appear in `generic` since we set Venezuela to not
+        # have a specified rating body so it falls back to a manually
+        # attached magical generic region.
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
+            rating=mkt.ratingsbodies.GENERIC_12.id)
+        obj, doc = self._get_doc()
+        eq_(doc['content_ratings']['generic'][0], {
+            'body': 'genny',
+            'name': 'genny-name',
+            'description': unicode('g-desc')})
+
+        # Make sure the content rating is shoved in the generic region,
+        # not the actual regions (it'd be redundant).
+        assert 'rs' not in doc['content_ratings']
+        assert 've' not in doc['content_ratings']
 
 
 class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):

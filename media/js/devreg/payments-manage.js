@@ -116,6 +116,9 @@ define('payments-manage', ['payments'], function(payments) {
                 for (var acc = 0; acc < data.length; acc++) {
                     var account = data[acc];
                     $table.append(paymentAccountTemplate(account));
+                    if (account.shared) {
+                        $table.find('a.delete-account').last().remove();
+                    }
                 }
             } else {
                 var $none = $('<div>');
@@ -129,13 +132,20 @@ define('payments-manage', ['payments'], function(payments) {
                 var app_names = parent.data('app-names');
                 var delete_url = parent.data('delete-url');
                 if (app_names === '') {
-                    parent.remove();
-                    $.post(delete_url).then(refreshAccountForm);
+                    $.post(delete_url)
+                     .fail(function() {
+                         // TODO: figure out how to display a failure.
+                     })
+                     .success(function() {
+                         parent.remove();
+                         refreshAccountForm();
+                     });
                 } else {
                     confirmPaymentAccountDeletion({
                         'app-names': app_names,
                         'delete-url': delete_url,
-                        'name': parent.data('account-name')
+                        'name': parent.data('account-name'),
+                        'shared': parent.data('shared')
                     });
                 }
             })).on('click', '.modify-account', _pd(function() {

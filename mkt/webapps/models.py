@@ -616,14 +616,23 @@ class Webapp(Addon):
         return all(listed or [False])
 
     def content_ratings_in(self, region, category=None):
-        """Give me the content ratings for a game listed in Brazil."""
+        """
+        Get all content ratings for this app in REGION for CATEGORY.
+        (e.g. give me the content ratings for a game listed in a Brazil.)
+        """
 
         # If we want to find games in Brazil with content ratings, then
         # make sure it's actually listed in Brazil and it's a game.
         if category and not self.listed_in(region, category):
             return []
 
-        rb = [x.id for x in region.ratingsbodies]
+        rb = []
+        if not region.ratingsbodies:
+            # If a region doesn't specify a ratings body, default to GENERIC.
+            rb = [mkt.ratingsbodies.GENERIC.id]
+        else:
+            rb = [x.id for x in region.ratingsbodies]
+
         return list(self.content_ratings.filter(ratings_body__in=rb)
                         .order_by('rating'))
 
@@ -1204,11 +1213,16 @@ class WebappIndexer(MappingType, Indexable):
         translations = obj.translations
         installed_ids = list(Installed.objects.filter(addon=obj)
                              .values_list('id', flat=True))
-        content_ratings = dict(
-            (cr.get_body().name, {
-                'name': cr.get_rating().name,
-                'description': unicode(cr.get_rating().description)})
-            for cr in obj.content_ratings.all())
+
+        # IARC.
+        content_ratings = {}
+        for cr in obj.content_ratings.all():
+            for region in cr.get_region_slugs():
+                content_ratings.setdefault(region, []).append({
+                    'body': cr.get_body().name,
+                    'name': cr.get_rating().name,
+                    'description': unicode(cr.get_rating().description),
+                })
 
         attrs = ('app_slug', 'average_daily_users', 'bayesian_rating',
                  'created', 'id', 'is_disabled', 'last_updated',
@@ -1459,8 +1473,28 @@ class ContentRating(amo.models.ModelBase):
         null=False)
     rating = models.PositiveIntegerField(null=False)
 
+    class Meta:
+        db_table = 'webapps_contentrating'
+
     def __unicode__(self):
         return u'%s: %s' % (self.addon, self.get_label())
+
+    def get_regions(self):
+        """Gives us the region classes that use this rating body."""
+        if self.get_body() == mkt.ratingsbodies.GENERIC:
+            # All regions w/o specified ratings bodies use GENERIC.
+            return mkt.regions.ALL_REGIONS_WO_CONTENT_RATINGS
+
+        return [x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS
+                if self.get_body() in x.ratingsbodies]
+
+    def get_region_slugs(self):
+        """Gives us the region slugs that use this rating body."""
+        if self.get_body() == mkt.ratingsbodies.GENERIC:
+            # For the generic rating body, we just pigeonhole all of the misc.
+            # regions into one region slug, GENERIC.
+            return [mkt.regions.GENERIC_RATING_REGION_SLUG]
+        return [x.slug for x in self.get_regions()]
 
     def get_body(self):
         """Gives us something like DEJUS."""

@@ -42,7 +42,19 @@
         {% endif %}
         <dt>{{ _('Type') }}</dt>
         <dd>
-          {{ amo.ADDON_TYPE[app.type] }};
+          {% if app.is_webapp() %}
+            {% if app.is_packaged %}
+              {% if app.latest_version.is_privileged %}
+                {{ _('Privileged Packaged app') }};
+              {% else %}
+                {{ _('Packaged app') }};
+              {% endif %}
+            {% else %}
+              {{ _('Hosted app') }};
+            {% endif %}
+          {% else %}
+            {{ amo.ADDON_TYPE[app.type] }};
+          {% endif %}
           {{ amo.ADDON_PREMIUM_TYPES[app.premium_type] }}
           {% if price %}
             ({{ price.tier_locale() }})

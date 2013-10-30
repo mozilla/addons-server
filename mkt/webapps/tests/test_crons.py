@@ -19,7 +19,8 @@ from users.models import UserProfile
 import mkt
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import (clean_old_signed, update_app_trending,
-                              update_weekly_downloads, _get_trending)
+                              update_weekly_downloads)
+from mkt.webapps.tasks import _get_trending
 from mkt.webapps.models import Installed, Webapp
 
 
@@ -144,7 +145,7 @@ class TestUpdateTrending(amo.tests.TestCase):
     def setUp(self):
         self.app = Webapp.objects.create(type=amo.ADDON_WEBAPP)
 
-    @mock.patch('mkt.webapps.cron._get_trending')
+    @mock.patch('mkt.webapps.tasks._get_trending')
     def test_trending_saved(self, _mock):
         _mock.return_value = 12.0
         update_app_trending()
@@ -160,7 +161,7 @@ class TestUpdateTrending(amo.tests.TestCase):
         for region in mkt.regions.REGIONS_DICT.values():
             eq_(self.app.get_trending(region=region), 2.0)
 
-    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
     def test_get_trending(self, _mock):
         client = mock.Mock()
         client.return_value = [
@@ -174,7 +175,7 @@ class TestUpdateTrending(amo.tests.TestCase):
         # (255 - 85) / 85 = 2.0
         eq_(_get_trending(self.app.id), 2.0)
 
-    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
     def test_get_trending_threshold(self, _mock):
         client = mock.Mock()
         client.return_value = [
@@ -187,7 +188,7 @@ class TestUpdateTrending(amo.tests.TestCase):
         # 99 is less than 100 so we return 0.0.
         eq_(_get_trending(self.app.id), 0.0)
 
-    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
     def test_get_trending_monolith_error(self, _mock):
         client = mock.Mock()
         client.side_effect = ValueError

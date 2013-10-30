@@ -53,8 +53,8 @@ DEVICE_LOOKUP = {
     'free-firefoxos': _('Fully open mobile ecosystem'),
     'free-desktop': _('Windows, Mac and Linux'),
     'free-android-mobile': _('Android smartphones'),
-    'free-android-tablet': _('Android tablets'),
+    'free-android-tablet': _('Tablets'),
     'paid-firefoxos': _('Fully open mobile ecosystem'),
     'paid-android-mobile': _('Android smartphones'),
-    'paid-android-tablet': _('Android tablets'),
+    'paid-android-tablet': _('Tablets'),
 }

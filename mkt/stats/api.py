@@ -17,7 +17,7 @@ from stats.models import Contribution
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowAppOwner, PermissionAuthorization
+from mkt.api.authorization import AllowAppOwnerOrAdmin, PermissionAuthorization
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.exceptions import NotImplemented, ServiceUnavailable
 from mkt.webapps.models import Webapp
@@ -178,7 +178,7 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     cors_allowed_methods = ['get']
-    permission_classes = (AllowAppOwner,)
+    permission_classes = (AllowAppOwnerOrAdmin,)
     queryset = Webapp.objects.all()
     slug_field = 'app_slug'
 

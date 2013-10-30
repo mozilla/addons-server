@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 import commonware.log
-from tower import ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
 from amo.urlresolvers import reverse
@@ -24,6 +24,10 @@ def uri_to_pk(uri):
     Convert a resource URI to the primary key of the resource.
     """
     return uri.rstrip('/').split('/')[-1]
+
+
+class CantCancel(Exception):
+    pass
 
 
 class SolitudeSeller(amo.models.ModelBase):
@@ -118,11 +122,26 @@ class PaymentAccount(amo.models.ModelBase):
         will be set to STATUS_NULL.
 
         """
-        self.update(inactive=True)
-        log.info('[1@None] Soft-deleted payment account (uri: %s)' %
-                     self.uri)
-
         account_refs = AddonPaymentAccount.objects.filter(account_uri=self.uri)
+        if self.shared and account_refs:
+            # With sharing a payment account comes great responsibility. It
+            # would be really mean to create a payment account, share it
+            # and have lots of apps use it. Then one day you remove it and
+            # make a whole pile of apps in the marketplace get removed from
+            # the store, or have in-app payments fail.
+            #
+            # For the moment I'm just stopping this completely, if this ever
+            # happens, we'll have to go through a deprecation phase.
+            # - let all the apps that use it know
+            # - when they have all stopped sharing it
+            # - re-run this
+            log.error('Cannot cancel a shared payment account that has '
+                      'apps using it.')
+            raise CantCancel('You cannot cancel a shared payment account.')
+
+        self.update(inactive=True)
+        log.info('Soft-deleted payment account (uri: %s)' % self.uri)
+
         for acc_ref in account_refs:
             if disable_refs:
                 log.info('Changing app status to NULL for app: {0}'
@@ -149,7 +168,11 @@ class PaymentAccount(amo.models.ModelBase):
         return data
 
     def __unicode__(self):
-        return u'%s - %s' % (self.created.strftime('%m/%y'), self.name)
+        date = self.created.strftime('%m/%y')
+        if not self.shared:
+            return u'%s - %s' % (date, self.name)
+        # L10n: {0} is the name of the account.
+        return _(u'Shared Account: {0}'.format(self.name))
 
     def get_agreement_url(self):
         return reverse('mkt.developers.bango.agreement', args=[self.pk])

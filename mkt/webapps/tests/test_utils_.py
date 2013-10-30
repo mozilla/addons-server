@@ -14,7 +14,7 @@ import amo.tests
 from addons.models import (AddonCategory, AddonDeviceType, Category,
                            Preview)
 from market.models import PriceCurrency
-from mkt.constants import regions
+from mkt.constants import ratingsbodies, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.utils import (app_to_dict, es_app_to_dict,
@@ -264,6 +264,19 @@ class TestESAppToDict(amo.tests.ESTestCase):
                 eq_(expected[k], v,
                     u'Expected value "%s" for field "%s", got "%s"' %
                     (expected[k], k, v))
+
+    def test_content_ratings(self):
+        rating = ratingsbodies.CLASSIND_18
+        self.app.content_ratings.create(
+            ratings_body=ratingsbodies.CLASSIND.id,
+            rating=rating.id)
+        self.app.save()
+        self.refresh('webapp')
+        res = es_app_to_dict(self.get_obj())
+        eq_(res['content_ratings'],
+            {'br': [{'body': 'CLASSIND',
+                     'name': rating.name,
+                     'description': unicode(rating.description)}]})
 
     def test_show_downloads_count(self):
         """Show weekly_downloads in results if app stats are public."""

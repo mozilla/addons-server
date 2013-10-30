@@ -36,10 +36,11 @@ from versions.models import Version
 import mkt
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
-from mkt.developers.views import _filter_transactions, _get_transactions
+from mkt.developers.views import (_filter_transactions, _get_transactions,
+                                  ratings)
 from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import ContentRating, Webapp
 
 
 class AppHubTest(amo.tests.TestCase):
@@ -180,6 +181,7 @@ class TestAppDashboard(AppHubTest):
             'Pending Version: 1.24')
 
     def test_action_links(self):
+        self.create_switch('iarc')
         self.create_switch('comm-dashboard')
         self.create_switch('view-transactions')
         app = self.get_app()
@@ -189,6 +191,7 @@ class TestAppDashboard(AppHubTest):
         expected = [
             ('Edit Listing', app.get_dev_url()),
             ('Team Members', app.get_dev_url('owner')),
+            ('Content Ratings', app.get_dev_url('ratings')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
@@ -200,6 +203,7 @@ class TestAppDashboard(AppHubTest):
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
     def test_action_links_packaged(self):
+        self.create_switch('iarc')
         self.create_switch('comm-dashboard')
         self.create_switch('in-app-payments')
         self.create_switch('view-transactions')
@@ -212,6 +216,7 @@ class TestAppDashboard(AppHubTest):
             ('Edit Listing', app.get_dev_url()),
             ('Add New Version', app.get_dev_url('versions')),
             ('Team Members', app.get_dev_url('owner')),
+            ('Content Ratings', app.get_dev_url('ratings')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status & Versions', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
@@ -224,6 +229,7 @@ class TestAppDashboard(AppHubTest):
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
     def test_disabled_payments_action_links(self):
+        self.create_switch('iarc')
         self.create_switch('comm-dashboard')
         self.create_switch('disabled-payments')
         self.create_switch('view-transactions')
@@ -234,6 +240,7 @@ class TestAppDashboard(AppHubTest):
         expected = [
             ('Edit Listing', app.get_dev_url()),
             ('Team Members', app.get_dev_url('owner')),
+            ('Content Ratings', app.get_dev_url('ratings')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
@@ -1156,3 +1163,56 @@ class TestTransactionList(amo.tests.TestCase):
 
         self.assertSetEqual(qs.values_list('id', flat=True),
                             [tx.id for tx in expected_txs])
+
+
+class TestContentRatings(amo.tests.TestCase):
+    fixtures = fixture('user_admin', 'user_admin_group')
+
+    def setUp(self):
+        self.create_switch('iarc')
+        self.app = app_factory()
+        self.user = UserProfile.objects.get()
+        AddonUser.objects.create(addon=self.app, user=self.user)
+
+        self.url = reverse('mkt.developers.apps.ratings',
+                           args=[self.app.app_slug])
+        self.req = amo.tests.req_factory_factory(self.url, user=self.user)
+
+    def test_200(self):
+        r = ratings(self.req, app_slug=self.app.app_slug)
+        eq_(r.status_code, 200)
+
+        # Summary page hidden if no ratings.
+        doc = pq(r.content)
+        assert doc('#ratings-summary').hasClass('hidden')
+        assert not doc('#ratings-edit').hasClass('hidden')
+
+    def test_summary(self):
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            rating=mkt.ratingsbodies.CLASSIND_L.id)
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
+            rating=mkt.ratingsbodies.GENERIC_3.id)
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.USK.id,
+            rating=mkt.ratingsbodies.USK_18.id)
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.ESRB.id,
+            rating=mkt.ratingsbodies.ESRB_M.id)
+        ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
+            rating=mkt.ratingsbodies.PEGI_10.id)
+
+        r = ratings(self.req, app_slug=self.app.app_slug)
+        doc = pq(r.content)
+
+        # Edit page hidden if have content ratings.
+        assert doc('#ratings-edit').hasClass('hidden')
+        assert not doc('#ratings-summary').hasClass('hidden')
+
+        eq_(doc('.name')[0].text, 'CLASSIND')
+        eq_(doc('.name')[1].text, 'Generic')
+        eq_(doc('.name')[2].text, 'USK')
+        eq_(doc('.name')[3].text, 'ESRB')
+        eq_(doc('.name')[4].text, 'PEGI')

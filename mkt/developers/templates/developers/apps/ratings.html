@@ -1,0 +1,32 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = _('Manage Ratings') %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+
+{% block content %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[
+      (addon.get_dev_url('versions'), title),
+      (None, _('Content Ratings') )])
+    }}
+    <h1>{{ title }}</h1>
+  </header>
+
+    {% set has_ratings = addon.content_ratings.exists() %}
+    <section id="ratings-edit" class="primary manage{% if has_ratings %} hidden{% endif %}">
+      {% if has_ratings %}
+        <h3><a class="toggle-ratings-page">
+          {{ _('Back to Ratings Summary Page') }}</a></h3>
+      {% endif %}
+
+      {% include "developers/apps/ratings/ratings_edit.html" %}
+    </section>
+
+    <section id="ratings-summary" class="primary manage{% if not has_ratings %} hidden{% endif %}">
+      <div class="island">
+        {% include "developers/apps/ratings/ratings_summary.html" %}
+      </div>
+    </section>
+
+  {% include 'developers/includes/addons_edit_nav.html' %}
+{% endblock %}
