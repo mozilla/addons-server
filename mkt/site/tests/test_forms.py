@@ -15,6 +15,7 @@ class PotatoCaptchaTestCase(amo.tests.TestCase):
         self.request = mock.Mock()
         self.request.META = {}
         self.request.user = mock.Mock()
+        self.context = {'request': self.request}
         self.request.user.is_authenticated = lambda: False
         self.data = {'tuber': '', 'sprout': 'potato'}
 

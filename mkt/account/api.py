@@ -14,25 +14,22 @@ from rest_framework import serializers
 from tastypie import fields, http
 from tastypie.authorization import Authorization
 from tastypie.bundle import Bundle
-from tastypie.throttle import CacheThrottle
 from tastypie.validation import CleanedDataFormValidation
 
 from access import acl
-from amo.utils import send_mail_jinja
 from mkt.api.authentication import (OAuthAuthentication,
-                                    OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import OwnerAuthorization
-from mkt.api.base import (CompatRelatedField, CORSResource, GenericObject,
+from mkt.api.base import (CompatRelatedField, CORSResource,
                           http_error, MarketplaceModelResource,
-                          MarketplaceResource, PotatoCaptchaResource)
+                          MarketplaceResource)
 from mkt.api.resources import AppResource
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 from users.views import browserid_authenticate
 
-from .forms import FeedbackForm, LoginForm
+from .forms import LoginForm
 
 log = commonware.log.getLogger('z.account')
 
@@ -188,79 +185,6 @@ class LoginResource(CORSResource, MarketplaceResource):
         }
         bundle.data.update(PermissionResource()
                            .dehydrate(Bundle(request=request)).data)
-        return bundle
-
-
-class FeedbackResource(PotatoCaptchaResource, CORSResource,
-                       MarketplaceResource):
-    feedback = fields.CharField(attribute='feedback')
-    platform = fields.CharField(attribute='platform', null=True)
-    chromeless = fields.CharField(attribute='chromeless', null=True)
-    from_url = fields.CharField(attribute='from_url', null=True)
-    user = fields.CharField(attribute='user', null=True)
-    user_agent = fields.CharField(attribute='user_agent', blank=True)
-    ip_address = fields.CharField(attribute='ip_address', blank=True)
-
-    class Meta(MarketplaceResource.Meta):
-        resource_name = 'feedback'
-        always_return_data = True
-        list_allowed_methods = ['post']
-        detail_allowed_methods = []
-        authentication = OptionalOAuthAuthentication()
-        authorization = Authorization()
-        object_class = GenericObject
-        include_resource_uri = False
-        throttle = CacheThrottle(throttle_at=30)
-
-    def _send_email(self, bundle):
-        """
-        Send feedback email from the valid bundle.
-        """
-        user = bundle.data.get('user')
-        sender = getattr(user, 'email', settings.NOBODY_EMAIL)
-        send_mail_jinja(u'Marketplace Feedback', 'account/email/feedback.txt',
-                        bundle.data, from_email=sender,
-                        recipient_list=[settings.MKT_FEEDBACK_EMAIL])
-
-    def hydrate(self, bundle):
-        """
-        Add the authenticated user to the bundle.
-        """
-        if 'platform' not in bundle.data:
-            bundle.data['platform'] = bundle.request.GET.get('dev', '')
-
-        bundle.data.update({
-            'user': bundle.request.amo_user,
-            'user_agent': bundle.request.META.get('HTTP_USER_AGENT', ''),
-            'ip_address': bundle.request.META.get('REMOTE_ADDR', '')
-        })
-        return bundle
-
-    def dehydrate(self, bundle):
-        """
-        Strip the `user_agent` and `ip_address` fields before presenting to the
-        consumer.
-        """
-        del bundle.data['user_agent']
-        del bundle.data['ip_address']
-        return bundle
-
-    def get_resource_uri(self, bundle_or_obj=None):
-        """
-        Noop needed to prevent NotImplementedError.
-        """
-        return ''
-
-    def obj_create(self, bundle, request=None, **kwargs):
-        bundle.obj = self._meta.object_class(**kwargs)
-        bundle = self.full_hydrate(bundle)
-
-        form = FeedbackForm(bundle.data, request=request)
-        if not form.is_valid():
-            raise self.form_errors(form)
-
-        self._send_email(bundle)
-
         return bundle
 
 
