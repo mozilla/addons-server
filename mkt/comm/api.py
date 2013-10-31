@@ -23,9 +23,10 @@ from addons.models import Addon
 from amo.urlresolvers import reverse
 from users.models import UserProfile
 from comm.models import (CommunicationNote, CommunicationNoteRead,
-                         CommunicationThread)
+                         CommunicationThread, user_has_perm_note,
+                         user_has_perm_thread)
 from comm.tasks import consume_email, mark_thread_read
-from comm.utils import filter_notes_by_read_status, ThreadObjectPermission
+from comm.utils import filter_notes_by_read_status
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, SilentListModelMixin
@@ -84,13 +85,15 @@ class ThreadSerializer(ModelSerializer):
 
     def get_recent_notes(self, obj):
         NoteSerializer.get_request = self.get_request
-        return NoteSerializer(obj.notes.all().order_by('-created')[:5]).data
+        notes = (obj.notes.with_perms(self.get_request().amo_user, obj)
+                          .order_by('-created')[:5])
+        return NoteSerializer(notes).data
 
     def get_notes_count(self, obj):
         return obj.notes.count()
 
 
-class ThreadPermission(BasePermission, ThreadObjectPermission):
+class ThreadPermission(BasePermission):
     """
     Permission wrapper for checking if the authenticated user has the
     permission to view the thread.
@@ -113,8 +116,7 @@ class ThreadPermission(BasePermission, ThreadObjectPermission):
         if not request.user.is_authenticated() or obj.read_permission_public:
             return obj.read_permission_public
 
-        profile = request.amo_user
-        return self.user_has_permission(obj, profile)
+        return user_has_perm_thread(obj, request.amo_user)
 
 
 class NotePermission(ThreadPermission):
@@ -141,8 +143,11 @@ class NotePermission(ThreadPermission):
         return True
 
     def has_object_permission(self, request, view, obj):
-        return ThreadPermission.has_object_permission(self, request, view,
-            obj.thread)
+        # Has thread obj-level permission AND note obj-level permission.
+        return (
+            ThreadPermission.has_object_permission(self, request, view,
+                                                   obj.thread) and
+            user_has_perm_note(obj, request.amo_user))
 
 
 class EmailCreationPermission(object):
@@ -258,7 +263,8 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
     cors_allowed_methods = ['get', 'post', 'delete', 'patch']
 
     def get_queryset(self):
-        return CommunicationNote.objects.filter(thread=self.comm_thread)
+        return CommunicationNote.objects.with_perms(
+            self.request.amo_user, self.comm_thread)
 
     def get_serializer(self, instance=None, data=None,
                        files=None, many=False, partial=False):

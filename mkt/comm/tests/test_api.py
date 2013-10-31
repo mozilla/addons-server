@@ -9,8 +9,10 @@ from nose.tools import eq_
 from test_utils import RequestFactory
 
 from amo.tests import addon_factory, req_factory_factory
+from users.models import UserProfile
 from comm.models import (CommunicationNote, CommunicationNoteRead,
                          CommunicationThread, CommunicationThreadCC)
+
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.api import EmailCreationPermission, post_email, ThreadPermission
 from mkt.site.fixtures import fixture
@@ -18,7 +20,7 @@ from mkt.webapps.models import Webapp
 
 
 class TestThreadDetail(RestOAuth):
-    fixtures = fixture('webapp_337141', 'user_2519')
+    fixtures = fixture('webapp_337141', 'user_2519', 'user_support_staff')
 
     def setUp(self):
         super(TestThreadDetail, self).setUp()
@@ -44,6 +46,33 @@ class TestThreadDetail(RestOAuth):
         assert 'recent_notes' in res.json
         eq_(len(res.json['recent_notes']), 1)
         eq_(res.json['addon'], self.addon.id)
+
+    def test_recent_notes_perm(self):
+        staff = UserProfile.objects.get(username='support_staff')
+        self.addon.addonuser_set.create(user=self.profile)
+
+        thread = CommunicationThread.objects.create(
+            addon=self.addon, read_permission_developer=True)
+        CommunicationNote.objects.create(
+            thread=thread, author=staff, note_type=0, body='allowed',
+            read_permission_developer=True)
+        no_dev_note = CommunicationNote.objects.create(
+            thread=thread, author=staff, note_type=6, body='denied',
+            read_permission_developer=False)
+
+        # Test that the developer can't access no-developer note.
+        res = self.client.get(reverse('comm-thread-detail',
+                                      kwargs={'pk': thread.pk}))
+        eq_(res.status_code, 200)
+        eq_(len(res.json['recent_notes']), 1)
+        eq_(res.json['recent_notes'][0]['body'], 'allowed')
+        eq_(res.json['addon'], self.addon.id)
+
+        # Test that the author always has permissions.
+        no_dev_note.update(author=self.profile)
+        res = self.client.get(reverse('comm-thread-detail',
+                                      kwargs={'pk': thread.pk}))
+        eq_(len(res.json['recent_notes']), 2)
 
     def test_cc(self):
         self.thread = CommunicationThread.objects.create(addon=self.addon)
@@ -173,19 +202,20 @@ class TestThreadList(RestOAuth):
 
 
 class TestNote(RestOAuth):
-    fixtures = fixture('webapp_337141', 'user_2519', 'user_999')
+    fixtures = fixture('webapp_337141', 'user_2519', 'user_999',
+                       'user_support_staff')
 
     def setUp(self):
         super(TestNote, self).setUp()
-        addon = Webapp.objects.get(pk=337141)
-        self.thread = CommunicationThread.objects.create(addon=addon,
-            read_permission_developer=True, version=addon.current_version)
+        self.addon = Webapp.objects.get(pk=337141)
+        self.thread = CommunicationThread.objects.create(addon=self.addon,
+            read_permission_developer=True, version=self.addon.current_version)
         self.thread_url = reverse('comm-thread-detail',
                                   kwargs={'pk': self.thread.id})
         self.list_url = reverse('comm-note-list',
                                 kwargs={'thread_id': self.thread.id})
 
-        self.profile.addonuser_set.create(addon=addon)
+        self.profile.addonuser_set.create(addon=self.addon)
 
     def test_response(self):
         note = CommunicationNote.objects.create(author=self.profile,
@@ -206,8 +236,9 @@ class TestNote(RestOAuth):
 
     def test_show_read_filter(self):
         """Test `is_read` filter."""
-        note = CommunicationNote.objects.create(author=self.profile,
-            thread=self.thread, note_type=0, body='something')
+        note = CommunicationNote.objects.create(
+            author=self.profile, thread=self.thread, note_type=0,
+            body='something')
         CommunicationNoteRead.objects.create(user=self.profile, note=note)
 
         # Test with `show_read=true`.
@@ -218,6 +249,25 @@ class TestNote(RestOAuth):
         CommunicationNoteRead.objects.all().delete()
         res = self.client.get(self.list_url, {'show_read': '0'})
         eq_(res.json['objects'][0]['is_read'], False)
+
+    def test_read_perms(self):
+        staff = UserProfile.objects.get(username='support_staff')
+        CommunicationNote.objects.create(
+            author=staff, thread=self.thread, note_type=0, body='oncetoldme',
+            read_permission_developer=True)
+        no_dev_note = CommunicationNote.objects.create(
+            author=staff, thread=self.thread, note_type=6, body='denied',
+            read_permission_developer=False)
+
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+        eq_(res.json['objects'][0]['body'], 'oncetoldme')
+
+        # Test that the author always has permissions.
+        no_dev_note.update(author=self.profile)
+        res = self.client.get(self.list_url)
+        eq_(len(res.json['objects']), 2)
 
     def test_creation(self):
         res = self.client.post(self.list_url, data=json.dumps(
