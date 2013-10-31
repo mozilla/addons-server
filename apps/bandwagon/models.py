@@ -493,8 +493,12 @@ class CollectionVote(models.Model):
 
     @staticmethod
     def post_save_or_delete(sender, instance, **kwargs):
-        from . import tasks
-        tasks.collection_votes(instance.collection_id, using='default')
+        # There are some issues with cascade deletes, where the
+        # collection disappears before the votes. Make sure the
+        # collection exists before trying to update it in the task.
+        if Collection.objects.filter(id=instance.collection_id).exists():
+            from . import tasks
+            tasks.collection_votes(instance.collection_id, using='default')
 
 
 models.signals.post_save.connect(CollectionVote.post_save_or_delete,
