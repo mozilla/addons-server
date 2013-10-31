@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-26 12:31+0000\n"
+"PO-Revision-Date: 2013-10-31 13:37+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382790679.0\n"
+"X-POOTLE-MTIME: 1383226624.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -29,7 +29,7 @@ msgstr "Beim Kontaktieren des Servers ist ein Fehler aufgetreten."
 #: media/js/common/upload-addon.js:52
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr "Wählen Sie eine Datei aus …"
+msgstr "Wählen Sie eine Datei aus…"
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"

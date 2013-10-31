@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-27 20:00+0000\n"
+"PO-Revision-Date: 2013-10-31 13:37+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382904048.0\n"
+"X-POOTLE-MTIME: 1383226671.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -39,7 +39,7 @@ msgstr "Herunterladen"
 #: apps/addons/buttons.py:217
 #: apps/discovery/templates/discovery/addons/detail.html:22
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Weiter zum Download&nbsp;→"
+msgstr "Weiter zum Download&nbsp;&rarr;"
 
 #: apps/addons/buttons.py:213
 msgid "Accept and Download"
