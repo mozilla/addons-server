@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-28 12:50+0000\n"
+"PO-Revision-Date: 2013-10-31 01:53+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382964624.0\n"
+"X-POOTLE-MTIME: 1383184392.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -16364,7 +16364,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:18
 msgid "Preloaded App Terms and Conditions"
-msgstr ""
+msgstr "预载入应用需遵守条款"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -17062,7 +17062,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:142
 msgid "On localStorage"
-msgstr ""
+msgstr "于 localStorage"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:145
 msgid ""
@@ -17074,7 +17074,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:159
 msgid "Caching large files and storing media"
-msgstr ""
+msgstr "高速缓存大文件以及存储媒体"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:162
 msgid ""
@@ -17084,7 +17084,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:175
 msgid "Keep in mind that storing large files (over 100MB) is still largely uncharted territory and you may encouter some issues."
-msgstr ""
+msgstr "请记住保存大文件（超过 100MB）还是很少有人会做的，您也可能会遇到一些问题。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:181
 msgid "A Note on Packaged Apps"
@@ -17873,7 +17873,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:26
 msgid "If you'd like to follow along with this guide, you can <a href=\"%(url)s\">download the quick start app</a>."
-msgstr ""
+msgstr "如果您想按照这份指南开始，您可以<a href=\"%(url)s\">下载快速上手应用程序</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:31
 msgid "App Structure"
