@@ -68,8 +68,8 @@ class SearchResource(CORSResource, MarketplaceResource):
            determine the region via IP address).
         4. Return the worldwide region.
 
-        This method is overridden by the reviewers search api to disable region
-        filtering.
+        This method is overridden by the reviewers search api to completely
+        disable region filtering.
         """
         region = request.GET.get('region')
         if region and region == 'None':
