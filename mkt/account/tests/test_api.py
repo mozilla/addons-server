@@ -8,10 +8,11 @@ from django.core import mail
 from django.core.urlresolvers import reverse
 from django.utils.http import urlencode
 
-from mock import patch
+from mock import patch, Mock
 from nose.tools import eq_, ok_
 
 from amo.tests import TestCase
+from mkt.account.views import MineMixin
 from mkt.api.base import get_url, list_url
 from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url, RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
@@ -30,16 +31,48 @@ class TestPotatoCaptcha(object):
         eq_(data['non_field_errors'], [u'Form could not be submitted.'])
 
 
-class TestPermission(BaseOAuth):
+class FakeResourceBase(object):
+    pass
+
+
+class FakeResource(MineMixin, FakeResourceBase):
+    def __init__(self, pk, request):
+        self.kwargs = {'pk': pk}
+        self.request = request
+
+
+class TestMine(TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        super(TestPermission, self).setUp(api_name='account')
-        self.get_url = get_url('permissions', '2519')
+        self.request = Mock()
+        self.request.amo_user = UserProfile.objects.get(id=2519)
+
+    @patch.object(FakeResourceBase, 'get_object', create=True)
+    def test_get_object(self, mocked_get_object):
+        r = FakeResource(999, self.request)
+        r.get_object()
+        eq_(r.kwargs['pk'], 999)
+
+        r = FakeResource('mine', self.request)
+        r.get_object()
+        eq_(r.kwargs['pk'], 2519)
+
+
+class TestPermission(RestOAuth):
+    fixtures = fixture('user_2519', 'user_10482')
+
+    def setUp(self):
+        super(TestPermission, self).setUp()
+        self.get_url = reverse('account-permissions', kwargs={'pk': 2519})
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_verbs(self):
         self._allowed_verbs(self.get_url, ('get'))
+
+    def test_other(self):
+        self.get_url = reverse('account-permissions', kwargs={'pk': 10482})
+        eq_(self.client.get(self.get_url).status_code, 403)
 
     def test_no_permissions(self):
         res = self.client.get(self.get_url)
@@ -54,25 +87,39 @@ class TestPermission(BaseOAuth):
     def test_some_permission(self):
         self.grant_permission(self.user, 'Localizers:%')
         res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
         ok_(res.json['permissions']['localizer'])
+
+    def test_mine(self):
+        self.get_url = reverse('account-permissions', kwargs={'pk': 'mine'})
+        self.test_some_permission()
+
+    def test_mine_anon(self):
+        self.get_url = reverse('account-permissions', kwargs={'pk': 'mine'})
+        res = self.anon.get(self.get_url)
+        eq_(res.status_code, 403)
 
     def test_publisher(self):
         res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
         ok_(not res.json['permissions']['curator'])
 
     def test_publisher_ok(self):
         self.grant_permission(self.user, 'Collections:Curate')
         res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
         ok_(res.json['permissions']['curator'])
 
     def test_webpay(self):
         res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
         ok_(not res.json['permissions']['webpay'])
 
     def test_webpay_ok(self):
         self.grant_permission(self.user, 'ProductIcon:Create')
         self.grant_permission(self.user, 'Transaction:NotifyFailure')
         res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
         ok_(res.json['permissions']['webpay'])
 
 
