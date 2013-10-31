@@ -8,13 +8,16 @@ from amo.urlresolvers import reverse
 
 
 VIEW_PAGES = (
-    'build_app_generator', 'build_apps_offline', 'build_dev_tools',
-    'build_ffos', 'build_game_apps', 'build_intro', 'build_manifests',
-    'build_mobile_developers', 'build_quick', 'build_reference',
-    'build_tools', 'build_web_developers', 'design_concept',
-    'design_fundamentals', 'design_patterns', 'design_ui', 'dev_phone',
-    'partners', 'publish_deploy', 'publish_hosted', 'publish_packaged',
-    'publish_review', 'publish_submit', 'support', 'build_payments',
+    'build_app_generator', 'build_dev_tools', 'build_quick', 'build_reference',
+    'build_tools', 'design_concept', 'design_fundamentals', 'design_ui',
+    'dev_phone', 'partners', 'publish_deploy', 'support', 'build_payments',
+)
+
+REDIRECT_PAGES = (
+    'build_apps_offline', 'build_ffos', 'build_game_apps', 'build_intro',
+    'build_manifests', 'build_mobile_developers', 'build_web_developers',
+    'design_patterns', 'ffos_guideline', 'publish_hosted', 'publish_packaged',
+    'publish_review', 'publish_submit', 'responsive_design',
 )
 
 
@@ -58,8 +61,8 @@ class TestLanding(amo.tests.TestCase):
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.notification-box.error h2').text(),
-                          'We apologize, but an error occurred in our '
-                          'system. Please try again later.')
+            'We apologize, but an error occurred in our '
+            'system. Please try again later.')
         assert subscribe_mock.called
 
 
@@ -70,6 +73,11 @@ class TestDevHub(amo.tests.TestCase):
             r = self.client.get(reverse('ecosystem.%s' % page))
             eq_(r.status_code, 200)
             self.assertTemplateUsed(r, 'ecosystem/%s.html' % page)
+
+    def test_redirect_pages(self):
+        for page in REDIRECT_PAGES:
+            r = self.client.get(reverse('ecosystem.%s' % page))
+            eq_(r.status_code, 301)
 
     def test_valid_reference_app(self):
         r = self.client.get(reverse('ecosystem.apps_documentation',
