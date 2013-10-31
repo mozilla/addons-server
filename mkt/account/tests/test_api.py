@@ -352,24 +352,33 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
         assert 'feedback' in data
 
 
-class TestNewsletter(BaseOAuth):
+class TestNewsletter(RestOAuth):
     def setUp(self):
-        super(TestNewsletter, self).setUp(api_name='account')
+        super(TestNewsletter, self).setUp()
+        self.url = reverse('account-newsletter')
 
     @patch('basket.subscribe')
     def test_signup_bad(self, subscribe):
-        res = self.client.post(list_url('newsletter'),
+        res = self.client.post(self.url,
                                data=json.dumps({'email': '!not_an_email'}))
         eq_(res.status_code, 400)
+        ok_(not subscribe.called)
 
     @patch('basket.subscribe')
     def test_signup_empty(self, subscribe):
-        res = self.client.post(list_url('newsletter'))
+        res = self.client.post(self.url)
         eq_(res.status_code, 400)
+        ok_(not subscribe.called)
+
+    @patch('basket.subscribe')
+    def test_signup_anonymous(self, subscribe):
+        res = self.anon.post(self.url)
+        eq_(res.status_code, 403)
+        ok_(not subscribe.called)
 
     @patch('basket.subscribe')
     def test_signup(self, subscribe):
-        res = self.client.post(list_url('newsletter'),
+        res = self.client.post(self.url,
                                data=json.dumps({'email': 'bob@example.com'}))
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
@@ -378,7 +387,7 @@ class TestNewsletter(BaseOAuth):
 
     @patch('basket.subscribe')
     def test_signup_plus(self, subscribe):
-        res = self.client.post(list_url('newsletter'),
+        res = self.client.post(self.url,
                                data=json.dumps({'email': 'bob+totally+real@example.com'}))
         subscribe.assert_called_with(
             'bob+totally+real@example.com', 'marketplace', lang='en-US', country='us',

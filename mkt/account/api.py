@@ -5,13 +5,12 @@ from functools import partial
 
 from django.conf import settings
 from django.contrib.auth.signals import user_logged_in
-from django.core.validators import ValidationError, validate_email
+from django.core.validators import ValidationError
 
-import basket
 import commonware.log
 from django_statsd.clients import statsd
 from rest_framework import serializers
-from tastypie import fields, http
+from tastypie import http
 from tastypie.authorization import Authorization
 from tastypie.bundle import Bundle
 from tastypie.validation import CleanedDataFormValidation
@@ -186,27 +185,3 @@ class LoginResource(CORSResource, MarketplaceResource):
         bundle.data.update(PermissionResource()
                            .dehydrate(Bundle(request=request)).data)
         return bundle
-
-
-class NewsletterResource(CORSResource, MarketplaceResource):
-    email = fields.CharField(attribute='email')
-
-    class Meta(MarketplaceResource.Meta):
-        list_allowed_methods = ['post']
-        detail_allowed_methods = []
-        resource_name = 'newsletter'
-        authorization = Authorization()
-        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
-
-    def post_list(self, request, **kwargs):
-        data = self.deserialize(request, request.raw_post_data,
-                                format='application/json')
-        email = data['email']
-        try:
-            validate_email(email)
-        except ValidationError:
-            raise http_error(http.HttpBadRequest, 'Invalid email address')
-        basket.subscribe(data['email'], 'marketplace',
-                         format='H', country=request.REGION.slug,
-                         lang=request.LANG, optin='Y',
-                         trigger_welcome='Y')
