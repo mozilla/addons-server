@@ -207,3 +207,10 @@ POSTFIX_DOMAIN = 'marketplace-dev.allizom.org'
 PURCHASE_LIMITED = True
 
 MONOLITH_INDEX = 'mktdev-time_*'
+
+# IARC content ratings.
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
+IARC_PASSWORD = private_mkt.IARC_PASSWORD
+IARC_STOREFRONT_ID = 4
+IARC_COMPANY = 'Mozilla'
