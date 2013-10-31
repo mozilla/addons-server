@@ -1,12 +1,15 @@
 from django.conf.urls import url
 
 from tastypie.authorization import ReadOnlyAuthorization
+from tastypie.exceptions import ImmediateHttpResponse
+from tastypie.http import HttpForbidden
 from tastypie.throttle import BaseThrottle
 from tastypie.utils import trailing_slash
 
 from translations.helpers import truncate
 
 import mkt
+from access import acl
 from mkt.api.authentication import (SharedSecretAuthentication,
                                     OptionalOAuthAuthentication)
 from mkt.api.base import CORSResource, MarketplaceResource
@@ -18,6 +21,7 @@ from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
 from mkt.collections.filters import CollectionFilterSetWithFallback
 from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
+from mkt.constants.regions import REGIONS_DICT
 from mkt.features.utils import get_feature_profile
 from mkt.search.views import _filter_search
 from mkt.search.forms import ApiSearchForm
@@ -50,7 +54,39 @@ class SearchResource(CORSResource, MarketplaceResource):
         return form.cleaned_data
 
     def get_region(self, request):
-        # Overridden by reviewers search api to disable region filtering.
+        """
+        Returns the REGION object for the passed request. Rules:
+
+        1. If the GET param `region` is `None`, return `None`. If a request
+           attempts to do this without authentication and one of the
+           'Regions:BypassFilters' permission or curator-level access to a
+           collection, return a 403.
+        2. If the GET param `region` is set and not empty, attempt to return the
+           region with the specified slug.
+        3. If request.REGION is set, return it. (If the GET param `region` is
+           either not set or set and empty, RegionMiddleware will attempt to
+           determine the region via IP address).
+        4. Return the worldwide region.
+
+        This method is overridden by the reviewers search api to disable region
+        filtering.
+        """
+        region = request.GET.get('region')
+        if region and region == 'None':
+            collection_curator = (Collection.curators.through.objects.filter(
+                                  userprofile=request.amo_user).exists())
+            has_permission = acl.action_allowed(request, 'Regions',
+                                                'BypassFilters')
+            if not (collection_curator or has_permission):
+                raise ImmediateHttpResponse(response=HttpForbidden())
+            return None
+
+        elif region:
+            try:
+                return REGIONS_DICT[region]
+            except KeyError:
+                raise self.non_form_errors([('region', 'Invalid region.')])
+
         return getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
     def get_feature_profile(self, request):
