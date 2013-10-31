@@ -313,3 +313,9 @@ COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
 #   override-app-purchase
 # For them to be able purchase apps.
 PURCHASE_LIMITED = False
+
+# IARC content ratings.
+IARC_SUBMISSION_ENDPOINT = ''
+IARC_PASSWORD = ''
+IARC_STOREFRONT_ID = 4
+IARC_COMPANY = 'Mozilla'

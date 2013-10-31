@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 import mock
 import waffle
@@ -1166,7 +1167,7 @@ class TestTransactionList(amo.tests.TestCase):
 
 
 class TestContentRatings(amo.tests.TestCase):
-    fixtures = fixture('user_admin', 'user_admin_group')
+    fixtures = fixture('user_admin', 'user_admin_group', 'group_admin')
 
     def setUp(self):
         self.create_switch('iarc')
@@ -1178,6 +1179,9 @@ class TestContentRatings(amo.tests.TestCase):
                            args=[self.app.app_slug])
         self.req = amo.tests.req_factory_factory(self.url, user=self.user)
 
+    @override_settings(IARC_SUBMISSION_ENDPOINT='https://yo.lo',
+                       IARC_STOREFRONT_ID=1, IARC_COMPANY='Mozilla',
+                       IARC_PASSWORD='s3kr3t')
     def test_200(self):
         r = ratings(self.req, app_slug=self.app.app_slug)
         eq_(r.status_code, 200)
@@ -1186,6 +1190,19 @@ class TestContentRatings(amo.tests.TestCase):
         doc = pq(r.content)
         assert doc('#ratings-summary').hasClass('hidden')
         assert not doc('#ratings-edit').hasClass('hidden')
+
+        # Check the form action.
+        form = doc('#ratings-edit form')[0]
+        eq_(form.action, 'https://yo.lo')
+
+        # Check the hidden form values.
+        values = dict(form.form_values())
+        eq_(values['storefront'], '1')
+        eq_(values['company'], 'Mozilla')
+        eq_(values['password'], 's3kr3t')
+        eq_(values['email'], self.req.amo_user.email)
+        eq_(values['appname'], self.app.app_slug)
+        eq_(values['platform'], '2001,2002')
 
     def test_summary(self):
         ContentRating.objects.create(

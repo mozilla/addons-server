@@ -1,4 +1,3 @@
-import datetime
 import json
 import os
 import sys
@@ -290,7 +289,7 @@ def status(request, addon_id, addon, webapp=False):
 def ratings(request, addon_id, addon):
     """IARC ratings."""
     return jingo.render(request, 'developers/apps/ratings.html', {
-        'addon': addon
+        'addon': addon,
     })
 
 
