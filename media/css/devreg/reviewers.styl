@@ -846,7 +846,7 @@ button.search, .log-filter-outside button {
 
 .review-actions {
     border-radius: 5px;
-    box-shadow: 0 -2px 0 $faded-blue inset, 0 0 1px rgba(0,0,0,0.1);
+    box-shadow: 0 -2px 0 rgba($taupe, .2) inset, 0 0 1px rgba(0, 0, 0, .1);
     border: 1px solid $border-blue;
     margin: 15px 0 30px;
 
@@ -854,21 +854,25 @@ button.search, .log-filter-outside button {
         display: none;
     }
     .action_nav {
+        background: #fff;
+        border-radius: 2px;
+
         ul {
             margin: 0;
             display: table;
             width: 100%;
         }
         li {
-            gradient-two-color($white, #e0effd);
-            border-top: 1px solid #2E5186;
-            border-bottom: 1px solid #2E5186;
-            border-right: 1px solid #A5BFCE;
+            background: $faded-blue;
+            border-top: 0;
+            border-bottom: 0;
+            border-right: 1px solid $border-blue;
             display: table-cell;
             text-align: center;
-            text-shadow: 1px 1px 0 $white;
+            text-shadow: 1px 1px 0 #fff;
+
             &:active {
-                gradient-two-color(#e0effd, $white);
+                background: $white;
             }
             input {
                 display: none;
@@ -878,13 +882,20 @@ button.search, .log-filter-outside button {
                 padding: 10px 5px;
             }
             &:first-child {
-                border-left: 1px solid #2E5186;
-                border-radius: 5px 0 0 5px;
+                border-left: 0;
+                border-radius: 2px 0 0 2px;
             }
-
             &:last-child {
-                border-right: 1px solid #2E5186;
-                border-radius: 0 5px 5px 0;
+                border-right: 0;
+                border-radius: 0 2px 2px 0;
+            }
+            &.disabled {
+                background: $faint-gray;
+                color: $note-gray;
+
+                label:hover {
+                    cursor: default;
+                }
             }
         }
     }
@@ -892,9 +903,8 @@ button.search, .log-filter-outside button {
 
 .review-actions.on {
     #review-actions-form {
-        border: 1px solid #2E5186;
-        border-top-width: 0;
-        border-radius: 0 0 5px 5px;
+        border: 0;
+        border-radius: 0 0 2px 2px;
     }
     .action_nav {
         ul li.on-tab {
@@ -905,10 +915,10 @@ button.search, .log-filter-outside button {
             border-bottom: 1px solid #A5BFCE;
 
             &:first-child {
-                border-radius: 5px 0 0;
+                border-radius: 2px 0 0;
             }
             &:last-child {
-                border-radius: 0 5px 0 0;
+                border-radius: 0 2px 0 0;
             }
         }
     }

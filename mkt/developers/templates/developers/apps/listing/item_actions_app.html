@@ -19,6 +19,7 @@
       </li>
     {% endif %}
   {% endif %}
+
   {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
     <li>
       <a href="#" class="delete-addon tooltip"
@@ -36,6 +37,7 @@
         {{ _('Edit Listing') }}</a>
     </li>
   {% endif %}
+
   {% if addon.is_packaged %}
     <li>
       <a href="{{ addon.get_dev_url('versions') }}" class="action-link tooltip"
@@ -43,9 +45,12 @@
         {{ _('Add New Version') }}</a>
     </li>
   {% endif %}
+
   <li>
-    <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ _('Team Members') }}</a>
+    <a class="action-link status-link" href="{{ addon.get_dev_url('versions') }}">
+      {{ _('Status &amp; Versions') if addon.is_packaged else _('Status') }}</a>
   </li>
+
   {% if waffle.switch('iarc') %}
     <li>
       <a class="action-link" href="{{ addon.get_dev_url('ratings') }}">
@@ -53,6 +58,7 @@
       {# TODO: red cross-mark if the app hasn't been rated yet. #}
     </li>
   {% endif %}
+
   {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
     <li>
       <a class="action-link{{ ' alert' if waffle.switch('disabled-payments') and addon.is_premium() }}" href="{{ addon.get_dev_url('payments') }}">
@@ -60,33 +66,37 @@
     </li>
   {% endif %}
 
-  <li>
-    <a class="action-link status-link" href="{{ addon.get_dev_url('versions') }}">
-      {{ _('Manage Status &amp; Versions') if addon.is_packaged else _('Manage Status') }}</a>
-  </li>
-  <li>
-    <a class="action-link" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
-  </li>
-  <li>
-    <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('Statistics') }}</a>
-  </li>
-  {% if waffle.switch('view-transactions') %}
-    <li>
-      <a class="action-link" href="{{ url('mkt.developers.transactions')|urlparams(app=addon.id) }}">
-        {{ _('Transactions') }}</a>
-    </li>
-  {% endif %}
   {% if addon.premium_type in amo.ADDON_INAPPS and waffle.switch('in-app-payments') %}
     <li>
       <a class="action-link" href="{{ addon.get_dev_url('in_app_config') }}">
-        {{ _('Manage In-App Payments') }}
+        {{ _('In-App Payments') }}
       </a>
     </li>
   {% endif %}
+
+  <li>
+    <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ _('Team Members') }}</a>
+  </li>
+
+  <li>
+    <a class="action-link" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
+  </li>
+
   {% if waffle.switch('comm-dashboard') %}
     <li>
       <a class="action-link" href="{{ addon.get_comm_thread_url() }}">
         {{ _('Messages') }}</a>
+    </li>
+  {% endif %}
+
+  <li>
+    <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('Statistics') }}</a>
+  </li>
+
+  {% if waffle.switch('view-transactions') %}
+    <li>
+      <a class="action-link" href="{{ url('mkt.developers.transactions')|urlparams(app=addon.id) }}">
+        {{ _('Transactions') }}</a>
     </li>
   {% endif %}
 </ul>

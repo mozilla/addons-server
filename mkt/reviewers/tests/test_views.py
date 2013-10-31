@@ -21,6 +21,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from amo.tests import req_factory_factory
 import reviews
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
@@ -43,11 +44,11 @@ from versions.models import Version
 from zadmin.models import get_config, set_config
 
 from mkt.constants.features import FeatureProfile
-from mkt.reviewers.views import (_do_sort, _progress, queue_apps,
+from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import ContentRating, Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
 
 
@@ -514,6 +515,25 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
         eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (1)')
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
+
+    def test_iarc_ratingless_not_in_queue(self):
+        # Test waffle-less.
+        req = req_factory_factory(self.url,
+            user=UserProfile.objects.get(username='editor'))
+        doc = pq(queue_apps(req).content)
+        assert doc('#addon-queue tbody tr').length
+
+        # Test exclusions under waffle.
+        self.create_switch('iarc', db=True)
+        doc = pq(queue_apps(req).content)
+        assert not doc('#addon-queue tbody tr').length
+
+        # With ratings.
+        for app in self.apps:
+            ContentRating.objects.create(
+                addon=app, ratings_body=0, rating=0)
+        doc = pq(queue_apps(req).content)
+        assert doc('#addon-queue tbody tr').length
 
 
 @mock.patch('versions.models.Version.is_privileged', False)
@@ -1364,6 +1384,25 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(messages.call_args_list[0][0][1],
             '"Web App Review" successfully processed (+60 points, 60 total).')
+
+    @mock.patch('mkt.reviewers.views.messages.success', new=mock.Mock)
+    def test_iarc_ratingless_cant_approve(self):
+        self.create_switch('iarc')
+        data = {'action': 'public', 'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
+        app = self.get_app()
+
+        # Still pending.
+        eq_(app.status, amo.STATUS_PENDING)
+        eq_(app.current_version.files.all()[0].status, amo.STATUS_PENDING)
+
+        # Now approve with rating.
+        ContentRating.objects.create(addon=app, ratings_body=0, rating=0)
+        self.post(data)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
 
     def test_notification_email_translation(self):
         """Test that the app name is translated with the app's default_locale
@@ -2481,8 +2520,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         eq_(data['developer']['name'], 'Mozilla Marketplace')
         eq_(data['package_path'],
             absolutify(reverse('reviewers.signed',
-                               args=[self.app.app_slug,
-                                     self.version.id])))
+                       args=[self.app.app_slug, self.version.id])))
 
     def test_rejected(self):
         # Rejected sets file.status to DISABLED and moves to a guarded path.
@@ -2823,3 +2861,22 @@ class TestLeaderboard(AppReviewerTest):
              users[1].display_name,
              amo.REVIEWED_LEVELS[0]['name'],
              users[0].display_name])
+
+
+class TestReviewPage(amo.tests.TestCase):
+    fixtures = fixture('user_editor', 'user_editor_group', 'group_editor')
+
+    def setUp(self):
+        self.create_switch('iarc')
+        self.app = app_factory(status=amo.STATUS_PENDING, unrated=True)
+        self.reviewer = UserProfile.objects.get()
+        self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
+
+    def test_iarc_ratingless_disable_approve_btn(self):
+        req = req_factory_factory(self.url, user=self.reviewer)
+        res = app_review(req, app_slug=self.app.app_slug)
+        doc = pq(res.content)
+        assert (doc('#review-actions input[value=public]')
+                .parents('li').hasClass('disabled'))
+        assert not (doc('#review-actions input[value=reject]')
+                    .parents('li').hasClass('disabled'))

@@ -1,5 +1,7 @@
 from jingo import register, env
 import jinja2
+from tower import ugettext as _
+import waffle
 
 import mkt
 from mkt.submit.models import AppSubmissionChecklist
@@ -21,6 +23,10 @@ def progress(request, addon, step):
         return NotImplementedError
 
     steps = list(mkt.APP_STEPS)
+    if waffle.switch_is_active('iarc'):
+        # TODO: uncomment next_steps to mkt/constants/submit.
+        steps[3] = ('next_steps', _('Next Steps'))
+
     completed = []
 
     # TODO: Hide "Developer Account" step if user already read Dev Agreement.

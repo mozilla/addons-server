@@ -226,6 +226,11 @@ class ReviewApp(ReviewBase):
             self.comm_thread, self.comm_note = res
 
     def process_public(self):
+        if waffle.switch_is_active('iarc') and not self.addon.is_rated():
+            # Shouldn't be able to get here. Don't allow unrated apps to go
+            # live.
+            return
+
         # Hold onto the status before we change it.
         status = self.addon.status
         self.create_comm_thread(action='approve')
@@ -242,6 +247,11 @@ class ReviewApp(ReviewBase):
 
     def process_public_waiting(self):
         """Make an app pending."""
+        if waffle.switch_is_active('iarc') and not self.addon.is_rated():
+            # Shouldn't be able to get here. Don't allow unrated apps to go
+            # live.
+            return
+
         self.addon.sign_if_packaged(self.version.pk)
         self.set_files(amo.STATUS_PUBLIC_WAITING, self.version.files.all())
         if self.addon.status != amo.STATUS_PUBLIC:
@@ -257,6 +267,11 @@ class ReviewApp(ReviewBase):
 
     def process_public_immediately(self):
         """Approve an app."""
+        if waffle.switch_is_active('iarc') and not self.addon.is_rated():
+            # Shouldn't be able to get here. Don't allow unrated apps to go
+            # live.
+            return
+
         self.addon.sign_if_packaged(self.version.pk)
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.

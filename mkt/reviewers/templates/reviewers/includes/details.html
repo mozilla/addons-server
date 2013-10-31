@@ -148,12 +148,12 @@
     <p{{ product.description|locale_html }}>{{ product.description|nl2br }}</p>
 
     {% if previews %}
-      <h2>{{ _('Image Gallery') }}</h2>
+      <h2>{{ _('Images') }}</h2>
       {% for preview in previews %}
-      <a class="screenshot thumbnail" rel="jquery-lightbox"
-        href="{{ preview.image_url }}">
-        <img src="{{ preview.thumbnail_url }}">
-      </a>
+        <a class="screenshot thumbnail" rel="jquery-lightbox"
+           href="{{ preview.image_url }}">
+          <img src="{{ preview.thumbnail_url }}">
+        </a>
       {% endfor %}
     {% endif %}
 

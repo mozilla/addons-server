@@ -470,6 +470,11 @@ class TestWebapp(amo.tests.TestCase):
         region.adolescent = False
         eq_(app.get_trending(region=region), 10.0)
 
+    def test_rated(self):
+        self.create_switch('iarc')
+        assert app_factory().is_rated()
+        assert not app_factory(unrated=True).is_rated()
+
 
 class DeletedAppTests(amo.tests.ESTestCase):
 
@@ -633,6 +638,13 @@ class TestWebappManager(amo.tests.TestCase):
         eq_(Webapp.objects.by_identifier(w.app_slug), w)
         with self.assertRaises(Webapp.DoesNotExist):
             Webapp.objects.by_identifier('fake')
+
+    def test_rated(self):
+        self.create_switch('iarc')
+        rated = app_factory()
+        app_factory(unrated=True)
+        eq_(Webapp.objects.count(), 2)
+        eq_(list(Webapp.objects.rated()), [rated])
 
 
 class TestManifest(BaseWebAppTest):
