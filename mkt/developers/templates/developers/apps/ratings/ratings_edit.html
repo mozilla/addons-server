@@ -17,18 +17,18 @@
       <a href="{{ tos_url }}">Terms of Service agreement</a>.
     {% endtrans %}
   </p>
-  <p class="listing-footer">
-    <form method="post" target="_blank" action="{{ settings.IARC_SUBMISSION_ENDPOINT }}">
-      <input type="hidden" name="password" value="{{ settings.IARC_PASSWORD }}">
-      <input type="hidden" name="email" value="{{ request.amo_user.email }}">
-      <input type="hidden" name="company" value="{{ settings.IARC_COMPANY }}">
-      <input type="hidden" name="appname" value="{{ addon.app_slug }}">
-      {# TODO: Do we set 2001=FxOS only when they chose it during submission? #}
-      <input type="hidden" name="platform" value="2001,2002">
-      <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
+  <form method="post" target="_blank" action="{{ settings.IARC_SUBMISSION_ENDPOINT }}">
+    <input type="hidden" name="password" value="{{ settings.IARC_PASSWORD }}">
+    <input type="hidden" name="email" value="{{ request.amo_user.email }}">
+    <input type="hidden" name="company" value="{{ settings.IARC_COMPANY }}">
+    <input type="hidden" name="appname" value="{{ addon.app_slug }}">
+    {# TODO: Do we set 2001=FxOS only when they chose it during submission? #}
+    <input type="hidden" name="platform" value="2001,2002">
+    <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
+    <p class="listing-footer">
       <input type="submit" value="{{ _('Create an IARC Ratings Certificate') }}" class="create-iarc-rating button">
-    </form>
-  </p>
+    </p>
+  </form>
 </div>
 
 <div class="island">

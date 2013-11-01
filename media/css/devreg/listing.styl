@@ -167,6 +167,7 @@
 .listing .item {
     color: $note-gray;
     width: 100%;
+
     &:hover,
     &.static {
         background-color: $faded-taupe;
@@ -319,7 +320,6 @@
     }
 }
 .price {
-    font-size: 11px;
     line-height: 13px;
 }
 
@@ -390,6 +390,16 @@
             &:hover:after {
                 border-top-color: #05e;
             }
+        }
+        &.done:after {
+            color: $green;
+            content: "\2714";
+            margin-left: 4px;
+        }
+        &.not-done:after {
+            color: $red;
+            content: "\2717";
+            margin-left: 4px;
         }
     }
     h5 {

@@ -53,15 +53,20 @@
 
   {% if waffle.switch('iarc') %}
     <li>
-      <a class="action-link" href="{{ addon.get_dev_url('ratings') }}">
+      {% set rated = addon.is_pending() and addon.is_rated() %}
+      {% set unrated = not addon.is_rated() %}
+      <a class="action-link {% if unrated %} not-done{% endif%}{% if rated %} done{% endif %}"
+         href="{{ addon.get_dev_url('ratings') }}">
         {{ _('Content Ratings') }}</a>
-      {# TODO: red cross-mark if the app hasn't been rated yet. #}
     </li>
   {% endif %}
 
   {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
     <li>
-      <a class="action-link{{ ' alert' if waffle.switch('disabled-payments') and addon.is_premium() }}" href="{{ addon.get_dev_url('payments') }}">
+      {% set has_payments = addon.is_pending() and addon.is_premium() and hasOneToOne(addon, 'app_payment_account') %}
+      {% set no_payments = addon.is_premium() and not hasOneToOne(addon, 'app_payment_account') %}
+      <a class="action-link{{ ' alert' if waffle.switch('disabled-payments') and addon.is_premium() }}{% if has_payments %} done{% elif no_payments %} not-done{% endif %}"
+         href="{{ addon.get_dev_url('payments') }}">
         {{ _('Compatibility & Payments') }}</a>
     </li>
   {% endif %}
