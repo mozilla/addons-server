@@ -298,6 +298,24 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(result[0]['approval_count'], 1)
         eq_(result[0]['user'], self.user.pk)
 
+    def test_total_reviews_user_position(self):
+        for x in range(0, 5):
+            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        result = ActivityLog.objects.total_reviews_user_position(self.user)
+        eq_(result, 1)
+        user = UserProfile.objects.create(email="no@mozil.la")
+        result = ActivityLog.objects.total_reviews_user_position(user)
+        eq_(result, None)
+
+    def test_monthly_reviews_user_position(self):
+        for x in range(0, 5):
+            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        result = ActivityLog.objects.monthly_reviews_user_position(self.user)
+        eq_(result, 1)
+        user = UserProfile.objects.create(email="no@mozil.la")
+        result = ActivityLog.objects.monthly_reviews_user_position(user)
+        eq_(result, None)
+
     def test_log_admin(self):
         amo.log(amo.LOG['OBJECT_EDITED'], Addon.objects.get())
         eq_(len(ActivityLog.objects.admin_events()), 1)

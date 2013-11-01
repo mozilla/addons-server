@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core import mail
 from django.utils.datastructures import SortedDict
+from django.test.utils import override_settings
 
 from mock import Mock, patch
 from nose.tools import eq_
@@ -365,6 +366,25 @@ class TestHome(EditorTest):
         cols = doc('#editors-stats .editor-stats-table:eq(1)').find('td')
         eq_(cols.eq(0).text(), self.user.display_name)
         eq_(int(cols.eq(1).text()), 2, 'Approval count should be 2')
+
+    @override_settings(EDITOR_REVIEWS_MAX_DISPLAY=0)
+    def test_stats_user_position_ranked(self):
+        self.approve_reviews()
+        doc = pq(self.client.get(self.url).content)
+        p = doc('#editors-stats .editor-stats-table p:eq(0)')
+        eq_(p.text(), "You're #1 with 1 reviews",
+            'Total reviews should show position')
+        p = doc('#editors-stats .editor-stats-table p:eq(1)')
+        eq_(p.text(), "You're #1 with 1 reviews",
+            'Monthly reviews should show position')
+
+    def test_stats_user_position_unranked(self):
+        self.approve_reviews()
+        doc = pq(self.client.get(self.url).content)
+        p = doc('#editors-stats .editor-stats-table p:eq(0)')
+        eq_(p.text(), None)
+        p = doc('#editors-stats .editor-stats-table p:eq(1)')
+        eq_(p.text(), None, 'Monthly reviews should not be displayed')
 
     def test_new_editors(self):
         amo.log(amo.LOG.GROUP_USER_ADDED,
