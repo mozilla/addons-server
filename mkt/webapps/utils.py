@@ -60,8 +60,8 @@ def app_to_dict(app, region=None, profile=None, request=None):
 
     content_ratings = {}
     for cr in app.content_ratings.all():
-        for region in cr.get_region_slugs():
-            content_ratings.setdefault(region, []).append({
+        for _region in cr.get_region_slugs():
+            content_ratings.setdefault(_region, []).append({
                 'body': cr.get_body().name,
                 'name': cr.get_rating().name,
                 'description': unicode(cr.get_rating().description),
