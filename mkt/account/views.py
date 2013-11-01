@@ -64,4 +64,5 @@ class FeedbackView(CORSMixin, CreateAPIView):
             'ip_address': request.META.get('REMOTE_ADDR', '')
         }
         context_data.update(serializer.data)
+        context_data['user'] = request.amo_user
         return context_data

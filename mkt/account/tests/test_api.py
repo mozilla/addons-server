@@ -305,7 +305,12 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
         res, data = self._call()
         self._test_success(res, data)
         eq_(unicode(self.user), data['user'])
-        eq_(mail.outbox[0].from_email, self.user.email)
+        email = mail.outbox[0]
+        eq_(email.from_email, self.user.email)
+        assert self.user.username in email.body
+        assert self.user.name in email.body
+        assert unicode(self.user.pk) in email.body
+        assert self.user.email in email.body
 
     def test_send_urlencode(self):
         self.headers['CONTENT_TYPE'] = 'application/x-www-form-urlencoded'
@@ -329,6 +334,7 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
         res, data = self._call(anonymous=True)
         self._test_success(res, data)
         assert not data['user']
+        assert 'Anonymous' in mail.outbox[0].body
         eq_(settings.NOBODY_EMAIL, mail.outbox[0].from_email)
 
     def test_send_potato(self):
