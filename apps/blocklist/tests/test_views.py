@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 import base64
 from datetime import datetime
 from xml.dom import minidom
@@ -510,10 +511,10 @@ class BlocklistCATest(BlocklistViewTest):
 
     def setUp(self):
         super(BlocklistCATest, self).setUp()
-        self.ca = BlocklistCA.objects.create(data='999')
+        self.ca = BlocklistCA.objects.create(data=u'Ètå…, ≥•≤')
 
     def test_ca(self):
         r = self.client.get(self.fx4_url)
         dom = minidom.parseString(r.content)
         ca = dom.getElementsByTagName('caBlocklistEntry')[0]
-        eq_(base64.b64decode(ca.childNodes[0].toxml()), self.ca.data)
+        eq_(base64.b64decode(ca.childNodes[0].toxml()), 'Ètå…, ≥•≤')

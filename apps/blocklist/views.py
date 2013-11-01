@@ -47,7 +47,8 @@ def _blocklist(request, apiver, app, appver):
 
     try:
         cas = BlocklistCA.objects.all()[0]
-        cas = base64.b64encode(cas.data)
+        # base64encode does not allow str as argument
+        cas = base64.b64encode(cas.data.encode('utf-8'))
     except IndexError:
         pass
 
