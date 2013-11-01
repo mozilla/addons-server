@@ -49,13 +49,17 @@ define('payments-manage', ['payments'], function(payments) {
                 // Assume the POST below was a success, and close the modal.
                 $overlay.trigger('overlay_dismissed').detach();
                 onsubmit.apply($form, data);
-                $portal_link.css('display', 'inline');
+                if ($portal_link) {
+                    $portal_link.show();
+                }
 
                 // If the POST failed, we show an error message.
                 $.post(data['agreement-url'], $form.serialize(), refreshAccountForm).fail(function() {
                     $waiting_overlay.find('h2').text(gettext('Error'));
                     $waiting_overlay.find('p').text(gettext('There was a problem contacting the payment server.'));
-                    $portal_link.css('display', 'none');
+                    if ($portal_link) {
+                        $portal_link.hide();
+                    }
                 });
             }));
 
