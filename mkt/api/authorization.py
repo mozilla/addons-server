@@ -118,20 +118,32 @@ class AllowAppOwner(BasePermission):
             return False
 
 
-class AllowAppOwnerOrAdmin(BasePermission):
-    """Permission class that allows app owners or admins."""
+class AllowAppOwnerOrPermission(BasePermission):
+    """
+    Allows app owners or users with the specified permission.
+    """
+    def __init__(self, app, action):
+        self.app = app
+        self.action = action
+
     def has_permission(self, request, view):
         return not request.user.is_anonymous()
 
     def has_object_permission(self, request, view, object):
         try:
             return (
-                acl.action_allowed(request, 'Admin', '%') or
+                acl.action_allowed(request, self.app, self.action) or
                 object.authors.filter(user__id=request.amo_user.pk).exists())
 
         # Appropriately handles AnonymousUsers when `amo_user` is None.
         except AttributeError:
             return False
+
+    def __call__(self, *a):
+        """
+        Ignore DRF's nonsensical need to call this object.
+        """
+        return self
 
 
 class AllowReviewerReadOnly(BasePermission):
