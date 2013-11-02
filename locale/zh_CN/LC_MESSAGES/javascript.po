@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-28 12:30+0000\n"
-"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
+"PO-Revision-Date: 2013-11-01 10:14+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382963425.0\n"
+"X-POOTLE-MTIME: 1383300899.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -264,6 +264,7 @@ msgstr "已删除：{0}"
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
+"警告：删除支付账户 \"{0}\" 会导致相关联的应用变成未完成状态而不能销售：警告：删除支付账户 \"{0}\" 会导致相关联的应用变成未完成状态而不能销售："
 
 #: media/js/devreg/payments-manage.js:56 media/js/devreg/payments-manage.js:101 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-31 01:53+0000\n"
-"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
+"PO-Revision-Date: 2013-11-01 10:14+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1383184392.0\n"
+"X-POOTLE-MTIME: 1383300899.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2273,6 +2273,8 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
+"<p> %(consumer)s 希望获得授权代表您进行操作。包括：</p><ul><li>代表您上传、更改或者移除附加组件。</li><li>代表您上"
+"传、更改或者移除附加组件版本。</li><li>获取您的个人信息，例如用户名和电子邮件地址（但不会知道您的密码）。</li></ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29 mkt/developers/templates/developers/payments/includes/account_list.html:61
 msgid "Confirm"
@@ -16361,6 +16363,10 @@ msgid ""
 "below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our servers "
 "where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"您可以将自己的应用提交给移动运营商，让他们考虑 <strong>预装在 Firefox OS "
+"设备中发行</strong>。要参加预装，可以下载一个测试模版，测试您的应用，填写模版，然后将结果通过 <a href=\"%"
+"(submit_url)s\">应用预装申请表</a>反馈给我们。我们会把测试结果保存在服务器上供有兴趣的移动运营商查看。如果您有更多问题，可以发邮件至 "
+"%(email)s 。"
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:18
 msgid "Preloaded App Terms and Conditions"
@@ -17058,7 +17064,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:137
 msgid "Notice we do this asynchronously, as all APIs here are async."
-msgstr ""
+msgstr "请注意这里所有的 API 都是异步的，我们只会异步使用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:142
 msgid "On localStorage"
@@ -17596,7 +17602,7 @@ msgstr "下列网址都是同一个源："
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:94
 msgid "Why do I have to host the app manifest at the same origin as my app?"
-msgstr ""
+msgstr "为什么我必须将我的应用程序与其应用程序清单放于同一个源？"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:100
 msgid ""
@@ -17613,7 +17619,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:121
 msgid "Does this mean I can't embed images or JavaScript from other origins?"
-msgstr ""
+msgstr "这表示我不能从其他源嵌入图片或者 Javascript 吗？"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:127
 msgid ""
