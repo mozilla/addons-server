@@ -1182,7 +1182,6 @@ class TestContentRatings(amo.tests.TestCase):
 
         # Edit page hidden if have content ratings.
         assert doc('#ratings-edit').hasClass('hidden')
-        assert not doc('#ratings-summary').hasClass('hidden')
 
         eq_(doc('.name')[0].text, 'CLASSIND')
         eq_(doc('.name')[1].text, 'Generic')
