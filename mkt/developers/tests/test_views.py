@@ -1127,7 +1127,7 @@ class TestContentRatings(amo.tests.TestCase):
 
     def setUp(self):
         self.create_switch('iarc')
-        self.app = app_factory()
+        self.app = app_factory(unrated=True)
         self.user = UserProfile.objects.get()
         AddonUser.objects.create(addon=self.app, user=self.user)
 
@@ -1175,7 +1175,7 @@ class TestContentRatings(amo.tests.TestCase):
             rating=mkt.ratingsbodies.ESRB_M.id)
         ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
-            rating=mkt.ratingsbodies.PEGI_10.id)
+            rating=mkt.ratingsbodies.PEGI_12.id)
 
         r = ratings(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)

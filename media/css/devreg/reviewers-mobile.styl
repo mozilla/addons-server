@@ -204,7 +204,7 @@ $mobileborder = #d7d2c3;
     }
     // No mobile man is an island.
     .island {
-        &:not(.mobile-island, .summary) {
+        &:not(.mobile-island):not(.summary) {
             background: transparent;
             border: 0;
             border-radius: 0;
