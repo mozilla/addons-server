@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-11-01 10:14+0000\n"
-"Last-Translator: Shen <steekid@icloud.com>\n"
+"PO-Revision-Date: 2013-11-02 06:23+0000\n"
+"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1383300899.0\n"
+"X-POOTLE-MTIME: 1383373426.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -16339,11 +16339,11 @@ msgstr "更改设备"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr "已预载入"
+msgstr "已预安装"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr "预载入应用程序"
+msgstr "预装应用程序"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:21
 msgid "Download the test plan"
@@ -16370,7 +16370,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:18
 msgid "Preloaded App Terms and Conditions"
-msgstr "预载入应用需遵守条款"
+msgstr "预装应用需遵守条款"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
