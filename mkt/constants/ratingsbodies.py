@@ -183,33 +183,46 @@ class USK(RATING_BODY):
 class ESRB_E(RATING):
     """Everybody."""
     name = '0+'
+    full_name = _lazy('Everyone')
     id = 0
     description = RATING_DESCS['0']
 
 
 class ESRB_10(RATING):
     name = '10+'
+    # L10n: `10+` is age ten and over.
+    full_name = _lazy('Everyone 10+')
     id = 1
     description = RATING_DESCS['10']
 
 
 class ESRB_T(RATING):
-    """Teen."""
     name = '13+'
+    full_name = _lazy('Teen')
     id = 2
     description = RATING_DESCS['13']
 
 
 class ESRB_M(RATING):
-    """Mature 17+."""
     name = '17+'
+    # L10n: `17+` is age seventeen and over.
+    full_name = _lazy('Mature 17+')
     id = 3
     description = RATING_DESCS['17']
 
 
 class ESRB_A(RATING):
-    """Adults Only."""
     name = '18+'
+    # L10n: `18+` is age eighteen and over.
+    full_name = _lazy('Adults Only 18+')
+    id = 4
+    description = RATING_DESCS['18']
+
+
+class ESRB_RP(RATING):
+    name = 'pending'
+    # L10n: `18+` is age eighteen and over.
+    full_name = _lazy('Rating Pending')
     id = 4
     description = RATING_DESCS['18']
 
@@ -233,16 +246,22 @@ class PEGI_3(RATING):
     description = RATING_DESCS['3']
 
 
-class PEGI_10(RATING):
-    name = '10+'
+class PEGI_7(RATING):
+    name = '7+'
     id = 1
-    description = RATING_DESCS['10']
+    description = RATING_DESCS['7']
 
 
-class PEGI_13(RATING):
-    name = '13+'
+class PEGI_12(RATING):
+    name = '12+'
     id = 2
-    description = RATING_DESCS['13']
+    description = RATING_DESCS['12']
+
+
+class PEGI_16(RATING):
+    name = '16+'
+    id = 3
+    description = RATING_DESCS['16']
 
 
 class PEGI_18(RATING):
@@ -256,7 +275,7 @@ class PEGI(RATING_BODY):
     The European game ratings body (i.e. UK, Poland, Spain).
     """
     id = 4
-    ratings = (PEGI_3, PEGI_10, PEGI_13, PEGI_18)
+    ratings = (PEGI_3, PEGI_7, PEGI_12, PEGI_16, PEGI_18)
     name = 'PEGI'
     full_name = _lazy(u'Pan European Game Information')
     region_description = _lazy(u'Europe')

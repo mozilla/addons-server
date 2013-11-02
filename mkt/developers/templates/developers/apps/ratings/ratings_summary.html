@@ -1,3 +1,6 @@
+{% from 'developers/includes/macros.html' import iarc_rating_icon %}
+
+
 <h2>{{ _('Summary') }}</h2>
 <a class="toggle-ratings-page button">{{ _('Edit') }}</a>
 
@@ -15,14 +18,8 @@
       <tr>
         <td class="name">{{ ratings_body.name }}</td>
         <td class="regions">{{ ratings_body.region_description }}</td>
-        <td class="content-rating">
-          <div class="icon icon-{{ rating.name|replace('+', '') }}">
-            {{ rating.name }}
-          </div>
-        </td>
-        <td class="desc">
-          {{ rating.description or '--' }}
-        </td>
+        <td class="content-rating">{{ iarc_rating_icon(cr) }}</td>
+        <td class="desc"> {{ rating.description or '--' }}</td>
       </tr>
     {% endfor %}
   </tbody>

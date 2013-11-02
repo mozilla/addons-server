@@ -34,6 +34,10 @@
             vertical-align: middle;
         }
     }
+    .content-rating .icon {
+        left: calc(50% - 32px);
+        position: relative;
+    }
 }
 
 /* Copied and modified from Fireplace detail styles. */
@@ -53,25 +57,109 @@ $box-red = #ff2600;
         float: left;
         font: 600 32px/64px $open-stack;
         height: 64px;
-        left: calc(50% - 32px);
-        position: relative;
         text-align: center;
         vertical-align: middle;
         width: 64px;
     }
-    .icon-L, .icon-0, .icon-3 {
-        background: $box-green;
+    .icon-body-esrb {
+        height: 90px;
+        width: 58px;
+
+        &.icon-age-0 {
+            background-image: url('../../img/icons/ratings/esrb_e.png');
+        }
+        &.icon-age-10 {
+            background-image: url('../../img/icons/ratings/esrb_e10.png');
+        }
+        &.icon-age-13 {
+            background-image: url('../../img/icons/ratings/esrb_t.png');
+        }
+        &.icon-age-17 {
+            background-image: url('../../img/icons/ratings/esrb_m.png');
+        }
+        &.icon-age-18 {
+            background-image: url('../../img/icons/ratings/esrb_ao.png');
+        }
     }
-    .icon-7, .icon-10 {
-        background: $box-blue;
+    .icon-body-generic, .icon-body-classind {
+        background: $black;
+        color: $white;
+        float: left;
+        font: 600 32px/64px $open-stack;
+
+        .icon-content {
+            display: inline;
+            left: 3px;
+            position: relative;
+            top: 2px;
+        }
+        &.icon-age-L,
+        &.icon-age-0 {
+            background: $box-green;
+        }
+        &.icon-age-10 {
+            background: $box-blue;
+        }
+        &.icon-age-12,
+        &.icon-age-13 {
+            background: $box-yellow;
+        }
+        &.icon-age-14 {
+            background: $box-orange;
+        }
+        &.icon-age-16 {
+            background: $box-red;
+        }
+        &.icon-age-18 {
+            background: #000;
+        }
     }
-    .icon-12, .icon-13 {
-        background: $box-yellow;
+    .icon-body-pegi {
+        border-radius: 1px;
+        height: 73px;
+        width: 60px;
+
+        &.icon-age-3 {
+            background-image: url('../../img/icons/ratings/pegi_3.png');
+        }
+        &.icon-age-7 {
+            background-image: url('../../img/icons/ratings/pegi_7.png');
+        }
+        &.icon-age-12 {
+            background-image: url('../../img/icons/ratings/pegi_12.png');
+        }
+        &.icon-age-16 {
+            background-image: url('../../img/icons/ratings/pegi_16.png');
+        }
+        &.icon-age-18 {
+            background-image: url('../../img/icons/ratings/pegi_18.png');
+        }
     }
-    .icon-14 {
-        background: $box-orange;
+    .icon-body-usk {
+        border-radius: 8px;
+        height: 68px;
+        width: 68px;
+
+        &.icon-age-0 {
+            background-image: url('../../img/icons/ratings/USK_0.png');
+        }
+        &.icon-age-6 {
+            background-image: url('../../img/icons/ratings/USK_6.png');
+        }
+        &.icon-age-12 {
+            background-image: url('../../img/icons/ratings/USK_12.png');
+        }
+        &.icon-age-16 {
+            background-image: url('../../img/icons/ratings/USK_16.png');
+        }
+        &.icon-age-18 {
+            background-image: url('../../img/icons/ratings/USK_18.png');
+        }
     }
-    .icon-16, .icon-17, .icon-18 {
-        background: $box-red;
+    .description {
+        font-weight: 400;
+        margin: 0;
+        vertical-align: middle;
+        width: 100%;
     }
 }

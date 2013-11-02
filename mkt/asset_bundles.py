@@ -77,6 +77,7 @@ CSS = {
         'css/devreg/ratings.styl',
         'css/devreg/data-grid.styl',
         'css/devreg/manifest.styl',
+        'css/devreg/ratings.styl',
         'css/devreg/reviewers.styl',
         'css/devreg/reviewers-header.styl',
         'css/devreg/reviewers-mobile.styl',

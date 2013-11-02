@@ -43,6 +43,7 @@ from users.models import UserProfile
 from versions.models import Version
 from zadmin.models import get_config, set_config
 
+import mkt
 from mkt.constants.features import FeatureProfile
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
@@ -2880,3 +2881,12 @@ class TestReviewPage(amo.tests.TestCase):
                 .parents('li').hasClass('disabled'))
         assert not (doc('#review-actions input[value=reject]')
                     .parents('li').hasClass('disabled'))
+
+    def test_iarc_content_ratings(self):
+        for body in [mkt.ratingsbodies.CLASSIND.id, mkt.ratingsbodies.USK.id]:
+            ContentRating.objects.create(addon=self.app, ratings_body=body,
+                                         rating=0)
+        req = req_factory_factory(self.url, user=self.reviewer)
+        res = app_review(req, app_slug=self.app.app_slug)
+        doc = pq(res.content)
+        eq_(doc('.content-rating').length, 2)
