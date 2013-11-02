@@ -179,3 +179,36 @@ h2 .soon {
 #upload-file.spacer {
     margin-top: 60px;
 }
+
+#submit-next-steps {
+    ol.next-steps {
+        list-style: decimal inside;
+    }
+    li {
+        line-height: 20px;
+
+        &.done {
+            color: $note-gray;
+
+            span {
+                text-decoration: line-through;
+            }
+            &:after {
+                color: $green;
+                content: "\2714";
+                margin-left: 5px;
+                text-decoration: none;
+            }
+        }
+    }
+    ul.other-options {
+        list-style: disc inside;
+    }
+    .listing-footer {
+        margin-top: 20px;
+
+        span {
+            margin-right: 10px;
+        }
+    }
+}

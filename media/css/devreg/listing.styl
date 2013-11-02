@@ -167,6 +167,7 @@
 .listing .item {
     color: $note-gray;
     width: 100%;
+
     &:hover,
     &.static {
         background-color: $faded-taupe;
@@ -319,7 +320,6 @@
     }
 }
 .price {
-    font-size: 11px;
     line-height: 13px;
 }
 
@@ -391,6 +391,16 @@
                 border-top-color: #05e;
             }
         }
+        &.done:after {
+            color: $green;
+            content: "\2714";
+            margin-left: 4px;
+        }
+        &.not-done:after {
+            color: $red;
+            content: "\2717";
+            margin-left: 4px;
+        }
     }
     h5 {
         font-size: 1em;
@@ -419,4 +429,19 @@
 }
 .html-rtl .item-actions a.more-actions:after {
     margin: 5px 4px 0 0;
+}
+
+li.payments, li.ratings {
+    a {
+        font-size: 11px;
+        margin-left: 4px;
+    }
+}
+
+.rating-notice {
+    display: inline-block;
+    margin-top: 5px;
+}
+.item:hover .rating-notice {
+    color: $text;
 }

@@ -6,6 +6,7 @@ APP_STEPS = [
     ('manifest', _('Submit')),
     ('details', _('Details')),
     ('done', _('Done!')),
+    # ('next_steps', _('Next Steps')),
 ]
 APP_STEPS_TITLE = dict(APP_STEPS)
 

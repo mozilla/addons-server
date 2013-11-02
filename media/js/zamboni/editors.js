@@ -87,7 +87,9 @@ function initReviewActions() {
         groups.filter("[label='"+label+"']").css('color', '#444');
     }
 
-    $('#review-actions .action_nav ul li').click(function(){ showForm(this); });
+    $('#review-actions .action_nav ul li:not(.disabled)').click(function() {
+        showForm(this);
+    });
 
     /* Canned Response stuff */
     $('.review-actions-canned select').change(function() {

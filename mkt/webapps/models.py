@@ -111,6 +111,12 @@ class WebappManager(amo.models.ManagerBase):
         # ** Rejected   -- REJECTED
         return self.filter(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
+    def rated(self):
+        """IARC."""
+        if waffle.switch_is_active('iarc'):
+            return self.exclude(content_ratings__isnull=True)
+        return self
+
     def by_identifier(self, identifier):
         """
         Look up a single app by its `id` or `app_slug`.
@@ -375,7 +381,6 @@ class Webapp(Addon):
         not consider or include payments-related information.
 
         """
-
         reasons = []
 
         if not self.support_email:
@@ -392,6 +397,9 @@ class Webapp(Addon):
                              'video.'))
 
         return not bool(reasons), reasons
+
+    def is_rated(self):
+        return self.content_ratings.exists()
 
     def mark_done(self):
         """When the submission process is done, update status accordingly."""

@@ -189,17 +189,31 @@
   {# form #}
   <div id="review-actions" class="review-actions">
     <div class="action_nav">
-      {{ form.action }}
+      <ul>
+        {% set unrated = waffle.switch('iarc') and not product.is_rated() %}
+        {% for (setting, action) in form.fields.action.choices %}
+          {% set unrated_no_approve = unrated and setting == 'public' %}
+          <li{% if unrated_no_approve %} class="disabled"{% endif %}>
+            <label for>
+              <input type="radio" name="action" value="{{ setting }}">
+              {% if unrated_no_approve %}
+                {{ _('App not rated') }}
+              {% else %}
+                {{ action }}
+              {% endif %}
+            </label>
+          </li>
+        {% endfor %}
+      </ul>
       {{ form.action.errors }}
       {{ attachment_formset.non_form_errors() }}
     </div>
 
     <div id="review-actions-form">
-
       {% for (setting, action) in actions %}
-      <div class="data-toggle review-actions-desc" data-value="{{ setting }}">
-        {{ action['details'] }}
-      </div>
+        <div class="data-toggle review-actions-desc" data-value="{{ setting }}">
+          {{ action['details'] }}
+        </div>
       {% endfor %}
 
       <div class="currently_viewing_warning">

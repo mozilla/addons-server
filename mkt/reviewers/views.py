@@ -166,7 +166,7 @@ def _progress():
     public_statuses = amo.WEBAPPS_APPROVED_STATUSES
 
     base_filters = {
-        'pending': (Webapp.objects
+        'pending': (Webapp.objects.rated()
                           .exclude(id__in=excluded_ids)
                           .filter(status=amo.STATUS_PENDING,
                                   disabled_by_user=False,
@@ -523,6 +523,9 @@ def queue_apps(request):
           .exclude(addon__id__in=excluded_ids)
           .order_by('nomination', 'created')
           .select_related('addon', 'files').no_transforms())
+
+    if waffle.switch_is_active('iarc'):
+        qs = qs.exclude(addon__content_ratings__isnull=True)
 
     apps = _do_sort(request, qs, date_sort='nomination')
     apps = [QueuedApp(app, app.all_versions[0].nomination)

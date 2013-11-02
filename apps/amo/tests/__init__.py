@@ -30,6 +30,7 @@ from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from tastypie.exceptions import ImmediateHttpResponse
 from test_utils import RequestFactory
+import waffle
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -601,7 +602,10 @@ def assert_no_validation_errors(validation):
 
 def app_factory(**kw):
     kw.update(type=amo.ADDON_WEBAPP)
-    return amo.tests.addon_factory(**kw)
+    app = amo.tests.addon_factory(**kw)
+    if waffle.switch_is_active('iarc') and not kw.get('unrated'):
+        ContentRating.objects.create(addon=app, ratings_body=0, rating=0)
+    return app
 
 
 def _get_created(created):

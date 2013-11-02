@@ -42,15 +42,25 @@
             {% endif %}
           {% endif %}
           {{ queue_position(addon, 'li') }}
-          <li>
+          <li class="payments">
             <strong>{{ _('Price:') }}</strong>
             {{ price(request, addon) }}
+            {% if addon.is_premium() and not hasOneToOne(addon, 'app_payment_account') %}
+              <a href="{{ addon.get_dev_url('payments') }}">{{ _('Set up Payment Account') }}</a>
+            {% endif %}
           </li>
           <li class="item-devices">
             {{ device_list(addon) }}
             <a href="{{ addon.get_dev_url('payments') }}#edit-app-basic">{{ _('Change Devices') }}</a>
           </li>
-        </ul>
+          {% if waffle.switch('iarc') and not addon.is_rated() and addon.is_public() %}
+            <li class="ratings">
+              {% trans %}
+                <strong class="rating-notice">This app will be deactivated by January 13th if no content ratings are assigned:</strong>
+              {% endtrans %}
+              <a href="{{ addon.get_dev_url('ratings') }}">{{ _('Set up Content Ratings') }}</a>
+            </li>
+          {% endif %}
       {% endif %}
       <div class="item-actions">
         {% if webapp %}

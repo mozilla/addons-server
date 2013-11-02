@@ -1,7 +1,19 @@
 {% set urls = [
-  (addon.get_dev_url(), _('Edit Listing')),
-  (addon.get_dev_url('owner'), _('Team Members')),
+  (addon.get_dev_url(), _('Edit Listing'))
 ] %}
+
+{% if addon.is_packaged %}
+  {% do urls.append((addon.get_dev_url('versions'), _('Status &amp; Versions'))) %}
+{% else %}
+  {% do urls.append((addon.get_dev_url('versions'), _('Status'))) %}
+{% endif %}
+
+{% if waffle.switch('iarc') %}
+  {% do urls.append(
+    (addon.get_dev_url('ratings'), _('Content Ratings'))
+  ) %}
+{% endif %}
+
 {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
   {% do urls.append((addon.get_dev_url('payments'),
                      _('Compatibility & Payments'))) %}
@@ -15,32 +27,25 @@
   {% do urls.append((addon.get_dev_url('payments'),
                      _('Manage Compatibility'))) %}
 {% endif %}
-{% if addon.is_packaged %}
-  {% do urls.append((addon.get_dev_url('versions'), _('Status &amp; Versions'))) %}
-{% else %}
-  {% do urls.append((addon.get_dev_url('versions'), _('Status'))) %}
-{% endif %}
-{% if waffle.switch('iarc') %}
-  {% do urls.append(
-    (addon.get_dev_url('ratings'), _('Content Ratings'))
-  ) %}
-{% endif %}
-{% do urls.append(
-  (addon.get_url_path(), _('View Listing'))
-) %}
-{% if waffle.switch('view-transactions') %}
-  {% do urls.append(
-    (url('mkt.developers.transactions')|urlparams(app=addon.id), _('Transactions')),
-  ) %}
-{% endif %}
+
+{% do urls.append((addon.get_dev_url('owner'), _('Team Members'))) %}
+{% do urls.append((addon.get_url_path(), _('View Listing'))) %}
+
 
 {% set other_urls = [] %}
-{% do other_urls.append(
-  (addon.get_stats_url(), _('Statistics')),
-) %}
 {% if waffle.switch('comm-dashboard') %}
   {% do other_urls.append(
     (addon.get_comm_thread_url(), _('Messages'))
+  ) %}
+{% endif %}
+
+{% do other_urls.append(
+  (addon.get_stats_url(), _('Statistics'))
+) %}
+
+{% if waffle.switch('view-transactions') %}
+  {% do other_urls.append(
+    (url('mkt.developers.transactions')|urlparams(app=addon.id), _('Transactions')),
   ) %}
 {% endif %}
 

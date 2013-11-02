@@ -984,3 +984,26 @@ class TestDone(TestSubmit):
         self._step()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
+
+
+class TestNextSteps(amo.tests.TestCase):
+    # TODO: Delete this test suite once we deploy IARC.
+    fixtures = fixture('user_999', 'webapp_337141')
+
+    def setUp(self):
+        self.create_switch('iarc')
+
+        self.user = UserProfile.objects.get(username='regularuser')
+        assert self.client.login(username=self.user.email, password='password')
+        self.webapp = Webapp.objects.get(id=337141)
+        self.url = reverse('submit.app.done', args=[self.webapp.app_slug])
+
+    def test_200(self, **kw):
+        data = dict(addon=self.webapp, terms=True, manifest=True,
+                    details=True)
+        data.update(kw)
+        self.cl = AppSubmissionChecklist.objects.create(**data)
+        AddonUser.objects.create(addon=self.webapp, user=self.user)
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)

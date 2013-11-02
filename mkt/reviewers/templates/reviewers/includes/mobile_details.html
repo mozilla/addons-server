@@ -4,19 +4,19 @@
   <ul class="statuslist padded">
     {# Mobile Image Gallery #}
     {% if previews %}
-    <li class="expandable c">
-      <ul class="expandcontent">
-        {% for preview in previews %}
-        <li>
-          <a class="screenshot thumbnail" rel="jquery-lightbox"
-            href="{{ preview.image_url }}">
-            <img src="{{ preview.thumbnail_url }}">
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-      <a href="#" class="showmore">{{ _('more...') }}</a>
-    </li>
+      <li class="expandable c">
+        <ul class="expandcontent">
+          {% for preview in previews %}
+          <li>
+            <a class="screenshot thumbnail" rel="jquery-lightbox"
+              href="{{ preview.image_url }}">
+              <img src="{{ preview.thumbnail_url }}">
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="#" class="showmore">{{ _('more...') }}</a>
+      </li>
     {% endif %}
     {# Mobile description section. #}
     {% if product.description %}

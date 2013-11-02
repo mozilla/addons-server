@@ -184,28 +184,6 @@ class TestAppDashboard(AppHubTest):
     def test_action_links(self):
         self.create_switch('iarc')
         self.create_switch('comm-dashboard')
-        self.create_switch('view-transactions')
-        app = self.get_app()
-        app.update(public_stats=True, is_packaged=False)
-        self.make_mine()
-        doc = pq(self.client.get(self.url).content)
-        expected = [
-            ('Edit Listing', app.get_dev_url()),
-            ('Team Members', app.get_dev_url('owner')),
-            ('Content Ratings', app.get_dev_url('ratings')),
-            ('Compatibility & Payments', app.get_dev_url('payments')),
-            ('Manage Status', app.get_dev_url('versions')),
-            ('View Listing', app.get_url_path()),
-            ('Statistics', app.get_stats_url()),
-            ('Transactions', urlparams(
-                reverse('mkt.developers.transactions'), app=app.id)),
-            ('Messages', app.get_comm_thread_url()),
-        ]
-        amo.tests.check_links(expected, doc('a.action-link'), verify=False)
-
-    def test_action_links_packaged(self):
-        self.create_switch('iarc')
-        self.create_switch('comm-dashboard')
         self.create_switch('in-app-payments')
         self.create_switch('view-transactions')
         app = self.get_app()
@@ -216,39 +194,17 @@ class TestAppDashboard(AppHubTest):
         expected = [
             ('Edit Listing', app.get_dev_url()),
             ('Add New Version', app.get_dev_url('versions')),
-            ('Team Members', app.get_dev_url('owner')),
+            ('Status & Versions', app.get_dev_url('versions')),
             ('Content Ratings', app.get_dev_url('ratings')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
-            ('Manage Status & Versions', app.get_dev_url('versions')),
+            ('In-App Payments', app.get_dev_url('in_app_config')),
+            ('Team Members', app.get_dev_url('owner')),
             ('View Listing', app.get_url_path()),
-            ('Statistics', app.get_stats_url()),
-            ('Transactions', urlparams(
-                reverse('mkt.developers.transactions'), app=app.id)),
-            ('Manage In-App Payments', app.get_dev_url('in_app_config')),
-            ('Messages', app.get_comm_thread_url()),
-        ]
-        amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
-    def test_disabled_payments_action_links(self):
-        self.create_switch('iarc')
-        self.create_switch('comm-dashboard')
-        self.create_switch('disabled-payments')
-        self.create_switch('view-transactions')
-        app = self.get_app()
-        app.update(public_stats=True, premium_type=amo.ADDON_PREMIUM_INAPP)
-        self.make_mine()
-        doc = pq(self.client.get(self.url).content)
-        expected = [
-            ('Edit Listing', app.get_dev_url()),
-            ('Team Members', app.get_dev_url('owner')),
-            ('Content Ratings', app.get_dev_url('ratings')),
-            ('Compatibility & Payments', app.get_dev_url('payments')),
-            ('Manage Status', app.get_dev_url('versions')),
-            ('View Listing', app.get_url_path()),
+            ('Messages', app.get_comm_thread_url()),
             ('Statistics', app.get_stats_url()),
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
-            ('Messages', app.get_comm_thread_url()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
