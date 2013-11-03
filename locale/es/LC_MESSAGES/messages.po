@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-24 08:18+0000\n"
+"PO-Revision-Date: 2013-11-03 21:04+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382602715.0\n"
+"X-POOTLE-MTIME: 1383512695.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2325,6 +2325,12 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
+"<p> %(consumer)s quiere que le autorices para actuar en tu nombre. Esto "
+"implica poder: </p> <ul> <li>Cargar, cambiar o eliminar los complementos en "
+"tu nombre.</li> <li>Cargar, cambiar o eliminar las versiones de los "
+"complementos que estén a tu nombre.</li> <li>Acceder a parte de tu "
+"información personal, como tu nombre de usuario y dirección de correo "
+"electrónico (pero no a tu contraseña). </li></ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29 mkt/developers/templates/developers/payments/includes/account_list.html:61
 msgid "Confirm"
@@ -5329,6 +5335,9 @@ msgstr "Si deseas mostrar una dirección de correo electrónico para consultas d
 #: apps/devhub/templates/devhub/addons/edit/support.html:52 mkt/developers/templates/developers/apps/edit/support.html:48
 msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
 msgstr ""
+"Si tu complemento tiene un sitio web de asistencia o un foro, introduce su "
+"dirección aquí. Si tu sitio web está traducido a otros idiomas, se pueden "
+"añadir varias traducciones de este campo."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6 mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -7044,6 +7053,10 @@ msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
+"Muchos desarrolladores ofrecen un mecanismo de asistencia, como un foro, un "
+"grupo de discusión, o una dirección de correo electrónico. Se recomienda que "
+"las preguntas de asistencia se publiquen a través de esos medios en vez de "
+"en la sección de valoraciones del complemento."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -9000,6 +9013,7 @@ msgstr "Pie de página pendiente"
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
+"Aquí puedes actualizar el diseño de tu tema una vez que se haya aprobado."
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
@@ -16055,7 +16069,7 @@ msgstr "Se agregó con éxito la versión nueva."
 
 #: mkt/developers/views.py:324
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "La solicitud de precarga se ha enviado correctamente."
 
 #: mkt/developers/views.py:327
 msgid "There was an error with the form."
@@ -16849,7 +16863,7 @@ msgstr "Transacciones"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:81
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:11
 msgid "This app will be deleted automatically after a few days if the submission process is not completed."
@@ -16880,11 +16894,11 @@ msgstr "Cambiar de dispositivos"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr ""
+msgstr "Precargado"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr ""
+msgstr "Aplicación precargada"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:21
 msgid "Download the test plan"
@@ -16896,7 +16910,7 @@ msgstr "¿Has terminado las pruebas?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:30 mkt/developers/templates/developers/apps/preload/submit.html:36
 msgid "Submit your app for preload"
-msgstr ""
+msgstr "Envía tu aplicación para precargarla"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -16904,10 +16918,18 @@ msgid ""
 "below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our servers "
 "where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"Puedes enviar el tuyo para que se valore su <strong>precarga y suministro en "
+"los dispositivos con Firefox OS</strong> de las operadoras telefónicas. "
+"Para optar por la precarga, puedes descargarte nuestra plantilla de prueba "
+"más abajo, comprobar tu aplicación, rellenar la plantilla y cargar tus "
+"resultados en el <a href=\"%(submit_url)s\">formulario de envío para precarga "
+"de aplicaciones</a>. Guardaremos tus resultados en nuestros servidores, "
+"donde serán revisados ​​por las operadoras telefónicas interesadas. Si "
+"tienes más preguntas, puedes enviar un correo electrónico a %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:18
 msgid "Preloaded App Terms and Conditions"
-msgstr ""
+msgstr "Términos y condiciones de precarga de aplicaciones"
 
 # 82%
 # 100%
@@ -16933,7 +16955,7 @@ msgstr "Ver transacciones"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:36
 msgid "View Messages"
-msgstr ""
+msgstr "Ver los mensajes"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
@@ -21688,7 +21710,7 @@ msgstr "{0} rechazados"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94 mkt/lookup/templates/lookup/user_summary.html:54
 msgid "Bango portal"
-msgstr ""
+msgstr "Portal de Bango"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "Version (ID)"
@@ -21750,7 +21772,7 @@ msgstr "Resultados de compra para"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:25
 msgid "This user has not purchased any apps."
-msgstr ""
+msgstr "Este usuario no ha comprado ninguna aplicación."
 
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
@@ -21791,7 +21813,7 @@ msgstr "aprobado automáticamente"
 #. The account is the name of the payment account.
 #: mkt/lookup/templates/lookup/user_summary.html:57
 msgid "View transactions for: {account}"
-msgstr ""
+msgstr "Ver las transacciones de: {account}"
 
 #: mkt/lookup/templates/lookup/user_summary.html:64
 msgid "Developer Program"
@@ -21872,31 +21894,31 @@ msgstr "Búsqueda de cuentas"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
-msgstr ""
+msgstr "Panel del operador"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr ""
+msgstr "Panel del <small>operador</small>"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
-msgstr ""
+msgstr "Candidatos para precarga"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr ""
+msgstr "Inclusión en precarga"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
-msgstr ""
+msgstr "Plan de pruebas"
 
 #: mkt/operators/templates/operators/preloads.html:41
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:55
 msgid "No preload candidates found"
-msgstr ""
+msgstr "No se han encontrado candidatos para la precarga"
 
 #. L10n: {0} is the addon name.
 #: mkt/purchase/webpay.py:42
@@ -22234,7 +22256,7 @@ msgstr "Requisitos modificados por el revisor: {0}"
 
 #: mkt/reviewers/views.py:348
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr ""
+msgstr "\"{0}\" se han procesado correctamente (+ {1} puntos, {2} total)."
 
 #: mkt/reviewers/views_themes.py:303
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
