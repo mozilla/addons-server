@@ -146,7 +146,8 @@ class TestEditListingWebapp(TestEdit):
     def test_nav_links(self):
         r = self.client.get(self.url)
         doc = pq(r.content)('.edit-addon-nav')
-        eq_(doc.length, 2)
+        # TODO: Update the count once Monolith stats are back.
+        eq_(doc.length, 1)
         eq_(doc('.view-stats').length, 0)
 
     def test_edit_with_no_current_version(self):
