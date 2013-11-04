@@ -39,6 +39,8 @@ from versions.models import update_status, Version
 import mkt
 from mkt.constants import APP_FEATURES, apps
 from mkt.constants.ratingsdescriptors import RATING_DESCS
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
@@ -481,6 +483,17 @@ class TestWebapp(amo.tests.TestCase):
         self.create_switch('iarc')
         assert app_factory().is_rated()
         assert not app_factory(unrated=True).is_rated()
+
+    def test_has_payment_account(self):
+        app = app_factory()
+        assert not app.has_payment_account()
+
+        user = UserProfile.objects.create(email='a', username='b')
+        payment = PaymentAccount.objects.create(
+            solitude_seller=SolitudeSeller.objects.create(user=user),
+            user=user)
+        AddonPaymentAccount.objects.create(addon=app, payment_account=payment)
+        assert app.has_payment_account()
 
 
 class DeletedAppTests(amo.tests.ESTestCase):
