@@ -205,6 +205,9 @@ class Marketplace(object):
 
         raise http_error(http.HttpUnauthorized, 'Authentication required.')
 
+    def get_throttle_identifiers(self, request):
+        return set(a.get_identifier(request) for a in self._auths())
+
     def throttle_check(self, request):
         """
         Handles checking if the user should be throttled.
@@ -212,17 +215,20 @@ class Marketplace(object):
         Mostly a hook, this uses class assigned to ``throttle`` from
         ``Resource._meta``.
         """
-        # Never throttle users with Apps:APIUnthrottled.
-        if (settings.API_THROTTLE and
-            not acl.action_allowed(request, 'Apps', 'APIUnthrottled')):
-            identifiers = [a.get_identifier(request) for a in self._auths()]
+        # Never throttle users with Apps:APIUnthrottled or "safe" requests.
+        if (not settings.API_THROTTLE or
+            request.method in ('GET', 'HEAD', 'OPTIONS') or
+            acl.action_allowed(request, 'Apps', 'APIUnthrottled')):
+            return
 
-            # Check to see if they should be throttled.
-            if any(self._meta.throttle.should_be_throttled(identifier)
-                   for identifier in identifiers):
-                # Throttle limit exceeded.
-                raise http_error(HttpTooManyRequests,
-                                 'Throttle limit exceeded.')
+        identifiers = self.get_throttle_identifiers(request)
+
+        # Check to see if they should be throttled.
+        if any(self._meta.throttle.should_be_throttled(identifier)
+               for identifier in identifiers):
+            # Throttle limit exceeded.
+            raise http_error(HttpTooManyRequests,
+                             'Throttle limit exceeded.')
 
     def log_throttled_access(self, request):
         """
@@ -232,7 +238,7 @@ class Marketplace(object):
         ``Resource._meta``.
         """
         request_method = request.method.lower()
-        identifiers = [a.get_identifier(request) for a in self._auths()]
+        identifiers = self.get_throttle_identifiers(request)
         for identifier in identifiers:
             self._meta.throttle.accessed(identifier,
                                          url=request.get_full_path(),

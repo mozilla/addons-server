@@ -9,6 +9,7 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 from tastypie import http
+from tastypie.authentication import Authentication
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.throttle import BaseThrottle
@@ -117,6 +118,11 @@ class TestEncoding(TestCase):
             self.resource.dispatch('list', request)
 
 
+class FakeAuthentication(Authentication):
+    def get_identifier(self, request):
+        return 'fake'
+
+
 class ThrottleResource(MarketplaceResource):
 
     class Meta(object):
@@ -128,6 +134,7 @@ class TestThrottling(TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
+        super(TestThrottling, self).setUp()
         self.resource = ThrottleResource()
         self.request = RequestFactory().post('/')
         self.user = User.objects.get(pk=2519)
@@ -136,9 +143,11 @@ class TestThrottling(TestCase):
         self.request.META['CONTENT_TYPE'] = 'application/x-www-form-urlencoded'
         self.mocked_sbt = patch.object(self.throttle, 'should_be_throttled')
 
-    def no_throttle_expected(self):
+    def no_throttle_expected(self, request=None):
+        if request is None:
+            request = self.request
         try:
-            self.resource.throttle_check(self.request)
+            self.resource.throttle_check(request)
         except ImmediateHttpResponse, e:
             if isinstance(e.response, HttpTooManyRequests):
                 self.fail('Unexpected 429')
@@ -148,15 +157,28 @@ class TestThrottling(TestCase):
         with self.assertImmediate(HttpTooManyRequests):
             self.resource.throttle_check(self.request)
 
+    def test_get_throttle_identifiers_multiple_auth(self):
+        self.resource._meta.authentication = [FakeAuthentication(), FakeAuthentication()]
+        identifiers = list(self.resource.get_throttle_identifiers(self.request))
+        eq_(identifiers, ['fake'])
+
     def test_should_throttle(self):
         with self.mocked_sbt as sbt:
             sbt.return_value = True
             self.throttle_expected()
+            eq_(self.throttle.should_be_throttled.call_count, 1)
 
     def test_shouldnt_throttle(self):
         with self.mocked_sbt as sbt:
             sbt.return_value = False
             self.no_throttle_expected()
+            eq_(self.throttle.should_be_throttled.call_count, 1)
+
+    def test_GET_shouldnt_throttle(self):
+        with self.mocked_sbt as sbt:
+            sbt.return_value = True
+            self.no_throttle_expected(RequestFactory().get('/'))
+            eq_(self.throttle.should_be_throttled.call_count, 0)
 
     def test_unthrottled_user(self):
         self.grant_permission(self.user.get_profile(), 'Apps:APIUnthrottled')
@@ -164,6 +186,7 @@ class TestThrottling(TestCase):
         with self.mocked_sbt as sbt:
             sbt.return_value = True
             self.no_throttle_expected()
+            eq_(self.throttle.should_be_throttled.call_count, 0)
 
     def test_throttled_user_setting_enabled(self):
         with self.settings(API_THROTTLE=True):
@@ -171,6 +194,7 @@ class TestThrottling(TestCase):
             with self.mocked_sbt as sbt:
                 sbt.return_value = True
                 self.throttle_expected()
+                eq_(self.throttle.should_be_throttled.call_count, 1)
 
     def test_throttled_user_setting_disabled(self):
         with self.settings(API_THROTTLE=False):
@@ -178,6 +202,7 @@ class TestThrottling(TestCase):
             with self.mocked_sbt as sbt:
                 sbt.return_value = True
                 self.no_throttle_expected()
+                eq_(self.throttle.should_be_throttled.call_count, 0)
 
 
 class FilteredCORS(CORSResource, MarketplaceResource):
