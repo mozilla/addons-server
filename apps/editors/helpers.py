@@ -403,7 +403,7 @@ class ReviewHelper:
         self.handler = None
         self.required = {}
         self.addon = addon
-        self.all_files = version.files.all()
+        self.all_files = version.files.all() if version else []
         self.get_review_type(request, addon, version)
         self.actions = self.get_actions()
 
