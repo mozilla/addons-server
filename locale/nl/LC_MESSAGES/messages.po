@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-27 07:28+0000\n"
+"PO-Revision-Date: 2013-11-04 13:52+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382858919.0\n"
+"X-POOTLE-MTIME: 1383573158.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -19987,7 +19987,7 @@ msgstr "Bouw een groep van vroege fans en win populariteit."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:208
 msgid "Target tech savvy consumers with your app."
-msgstr "Mik met uw app op technologie-geöriënteerde gebruikers."
+msgstr "Mik met uw app op technologie-georiënteerde gebruikers."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Firefox Apps &amp; Hacks"
