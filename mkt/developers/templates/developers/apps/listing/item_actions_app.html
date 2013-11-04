@@ -94,9 +94,11 @@
     </li>
   {% endif %}
 
+  {# TODO: Re-enable with new URL when per-app stats are ready for Monolith.
   <li>
     <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('Statistics') }}</a>
   </li>
+  #}
 
   {% if waffle.switch('view-transactions') %}
     <li>

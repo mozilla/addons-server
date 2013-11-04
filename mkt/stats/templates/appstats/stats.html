@@ -1,14 +1,6 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set range = view.range %}
-
-{% block bodyclass %}developer-hub statistics{% endblock %}
-
-{% block extrahead %}
-  {{ css('mkt/stats') }}
-  <link rel="stylesheet"
-        href="{{ media('css/zamboni/jquery-ui/custom-1.7.2.css') }}">
-{% endblock %}
+{% block bodyclass %}developer-hub{% endblock %}
 
 {% block title %}
   {# L10n: {0} is the app name #}
@@ -16,148 +8,9 @@
 {% endblock %}
 
 {% block content %}
-<section id="stats">
-  <header class="c">
-    <hgroup class="c">
-      <h1 class="addon"{{ addon.name|locale_html }}>
-        {# L10n: {0} is an add-on name #}
-        {% if not inapp %}
-          {{ _('Statistics for {0}')|f(addon.name) }}
-        {% else %}
-          {{ _('Statistics for {0}')|f(inapp) }}
-        {% endif %}
-      </h1>
 
-      {# In-app dropdown selector #}
-      {% if inapps and check_contrib_stats_perms(addon) %}
-        <form class="product-select" method="get">
-          <select class="product">
-            <option value="{{ addon.get_stats_url(action=report) }}">{{ addon.name }}</option>
-            {% for inapp_name in inapps %}
-              <option
-                  {% if inapp_name == inapp %}
-                    selected="selected"
-                  {% endif %}
-                  value="{{ addon.get_stats_inapp_url(
-                         action=report, inapp=inapp_name) }}">
-                {{ inapp_name }}
-              </option>
-            {% endfor %}
-          </select>
-          <noscript><button type="submit">{{ _('Go') }}</button></noscript>
-        </form>
-      {% endif %}
-    </hgroup>
-
-    {% include 'includes/criteria.html' %}
-
-  </header>
-
-  {% include 'appstats/includes/stats_nav.html' %}
-
-  <div id="lm" class="loadmessage">
-    <span>{{ _('Loading the latest data&hellip;') }}</span>
+  <div class="notification-box error">
+    <h2>Statistics pages are under construction. Check back soon.</h2>
   </div>
-  {# Initial stats will be `installs` only. Uncomment when others are done.
-  <div class="secondary">
-    {{ report_menu(request, report, obj=addon) }}
-    {% block stats_note_link %}{% endblock %}
-    <pre id="dbgout"></pre>
-  </div>
-  #}
-  <div class="primary statistics"
-    {% if addon %}
-      data-min-date="{{ addon.created|isotime }}"
-      data-addon_id="{{ addon.id }}"
-    {% endif %}
-    data-inapp="{{ inapp }}"
-    data-report="{{ report }}"
-    {% if view.last %}
-    data-range="{{ view.last }}"
-    {% endif %}
-    {% if view.start and view.end %}
-    data-range="custom"
-    data-start_date="{{ view.start }}"
-    data-end_date="{{ view.end }}"
-    {% endif %}
-    data-base_url="{{ stats_base_url }}">
-    <div class="island chart">
-      <div id="head-chart">
-      </div>
-      <div class="no-data-overlay">
-        <p>{{ _('No data available.') }}</p>
-      </div>
-    </div>
-    {% block stats %}
-    {% endblock %}
-    {% block csvtable %}
-      <div class="island">
-        {% block csvtitle %}{% endblock %}
-        <div class="tabular csv-table">
-          <div class="table-box">
-            <table>
-              <thead>
-              </thead>
-            </table>
-          </div>
-          <footer>
-            <nav class="paginator c" role="navigation">
-              <p class="range">
-              </p>
-              <p class="rel">
-                <a href="#"
-                   class="button prev disabled">
-                  &#x25C2; {{ _('Previous') }}</a>
-                <a href="#"
-                   class="button next">
-                  {{ _('Next') }} &#x25B8;</a>
-              </p>
-            </nav>
-          </footer>
-        </div>
-      </div>
-    {% endblock %}
-    <div id="stats-permissions" class="c">
-      {% if addon.public_stats %}
-        <p>{{ _('This dashboard is currently <b>public</b>.') }}</p>
-        {% if request.check_ownership(addon) %}
-          <p>{{ _('App sales stats are <b>private</b>.') }}</p>
-        {% endif %}
-      {% else %}
-        <p>{{ _('This dashboard is currently <b>private</b>.') }}</p>
-      {% endif %}
-      {% if request.check_ownership(addon) %}
-        <div class="c"></div>
-        <p>
-          <a id="perm-settings-link" href="{{ addon.get_dev_url() }}#edit-app-technical">
-            {{ _('Change settings.') }}</a>
-        </p>
-      {% endif %}
-    </div>
-    <div class="hidden">
-      <div id="fieldMenuPopup" class="popup">
-        <form id="fieldMenu">
-          <ul id="fieldList">
-          </ul>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div id="popup-container">
-    <div class="modal" id="stats-note">
-      <a class="close">{{ _('close') }}</a>
-      {% block stats_note %}{% endblock %}
-    </div>
-    {% include 'stats/popup.html' %}
-  </div>
-</section>
-{% endblock %}
 
-{% block js %}
-  <!--[if IE]>
-    <script
-      src="{{ media('js/lib/excanvas.compiled.js') }}">
-    </script>
-  <![endif]-->
-  {{ js('mkt/stats') }}
 {% endblock %}

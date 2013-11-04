@@ -39,9 +39,11 @@
   ) %}
 {% endif %}
 
+{# TODO: Re-enable with new URL when per-app stats are ready for Monolith.
 {% do other_urls.append(
   (addon.get_stats_url(), _('Statistics'))
 ) %}
+#}
 
 {% if waffle.switch('view-transactions') %}
   {% do other_urls.append(
