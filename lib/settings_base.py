@@ -6,7 +6,7 @@ import os
 import socket
 
 from django.utils.functional import lazy
-from metlog.config import client_from_dict_config
+from heka.config import client_from_dict_config
 
 ALLOWED_HOSTS = [
     '.allizom.org',
@@ -1179,17 +1179,17 @@ LOGGING = {
         'suds': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
-        'z.metlog': {'level': logging.INFO},
+        'z.heka': {'level': logging.INFO},
         's.client': {'level': logging.INFO},
         'nose': {'level': logging.WARNING},
     },
 }
 
 
-METLOG_CONF = {
+HEKA_CONF = {
     'logger': 'zamboni',
     'plugins': {
-        'cef': ('metlog_cef.cef_plugin:config_plugin', {
+        'cef': ('heka_cef.cef_plugin:config_plugin', {
             'syslog_facility': 'LOCAL4',
             'syslog_ident': 'http_app_addons_marketplace',
             'syslog_priority': 'ALERT',
@@ -1198,20 +1198,20 @@ METLOG_CONF = {
         # Sentry accepts messages over UDP, you'll need to
         # configure this URL so that logstash can relay the message
         # properly
-        'raven': ('metlog_raven.raven_plugin:config_plugin',
+        'raven': ('heka_raven.raven_plugin:config_plugin',
             {'dsn': 'udp://username:password@127.0.0.1:9000/2'}),
         },
-    'sender': {
-        'class': 'metlog.senders.UdpSender',
+    'stream': {
+        'class': 'heka.streams.UdpStream',
         'host': '127.0.0.1',
         'port': 5565,
     },
 }
 
-METLOG = client_from_dict_config(METLOG_CONF)
+HEKA = client_from_dict_config(HEKA_CONF)
 
-USE_METLOG_FOR_CEF = False
-USE_METLOG_FOR_TASTYPIE = False
+USE_HEKA_FOR_CEF = False
+USE_HEKA_FOR_TASTYPIE = False
 
 CEF_PRODUCT = "amo"
 

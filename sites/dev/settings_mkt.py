@@ -137,26 +137,26 @@ SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
 SIGNED_APPS_REVIEWER_SERVER_ACTIVE = True
 SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
-METLOG_CONF = {
-    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {
+HEKA_CONF = {
+    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {
                         'syslog_facility': 'LOCAL4',
                         # CEF_PRODUCT is defined in settings_base
                         'syslog_ident': CEF_PRODUCT,
                         'syslog_priority': 'INFO'
                         }),
                 'raven': (
-                    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
+                    'heka_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
         },
-    'sender': {
-        'class': 'metlog.senders.UdpSender',
-        'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
-        'port': private.METLOG_CONF_SENDER_PORT,
+    'stream': {
+        'class': 'heka.streams.UdpStream',
+        'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
+        'port': private.HEKA_CONF_SENDER_PORT,
     },
     'logger': 'addons-marketplace-dev',
 }
-METLOG = client_from_dict_config(METLOG_CONF)
-USE_METLOG_FOR_CEF = True
-SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
+HEKA = client_from_dict_config(HEKA_CONF)
+USE_HEKA_FOR_CEF = True
+SENTRY_CLIENT = 'djangoraven.heka.HekaDjangoClient'
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 

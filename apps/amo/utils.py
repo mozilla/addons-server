@@ -60,7 +60,7 @@ from users.utils import UnsubscribeCode
 
 from . import logger_log as log
 
-metlog = settings.METLOG
+heka = settings.HEKA
 
 
 days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
@@ -859,8 +859,8 @@ def log_cef(name, severity, env, *args, **kwargs):
         r = env
     else:
         r = {}
-    if settings.USE_METLOG_FOR_CEF:
-        return metlog.cef(name, severity, r, *args, config=c, **kwargs)
+    if settings.USE_HEKA_FOR_CEF:
+        return heka.cef(name, severity, r, *args, config=c, **kwargs)
     else:
         return _log_cef(name, severity, r, *args, config=c, **kwargs)
 

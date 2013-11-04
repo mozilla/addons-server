@@ -32,7 +32,7 @@ django-mysql-pymysql==0.1
 django-nose==1.2
 django-picklefield==0.2.1
 django-quieter-formset==0.3
-django-raven-metlog==0.2
+django-raven-heka==0.3
 django-ratelimit==0.1
 django-recaptcha-mozilla==0.0.1
 djangorestframework==2.3.9
@@ -55,9 +55,9 @@ html5lib==0.90
 httplib2==0.8.0
 importlib-no-failure==1.0.2
 kombu==2.5.16
-metlog-py==0.9.10
-metlog-cef==0.2
-metlog-raven==0.5
+heka-py==0.30.3
+heka-py-cef==0.3
+heka-py-raven==0.6
 python-mimeparse==0.1.4
 mock==1.0.1
 monolith.client==0.9
@@ -71,6 +71,7 @@ oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
 pyasn1==0.1.7
+protobuf==2.5.0
 PyBrowserID==0.6
 pyelasticsearch==0.6
 pyes==0.16.0
