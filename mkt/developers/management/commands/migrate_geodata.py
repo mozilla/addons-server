@@ -5,7 +5,6 @@ from django.core.management.base import BaseCommand
 import amo
 from mkt.constants.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS,
                                    REGIONS_CHOICES_ID_DICT)
-from mkt.webapps.models import Webapp
 
 log = logging.getLogger('z.task')
 
@@ -18,6 +17,8 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **options):
+        from mkt.webapps.models import Webapp
+
         paid_types = amo.ADDON_PREMIUMS + (amo.ADDON_FREE_INAPP,)
 
         games_cat = Webapp.category('games')
