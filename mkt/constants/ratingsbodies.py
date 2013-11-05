@@ -301,11 +301,11 @@ def RATINGS_BY_NAME(iarc_switch_active=True):
     """
     ratings_choices = []
     for rb in RATINGS_BODIES.values():
-        if rb not in [CLASSIND, GENERIC] and not iarc_switch_active:
-            # Waffle some bodies.
-            continue
         for r in rb.ratings:
-            ratings_choices.append(
-                (ALL_RATINGS.index(r),
-                 u'%s - %s' % (unicode(rb.name), unicode(r.name))))
+            r.ratingsbody = rb
+            if rb in [CLASSIND, GENERIC] or iarc_switch_active:
+                # Waffle some bodies.
+                ratings_choices.append(
+                    (ALL_RATINGS.index(r),
+                     u'%s - %s' % (unicode(rb.name), unicode(r.name))))
     return ratings_choices
