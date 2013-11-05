@@ -1,4 +1,4 @@
-from rest_framework import fields
+from rest_framework import fields, serializers
 
 from mkt.api.serializers import PotatoCaptchaSerializer
 
@@ -18,3 +18,6 @@ class FeedbackSerializer(PotatoCaptchaSerializer):
         attrs['user'] = self.request.amo_user
 
         return attrs
+
+class NewsletterSerializer(serializers.Serializer):
+    email = fields.EmailField()
