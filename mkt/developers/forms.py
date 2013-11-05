@@ -708,7 +708,10 @@ class RegionForm(forms.Form):
         if self.is_toggling():
             return
 
-        restricted = int(self.cleaned_data['restricted'])
+        try:
+            restricted = int(self.cleaned_data['restricted'])
+        except (TypeError, ValueError):
+            restricted = False
 
         if restricted:
             before = set(self.regions_before)
