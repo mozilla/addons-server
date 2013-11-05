@@ -1238,8 +1238,8 @@ class WebappIndexer(MappingType, Indexable):
         for cr in obj.content_ratings.all():
             for region in cr.get_region_slugs():
                 content_ratings.setdefault(region, []).append({
-                    'body': cr.get_body().name,
-                    'name': cr.get_rating().name,
+                    'body': unicode(cr.get_body().name),
+                    'name': unicode(cr.get_rating().name),
                     'description': unicode(cr.get_rating().description),
                 })
 

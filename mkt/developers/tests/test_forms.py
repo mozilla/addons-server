@@ -469,7 +469,6 @@ class TestAdminSettingsForm(TestAdmin):
         Adding a content rating for a game in a region should remove the
         regional exclusion for that region.
         """
-
         # List it in the Games category.
         cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         self.webapp.addoncategory_set.create(category=cat)
@@ -491,7 +490,7 @@ class TestAdminSettingsForm(TestAdmin):
 
         # Add Brazil content rating.
         rb_br = mkt.regions.BR.ratingsbodies[0]
-        br_0_idx = mkt.ratingsbodies.ALL_RATINGS.index(rb_br.ratings[0])
+        br_0_idx = mkt.ratingsbodies.ALL_RATINGS().index(rb_br.ratings[0])
         self.data['app_ratings'] = [br_0_idx]
 
         # Post the form again.
@@ -512,6 +511,41 @@ class TestAdminSettingsForm(TestAdmin):
         Removing a content rating for a game in Brazil should exclude that
         game in Brazil only.
         """
+        self.log_in_with('Apps:Configure')
+        rb_br = mkt.regions.BR.ratingsbodies[0]
+        ContentRating.objects.create(addon=self.webapp, ratings_body=rb_br.id,
+                                     rating=rb_br.ratings[0].id)
+
+        rb_de = mkt.regions.DE.ratingsbodies[0]
+        ContentRating.objects.create(addon=self.webapp, ratings_body=rb_de.id,
+                                     rating=rb_de.ratings[0].id)
+
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        # Remove Brazil but keep Germany.
+        de_0_idx = mkt.ratingsbodies.ALL_RATINGS().index(rb_de.ratings[0])
+        self.data['app_ratings'] = [de_0_idx]
+
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        regions = self.webapp.get_region_ids()
+        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+            if region == mkt.regions.BR:
+                assert region.id not in regions, (
+                    'should not be listed in %s' % region.slug)
+            else:
+                assert region.id in regions, (
+                    'should be listed in %s' % region.slug)
+
+    def test_exclude_unrated_games_with_waffle(self):
+        """
+        Removing a content rating for a game in Brazil should exclude that
+        game in Brazil only. Include all ratings bodies in the form choices.
+        """
+        self.create_switch('iarc')
 
         self.log_in_with('Apps:Configure')
         rb_br = mkt.regions.BR.ratingsbodies[0]
@@ -526,7 +560,7 @@ class TestAdminSettingsForm(TestAdmin):
         AddonCategory.objects.create(addon=self.webapp, category=games)
 
         # Remove Brazil but keep Germany.
-        de_0_idx = mkt.ratingsbodies.ALL_RATINGS.index(rb_de.ratings[0])
+        de_0_idx = mkt.ratingsbodies.ALL_RATINGS().index(rb_de.ratings[0])
         self.data['app_ratings'] = [de_0_idx]
 
         form = forms.AdminSettingsForm(self.data, **self.kwargs)

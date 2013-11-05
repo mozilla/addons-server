@@ -246,8 +246,7 @@ class AdminSettingsForm(PreviewForm):
     mozilla_contact = SeparatedValuesField(forms.EmailField, separator=',',
                                            required=False)
     tags = forms.CharField(required=False)
-    app_ratings = forms.MultipleChoiceField(required=False,
-                                            choices=RATINGS_BY_NAME)
+    app_ratings = forms.MultipleChoiceField(required=False)
 
     class Meta:
         model = Preview
@@ -262,6 +261,8 @@ class AdminSettingsForm(PreviewForm):
 
         self.request = kw.pop('request', None)
 
+        self.base_fields['app_ratings'].choices = RATINGS_BY_NAME()
+
         # Note: After calling `super`, `self.instance` becomes the `Preview`
         # object.
         super(AdminSettingsForm, self).__init__(*args, **kw)
@@ -273,7 +274,10 @@ class AdminSettingsForm(PreviewForm):
             rs = []
             for r in addon.content_ratings.all():
                 rating = RATINGS_BODIES[r.ratings_body].ratings[r.rating]
-                rs.append(ALL_RATINGS.index(rating))
+                try:
+                    rs.append(ALL_RATINGS().index(rating))
+                except ValueError:
+                    pass  # Due to waffled ratings bodies.
             self.initial['app_ratings'] = rs
 
     def clean_position(self):
@@ -281,7 +285,7 @@ class AdminSettingsForm(PreviewForm):
 
     def clean_app_ratings(self):
         ratings_ids = self.cleaned_data.get('app_ratings')
-        ratings = [ALL_RATINGS[int(i)] for i in ratings_ids]
+        ratings = [ALL_RATINGS()[int(i)] for i in ratings_ids]
         ratingsbodies = set([r.ratingsbody for r in ratings])
         if len(ratingsbodies) != len(ratings):
             raise forms.ValidationError(_('Only one rating from each ratings '
@@ -335,7 +339,7 @@ class AdminSettingsForm(PreviewForm):
             addon.content_ratings.exclude(rating__in=after).delete()
             new_ratings = after - before
             for i in new_ratings:
-                rb = ALL_RATINGS[i]
+                rb = ALL_RATINGS()[i]
                 ContentRating.objects.create(addon=addon, rating=rb.id,
                                              ratings_body=rb.ratingsbody.id)
             if new_ratings:
@@ -708,10 +712,7 @@ class RegionForm(forms.Form):
         if self.is_toggling():
             return
 
-        try:
-            restricted = int(self.cleaned_data['restricted'])
-        except (TypeError, ValueError):
-            restricted = False
+        restricted = int(self.cleaned_data['restricted'] or 0)
 
         if restricted:
             before = set(self.regions_before)
