@@ -50,7 +50,7 @@ CSS = {
         'css/devreg/refunds.styl',
         'css/devreg/transactions.styl',
         'css/devreg/status.styl',
-        'css/devreg/ratings.styl',
+        'css/devreg/content_ratings.styl',
 
         # Image Uploads (used for "Edit Listing" Images and Submission).
         'css/devreg/media.styl',
@@ -74,10 +74,9 @@ CSS = {
     'mkt/reviewers': (
         'css/zamboni/editors.css',
         'css/devreg/consumer-buttons.styl',
-        'css/devreg/ratings.styl',
+        'css/devreg/content_ratings.styl',
         'css/devreg/data-grid.styl',
         'css/devreg/manifest.styl',
-        'css/devreg/ratings.styl',
         'css/devreg/reviewers.styl',
         'css/devreg/reviewers-header.styl',
         'css/devreg/reviewers-mobile.styl',
@@ -214,7 +213,7 @@ JS = {
         'js/devreg/test-install.js',
 
         # IARC.
-        'js/devreg/ratings.js',
+        'js/devreg/content_ratings.js',
 
         # Module initialization.
         'js/devreg/devreg_init.js',

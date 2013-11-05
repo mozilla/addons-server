@@ -1,52 +1,66 @@
-<div class="island">
-  <h2>{{ _('Get My App Rated') }}</h2>
-  <p>
-    {% trans %}
-      To have your app listed on the Marketplace, you must attain an
-      International Age Rating Coalition (IARC) certificate. Clicking on
-      the button below will open a new window where you can fill out a
-      short yes-or-no questionnaire about the contents of your app. Upon
-      completion, the window will close and your app will then have an age
-      rating.
-    {% endtrans %}
-  </p>
-  <p>
-    {% trans %}
-      By using IARC ratings certificate tool, you agree to abide by their
-      <a href="{{ privacy_url }}">privacy policy</a> and
-      <a href="{{ tos_url }}">Terms of Service agreement</a>.
-    {% endtrans %}
-  </p>
-  <form method="post" target="_blank" action="{{ settings.IARC_SUBMISSION_ENDPOINT }}">
-    <input type="hidden" name="password" value="{{ settings.IARC_PASSWORD }}">
-    <input type="hidden" name="email" value="{{ request.amo_user.email }}">
-    <input type="hidden" name="company" value="{{ settings.IARC_COMPANY }}">
-    <input type="hidden" name="appname" value="{{ addon.app_slug }}">
-    {# TODO: Do we set 2001=FxOS only when they chose it during submission? #}
-    <input type="hidden" name="platform" value="2001,2002">
-    <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
-    <p class="listing-footer">
-      <input type="submit" value="{{ _('Create an IARC Ratings Certificate') }}" class="create-iarc-rating button">
-    </p>
-  </form>
-</div>
+{% extends "developers/apps/ratings/ratings_base.html" %}
 
-<div class="island">
-  <h3>{{ _('Already Have Your App Rated?') }}</h3>
-  <p>
-    {% trans %}
-      If you have already gotten your app rated via the IARC Global Ratings
-      Tool above and already have an IARC security code, you can manually
-      enter it here.
-    {% endtrans %}
-  </p>
-  <div class="iarc-sec-code">
-    <!-- Once we get a form, we can use pretty_field. -->
-    {# TODO: IARC security code form. #}
-    <label>Enter Security Code</label>
-    <input type="text">
-  </div>
-  <p class="listing-footer">
-    <input type="submit" value="{{ _('Submit') }}">
-  </p>
-</div>
+{% set rated = addon.content_ratings.exists() %}
+
+{% block ratings_content %}
+  <section id="ratings-edit" class="primary manage">
+    {% if rated %}
+      <h3><a href="{{ addon.get_dev_url('ratings') }}">
+        &laquo; {{ _('Back to Ratings Summary Page') }}</a></h3>
+    {% endif %}
+
+    <div class="island">
+      <h2>{{ _('Get My App Rated') }}</h2>
+      <p>
+        {% trans %}
+          To have your app listed on the Marketplace, you must attain an
+          International Age Rating Coalition (IARC) certificate. Clicking on
+          the button below will open a new window where you can fill out a
+          short yes-or-no questionnaire about the contents of your app. Upon
+          completion, the window will close and your app will then have an age
+          rating.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans privacy_url=privacy_url, tos_url=tos_url %}
+          By using IARC ratings certificate tool, you agree to abide by their
+          <a href="{{ privacy_url }}">Privacy Policy</a> and
+          <a href="{{ tos_url }}">Terms of Service agreement</a>.
+        {% endtrans %}
+      </p>
+      <form method="post" target="_blank" action="{{ settings.IARC_SUBMISSION_ENDPOINT }}">
+        <input type="hidden" name="password" value="{{ settings.IARC_PASSWORD }}">
+        <input type="hidden" name="email" value="{{ request.amo_user.email }}">
+        <input type="hidden" name="company" value="{{ settings.IARC_COMPANY }}">
+        <input type="hidden" name="appname" value="{{ addon.app_slug }}">
+        {# TODO: Do we set 2001=FxOS only when they chose it during submission? #}
+        <input type="hidden" name="platform" value="2001,2002">
+        <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
+        <p class="listing-footer">
+          <input type="submit" value="{{ _('Create an IARC Ratings Certificate') }}" class="create-iarc-rating button">
+        </p>
+      </form>
+    </div>
+
+    <div class="island">
+      <h3>{{ _('Already Have Your App Rated?') }}</h3>
+      <p>
+        {% trans %}
+          If you have already gotten your app rated via the IARC Global Ratings
+          Tool above and already have an IARC security code, you can manually
+          enter it here.
+        {% endtrans %}
+      </p>
+      <div class="iarc-sec-code">
+        {# TODO: IARC security code form. #}
+        <label>
+          Enter Security Code
+          <input type="text">
+        </label>
+      </div>
+      <p class="listing-footer">
+        <button>{{ _('Submit') }}</button>
+      </p>
+    </div>
+  </section>
+{% endblock %}

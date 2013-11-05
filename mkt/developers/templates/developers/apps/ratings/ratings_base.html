@@ -1,0 +1,15 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = _('Manage Content Ratings') %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+
+{% block content %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[(None, _('Content Ratings') )]) }}
+    <h1>{{ title }}</h1>
+  </header>
+
+  {% block ratings_content %}{% endblock %}
+
+  {% include 'developers/includes/addons_edit_nav.html' %}
+{% endblock %}

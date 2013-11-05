@@ -38,7 +38,7 @@ import mkt
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
 from mkt.developers.views import (_filter_transactions, _get_transactions,
-                                  ratings)
+                                  content_ratings, content_ratings_edit)
 from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import ContentRating, Webapp
@@ -1139,14 +1139,9 @@ class TestContentRatings(amo.tests.TestCase):
     @override_settings(IARC_SUBMISSION_ENDPOINT='https://yo.lo',
                        IARC_STOREFRONT_ID=1, IARC_COMPANY='Mozilla',
                        IARC_PASSWORD='s3kr3t')
-    def test_200(self):
-        r = ratings(self.req, app_slug=self.app.app_slug)
-        eq_(r.status_code, 200)
-
-        # Summary page hidden if no ratings.
+    def test_edit(self):
+        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)
-        assert doc('#ratings-summary').hasClass('hidden')
-        assert not doc('#ratings-edit').hasClass('hidden')
 
         # Check the form action.
         form = doc('#ratings-edit form')[0]
@@ -1162,30 +1157,16 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(values['platform'], '2001,2002')
 
     def test_summary(self):
-        ContentRating.objects.create(
-            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
-            rating=mkt.ratingsbodies.CLASSIND_L.id)
-        ContentRating.objects.create(
-            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
-            rating=mkt.ratingsbodies.GENERIC_3.id)
-        ContentRating.objects.create(
-            addon=self.app, ratings_body=mkt.ratingsbodies.USK.id,
-            rating=mkt.ratingsbodies.USK_18.id)
-        ContentRating.objects.create(
-            addon=self.app, ratings_body=mkt.ratingsbodies.ESRB.id,
-            rating=mkt.ratingsbodies.ESRB_M.id)
-        ContentRating.objects.create(
-            addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
-            rating=mkt.ratingsbodies.PEGI_12.id)
+        rbs = mkt.ratingsbodies
+        ratings = [rbs.CLASSIND_L, rbs.GENERIC_3, rbs.USK_18, rbs.ESRB_M,
+                   rbs.PEGI_12]
+        for rating in ratings:
+            ContentRating.objects.create(
+                addon=self.app, ratings_body=rating.ratingsbody.id,
+                rating=rating.id)
 
-        r = ratings(self.req, app_slug=self.app.app_slug)
+        r = content_ratings(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)
 
-        # Edit page hidden if have content ratings.
-        assert doc('#ratings-edit').hasClass('hidden')
-
-        eq_(doc('.name')[0].text, 'CLASSIND')
-        eq_(doc('.name')[1].text, 'Generic')
-        eq_(doc('.name')[2].text, 'USK')
-        eq_(doc('.name')[3].text, 'ESRB')
-        eq_(doc('.name')[4].text, 'PEGI')
+        for i, name in enumerate(doc('.name')):
+            eq_(name.text, ratings[i].ratingsbody.name)

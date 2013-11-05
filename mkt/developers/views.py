@@ -278,6 +278,9 @@ def status(request, addon_id, addon, webapp=False):
             if (test_plan.last_submission <
                 settings.PREINSTALL_TEST_PLAN_LATEST):
                 ctx['outdated_test_plan'] = True
+            ctx['next_step_suffix'] = 'submit'
+        else:
+            ctx['next_step_suffix'] = 'home'
         ctx['test_plan'] = test_plan
 
     return jingo.render(request, 'developers/apps/status.html', ctx)
@@ -285,11 +288,23 @@ def status(request, addon_id, addon, webapp=False):
 
 @waffle_switch('iarc')
 @dev_required
-def ratings(request, addon_id, addon):
-    """IARC ratings."""
-    return jingo.render(request, 'developers/apps/ratings.html', {
-        'addon': addon,
-    })
+def content_ratings(request, addon_id, addon):
+    if not addon.is_rated():
+        return redirect(addon.get_dev_url('ratings_edit'))
+
+    return jingo.render(
+        request, 'developers/apps/ratings/ratings_summary.html', {
+            'addon': addon
+        })
+
+
+@waffle_switch('iarc')
+@dev_required
+def content_ratings_edit(request, addon_id, addon):
+    return jingo.render(
+        request, 'developers/apps/ratings/ratings_edit.html', {
+            'addon': addon
+        })
 
 
 @waffle_switch('preload-apps')
@@ -299,7 +314,7 @@ def preload_home(request, addon_id, addon):
     Gives information on the preload process, links to test plan template.
     """
     return jingo.render(request, 'developers/apps/preload/home.html', {
-        'addon': addon,
+        'addon': addon
     })
 
 
@@ -337,7 +352,7 @@ def preload_submit(request, addon_id, addon, webapp):
 
     return jingo.render(request, 'developers/apps/preload/submit.html', {
         'addon': addon,
-        'form': form,
+        'form': form
     })
 
 

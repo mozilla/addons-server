@@ -38,6 +38,10 @@ class RATING(object):
 class RATING_BODY(object):
     """Content rating body."""
 
+    @property
+    def slug(self):
+        return self.name.replace('+', '')
+
 
 class CLASSIND_L(RATING):
     name = '0+'
@@ -235,7 +239,7 @@ class ESRB(RATING_BODY):
     ratings = (ESRB_E, ESRB_10, ESRB_T, ESRB_M, ESRB_A)
     name = 'ESRB'
     full_name = _lazy(u'Entertainment Software Rating Board')
-    # L10N: `N.` stands for North.
+    # L10n: `N.` stands for North.
     region_description = _lazy(u'N. America')
     url = 'http://esrb.org'
 
@@ -247,26 +251,26 @@ class PEGI_3(RATING):
 
 
 class PEGI_7(RATING):
-    name = '7+'
     id = 1
+    name = '7+'
     description = RATING_DESCS['7']
 
 
 class PEGI_12(RATING):
-    name = '12+'
     id = 2
+    name = '12+'
     description = RATING_DESCS['12']
 
 
 class PEGI_16(RATING):
-    name = '16+'
     id = 3
+    name = '16+'
     description = RATING_DESCS['16']
 
 
 class PEGI_18(RATING):
+    id = 4
     name = '18+'
-    id = 3
     description = RATING_DESCS['18']
 
 

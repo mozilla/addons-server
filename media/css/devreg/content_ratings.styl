@@ -13,7 +13,7 @@
         display: inline-block;
         margin: 0 5px 32px 0;
     }
-    a.toggle-ratings-page {
+    a.edit {
         bottom: 2px;
         position: relative;
     }
@@ -35,7 +35,7 @@
         }
     }
     .content-rating .icon {
-        left: calc(50% - 32px);
+        left: calc(unquote('50% - 32px'));
         position: relative;
     }
 }
@@ -51,8 +51,8 @@ $box-red = #ff2600;
     margin-bottom: 12px;
 
     .icon {
-        border-radius: 5px;
         background: #000;
+        border-radius: 5px;
         color: #fff;
         float: left;
         font: 600 32px/64px $open-stack;

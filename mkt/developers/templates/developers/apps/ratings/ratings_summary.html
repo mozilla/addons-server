@@ -1,26 +1,34 @@
+{% extends "developers/apps/ratings/ratings_base.html" %}
+
 {% from 'developers/includes/macros.html' import iarc_rating_icon %}
 
+{% block ratings_content %}
+  <section id="ratings-summary" class="primary manage">
+    <div class="island">
+      <h2>{{ _('Summary') }}</h2>
+      <a href="{{ addon.get_dev_url('ratings_edit') }}" class="button edit">
+        {{ _('Edit') }}</a>
 
-<h2>{{ _('Summary') }}</h2>
-<a class="toggle-ratings-page button">{{ _('Edit') }}</a>
-
-<table class="ratings-summary data-grid">
-  <thead>
-    <th>{{ _('Rating System') }}</th>
-    <th>{{ _('Region') }}</th>
-    <th>{{ _('Rating Category') }}</th>
-    <th>{{ _('Descriptions') }}</th>
-  </thead>
-  <tbody>
-    {% for cr in addon.content_ratings.order_by('ratings_body') %}
-      {% set ratings_body = cr.get_body() %}
-      {% set rating = cr.get_rating() %}
-      <tr>
-        <td class="name">{{ ratings_body.name }}</td>
-        <td class="regions">{{ ratings_body.region_description }}</td>
-        <td class="content-rating">{{ iarc_rating_icon(cr) }}</td>
-        <td class="desc"> {{ rating.description or '--' }}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+      <table class="ratings-summary data-grid">
+        <thead>
+          <th>{{ _('Rating System') }}</th>
+          <th>{{ _('Region') }}</th>
+          <th>{{ _('Rating Category') }}</th>
+          <th>{{ _('Descriptions') }}</th>
+        </thead>
+        <tbody>
+          {% for cr in addon.content_ratings.order_by('ratings_body') %}
+            {% set ratings_body = cr.get_body() %}
+            {% set rating = cr.get_rating() %}
+            <tr>
+              <td class="name">{{ ratings_body.name }}</td>
+              <td class="regions">{{ ratings_body.region_description }}</td>
+              <td class="content-rating">{{ iarc_rating_icon(cr) }}</td>
+              <td class="desc"> {{ rating.description or '--' }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+{% endblock %}
