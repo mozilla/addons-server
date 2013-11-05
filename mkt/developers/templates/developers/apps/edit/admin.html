@@ -130,7 +130,7 @@
               {{ form.app_ratings }}
               {{ form.app_ratings.errors }}
             {% else %}
-              {% for r in addon.content_ratings.all() %}
+              {%  for r in addon.content_ratings.all() %}
                 <div>{{ r.get_label() }}</div>
               {% endfor %}
             {% endif %}

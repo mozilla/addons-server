@@ -246,7 +246,8 @@ class AdminSettingsForm(PreviewForm):
     mozilla_contact = SeparatedValuesField(forms.EmailField, separator=',',
                                            required=False)
     tags = forms.CharField(required=False)
-    app_ratings = forms.MultipleChoiceField(required=False)
+    app_ratings = forms.MultipleChoiceField(required=False,
+                                            choices=RATINGS_BY_NAME)
 
     class Meta:
         model = Preview
@@ -260,9 +261,6 @@ class AdminSettingsForm(PreviewForm):
             self.promo = addon.get_promo()
 
         self.request = kw.pop('request', None)
-
-        self.base_fields['app_ratings'].choices = (
-            RATINGS_BY_NAME(waffle.switch_is_active('iarc')))
 
         # Note: After calling `super`, `self.instance` becomes the `Preview`
         # object.
