@@ -704,7 +704,7 @@ msgstr "Downloads en dagelijkse gebruikers, laatste {0} dagen"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:123
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Downloads en dagelijkse gebruikers van {0} tot {1)"
+msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:127
