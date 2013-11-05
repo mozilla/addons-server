@@ -1515,7 +1515,8 @@ class ContentRating(amo.models.ModelBase):
 
     def get_label(self):
         """Gives us the name to be used for the form options."""
-        return u'%s - %s' % (self.get_body().name, self.get_rating().name)
+        return u'%s - %s' % (
+            unicode(self.get_body().name), unicode(self.get_rating().name))
 
 
 # The RatingDescriptors table is created with dynamic fields based on

@@ -293,9 +293,19 @@ ALL_RATINGS = []
 for rb in RATINGS_BODIES.values():
     ALL_RATINGS.extend(rb.ratings)
 
-RATINGS_BY_NAME = []
-for rb in RATINGS_BODIES.values():
-    for r in rb.ratings:
-        RATINGS_BY_NAME.append((ALL_RATINGS.index(r),
-                                '%s - %s' % (rb.name, r.name)))
-        r.ratingsbody = rb
+
+def RATINGS_BY_NAME(iarc_switch_active=True):
+    """
+    Create a list of tuples (choices) after we know the locale since this
+    attempts to concatenate two lazy translations in constants file.
+    """
+    ratings_choices = []
+    for rb in RATINGS_BODIES.values():
+        if rb not in [CLASSIND, GENERIC] and not iarc_switch_active:
+            # Waffle some bodies.
+            continue
+        for r in rb.ratings:
+            ratings_choices.append(
+                (ALL_RATINGS.index(r),
+                 u'%s - %s' % (unicode(rb.name), unicode(r.name))))
+    return ratings_choices
