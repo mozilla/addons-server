@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-18 16:48-0700\n"
-"PO-Revision-Date: 2013-10-20 11:25+0000\n"
+"PO-Revision-Date: 2013-11-05 22:44+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382268350.0\n"
+"X-POOTLE-MTIME: 1383691445.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -704,7 +704,7 @@ msgstr "Downloads en dagelijkse gebruikers, laatste {0} dagen"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:123
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Downloads en dagelijkse gebruikers van {0} tot {1)"
+msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:127
