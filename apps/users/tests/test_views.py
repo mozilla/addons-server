@@ -873,14 +873,14 @@ class TestPersonaLogin(UserViewBase):
     @patch.object(settings, 'SITE_URL', 'http://testserver')
     @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
     @patch('requests.post')
-    def test_native_persona_login(self, http_request):
+    def test_mobile_persona_login(self, http_request):
         http_request.return_value = FakeResponse(200, json.dumps(
                 {'status': 'okay',
                  'email': 'jbalogh@mozilla.com'}))
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',
-                                   is_native='1'))
+                                   is_mobile='1'))
         http_request.assert_called_with(
                 settings.NATIVE_BROWSERID_VERIFICATION_URL,
                 verify=ANY, proxies=ANY, data=ANY, timeout=ANY,
@@ -894,7 +894,7 @@ class TestPersonaLogin(UserViewBase):
     @patch.object(settings, 'SITE_URL', 'http://testserver')
     @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
     @patch('requests.post')
-    def test_non_native_persona_login(self, http_request):
+    def test_non_mobile_persona_login(self, http_request):
         http_request.return_value = FakeResponse(200, json.dumps(
                 {'status': 'okay',
                  'email': 'jbalogh@mozilla.com'}))
@@ -914,14 +914,14 @@ class TestPersonaLogin(UserViewBase):
     @patch.object(settings, 'SITE_URL', 'http://testserver')
     @patch.object(settings, 'UNVERIFIED_ISSUER', None)
     @patch('requests.post')
-    def test_native_persona_login_without_issuer(self, http_request):
+    def test_mobile_persona_login_without_issuer(self, http_request):
         http_request.return_value = FakeResponse(200, json.dumps(
                 {'status': 'okay',
                  'email': 'jbalogh@mozilla.com'}))
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',
-                                   is_native='1'))
+                                   is_mobile='1'))
         data = http_request.call_args[1]['data']
         eq_(data['audience'], 'http://testserver')
         assert 'experimental_forceIssuer' not in data, (
@@ -929,14 +929,14 @@ class TestPersonaLogin(UserViewBase):
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
-    def test_native_persona_login_ignores_garbage(self, http_request):
+    def test_mobile_persona_login_ignores_garbage(self, http_request):
         http_request.return_value = FakeResponse(200, json.dumps(
                 {'status': 'okay',
                  'email': 'jbalogh@mozilla.com'}))
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',
-                                   is_native='<garbage>'))
+                                   is_mobile='<garbage>'))
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')

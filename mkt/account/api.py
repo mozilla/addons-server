@@ -160,7 +160,7 @@ class LoginResource(CORSResource, MarketplaceResource):
             profile, msg = browserid_authenticate(
                 request, bundle.data['assertion'],
                 browserid_audience=bundle.data['audience'],
-                is_native=bundle.data.get('is_native', False)
+                is_mobile=bundle.data.get('is_mobile', False)
             )
         if profile is None:
             log.info('No profile: %s' % (msg or ''))

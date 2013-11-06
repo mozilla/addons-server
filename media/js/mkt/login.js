@@ -60,10 +60,10 @@ define('login', ['notification'], function(notification) {
     function gotVerifiedEmail(assertion) {
         if (assertion) {
             var data = {assertion: assertion};
-            // When id._shimmed is false we know that Persona is
-            // native on the device. Even though this seems fragile
-            // it is well supported by Persona (for now).
-            data.is_native = navigator.id._shimmed ? 0 : 1;
+            // This login code only runs on desktop so we are disabling
+            // mobile-like login behaviors such as unverified emails.
+            // See Fireplace for mobile logic.
+            data.is_mobile = 0;
 
             $.post(z.body.data('login-url'), data)
              .success(finishLogin)

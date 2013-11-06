@@ -307,7 +307,7 @@ def _clean_next_url(request):
     return request
 
 
-def browserid_authenticate(request, assertion, is_native=False,
+def browserid_authenticate(request, assertion, is_mobile=False,
                            browserid_audience=get_audience):
     """
     Verify a BrowserID login attempt. If the BrowserID assertion is
@@ -323,8 +323,8 @@ def browserid_authenticate(request, assertion, is_native=False,
     if settings.UNVERIFIED_ISSUER:
         extra_params['experimental_forceIssuer'] = settings.UNVERIFIED_ISSUER
 
-    if is_native:
-        # When persona is running native on B2G then we can allow unverified
+    if is_mobile:
+        # When persona is running in a mobile OS then we can allow unverified
         # assertions.
         url = settings.NATIVE_BROWSERID_VERIFICATION_URL
         extra_params['experimental_allowUnverified'] = 'true'
@@ -401,13 +401,13 @@ def browserid_login(request, browserid_audience=None):
             # If username is different, maybe sign in as new user?
             return http.HttpResponse(status=200)
         try:
-            is_native = bool(int(request.POST.get('is_native', 0)))
+            is_mobile = bool(int(request.POST.get('is_mobile', 0)))
         except ValueError:
-            is_native = False
+            is_mobile = False
         with statsd.timer('auth.browserid.verify'):
             profile, msg = browserid_authenticate(
                 request, request.POST['assertion'],
-                is_native=is_native,
+                is_mobile=is_mobile,
                 browserid_audience=browserid_audience or get_audience(request))
         if profile is not None:
             auth.login(request, profile.user)
