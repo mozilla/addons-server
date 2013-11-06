@@ -31,7 +31,7 @@
             {% set rating = cr.get_rating() %}
             <tr>
               <td class="name">{{ ratings_body.name }}</td>
-              <td class="regions">{{ ratings_body.region_description or '&mdash;'|safe }}</td>
+              <td class="regions">{{ ratings_body.description or '&mdash;'|safe }}</td>
               <td class="content-rating">{{ iarc_rating_icon(cr) }}</td>
               <td class="desc">{{ rating.description or '&mdash;'|safe }}</td>
             </tr>

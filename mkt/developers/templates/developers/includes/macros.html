@@ -150,12 +150,11 @@
 
 {% macro iarc_rating_icon(rating) %}
    <div class="content-rating c">
-     {# rating.body (e.g. CLASSIND, GENERIC, ESRB, PEGI, USK #}
-     {# rating.name (e.g. 0+, 3+, 7+, 13+, 18+) #}
-     <div class="icon icon-body-{{ rating.get_body().name|lower }}
-                 icon-age-{{ rating.get_rating().name|replace('+', '') }}"
-          title="{{ rating.get_rating().name }}">
-       <span class="icon-content hidden">{{ rating.get_rating().name }}</span>
+     {% set body = rating.get_body() %}
+     {% set rating = rating.get_rating() %}
+     <div class="icon icon-body-{{ body.slug }} icon-age-{{ rating.slug }}"
+          title="{{ rating.name }}">
+       <span class="icon-content hidden">{{ rating.name }}</span>
      </div>
    </div>
 {% endmacro %}

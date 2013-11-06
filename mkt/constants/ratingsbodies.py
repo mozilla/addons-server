@@ -38,44 +38,40 @@ class RATING(object):
 class RATING_BODY(object):
     """Content rating body."""
 
-    @property
-    def slug(self):
-        return self.name.replace('+', '')
-
 
 class CLASSIND_L(RATING):
-    name = '0+'
     id = 0
+    name = '0+'
     description = RATING_DESCS['0']
 
 
 class CLASSIND_10(RATING):
-    name = '10+'
     id = 1
+    name = '10+'
     description = RATING_DESCS['10']
 
 
 class CLASSIND_12(RATING):
-    name = '12+'
     id = 2
+    name = '12+'
     description = RATING_DESCS['12']
 
 
 class CLASSIND_14(RATING):
-    name = '14+'
     id = 3
+    name = '14+'
     description = RATING_DESCS['14']
 
 
 class CLASSIND_16(RATING):
-    name = '16+'
     id = 4
+    name = '16+'
     description = RATING_DESCS['16']
 
 
 class CLASSIND_18(RATING):
-    name = '18+'
     id = 5
+    name = '18+'
     description = RATING_DESCS['18']
 
 
@@ -84,43 +80,45 @@ class CLASSIND(RATING_BODY):
     The Brazilian game ratings body (aka. DEJUS, DJCTQ).
     """
     id = 0
+    name = 'CLASSIND'
+    description = _lazy(u'Brazil')
+
     ratings = (CLASSIND_L, CLASSIND_10, CLASSIND_12, CLASSIND_14, CLASSIND_16,
                CLASSIND_18)
-    name = 'CLASSIND'
+
     full_name = _lazy(u'Department of Justice, Rating, Titles and '
                       u'Qualification')
-    region_description = _lazy(u'Brazil')
     url = ('http://portal.mj.gov.br/classificacao/data/Pages/'
            'MJ6BC270E8PTBRNN.htm')
 
 
 class GENERIC_3(RATING):
-    name = '3+'
     id = 0
+    name = '3+'
     description = RATING_DESCS['3']
 
 
 class GENERIC_7(RATING):
-    name = '7+'
     id = 1
+    name = '7+'
     description = RATING_DESCS['7']
 
 
 class GENERIC_12(RATING):
-    name = '12+'
     id = 2
+    name = '12+'
     description = RATING_DESCS['12']
 
 
 class GENERIC_16(RATING):
-    name = '16+'
     id = 3
+    name = '16+'
     description = RATING_DESCS['16']
 
 
 class GENERIC_18(RATING):
-    name = '18+'
     id = 4
+    name = '18+'
     description = RATING_DESCS['18']
 
 
@@ -129,45 +127,47 @@ class GENERIC(RATING_BODY):
     The generic game ratings body (used in Germany, for example).
     """
     id = 1
-    ratings = (GENERIC_3, GENERIC_7, GENERIC_12, GENERIC_16, GENERIC_18)
     name = _lazy(u'Generic')
+    description = ''  # No comment.
+
+    ratings = (GENERIC_3, GENERIC_7, GENERIC_12, GENERIC_16, GENERIC_18)
+
     full_name = _lazy(u'Generic')
-    region_description = ''  # No comment.
 
 
 class USK_0(RATING):
-    name = '0+'
     id = 0
+    name = '0+'
     description = RATING_DESCS['0']
 
 
 class USK_6(RATING):
-    name = '6+'
     id = 1
+    name = '6+'
     description = RATING_DESCS['6']
 
 
 class USK_12(RATING):
-    name = '12+'
     id = 2
+    name = '12+'
     description = RATING_DESCS['12']
 
 
 class USK_16(RATING):
-    name = '16+'
     id = 3
+    name = '16+'
     description = RATING_DESCS['16']
 
 
 class USK_18(RATING):
-    name = '18+'
     id = 4
+    name = '18+'
     description = RATING_DESCS['18']
 
 
 class USK_REJECTED(RATING):
-    name = _lazy('Rejected')
     id = 5
+    name = _lazy('Rejected')
     description = RATING_DESCS['X']
 
 
@@ -177,57 +177,55 @@ class USK(RATING_BODY):
     (aka. Unterhaltungssoftware Selbstkontrolle).
     """
     id = 2
-    ratings = (USK_0, USK_6, USK_12, USK_16, USK_18, USK_REJECTED)
     name = 'USK'
+    description = _lazy(u'Germany')
+
+    ratings = (USK_0, USK_6, USK_12, USK_16, USK_18, USK_REJECTED)
+
     full_name = _lazy(u'Entertainment Software Self-Regulation Body')
-    region_description = _lazy(u'Germany')
     url = 'http://www.usk.de/en/'
 
 
 class ESRB_E(RATING):
     """Everybody."""
-    name = '0+'
-    full_name = _lazy('Everyone')
     id = 0
+    name = _lazy('Everyone')
+    slug = '0'
     description = RATING_DESCS['0']
 
 
 class ESRB_10(RATING):
-    name = '10+'
-    # L10n: `10+` is age ten and over.
-    full_name = _lazy('Everyone 10+')
     id = 1
+    name = _lazy('Everyone 10+')  # L10n: `10+` is age ten and over.
+    slug = '10'
     description = RATING_DESCS['10']
 
 
 class ESRB_T(RATING):
-    name = '13+'
-    full_name = _lazy('Teen')
     id = 2
+    name = _lazy('Teen')
+    slug = '13'
     description = RATING_DESCS['13']
 
 
 class ESRB_M(RATING):
-    name = '17+'
-    # L10n: `17+` is age seventeen and over.
-    full_name = _lazy('Mature 17+')
     id = 3
+    name = _lazy('Mature 17+')  # L10n: `17+` is age seventeen and over.
+    slug = '17'
     description = RATING_DESCS['17']
 
 
 class ESRB_A(RATING):
-    name = '18+'
-    # L10n: `18+` is age eighteen and over.
-    full_name = _lazy('Adults Only 18+')
     id = 4
+    name = _lazy('Adults Only 18+')  # L10n: `18+` is age eighteen and over.
+    slug = '18'
     description = RATING_DESCS['18']
 
 
 class ESRB_RP(RATING):
-    name = 'pending'
-    # L10n: `18+` is age eighteen and over.
-    full_name = _lazy('Rating Pending')
     id = 4
+    name = _lazy('Rating Pending')
+    slug = 'pending'
     description = RATING_DESCS['18']
 
 
@@ -236,17 +234,18 @@ class ESRB(RATING_BODY):
     The North American game ratings body (i.e. USA, Canada).
     """
     id = 3
-    ratings = (ESRB_E, ESRB_10, ESRB_T, ESRB_M, ESRB_A)
     name = 'ESRB'
+    description = _lazy(u'N. America')  # L10n: `N.` stands for North.
+
+    ratings = (ESRB_E, ESRB_10, ESRB_T, ESRB_M, ESRB_A)
+
     full_name = _lazy(u'Entertainment Software Rating Board')
-    # L10n: `N.` stands for North.
-    region_description = _lazy(u'N. America')
     url = 'http://esrb.org'
 
 
 class PEGI_3(RATING):
-    name = '3+'
     id = 0
+    name = '3+'
     description = RATING_DESCS['3']
 
 
@@ -279,10 +278,12 @@ class PEGI(RATING_BODY):
     The European game ratings body (i.e. UK, Poland, Spain).
     """
     id = 4
-    ratings = (PEGI_3, PEGI_7, PEGI_12, PEGI_16, PEGI_18)
     name = 'PEGI'
+    description = _lazy(u'Europe')
+
+    ratings = (PEGI_3, PEGI_7, PEGI_12, PEGI_16, PEGI_18)
+
     full_name = _lazy(u'Pan European Game Information')
-    region_description = _lazy(u'Europe')
     url = 'http://www.pegi.info'
 
 

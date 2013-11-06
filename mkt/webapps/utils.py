@@ -61,10 +61,14 @@ def app_to_dict(app, region=None, profile=None, request=None):
     content_ratings = {}
     for cr in app.content_ratings.all():
         for _region in cr.get_region_slugs():
+            body = cr.get_body()
+            rating = cr.get_rating()
             content_ratings.setdefault(_region, []).append({
-                'body': cr.get_body().name,
-                'name': cr.get_rating().name,
-                'description': unicode(cr.get_rating().description),
+                'body': body.name,
+                'body_slug': body.slug,
+                'name': rating.name,
+                'slug': rating.slug,
+                'description': unicode(rating.description),
             })
 
     data = {
