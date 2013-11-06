@@ -2,9 +2,9 @@ import datetime
 
 from django.conf import settings
 from django.db import models
-from django.template import Context, loader
 from django.utils import translation
 
+import bleach
 import caching.base
 import tower
 from babel import Locale, numbers
@@ -299,25 +299,20 @@ class Contribution(amo.models.ModelBase):
         url_parts = self.addon.meet_the_dev_url().split('/')
         url_parts[1] = locale.language
 
-        # Buildup the email components.
-        t = loader.get_template('stats/contribution-thankyou-email.ltxt')
-        c = {
-            'thankyou_note': self.addon.thankyou_note,
-            'addon_name': self.addon.name,
-            'learn_url': '%s%s?src=emailinfo' % (settings.SITE_URL,
-                                                 '/'.join(url_parts)),
-            'domain': settings.DOMAIN,
-        }
-        body = t.render(Context(c))
         subject = _('Thanks for contributing to {addon_name}').format(
                     addon_name=self.addon.name)
 
-        # Send the email
-        if send_mail(subject, body, from_email, [to_email],
-                     fail_silently=True, perm_setting='dev_thanks'):
-            # Clear out contributor identifying information.
-            del(self.post_data['payer_email'])
-            self.save()
+        # Send the email.
+        send_mail_jinja(
+            subject, 'stats/contribution-thankyou-email.ltxt',
+            {'thankyou_note': bleach.clean(unicode(self.addon.thankyou_note),
+                                           strip=True),
+             'addon_name': self.addon.name,
+             'learn_url': '%s%s?src=emailinfo' % (settings.SITE_URL,
+                                                 '/'.join(url_parts)),
+             'domain': settings.DOMAIN},
+            from_email, [to_email], fail_silently=True,
+            perm_setting='dev_thanks')
 
     def enqueue_refund(self, status, user, refund_reason=None,
                        rejection_reason=None):

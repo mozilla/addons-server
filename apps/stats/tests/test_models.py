@@ -172,6 +172,24 @@ class TestEmail(amo.tests.TestCase):
         eq_(devmail.to, [self.addon.support_email])
         assert msg in devmail.body
 
+    def test_thankyou_note(self):
+        self.addon.enable_thankyou = True
+        self.addon.thankyou_note = u'Thank "quoted". <script>'
+        self.addon.name = u'Test'
+        self.addon.save()
+        cont = self.make_contribution('10', 'en-US', amo.CONTRIB_PURCHASE)
+        cont.update(transaction_id='yo',
+                    post_data={'payer_email': 'test@tester.com'})
+
+        cont.mail_thankyou()
+        eq_(len(mail.outbox), 1)
+        email = mail.outbox[0]
+        eq_(email.to, ['test@tester.com'])
+        assert '&quot;' not in email.body
+        assert u'Thank "quoted".' in email.body
+        assert '<script>' not in email.body
+        assert '&lt;script&gt;' not in email.body
+
 
 class TestClientData(amo.tests.TestCase):
 
