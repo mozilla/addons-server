@@ -2065,13 +2065,13 @@ class TestReviewPreliminary(ReviewBase):
     def test_prelim_multiple_files(self):
         f = self.version.files.all()[0]
         f.pk = None
-        f.status = amo.STATUS_DISABLED
+        f.status = amo.STATUS_OBSOLETE
         f.save()
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
         data['addon_files'] = [f.pk]
         self.client.post(self.url, data)
-        eq_([amo.STATUS_DISABLED, amo.STATUS_LITE],
+        eq_([amo.STATUS_OBSOLETE, amo.STATUS_LITE],
             [f.status for f in self.version.files.all().order_by('status')])
 
 
@@ -2102,7 +2102,7 @@ class TestReviewPending(ReviewBase):
 
     def test_disabled_file(self):
         obj = File.objects.create(version=self.version,
-                                  status=amo.STATUS_DISABLED)
+                                  status=amo.STATUS_OBSOLETE)
         response = self.client.get(self.url, self.pending_dict())
         doc = pq(response.content)
         assert 'disabled' in doc('#file-%s' % obj.pk)[0].keys()
@@ -2184,7 +2184,7 @@ class TestStatusFile(ReviewBase):
         self.get_file().update(status=amo.STATUS_PUBLIC)
         for status in set(amo.STATUS_UNDER_REVIEW + amo.LITE_STATUSES):
             self.addon.update(status=status)
-            self.check_status('Fully Reviewed')
+            self.check_status('Published')
 
     def test_other(self):
         self.addon.update(status=amo.STATUS_BETA)
