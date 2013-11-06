@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-23 18:11+0000\n"
+"PO-Revision-Date: 2013-11-06 19:27+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1382551874.0\n"
+"X-POOTLE-MTIME: 1383766047.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -925,7 +925,9 @@ msgstr "vagy nézze meg a <a href=\"%(href)s\">kiegészítő régebbi verzióit<
 
 #: apps/addons/templates/addons/popups.html:97
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "A persona számára a %(app)s %{new_version}s verzióra van szükség. Jelenleg a %(app)s {old_version} verzióját használja."
+msgstr ""
+"A persona számára a %(app)s %(new_version)s verzióra van szükség. Jelenleg a "
+"%(app)s  {old_version} verzióját használja."
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
