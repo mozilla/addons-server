@@ -270,6 +270,7 @@ def fetch_icon(webapp, **kw):
     try:
         biggest = max(int(size) for size in manifest['icons'])
     except ValueError:
+        log.error('No icon to fetch for webapp "%s"' % webapp.name)
         return False
 
     icon_url = manifest['icons'][str(biggest)]
@@ -309,6 +310,7 @@ def fetch_icon(webapp, **kw):
                 log.warning(u'[Webapp:%s] Icon exceeds maximum size.' % webapp)
                 return False
 
+    log.info('Icon fetching completed for app "%s"; saving icon' % webapp.name)
     save_icon(webapp, content)
 
 
