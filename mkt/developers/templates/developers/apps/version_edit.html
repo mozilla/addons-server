@@ -1,7 +1,7 @@
 {% extends 'developers/base_impala.html' %}
 {% from 'developers/includes/macros.html' import some_html_tip, tip, upload_webapp_features with context %}
 
-{% set title = _('Manage Version') + ' %s' % version.version %}
+{% set title = _('Version {0}')|f(version.version) %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% macro status(msg) %}
@@ -13,6 +13,7 @@
     {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
+
   <section id="edit-version" class="primary devhub-form manage">
     <div class="island">
       <form method="post">
@@ -85,5 +86,6 @@
       </form>
     </div>
   </section>
+
   {% include 'developers/includes/addons_edit_nav.html' %}
 {% endblock %}

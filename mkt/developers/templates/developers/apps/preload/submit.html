@@ -1,6 +1,6 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = _('Manage Status') %}
+{% set title = _('Status') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
@@ -14,8 +14,9 @@
   </header>
 
   <section id="preload" class="primary manage devhub-form">
+    <h2>{{ _('Preloaded App Terms and Conditions') }}</h2>
+
     <div class="island">
-      <h2>{{ _('Preloaded App Terms and Conditions') }}</h2>
       {% include "developers/apps/preload/termsandconditions.html" %}
       <form class="submit" method="post" enctype="multipart/form-data">
         {{ csrf() }}

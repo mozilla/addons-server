@@ -46,66 +46,71 @@
         {{ form.paid_platforms }}
       </div>
 
-      <section id="submit-payment-type" class="island hasappendix {{ 'tabbable ' if payments_enabled or is_paid }}">
-        <div class="free tab {{ 'active' if not is_paid }}">
+      <section id="submit-payment-type">
+        {% if not payments_enabled and not is_paid %}
+          <h2>{{ _('App Compatibility') }}</h2>
+        {% endif %}
+
+        <div class="island hasappendix{{ ' tabbable ' if payments_enabled or is_paid }}">
+          <div class="free tab {{ 'active' if not is_paid }}">
+            {% if payments_enabled or is_paid %}
+              <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
+            {% endif %}
+            <div class="error">{{ form.errors.free_platforms }}</div>
+            {%- for item in form.fields['free_platforms'].choices -%}
+              {{ button(form, item, can_change=not is_paid) }}
+            {%- endfor %}
+            {% if is_paid %}
+              <div id="free-tab-save" class="update-payment-type">
+                <button data-type="free">{{ _('Change to Free') }}</button>
+                {{ _('Changing to Free will put your app back into review.') }}
+              </div>
+            {% else %}
+              <div id="compat-save-button" class="hidden update-payment-type">
+                <button>{{ _('Save Changes') }}</button>
+              </div>
+            {% endif %}
+          </div>
+
           {% if payments_enabled or is_paid %}
-            <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
-          {% else %}
-            <h2>{{ _('App Compatibility') }}</h2>
-          {% endif %}
-          <div class="error">{{ form.errors.free_platforms }}</div>
-          {%- for item in form.fields['free_platforms'].choices -%}
-            {{ button(form, item, can_change=not is_paid) }}
-          {%- endfor %}
-          {% if is_paid %}
-            <div id="free-tab-save" class="update-payment-type">
-              <button data-type="free">{{ _('Change to Free') }}</button>
-              {{ _('Changing to Free will put your app back into review.') }}
-            </div>
-          {% else %}
-            <div id="compat-save-button" class="hidden update-payment-type">
-              <button>{{ _('Save Changes') }}</button>
+            <div class="paid tab {{ 'active' if is_paid }}">
+              <h2 id="paid-tab-header">
+                {%- if no_paid -%}
+                  <a href="#" class="tooltip disabled"
+                     title="{{ _('Paid mode requires that your app only supports Firefox OS.') }}">
+                     {{- _('Paid / In-app') -}}
+                  </a>
+                {%- else -%}
+                  <a href="#">{{ _('Paid / In-app') }}</a>
+                {%- endif -%}
+              </h2>
+              <div class="error">{{ form.errors.paid_platforms }}</div>
+              {%- for item in form.fields['paid_platforms'].choices -%}
+                {{ button(form, item, can_change=False) }}
+              {%- endfor %}
+              {% if not is_paid and not no_paid %}
+                <div id="paid-tab-save" class="update-payment-type">
+                  <button data-type="paid">{{ _('Change to Paid') }}</button>
+                  {{ _('Changing to Paid will put your app back into review.') }}
+                </div>
+              {% endif %}
+              <div class="helpful-links">
+                {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
+                         receipts_url='https://developer.mozilla.org/en-US/docs/Apps/Validating_a_receipt' %}
+                 Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.<br />
+                 Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
+                {% endtrans %}
+              </div>
             </div>
           {% endif %}
         </div>
-
-        {% if payments_enabled or is_paid %}
-          <div class="paid tab {{ 'active' if is_paid }}">
-            <h2 id="paid-tab-header">
-              {%- if no_paid -%}
-                <a href="#" class="tooltip disabled"
-                   title="{{ _('Paid mode requires that your app only supports Firefox OS.') }}">
-                   {{- _('Paid / In-app') -}}
-                </a>
-              {%- else -%}
-                <a href="#">{{ _('Paid / In-app') }}</a>
-              {%- endif -%}
-            </h2>
-            <div class="error">{{ form.errors.paid_platforms }}</div>
-            {%- for item in form.fields['paid_platforms'].choices -%}
-              {{ button(form, item, can_change=False) }}
-            {%- endfor %}
-            {% if not is_paid and not no_paid %}
-              <div id="paid-tab-save" class="update-payment-type">
-                <button data-type="paid">{{ _('Change to Paid') }}</button>
-                {{ _('Changing to Paid will put your app back into review.') }}
-              </div>
-            {% endif %}
-            <div class="helpful-links">
-              {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
-                       receipts_url='https://developer.mozilla.org/en-US/docs/Apps/Validating_a_receipt' %}
-               Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.<br />
-               Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
-              {% endtrans %}
-            </div>
-          </div>
-        {% endif %}
       </section>
 
       {% if is_paid %}
+      <h2>{{ _('Payment Accounts') }}</h2>
+
       <div id="paid-island">
         {{ disabled_payments_notice() }}
-        <h2>{{ _('Payment accounts') }}</h2>
         <div id="paid-island-incomplete" class="island warning{% if not is_incomplete %} hidden{% endif %}">
           {%- trans %}
             Your app is currently incomplete. Select a payment account and
@@ -139,9 +144,9 @@
       {% endif %}
 
       {% if is_paid %}
-      <div id="paid-regions-island">
-        <h2>{{ _('Prices and countries') }}</h2>
+      <h2>{{ _('Prices and Countries') }}</h2>
 
+      <div id="paid-regions-island">
         <section id="regions" class="island">
           <table>
             <tbody>
@@ -230,8 +235,9 @@
       </div>
       {% else %}
       {# Non-paid app region lists #}
+      <h2>{{ _('Regions and Listings') }}</h2>
+
       <div id="regions-island">
-        <h2>{{ _('Regions and listings') }}</h2>
         <section id="regions" class="island">
           {% include 'developers/payments/includes/regions_toggle.html' %}
           {% include 'developers/payments/includes/region_form.html' %}
@@ -243,9 +249,10 @@
       {% endif %}
 
       {% if is_paid %}
+      <h2>{{ _('Promote as upgrade to free version') }}</h2>
+
       <div id="paid-upsell-island">
         {{ disabled_payments_notice() }}
-        <h2>{{ _('Promote as upgrade to free version') }}</h2>
         <section class="island upsell">
           <table>
             <tbody>
@@ -282,6 +289,7 @@
       {% endif %}
     </form>
   </section>
+
   {% include 'developers/includes/addons_edit_nav.html' %}
   {% include 'developers/payments/includes/account_list.html' %}
   {% include 'developers/payments/includes/add_payment_account_bango.html' %}

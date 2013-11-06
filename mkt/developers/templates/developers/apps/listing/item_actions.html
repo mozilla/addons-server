@@ -43,9 +43,9 @@
     <a href="#" class="more-actions">{{ _('More') }}</a>
     <div class="more-actions-popup popup hidden">
       {% set manage_urls = [
-        (addon.get_dev_url('owner'), _('Manage Team Members & License')),
+        (addon.get_dev_url('owner'), _('Team Members & License')),
         (addon.get_dev_url('payments'), _('Compatibility & Payments')),
-        (addon.get_dev_url('versions'), _('Manage Status & Versions')),
+        (addon.get_dev_url('versions'), _('Status & Versions')),
       ] %}
       <ul>
         {% for url, title in manage_urls %}
