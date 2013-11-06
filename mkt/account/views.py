@@ -3,7 +3,7 @@ from django.conf import settings
 import basket
 import jingo
 from rest_framework import status
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
@@ -12,11 +12,14 @@ import amo
 from amo.decorators import login_required
 from amo.utils import send_mail_jinja
 from devhub.views import _get_items
+from users.models import UserProfile
 
-from mkt.account.serializers import FeedbackSerializer, NewsletterSerializer
+from mkt.account.serializers import (FeedbackSerializer, NewsletterSerializer,
+                                     PermissionsSerializer)
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
+from mkt.api.authorization import AllowSelf
 from mkt.api.base import CORSMixin
 
 
@@ -25,6 +28,14 @@ def activity_log(request, userid):
     all_apps = request.amo_user.addons.filter(type=amo.ADDON_WEBAPP)
     return jingo.render(request, 'account/activity.html',
                         {'log': _get_items(None, all_apps)})
+
+
+class MineMixin(object):
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get('pk')
+        if pk == 'mine':
+            self.kwargs['pk'] = self.request.amo_user.pk
+        return super(MineMixin, self).get_object(queryset)
 
 
 class CreateAPIViewWithoutModel(CreateAPIView):
@@ -92,3 +103,13 @@ class NewsletterView(CORSMixin, CreateAPIViewWithoutModel):
                          format='H', country=request.REGION.slug,
                          lang=request.LANG, optin='Y',
                          trigger_welcome='Y')
+
+
+class PermissionsView(CORSMixin, MineMixin, RetrieveAPIView):
+
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    cors_allowed_methods = ['get']
+    permission_classes = (AllowSelf,)
+    model = UserProfile
+    serializer_class = PermissionsSerializer

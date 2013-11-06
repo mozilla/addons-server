@@ -1,7 +1,6 @@
 import hashlib
 import hmac
 import uuid
-from functools import partial
 
 from django.conf import settings
 from django.contrib.auth.signals import user_logged_in
@@ -12,10 +11,8 @@ from django_statsd.clients import statsd
 from rest_framework import serializers
 from tastypie import http
 from tastypie.authorization import Authorization
-from tastypie.bundle import Bundle
 from tastypie.validation import CleanedDataFormValidation
 
-from access import acl
 from mkt.api.authentication import (OAuthAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import OwnerAuthorization
@@ -29,6 +26,8 @@ from users.models import UserProfile
 from users.views import browserid_authenticate
 
 from .forms import LoginForm
+from .serializers import PermissionsSerializer
+
 
 log = commonware.log.getLogger('z.account')
 
@@ -89,33 +88,6 @@ class AccountResource(Mine, CORSResource, MarketplaceModelResource):
         list_allowed_methods = []
         queryset = UserProfile.objects.filter()
         resource_name = 'settings'
-
-
-class PermissionResource(Mine, CORSResource, MarketplaceModelResource):
-
-    class Meta(MarketplaceModelResource.Meta):
-        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
-        authorization = OwnerAuthorization()
-        detail_allowed_methods = ['get']
-        list_allowed_methods = []
-        fields = ['resource_uri']
-        queryset = UserProfile.objects.filter()
-        resource_name = 'permissions'
-
-    def dehydrate(self, bundle):
-        allowed = partial(acl.action_allowed, bundle.request)
-        permissions = {
-            'admin': allowed('Admin', '%'),
-            'developer': bundle.request.amo_user.is_app_developer,
-            'localizer': allowed('Localizers', '%'),
-            'lookup': allowed('AccountLookup', '%'),
-            'curator': allowed('Collections', 'Curate'),
-            'reviewer': acl.action_allowed(bundle.request, 'Apps', 'Review'),
-            'webpay': (allowed('Transaction', 'NotifyFailure')
-                       and allowed('ProductIcon', 'Create')),
-        }
-        bundle.data['permissions'] = permissions
-        return bundle
 
 
 class InstalledResource(AppResource):
@@ -182,6 +154,6 @@ class LoginResource(CORSResource, MarketplaceResource):
                 'email': request.amo_user.email,
             }
         }
-        bundle.data.update(PermissionResource()
-                           .dehydrate(Bundle(request=request)).data)
+        permissions = PermissionsSerializer(context={'request': request})
+        bundle.data.update(permissions.data)
         return bundle

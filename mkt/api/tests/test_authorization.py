@@ -5,8 +5,8 @@ from nose.tools import eq_, ok_
 from amo.tests import app_factory, TestCase
 from test_utils import RequestFactory
 
-from mkt.api.authorization import (AnonymousReadOnlyAuthorization, flag,
-                                   PermissionAuthorization, switch)
+from mkt.api.authorization import (AllowSelf, AnonymousReadOnlyAuthorization,
+                                   flag, PermissionAuthorization, switch)
 from mkt.site.fixtures import fixture
 
 from .test_authentication import OwnerAuthorization
@@ -85,3 +85,42 @@ class TestWaffle(TestCase):
 
     def test_not_switch_flag(self):
         ok_(not switch('foo')().has_permission(self.request, ''))
+
+
+class TestAllowSelfAuthorization(TestCase):
+    fixtures = fixture('user_2519', 'user_999')
+
+    def setUp(self):
+        self.authorization = AllowSelf()
+        self.anonymous = AnonymousUser()
+        self.user = User.objects.get(pk=2519)
+        self.request = RequestFactory().get('/')
+        self.request.user = self.anonymous
+        self.request.amo_user = None
+
+    def test_has_permission_anonymous(self):
+        eq_(self.authorization.has_permission(self.request, 'myview'), False)
+
+    def test_has_permission_user(self):
+        self.request.user = self.user
+        self.request.amo_user = self.request.user.get_profile()
+        eq_(self.authorization.has_permission(self.request, 'myview'), True)
+
+    def test_has_object_permission_anonymous(self):
+        result = self.authorization.has_object_permission(self.request,
+                                                          'myview', self.user)
+        eq_(result, False)
+
+    def test_has_object_permission_user(self):
+        self.request.user = self.user
+        self.request.amo_user = self.request.user.get_profile()
+        result = self.authorization.has_object_permission(self.request,
+                                                          'myview', self.user)
+        eq_(result, True)
+
+    def test_has_object_permission_different_user(self):
+        self.request.user = User.objects.get(pk=999)
+        self.request.amo_user = self.request.user.get_profile()
+        result = self.authorization.has_object_permission(self.request,
+                                                          'myview', self.user)
+        eq_(result, False)
