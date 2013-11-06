@@ -221,6 +221,11 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(self.setup_type(amo.STATUS_BETA), 'pending')
         eq_(self.setup_type(amo.STATUS_PURGATORY), 'pending')
 
+    def test_no_version(self):
+        helper = helpers.ReviewHelper(request=self.request, addon=self.addon,
+                                      version=None)
+        eq_(helper.review_type, 'pending')
+
     def test_review_files(self):
         for status in REVIEW_FILES_STATUSES:
             self.setup_data(status=status)
