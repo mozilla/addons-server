@@ -231,10 +231,10 @@ class TestLoginHandler(TestCase):
 
     def setUp(self):
         super(TestLoginHandler, self).setUp()
-        self.list_url = get_absolute_url(list_url('login'), api_name='account')
+        self.url = reverse('account-login')
 
     def post(self, data):
-        return self.client.post(self.list_url, json.dumps(data),
+        return self.client.post(self.url, json.dumps(data),
                                 content_type='application/json')
 
     @patch.object(uuid, 'uuid4', FakeUUID)
@@ -284,7 +284,7 @@ class TestLoginHandler(TestCase):
                 {'status': 'busted'}))
         res = self.post({'assertion': 'fake-assertion',
                          'audience': 'fakeamo.org'})
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
 
     def test_login_old_user_new_email(self):
         """
@@ -301,7 +301,7 @@ class TestLoginHandler(TestCase):
         res = self.post({})
         data = json.loads(res.content)
         eq_(res.status_code, 400)
-        assert 'assertion' in data['error_message']
+        assert 'assertion' in data
 
 
 class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):

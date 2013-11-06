@@ -1,12 +1,10 @@
-import json
-
-from rest_framework import generics, response, serializers, viewsets
+from rest_framework import generics, serializers, viewsets
 from rest_framework.permissions import AllowAny
 from rest_framework.throttling import UserRateThrottle
 
 from abuse.models import AbuseReport
 
-from mkt.account.api import UserSerializer
+from mkt.account.serializers import UserSerializer
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
