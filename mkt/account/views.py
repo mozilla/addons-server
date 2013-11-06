@@ -1,17 +1,13 @@
 from django.conf import settings
 
 import basket
-import jingo
 from rest_framework import status
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 
-import amo
-from amo.decorators import login_required
 from amo.utils import send_mail_jinja
-from devhub.views import _get_items
 from users.models import UserProfile
 
 from mkt.account.serializers import (FeedbackSerializer, NewsletterSerializer,
@@ -21,13 +17,6 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowSelf
 from mkt.api.base import CORSMixin
-
-
-@login_required
-def activity_log(request, userid):
-    all_apps = request.amo_user.addons.filter(type=amo.ADDON_WEBAPP)
-    return jingo.render(request, 'account/activity.html',
-                        {'log': _get_items(None, all_apps)})
 
 
 class MineMixin(object):
