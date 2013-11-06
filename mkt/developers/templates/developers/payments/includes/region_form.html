@@ -1,18 +1,35 @@
 {{ region_form.regions.errors }}
-<div class="hidden restricted checkbox-choices region-choices"{% if not is_paid %} id="region-list" data-disabled-regions="{{ region_form.disabled_regions|json }}"{% endif %}>
+<header class="special-regions-unrestricted hidden unrestricted">
+  <h4>{{ _('Regions that require extra consideration:') }}</h4>
+</header>
+<div class="hidden restricted checkbox-choices region-choices"{% if not is_paid %} id="region-list"
+     data-disabled-regions="{{ region_form.disabled_regions|json }}"{% endif %}
+     data-special-regions="{{ region_form.special_region_ids|json }}"
+     data-special-region-statuses="{{ region_form.special_region_statuses|json }}"
+     {# XXX: We are not using JS gettext because we have had some bugs with JS extraction lately. #}
+     data-special-region-l10n="{{ region_form.special_region_messages|json }}">
   <ul>
-    {% for value, text in region_form.regions.field.choices %}
+    {% for value, text in region_form.regions.field.choices if value not in region_form.special_region_ids or waffle.flag('special-regions') %}
+      {% set special = value in region_form.special_region_ids %}
+      {% set disabled = value in region_form.disabled_regions %}
+      {% set checked = value in region_form.initial.regions %}
       <li data-region="{{ value }}">
-        <label class="region-cb{% if value in region_form.disabled_regions %} disabled{% endif %}">
-        <input type="checkbox" class="restricted"
-          {% if value in region_form.disabled_regions %}disabled
-          {% elif value in region_form.initial.regions %}checked{% endif %}
-          name="regions" value="{{ value }}">{{ text }}</label>
+        <label class="region-cb{{ ' special' if special }}{{ ' disabled' if disabled }}">
+          <input type="checkbox" class="restricted{{ ' special' if special }}"
+            {% if disabled %}disabled{% elif checked %}checked{% endif %}
+            name="regions" value="{{ value }}">
+          <span class="region region-{{ region_form.regions_by_id[value].slug }}">{{ text }}</span>
+        </label>
+        {% if special %}
+          <span class="status-label"></span>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
 </div>
-{% if region_form.disabled_regions %}
+{# Show disabled region notice for paid apps or free apps with special regions. #}
+{% if region_form.disabled_regions or
+      (not is_paid and region_form.special_regions and waffle.flag('special-regions')) %}
   {% include 'developers/payments/includes/regions_disabled.html' %}
 {% endif %}
 <div class="other-regions{{ ' restricted' if not is_paid }}">

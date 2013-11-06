@@ -23,7 +23,7 @@ import addons.forms
 import lib.iarc
 from access import acl
 from addons.forms import clean_tags, icons, IconWidgetRenderer, slug_validator
-from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
+from addons.models import (Addon, AddonUser, BlacklistedSlug,
                            Category, Preview)
 from addons.widgets import CategoriesSelectMultiple
 from amo import get_user
@@ -43,43 +43,90 @@ from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.constants.ratingsbodies import (ALL_RATINGS, RATINGS_BODIES,
                                          RATINGS_BY_NAME)
+from mkt.regions.utils import parse_region
 from mkt.site.forms import AddonChoiceField
-from mkt.webapps.models import AddonExcludedRegion, ContentRating, Webapp
+from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import index_webapps
+
 
 from . import tasks
 
 log = commonware.log.getLogger('mkt.developers')
 
 
-def ban_unrated_game(app):
-    """Disallow games in Brazil/Germany without a rating."""
+region_error = lambda region: forms.ValidationError(
+    _('You cannot select {region}.').format(
+        region=unicode(parse_region(region).name)
+    )
+)
+
+
+def toggle_game(app):
+    """
+    Exclude unrated games from regions requiring content ratings.
+    Allow newly rated games in regions requiring content ratings.
+    """
     if not Webapp.category('games'):
         return
     for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
-        if (app.listed_in(category='games') and
-            app.listed_in(region=region) and
-            not app.content_ratings_in(region)):
+        if app.listed_in(category='games'):
+            if app.content_ratings_in(region):
+                aer = app.addonexcludedregion.filter(region=region.id)
+                if aer.exists():
+                    aer.delete()
+                    log.info(u'[Webapp:%s] Game included in new region '
+                             u'(%s).' % (app, region.id))
+            else:
+                aer, created = app.addonexcludedregion.get_or_create(
+                    region=region.id)
+                if created:
+                    log.info(u'[Webapp:%s] Game excluded from new region '
+                             u'(%s).' % (app, region.id))
 
-            aer, created = AddonExcludedRegion.objects.get_or_create(
-                addon=app, region=region.id)
-            if created:
-                log.info(u'[Webapp:%s] Game excluded from new region '
-                         u'(%s).' % (app, region.id))
 
-
-def unban_rated_game(app):
-    """Allow games in Brazil/Germany with a rating."""
-    if not Webapp.category('games'):
+def toggle_app_for_special_regions(request, app, enabled_regions=None):
+    """Toggle for special regions (e.g., China)."""
+    if not waffle.flag_is_active(request, 'special-regions'):
         return
-    for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
-        if (app.listed_in(category='games') and
-            app.content_ratings_in(region)):
+
+    # We omit `amo.STATUS_REJECTED` because we shouldn't be altering that
+    # status. If a reviewer rejects that app in China, that's permanent!
+    valid_statuses = (amo.STATUS_NULL, amo.STATUS_PENDING, amo.STATUS_PUBLIC)
+
+    for region in mkt.regions.SPECIAL_REGIONS:
+        status = app.geodata.get_status(region)
+
+        if (status in valid_statuses and
+            enabled_regions is not None):
+            if region.id in enabled_regions:
+                # If it's not already enabled, mark as pending.
+                if status != amo.STATUS_PUBLIC:
+                    # Developer requested for it to be in China.
+                    status = amo.STATUS_PENDING
+                    app.geodata.set_status(region, status)
+                    log.info(u'[Webapp:%s] App marked as pending (special) '
+                             u'region (%s).' % (app, region.slug))
+            else:
+                # Developer cancelled request for approval.
+                status = amo.STATUS_NULL
+                app.geodata.set_status(region, status)
+                log.info(u'[Webapp:%s] App marked as null (special) '
+                         u'region (%s).' % (app, region.slug))
+
+        if status == amo.STATUS_PUBLIC:
+            # Reviewer approved for it to be in China.
             aer = app.addonexcludedregion.filter(region=region.id)
             if aer.exists():
                 aer.delete()
-                log.info(u'[Webapp:%s] Game included for new region '
-                         u'(%s).' % (app, region.id))
+                log.info(u'[Webapp:%s] App included in new (special) '
+                         u'region (%s).' % (app, region.slug))
+        else:
+            # Developer requested for it to be in China.
+            aer, created = app.addonexcludedregion.get_or_create(
+                region=region.id)
+            if created:
+                log.info(u'[Webapp:%s] App excluded from new (special) '
+                         u'region (%s).' % (app, region.slug))
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -341,20 +388,19 @@ class AdminSettingsForm(PreviewForm):
             new_ratings = after - before
             for i in new_ratings:
                 rb = ALL_RATINGS()[i]
-                ContentRating.objects.create(addon=addon, rating=rb.id,
-                                             ratings_body=rb.ratingsbody.id)
-            if new_ratings:
-                unban_rated_game(addon)
+                addon.content_ratings.create(rating=rb.id,
+                    ratings_body=rb.ratingsbody.id)
         else:
             addon.content_ratings.all().delete()
 
-        index_webapps.delay([addon.id])
-
-        ban_unrated_game(addon)
+        toggle_game(addon)
         uses_flash = self.cleaned_data.get('flash')
         af = addon.get_latest_file()
         if af is not None:
             af.update(uses_flash=bool(uses_flash))
+
+        index_webapps.delay([addon.id])
+
         return addon
 
 
@@ -653,13 +699,17 @@ class RegionForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
         error_messages={'required':
             _lazy(u'You must select at least one region.')})
+    special_regions = forms.MultipleChoiceField(required=False,
+        choices=[(x.id, x.name) for x in mkt.regions.SPECIAL_REGIONS],
+        widget=forms.CheckboxSelectMultiple)
     enable_new_regions = forms.BooleanField(required=False,
         label=_lazy(u'Enable new regions'))
-    restricted = forms.ChoiceField(required=False,
-        choices=[(0, _lazy('Make my app available everywhere')),
+    restricted = forms.TypedChoiceField(required=False,
+        choices=[(0, _lazy('Make my app available in most regions')),
                  (1, _lazy('Choose where my app is made available'))],
         widget=forms.RadioSelect(attrs={'class': 'choices'}),
-        initial=0)
+        initial=0,
+        coerce=int)
 
     def __init__(self, *args, **kw):
         self.product = kw.pop('product', None)
@@ -671,7 +721,8 @@ class RegionForm(forms.Form):
         self.regions_before = self.product.get_region_ids(worldwide=True)
 
         self.initial = {
-            'regions': self.regions_before,
+            'regions': sorted(set(self.regions_before) -
+                              set(self.special_region_ids)),
             'restricted': int(self.product.geodata.restricted),
             'enable_new_regions': self.product.enable_new_regions,
         }
@@ -689,7 +740,39 @@ class RegionForm(forms.Form):
                 if not self.product.content_ratings_in(region):
                     disabled_regions.add(region.id)
 
+        # If it's been rejected for China, for example, don't ever allow
+        # the developer to opt in again.
+        for region in self.regions_before:
+            status = self.product.geodata.get_status(region)
+            if status == amo.STATUS_REJECTED:
+                disabled_regions.add(region)
+
         return disabled_regions
+
+    @property
+    def regions_by_id(self):
+        return mkt.regions.REGIONS_CHOICES_ID_DICT
+
+    @property
+    def special_region_objs(self):
+        return mkt.regions.SPECIAL_REGIONS
+
+    @property
+    def special_region_ids(self):
+        return mkt.regions.SPECIAL_REGION_IDS
+
+    @property
+    def special_region_statuses(self):
+        """Returns the null/pending/public status for each region."""
+        statuses = {}
+        for region in self.special_region_objs:
+            statuses[region.id] = self.product.geodata.get_status_slug(region)
+        return statuses
+
+    @property
+    def special_region_messages(self):
+        """Returns the L10n messages for each region's status."""
+        return self.product.geodata.get_status_messages()
 
     def is_toggling(self):
         if not self.request or not hasattr(self.request, 'POST'):
@@ -701,38 +784,58 @@ class RegionForm(forms.Form):
         return (self.product.premium_type in amo.ADDON_PREMIUMS
                 or self.product.premium_type == amo.ADDON_FREE_INAPP)
 
-    def clean(self):
-        data = self.cleaned_data
-        if not data.get('regions') and not self.is_toggling():
-            raise forms.ValidationError(
-                _('You must select at least one region.'))
-        return data
+    def clean_regions(self):
+        regions = self.cleaned_data['regions']
+        if not self.is_toggling():
+            if not regions:
+                raise forms.ValidationError(
+                    _('You must select at least one region.'))
+
+            # Handle disabled regions.
+            for region in regions:
+                if region in self.disabled_regions:
+                    raise region_error(region)
+        return regions
+
+    def clean_special_regions(self):
+        special_regions = self.cleaned_data['special_regions']
+        if not self.is_toggling():
+            # Handle special regions.
+            for region in special_regions:
+                status = self.product.geodata.get_status(region)
+                if status == amo.STATUS_REJECTED:
+                    raise region_error(region)
+        return special_regions
 
     def save(self):
         # Don't save regions if we are toggling.
         if self.is_toggling():
             return
 
+        regions = [int(x) for x in self.cleaned_data['regions']]
+        special_regions = [
+            int(x) for x in self.cleaned_data['special_regions']
+        ]
         restricted = int(self.cleaned_data['restricted'] or 0)
 
         if restricted:
             before = set(self.regions_before)
-            after = set(map(int, self.cleaned_data['regions']))
+            after = set(regions)
 
             log.info(u'[Webapp:%s] App mark as restricted.' % self.product)
 
             # Add new region exclusions.
             to_add = before - after
-            for region in to_add:
-                aer, created = AddonExcludedRegion.objects.get_or_create(
-                    addon=self.product, region=region)
+            for region in to_add - set(self.disabled_regions):
+                aer, created = self.product.addonexcludedregion.get_or_create(
+                    region=region)
                 if created:
                     log.info(u'[Webapp:%s] Excluded from new region (%s).'
                              % (self.product, region))
 
             # Remove old region exclusions.
             to_remove = after - before
-            for region in to_remove:
+            for region in to_remove.union(self.disabled_regions):
                 self.product.addonexcludedregion.filter(
                     region=region).delete()
                 log.info(u'[Webapp:%s] No longer exluded from region (%s).'
@@ -744,7 +847,11 @@ class RegionForm(forms.Form):
         self.product.geodata.update(restricted=restricted)
 
         # TODO: Stop saving AddonExcludedRegion objects when IARC work lands.
-        ban_unrated_game(self.product)
+        toggle_game(self.product)
+
+        # Toggle region exclusions/statuses for special regions (e.g., China).
+        toggle_app_for_special_regions(self.request, self.product,
+                                       special_regions)
 
         if self.cleaned_data['enable_new_regions']:
             self.product.update(enable_new_regions=True)
@@ -798,34 +905,18 @@ class CategoryForm(happyforms.Form):
         # Add new categories.
         to_add = set(after) - set(before)
         for c in to_add:
-            AddonCategory.objects.create(addon=self.product, category_id=c)
+            self.product.addoncategory_set.create(category_id=c)
 
         # Remove old categories.
         to_remove = set(before) - set(after)
-        for c in to_remove:
-            self.product.addoncategory_set.filter(category=c).delete()
+        self.product.addoncategory_set.filter(
+            category_id__in=to_remove).delete()
 
-        # Disallow games in Brazil without a rating.
-        games = Webapp.category('games')
-        if not games:
-            return
+        # Disallow/allow games in Brazil/Germany based on content ratings.
+        toggle_game(self.product)
 
-        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
-            if (self.product.listed_in(region) and
-                not self.product.content_ratings_in(region)):
-
-                if games.id in to_add:
-                    aer, created = AddonExcludedRegion.objects.get_or_create(
-                        addon=self.product, region=region.id)
-                    if created:
-                        log.info(u'[Webapp:%s] Game excluded from new region '
-                                 u'(%s).' % (self.product, region.slug))
-
-                elif games.id in to_remove:
-                    self.product.addonexcludedregion.filter(
-                        region=region.id).delete()
-                    log.info(u'[Webapp:%s] Game no longer exluded from region'
-                             u' (%s).' % (self.product, region.slug))
+        # Toggle app for special regions (e.g., China).
+        toggle_app_for_special_regions(self.request, self.product)
 
 
 class DevAgreementForm(happyforms.Form):

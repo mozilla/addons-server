@@ -375,6 +375,40 @@
     color: white;
 }
 
+.region-msg.island {
+    background-position: 15px 50%;
+    border-box();
+    float: left;
+    line-height: 25px;
+    margin-bottom: 10px;
+    padding: 15px 15px 15px 45px;
+    width: 100%;
+
+    .button {
+        float: right;
+        font-size: 12px;
+    }
+}
+
+.status-label {
+    color: #800;
+    font-size: 10px;
+    padding-left: 2px;
+
+    &:not(:empty) {
+        &:before {
+            content: "(";
+        }
+        &:after {
+            content: ")";
+        }
+    }
+}
+
+.special-regions + ul {
+    padding-top: 6px;
+}
+
 .overlay > .show-agreement {
     max-width: 650px;
     min-width: 650px;
@@ -491,7 +525,7 @@ body > label {
     }
     // More room to breathe for region checkboxes.
     [data-region] input[type=checkbox] {
-        margin-right: 6px;
+        margin-right: 4px;
     }
 }
 
@@ -511,6 +545,10 @@ body > label {
         .other-regions {
             margin: 10px 22px 5px;
         }
+        .special-regions-unrestricted {
+            // Offset for the 2px on the `<ul>`.
+            margin: 10px 20px 5px;
+        }
         header {
             margin-top: 0;
         }
@@ -522,9 +560,17 @@ body > label {
             padding-top: 15px;
         }
     }
+
+    .special-regions-unrestricted h4 {
+        color: $medium-gray;
+        font-size: 12px;
+        font-weight: 400;
+    }
 }
 
-.region-cb.disabled:after {
+.region-cb.disabled:after,
+.region-cb.special:after {
+    color: $note-gray;
     content: " *";
 }
 
@@ -534,6 +580,11 @@ body > label {
     font-size: 14px;
     font-weight: 600;
     vertical-align: top;
+}
+
+// Hidden checkboxes for special regions.
+.special-regions ul {
+    display: none;
 }
 
 .paid-regions {
@@ -546,4 +597,93 @@ body > label {
 
 #regions li label {
     font-weight: normal;
+}
+
+.region {
+    background-repeat: no-repeat;
+    background-size: 14px auto;
+    min-height: 14px;
+    overflow: visible;
+    padding: 1px 0 0 20px;
+    text-overflow: normal;
+}
+
+label .region {
+    background-position: 0 50%;
+}
+
+.region-worldwide {
+    background-image: url(../../img/mkt/icons/regions/worldwide.png);
+}
+
+.region-br {
+    background-image: url(../../img/mkt/icons/regions/br.png);
+}
+
+.region-co {
+    background-image: url(../../img/mkt/icons/regions/co.png);
+}
+
+.region-es {
+    background-image: url(../../img/mkt/icons/regions/es.png);
+}
+
+.region-gr {
+    background-image: url(../../img/mkt/icons/regions/gr.png);
+}
+
+.region-mx {
+    background-image: url(../../img/mkt/icons/regions/mx.png);
+}
+
+.region-pl {
+    background-image: url(../../img/mkt/icons/regions/pl.png);
+}
+
+.region-uk {
+    background-image: url(../../img/mkt/icons/regions/uk.png);
+}
+
+.region-us {
+    background-image: url(../../img/mkt/icons/regions/us.png);
+}
+
+.region-ve {
+    background-image: url(../../img/mkt/icons/regions/ve.png);
+}
+
+.region-rs {
+    background-image: url(../../img/mkt/icons/regions/rs.png);
+}
+
+.region-me {
+    background-image: url(../../img/mkt/icons/regions/me.png);
+}
+
+.region-hu {
+    background-image: url(../../img/mkt/icons/regions/hu.png);
+}
+
+.region-gr {
+    background-image: url(../../img/mkt/icons/regions/gr.png);
+}
+
+.region-de {
+    background-image: url(../../img/mkt/icons/regions/de.png);
+}
+
+.region-ar {
+    background-image: url(../../img/mkt/icons/regions/ar.png);
+}
+
+.region-uy {
+    background-image: url(../../img/mkt/icons/regions/uy.png);
+}
+
+.region-pe {
+    background-image: url(../../img/mkt/icons/regions/pe.png);
+}
+
+.region-cn {
+    background-image: url(../../img/mkt/icons/regions/cn.png);
 }

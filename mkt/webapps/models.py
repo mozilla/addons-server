@@ -44,6 +44,7 @@ from versions.models import Version
 
 import mkt
 from mkt.constants import APP_FEATURES, apps
+from mkt.regions.utils import parse_region
 from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
@@ -1764,3 +1765,47 @@ class Geodata(amo.models.ModelBase):
         return u'%s (%s): <Webapp %s>' % (self.id,
             'restricted' if self.restricted else 'unrestricted',
             self.addon.id)
+
+    def get_status(self, region):
+        """
+        Returns the status of listing in a given region (e.g., China).
+        """
+        return getattr(self, 'region_%s_status' % parse_region(region).slug,
+                       amo.STATUS_PUBLIC)
+
+    def set_status(self, region, status, save=False):
+        attr = 'region_%s_status' % parse_region(region).slug
+        if hasattr(self, attr):
+            value = setattr(self, attr, status)
+            if save:
+                self.save()
+            return value
+
+    def get_status_slug(self, region):
+        return {
+            amo.STATUS_PENDING: 'pending',
+            amo.STATUS_PUBLIC: 'public',
+            amo.STATUS_REJECTED: 'rejected',
+        }.get(self.get_status(region), 'unavailable')
+
+    @classmethod
+    def get_status_messages(cls):
+        return {
+            # L10n: An app is awaiting approval for a particular region.
+            'pending': _('awaiting approval'),
+            # L10n: An app is rejected for a particular region.
+            'rejected': _('rejected'),
+            # L10n: An app requires additional review for a particular region.
+            'unavailable': _('requires additional review')
+        }
+
+
+# Add a dynamic status field to `Geodata` model for each special region:
+# -  0: STATUS_NULL (Unavailable)
+# -  2: STATUS_PENDING (Pending)
+# -  4: STATUS_PUBLIC (Public)
+# - 12: STATUS_REJECTED (Rejected)
+for region in mkt.regions.SPECIAL_REGIONS:
+    field = models.PositiveIntegerField(help_text=region.name,
+        choices=amo.STATUS_CHOICES.items(), db_index=True, default=0)
+    field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)

@@ -34,6 +34,9 @@ class REGION(object):
     weight::
         Determines sort order (after slug).
 
+    special::
+        Does this region need to be reviewed separately? That region is
+        special.
 
     """
     id = None
@@ -44,6 +47,7 @@ class REGION(object):
     mcc = None
     weight = 0
     ratingsbodies = ()
+    special = False
 
 
 class WORLDWIDE(REGION):
@@ -211,6 +215,7 @@ class CN(REGION):
     default_currency = 'RMB'
     default_language = 'zh-CN'
     mcc = 460
+    special = True
 
 
 # Create a list of tuples like so (in alphabetical order):
@@ -243,6 +248,9 @@ REGIONS_DICT = dict(REGIONS_CHOICES)
 REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
+
+SPECIAL_REGIONS = [x for x in BY_SLUG if x.special]
+SPECIAL_REGION_IDS = sorted(x.id for x in SPECIAL_REGIONS)
 
 # Regions not including worldwide.
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]

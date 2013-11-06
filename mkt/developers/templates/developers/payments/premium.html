@@ -173,6 +173,10 @@
                        data-api-error-msg="{{ _('A server error occurred. Please try again later.') }}"
                        data-disabled-regions="{{ region_form.disabled_regions|json }}"
                        data-all-paid-region-ids="{{ all_paid_region_ids_by_slug|json }}"
+                       data-special-regions="{{ region_form.special_region_ids|json }}"
+                       data-special-region-statuses="{{ region_form.special_region_statuses|json }}"
+                       {# XXX: We are not using JS gettext because we have had some bugs with JS extraction lately. #}
+                       data-special-region-l10n="{{ region_form.special_region_messages|json }}"
                        data-not-applicable-msg="{{ _('Not applicable') }}"
                        data-payment-methods="{{ payment_methods|json }}"
                        data-pricelist-api-url="{{ api_pricelist_url }}"
@@ -184,6 +188,9 @@
 
                     <div class="paid-regions">
                       <h4>{{ _('Available Regions') }}</h4>
+
+                      {% include 'developers/payments/includes/special_regions.html' %}
+
                       <p class="hint note">
                         {% trans status_url='/developers/docs/payments/status' %}
                           Check out the <a href="{{ status_url }}">status page</a> to see what
@@ -239,6 +246,7 @@
 
       <div id="regions-island">
         <section id="regions" class="island">
+          {% include 'developers/payments/includes/special_regions.html' %}
           {% include 'developers/payments/includes/regions_toggle.html' %}
           {% include 'developers/payments/includes/region_form.html' %}
           <div class="listing-footer">

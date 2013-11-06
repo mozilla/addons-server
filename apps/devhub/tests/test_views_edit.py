@@ -1,6 +1,5 @@
 import json
 import os
-import re
 import tempfile
 
 from django.conf import settings
@@ -27,7 +26,6 @@ from devhub.models import ActivityLog
 from devhub.views import edit_theme
 from tags.models import Tag, AddonTag
 from users.models import UserProfile
-from versions.models import License
 
 
 def get_section_url(addon, section, edit=False):
