@@ -10,7 +10,6 @@ import amo
 from amo import get_user
 from lib.metrics import record_action
 
-from mkt.account.api import AccountResource
 from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
@@ -40,9 +39,12 @@ class RatingPaginator(paginator.Paginator):
 class RatingResource(CORSResource, MarketplaceModelResource):
 
     app = fields.ToOneField(AppResource, 'addon', readonly=True)
-    user = fields.ToOneField(AccountResource, 'user', readonly=True, full=True)
-    version = CompatToOneField(None, 'version', rest='version', readonly=True,
-                               null=True, extra_fields=('version',))
+    user = CompatToOneField(None, 'user', url_name='account-settings',
+                            readonly=True, null=True,
+                            extra_fields=('display_name',))
+    version = CompatToOneField(None, 'version', url_name='version-detail',
+                               readonly=True, null=True,
+                               extra_fields=('version',))
     report_spam = fields.CharField()
 
     class Meta(MarketplaceModelResource.Meta):

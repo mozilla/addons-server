@@ -13,7 +13,7 @@ from nose.tools import eq_, ok_
 
 from amo.tests import TestCase
 from mkt.account.views import MineMixin
-from mkt.api.base import get_url, list_url
+from mkt.api.base import list_url
 from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url, RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
@@ -123,64 +123,64 @@ class TestPermission(RestOAuth):
         ok_(res.json['permissions']['webpay'])
 
 
-class TestAccount(BaseOAuth):
+class TestAccount(RestOAuth):
     fixtures = fixture('user_2519', 'user_10482', 'webapp_337141')
 
     def setUp(self):
-        super(TestAccount, self).setUp(api_name='account')
-        self.list_url = list_url('settings')
-        self.get_url = get_url('settings', '2519')
+        super(TestAccount, self).setUp()
+        self.url = reverse('account-settings', kwargs={'pk': 2519})
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_verbs(self):
-        self._allowed_verbs(self.list_url, ())
-        self._allowed_verbs(self.get_url, ('get', 'patch', 'put'))
+        self._allowed_verbs(self.url, ('get', 'patch', 'put'))
 
     def test_not_allowed(self):
-        eq_(self.anon.get(self.get_url).status_code, 401)
+        eq_(self.anon.get(self.url).status_code, 403)
 
     def test_allowed(self):
-        res = self.client.get(self.get_url)
+        res = self.client.get(self.url)
         eq_(res.status_code, 200, res.content)
         data = json.loads(res.content)
         eq_(data['display_name'], self.user.display_name)
 
     def test_other(self):
-        eq_(self.client.get(get_url('settings', '10482')).status_code, 403)
+        url = reverse('account-settings', kwargs={'pk': 10482})
+        eq_(self.client.get(url).status_code, 403)
 
     def test_own(self):
-        res = self.client.get(get_url('settings', 'mine'))
+        url = reverse('account-settings', kwargs={'pk': 'mine'})
+        res = self.client.get(url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['display_name'], self.user.display_name)
 
     def test_patch(self):
-        res = self.client.patch(self.get_url,
+        res = self.client.patch(self.url,
                                 data=json.dumps({'display_name': 'foo'}))
-        eq_(res.status_code, 202)
+        eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')
 
     def test_put(self):
-        res = self.client.put(self.get_url,
+        res = self.client.put(self.url,
                               data=json.dumps({'display_name': 'foo'}))
-        eq_(res.status_code, 204)
+        eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')
         eq_(user.username, self.user.username)  # Did not change.
 
     def test_patch_extra_fields(self):
-        res = self.client.patch(self.get_url,
+        res = self.client.patch(self.url,
                                 data=json.dumps({'display_name': 'foo',
                                                  'username': 'bob'}))
-        eq_(res.status_code, 202)
+        eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')  # Got changed successfully.
         eq_(user.username, self.user.username)  # Did not change.
 
     def test_patch_other(self):
-        res = self.client.patch(get_url('settings', '10482'),
-                                data=json.dumps({'display_name': 'foo'}))
+        url = reverse('account-settings', kwargs={'pk': 10482})
+        res = self.client.patch(url, data=json.dumps({'display_name': 'foo'}))
         eq_(res.status_code, 403)
 
 

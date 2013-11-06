@@ -117,6 +117,15 @@ class AllowNone(BasePermission):
         return False
 
 
+class AllowOwner(BasePermission):
+
+    def has_permission(self, request, view):
+        return request.user.is_authenticated()
+
+    def has_object_permission(self, request, view, obj):
+        return obj.user.pk == request.amo_user.pk
+
+
 class AllowAppOwner(BasePermission):
 
     def has_permission(self, request, view):

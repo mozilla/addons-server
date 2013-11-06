@@ -10,7 +10,8 @@ import commonware.log
 from django_statsd.clients import statsd
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
-from rest_framework.generics import CreateAPIView, RetrieveAPIView
+from rest_framework.generics import (CreateAPIView, RetrieveAPIView,
+                                     RetrieveUpdateAPIView)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
@@ -19,13 +20,13 @@ from amo.utils import send_mail_jinja
 from users.models import UserProfile
 from users.views import browserid_authenticate
 
-from mkt.account.serializers import (FeedbackSerializer, LoginSerializer,
-                                     NewsletterSerializer,
+from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
+                                     LoginSerializer, NewsletterSerializer,
                                      PermissionsSerializer)
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowSelf
+from mkt.api.authorization import AllowSelf, AllowOwner
 from mkt.api.base import CORSMixin
 
 
@@ -65,6 +66,15 @@ class CreateAPIViewWithoutModel(CreateAPIView):
             data = self.create_action(request, serializer)
             return self.response_success(request, serializer, data=data)
         return self.response_error(request, serializer)
+
+
+class AccountView(MineMixin, CORSMixin, RetrieveUpdateAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    cors_allowed_methods = ['get', 'patch', 'put']
+    model = UserProfile
+    permission_classes = (AllowOwner,)
+    serializer_class = AccountSerializer
 
 
 class FeedbackView(CORSMixin, CreateAPIViewWithoutModel):
