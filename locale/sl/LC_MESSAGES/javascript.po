@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-11-06 11:59+0000\n"
+"PO-Revision-Date: 2013-11-06 12:51+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1383739167.0\n"
+"X-POOTLE-MTIME: 1383742279.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} ster"
-msgstr[1] "{0} sterre"
+msgstr[0] ""
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
@@ -30,7 +30,7 @@ msgstr ""
 
 #: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr "Kies 'n lêer..."
+msgstr ""
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
@@ -190,11 +190,11 @@ msgstr ""
 
 #: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
 msgid "Learn more"
-msgstr "Meer inligting"
+msgstr ""
 
 #: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
 msgid "Example"
-msgstr "Voorbeeld"
+msgstr ""
 
 #: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
@@ -214,7 +214,7 @@ msgstr ""
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr "Verwyder hierdie lokalisering"
+msgstr ""
 
 #: media/js/devreg/mobile_review_actions.js:6
 msgid "Keep review; remove flags"
@@ -297,7 +297,7 @@ msgstr[3] ""
 #: media/js/devreg/payments-manage.js:56 media/js/devreg/payments-manage.js:101 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
-msgstr "Fout"
+msgstr ""
 
 #: media/js/devreg/payments-manage.js:57 media/js/devreg/payments-manage.js:102
 msgid "There was a problem contacting the payment server."
@@ -325,7 +325,7 @@ msgstr ""
 
 #: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:194
 msgid "Warning"
-msgstr "Waarskuwing"
+msgstr ""
 
 #: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:281
 msgid "Compatibility Tests"
@@ -342,16 +342,16 @@ msgstr ""
 #: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:369
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} fout"
-msgstr[1] "{0} foute"
+msgstr[0] ""
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
 #: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:371
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} waarskuwing"
-msgstr[1] "{0} waarskuwings"
+msgstr[0] ""
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
@@ -361,7 +361,7 @@ msgstr ""
 
 #: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:466
 msgid "Internal server error"
-msgstr "Interne bedienerfout"
+msgstr ""
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
@@ -378,7 +378,7 @@ msgstr ""
 #. L10n: {0} is an app name.
 #: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Dié tema is onversoenbaar met u weergawe van {0}"
+msgstr ""
 
 #: media/js/impala/persona_creation.js:102
 msgid "All Rights Reserved"
@@ -430,7 +430,7 @@ msgstr ""
 
 #: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
-msgstr "Kategorie"
+msgstr ""
 
 #: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
@@ -438,11 +438,11 @@ msgstr ""
 
 #: media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr "Deursoek webtoepassings vir <b>{0}</b>"
+msgstr ""
 
 #: media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Deursoek byvoegings vir <b>{0}</b>"
+msgstr ""
 
 #: media/js/impala/users.js:33
 msgid "use original"
@@ -563,7 +563,7 @@ msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59
 msgid "Search Results"
-msgstr "Soekresultate"
+msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
 #: media/js/mkt/stats/csv_keys.js:62
@@ -962,7 +962,7 @@ msgstr ""
 
 #: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96
 msgid "Other"
-msgstr "Ander"
+msgstr ""
 
 #: media/js/mkt/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -1352,21 +1352,19 @@ msgstr ""
 #: media/js/zamboni/browserid_support.js:42
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
-"BrowserID-aanmelding het misluk. Miskien is u rekening met 'n ander "
-"e-posadres?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
 msgid "Accept and Install"
-msgstr "Aanvaar en installeer"
+msgstr ""
 
 #: media/js/zamboni/buttons.js:108
 msgid "Add to {0}"
-msgstr "Voeg by {0}"
+msgstr ""
 
 #: media/js/zamboni/buttons.js:113
 msgid "Download Now"
-msgstr "Laai nou af"
+msgstr ""
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -1383,20 +1381,20 @@ msgstr ""
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
 msgid "Install for {0} anyway"
-msgstr "Installeer in elk geval vir {0}"
+msgstr ""
 
 #: media/js/zamboni/buttons.js:249
 msgid "Download for {0} anyway"
-msgstr "Laai in elk geval af vir {0}"
+msgstr ""
 
 #: media/js/zamboni/buttons.js:306
 msgid "Not available for your platform"
-msgstr "Nie beskikbaar vir u platform nie"
+msgstr ""
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
-msgstr "Nie beskikbaar vir {0} {1} nie"
+msgstr ""
 
 #: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
@@ -1409,8 +1407,6 @@ msgstr ""
 #: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
-"Jammer, u het 'n Mozilla-gebaseerde blaaier (soos Firefox) nodig om 'n "
-"soekinprop te installer."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1503,8 +1499,8 @@ msgstr[3] ""
 #: media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} resensie"
-msgstr[1] "{reviews} resensies"
+msgstr[0] ""
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
@@ -1518,7 +1514,7 @@ msgstr ""
 
 #: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
 msgid "Internal Server Error"
-msgstr "Interne bedienerfout"
+msgstr ""
 
 #: media/js/zamboni/devhub.js:1515
 msgid "Must be a valid e-mail address."
@@ -1531,16 +1527,14 @@ msgstr ""
 #: media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
-"Jammer, ons kon nie enige aanbevelings vir u kry nie.<br>Besoek gerus die <a "
-"href=\"{0}\">byvoegingswerf</a> om 'n nommerpas-byvoeging te kry."
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
-msgstr "Soek tans vir aanbevelings&hellip;"
+msgstr ""
 
 #: media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
-msgstr "Werk tans aanbevelings by&hellip;"
+msgstr ""
 
 #: media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
@@ -1560,7 +1554,7 @@ msgstr ""
 
 #: media/js/zamboni/editors.js:289
 msgid "Loading&hellip;"
-msgstr "Laai tans&hellip;"
+msgstr ""
 
 #: media/js/zamboni/editors.js:294
 msgid "Version Notes"
@@ -1576,11 +1570,11 @@ msgstr ""
 
 #: media/js/zamboni/editors.js:364
 msgid "Average Reviews"
-msgstr "Gemiddelde resensies"
+msgstr ""
 
 #: media/js/zamboni/editors.js:420
 msgid "Number of Reviews"
-msgstr "Aantal resensies"
+msgstr ""
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1590,8 +1584,8 @@ msgstr "Nalaganje..."
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> karakter oor."
-msgstr[1] "<b>{0}</b> karakters oor."
+msgstr[0] ""
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
@@ -1602,13 +1596,13 @@ msgstr ""
 
 #: media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr "Wagwoordsterkte:"
+msgstr ""
 
 #: media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "Ten minste {0} karakter oor."
-msgstr[1] "Ten minste {0} karakters oor."
+msgstr[0] ""
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
@@ -1634,19 +1628,19 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
-msgstr "Nie nagegaan nie"
+msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
-msgstr "Eksperimenteel <span>(Meer inligting)</span>"
+msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
-msgstr "Nie beskikbaar vir {0} nie"
+msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
-msgstr "Eksperimenteel"
+msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
@@ -1666,7 +1660,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Dié byvoeging is voorlopig nagegaan deur Mozilla."
+msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
