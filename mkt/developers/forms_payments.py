@@ -430,7 +430,8 @@ class BangoPaymentAccountForm(happyforms.Form):
     read_only_fields = set(['bankAccountPayeeName', 'bankAccountNumber',
                             'bankAccountCode', 'bankName', 'bankAddress1',
                             'bankAddressZipCode', 'bankAddressIso',
-                            'adminEmailAddress', 'currencyIso'])
+                            'adminEmailAddress', 'currencyIso',
+                            'companyName'])
 
     def __init__(self, *args, **kwargs):
         self.account = kwargs.pop('account', None)
