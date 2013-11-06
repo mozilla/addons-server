@@ -81,4 +81,4 @@ class UserDeleteForm(forms.Form):
 class LoginForm(happyforms.Form):
     assertion = forms.CharField(required=True)
     audience = forms.CharField(required=False)
-    is_native = forms.BooleanField(required=False)
+    is_mobile = forms.BooleanField(required=False)
