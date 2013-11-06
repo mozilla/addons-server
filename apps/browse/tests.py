@@ -1067,7 +1067,7 @@ class TestLegacyRedirects(amo.tests.TestCase):
         self.redirects('/browse/type:3', '/language-tools/')
         self.redirects('/browse/type:4', '/search-tools/')
         self.redirects('/full-themes/', '/complete-themes/')
-        self.redirects('/search-engines', '/search-tools/')
+        self.redirects('/search-engines', '/search/?atype=4')
         # self.redirects('/browse/type:7', '/plugins/')
         self.redirects('/recommended', '/extensions/?sort=featured')
         self.redirects('/featured', '/extensions/?sort=featured')
