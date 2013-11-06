@@ -139,9 +139,11 @@ def resize_icon(src, dst, size, locally=False, **kw):
         else:
             resize_image(src, dst, (size, size), remove_src=True,
                          locally=locally)
+
+        log.info('Icon resizing completed for: %s' % dst)
         return True
     except Exception, e:
-        log.error("Error saving addon icon: %s" % e)
+        log.error("Error saving addon icon: %s; %s" % (e, dst))
 
 
 @task
@@ -171,9 +173,10 @@ def resize_preview(src, instance, **kw):
                                       remove_src=False)
         instance.sizes = sizes
         instance.save()
+        log.info('Preview resized to: %s' % thumb_dst)
         return True
     except Exception, e:
-        log.error("Error saving preview: %s" % e)
+        log.error("Error saving preview: %s; %s" % (e, thumb_dst))
 
 
 @task
@@ -239,6 +242,7 @@ def save_icon(webapp, content):
     dirname = webapp.get_icon_dir()
     destination = os.path.join(dirname, '%s' % webapp.id)
     remove_icons(destination)
+    log.info('Delaying task for icon at: %s' % destination)
     resize_icon.delay(tmp_dst, destination, amo.ADDON_ICON_SIZES,
                       set_modified_on=[webapp])
 
