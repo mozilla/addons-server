@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-11-06 12:51+0000\n"
+"PO-Revision-Date: 2013-11-06 12:52+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1383742279.0\n"
+"X-POOTLE-MTIME: 1383742362.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -190,7 +190,7 @@ msgstr ""
 
 #: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
 msgid "Learn more"
-msgstr ""
+msgstr "Več o tem"
 
 #: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
 msgid "Example"
