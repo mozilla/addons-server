@@ -95,6 +95,19 @@ class PermissionAuthorization(Authorization):
     has_permission = is_authorized
 
 
+class AllowSelf(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated()
+
+    def has_object_permission(self, request, view, object):
+        try:
+            return object.pk == request.amo_user.pk
+
+        # Appropriately handles AnonymousUsers when `amo_user` is None.
+        except AttributeError:
+            return False
+
+
 class AllowNone(BasePermission):
 
     def has_permission(self, request, view):
