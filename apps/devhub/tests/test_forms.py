@@ -369,7 +369,7 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(self.form.is_valid(), True, self.form.errors)
         self.form.save()
 
-        personas = Persona.objects.order_by('addon__created')
+        personas = Persona.objects.order_by('addon__name')
         eq_(personas[0].checksum, personas[1].checksum)
         eq_(personas[1].dupe_persona, personas[0])
         eq_(personas[0].dupe_persona, None)
