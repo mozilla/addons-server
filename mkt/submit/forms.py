@@ -361,8 +361,10 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         widget=TransInput(attrs={'class': 'full'}))
     support_email = TransField.adapt(forms.EmailField)(
         label=_lazy(u'Support Email:'),
-        help_text=_lazy(u'The email address used by end users to contact you '
-                         'with support issues and refund requests.'),
+        help_text=_lazy(u'This email address will be listed publicly on the '
+                        u'Marketplace and used by end users to contact you '
+                        u'with support issues. This email address will be '
+                        u'listed publicly on your app details page.'),
         widget=TransInput(attrs={'class': 'full'}))
     flash = forms.TypedChoiceField(required=False,
         coerce=lambda x: bool(int(x)),
@@ -387,15 +389,9 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         fields = ('app_slug', 'description', 'privacy_policy', 'homepage',
                   'support_url', 'support_email')
 
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
-        kw.setdefault('initial', {})
-
-        # Prefill support email.
-        locale = self.base_fields['support_email'].default_locale.lower()
-        kw['initial']['support_email'] = {locale: self.request.amo_user.email}
-
-        super(AppDetailsBasicForm, self).__init__(*args, **kw)
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
+        super(AppDetailsBasicForm, self).__init__(*args, **kwargs)
 
     def clean_app_slug(self):
         slug = self.cleaned_data['app_slug']
