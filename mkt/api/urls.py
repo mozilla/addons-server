@@ -34,7 +34,7 @@ subcollections = AppRouter()
 subcollections.register('image', CollectionImageViewSet,
                         base_name='collection-image')
 
-apps = SlugRouter()
+apps = SimpleRouter()
 apps.register(r'category', CategoryViewSet, base_name='app-category')
 subapps = AppRouter()
 subapps.register('refresh-manifest', RefreshManifestViewSet,
