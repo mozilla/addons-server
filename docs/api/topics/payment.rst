@@ -79,8 +79,6 @@ Payment accounts can be added and listed.
 
     :param account_name: Account name.
     :type  account_name: string
-    :param companyName: Company name.
-    :type companyName: string
     :param vendorName: Vendor name.
     :type vendorName: string
     :param financeEmailAddress: Financial email.

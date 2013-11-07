@@ -48,7 +48,7 @@ class SolitudeSeller(amo.models.ModelBase):
         obj = cls.objects.create(user=user, uuid=uuid_, resource_uri=uri)
 
         log.info('[User:%s] Created Solitude seller (uuid:%s)' %
-                     (user, uuid_))
+                 (user, uuid_))
         return obj
 
 
@@ -70,8 +70,8 @@ class PaymentAccount(amo.models.ModelBase):
     BANGO_PACKAGE_VALUES = (
         'adminEmailAddress', 'supportEmailAddress', 'financeEmailAddress',
         'paypalEmailAddress', 'vendorName', 'companyName', 'address1',
-        'addressCity', 'addressState', 'addressZipCode', 'addressPhone',
-        'countryIso', 'currencyIso', 'vatNumber')
+        'address2', 'addressCity', 'addressState', 'addressZipCode',
+        'addressPhone', 'countryIso', 'currencyIso', 'vatNumber')
     BANGO_BANK_DETAILS_VALUES = (
         'seller_bango', 'bankAccountPayeeName', 'bankAccountNumber',
         'bankAccountCode', 'bankName', 'bankAddress1', 'bankAddressZipCode',
@@ -112,7 +112,7 @@ class PaymentAccount(amo.models.ModelBase):
                                  name=form_data['account_name'])
 
         log.info('[User:%s] Created Bango payment account (uri: %s)' %
-                     (user, uri))
+                 (user, uri))
         return obj
 
     def cancel(self, disable_refs=False):
