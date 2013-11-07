@@ -48,7 +48,11 @@ Search
         list if supplying multiple languages.
     :type languages: string
     :param optional region: Filters apps by a supported region. A region
-        code should be provided in ISO 3166 format (e.g., `pl`).
+        code should be provided in ISO 3166 format (e.g., `pl`). If not
+        provided, the region is automatically detected via requesting IP
+        address. To disable automatic region detection, `None` may be passed;
+        authentication and one of the 'Regions:BypassFilters' permission or
+        curator-level access to a collection are required to do so.
     :type region: string
     :param optional sort: The fields to sort by. One or more of 'downloads', 'rating',
         'price', 'created', separated by commas. Sorts by relevance by default.

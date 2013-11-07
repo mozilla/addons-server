@@ -2,17 +2,20 @@
 import json
 
 from django.conf import settings
+from django.test.client import RequestFactory
 
 from mock import MagicMock, patch
 from nose.tools import eq_, ok_
+from tastypie.exceptions import ImmediateHttpResponse
 
 import amo
 import mkt
 import mkt.regions
+from access.middleware import ACLMiddleware
 from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
                            Category)
 from amo.helpers import absolutify
-from amo.tests import app_factory, ESTestCase
+from amo.tests import app_factory, ESTestCase, TestCase
 from stats.models import ClientData
 from tags.models import Tag
 from translations.helpers import truncate
@@ -24,11 +27,86 @@ from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
                                        COLLECTIONS_TYPE_OPERATOR)
 from mkt.collections.models import Collection
+from mkt.constants import regions
 from mkt.constants.features import FeatureProfile
+from mkt.regions.middleware import RegionMiddleware
 from mkt.search.forms import DEVICE_CHOICES_IDS
+from mkt.search.api import SearchResource
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 from mkt.webapps.tasks import unindex_webapps
+
+
+class TestSearchResource(TestCase):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        self.resource = SearchResource()
+        self.factory = RequestFactory()
+        self.profile = UserProfile.objects.get(pk=2519)
+        self.user = self.profile.user
+
+    def region_for(self, region):
+        req = self.factory.get('/', ({} if region is None else
+                                     {'region': region}))
+        req.API = True
+        req.LANG = ''
+        req.user = self.user
+        req.amo_user = self.profile
+        RegionMiddleware().process_request(req)
+        ACLMiddleware().process_request(req)
+        return self.resource.get_region(req)
+
+    def give_permission(self):
+        self.grant_permission(self.profile, 'Regions:BypassFilters')
+
+    def make_curator(self):
+        collection = Collection.objects.create(
+            collection_type=COLLECTIONS_TYPE_BASIC)
+        collection.curators.add(self.profile)
+
+    @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
+    def test_get_region_all(self, mock_request_region):
+        self.give_permission()
+        geoip_fallback = regions.PE  # Different than the default (worldwide).
+        mock_request_region.return_value = geoip_fallback.slug
+
+        # Test none-ish values (should return None, i.e. no region).
+        eq_(self.region_for('None'), None)
+
+        # Test string values (should return region with that slug).
+        eq_(self.region_for('worldwide'), regions.WORLDWIDE)
+        eq_(self.region_for('us'), regions.US)
+
+        # Test fallback to request.REGION (should return GeoIP region if region
+        # isn't specified or is specified and empty).
+        eq_(self.region_for(None), geoip_fallback)
+        eq_(self.region_for(''), geoip_fallback)
+
+        # Test fallback to worldwide (e.g. if GeoIP fails).
+        with patch('mkt.regions.middleware.RegionMiddleware.'
+                   'process_request') as mock_process_request:
+            eq_(self.region_for(None), regions.WORLDWIDE)
+            ok_(mock_process_request.called)
+
+        # Test invalid value (should raise exception).
+        with self.assertRaises(ImmediateHttpResponse):
+            self.region_for('cvanland')  # Scary place
+
+    def test_get_region_permission(self):
+        self.give_permission()
+        eq_(self.region_for('None'), None)
+        eq_(self.region_for('us'), regions.US)
+
+    def test_collection_curator(self):
+        self.make_curator()
+        eq_(self.region_for('None'), None)
+        eq_(self.region_for('us'), regions.US)
+
+    def test_no_permission_not_curator(self):
+        with self.assertRaises(ImmediateHttpResponse):
+            eq_(self.region_for('None'), None)
+        eq_(self.region_for('us'), regions.US)
 
 
 @patch('versions.models.Version.is_privileged', False)
