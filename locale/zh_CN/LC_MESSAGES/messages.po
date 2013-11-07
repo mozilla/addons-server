@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-11-07 00:04+0000\n"
+"PO-Revision-Date: 2013-11-07 00:09+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1383782694.0\n"
+"X-POOTLE-MTIME: 1383782975.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -15226,7 +15226,7 @@ msgstr "从 zip 文件中解压缩资源配置时出错。"
 
 #: mkt/developers/forms.py:474
 msgid "Provide a detailed description of your app"
-msgstr "请为您的应用提供详细描述"
+msgstr "请为您的应用提供详细的描述"
 
 #: mkt/developers/forms.py:475 mkt/submit/forms.py:345
 msgid "This description will appear on the details page."
