@@ -83,6 +83,10 @@ loggers = {
     'elasticutils': {
         'level': 'WARNING',
     },
+    'suds': {
+        'level': 'ERROR',
+        'propagate': True
+    },
 }
 
 cfg = {
