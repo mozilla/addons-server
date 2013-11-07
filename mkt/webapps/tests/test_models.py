@@ -1373,7 +1373,7 @@ class TestWebappIndexer(amo.tests.TestCase):
     @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
                        (mkt.ratingsbodies.PEGI,))
     @mock.patch.object(mkt.ratingsbodies.PEGI, 'name', 'peggyhill')
-    @mock.patch.object(mkt.ratingsbodies.PEGI_12, 'name', '9000+')
+    @mock.patch.object(mkt.ratingsbodies.PEGI_12, 'name', '12+')
     @mock.patch.object(mkt.ratingsbodies.PEGI_12, 'description', 'be old')
     def test_extract_content_ratings(self):
         # These ones shouldn't appear, outside region.
@@ -1392,8 +1392,8 @@ class TestWebappIndexer(amo.tests.TestCase):
         eq_(doc['content_ratings']['br'][0], {
             'body': 'peggyhill',
             'body_slug': 'peggyhill',
-            'name': '9000+',
-            'slug': '9000',
+            'name': '12+',
+            'slug': '12',
             'description': unicode('be old')})
 
     @mock.patch.object(mkt.regions.VE, 'ratingsbodies', ())
