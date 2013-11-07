@@ -1,6 +1,6 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = _('Manage Developer Profile') %}
+{% set title = _('Developer Profile') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
@@ -9,6 +9,7 @@
     {{ l10n_menu(addon.default_locale) }}
     <h1>{{ title }}</h1>
   </header>
+
   <section class="primary manage">
     {% set remove_url = addon.get_dev_url('profile.remove') %}
     {% if addon.has_full_profile() %}
@@ -35,5 +36,6 @@
       {% include 'developers/includes/addons_create_profile.html' %}
     </form>
   </section>
+
   {% include 'developers/includes/addons_edit_nav.html' %}
 {% endblock %}

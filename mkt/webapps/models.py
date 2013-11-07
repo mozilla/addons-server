@@ -1237,10 +1237,14 @@ class WebappIndexer(MappingType, Indexable):
         content_ratings = {}
         for cr in obj.content_ratings.all():
             for region in cr.get_region_slugs():
+                body = cr.get_body()
+                rating = cr.get_rating()
                 content_ratings.setdefault(region, []).append({
-                    'body': unicode(cr.get_body().name),
-                    'name': unicode(cr.get_rating().name),
-                    'description': unicode(cr.get_rating().description),
+                    'body': unicode(body.name),
+                    'body_slug': unicode(body.slug),
+                    'name': unicode(rating.name),
+                    'slug': unicode(rating.slug),
+                    'description': unicode(rating.description),
                 })
 
         attrs = ('app_slug', 'average_daily_users', 'bayesian_rating',
@@ -1517,11 +1521,16 @@ class ContentRating(amo.models.ModelBase):
 
     def get_body(self):
         """Gives us something like DEJUS."""
-        return mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
+        body = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
+        body.slug = unicode(body.name).lower()
+        return body
 
     def get_rating(self):
         """Gives us the rating class (containing the name and description)."""
-        return self.get_body().ratings[self.rating]
+        rating = self.get_body().ratings[self.rating]
+        if not hasattr(rating, 'slug'):
+            rating.slug = unicode(rating.name).lower().replace('+', '')
+        return rating
 
     def get_label(self):
         """Gives us the name to be used for the form options."""

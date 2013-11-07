@@ -146,29 +146,27 @@
 }
 
 #preload {
-    &.version {
-        h2 {
-            display: inline;
-        }
-        .help {
-            background: $light-gray;
-            border-radius: 10px;
-            bottom: 5px;
-            display: inline-block;
-            height: 18px;
-            left: 5px;
-            position: relative;
-            width: 18px;
+    h2 {
+        display: inline-block;
+    }
+    .help {
+        background: $light-gray;
+        border-radius: 10px;
+        bottom: 5px;
+        display: inline-block;
+        height: 18px;
+        left: 5px;
+        position: relative;
+        width: 18px;
 
-            &:after {
-                content: "?";
-                left: 6px;
-                position: relative;
-                top: 2px;
-            }
-            &:hover {
-                background: $dark-gray;
-            }
+        &:after {
+            content: "?";
+            left: 6px;
+            position: relative;
+            top: 2px;
+        }
+        &:hover {
+            background: $dark-gray;
         }
     }
     .outdated {

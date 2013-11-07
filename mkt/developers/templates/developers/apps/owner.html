@@ -1,7 +1,6 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = _('Manage Team Members') %}
-
+{% set title = _('Team Members') %}
 {% block title %}
   {{ hub_page_title(title, addon) }}
 {% endblock %}
@@ -12,81 +11,85 @@
 {% endblock %}
 
 {% block content %}
-<header>
-  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h1>{{ title }}</h1>
-</header>
-<section id="edit-addon" class="primary devhub-form manage" role="main">
-<form method="post" class="item" action="">
-  {{ csrf() }}
-  {{ user_form.management_form }}
-  <div class="island">
-    <h2>{{ _('Team Members') }}</h2>
-    <table>
-      <tr>
-        <th>
-          <a id="what-are-roles" href="#">{{ _('About team member roles') }}</a>
-        </th>
-        <td>
-          {{ user_form.non_form_errors() }}
-          <ul id="author_list">
-          {% for form in user_form.forms %}
-            <li class="author{{ ' initial' if not form.user.errors }}">
-              <span class="handle">&nbsp;</span>
-              {{ form.user.errors }}
-              {{ form.user }}
-              {{ form.role }}
-              {{ form.listed }}{{ form.listed.label_tag() }}
-              {{ form.id }}
-              <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
-              <span class="js-hidden position">{{ form.position }}</span>
-              <a href="#" class="remove">x</a>
-            </li>
-          {% endfor %}
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <div class="listing-footer">
-      <button type="submit">{{ _('Save Changes') }}</button>
-    </div>
-  </div>
-</form>
-{% with form=user_form.empty_form %}
-<ul id="user-form-template" class="hidden">
-  <li class="blank">
-    <span class="handle">&nbsp;</span>
-    {{ form.user }}
-    {{ form.role }}
-    {{ form.listed }}{{ form.listed.label_tag() }}
-    <span class="js-hidden">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
-    <span class="js-hidden position">{{ form.position }}</span>
-    <a href="#" class="remove">x</a>
-  </li>
-</ul>
-{% endwith %}
-</section>
-{% include 'developers/includes/addons_edit_nav.html' %}
-
-<script type="text/template" id="author-roles-help-template" class="overlay">
-<section id="author-roles-help">
   <header>
-    <a class="dismiss" title="{{ _('close') }}">&times;</a>
-    <h2>{{ _('About Team Member Roles') }}</h2>
+    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    <h1>{{ title }}</h1>
   </header>
-  <p>{{ _('Apps can have any number of team members with 4 possible roles:') }}</p>
-  <dl>
-    <dt>{{ _('Owner') }}</dt>
-    <dd>{{ _("Can manage all aspects of the app's listing, including
-        adding and removing other team members") }}</dd>
-    <dt>{{ _('Developer') }}</dt>
-    <dd>{{ _("Can manage all aspects of the app's listing, except
-        for adding and removing other team members and managing payments") }}</dd>
-    <dt>{{ _('Viewer') }}</dt>
-    <dd>{{ _("Can view the app's settings but cannot make any changes") }}</dd>
-    <dt>{{ _('Support') }}</dt>
-    <dd>{{ _("Can view the app's settings and manage refund requests") }}</dd>
-  </dl>
-</section>
-</script>
+
+  <section id="edit-addon" class="primary devhub-form manage" role="main">
+    <h2>{{ _('Team Members') }}</h2>
+
+    <div class="island">
+      <form method="post" class="item">
+        {{ csrf() }}
+        {{ user_form.management_form }}
+        <table>
+          <tr>
+            <th>
+              <a id="what-are-roles" href="#">{{ _('About team member roles') }}</a>
+            </th>
+            <td>
+              {{ user_form.non_form_errors() }}
+              <ul id="author_list">
+              {% for form in user_form.forms %}
+                <li class="author{{ ' initial' if not form.user.errors }}">
+                  <span class="handle">&nbsp;</span>
+                  {{ form.user.errors }}
+                  {{ form.user }}
+                  {{ form.role }}
+                  {{ form.listed }}{{ form.listed.label_tag() }}
+                  {{ form.id }}
+                  <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
+                  <span class="js-hidden position">{{ form.position }}</span>
+                  <a href="#" class="remove">x</a>
+                </li>
+              {% endfor %}
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <div class="listing-footer">
+          <button type="submit">{{ _('Save Changes') }}</button>
+        </div>
+      </form>
+    </div>
+
+    {% with form=user_form.empty_form %}
+      <ul id="user-form-template" class="hidden">
+        <li class="blank">
+          <span class="handle">&nbsp;</span>
+          {{ form.user }}
+          {{ form.role }}
+          {{ form.listed }}{{ form.listed.label_tag() }}
+          <span class="js-hidden">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
+          <span class="js-hidden position">{{ form.position }}</span>
+          <a href="#" class="remove">x</a>
+        </li>
+      </ul>
+    {% endwith %}
+  </section>
+
+  {% include 'developers/includes/addons_edit_nav.html' %}
+
+  <script type="text/template" id="author-roles-help-template" class="overlay">
+    <section id="author-roles-help">
+      <header>
+        <a class="dismiss" title="{{ _('close') }}">&times;</a>
+        <h2>{{ _('About Team Member Roles') }}</h2>
+      </header>
+      <p>{{ _('Apps can have any number of team members with 4 possible roles:') }}</p>
+      <dl>
+        <dt>{{ _('Owner') }}</dt>
+        <dd>{{ _("Can manage all aspects of the app's listing, including
+            adding and removing other team members") }}</dd>
+        <dt>{{ _('Developer') }}</dt>
+        <dd>{{ _("Can manage all aspects of the app's listing, except
+            for adding and removing other team members and managing payments") }}</dd>
+        <dt>{{ _('Viewer') }}</dt>
+        <dd>{{ _("Can view the app's settings but cannot make any changes") }}</dd>
+        <dt>{{ _('Support') }}</dt>
+        <dd>{{ _("Can view the app's settings and manage refund requests") }}</dd>
+      </dl>
+    </section>
+  </script>
 {% endblock %}

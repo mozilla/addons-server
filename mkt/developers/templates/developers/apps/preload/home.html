@@ -1,6 +1,6 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = _('Manage Status') %}
+{% set title = _('Status') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
@@ -23,8 +23,9 @@
       </p>
     </div>
 
+    <h2 id-"testing-finished">{{ _('Testing Finished?') }}</h2>
+
     <div class="island">
-      <h3>{{ _('Testing Finished?') }}</h3>
       <p class="listing-footer">
         <a class="button" href="{{ addon.get_dev_url('preload_submit') }}">
           {{ _('Submit your app for preload') }}

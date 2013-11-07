@@ -275,7 +275,9 @@ class TestESAppToDict(amo.tests.ESTestCase):
         res = es_app_to_dict(self.get_obj())
         eq_(res['content_ratings'],
             {'br': [{'body': 'CLASSIND',
+                     'body_slug': 'classind',
                      'name': rating.name,
+                     'slug': '18',
                      'description': unicode(rating.description)}]})
 
     def test_show_downloads_count(self):

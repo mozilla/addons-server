@@ -1,7 +1,7 @@
 {% extends 'developers/base_impala.html' %}
 {% from 'developers/includes/macros.html' import required %}
 
-{% set title = _('Manage In-App Payments') %}
+{% set title = _('In-App Payments') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% set can_edit = check_addon_ownership(request, addon) %}
@@ -10,49 +10,51 @@
 {% endblock %}
 
 {% block content %}
-<header>
-  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h1>{{ title }}</h1>
-</header>
-{{ disabled_payments_notice() }}
-<section class="primary manage" role="main">
-  <div id="in-app-config" class="devhub-form island">
-    <form class="item in-app-config" method="post" action="{{ request.path }}">
-      <p>
-        {{ _('The Firefox Marketplace allows your app to take in-app payments.
-              The <a href="{guide}">in-app payment guide</a> explains how to
-              configure your app for payments with the parameters below.
-              ')|f(guide='https://developer.mozilla.org/en-US/docs/Apps/In-app_payments')|safe }}
-      </p>
-      {{ csrf() }}
-      <table>
-        <tr id="in-app-public-key">
-          <th class="label">{{ _('Application Key') }}</th>
-          {% if seller_config %}
-            <td><input type="text" value="{{ seller_config['public_id'] }}" readonly></td>
-          {% else %}
-            <td class="not-generated">({{ _('Not yet generated.') }})</td>
-          {% endif %}
-        </tr>
-        <tr id="in-app-private-key">
-          <th class="label">{{ _('Application Secret') }}</th>
-          {% if seller_config %}
-            <td>
-              <button data-url="{{ url('mkt.developers.apps.in_app_secret', addon.app_slug) }}"
-                      class="generator">{{ _('Show secret') }}</button>
-              <input type="text" class="secret" type="text" value="" readonly>
-            </td>
-          {% else %}
-            <td class="not-generated">({{ _('Not yet generated.') }})</td>
-          {% endif %}
-        </tr>
-      </table>
-      <div class="listing-footer">
-        <button {% if not seller_config or not owner %}disabled{% endif %}
-                type="submit">{{ _('Reset secret') }}</button>
-      </div>
-    </form>
-  </div>
-</section>
-{% include "developers/includes/addons_edit_nav.html" %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    <h1>{{ title }}</h1>
+  </header>
+
+  {{ disabled_payments_notice() }}
+  <section class="primary manage" role="main">
+    <div id="in-app-config" class="devhub-form island">
+      <form class="item in-app-config" method="post" action="{{ request.path }}">
+        <p>
+          {{ _('The Firefox Marketplace allows your app to take in-app payments.
+                The <a href="{guide}">in-app payment guide</a> explains how to
+                configure your app for payments with the parameters below.
+                ')|f(guide='https://developer.mozilla.org/en-US/docs/Apps/In-app_payments')|safe }}
+        </p>
+        {{ csrf() }}
+        <table>
+          <tr id="in-app-public-key">
+            <th class="label">{{ _('Application Key') }}</th>
+            {% if seller_config %}
+              <td><input type="text" value="{{ seller_config['public_id'] }}" readonly></td>
+            {% else %}
+              <td class="not-generated">({{ _('Not yet generated.') }})</td>
+            {% endif %}
+          </tr>
+          <tr id="in-app-private-key">
+            <th class="label">{{ _('Application Secret') }}</th>
+            {% if seller_config %}
+              <td>
+                <button data-url="{{ url('mkt.developers.apps.in_app_secret', addon.app_slug) }}"
+                        class="generator">{{ _('Show secret') }}</button>
+                <input type="text" class="secret" type="text" value="" readonly>
+              </td>
+            {% else %}
+              <td class="not-generated">({{ _('Not yet generated.') }})</td>
+            {% endif %}
+          </tr>
+        </table>
+        <div class="listing-footer">
+          <button {% if not seller_config or not owner %}disabled{% endif %}
+                  type="submit">{{ _('Reset secret') }}</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  {% include "developers/includes/addons_edit_nav.html" %}
 {% endblock %}

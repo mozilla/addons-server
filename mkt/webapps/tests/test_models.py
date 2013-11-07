@@ -1000,6 +1000,24 @@ class TestContentRating(amo.tests.WebappTestCase):
         # We have a catch-all 'generic' region for all regions wo/ r.body.
         assert mkt.regions.GENERIC_RATING_REGION_SLUG in slugs
 
+    @mock.patch.object(mkt.ratingsbodies.CLASSIND, 'name', 'CLASSIND')
+    @mock.patch.object(mkt.ratingsbodies.CLASSIND_10, 'name', '10+')
+    @mock.patch.object(mkt.ratingsbodies.ESRB_E, 'name', 'Everybody 10+')
+    @mock.patch.object(mkt.ratingsbodies.ESRB_E, 'slug', '10')
+    def test_get_ratings(self):
+        # Infer the slug from the name.
+        cr = ContentRating.objects.create(
+            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            rating=mkt.ratingsbodies.CLASSIND_10.id)
+        eq_(cr.get_rating().slug, '10')
+        eq_(cr.get_body().slug, 'classind')
+
+        # When already has slug set.
+        eq_(ContentRating.objects.create(
+                addon=self.app, ratings_body=mkt.ratingsbodies.ESRB.id,
+                rating=mkt.ratingsbodies.ESRB_E.id).get_rating().slug,
+            '10')
+
 
 class TestContentRatingsIn(amo.tests.WebappTestCase):
 
@@ -1373,7 +1391,9 @@ class TestWebappIndexer(amo.tests.TestCase):
         obj, doc = self._get_doc()
         eq_(doc['content_ratings']['br'][0], {
             'body': 'peggyhill',
+            'body_slug': 'peggyhill',
             'name': '9000+',
+            'slug': '9000',
             'description': unicode('be old')})
 
     @mock.patch.object(mkt.regions.VE, 'ratingsbodies', ())
@@ -1399,7 +1419,9 @@ class TestWebappIndexer(amo.tests.TestCase):
         obj, doc = self._get_doc()
         eq_(doc['content_ratings']['generic'][0], {
             'body': 'genny',
+            'body_slug': 'genny',
             'name': 'genny-name',
+            'slug': 'genny-name',
             'description': unicode('g-desc')})
 
         # Make sure the content rating is shoved in the generic region,
