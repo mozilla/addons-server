@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-11-02 06:23+0000\n"
-"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
+"PO-Revision-Date: 2013-11-07 00:04+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1383373426.0\n"
+"X-POOTLE-MTIME: 1383782694.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -152,7 +152,7 @@ msgstr "用户可以选择捐助多于或少于这个金额。"
 
 #: apps/addons/models.py:300
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
-msgstr "在附加组件管理器中始终询问用户（Firefox 4 及更高版本）"
+msgstr "附加组件管理器（Firefox 4 及更高版本）中用户始终会被询问"
 
 # Column name in a table.
 #: apps/addons/models.py:1986
@@ -297,15 +297,17 @@ msgstr "此附加组件的开发者希望通过您的小额捐款，帮助支持
 
 #: apps/addons/templates/addons/contribution.html:14
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "此附加组件的开发者希望您向 <a href=\"%(charity_url)s\">%(charity_name)s</a> 进行捐款，以示您的支持。"
+msgstr ""
+"这个附加组件的开发者希望您向 <a href=\"%(charity_url)s\">%(charity_name)s</a> 进行捐助以表示您的支持。"
 
 #: apps/addons/templates/addons/contribution.html:19
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "此附加组件的开发者希望您向 <a href=\"%(charity_url)s\">%(charity_name)s</a> 进行小额捐款，以示您的支持。"
+msgstr ""
+"这个附加组件的开发者希望您向 <a href=\"%(charity_url)s\">%(charity_name)s</a> 进行小额捐助以表示您的支持。"
 
 #: apps/addons/templates/addons/contribution.html:30 apps/addons/templates/addons/impala/contribution.html:18 templates/menu_links.html:25
 msgid "Contribute"
-msgstr "捐款"
+msgstr "捐助"
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
@@ -325,11 +327,11 @@ msgstr "捐款"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:129 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:121
 #: mkt/submit/templates/submit/done.html:50
 msgid "or"
-msgstr "或者"
+msgstr "或"
 
 #: apps/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
-msgstr "建议捐款金额：{0}"
+msgstr "建议捐助金额：{0}"
 
 #: apps/addons/templates/addons/contribution.html:48 apps/amo/templates/amo/recaptcha.html:5
 msgid "What's this?"
@@ -476,7 +478,7 @@ msgstr "平均每日用户数"
 #: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:55 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:96 mkt/reviewers/templates/reviewers/includes/mobile_details.html:118
 msgid "Abuse Reports"
-msgstr "滥用报告"
+msgstr "报告滥用行为"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:45
@@ -484,7 +486,7 @@ msgstr "滥用报告"
 #: mkt/reviewers/templates/reviewers/includes/details.html:112 mkt/reviewers/templates/reviewers/includes/mobile_details.html:134 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:90
 #: templates/mobile/base_apps.html:74
 msgid "Privacy Policy"
-msgstr "隐私权政策"
+msgstr "隐私政策"
 
 #: apps/addons/templates/addons/details_box.html:119 apps/discovery/templates/discovery/addons/detail.html:37 mkt/reviewers/templates/reviewers/includes/details.html:115
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:137
@@ -795,11 +797,11 @@ msgstr "已同意"
 #: apps/addons/templates/addons/persona_preview.html:26 apps/addons/templates/addons/listing/items_mobile.html:41 apps/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> 位用户"
+msgstr[0] "<strong>{0}</strong> 个用户"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr "悬停鼠标以预览"
+msgstr "鼠标移至上方预览"
 
 #: apps/addons/templates/addons/persona_preview.html:46 apps/addons/templates/addons/persona_preview.html:48 apps/reviews/templates/reviews/add.html:15
 msgid "Add"
@@ -822,7 +824,7 @@ msgstr "%Y-%m-%d"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
-msgstr "由 {0} 发布于 {1}"
+msgstr "由 {0} 发表于 {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:70 apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:12
@@ -835,7 +837,7 @@ msgstr "<b>{0}</b> 位用户"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "如要安装此附加组件或其他数以千计的附加组件，<b>下载 Firefox</b>，由 Mozilla 出品的免费、开放的网页浏览器。"
+msgstr "如要安装这个及其他成千上万的附加组件，请<b>下载 Firefox</b> —— Mozilla 出品的自由、开放的网页浏览器。"
 
 #: apps/addons/templates/addons/popups.html:21 apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
@@ -867,7 +869,7 @@ msgstr "要安装这个或者数以千计的更多主题，<b>下载 Firefox</b>
 
 #: apps/addons/templates/addons/popups.html:60
 msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "此附加组件尚未为您使用的 %(app)s 的版本更新。"
+msgstr "这个附加组件尚未更新以兼容您的 %(app)s 版本。"
 
 #: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
@@ -875,7 +877,7 @@ msgstr "坚持安装"
 
 #: apps/addons/templates/addons/popups.html:71
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "此附加组件需求的 Firefox 版本尚未发布。"
+msgstr "此附加组件需要一个尚未发布的 Firefox 版本。"
 
 #: apps/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
@@ -921,11 +923,11 @@ msgstr "此附加组件与您的 %(app)s 的版本不兼容。"
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
 msgid "Privacy Policy for {0}"
-msgstr "{0} 隐私政策"
+msgstr "{0} 的隐私政策"
 
 #: apps/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
-msgstr "附加组件的 QR 码"
+msgstr "附加组件的二维码"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
@@ -15224,7 +15226,7 @@ msgstr "从 zip 文件中解压缩资源配置时出错。"
 
 #: mkt/developers/forms.py:474
 msgid "Provide a detailed description of your app"
-msgstr "在修改预设语言之前，您必须有该语言的名称和说明。您目前还缺少 %s。"
+msgstr "请为您的应用提供详细描述"
 
 #: mkt/developers/forms.py:475 mkt/submit/forms.py:345
 msgid "This description will appear on the details page."
@@ -17055,12 +17057,20 @@ msgid ""
 "type without having to serialize it first. It isn't available in IE or iOS as of writing but is available in Chrome and Firefox. </dd> <dt><a href=\"%(websql_url)s\" rel=\"external\">WebSQL</a></"
 "dt> <dd> WebSQL is asynchronous like IndexedDB, but is only needed for Safari/iOS compatibility. WebSQL is officially deprecated by the W3C but is still supported by many WebKit browsers. </dd>"
 msgstr ""
+"<dt><a href=\"%(localstorage_url)s\">localStorage</a></dt><dd>同步且易用，并且被新型的浏览器支"
+"持，但它也是最慢的。因此请尽量不要使用它，但是可以使用包含此项功能的库作为备份。</dd><dt><a href=\"%(indexeddb_url)s\""
+">IndexedDB</a></dt><dd>IndexedDB是一个异步且快速的库，可以存储任何Javascript型别而无需先将其序列化。它无法在I"
+"nternet Explorer和iOS中运行，但可以在Firefox和Chrome中运行。</dd><dt><a href=\"%"
+"(websql_url)s\" rel=\"external\">WebSQL</a></dt><dd>和IndexedDB类似，WebSQL也是异步的，但它"
+"仅被用于兼容Safari和iOS。目前万维网联盟（W3C）已经正式放弃了WebSQL，但是它WebKit内核的浏览器支持。</dd>"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:119
 msgid ""
 "We recommend using <a href=\"%(localforage_url)s\" rel=\"external\">localForage</a>, which combines a library from Firefox OS with fallbacks for other browsers. It allows you to store key/value "
 "pairs for use between page loads, but does so asynchronously whenever possible. This improves the responsiveness of your app."
 msgstr ""
+"我们推荐使用 <a href=\"%(localforage_url)s\" rel=\"external\">localForage</a>，它结合了 "
+"Firefox OS 的库和其他浏览器依赖的技术。允许成对存储键/值以供载入的页面使用，但只会在可能的时候进行异步操作，从而改善了应用的响应能力。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:137
 msgid "Notice we do this asynchronously, as all APIs here are async."
@@ -17077,6 +17087,11 @@ msgid ""
 "data you interact with rarely, but we recommend <a href=\"%(localForage)s\" rel=\"external\">localForage's asyncStorage library</a>, which uses faster storage by default but falls back to "
 "localStorage if it's all that is available."
 msgstr ""
+"localStorage 是 JavaScript 中兼容性最好的在页面视图间存储数据的 API，但他有一些局限性。localStorage "
+"是同步的，使用时会阻碍主线程的运行，导致您的应用在获取或者处理数据时显得运行缓慢。他也无法处理大量的数据或者类似 TypedArrays 这类 "
+"JavaScript 类型。您可以使用 localStorage 做一些小规模数据的零星的交互，但我们推荐使用 <a href=\"%"
+"(localForage)s\" rel=\"external\">localStorage "
+"的异步库</a>，默认情况下可以享受到更快的存储，但如果在所有条件都具备时也可能退回到 localStorage 。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:159
 msgid "Caching large files and storing media"
@@ -17087,6 +17102,10 @@ msgid ""
 "Use <a href=\"%(storage_url)s\">DeviceStorage</a> or <a href=\"%(indexeddb_url)s\">IndexedDB</a> to store large pieces of data. localStorage is unsuitable for large blob storage, but you can save "
 "chunks of data to IndexedDB. The Podcasts reference app does this in <a href=\"%(podcasts_url)s\" rel=\"external\">its episode model code</a>."
 msgstr ""
+"使用 <a href=\"%(storage_url)s\">DeviceStorage</a> 或者 <a href=\"%"
+"(indexeddb_url)s\">IndexedDB</a>存储大块数据。localStorage 不适合大数据存储，但是您可以将大块数据保存到 "
+"IndexedDB 。作为参考的 播客 应用是通过 <a href=\"%(podcasts_url)s\" "
+"rel=\"external\">插入模式代码</a> 实现的。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:175
 msgid "Keep in mind that storing large files (over 100MB) is still largely uncharted territory and you may encouter some issues."
@@ -17526,6 +17545,9 @@ msgid ""
 "wanted to. In case it’s not obvious, you can always run a free open Web app in any browser because it is no different than a website. It might, however, use new <a href=\"%(url_api)s\">mobile "
 "specific web APIs</a> which are not implemented on all platforms."
 msgstr ""
+"将来开放网络应用系统将会支持在设备之间 <a href=\"%(url_aitc)s\">同步已安装应用</a>。因为收据是可移动的，因此你可以在需要的时候"
+"自行同步。在没有实现的情况下，你总是可以在任意浏览器上运行免费的开放网络应用，因为他们与一个网站别无二致。但是或许无法在所有平台上都使用一些新的 <a "
+"href=\"%(url_api)s\">移动设备专用的网络 API</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:198
 msgid "WebPayment API"
@@ -17543,6 +17565,11 @@ msgid ""
 "Supporting commerce is crucial for the growth of an apps platform. <strong>The use of the proposed payment API is completely <em>optional</em></strong>. Mozilla won’t prevent any app from using its "
 "own in-app payment system."
 msgstr ""
+"像 iOS 和 Android 这样的移动平台的成功，部分源于他们极大简化了通过移动支付系统尝试新商业模式的过程。这些模式还在不断演化当中，但毫无疑问的"
+"是，在桌面网络上的交易过程是笨拙的，而在移动环境下则自然顺畅。特别是，无论你以何种方式访问，都可以很容易地将费用纳入手机账单。Firefox OS "
+"发布后，其应用生态系统将会借助 <a href=\"%(url_payment)s\">WebPayment API</a> "
+"支持应用支付和应用内支付两种方式。对购买的支持决定着一个应用平台的成长性。<strong>对建议的支付 API 的使用完全是 "
+"<em>可选的</em></strong>。Mozilla 不会阻止任何应用使用他们自己的应用内支付系统。"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:220
 msgid "<a href=\"%(url)s\">Apps: The Web Is The Platform</a>, by Kumar McMillan (the blog post from which lots of the content of this article is borrowed)"
@@ -17565,16 +17592,21 @@ msgid ""
 "The app manifest provides useful information about an app (such as name, author, icon, and description) in a simple document usable by both users and app stores. Most importantly, it will contain a "
 "list of <a href=\"%(url_api)s\">Web APIs</a> (such as <a href=\"%(url_geo)s\">geolocation</a>) that your App needs. This allows users to make informed decisions about apps before installing them."
 msgstr ""
+"应用清单在一个简单的文档中向用户和应用商店提供了关于应用的各种有用的信息（例如名称、作者、图标，和描述）。最重要的，它会包含这个应用调用的 <a "
+"href=\"%(url_api)s\">Web API</a> 列表（例如 <a href=\"%"
+"(url_geo)s\">地理位置</a>）。这样用户在安装应用之前就可以获得这方面的信息。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:29
 msgid ""
 "Is the Open Web app manifest the same thing as the manifest used for Google Chrome extensions and installable web apps? Or the W3C Widgets manifest? Or the HTML5 <a href=\"%(url)s\">cache manifest</"
 "a>?"
 msgstr ""
+"开放网络应用的清单，与 Google Chrome 扩展和可安装网络应用的清单是一样的吗？或者 W3C 微件清单？或者 HTML5 <a href=\"%"
+"(url)s\">缓存清单</a>？"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:37
 msgid "No to all of these. The Open Web app manifest is probably most similar to the Google manifest, but they are not identical. It is hoped that the Open Web apps manifest will become a standard."
-msgstr ""
+msgstr "不全一样。开放网络应用的清单可能最接近 Google 的清单，但他们并不相同，希望开放网络应用的清单能成为一项标准。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:43
 msgid "What is an origin?"
@@ -17610,12 +17642,16 @@ msgid ""
 "manifest and not someone else's. Users should have this confidence whether they're installing your app from Firefox OS Marketplace, from some other app store, or from your own website if you are "
 "self-publishing your app."
 msgstr ""
+"我们认为只有您可以将应用清单存放在与应用相同的地方。这样用户了解到安装基于您自己的而不是别人的清单，就可以放心地安装应用。无论用户通过 Firefox "
+"OS 应用市场，通过其他应用商店，或者如果您自己发布应用的话通过您自己的网站，都应该获得这种信心保证。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:111
 msgid ""
 "If the app manifest were not hosted at the same origin as the app itself, there would be nothing to prevent third parties from making apps directly out of content hosted at your origin. Even worse, "
 "third parties could create an app manifest using your branding that would trick users into installing an app that was a facade for stealing passwords or other improper behavior."
 msgstr ""
+"如果应用清单没有存放在与应用自身相同的地方，就无法阻止第三方提供内容与原版不同的应用。更恶劣的是，第三方可以使用您的品牌创建应用清单，真实目的是盗取密码"
+"或者其他不适当的行为。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:121
 msgid "Does this mean I can't embed images or JavaScript from other origins?"
@@ -17626,6 +17662,7 @@ msgid ""
 "No. The origin restriction is on content (HTML pages) only. Images and other embedded resources can be located elsewhere (for example, on a content delivery network), except for the app's icon, "
 "which must be served from the app's origin."
 msgstr ""
+"可以。来源限制仅用于内容（HTML 页面）。图像和其他嵌入式资源可以位于其他地方（例如，在内容传送网络上），应用图标除外，它必须和应用有相同的来源。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:134
 msgid "Can I have more than one app at my origin?"
@@ -17659,7 +17696,7 @@ msgstr "网络上许多资源和权限都是适用单一源的。通过将应用
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:165
 msgid "Why not just upload the app manifest directly to the Firefox OS Marketplace?"
-msgstr "为什么不直接上传应用程序清单至 Firefox OS Marketplace 呢？"
+msgstr "为什么不直接上传应用程序清单至 Firefox OS 应用市场 呢？"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:171
 msgid "There are several benefits to hosting the manifest at your domain and providing the app manifest URL to the Marketplace:"
@@ -17711,7 +17748,7 @@ msgstr "如果其他人将我的应用提交到 Firefox OS 应用市场，我该
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:234
 msgid ""
 "In the unfortunate event that someone guesses the URL to your app manifest and submits it to the Firefox OS Marketplace before you do, please file a complaint with the Marketplace support team."
-msgstr ""
+msgstr "如果很不走运的有人猜出您的应用清单的网址并抢先提交到 Firefox OS 应用市场，请向应用市场支持团队投诉。"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:245
 msgid "App manifest"
@@ -17727,25 +17764,30 @@ msgstr "优点"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:16
 msgid "For mobile application developers, the Open Web Apps project offers these advantages:"
-msgstr ""
+msgstr "对于移动应用开发者，开放网络应用项目有以下优势："
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:23
 msgid "<strong>Simplicity</strong>: Develop on a single technology stack (HTML5/CSS/JavaScript) and deliver across all platforms, from smartphones to tablets to desktops."
 msgstr ""
+"<strong>简单</strong>：在单一的技术体系下（HTML5/CSS/JavaScript）开发就可以全平台发布，横跨智能手机、平板设备和台式"
+"机。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:30
 msgid "<strong>Standards</strong>: The technology stack is defined by standards bodies (W3C and Ecma) that operate in the open, rather than by particular technology or platform vendors."
-msgstr ""
+msgstr "<strong>标准化</strong>：技术体系由开放运作的标准化组织（W3C 和 Ecma）制定，而不是特定的技术或者平台提供者。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:37
 msgid ""
 "<strong>Freedom</strong>: You're not locked in to a vendor-controlled ecosystem. You can distribute your app through the Firefox OS Marketplace, your own website, or any other store based on "
 "Mozilla's open app store technology."
 msgstr ""
+"<strong>自由</strong>：您不会被锁定在一个由提供商控制的生态系统内。您可以通过 Firefox OS "
+"应用市场、您自己的网站，或者任何基于 Mozilla 的开放应用商店技术构建的商店发布您的应用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:45
 msgid "<strong>Reach</strong>: You have the potential to reach Firefox's 450 million desktop users, as well as users of other desktop browsers and mobile users."
 msgstr ""
+"<strong>用户覆盖</strong>：您的作品有可能安装到 Firefox 的4.5亿桌面用户的电脑上，也可以覆盖到其他桌面和移动浏览器的用户。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:52
 msgid "Steps to developing a Web app"
@@ -17760,6 +17802,9 @@ msgid ""
 "You probably already know at least a bit about HTML, CSS, and JavaScript. The <a href=\"%(url_learn)s\">Learn</a> section of this website has resources to help you ramp up even more. As a mobile "
 "app developer, you already have a <a rel=\"external\" href=\"%(url_mobile)s\">Mobile First</a> approach to Web design."
 msgstr ""
+"你或许已经对HTML、CSS和JavaScript有所了解。这个页面的<a href=\"%"
+"(url_learn)s\">学习</a>章节里有帮助你提高更多的资源。作为一个移动应用程序开发者，相对于网页设计而言，你已经有了一个”<a "
+"rel=\"external\" href=\"%(url_mobile)s\">移动优先“</a>的意识。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:67
 msgid "2. Add an <a href=\"%(url)s\">app manifest</a>."
@@ -17775,7 +17820,7 @@ msgstr "3.在您自己的网站或某个应用商店中发布您的应用（也�
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:84
 msgid "Publishing it yourself requires <a href=\"%(url)s\">adding some code to your site to manage installing and updating the app</a> in users' browsers."
-msgstr ""
+msgstr "发布它前你需要<a href=\"%(url)s\">添加一些代码到你的你的站点</a>，用来管理用户的浏览器中该应用的安装与更新。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:91 mkt/ecosystem/templates/ecosystem/build_web_developers.html:46
 msgid "Optional features"
@@ -17803,6 +17848,8 @@ msgstr "我的应用是如何使用数据的？它需要怎样存储数据？"
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:119 mkt/ecosystem/templates/ecosystem/build_web_developers.html:74
 msgid "Can my app's performance benefit from advanced platform features like <a href=\"%(url_workers)s\">Web Workers</a> or <a href=\"%(url_sockets)s\">WebSockets</a>?"
 msgstr ""
+"我的应用可以得益于先进的平台特性，例如 <a href=\"%(url_workers)s\">Web Workers</a> 或 <a href=\"%"
+"(url_sockets)s\">WebSockets</a> 吗？"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:126 mkt/ecosystem/templates/ecosystem/build_web_developers.html:81
 msgid "And many more"
@@ -17814,7 +17861,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:136 mkt/ecosystem/templates/ecosystem/build_web_developers.html:92
 msgid "Use <a href=\"%(url)s\">responsive Web design</a> to look good and work well on all devices."
-msgstr ""
+msgstr "使用 <a href=\"%(url)s\">响应式网页设计</a> 能更好的工作在所有设备上。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:141 mkt/ecosystem/templates/ecosystem/build_web_developers.html:97
 msgid "Charge money for apps."
@@ -17826,25 +17873,31 @@ msgstr "提供一种<a href=\"%(url)s\">标识用户</a>的方案。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:148 mkt/ecosystem/templates/ecosystem/build_web_developers.html:104
 msgid "<a href=\"%(url)s\">Enable offline caching</a> so the app can be used when the device is not on the Internet."
-msgstr ""
+msgstr "<a href=\"%(url)s\">启用离线缓存</a> 可使应用在设备没有互联网时也能使用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:154 mkt/ecosystem/templates/ecosystem/build_web_developers.html:110
 msgid "Store data locally using either <a href=\"%(url_idx)s\">IndexedDB</a> or <a href=\"%(url_storage)s\">localStorage</a>."
 msgstr ""
+"可以使用 <a href=\"%(url_idx)s\">IndexedDB</a> 或者 <a href=\"%"
+"(url_storage)s\">localStorage</a> 进行本地数据存储。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:162 mkt/ecosystem/templates/ecosystem/build_web_developers.html:118
 msgid "<a href=\"%(url)s\">Launch the app</a> natively (with an icon on the desktop or the home screen)."
-msgstr ""
+msgstr "原生的<a href=\"%(url)s\">启动应用</a>（在桌面或主界面中加个图标）。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:168 mkt/ecosystem/templates/ecosystem/build_web_developers.html:124
 msgid "Use device APIs to interact with hardware, such as <a href=\"%(url_geo)s\">geolocation</a> and <a href=\"%(url_motion)s\">orientation</a>."
 msgstr ""
+"使用设备 API 与硬件交互，例如<a href=\"%(url_geo)s\">地理位置</a>和<a href=\"%"
+"(url_motion)s\">屏幕方向</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:176 mkt/ecosystem/templates/ecosystem/build_web_developers.html:132
 msgid ""
 "Give users a way to give you feedback. Mozilla's user research shows that users want to give feedback to app developers, and want to know that there is a human receiving it. They want to make "
 "suggestions and get help with problems. They may stop using an app if they have a problem and there is no way to get help with it."
 msgstr ""
+"给用户一个意见回馈的渠道。Mozilla 的用户研究指出，用户想要提供意见给应用开发者，并且想知道有工作人员收到了意见。他们想提出建议，以及在遇到问题时"
+"获得帮助。如果遇到了问题且孤立无援，他们就可能放弃使用这个应用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:186 mkt/ecosystem/templates/ecosystem/build_web_developers.html:142
 msgid "Useful technologies"
@@ -17876,6 +17929,8 @@ msgid ""
 "The <a href=\"%(url)s\">Firefox OS</a> platform gives web developers exactly what they've wanted for years: a mobile environment dedicated to apps created with just HTML, CSS, and JavaScript. This "
 "guide aims to get you up and running with an environment and basic app architecture so that you can create the next great app!"
 msgstr ""
+"<a href=\"%(url)s\">Firefox OS</a>平台长期为开发者提供他们所需要的东西：一个为单纯使用HTML、CSS和Javascrip"
+"t的程序设计的移动环境。本说明意在指导你开始并运行一个环境和基础程序架构以便你能制作下一个优秀的程序！"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:26
 msgid "If you'd like to follow along with this guide, you can <a href=\"%(url)s\">download the quick start app</a>."
@@ -17895,12 +17950,18 @@ msgid ""
 "JavaScript, images, manifest, etc. Hosted apps are run from a server at a given domain, just like a standard website. Both app types require a valid manifest. When it comes time to list your app on "
 "the Firefox Marketplace, you will either upload your app as a zip file or provide the URL to where your hosted app lives."
 msgstr ""
+"Firefox OS的应用程序有两种形式：<code>打包应用程序</code>和<code>托管应用程序</code>。打包应用程序是一个包含了诸如H"
+"TML、CSS、JavaScript、图片和安装信息等所有程序资源的<code>zip</code>文件。托管应用程序则像一个典型的网站一样运行在有着特"
+"定域名的服务器上。这两类程序都需要有效的安装信息，当您将应用程序发布到Firefox "
+"Marketplace应用商店时，你可以将程序打包或者提供托管网址。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:49
 msgid ""
 "For the purposes of this guide, you'll be creating a hosted app which will live at your <code>localhost</code> address. Once your app is ready to list on the Firefox Marketplace, you can make the "
 "decision to bundle as a packed app or launch as a hosted app."
 msgstr ""
+"根据本指引的计划，你可以在<code>本地</code>创建一个托管应用程序。一旦你准备好将程序发布在火狐应用市场，你可以决定将你的程序制做成打包应用或"
+"是作为托管应用运行。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:56
 msgid "App Manifests"
@@ -17968,10 +18029,12 @@ msgid ""
 "In the code sample above, once you confirm that the <a href=\"%(url)s\">Battery API</a> is supported, you can add event listeners for <code>chargingchange</code> and <code>levelchange</code> to "
 "update the element's display."
 msgstr ""
+"在上述代码示例中，只要你确认 <a href=\"%(url)s\">电池 API</a> 受到支持，你就可以对 "
+"<code>chargingchange</code> 和 <code>levelchange</code> 添加事件监听器以更新元素的显示。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:152
 msgid "Check the <a href=\"%(url)s\">WebAPI</a> page frequently to keep up to date with device API statuses!"
-msgstr ""
+msgstr "经常检查 <a href=\"%(url)s\">WebAPI</a> 页面更新设备 API 状态！"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:157
 msgid "WebRT APIs (Permissions-based APIs)"
@@ -17996,13 +18059,17 @@ msgstr "工具与测试"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:180
 msgid "Testing is incredibly important when supporting mobile devices. There are many options for testing FirefoxOS apps:"
-msgstr ""
+msgstr "支持移动设备时测试环节非常重要。有很多方法测试 FirefoxOS 应用："
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:187
+#, fuzzy
 msgid ""
 "Installing and using the <a href=\"%(url)s\">Firefox OS Simulator</a> is the easiest way to get up and running with your app. After installed the simulator is accessible via the Tools -> Web "
 "Developer -> Firefox OS Simulator menu. The simulator launches with a JavaScript console so that you may debug your application from within the simulator!"
 msgstr ""
+"安装和使用 <a href=\"%(url)s\">Firefox OS Simulator</a> 是运行你的应用的最简单的方法。安装模拟器后访问工具 "
+"-> Web 开发者 -> Firefox OS Simulator 菜单。该模拟器也将启动一个 JavaScript "
+"控制台，这样你就可以在模拟器内调试你的应用了！"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:196
 msgid "Unit Testing"
@@ -18013,6 +18080,8 @@ msgid ""
 "Unit tests are extremely valuable when testing on different devices and builds. jQuery's <a href=\"%(url)s\">QUnit</a> is a popular client-side testing utility, but you can use any set of testing "
 "tools you'd like."
 msgstr ""
+"当在不同的设备和版本上测试时，单元测试是非常重要的。jQuery 的 <a href=\"%(url)s\">QUnit</a> "
+"是一种流行的客户端测试工具，但你也可以使用任何其他你喜欢的测试工具。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:205
 msgid "Installing Firefox OS on a Device"
@@ -18116,11 +18185,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:87
 msgid "rtcamera"
-msgstr ""
+msgstr "rtcamera"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:90
 msgid "rtcamera is a fun camera app to process images in real time."
-msgstr ""
+msgstr "rtcamera 是一个能即时处理图像的拍照软件。"
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:15
 msgid ""
@@ -18134,11 +18203,13 @@ msgstr "应用验证工具"
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:40
 msgid "Is your app ready for the Firefox Marketplace? The App validator will check your manifest and show you any errors it may have, or warnings you should consider."
-msgstr ""
+msgstr "你的应用为火狐应用市场做好准备了吗？应用验证工具会检查你的清单，并告诉你可能有的任何错误或警告。"
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:51
 msgid "You have a Firefox OS app but you don't have a Firefox OS phone to test it on? The Firefox OS simulator will let you run your app in the browser, so you can test early and often."
 msgstr ""
+"你有一个 Firefox OS 应用，但你没有一台 Firefox OS 手机来测试它？Firefox OS "
+"模拟器让您能运行在浏览器中运行您的应用，这样你就可以及早并经常地测试。"
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:62
 msgid "Firefox now ships with a default set of developer tools built from the ground up to ensure a great development experience that is both snappy and efficient."
@@ -18331,7 +18402,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:98
 msgid "instant access to features and suggestions"
-msgstr ""
+msgstr "立即取得功能与建议"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:99
 msgid "minimize initial user input"
@@ -18347,11 +18418,11 @@ msgstr "目前可能可行的行动选择"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:107
 msgid "If your alert says &quot;Delete all contacts?&quot;, you should provide action labels like &quot;Delete&quot; instead of &quot;OK&quot;."
-msgstr ""
+msgstr "如果你的提示框说“删除所有联系人吗？”，你应该提供例如“删除”这样的动作描述，而不是“确定”按钮。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:114
 msgid "Also, try to avoid using alerts that only notify about a situation. Give your users a choice of actions to address the situation."
-msgstr ""
+msgstr "另外，尽量避免使用消息框这样的方式。给你的用户选择其他方式应对的权利。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:120
 msgid "Focus on the main task"
@@ -18359,7 +18430,7 @@ msgstr "专注于主要任务"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:122
 msgid "Decide the main task of each screen and place features related to the main task in the most prominent places."
-msgstr ""
+msgstr "决定每个屏幕的主要任务和地方特色，将主要的部分放在显眼的地方。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:127
 msgid "Prepare for interruptions"
@@ -18369,7 +18440,7 @@ msgstr "准备应对中断"
 msgid ""
 "People may use your app anywhere. Prepare for interruptions by saving the user's work automatically if possible. Ideally, information and tasks should behave normally even without an Internet "
 "connection."
-msgstr ""
+msgstr "人们可能随处使用你的应用。准备应对中断情况，如可能应自动保存用户的工作进度。理想情况下，哪怕没有连接到互联网，信息和任务也该表现正常。"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:5 mkt/ecosystem/templates/ecosystem/design_patterns.html:13 mkt/ecosystem/templates/ecosystem/design_ui.html:39
 #: mkt/ecosystem/templates/ecosystem/macros.html:39
