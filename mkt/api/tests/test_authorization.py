@@ -1,13 +1,16 @@
 from django.contrib.auth.models import AnonymousUser, User
 
+from rest_framework.permissions import AllowAny, BasePermission
 from nose.tools import eq_, ok_
 
 from amo.tests import app_factory, TestCase
 from test_utils import RequestFactory
 
-from mkt.api.authorization import (AllowOwner, AllowSelf,
-                                   AnonymousReadOnlyAuthorization, flag,
-                                   PermissionAuthorization, switch)
+
+from mkt.api.authorization import (AllowOwner, AllowNone, AllowSelf, AnyOf,
+                                   AnonymousReadOnlyAuthorization,
+                                   flag, PermissionAuthorization, switch)
+
 from mkt.site.fixtures import fixture
 
 from .test_authentication import OwnerAuthorization
@@ -159,3 +162,42 @@ class TestAllowOwner(TestCase):
         result = self.authorization.has_object_permission(self.request,
                                                           'myview', self)
         eq_(result, False)
+
+
+class PartialFailPermission(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return False
+
+class FailPartialPermission(BasePermission):
+    def has_permission(self, request, view):
+        return False
+
+class TestAnyOf(TestCase):
+    def test_has_permission(self):
+        request = RequestFactory().get('/')
+        ok_(AnyOf(AllowNone, AllowAny)().has_permission(
+            request, 'myview'))
+        ok_(AnyOf(AllowAny, AllowNone)().has_permission(
+            request, 'myview'))
+
+    def test_has_permission_fail(self):
+        request = RequestFactory().get('/')
+        ok_(not AnyOf(AllowNone, AllowNone)().has_permission(
+            request, 'myview'))
+
+    def test_has_object_permission(self):
+        request = RequestFactory().get('/')
+        ok_(AnyOf(AllowNone, AllowAny
+                  )().has_object_permission(request, 'myview', None))
+        ok_(AnyOf(AllowAny, AllowNone
+                  )().has_object_permission(request, 'myview', None))
+
+    def test_has_object_permission_fail(self):
+        request = RequestFactory().get('/')
+        ok_(not AnyOf(AllowNone, AllowNone
+                  )().has_object_permission(request, 'myview', None))
+
+    def test_has_object_permission_partial_fail(self):
+        request = RequestFactory().get('/')
+        ok_(not AnyOf(FailPartialPermission, PartialFailPermission
+                  )().has_object_permission(request, 'myview', None))
