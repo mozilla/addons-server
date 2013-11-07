@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-10-24 06:29+0000\n"
+"PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1382596199.0\n"
+"X-POOTLE-MTIME: 1383809095.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -12244,7 +12244,7 @@ msgstr ""
 
 #: apps/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
-msgstr "Bilaketaren emaitzak <i>{{num}}</i>"
+msgstr "Bilaketaren emaitzak <i>({num})</i>"
 
 #: apps/sharing/__init__.py:14
 msgid "{0} post"
