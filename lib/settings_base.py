@@ -1361,9 +1361,6 @@ FILE_UNZIP_SIZE_LIMIT = 104857600
 # How long to delay tasks relying on file system to cope with NFS lag.
 NFS_LAG_DELAY = 3
 
-# URL for reporting arecibo errors too. If not set, won't be sent.
-ARECIBO_SERVER_URL = ""
-
 # A whitelist of domains that the authentication script will redirect to upon
 # successfully logging in or out.
 VALID_LOGIN_REDIRECTS = {

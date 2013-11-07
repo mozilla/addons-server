@@ -1,19 +1,14 @@
-import dictconfig
 import logging
-import sys
 import json
 
 from django.conf import settings
 
-from mock import Mock, patch
 from nose.tools import eq_
 from metlog.config import client_from_dict_config
 
 import amo.tests
 import commonware.log
 from lib.log_settings_base import error_fmt
-from lib.misc.admin_log import ErrorTypeHandler
-from test_utils import RequestFactory
 
 
 cfg = {
@@ -40,71 +35,6 @@ cfg = {
         },
     },
 }
-
-
-class TestErrorLog(amo.tests.TestCase):
-
-    def setUp(self):
-        dictconfig.dictConfig(cfg)
-        self.log = logging.getLogger('test.lib.misc.logging')
-        self.request = RequestFactory().get('http://foo.com/blargh')
-
-    def division_error(self):
-        try:
-            1 / 0
-        except:
-            return sys.exc_info()
-
-    def io_error(self):
-        class IOError(Exception):
-            pass
-        try:
-            raise IOError('request data read error')
-        except:
-            return sys.exc_info()
-
-    def fake_record(self, exc_info):
-        record = Mock()
-        record.exc_info = exc_info
-        record.should_email = None
-        return record
-
-    def test_should_email(self):
-        et = ErrorTypeHandler()
-        assert et.should_email(self.fake_record(self.division_error()))
-
-    def test_should_not_email(self):
-        et = ErrorTypeHandler()
-        assert not et.should_email(self.fake_record(self.io_error()))
-
-    @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
-    def test_called_email(self, emitted):
-        self.log.error('blargh!',
-                       exc_info=self.division_error(),
-                       extra={'request': self.request})
-        eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['errorsysloghandler']))
-
-    @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
-    def test_called_no_email(self, emitted):
-        self.log.error('blargh!',
-                       exc_info=self.io_error(),
-                       extra={'request': self.request})
-        eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['errorsysloghandler']))
-
-    @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
-    def test_no_exc_info_request(self, emitted):
-        self.log.error('blargh!')
-        eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['errorsysloghandler']))
-
-    @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
-    def test_no_request(self, emitted):
-        self.log.error('blargh!',
-                       exc_info=self.io_error())
-        eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['errorsysloghandler']))
 
 
 class TestMetlogStdLibLogging(amo.tests.TestCase):

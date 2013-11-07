@@ -60,23 +60,17 @@ handlers = {
         'level': 'ERROR',
         'class': 'django_statsd.loggers.errors.StatsdHandler',
     },
-    'errortype_syslog': {
-        'class': 'lib.misc.admin_log.ErrorSyslogHandler',
-        'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
-        'formatter': 'error',
-    },
 }
 
 loggers = {
     'z': {},
     'django.request': {
-        # Note these handlers will choose what they want to emit and when.
-        'handlers': ['errortype_syslog', 'statsd'],
+        'handlers': ['statsd'],
         'level': 'ERROR',
         'propagate': True,
     },
     'z.celery': {
-        'handlers': ['errortype_syslog', 'statsd'],
+        'handlers': ['statsd'],
         'level': 'ERROR',
         'propagate': True,
     },
