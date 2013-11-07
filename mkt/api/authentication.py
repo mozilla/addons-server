@@ -200,7 +200,16 @@ class RestOAuthAuthentication(BaseAuthentication, OAuthAuthentication):
     """OAuthAuthentication suitable for DRF, wraps around tastypie ones."""
 
     def authenticate(self, request):
-        result = self.is_authenticated(request)
+        # The DRF Request object wraps the actual WSGIRequest. Its
+        # 'method' attribute is a property. when using
+        # X-HTTP-Method-Override, request.method will return the
+        # overriding method instead of POST. OAuth signatures include
+        # the actual HTTP method, so we pass the unwrapped WSGIRequest
+        # for authentication.
+        result = self.is_authenticated(request._request)
+        user = getattr(request._request, 'user', None)
+        if user:
+            request._user = user
         if (not result or isinstance(result, http.HttpUnauthorized)
             or not request.user):
             return None
