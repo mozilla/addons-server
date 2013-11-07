@@ -2071,8 +2071,8 @@ class TestReviewPreliminary(ReviewBase):
         data = self.prelim_dict()
         data['addon_files'] = [f.pk]
         self.client.post(self.url, data)
-        eq_([amo.STATUS_OBSOLETE, amo.STATUS_LITE],
-            [f.status for f in self.version.files.all().order_by('status')])
+        self.assertSetEqual([amo.STATUS_OBSOLETE, amo.STATUS_LITE],
+            [f.status for f in self.version.files.all()])
 
 
 class TestReviewPending(ReviewBase):
