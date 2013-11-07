@@ -6,6 +6,7 @@ from django.views.i18n import javascript_catalog
 from django.views.decorators.cache import cache_page
 
 from amo.urlresolvers import reverse
+from amo.utils import urlparams
 
 import blocklist.views
 import versions.urls
@@ -154,7 +155,8 @@ urlpatterns = patterns('',
      lambda r, id: redirect('addons.reviews.list.rss', id, permanent=True)),
 
     ('^search-engines.*$',
-     lambda r: redirect('browse.search-tools', permanent=True)),
+     lambda r: redirect(urlparams(reverse('search.search'), atype=4),
+                        permanent=True)),
 
     ('^addons/contribute/(\d+)/?$',
      lambda r, id: redirect('addons.contribute', id, permanent=True)),
