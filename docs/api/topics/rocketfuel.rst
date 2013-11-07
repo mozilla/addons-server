@@ -21,6 +21,25 @@ Collections
 A collection is a group of applications
 
 
+.. note::
+
+    When dealing with Collections in the API, translatable fields (currently
+    name, description) are returned by default as an object containing all
+    translations, with languages as keys:
+
+    .. code-block:: json
+
+        {
+            "en-US": "Games",
+            "fr": "Jeux",
+            "kn": "ಆಟಗಳು"
+        }
+
+    If you pass the `lang` parameter to a `GET` request, then then only the most
+    relevant translation (the specified language or the fallback, depending on
+    whether a translation is available) will be returned as a string.
+
+
 Listing
 -------
 

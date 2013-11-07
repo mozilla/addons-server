@@ -23,7 +23,6 @@ from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
                                        COLLECTIONS_TYPE_OPERATOR)
 from mkt.collections.models import Collection
-from mkt.collections.serializers import CollectionSerializer
 from mkt.collections.views import CollectionViewSet
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
@@ -42,7 +41,6 @@ class BaseCollectionViewSetTest(RestOAuth):
     def setUp(self):
         self.create_switch('rocketfuel')
         super(BaseCollectionViewSetTest, self).setUp()
-        self.serializer = CollectionSerializer()
         self.collection_data = {
             'author': u'My Àuthør',
             'background_color': '#FFF000',
@@ -186,6 +184,18 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
     def test_listing_curator(self):
         self.make_curator()
         self.listing(self.client)
+
+    def test_listing_single_lang(self):
+        self.collection.name = {
+            'fr': u'Basta la pomme de terre frite',
+        }
+        self.collection.save()
+        res = self.client.get(self.list_url, {'lang': 'fr'})
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        collection = data['objects'][0]
+        eq_(collection['name'], u'Basta la pomme de terre frite')
+        eq_(collection['description'], u'A cöllection of my favorite games')
 
     def test_listing_filter_unowned_hidden(self):
         """
