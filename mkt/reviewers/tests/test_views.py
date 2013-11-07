@@ -415,7 +415,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_action_buttons_rejected(self):
         # Check action buttons for a previously rejected app.
         self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_DISABLED)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_OBSOLETE)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -617,7 +617,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_action_buttons_reject(self):
         self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_DISABLED)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_OBSOLETE)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -747,7 +747,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.check_actions(expected, actions)
 
     def test_action_buttons_reject(self):
-        self.apps[0].versions.latest().files.update(status=amo.STATUS_DISABLED)
+        self.apps[0].versions.latest().files.update(status=amo.STATUS_OBSOLETE)
 
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
@@ -1014,7 +1014,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
 
     def test_action_buttons_reject(self):
         self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_DISABLED)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_OBSOLETE)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -1284,7 +1284,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'App Approved but waiting')
+        self._check_email(msg, 'App Approved but unpublished')
         self._check_email_body(msg)
 
     def test_pending_to_reject_w_device_overrides(self):
@@ -1489,7 +1489,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'App Approved but waiting')
+        self._check_email(msg, 'App Approved but unpublished')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
@@ -1517,7 +1517,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_REJECTED)
-        eq_(File.objects.filter(id__in=files)[0].status, amo.STATUS_DISABLED)
+        eq_(File.objects.filter(id__in=files)[0].status, amo.STATUS_OBSOLETE)
         self._check_log(amo.LOG.REJECT_VERSION)
 
         eq_(len(mail.outbox), 1)
@@ -1537,7 +1537,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_REJECTED)
-        eq_(new_version.files.all()[0].status, amo.STATUS_DISABLED)
+        eq_(new_version.files.all()[0].status, amo.STATUS_OBSOLETE)
         self._check_log(amo.LOG.REJECT_VERSION)
 
         eq_(len(mail.outbox), 1)
@@ -1556,7 +1556,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
-        eq_(new_version.files.all()[0].status, amo.STATUS_DISABLED)
+        eq_(new_version.files.all()[0].status, amo.STATUS_OBSOLETE)
         self._check_log(amo.LOG.REJECT_VERSION)
 
         eq_(len(mail.outbox), 1)
@@ -1590,7 +1590,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_DISABLED)
-        eq_(app.current_version.files.all()[0].status, amo.STATUS_DISABLED)
+        eq_(app.current_version.files.all()[0].status, amo.STATUS_OBSOLETE)
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App disabled by reviewer')
@@ -1633,7 +1633,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, amo.STATUS_REJECTED)
-        eq_(File.objects.filter(id__in=files)[0].status, amo.STATUS_DISABLED)
+        eq_(File.objects.filter(id__in=files)[0].status, amo.STATUS_OBSOLETE)
         self._check_log(amo.LOG.REJECT_VERSION)
         eq_(EscalationQueue.objects.count(), 0)
 
@@ -1653,7 +1653,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, amo.STATUS_DISABLED)
-        eq_(app.current_version.files.all()[0].status, amo.STATUS_DISABLED)
+        eq_(app.current_version.files.all()[0].status, amo.STATUS_OBSOLETE)
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(EscalationQueue.objects.count(), 0)
         eq_(len(mail.outbox), 1)
@@ -2527,7 +2527,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         # Rejected sets file.status to DISABLED and moves to a guarded path.
         self.setup_files()
         self.app.update(status=amo.STATUS_REJECTED)
-        self.file.update(status=amo.STATUS_DISABLED)
+        self.file.update(status=amo.STATUS_OBSOLETE)
         manifest = self.app.get_manifest_json(self.file)
 
         res = self.client.get(self.url)

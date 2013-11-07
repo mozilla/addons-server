@@ -37,7 +37,6 @@ from comm.utils import create_comm_thread
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
-from market.models import Refund
 from stats.models import Contribution
 from users.models import UserProfile
 from users.views import _login
@@ -462,22 +461,6 @@ def ownership(request, addon_id, addon, webapp=False):
 
     ctx = dict(addon=addon, webapp=webapp, user_form=user_form)
     return jingo.render(request, 'developers/apps/owner.html', ctx)
-
-
-@waffle_switch('allow-refund')
-@dev_required(support=True, webapp=True)
-def refunds(request, addon_id, addon, webapp=False):
-    ctx = {'addon': addon, 'webapp': webapp}
-    queues = {
-        'pending': Refund.objects.pending(addon).order_by('requested'),
-        'approved': Refund.objects.approved(addon).order_by('-requested'),
-        'instant': Refund.objects.instant(addon).order_by('-requested'),
-        'declined': Refund.objects.declined(addon).order_by('-requested'),
-        'failed': Refund.objects.failed(addon).order_by('-requested'),
-    }
-    for status, refunds in queues.iteritems():
-        ctx[status] = amo.utils.paginate(request, refunds, per_page=50)
-    return jingo.render(request, 'developers/payments/refunds.html', ctx)
 
 
 @anonymous_csrf

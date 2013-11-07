@@ -179,7 +179,7 @@ def flag_binary(ids, **kw):
         try:
             log.info('Validating addon with id: %s' % addon.pk)
             files = (File.objects.filter(version__addon=addon)
-                                 .exclude(status=amo.STATUS_DISABLED)
+                                 .exclude(status=amo.STATUS_OBSOLETE)
                                  .order_by('-created'))
             if latest:
                 files = [files[0]]
