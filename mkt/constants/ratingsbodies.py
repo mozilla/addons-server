@@ -289,13 +289,40 @@ RATINGS_BODIES = {
     ESRB.id: ESRB,
     PEGI.id: PEGI,
 }
-ALL_RATINGS = []
-for rb in RATINGS_BODIES.values():
-    ALL_RATINGS.extend(rb.ratings)
 
-RATINGS_BY_NAME = []
+
+# Attach ratings bodies to ratings.
 for rb in RATINGS_BODIES.values():
     for r in rb.ratings:
-        RATINGS_BY_NAME.append((ALL_RATINGS.index(r),
-                                '%s - %s' % (rb.name, r.name)))
         r.ratingsbody = rb
+
+
+def ALL_RATINGS():
+    """
+    List of all ratings with waffled bodies.
+    """
+    import waffle
+
+    ALL_RATINGS = []
+    for rb in RATINGS_BODIES.values():
+        if rb in (CLASSIND, GENERIC) or waffle.switch_is_active('iarc'):
+            ALL_RATINGS.extend(rb.ratings)
+    return ALL_RATINGS
+
+
+def RATINGS_BY_NAME():
+    """
+    Create a list of tuples (choices) after we know the locale since this
+    attempts to concatenate two lazy translations in constants file.
+    """
+    import waffle
+
+    all_ratings = ALL_RATINGS()
+
+    ratings_choices = []
+    for rb in RATINGS_BODIES.values():
+        if rb in (CLASSIND, GENERIC) or waffle.switch_is_active('iarc'):
+            for r in rb.ratings:
+                ratings_choices.append(
+                    (all_ratings.index(r), u'%s - %s' % (rb.name, r.name)))
+    return ratings_choices
