@@ -1594,3 +1594,11 @@ POSTFIX_DOMAIN = 'marketplace.firefox.com'
 AES_KEYS = {
     'api:access:secret': os.path.join(ROOT, 'mkt/api/sample-aes.key'),
 }
+
+# IARC content ratings.
+IARC_SUBMISSION_ENDPOINT = ''
+IARC_SERVICE_ENDPOINT = ''
+IARC_PASSWORD = ''
+IARC_STOREFRONT_ID = 4
+IARC_COMPANY = 'Mozilla'
+IARC_ENV = 'test'
