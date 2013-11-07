@@ -202,13 +202,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     slug = models.CharField(max_length=30, unique=True, null=True)
     # This column is only used for webapps, so they can have a slug namespace
     # separate from addons and personas.
-    app_slug = models.CharField(max_length=30, unique=True, null=True)
-    name = TranslatedField()
+    app_slug = models.CharField(max_length=30, unique=True, null=True, blank=True)
+    name = TranslatedField(default=None)
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
 
-    type = models.PositiveIntegerField(db_column='addontype_id')
+    type = models.PositiveIntegerField(db_column='addontype_id', default=0)
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES, db_index=True, default=0)
     highest_status = models.PositiveIntegerField(
@@ -327,7 +327,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
     make_public = models.DateTimeField(null=True)
-    mozilla_contact = models.EmailField()
+    mozilla_contact = models.EmailField(blank=True)
 
     # Whether the app is packaged or not (aka hosted).
     is_packaged = models.BooleanField(default=False, db_index=True)
