@@ -39,6 +39,10 @@ class RATING_BODY(object):
     """Content rating body."""
 
 
+class INTERACTIVE_ELEMENT(object):
+    """Interactive elements."""
+
+
 class CLASSIND_L(RATING):
     id = 0
     name = '0+'

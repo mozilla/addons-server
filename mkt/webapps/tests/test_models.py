@@ -37,16 +37,16 @@ from users.models import UserProfile
 from versions.models import update_status, Version
 
 import mkt
-from mkt.constants import APP_FEATURES, apps
-from mkt.constants.ratingsdescriptors import RATING_DESCS
+from mkt.constants import apps
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.site.fixtures import fixture
+from mkt.site.tests import DynamicBoolFieldsTestMixin
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
                                 ContentRating, Geodata, get_excluded_in,
-                                Installed, RatingDescriptors, Webapp,
-                                WebappIndexer)
+                                Installed, RatingDescriptors,
+                                RatingInteractives, Webapp, WebappIndexer)
 
 
 class TestWebapp(amo.tests.TestCase):
@@ -1198,48 +1198,24 @@ class TestInstalled(amo.tests.TestCase):
         assert self.m(install_type=apps.INSTALL_TYPE_REVIEWER)[1]
 
 
-class TestAppFeatures(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
+class TestAppFeatures(DynamicBoolFieldsTestMixin):
 
     def setUp(self):
-        self.app = Addon.objects.get(pk=337141)
+        super(TestAppFeatures, self).setUp()
+        self.create_switch('buchets')
+
+        self.model = AppFeatures
+        self.related_name = 'features'
+
+        self.BOOL_DICT = mkt.constants.features.APP_FEATURES
         self.flags = ('APPS', 'GEOLOCATION', 'PAY', 'SMS')
         self.expected = [u'App Management API', u'Geolocation', u'Web Payment',
                          u'WebSMS']
-        self.create_switch('buchets')
 
-    def _flag(self):
-        """Flag app with a handful of feature flags for testing."""
-        self.app.current_version.features.update(
-            **dict(('has_%s' % f.lower(), True) for f in self.flags))
+        self.af = AppFeatures.objects.get()
 
-    def _check(self, obj=None):
-        if not obj:
-            obj = self.app.current_version.features
-
-        for feature in APP_FEATURES:
-            field = 'has_%s' % feature.lower()
-            value = feature in self.flags
-            if isinstance(obj, dict):
-                eq_(obj[field], value,
-                    u'Unexpected value for field: %s' % field)
-            else:
-                eq_(getattr(obj, field), value,
-                    u'Unexpected value for field: %s' % field)
-
-    def to_unicode(self, items):
-        """
-        Force unicode evaluation of lazy items in the passed list, for set
-        comparison to a list of already-evaluated unicode strings.
-        """
-        return [unicode(i) for i in items]
-
-    def test_features(self):
-        self._flag()
-        self._check()
-
-    def test_no_features(self):
-        eq_(self.app.current_version.features.to_list(), [])
+    def _get_related_bool_obj(self):
+        return getattr(self.app.current_version, self.related_name)
 
     def test_signature_parity(self):
         # Test flags -> signature -> flags works as expected.
@@ -1247,37 +1223,16 @@ class TestAppFeatures(amo.tests.TestCase):
         signature = self.app.current_version.features.to_signature()
         eq_(signature.count('.'), 2, 'Unexpected signature format')
 
-        af = AppFeatures(version=self.app.current_version)
-        af.set_flags(signature)
-        self._check(af)
-
-    def test_to_dict(self):
-        self._flag()
-        self._check(self.app.current_version.features.to_dict())
-
-    def test_to_list(self):
-        self._flag()
-        to_list = self.app.current_version.features.to_list()
-        self.assertSetEqual(self.to_unicode(to_list), self.expected)
-
-    @mock.patch.dict('mkt.webapps.models.APP_FEATURES',
-                     APPS={'name': _(u'H\xe9llo')})
-    def test_to_list_nonascii(self):
-        self.expected[0] = u'H\xe9llo'
-        self._flag()
-        to_list = self.app.current_version.features.to_list()
-        self.assertSetEqual(self.to_unicode(to_list), self.expected)
+        self.af.set_flags(signature)
+        self._check(self.af)
 
     def test_bad_data(self):
-        af = AppFeatures(version=self.app.current_version)
-        af.set_flags('foo')
-        af.set_flags('<script>')
+        self.af.set_flags('foo')
+        self.af.set_flags('<script>')
 
-    def test_new_app_features_version(self):
-        # Test that the old appfeatures profile in the fixture sets the new app
-        # features to False by default.
-        af = AppFeatures(version=self.app.current_version)
-        eq_(af.has_webrtc_media, False)
+    def test_default_false(self):
+        obj = self.model(version=self.app.current_version)
+        eq_(getattr(obj, 'has_%s' % self.flags[0].lower()), False)
 
 
 class TestWebappIndexer(amo.tests.TestCase):
@@ -1443,59 +1398,21 @@ class TestWebappIndexer(amo.tests.TestCase):
         assert 've' not in doc['content_ratings']
 
 
-class TestRatingDescriptors(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
+class TestRatingDescriptors(DynamicBoolFieldsTestMixin):
 
     def setUp(self):
-        self.app = Webapp.objects.get(pk=337141)
-        RatingDescriptors.objects.create(addon=self.app)
+        super(TestRatingDescriptors, self).setUp()
+        self.model = RatingDescriptors
+        self.related_name = 'rating_descriptors'
+
+        self.BOOL_DICT = mkt.ratingdescriptors.RATING_DESCS
         self.flags = ('USK_NO_DESCS', 'ESRB_VIOLENCE', 'PEGI_LANG',
                       'CLASSIND_DRUGS')
         self.expected = [u'No Descriptors', u'Violence', u'Language', u'Drugs']
 
-    def _flag(self):
-        """Flag app with a handful of descriptor flags for testing."""
-        self.app.rating_descriptors.update(
-            **dict(('has_%s' % f.lower(), True) for f in self.flags))
+        RatingDescriptors.objects.create(addon=self.app)
 
-    def _check(self, obj=None):
-        if not obj:
-            obj = self.app.rating_descriptors
-
-        for descriptor in RATING_DESCS:
-            field = 'has_%s' % descriptor.lower()
-            value = descriptor in self.flags
-            if isinstance(obj, dict):
-                eq_(obj[field], value,
-                    u'Unexpected value for field: %s' % field)
-            else:
-                eq_(getattr(obj, field), value,
-                    u'Unexpected value for field: %s' % field)
-
-    def to_unicode(self, items):
-        """
-        Force unicode evaluation of lazy items in the passed list, for set
-        comparison to a list of already-evaluated unicode strings.
-        """
-        return [unicode(i) for i in items]
-
-    def test_descriptors(self):
-        self._flag()
-        self._check()
-
-    def test_no_descriptors(self):
-        eq_(self.app.rating_descriptors.to_list(), [])
-
-    def test_to_dict(self):
-        self._flag()
-        self._check(self.app.rating_descriptors.to_dict())
-
-    def test_to_list(self):
-        self._flag()
-        to_list = self.app.rating_descriptors.to_list()
-        self.assertSetEqual(self.to_unicode(to_list), self.expected)
-
-    @mock.patch.dict('mkt.webapps.models.RATING_DESCS',
+    @mock.patch.dict('mkt.ratingdescriptors.RATING_DESCS',
                      USK_NO_DESCS={'name': _(u'H\xe9llo')})
     def test_to_list_nonascii(self):
         self.expected[0] = u'H\xe9llo'
@@ -1503,11 +1420,20 @@ class TestRatingDescriptors(amo.tests.TestCase):
         to_list = self.app.rating_descriptors.to_list()
         self.assertSetEqual(self.to_unicode(to_list), self.expected)
 
-    def test_new_app_descriptors_version(self):
-        # Test that the old appdescriptors profile in the fixture sets the new
-       #  app descriptors to False by default.
-        rd = RatingDescriptors(addon=self.app)
-        eq_(rd.has_esrb_blood, False)
+
+class TestRatingInteractives(DynamicBoolFieldsTestMixin):
+
+    def setUp(self):
+        super(TestRatingInteractives, self).setUp()
+        self.model = RatingInteractives
+        self.related_name = 'rating_interactives'
+
+        self.BOOL_DICT = mkt.ratinginteractives.RATING_INTERACTIVES
+        self.flags = ('SHARES_INFO', 'DIGITAL_PURCHASES', 'SOCIAL_NETWORKING')
+        self.expected = [u'Shares Info', u'Digital Purchases',
+                         u'Social Networking']
+
+        RatingInteractives.objects.create(addon=self.app)
 
 
 class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
