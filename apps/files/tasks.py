@@ -42,6 +42,7 @@ def extract_file(viewer, **kw):
                   extract_file.rate_limit, viewer))
 
     try:
+        flag.save('extracting')  # Set the flag to a truthy value.
         viewer.extract()
     except Exception, err:
         if settings.DEBUG:
@@ -51,8 +52,9 @@ def extract_file(viewer, **kw):
             msg.save(_('There was an error accessing file %s.') % viewer)
         task_log.error('[1@%s] Error unzipping: %s' %
                        (extract_file.rate_limit, err))
-
-    flag.delete()
+    finally:
+        # Always delete the flag so the file never gets into a bad state.
+        flag.delete()
 
 
 # The version/file creation methods expect a files.FileUpload object.
