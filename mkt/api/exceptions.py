@@ -12,6 +12,14 @@ class AlreadyPurchased(Exception):
     pass
 
 
+class Conflict(APIException):
+    status_code = status.HTTP_409_CONFLICT
+    default_detail = 'Conflict detected.'
+
+    def __init__(self, detail=None):
+        self.detail = detail or self.default_detail
+
+
 class NotImplemented(APIException):
     status_code = status.HTTP_501_NOT_IMPLEMENTED
     default_detail = 'API not implemented.'

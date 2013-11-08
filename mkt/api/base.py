@@ -16,6 +16,7 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.routers import Route, SimpleRouter
 from rest_framework.relations import HyperlinkedRelatedField
 from rest_framework.response import Response
+from rest_framework.serializers import ValidationError
 from rest_framework.viewsets import GenericViewSet
 from tastypie import fields, http
 from tastypie.bundle import Bundle
@@ -420,23 +421,44 @@ def check_potatocaptcha(data):
 
 class CompatRelatedField(HyperlinkedRelatedField):
     """
-    Upsell field for connecting Tastypie resources to
-    django-rest-framework instances, this got complicated.
+    Field for connecting Tastypie resources to django-rest-framework instances.
+
+    Serializes to an URL, deserializes URLs, PKs and slugs.
     """
 
     def __init__(self, *args, **kwargs):
         self.tastypie = kwargs.pop('tastypie')
-        return super(CompatRelatedField, self).__init__(*args, **kwargs)
+        kwargs['view_name'] = 'api_dispatch_detail'
+        super(CompatRelatedField, self).__init__(*args, **kwargs)
 
-    def to_native(self, obj):
-        if getattr(obj, 'pk', None) is None:
-            return
+    def get_url(self, obj, view_name, request, format):
+        lookup_field = getattr(obj, self.lookup_field)
+        kwargs = {self.lookup_field: lookup_field}
+        kwargs.update(self.tastypie)
+        return reverse(view_name, kwargs=kwargs)
 
-        self.tastypie['pk'] = obj.pk
-        return reverse('api_dispatch_detail', kwargs=self.tastypie)
+    def from_native(self, value):
+        kwargs = {}
 
-    def get_object(self, queryset, view_name, view_args, view_kwargs):
-        return queryset.get(pk=view_kwargs['pk'])
+        if isinstance(value, basestring):
+            # value could be a slug, a pk in string form, or an URL.
+            if value.isdigit():
+                kwargs[self.lookup_field] = int(value)
+            elif not value.startswith(('http:', 'https:', '/')):
+                kwargs[self.slug_field] = value
+            else:
+                # Default behaviour is to handle URLs.
+                return super(CompatRelatedField, self).from_native(value)
+        elif isinstance(value, int):
+            kwargs[self.lookup_field] = value
+        else:
+            msg = self.error_messages['incorrect_type']
+            raise ValidationError(msg % type(value).__name__)
+
+        try:
+            return self.get_object(self.queryset, self.view_name, None, kwargs)
+        except (ObjectDoesNotExist, TypeError, ValueError):
+            raise ValidationError(self.error_messages['does_not_exist'])
 
 
 class CompatToOneField(ToOneField):

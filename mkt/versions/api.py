@@ -10,6 +10,15 @@ from mkt.features.api import AppFeaturesSerializer
 from versions.models import Version
 
 
+class SimpleVersionSerializer(serializers.ModelSerializer):
+    resource_uri = serializers.HyperlinkedIdentityField(
+        view_name='version-detail')
+
+    class Meta:
+        model = Version
+        fields = ('version', 'resource_uri')
+
+
 class VersionSerializer(serializers.ModelSerializer):
     addon = CompatRelatedField(view_name='api_dispatch_detail', read_only=True,
                                tastypie={'resource_name': 'app',

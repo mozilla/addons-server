@@ -13,7 +13,6 @@ from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
                                RegionResource, site_config)
 from mkt.collections.views import CollectionImageViewSet, CollectionViewSet
 from mkt.features.views import AppFeaturesList
-from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, SuggestionsResource
 
 
@@ -24,7 +23,6 @@ api.register(PreviewResource())
 api.register(SearchResource())
 api.register(SuggestionsResource())
 api.register(StatusResource())
-api.register(RatingResource())
 
 
 rocketfuel = SimpleRouter()
@@ -59,13 +57,14 @@ urlpatterns = patterns('',
     url(r'^', include(api.urls)),
     url(r'^apps/', include(apps.urls)),
     url(r'^apps/app/', include(subapps.urls)),
+    url(r'^apps/', include('mkt.versions.urls')),
+    url(r'^apps/', include('mkt.ratings.urls')),
+    url(r'^apps/features/', AppFeaturesList.as_view(),
+        name='api-features-feature-list'),
     url(r'^', include(services.urls)),
     url(r'^services/', include(svcs.urls)),
     url(r'^services/config/site/', site_config, name='site-config'),
     url(r'^fireplace/report_error', error_reporter, name='error-reporter'),
     url(r'^rocketfuel/', include(rocketfuel.urls)),
     url(r'^rocketfuel/collections/', include(subcollections.urls)),
-    url(r'^apps/', include('mkt.versions.urls')),
-    url(r'^apps/features/', AppFeaturesList.as_view(),
-        name='api-features-feature-list')
 )
