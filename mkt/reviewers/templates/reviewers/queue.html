@@ -52,9 +52,15 @@
                   {% if qa.app.status == amo.STATUS_BLOCKED %}
                     <div class="sprite-reviewer sprite-reviewer-blocked" title="{{ _('Blocklisted App') }}"></div>
                   {% endif %}
-                  {% if qa.app.is_premium() %}
+
+                  {% if qa.app.premium_type == amo.ADDON_PREMIUM_INAPP %}
+                    <div class="sprite-reviewer sprite-reviewer-premium inapp" title="{{ _('Premium with In-App') }}"></div>
+                  {% elif qa.app.premium_type == amo.ADDON_FREE_INAPP %}
+                    <div class="sprite-reviewer sprite-reviewer-premium free inapp" title="{{ _('Free with In-App') }}"></div>
+                  {% elif qa.app.is_premium() %}
                     <div class="sprite-reviewer sprite-reviewer-premium" title="{{ _('Premium App') }}"></div>
                   {% endif %}
+
                   {% if qa.app.current_version.has_info_request %}
                     <div class="sprite-reviewer sprite-reviewer-info" title="{{ _('More Information Requested') }}"></div>
                   {% endif %}

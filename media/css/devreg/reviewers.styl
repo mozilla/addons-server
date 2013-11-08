@@ -216,6 +216,24 @@ nav.paginator {
 }
 .sprite-reviewer-premium {
     background-position: -32px 0;
+
+    &.inapp:after {
+        color: $green;
+        content: '\002B';  // Plus sign.
+        font-size: 22px;
+        left: 10px;
+        position: absolute;
+        text-shadow: -1px 0 #000;
+        top: 1px;
+    }
+    &.free.inapp:before {
+        color: $green;
+        content: '\20E0';  // Prohibited sign.
+        font-size: 16px;
+        position: absolute;
+        right: 1px;
+        text-shadow: -1px 0 $ligt-gray;
+    }
 }
 .sprite-reviewer-info {
     background-position: -32px -16px;

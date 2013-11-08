@@ -329,6 +329,18 @@ class FlagsMixin(object):
         flags = tds('div.sprite-reviewer-premium')
         eq_(flags.length, 1)
 
+    def test_flag_free_inapp_app(self):
+        self.apps[0].update(premium_type=amo.ADDON_FREE_INAPP)
+        res = self.client.get(self.url)
+        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
+        eq_(tds('div.sprite-reviewer-premium.inapp.free').length, 1)
+
+    def test_flag_premium_inapp_app(self):
+        self.apps[0].update(premium_type=amo.ADDON_PREMIUM_INAPP)
+        res = self.client.get(self.url)
+        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
+        eq_(tds('div.sprite-reviewer-premium.inapp').length, 1)
+
     def test_flag_info(self):
         self.apps[0].current_version.update(has_info_request=True)
         res = self.client.get(self.url)
