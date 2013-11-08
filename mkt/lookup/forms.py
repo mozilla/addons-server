@@ -11,6 +11,11 @@ class TransactionSearchForm(happyforms.Form):
 
 
 class TransactionRefundForm(happyforms.Form):
+    # A manual refund is one that does not use the payment providers API
+    # but has been processed manually.
+    manual = forms.BooleanField(
+        label=_lazy(u'Process a manual refund'),
+        required=False)
     refund_reason = forms.CharField(
         label=_lazy(u'Enter refund details to refund transaction'),
         widget=forms.Textarea(attrs={'rows': 4}))

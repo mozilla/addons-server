@@ -492,7 +492,15 @@ class TestTransactionRefund(TestCase):
         req = self.request({'refund_reason': 'text', 'fake': 'OK'})
         with self.settings(BANGO_FAKE_REFUNDS=False):
             transaction_refund(req, self.uuid)
-        client.api.bango.refund.post.assert_called_with({'uuid': '123'})
+        client.api.bango.refund.post.assert_called_with(
+            {'uuid': '123', 'manual': False})
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_manual_refund(self, client):
+        req = self.request({'refund_reason': 'text', 'manual': True})
+        transaction_refund(req, self.uuid)
+        client.api.bango.refund.post.assert_called_with(
+            {'uuid': '123', 'manual': True})
 
     @mock.patch('mkt.lookup.views.client')
     def test_fake_refund(self, client):
@@ -500,7 +508,8 @@ class TestTransactionRefund(TestCase):
         with self.settings(BANGO_FAKE_REFUNDS=True):
             transaction_refund(req, self.uuid)
         client.api.bango.refund.post.assert_called_with({
-            'fake_response_status': {'responseCode': 'OK'}, 'uuid': '123'})
+            'fake_response_status': {'responseCode': 'OK'},
+            'uuid': '123', 'manual': False})
 
     @mock.patch('mkt.lookup.views.client')
     def test_refund_success(self, solitude):
