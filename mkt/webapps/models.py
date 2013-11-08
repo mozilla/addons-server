@@ -934,6 +934,23 @@ class Webapp(Addon):
         except ObjectDoesNotExist:
             return 0
 
+    def set_content_ratings(self, data):
+        """
+        Sets content ratings on this app.
+
+        This overwrites or creates ratings, it doesn't delete and expects data
+        of the form::
+
+            {<ratingsbodies class>: <rating class>, ...}
+
+
+        """
+        for ratings_body, rating in data.items():
+            cr, created = self.content_ratings.safer_get_or_create(
+                ratings_body=ratings_body.id, defaults={'rating': rating.id})
+            if not created:
+                cr.update(rating=rating.id)
+
 
 class Trending(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='trending')

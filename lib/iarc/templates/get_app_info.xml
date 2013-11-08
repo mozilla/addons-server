@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WEBSERVICE SERVICE_NAME="GET_APP_INFO" TYPE="REQUEST">
+    <ROW>
+        <FIELD NAME="password" VALUE="{{ password }}" TYPE="String" />
+        <FIELD NAME="submission_id" VALUE="{{ submission_id }}" TYPE="String" />
+        <FIELD NAME="security_code" VALUE="{{ security_code }}" TYPE="String" />
+        {%- if title %}<FIELD NAME="title" VALUE="{{ title }}" TYPE="string" />{% endif %}
+        {%- if company %}<FIELD NAME="company" VALUE="{{ company }}" TYPE="string" />{% endif %}
+        {%- if platform %}<FIELD NAME="platform" VALUE="{{ platform }}" TYPE="string" />{% endif %}
+    </ROW>
+</WEBSERVICE>

@@ -2,6 +2,7 @@ import json
 import os
 import shutil
 
+from django import forms as django_forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -600,3 +601,25 @@ class TestAdminSettingsForm(TestAdmin):
         self.assertSetEqual(
             self.webapp.tags.values_list('tag_text', flat=True),
             ['tag two', 'tag three'])
+
+
+class TestIARCGetAppInfoForm(amo.tests.TestCase):
+
+    def test_good(self):
+        form = forms.IARCGetAppInfoForm({'submission_id': 1,
+                                         'security_code': 'a'})
+        assert form.is_valid(), form.errors
+
+    def test_incomplete(self):
+        form = forms.IARCGetAppInfoForm({'submission_id': 1})
+        assert not form.is_valid(), 'Form was expected to be invalid.'
+
+    @mock.patch('lib.iarc.utils.IARC_XML_Parser.parse_string')
+    def test_rating_not_found(self, _mock):
+        _mock.return_value = {
+            'ActionStatus': 'No records found. Please try another criteria.'}
+        form = forms.IARCGetAppInfoForm({'submission_id': 1,
+                                         'security_code': 'a'})
+        assert form.is_valid(), form.errors
+        with self.assertRaises(django_forms.ValidationError):
+            form.save('app')  # Just pass string to avoid making a Webapp obj.

@@ -20,6 +20,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import amo
 import addons.forms
+import lib.iarc
 from access import acl
 from addons.forms import clean_tags, icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
@@ -975,3 +976,34 @@ class PreloadTestPlanForm(happyforms.Form):
             raise forms.ValidationError(msg)
 
         return self.cleaned_data
+
+
+class IARCGetAppInfoForm(happyforms.Form):
+    submission_id = forms.CharField()
+    security_code = forms.CharField()
+
+    def save(self, app, *args, **kwargs):
+        iarc_id = self.cleaned_data['submission_id']
+        iarc_code = self.cleaned_data['security_code']
+
+        # Generate XML.
+        xml = lib.iarc.utils.render_xml(
+            'get_app_info.xml',
+            {'submission_id': iarc_id, 'security_code': iarc_code})
+
+        # Process that shizzle.
+        client = lib.iarc.client.get_iarc_client('services')
+        resp = client.Get_App_Info(XMLString=xml)
+
+        # Handle response.
+        data = lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
+        ratings = data.get('ratings', {})
+
+        if ratings:
+            app.set_content_ratings(data.get('ratings', {}))
+            # TODO: Also save the rating descriptors.
+            # TODO: Also save the interactive elements.
+        else:
+            msg = _('Content rating record not found.')
+            self._errors['submission_id'] = self.error_class([msg])
+            raise forms.ValidationError(msg)

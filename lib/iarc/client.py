@@ -73,6 +73,15 @@ class MockClient(Client):
         return responses.get(name, '')
 
 
+def get_iarc_client(wsdl):
+    """
+    Use this to get the right client and communicate with IARC.
+    """
+    if settings.IARC_MOCK:
+        return MockClient(wsdl)
+    return Client(wsdl)
+
+
 MOCK_GET_APP_INFO = '''<?xml version="1.0" encoding="utf-16"?>
 <WEBSERVICE xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SERVICE_NAME="GET_APP_INFO" TYPE="RESPONSE">
     <ROW>

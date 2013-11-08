@@ -1,4 +1,5 @@
 {% extends 'developers/base_impala.html' %}
+{% from 'developers/includes/macros.html' import required, tip %}
 
 {% set title = _('Content Ratings') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
@@ -64,16 +65,46 @@
             enter it here.
           {% endtrans %}
         </p>
-        <div class="iarc-sec-code">
-          {# TODO: IARC security code form. #}
-          <label>
-            Enter Security Code
-            <input type="text">
-          </label>
-        </div>
-        <p class="listing-footer">
-          <button>{{ _('Submit') }}</button>
-        </p>
+        <form method="POST">
+          <table class="iarc-sec-code">
+            <tbody>
+              <tr>
+                <th>
+                  <label for="{{ form.submission_id.auto_id }}">
+                    {{ _('Submission ID') }}
+                    {{ tip(None,
+                           _('The submission ID can be found on the certificate sent to you.
+                              It is a numeric value like &quot;14&quot;.')) }}
+                  </label>
+                  {{ required() }}
+                </th>
+                <td>
+                  {{ form.submission_id }}
+                  {{ form.submission_id.errors }}
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <label for="{{ form.security_code.auto_id }}">
+                    {{ _('Security Code') }}
+                    {{ tip(None,
+                           _('The security code can be found on the certificate sent to you.
+                              It is a mix of letters and numbers like &quot;AB12CD3&quot;.')) }}
+                  </label>
+                  {{ required() }}
+                </th>
+                <td>
+                  {{ form.security_code }}
+                  {{ form.security_code.errors }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="listing-footer">
+            {{ csrf() }}
+            <input type="submit" value="{{ _('Submit') }}">
+          </p>
+        </form>
       </div>
     </section>
   </section>

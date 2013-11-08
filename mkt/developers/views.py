@@ -48,9 +48,9 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   AppFormDetails, AppFormMedia,
                                   AppFormSupport, AppFormTechnical,
                                   AppVersionForm, CategoryForm,
-                                  NewPackagedAppForm, PreloadTestPlanForm,
-                                  PreviewFormSet, TransactionFilterForm,
-                                  trap_duplicate)
+                                  IARCGetAppInfoForm, NewPackagedAppForm,
+                                  PreloadTestPlanForm, PreviewFormSet,
+                                  TransactionFilterForm, trap_duplicate)
 from mkt.developers.models import PreloadTestPlan
 from mkt.developers.utils import check_upload
 from mkt.developers.tasks import run_validator, save_test_plan
@@ -301,9 +301,20 @@ def content_ratings(request, addon_id, addon):
 @waffle_switch('iarc')
 @dev_required
 def content_ratings_edit(request, addon_id, addon):
+    form = IARCGetAppInfoForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        try:
+            form.save(addon)
+            messages.success(request, _('Content ratings successfully saved.'))
+            return redirect(addon.get_dev_url('ratings'))
+        except django_forms.ValidationError:
+            pass  # Fall through to show the form error.
+
     return jingo.render(
         request, 'developers/apps/ratings/ratings_edit.html', {
-            'addon': addon
+            'addon': addon,
+            'form': form,
         })
 
 
