@@ -49,10 +49,21 @@
       </dl>
       {% if action_allowed('Transaction', 'Refund') and is_refundable %}
         <form method="post"
-              action="{{ url('lookup.transaction_refund', uuid) }}">
-          {{ csrf() }}
-          {{ tx_refund_form }}
-          <button>{{ _('Refund this transaction') }}</button>
+              action="{{ url('lookup.transaction_refund', uuid) }}"
+              class="lookup">
+            {{ csrf() }}
+            <label>{{ tx_refund_form.refund_reason.label }}:</label>
+            {{ tx_refund_form.refund_reason }}
+            {{ tx_refund_form.manual }}
+            <label class="inline" for="id_manual">{{ tx_refund_form.manual.label }}</label>
+            <p>
+              {% trans %}
+              If a manual refund has been processed by the payment provider,
+              check this box. This will refund it in the Mozilla servers but
+              not contact the payment provider.
+              {% endtrans %}
+            </p>
+            <button>{{ _('Refund this transaction') }}</button>
         </form>
       {% endif %}
     </div>

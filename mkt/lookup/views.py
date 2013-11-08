@@ -186,7 +186,8 @@ def transaction_refund(request, tx_uuid):
                   'tx_form': TransactionSearchForm()}.items() +
                  _transaction_summary(tx_uuid).items()))
 
-    data = {'uuid': contrib.transaction_id}
+    data = {'uuid': contrib.transaction_id,
+            'manual': form.cleaned_data['manual']}
     if settings.BANGO_FAKE_REFUNDS:
         data['fake_response_status'] = {'responseCode':
                                         form.cleaned_data['fake']}
