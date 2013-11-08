@@ -99,6 +99,7 @@ MIDDLEWARE_CLASSES += [
 
     'mkt.regions.middleware.RegionMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
+    'mkt.site.middleware.DoNotTrackTrackingMiddleware',
     'mkt.api.middleware.TimingMiddleware',
     'mkt.api.middleware.APIVersionMiddleware',
     'mkt.api.middleware.CORSMiddleware',
