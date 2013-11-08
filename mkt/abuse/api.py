@@ -9,7 +9,9 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import check_potatocaptcha, CORSMixin
+from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
 from mkt.webapps.api import AppSerializer
+from mkt.webapps.models import Webapp
 
 
 
@@ -22,7 +24,8 @@ class AbuseThrottle(UserRateThrottle):
 class BaseAbuseSerializer(serializers.ModelSerializer):
     text = serializers.CharField(source='message')
     ip_address = serializers.CharField(required=False)
-    reporter = UserSerializer()
+    reporter = SplitField(serializers.PrimaryKeyRelatedField(required=False),
+                          UserSerializer())
 
     def save(self, force_insert=False):
         serializers.ModelSerializer.save(self)
@@ -31,14 +34,19 @@ class BaseAbuseSerializer(serializers.ModelSerializer):
 
 
 class UserAbuseSerializer(BaseAbuseSerializer):
-    user = UserSerializer()
+    user = SplitField(serializers.PrimaryKeyRelatedField(),
+                      UserSerializer())
     class Meta:
         model = AbuseReport
         fields = ('text', 'ip_address', 'reporter', 'user')
 
 
 class AppAbuseSerializer(BaseAbuseSerializer):
-    app = AppSerializer(source='addon')
+    app = SplitField(
+        SlugOrPrimaryKeyRelatedField(source='addon', slug_field='app_slug',
+                                     queryset=Webapp.objects.all()),
+        AppSerializer(source='addon'))
+
     class Meta:
         model = AbuseReport
         fields = ('text', 'ip_address', 'reporter', 'app')

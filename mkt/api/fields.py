@@ -112,3 +112,4 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
             except ObjectDoesNotExist:
                 msg = self.error_messages['does_not_exist'] % ('pk_or_slug', smart_text(data))
                 raise ValidationError(msg)
+

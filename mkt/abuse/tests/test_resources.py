@@ -134,7 +134,7 @@ class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth)
     def test_invalid_app(self):
         res, data = self._call(data={'app': -1})
         eq_(400, res.status_code)
-        assert 'Invalid' in data['app'][0]
+        assert 'does not exist' in data['app'][0]
 
     def test_slug_app(self):
         res, data = self._call(data={'app': self.app.app_slug})
