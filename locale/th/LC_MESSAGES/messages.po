@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-06-09 18:58+0200\n"
+"PO-Revision-Date: 2013-11-08 05:57+0000\n"
 "Last-Translator: Chengings <chengings@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1383890231.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -136,7 +137,7 @@ msgstr ""
 
 #: apps/addons/forms.py:712
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "ใส่ที่อยู่อีเมลใหม่ของผู้สร้าง"
 
 #: apps/addons/helpers.py:35
 msgid "Not Reviewed"
@@ -188,7 +189,7 @@ msgstr "ส่วนเสริมของฉันไม่ตรงกับ
 #: apps/addons/templates/addons/author_other_addons.html:4 apps/addons/templates/addons/impala/details-more.html:93
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "ส่วนเสริมอื่นโดย %(author)"
+msgstr[0] "ส่วนเสริมอื่นโดย %(author)s"
 
 #: apps/addons/templates/addons/author_other_addons.html:27
 msgctxt "addons_author_addons_submit"
@@ -738,12 +739,12 @@ msgstr ""
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
 msgid "More {0} Themes"
-msgstr ""
+msgstr "ชุดตกแต่ง {0} เพิ่มเติม"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41 apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "ดูชุดตกแต่ง {0} ทั้งหมด"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -751,7 +752,7 @@ msgstr "เพิ่มเติมโดยศิลปินนี้"
 
 #: apps/addons/templates/addons/persona_detail.html:54 apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "ดูชุดตกแต่งทั้งหมดโดยศิลปินนี้"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:40 apps/amo/templates/amo/side_nav.html:29
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:94 apps/editors/templates/editors/review.html:265
@@ -819,7 +820,7 @@ msgstr "%d-%m-%Y"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "โดย {0} บน {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:70 apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:12
@@ -1311,7 +1312,7 @@ msgstr "ส่วนเสริมของฉัน"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6 apps/amo/context_processors.py:66
 msgid "My Themes"
-msgstr ""
+msgstr "ชุดตกแต่งของฉัน"
 
 #: apps/addons/templates/addons/includes/install_button.html:19
 msgid "Purchase for {0}"
@@ -1323,11 +1324,11 @@ msgstr "เพิ่มไปยัง Firefox"
 
 #: apps/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "แก้ไขชุดตกแต่ง"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
-msgstr ""
+msgstr "อนุมัติ / ปฏิเสธ"
 
 #: apps/addons/templates/addons/includes/persona.html:25 mkt/lookup/templates/lookup/helpers/app_header.html:46 mkt/reviewers/templates/reviewers/themes/single.html:43
 msgid "Review History"
@@ -3637,7 +3638,7 @@ msgstr ""
 
 #: apps/constants/base.py:411
 msgid "Change"
-msgstr ""
+msgstr "เปลี่ยน"
 
 #: apps/constants/base.py:422
 msgid "Persona"
@@ -5817,7 +5818,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:16
 msgid "Add images"
-msgstr ""
+msgstr "เพิ่มรูปภาพ"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:14
 msgid "Upload your add-on"
