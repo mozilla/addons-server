@@ -426,7 +426,7 @@ def error_reporter(request):
 
 class RefreshManifestViewSet(GenericViewSet, CORSMixin):
     model = Webapp
-    permission_classes = (AllowAppOwner, AllowReviewerReadOnly)
+    permission_classes = [AllowAppOwner]
     cors_allowed_methods = ('post',)
     slug_lookup = 'app_slug'
 

@@ -67,6 +67,7 @@ class TestVersionViewSet(RestOAuth):
         self.app_url = get_url('app', self.app.pk)
         self.version = self.app.current_version
         self.request = RequestFactory()
+        super(TestVersionViewSet, self).setUp()
 
     def test_get(self, version=None, **kwargs):
 
@@ -103,11 +104,9 @@ class TestVersionViewSet(RestOAuth):
         self.test_get(version=version)  # Test new version
 
     @mock.patch('mkt.versions.api.AllowAppOwner.has_object_permission')
-    @mock.patch('mkt.versions.api.AllowReviewerReadOnly.is_authorized')
-    def patch(self, mock_has_permission, mock_reviewer_auth, features=None,
+    def patch(self, mock_has_permission, features=None,
               auth=True):
         mock_has_permission.return_value = auth
-        mock_reviewer_auth.return_value = auth
         data = {
             'features': features or ['fm', 'mp3'],
             'developer_name': "Cee's Vans"
@@ -133,6 +132,11 @@ class TestVersionViewSet(RestOAuth):
     def test_patch_no_permission(self):
         data, res = self.patch(auth=False)
         eq_(res.status_code, 403)
+
+    def test_patch_reviewer_permission(self):
+        self.grant_permission(self.profile, 'Apps:Review')
+        data, res = self.patch(auth=False)
+        eq_(res.status_code, 200)
 
     def test_app_delete(self):
         """Deleted apps should result in a 404 for the version API."""

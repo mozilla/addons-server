@@ -1,5 +1,3 @@
-from functools import partial
-
 from django import http
 
 import commonware
@@ -17,8 +15,7 @@ from stats.models import Contribution
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AllowAppOwnerOrPermission,
-                                   PermissionAuthorization)
+from mkt.api.authorization import AllowAppOwner, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.exceptions import NotImplemented, ServiceUnavailable
 from mkt.webapps.models import Webapp
@@ -143,7 +140,7 @@ class GlobalStats(CORSMixin, APIView):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     cors_allowed_methods = ['get']
-    permission_classes = (partial(PermissionAuthorization, 'Stats', 'View'),)
+    permission_classes = [GroupPermission('Stats', 'View')]
 
     def get(self, request, metric):
         if metric not in STATS:
@@ -179,7 +176,8 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     cors_allowed_methods = ['get']
-    permission_classes = (AllowAppOwnerOrPermission('Stats', 'View'),)
+    permission_classes = [AnyOf(AllowAppOwner,
+                                GroupPermission('Stats', 'View'))]
     queryset = Webapp.objects.all()
     slug_field = 'app_slug'
 
@@ -227,8 +225,7 @@ class TransactionAPI(CORSMixin, APIView):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     cors_allowed_methods = ['get']
-    permission_classes = (partial(PermissionAuthorization,
-                                  'RevenueStats', 'View'),)
+    permission_classes = [GroupPermission('RevenueStats', 'View')]
 
     def get(self, request, transaction_id):
         try:

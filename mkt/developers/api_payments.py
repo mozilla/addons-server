@@ -1,5 +1,3 @@
-from functools import partial
-
 from django.core.exceptions import PermissionDenied
 
 import commonware
@@ -16,7 +14,7 @@ from rest_framework.viewsets import GenericViewSet
 import amo
 from addons.models import AddonUpsell
 
-from mkt.api.authorization import (AllowAppOwner, PermissionAuthorization,
+from mkt.api.authorization import (AllowAppOwner, GroupPermission,
                                    switch)
 from mkt.api.base import AppViewSet, CompatRelatedField
 from mkt.constants.payments import PAYMENT_STATUSES
@@ -198,8 +196,7 @@ class PaymentCheckViewSet(AppViewSet):
 
 
 class PaymentDebugViewSet(AppViewSet):
-    permission_classes = (partial(PermissionAuthorization,
-                                  'Transaction', 'Debug',),)
+    permission_classes = [GroupPermission('Transaction', 'Debug')]
     form = PaymentCheckForm
 
     def list(self, request, *args, **kwargs):

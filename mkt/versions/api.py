@@ -2,7 +2,8 @@ from rest_framework import mixins, serializers, viewsets
 from rest_framework.exceptions import ParseError
 
 import amo
-from mkt.api.authorization import AllowAppOwner, AllowReviewerReadOnly
+from mkt.api.authorization import (AllowAppOwner, AllowReadOnly, AnyOf,
+                                   GroupPermission)
 from mkt.api.base import CompatRelatedField
 from mkt.constants import APP_FEATURES
 from mkt.features.api import AppFeaturesSerializer
@@ -49,21 +50,15 @@ class VersionViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
         addon__type=amo.ADDON_WEBAPP).exclude(addon__status=amo.STATUS_DELETED)
     serializer_class = VersionSerializer
     authorization_classes = []
-    permission_classes = []
-
+    permission_classes = [AnyOf(AllowAppOwner,
+                                GroupPermission('Apps', 'Review'),
+                                AllowReadOnly)]
 
     def update(self, request, *args, **kwargs):
         """
         Allow a version's features to be updated.
         """
         obj = self.get_object()
-
-        # Deny access to users who are not owners of this app.
-        is_owner = AllowAppOwner().has_object_permission(request, self,
-                                                         obj.addon)
-        is_reviewer = AllowReviewerReadOnly().is_authorized(request)
-        if not is_owner or not is_reviewer:
-            self.permission_denied(request)
 
         # Update features if they are provided.
         if 'features' in request.DATA:
