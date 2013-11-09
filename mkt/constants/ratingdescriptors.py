@@ -8,8 +8,8 @@ from tower import ugettext_lazy as _lazy
 # WARNING: Order matters here. Don't re-order these or alphabetize them. If you
 # add new ones put them on the end.
 #
-# These are used to dynamically generate the field list for the ContentRating
-# django model in mkt.webapps.models.
+# These are used to dynamically generate the field list for the
+# RatingDescriptors django model in mkt.webapps.models.
 RATING_DESCS = OrderedDict([
     ('USK_NO_DESCS', {
         'name': _lazy('No Descriptors'),

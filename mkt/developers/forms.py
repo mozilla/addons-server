@@ -1001,8 +1001,8 @@ class IARCGetAppInfoForm(happyforms.Form):
 
         if ratings:
             app.set_content_ratings(data.get('ratings', {}))
+            app.set_interactives(data.get('interactives', []))
             # TODO: Also save the rating descriptors.
-            # TODO: Also save the interactive elements.
         else:
             msg = _('Content rating record not found.')
             self._errors['submission_id'] = self.error_class([msg])

@@ -44,8 +44,8 @@ from versions.models import Version
 
 import mkt
 from mkt.constants import APP_FEATURES, apps
-from mkt.constants.ratingsdescriptors import RATING_DESCS
 from mkt.search.utils import S
+from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
 
 
@@ -959,6 +959,27 @@ class Webapp(Addon):
             if not created:
                 cr.update(rating=rating.id)
 
+    def set_interactives(self, data):
+        """
+        Sets IARC interactive elements on this app.
+
+        This overwrites or creates elements, it doesn't delete and expects data
+        of the form:
+
+            [<interactive name 1>, <interactive name 2>]
+
+
+        """
+        create_kwargs = {}
+        for interactive in mkt.ratinginteractives.RATING_INTERACTIVES.keys():
+            create_kwargs['has_%s' % interactive.lower()] = (
+                interactive.lower() in map(str.lower, data))
+
+        ri, created = RatingInteractives.objects.get_or_create(
+            addon=self, defaults=create_kwargs)
+        if not created:
+            ri.update(**create_kwargs)
+
 
 class Trending(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='trending')
@@ -1563,15 +1584,14 @@ class ContentRating(amo.models.ModelBase):
 
 
 # The RatingDescriptors table is created with dynamic fields based on
-# mkt.constants.ratingsdescriptors.
-class RatingDescriptors(amo.models.ModelBase,
-                        amo.models.DynamicFieldMixin):
+# mkt.constants.ratingdescriptors.
+class RatingDescriptors(amo.models.ModelBase, DynamicBoolFieldsMixin):
     """
     A dynamically generated model that contains a set of boolean values
-    stating if an app requires a particular descriptor.
+    stating if an app is rated with a particular descriptor.
     """
     addon = models.OneToOneField(Addon, related_name='rating_descriptors')
-    field_source = RATING_DESCS
+    field_source = mkt.ratingdescriptors.RATING_DESCS
 
     class Meta:
         db_table = 'webapps_rating_descriptors'
@@ -1581,14 +1601,37 @@ class RatingDescriptors(amo.models.ModelBase,
 
 
 # Add a dynamic field to `RatingDescriptors` model for each rating descriptor.
-for k, v in mkt.ratingsdescriptors.RATING_DESCS.iteritems():
+for k, v in mkt.ratingdescriptors.RATING_DESCS.iteritems():
     field = models.BooleanField(default=False, help_text=v['name'])
     field.contribute_to_class(RatingDescriptors, 'has_%s' % k.lower())
 
 
+# The RatingInteractives table is created with dynamic fields based on
+# mkt.constants.ratinginteractives.
+class RatingInteractives(amo.models.ModelBase, DynamicBoolFieldsMixin):
+    """
+    A dynamically generated model that contains a set of boolean values
+    stating if an app features a particular interactive element.
+    """
+    addon = models.OneToOneField(Addon, related_name='rating_interactives')
+    field_source = mkt.ratinginteractives.RATING_INTERACTIVES
+
+    class Meta:
+        db_table = 'webapps_rating_interactives'
+
+    def __unicode__(self):
+        return u'%s: %s' % (self.id, self.addon.name)
+
+
+# Add a dynamic field to `RatingInteractives` model for each rating descriptor.
+for k, v in mkt.ratinginteractives.RATING_INTERACTIVES.iteritems():
+    field = models.BooleanField(default=False, help_text=v['name'])
+    field.contribute_to_class(RatingInteractives, 'has_%s' % k.lower())
+
+
 # The AppFeatures table is created with dynamic fields based on
 # mkt.constants.features, which requires some setup work before we call `type`.
-class AppFeatures(amo.models.ModelBase, amo.models.DynamicFieldMixin):
+class AppFeatures(amo.models.ModelBase, DynamicBoolFieldsMixin):
     """
     A dynamically generated model that contains a set of boolean values
     stating if an app requires a particular feature.

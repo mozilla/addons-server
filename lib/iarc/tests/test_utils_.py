@@ -39,7 +39,6 @@ class TestXMLParser(test_utils.TestCase):
         eq_(data['submission_id'], 52)
         eq_(data['title'], 'twitter')
         eq_(data['company'], 'Mozilla')
-        # TODO: Update to use interactive element classes when they exist.
         eq_(data['interactive_elements'],
             'Shares Info, Shares Location, Social Networking, Users Interact, ')
         eq_(data['storefront'], 'Mozilla')
@@ -60,3 +59,8 @@ class TestXMLParser(test_utils.TestCase):
             u'Cont\xe9udo Sexual, Linguagem Impr\xf3pria')
         eq_(data['descriptors']['ESRB'], 'Strong Language')
         eq_(data['descriptors']['PEGI'], 'Language, Online')
+
+        # Test interactives.
+        self.assertSetEqual(set(data['interactives']),
+                            set(['shares_info', 'shares_location',
+                                 'social_networking', 'users_interact']))
