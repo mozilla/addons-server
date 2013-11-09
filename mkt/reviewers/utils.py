@@ -226,9 +226,8 @@ class ReviewApp(ReviewBase):
             self.comm_thread, self.comm_note = res
 
     def process_public(self):
-        if waffle.switch_is_active('iarc') and not self.addon.is_rated():
-            # Shouldn't be able to get here. Don't allow unrated apps to go
-            # live.
+        if self.addon.is_incomplete():
+            # Failsafe.
             return
 
         # Hold onto the status before we change it.
@@ -247,9 +246,8 @@ class ReviewApp(ReviewBase):
 
     def process_public_waiting(self):
         """Make an app pending."""
-        if waffle.switch_is_active('iarc') and not self.addon.is_rated():
-            # Shouldn't be able to get here. Don't allow unrated apps to go
-            # live.
+        if self.addon.is_incomplete():
+            # Failsafe.
             return
 
         self.addon.sign_if_packaged(self.version.pk)
@@ -267,9 +265,8 @@ class ReviewApp(ReviewBase):
 
     def process_public_immediately(self):
         """Approve an app."""
-        if waffle.switch_is_active('iarc') and not self.addon.is_rated():
-            # Shouldn't be able to get here. Don't allow unrated apps to go
-            # live.
+        if self.addon.is_incomplete():
+            # Failsafe.
             return
 
         self.addon.sign_if_packaged(self.version.pk)

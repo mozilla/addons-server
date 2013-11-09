@@ -187,22 +187,26 @@ def details(request, addon_id, addon):
 
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
 
+        # `make_public` if the developer doesn't want the app published
+        # immediately upon review.
         make_public = (amo.PUBLIC_IMMEDIATELY
                        if form_basic.cleaned_data.get('publish')
                        else amo.PUBLIC_WAIT)
 
-        # Free apps get pushed for review.
         if addon.premium_type == amo.ADDON_FREE:
-            # The developer doesn't want the app published immediately upon
-            # review.
-            addon.update(status=amo.STATUS_PENDING,
-                         make_public=make_public)
+            if waffle.switch_is_active('iarc'):
+                # Free apps get STATUS_NULL until content ratings has been
+                # entered.
+                # TODO: set to STATUS_PENDING once app gets an IARC rating.
+                addon.update(make_public=make_public)
+            else:
+                addon.update(status=amo.STATUS_PENDING,
+                             make_public=make_public)
         else:
-            # Paid apps get STATUS_NULL until payment information has been
-            # entered.
-            addon.update(status=amo.STATUS_NULL,
-                         highest_status=amo.STATUS_PENDING,
-                         make_public=make_public)
+            # Paid apps get STATUS_NULL until payment information and content
+            # ratings has been entered.
+            addon.update(status=amo.STATUS_NULL, make_public=make_public,
+                         highest_status=amo.STATUS_PENDING)
 
         record_action('app-submitted', request, {'app-id': addon.pk})
 

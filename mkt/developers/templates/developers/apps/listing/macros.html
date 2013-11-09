@@ -1,6 +1,6 @@
 {% macro dev_heading(addon, amo) %}
   <h3>
-    {% set is_complete = not addon.is_incomplete() %}
+    {% set is_complete = addon.is_complete()[0] %}
     {% if is_complete %}<a href="{{ addon.get_dev_url() }}">{% endif %}
     <img class="icon" src="{{ addon.get_icon_url(64) }}">
     {{ addon.name }}{% if is_complete %}</a>{% endif %}

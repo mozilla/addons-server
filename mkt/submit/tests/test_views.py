@@ -699,6 +699,24 @@ class TestDetails(TestSubmit):
         self.assert3xx(r, self.get_url('done'))
 
         eq_(self.webapp.status, amo.STATUS_PENDING)
+
+        assert record_action.called
+
+    @mock.patch('mkt.submit.views.record_action')
+    def test_success_iarc(self, record_action):
+        """TODO: delete the above test when cleaning up waffle."""
+        self.create_switch('iarc')
+
+        self._step()
+        data = self.get_dict()
+        r = self.client.post(self.url, data)
+        self.assertNoFormErrors(r)
+        self.check_dict(data=data)
+        self.webapp = self.get_webapp()
+        self.assert3xx(r, self.get_url('done'))
+
+        eq_(self.webapp.status, amo.STATUS_NULL)
+
         assert record_action.called
 
     def test_success_paid(self):
@@ -821,6 +839,17 @@ class TestDetails(TestSubmit):
         app = Webapp.objects.exclude(app_slug=self.webapp.app_slug)[0]
         self.assert3xx(r, reverse('submit.app.done', args=[app.app_slug]))
         eq_(self.get_webapp().status, amo.STATUS_PENDING)
+
+    def test_unique_allowed_iarc(self):
+        """TODO: delete the above test when cleaning up waffle."""
+        self.create_switch('iarc')
+
+        self._step()
+        r = self.client.post(self.url, self.get_dict(name=self.webapp.name))
+        self.assertNoFormErrors(r)
+        app = Webapp.objects.exclude(app_slug=self.webapp.app_slug)[0]
+        self.assert3xx(r, reverse('submit.app.done', args=[app.app_slug]))
+        eq_(self.get_webapp().status, amo.STATUS_NULL)
 
     def test_slug_invalid(self):
         self._step()

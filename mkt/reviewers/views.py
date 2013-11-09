@@ -524,9 +524,6 @@ def queue_apps(request):
           .order_by('nomination', 'created')
           .select_related('addon', 'files').no_transforms())
 
-    if waffle.switch_is_active('iarc'):
-        qs = qs.exclude(addon__content_ratings__isnull=True)
-
     apps = _do_sort(request, qs, date_sort='nomination')
     apps = [QueuedApp(app, app.all_versions[0].nomination)
             for app in Webapp.version_and_file_transformer(apps)]

@@ -8,8 +8,18 @@
       {{ dev_heading(addon, amo) }}
       {% if addon.is_incomplete() %}
         <p class="incomplete">
-          {{ _('This app will be deleted automatically after a few days if
-                the submission process is not completed.') }}
+          {# is_complete doesn't check for payments/ratings.
+             Thus is_incomplete + is_complete == needs payments/ratings #}
+          {% if not addon.is_complete()[0] %}
+            {{ _("This app's submission process has not been fully completed.") }}
+          {% else %}
+            {% if waffle.switch('iarc') and not addon.is_rated() %}
+              {{ _('This app needs to get a content rating.') }}
+            {% endif %}
+            {% if addon.needs_payment() and not addon.has_payment_account()  %}
+              {{ _('This app needs a payment account set up.') }}
+            {% endif %}
+          {% endif %}
         </p>
       {% else %}
         <ul class="item-details">
@@ -45,7 +55,7 @@
           <li class="payments">
             <strong>{{ _('Price:') }}</strong>
             {{ price(request, addon) }}
-            {% if addon.is_premium() and not hasOneToOne(addon, 'app_payment_account') %}
+            {% if addon.is_premium() and not addon.has_payment_account() %}
               <a href="{{ addon.get_dev_url('payments') }}">{{ _('Set up Payment Account') }}</a>
             {% endif %}
           </li>

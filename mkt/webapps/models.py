@@ -389,7 +389,7 @@ class Webapp(Addon):
 
     def is_complete(self):
         """See if the app is complete. If not, return why. This function does
-        not consider or include payments-related information.
+        not consider or include payments-related or IARC information.
 
         """
         reasons = []
@@ -411,6 +411,14 @@ class Webapp(Addon):
 
     def is_rated(self):
         return self.content_ratings.exists()
+
+    def has_payment_account(self):
+        """App doesn't have a payment account set up yet."""
+        try:
+            self.app_payment_account
+        except ObjectDoesNotExist:
+            return False
+        return True
 
     def mark_done(self):
         """When the submission process is done, update status accordingly."""

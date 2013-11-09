@@ -190,14 +190,13 @@
   <div id="review-actions" class="review-actions">
     <div class="action_nav">
       <ul>
-        {% set unrated = waffle.switch('iarc') and not product.is_rated() %}
+        {% set incomplete = product.is_incomplete() %}
         {% for (setting, action) in form.fields.action.choices %}
-          {% set unrated_no_approve = unrated and setting == 'public' %}
-          <li{% if unrated_no_approve %} class="disabled"{% endif %}>
+          <li{% if setting == 'public' and incomplete %} class="disabled"{% endif %}>
             <label for>
               <input type="radio" name="action" value="{{ setting }}">
-              {% if unrated_no_approve %}
-                {{ _('App not rated') }}
+              {% if setting == 'public' and incomplete %}
+                {{ _('App submission incomplete') }}
               {% else %}
                 {{ action }}
               {% endif %}

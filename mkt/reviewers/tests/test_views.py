@@ -529,24 +529,13 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (1)')
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
-    def test_iarc_ratingless_not_in_queue(self):
+    def test_incomplete_no_in_queue(self):
         # Test waffle-less.
+        [app.update(status=amo.STATUS_NULL) for app in self.apps]
         req = req_factory_factory(self.url,
             user=UserProfile.objects.get(username='editor'))
         doc = pq(queue_apps(req).content)
-        assert doc('#addon-queue tbody tr').length
-
-        # Test exclusions under waffle.
-        self.create_switch('iarc', db=True)
-        doc = pq(queue_apps(req).content)
         assert not doc('#addon-queue tbody tr').length
-
-        # With ratings.
-        for app in self.apps:
-            ContentRating.objects.create(
-                addon=app, ratings_body=0, rating=0)
-        doc = pq(queue_apps(req).content)
-        assert doc('#addon-queue tbody tr').length
 
 
 @mock.patch('versions.models.Version.is_privileged', False)
@@ -1399,23 +1388,14 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
             '"Web App Review" successfully processed (+60 points, 60 total).')
 
     @mock.patch('mkt.reviewers.views.messages.success', new=mock.Mock)
-    def test_iarc_ratingless_cant_approve(self):
-        self.create_switch('iarc')
+    def test_incomplete_cant_approve(self):
+        self.app.update(status=amo.STATUS_NULL)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
-        app = self.get_app()
 
-        # Still pending.
-        eq_(app.status, amo.STATUS_PENDING)
-        eq_(app.current_version.files.all()[0].status, amo.STATUS_PENDING)
-
-        # Now approve with rating.
-        ContentRating.objects.create(addon=app, ratings_body=0, rating=0)
-        self.post(data)
-        app = self.get_app()
-        eq_(app.status, amo.STATUS_PUBLIC)
-        eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
+        # Still incomplete.
+        eq_(self.get_app().status, amo.STATUS_NULL)
 
     def test_notification_email_translation(self):
         """Test that the app name is translated with the app's default_locale
@@ -2886,6 +2866,7 @@ class TestReviewPage(amo.tests.TestCase):
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
     def test_iarc_ratingless_disable_approve_btn(self):
+        self.app.update(status=amo.STATUS_NULL)
         req = req_factory_factory(self.url, user=self.reviewer)
         res = app_review(req, app_slug=self.app.app_slug)
         doc = pq(res.content)

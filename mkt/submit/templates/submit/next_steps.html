@@ -5,10 +5,7 @@
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% set payments = waffle.flag('allow-b2g-paid-submission') and addon.is_premium() %}
-{% set has_payments = hasOneToOne(addon, 'app_payment_account') %}
 {% set rated = addon.is_rated() %}
-{% set pending = addon.is_pending() %}
-{% set public_waiting = addon.status == amo.STATUS_PUBLIC_WAITING %}
 {% set public = addon.is_public() %}
 
 {% block content %}
@@ -37,13 +34,13 @@
           {% endtrans -%}
         </li>
         {% if addon.is_premium() %}
-          <li{% if has_payments %} class="done"{% endif %}>
+          <li{% if not addon.has_payment_account() %} class="done"{% endif %}>
             {% trans url=addon.get_dev_url('payments') %}
               Set up <a href="{{ url }}">Payments & Countries</a>
             {% endtrans %}
           </li>
         {% endif %}
-        <li{% if not pending %} class="done"{% endif %}><span>{{ _('Wait for Review') }}</span></li>
+        <li{% if public or addon.is_public_waiting() %} class="done"{% endif %}><span>{{ _('Wait for Review') }}</span></li>
         <li{% if public %} class="done"{% endif %}><span>{{ _('Publish') }}</span></li>
       </ol>
 
@@ -104,13 +101,13 @@
               <strong>What's next:</strong> Set up Content Ratings
             {% endtrans %}
           </span>
-        {% elif payments and not has_payments %}
+        {% elif payments and not addon.has_payment_account() %}
           <span>
             {% trans %}
               <strong>What's next:</strong> Set up Payments & Countries
             {% endtrans %}
           </span>
-        {% elif public_waiting %}
+        {% elif addon.is_public_waiting() %}
           <span>
             {% trans %}
               <strong>What's next:</strong> Publish Your App
