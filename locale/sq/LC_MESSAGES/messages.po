@@ -10273,15 +10273,15 @@ msgstr "Këtë sezon festash bëni shpenzime të mençura"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
-msgstr ""
+msgstr "Gjeni shtesa të shkëlqyera që t'ju ndihmojnë me krejt nevojat e shpenzimeve për festat"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:13
 msgid "Install the Amazon Browser Apps and receive special Amazon features right at your fingertips."
-msgstr ""
+msgstr "Instaloni Amazon Browser Apps dhe përfitoni duke pasur në majë të gishtave veçori speciale Amazon."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
 msgid "Keep an eye on your eBay activity wherever you are on the web when you install the eBay Sidebar for Firefox."
-msgstr ""
+msgstr "Mbani nën vëzhgim veprimtarinë tuaj te eBay, kurdoherë që jeni në web, pasi të instaloni eBay Sidebar për Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
