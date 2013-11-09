@@ -19,28 +19,22 @@
                  {% endif %}>
                 {{- _('Design Fundamentals') }}</a>
             </li>
-            <li class="has-children{{ ' active' if section in ('design_ui',
-                                                               'design_patterns') }}">
+            <li class="has-children{{ ' active' if section in ('design_ui', 'design_patterns') }}">
               <h2 class="subtitle nav-title">
                 <a href="{{ url('ecosystem.design_ui') }}">
                   {{- _('UI Guidelines') }}</a>
               </h2>
               <ol>
                 <li>
-                  <a href="//developer.mozilla.org/docs/Web_Development/Mobile/Responsive_design"
-                     rel="external">
+                  <a href="{{ url('ecosystem.responsive_design') }}">
                     {{- _('Intro to Responsive Design') }}</a>
                 </li>
                 <li>
-                  <a href="{{ url('ecosystem.design_patterns') }}"
-                     {%- if section == 'design_patterns' %}
-                     class="selected"
-                     {% endif %}>
+                  <a href="{{ url('ecosystem.design_patterns') }}">
                     {{- _('Responsive Navigation Patterns') }}</a>
                 </li>
                 <li>
-                  <a href="//developer.mozilla.org/en-US/docs/Apps/UI-Guidelines"
-                     rel="external">
+                  <a href="{{ url('ecosystem.ffos_guideline') }}">
                     {{- _('UI Guidelines for Firefox OS') }}</a>
                 </li>
               </ol>
@@ -58,17 +52,11 @@
                 {{- _('Quick Start') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.build_intro') }}"
-                {%- if section == 'build_intro' %}
-                class="selected"
-                {% endif %}>
+              <a href="{{ url('ecosystem.build_intro') }}">
                 {{- _('Intro to Open Web Apps') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.build_ffos') }}"
-                 {%- if section == 'firefox_os' %}
-                 class="selected"
-                 {% endif %}>
+              <a href="{{ url('ecosystem.build_ffos') }}">
                 {{- _('Intro to Firefox OS') }}</a>
             </li>
             <li class="has-children{{ ' active' if section in ('build_reference',
@@ -141,38 +129,23 @@
               </ol>
             </li>
             <li>
-              <a href="{{ url('ecosystem.build_manifests') }}"
-                 {%- if section == 'build_manifests' %}
-                 class="selected"
-                 {% endif %}>
+              <a href="{{ url('ecosystem.build_manifests') }}">
                 {{- _('Intro to Manifests') }}</a>
             </li>
             <li>
               <a href="{{ url('ecosystem.build_web_developers') }}"
-                 {%- if section == 'build_web_developers' %}
-                 class="selected"
-                 {% endif %}>
                 {{- _('For Current Web Developers') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.build_mobile_developers') }}"
-                 {%- if section == 'build_mobile_developers' %}
-                 class="selected"
-                 {% endif %}>
+              <a href="{{ url('ecosystem.build_mobile_developers') }}">
                 {{- _('For Current Mobile Developers') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.build_apps_offline') }}"
-                 {%- if section == 'build_apps_offline' %}
-                 class="selected"
-                 {% endif %}>
+              <a href="{{ url('ecosystem.build_apps_offline') }}">
                 {{- _('Using Apps Offline') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.build_game_apps') }}"
-                 {%- if section == 'build_game_apps' %}
-                 class="selected"
-                 {% endif %}>
+              <a href="{{ url('ecosystem.build_game_apps') }}">
                 {{- _('Developing Game Apps') }}</a>
             </li>
             <li>
@@ -224,39 +197,25 @@
           <h2 class="title nav-title">{{ _('Publish') }}</h2>
           <ol>
             <li>
-              <a href="{{ url('ecosystem.publish_submit') }}"
-                 {% if section == 'publish_submit' -%}
-                 class="selected"
-                 {% endif -%}>
+              <a href="{{ url('ecosystem.publish_submit') }}">
                 {{- _('Marketplace Submission') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.publish_review') }}"
-                 {% if section == 'publish_review' -%}
-                 class="selected"
-                 {% endif -%}>
+              <a href="{{ url('ecosystem.publish_review') }}">
                 {{- _('Marketplace Review Criteria') }}</a>
             </li>
-            <li class="has-children{{ ' active' if section in ('publish_deploy',
-                                                               'publish_hosted',
-                                                               'publish_packaged') }}">
+            <li class="has-children{{ ' active' if section in ('publish_deploy', 'publish_hosted', 'publish_packaged') }}">
               <h2 class="subtitle nav-title">
                 <a href="{{ url('ecosystem.publish_deploy') }}">
                   {{- _('Deploying Your App') }}</a>
               </h2>
               <ol>
                 <li>
-                  <a href="{{ url('ecosystem.publish_hosted') }}"
-                     {% if section == 'publish_hosted' -%}
-                     class="selected"
-                     {% endif -%}>
+                  <a href="{{ url('ecosystem.publish_hosted') }}">
                     {{- _('Hosted Apps') }}</a>
                 </li>
                 <li>
-                  <a href="{{ url('ecosystem.publish_packaged') }}"
-                     {% if section == 'publish_packaged' -%}
-                     class="selected"
-                     {% endif -%}>
+                  <a href="{{ url('ecosystem.publish_packaged') }}">
                     {{- _('Packaged Apps') }}</a>
                 </li>
               </ol>

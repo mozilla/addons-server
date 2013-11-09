@@ -107,34 +107,10 @@ def design_ui(request):
         {'page': 'design_ui', 'category': 'design'})
 
 
-def design_patterns(request):
-    """Design - Responsive Navigation Patterns page."""
-    return jingo.render(request, 'ecosystem/design_patterns.html',
-        {'page': 'design_patterns', 'category': 'design'})
-
-
-def publish_review(request):
-    """Publish - Marketplace Review Criteria page."""
-    return jingo.render(request, 'ecosystem/publish_review.html',
-        {'page': 'publish_review', 'category': 'publish'})
-
-
 def publish_deploy(request):
     """Publish - Deploying your app page."""
     return jingo.render(request, 'ecosystem/publish_deploy.html',
         {'page': 'publish_deploy', 'category': 'publish'})
-
-
-def publish_hosted(request):
-    """Publish - Hosted apps page."""
-    return jingo.render(request, 'ecosystem/publish_hosted.html',
-        {'page': 'publish_hosted', 'category': 'publish'})
-
-
-def publish_submit(request):
-    """Publish - Marketplace submission page."""
-    return jingo.render(request, 'ecosystem/publish_submit.html',
-        {'page': 'publish_submit', 'category': 'publish'})
 
 
 def publish_payments(request):
@@ -147,69 +123,6 @@ def publish_badges(request):
     """Publish - Marketplace badges."""
     return jingo.render(request, 'ecosystem/publish_badges.html',
         {'page': 'badges', 'category': 'publish'})
-
-
-def publish_packaged(request):
-    """Publish - Packaged apps page."""
-    html_sample = u'''
-<html>
-<body>
-  <p>Packaged app installation page</p>
-  <script>
-    // This URL must be a full url.
-    var manifestUrl = 'http://<server-ip>/package.manifest';
-    var req = navigator.mozApps.installPackage(manifestUrl);
-    req.onsuccess = function() {
-      alert(this.result.origin);
-    };
-    req.onerror = function() {
-      alert(this.error.name);
-    };
-  </script>
-</body>
-</html>
-'''.strip()
-    mini_manifest_a_sample = u'''
-{
-    "name": "My App",
-    "package_path": "http://<server-ip>/package.zip",
-    "version": "1.0"
-}
-'''.strip()
-    mini_manifest_b_sample = u'''
-{
-    "name": "My app",
-    "package_path": "http://thisdomaindoesnotexist.org/myapp.zip",
-    "version": "1.0",
-    "size": 172496,
-    "release_notes": "First release",
-    "developer": {
-        "name": "Developer Name",
-        "url": "http://thisdomaindoesnotexist.org/"
-    },
-    "locales": {
-        "fr_FR": {
-            "name": "Mon application"
-        },
-        "se_SE": {
-            "name": "Min balla app"
-        }
-    },
-    "icons": {
-        "16": "/icons/16.png",
-        "32": "/icons/32.png",
-        "256": "/icons/256.png"
-    }
-}
-'''.strip()
-    d = {
-        'page': 'publish_packaged',
-        'category': 'publish',
-        'html_sample': html_sample,
-        'mini_manifest_a_sample': mini_manifest_a_sample,
-        'mini_manifest_b_sample': mini_manifest_b_sample
-    }
-    return jingo.render(request, 'ecosystem/publish_packaged.html', d)
 
 
 def build_quick(request):
@@ -362,28 +275,10 @@ if('vibrate' in navigator) {
     return jingo.render(request, 'ecosystem/build_quick.html', d)
 
 
-def build_intro(request):
-    """Build - Intro to Open Web apps page."""
-    return jingo.render(request, 'ecosystem/build_intro.html',
-        {'page': 'build_intro', 'category': 'build'})
-
-
 def build_reference(request):
     """Build - Reference apps page."""
     return jingo.render(request, 'ecosystem/build_reference.html',
         {'page': 'build_reference', 'category': 'build'})
-
-
-def build_ffos(request):
-    """Build - Firefox OS page."""
-    return jingo.render(request, 'ecosystem/build_ffos.html',
-        {'page': 'build_ffos', 'category': 'build'})
-
-
-def build_manifests(request):
-    """Build - Intro to Manifests page."""
-    return jingo.render(request, 'ecosystem/build_manifests.html',
-        {'page': 'build_manifests', 'category': 'build'})
 
 
 def build_app_generator(request):
@@ -463,30 +358,6 @@ def build_tools(request):
     """Build - Tools page."""
     return jingo.render(request, 'ecosystem/build_tools.html',
         {'page': 'build_tools', 'category': 'build'})
-
-
-def build_game_apps(request):
-    """Build - Developer Game Apps page."""
-    return jingo.render(request, 'ecosystem/build_game_apps.html',
-        {'page': 'build_game_apps', 'category': 'build'})
-
-
-def build_apps_offline(request):
-    """Build - Apps Offline page."""
-    return jingo.render(request, 'ecosystem/build_apps_offline.html',
-        {'page': 'build_apps_offline', 'category': 'build'})
-
-
-def build_mobile_developers(request):
-    """Build - Mobile Developers page."""
-    return jingo.render(request, 'ecosystem/build_mobile_developers.html',
-        {'page': 'build_mobile_developers', 'category': 'build'})
-
-
-def build_web_developers(request):
-    """Build - Web Developers page."""
-    return jingo.render(request, 'ecosystem/build_web_developers.html',
-           {'page': 'build_web_developers', 'category': 'build'})
 
 
 def build_dev_tools(request):
