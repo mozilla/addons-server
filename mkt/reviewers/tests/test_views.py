@@ -2861,7 +2861,7 @@ class TestReviewPage(amo.tests.TestCase):
 
     def setUp(self):
         self.create_switch('iarc')
-        self.app = app_factory(status=amo.STATUS_PENDING, unrated=True)
+        self.app = app_factory(status=amo.STATUS_PENDING)
         self.reviewer = UserProfile.objects.get()
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 

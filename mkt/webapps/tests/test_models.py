@@ -481,8 +481,69 @@ class TestWebapp(amo.tests.TestCase):
 
     def test_rated(self):
         self.create_switch('iarc')
-        assert app_factory().is_rated()
-        assert not app_factory(unrated=True).is_rated()
+        assert app_factory(rated=True).is_rated()
+        assert not app_factory().is_rated()
+
+    def test_set_content_ratings(self):
+        rb = mkt.ratingsbodies
+
+        app = app_factory()
+        app.set_content_ratings({})
+        assert not app.is_rated()
+
+        # Create.
+        app.set_content_ratings({
+            rb.CLASSIND: rb.CLASSIND_L,
+            rb.PEGI: rb.PEGI_3,
+        })
+        eq_(ContentRating.objects.count(), 2)
+        for expected in [(rb.CLASSIND.id, rb.CLASSIND_L.id),
+                         (rb.PEGI.id, rb.PEGI_3.id)]:
+            assert ContentRating.objects.filter(
+                addon=app, ratings_body=expected[0],
+                rating=expected[1]).exists()
+
+        # Update.
+        app.set_content_ratings({
+            rb.CLASSIND: rb.CLASSIND_10,
+            rb.PEGI: rb.PEGI_3,
+            rb.GENERIC: rb.GENERIC_18,
+        })
+        eq_(ContentRating.objects.count(), 3)
+        for expected in [(rb.CLASSIND.id, rb.CLASSIND_10.id),
+                         (rb.PEGI.id, rb.PEGI_3.id),
+                         (rb.GENERIC.id, rb.GENERIC_18.id)]:
+            assert ContentRating.objects.filter(
+                addon=app, ratings_body=expected[0],
+                rating=expected[1]).exists()
+
+    def test_set_interactives(self):
+        app = app_factory()
+        app.set_interactives([])
+        eq_(RatingInteractives.objects.count(), 1)
+        app_interactives = RatingInteractives.objects.get(addon=app)
+        assert not app_interactives.has_shares_info
+        assert not app_interactives.has_digital_purchases
+
+        # Create.
+        app.set_interactives([
+            'shares_info', 'digital_PurChaSes', 'UWOTM8'
+        ])
+        eq_(RatingInteractives.objects.count(), 1)
+        app_interactives = RatingInteractives.objects.get(addon=app)
+        assert app_interactives.has_shares_info
+        assert app_interactives.has_digital_purchases
+        assert not app_interactives.has_users_interact
+
+        # Update.
+        app.set_interactives([
+            'digital_content_portaL', 'digital_purchases', 'shares_ur_mum'
+        ])
+        eq_(RatingInteractives.objects.count(), 1)
+        app_interactives = RatingInteractives.objects.get(addon=app)
+        assert not app_interactives.has_shares_info
+        assert app_interactives.has_digital_content_portal
+        assert app_interactives.has_digital_purchases
 
     def test_has_payment_account(self):
         app = app_factory()
@@ -661,8 +722,8 @@ class TestWebappManager(amo.tests.TestCase):
 
     def test_rated(self):
         self.create_switch('iarc')
-        rated = app_factory()
-        app_factory(unrated=True)
+        rated = app_factory(rated=True)
+        app_factory()
         eq_(Webapp.objects.count(), 2)
         eq_(list(Webapp.objects.rated()), [rated])
 
@@ -1198,7 +1259,7 @@ class TestInstalled(amo.tests.TestCase):
         assert self.m(install_type=apps.INSTALL_TYPE_REVIEWER)[1]
 
 
-class TestAppFeatures(DynamicBoolFieldsTestMixin):
+class TestAppFeatures(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
 
     def setUp(self):
         super(TestAppFeatures, self).setUp()
@@ -1398,7 +1459,7 @@ class TestWebappIndexer(amo.tests.TestCase):
         assert 've' not in doc['content_ratings']
 
 
-class TestRatingDescriptors(DynamicBoolFieldsTestMixin):
+class TestRatingDescriptors(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
 
     def setUp(self):
         super(TestRatingDescriptors, self).setUp()
@@ -1421,7 +1482,7 @@ class TestRatingDescriptors(DynamicBoolFieldsTestMixin):
         self.assertSetEqual(self.to_unicode(to_list), self.expected)
 
 
-class TestRatingInteractives(DynamicBoolFieldsTestMixin):
+class TestRatingInteractives(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
 
     def setUp(self):
         super(TestRatingInteractives, self).setUp()

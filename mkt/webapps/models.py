@@ -959,6 +959,27 @@ class Webapp(Addon):
             if not created:
                 cr.update(rating=rating.id)
 
+    def set_interactives(self, data):
+        """
+        Sets IARC interactive elements on this app.
+
+        This overwrites or creates elements, it doesn't delete and expects data
+        of the form:
+
+            [<interactive name 1>, <interactive name 2>]
+
+
+        """
+        create_kwargs = {}
+        for interactive in mkt.ratinginteractives.RATING_INTERACTIVES.keys():
+            create_kwargs['has_%s' % interactive.lower()] = (
+                interactive.lower() in map(str.lower, data))
+
+        ri, created = RatingInteractives.objects.get_or_create(
+            addon=self, defaults=create_kwargs)
+        if not created:
+            ri.update(**create_kwargs)
+
 
 class Trending(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='trending')

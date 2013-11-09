@@ -1128,7 +1128,7 @@ class TestContentRatings(amo.tests.TestCase):
 
     def setUp(self):
         self.create_switch('iarc')
-        self.app = app_factory(unrated=True)
+        self.app = app_factory()
         self.user = UserProfile.objects.get()
         AddonUser.objects.create(addon=self.app, user=self.user)
 

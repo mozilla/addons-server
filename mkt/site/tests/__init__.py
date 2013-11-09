@@ -1,9 +1,9 @@
 from nose.tools import eq_
 
-from amo.tests import app_factory, TestCase
+from amo.tests import app_factory
 
 
-class DynamicBoolFieldsTestMixin(TestCase):
+class DynamicBoolFieldsTestMixin():
 
     def setUp(self):
         """

@@ -605,7 +605,7 @@ def assert_no_validation_errors(validation):
 def app_factory(**kw):
     kw.update(type=amo.ADDON_WEBAPP)
     app = amo.tests.addon_factory(**kw)
-    if waffle.switch_is_active('iarc') and not kw.get('unrated'):
+    if waffle.switch_is_active('iarc') and kw.get('rated'):
         ContentRating.objects.create(addon=app, ratings_body=0, rating=0)
     return app
 

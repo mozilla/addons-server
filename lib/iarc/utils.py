@@ -53,8 +53,9 @@ class IARC_XML_Parser(XMLParser):
             raise ParseError('XML parse error - %s' % six.text_type(exc))
         data = self._xml_convert(tree.getroot())
 
-        # Process ratings and descriptors.
+        # Process ratings, descriptors, interactives.
         data = self._process_ratings_and_descriptors(data)
+        data = self._process_interactive_elements(data)
 
         return data
 
@@ -114,6 +115,17 @@ class IARC_XML_Parser(XMLParser):
             d['descriptors'] = descriptors
 
         return d
+
+    def _process_interactive_elements(self, data):
+        """Split and normalize the 'interactive_elements' key into a list."""
+        data['interactives'] = []
+        if not data.get('interactive_elements'):
+            return data
+
+        data['interactives'] = filter(
+            None, [s.strip().lower().replace(' ', '_') for s in
+                   data['interactive_elements'].split(',')])
+        return data
 
 
 # These mappings are required to convert the IARC response strings, like "ESRB"
