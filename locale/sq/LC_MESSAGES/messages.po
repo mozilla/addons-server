@@ -21162,27 +21162,27 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:35
 msgid "Podcasts is an offline-capable, entirely HTML5/JS audio app. It's chiefly designed for Firefox OS, but support for other platforms and browsers is an eventual design goal. It allows users to subscribe to any podcast and listen to it right from their Firefox OS device! <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Read the full developer walkthrough</a>"
-msgstr ""
+msgstr "Podcasts është një zbatim audio, shkruar tërësisht në HTML5/JS, i aftë të funksionojë offline. Është hartuar kryesisht për Firefox OS, por mbulimi i platformave dhe shfletuesve të tjerë është synimi përfundimtar i hartuesve. U lejon përdoruesve të pajtohen te cilido podcast dhe ta dëgjojnë drejt e prej pajisjes së tyre Firefox OS device! <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Lexoni përshkrimin e plotë nga programuesi</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:51
 msgid "Translation files"
-msgstr ""
+msgstr "Kartela përkthimi"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:52
 msgid "integration and UI tests"
-msgstr ""
+msgstr "testime integrimi dhe UI-je"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:55
 msgid "UI files"
-msgstr ""
+msgstr "Kartela UI-je"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:59
 msgid "Podcasts is a <a href=\"%(packaged_apps_link)s\">packaged app</a>, so it requires a build step to be installed to Firefox OS. The <code>Makefile</code> contains a multi-step process that will create a <code>www-built</code> folder used to install the app on a phone or the <a href=\"%(simulator_link)s\">Firefox OS Simulator</a>."
-msgstr ""
+msgstr "Podcasts është një <a href=\"%(packaged_apps_link)s\">zbatim i paketuar</a>, ndaj lyp një hap montimi që të instalohet në Firefox OS. <code>Makefile</code>-i përmban një proces me disa hapa që do të krijojë një dosje <code>www-built</code> e përdorur për të instaluar zbatimin në një telefon ose te <a href=\"%(simulator_link)s\">Simuluesi i Firefox OS-it</a>."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:78
 msgid "Used to store settings and basic podcast metadata. Not used for podcast audio files or cover art."
-msgstr ""
+msgstr "Përdorur për të ruajtur rregullimet dhe tejtëdhëna bazë të podcast-it. Nuk përdoret për kartela audio apo art grafik të podcast-it."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:87
 msgid "An asynchronous and fast datastore for maintaining podcast audio and images."
@@ -21200,39 +21200,39 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
 msgid "Advanced"
-msgstr ""
+msgstr "Të mëtejshme"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:146
 msgid "4%"
-msgstr ""
+msgstr "4%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:147
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:98
 msgid "6%"
-msgstr ""
+msgstr "6%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:148
 msgid "90%"
-msgstr ""
+msgstr "90%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:17
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:18
 msgid "Default Feed View"
-msgstr ""
+msgstr "Pamje Parazgjedhje Prurjeje"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:22
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:23
 msgid "Writing a Status Update"
-msgstr ""
+msgstr "Shkrimi i një Përditësimi Gjendjeje"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:27
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:28
 msgid "Liking a Post"
-msgstr ""
+msgstr "Pëlqimi i një Postimi"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:35
 msgid "Roller is a micro blog app that allows you to post text, upload an image or paste a link that has an image extension such as jpg, gif, png or jpeg. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
-msgstr ""
+msgstr "Roller është një zbatim për mikroblogime që ju lejon të postoni tekst, të ngarkoni një figurë ose të hidhni një lidhje që përmban një zgjatim kartele figure, të tillë si jpg, gif, png ose jpeg. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Lexoni përshkrimin e plotë nga programuesi </a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:62
 msgid "A key-value store that contains all the post data for Roller."
@@ -21240,38 +21240,38 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:104
 msgid "26%"
-msgstr ""
+msgstr "26%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:105
 msgid "69%"
-msgstr ""
+msgstr "69%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Pamje Galeri"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
-msgstr ""
+msgstr "Pamje Kamera"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "Përzgjedhja e një figure"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
-msgstr ""
+msgstr "rtcamera është një zbatim zbavitës kamere për përpunim të atypëratyshëm figurash, duke përdorur teknologji Web. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Lexoni përshkrimin e plotë nga programuesi </a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "Prodhon animacione GIF."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "Një mbështjellëse për IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
@@ -21279,20 +21279,20 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "Shtoni akte prekjeje."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
-msgstr ""
+msgstr "Pasi të ngarkohet herën e parë, mund të përdoret offline, pa lidhje në rrjet."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "Për shkarkimin e kartelave te shfletuesi."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "E përdorur për përpunim të shpejtë dhe të egektshëm të të dhënave të figurës."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
@@ -21301,27 +21301,27 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
-msgstr ""
+msgstr "Ruan në pajisje figurat e marra dhe i përdor ato për pamjen galeri."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
-msgstr ""
+msgstr "Prodhon kartela GIF në prapaskenë, pa u bllokuar UI-ja."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
-msgstr ""
+msgstr "Ngarkim figurash në një shërbyes tjetër për t'i ndarë me të tjerët, dhe përftim i url-ve të tyre."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
-msgstr ""
+msgstr "rtcamera përdor x-appbar, x-deck, x-layout, x-modal dhe x-switch."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "1%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "83%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
@@ -21337,15 +21337,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:35
 msgid "Webfighter is an R-Type and Tyrian inspired game where you must hunt down an alien bug and destroy it. As a side-scrolling shooter, pick up various weapons to blast your way through enemies. In addition to destroying the alien bug, kill as many enemies as possible to get the highest score. <a href=\"%(marketplace_link)s\">View on the marketplace</a> <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Read the full developer walkthrough</a>"
-msgstr ""
+msgstr "Webfighter është një lojë e frymëzuar prej R-Type dhe Tyrian, gjatë së cilës duhet të merreni me gjuetinë e një kandrre jashtëtokësore dhe ta shkatërroni. Si gjuajtës që lëviz në anë, zgjidhni armë të ndryshme për të çarë rrugën tuaj mes armiqve. Veç shkatërrimit të kandrrës jashtëtokësore, asgjësoni sa më shumë armiq që të mundeni, për të arritur pikët maksimale. <a href=\"%(marketplace_link)s\">Shiheni në Marketplace</a> <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Lexoni përshkrimin e plotë nga programuesi</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:56
 msgid "Used to generate the game graphics."
-msgstr ""
+msgstr "E përdorur për të prodhuar grafikë lojërash."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:64
 msgid "Allows the game to be played in fullscreen mode."
-msgstr ""
+msgstr "E lejon lojën të luhet në madhësi sa krejt ekrani."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:72
 msgid "The player can purchase items in a store that will aid their quest. This shows the workflow for in-app payments."
@@ -21353,7 +21353,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:99
 msgid "92%"
-msgstr ""
+msgstr "92%"
 
 #: mkt/files/views.py:49
 msgid "Back to app"
@@ -21361,51 +21361,51 @@ msgstr "Mbrapsht te zbatimi"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
-msgstr ""
+msgstr "Krahasim Kartelash :: Mjete Shqyrtuesi"
 
 #: mkt/files/templates/fileviewer/viewer.html:6
 msgid "File Viewer :: Reviewer Tools"
-msgstr ""
+msgstr "Parës Kartelash :: Krahasim Kartelash"
 
 #: mkt/files/templates/fileviewer/viewer.html:34
 msgid "App being processed, please wait."
-msgstr ""
+msgstr "Zbatimi po përpunohet, ju lutemi, prisni."
 
 #: mkt/lookup/forms.py:9
 msgid "Transaction Lookup"
-msgstr ""
+msgstr "Kërkim Transaksioni"
 
 #: mkt/lookup/forms.py:15
 msgid "Enter refund details to refund transaction"
-msgstr ""
+msgstr "Jepni hollësi rimbursimi që të rimbursohet transaksioni"
 
 #: mkt/lookup/forms.py:28
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "Arsye për Fshirjen"
 
-#: mkt/lookup/views.py:151
+#: mkt/lookup/views.py:149
 msgid "Currently unable to retrieve refund status."
-msgstr ""
+msgstr "Hëpërhë i pazoti të marrë të dhëna gjendjeje rimbursimi."
 
-#: mkt/lookup/views.py:178
+#: mkt/lookup/views.py:176
 msgid "A refund has already been processed."
-msgstr ""
+msgstr "Është kryer tashmë një rimbursim>"
 
-#: mkt/lookup/views.py:201
+#: mkt/lookup/views.py:199
 msgid "You cannot make a refund request for this transaction."
-msgstr ""
+msgstr "Nuk mund të bëni kërkesë rimbursimi për këtë transaksion."
 
-#: mkt/lookup/views.py:223
+#: mkt/lookup/views.py:221
 msgid "Refund for this transaction now pending."
-msgstr ""
+msgstr "Rimbursimi për këtë është vënë në radhë."
 
-#: mkt/lookup/views.py:232
+#: mkt/lookup/views.py:230
 msgid "Refund for this transaction successfully approved."
-msgstr ""
+msgstr "Rimbursimi për këtë transaksion u miratua me sukses."
 
-#: mkt/lookup/views.py:237
+#: mkt/lookup/views.py:235
 msgid "Refund request for this transaction failed."
-msgstr ""
+msgstr "Kërkesa e rimbursimit për këtë transaksion dështoi."
 
 #: mkt/lookup/templates/lookup/app_summary.html:8
 msgid "last 24 hours"
@@ -21421,7 +21421,7 @@ msgstr "tërë kohën"
 
 #: mkt/lookup/templates/lookup/app_summary.html:34
 msgid "Manifest"
-msgstr ""
+msgstr "Manifest"
 
 #: mkt/lookup/templates/lookup/app_summary.html:40
 #: mkt/reviewers/templates/reviewers/includes/details.html:33
@@ -21446,12 +21446,12 @@ msgstr "Rimbursime"
 #. first argument is number of refunds, second argument is percentage of purchases.
 #: mkt/lookup/templates/lookup/app_summary.html:84
 msgid "{0} requested ({1} of purchases)"
-msgstr ""
+msgstr "{0} të kërkuara ({1} e blerjeve)"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:87
 msgid "{0} auto-approved"
-msgstr ""
+msgstr "{0} të vetëmiratuara"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:89
@@ -21463,18 +21463,13 @@ msgstr "{0} të miratuar"
 msgid "{0} rejected"
 msgstr "{0} të hedhur poshtë"
 
-#: mkt/lookup/templates/lookup/app_summary.html:94
-#: mkt/lookup/templates/lookup/user_summary.html:54
-msgid "Bango portal"
-msgstr ""
-
-#: mkt/lookup/templates/lookup/app_summary.html:107
+#: mkt/lookup/templates/lookup/app_summary.html:103
 msgid "Version (ID)"
-msgstr ""
+msgstr "Version (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:108
+#: mkt/lookup/templates/lookup/app_summary.html:104
 msgid "Filename (ID, Size)"
-msgstr ""
+msgstr "Emër kartele (ID, Madhësi)"
 
 #: mkt/lookup/templates/lookup/base.html:3
 #: mkt/site/context_processors.py:52
@@ -21487,11 +21482,11 @@ msgstr "Mjet Kërkimesh te <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup results for <a href=\"%(tx_url)s\">Transaction %(uuid)s</a>"
-msgstr ""
+msgstr "Përfundime Kërkimi Transaksioni për <a href=\"%(tx_url)s\">Transaksionin %(uuid)s</a>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:22
 msgid "Buyer"
-msgstr ""
+msgstr "Blerës"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:30
 msgid "Price Tier"
@@ -21499,23 +21494,23 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:32
 msgid "Related Transaction"
-msgstr ""
+msgstr "Transaksioni Përkatës"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:47
 msgid "Refund Status"
-msgstr ""
+msgstr "Gjendje Rimbursimi"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:48
 msgid "Unrequested"
-msgstr ""
+msgstr "E pakërkuar"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:55
 msgid "Refund this transaction"
-msgstr ""
+msgstr "Rimbursoje këtë transaksion"
 
 #: mkt/lookup/templates/lookup/user_activity.html:10
 msgid "Account Activity results for"
-msgstr ""
+msgstr "Përfundime Veprimtarie Llogarie për"
 
 #: mkt/lookup/templates/lookup/user_activity.html:14
 msgid "Account Updates"
@@ -21523,23 +21518,19 @@ msgstr "Përditësime Llogarie"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:10
 msgid "Purchase results for"
-msgstr ""
-
-#: mkt/lookup/templates/lookup/user_purchases.html:25
-msgid "This user has not purchased any apps."
-msgstr ""
+msgstr "Përfundime blerjeje për"
 
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
-msgstr ""
+msgstr "Përfundime Kërkimi Llogarie për"
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "Të përgjithshme"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
-msgstr ""
+msgstr "I regjistruar"
 
 #: mkt/lookup/templates/lookup/user_summary.html:25
 msgid "Groups"
@@ -21551,11 +21542,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:45
 msgid "Marketplace Credit"
-msgstr ""
+msgstr "Kredit Marketplace"
 
 #: mkt/lookup/templates/lookup/user_summary.html:48
 msgid "apps purchased"
-msgstr ""
+msgstr "zbatime të blera"
 
 #: mkt/lookup/templates/lookup/user_summary.html:51
 msgid "requested"
@@ -21563,64 +21554,59 @@ msgstr "e kërkuar"
 
 #: mkt/lookup/templates/lookup/user_summary.html:52
 msgid "auto-approved"
-msgstr ""
+msgstr "e vetëmiratuar"
 
-#. The account is the name of the payment account.
 #: mkt/lookup/templates/lookup/user_summary.html:57
-msgid "View transactions for: {account}"
-msgstr ""
-
-#: mkt/lookup/templates/lookup/user_summary.html:64
 msgid "Developer Program"
-msgstr ""
+msgstr "Program Zhvilluesi"
 
-#: mkt/lookup/templates/lookup/user_summary.html:66
+#: mkt/lookup/templates/lookup/user_summary.html:59
 msgid "Read agreement"
-msgstr ""
+msgstr "Lexoni marrëveshjen"
 
-#: mkt/lookup/templates/lookup/user_summary.html:74
+#: mkt/lookup/templates/lookup/user_summary.html:67
 msgid "Addresses"
 msgstr "Adresa"
 
-#: mkt/lookup/templates/lookup/user_summary.html:93
+#: mkt/lookup/templates/lookup/user_summary.html:86
 msgid "Submissions"
 msgstr "Parashtrime"
 
-#: mkt/lookup/templates/lookup/user_summary.html:100
+#: mkt/lookup/templates/lookup/user_summary.html:93
 msgid "Unnamed"
 msgstr "I paemërt"
 
-#: mkt/lookup/templates/lookup/user_summary.html:111
-#: mkt/lookup/templates/lookup/user_summary.html:119
-#: mkt/lookup/templates/lookup/user_summary.html:123
-#: mkt/lookup/templates/lookup/user_summary.html:127
+#: mkt/lookup/templates/lookup/user_summary.html:104
+#: mkt/lookup/templates/lookup/user_summary.html:112
+#: mkt/lookup/templates/lookup/user_summary.html:116
+#: mkt/lookup/templates/lookup/user_summary.html:120
 msgid "Delete User"
-msgstr ""
+msgstr "Fshi Përdoruesin"
 
-#: mkt/lookup/templates/lookup/user_summary.html:114
+#: mkt/lookup/templates/lookup/user_summary.html:107
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr ""
+msgstr "Fshirja e këtij përdoruesi do të fshijë <strong>përgjithnjë</strong> këtë llogari përdoruesi."
 
-#: mkt/lookup/templates/lookup/user_summary.html:124
+#: mkt/lookup/templates/lookup/user_summary.html:117
 msgid "Are you sure you wish to delete this user?"
-msgstr ""
+msgstr "Jeni i sigurt se doni të fshihet ky përdorues?"
 
-#: mkt/lookup/templates/lookup/user_summary.html:134
+#: mkt/lookup/templates/lookup/user_summary.html:127
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "Ky përdorues është fshirë tashmë."
 
-#: mkt/lookup/templates/lookup/user_summary.html:136
+#: mkt/lookup/templates/lookup/user_summary.html:129
 msgid "Deleted by"
-msgstr ""
+msgstr "Fshirë nga"
 
-#: mkt/lookup/templates/lookup/user_summary.html:139
+#: mkt/lookup/templates/lookup/user_summary.html:132
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:10
 msgid "Reason"
 msgstr "Arsye"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:3
 msgid "App Lookup results for"
-msgstr ""
+msgstr "Përfundime Kërkimi Zbatimesh për"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:5
 msgid "App Detail"
@@ -21628,7 +21614,7 @@ msgstr "Hollësi Zbatimi"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:7
 msgid "Add-on Lookup results for"
-msgstr ""
+msgstr "Përfundime Kërkimi Shtesash për"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
@@ -21636,27 +21622,27 @@ msgstr "Përmbledhje Llogarie"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr ""
+msgstr "Llogaria u Fshi"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:6
 msgid "App Lookup"
-msgstr ""
+msgstr "Kërkim Zbatimi"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:11
 msgid "Lookup"
 msgstr "Kërkim"
 
-#: mkt/lookup/templates/lookup/includes/user_search.html:4
+#: mkt/lookup/templates/lookup/includes/user_search.html:5
 msgid "Account Lookup"
-msgstr ""
+msgstr "Kërkim Llogarie"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
-msgstr ""
+msgstr "Pult Operatori"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr ""
+msgstr "Pult <small>Operatori/small>"
 
 #: mkt/operators/templates/operators/preloads.html:4
 #: mkt/operators/templates/operators/preloads.html:8
@@ -21669,11 +21655,11 @@ msgstr ""
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
-msgstr ""
+msgstr "Plan Testimi"
 
 #: mkt/operators/templates/operators/preloads.html:41
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:55
 msgid "No preload candidates found"
@@ -21682,56 +21668,56 @@ msgstr ""
 #. L10n: {0} is the addon name.
 #: mkt/purchase/webpay.py:42
 msgid "Firefox Marketplace purchase of {0}"
-msgstr ""
+msgstr "Blerje e {0} te Firefox Marketplace"
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/webpay_tasks.py:27
+#: mkt/purchase/webpay_tasks.py:30
 msgid "Receipt for {0}"
-msgstr ""
+msgstr "Dëftesë për {0}"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Dëftesë"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
-msgstr ""
+msgstr "Faturuar:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Numër Porosie:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Datë Porosie:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Artikull"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Shitës"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "Për Kushtet e Shërbimit të Firefox Marketplace-it, ju lutemi, vizitoni:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
-msgstr ""
+msgstr "Për asistencë, ju lutemi, vizitoni:"
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
-msgstr ""
+msgstr "Historiku juaj i blerjeve:"
 
 #: mkt/ratings/templates/ratings/rating.html:22
 msgid "by <strong>%(user_name)s</strong>"
-msgstr ""
+msgstr "nga <strong>%(user_name)s</strong>"
 
 #: mkt/ratings/templates/ratings/rating.html:26
 msgid "for previous version %(version)s"
-msgstr ""
+msgstr "për versione të mëparshme %(version)s"
 
 #: mkt/ratings/templates/ratings/rating.html:40
 msgid "Report"
@@ -21739,11 +21725,11 @@ msgstr "Njoftim"
 
 #: mkt/receipts/forms.py:20
 msgid "No receipt"
-msgstr ""
+msgstr "Pa dëftesë"
 
 #: mkt/receipts/forms.py:21
 msgid "Test receipt"
-msgstr ""
+msgstr "Testoni dëftesën"
 
 #: mkt/receipts/forms.py:22
 msgid "Expired test receipt"
@@ -21760,7 +21746,7 @@ msgstr ""
 #: mkt/receipts/views.py:98
 #: mkt/receipts/views.py:188
 msgid "There was a problem installing the app."
-msgstr ""
+msgstr "Pati një problem në instalimin e zbatimit."
 
 #: mkt/receipts/templates/receipts/test_details.html:3
 #: mkt/receipts/templates/receipts/test_details.html:8
@@ -21770,36 +21756,36 @@ msgstr ""
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
-msgstr ""
+msgstr "Ky është faqe e ruajtur për hollësitë e dëftesës. Nëse keni instaluar një zbatim të njëmendtë nga Marketplace-i, kjo faqe do të duhej të shfaqte më tepër hollësi."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
-msgstr ""
+msgstr "Provoni instalimin e zbatimit tuaj para se ta ngarkoni te Marketplace-i. Që të provoni se si trajtohen dëftesat, mund të zgjidhni lloje të ndryshëm dëftesash."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
-msgstr ""
+msgstr "Lloj dëftese"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
-msgstr ""
+msgstr "Vend manifesti"
 
 #: mkt/reviewers/forms.py:31
 msgid "Any Status"
-msgstr ""
+msgstr "Çfarëdo Gjendje"
 
 #: mkt/reviewers/forms.py:38
 msgid "Attachment:"
-msgstr ""
+msgstr "Bashkëngjitje:"
 
 #: mkt/reviewers/forms.py:39
-#: mkt/submit/forms.py:344
+#: mkt/submit/forms.py:336
 msgid "Description:"
-msgstr ""
+msgstr "Përshkrim:"
 
 #: mkt/reviewers/forms.py:50
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Bashkangjitja tejkalon madhësinë maksimum %s."
 
 #: mkt/reviewers/forms.py:77
 #: mkt/reviewers/templates/reviewers/review.html:221
@@ -21813,41 +21799,41 @@ msgstr "Shfletuesa:"
 
 #: mkt/reviewers/forms.py:82
 msgid "Device Type Override:"
-msgstr ""
+msgstr "Anashkalim Lloji Pajisjeje:"
 
 #: mkt/reviewers/forms.py:87
 msgid "Senior Reviewers"
-msgstr ""
+msgstr "Shqyrtues të Vjetër"
 
 #: mkt/reviewers/forms.py:88
 msgid "Staff"
-msgstr ""
+msgstr "Stafi"
 
 #: mkt/reviewers/forms.py:92
 msgid "Action Visibility to Users:"
-msgstr ""
+msgstr "Dukshmëri Veprimi te Përdoruesit:"
 
 #: mkt/reviewers/forms.py:96
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr ""
+msgstr "Njoftomë herës tjetër që përditësohet manifesti. (Përditësime të njëpasnjëshëm nuk do të shoqërohen me email)"
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:152
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "zbatim, shqyrtues, ose koment"
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:162
 msgid "theme name"
-msgstr ""
+msgstr "emër teme"
 
 #: mkt/reviewers/forms.py:188
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Dikush tjetër po e shqyrton këtë temë."
 
 #: mkt/reviewers/forms.py:286
 msgid "Has Editor Comment"
-msgstr ""
+msgstr "Ka Koment Redaktori"
 
 #: mkt/reviewers/forms.py:290
 msgid "More Info Requested"
@@ -21875,24 +21861,24 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:40
 msgid "Device"
-msgstr ""
+msgstr "Pajisje"
 
 #: mkt/reviewers/helpers.py:42
 msgid "Reviewing"
-msgstr ""
+msgstr "Shqrytim"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Pending Themes"
-msgstr ""
+msgstr "Tema Në Pritje"
 
 #: mkt/reviewers/helpers.py:45
 #: mkt/reviewers/templates/reviewers/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Tema Me Shenjë"
 
 #: mkt/reviewers/helpers.py:46
 msgid "Update Themes"
-msgstr ""
+msgstr "Përditësoni Tema"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
@@ -21917,7 +21903,7 @@ msgstr ""
 #: mkt/reviewers/helpers.py:102
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
-msgstr ""
+msgstr "Shqyrtime të Moderuara ({0})"
 
 #: mkt/reviewers/helpers.py:106
 msgid "Reviewing ({0})"
@@ -21925,16 +21911,16 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:114
 msgid "Device ({0})"
-msgstr ""
+msgstr "Pajisje ({0})"
 
 #: mkt/reviewers/helpers.py:161
 #: mkt/reviewers/helpers.py:181
 msgid "Flagged"
-msgstr ""
+msgstr "Me Shenjë"
 
 #: mkt/reviewers/tasks.py:30
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Parashtrim Dy Herë"
 
 #: mkt/reviewers/tasks.py:42
 msgid "Thanks for submitting your Theme"
@@ -21943,27 +21929,27 @@ msgstr "Faleminderit për Parashtrimin e Temës suaj"
 #: mkt/reviewers/tasks.py:46
 #: mkt/reviewers/tasks.py:50
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Problem me parashtrimin e Temës suaj"
 
 #: mkt/reviewers/tasks.py:54
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Parashtrim teme me shenjë të vënë për shqyrtim"
 
 #: mkt/reviewers/tasks.py:61
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Një pyetje rreth parashtrimir të Temës suaj"
 
 #: mkt/reviewers/utils.py:400
 msgid "This will approve the sandboxed app so it appears on the public side."
-msgstr ""
+msgstr "Kështu do të miratohet zbatimi në bankorpovë, që kështu të duket në publik."
 
 #: mkt/reviewers/utils.py:406
 msgid "This will reject the app and remove it from the review queue."
-msgstr ""
+msgstr "Kjo do ta hedhë tej zbatimin dhe do ta heqë prej radhës së shqyrtimeve."
 
 #: mkt/reviewers/utils.py:412
 msgid "This will send the author(s) an email requesting more information."
-msgstr ""
+msgstr "Kështu do t'i dërgohet autorit një email ku i kërkohen më tepër të dhëna."
 
 #: mkt/reviewers/utils.py:416
 msgid "Escalate"
@@ -21971,7 +21957,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:418
 msgid "Flag this app for an admin to review."
-msgstr ""
+msgstr "I vini shenjë këtij zbatimi që ta shqyrtojë një admin."
 
 #: mkt/reviewers/utils.py:423
 msgid "Make a comment on this app. The author won't be able to see this."
@@ -21995,11 +21981,11 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:441
 msgid "Disable app"
-msgstr ""
+msgstr "Çaktivizoje zbatimin"
 
 #: mkt/reviewers/utils.py:443
 msgid "Disable the app, removing it from public results. Sends comments to author."
-msgstr ""
+msgstr "Çaktivizojeni zbatimin, duke e hequr prej përfundimeve publike. Komentet dërgohen te autori."
 
 #: mkt/reviewers/views.py:77
 msgid "New Apps (Under 5 days)"
@@ -22011,12 +21997,12 @@ msgstr ""
 
 #: mkt/reviewers/views.py:299
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Pajisje ndryshuar nga shqyrtuesi: {0}"
 
 #: mkt/reviewers/views.py:303
 #: mkt/reviewers/views.py:324
-#: mkt/submit/forms.py:36
-#: mkt/submit/forms.py:45
+#: mkt/submit/forms.py:33
+#: mkt/submit/forms.py:42
 msgid "Removed {0}"
 msgstr ""
 
@@ -22025,71 +22011,67 @@ msgstr ""
 msgid "Requirements changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:348
-msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr ""
-
-#: mkt/reviewers/views_themes.py:303
+#: mkt/reviewers/views_themes.py:311
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "Nuk po shqyrtoni ndonjë zbatim."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:24
-#: mkt/reviewers/templates/reviewers/queue.html:31
+#: mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
 msgstr "Pajisje"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:35
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:75
-#: mkt/reviewers/templates/reviewers/queue.html:47
+#: mkt/reviewers/templates/reviewers/queue.html:51
 msgid "Packaged App"
-msgstr ""
+msgstr "Zbatim i Paketuar"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:38
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:78
-#: mkt/reviewers/templates/reviewers/queue.html:53
+#: mkt/reviewers/templates/reviewers/queue.html:57
 msgid "Blocklisted App"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:41
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:81
-#: mkt/reviewers/templates/reviewers/queue.html:56
+#: mkt/reviewers/templates/reviewers/queue.html:60
 msgid "Premium App"
-msgstr ""
+msgstr "Zbatim Me Pagesë"
 
 #: mkt/reviewers/templates/reviewers/base.html:11
 msgid "<small>Marketplace</small> Reviewer Tools"
-msgstr ""
+msgstr "Mjete Shqyrtuesi te <small>Marketplace</small>"
 
-#: mkt/reviewers/templates/reviewers/home.html:17
+#: mkt/reviewers/templates/reviewers/home.html:13
 msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
 msgstr[0] "{num} Shqyrtim Zbatimi Në Pritje"
 msgstr[1] "{num} Shqyrtime Zbatimi Në Pritje"
 
-#: mkt/reviewers/templates/reviewers/home.html:24
+#: mkt/reviewers/templates/reviewers/home.html:20
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
 msgstr[0] "{num} Rishqyrtim"
 msgstr[1] "{num} Rishqyrtime"
 
-#: mkt/reviewers/templates/reviewers/home.html:31
+#: mkt/reviewers/templates/reviewers/home.html:27
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
 msgstr[0] "{num} Përditësim Shqyrtimi"
 msgstr[1] "{num} Përditësime Shqyrtimi"
 
-#: mkt/reviewers/templates/reviewers/home.html:40
+#: mkt/reviewers/templates/reviewers/home.html:36
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
 msgstr[0] "{c} parashtrim zbatimi të pashqyrtuar këtë javë."
 msgstr[1] "{c} parashtrime zbatimesh të pashqyrtuar këtë javë."
 
-#: mkt/reviewers/templates/reviewers/home.html:53
+#: mkt/reviewers/templates/reviewers/home.html:49
 msgid "{0} app"
 msgid_plural "{0} apps"
 msgstr[0] "{0} zbatim"
@@ -22097,32 +22079,32 @@ msgstr[1] "{0} zbatime"
 
 #: mkt/reviewers/templates/reviewers/logs.html:4
 msgid "App Review Log"
-msgstr ""
+msgstr "Regjistër Shqyrtimesh Zbatimi"
 
 #: mkt/reviewers/templates/reviewers/logs.html:40
 msgid "App has been deleted."
-msgstr ""
+msgstr "Zbatimi është fshirë."
 
 #: mkt/reviewers/templates/reviewers/performance.html:3
 msgid "Reviewer Scores for {0}"
-msgstr ""
+msgstr "Pikë Shqyrtuesi për {0}"
 
-#: mkt/reviewers/templates/reviewers/queue.html:49
+#: mkt/reviewers/templates/reviewers/queue.html:53
 msgid "Privileged App"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/queue.html:78
-msgid "Payment Category:"
-msgstr ""
-
 #: mkt/reviewers/templates/reviewers/queue.html:82
-msgid "Abuse Reports:"
-msgstr ""
+msgid "Payment Category:"
+msgstr "Kategori Pagese:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:97
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:75
+#: mkt/reviewers/templates/reviewers/queue.html:86
+msgid "Abuse Reports:"
+msgstr "Raportime Dhunimi:"
+
+#: mkt/reviewers/templates/reviewers/queue.html:101
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:79
 msgid "There are currently no items of this type to review."
-msgstr ""
+msgstr "Hëpërhë nuk ka objekte të këtij lloji që të shqyrtohen."
 
 #: mkt/reviewers/templates/reviewers/review.html:31
 #: mkt/reviewers/templates/reviewers/includes/details.html:21
@@ -22136,7 +22118,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:57
 msgid "Review This App"
-msgstr ""
+msgstr "Shqyrtojeni Këtë Zbatim"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 #: mkt/reviewers/templates/reviewers/review.html:79
@@ -22145,7 +22127,7 @@ msgstr "Historik Zbatimi"
 
 #: mkt/reviewers/templates/reviewers/review.html:87
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/review.html:219
 msgid "Tested with:"
@@ -22153,27 +22135,27 @@ msgstr "Provuar me:"
 
 #: mkt/reviewers/templates/reviewers/review.html:246
 msgid "Browse"
-msgstr ""
+msgstr "Shfletoni"
 
 #: mkt/reviewers/templates/reviewers/review.html:258
 msgid "Attach another file"
-msgstr ""
+msgstr "Bashkangjitni një kartelë tjetër"
 
 #: mkt/reviewers/templates/reviewers/review.html:261
 msgid "Device Override:"
-msgstr ""
+msgstr "Anashkalim Pajisjeje:"
 
 #: mkt/reviewers/templates/reviewers/review.html:267
 msgid "Minimum Requirements Override:"
-msgstr ""
+msgstr "Anashkalim Domosdoshmërish Minimum:"
 
 #: mkt/reviewers/templates/reviewers/review.html:277
 msgid "Make this action visible to"
-msgstr ""
+msgstr "Bëje këtë veprim të dukshëm për"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:11
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:43
@@ -22183,17 +22165,17 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:13
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Packaged app"
-msgstr ""
+msgstr "Zbatim i paketuar"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:16
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:48
 msgid "Hosted app"
-msgstr ""
+msgstr "Zbatim i strehuar"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:36
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:58
 msgid "App domain"
-msgstr ""
+msgstr "Përkatësi zbatimi"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:41
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:63
@@ -23147,15 +23129,3 @@ msgstr "Vizitoni Mozilla-n"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "menu"
-
-#~ msgid "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul> </li>"
-#~ msgstr "<p> %(consumer)s dëshiron të autorizohet të veprojë në këmbë tuajën. Kjo mund të përfshijë: </p> <ul> <li>Ngarkim, ndryshim ose heqje shtesash në emrin tuaj.</li> <li>Ngarkim, ndryshim ose heqje versione shtesash në emrin tuaj.</li> <li> Zbulim të dhënash personale rreth jush, të tilla si emrin tuaj të përdoruesit dhe adresën email (por jo fjalëkalimin tuaj). </li> </ul> </li>"
-
-#~ msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. If you use a GetSatisfaction URL, users will be able to interact with a GetSatisfaction widget."
-#~ msgstr "Nëse keni një forum ose një \"site\" web asistence për shtesën tuaj, jepeni adresen e tyre këtu. Nëse site-i juaj web është i përkthyer në gjuhë të tjera, mund të shtohen përkthime shumëfishe të kësaj fushe. Nëse përdorni ndonjë URL GetSatisfaction, përdoruesit do të jenë në gjendje të ndërveprojnë me një \"widget\" GetSatisfaction."
-
-#~ msgid "You have no apps."
-#~ msgstr "Nuk keni zbatime."
-
-#~ msgid "You must be signed in to view your apps."
-#~ msgstr "Duhet të keni bërë hyrjen që të shihni zbatimet tuaja."
