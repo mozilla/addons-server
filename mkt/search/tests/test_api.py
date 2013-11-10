@@ -38,7 +38,7 @@ from mkt.webapps.tasks import unindex_webapps
 
 
 class TestSearchResource(TestCase):
-    fixtures = fixture('user_2519')
+    fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
         self.resource = SearchResource()
