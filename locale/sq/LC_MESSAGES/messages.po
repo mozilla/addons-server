@@ -22180,7 +22180,7 @@ msgstr "Përkatësi zbatimi"
 #: mkt/reviewers/templates/reviewers/includes/details.html:41
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:63
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
-msgstr ""
+msgstr "<strong>Përkatësi IDN!</strong> version punycode-i: %(punycode_app_domain)s"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:48
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:70
@@ -22199,57 +22199,57 @@ msgstr "Lloje Pajisjesh"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:137
 msgid "Requirements"
-msgstr ""
+msgstr "Domosdoshmëri"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:162
 msgid "More about this app"
-msgstr ""
+msgstr "Më tepër rreth këtij zbatimi"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:18
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:29
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:160
 msgid "more..."
-msgstr ""
+msgstr "më tepër..."
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:34
 msgid "%(stars)s by %(user)s on %(date)s (%(locale)s)"
-msgstr ""
+msgstr "%(stars)s nga %(user)s më %(date)s (%(locale)s)"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:11
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:11
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:15
 msgid "Clear Search"
-msgstr ""
+msgstr "Pastro Kërkimin"
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49
 #: mkt/reviewers/templates/reviewers/includes/search_results_themes.html:26
 #: mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Nuk u gjetën përfundime"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
-msgstr ""
+msgstr "Radhë Temash"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:28
 msgid "Theme Logs"
-msgstr ""
+msgstr "Regjistra Teme"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Tema të Fshira"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Fshirë Më Datë"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Nuk u gjetën tema të fshira për këtë periudhë."
 
 #: mkt/reviewers/templates/reviewers/themes/history.html:3
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Historik Shqyrtimesh Teme për {0}"
 
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:6
 msgid "Review Date"
@@ -22257,27 +22257,27 @@ msgstr "Datë Shqyrtimi"
 
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Hëpërhë nuk ka shqyrtime."
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:17
+#: mkt/reviewers/templates/reviewers/themes/home.html:13
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
 msgstr[0] "{num} Shqyrtim Teme Në Pritje"
 msgstr[1] "{num} Shqyrtime Teme Në Pritje"
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:25
+#: mkt/reviewers/templates/reviewers/themes/home.html:21
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
 msgstr[0] "{num} Shqyrtim Me Shenjë"
 msgstr[1] "{num} Shqyrtime Me Shenjë"
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:32
+#: mkt/reviewers/templates/reviewers/themes/home.html:28
 msgid "{num} Update"
 msgid_plural "{num} Updates"
 msgstr[0] "{num} Përditësim"
 msgstr[1] "{num} Përditësime"
 
-#: mkt/reviewers/templates/reviewers/themes/home.html:47
+#: mkt/reviewers/templates/reviewers/themes/home.html:43
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
 msgstr[0] "{num} parashtrim teme të pashqyrtuar këtë javë."
@@ -22285,11 +22285,11 @@ msgstr[1] "{num} parashtrime teme të pashqyrtuar këtë javë."
 
 #: mkt/reviewers/templates/reviewers/themes/logs.html:4
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Regjistër Shqyrtimesh Teme"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:6
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Radhë Temash për Shqyrtim"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:45
 msgid "Review Options"
@@ -22297,15 +22297,15 @@ msgstr "Mundësi Shqyrtimi"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Vetështyje përpara pas shqyrtimi"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Aktivizo shkurtore tastiere"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:64
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Shkurtore Tastiere"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:67
 msgid "Next Theme"
@@ -22317,7 +22317,7 @@ msgstr "Tema e Mëparshme"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:81
 msgid "Your Review History"
-msgstr ""
+msgstr "Historiku Juaj i Shqyrtimeve"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:87
 msgid "Commit Review"
@@ -22333,39 +22333,39 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:101
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Hëpërhë nuk Tema për shqyrtim."
 
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:20
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:24
 msgid "Release My Theme Locks"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:33
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Radhë Temash Ndërvepruese"
 
 #: mkt/reviewers/templates/reviewers/themes/single.html:8
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Shqyrtim Teme për {0}"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:16
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Parashtrim Me Gjasa i Përsëritur)"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:67
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Shënime të Dikurshme Shqyrtimi"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:73
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Më Tepër të Dhëna të Nevojshme: {0}"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:75
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Me shenjë: {0}"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:96
 msgid "Approve Theme"
-msgstr ""
+msgstr "Miratoni Temë"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:103
 msgid "Field required"
@@ -22389,15 +22389,15 @@ msgstr "Bëjini artistit një pyete"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:137
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Përshkruani arsyen tuaj për vënien shenjë"
 
 #: mkt/search/forms.py:27
 msgid "Paid"
-msgstr ""
+msgstr "Me Pagesë"
 
 #: mkt/search/forms.py:31
 msgid "Any App Type"
-msgstr ""
+msgstr "Çfarëdo Lloj Zbatimi"
 
 #: mkt/search/forms.py:34
 msgid "Privileged packaged app"
@@ -22417,7 +22417,7 @@ msgstr ""
 
 #: mkt/search/forms.py:46
 msgid "Any Device Type"
-msgstr ""
+msgstr "Çfarëdo Lloj Pajisjeje"
 
 #: mkt/search/forms.py:49
 msgid "Tablet"
@@ -22429,11 +22429,11 @@ msgstr "Kërkoni për zbatime"
 
 #: mkt/search/forms.py:87
 msgid "Add-on type"
-msgstr ""
+msgstr "Lloj shtese"
 
 #: mkt/search/forms.py:92
 msgid "Device type"
-msgstr ""
+msgstr "Lloj pajisjeje"
 
 #: mkt/search/forms.py:95
 msgid "Premium types"
@@ -22441,15 +22441,15 @@ msgstr ""
 
 #: mkt/search/forms.py:99
 msgid "App type"
-msgstr ""
+msgstr "Lloj zbatimi"
 
 #: mkt/search/forms.py:102
 msgid "Supported languages"
-msgstr ""
+msgstr "Gjuhë që mbulohen"
 
 #: mkt/site/context_processors.py:34
 msgid "Sign out"
-msgstr ""
+msgstr "Dilni"
 
 #: mkt/site/forms.py:10
 msgid "As soon as it is approved."
@@ -22461,78 +22461,83 @@ msgstr "Jo përpara se ta bëj dorazi publik."
 
 #: mkt/site/forms.py:50
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "Formulari nuk u parashtrua dot."
 
 #: mkt/site/helpers.py:179
 msgid "Home"
-msgstr ""
+msgstr "Hyrje"
 
-#: mkt/site/templates/site/403.html:4
+#: mkt/site/templates/site/403.html:5
 msgid "Not Allowed"
-msgstr ""
-
-#: mkt/site/templates/site/403.html:8
-msgid "Oops! Not allowed."
-msgstr ""
+msgstr "E palejuar"
 
 #: mkt/site/templates/site/403.html:9
+msgid "Oops! Not allowed."
+msgstr "Oops! Nuk lejohet."
+
+#: mkt/site/templates/site/403.html:10
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Provuat të bëni diçka që nuk ju lejohet ta bëni."
 
-#: mkt/site/templates/site/403.html:11
+#: mkt/site/templates/site/403.html:12
 msgid "Try going back to the previous page, refreshing and trying again."
-msgstr ""
+msgstr "Provoni të shkoni mbrapsht te faqja e mëparshme, ta rifreskoni dhe të riprovoni."
 
-#: mkt/site/templates/site/404.html:4
+#: mkt/site/templates/site/404.html:5
 msgid "Page Not Found"
 msgstr "Nuk u Gjet Faqe"
 
-#: mkt/site/templates/site/404.html:8
-msgid "We're sorry, but we can't find what you're looking for."
-msgstr ""
-
 #: mkt/site/templates/site/404.html:11
-msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
-msgstr ""
+msgid "We're sorry, but we can't find what you're looking for."
+msgstr "Na ndjeni, por nuk gjejmë dot çfarë po kërkonit."
 
-#: mkt/site/templates/site/404.html:16
-msgid "If you typed in the address, please double check the spelling."
-msgstr ""
+#: mkt/site/templates/site/404.html:14
+msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
+msgstr "Faqja ose kartela që kërkuat nuk u gjet te site-i ynë. Ka të ngjarë që klikuat mbi një lidhje që është e vjetruar, ose shtypët adresën pasaktësisht."
 
 #: mkt/site/templates/site/404.html:19
+msgid "If you typed in the address, please double check the spelling."
+msgstr "Nëse adresën e shtypët, ju lutemi, kontrolloni edhe një herë drejtshkrimin."
+
+#: mkt/site/templates/site/404.html:22
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
-msgstr ""
+msgstr "Vizitoni <a class=\"sync\" href=\"%(home)s\">faqen ballore të Firefox Marketplace-it</a>."
 
-#: mkt/site/templates/site/500.html:4
+#: mkt/site/templates/site/500.html:5
 msgid "Server Error"
-msgstr ""
+msgstr "Gabim Shërbyesi"
 
-#: mkt/site/templates/site/500.html:8
+#: mkt/site/templates/site/500.html:11
 msgid "Oops! We had an error."
-msgstr ""
+msgstr "Oh! Patëm një gabim."
 
-#: mkt/site/templates/site/500.html:10
+#: mkt/site/templates/site/500.html:13
 msgid "We'll get to fixing that soon."
-msgstr ""
+msgstr "Do t'i kthehemi ndreqjes së kësaj shpejt."
 
-#: mkt/site/templates/site/500.html:12
+#: mkt/site/templates/site/500.html:15
 msgid "You can try refreshing the page, or try again later."
-msgstr ""
+msgstr "Mund të provoni të rifreskoni faqen, ose riprovoni më vonë."
+
+#: mkt/site/templates/site/terms-of-use.html:5
+#: mkt/templates/mkt/footer.html:17
+msgid "Terms of Use"
+msgstr "Kushte Përdorimi"
 
 #: mkt/stats/forms.py:9
 #: mkt/stats/templates/devstats/includes/criteria.html:37
 #: mkt/stats/templates/includes/criteria.html:37
 msgid "Day"
-msgstr ""
+msgstr "Ditë"
 
 #: mkt/stats/forms.py:10
 #: mkt/stats/templates/includes/criteria.html:40
 msgid "Week"
-msgstr ""
+msgstr "Javë"
 
 #: mkt/stats/forms.py:12
 msgid "Quarter"
-msgstr ""
+msgstr "Katërmujor"
 
 #: mkt/stats/templates/appstats/app_report_menu.html:11
 msgid "Sales"
@@ -22551,200 +22556,200 @@ msgstr "Përdorim"
 #. {0} is the app name
 #: mkt/stats/templates/appstats/stats.html:15
 msgid "{0} · Statistics Dashboard"
-msgstr ""
+msgstr "{0} · Pult Statistikash"
 
 #: mkt/stats/templates/appstats/stats.html:124
 msgid "App sales stats are <b>private</b>."
-msgstr ""
+msgstr "Statistikat për shitje zbatimesh janë <b>private</b>."
 
 #: mkt/stats/templates/appstats/includes/stats_nav.html:7
 msgid "Amount Earned"
-msgstr ""
+msgstr "Sasi e Fituar"
 
 #: mkt/stats/templates/appstats/includes/stats_nav.html:8
 msgid "Units Sold"
-msgstr ""
+msgstr "Njësi të Shitura"
 
 #: mkt/stats/templates/appstats/includes/stats_nav.html:9
 msgid "Units Refunded"
-msgstr ""
+msgstr "Njësi të Rimbursuara"
 
 #: mkt/stats/templates/appstats/includes/stats_nav.html:33
 msgid "by Currency"
-msgstr ""
+msgstr "sipas Monedhe"
 
 #: mkt/stats/templates/appstats/reports/app_overview.html:9
 msgid "<b>{0}</b> Installs"
-msgstr ""
+msgstr "<b>{0}</b> Instalime"
 
 #: mkt/stats/templates/appstats/reports/app_overview.html:25
 msgid "Top Apps"
-msgstr ""
+msgstr "Zbatimet Kryesuese"
 
 #: mkt/stats/templates/appstats/reports/app_overview.html:30
 msgid "See more apps&hellip;"
-msgstr ""
+msgstr "Shihni më tepër zbatime&hellip;"
 
 #: mkt/stats/templates/appstats/reports/app_overview.html:53
 msgid "Top Devices"
-msgstr ""
+msgstr "Pajisjet Kryesuese"
 
 #: mkt/stats/templates/appstats/reports/app_overview.html:58
 msgid "See more devices&hellip;"
-msgstr ""
+msgstr "Shihni më tepër pajisje&hellip;"
 
 #: mkt/stats/templates/appstats/reports/currency_refunds.html:3
 msgid "Units Refunded by Currency"
-msgstr ""
+msgstr "Njësi të Rimbursuara sipas Monedhash"
 
 #: mkt/stats/templates/appstats/reports/currency_revenue.html:3
 msgid "Amount Earned by Currency"
-msgstr ""
+msgstr "Shumë e Fituar sipas Monedhash"
 
 #: mkt/stats/templates/appstats/reports/currency_sales.html:3
 msgid "Sales by Currency"
-msgstr ""
+msgstr "Shitje sipas Monedhash"
 
 #: mkt/stats/templates/appstats/reports/installs.html:3
 msgid "Installs by Date"
-msgstr ""
+msgstr "Instalime sipas Datash"
 
 #: mkt/stats/templates/appstats/reports/refunds.html:3
 msgid "Units Refunded by Date"
-msgstr ""
+msgstr "Njësi të Rimbursuara sipas Datash"
 
 #: mkt/stats/templates/appstats/reports/revenue.html:3
 msgid "Amount Earned by Date"
-msgstr ""
+msgstr "Shumë e Fituar sipas Datash"
 
 #: mkt/stats/templates/appstats/reports/sales.html:3
 msgid "Units Sold by Date"
-msgstr ""
+msgstr "Njësi të Shitura sipas Datash"
 
 #: mkt/stats/templates/appstats/reports/source_refunds.html:3
 msgid "Units Refunded by Source"
-msgstr ""
+msgstr "Njësi të Rimbursuara sipas Burimesh"
 
 #: mkt/stats/templates/appstats/reports/source_revenue.html:3
 msgid "Amount Earned by Source"
-msgstr ""
+msgstr "Sasi e Fituar sipas Burimesh"
 
 #: mkt/stats/templates/appstats/reports/source_sales.html:3
 msgid "Units Sold by Source"
-msgstr ""
+msgstr "Njësi të Shitura sipas Burimesh"
 
 #: mkt/stats/templates/appstats/reports/usage.html:3
 msgid "Usage by Date"
-msgstr ""
+msgstr "Përdorim sipas Datash"
 
 #: mkt/stats/templates/devstats/stats.html:18
 msgid "Apps Statistics Dashboard"
-msgstr ""
+msgstr "Pult Statistikash Zbatimi"
 
 #: mkt/stats/templates/devstats/includes/criteria.html:29
 #: mkt/stats/templates/includes/criteria.html:29
 msgid "Custom Range"
-msgstr ""
+msgstr "Interval i Personalizuar"
 
 #. {0} is the app name
 #: mkt/stats/templates/sitestats/stats.html:15
 #: mkt/stats/templates/sitestats/stats.html:23
 msgid "Marketplace Statistics Dashboard"
-msgstr ""
+msgstr "Pult Statistikash për Marketplace-in"
 
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:2
 msgid "Apps added"
-msgstr ""
+msgstr "Zbatime të shtuara"
 
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:3
 msgid "Apps installed"
-msgstr ""
+msgstr "Zbatime të instaluara"
 
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:5
 msgid "New users"
-msgstr ""
+msgstr "Përdorues të rinj"
 
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:6
 msgid "Total users"
-msgstr ""
+msgstr "Përdorues gjithsej"
 
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:7
 msgid "Total visitors"
-msgstr ""
+msgstr "Vizitorë gjithsej"
 
-#: mkt/submit/forms.py:33
+#: mkt/submit/forms.py:30
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "Pajisje të ndryshuara: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/submit/forms.py:43
+#: mkt/submit/forms.py:40
 msgid "Requirements changed: {0}"
-msgstr ""
+msgstr "Domosdoshmëritë ndryshuan: {0}"
 
-#: mkt/submit/forms.py:51
+#: mkt/submit/forms.py:48
 msgid "Cannot be free and paid."
-msgstr ""
+msgstr "S'mund të jetë dhe falas, dhe me pagesë."
 
-#: mkt/submit/forms.py:52
+#: mkt/submit/forms.py:49
 msgid "Please select a device."
 msgstr "Ju lutemi, përzgjidhni një pajisje."
 
-#: mkt/submit/forms.py:53
+#: mkt/submit/forms.py:50
 msgid "Packaged apps are not yet supported for those platforms."
-msgstr ""
+msgstr "Zbatimet e paketuara nuk mbulohen ende në këto platforma."
 
-#: mkt/submit/forms.py:147
+#: mkt/submit/forms.py:144
 msgid "Agree and Continue"
-msgstr ""
+msgstr "Pajtohem dhe Vazhdo"
 
-#: mkt/submit/forms.py:274
+#: mkt/submit/forms.py:266
 msgid "When should your app be made available for sale?"
-msgstr ""
+msgstr "Kur do të duhej hedhur në shitje zbatimi juaj?"
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
-#: mkt/submit/forms.py:281
+#: mkt/submit/forms.py:273
 msgid "App to upgrade from"
 msgstr ""
 
-#: mkt/submit/forms.py:348
+#: mkt/submit/forms.py:340
 msgid "Privacy Policy:"
 msgstr "Rregulla Privatësie:"
 
-#: mkt/submit/forms.py:349
+#: mkt/submit/forms.py:341
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
-msgstr ""
+msgstr "Nevojiten rregulla privatësie që shpjegojnë çfarë të dhënash transmetohen nga kompjuteri i përdoruesi dhe se si përdoren."
 
-#: mkt/submit/forms.py:353
+#: mkt/submit/forms.py:345
 msgid "Homepage:"
 msgstr "Faqe Hyrëse:"
 
-#: mkt/submit/forms.py:354
+#: mkt/submit/forms.py:346
 msgid "If your app has another homepage, enter its address here."
-msgstr ""
+msgstr "Nëze zbatimi juaj ka një tjetër faqe hyrëse, jepeni adresën e saj këtu."
 
-#: mkt/submit/forms.py:358
+#: mkt/submit/forms.py:350
 msgid "Support Website:"
-msgstr ""
+msgstr "Site Web Asistence:"
 
-#: mkt/submit/forms.py:359
+#: mkt/submit/forms.py:351
 msgid "If your app has a support website or forum, enter its address here."
-msgstr ""
+msgstr "Nëse zbatimi juaj ka një site ose forum web asistence, jepeni adresën e tij këtu."
+
+#: mkt/submit/forms.py:361
+msgid "Does your app require Flash support?"
+msgstr "Lyp zbatimi juaj mbulim të Flash-it?"
 
 #: mkt/submit/forms.py:369
-msgid "Does your app require Flash support?"
-msgstr ""
-
-#: mkt/submit/forms.py:377
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
-msgstr ""
+msgstr "Botoje zbatimin tim te Firefox Marketplace-i sapo të shqyrtohet."
 
-#: mkt/submit/forms.py:379
+#: mkt/submit/forms.py:371
 msgid "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to log in and manually publish it."
-msgstr ""
+msgstr "Po u zgjodh, zbatimi juaj do të botohet menjëherë pas miratimit të tij nga shqyrtuesit. Nëse nuk përzgjidhni këtë mundësi, do të njoftoheni përmes email-i rreth miratimit të zbatimit tuaj dhe do t'ju duhet të bëni hyrjen dhe ta botoni dorazi."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
-msgstr ""
+msgstr "përpunoni Hollësi Zbatimi"
 
 #: mkt/submit/templates/submit/details.html:17
 #: mkt/submit/templates/submit/manifest.html:7
@@ -22753,80 +22758,80 @@ msgstr ""
 #: mkt/submit/templates/submit/payments.html:10
 #: mkt/submit/templates/submit/terms.html:3
 msgid "Submit an App"
-msgstr ""
+msgstr "Parashtroni një Zbatim"
 
 #: mkt/submit/templates/submit/details.html:23
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
-msgstr ""
+msgstr "Ju lutemi, shqyrtoni më poshtë të dhënat për paraqitjen në listë. Kemi paraplotësuar sa mundemi me bazë manifestin tuaj."
 
 #: mkt/submit/templates/submit/details.html:48
 msgid "Open details page"
-msgstr ""
+msgstr "Hapni faqe hollësish"
 
 #: mkt/submit/templates/submit/details.html:122
 msgid "Screenshot or video of your app:"
-msgstr ""
+msgstr "Foto ekrani ose video e zbatimit tuaj:"
 
 #: mkt/submit/templates/submit/details.html:125
 msgid "You must provide at least one."
-msgstr ""
+msgstr "Duhet të jepni një të paktën."
 
 #: mkt/submit/templates/submit/details.html:165
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
-msgstr ""
+msgstr "Mbulohen PNG dhe JPG. Fotot e ekranit duhet të jenë të paktën 320px me 480px. Fotot e ekranit përpjestimore me 320px me 480px janë optimale. Për video mbulohet WebM."
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
-msgstr ""
+msgstr "Përfundoi!"
 
 #: mkt/submit/templates/submit/done.html:16
 msgid "Success! What happens now?"
-msgstr ""
+msgstr "Sukses! Po tani?"
 
 #: mkt/submit/templates/submit/done.html:20
 msgid "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
-msgstr ""
+msgstr "E ruajtëm zbatimin tuaj dhe e kemi gati! Zbatimi juaj është në pritje të shqyrtimit dhe, pasi të jetë shqyrtuar, do t'ju duhet ta aktivizoni dorazi zbatimin prej <a href=\"%(url)s\">faqes Administroni Gjendje</a> që të jetë i dukshëm te faqet e zbatimeve dhe për kërkimet. Deri atëherë, jeni të lirë të merreni me përimtësimin e hollësive dhe rregullimeve të zbatimit tuaj."
 
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
-msgstr ""
+msgstr "Para se zbatimit juaj të marrë rrugën, lypset të jepni të dhëna për pagesa. Pasi të keni shtuar një llogari pagesash dhe çmime, zbatimi juaj do të parashtrohet për shqyrtim."
 
 #: mkt/submit/templates/submit/done.html:37
 msgid "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's details and settings."
-msgstr ""
+msgstr "E ruajtëm zbatimin tuaj dhe e kemi gati! Zbatimi juaj është në pritje të shqyrtimit dhe, pasi të jetë shqyrtuar, do të shfaqet te faqet e zbatimeve dhe për kërkimet. Deri atëherë, jeni të lirë të merreni me përimtësimin e hollësive dhe rregullimeve të zbatimit tuaj."
 
 #: mkt/submit/templates/submit/done.html:53
 msgid "Manage My App"
-msgstr ""
+msgstr "Administro Zbatimet e Mia"
 
 #: mkt/submit/templates/submit/done.html:56
 msgid "Submit Another App"
-msgstr ""
+msgstr "Parashtroni Një Tjetër Zbatim"
 
 #: mkt/submit/templates/submit/manifest.html:34
 msgid "Device Type"
-msgstr ""
+msgstr "Lloj Pajisjeje"
 
 #: mkt/submit/templates/submit/manifest.html:109
 msgid "App Minimum Requirements"
-msgstr ""
+msgstr "Domosdoshmëri Minimum të Zbatimit"
 
 #: mkt/submit/templates/submit/manifest.html:115
 msgid "<b>What's next:</b> fill out the rest of your app's details"
-msgstr ""
+msgstr "<b>Po më tej:</b> plotësoni ç'mbetet nga hollësitë e zbatimit tuaj"
 
 #: mkt/submit/templates/submit/manifest.html:129
 msgid "Learn more about <b>packaged apps</b> on MDN."
-msgstr ""
+msgstr "Mësoni më tepër rreth <b>zbatimesh të paketuara</b> te MDN."
 
 #: mkt/submit/templates/submit/payments-upsell.html:4
 #: mkt/submit/templates/submit/payments.html:3
 msgid "App Payments"
-msgstr ""
+msgstr "Pagesa Zbatimesh"
 
 #: mkt/submit/templates/submit/payments-upsell.html:18
 msgid "To sell your app in the Marketplace, you'll first need to set its price tier below. Price tiers are based on US Dollars and are fixed for all supported currencies."
-msgstr ""
+msgstr "Që të shisni zbatimin tuaj te Marketplace-i, së pari lypset të caktoni për të price tier më poshtë. Price tiers bazohen te dollari amerikan dhe janë të fiksuar për krejt monedhat e mbuluara."
 
 #: mkt/submit/templates/submit/payments-upsell.html:24
 msgid "Learn more about price tiers"
@@ -22834,52 +22839,60 @@ msgstr ""
 
 #: mkt/submit/templates/submit/payments-upsell.html:28
 msgid "Linking this app with its free counterpart allows you to promote your premium app next to the free version. Would you like to link the apps? You can always change your mind later."
-msgstr ""
+msgstr "Lidhja e këtij zbatimi me ata përkatës të lirë ju lejon të promovoni zbatimin tuaj me pagesë në krah të versionit të lirë. Do të donit t'i lidhni zbatimet? Mund të ndërroni mendje më vonë, kur të doni."
 
 #: mkt/submit/templates/submit/payments.html:23
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>. Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts in your app</a>."
-msgstr ""
+msgstr "Mësoni rreth <a href=\"%(payments_url)s\" target=\"_blank\">llojeve të ndryshme të pagesave</a>. Mësoni rreth <a href=\"%(receipts_url)s\" target=\"_blank\">vleftësimit të dëftesave të blerjes për zbatimin tuaj</a>."
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
-msgstr ""
+msgstr "Program Zhvilluesi për Marketplace-in"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to join the Marketplace Developer Program below."
-msgstr ""
+msgstr "Ngazëllehemi që ndërtuat një zbatim duke përdorur teknologji web, dhe parashtrimi te Firefox Marketplace-i është rruga më e mirë që përdoruesit ta gjejnë dhe ta shijojnë në pajisjet e tyre. Së pari, lypset të bëheni pjesë e Programit të Zhvilluesve për Marketplace më poshtë."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr ""
+msgstr "Për t'ia filluar, ju lutemi, lexoni dhe pranoni <strong>Marrëveshjen tonë për Zhvilluesit</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
-msgstr ""
+msgstr "Mozilla mund të më dërgojë me email lajme dhe anketime që janë të fushës së Zhvilluesve të Zbatimeve"
 
 #: mkt/submit/tests/test_forms.py:231
-#: mkt/webapps/tests/test_models.py:1152
+#: mkt/webapps/tests/test_models.py:1173
 msgid "Héllo"
-msgstr ""
+msgstr "Héllo"
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr ""
+msgstr "Përpunoni Rregullime Llogarie"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Return to the Marketplace"
-msgstr ""
+msgstr "Kthehuni te Marketplace-i"
 
 #: mkt/templates/mkt/account-links.html:15
 msgid "Sign Out"
-msgstr ""
+msgstr "Dilni"
+
+#: mkt/templates/mkt/base_desktop.html:34
+msgid "Develop apps for<br> the Marketplace!"
+msgstr "Zhvilloni zbatime për<br> Marketplace-in!"
+
+#: mkt/templates/mkt/base_desktop.html:39
+msgid "Visit the Developer Hub"
+msgstr "Vizitoni Qendrën e Zhvilluesave"
+
+#: mkt/templates/mkt/base_mobile.html:114
+msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account."
+msgstr "Thjesht hyni ose regjistrohuni me llogarinë tuaj <a href=\"%(url)s\">Persona</a>."
 
 #: mkt/templates/mkt/footer.html:5
 msgid "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later version."
-msgstr ""
-
-#: mkt/templates/mkt/footer.html:17
-msgid "Terms of Use"
-msgstr ""
+msgstr "Hiq atje ku <a href=\"%(legal_url)s\">shënohet</a> ndryshe, lënda e këtij site-i qarkullon sipas licencës <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> ose cilitdo version të mëvonshëm."
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
@@ -22887,35 +22900,35 @@ msgstr "Njoftoni Shpërdorim Shenjash Tregtare"
 
 #: mkt/templates/mkt/header.html:5
 msgid "Back"
-msgstr ""
+msgstr "Mbrapsht"
 
 #: mkt/templates/mkt/header.html:14
 msgid "Clear"
-msgstr ""
+msgstr "Pastroje"
 
 #: mkt/templates/mkt/header.html:17
 msgid "Expand"
-msgstr ""
+msgstr "Zgjero"
 
 #: mkt/webapps/models.py:382
 msgid "You must provide a support email."
-msgstr ""
+msgstr "Duhet të jepni një adresë email asistence."
 
 #: mkt/webapps/models.py:384
 msgid "You must provide an app name."
-msgstr ""
+msgstr "Duhet të jepni një emër zbatimi."
 
 #: mkt/webapps/models.py:386
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "Duhet të jepni të paktën një lloj pajisjeje."
 
 #: mkt/webapps/models.py:389
 msgid "You must provide at least one category."
-msgstr ""
+msgstr "Duhet të jepni të paktën një kategori."
 
-#: mkt/webapps/tasks.py:112
+#: mkt/webapps/tasks.py:111
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "Emetojeni me zbatimin tuaj app \"{app}\" te the Firefox Marketplace"
 
 #: templates/amo_footer.html:11
 #: templates/includes/lang_switcher.html:2
@@ -22957,7 +22970,7 @@ msgstr "Shihni Site-in për Celular"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
-msgstr "Njihuni me <b>shtesat</b>"
+msgstr "njihuni me <b>shtesat</b>"
 
 #: templates/footer.html:4
 #: templates/menu_links.html:20
@@ -23013,7 +23026,7 @@ msgstr "Rreth Firefox-it"
 
 #: templates/menu_links.html:23
 msgid "Join Mozilla"
-msgstr ""
+msgstr "Bashkojuni Mozilla-s"
 
 #: templates/menu_links.html:24
 msgid "Participate"
@@ -23021,11 +23034,11 @@ msgstr "Merrni pjesë"
 
 #: templates/menu_links.html:26
 msgid "Press Center"
-msgstr ""
+msgstr "Qendra e Shtypit"
 
 #: templates/menu_links.html:27
 msgid "Brand Toolkit"
-msgstr ""
+msgstr "Grup Mjetesh për Markën"
 
 #: templates/menu_links.html:28
 msgid "Careers"
@@ -23055,20 +23068,20 @@ msgstr "<a href=\"%(reg)s\">Regjistrohuni</a> ose <a href=\"%(login)s\">Hyni</a>
 
 #: templates/impala/base.html:135
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Që të provoni mijërat e shtesave që mund të kihen prej këtu, shkarkoni <a href=\"%(url)s\">Mozilla Firefox</a>, një mënyrë e shpejtë dhe e lirë për të lundruar në Web!"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:146
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Mirë se vini te Shtesat për {0}."
 
 #: templates/impala/base.html:149
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Zgjidhni prej mijëra veçorive dhe stileve ekstra për ta bërë Firefox-in tuajin."
 
 #: templates/impala/base.html:154
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Shtoni veçori dhe stile ekstra për ta bërë këtë %(app)s tuajin."
 
 #: templates/impala/base.html:162
 msgid "On the go?"
@@ -23080,11 +23093,11 @@ msgstr "Hidhini një sy <a class=\"mobile-link\" href=\"#\">site-it tonë për S
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Shtesa Android"
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
-msgstr ""
+msgstr "Hyni / Regjistrohuni"
 
 #: templates/includes/forms.html:2
 #: templates/includes/forms.html:6
@@ -23124,6 +23137,11 @@ msgstr "Shtesa"
 #: templates/mobile/header.html:8
 msgid "Visit Mozilla"
 msgstr "Vizitoni Mozilla-n"
+
+#. a link
+#: templates/mobile/header.html:10
+msgid "menu"
+msgstr "menu"
 
 #. a link
 #: templates/mobile/header.html:10
