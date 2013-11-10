@@ -5,33 +5,47 @@ from tower import ugettext_lazy as _lazy
 
 # WARNING: When adding a new rating descriptor here also include a migration.
 #
-# WARNING: Order matters here. Don't re-order these or alphabetize them. If you
-# add new ones put them on the end.
-#
 # These are used to dynamically generate the field list for the
 # RatingDescriptors django model in mkt.webapps.models.
 RATING_DESCS = OrderedDict([
-    ('USK_NO_DESCS', {
-        'name': _lazy('No Descriptors'),
+    # ngoke can read Porchugeeze.
+    ('CLASSIND_VIOLENCE', {
+        'name': _lazy('Violence'),
     }),
-    ('USK_SCARY', {
-        'name': _lazy('Frightening Content'),
+    ('CLASSIND_VIOLENCE_EXTREME', {
+        'name': _lazy('Extreme Violence'),
     }),
-    ('USK_SEX_CONTENT', {
-        'name': _lazy('Sexual Content'),
+    ('CLASSIND_NUDITY', {
+        'name': _lazy('Nudity'),
     }),
-    ('USK_LANG', {
+    ('CLASSIND_SEX_CONTENT', {
+        # L10n: `Sex` as in sexual, not as in gender.
+        'name': _lazy('Sex'),
+    }),
+    ('CLASSIND_SEX_EXPLICIT', {
+        'name': _lazy('Explicit Sex'),
+    }),
+    ('CLASSIND_DRUGS', {
+        'name': _lazy('Drugs'),
+    }),
+    ('CLASSIND_DRUGS_LEGAL', {
+        'name': _lazy('Legal Drugs'),
+    }),
+    ('CLASSIND_DRUGS_ILLEGAL', {
+        'name': _lazy('Illegal Drugs'),
+    }),
+    ('CLASSIND_LANG', {
         # L10n: `Language` as in foul language.
         'name': _lazy('Language'),
     }),
-    ('USK_DISCRIMINATION', {
-        'name': _lazy('Discrimination'),
+    ('CLASSIND_CRIMINAL_ACTS', {
+        'name': _lazy('Criminal Acts'),
     }),
-    ('USK_DRUGS', {
-        'name': _lazy('Drugs'),
+    ('CLASSIND_SHOCKING', {
+        'name': _lazy('Shocking Content'),
     }),
-    ('USK_VIOLENCE', {
-        'name': _lazy('Violence'),
+    ('CLASSIND_NO_DESCS', {
+        'name': _lazy('No Descriptors'),
     }),
     ('ESRB_ALCOHOL', {
         'name': _lazy('Alcohol Reference'),
@@ -165,7 +179,7 @@ RATING_DESCS = OrderedDict([
         'name': _lazy('Language'),
     }),
     ('PEGI_SCARY', {
-        'name': _lazy('Scary'),
+        'name': _lazy('Fear'),
     }),
     ('PEGI_SEX_CONTENT', {
         # L10n: `Sex` as in sexual, not as in gender.
@@ -184,45 +198,6 @@ RATING_DESCS = OrderedDict([
         'name': _lazy('Online'),
     }),
     ('PEGI_NO_DESCS', {
-        'name': _lazy('No Descriptors'),
-    }),
-    # ngoke can read Porchugeeze.
-    ('CLASSIND_VIOLENCE', {
-        'name': _lazy('Violence'),
-    }),
-    ('CLASSIND_VIOLENCE_EXTREME', {
-        'name': _lazy('Extreme Violence'),
-    }),
-    ('CLASSIND_SEXUAL_CONTENT', {
-        'name': _lazy('Sexual Content'),
-    }),
-    ('CLASSIND_SEX_CONTENT', {
-        # L10n: `Sex` as in sexual, not as in gender.
-        'name': _lazy('Sex'),
-    }),
-    ('CLASSIND_SEX_EXPLICIT', {
-        'name': _lazy('Explicit Sex'),
-    }),
-    ('CLASSIND_DRUGS', {
-        'name': _lazy('Drugs'),
-    }),
-    ('CLASSIND_DRUGS_LEGAL', {
-        'name': _lazy('Legal Drugs'),
-    }),
-    ('CLASSIND_DRUGS_ILLEGAL', {
-        'name': _lazy('Illegal Drugs'),
-    }),
-    ('CLASSIND_LANG', {
-        # L10n: `Language` as in foul language.
-        'name': _lazy('Language'),
-    }),
-    ('CLASSIND_CRIMINAL_ACTS', {
-        'name': _lazy('Criminal Acts'),
-    }),
-    ('CLASSIND_SHOCKING', {
-        'name': _lazy('Shocking Content'),
-    }),
-    ('CLASSIND_NO_DESCS', {
         'name': _lazy('No Descriptors'),
     }),
     # Generic ratings same as ESRB, except less drugs/alcohol/tobacco.
@@ -289,5 +264,27 @@ RATING_DESCS = OrderedDict([
     }),
     ('GENERIC_SUGGESTIVE', {
         'name': _lazy('Suggestive Themes'),
+    }),
+    ('USK_NO_DESCS', {
+        'name': _lazy('No Descriptors'),
+    }),
+    ('USK_SCARY', {
+        'name': _lazy('Frightening Content'),
+    }),
+    ('USK_SEX_CONTENT', {
+        'name': _lazy('Sexual Content'),
+    }),
+    ('USK_LANG', {
+        # L10n: `Language` as in foul language.
+        'name': _lazy('Language'),
+    }),
+    ('USK_DISCRIMINATION', {
+        'name': _lazy('Discrimination'),
+    }),
+    ('USK_DRUGS', {
+        'name': _lazy('Drugs'),
+    }),
+    ('USK_VIOLENCE', {
+        'name': _lazy('Violence'),
     }),
 ])

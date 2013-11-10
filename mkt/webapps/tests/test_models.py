@@ -32,6 +32,7 @@ from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
+from lib.iarc.utils import DESC_MAPPING
 from market.models import AddonPremium, Price
 from users.models import UserProfile
 from versions.models import update_status, Version
@@ -516,6 +517,38 @@ class TestWebapp(amo.tests.TestCase):
             assert ContentRating.objects.filter(
                 addon=app, ratings_body=expected[0],
                 rating=expected[1]).exists()
+
+    def test_set_descriptors(self):
+        app = app_factory()
+        eq_(RatingDescriptors.objects.count(), 0)
+        app.set_descriptors([])
+        eq_(RatingDescriptors.objects.count(), 1)
+
+        descriptors = RatingDescriptors.objects.get(addon=app)
+        assert not descriptors.has_classind_drugs
+        assert not descriptors.has_esrb_blood  # Blood-deuh!
+
+        # Create.
+        app.set_descriptors([
+            'has_classind_drugs', 'has_pegi_scary', 'has_generic_drug_ref'
+        ])
+        eq_(RatingDescriptors.objects.count(), 1)
+        descriptors = RatingDescriptors.objects.get(addon=app)
+        assert descriptors.has_classind_drugs
+        assert descriptors.has_pegi_scary
+        assert descriptors.has_generic_drug_ref
+        assert not descriptors.has_esrb_blood
+
+        # Update.
+        app.set_descriptors([
+            'has_esrb_blood', 'has_classind_drugs'
+        ])
+        eq_(RatingDescriptors.objects.count(), 1)
+        descriptors = RatingDescriptors.objects.get(addon=app)
+        assert descriptors.has_esrb_blood
+        assert descriptors.has_classind_drugs
+        assert not descriptors.has_pegi_scary
+        assert not descriptors.has_generic_drug_ref
 
     def test_set_interactives(self):
         app = app_factory()
@@ -1480,6 +1513,12 @@ class TestRatingDescriptors(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
         self._flag()
         to_list = self.app.rating_descriptors.to_list()
         self.assertSetEqual(self.to_unicode(to_list), self.expected)
+
+    def test_desc_mapping(self):
+        descs = RatingDescriptors.objects.create(addon=app_factory())
+        for body, mapping in DESC_MAPPING.items():
+            for native, rating_desc_field in mapping.items():
+                assert hasattr(descs, rating_desc_field), rating_desc_field
 
 
 class TestRatingInteractives(DynamicBoolFieldsTestMixin, amo.tests.TestCase):

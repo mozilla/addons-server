@@ -1,14 +1,16 @@
 from django.test.utils import override_settings
 
-import test_utils
 from nose.tools import eq_
+
+import amo.tests
 
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import IARC_XML_Parser, render_xml
+
 from mkt.constants import ratingsbodies
 
 
-class TestRenderAppInfo(test_utils.TestCase):
+class TestRenderAppInfo(amo.tests.TestCase):
 
     def setUp(self):
         self.template = 'get_app_info.xml'
@@ -27,7 +29,7 @@ class TestRenderAppInfo(test_utils.TestCase):
         assert not '<FIELD NAME="platform"' in xml
 
 
-class TestXMLParser(test_utils.TestCase):
+class TestXMLParser(amo.tests.TestCase):
 
     def setUp(self):
         self.client = get_iarc_client('service')
@@ -52,15 +54,16 @@ class TestXMLParser(test_utils.TestCase):
         eq_(data['ratings'][ratingsbodies.GENERIC], ratingsbodies.GENERIC_16)
 
         # Test descriptors.
-        # TODO: When these turn into constant classes update this.
-        eq_(data['descriptors']['Generic'], 'Language')
-        eq_(data['descriptors']['USK'], 'Explizite Sprache')
-        eq_(data['descriptors']['CLASSIND'],
-            u'Cont\xe9udo Sexual, Linguagem Impr\xf3pria')
-        eq_(data['descriptors']['ESRB'], 'Strong Language')
-        eq_(data['descriptors']['PEGI'], 'Language, Online')
+        eq_(data['descriptors'][ratingsbodies.GENERIC], ['has_generic_lang'])
+        eq_(data['descriptors'][ratingsbodies.USK], ['has_usk_lang'])
+        eq_(data['descriptors'][ratingsbodies.ESRB], [u'has_esrb_strong_lang'])
+        self.assertSetEqual(
+            data['descriptors'][ratingsbodies.CLASSIND],
+            [u'has_classind_sex_content', u'has_classind_lang'])
+        self.assertSetEqual(data['descriptors'][ratingsbodies.PEGI],
+                            ['has_pegi_lang', 'has_pegi_online'])
 
         # Test interactives.
-        self.assertSetEqual(set(data['interactives']),
-                            set(['shares_info', 'shares_location',
-                                 'social_networking', 'users_interact']))
+        self.assertSetEqual(data['interactives'],
+                            ['shares_info', 'shares_location',
+                             'social_networking', 'users_interact'])

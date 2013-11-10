@@ -94,18 +94,18 @@ class IARC_XML_Parser(XMLParser):
         descriptors = {}
 
         for k, v in data['ROW'].items():
+            # Get ratings body constant.
+            ratings_body = RATINGS_BODY_MAPPING.get(
+                k.split('_')[-1], ratingsbodies.GENERIC)
+
             if k.startswith('rating_'):
-                rating_body = k.split('_')[-1]
-                # Get ratings body constants.
-                rb_key = RATINGS_BODY_MAPPING.get(
-                    rating_body, ratingsbodies.GENERIC)
-                rb_val = RATINGS_MAPPING[rb_key].get(
-                    v, RATINGS_MAPPING[rb_key]['default'])
-                ratings[rb_key] = rb_val
+                ratings[ratings_body] = RATINGS_MAPPING[ratings_body].get(
+                    v, RATINGS_MAPPING[ratings_body]['default'])
             elif k.startswith('descriptors_'):
-                # TODO: Convert to ratings descriptor classes.
-                rating_body = k.split('_')[-1]
-                descriptors[rating_body] = v
+                native_descs = filter(None, [s.strip() for s in v.split(',')])
+                descriptors[ratings_body] = filter(None, [
+                    DESC_MAPPING[ratings_body].get(desc)
+                    for desc in native_descs])
             else:
                 d[k] = v
 
@@ -184,3 +184,117 @@ RATINGS_MAPPING = {
         'default': ratingsbodies.USK_0,
     },
 }
+
+DESC_MAPPING = {
+    # All values will be capitalized and prepended with '%s_' % RATINGS_BODY in
+    # a loop.
+    ratingsbodies.CLASSIND: {
+        u'Viol\xEAncia': 'violence',
+        u'Viol\xEAncia Extrema': 'violence_extreme',
+        u'Cont\xE9udo Sexual': 'sex_content',
+        u'Nudez': 'nudity',
+        u'Sexo': 'sex_content',
+        u'Sexo Expl\xEDcito': 'sex_explicit',
+        u'Drogas': 'drugs',
+        u'Drogas L\xEDcitas': 'drugs_legal',
+        u'Drogas Il\xEDcitas': 'drugs_illegal',
+        u'Linguagem Impr\xF3pria': 'lang',
+        u'Atos Crim\xEDnosos': 'criminal_acts',
+        u'Conte\xFAdo Impactante': 'shocking',
+        u'N\xE3o h\xE1 inadequa\xE7\xF5es': 'no_descs',
+    },
+
+    ratingsbodies.ESRB: {
+        u'Alcohol Reference': 'alcohol',
+        u'Blood': 'blood',
+        u'Blood and Gore': 'blood_gore',
+        u'Crude Humor': 'crude_humor',
+        u'Drug Reference': 'drug_ref',
+        u'Fantasy Violence': 'fantasy_violence',
+        u'Intense Violence': 'intense_violence',
+        u'Language': 'lang',
+        u'Mild Blood': 'mild_blood',
+        u'Mild Fantasy Violence': 'mild_fantasy_violence',
+        u'Mild Language': 'mild_lang',
+        u'Mild Violence': 'mild_violence',
+        u'Nudity': 'nudity',
+        u'Partial Nudity': 'partial_nudity',
+        u'Real Gambling': 'real_gambling',
+        u'Sexual Content': 'sex_content',
+        u'Sexual Themes': 'sex_themes',
+        u'Simulated Gambling': 'sim_gambling',
+        u'Strong Language': 'strong_lang',
+        u'Strong Sexual Content': 'strong_sex_content',
+        u'Suggestive Themes': 'suggestive',
+        u'Tobacco Reference': 'tobacco_ref',
+        u'Use of Alcohol': 'alcohol_use',
+        u'Use of Drugs': 'drug_use',
+        u'Use of Tobacco': 'tobacco_use',
+        u'Violence': 'violence',
+        u'Violent References': 'violence_ref',
+        u'No Descriptors': 'no_descs',
+        u'Comic Mischief ': 'comic_mischief',
+        u'Alcohol and Tobacco Reference': 'alcohol_tobacco_ref',
+        u'Drug and Alcohol Reference': 'drug_alcohol_ref',
+        u'Use of Alcohol and Tobacco': 'alcohol_tobacco_ref',
+        u'Use of Drug and Alcohol': 'drug_alcohol_use',
+        u'Drug and Tobacco Reference': 'drug_tobacco_ref',
+        u'Drug, Alcohol and Tobacco Reference': 'drug_alcohol_tobacco_ref',
+        u'Use of Drug and Tobacco': 'drug_tobacco_use',
+        u'Use of Drug, Alcohol and Tobacco': 'drug_alcohol_tobacco_use',
+        u'Scary Themes': 'scary',
+        u'Hate Speech': 'hate_speech',
+        u'Crime': 'crime',
+        u'Criminal Instruction': 'crime_instruct',
+    },
+
+    ratingsbodies.GENERIC: {
+        u'Alcohol Reference': 'alcohol_ref',
+        u'Blood': 'blood',
+        u'Blood and Gore': 'blood_gore',
+        u'Crude Humor': 'crude_humor',
+        u'Drug Reference': 'drug_ref',
+        u'Fantasy Violence': 'fantasy_violence',
+        u'Intense Violence': 'intense_violence',
+        u'Language': 'lang',
+        u'Mild Blood': 'mild_blood',
+        u'Mild Fantasy Violence': 'mild_fantasy_violence',
+        u'Mild Language': 'mild_lang',
+        u'Mild Violence': 'mild_violence',
+        u'Nudity': 'nudity',
+        u'Partial Nudity': 'partial_nudity',
+        u'Real Gambling': 'real_gambling',
+        u'Sexual Content': 'sex_content',
+        u'Sexual Themes': 'sex_themes',
+        u'Simulated Gambling': 'sim_gambling',
+        u'Strong Language': 'strong_lang',
+        u'Strong Sexual Content': 'strong_sex_content',
+        u'Suggestive Themes': 'suggestive',
+    },
+
+    ratingsbodies.PEGI: {
+        u'Violence': 'violence',
+        u'Language': 'lang',
+        u'Fear': 'scary',
+        u'Sex': 'sex_content',
+        u'Drugs': 'drugs',
+        u'Discrimination': 'discrimination',
+        u'Gambling': 'gambling',
+        u'Online': 'online',
+        u'No Descriptors': 'no_descs',
+    },
+
+    ratingsbodies.USK: {
+        u'\xC4ngstigende Inhalte': 'scary',
+        u'Erotik/Sexuelle Inhalte': 'sex_content',
+        u'Explizite Sprache': 'lang',
+        u'Diskriminierung': 'discrimination',
+        u'Drogen': 'drugs',
+        u'Gewalt': 'violence',
+    },
+}
+
+for body, mappings in DESC_MAPPING.items():
+    for native_desc, desc_slug in mappings.items():
+        DESC_MAPPING[body][native_desc] = 'has_{0}_{1}'.format(
+            body.name, desc_slug).lower()
