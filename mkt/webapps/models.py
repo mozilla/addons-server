@@ -951,13 +951,32 @@ class Webapp(Addon):
 
             {<ratingsbodies class>: <rating class>, ...}
 
-
         """
         for ratings_body, rating in data.items():
             cr, created = self.content_ratings.safer_get_or_create(
                 ratings_body=ratings_body.id, defaults={'rating': rating.id})
             if not created:
                 cr.update(rating=rating.id)
+
+    def set_descriptors(self, data):
+        """
+        Sets IARC rating descriptors on this app.
+
+        This overwrites or creates elements, it doesn't delete and expects data
+        of the form:
+
+            [<has_descriptor_1>, <has_descriptor_6>]
+
+        """
+        create_kwargs = {}
+        for desc in mkt.ratingdescriptors.RATING_DESCS.keys():
+            has_desc_attr = 'has_%s' % desc.lower()
+            create_kwargs[has_desc_attr] = has_desc_attr in data
+
+        rd, created = RatingDescriptors.objects.get_or_create(
+            addon=self, defaults=create_kwargs)
+        if not created:
+            rd.update(**create_kwargs)
 
     def set_interactives(self, data):
         """
@@ -967,7 +986,6 @@ class Webapp(Addon):
         of the form:
 
             [<interactive name 1>, <interactive name 2>]
-
 
         """
         create_kwargs = {}

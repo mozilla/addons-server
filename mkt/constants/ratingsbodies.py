@@ -127,7 +127,7 @@ class GENERIC(RATING_BODY):
     The generic game ratings body (used in Germany, for example).
     """
     id = 1
-    name = _lazy(u'Generic')
+    name = 'Generic'
     description = ''  # No comment.
 
     ratings = (GENERIC_3, GENERIC_7, GENERIC_12, GENERIC_16, GENERIC_18)
