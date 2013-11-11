@@ -1,22 +1,30 @@
-from django.db.models import Q
-
-import commonware.log
-
-from addons.models import Addon
 import cronjobs
+from addons.models import Addon
 from tags.models import AddonTag, Tag
-
-task_log = commonware.log.getLogger('z.task')
 
 
 @cronjobs.register
 def tag_jetpacks():
     # A temporary solution for singling out jetpacks on AMO.  See bug 580827
-    tags = (('jetpack', Q(versions__files__jetpack_version__isnull=False)),
-            ('restartless', Q(versions__files__no_restart=True)))
+    tags = (
+        ('jetpack', {
+            '_current_version__files__jetpack_version__isnull': False
+        }),
+        ('restartless', {
+            '_current_version__files__no_restart': True
+        })
+    )
     qs = Addon.objects.values_list('id', flat=True)
 
     for tag, q in tags:
-        tag_id = Tag.objects.get(tag_text=tag).id
-        for addon in set(qs.filter(q).exclude(tags__id=tag_id)):
-            AddonTag.objects.create(addon_id=addon, tag_id=tag_id)
+        tag = Tag.objects.get(tag_text=tag)
+        for addon in set(qs.filter(**q).exclude(tags=tag)):
+            AddonTag.objects.create(addon_id=addon, tag=tag)
+
+        d = {}
+        for k, v in q.items():
+            # Reverse the sense of the argument and use `.filter()`.
+            # `.exclude()` does not work as expected here, for some reason.
+            d['addon__%s' % k] = not v
+
+        AddonTag.objects.filter(tag=tag).filter(**d).delete()
