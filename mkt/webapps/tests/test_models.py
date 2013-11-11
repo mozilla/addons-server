@@ -46,7 +46,7 @@ from mkt.site.tests import DynamicBoolFieldsTestMixin
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
                                 ContentRating, Geodata, get_excluded_in,
-                                Installed, RatingDescriptors,
+                                IARCInfo, Installed, RatingDescriptors,
                                 RatingInteractives, Webapp, WebappIndexer)
 
 
@@ -1173,6 +1173,19 @@ class TestContentRatingsIn(amo.tests.WebappTestCase):
         assert crs not in self.app.content_ratings_in(region=mkt.regions.BR)
 
 
+class TestIARCInfo(amo.tests.WebappTestCase):
+
+    def test_no_info(self):
+        with self.assertRaises(IARCInfo.DoesNotExist):
+            self.app.iarc_info
+
+    def test_info(self):
+        IARCInfo.objects.create(addon=self.app, submission_id=1,
+                                security_code='s3kr3t')
+        eq_(self.app.iarc_info.submission_id, 1)
+        eq_(self.app.iarc_info.security_code, 's3kr3t')
+
+
 class TestQueue(amo.tests.WebappTestCase):
 
     def test_in_queue(self):
@@ -1583,4 +1596,4 @@ class TestGeodata(amo.tests.WebappTestCase):
         self.geo = self.app.geodata
 
     def test_app_geodata(self):
-         assert isinstance(Webapp(id=337141).geodata, Geodata)
+        assert isinstance(Webapp(id=337141).geodata, Geodata)

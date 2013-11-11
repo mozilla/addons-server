@@ -25,7 +25,7 @@ from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
-                                Webapp)
+                                IARCInfo, Webapp)
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -603,12 +603,20 @@ class TestAdminSettingsForm(TestAdmin):
             ['tag two', 'tag three'])
 
 
-class TestIARCGetAppInfoForm(amo.tests.TestCase):
+class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
 
     def test_good(self):
+        with self.assertRaises(IARCInfo.DoesNotExist):
+            self.app.iarc_info
+
         form = forms.IARCGetAppInfoForm({'submission_id': 1,
                                          'security_code': 'a'})
         assert form.is_valid(), form.errors
+        form.save(self.app)
+
+        iarc_info = self.app.iarc_info
+        eq_(iarc_info.submission_id, 1)
+        eq_(iarc_info.security_code, 'a')
 
     def test_incomplete(self):
         form = forms.IARCGetAppInfoForm({'submission_id': 1})

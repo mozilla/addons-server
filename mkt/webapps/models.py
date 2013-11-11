@@ -942,6 +942,17 @@ class Webapp(Addon):
         except ObjectDoesNotExist:
             return 0
 
+    def set_iarc_info(self, submission_id, security_code):
+        """
+        Sets the iarc_info for this app.
+        """
+        data = {'submission_id': submission_id,
+                'security_code': security_code}
+        info, created = IARCInfo.objects.safer_get_or_create(
+            addon=self, defaults=data)
+        if not created:
+            info.update(**data)
+
     def set_content_ratings(self, data):
         """
         Sets content ratings on this app.
@@ -1547,6 +1558,21 @@ def clean_memoized_exclusions(sender, **kw):
         for k in mkt.regions.ALL_REGION_IDS:
             cache.delete_many([memoize_key('get_excluded_in', k)
                                for k in mkt.regions.ALL_REGION_IDS])
+
+
+class IARCInfo(amo.models.ModelBase):
+    """
+    Stored data for IARC.
+    """
+    addon = models.OneToOneField(Addon, related_name='iarc_info')
+    submission_id = models.PositiveIntegerField(null=False)
+    security_code = models.CharField(max_length=10)
+
+    class Meta:
+        db_table = 'webapps_iarc_info'
+
+    def __unicode__(self):
+        return u'app:%s' % self.addon.app_slug
 
 
 class ContentRating(amo.models.ModelBase):
