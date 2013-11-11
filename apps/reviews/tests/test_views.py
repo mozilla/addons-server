@@ -3,6 +3,8 @@ from django.core import mail
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+import mock
+
 import amo.tests
 from amo.helpers import shared_url
 from access.models import Group, GroupUser
@@ -529,6 +531,58 @@ class TestEdit(ReviewTest):
         review = Review.objects.get(id=218468)
         eq_('%s' % review.title, 'fo')
         eq_('%s' % review.body, 'shizzle')
+
+
+class TestTranslate(ReviewTest):
+
+    def setUp(self):
+        super(TestTranslate, self).setUp()
+        self.create_switch('reviews-translate', db=True)
+        self.user = UserProfile.objects.get(username='jbalogh')
+        self.review = Review.objects.create(addon=self.addon, user=self.user,
+                                            body='yes')
+
+    def test_regular_call(self):
+        review = self.review
+        url = shared_url('reviews.translate', review.addon, review.id, 'fr')
+        r = self.client.get(url)
+        eq_(r.status_code, 302)
+        eq_(r.get('Location'), 'https://translate.google.com/#auto/fr/yes')
+
+    @mock.patch('reviews.views.requests')
+    def test_ajax_call(self, requests):
+        # Mock requests.
+        response = mock.Mock()
+        response.status_code = 200
+        response.json.return_value = {u'data': {u'translations': [{
+            u'translatedText': u'oui',
+            u'detectedSourceLanguage': u'en'
+        }]}}
+        requests.get.return_value = response
+
+        # Call translation.
+        review = self.review
+        url = shared_url('reviews.translate', review.addon, review.id, 'fr')
+        r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        eq_(r.status_code, 200)
+        eq_(r.content, 'oui')
+
+    @mock.patch('waffle.switch_is_active', lambda x: True)
+    @mock.patch('reviews.views.requests')
+    def test_invalid_api_key(self, requests):
+        # Mock requests.
+        response = mock.Mock()
+        response.status_code = 400
+        response.json.return_value = {'error': {'code': 400, 'errors': [{
+            'domain': 'usageLimits', 'message': 'Bad Request',
+            'reason': 'keyInvalid'}], 'message': 'Bad Request'}}
+        requests.get.return_value = response
+
+        # Call translation.
+        review = self.review
+        url = shared_url('reviews.translate', review.addon, review.id, 'fr')
+        r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        eq_(r.status_code, 400)
 
 
 class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
