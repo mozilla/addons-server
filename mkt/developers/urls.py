@@ -1,7 +1,7 @@
 from django import http
 from django.conf.urls import include, patterns, url
 
-from rest_framework.routers import DefaultRouter, SimpleRouter
+from rest_framework.routers import SimpleRouter
 from tastypie.api import Api
 
 from lib.misc.urlconf_decorator import decorate
@@ -9,11 +9,10 @@ from lib.misc.urlconf_decorator import decorate
 import amo
 from amo.decorators import write
 from mkt.api.base import AppRouter
-from mkt.developers.api import AccountResource
-from mkt.developers.api_payments import (AddonPaymentAccountViewSet,
-                                         PaymentCheckViewSet,
-                                         PaymentDebugViewSet, PaymentViewSet,
-                                         UpsellViewSet)
+from mkt.developers.api import AccountResource, ContentRatingList
+from mkt.developers.api_payments import (
+    AddonPaymentAccountViewSet, PaymentCheckViewSet, PaymentDebugViewSet,
+    PaymentViewSet, UpsellViewSet)
 from mkt.developers.decorators import use_apps
 from mkt.receipts.urls import test_patterns
 from mkt.stats.urls import all_apps_stats_patterns
@@ -191,8 +190,13 @@ app_payments.register(r'payments/status', PaymentCheckViewSet,
 app_payments.register(r'payments/debug', PaymentDebugViewSet,
                       base_name='app-payments-debug')
 
-api_patterns = patterns('',
+payments_api_patterns = patterns('',
     url(r'^', include(payments.urls)),
     url(r'^payments/', include(api_payments.urls)),
     url(r'^apps/app/', include(app_payments.urls))
+)
+
+dev_api_patterns = patterns('',
+    url(r'^apps/app/(?P<pk>[^/<>"\']+)/content_ratings/',
+        ContentRatingList.as_view(), name='content-ratings-list'),
 )

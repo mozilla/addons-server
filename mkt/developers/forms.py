@@ -1007,3 +1007,7 @@ class IARCGetAppInfoForm(happyforms.Form):
             msg = _('Content rating record not found.')
             self._errors['submission_id'] = self.error_class([msg])
             raise forms.ValidationError(msg)
+
+
+class ContentRatingForm(happyforms.Form):
+    since = forms.DateTimeField()
