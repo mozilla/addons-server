@@ -1649,7 +1649,7 @@ msgstr "Më"
 #: apps/addons/templates/addons/includes/collection_add_widget.html:7
 #: apps/addons/templates/addons/includes/collection_add_widget.html:10
 msgid "Add to collection"
-msgstr "Shtoje te koleksioni"
+msgstr "Shtojeni në koleksion"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:4
 #: apps/devhub/templates/devhub/nav.html:38
@@ -3488,7 +3488,7 @@ msgstr "Shtesa në Koleksionin Tuaj"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
-msgstr "Për përfshirjen e një shtese në këtë koleksion, jepni emrin e saj te kutiza më poshtë dhe shtypni Enter. Mundeni gjithashtu të përdorni lidhjen <strong>Shtoje te Koleksioni</strong>, diku në \"site\", për ta përfshirë shtesën më vonë."
+msgstr "Për përfshirjen e një shtese në këtë koleksion, jepni emrin e saj te kutiza më poshtë dhe shtypni Enter. Mundeni gjithashtu të përdorni lidhjen <strong>Shtojeni në Koleksion</strong>, diku në \"site\", për ta përfshirë shtesën më vonë."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: apps/constants/base.py:420
@@ -3503,7 +3503,7 @@ msgstr "Jepni emrin e shtesës që duhet përfshirë"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:28
 msgid "Add to Collection"
-msgstr "Shtoje te Koleksioni"
+msgstr "Shtojeni në Koleksion"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45
 #: apps/constants/payments.py:116
@@ -19219,8 +19219,9 @@ msgid "Use selectors, checkboxes, radio buttons etc., whenever you can. Typing o
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:84
+#, fuzzy
 msgid "Aim for a pleasant first launch experience"
-msgstr ""
+msgstr "Për urdhrin --launch mbulohen TIPET vijues:"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:86
 msgid "People often spend only a minute or two deciding whether to continue or abandon an app. Some of the factors you may want to consider include:"
@@ -19231,20 +19232,23 @@ msgid "provide a quick introduction to your app (and provide an easy way to end 
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:98
+#, fuzzy
 msgid "instant access to features and suggestions"
-msgstr ""
+msgstr "Access to acquisition and purchase suggestions management"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:99
+#, fuzzy
 msgid "minimize initial user input"
-msgstr ""
+msgstr "width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:101
 msgid "express the most important information in a concise way"
 msgstr "shprehni informacionin më të rëndësishëm në rrugë të përpiktë"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:105
+#, fuzzy
 msgid "Present action choices if possible"
-msgstr ""
+msgstr "Action if matching record found"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:107
 msgid "If your alert says &quot;Delete all contacts?&quot;, you should provide action labels like &quot;Delete&quot; instead of &quot;OK&quot;."
@@ -19274,8 +19278,9 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:13
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:39
 #: mkt/ecosystem/templates/ecosystem/macros.html:39
+#, fuzzy
 msgid "Responsive Navigation Patterns"
-msgstr ""
+msgstr "_Penela, Mostra & Gradiente"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:15
 msgid "Need some help designing your app's navigation? These patterns are a great place to start."
@@ -19291,7 +19296,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:39
 msgid "Pattern 1: Top toggle menu"
-msgstr ""
+msgstr "Rregullsi 1: Menu e sipërme shfaq/fshih"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:41
 msgid "In this pattern, as the screen width is reduced, the top navigation items rearrange until there is not enough space. At that point, some items move from the top navigation to a drop-down menu. In the smallest screen, all navigation items live in a toggle menu, and the user has to tap to expand the toggle menu."
@@ -19367,7 +19372,7 @@ msgstr "Rregullsi 4"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:113
 msgid "Pattern 2: Expandable bottom menu"
-msgstr ""
+msgstr "Rregullsi 2: Menu e poshtme e zgjerueshme"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:115
 msgid "Similar to the first pattern, the top navigation items rearrange for smaller widths until there is not enough space. At that point, some items move from the top navigation to a drop-down menu. You could rank the item priorities to ensure the most important items always appear in the top navigation."
@@ -19400,7 +19405,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:189
 msgid "Pattern 3: Left hidden menu"
-msgstr ""
+msgstr "Rregullsi 3: Menu majtas e fshehur"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:191
 msgid "The main navigation is always on the left except in the smallest screen size, where the navigation menu is hidden in a button by default. In the smallest screen, when the user taps the button, the navigation menu slides into view and displays the navigation items."
@@ -19524,7 +19529,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:36
 msgid "Essentially, the Simulator add-on consists of:"
-msgstr ""
+msgstr "Në thelb shtesa Simulues përbëhet nga:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:38
 msgid "<li> <strong>the Simulator</strong>: this includes the <a href=\"%(using_b2g)s\">Firefox OS desktop client</a>, which is a version of the higher layers of Firefox OS that runs on your desktop. The Simulator also includes some <a href=\"#Simulator-toolbar\">additional emulation features</a> that aren't in the standard Firefox OS desktop builds. </li> <li> <strong>the Dashboard</strong>: a tool hosted by the Firefox browser that enables you to start and stop the Simulator and to install, uninstall, and debug apps running in it. The Dashboard also helps you push apps to a real device, and checks app manifests for common problems. </li>"
@@ -19532,7 +19537,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:54
 msgid "The screenshot below shows a debugging session using the Simulator."
-msgstr ""
+msgstr "Fotoja e mëposhtme e ekranit tregon një sesion diagnostikimi me Simuluesin."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:56
 msgid "The Dashboard is on the top-right, running inside a Firefox tab. We've added one app, a packaged app called \"Where am I?\". At the top-left the app is running in the Simulator. We've also connected the debugging tools, which are in the window at the bottom. You can see that we've just hit a breakpoint in the app."
@@ -19540,11 +19545,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:65
 msgid "This guide covers the following topics:"
-msgstr ""
+msgstr "Ky udhërrëfyes mbulon temat vijuese:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:67
 msgid "how to install the Simulator add-on"
-msgstr ""
+msgstr "si të instalohet shtesa Simulues"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:68
 msgid "how to add, remove, and update apps"
@@ -19580,15 +19585,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:90
 msgid "Firefox OS Simulator Preview for Windows"
-msgstr ""
+msgstr "Paraparje e Simuluesit të Firefox OS-it për Windows"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:91
 msgid "Firefox OS Simulator Preview for Mac"
-msgstr ""
+msgstr "Paraparje e Simuluesit të Firefox OS-it për Mac"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:92
 msgid "Firefox OS Simulator Preview for Linux"
-msgstr ""
+msgstr "Paraparje e Simuluesit të Firefox OS-it për Linux"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:95
 msgid "2. Click \"Add to Firefox\".<br /> 3. Once the add-on has downloaded you will be prompted to install it: click \"Install Now\".<br /> <br /> Because of the size of the add-on, Firefox may freeze for several seconds while installing it, and a dialog titled \"Warning: Unresponsive script\" may appear. It it does, click \"Continue\" to wait for installation to finish. This issue is being tracked as <a href=\"%(bug_814505)s\">bug 814505</a>.<br /> <br /> Once you have installed the Simulator add-on, Firefox will periodically check for newer versions and keep it up to date for you."
@@ -19648,7 +19653,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:170
 msgid "a link to its manifest file"
-msgstr ""
+msgstr "një lidhje te kartela e vet manifest"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:171
 msgid "the result of manifest validation"
@@ -19728,7 +19733,7 @@ msgstr "Sinjalizime manifesti"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:218
 msgid "The Dashboard will report the following manifest issues as warnings:"
-msgstr ""
+msgstr "Pulti do të njoftojë si sinjalizime problemet vijuese të manifestit:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:220
 msgid "missing icons"
@@ -19864,7 +19869,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:329
 msgid "Push to device"
-msgstr ""
+msgstr "Kaloje te pajisja"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:331
 msgid "If you have a Firefox OS device you can connect it to the Simulator, and can then push apps from the Dashboard to the device."
@@ -19960,7 +19965,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr ""
+msgstr "Zhvilloni ZBatime Web HTML5  për një treg të hapur."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
@@ -19988,7 +19993,7 @@ msgstr "Bëhuni pjesë e bashkësisë"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
 msgid "Look who's already here"
-msgstr ""
+msgstr "Shihni kush është tashmë këtu"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
@@ -20020,19 +20025,21 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:200
 msgid "Test your app with a committed group of early adopters."
-msgstr ""
+msgstr "Testojeni zbatimin tuaj me një grup të përkushtuar adoptuesish të hershëm."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:205
 msgid "Build an early fan base and gain popularity."
-msgstr ""
+msgstr "Krijoni një bazë dashamirësish të hershëm dhe fitoni popullaritet."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:208
+#, fuzzy
 msgid "Target tech savvy consumers with your app."
-msgstr ""
+msgstr "Widget: Ndarës"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
+#, fuzzy
 msgid "Firefox Apps &amp; Hacks"
-msgstr ""
+msgstr "Referencë API &amp; Gjuhe"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:236
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
@@ -20052,7 +20059,7 @@ msgstr "Veprimtari &amp; Takime"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:273
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
-msgstr ""
+msgstr "Nuk kam probleme me trajtimin që i bën Mozilla këtij informacioni, ashtu si shpjegohet te <a href=\"%(privacy_link)s\">Rregullat e Privatësisë</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:281
 msgid "Sign me up!"
@@ -20111,8 +20118,9 @@ msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call F
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
+#, fuzzy
 msgid "Join the biggest and the best"
-msgstr ""
+msgstr "Fshih mesazhe ardhjesh dhe ikjesh"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
@@ -20168,7 +20176,7 @@ msgstr "Udhëzime"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "Nuk mund ta ndryshoni në asnjë mënyrë stemën."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
@@ -20212,7 +20220,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:15
 msgid "Once you have finished your app, you need to do the following:"
-msgstr ""
+msgstr "Pasi ta keni përfunduar zbatimin tuaj, kypset të bëni sa vijon:"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:20
 msgid "Deploy the app &mdash; Arrange for web hosting and get the app up and running on the web server."
@@ -20224,7 +20232,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:33
 msgid "Deploying the app"
-msgstr ""
+msgstr "Zhvillimi i zbatimit"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:35
 msgid "You need to host the app on a publicly accessible Web server, just like any other website. There are numerous ways to do this."
@@ -20240,8 +20248,9 @@ msgid "If the Web app is purely static (HTML/CSS/JavaScript, but no server-side 
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:53
+#, fuzzy
 msgid "Generic hosting solutions"
-msgstr ""
+msgstr "Përzgjidhni këtë referencë drejt këtij Elementi Semantik"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:55
 msgid "For dynamic websites, use a generic hosting option (like a Web server you may already own or have access to) with the right capabilities or a hosting provider specifically tailored to the needs of your app, like <a rel=\"external\" href=\"%(url_heroku)s\">Heroku</a> or <a rel=\"external\" href=\"%(url_google)s\">Google App Engine</a>."
@@ -20249,7 +20258,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:65
 msgid "Publishing the app"
-msgstr ""
+msgstr "Botimi i zbatimit"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:67
 msgid "Once your Web app has been deployed, you obviously want to make it installable by your intended user base. There are currently two options for publishing your app."
@@ -20257,7 +20266,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:73
 msgid "Submit to Firefox Marketplace"
-msgstr ""
+msgstr "Parashtrojeni te Firefox Marketplace-i"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:75
 msgid "<a href=\"%(url)s\">Submitting your app</a> to the Firefox Marketplace has many advantages, such as increased publicity, no need to implement special APIs on your own Web site, and the possibility of publishing paid apps more easily."
@@ -20265,7 +20274,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:82
 msgid "Publish on your own website"
-msgstr ""
+msgstr "Botojeni te site-i juaj web"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:84
 msgid "If you want to let people install your app from a website you own, you must <a href=\"%(url)s\">implement some JavaScript code</a> on your Web site to manage installing and updating your app into users' browsers."
@@ -20286,7 +20295,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:39
 msgid "Purpose of packaged apps"
-msgstr ""
+msgstr "Qëllimi i zbatimeve të paketuara"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:41
 msgid "The purpose of a packaged app is to have a workable way to provide apps that have access to sensitive APIs on devices. The app must be verified by the store where the app is distributed (such as the Firefox OS Marketplace). The store reviews the app and if it is found acceptable, the store cryptographically signs the app's zip file with its private key. This gives users of the app more assurance that the app has been carefully reviewed for potential security, privacy, and capability issues."
@@ -20294,15 +20303,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:52
 msgid "Types of packaged apps"
-msgstr ""
+msgstr "Lloje zbatimesh të paketuara"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:54
 msgid "There are three types of packaged apps:"
-msgstr ""
+msgstr "Ka tre lloje zbatimesh të paketuara:"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:56
 msgid "Privileged app"
-msgstr ""
+msgstr "Zbatim i privilegjuar"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:59
@@ -20315,7 +20324,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:76
 msgid "App's resources are signed by the app store."
-msgstr ""
+msgstr "Burimet e zbatimet janë të nënshkruara nga shitorja e zbatimit."
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:78
 msgid "Allowed to use certain sensitive Web APIs that untrusted content cannot have access to."
@@ -20331,7 +20340,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:98
 msgid "Certified app"
-msgstr ""
+msgstr "Zbatim i certifikuar"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:101
@@ -20344,7 +20353,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:128
 msgid "Plain packaged app"
-msgstr ""
+msgstr "Zbatim i paketuar thjesht"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:131
@@ -20353,7 +20362,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:148
 msgid "Differences from hosted apps"
-msgstr ""
+msgstr "Dallimet mes zbatimesh të strehuara"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:150
 msgid "Packaged apps have the same capabilites as normal website-style Open Web Apps (&quot;hosted&quot; apps), but packaged apps have a few differences:"
@@ -20371,7 +20380,7 @@ msgstr ""
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:175
 msgid "The manifest file must be named <code>manifest.webapp</code>."
-msgstr ""
+msgstr "Kartela manifest duhet të emërtohet <code>manifest.webapp</code>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:180
 msgid "Their resources are accessed from the zip file, which is stored on the device where the app is installed."
@@ -20413,7 +20422,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:239
 msgid "Packaged apps and the Firefox Marketplace"
-msgstr ""
+msgstr "Zbatimet e paketuara dhe Firefox Marketplace-i"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:242
@@ -20422,7 +20431,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:254
 msgid "Testing packaged app installation"
-msgstr ""
+msgstr "Testim instalimi zbatimi të paketuar"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:256
 msgid "Installation of a packaged app is very easy using the Firefox OS Simulator. The Firefox OS Simulator comes in platform specific builds, and is available for <a href=\"%(url_windows)s\">Windows</a>, <a href=\"%(url_osx)s\">OSX</a>, and <a href=\"%(url_linux)s\">Linux</a>."
@@ -20446,7 +20455,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:302
 msgid "Updating packaged apps"
-msgstr ""
+msgstr "Përditësim zbatimi të paketuar"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:304
 msgid "For information on updating apps, see <a href=\"%(url)s\">Updating apps</a>."
@@ -20462,11 +20471,11 @@ msgstr "Këto janë vendet që mbulohen deri sot te Marketplace-i."
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:33
 msgid "Developer setup"
-msgstr ""
+msgstr "Rregullim zhvilluesi"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:34
 msgid "Paid apps"
-msgstr ""
+msgstr "Zbatime me pagesë"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:35
 msgid "In-app payments"
@@ -20616,7 +20625,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:220
 msgid "Functionality"
-msgstr ""
+msgstr "Funksionalitet"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:223
 msgid "The reviewer must be able to perform the app's primary advertised features. Cosmetic flaws and minor inconveniences will be reported to the developer, but will not prevent an app from being approved."
@@ -20906,7 +20915,7 @@ msgstr "Zbatime Web Mozilla (Portugezçe Braziliane)"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:17
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:18
 msgid "Start Screen"
-msgstr ""
+msgstr "Skenë Nisjeje"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:22
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:23
@@ -21047,17 +21056,17 @@ msgstr "Strukturë Dosjeje"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:53
 msgid "integration tests"
-msgstr ""
+msgstr "provim integrimi"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:54
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:53
 msgid "client-side code/styles"
-msgstr ""
+msgstr "stile/kod klienti"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:55
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:54
 msgid "base HTML file"
-msgstr ""
+msgstr "kartelë burimi baze"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:56
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:56
@@ -21114,7 +21123,7 @@ msgstr "Shkrimi i një Shënimi të Ri"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:27
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:28
 msgid "Local Notes"
-msgstr ""
+msgstr "Shënime Vendore"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:35
 msgid "General Notes is a simple note app that allows you to sync local and remote content. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
@@ -21126,7 +21135,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:61
 msgid "Enables the page and functionality to work offline."
-msgstr ""
+msgstr "Aktivizon funksionimin offline të faqes dhe punueshmërisë."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:77
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:54
@@ -21158,7 +21167,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:22
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:23
 msgid "Top Podcasts"
-msgstr ""
+msgstr "Podcast-et Kryesuese"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:35
 msgid "Podcasts is an offline-capable, entirely HTML5/JS audio app. It's chiefly designed for Firefox OS, but support for other platforms and browsers is an eventual design goal. It allows users to subscribe to any podcast and listen to it right from their Firefox OS device! <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Read the full developer walkthrough</a>"
