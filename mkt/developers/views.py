@@ -4,6 +4,7 @@ import sys
 import time
 import traceback
 from collections import defaultdict
+from datetime import datetime
 
 from django import http
 from django import forms as django_forms
@@ -315,6 +316,7 @@ def content_ratings_edit(request, addon_id, addon):
         request, 'developers/apps/ratings/ratings_edit.html', {
             'addon': addon,
             'form': form,
+            'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         })
 
 

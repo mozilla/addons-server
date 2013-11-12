@@ -10,12 +10,11 @@ from tastypie.exceptions import ImmediateHttpResponse, NotFound
 from tower import ugettext as _
 
 from rest_framework.generics import ListAPIView
-from rest_framework.mixins import ListModelMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from mkt.api.authentication import OAuthAuthentication
-from mkt.api.base import (CORSMixin, MarketplaceModelResource, SlugOrIdMixin)
+from mkt.api.base import CORSMixin, MarketplaceModelResource, SlugOrIdMixin
 from mkt.developers.forms import ContentRatingForm
 from mkt.developers.forms_payments import BangoPaymentAccountForm
 from mkt.developers.models import CantCancel, PaymentAccount
@@ -137,8 +136,9 @@ class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):
             form = ContentRatingForm(request.GET)
             if form.is_valid():
                 self.queryset = self.queryset.filter(
-                    modified__gte=form.cleaned_data['since'])
+                    modified__gt=form.cleaned_data['since'])
 
         if not self.queryset.exists():
             raise Http404()
-        return ListModelMixin.list(self, request)
+
+        return super(ContentRatingList, self).get(self, request)

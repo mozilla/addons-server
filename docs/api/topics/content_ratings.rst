@@ -9,14 +9,14 @@ API for IARC (International Age Rating Coalition) app content ratings.
 Content Rating
 ==============
 
-.. http:get:: /api/v1/apps/app/(int:id|string:app_slug)/content_ratings
+.. http:get:: /api/v1/apps/app/(int:id|string:app_slug)/content-ratings
 
     Returns the list of content ratings of an app.
 
     **Request**
 
     :param since: filter only for content ratings modified after the datetime.
-    :type since: datetime
+    :type since: datetime (e.g. `2013-12-25 14:12:36`)
 
     **Response**
 
@@ -33,7 +33,7 @@ Content Rating
     .. code-block:: json
 
         {
-            "objects":[
+            "objects": [
                 {
                     "id": 34,
                     "created": "2013-06-14T11:54:24",
@@ -54,7 +54,6 @@ Content Rating
                     "slug": "3",
                     "description": "Not recommended for users younger than 3 years of age"
                 },
-                ...
                 ...
             ]
         }

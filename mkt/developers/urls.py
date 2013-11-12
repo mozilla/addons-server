@@ -197,6 +197,6 @@ payments_api_patterns = patterns('',
 )
 
 dev_api_patterns = patterns('',
-    url(r'^apps/app/(?P<pk>[^/<>"\']+)/content_ratings/',
+    url(r'^apps/app/(?P<pk>[^/<>"\']+)/content-ratings/',
         ContentRatingList.as_view(), name='content-ratings-list'),
 )

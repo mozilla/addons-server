@@ -18,7 +18,7 @@
   </header>
 
   <section id="ratings-edit" class="primary manage">
-    <section>
+    <section class="create-rating">
       <h2>{{ _('Get My App Rated') }}</h2>
 
       <div class="island">
@@ -39,6 +39,18 @@
             <a href="{{ tos_url }}">Terms of Service agreement</a>.
           {% endtrans %}
         </p>
+        <p class="done hidden">
+          {% trans ratings_url=addon.get_dev_url('ratings') %}
+            IARC content rating process complete, you will be redirected to
+            your app's <a href="{{ ratings_url }}">content ratings page</a>.
+          {% endtrans %}
+        </p>
+        <p class="error hidden">
+          {% trans %}
+            Sorry, there was an error on our side processing content ratings.
+            You can keep trying or try again later.
+          {% endtrans %}
+        </p>
         <form method="post" target="_blank" action="{{ settings.IARC_SUBMISSION_ENDPOINT }}">
           <input type="hidden" name="password" value="{{ settings.IARC_PASSWORD }}">
           <input type="hidden" name="email" value="{{ request.amo_user.email }}">
@@ -48,7 +60,10 @@
           <input type="hidden" name="platform" value="2001,2002">
           <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
           <p class="listing-footer">
-            <input type="submit" value="{{ _('Create an IARC Ratings Certificate') }}" class="create-iarc-rating button">
+            <input type="submit" value="{{ _('Create an IARC Ratings Certificate') }}"
+                   class="create-iarc-rating button"
+                   data-api-url="{{ url('content-ratings-list', addon.app_slug)|urlparams(since=now) }}"
+                   data-redirect-url="{{ addon.get_dev_url('ratings') }}">
           </p>
         </form>
       </div>
@@ -66,6 +81,7 @@
           {% endtrans %}
         </p>
         <form method="POST">
+          {{ csrf() }}
           <table class="iarc-sec-code">
             <tbody>
               <tr>
@@ -101,8 +117,7 @@
             </tbody>
           </table>
           <p class="listing-footer">
-            {{ csrf() }}
-            <input type="submit" value="{{ _('Submit') }}">
+            <button>{{ _('Submit') }}</button>
           </p>
         </form>
       </div>
