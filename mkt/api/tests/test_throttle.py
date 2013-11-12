@@ -15,7 +15,7 @@ class ThrottleTests(object):
     Note: subclasses will need to define the resource being tested.
     """
     resource = None
-    request = RequestFactory().get('/')
+    request = RequestFactory().post('/')
 
     def test_should_throttle(self):
         if not self.resource:
