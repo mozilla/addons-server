@@ -466,7 +466,7 @@ class Version(amo.models.ModelBase):
                                                  amo.STATUS_PENDING])
             # Use File.update so signals are triggered.
             for f in qs:
-                f.update(status=amo.STATUS_OBSOLETE)
+                f.update(status=amo.STATUS_DISABLED)
 
     @property
     def developer_name(self):

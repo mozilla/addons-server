@@ -87,7 +87,7 @@ def download_file(request, file_id, type=None):
     if addon.is_premium():
         raise PermissionDenied
 
-    if addon.is_disabled or file.status == amo.STATUS_OBSOLETE:
+    if addon.is_disabled or file.status == amo.STATUS_DISABLED:
         if (acl.check_addon_ownership(request, addon, viewer=True,
                                       ignore_disabled=True) or
             acl.check_reviewer(request)):

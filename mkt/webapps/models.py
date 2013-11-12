@@ -344,7 +344,7 @@ class Webapp(Addon):
             # TODO: Remove this when we're satisified the above is working.
             log.info('Falling back to loading manifest from file system. '
                      'Webapp:%s File:%s' % (self.id, file_.id))
-            if file_.status == amo.STATUS_OBSOLETE:
+            if file_.status == amo.STATUS_DISABLED:
                 file_path = file_.guarded_file_path
             else:
                 file_path = file_.file_path

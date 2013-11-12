@@ -191,7 +191,7 @@ class TestHideDisabledFiles(amo.tests.TestCase):
     @mock.patch('files.models.storage')
     def test_move_disabled_file(self, m_storage, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_LITE)
-        File.objects.filter(id=self.f1.id).update(status=amo.STATUS_OBSOLETE)
+        File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
         File.objects.filter(id=self.f2.id).update(status=amo.STATUS_UNREVIEWED)
         cron.hide_disabled_files()
         # Only f1 should have been moved.

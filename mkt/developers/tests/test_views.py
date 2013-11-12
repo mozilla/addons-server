@@ -550,7 +550,7 @@ class TestStatus(amo.tests.TestCase):
     def setUp(self):
         self.webapp = Addon.objects.get(id=337141)
         self.file = self.webapp.versions.latest().all_files[0]
-        self.file.update(status=amo.STATUS_OBSOLETE)
+        self.file.update(status=amo.STATUS_DISABLED)
         self.status_url = self.webapp.get_dev_url('versions')
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')

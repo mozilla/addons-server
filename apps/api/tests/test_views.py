@@ -265,7 +265,7 @@ class APITest(TestCase):
         self.assertContains(response,
                 """<guid>{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}</guid>""")
         self.assertContains(response, "<version>2.1.072</version>")
-        self.assertContains(response, '<status id="4">Published</status>')
+        self.assertContains(response, '<status id="4">Fully Reviewed</status>')
         self.assertContains(response,
             u'<author>55021 \u0627\u0644\u062a\u0637\u0628</author>')
         self.assertContains(response, "<summary>Delicious Bookmarks is the")

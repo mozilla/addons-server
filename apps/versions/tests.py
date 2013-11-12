@@ -283,7 +283,7 @@ class TestVersion(amo.tests.TestCase):
         qs.update(status=amo.STATUS_UNREVIEWED)
         version = Version.objects.create(addon=addon)
         version.disable_old_files()
-        eq_(qs.all()[0].status, amo.STATUS_OBSOLETE)
+        eq_(qs.all()[0].status, amo.STATUS_DISABLED)
         addon.current_version.all_files[0]
         assert hide_mock.called
 
@@ -567,27 +567,27 @@ class TestDownloads(TestDownloadsBase):
         eq_(self.client.get(self.file_url).status_code, 404)
 
     def test_file_disabled_anon_404(self):
-        self.file.update(status=amo.STATUS_OBSOLETE)
+        self.file.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.file_url).status_code, 404)
 
     def test_file_disabled_unprivileged_404(self):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        self.file.update(status=amo.STATUS_OBSOLETE)
+        self.file.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.file_url).status_code, 404)
 
     def test_file_disabled_ok_for_author(self):
-        self.file.update(status=amo.STATUS_OBSOLETE)
+        self.file.update(status=amo.STATUS_DISABLED)
         assert self.client.login(username='g@gmail.com', password='password')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_file_disabled_ok_for_editor(self):
-        self.file.update(status=amo.STATUS_OBSOLETE)
+        self.file.update(status=amo.STATUS_DISABLED)
         self.client.login(username='editor@mozilla.com', password='password')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_file_disabled_ok_for_admin(self):
-        self.file.update(status=amo.STATUS_OBSOLETE)
+        self.file.update(status=amo.STATUS_DISABLED)
         self.client.login(username='admin@mozilla.com', password='password')
         self.assert_served_internally(self.client.get(self.file_url))
 
@@ -910,7 +910,7 @@ class TestStatusFromUpload(TestVersionFromUpload):
         qs = File.objects.filter(version=self.current)
         Version.from_upload(self.upload, self.addon, [self.platform])
         eq_(sorted([q.status for q in qs.all()]),
-            [amo.STATUS_PUBLIC, amo.STATUS_OBSOLETE])
+            [amo.STATUS_PUBLIC, amo.STATUS_DISABLED])
 
     @mock.patch('files.utils.parse_addon')
     def test_status_beta(self, parse_addon):

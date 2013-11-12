@@ -89,7 +89,7 @@ class TestVersion(amo.tests.TestCase):
                 details={'comments': comments, 'reviewtype': 'pending'})
         self.webapp.update(status=amo.STATUS_REJECTED)
         (self.webapp.versions.latest()
-                             .all_files[0].update(status=amo.STATUS_OBSOLETE))
+                             .all_files[0].update(status=amo.STATUS_DISABLED))
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -118,7 +118,7 @@ class TestVersion(amo.tests.TestCase):
         self.webapp.update(status=amo.STATUS_REJECTED)
         amo.set_user(UserProfile.objects.get(username='admin'))
         (self.webapp.versions.latest()
-                             .all_files[0].update(status=amo.STATUS_OBSOLETE))
+                             .all_files[0].update(status=amo.STATUS_DISABLED))
         my_reply = 'no give up'
         self.client.post(self.url, {'notes': my_reply,
                                     'resubmit-app': ''})
@@ -135,7 +135,7 @@ class TestVersion(amo.tests.TestCase):
                 details={'comments': comments, 'reviewtype': 'pending'})
         self.webapp.update(status=amo.STATUS_REJECTED)
         (self.webapp.versions.latest()
-                             .all_files[0].update(status=amo.STATUS_OBSOLETE))
+                             .all_files[0].update(status=amo.STATUS_DISABLED))
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -194,7 +194,7 @@ class TestAddVersion(BasePackagedAppTest):
                                         created=self.days_ago(1))
         self.app.update(status=amo.STATUS_REJECTED)
         files = File.objects.filter(version__addon=self.app)
-        files.update(status=amo.STATUS_OBSOLETE)
+        files.update(status=amo.STATUS_DISABLED)
         self._post(302)
         self.app.reload()
         version = self.app.versions.latest()
@@ -227,7 +227,7 @@ class TestAddVersion(BasePackagedAppTest):
                                         created=self.days_ago(1))
         self.app.update(status=amo.STATUS_BLOCKED)
         files = File.objects.filter(version__addon=self.app)
-        files.update(status=amo.STATUS_OBSOLETE)
+        files.update(status=amo.STATUS_DISABLED)
         self._post(302)
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
@@ -242,7 +242,7 @@ class TestAddVersion(BasePackagedAppTest):
                                         created=self.days_ago(1))
         self.app.update(status=amo.STATUS_NULL)
         files = File.objects.filter(version__addon=self.app)
-        files.update(status=amo.STATUS_OBSOLETE)
+        files.update(status=amo.STATUS_DISABLED)
         self._post(302)
         self.app.reload()
         version = self.app.versions.latest()

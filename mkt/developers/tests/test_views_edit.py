@@ -155,7 +155,7 @@ class TestEditListingWebapp(TestEdit):
 
         # Disable file for latest version, and then update app.current_version.
         app = self.get_webapp()
-        app.versions.latest().all_files[0].update(status=amo.STATUS_OBSOLETE)
+        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
         app.update_version()
 
         # Now try to display edit page.
@@ -483,7 +483,7 @@ class TestEditBasic(TestEdit):
 
         # Disable file for latest version, and then update app.current_version.
         app = self.get_webapp()
-        app.versions.latest().all_files[0].update(status=amo.STATUS_OBSOLETE)
+        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
         app.update_version()
 
         # Now try to display edit page.
@@ -1151,7 +1151,7 @@ class TestEditTechnical(TestEdit):
         # Reject the app.
         app = self.get_webapp()
         app.update(status=amo.STATUS_REJECTED)
-        app.versions.latest().all_files[0].update(status=amo.STATUS_OBSOLETE)
+        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
         app.update_version()
 
         assert not RereviewQueue.objects.filter(addon=self.webapp).exists()

@@ -17,7 +17,7 @@ def download_file(request, file_id, type=None):
     webapp = get_object_or_404(Webapp, pk=file.version.addon_id,
                                is_packaged=True)
 
-    if webapp.is_disabled or file.status == amo.STATUS_OBSOLETE:
+    if webapp.is_disabled or file.status == amo.STATUS_DISABLED:
         if not acl.check_addon_ownership(request, webapp, viewer=True,
                                          ignore_disabled=True):
             raise http.Http404()

@@ -556,7 +556,7 @@ def find_jetpacks(minver, maxver, from_builder_only=False):
                                  version__addon__auto_repackage=True,
                                  version__addon__status__in=statuses,
                                  version__addon__disabled_by_user=False)
-             .exclude(status=amo.STATUS_OBSOLETE).no_cache()
+             .exclude(status=amo.STATUS_DISABLED).no_cache()
              .select_related('version'))
     if from_builder_only:
         files = files.exclude(builder_version=None)

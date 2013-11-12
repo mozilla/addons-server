@@ -72,7 +72,7 @@ class FileViewer(object):
         self.addon = self.file.version.addon
         self.is_webapp = is_webapp
         self.src = (file_obj.guarded_file_path
-                    if file_obj.status == amo.STATUS_OBSOLETE
+                    if file_obj.status == amo.STATUS_DISABLED
                     else file_obj.file_path)
         self.dest = os.path.join(settings.TMP_PATH, 'file_viewer',
                                  str(file_obj.pk))

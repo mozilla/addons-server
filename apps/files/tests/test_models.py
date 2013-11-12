@@ -123,7 +123,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.save()
         assert not hide_mock.called
 
-        f.status = amo.STATUS_OBSOLETE
+        f.status = amo.STATUS_DISABLED
         f.save()
         assert hide_mock.called
 
@@ -135,7 +135,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         assert not unhide_mock.called
 
         f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_OBSOLETE
+        f.status = amo.STATUS_DISABLED
         f.save()
         assert not unhide_mock.called
 
@@ -162,7 +162,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
                 fp.write('<pretend this is an xpi>')
             with storage.open(fo.mirror_file_path, 'wb') as fp:
                 fp.write('<pretend this is an xpi>')
-            fo.status = amo.STATUS_OBSOLETE
+            fo.status = amo.STATUS_DISABLED
             fo.save()
             assert not storage.exists(fo.file_path), 'file not hidden'
             assert not storage.exists(fo.mirror_file_path), (
@@ -317,7 +317,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_disabled_is_not_testable(self):
         f = File.objects.get(pk=67442)
-        f.update(status=amo.STATUS_OBSOLETE)
+        f.update(status=amo.STATUS_DISABLED)
         eq_(f.can_be_perf_tested(), False)
 
     def test_deleted_addon_is_not_testable(self):
@@ -334,7 +334,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f = File.objects.get(pk=67442)
         eq_(f.is_mirrorable(), True)
 
-        f.update(status=amo.STATUS_OBSOLETE)
+        f.update(status=amo.STATUS_DISABLED)
         eq_(f.is_mirrorable(), False)
 
     def test_premium_addon_not_mirrorable(self):

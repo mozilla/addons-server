@@ -21,14 +21,14 @@ class FileSelectWidget(widgets.Select):
             addon = files[0].version.addon
             # Make sure that if there's a non-disabled version,
             # that's the one we use for the ID.
-            files.sort(lambda a, b: ((a.status == amo.STATUS_OBSOLETE) -
-                                     (b.status == amo.STATUS_OBSOLETE)))
+            files.sort(lambda a, b: ((a.status == amo.STATUS_DISABLED) -
+                                     (b.status == amo.STATUS_DISABLED)))
 
             if label is None:
                 label = u', '.join(unicode(os.platform) for os in f)
 
             output = [u'<option value="', jinja2.escape(files[0].id), u'" ']
-            if files[0].status == amo.STATUS_OBSOLETE:
+            if files[0].status == amo.STATUS_DISABLED:
                 # Disabled files can be diffed on Marketplace.
                 if addon.type != amo.ADDON_WEBAPP:
                     output.append(u' disabled')

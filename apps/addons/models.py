@@ -1097,7 +1097,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                             amo.STATUS_LITE_AND_NOMINATED,
                             amo.STATUS_DELETED) or
             not self.latest_version or
-            not self.latest_version.files.exclude(status=amo.STATUS_OBSOLETE)):
+            not self.latest_version.files.exclude(status=amo.STATUS_DISABLED)):
             return ()
         elif self.status == amo.STATUS_NOMINATED:
             return (amo.STATUS_LITE,)

@@ -676,7 +676,7 @@ class TestPackagedAppManifestUpdates(amo.tests.TestCase):
             'name': u'Good App Name',
         }
         latest_version = version_factory(addon=self.webapp, version='2.3',
-            file_kw=dict(status=amo.STATUS_OBSOLETE))
+            file_kw=dict(status=amo.STATUS_DISABLED))
         current_version = self.webapp.current_version
         AppManifest.objects.create(version=current_version,
                                    manifest=json.dumps(good_manifest))
@@ -866,7 +866,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         # Post an app, then emulate a reviewer reject and add a new, pending
         # version.
         webapp = self.post_addon()
-        webapp.latest_version.files.update(status=amo.STATUS_OBSOLETE)
+        webapp.latest_version.files.update(status=amo.STATUS_DISABLED)
         webapp.latest_version.update(created=self.days_ago(1))
         webapp.update(status=amo.STATUS_REJECTED, _current_version=None)
         version = version_factory(addon=webapp, version='2.0',
@@ -1263,7 +1263,7 @@ class TestUpdateStatus(amo.tests.TestCase):
 
     def test_one_version_pending(self):
         app = amo.tests.app_factory(status=amo.STATUS_REJECTED,
-                                    file_kw=dict(status=amo.STATUS_OBSOLETE))
+                                    file_kw=dict(status=amo.STATUS_DISABLED))
         amo.tests.version_factory(addon=app,
                                   file_kw=dict(status=amo.STATUS_PENDING))
         app.update_status()
@@ -1272,7 +1272,7 @@ class TestUpdateStatus(amo.tests.TestCase):
     def test_one_version_public(self):
         app = amo.tests.app_factory(status=amo.STATUS_PUBLIC)
         amo.tests.version_factory(addon=app,
-                                  file_kw=dict(status=amo.STATUS_OBSOLETE))
+                                  file_kw=dict(status=amo.STATUS_DISABLED))
         app.update_status()
         eq_(app.status, amo.STATUS_PUBLIC)
 

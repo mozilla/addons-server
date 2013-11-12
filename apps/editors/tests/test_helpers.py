@@ -26,8 +26,7 @@ from . test_models import create_addon_file
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                          amo.STATUS_UNREVIEWED)
 REVIEW_FILES_STATUSES = (amo.STATUS_BETA, amo.STATUS_NULL, amo.STATUS_PUBLIC,
-                         amo.STATUS_DISABLED, amo.STATUS_LITE,
-                         amo.STATUS_OBSOLETE)
+                         amo.STATUS_DISABLED, amo.STATUS_LITE)
 
 
 class TestViewPendingQueueTable(amo.tests.TestCase):
@@ -221,7 +220,6 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(self.setup_type(amo.STATUS_DISABLED), 'pending')
         eq_(self.setup_type(amo.STATUS_BETA), 'pending')
         eq_(self.setup_type(amo.STATUS_PURGATORY), 'pending')
-        eq_(self.setup_type(amo.STATUS_OBSOLETE), 'pending')
 
     def test_no_version(self):
         helper = helpers.ReviewHelper(request=self.request, addon=self.addon,
@@ -399,7 +397,7 @@ class TestReviewHelper(amo.tests.TestCase):
             amo.STATUS_PUBLIC)
 
         eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject, '%s Published' % self.preamble)
+        eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
         assert storage.exists(self.file.mirror_file_path)
 
@@ -418,7 +416,7 @@ class TestReviewHelper(amo.tests.TestCase):
                 amo.STATUS_PUBLIC)
 
             eq_(len(mail.outbox), 1)
-            eq_(mail.outbox[0].subject, '%s Published' % self.preamble)
+            eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
             assert storage.exists(self.file.mirror_file_path)
 
@@ -466,7 +464,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(self.addon.highest_status, amo.STATUS_PUBLIC)
             eq_(self.addon.status, amo.STATUS_NULL)
             eq_(self.addon.versions.all()[0].files.all()[0].status,
-                amo.STATUS_OBSOLETE)
+                amo.STATUS_DISABLED)
 
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Rejected' % self.preamble)
@@ -538,7 +536,7 @@ class TestReviewHelper(amo.tests.TestCase):
             self.helper.handler.process_sandbox()
 
             for file in self.helper.handler.data['addon_files']:
-                eq_(file.status, amo.STATUS_OBSOLETE)
+                eq_(file.status, amo.STATUS_DISABLED)
 
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Rejected' % self.preamble)
@@ -563,7 +561,7 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(self.addon.status, amo.STATUS_LITE)
         eq_(self.file.status, amo.STATUS_LITE)
         f = File.objects.get(pk=a['file'].id)
-        eq_(f.status, amo.STATUS_OBSOLETE)
+        eq_(f.status, amo.STATUS_DISABLED)
 
     def test_preliminary_to_super_review(self):
         for status in helpers.PRELIMINARY_STATUSES:
@@ -608,7 +606,7 @@ class TestReviewHelper(amo.tests.TestCase):
                 eq_(file.status, amo.STATUS_PUBLIC)
 
             eq_(len(mail.outbox), 1)
-            eq_(mail.outbox[0].subject, '%s Published' % self.preamble)
+            eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
             assert storage.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
@@ -622,7 +620,7 @@ class TestReviewHelper(amo.tests.TestCase):
             self.helper.handler.process_sandbox()
 
             for file in self.helper.handler.data['addon_files']:
-                eq_(file.status, amo.STATUS_OBSOLETE)
+                eq_(file.status, amo.STATUS_DISABLED)
 
             eq_(len(mail.outbox), 1)
             assert 'did not meet the criteria' in mail.outbox[0].body
@@ -800,7 +798,7 @@ def test_version_status():
     version = Version()
     version.all_files = [File(status=amo.STATUS_PUBLIC),
                          File(status=amo.STATUS_DELETED)]
-    eq_(u'Published,Deleted', helpers.version_status(addon, version))
+    eq_(u'Fully Reviewed,Deleted', helpers.version_status(addon, version))
 
     version.all_files = [File(status=amo.STATUS_UNREVIEWED)]
     eq_(u'Awaiting Preliminary Review', helpers.version_status(addon, version))

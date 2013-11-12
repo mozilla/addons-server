@@ -1123,7 +1123,7 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_can_request_review_rejected(self):
         addon = Addon.objects.get(pk=3615)
-        addon.latest_version.files.update(status=amo.STATUS_OBSOLETE)
+        addon.latest_version.files.update(status=amo.STATUS_DISABLED)
         eq_(addon.can_request_review(), ())
 
     def check(self, status, exp, kw={}):

@@ -978,7 +978,7 @@ class TestBulkValidationTask(BulkValidationTest):
     def test_public_partial(self):
         self.create_version(self.addon, [amo.STATUS_PUBLIC])
         new_version = self.create_version(self.addon, [amo.STATUS_BETA,
-                                                       amo.STATUS_OBSOLETE])
+                                                       amo.STATUS_DISABLED])
         ids = self.find_files()
         eq_(len(ids), 2)
         assert new_version.files.all()[1].pk not in ids

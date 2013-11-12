@@ -434,7 +434,7 @@ def import_manifests(ids, **kw):
         for version in app.versions.all():
             try:
                 file_ = version.files.latest()
-                if file_.status == amo.STATUS_OBSOLETE:
+                if file_.status == amo.STATUS_DISABLED:
                     file_path = file_.guarded_file_path
                 else:
                     file_path = file_.file_path

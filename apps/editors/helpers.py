@@ -41,14 +41,14 @@ def file_compare(file_obj, version):
 
 @register.function
 def file_review_status(addon, file):
-    if file.status not in [amo.STATUS_OBSOLETE, amo.STATUS_PUBLIC]:
+    if file.status not in [amo.STATUS_DISABLED, amo.STATUS_PUBLIC]:
         if addon.status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
             return _(u'Pending Preliminary Review')
         elif addon.status in [amo.STATUS_NOMINATED,
                               amo.STATUS_LITE_AND_NOMINATED,
                               amo.STATUS_PUBLIC]:
             return _(u'Pending Full Review')
-    if file.status in [amo.STATUS_OBSOLETE, amo.STATUS_REJECTED]:
+    if file.status in [amo.STATUS_DISABLED, amo.STATUS_REJECTED]:
         if file.reviewed is not None:
             return _(u'Rejected')
         # Can't assume that if the reviewed date is missing its
@@ -301,7 +301,7 @@ log = commonware.log.getLogger('z.mailer')
 NOMINATED_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
 PRELIMINARY_STATUSES = (amo.STATUS_UNREVIEWED, amo.STATUS_LITE)
 PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL,
-                    amo.STATUS_PENDING, amo.STATUS_PUBLIC, amo.STATUS_OBSOLETE)
+                    amo.STATUS_PENDING, amo.STATUS_PUBLIC)
 
 
 def send_mail(template, subject, emails, context, perm_setting=None):
@@ -643,7 +643,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Published')
+                          u'Mozilla Add-ons: %s %s Fully Reviewed')
 
         log.info(u'Making %s public' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -664,7 +664,7 @@ class ReviewAddon(ReviewBase):
         else:
             self.set_addon(status=amo.STATUS_LITE)
 
-        self.set_files(amo.STATUS_OBSOLETE, self.version.files.all(),
+        self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
@@ -736,7 +736,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Published')
+                          u'Mozilla Add-ons: %s %s Fully Reviewed')
 
         log.info(u'Making %s files %s public' %
                  (self.addon,
@@ -751,7 +751,7 @@ class ReviewFiles(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_files(amo.STATUS_OBSOLETE, self.data['addon_files'],
+        self.set_files(amo.STATUS_DISABLED, self.data['addon_files'],
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)

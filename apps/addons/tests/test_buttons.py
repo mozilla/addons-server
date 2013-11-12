@@ -393,7 +393,7 @@ class TestButton(ButtonTest):
 
     def test_link_with_invalid_file(self):
         self.version.all_files = self.platform_files
-        self.version.all_files[0].status = amo.STATUS_OBSOLETE
+        self.version.all_files[0].status = amo.STATUS_DISABLED
         links = self.get_button().links()
 
         expected_platforms = self.platforms[1:]

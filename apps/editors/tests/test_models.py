@@ -425,7 +425,6 @@ class TestReviewerScore(amo.tests.TestCase):
             amo.STATUS_PUBLIC_WAITING: None,
             amo.STATUS_REVIEW_PENDING: None,
             amo.STATUS_BLOCKED: None,
-            amo.STATUS_OBSOLETE: None,
         }
         for tk, tv in types.items():
             for sk, sv in statuses.items():

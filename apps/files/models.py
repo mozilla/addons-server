@@ -121,7 +121,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         if attachment:
             host = posixpath.join(settings.LOCAL_MIRROR_URL, '_attachments')
-        elif addon.is_disabled or self.status == amo.STATUS_OBSOLETE:
+        elif addon.is_disabled or self.status == amo.STATUS_DISABLED:
             host = settings.PRIVATE_MIRROR_URL
         elif (addon.status == amo.STATUS_PUBLIC
               and not addon.disabled_by_user
@@ -460,9 +460,9 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
     if kw.get('raw'):
         return
     old, new = old_attr.get('status'), instance.status
-    if new == amo.STATUS_OBSOLETE and old != amo.STATUS_OBSOLETE:
+    if new == amo.STATUS_DISABLED and old != amo.STATUS_DISABLED:
         instance.hide_disabled_file()
-    elif old == amo.STATUS_OBSOLETE and new != amo.STATUS_OBSOLETE:
+    elif old == amo.STATUS_DISABLED and new != amo.STATUS_DISABLED:
         instance.unhide_disabled_file()
     elif (new in amo.MIRROR_STATUSES and old not in amo.MIRROR_STATUSES):
         instance.copy_to_mirror()

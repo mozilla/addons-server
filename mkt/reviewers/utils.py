@@ -258,7 +258,7 @@ class ReviewApp(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
         self.notify_email('pending_to_public_waiting',
-                          u'App Approved but unpublished: %s')
+                          u'App Approved but waiting: %s')
 
         log.info(u'Making %s public but pending' % self.addon)
         log.info(u'Sending email for %s' % self.addon)
@@ -297,7 +297,7 @@ class ReviewApp(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_files(amo.STATUS_OBSOLETE, self.version.files.all(),
+        self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
         # If this app is not packaged (packaged apps can have multiple
         # versions) or if there aren't other versions with already reviewed
@@ -357,7 +357,7 @@ class ReviewApp(ReviewBase):
             return
 
         # Disable disables all files, not just those in this version.
-        self.set_files(amo.STATUS_OBSOLETE,
+        self.set_files(amo.STATUS_DISABLED,
                        File.objects.filter(version__addon=self.addon),
                        hide_disabled_file=True)
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -489,7 +489,7 @@ class ReviewHelper(object):
                 self.addon.status not in [amo.STATUS_REJECTED,
                                           amo.STATUS_DISABLED]):
                 actions['reject'] = reject
-            elif multiple_versions and amo.STATUS_OBSOLETE not in file_status:
+            elif multiple_versions and amo.STATUS_DISABLED not in file_status:
                 actions['reject'] = reject
         elif not self.addon.is_packaged:
             # Hosted apps reject the app itself.
@@ -500,7 +500,7 @@ class ReviewHelper(object):
         # Disable.
         if (acl.action_allowed(self.handler.request, 'Addons', 'Edit') and (
                 self.addon.status != amo.STATUS_DISABLED or
-                amo.STATUS_OBSOLETE not in file_status)):
+                amo.STATUS_DISABLED not in file_status)):
             actions['disable'] = disable
 
         # Clear escalation.

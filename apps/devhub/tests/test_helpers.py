@@ -207,5 +207,5 @@ class TestDevFilesStatus(amo.tests.TestCase):
 
     def test_disabled(self):
         self.addon.status = amo.STATUS_PUBLIC
-        self.file.status = amo.STATUS_OBSOLETE
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_OBSOLETE])
+        self.file.status = amo.STATUS_DISABLED
+        self.expect(amo.STATUS_CHOICES[amo.STATUS_DISABLED])

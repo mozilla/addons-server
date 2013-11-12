@@ -381,7 +381,7 @@ class APPROVE_VERSION_WAITING(_LOG):
     id = 53
     action_class = 'approve'
     format = _(u'{addon} {version} approved but waiting to be made public.')
-    short = _(u'Approved but unpublished')
+    short = _(u'Approved but waiting')
     keep = True
     review_email_user = True
     review_queue = True
@@ -639,7 +639,6 @@ class CHANGE_VERSION_STATUS(_LOG):
     # L10n: {0} is the status
     format = _(u'{version} status changed to {0}.')
     keep = True
-
 
 class DELETE_USER_LOOKUP(_LOG):
     id = 125

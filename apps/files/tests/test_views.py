@@ -295,7 +295,7 @@ class FilesBase:
         eq_(files.eq(1).attr('value'), str(self.files[1].id))
 
     def test_file_chooser_disabled_coalescing(self):
-        self.files[1].update(status=amo.STATUS_OBSOLETE)
+        self.files[1].update(status=amo.STATUS_DISABLED)
 
         res = self.client.get(self.file_url())
         doc = pq(res.content)

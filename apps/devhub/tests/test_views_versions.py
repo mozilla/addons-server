@@ -310,7 +310,7 @@ class TestVersion(amo.tests.TestCase):
 
     def test_rejected_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
-        self.addon.latest_version.files.update(status=amo.STATUS_OBSOLETE)
+        self.addon.latest_version.files.update(status=amo.STATUS_DISABLED)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
         eq_(buttons, None)
