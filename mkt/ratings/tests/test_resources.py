@@ -337,6 +337,12 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._update({'app': -1})
         eq_(res.status_code, 400)
 
+    def test_update_comment_not_mine(self):
+        r = Review.objects.create(addon=self.app, user=self.user2, body='yes')
+        res = self.client.put(get_url('rating', r.pk),
+                              json.dumps({'body': 'no', 'rating': 1}))
+        eq_(res.status_code, 403)
+
     def test_delete_app_mine(self):
         AddonUser.objects.filter(addon=self.app).update(user=self.user)
         user2 = UserProfile.objects.get(pk=31337)

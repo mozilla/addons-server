@@ -175,6 +175,12 @@ class RatingResource(CORSResource, MarketplaceModelResource):
         Handle PUT requests to the resource. If authorized and the data
         validates, update the indicated resource with bundle data.
         """
+        obj = self.get_by_resource_or_404(request, **kwargs)
+        if not OwnerAuthorization().is_authorized(request, object=obj):
+            raise http_error(
+                http.HttpForbidden,
+                'You do not have permission to update this review.')
+
         form = ReviewForm(bundle.data)
         if not form.is_valid():
             raise self.form_errors(form)
