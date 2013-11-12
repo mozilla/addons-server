@@ -1158,6 +1158,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_public(self):
         return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
 
+    def is_public_waiting(self):
+        return self.status == amo.STATUS_PUBLIC_WAITING
+
     def is_incomplete(self):
         return self.status == amo.STATUS_NULL
 

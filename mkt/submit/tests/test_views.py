@@ -1025,6 +1025,7 @@ class TestNextSteps(amo.tests.TestCase):
         self.user = UserProfile.objects.get(username='regularuser')
         assert self.client.login(username=self.user.email, password='password')
         self.webapp = Webapp.objects.get(id=337141)
+        self.webapp.update(status=amo.STATUS_PENDING)
         self.url = reverse('submit.app.done', args=[self.webapp.app_slug])
 
     def test_200(self, **kw):
