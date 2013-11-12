@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-25 13:55-0700\n"
+"POT-Creation-Date: 2013-11-12 15:27-0700\n"
 "PO-Revision-Date: 2013-10-24 11:34+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -91,10 +91,10 @@ msgid "Finished validating {0}"
 msgstr "Po përfundohet vleftësimi i {0}"
 
 #: media/js/common/upload-addon.js:307
-msgid "Your add-on passed validation with no errors and {0} warning."
-msgid_plural "Your add-on passed validation with no errors and {0} warnings."
-msgstr[0] "Shtesa juaj e kaloi procesin e vleftësimit pa gabime dhe {0} sinjalizim."
-msgstr[1] "Shtesa juaj e kaloi procesin e vleftësimit pa gabime dhe {0} sinjalizime."
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] ""
+msgstr[1] ""
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -276,20 +276,20 @@ msgid_plural "Warning: deleting payment account \"{0}\" will move those associat
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/devreg/payments-manage.js:56 media/js/devreg/payments-manage.js:101 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
-#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
+#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Gabim"
 
-#: media/js/devreg/payments-manage.js:57 media/js/devreg/payments-manage.js:102
+#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
 msgstr "Pati një problem gjatë lidhjes me shërbyesin e pagesave."
 
-#: media/js/devreg/payments-manage.js:80
+#: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
 msgstr "Gabim mirëfilltësimi"
 
-#: media/js/devreg/payments-manage.js:122
+#: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
 msgstr "Hëpërhë nuk keni ndonjë llogari pagesash"
 
@@ -297,47 +297,47 @@ msgstr "Hëpërhë nuk keni ndonjë llogari pagesash"
 msgid "All tests passed successfully."
 msgstr "Krejt provat u kaluan me sukses."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:366
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr "Këto prova nuk u xhiruan."
 
-#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:119 media/js/zamboni/validator.js:132
+#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "Prova"
 
-#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:194
+#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:195
 msgid "Warning"
 msgstr "Sinjalizim"
 
-#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:281
+#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
 msgstr "Prova Përputhshmërie"
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:330
+#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:331
 msgid "App failed validation."
 msgstr "Vleftësimi i zbatimit dështoi."
 
-#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:332
+#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:333
 msgid "App passed validation."
 msgstr "Zbatimi e kaloi vleftësimin."
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:369
+#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} gabim"
 msgstr[1] "{0} gabime"
 
-#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:371
+#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
-#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:448
+#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
 msgstr "Akti i vleftësimit nuk u plotësua dot ose u plotësua me gabime"
 
-#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:466
+#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "Gabim i brendshëm shërbyesi"
 
@@ -1285,7 +1285,7 @@ msgstr "Njësi Rimbursimi Gjithsej sipas Burimi"
 msgid "Total Installs"
 msgstr "Instalime Gjithsej"
 
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:329
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:331
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një zbatim"
 
@@ -1504,43 +1504,43 @@ msgstr "Po gjenden këshillime&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Po përditësohen këshillimet&hellip;"
 
-#: media/js/zamboni/editors.js:160
+#: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
 msgstr "{name} po e shihte së pari këtë faqe."
 
-#: media/js/zamboni/editors.js:210
+#: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
 msgstr ""
 
-#: media/js/zamboni/editors.js:212
+#: media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
 msgstr ""
 
-#: media/js/zamboni/editors.js:278
+#: media/js/zamboni/editors.js:280
 msgid "{name} was viewing this add-on first."
 msgstr "{name} po e shihte i pari këtë shtesë."
 
-#: media/js/zamboni/editors.js:289
+#: media/js/zamboni/editors.js:291
 msgid "Loading&hellip;"
 msgstr "Po ngarkohet&hellip;"
 
-#: media/js/zamboni/editors.js:294
+#: media/js/zamboni/editors.js:296
 msgid "Version Notes"
 msgstr "Shënime Versioni"
 
-#: media/js/zamboni/editors.js:299
+#: media/js/zamboni/editors.js:301
 msgid "Notes for Reviewers"
 msgstr "Shënime për Shqyrtuesit"
 
-#: media/js/zamboni/editors.js:304
+#: media/js/zamboni/editors.js:306
 msgid "No version notes found"
 msgstr "S'u gjetën shënime versioni"
 
-#: media/js/zamboni/editors.js:364
+#: media/js/zamboni/editors.js:366
 msgid "Average Reviews"
 msgstr "Shqyrtime Mesatarisht"
 
-#: media/js/zamboni/editors.js:420
+#: media/js/zamboni/editors.js:422
 msgid "Number of Reviews"
 msgstr "Numër Shqyrtimesh"
 
@@ -1574,13 +1574,19 @@ msgstr[1] "Të paktën edhe <b>{0}</b> shenja."
 msgid "All"
 msgstr "Krejt"
 
-#: media/js/zamboni/validator.js:336
+#: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
 msgstr "Shtesa nuk e kaloi provën e vleftësimit."
 
-#: media/js/zamboni/validator.js:338
+#: media/js/zamboni/validator.js:339
 msgid "Add-on passed validation."
 msgstr "Shtesa e kaloi provën e vleftësimit."
+
+#: media/js/zamboni/validator.js:374
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] ""
+msgstr[1] ""
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"

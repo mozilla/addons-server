@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 16:48-0700\n"
+"POT-Creation-Date: 2013-11-12 15:27-0700\n"
 "PO-Revision-Date: 2013-11-05 22:44+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -89,10 +89,10 @@ msgid "Finished validating {0}"
 msgstr "Validatie van {0} afgerond"
 
 #: media/js/common/upload-addon.js:307
-msgid "Your add-on passed validation with no errors and {0} warning."
-msgid_plural "Your add-on passed validation with no errors and {0} warnings."
-msgstr[0] "Uw add-on heeft de validatie doorstaan zonder fouten en met {0} waarschuwing."
-msgstr[1] "Uw add-on heeft de validatie doorstaan zonder fouten en met {0} waarschuwingen."
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] ""
+msgstr[1] ""
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -267,40 +267,27 @@ msgstr "Iraaks BC-nummer"
 msgid "Detected: {0}"
 msgstr "Gedetecteerd: {0}"
 
-# aangenomen dat dit over betaling(en) gaat
-#: media/js/devreg/payments-manage.js:27
-msgid "that"
-msgid_plural "those"
-msgstr[0] "die"
-msgstr[1] "die"
+#. L10n: This sentence introduces a list of applications.
+#: media/js/devreg/payments-manage.js:24
+msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
+msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
+msgstr[0] ""
+msgstr[1] ""
 
-#: media/js/devreg/payments-manage.js:28
-msgid "app"
-msgid_plural "apps"
-msgstr[0] "app"
-msgstr[1] "apps"
-
-# Aangenomen dat dit over betaling(en) gaat
-#: media/js/devreg/payments-manage.js:29
-msgid "it"
-msgid_plural "they"
-msgstr[0] "de"
-msgstr[1] "zij"
-
-#: media/js/devreg/payments-manage.js:53 media/js/devreg/payments-manage.js:97 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
-#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
+#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Fout"
 
-#: media/js/devreg/payments-manage.js:54 media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
 msgstr "Er is een probleem opgetreden bij het verbinden met de betalingsserver."
 
-#: media/js/devreg/payments-manage.js:76
+#: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
 msgstr "Authenticatiefout"
 
-#: media/js/devreg/payments-manage.js:118
+#: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
 msgstr "U hebt momenteel geen betalingsaccounts."
 
@@ -308,47 +295,47 @@ msgstr "U hebt momenteel geen betalingsaccounts."
 msgid "All tests passed successfully."
 msgstr "Alle tests succesvol doorstaan."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:366
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr "Deze tests zijn niet uitgevoerd."
 
-#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:119 media/js/zamboni/validator.js:132
+#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "Tests"
 
-#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:194
+#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:195
 msgid "Warning"
 msgstr "Waarschuwing"
 
-#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:281
+#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
 msgstr "Compatibiliteitstesten"
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:330
+#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:331
 msgid "App failed validation."
 msgstr "Validatie app mislukt."
 
-#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:332
+#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:333
 msgid "App passed validation."
 msgstr "Validatie app gelukt."
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:369
+#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} fout"
 msgstr[1] "{0} fouten"
 
-#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:371
+#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} waarschuwing"
 msgstr[1] "{0} waarschuwingen"
 
-#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:448
+#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
 msgstr "De validatietaak is niet afgerond of afgerond met fouten"
 
-#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:466
+#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "Interne serverfout"
 
@@ -1027,14 +1014,13 @@ msgstr "Persona-aanmelding mislukt. Misschien hebt u geen account met dat e-mail
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-aanmelding mislukt. Er is een serverfout opgetreden."
 
-#: media/js/mkt/lookup-tool.js:63
+#: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
 msgstr "Alle resultaten weergeven"
 
-#: media/js/mkt/lookup-tool.js:66
+#: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
-"Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
+msgstr "Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
@@ -1299,7 +1285,7 @@ msgstr "Totale aantal gerestitueerde eenheden op bron"
 msgid "Total Installs"
 msgstr "Totaal aantal installaties"
 
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:329
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:331
 msgid "Select an application first"
 msgstr "Selecteer eerst een toepassing"
 
@@ -1518,43 +1504,43 @@ msgstr "Aanbevelingen zoeken…"
 msgid "Updating recommendations&hellip;"
 msgstr "Aanbevelingen bijwerken…"
 
-#: media/js/zamboni/editors.js:160
+#: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
 msgstr "{name} heeft eerst deze pagina bekeken."
 
-#: media/js/zamboni/editors.js:210
+#: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
 msgstr "Ontvangst gecontroleerd door app."
 
-#: media/js/zamboni/editors.js:212
+#: media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
 msgstr "Ontvangst niet gecontroleerd door app."
 
-#: media/js/zamboni/editors.js:278
+#: media/js/zamboni/editors.js:280
 msgid "{name} was viewing this add-on first."
 msgstr "{name} bekeek deze add-on eerst."
 
-#: media/js/zamboni/editors.js:289
+#: media/js/zamboni/editors.js:291
 msgid "Loading&hellip;"
 msgstr "Laden…"
 
-#: media/js/zamboni/editors.js:294
+#: media/js/zamboni/editors.js:296
 msgid "Version Notes"
 msgstr "Versieopmerkingen"
 
-#: media/js/zamboni/editors.js:299
+#: media/js/zamboni/editors.js:301
 msgid "Notes for Reviewers"
 msgstr "Opmerkingen voor beoordelaars"
 
-#: media/js/zamboni/editors.js:304
+#: media/js/zamboni/editors.js:306
 msgid "No version notes found"
 msgstr "Geen versieopmerkingen gevonden"
 
-#: media/js/zamboni/editors.js:364
+#: media/js/zamboni/editors.js:366
 msgid "Average Reviews"
 msgstr "Gemiddeld aantal beoordelingen"
 
-#: media/js/zamboni/editors.js:420
+#: media/js/zamboni/editors.js:422
 msgid "Number of Reviews"
 msgstr "Aantal beoordelingen"
 
@@ -1588,13 +1574,19 @@ msgstr[1] "Ten minste {0} tekens resterend."
 msgid "All"
 msgstr "Alles"
 
-#: media/js/zamboni/validator.js:336
+#: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
 msgstr "Add-on heeft validatie niet doorstaan."
 
-#: media/js/zamboni/validator.js:338
+#: media/js/zamboni/validator.js:339
 msgid "Add-on passed validation."
 msgstr "Add-on heeft validatie doorstaan."
+
+#: media/js/zamboni/validator.js:374
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] ""
+msgstr[1] ""
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
