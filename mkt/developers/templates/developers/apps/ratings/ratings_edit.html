@@ -88,30 +88,30 @@
                 <th>
                   <label for="{{ form.submission_id.auto_id }}">
                     {{ _('Submission ID') }}
-                    {{ tip(None,
-                           _('The submission ID can be found on the certificate sent to you.
-                              It is a numeric value like &quot;14&quot;.')) }}
+                    {{ required() }}
                   </label>
-                  {{ required() }}
                 </th>
                 <td>
                   {{ form.submission_id }}
                   {{ form.submission_id.errors }}
+                  {{ tip(None,
+                           _('The submission ID can be found on the certificate sent to you.
+                              It is a numeric value like &quot;14&quot;.')) }}
                 </td>
               </tr>
               <tr>
                 <th>
                   <label for="{{ form.security_code.auto_id }}">
                     {{ _('Security Code') }}
-                    {{ tip(None,
-                           _('The security code can be found on the certificate sent to you.
-                              It is a mix of letters and numbers like &quot;AB12CD3&quot;.')) }}
+                    {{ required() }}
                   </label>
-                  {{ required() }}
                 </th>
                 <td>
                   {{ form.security_code }}
                   {{ form.security_code.errors }}
+                  {{ tip(None,
+                           _('The security code can be found on the certificate sent to you.
+                              It is a mix of letters and numbers like &quot;AB12CD3&quot;.')) }}
                 </td>
               </tr>
             </tbody>
