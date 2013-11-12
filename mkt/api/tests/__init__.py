@@ -27,7 +27,6 @@ class BaseAPI(TestCase):
                                                          res.status_code)
             assert res.status_code in (401, 403, 405), msg
 
-
     def get_error(self, response):
         return json.loads(response.content)['error_message']
 

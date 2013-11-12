@@ -196,7 +196,7 @@ class TestInstalled(BaseOAuth):
         self._allowed_verbs(self.list_url, ('get'))
 
     def test_not_allowed(self):
-        eq_(self.anon.get(self.list_url).status_code, 401)
+        eq_(self.anon.get(self.list_url).status_code, 403)
 
     def test_installed(self):
         ins = Installed.objects.create(user=self.user, addon_id=337141)
@@ -204,7 +204,7 @@ class TestInstalled(BaseOAuth):
         eq_(res.status_code, 200, res.content)
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 1)
-        eq_(data['objects'][0]['id'], str(ins.addon.pk))
+        eq_(data['objects'][0]['id'], ins.addon.pk)
 
     def not_there(self):
         res = self.client.get(self.list_url)

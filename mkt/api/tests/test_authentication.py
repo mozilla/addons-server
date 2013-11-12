@@ -12,7 +12,9 @@ from tastypie.exceptions import ImmediateHttpResponse
 
 from access.models import Group, GroupUser
 from addons.models import AddonUser
+from amo.helpers import absolutify
 from amo.tests import app_factory, TestCase
+from amo.urlresolvers import reverse
 from test_utils import RequestFactory
 from users.models import UserProfile
 
@@ -95,9 +97,8 @@ class TestOAuthAuthentication(TestCase):
                                             user=self.profile.user)
 
     def call(self, client=None):
-        url = ('api_dispatch_list', {'resource_name': 'app'})
         client = client or OAuthClient(self.access)
-        url = client.get_absolute_url(url)
+        url = absolutify(reverse('app-list'))
         return RequestFactory().get(url,
                  HTTP_HOST='testserver',
                  HTTP_AUTHORIZATION=client.sign('GET', url)[1]['Authorization'])

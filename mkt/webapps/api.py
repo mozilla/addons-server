@@ -21,7 +21,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication,
                                     RestAnonymousAuthentication)
 from mkt.api.authorization import (AllowAppOwner, AllowReviewerReadOnly, AnyOf)
-from mkt.api.base import (CompatRelatedField, CORSMixin, get_url, SlugOrIdMixin)
+from mkt.api.base import CORSMixin, get_url, SlugOrIdMixin
 from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.fields import (LargeTextField, ReverseChoiceField,
                             TranslationSerializerField)
@@ -113,9 +113,7 @@ class AppSerializer(serializers.ModelSerializer):
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
     name = TranslationSerializerField(required=False)
-    payment_account = serializers.HyperlinkedRelatedField(
-        view_name='payment-account-detail',
-        source='app_payment_account')
+    payment_account = serializers.HyperlinkedRelatedField(view_name='payment-account-detail', source='app_payment_account', required=False)
     payment_required = serializers.SerializerMethodField(
         'get_payment_required')
     premium_type = ReverseChoiceField(

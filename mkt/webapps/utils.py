@@ -7,7 +7,8 @@ import commonware.log
 import amo
 from addons.models import AddonUser
 from amo.helpers import absolutify
-from amo.utils import find_language, no_translation
+from amo.utils import find_language
+from amo.urlresolvers import reverse
 from constants.applications import DEVICE_TYPES
 from market.models import Price
 from users.models import UserProfile
@@ -74,8 +75,6 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     Return app data as dict for API where `app` is the elasticsearch result.
     """
     # Circular import.
-    from mkt.api.base import GenericObject
-    from mkt.api.resources import AppResource, PrivacyPolicyResource
     from mkt.developers.models import AddonPaymentAccount
     from mkt.webapps.models import Installed, Webapp
 
@@ -116,9 +115,8 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         'name': get_attr_lang(src, 'name', obj.default_locale),
         'payment_required': False,
         'premium_type': amo.ADDON_PREMIUM_API[src.get('premium_type')],
-        'privacy_policy': PrivacyPolicyResource().get_resource_uri(
-            GenericObject({'pk': obj._id})
-        ),
+        'privacy_policy': reverse('app-privacy-policy-detail',
+                                  kwargs={'pk': obj._id}),
         'public_stats': obj.has_public_stats,
         'supported_locales': src.get('supported_locales', ''),
         'slug': obj.app_slug,
@@ -149,8 +147,9 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         exclusions = obj.upsell.get('region_exclusions')
         if exclusions is not None and region not in exclusions:
             data['upsell'] = obj.upsell
-            data['upsell']['resource_uri'] = AppResource().get_resource_uri(
-                Webapp(id=obj.upsell['id']))
+            data['upsell']['resource_uri'] = reverse(
+                'app-detail',
+                kwargs={'pk': obj.upsell['id']})
 
     data['price'] = data['price_locale'] = None
     try:

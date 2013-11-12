@@ -1,5 +1,4 @@
 from functools import partial
-from mkt.api.base import CompatRelatedField
 
 from rest_framework import fields, serializers
 

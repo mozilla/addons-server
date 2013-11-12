@@ -124,7 +124,7 @@ class TestAppSerializer(amo.tests.TestCase):
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
         })
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['content_ratings']['ratings']['br'],
             {'body': 'CLASSIND',
              'body_label': 'classind',
@@ -140,14 +140,14 @@ class TestAppSerializer(amo.tests.TestCase):
 
     def test_content_descriptors(self):
         self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['content_ratings']['descriptors'],
             [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
              {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
 
     def test_interactive_elements(self):
         self.app.set_interactives(['has_social_networking', 'has_shares_info'])
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['content_ratings']['interactive_elements'],
             [{'label': 'shares-info', 'name': 'Shares Info'},
              {'label': 'social-networking', 'name': 'Social Networking'}])

@@ -203,7 +203,7 @@ class Test3LeggedOAuthFlow(TestCase):
         return url, headers['Authorization']
 
     def test_use_access_token(self):
-        url = get_absolute_url(('api_dispatch_list', {'resource_name': 'app'}))
+        url = absolutify(reverse('app-list'))
         t = Token.generate_new(ACCESS_TOKEN, creds=self.access,
                                user=self.user2)
         url, auth_header = self._oauth_request_info(
@@ -217,7 +217,7 @@ class Test3LeggedOAuthFlow(TestCase):
         eq_(req.user, self.user2)
 
     def test_bad_access_token(self):
-        url = get_absolute_url(('api_dispatch_list', {'resource_name': 'app'}))
+        url = absolutify(reverse('app-list'))
         Token.generate_new(ACCESS_TOKEN, creds=self.access, user=self.user2)
         url, auth_header = self._oauth_request_info(
             url, client_key=self.access.key,
