@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-11-12 09:08+0000\n"
-"Last-Translator: Shen <steekid@icloud.com>\n"
+"PO-Revision-Date: 2013-11-12 13:26+0000\n"
+"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384247301.0\n"
+"X-POOTLE-MTIME: 1384262782.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -18599,7 +18599,7 @@ msgstr "在最小的屏幕上，一些项目保留在屏幕底部，其余的隐
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:134
 msgid "<strong>expandable menu is easy to discover</strong>"
-msgstr ""
+msgstr "<strong>可展开的菜单更显眼</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:139
 msgid "<strong>important items are always visible</strong> and you decide the item priorities"
