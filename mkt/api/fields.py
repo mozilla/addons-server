@@ -37,6 +37,8 @@ class TranslationSerializerField(fields.WritableField):
 
     def field_to_native(self, obj, field_name):
         field = getattr(obj, field_name)
+        if field is None:
+            return None
         if not self.return_all_translations:
             return unicode(field)
         else:

@@ -123,6 +123,14 @@ class TestTranslationSerializerField(TestCase):
         field.initialize(mock_serializer, 'name')
         self._test_expected_single_string(field)
 
+    def test_field_null(self):
+        field = TranslationSerializerField()
+        app = Webapp()
+        result = field.field_to_native(app, 'name')
+        eq_(result, None)
+        result = field.field_to_native(app, 'description')
+        eq_(result, None)
+
 
 class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
     fixtures = fixture('webapp_337141')
