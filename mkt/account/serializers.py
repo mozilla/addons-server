@@ -5,7 +5,6 @@ from rest_framework import fields, serializers
 from access import acl
 from users.models import UserProfile
 
-from mkt.api.base import CompatRelatedField
 from mkt.api.serializers import PotatoCaptchaSerializer
 
 
@@ -61,20 +60,11 @@ class PermissionsSerializer(serializers.Serializer):
         return permissions
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(AccountSerializer):
     """
     A wacky serializer type that unserializes PK numbers and
     serializes user fields.
     """
-    resource_uri = CompatRelatedField(
-        view_name='api_dispatch_detail', read_only=True,
-        tastypie={'resource_name': 'settings',
-                  'api_name': 'account'},
-        source='*')
-
-    class Meta:
-        model = UserProfile
-        fields = ('display_name', 'resource_uri')
 
     def field_from_native(self, data, files, field_name, into):
         try:
