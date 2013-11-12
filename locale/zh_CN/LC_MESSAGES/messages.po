@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 13:55-0700\n"
-"PO-Revision-Date: 2013-11-07 00:09+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2013-11-12 09:08+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1383782975.0\n"
+"X-POOTLE-MTIME: 1384247301.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -680,11 +680,11 @@ msgstr "感谢您购买此附加组件"
 
 #: apps/addons/templates/addons/paypal_result.html:39
 msgid "Return to the app."
-msgstr "返回此应用。"
+msgstr "返回应用。"
 
 #: apps/addons/templates/addons/paypal_result.html:41
 msgid "Return to the addon."
-msgstr "返回此附加组件。"
+msgstr "返回附加组件。"
 
 #: apps/addons/templates/addons/paypal_start.html:9
 msgid "Purchased App"
@@ -725,7 +725,7 @@ msgstr "此附加组件将导致 Firefox 性能降低。"
 
 #: apps/addons/templates/addons/performance_note.html:5 apps/amo/templates/amo/site_nav.html:76
 msgid "More&hellip;"
-msgstr "更多&hellip;"
+msgstr "更多 &hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:8 apps/addons/templates/addons/impala/performance_note.html:8
 msgid "<b>Performance warning:</b> Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
@@ -791,7 +791,7 @@ msgstr "已被退回"
 #: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157 apps/constants/payments.py:119 apps/devhub/templates/devhub/payments/refunds.html:139
 #: apps/devhub/templates/devhub/payments/refunds.html:166 mkt/developers/templates/developers/payments/refunds.html:164 mkt/developers/templates/developers/payments/refunds.html:188
 msgid "Approved"
-msgstr "已同意"
+msgstr "已核准"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/persona_preview.html:26 apps/addons/templates/addons/listing/items_mobile.html:41 apps/addons/templates/addons/listing/macros.html:31
@@ -837,7 +837,7 @@ msgstr "<b>{0}</b> 位用户"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "如要安装这个及其他成千上万的附加组件，请<b>下载 Firefox</b> —— Mozilla 出品的自由、开放的网页浏览器。"
+msgstr "要安装这个或其他数以千计的附加组件，<b>下载 Firefox</b>，Mozilla 出品的免费、开放的网页浏览器。"
 
 #: apps/addons/templates/addons/popups.html:21 apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
@@ -845,15 +845,16 @@ msgstr "进一步了解 Firefox"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "或者<b><a class=\"installer\" href=\"{url}\">坚持下载</a></b>"
+msgstr "或者 <b><a class=\"installer\" href=\"{url}\">坚持下载</a></b>"
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>如何在 Thunderbird 中安装</strong> <ol> <li>将文件下载并保存到您的硬盘上。</li> <li>在 Mozilla Thunderbird 中，从“工具”菜单中打开“附加组件”。</li> <li>从附加组件搜索框旁边的选项按钮中，选"
-"择“从文件安装附加组件...”选项，并定位到已经下载的附加组件上。</li> </ol>"
+"<strong>如何在 Thunderbird 中安装</strong> <ol> <li>将文件下载并保存到您的硬盘上。</li> <li>在 "
+"Mozilla Thunderbird 中，从 工具 菜单中打开 附加组件。</li> "
+"<li>从附加组件搜索框旁边的选项按钮中，选择“从文件中安装附加组件...”选项，然后找到并打开已经下载的附加组件。</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -881,7 +882,7 @@ msgstr "此附加组件需要一个尚未发布的 Firefox 版本。"
 
 #: apps/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
-msgstr "帮助测试新的 Firefox 版本"
+msgstr "帮忙测试新的 Firefox 版本"
 
 #: apps/addons/templates/addons/popups.html:77
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
@@ -902,7 +903,7 @@ msgstr "此炫彩风格需要 %(app)s %(new_version)s，您目前使用的是 %(
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>注意：</strong>此附加组件尚未经过 Mozilla 审核。请在安装第三方软件时注意，以免对您的电脑造成可能的损害。"
+msgstr "<strong>注意：</strong> 该附加组件尚未经过 Mozilla 审核。安装第三方软件可能会损害您的计算机。"
 
 #: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -931,7 +932,9 @@ msgstr "附加组件的二维码"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
-msgstr "想在移动版 Firefox 上使用 {0} 吗？扫描此 QR 码后会直接安装到您的手机上。（您需要一个 QR 码阅读器。如果您的手机上没有，请在您的手机的应用市场里查找。）"
+msgstr ""
+"想在移动版火狐上使用 {0} 吗？扫描此 QR 码（一种二维码）后会直接安装到您的手机上。（您需要一个 QR "
+"码阅读器。如果您的手机上没有，请在您的手机的应用市场里查找）"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:332
@@ -942,7 +945,9 @@ msgstr "报告滥用"
 msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
-msgstr "如果您怀疑此附加组件违反<a href=\"%(url)s\">我们的政策</a>或有安全、隐私方面的问题，请在下面的表单中叙述您的疑虑。请不要将此表单用于其他用途。"
+msgstr ""
+"如果您怀疑此附加组件违反<a href=\"%"
+"(url)s\">我们的政策</a>或有安全、隐私方面的问题，请在下面的表单中叙述您的疑虑。请不要将此表单用作其他用途。"
 
 #: apps/addons/templates/addons/report_abuse.html:33 apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
@@ -968,7 +973,7 @@ msgstr "取消"
 
 #: apps/addons/templates/addons/report_abuse_full.html:3
 msgid "Report abuse for {0}"
-msgstr "{0} 的滥用报告"
+msgstr "报告 {0} 的滥用行为"
 
 #: apps/addons/templates/addons/review_add_box.html:4 apps/addons/templates/addons/impala/review_add_box.html:6
 msgid "What do you think?"
@@ -1006,7 +1011,7 @@ msgstr "评论撰写指南"
 
 #: apps/addons/templates/addons/review_add_box.html:41 apps/addons/templates/addons/impala/review_add_box.html:59
 msgid "Detailed Review"
-msgstr "撰写详细评论"
+msgstr "详细评论"
 
 #: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/reviews/templates/reviews/add.html:14 apps/reviews/templates/reviews/reply.html:14
 #: apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26 mkt/reviewers/helpers.py:128 mkt/reviewers/helpers.py:142
@@ -1086,7 +1091,7 @@ msgstr "此附加组件需要以下附加组件才能正常工作："
 
 #: apps/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr "平均评分"
+msgstr "平均"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
@@ -1183,15 +1188,15 @@ msgstr "在 <a href=\"%(url)s\">%(name)s</a> 下发布"
 
 #: apps/addons/templates/addons/impala/details.html:232
 msgid "About this App"
-msgstr "关于此应用"
+msgstr "关于这个应用"
 
 #: apps/addons/templates/addons/impala/details.html:234
 msgid "About this Add-on"
-msgstr "关于此附加组件"
+msgstr "关于这个附加组件"
 
 #: apps/addons/templates/addons/impala/details.html:251
 msgid "Developer’s Comments"
-msgstr "开发者注释"
+msgstr "开发者评论"
 
 #: apps/addons/templates/addons/impala/details.html:261
 msgid "Version Information"
@@ -1205,7 +1210,9 @@ msgstr "查看完整的版本历史"
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "开发通道让您可以在此附加组件的正式版本发布前体验实验性的新版本。一旦您安装了开发版本，您将持续从此通道获得更新。如果您不想再收到此更新，请从上面的链接重新安装默认版本。"
+msgstr ""
+"在此附加组件发布给所有公众之前，您可以通过开发频道测试此附加组件的实验性新版本。一旦您安装开发版，您就会持续得到来自这个频道的更新。要停止接受开发版的更"
+"新，请从上面的链接重新安装默认版。"
 
 #: apps/addons/templates/addons/impala/details.html:291
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
@@ -1223,7 +1230,7 @@ msgstr "关闭"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:5
 msgid "Thank you for installing {0}"
-msgstr "感谢您安装 {0}"
+msgstr "感谢安装 {0}"
 
 # %1 is an add-on name.
 #. {0} is an add-on name.
@@ -1238,7 +1245,7 @@ msgstr "下载附加组件前，请考虑通过小额捐款，支持此附加组
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:76
 msgid "Why was {0} created?"
-msgstr "开发 {0} 的缘由"
+msgstr "为什么要开发附加组件 {0} ？"
 
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:80
@@ -1326,7 +1333,7 @@ msgstr "我的主题"
 
 #: apps/addons/templates/addons/includes/install_button.html:19
 msgid "Purchase for {0}"
-msgstr "{0} 购买"
+msgstr "以 {0} 元购买"
 
 #: apps/addons/templates/addons/includes/install_button.html:22
 msgid "Add to Firefox"
@@ -1410,7 +1417,7 @@ msgstr "警告"
 
 #: apps/addons/templates/addons/mobile/details.html:139
 msgid "Visit the Support Site"
-msgstr "访问用户支持网站"
+msgstr "访问支持网站"
 
 #: apps/addons/templates/addons/mobile/details.html:144
 msgid "Ask the Author a Question"
@@ -1460,7 +1467,7 @@ msgstr "附加组件是一种通过增添额外的功能和样式来让您实现
 
 #: apps/addons/templates/addons/mobile/home.html:49
 msgid "View all Featured add-ons"
-msgstr "浏览所有精选附加组件"
+msgstr "查看所有精选附加组件"
 
 #: apps/addons/templates/addons/mobile/home.html:55
 msgid "View all Popular add-ons"
@@ -1511,7 +1518,7 @@ msgstr "我的收藏夹"
 
 #: apps/amo/context_processors.py:83 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
-msgstr "注销"
+msgstr "登出"
 
 #: apps/amo/context_processors.py:88 apps/devhub/templates/devhub/addons/dashboard.html:6 mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
@@ -1541,7 +1548,7 @@ msgstr "本地化人员工具"
 
 #: apps/amo/context_processors.py:109 mkt/site/context_processors.py:55
 msgid "Admin Tools"
-msgstr "管理员工具"
+msgstr "管理工具"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -1569,7 +1576,7 @@ msgstr "字典及语言包"
 #: mkt/developers/templates/developers/skeleton_impala.html:12 mkt/ecosystem/templates/ecosystem/landing.html:171 mkt/ecosystem/templates/ecosystem/partners.html:12
 #: mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 templates/base.html:9 templates/impala/base.html:9
 msgid "Firefox Marketplace"
-msgstr "火狐市场"
+msgstr "火狐应用市场"
 
 #: apps/amo/helpers.py:316
 msgid "Apps Marketplace"
@@ -1632,7 +1639,7 @@ msgstr "{addon} 的状态已更改为 {0}。"
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr "{addon} 已添加预览图。"
+msgstr "预览图已添加到 {addon} 。"
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
@@ -1657,11 +1664,11 @@ msgstr "{addon} 已删除版本 {0}。"
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
-msgstr "{addon} {version} 已添加文件 {0.name}。"
+msgstr "文件 {0.name} 已添加到 {addon} {version} 。"
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
-msgstr "{addon} {version} 已删除文件 {0}。"
+msgstr "已经从 {addon} {version} 中删除文件 {0} 。"
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
@@ -1709,7 +1716,7 @@ msgstr "{addon} {version} 被要求更多信息。"
 
 #: apps/amo/log.py:217
 msgid "More information requested"
-msgstr "被要求更多信息"
+msgstr "要求更多信息"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
@@ -1742,7 +1749,7 @@ msgstr "{addon} 已添加到收藏集 {collection}。"
 
 #: apps/amo/log.py:261
 msgid "{addon} removed from {collection}."
-msgstr "{addon} 已从收藏集 {collection} 移除。"
+msgstr "{addon} 已从 {collection} 中移除。"
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
@@ -17812,7 +17819,7 @@ msgstr "2.添加一个<a href=\"%(url)s\">应用资源配置文件</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:72
 msgid "All that inherently separates a Web app from a normal website is a single, JSON-format text file."
-msgstr ""
+msgstr "网络应用与普通网站之间的唯一区别就是多了一个单一的 JSON 格式的文本文件。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:78
 msgid "3. Publish the app, either on your own site or in an app store (or both)."
@@ -17832,10 +17839,13 @@ msgid ""
 "platform that happens to use a browser engine for rendering user interfaces and interpreting code, and happens to use Web protocols for communicating with a server. Mozilla offers &quot;<a href="
 "\"%(url)s\">Web runtime</a>&quot; executables for various platforms so that apps can run in their own window, without a browser window frame."
 msgstr ""
+"<em>哲学上</em>，可安装的网络应用程序在理念上远远超出了简单为网站添加清单文件的范畴，网络标准化技术使他可以被看作全功能应用程序平台，只不过是用"
+"浏览器引擎渲染用户界面并解释代码，用 web 标准与服务器通讯。Mozilla 为不同平台提供可执行的 &quot;<a href=\"%"
+"(url)s\">web 运行时</a>&quot;，因而应用可以在自己的窗口中运行，不必运行在浏览器窗口框架内。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:106 mkt/ecosystem/templates/ecosystem/build_web_developers.html:61
 msgid "To &quot;appify&quot; a website, there are many application-specific questions to consider:"
-msgstr ""
+msgstr "要 &quot;应用化&quot; 一个网站，要考虑一些与应用程序有关的问题："
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:112 mkt/ecosystem/templates/ecosystem/build_web_developers.html:67
 msgid "Should my app work when not connected to the Web?"
@@ -17857,7 +17867,7 @@ msgstr "以及更多"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:129 mkt/ecosystem/templates/ecosystem/build_web_developers.html:84
 msgid "If you want to take full advantage of the capabilities of installable apps, there is plenty that you can do. For example:"
-msgstr ""
+msgstr "如果您想充分享受一个可以安装的应用所带来的好处，那么有许多事情可以做。例如："
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:136 mkt/ecosystem/templates/ecosystem/build_web_developers.html:92
 msgid "Use <a href=\"%(url)s\">responsive Web design</a> to look good and work well on all devices."
@@ -17973,10 +17983,13 @@ msgid ""
 "description, icon location, locale strings, domains the app can be installed from, and much more (Only the name and description are required). The simple manifest included within the app template "
 "looks like:"
 msgstr ""
+"每一个 Firefox 应用的根目录下都需要有一个 manifest.webapp 文件。<code><a href=\"%"
+"(url)s\">manifest.webapp</a></code> 文件提供了关于这个应用的重要信息，诸如版本、名称、描述、图标位置、区域字符串、应用"
+"的安装源域名，以及其他更多信息（只有名称和描述是必须的）。应用模板中包含有简单的清单文件类似下面这样的："
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:72
 msgid "More specific details can be added as the project gets closer to completion, as is the case with most Firefox OS apps. A basic manifest will do to get started."
-msgstr ""
+msgstr "对于大多数 Firefox OS 项目来说，可以到项目接近完成的时候再添加更多的细节。有一个基本的清单就可以开始开发了。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:78
 msgid "App Layout &amp; Design"
@@ -17987,12 +18000,16 @@ msgid ""
 "Responsive design has become increasingly important as more screen resolutions become standard on different devices. Even if your app targets only Firefox OS, it's important to remember that "
 "Firefox OS can be installed on a variety of devices which use different screen resolutions. <a href=\"%(url)s\">CSS media queries</a> provide a means to adapt layout to device:"
 msgstr ""
+"不同设备有多种屏幕分辨率已经是很常见的情况，因此响应式设计变得愈发重要。即使您的应用只运行在 Firefox OS 上，也必须意识到 Firefox "
+"OS 可以安装在有不同屏幕分辨率的多种设备上。<a href=\"%(url)s\">CSS 媒体查询</a>提供了适应设备的布局方法："
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:91
 msgid ""
 "There are many JavaScript and CSS frameworks available to aid in responsive design and mobile app development (<a href=\"%(url)s\">Bootstrap</a>, etc.); choose the framework(s) that best fit your "
 "app and development style."
 msgstr ""
+"有许多 JavaScript 和 CSS 框架可以帮助响应式设计和移动应用开发（<a href=\"%"
+"(url)s\">Bootstrap</a>，等等）；选择最适合您的应用和开发风格的一种或几种框架。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:99
 msgid ""
@@ -18000,6 +18017,10 @@ msgid ""
 "mobile development, like <a href=\"%(url_zepto)s\">zepto.js</a> (a light alternative to jQuery) and a utility to install your app on the Firefox OS Simulator. This quick start guide fits you with "
 "mortar's most basic layout template:"
 msgstr ""
+"Mozilla 的 <a href=\"%(url_mortar)s\">mortar</a>就是不错的工具。Mortar "
+"不能为响应式设计提供帮助，但是为应用提供了一些 JavaScript 工具帮助 Firefox OS 移动开发，像 <a href=\"%"
+"(url_zepto)s\">zepto.js</a>（jQuery 的轻量级替代品）和把应用安装到 Firefox OS "
+"模拟器上的工具。这个快速入门指南帮助你使用 mortar 的最基本的布局模板："
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:114
@@ -18007,6 +18028,8 @@ msgid ""
 "Feel free to modify the structure set forth by mortar &mdash; the snippet above should get you going. Note that all JavaScript code must be in separate <code>.js</code> files; no inline, scripting "
 "is allowed."
 msgstr ""
+"可以随意修改 mortar 的结构设置 &mdash; 上述片段可以为你提供帮助。注意，所有 JavaScript 代码必须放在单独的 "
+"<code>.js</code> 文件中而不能內联，允许使用脚本。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:121
 msgid "Web APIs"
@@ -18017,11 +18040,14 @@ msgid ""
 "JavaScript APIs are being created and enhanced as quickly as devices are. Mozilla's <a href=\"%(url)s\">WebAPI</a> effort brings dozens of standard mobile features to JavaScript APIs. A list of "
 "device support and status is available on the <a href=\"%(url)s\">WebAPI</a> page. Of course JavaScript feature detection is still the best practice:"
 msgstr ""
+"JavaScript API 正在不断涌现出来并逐渐接近设备的效能。Mozilla 的 <a href=\"%(url)s\">WebAPI</a> 产品为 "
+"JavaScript API 带来了许多标准的移动设备特性。设备支持情况和状态列表参见 <a href=\"%(url)s\">WebAPI</a> "
+"页面。当然，做 JavaScript 特性检测仍然是最好的办法："
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:134
 msgid "In this very basic app template we'll modify the display style of a <code>DIV</code> based on changes in the device's battery state:"
-msgstr ""
+msgstr "在这个非常基础的应用模板里，我们将根据设备电量的变化改变 <code>DIV</code> 的显示风格："
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:144
@@ -18044,7 +18070,7 @@ msgstr "WebRT API（基础权限 API）"
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:160
 msgid ""
 "There are a number of WebAPIs which are available but require permissions for that specific feature to be enabled. Apps may register permission requests within the <code>manifest.webapp</code> file:"
-msgstr ""
+msgstr "有很多可用的 WebAPI 需要开启特定功能的权限。应用可以在 <code>manifest.webapp</code> 文件中注册请求权限："
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:170
@@ -18052,6 +18078,8 @@ msgid ""
 "Once you've installed your app on Firefox OS Simulator, open the <code>Settings</code> app, select <code>App Permissions</code>, select your app, and enable permissions as desired. It's important "
 "to note that not all Web APIs have been implemented within the Firefox OS Simulator."
 msgstr ""
+"一旦在 Firefox OS 模拟器上安装了应用，就可以打开 <code>设置</code>应用，选择 "
+"<code>应用权限</code>，选中您的应用，启用需要的权限。必须要说明的是，Firefox OS 模拟器上实现的 Web API 是不完整的。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:178
 msgid "Tools &amp; Testing"
@@ -18062,14 +18090,13 @@ msgid "Testing is incredibly important when supporting mobile devices. There are
 msgstr "支持移动设备时测试环节非常重要。有很多方法测试 FirefoxOS 应用："
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:187
-#, fuzzy
 msgid ""
 "Installing and using the <a href=\"%(url)s\">Firefox OS Simulator</a> is the easiest way to get up and running with your app. After installed the simulator is accessible via the Tools -> Web "
 "Developer -> Firefox OS Simulator menu. The simulator launches with a JavaScript console so that you may debug your application from within the simulator!"
 msgstr ""
-"安装和使用 <a href=\"%(url)s\">Firefox OS Simulator</a> 是运行你的应用的最简单的方法。安装模拟器后访问工具 "
+"安装和使用 <a href=\"%(url)s\">Firefox OS Simulator</a> 是运行您的应用的最简单的方法。安装模拟器后访问工具 "
 "-> Web 开发者 -> Firefox OS Simulator 菜单。该模拟器也将启动一个 JavaScript "
-"控制台，这样你就可以在模拟器内调试你的应用了！"
+"控制台，这样您就可以在模拟器内调试您的应用了！"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:196
 msgid "Unit Testing"
@@ -18092,6 +18119,9 @@ msgid ""
 "Since Firefox OS is an open source platform, code and tools are available to build and install Firefox OS on your own device. Build and installation instructions can be found on <a href=\"%(url_mdn)"
 "s\">MDN</a>. Firefox OS preview devices will be available via <a href=\"%(url_phone)s\">Geeksphone</a> soon."
 msgstr ""
+"Firefox OS 作为一个开源平台，有相应的代码和工具可以在您自己的设备上安装 Firefox OS。<a href=\"%"
+"(url_mdn)s\">MDN</a> 上有构建和安装指南。我们也很快会通过 <a href=\"%"
+"(url_phone)s\">Geeksphone</a> 提供 Firefox OS 预览设备。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:216
 msgid "App Submission and Distribution"
@@ -18103,6 +18133,10 @@ msgid ""
 "devices your app will support (i.e. Firefox OS, Desktop Firefox, Firefox Mobile, Firefox Tablet). Once validated you may add additional details about your app (screenshots, descriptions, price, "
 "etc.) and officially submit the app for listing within the Marketplace. Once approved your app is available to the world for purchase and installation."
 msgstr ""
+"应用一旦开发完成，就可以 <a href=\"%(url_submit)s\">提交</a> 到 <a href=\"%"
+"(url_mkt)s\">火狐应用市场</a>。我们会验证您的应用清单文件，您可以选择应用支持的设备（例如 Firefox OS、桌面版 "
+"Firefox、移动版 Firefox、Firefox 平板版本）。通过验证后，您可以添加有关这个应用的其他细节（屏幕截图、描述、价格等） "
+"并将应用正式提交到应用市场。核准后就可以在全世界范围内被购买和安装了。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:232
 msgid "More Marketplace &amp; Listing Information"
@@ -18126,6 +18160,7 @@ msgid ""
 "What can you do with an Open Web App? What can't you do? Here you'll find some examples of the kind of Open Web Apps that are possible. Use them for inspiration, as example code, or as a jumping "
 "off point for your new app."
 msgstr ""
+"可以用开放网络应用来做什么？不能做什么？这里提供一些开放网络应用能够实现的案例。您可以用他们作为示范代码来启发思路，也可以作为您的新应用的跳板。"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:24 mkt/ecosystem/templates/ecosystem/macros.html:93 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:9
@@ -18134,7 +18169,7 @@ msgstr "Chrono"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:27
 msgid "Chrono is a simple chronometer with lap counter, built to highlight various aspects of the Firefox OS development process."
-msgstr ""
+msgstr "Chrono 是利用圈数统计实现的简单的计时器，构建过程展示了 Firefox OS 开发过程的多个不同方面。"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:34 mkt/ecosystem/templates/ecosystem/macros.html:101 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:9
@@ -18146,6 +18181,7 @@ msgid ""
 "Face Value is a currency conversion app that does things differently: instead of converting arbitrary amounts it shows you the actual denominations in the country you're visiting. It lets you think "
 "in your home currency even with a foreign currency in your pocket."
 msgstr ""
+"Face Value 是一个与众不同的货币转换应用：不是转换任意金额，而是显示你到访国家货币的实际面值。这样你就可以用本国货币去考虑口袋中的外币的价值。"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:47 mkt/ecosystem/templates/ecosystem/macros.html:109 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:9
@@ -18163,7 +18199,7 @@ msgstr "Roller"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:59
 msgid "Roller is a micro blog app that allows you to post text, upload an image or paste a link that has an image extension such as jpg, gif, png or jpeg."
-msgstr ""
+msgstr "Roller是一个微博应用，让你可以发布状态、图片或者粘贴一个带有诸如jpg、gif、png和jpeg等图片扩展名的链接。"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:67 mkt/ecosystem/templates/ecosystem/macros.html:125 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:9
@@ -18172,7 +18208,7 @@ msgstr "Webfighter"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:70
 msgid "Webfighter is an R-Type and Tyrian inspired game where you must hunt down an alien bug and destroy it."
-msgstr ""
+msgstr "Webflighter 是一款R类泰尔灵感游戏，你要逐步外星坏蛋并消灭它们。"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:77 mkt/ecosystem/templates/ecosystem/macros.html:133 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:9
@@ -18181,7 +18217,7 @@ msgstr "General Notes"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:80
 msgid "General Notes is a simple note app that allows you to sync local and remote content."
-msgstr ""
+msgstr "General Notes 是一款简单的记事本应用，你可以对本地和远程的内容进行同步。"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:87
 msgid "rtcamera"
@@ -18196,6 +18232,8 @@ msgid ""
 "What do you use to build Open Web Apps? The answer is &quot;anything you would normally use to build for the web.&quot; The following is a list of tools and resources to help you get started making "
 "Open Web Apps. They can be easily integrated into your existing web development workflow, if you have one, or you can build a new workflow around them."
 msgstr ""
+"你该用什么工具来构建开放网络应用？答案是 &quot; 任何你通常用来制作网页的工具。&quot; 下面列出的这些工具和资源，可以帮助您开始制作开放网络"
+"应用。您可以很容易地把它们整合到您现有的网络开发流程中——如果已经有了的话，或者您可以构建一个全新的工作流程。"
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:37 mkt/ecosystem/templates/ecosystem/macros.html:203
 msgid "App Validator"
@@ -18213,7 +18251,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:62
 msgid "Firefox now ships with a default set of developer tools built from the ground up to ensure a great development experience that is both snappy and efficient."
-msgstr ""
+msgstr "Firefox 现在默认自带了一组开发工具，提供了优秀的开发体验——快捷而且高效。"
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:5 mkt/ecosystem/templates/ecosystem/build_web_developers.html:13 mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "For Current Web Developers"
@@ -18228,6 +18266,7 @@ msgid ""
 "If you are a Web developer and you have a website or Web application that you would like to make into an installable Open Web app, there is <em>technically</em> very little that you need to do. The "
 "minimum requirements are few:"
 msgstr ""
+"如果您是一个网络开发者，有一个网站或者网络应用要制作为可安装的开放网络应用，<em>在技术上</em>您只需要做很少的事情。必须做的只有以下这些："
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:25
 msgid "Create an <a href=\"%(url)s\">app manifest</a>."
@@ -18237,16 +18276,20 @@ msgstr "创建一个<a href=\"%(url)s\">应用资源配置文件</a>"
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:31
 msgid "Serve the app manifest in a file with a file extension of <code>.webapp</code>. Set the <code>Content-Type</code> header to <code>application/x-web-app-manifest+json</code>."
 msgstr ""
+"将应用清单信息保存在一个扩展名为<code>.webapp</code>。<code>Content-Type</code> header 设置为 "
+"<code>application/x-web-app-manifest+json</code>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:38
 msgid ""
 "Publish the app, either on your own site or in an app store (or both). Publishing it yourself requires <a href=\"%(url)s\">adding some code to your site to manage installing and updating the app</"
 "a> in users' browsers."
 msgstr ""
+"发布应用，无论是在您自己的网站还是应用商店（或两者兼有）。自行发布时需要<a href=\"%"
+"(url)s\">在您的网站添加一些代码</a>，以便在用户浏览器端安装和更新应用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:144
 msgid "Here are some Web technologies that may be useful in writing installable apps. Notice that there is nothing on this list that is unique to Open Web apps!"
-msgstr ""
+msgstr "以下一些技术对于编写可安装的应用程序会有所帮助，注意，这里面没有一项是开放网络应用独有的！"
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:167
 msgid "Offline resources in Firefox"
@@ -18272,11 +18315,11 @@ msgstr "您的应用有什么用途？"
 msgid ""
 "If you already have a list of tasks, an idea for your app and the type of user you are targeting, it's time to create a goal statement: Define your app's purpose and the most important user in one "
 "sentence. This is your main use case."
-msgstr ""
+msgstr "如果您已经确定好了任务表、应用创意和目标用户类型，现在就可以建立一个目标：用一句话说明您的应用的目的和最主要的用户。这是您的主要用例。"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:24
 msgid "Example: A wish list creation tool for people who never do impulse shopping."
-msgstr ""
+msgstr "为从不冲动购物的人准备的愿望表创建工具。"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:30
 msgid "Focus on one main use case"
@@ -18287,6 +18330,8 @@ msgid ""
 "It is possible that you cannot include all the tasks on your list in your goal statement. That is ok, because you should focus on one main use cases, which is how most people will use your "
 "application. Awesome apps do one thing well."
 msgstr ""
+"您很可能无法在一个应用中完成所有预期的任务。没关系，您应该把目光集中在一个主要的用例上，也就是绝大多数用户使用您的应用程序的方式。优秀的应用只会做好一件"
+"事。"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:40
 msgid "How will people use your app?"
@@ -18298,6 +18343,8 @@ msgid ""
 "her baby at daycare might use your app to note a nice stroller (potential multi-tasking, pausing and continuing the task later). A different user might plan her next laptop purchase at home, in an "
 "armchair, without interruptions."
 msgstr ""
+"现在，您已经确定了主要用例、目标用户和关键特性。主界面还要考虑应用运行的用户环境。例如，一个需要白天照顾孩子的年轻妈妈使用应用时要照看婴儿车（可能是同时"
+"进行多个任务，经常需要暂停后再继续）。另外一个用户可能坐在家中的扶手椅上选购她的下一部便携式电脑，使用中不会有什么中断。"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:53
 msgid "Concentrate on a few key features"
@@ -18305,17 +18352,19 @@ msgstr "专注于少数几个关键功能"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:55
 msgid "Look at your task list again. Filter your list through the goal statement. If the tasks do not align with your goal statement, exclude them in your app."
-msgstr ""
+msgstr "再看一下您的任务列表，用目标列表过滤您的列表。如果任务不符合您的目标，就排除掉。"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:62
 msgid ""
 "Describe each core task as a feature and then ask yourself, is this feature essential? Or is it nice-to-have but not required by the target user to complete the defined task? Be honest with "
 "yourself. If you end up with a short list of features, you are on the right track."
 msgstr ""
+"将每一项核心任务描述为一项功能，然后问问自己，这个功能重要么？或者这个功能不错但是对于目标用户完成预定任务来说没有帮助？要实事求是。如果最终您建立了一个"
+"简短的功能列表，那么您就向正确的方向前进了一步。"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:71
 msgid "Remember, the best apps usually do one thing well. Apps often fail not because they have too little features, but too many."
-msgstr ""
+msgstr "记住，最好的应用通常只会做好一件事情。应用失败一般不是因为功能太少，而是太多。"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:77
 msgid "Your app in its most basic form"
@@ -18368,17 +18417,19 @@ msgstr "总是提供线索并即时反馈"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:54
 msgid "Provide clues which make the correct steps apparent. For example, a big &quot;+&quot; button to indicate adding items if that's the correct next step."
-msgstr ""
+msgstr "提供正确操作步骤的明显线索，例如，一个巨大的 &quot;+&quot; 按钮代表添加项目的操作——如果这是正确的下一步操作的话。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:61
 msgid ""
 "Always give immediate feedback when the users take an action. For example, if users click on a &quot;new message&quot; button, lead them directly to the screen for creating a new message. You could "
 "also temporarily change the color of the “new message” button and provide a tactile feedback to show that your app understands the users' command."
 msgstr ""
+"用户进行一项操作之后，总要立刻给予反馈。例如，如果用户点击了 &quot;新建消息&quot; "
+"按钮，要直接显示创建新消息的界面。同时还应该临时改变“新建消息”按钮的颜色以提供触感反馈表明应用已经知道了用户的命令。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:71
 msgid "If an action takes more than a few seconds, provide a status update. For example, if your app is downloading the new messages, you could show the progress with a loading icon."
-msgstr ""
+msgstr "如果完成一项操作需要较长的时间，提供一个状态更新机制。例如，如果应用正在下载新消息，应该用加载状态图标的方式显示进度。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:77
 msgid "Minimize typing"
@@ -18386,19 +18437,19 @@ msgstr "尽量减少文字输入"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:79
 msgid "Use selectors, checkboxes, radio buttons etc., whenever you can. Typing on mobile devices is often a slow and tedious task."
-msgstr ""
+msgstr "只要情况允许，应使用选择器、复选框、单选框等，在移动设备上输入文字通常都是缓慢而乏味的。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:84
 msgid "Aim for a pleasant first launch experience"
-msgstr ""
+msgstr "努力打造愉悦的首次启动体验"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:86
 msgid "People often spend only a minute or two deciding whether to continue or abandon an app. Some of the factors you may want to consider include:"
-msgstr ""
+msgstr "人们通常只会花一两分钟决定是继续使用还是放弃一个应用。你要考虑的因素包括："
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:93
 msgid "provide a quick introduction to your app (and provide an easy way to end it anytime)"
-msgstr ""
+msgstr "提供一个简短的应用介绍（并且能够随时很方便地终止）"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:98
 msgid "instant access to features and suggestions"
@@ -18449,7 +18500,7 @@ msgstr "响应式导航条模式"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:15
 msgid "Need some help designing your app's navigation? These patterns are a great place to start."
-msgstr ""
+msgstr "设计应用导航方面需要帮助？这些模式可以作为不错的开端。"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:21
 msgid ""
@@ -18457,10 +18508,12 @@ msgid ""
 "optimal way to present information on small screens because of the reduced screen real estate. Therefore, it is necessary to consider the presentation of content and ease of navigation for all "
 "screen sizes."
 msgstr ""
+"以下响应式导航模式为大小屏幕提供了多种处理导航的方法。大屏幕上通常使用顶端或者左侧导航菜单，但是在小屏幕上通常不适合这样呈现信息，因为屏幕确实太有限了。"
+"总之，面向各种屏幕尺寸考虑内容呈现方式和导航方法是十分必要的。"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:33
 msgid "Note: HTML/CSS for the corresponding patterns will be available soon."
-msgstr ""
+msgstr "注意：暂时还未提供与模式相对应的 HTML/CSS。"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:39
 msgid "Pattern 1: Top toggle menu"
@@ -18471,10 +18524,12 @@ msgid ""
 "In this pattern, as the screen width is reduced, the top navigation items rearrange until there is not enough space. At that point, some items move from the top navigation to a drop-down menu. In "
 "the smallest screen, all navigation items live in a toggle menu, and the user has to tap to expand the toggle menu."
 msgstr ""
+"在这个模式中，鉴于屏幕宽度有限，重新安排了顶部导航菜单项以适应屏幕空间。于是，部分项目被移到了下拉菜单中。在最小的屏幕上，全部导航菜单项都放在触发菜单里"
+"，用户需要轻触展开菜单。"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:50
 msgid "You could rank the item priorities to ensure the most important items always appear in the top navigation."
-msgstr ""
+msgstr "您应该评估项目的重要性，确保最重要的项目总是显示在顶部导航里。"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:55 mkt/ecosystem/templates/ecosystem/design_patterns.html:131 mkt/ecosystem/templates/ecosystem/design_patterns.html:198
 msgid "Pros:"
@@ -18482,15 +18537,15 @@ msgstr "优点："
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:58 mkt/ecosystem/templates/ecosystem/design_patterns.html:213
 msgid "<strong>one button in header</strong> maximizes space for content on a small screen"
-msgstr ""
+msgstr "<strong>顶部只有一个按钮</strong>以便尽可能扩大小屏幕上的内容显示空间"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:64
 msgid "<strong>important items stay visible</strong>in most screen sizes and you decide the item priorities"
-msgstr ""
+msgstr "<strong>让重要项目保持可见</strong>是您在绝大多数尺寸的屏幕上安排项目时都应该遵守的原则"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:70 mkt/ecosystem/templates/ecosystem/design_patterns.html:145
 msgid "<strong>legibility of navigation items is maintained</strong> with adequate spacing, by automatically hiding items that don't fit"
-msgstr ""
+msgstr "<strong>导航项目应该易于辨认</strong>，方法是设计适当的空间，然后在不使用时自动隐藏"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:76 mkt/ecosystem/templates/ecosystem/design_patterns.html:152 mkt/ecosystem/templates/ecosystem/design_patterns.html:219
 msgid "Cons:"
@@ -18498,15 +18553,15 @@ msgstr "缺陷："
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:79 mkt/ecosystem/templates/ecosystem/design_patterns.html:222
 msgid "<strong>navigation items might be less discoverable</strong> because some items are hidden in the drop-down or toggle menu"
-msgstr ""
+msgstr "<strong>导航项目不一定要特别醒目</strong>因为一些项目会隐藏在下拉或者触发菜单里"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:85 mkt/ecosystem/templates/ecosystem/design_patterns.html:228
 msgid "<strong>users may not notice the button</strong> contains a navigation menu in the smallest screen size"
-msgstr ""
+msgstr "<strong>用户可能不会注意到</strong>很小尺寸的屏幕上包含导航菜单的按钮"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:91
 msgid "<strong>one more step</strong> is needed to access the hidden navigation items"
-msgstr ""
+msgstr "<strong>需要不止一步</strong>才能访问到隐藏的导航项目"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:98 mkt/ecosystem/templates/ecosystem/design_patterns.html:174 mkt/ecosystem/templates/ecosystem/design_patterns.html:241
 msgid "Pattern 1"
@@ -18533,12 +18588,14 @@ msgid ""
 "Similar to the first pattern, the top navigation items rearrange for smaller widths until there is not enough space. At that point, some items move from the top navigation to a drop-down menu. You "
 "could rank the item priorities to ensure the most important items always appear in the top navigation."
 msgstr ""
+"和第一种模式类似，顶部导航项目需要重新安排以适应屏幕宽度不足引起的空间问题。由此，将一些项目从顶部导航移动到下拉菜单中。您需要评估各个项目的重要性以确保"
+"最重要的项目总是显示在顶部导航中。"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:124
 msgid ""
 "In the smallest screen, several items stay on the bottom of the screen, and the rest of the items are hidden. The user can flip the menu open and select from the rest of the navigation items. You "
 "could select the items that remain on the bottom."
-msgstr ""
+msgstr "在最小的屏幕上，一些项目保留在屏幕底部，其余的隐藏。用户可以滑动打开菜单选择其余那些导航项目。您需要决定哪些项目保留在底部。"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:134
 msgid "<strong>expandable menu is easy to discover</strong>"
@@ -18614,12 +18671,16 @@ msgid ""
 "Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the "
 "phone vibrate, placing phone calls, and sending text messages."
 msgstr ""
+"Firefox OS 是完全使用开放网络技术构建的全新的移动操作系统。在 Firefox OS 中，HTML5 "
+"应用可以直接控制手机硬件及重要功能——例如让手机震动，打电话，以及发送短信。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
 msgid ""
 "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
 "and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
 msgstr ""
+"我们坚信，开发者需要真正有益的帮助，将网络的力量带入移动设备。因此我们与许多合作伙伴一道，在设备上开发和测试应用，并进一步了解如何定制 Firefox "
+"OS 自身。本页面向开发者提供有用的信息，包括开发者文档链接、可用的设备，以及从哪里可以获得他们。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
@@ -18627,23 +18688,29 @@ msgstr "Keon"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:46 mkt/ecosystem/templates/ecosystem/dev_phone.html:58
 msgid "ZTE OPEN"
-msgstr ""
+msgstr "ZTE OPEN"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:48
 msgid ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</"
 "a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">从美国商店购买</a><a href=\"%"
+"(uk_ebay_url)s\" class=\"button\">从英国商店购买</a><a href=\"%(hk_ebay_url)s\" "
+"class=\"button\">从香港商店购买</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid ""
 "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"我们与中兴一道经过艰苦的工作，终于发布了 ZTE OPEN Firefox OS "
+"手机，这是一款面向全球开发者和早期用户的强大设备。可以通过中兴的美国、英国和香港 eBay "
+"商店购买，价格为79.99美元或59.99欧元，设备是解锁的并开放测试体验。<a href=\"%(zte_url)s\">了解更多细节。</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
-msgstr ""
+msgstr "说明：已经可以从香港购买这款新设备，以节省亚洲和大洋洲用户的邮寄费用。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:77
 msgid "Peak"
@@ -18651,7 +18718,7 @@ msgstr "Peak"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:80
 msgid "Geeksphone"
-msgstr ""
+msgstr "Geeksphone"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:82
 msgid ""
@@ -18659,16 +18726,22 @@ msgid ""
 "Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these "
 "devices are still very valid for developer testing, having full updates available to them."
 msgstr ""
+"Mozilla、Geeksphone，和 Telefónica 共同努力打造了 Gekksphone Keon 和 "
+"Peak，分别作为低端和高端型号的预览设备，面向那些希望在真实的 Firefox OS 设备上进行开发的开发者。注意，尽管已经计划在将来再次供货，但这款"
+"产品目前处于缺货状态。渠道上还有一定数量的产品在流通，他们依旧是供开发者测试的正规设备，会得到完整的更新服务。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:92
 msgid ""
 "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-"
 "to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
 msgstr ""
+"<strong>如果您刚刚得到了一部 Geeksphone Keon 或 Peak ，它可能还运行着已经过时的 Firefox OS 版本 "
+"1.0.1。在使用之前，应该按照我们的 <a href=\"%"
+"(geeksphone_update_url)s\">Geeksphone刷新指南</a>升级到最新版本的 Firefox OS。</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
-msgstr ""
+msgstr "文档和工具"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:103
 msgid ""
@@ -18734,18 +18807,20 @@ msgid ""
 "The Dashboard is on the top-right, running inside a Firefox tab. We've added one app, a packaged app called \"Where am I?\". At the top-left the app is running in the Simulator. We've also "
 "connected the debugging tools, which are in the window at the bottom. You can see that we've just hit a breakpoint in the app."
 msgstr ""
+"仪表盘在右上方，运行于一个 Firefox 标签页内。我们已经添加了应用，一个称作“我在哪里？(Where am "
+"I?)”的封装应用。应用运行于模拟器左上方。我们还连接了调试工具，他位于底部窗口。您可以看到我们刚刚运行到应用的一个断点处。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:65
 msgid "This guide covers the following topics:"
-msgstr ""
+msgstr "本指南包括以下内容："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:67
 msgid "how to install the Simulator add-on"
-msgstr ""
+msgstr "如何安装模拟器附加组件"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:68
 msgid "how to add, remove, and update apps"
-msgstr ""
+msgstr "如何添加、移除和更新应用"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:69
 msgid "manifest validation"
@@ -18757,15 +18832,15 @@ msgstr "如何运行模拟器"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:71
 msgid "how to connect developer tools such as the JS debugger to apps running in the Simulator"
-msgstr ""
+msgstr "如何在模拟器中将应用连接到诸如 JS debugger 这样的开发者工具"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:72
 msgid "the limitations of the Simulator compared with a real Firefox OS device"
-msgstr ""
+msgstr "与真实的 Firefox OS 设备相比，模拟器的局限性"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:75
 msgid "For a practical walkthrough that shows how to use the Simulator to debug a real web app, see the <a href=\"%(walkthrough)s\">Simulator Walkthrough</a> page."
-msgstr ""
+msgstr "查看 <a href=\"%(walkthrough)s\">模拟器攻略</a> 页面，看看如何使用模拟器调试一个真实的网络应用。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:81
 msgid "Installing the Simulator add-on"
@@ -18776,6 +18851,8 @@ msgid ""
 "The Simulator is packaged and distributed as a Firefox add-on. To install it:<br /> <br /> 1. Using Firefox, go to the appropriate link for your host operating system. You'll probably have to tell "
 "Firefox to allow the site to install software:"
 msgstr ""
+"模拟器作为 Firefox 附加组件封装发行。要安装时：<br /><br />1. 使用 Firefox，转到适合您的操作系统的链接，可能要设置 "
+"Firefox 允许该网站安装软件："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:90
 msgid "Firefox OS Simulator Preview for Windows"
@@ -18795,12 +18872,19 @@ msgid ""
 "for several seconds while installing it, and a dialog titled \"Warning: Unresponsive script\" may appear. It it does, click \"Continue\" to wait for installation to finish. This issue is being "
 "tracked as <a href=\"%(bug_814505)s\">bug 814505</a>.<br /> <br /> Once you have installed the Simulator add-on, Firefox will periodically check for newer versions and keep it up to date for you."
 msgstr ""
+"2. 点击“添加到 Firefox”。<br />3. 附加组件下载完成后会提示安装：点击“立即安装”。<br /><br "
+"/>由于附加组件体积比较大，Firefox "
+"在安装过程中可能会有几秒钟失去响应，并且显示一个标题为“警告：失去响应的脚本”的对话框。点击“继续”等待安装完成。这个问题记录在<a href=\"%"
+"(bug_814505)s\">bug 814505</a>。<br /><br />模拟器附加组件安装完成后，Firefox "
+"会定期检查新版本并保证及时更新。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:110
 msgid ""
 "The Dashboard opens automatically when you install the Simulator, and you can reopen it at any time by going to the \"Firefox\" menu (or the \"Tools\" menu on OS X and Linux), then \"Web Developer"
 "\", then \"Firefox OS Simulator\":"
 msgstr ""
+"安装模拟器时仪表盘会自动打开，你也随时可以通过“Firefox”按钮（或者在 OS X 和 Linux 系统下的“工具”菜单）中的“Web "
+"开发者”——“Firefox OS Simulator”启动他。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:118
 msgid "The Dashboard is the tool you use to add your app to the Simulator and run it. Here's what it looks like:"
@@ -18856,49 +18940,53 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:170
 msgid "a link to its manifest file"
-msgstr ""
+msgstr "指向清单文件的链接"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:171
 msgid "the result of manifest validation"
-msgstr ""
+msgstr "清单文件验证结果"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:173
 msgid "It also gives us three commands:"
-msgstr ""
+msgstr "还提供了三个命令："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:175
 msgid "\"Remove\": remove the app from the Simulator or the Dashboard. You can undo this action as long as the Dashboard tab is open."
-msgstr ""
+msgstr "“移除”：从模拟器或者仪表盘中移除应用。只要仪表盘标签页还打开着，您就可以撤销这个操作。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:176
 msgid ""
 "\"Update\": use this to update the app in the Simulator after you have made changes to it. This also makes the Dashboard validate the manifest again. If you make changes to your app they will not "
 "be reflected automatically in the installed app: you will need to click \"Update\", and restart the Simulator if it is running."
 msgstr ""
+"“更新”：在做出更改之后用这个命令更新模拟器中的应用。这还会让仪表盘再次验证清单文件。如果您更改了应用，他并不会自动反映到已经安装的应用中：您需要点击“"
+"更新”，并重新启动运行中的模拟器。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:177
 msgid "\"Run\": run the app in the Simulator"
-msgstr ""
+msgstr "“运行”：在模拟器中运行应用"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:180
 msgid "If you've <a href=\"#Push-to-device\">connected a Firefox OS device</a> to your computer, you'll see a fourth command labeled \"Push to device\"."
 msgstr ""
+"如果您的计算机已经 <a href=\"#Push-to-device\">连接到一部 Firefox OS "
+"设备</a>，就会看到标为“推送到设备”的第四个命令。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:184
 msgid "Manifest validation"
-msgstr "资源配置文件验证"
+msgstr "清单文件验证"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:186
 msgid "When you supply a manifest, the Manager will run some validation tests on it. It reports three categories of problems:"
-msgstr ""
+msgstr "提供一个清单文件时，管理器会执行一些验证测试并报告三类问题："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:191
 msgid "manifest errors: problems that will prevent your app from running"
-msgstr ""
+msgstr "清单错误：会导致应用无法运行的问题"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:192
 msgid "manifest warnings: problems that may prevent your app from working properly"
-msgstr ""
+msgstr "清单警告：可能导致应用无法正确运行的问题"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:193
 msgid "simulator-specific warnings: features your app is using that the Simulator doesn't yet support"
@@ -18974,11 +19062,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:230
 msgid "the <code>type</code> field is \"certified\", but the Simulator does not yet fully supprt certified apps"
-msgstr ""
+msgstr "<code>type</code> 字段为“已认证”，但模拟器仍不完全支持认证的应用"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:231
 msgid "the manifest requests a permission to use an API that is <a href=\"#Unsupported-APIs\">not yet supported</a> by the Simulator"
-msgstr ""
+msgstr "清单请求一个模拟器<a href=\"#Unsupported-APIs\">尚未支持</a>的 API 的使用权限。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:233
 msgid "Running the Simulator"
@@ -18990,26 +19078,28 @@ msgstr "有可能启动模拟器的两种不同方式："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:236
 msgid "if you add, update, or remove an app, or click the \"Run\" button next to your app's entry, the Dashboard will automatically run your app in the Simulator"
-msgstr ""
+msgstr "如果您添加、更新或者移除一个应用，或者点击应用后面的“运行”按钮，仪表盘会自动在模拟器中运行应用"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:237
 msgid "if you click the button labeled \"Stopped\" on the left-hand side of the Dashboard, the Simulator will boot to the Home screen and you'll need to navigate to your app"
-msgstr ""
+msgstr "如果点击仪表盘左手边标为“已停止”的按钮，模拟器会启动至主屏幕，您需要手动找到您的应用"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:240
 msgid "Either way, once the Simulator is running, the button labeled \"Stopped\" turns green and the label changes to \"Running\". To stop the Simulator, click this button again."
-msgstr ""
+msgstr "无论哪种方式，一旦模拟器开始运行，“已停止”按钮就会变绿并改标为“正在运行”。要停止模拟器，再次点击这个按钮即可。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:246
 msgid ""
 "The Simulator appears as a separate window, sized so the simulated screen area is 320x480 pixels, with a <a href=\"#Simulator-toolbar\">toolbar at the bottom that contains some extra features</a>."
 msgstr ""
+"模拟器显示在一个单独的窗口中，模拟屏幕分辨率为320x480像素，<a href=\"#Simulator-"
+"toolbar\">底部带有包含一些扩充功能的工具栏</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:252
 msgid ""
 "To simulate touch events you can click the mouse button and drag while holding the button down. So by clicking and dragging right-to-left from the Home Screen, you'll see the built-in apps, as well "
 "as any apps you have added:"
-msgstr ""
+msgstr "按住鼠标按钮并拖拽，可以模拟触摸事件，因此在主屏幕按住并自右向左拖拽，就可以查看内置应用以及您添加的各种应用："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:262
 msgid "Simulator toolbar"
@@ -19017,11 +19107,11 @@ msgstr "模拟器工具栏"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:264
 msgid "You'll see three buttons on the toolbar at the bottom of the Simulator window:"
-msgstr ""
+msgstr "在模拟器窗口底部工具栏中有三个按钮："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:271
 msgid "From left to right, these are the Home button, the Rotation Simulation button, and the Geolocation Simulation button."
-msgstr ""
+msgstr "自左至右分别是 Home 按钮，模拟旋转按钮和模拟定位按钮。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:277
 msgid "the Home button takes you to the Home screen"
@@ -19029,7 +19119,7 @@ msgstr "主页按钮将您带到主页屏幕"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:278
 msgid "the Rotation Simulation button switches the device between portrait and landscape orientation. This will generate the <code>deviceorientation</code> event."
-msgstr ""
+msgstr "点击模拟旋转按钮可以在横竖状态之间切换，会产生 <code>deviceorientation</code> 事件。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:279
 msgid ""
@@ -19102,18 +19192,25 @@ msgid ""
 "To connect a device to the Simulator, you need the <a href=\"%(adb)s\">Android Debug Bridge (adb)</a> to be installed, but the Simulator add-on bundles adb for you. You do, though, need to "
 "configure both the Firefox OS device and your desktop OS."
 msgstr ""
+"要将一台设备连接到模拟器，您需要安装<a href=\"%(adb)s\">Android Debug Bridge "
+"(adb)</a>，但模拟器附加组件已经绑定了 adb，您要做的只是配置好 Firefox OS 设备和您的桌面操作系统。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:347
 msgid ""
 "On your Firefox OS device: open the Settings app, then <code>Device Information</code> &gt; <code>More Information</code> &gt; <code>Developer</code>. In the developer menu, check \"Remote debugging"
 "\"."
 msgstr ""
+"在您的 Firefox OS 设备上：打开“设置”应用，<code>设备信息</code> &gt; <code>更多信息</code> &gt; "
+"<code>开发者</code>。在开发者菜单中选择“远程调试”。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:354
 msgid ""
 "Set up your OS to detect the device. Instructions for this are OS-specific, and are detailed in point 3 of <a href=\"%(android_tools)s\">\"Setting up a Device for Development\" </a> on the Android "
 "developer site. The vendor ID to use for Firefox OS Geeksphone devices is <code>05c6</code>."
 msgstr ""
+"设置您的操作系统检测设备。这方面的指引是分操作系统的，详细信息在 Android 开发者网站 <a href=\"%"
+"(android_tools)s\">设置开发设备</a>的第三点。Firefox OS Geeksphone 设备的制造商 ID 为 "
+"<code>05c6</code>。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:363
 msgid "Pushing apps to the device"
@@ -19123,11 +19220,11 @@ msgstr "向设备推送应用"
 msgid ""
 "Once you've set up the device and desktop, and connected the device to your desktop via USB, you'll see the note \"Device connected.\" appear on the left of the Dashboard, and a new command appear "
 "in the entry for each app labeled \"Push\":"
-msgstr ""
+msgstr "一旦设置好设备和台式机，将设备通过 USB 连接到台式机，将会看到仪表盘左边显示提示“设备已连接”。每个应用入口都会显示一个新的命令“推送”："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:373
 msgid "Click \"Push\", and the app will be installed on the Firefox OS device."
-msgstr ""
+msgstr "点击“推送”，应用就会安装到 Firefox OS 设备上。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:374
 msgid "Limitations of the Simulator"
@@ -19135,7 +19232,7 @@ msgstr "模拟器的限制"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:375
 msgid "Note that the Firefox OS Simulator isn't a perfect simulation."
-msgstr ""
+msgstr "注意，Firefox OS 模拟器并不是一个完美的模拟。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:376
 msgid "Hardware limitations"
@@ -19143,15 +19240,15 @@ msgstr "硬件限制"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:378
 msgid "Apart from screen size, the Simulator does not simulate the hardware limitations of a Firefox OS device such as available memory or CPU speed."
-msgstr ""
+msgstr "除了屏幕尺寸之外，模拟器不能模拟 Firefox OS 设备的硬件条件限制，例如可用内存或者 CPU 速度。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:382
 msgid "Audio/video codecs"
-msgstr ""
+msgstr "音频/视频编码"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:383
 msgid "The following codecs depend on hardware-accelerated decoding and are therefore not yet supported:"
-msgstr ""
+msgstr "以下编码依赖于硬件加速解码，因而不被支持："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:390
 msgid "Unsupported APIs"
@@ -19162,6 +19259,8 @@ msgid ""
 "Certain APIs that work on the device won't work on the Simulator, generally because the supporting hardware is not available on the desktop. We've implemented simulations for some APIs such as "
 "geolocation, and expect to add more in future releases. However, at the moment the following APIs are not supported. Using them might throw errors or just return incorrect results:"
 msgstr ""
+"设备上的某些 API 无法在模拟器上运行，通常是因为台式机上不支持相应的硬件。我们实现了地理位置等 API "
+"的模拟，并且希望能在未来的版本中支持得更多。无论如何，以下 API 目前无法支持。调用时会收到错误信息或者仅仅返回错误的结果："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:402
 msgid "Telephony"
@@ -19195,7 +19294,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr "为开放市场开发HTML5网游应用。"
+msgstr "为开放的应用市场开发 HTML5 网络应用。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
@@ -19231,13 +19330,13 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
-msgstr ""
+msgstr "Mozilla 应用平台"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
 msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
-msgstr ""
+msgstr "基于网络构建应用可以让开发者完全控制内容、功能和应用分发方式，包括通过火狐应用市场接触到数以亿计的 Firefox 用户。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -19250,22 +19349,26 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
+"火狐应用市场让用户可以查找、试用和购买与他们相关的应用和内容。这意味着用户可以得到与本地市场相关的各类应用，这些激动人心的、有效的和高质量的应用将会改变"
+"他们的日常生活。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
+"Mozilla 可以接触到全球数以亿计的 Firefox 用户。通过智能化的应用市场对接 Mozilla "
+"的市场渠道，可以帮助开发者将他们的应用分发到全世界目标用户的手中。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid ""
 "Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your "
 "app to:"
-msgstr ""
+msgstr "在今年晚些时候公开发布之前，Mozilla 会将应用市场开发给用户进行测试。利用这个机会称为最早一批开发者构建用户基础。将您的应用提交到："
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:200
 msgid "Test your app with a committed group of early adopters."
-msgstr ""
+msgstr "借助忠诚的早期用户帮助您测试应用。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:205
 msgid "Build an early fan base and gain popularity."
@@ -19273,15 +19376,17 @@ msgstr "建立资深用户基础并让他流行起来。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:208
 msgid "Target tech savvy consumers with your app."
-msgstr ""
+msgstr "以精明的科技产品消费者为您的应用的目标用户。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Firefox Apps &amp; Hacks"
-msgstr "Firefox 应用和破解"
+msgstr "Firefox 应用和技巧"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:236
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
+"注册我们有关 Firefox OS 、应用市场和应用生态系统的每月通讯。<a href=\"%"
+"(dev_phone_url)s\">看看开发者手机预览</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:247
 msgid "Developer Devices"
@@ -19305,15 +19410,15 @@ msgstr "我要注册！"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:65
 msgid "Intro to Open Web Apps"
-msgstr ""
+msgstr "开放网络应用介绍"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:231 mkt/ecosystem/templates/ecosystem/publish_submit.html:5 mkt/ecosystem/templates/ecosystem/publish_submit.html:13
 msgid "Marketplace Submission"
-msgstr "提交到市场"
+msgstr "提交到应用市场"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:268 mkt/ecosystem/templates/ecosystem/publish_payments.html:5 mkt/ecosystem/templates/ecosystem/publish_payments.html:13
 msgid "Payments Status"
-msgstr ""
+msgstr "支付状态"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:315
 msgid "View with subtitles"
@@ -19329,7 +19434,7 @@ msgstr "结账吧！"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
-msgstr "与 Mozilla 合作，通过开放的市场向4.5亿用户分发您的应用"
+msgstr "与 Mozilla 合作，通过开放的应用市场向4.5亿用户分发您的应用"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
@@ -19337,7 +19442,7 @@ msgstr "<a href=\"%(submit_url)s\" class=\"button\">现在提交</a> <span>或�
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
-msgstr "通过强大的网络平台，开放的市场，和想您一样的合作伙伴，我们已经为欢迎即将到来的新网络用户做好了准备"
+msgstr "通过强大的网络平台，开放的市场，和想你一样的合作伙伴，我们已经为欢迎即将到来的新网络用户做好了准备"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
@@ -19437,7 +19542,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
-msgstr ""
+msgstr "要查看和下载火狐应用市场标志，请访问<a href=\"%(style_guide_url)s\">Mozilla 样式指引</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:15
 msgid "One your app is finished, you need to deploy it. If you're publishing through the Firefox Marketplace you have some options on how to deploy your app."
