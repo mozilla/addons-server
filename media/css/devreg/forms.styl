@@ -401,6 +401,7 @@ textarea {
 /* AJAX forms */
 input.loading-submit:after,
 button.loading-submit:after,
+#account-list a.loading-submit:after,
 #paypal-id-verify p.loading-submit:before {
     background-image: url(../../img/zamboni/loading-white.gif);
     content: "";
@@ -413,6 +414,7 @@ button.loading-submit:after,
     width: 16px;
 }
 
+#account-list a.loading-submit:after,
 #paypal-id-verify p.loading-submit:before {
     display: inline-block;
     position: relative;
@@ -420,6 +422,12 @@ button.loading-submit:after,
     right: 0;
     margin-left: 0px;
     margin-right: 10px;
+}
+
+#account-list a.loading-submit:after {
+    left: -8px;
+    margin: 0 0 -5px 50%;
+    top: -3px;
 }
 
 .devhub-form {

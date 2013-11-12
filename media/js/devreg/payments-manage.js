@@ -77,11 +77,13 @@ define('payments-manage', ['payments'], function(payments) {
 
     function portalRedirect(data) {
         // Redirecting to Bango dev portal if the local redirection is successful.
+        data.el.addClass('loading-submit').text('');
         $.ajax(data['portal-url'])
             .done(function(data, textStatus, jqXHR) {
-                window.location.replace(jqXHR.getResponseHeader("Location"));})
-            .fail(function() {
-                data.el.closest('td').text(gettext('Authentication error'));});
+                window.location.replace(jqXHR.getResponseHeader("Location"));
+            }).fail(function() {
+                data.el.removeClass('loading-submit').closest('td').text(gettext('Authentication error'));
+            });
     }
 
     function editBangoPaymentAccount(account_url) {
