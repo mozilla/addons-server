@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import base64
 import functools
 import os
@@ -69,6 +70,7 @@ class MockClient(Client):
         responses = {
             'Get_App_Info': MOCK_GET_APP_INFO,
             'Set_Storefront_Data': MOCK_SET_STOREFRONT_DATA,
+            'Get_Rating_Changes': MOCK_GET_RATING_CHANGES,
         }
 
         return responses.get(name, '')
@@ -107,6 +109,7 @@ MOCK_GET_APP_INFO = '''<?xml version="1.0" encoding="utf-16"?>
 </WEBSERVICE>
 '''
 
+
 MOCK_SET_STOREFRONT_DATA = '''<?xml version="1.0" encoding="utf-16"?>
 <WEBSERVICE xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SERVICE_NAME="SET_STOREFRONT_DATA" TYPE="RESPONSE">
   <ROW>
@@ -118,6 +121,25 @@ MOCK_SET_STOREFRONT_DATA = '''<?xml version="1.0" encoding="utf-16"?>
     <FIELD NAME="rating" TYPE="string" VALUE="16+" />
     <FIELD NAME="descriptors" TYPE="string" VALUE="Language, Online" />
     <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Social Networking, Users Interact, " />
+  </ROW>
+</WEBSERVICE>
+'''
+
+
+MOCK_GET_RATING_CHANGES = '''<?xml version="1.0" encoding="utf-16"?>
+<WEBSERVICE xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SERVICE_NAME="GET_RATING_CHANGES" TYPE="RESPONSE">
+  <ROW>
+    <FIELD NAME="rowId" TYPE="int" VALUE="1" />
+    <FIELD NAME="change_date" TYPE="string" VALUE="11/12/2013" />
+    <FIELD NAME="submission_id" TYPE="string" VALUE="52" />
+    <FIELD NAME="security_code" TYPE="string" VALUE="FZ32CU8" />
+    <FIELD NAME="title" TYPE="string" VALUE="Twitter" />
+    <FIELD NAME="company" TYPE="string" VALUE="Mozilla" />
+    <FIELD NAME="email" TYPE="string" VALUE="nobody@mozilla.com" />
+    <FIELD NAME="new_rating" TYPE="string" VALUE="18+" />
+    <FIELD NAME="new_descriptors" TYPE="string" VALUE="Conteúdo Impactante, Contéudo Sexual, Drogas, Linguagem Imprópria, Nudez, Violência Extrema" />
+    <FIELD NAME="rating_system" TYPE="string" VALUE="CLASSIND" />
+    <FIELD NAME="change_reason" TYPE="string" VALUE="Significant issues found in special mission cut scenes." />
   </ROW>
 </WEBSERVICE>
 '''

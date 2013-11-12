@@ -65,6 +65,22 @@ class TestRenderSetStorefrontData(amo.tests.TestCase):
                 'VALUE="users interact"') in xml
 
 
+class TestRenderRatingChanges(amo.tests.TestCase):
+
+    def setUp(self):
+        self.template = 'get_rating_changes.xml'
+
+    @override_settings(IARC_PASSWORD='s3kr3t')
+    def test_render(self):
+        xml = render_xml(self.template, {
+            'date_from': datetime.date(2011, 1, 1),
+            'date_to': datetime.date(2011, 2, 1)})
+        assert xml.startswith('<?xml version="1.0" encoding="utf-8"?>')
+        assert '<FIELD NAME="password" VALUE="s3kr3t"' in xml
+        assert '<FIELD NAME="date_from" VALUE="2011-01-01"' in xml
+        assert '<FIELD NAME="date_to" VALUE="2011-02-01"' in xml
+
+
 class TestXMLParser(amo.tests.TestCase):
 
     def setUp(self):
