@@ -9,67 +9,9 @@ from tastypie.validation import CleanedDataFormValidation
 from tower import ugettext_lazy as _lazy
 
 import amo
-from addons.models import AddonDeviceType, Category
-from files.models import FileUpload
+from addons.models import Category
 from mkt.developers.forms import NewPackagedAppForm
 from mkt.developers.utils import check_upload
-from mkt.submit.forms import mark_for_rereview
-
-
-class DeviceTypeForm(forms.Form):
-    device_types = forms.TypedMultipleChoiceField(
-        choices=[(k, v.name) for k, v in amo.DEVICE_TYPES.items()],
-        coerce=int,
-        initial=amo.DEVICE_TYPES.keys(), widget=forms.CheckboxSelectMultiple)
-
-    def __init__(self, *args, **kwargs):
-        self.addon = kwargs.pop('addon')
-        super(DeviceTypeForm, self).__init__(*args, **kwargs)
-        device_types = AddonDeviceType.objects.filter(
-            addon=self.addon).values_list('device_type', flat=True)
-        if device_types:
-            self.initial['device_types'] = device_types
-
-    def save(self, addon):
-        new_types = self.cleaned_data['device_types']
-        old_types = [x.id for x in addon.device_types]
-
-        added_devices = set(new_types) - set(old_types)
-        removed_devices = set(old_types) - set(new_types)
-
-        for d in added_devices:
-            addon.addondevicetype_set.create(device_type=d)
-        for d in removed_devices:
-            addon.addondevicetype_set.filter(device_type=d).delete()
-
-        # Send app to re-review queue if public and new devices are added.
-        if added_devices and self.addon.status in amo.WEBAPPS_APPROVED_STATUSES:
-            mark_for_rereview(self.addon, added_devices, removed_devices)
-
-
-class UploadForm(happyforms.Form):
-    is_packaged = False
-    manifest = forms.CharField(max_length=32, min_length=32, required=False)
-    upload = forms.CharField(max_length=32, min_length=32, required=False)
-
-    def clean(self):
-        uuid = self.cleaned_data.get('upload', '')
-        if uuid:
-            self.is_packaged = True
-        else:
-            uuid = self.cleaned_data.get('manifest', '')
-        if not uuid:
-            raise forms.ValidationError('No upload or manifest specified.')
-
-        try:
-            upload = FileUpload.objects.get(uuid=uuid)
-        except FileUpload.DoesNotExist:
-            raise forms.ValidationError('No upload found.')
-        if not upload.valid:
-            raise forms.ValidationError('Upload not valid.')
-
-        self.obj = upload
-        return uuid
 
 
 class JSONField(forms.Field):

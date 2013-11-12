@@ -75,3 +75,10 @@ def custom_exception_handler(exc):
         response = Response(data, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     return response
+
+class HttpLegallyUnavailable(APIException):
+    status_code = 451
+    default_detail = 'Legally unavailable.'
+
+    def __init__(self, detail=None):
+        self.detail = detail or self.default_detail

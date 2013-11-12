@@ -7,18 +7,17 @@ from tastypie_services.services import (ErrorResource, SettingsResource)
 
 from mkt.submit.api import PreviewResource, StatusViewSet, ValidationResource
 from mkt.api.base import AppRouter, handle_500
-from mkt.api.resources import (AppResource, CarrierViewSet, CategoryViewSet,
+from mkt.api.resources import (CarrierViewSet, CategoryViewSet,
                                error_reporter, PriceTierViewSet,
                                PriceCurrencyViewSet, RefreshManifestViewSet,
                                RegionViewSet, site_config)
 from mkt.collections.views import CollectionImageViewSet, CollectionViewSet
 from mkt.features.views import AppFeaturesList
 from mkt.search.api import SearchResource, SuggestionsResource
-
+from mkt.webapps.api import AppViewSet, PrivacyPolicyViewSet
 
 api = Api(api_name='apps')
 api.register(ValidationResource())
-api.register(AppResource())
 api.register(PreviewResource())
 api.register(SearchResource())
 api.register(SuggestionsResource())
@@ -33,10 +32,13 @@ subcollections.register('image', CollectionImageViewSet,
 apps = SimpleRouter()
 apps.register(r'category', CategoryViewSet, base_name='app-category')
 apps.register(r'status', StatusViewSet, base_name='app-status')
+apps.register(r'app', AppViewSet, base_name='app')
 
 subapps = AppRouter()
 subapps.register('refresh-manifest', RefreshManifestViewSet,
                  base_name='app-refresh-manifest')
+subapps.register('privacy', PrivacyPolicyViewSet,
+                 base_name='app-privacy-policy')
 
 services = Api(api_name='services')
 if settings.ALLOW_TASTYPIE_SERVICES:
