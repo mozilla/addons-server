@@ -116,10 +116,11 @@ def test_no_translation():
     lang = translation.get_language()
     translation.activate('pt-br')
     with no_translation():
-        eq_(translation.get_language(),
-            settings.LANGUAGE_CODE)
-    eq_(translation.get_language(),
-        'pt-br')
+        eq_(translation.get_language(), settings.LANGUAGE_CODE)
+    eq_(translation.get_language(), 'pt-br')
+    with no_translation('es'):
+        eq_(translation.get_language(), 'es')
+    eq_(translation.get_language(), 'pt-br')
     translation.activate(lang)
 
 

@@ -1138,7 +1138,7 @@ class TestContentRatings(amo.tests.TestCase):
 
     @override_settings(IARC_SUBMISSION_ENDPOINT='https://yo.lo',
                        IARC_STOREFRONT_ID=1, IARC_COMPANY='Mozilla',
-                       IARC_PASSWORD='s3kr3t')
+                       IARC_PLATFORM='Firefox', IARC_PASSWORD='s3kr3t')
     def test_edit(self):
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)
@@ -1153,8 +1153,25 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(values['company'], 'Mozilla')
         eq_(values['password'], 's3kr3t')
         eq_(values['email'], self.req.amo_user.email)
-        eq_(values['appname'], self.app.app_slug)
-        eq_(values['platform'], '2001,2002')
+        eq_(values['appname'], self.app.name)
+        eq_(values['platform'], 'Firefox')
+
+    def test_edit_default_locale(self):
+        """Ensures the form uses the app's default locale."""
+        self.app.name = {'es': u'Español', 'en-US': 'English'}
+        self.app.default_locale = 'es'
+        self.app.save()
+
+        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
+        doc = pq(r.content)
+        eq_(dict(doc('#ratings-edit form')[0].form_values())['appname'],
+            u'Español')
+
+        self.app.update(default_locale='en-US')
+        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
+        doc = pq(r.content)
+        eq_(dict(doc('#ratings-edit form')[0].form_values())['appname'],
+            u'English')
 
     def test_summary(self):
         rbs = mkt.ratingsbodies

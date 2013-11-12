@@ -312,9 +312,13 @@ def content_ratings_edit(request, addon_id, addon):
         except django_forms.ValidationError:
             pass  # Fall through to show the form error.
 
+    with amo.utils.no_translation(addon.default_locale):
+        addon_delocalized = Addon.objects.get(pk=addon.pk)
+
     return jingo.render(
         request, 'developers/apps/ratings/ratings_edit.html', {
             'addon': addon,
+            'app_name': addon_delocalized.name,
             'form': form,
             'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         })

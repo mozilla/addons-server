@@ -866,11 +866,17 @@ def log_cef(name, severity, env, *args, **kwargs):
 
 
 @contextlib.contextmanager
-def no_translation():
-    lang = translation.trans_real.get_language()
-    translation.trans_real.deactivate()
+def no_translation(lang=None):
+    """
+    Activate the settings lang, or lang provided, while in context.
+    """
+    old_lang = translation.trans_real.get_language()
+    if lang:
+        translation.trans_real.activate(lang)
+    else:
+        translation.trans_real.deactivate()
     yield
-    translation.trans_real.activate(lang)
+    translation.trans_real.activate(old_lang)
 
 
 def escape_all(v):
