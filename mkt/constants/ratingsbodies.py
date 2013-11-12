@@ -15,7 +15,7 @@ DESC_17 = _lazy(u'Not recommended for users younger than 17 years of age')
 DESC_18 = _lazy(u'Not recommended for users younger than 18 years of age')
 DESC_REJECTED = _lazy(u'Rejected for All Audiences')
 
-RATING_DESCS = {
+RATING_DESCRIPTIONS = {
     '0': DESC_GENERAL,
     '3': DESC_3,
     '6': DESC_6,
@@ -36,10 +36,9 @@ class RATING(object):
     Content rating.
 
     name -- how we name the rating, for translated display on all pages.
-    description -- for general translated display on consumer pages.
+    label -- for CSS classes, to create icons. Dynamic. generated for most.
     iarc_name -- how IARC names the rating, to talk with IARC.
-
-    slug -- for CSS classes, to create icons. Dynamic. generated for most.
+    description -- for general translated display on consumer pages.
     """
 
 
@@ -48,8 +47,8 @@ class RATING_BODY(object):
     Content rating body.
 
     name -- for general translated display on all pages.
-    description -- for general translated display on all pages.
     iarc_name -- how IARC names the ratings body, to talk with IARC.
+    description -- for general translated display on all pages.
 
     ratings -- list of RATINGs associated with this body.
 
@@ -61,43 +60,43 @@ class RATING_BODY(object):
 class CLASSIND_L(RATING):
     id = 0
     name = '0+'
-    description = RATING_DESCS['0']
     iarc_name = '0+'
+    description = RATING_DESCRIPTIONS['0']
 
 
 class CLASSIND_10(RATING):
     id = 1
     name = '10+'
-    description = RATING_DESCS['10']
     iarc_name = '10+'
+    description = RATING_DESCRIPTIONS['10']
 
 
 class CLASSIND_12(RATING):
     id = 2
     name = '12+'
-    description = RATING_DESCS['12']
     iarc_name = '12+'
+    description = RATING_DESCRIPTIONS['12']
 
 
 class CLASSIND_14(RATING):
     id = 3
     name = '14+'
-    description = RATING_DESCS['14']
     iarc_name = '14+'
+    description = RATING_DESCRIPTIONS['14']
 
 
 class CLASSIND_16(RATING):
     id = 4
     name = '16+'
-    description = RATING_DESCS['16']
     iarc_name = '16+'
+    description = RATING_DESCRIPTIONS['16']
 
 
 class CLASSIND_18(RATING):
     id = 5
     name = '18+'
-    description = RATING_DESCS['18']
     iarc_name = '18+'
+    description = RATING_DESCRIPTIONS['18']
 
 
 class CLASSIND(RATING_BODY):
@@ -106,8 +105,8 @@ class CLASSIND(RATING_BODY):
     """
     id = 0
     name = 'CLASSIND'
-    description = _lazy(u'Brazil')
     iarc_name = 'CLASSIND'
+    description = _lazy(u'Brazil')
 
     ratings = (CLASSIND_L, CLASSIND_10, CLASSIND_12, CLASSIND_14, CLASSIND_16,
                CLASSIND_18)
@@ -121,36 +120,36 @@ class CLASSIND(RATING_BODY):
 class GENERIC_3(RATING):
     id = 0
     name = '3+'
-    description = RATING_DESCS['3']
     iarc_name = '3+'
+    description = RATING_DESCRIPTIONS['3']
 
 
 class GENERIC_7(RATING):
     id = 1
     name = '7+'
-    description = RATING_DESCS['7']
     iarc_name = '7+'
+    description = RATING_DESCRIPTIONS['7']
 
 
 class GENERIC_12(RATING):
     id = 2
     name = '12+'
-    description = RATING_DESCS['12']
     iarc_name = '12+'
+    description = RATING_DESCRIPTIONS['12']
 
 
 class GENERIC_16(RATING):
     id = 3
     name = '16+'
-    description = RATING_DESCS['16']
     iarc_name = '16+'
+    description = RATING_DESCRIPTIONS['16']
 
 
 class GENERIC_18(RATING):
     id = 4
     name = '18+'
-    description = RATING_DESCS['18']
     iarc_name = '18+'
+    description = RATING_DESCRIPTIONS['18']
 
 
 class GENERIC(RATING_BODY):
@@ -159,8 +158,8 @@ class GENERIC(RATING_BODY):
     """
     id = 1
     name = _lazy('Generic')
-    description = ''  # No comment.
     iarc_name = 'Generic'
+    description = ''  # No comment.
 
     ratings = (GENERIC_3, GENERIC_7, GENERIC_12, GENERIC_16, GENERIC_18)
 
@@ -170,43 +169,43 @@ class GENERIC(RATING_BODY):
 class USK_0(RATING):
     id = 0
     name = '0+'
-    description = RATING_DESCS['0']
     iarc_name = '0+'
+    description = RATING_DESCRIPTIONS['0']
 
 
 class USK_6(RATING):
     id = 1
     name = '6+'
-    description = RATING_DESCS['6']
     iarc_name = '6+'
+    description = RATING_DESCRIPTIONS['6']
 
 
 class USK_12(RATING):
     id = 2
     name = '12+'
-    description = RATING_DESCS['12']
     iarc_name = '12+'
+    description = RATING_DESCRIPTIONS['12']
 
 
 class USK_16(RATING):
     id = 3
     name = '16+'
-    description = RATING_DESCS['16']
     iarc_name = '16+'
+    description = RATING_DESCRIPTIONS['16']
 
 
 class USK_18(RATING):
     id = 4
     name = '18+'
-    description = RATING_DESCS['18']
     iarc_name = '18+'
+    description = RATING_DESCRIPTIONS['18']
 
 
 class USK_REJECTED(RATING):
     id = 5
     name = _lazy('Rating Rejected')
-    description = RATING_DESCS['X']
     iarc_name = 'Rating Rejected'
+    description = RATING_DESCRIPTIONS['X']
 
 
 class USK(RATING_BODY):
@@ -229,50 +228,49 @@ class ESRB_E(RATING):
     """Everybody."""
     id = 0
     name = _lazy('Everyone')
-    description = RATING_DESCS['0']
+    label = '0'
     iarc_name = 'Everyone'
-
-    slug = '0'
+    description = RATING_DESCRIPTIONS['0']
 
 
 class ESRB_10(RATING):
     id = 1
     name = _lazy('Everyone 10+')  # L10n: `10+` is age ten and over.
-    slug = '10'
-    description = RATING_DESCS['10']
+    label = '10'
     iarc_name = 'Everyone 10+'
+    description = RATING_DESCRIPTIONS['10']
 
 
 class ESRB_T(RATING):
     id = 2
     name = _lazy('Teen')
-    slug = '13'
-    description = RATING_DESCS['13']
+    label = '13'
     iarc_name = 'Teen'
+    description = RATING_DESCRIPTIONS['13']
 
 
 class ESRB_M(RATING):
     id = 3
     name = _lazy('Mature 17+')  # L10n: `17+` is age seventeen and over.
-    slug = '17'
-    description = RATING_DESCS['17']
+    label = '17'
     iarc_name = 'Mature 17+'
+    description = RATING_DESCRIPTIONS['17']
 
 
 class ESRB_A(RATING):
     id = 4
     name = _lazy('Adults Only 18+')  # L10n: `18+` is age eighteen and over.
-    slug = '18'
-    description = RATING_DESCS['18']
+    label = '18'
     iarc_name = 'Adults Only'
+    description = RATING_DESCRIPTIONS['18']
 
 
 class ESRB_RP(RATING):
     id = 4
     name = _lazy('Rating Pending')
-    slug = 'pending'
-    description = RATING_DESCS['18']
+    label = 'pending'
     iarc_name = 'Rating Pending'
+    description = RATING_DESCRIPTIONS['18']
 
 
 class ESRB(RATING_BODY):
@@ -281,8 +279,8 @@ class ESRB(RATING_BODY):
     """
     id = 3
     name = 'ESRB'
-    description = _lazy(u'N. America')  # L10n: `N.` stands for North.
     iarc_name = 'ESRB'
+    description = _lazy(u'N. America')  # L10n: `N.` stands for North.
 
     ratings = (ESRB_E, ESRB_10, ESRB_T, ESRB_M, ESRB_A)
 
@@ -293,36 +291,36 @@ class ESRB(RATING_BODY):
 class PEGI_3(RATING):
     id = 0
     name = '3+'
-    description = RATING_DESCS['3']
     iarc_name = '3+'
+    description = RATING_DESCRIPTIONS['3']
 
 
 class PEGI_7(RATING):
     id = 1
     name = '7+'
-    description = RATING_DESCS['7']
     iarc_name = '7+'
+    description = RATING_DESCRIPTIONS['7']
 
 
 class PEGI_12(RATING):
     id = 2
     name = '12+'
-    description = RATING_DESCS['12']
     iarc_name = '12+'
+    description = RATING_DESCRIPTIONS['12']
 
 
 class PEGI_16(RATING):
     id = 3
     name = '16+'
-    description = RATING_DESCS['16']
     iarc_name = '16+'
+    description = RATING_DESCRIPTIONS['16']
 
 
 class PEGI_18(RATING):
     id = 4
     name = '18+'
-    description = RATING_DESCS['18']
     iarc_name = '18+'
+    description = RATING_DESCRIPTIONS['18']
 
 
 class PEGI(RATING_BODY):
@@ -331,8 +329,8 @@ class PEGI(RATING_BODY):
     """
     id = 4
     name = 'PEGI'
-    description = _lazy(u'Europe')
     iarc_name = 'PEGI'
+    description = _lazy(u'Europe')
 
     ratings = (PEGI_3, PEGI_7, PEGI_12, PEGI_16, PEGI_18)
 

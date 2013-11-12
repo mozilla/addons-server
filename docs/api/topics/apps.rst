@@ -50,13 +50,19 @@ App
                 "games"
             ],
             "content_ratings": {
-                "de": [
-                    {"body": "USK", "description": "Not recommended...", "name": "13+"}
+                "ratings": {
+                    "en": {"body": "ESRB", "body_label": "esrb", "rating": "Teen", "rating_label": "13", "description": "Not recommended..."},
+                    "generic": {"body": "Generic", "body_label": "generic", "rating": "13+", "rating_label": "13", "description": "Not recommended..."}
+                },
+                "descriptors": [
+                    {"label": "esrb-scary", "name": "Scary Themes", "ratings_body": "esrb"},
+                    {"label": "generic-intense-violence", "name": "Intense Violence", "ratings_body": "generic"}
                 ],
-                "generic": [
-                    {"body": "GENERIC", "description": "Not recommended...", "name": "13+"}
+                "interactive_elements": [
+                    {"label": "users-interact", "name": "Users Interact"},
+                    {"label": "shares-location", "name": "Shares Location"},
                 ]
-            }
+            },
             "created": "2013-09-17T13:19:16",
             "current_version": "1.1",
             "default_locale": "en-US",
@@ -142,10 +148,21 @@ App
     :param categories: An array of strings representing the slugs of the
         categories the app belongs to.
     :type categories: array
-    :param content_ratings: An object representing the content ratings
-        associated with the app by region. Regions not included in this object
-        will use the rating keyed under "generic".
+    :param content_ratings: International Age Rating Coalition (IARC) content
+        ratings data. It has three parts, ``ratings``, ``descriptors``, and
+        ``interactive_elements``
     :type content_ratings: object
+    :param content_ratings.ratings: Content ratings associated with the app by
+        region. Apps that do not fall into all of the specific regions uses the
+        rating keyed under "generic".
+    :type content_ratings.ratings: object
+    :param content_ratings.descriptors: IARC content descriptors, flags about
+    the app that might affect its suitability for younger-aged users.
+    :type content_ratings.descriptors: array
+    :param content_ratings.interactive_elements: IARC interactive elements,
+        aspects about the app relating to whether the app shares info or
+        interacts with external elements.
+    :type content_ratings: array
     :param created: The date the app was added to the Marketplace, in ISO 8601
         format.
     :type created: string

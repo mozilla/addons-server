@@ -11,6 +11,7 @@ from constants.applications import DEVICE_TYPES
 from market.models import Price
 from users.models import UserProfile
 
+import mkt
 from mkt.purchase.utils import payments_enabled
 from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.regions.api import RegionResource
@@ -58,24 +59,15 @@ def app_to_dict(app, region=None, profile=None, request=None):
 
     supported_locales = getattr(app.current_version, 'supported_locales', '')
 
-    content_ratings = {}
-    for cr in app.content_ratings.all():
-        for _region in cr.get_region_slugs():
-            body = cr.get_body()
-            rating = cr.get_rating()
-            content_ratings.setdefault(_region, []).append({
-                'body': body.name,
-                'body_slug': body.slug,
-                'name': rating.name,
-                'slug': rating.slug,
-                'description': unicode(rating.description),
-            })
-
     data = {
         'app_type': app.app_type,
         'author': app.developer_name,
         'categories': list(app.categories.values_list('slug', flat=True)),
-        'content_ratings': content_ratings or None,
+        'content_ratings': {
+            'ratings': app.get_content_ratings_by_region() or None,
+            'descriptors': app.get_descriptors() or None,
+            'interactive_elements': app.get_interactives() or None,
+        },
         'created': app.created,
         'current_version': (app.current_version.version if
                             getattr(app, 'current_version') else None),
@@ -178,15 +170,27 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     is_packaged = src.get('app_type') != amo.ADDON_WEBAPP_HOSTED
     app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
 
-    attrs = ('content_ratings', 'created', 'current_version', 'default_locale',
-             'homepage', 'manifest_url', 'previews', 'ratings', 'status',
-             'support_email', 'support_url', 'weekly_downloads')
+    attrs = ('created', 'current_version', 'default_locale', 'homepage',
+             'manifest_url', 'previews', 'ratings', 'status', 'support_email',
+             'support_url', 'weekly_downloads')
     data = dict((a, getattr(obj, a, None)) for a in attrs)
+
+    if obj.content_ratings:
+        for region_key in obj.content_ratings:
+            obj.content_ratings[region_key] = dehydrate_content_rating(
+                obj.content_ratings[region_key])
+
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
         'app_type': app.app_type,
         'author': src.get('author', ''),
         'categories': [c for c in obj.category],
+        'content_ratings': {
+            'ratings': obj.content_ratings,
+            'descriptors': dehydrate_descriptors(obj.content_descriptors),
+            'interactive_elements':
+                dehydrate_interactives(obj.interactive_elements),
+        },
         'description': get_attr_lang(src, 'description', obj.default_locale),
         'device_types': [DEVICE_TYPES[d].api_name for d in src.get('device')],
         'icons': dict((i['size'], i['url']) for i in src.get('icons')),
@@ -258,3 +262,56 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         }
 
     return data
+
+
+def dehydrate_content_rating(rating):
+    """
+    {body.id, rating.id} to translated {rating labels, names, descriptions}.
+    """
+    body = mkt.ratingsbodies.RATINGS_BODIES[int(rating['body'])]
+    rating = body.ratings[int(rating['rating'])]
+
+    return {
+        'body': unicode(body.name),
+        'body_label': body.label,
+        'rating': unicode(rating.name),
+        'rating_label': rating.label,
+        'description': unicode(rating.description),
+    }
+
+
+def dehydrate_descriptors(keys):
+    """
+    List of keys to list of objects (desc label, desc name, body).
+
+    ['ESRB_BLOOD, ...] to
+    [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'}, ...].
+    """
+    results = []
+    for key in keys:
+        obj = mkt.ratingdescriptors.RATING_DESCS.get(key)
+        if obj:
+            results.append({
+                'label': key.lower().replace('_', '-'),
+                'name': unicode(obj['name']),
+                'ratings_body': key.split('_')[0].lower()
+            })
+    return results
+
+
+def dehydrate_interactives(keys):
+    """
+    List of keys to list of objects (label, name).
+
+    ['SOCIAL_NETWORKING', ...] to
+    [{'label': 'social-networking', 'name': 'Facebocks'}, ...].
+    """
+    results = []
+    for key in keys:
+        obj = mkt.ratinginteractives.RATING_INTERACTIVES.get(key)
+        if obj:
+            results.append({
+                'label': key.lower().replace('_', '-'),
+                'name': unicode(obj['name']),
+            })
+    return results

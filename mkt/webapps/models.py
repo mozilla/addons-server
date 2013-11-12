@@ -52,7 +52,9 @@ from mkt.constants import APP_FEATURES, apps
 from mkt.regions.utils import parse_region
 from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
-from mkt.webapps.utils import get_locale_properties, get_supported_locales
+from mkt.webapps.utils import (
+    dehydrate_content_rating, dehydrate_descriptors, dehydrate_interactives,
+    get_locale_properties, get_supported_locales)
 
 
 log = commonware.log.getLogger('z.addons')
@@ -704,13 +706,13 @@ class Webapp(Addon):
             return []
 
         rb = []
-        if not region.ratingsbodies:
+        if not region.ratingsbody:
             # If a region doesn't specify a ratings body, default to GENERIC.
-            rb = [mkt.ratingsbodies.GENERIC.id]
+            rb = mkt.ratingsbodies.GENERIC.id
         else:
-            rb = [x.id for x in region.ratingsbodies]
+            rb = region.ratingsbody.id
 
-        return list(self.content_ratings.filter(ratings_body__in=rb)
+        return list(self.content_ratings.filter(ratings_body=rb)
                         .order_by('rating'))
 
     @classmethod
@@ -998,6 +1000,82 @@ class Webapp(Addon):
         """
         return hashlib.sha512(settings.SECRET_KEY + str(self.id)).hexdigest()
 
+    def get_content_ratings_by_region(self, es=False):
+        """
+        Gets content ratings on this app keyed by regions that specify a
+        non-generic ratings body. If a region doesn't specify a non-generic
+        body, it will use the generic ratings body.
+
+        es -- denotes whether to return ES-friendly results (just the IDs of
+              rating classes) to fetch and translate later.
+
+        """
+        content_ratings = {}
+        for cr in self.content_ratings.all():
+            body = cr.get_body()
+            rating = cr.get_rating()
+            for _region in cr.get_region_slugs():
+                rating = {
+                    'body': body.id,
+                    'rating': rating.id
+                }
+                if not es:
+                    rating = dehydrate_content_rating(rating)
+
+                content_ratings[_region] = rating
+        return content_ratings
+
+    def get_descriptors(self, es=False):
+        """
+        Return list of (label, strings) for descriptors for consumer pages.
+        (e.g. [('esrb-blood', u'Blood), ('classind-lang', u'Language')])
+
+        es -- denotes whether to return ES-friendly results (just the keys of
+              the descriptors) to fetch and dehydrate later.
+              (e.g. ['ESRB_BLOOD', 'CLASSIND_LANG').
+
+        """
+        try:
+            app_descriptors = self.rating_descriptors
+        except RatingDescriptors.DoesNotExist:
+            return []
+
+        descriptors = []
+        for key in mkt.ratingdescriptors.RATING_DESCS.keys():
+            field = 'has_%s' % key.lower()
+            if getattr(app_descriptors, field):
+                descriptors.append(key)
+
+        if not es and descriptors:
+            descriptors = dehydrate_descriptors(descriptors)
+        return descriptors
+
+    def get_interactives(self, es=False):
+        """
+        Return list of (label, strings) for interactives for consumer pages.
+        (e.g. [('social-networking', u'Social Networking'),
+               ('milk', u'Milk')])
+
+        es -- denotes whether to return ES-friendly results (just the keys of
+              the interactive elements) to fetch and dehydrate later.
+              (e.g. ['SOCIAL_NETWORKING', 'MILK'])
+
+        """
+        try:
+            app_interactives = self.rating_interactives
+        except RatingInteractives.DoesNotExist:
+            return []
+
+        interactives = []
+        for key in mkt.ratinginteractives.RATING_INTERACTIVES.keys():
+            field = 'has_%s' % key.lower()
+            if getattr(app_interactives, field):
+                interactives.append(key)
+
+        if not es and interactives:
+            interactives = dehydrate_interactives(interactives)
+        return interactives
+
     def set_iarc_info(self, submission_id, security_code):
         """
         Sets the iarc_info for this app.
@@ -1254,6 +1332,10 @@ class WebappIndexer(MappingType, Indexable):
                             'order': {'type': 'short'}
                         }
                     },
+                    'content_descriptors': {
+                        'type': 'string',
+                        'index': 'not_analyzed'
+                    },
                     'content_ratings': {
                         'type': 'object',
                         'dynamic': 'true',
@@ -1280,6 +1362,10 @@ class WebappIndexer(MappingType, Indexable):
                             'size': {'type': 'short'},
                             'url': {'type': 'string', 'index': 'not_analyzed'},
                         }
+                    },
+                    'interactive_elements': {
+                        'type': 'string',
+                        'index': 'not_analyzed'
                     },
                     'is_disabled': {'type': 'boolean'},
                     'is_escalated': {'type': 'boolean'},
@@ -1397,20 +1483,6 @@ class WebappIndexer(MappingType, Indexable):
         installed_ids = list(Installed.objects.filter(addon=obj)
                              .values_list('id', flat=True))
 
-        # IARC.
-        content_ratings = {}
-        for cr in obj.content_ratings.all():
-            for region in cr.get_region_slugs():
-                body = cr.get_body()
-                rating = cr.get_rating()
-                content_ratings.setdefault(region, []).append({
-                    'body': unicode(body.name),
-                    'body_slug': unicode(body.slug),
-                    'name': unicode(rating.name),
-                    'slug': unicode(rating.slug),
-                    'description': unicode(rating.description),
-                })
-
         attrs = ('app_slug', 'average_daily_users', 'bayesian_rating',
                  'created', 'id', 'is_disabled', 'last_updated',
                  'premium_type', 'status', 'type', 'uses_flash',
@@ -1422,7 +1494,9 @@ class WebappIndexer(MappingType, Indexable):
         d['category'] = list(obj.categories.values_list('slug', flat=True))
         d['collection'] = [{'id': cms.collection_id, 'order': cms.order}
                            for cms in obj.collectionmembership_set.all()]
-        d['content_ratings'] = content_ratings if content_ratings else None
+        d['content_ratings'] = (obj.get_content_ratings_by_region(es=True) or
+                                None)
+        d['content_descriptors'] = obj.get_descriptors(es=True)
         d['current_version'] = version.version if version else None
         d['default_locale'] = obj.default_locale
         d['description'] = list(set(s for _, s
@@ -1434,6 +1508,7 @@ class WebappIndexer(MappingType, Indexable):
         d['homepage'] = unicode(obj.homepage) if obj.homepage else ''
         d['icons'] = [{'size': icon_size, 'url': obj.get_icon_url(icon_size)}
                       for icon_size in (16, 48, 64, 128)]
+        d['interactive_elements'] = obj.get_interactives(es=True)
         d['is_escalated'] = is_escalated
         if latest_version:
             d['latest_version'] = {
@@ -1690,7 +1765,7 @@ class ContentRating(amo.models.ModelBase):
             return mkt.regions.ALL_REGIONS_WO_CONTENT_RATINGS
 
         return [x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS
-                if self.get_body() in x.ratingsbodies]
+                if self.get_body() == x.ratingsbody]
 
     def get_region_slugs(self):
         """Gives us the region slugs that use this rating body."""
@@ -1703,14 +1778,14 @@ class ContentRating(amo.models.ModelBase):
     def get_body(self):
         """Gives us something like DEJUS."""
         body = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
-        body.slug = unicode(body.name).lower()
+        body.label = unicode(body.name).lower()
         return body
 
     def get_rating(self):
         """Gives us the rating class (containing the name and description)."""
         rating = self.get_body().ratings[self.rating]
-        if not hasattr(rating, 'slug'):
-            rating.slug = unicode(rating.name).lower().replace('+', '')
+        if not hasattr(rating, 'label'):
+            rating.label = unicode(rating.name).lower().replace('+', '')
         return rating
 
     def get_label(self):
