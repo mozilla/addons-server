@@ -68,6 +68,7 @@ class MockClient(Client):
     def call(self, name, **data):
         responses = {
             'Get_App_Info': MOCK_GET_APP_INFO,
+            'Set_Storefront_Data': MOCK_SET_STOREFRONT_DATA,
         }
 
         return responses.get(name, '')
@@ -87,9 +88,9 @@ MOCK_GET_APP_INFO = '''<?xml version="1.0" encoding="utf-16"?>
     <ROW>
         <FIELD NAME="rowId" TYPE="int" VALUE="1" />
         <FIELD NAME="submission_id" TYPE="string" VALUE="52" />
-        <FIELD NAME="title" TYPE="string" VALUE="twitter" />
+        <FIELD NAME="title" TYPE="string" VALUE="Twitter" />
         <FIELD NAME="company" TYPE="string" VALUE="Mozilla" />
-        <FIELD NAME="platform" TYPE="string" VALUE="Firefox Browser,Firefox OS" />
+        <FIELD NAME="platform" TYPE="string" VALUE="Firefox" />
         <FIELD NAME="rating_PEGI" TYPE="string" VALUE="16+" />
         <FIELD NAME="descriptors_PEGI" TYPE="string" VALUE="Language, Online" />
         <FIELD NAME="rating_USK" TYPE="string" VALUE="12+" />
@@ -103,5 +104,20 @@ MOCK_GET_APP_INFO = '''<?xml version="1.0" encoding="utf-16"?>
         <FIELD NAME="storefront" TYPE="string" VALUE="Mozilla" />
         <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Social Networking, Users Interact, " />
     </ROW>
+</WEBSERVICE>
+'''
+
+MOCK_SET_STOREFRONT_DATA = '''<?xml version="1.0" encoding="utf-16"?>
+<WEBSERVICE xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SERVICE_NAME="SET_STOREFRONT_DATA" TYPE="RESPONSE">
+  <ROW>
+    <FIELD NAME="action_status" TYPE="string" VALUE="OK - Storefront data Updated" />
+    <FIELD NAME="submission_id" TYPE="string" VALUE="52" />
+    <FIELD NAME="security_code" TYPE="string" VALUE="FZ32CU8" />
+    <FIELD NAME="title" TYPE="string" VALUE="Twitter" />
+    <FIELD NAME="company" TYPE="string" VALUE="Mozilla" />
+    <FIELD NAME="rating" TYPE="string" VALUE="16+" />
+    <FIELD NAME="descriptors" TYPE="string" VALUE="Language, Online" />
+    <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Social Networking, Users Interact, " />
+  </ROW>
 </WEBSERVICE>
 '''

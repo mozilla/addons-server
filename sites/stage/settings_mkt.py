@@ -186,8 +186,11 @@ BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'
 MONOLITH_INDEX = 'mktstage-time_*'
 
 # IARC content ratings.
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
-IARC_PASSWORD = private_mkt.IARC_PASSWORD
-IARC_STOREFRONT_ID = 4
 IARC_COMPANY = 'Mozilla'
+IARC_ENV = 'test'
+IARC_MOCK = False
+IARC_PASSWORD = private_mkt.IARC_PASSWORD
+IARC_PLATFORM = 'Firefox'
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
+IARC_STOREFRONT_ID = 4
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'

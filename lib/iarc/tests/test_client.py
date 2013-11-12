@@ -12,10 +12,15 @@ class TestClient(test_utils.TestCase):
         with self.assertRaises(AttributeError):
             self.client.Get_Something_Nonexistent()
 
-    def test_app_info(self):
+    def test_get_app_info(self):
         xml = self.client.Get_App_Info()
         assert xml.startswith('<?xml version="1.0" encoding="utf-16"?>')
         assert ' SERVICE_NAME="GET_APP_INFO"' in xml
+
+    def test_set_storefront_data(self):
+        xml = self.client.Set_Storefront_Data()
+        assert xml.startswith('<?xml version="1.0" encoding="utf-16"?>')
+        assert ' SERVICE_NAME="SET_STOREFRONT_DATA"' in xml
 
 
 class TestRightClient(test_utils.TestCase):

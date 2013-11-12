@@ -26,6 +26,8 @@ def render_xml(template, context):
     """
     # All XML passed requires a password. Let's add it to the context.
     context['password'] = settings.IARC_PASSWORD
+    context['company'] = settings.IARC_COMPANY
+    context['platform'] = settings.IARC_PLATFORM
 
     template = env.get_template(template)
     return template.render(**context)

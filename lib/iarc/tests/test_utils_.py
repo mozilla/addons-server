@@ -1,3 +1,5 @@
+import datetime
+
 from django.test.utils import override_settings
 
 from nose.tools import eq_
@@ -23,10 +25,44 @@ class TestRenderAppInfo(amo.tests.TestCase):
         assert '<FIELD NAME="password" VALUE="s3kr3t"' in xml
         assert '<FIELD NAME="submission_id" VALUE="100"' in xml
         assert '<FIELD NAME="security_code" VALUE="AB12CD3"' in xml
+        assert '<FIELD NAME="company" VALUE="Mozilla"' in xml
+        assert '<FIELD NAME="platform" VALUE="Firefox"' in xml
         # If these aren't specified in the context they aren't included.
         assert not '<FIELD NAME="title"' in xml
-        assert not '<FIELD NAME="company"' in xml
-        assert not '<FIELD NAME="platform"' in xml
+
+
+class TestRenderSetStorefrontData(amo.tests.TestCase):
+
+    def setUp(self):
+        self.template = 'set_storefront_data.xml'
+
+    @override_settings(IARC_PASSWORD='s3kr3t',
+                       IARC_COMPANY='Mozilla',
+                       IARC_PLATFORM='Firefox')
+    def test_render(self):
+        xml = render_xml(self.template, {
+            'submission_id': 100,
+            'security_code': 'AB12CD3',
+            'rating_system': 'PEGI',
+            'release_date': datetime.date(2013, 11, 1),
+            'title': 'Twitter',
+            'rating': '16+',
+            'descriptors': 'violence, sex',
+            'interactive_elements': 'users interact'})
+        assert xml.startswith('<?xml version="1.0" encoding="utf-8"?>')
+        assert '<FIELD NAME="password" VALUE="s3kr3t"' in xml
+        assert '<FIELD NAME="storefront_company" VALUE="Mozilla"' in xml
+        assert '<FIELD NAME="platform" VALUE="Firefox"' in xml
+        assert '<FIELD NAME="submission_id" VALUE="100"' in xml
+        assert '<FIELD NAME="security_code" VALUE="AB12CD3"' in xml
+        assert '<FIELD NAME="rating_system" VALUE="PEGI"' in xml
+        assert '<FIELD NAME="release_date" VALUE="2013-11-01"' in xml
+        assert '<FIELD NAME="storefront_title" VALUE="Twitter"' in xml
+        assert '<FIELD NAME="storefront_rating" VALUE="16+"' in xml
+        assert ('<FIELD NAME="storefront_descriptors" '
+                'VALUE="violence, sex"') in xml
+        assert ('<FIELD NAME="storefront_interactive_elements" '
+                'VALUE="users interact"') in xml
 
 
 class TestXMLParser(amo.tests.TestCase):
@@ -39,12 +75,12 @@ class TestXMLParser(amo.tests.TestCase):
         data = IARC_XML_Parser().parse_string(xml)
 
         eq_(data['submission_id'], 52)
-        eq_(data['title'], 'twitter')
+        eq_(data['title'], 'Twitter')
         eq_(data['company'], 'Mozilla')
         eq_(data['interactive_elements'],
             'Shares Info, Shares Location, Social Networking, Users Interact, ')
         eq_(data['storefront'], 'Mozilla')
-        eq_(data['platform'], 'Firefox Browser,Firefox OS')
+        eq_(data['platform'], 'Firefox')
 
         # Test ratings get mapped to their appropriate rating classes.
         eq_(data['ratings'][ratingsbodies.ESRB], ratingsbodies.ESRB_M)
