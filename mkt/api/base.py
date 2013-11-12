@@ -438,12 +438,12 @@ class CompatToOneField(ToOneField):
     Tastypie field to relate a resource to a django-rest-framework view.
     """
     def __init__(self, *args, **kwargs):
-        self.rest = kwargs.pop('rest', None)
+        self.url_name = kwargs.pop('url_name', None)
         self.extra_fields = kwargs.pop('extra_fields', None)
         return super(CompatToOneField, self).__init__(*args, **kwargs)
 
     def dehydrate_related(self, bundle, related_resource):
-        uri = reverse(self.rest + '-detail', kwargs={'pk': bundle.obj.pk})
+        uri = reverse(self.url_name, kwargs={'pk': bundle.obj.pk})
         if self.full:
             raise NotImplementedError
         elif self.extra_fields:

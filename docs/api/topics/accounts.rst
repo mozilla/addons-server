@@ -40,7 +40,7 @@ To update account information:
 
     No content is returned in the response.
 
-    :status 201: successfully completed.
+    :status 200: successfully completed.
 
 Fields that can be updated:
 

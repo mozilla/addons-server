@@ -96,6 +96,11 @@ class PermissionAuthorization(Authorization):
 
 
 class AllowSelf(BasePermission):
+    """
+    Permission class to use when you are dealing with UserProfile models and
+    you want only the corresponding user to be able to access his UserProfile
+    instance.
+    """
     def has_permission(self, request, view):
         return request.user.is_authenticated()
 
@@ -115,6 +120,22 @@ class AllowNone(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return False
+
+
+class AllowOwner(BasePermission):
+    """
+    Permission class to use when you are dealing with a model instance that has
+    a "user" FK pointing to an UserProfile, and you want only the corresponding
+    user to be able to access your instance.
+
+    Do not use with models pointing to an User! There is no guarantee that the
+    pk is the same between a User and an UserProfile instance.
+    """
+    def has_permission(self, request, view):
+        return request.user.is_authenticated()
+
+    def has_object_permission(self, request, view, obj):
+        return obj.user.pk == request.amo_user.pk
 
 
 class AllowAppOwner(BasePermission):

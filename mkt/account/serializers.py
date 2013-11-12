@@ -9,6 +9,12 @@ from mkt.api.base import CompatRelatedField
 from mkt.api.serializers import PotatoCaptchaSerializer
 
 
+class AccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ('display_name',)
+
+
 class FeedbackSerializer(PotatoCaptchaSerializer):
     feedback = fields.CharField()
     platform = fields.CharField(required=False)
