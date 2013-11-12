@@ -184,12 +184,12 @@ class TestAccount(RestOAuth):
         eq_(res.status_code, 403)
 
 
-class TestInstalled(BaseOAuth):
+class TestInstalled(RestOAuth):
     fixtures = fixture('user_2519', 'user_10482', 'webapp_337141')
 
     def setUp(self):
-        super(TestInstalled, self).setUp(api_name='account')
-        self.list_url = list_url('installed/mine')
+        super(TestInstalled, self).setUp()
+        self.list_url = reverse('installed-apps')
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_verbs(self):
