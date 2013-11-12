@@ -3,17 +3,18 @@ from django.conf.urls import url
 from tastypie.authorization import ReadOnlyAuthorization
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.http import HttpForbidden
-from tastypie.throttle import BaseThrottle
+from tastypie.serializers import Serializer
 from tastypie.utils import trailing_slash
 
 from translations.helpers import truncate
+
+from amo.urlresolvers import reverse
 
 import mkt
 from access import acl
 from mkt.api.authentication import (SharedSecretAuthentication,
                                     OptionalOAuthAuthentication)
 from mkt.api.base import CORSResource, MarketplaceResource
-from mkt.api.resources import AppResource
 from mkt.api.serializers import SuggestionsSerializer
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
@@ -31,7 +32,7 @@ from mkt.webapps.utils import es_app_to_dict
 
 class SearchResource(CORSResource, MarketplaceResource):
 
-    class Meta(AppResource.Meta):
+    class Meta:
         resource_name = 'search'
         allowed_methods = []
         detail_allowed_methods = []
@@ -40,12 +41,16 @@ class SearchResource(CORSResource, MarketplaceResource):
         authentication = (SharedSecretAuthentication(),
                           OptionalOAuthAuthentication())
         slug_lookup = None
-        # Override CacheThrottle with a no-op.
-        throttle = BaseThrottle()
+        queryset = Webapp.objects.all()  # Gets overriden in dispatch.
+        fields = ['categories', 'description', 'device_types', 'homepage',
+                  'id', 'name', 'payment_account', 'premium_type',
+                  'status', 'support_email', 'support_url']
+        always_return_data = True
+        serializer = Serializer(formats=['json'])
 
     def get_resource_uri(self, bundle):
-        # Link to the AppResource URI.
-        return AppResource().get_resource_uri(bundle.obj)
+        # Link to the AppViewSet URI.
+        return reverse('app-detail', kwargs={'pk': bundle.obj.pk})
 
     def get_search_data(self, request):
         form = ApiSearchForm(request.GET if request else None)

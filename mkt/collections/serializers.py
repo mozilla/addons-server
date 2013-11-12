@@ -5,7 +5,6 @@ import uuid
 from rest_framework import serializers
 from rest_framework.fields import get_component
 from rest_framework.reverse import reverse
-from tastypie.bundle import Bundle
 from tower import ugettext_lazy as _
 import waffle
 
@@ -24,8 +23,8 @@ import mkt
 from addons.models import Category
 from mkt.api.fields import (TranslationSerializerField,
                             SlugChoiceField, SlugModelChoiceField)
-from mkt.api.resources import AppResource
 from mkt.features.utils import get_feature_profile
+from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
@@ -42,8 +41,7 @@ class CollectionMembershipField(serializers.RelatedField):
     want to use this elsewhere.
     """
     def to_native(self, value):
-        bundle = Bundle(obj=value.app)
-        return AppResource().full_dehydrate(bundle).data
+        return AppSerializer(value.app, context=self.context).data
 
     def field_to_native(self, obj, field_name):
         if not hasattr(self, 'context') or not 'request' in self.context:

@@ -338,8 +338,8 @@ def unindex_webapps(ids, **kw):
 
 @task
 def dump_app(id, **kw):
+    from mkt.webapps.api import AppSerializer
     # Because @robhudson told me to.
-    from mkt.api.resources import AppResource
     # Note: not using storage because all these operations should be local.
     target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'apps',
                               str(id / 1000))
@@ -359,8 +359,8 @@ def dump_app(id, **kw):
         os.makedirs(target_dir)
 
     task_log.info('Dumping app {0} to {1}'.format(id, target_file))
-    res = AppResource().dehydrate_objects([obj], request=req)
-    json.dump(res[0], open(target_file, 'w'), cls=JSONEncoder)
+    res = AppSerializer(obj, context={'request': req}).data
+    json.dump(res, open(target_file, 'w'), cls=JSONEncoder)
     return target_file
 
 
