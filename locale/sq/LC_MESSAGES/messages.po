@@ -23142,9 +23142,3 @@ msgstr "Vizitoni Mozilla-n"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "menu"
-
-#. a link
-#: templates/mobile/header.html:10
-msgid "menu"
-msgstr "menu"
-
