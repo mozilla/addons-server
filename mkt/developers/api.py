@@ -1,5 +1,7 @@
 import json
 
+from django.http import Http404
+
 import commonware
 from curling.lib import HttpClientError, HttpServerError
 from tastypie import http
@@ -7,10 +9,16 @@ from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse, NotFound
 from tower import ugettext as _
 
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import AllowAny
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
+
 from mkt.api.authentication import OAuthAuthentication
-from mkt.api.base import MarketplaceModelResource
+from mkt.api.base import CORSMixin, MarketplaceModelResource, SlugOrIdMixin
+from mkt.developers.forms import ContentRatingForm
 from mkt.developers.forms_payments import BangoPaymentAccountForm
 from mkt.developers.models import CantCancel, PaymentAccount
+from mkt.webapps.models import ContentRating, Webapp
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -79,3 +87,58 @@ class AccountResource(MarketplaceModelResource):
             raise ImmediateHttpResponse(http.HttpConflict(
                 _('Cannot delete shared account')))
         log.info('Account cancelled: %s' % account.pk)
+
+
+class ContentRatingSerializer(ModelSerializer):
+    body_name = SerializerMethodField('get_body_name')
+    body_slug = SerializerMethodField('get_body_slug')
+
+    name = SerializerMethodField('get_rating_name')
+    slug = SerializerMethodField('get_rating_slug')
+    description = SerializerMethodField('get_rating_description')
+
+    def get_body_name(self, obj):
+        return obj.get_body().name
+
+    def get_body_slug(self, obj):
+        return obj.get_body().slug
+
+    def get_rating_name(self, obj):
+        return obj.get_rating().name
+
+    def get_rating_slug(self, obj):
+        return obj.get_rating().slug
+
+    def get_rating_description(self, obj):
+        return obj.get_rating().description
+
+    class Meta:
+        model = ContentRating
+        fields = ('id', 'created', 'modified', 'body_name', 'body_slug',
+                  'name', 'slug', 'description')
+
+
+class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):
+    model = ContentRating
+    serializer_class = ContentRatingSerializer
+    permission_classes = (AllowAny,)
+    cors_allowed_methods = ['get']
+
+    queryset = Webapp.objects.all()
+    slug_field = 'app_slug'
+
+    def get(self, request, *args, **kwargs):
+        app = self.get_object()
+
+        self.queryset = app.content_ratings.all()
+
+        if 'since' in request.GET:
+            form = ContentRatingForm(request.GET)
+            if form.is_valid():
+                self.queryset = self.queryset.filter(
+                    modified__gt=form.cleaned_data['since'])
+
+        if not self.queryset.exists():
+            raise Http404()
+
+        return super(ContentRatingList, self).get(self, request)

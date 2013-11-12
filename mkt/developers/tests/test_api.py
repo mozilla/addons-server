@@ -1,19 +1,26 @@
 import json
 
+from django.core.urlresolvers import NoReverseMatch
+
 from curling.lib import HttpClientError, HttpServerError
 import mock
 from nose.tools import eq_
 
 import amo
 from amo.tests import app_factory
+from amo.urlresolvers import reverse
+from amo.utils import urlparams
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
 
+import mkt
 from mkt.api.base import get_url, list_url
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.developers.models import PaymentAccount
 from mkt.developers.tests.test_views_payments import setup_payment_account
 from mkt.site.fixtures import fixture
+from mkt.webapps.models import ContentRating
+
 
 package_data = {
     'companyName': 'company',
@@ -162,3 +169,53 @@ class AccountTests(BaseOAuth):
         self.account.update(shared=True)
         rdel = self.client.delete(get_url('account', self.account.pk))
         eq_(rdel.status_code, 409)
+
+
+class TestContentRating(amo.tests.TestCase):
+
+    def setUp(self):
+        self.app = app_factory()
+
+    def test_get_content_ratings(self):
+        for body in (mkt.ratingsbodies.CLASSIND, mkt.ratingsbodies.ESRB):
+            ContentRating.objects.create(addon=self.app, ratings_body=body.id,
+                                         rating=0)
+        res = self.client.get(reverse('content-ratings-list',
+                                      args=[self.app.app_slug]))
+        eq_(res.status_code, 200)
+
+        res = json.loads(res.content)
+        eq_(len(res['objects']), 2)
+        rating = res['objects'][0]
+        eq_(rating['body_slug'], 'classind')
+        eq_(rating['body_name'], 'CLASSIND')
+        eq_(rating['name'], '0+')
+        eq_(rating['slug'], '0')
+        assert 'description' in rating
+
+    def test_get_content_ratings_since(self):
+        cr = ContentRating.objects.create(addon=self.app, ratings_body=0,
+                                          rating=0)
+        cr.update(modified=self.days_ago(100))
+
+        res = self.client.get(urlparams(
+            reverse('content-ratings-list', args=[self.app.app_slug]),
+            since=self.days_ago(5)))
+        eq_(res.status_code, 404)
+
+        cr.update(modified=self.days_ago(1))
+        res = self.client.get(urlparams(
+            reverse('content-ratings-list', args=[self.app.id]),
+            since=self.days_ago(5)))
+        eq_(res.status_code, 200)
+        eq_(len(json.loads(res.content)['objects']), 1)
+
+    def test_view_whitelist(self):
+        """Only -list, no create/update/delete."""
+        with self.assertRaises(NoReverseMatch):
+            reverse('content-ratings-create', args=[self.app.id])
+        with self.assertRaises(NoReverseMatch):
+            reverse('content-ratings-update', args=[self.app.id])
+        with self.assertRaises(NoReverseMatch):
+            reverse('content-ratings-delete', args=[self.app.id])
+        reverse('content-ratings-list', args=[self.app.app_slug])
