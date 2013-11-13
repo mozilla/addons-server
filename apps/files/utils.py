@@ -79,7 +79,7 @@ def make_xpi(files):
 class Extractor(object):
     """Extract add-on info from an install.rdf."""
     TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
-             '8': amo.ADDON_LPAPP, "64": amo.ADDON_DICT}
+             '8': amo.ADDON_LPAPP, '64': amo.ADDON_DICT}
     App = collections.namedtuple('App', 'appdata id min max')
     manifest = u'urn:mozilla:install-manifest'
 
@@ -95,7 +95,8 @@ class Extractor(object):
             'version': self.find('version'),
             'homepage': self.find('homepageURL'),
             'summary': self.find('description'),
-            'no_restart': self.find('bootstrap') == 'true',
+            'no_restart': self.find('bootstrap') == 'true' or
+                          self.find('type') == '64',
             'strict_compatibility': self.find('strictCompatibility') == 'true',
             'apps': self.apps(),
         }
