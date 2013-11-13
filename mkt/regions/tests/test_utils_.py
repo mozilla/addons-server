@@ -1,6 +1,7 @@
+from nose.tools import eq_, assert_raises
+
 from mkt.constants import regions
 from mkt.regions.utils import parse_region
-from nose.tools import eq_, assert_raises
 
 
 def test_parse_region():
