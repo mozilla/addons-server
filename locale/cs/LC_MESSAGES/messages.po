@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-10-16 08:36+0000\n"
+"PO-Revision-Date: 2013-11-13 19:46+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1381912605.0\n"
+"X-POOTLE-MTIME: 1384372009.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -17496,7 +17496,7 @@ msgstr "Návrh"
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/design_concept.html:5 mkt/ecosystem/templates/ecosystem/design_concept.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:13
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "Koncept: Skvělá aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:5 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:20
@@ -17530,7 +17530,7 @@ msgstr "Referenční aplikace"
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:210
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5 mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
 msgid "Deploying Your App"
-msgstr ""
+msgstr "Nahrání aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:215
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:23
@@ -17544,7 +17544,7 @@ msgstr "Zabalené aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:235
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "Odznaky, bannery a ikony"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5 mkt/ecosystem/templates/ecosystem/build_app_generator.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:26
 #: mkt/ecosystem/templates/ecosystem/macros.html:172
@@ -18924,14 +18924,20 @@ msgstr "Vytvářejte pro otevřený obchod webové aplikace v HTML5."
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
 msgstr ""
+"Přečtěte si, jak navrhovat aplikace, které jsou z hlediska uživatelského "
+"komfortu optimalizovány pro Firefox OS a mobily."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
 msgstr ""
+"Všechny nástroje, dokumentace a reference, které budete potřebovat pro vývoj "
+"a testování své aplikace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
 msgstr ""
+"Zjistěte si, jak distribuovat své aplikace pomocí otevřeného obchodu, který "
+"dává uživatele a vývojáře na první místo."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -18955,13 +18961,16 @@ msgstr "Jste webová společnost, služba třetí strany či OEM, který má zá
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
-msgstr ""
+msgstr "Platforma aplikací Mozilla"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
 msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
+"Vytváření aplikací pro web dává vývojářům plnou kontrolu nad obsahem, "
+"funkcionalitou a tím, jak jsou aplikace distribuovány, včetně přístupu ke "
+"stovkám miliónů uživatelů Firefoxu skrze Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -18976,22 +18985,32 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
+"Firefox Marketplace dává uživatelům příležitost nalézt, vyzkoušet a zakoupit "
+"aplikace či obsah, který je nejvíce zajímá. To znamená skvělé, užitečné a "
+"kvalitní aplikace pro lokální trhy napříč všemi kategoriemi, díky kterým "
+"mohou uživatelé vytěžit co nejvíce."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
+"Mozilla celosvětově zahrnuje stovky miliónů uživatelů. Prostřednictvím "
+"našich kanálů můžeme pomoci vývojářům distribuovat své aplikace k rukám "
+"uživatelů po celém světě."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid ""
 "Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your "
 "app to:"
 msgstr ""
+"Před veřejným spuštěním Mozilla otevírá Marketplace pro uživatelské "
+"testování. Využijte příležitosti a buďte jedním z prvních vývojářů aplikací, "
+"kteří získají uživatele pro své aplikace. "
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:200
 msgid "Test your app with a committed group of early adopters."
-msgstr ""
+msgstr "Vyzkoušejte svou aplikaci na skupině prvních uživatelů."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:205
 msgid "Build an early fan base and gain popularity."
@@ -18999,7 +19018,7 @@ msgstr "Vybudujte si základnu uživatelů a získejte popularitu."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:208
 msgid "Target tech savvy consumers with your app."
-msgstr ""
+msgstr "Zacilte svou aplikací technicky zdatné uživatele."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Firefox Apps &amp; Hacks"
@@ -19008,6 +19027,9 @@ msgstr "Aplikace pro Firefox"
 #: mkt/ecosystem/templates/ecosystem/landing.html:236
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
+"Přihlaste si odběr našeho měsíčního zpravodaje o Firefox OS, Marketplace a o "
+"ekosystému aplikací. <a href=\"%(dev_phone_url)s\">Podívejte se na telefony "
+"pro vývojáře</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:247
 msgid "Developer Devices"
@@ -19031,7 +19053,7 @@ msgstr "Přihlásit mě!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:56
 msgid "Intro to Open Web Apps"
-msgstr ""
+msgstr "Úvod do otevřených webových aplikací"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:60
 msgid "Intro to Firefox OS"
@@ -19147,11 +19169,13 @@ msgstr "Kanál Firefox Marketplace na YouTube"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "Odznaky, bannery a ikony"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
 msgstr ""
+"\"Get it in the Firefox Marketplace\" jsou bannery, které můžete použít na své "
+"webové stránce a propagovat tak své produkty na Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
@@ -19171,23 +19195,25 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "Oranžový"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "Šedivý"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "Černý"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 msgstr ""
+"Pro zobrazení a stažení loga Firefox Marketplace navštivte <a href=\"%"
+"(style_guide_url)s\">Mozilla style guide</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:15
 msgid "One your app is finished, you need to deploy it. If you're publishing through the Firefox Marketplace you have some options on how to deploy your app."
