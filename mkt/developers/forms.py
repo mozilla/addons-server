@@ -733,7 +733,7 @@ class RegionForm(forms.Form):
             if self.product.geodata.get_status(region) not in checked_statuses:
                 try:
                     self.initial['regions'].remove(region.id)
-                except KeyError:
+                except ValueError:
                     pass
 
         self.disabled_regions = sorted(self._disabled_regions())
