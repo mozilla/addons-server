@@ -25,6 +25,7 @@ from .models import Review, ReviewFlag, GroupedRating, Spam
 from . import forms
 
 import HTMLParser
+import json
 import requests
 
 log = commonware.log.getLogger('z.reviews')
@@ -87,6 +88,22 @@ def get_flags(request, reviews):
     return dict((r.review_id, r) for r in qs)
 
 
+def _retrieve_translation(text, language):
+    try:
+        r = requests.get(
+            settings.GOOGLE_TRANSLATE_API_URL, params={
+                'key': getattr(settings, 'GOOGLE_API_CREDENTIALS', ''),
+                'q': text, 'target': language})
+    except Exception, e:
+        log.error(e)
+    try:
+        translated = (HTMLParser.HTMLParser().unescape(r.json()['data']
+                      ['translations'][0]['translatedText']))
+    except (KeyError, IndexError):
+        translated = ''
+    return translated, r
+
+
 @addon_view
 @waffle_switch('reviews-translate')
 def translate(request, addon, review_id, language):
@@ -99,19 +116,13 @@ def translate(request, addon, review_id, language):
         language = language.split('-')[0]
 
     if request.is_ajax():
-        r = requests.get(
-            getattr(settings, 'GOOGLE_TRANSLATE_API_URL'), params={
-                'key': getattr(settings, 'GOOGLE_ANALYTICS_CREDENTIALS', ''),
-                'q': review.body, 'target': language})
-        try:
-            response = (HTMLParser.HTMLParser().unescape(r.json()['data']
-                        ['translations'][0]['translatedText']))
-        except (KeyError, IndexError):
-            response = ''
-        return http.HttpResponse(response, status=r.status_code)
+        title, r = _retrieve_translation(review.title, language)
+        body, r = _retrieve_translation(review.body, language)
+        return http.HttpResponse(json.dumps({'title': title, 'body': body}),
+                                 status=r.status_code)
     else:
-        return redirect(getattr(settings, 'GOOGLE_TRANSLATE_REDIRECT_URL') %
-                        ({'lang': language, 'text': review.body}))
+        return redirect(settings.GOOGLE_TRANSLATE_REDIRECT_URL.format(
+            lang=language, text=review.body))
 
 
 @addon_view

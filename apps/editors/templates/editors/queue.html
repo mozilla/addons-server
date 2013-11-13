@@ -84,7 +84,7 @@
             <h3>
               <a href="{{ review.instance.addon.get_url_path() }}">
                 {{ review.instance.addon.name }}</a>
-              {%- if review.instance.title %}: {{ review.instance.title }}{% endif %}
+              {%- if review.instance.title %}: <span>{{ review.instance.title }}</span>{% endif %}
             </h3>
             <p>
             {% trans user=review.instance.user|user_link, date=review.instance.created|datetime,
@@ -92,6 +92,11 @@
               by {{ user }} on {{ date }}
               {{ stars }} ({{ locale }})
             {% endtrans %}
+            {% if waffle.switch('reviews-translate') %}
+              &middot;
+              <a class="translate"
+                 href="{{ shared_url('reviews.translate', review.instance.addon, review.instance.id, LANG) }}">{{ _('translate') }}</a>
+            {% endif %}
             </p>
             <p class="description">{{ review.instance.body|nl2br }}</p>
             <ul class="reviews-flagged-reasons">

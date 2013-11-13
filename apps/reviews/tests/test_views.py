@@ -540,7 +540,7 @@ class TestTranslate(ReviewTest):
         self.create_switch('reviews-translate', db=True)
         self.user = UserProfile.objects.get(username='jbalogh')
         self.review = Review.objects.create(addon=self.addon, user=self.user,
-                                            body='yes')
+                                            title='or', body='yes')
 
     def test_regular_call(self):
         review = self.review
@@ -565,7 +565,7 @@ class TestTranslate(ReviewTest):
         url = shared_url('reviews.translate', review.addon, review.id, 'fr')
         r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)
-        eq_(r.content, 'oui')
+        eq_(r.content, '{"body": "oui", "title": "oui"}')
 
     @mock.patch('waffle.switch_is_active', lambda x: True)
     @mock.patch('reviews.views.requests')
