@@ -357,6 +357,12 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
                                  'special_regions': [mkt.regions.CN.id]},
                                 **self.kwargs)
+
+        # China should be checked if it's pending.
+        cn = mkt.regions.CN.id
+        assert cn in form.initial['regions']
+        assert cn in dict(form.fields['regions'].choices).keys()
+
         eq_(form.disabled_regions, [])
         assert form.is_valid(), form.errors
         form.save()
@@ -404,6 +410,12 @@ class TestRegionForm(amo.tests.WebappTestCase):
         # Post the form.
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS},
                                 **self.kwargs)
+
+        # China should be checked if it's public.
+        cn = mkt.regions.CN.id
+        assert cn in form.initial['regions']
+        assert cn in dict(form.fields['regions'].choices).keys()
+
         eq_(form.disabled_regions, [])
         assert form.is_valid(), form.errors
         form.save()

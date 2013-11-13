@@ -103,13 +103,13 @@ def toggle_app_for_special_regions(request, app, enabled_regions=None):
                 if status != amo.STATUS_PUBLIC:
                     # Developer requested for it to be in China.
                     status = amo.STATUS_PENDING
-                    app.geodata.set_status(region, status)
+                    app.geodata.set_status(region, status, save=True)
                     log.info(u'[Webapp:%s] App marked as pending (special) '
                              u'region (%s).' % (app, region.slug))
             else:
                 # Developer cancelled request for approval.
                 status = amo.STATUS_NULL
-                app.geodata.set_status(region, status)
+                app.geodata.set_status(region, status, save=True)
                 log.info(u'[Webapp:%s] App marked as null (special) '
                          u'region (%s).' % (app, region.slug))
 
@@ -721,11 +721,20 @@ class RegionForm(forms.Form):
         self.regions_before = self.product.get_region_ids(worldwide=True)
 
         self.initial = {
-            'regions': sorted(set(self.regions_before) -
-                              set(self.special_region_ids)),
+            'regions': sorted(self.regions_before),
             'restricted': int(self.product.geodata.restricted),
             'enable_new_regions': self.product.enable_new_regions,
         }
+
+        # Only if a special region is pending/public should its checkbox
+        # be checked.
+        checked_statuses = (amo.STATUS_PENDING, amo.STATUS_PUBLIC)
+        for region in self.special_region_objs:
+            if self.product.geodata.get_status(region) not in checked_statuses:
+                try:
+                    self.initial['regions'].remove(region.id)
+                except KeyError:
+                    pass
 
         self.disabled_regions = sorted(self._disabled_regions())
 
