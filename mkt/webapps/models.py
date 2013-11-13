@@ -1003,7 +1003,7 @@ class Webapp(Addon):
         create_kwargs = {}
         for interactive in mkt.ratinginteractives.RATING_INTERACTIVES.keys():
             create_kwargs['has_%s' % interactive.lower()] = (
-                interactive.lower() in map(str.lower, data))
+                interactive.lower() in map(lambda x: x.lower(), data))
 
         ri, created = RatingInteractives.objects.get_or_create(
             addon=self, defaults=create_kwargs)

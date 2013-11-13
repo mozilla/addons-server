@@ -9,7 +9,8 @@ from lib.misc.urlconf_decorator import decorate
 import amo
 from amo.decorators import write
 from mkt.api.base import AppRouter
-from mkt.developers.api import AccountResource, ContentRatingList
+from mkt.developers.api import (AccountResource, ContentRatingList,
+                                ContentRatingsPingback)
 from mkt.developers.api_payments import (
     AddonPaymentAccountViewSet, PaymentCheckViewSet, PaymentDebugViewSet,
     PaymentViewSet, UpsellViewSet)
@@ -193,10 +194,12 @@ app_payments.register(r'payments/debug', PaymentDebugViewSet,
 payments_api_patterns = patterns('',
     url(r'^', include(payments.urls)),
     url(r'^payments/', include(api_payments.urls)),
-    url(r'^apps/app/', include(app_payments.urls))
+    url(r'^apps/app/', include(app_payments.urls)),
 )
 
 dev_api_patterns = patterns('',
+    url(r'^apps/app/(?P<pk>[^/<>"\']+)/content-ratings/pingback/',
+        ContentRatingsPingback.as_view(), name='content-ratings-pingback'),
     url(r'^apps/app/(?P<pk>[^/<>"\']+)/content-ratings/',
         ContentRatingList.as_view(), name='content-ratings-list'),
 )

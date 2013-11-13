@@ -1097,9 +1097,8 @@ class IARCGetAppInfoForm(happyforms.Form):
 
         # Handle response.
         data = lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
-        ratings = data.get('ratings', {})
 
-        if ratings:
+        if data.get('ratings'):
             # We found a rating, so store the id and code for future use.
             app.set_iarc_info(iarc_id, iarc_code)
 

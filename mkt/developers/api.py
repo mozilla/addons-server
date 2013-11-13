@@ -1,6 +1,9 @@
+import hashlib
 import json
 
+from django.conf import settings
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 
 import commonware
 from curling.lib import HttpClientError, HttpServerError
@@ -9,16 +12,21 @@ from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse, NotFound
 from tower import ugettext as _
 
+from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework.views import APIView
 
+import lib.iarc
 from mkt.api.authentication import OAuthAuthentication
 from mkt.api.base import CORSMixin, MarketplaceModelResource, SlugOrIdMixin
 from mkt.developers.forms import ContentRatingForm
 from mkt.developers.forms_payments import BangoPaymentAccountForm
 from mkt.developers.models import CantCancel, PaymentAccount
 from mkt.webapps.models import ContentRating, Webapp
+
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -142,3 +150,30 @@ class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):
             raise Http404()
 
         return super(ContentRatingList, self).get(self, request)
+
+
+class ContentRatingsPingback(CORSMixin, APIView):
+    cors_allowed_methods = ['post']
+    parser_classes = (lib.iarc.utils.IARC_JSON_Parser,)
+    permission_classes = (AllowAny,)
+
+    def post(self, request, pk, *args, **kwargs):
+        app = get_object_or_404(Webapp, pk=pk)
+
+        # Verify token.
+        data = request.DATA
+        hash = hashlib.sha512(settings.SECRET_KEY + str(app.id)).hexdigest()
+        if hash != data.get('token'):
+            return Response({'detail': 'Token mismatch'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        if data.get('ratings'):
+            # We found a rating, so store the id and code for future use.
+            if 'submission_id' in data and 'security_code' in data:
+                app.set_iarc_info(data['submission_id'], data['security_code'])
+
+            app.set_content_ratings(data.get('ratings', {}))
+            app.set_descriptors(data.get('descriptors', []))
+            app.set_interactives(data.get('interactives', []))
+
+        return Response('ok')

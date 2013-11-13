@@ -6,7 +6,7 @@ from django.conf import settings
 from jinja2 import Environment, FileSystemLoader
 from rest_framework.compat import etree, six
 from rest_framework.exceptions import ParseError
-from rest_framework.parsers import XMLParser
+from rest_framework.parsers import JSONParser, XMLParser
 
 from amo.helpers import strip_controls
 from mkt.constants import ratingsbodies
@@ -33,10 +33,62 @@ def render_xml(template, context):
     return template.render(**context)
 
 
-# Custom XML processor for IARC whack XML that defines all content in XML
-# attributes with no tag content and all tags are named the same. This builds a
-# dict using the "NAME" and "VALUE" attributes.
-class IARC_XML_Parser(XMLParser):
+class IARC_Parser(object):
+    """
+    Base class for IARC XML and JSON parsers.
+    """
+
+    def _process_ratings_and_descriptors(self, data):
+        """
+        Looks for keys starting with 'rating_' or 'descriptors_' and trades
+        them for a 'ratings' and 'descriptors' dictionary.
+
+        """
+        d = {}  # New data object we'll return.
+        ratings = {}
+        descriptors = []
+
+        for k, v in data['ROW'].items():
+            # Get ratings body constant.
+            ratings_body = RATINGS_BODY_MAPPING.get(
+                k.split('_')[-1], ratingsbodies.GENERIC)
+
+            if k.startswith('rating_'):
+                ratings[ratings_body] = RATINGS_MAPPING[ratings_body].get(
+                    v, RATINGS_MAPPING[ratings_body]['default'])
+            elif k.startswith('descriptors_'):
+                native_descs = filter(None, [s.strip() for s in v.split(',')])
+                descriptors.extend(
+                    filter(None, [DESC_MAPPING[ratings_body].get(desc)
+                                  for desc in native_descs]))
+            else:
+                d[k] = v
+
+        if ratings:
+            d['ratings'] = ratings
+        if descriptors:
+            d['descriptors'] = descriptors
+
+        return d
+
+    def _process_interactive_elements(self, data):
+        """Split and normalize the 'interactive_elements' key into a list."""
+        data['interactives'] = []
+        if not data.get('interactive_elements'):
+            return data
+
+        data['interactives'] = filter(
+            None, [s.strip().lower().replace(' ', '_') for s in
+                   data['interactive_elements'].split(',')])
+        return data
+
+
+class IARC_XML_Parser(XMLParser, IARC_Parser):
+    """
+    Custom XML processor for IARC whack XML that defines all content in XML
+    attributes with no tag content and all tags are named the same. This builds
+    a dict using the "NAME" and "VALUE" attributes.
+    """
 
     # TODO: Remove this `parse` method once this PR is merged and released:
     # https://github.com/tomchristie/django-rest-framework/pull/1211
@@ -85,49 +137,43 @@ class IARC_XML_Parser(XMLParser):
 
         return data
 
-    def _process_ratings_and_descriptors(self, data):
-        """
-        Looks for keys starting with 'rating_' or 'descriptors_' and trades
-        them for a 'ratings' and 'descriptors' dictionary.
 
-        """
-        d = {}  # New data object we'll return.
-        ratings = {}
-        descriptors = {}
+class IARC_JSON_Parser(JSONParser, IARC_Parser):
+    """
+    JSON Parser to handle IARC's JSON format.
+    """
+    def parse(self, stream, media_type=None, parser_context=None):
+        data = super(IARC_JSON_Parser, self).parse(stream, media_type,
+                                                   parser_context)
+        data = self._convert(data)
 
-        for k, v in data['ROW'].items():
-            # Get ratings body constant.
-            ratings_body = RATINGS_BODY_MAPPING.get(
-                k.split('_')[-1], ratingsbodies.GENERIC)
+        data = self._process_ratings_and_descriptors(data)
+        data = self._process_interactive_elements(data)
 
-            if k.startswith('rating_'):
-                ratings[ratings_body] = RATINGS_MAPPING[ratings_body].get(
-                    v, RATINGS_MAPPING[ratings_body]['default'])
-            elif k.startswith('descriptors_'):
-                native_descs = filter(None, [s.strip() for s in v.split(',')])
-                descriptors[ratings_body] = filter(None, [
-                    DESC_MAPPING[ratings_body].get(desc)
-                    for desc in native_descs])
-            else:
-                d[k] = v
-
-        if ratings:
-            d['ratings'] = ratings
-        if descriptors:
-            d['descriptors'] = descriptors
-
-        return d
-
-    def _process_interactive_elements(self, data):
-        """Split and normalize the 'interactive_elements' key into a list."""
-        data['interactives'] = []
-        if not data.get('interactive_elements'):
-            return data
-
-        data['interactives'] = filter(
-            None, [s.strip().lower().replace(' ', '_') for s in
-                   data['interactive_elements'].split(',')])
         return data
+
+    def _convert(self, data):
+        """
+        Converts JSON that looks like::
+
+            {
+                "NAME": "token",
+                "TYPE": "string",
+                "VALUE": "AB12CD3"
+            }
+
+        Into something more normal that looks like this::
+
+            {
+                "token": "AB12CD3"
+            }
+
+        """
+        d = {}
+        for f in data['ROW']['FIELD']:
+            d[f['NAME']] = f['VALUE']
+
+        return {'ROW': d}
 
 
 # These mappings are required to convert the IARC response strings, like "ESRB"

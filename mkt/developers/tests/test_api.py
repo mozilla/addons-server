@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+import hashlib
 import json
 
 from django.core.urlresolvers import NoReverseMatch
+from django.test.utils import override_settings
 
 from curling.lib import HttpClientError, HttpServerError
 import mock
@@ -15,7 +18,7 @@ from users.models import UserProfile
 
 import mkt
 from mkt.api.base import get_url, list_url
-from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
 from mkt.developers.models import PaymentAccount
 from mkt.developers.tests.test_views_payments import setup_payment_account
 from mkt.site.fixtures import fixture
@@ -219,3 +222,158 @@ class TestContentRating(amo.tests.TestCase):
         with self.assertRaises(NoReverseMatch):
             reverse('content-ratings-delete', args=[self.app.id])
         reverse('content-ratings-list', args=[self.app.app_slug])
+
+
+@override_settings(SECRET_KEY='test')
+class TestContentRatingPingback(RestOAuth):
+
+    def setUp(self):
+        from django.conf import settings
+
+        super(TestContentRatingPingback, self).setUp()
+        self.app = app_factory()
+        self.url = reverse('content-ratings-pingback', args=[self.app.pk])
+        self.data = {
+            'ROW': {
+                'FIELD': [
+                    {
+                        'TYPE': 'int',
+                        'NAME': 'rowId',
+                        'VALUE': '1'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'token',
+                        'VALUE': hashlib.sha512(
+                            settings.SECRET_KEY + str(self.app.id)).hexdigest()
+                    },
+                    {
+                        'TYPE': 'int',
+                        'NAME': 'submission_id',
+                        'VALUE': '321'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'security_code',
+                        'VALUE': 'AB12CD3'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'title',
+                        'VALUE': 'Twitter'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'company',
+                        'VALUE': 'Mozilla'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'platform',
+                        'VALUE': 'Firefox'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'rating_PEGI',
+                        'VALUE': '18+'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'descriptors_PEGI',
+                        'VALUE': 'Language,Gambling'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'rating_USK',
+                        'VALUE': '6+'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'descriptors_USK',
+                        'VALUE': u'Explizite Sprache,\xC4ngstigende Inhalte'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'rating_ESRB',
+                        'VALUE': 'Teen'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'descriptors_ESRB',
+                        'VALUE': 'Language,Simulated Gambling'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'rating_CLASSIND',
+                        'VALUE': '12+'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'descriptors_CLASSIND',
+                        'VALUE': u'Linguagem Impr\xF3pria,Conte\xFAdo Impactante'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'rating_Generic',
+                        'VALUE': '12+'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'descriptors_Generic',
+                        'VALUE': 'Language,Real Gambling'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'storefront',
+                        'VALUE': 'Firefox Marketplace'
+                    },
+                    {
+                        'TYPE': 'string',
+                        'NAME': 'interactive_elements',
+                        'VALUE': 'Shares Info,Shares Location'
+                    }
+                ]
+            }
+        }
+
+    def test_post_content_ratings_pingback(self):
+        res = self.anon.post(self.url, data=json.dumps(self.data))
+        eq_(res.status_code, 200)
+
+        # Verify things were saved to the database.
+        app = self.app.reload()
+
+        # IARC info.
+        eq_(app.iarc_info.submission_id, 321)
+        eq_(app.iarc_info.security_code, 'AB12CD3')
+
+        # Ratings.
+        eq_(app.content_ratings.count(), 5)
+        for rb, rating in [
+            (mkt.ratingsbodies.CLASSIND, mkt.ratingsbodies.CLASSIND_12),
+            (mkt.ratingsbodies.ESRB, mkt.ratingsbodies.ESRB_T),
+            (mkt.ratingsbodies.GENERIC, mkt.ratingsbodies.GENERIC_12),
+            (mkt.ratingsbodies.PEGI, mkt.ratingsbodies.PEGI_18),
+            (mkt.ratingsbodies.USK, mkt.ratingsbodies.USK_6)]:
+            eq_(app.content_ratings.get(ratings_body=rb.id).rating, rating.id,
+                'Unexpected rating for rating body %s.' % rb)
+
+        # Descriptors.
+        self.assertSetEqual(
+            app.rating_descriptors.to_keys(),
+            ['has_classind_lang', 'has_classind_shocking',
+             'has_pegi_lang', 'has_pegi_gambling',
+             'has_generic_lang', 'has_generic_real_gambling',
+             'has_esrb_lang', 'has_esrb_sim_gambling',
+             'has_usk_lang', 'has_usk_scary'])
+
+        # Interactives.
+        self.assertSetEqual(
+            app.rating_interactives.to_keys(),
+            ['has_shares_info', 'has_shares_location'])
+
+    @override_settings(SECRET_KEY='foo')
+    def test_token_mismatch(self):
+        res = self.anon.post(self.url, data=json.dumps(self.data))
+        eq_(res.status_code, 400)
+        eq_(json.loads(res.content)['detail'], 'Token mismatch')
