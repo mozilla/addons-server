@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-13 19:46+0000\n"
+"PO-Revision-Date: 2013-11-13 21:04+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384372009.0\n"
+"X-POOTLE-MTIME: 1384376642.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -17806,6 +17806,10 @@ msgid ""
 "For the purposes of this guide, you'll be creating a hosted app which will live at your <code>localhost</code> address. Once your app is ready to list on the Firefox Marketplace, you can make the "
 "decision to bundle as a packed app or launch as a hosted app."
 msgstr ""
+"Pro účely této příručky vytvoříte hostovanou aplikaci, která bude umístěna "
+"na vaší adrese <code>localhost</code>. Jakmile bude aplikace připravena pro "
+"hostování na Firefox Marketplace, budete se moci rozhodnout vytvořit ji jako "
+"zabalenou nebo hostovanou."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:56
 msgid "App Manifests"
@@ -17817,6 +17821,13 @@ msgid ""
 "description, icon location, locale strings, domains the app can be installed from, and much more (Only the name and description are required). The simple manifest included within the app template "
 "looks like:"
 msgstr ""
+"Každá aplikace pro Firefox vyžaduje, aby byl v kořenu umístěn soubor "
+"manifest.webapp. Soubor <code><a href=\"%(url)s\">manifest.webapp</a></code> "
+"poskytuje důležité informace o aplikaci jako je verze, název, popis, "
+"umístění ikony, jazykové řetězce, informace o doménách, z kterých může být "
+"nainstalována a mnohem více (je ale vyžadován pouze název a popis). "
+"Jednoduchý manifest je umístěn uvnitř kostry aplikace a vypadá přibližně "
+"následovně:"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:72
 msgid "More specific details can be added as the project gets closer to completion, as is the case with most Firefox OS apps. A basic manifest will do to get started."
@@ -18315,16 +18326,26 @@ msgid ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</"
 "a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Koupit v USA</a> <a href=\"%"
+"(uk_ebay_url)s\" class=\"button\">Koupit v UK</a> <a href=\"%(hk_ebay_url)s\" "
+"class=\"button\">Koupit v HK</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid ""
 "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"Po tvrdé práci můžeme spolu se ZTE oznámit, že jsme uvolnili telefon ZTE "
+"Open s Firefox OS. Jedná se o zařízení zamířené na vývojáře a první "
+"uživatele po celém světě. Zařízení je dostupné skrze obchod eBay v US, UK a "
+"HK za cenu $79.99/£59.99. Telefon je odemčen a je otevřen testování a "
+"experimentům.  <a href=\"%(zte_url)s\">Přečíst si více informací</a>."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
 msgstr ""
+"Poznámka: Nová zařízení jsou dostupná i z Hong Kongu, aby se ušetřily "
+"náklady na poštovné pro Asii a Oceánii. "
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:77
 msgid "Peak"
@@ -18349,6 +18370,11 @@ msgid ""
 "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-"
 "to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
 msgstr ""
+"<strong>Pokud jste právě obdrželi Geeksphone Keon nebo Peak, pak na něm "
+"pravděpodobně běží neaktuální verze Firefox OS 1.0.1. Dříve, než s ním "
+"budete něco dělat, jej aktualizujte na aktuální verzi Firefox OS podle "
+"postupu, který je <a href=\"%(geeksphone_update_url)s\">uveden na stránkách "
+"Geeksphone</a>.</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
@@ -19093,11 +19119,11 @@ msgstr "Zobrazit s titulkami"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:307
 msgid "Made in partnership with our friends at Treehouse"
-msgstr ""
+msgstr "Vytvořeno ve spolupráci s našimi přáteli v Treehouse"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:309
 msgid "Check them out!"
-msgstr ""
+msgstr "Podívejte se na ně!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
@@ -19183,15 +19209,20 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "Bannery byste neměli žádným způsobem měnit."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
 msgstr ""
+"Když je banner použit spolu s odkazy na jiné obchody  (\"Get it on Google "
+"Play\", \"Download on the App Store\"), měla by být ikona Firefox Marketplace "
+"stejně velká (či větší)."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
 msgstr ""
+"Banner by měl směřovat na stránku detailu o aplikaci na Firefox Marketplace. "
+"<br> Například: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
