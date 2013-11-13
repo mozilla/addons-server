@@ -146,8 +146,8 @@ $(document).ready(function() {
 
 $(function () {
     // Click to translate.
-    $('.review .translate').live('click', _pd(function(event) {
-        $this = $(this);
+    $('#page').delegate('.review .translate', 'click', _pd(function(event) {
+        var $this = $(this);
         // Flag when translated.
         if ($this.data('translated')) {
             return;
@@ -156,12 +156,12 @@ $(function () {
         // Find text target.
         $target = $this.parent().siblings('.description');
         // Retrieve the translation and insert it into the target.
-        $.get($this.attr('href'), {}, function(response, status) {
-            if (status == "success") {
+        $.get($this.attr('href'), function(response, status) {
+            if (status == 'success') {
                 $target.text(response);
             } else {
                 console.error(status);
             }
-        }, 'text')
+        }, 'text');
     }));
 });

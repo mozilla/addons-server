@@ -8,8 +8,8 @@ import commonware.log
 import jingo
 from tower import ugettext as _
 from mobility.decorators import mobile_template
-import waffle
 from waffle.decorators import waffle_switch
+
 import amo
 from amo import messages
 from amo.decorators import (json_view, login_required, post_required,
@@ -100,7 +100,7 @@ def translate(request, addon, review_id, language):
 
     if request.is_ajax():
         r = requests.get(
-            'https://www.googleapis.com/language/translate/v2', params={
+            getattr(settings, 'GOOGLE_TRANSLATE_API_URL'), params={
                 'key': getattr(settings, 'GOOGLE_ANALYTICS_CREDENTIALS', ''),
                 'q': review.body, 'target': language})
         try:
@@ -110,8 +110,8 @@ def translate(request, addon, review_id, language):
             response = ''
         return http.HttpResponse(response, status=r.status_code)
     else:
-        return redirect('https://translate.google.com/#auto/%s/%s' % (
-                        language, review.body))
+        return redirect(getattr(settings, 'GOOGLE_TRANSLATE_REDIRECT_URL') %
+                        ({'lang': language, 'text': review.body}))
 
 
 @addon_view
