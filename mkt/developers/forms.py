@@ -1101,7 +1101,6 @@ class IARCGetAppInfoForm(happyforms.Form):
         if data.get('ratings'):
             # We found a rating, so store the id and code for future use.
             app.set_iarc_info(iarc_id, iarc_code)
-
             app.set_content_ratings(data.get('ratings', {}))
             app.set_descriptors(data.get('descriptors', []))
             app.set_interactives(data.get('interactives', []))

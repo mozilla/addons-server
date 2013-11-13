@@ -37,11 +37,15 @@ from amo.utils import JSONEncoder, memoize, memoize_key, smart_path
 from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
-from lib.crypto import packaged
 from market.models import AddonPremium
 from stats.models import ClientData
 from translations.fields import save_signal
 from versions.models import Version
+
+from lib.crypto import packaged
+from lib.iarc.client import get_iarc_client
+from lib.iarc.utils import (render_xml, REVERSE_DESC_MAPPING,
+                            REVERSE_INTERACTIVES_MAPPING)
 
 import mkt
 from mkt.constants import APP_FEATURES, apps
@@ -1004,18 +1008,47 @@ class Webapp(Addon):
         This overwrites or creates elements, it doesn't delete and expects data
         of the form:
 
-            [<interactive name 1>, <interactive name 2>]
+            [<has_interactive_1>, <has_interactive name 2>]
 
         """
         create_kwargs = {}
         for interactive in mkt.ratinginteractives.RATING_INTERACTIVES.keys():
-            create_kwargs['has_%s' % interactive.lower()] = (
-                interactive.lower() in map(lambda x: x.lower(), data))
+            interactive = 'has_%s' % interactive.lower()
+            create_kwargs[interactive] = interactive in map(
+                lambda x: x.lower(), data)
 
         ri, created = RatingInteractives.objects.get_or_create(
             addon=self, defaults=create_kwargs)
         if not created:
             ri.update(**create_kwargs)
+
+    def set_iarc_storefront_data(self):
+         """Send app data to IARC for them to verify."""
+         if not waffle.switch_is_active('iarc'):
+             return
+
+         iarc_info = self.iarc_info  # Should have 1-to-1 IARC info already.
+
+         with amo.utils.no_translation(self.default_locale):
+             delocalized_self = Addon.objects.get(pk=self.pk)
+
+         xmls = []
+         for cr in self.content_ratings.all():
+             xmls.append(render_xml('set_storefront_data.xml', {
+                 'submission_id': iarc_info.submission_id,
+                 'security_code': iarc_info.security_code,
+                 'rating_system': cr.get_body().iarc_name,
+                 'release_date': datetime.date.today(),
+                 'title': unicode(delocalized_self.name),
+                 'rating': cr.get_rating().iarc_name,
+                 'descriptors': self.rating_descriptors.iarc_deserialize(
+                     body=cr.get_body()),
+                 'interactive_elements':
+                     self.rating_interactives.iarc_deserialize(),
+             }))
+
+         for xml in xmls:
+             get_iarc_client('services').Set_Storefront_Data(XMLString=xml)
 
 
 class Trending(amo.models.ModelBase):
@@ -1596,6 +1629,7 @@ class ContentRating(amo.models.ModelBase):
 
     class Meta:
         db_table = 'webapps_contentrating'
+        unique_together = ('addon', 'ratings_body')
 
     def __unicode__(self):
         return u'%s: %s' % (self.addon, self.get_label())
@@ -1651,6 +1685,12 @@ class RatingDescriptors(amo.models.ModelBase, DynamicBoolFieldsMixin):
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.addon.name)
 
+    def iarc_deserialize(self, body=None):
+        """Map our descriptor strings back to the IARC ones (comma-sep.)."""
+        keys = self.to_keys()
+        if body:
+            keys = [key for key in keys if body.iarc_name.lower() in key]
+        return ', '.join(REVERSE_DESC_MAPPING.get(desc) for desc in keys)
 
 # Add a dynamic field to `RatingDescriptors` model for each rating descriptor.
 for k, v in mkt.ratingdescriptors.RATING_DESCS.iteritems():
@@ -1673,6 +1713,11 @@ class RatingInteractives(amo.models.ModelBase, DynamicBoolFieldsMixin):
 
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.addon.name)
+
+    def iarc_deserialize(self):
+        """Map our descriptor strings back to the IARC ones (comma-sep.)."""
+        return ', '.join(REVERSE_INTERACTIVES_MAPPING.get(inter)
+                         for inter in self.to_keys())
 
 
 # Add a dynamic field to `RatingInteractives` model for each rating descriptor.

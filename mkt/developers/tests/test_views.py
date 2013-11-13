@@ -420,9 +420,11 @@ class TestPublicise(amo.tests.TestCase):
     def test_publicise_get(self):
         eq_(self.client.get(self.publicise_url).status_code, 405)
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise(self, update_name, update_locales):
+    def test_publicise(self, update_name, update_locales, storefront_mock):
+        self.create_switch('iarc')
         res = self.client.post(self.publicise_url)
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PUBLIC)
@@ -430,6 +432,7 @@ class TestPublicise(amo.tests.TestCase):
             amo.STATUS_PUBLIC)
         assert update_name.called
         assert update_locales.called
+        assert storefront_mock.called
 
     def test_status(self):
         res = self.client.get(self.status_url)

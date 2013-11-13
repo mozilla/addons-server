@@ -34,7 +34,9 @@ from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
-from lib.iarc.utils import DESC_MAPPING
+from lib.iarc.utils import (
+    DESC_MAPPING, INTERACTIVES_MAPPING, REVERSE_DESC_MAPPING,
+    REVERSE_INTERACTIVES_MAPPING)
 from market.models import AddonPremium, Price
 from users.models import UserProfile
 from versions.models import update_status, Version
@@ -562,7 +564,7 @@ class TestWebapp(amo.tests.TestCase):
 
         # Create.
         app.set_interactives([
-            'shares_info', 'digital_PurChaSes', 'UWOTM8'
+            'has_shares_info', 'has_digital_PurChaSes', 'has_UWOTM8'
         ])
         eq_(RatingInteractives.objects.count(), 1)
         app_interactives = RatingInteractives.objects.get(addon=app)
@@ -572,13 +574,56 @@ class TestWebapp(amo.tests.TestCase):
 
         # Update.
         app.set_interactives([
-            'digital_content_portaL', 'digital_purchases', 'shares_ur_mum'
+            'has_digital_content_portaL', 'has_digital_purchases',
+            'has_shares_ur_mum'
         ])
         eq_(RatingInteractives.objects.count(), 1)
         app_interactives = RatingInteractives.objects.get(addon=app)
         assert not app_interactives.has_shares_info
         assert app_interactives.has_digital_content_portal
         assert app_interactives.has_digital_purchases
+
+    @mock.patch('lib.iarc.client.MockClient.call')
+    @mock.patch('mkt.webapps.models.render_xml')
+    def test_set_iarc_storefront_data(self, render_mock, storefront_mock):
+        # Set up ratings/descriptors/interactives.
+        self.create_switch('iarc')
+        app = app_factory(name='LOL')
+        app.set_iarc_info(submission_id='1234', security_code='sektor')
+        app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
+        app.set_interactives(['has_users_interact', 'has_shares_info'])
+        app.set_content_ratings({
+            mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_A,
+            mkt.ratingsbodies.PEGI: mkt.ratingsbodies.PEGI_3,
+        })
+
+        # Check the client was called.
+        app.set_iarc_storefront_data()
+        assert storefront_mock.called
+
+        eq_(render_mock.call_count, 2)
+        eq_(render_mock.call_args_list[0][0][0], 'set_storefront_data.xml')
+
+        # Check arguments to the XML template are all correct.
+        data = render_mock.call_args_list[0][0][1]
+        eq_(type(data['title']), unicode)
+        eq_(data['submission_id'], 1234)
+        eq_(data['security_code'], 'sektor')
+        eq_(data['rating'], 'Adults Only')
+        eq_(data['title'], 'LOL')
+        eq_(data['rating_system'], 'ESRB')
+        eq_(data['descriptors'], 'Blood')
+        self.assertSetEqual(data['interactive_elements'].split(', '),
+                            ['Shares Info', 'Users Interact'])
+
+        data = render_mock.call_args_list[1][0][1]
+        eq_(type(data['title']), unicode)
+        eq_(data['submission_id'], 1234)
+        eq_(data['security_code'], 'sektor')
+        eq_(data['rating'], '3+')
+        eq_(data['title'], 'LOL')
+        eq_(data['rating_system'], 'PEGI')
+        eq_(data['descriptors'], 'Fear')
 
     def test_has_payment_account(self):
         app = app_factory()
@@ -1542,6 +1587,18 @@ class TestRatingDescriptors(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
             for native, rating_desc_field in mapping.items():
                 assert hasattr(descs, rating_desc_field), rating_desc_field
 
+    def test_reverse_desc_mapping(self):
+        descs = RatingDescriptors.objects.create(addon=app_factory())
+        for desc in descs._fields():
+            eq_(type(REVERSE_DESC_MAPPING.get(desc)), unicode, desc)
+
+    def test_iarc_deserialize(self):
+        descs = RatingDescriptors.objects.create(
+            addon=app_factory(), has_esrb_blood=True, has_pegi_scary=True)
+        self.assertSetEqual(descs.iarc_deserialize().split(', '),
+                            ['Blood', 'Fear'])
+        eq_(descs.iarc_deserialize(body=mkt.ratingsbodies.ESRB), 'Blood')
+
 
 class TestRatingInteractives(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
 
@@ -1556,6 +1613,23 @@ class TestRatingInteractives(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
                          u'Social Networking']
 
         RatingInteractives.objects.create(addon=self.app)
+
+    def test_interactives_mapping(self):
+        interactives = RatingInteractives.objects.create(addon=app_factory())
+        for native, field in INTERACTIVES_MAPPING.items():
+            assert hasattr(interactives, field)
+
+    def test_reverse_interactives_mapping(self):
+        interactives = RatingInteractives.objects.create(addon=app_factory())
+        for interactive_field in interactives._fields():
+            assert REVERSE_INTERACTIVES_MAPPING.get(interactive_field)
+
+    def test_iarc_deserialize(self):
+        interactives = RatingInteractives.objects.create(
+            addon=app_factory(), has_users_interact=True, has_shares_info=True)
+        self.assertSetEqual(
+            interactives.iarc_deserialize().split(', '),
+            ['Shares Info', 'Users Interact'])
 
 
 class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):

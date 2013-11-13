@@ -117,5 +117,5 @@ class TestXMLParser(amo.tests.TestCase):
 
         # Test interactives.
         self.assertSetEqual(data['interactives'],
-                            ['shares_info', 'shares_location',
-                             'social_networking', 'users_interact'])
+                            ['has_shares_info', 'has_shares_location',
+                             'has_social_networking', 'has_users_interact'])
