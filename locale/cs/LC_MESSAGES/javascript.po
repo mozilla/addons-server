@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-10-09 15:43+0000\n"
+"PO-Revision-Date: 2013-11-13 17:35+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1381333387.0\n"
+"X-POOTLE-MTIME: 1384364136.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -94,9 +94,9 @@ msgstr "Dokončena kontrola {0}"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávou."
+msgstr[1] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
+msgstr[2] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -280,8 +280,14 @@ msgstr "Rozpoznáno: {0}"
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
+"Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociovanou aplikaci do "
+"nekompletního stavu a již nebude dostupná k prodeji:"
 msgstr[1] ""
+"Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociované aplikace do "
+"nekompletního stavu a již nebudou dostupné k prodeji:"
 msgstr[2] ""
+"Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociované aplikace do "
+"nekompletního stavu a již nebudou dostupné k prodeji:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -294,7 +300,7 @@ msgstr "Vyskytl se problém při kontaktování platebního serveru."
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
-msgstr ""
+msgstr "Chyba autentizace"
 
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
@@ -1025,11 +1031,11 @@ msgstr "Přihlášení pomocí Persona selhalo. Nastala chyba serveru."
 
 #: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "Zobrazit všechny výsledky"
 
 #: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Nalezeno více než {0} výsledků. Zvažte přeformulování svého dotazu."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
@@ -1601,9 +1607,9 @@ msgstr "Doplněk úspěšně prošel kontrolou."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} upozornění"
+msgstr[1] "{0} upozornění"
+msgstr[2] "{0} upozornění"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
