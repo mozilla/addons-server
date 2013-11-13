@@ -30,6 +30,7 @@ from applications.models import Application, AppVersion
 from amo.utils import memoize
 import devhub.signals
 from files.utils import SafeUnzip
+from tags.models import Tag
 from versions.compare import version_int as vint
 
 log = commonware.log.getLogger('z.files')
@@ -157,6 +158,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.size = storage.size(upload.path)
         data = cls.get_jetpack_metadata(upload.path)
         f.jetpack_version = data['sdkVersion']
+        if f.jetpack_version:
+            Tag(tag_text='jetpack').save_tag(version.addon)
         f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
