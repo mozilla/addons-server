@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-12 13:26+0000\n"
+"PO-Revision-Date: 2013-11-13 03:19+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384262782.0\n"
+"X-POOTLE-MTIME: 1384312792.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1762,7 +1762,7 @@ msgstr "{addon} 已从分类 {0} 精选中移除。"
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr "{addon} 已加入精选附加组件。"
+msgstr "{addons} 已成为精选附加组件。"
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
@@ -17640,7 +17640,7 @@ msgstr "Webflighter 是一款R类泰尔灵感游戏，你要逐步外星坏蛋�
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:77 mkt/ecosystem/templates/ecosystem/macros.html:121 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:9
 msgid "General Notes"
-msgstr "General Notes"
+msgstr "通用说明"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:80
 msgid "General Notes is a simple note app that allows you to sync local and remote content."
@@ -17741,19 +17741,21 @@ msgstr "您的应用处于其最基本的形式"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:79
 msgid "Once you have a few key moments, you can translate those steps into screens. You can sketch out the user flow, that is, what do your users go from one screen to another to complete a task."
-msgstr ""
+msgstr "一旦确定了一些关键节点，你就可以把它们变成屏幕上的操作步骤，然后扩展为用户操作流程，也就是，用户如何从一个屏幕到另一个屏幕从而完成一项任务。"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:86
 msgid ""
 "Think about the information a user wants to see and record. Consider which user interface (UI) elements correspond to the information above. Put things that your users need most often in the most "
 "prominent places in the screens. Even just writing out the sequence of moments helps define a wireframe model of your app and its features."
 msgstr ""
+"想想用户希望看到和记录哪些信息。考虑用户界面元素是否适合上述信息。将用户最常用的东西放在屏幕上最显眼的位置。甚至可以写下节点序列帮助确定应用的框图模型和"
+"功能。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:15
 msgid ""
 "Consider incorporating the following principles in your app to optimize the user experience. Please note that this is only a small set of design principles to get you started and it's by no means "
 "comprehensive."
-msgstr ""
+msgstr "在应用中考虑遵守以下原则以优化用户体验。请注意这只是最初始的一小部分设计原则，肯定是不全面的。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:22
 msgid "Be consistent"
@@ -17761,16 +17763,16 @@ msgstr "保持文风一致"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:24
 msgid "Be consistent in your language. Refer to an action or an item with the same term in your app, and use each term for only one action or item."
-msgstr ""
+msgstr "在语言上要保持一致，应用中对一个操作或者项目要始终用相同的术语描述，而每一个术语也只能用于描述一个操作或者一个项目。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:31
 msgid "Be consistent in your user interface (UI). For example, if you place your back button on the top left corner, it should not appear on the bottom left corner in other screens within your app."
-msgstr ""
+msgstr "用户界面要保持一致。例如，如果你把返回按钮放在了左上角，那么应用中的另外一个界面上就不能把它再放在左下角。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:38
 msgid ""
 "Be consistent in your visual elements. If two elements look the same, they should have the same behavior. If two elements have different functions, they should have distinctively different looks."
-msgstr ""
+msgstr "视觉元素要保持一致。如果两个元素看起来是一样的，就应该有相同的行为。如果两个元素有完全不同的功能，那么看起来就应该是明显不同的。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:44
 msgid "Be concise and use appropriate language"
@@ -17778,7 +17780,7 @@ msgstr "请尽量简洁、恰当地描述"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:46
 msgid "The text you use should express the most important information in a concise way. Most users don't read a lot before they decide to continue or to abandon a task."
-msgstr ""
+msgstr "文字上应该用最简洁的方式表述出最重要的信息。绝大多数用户在决定继续或者放弃一个任务之前，都不会去阅读太多内容。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:52
 msgid "Always provide clues and immediate feedback"
@@ -17866,6 +17868,8 @@ msgid ""
 "There's no &quot;right way&quot; to design a user interface, but there are plenty of ways to make your app less fun and easy to use. With this in mind, the following sections can help avoid making "
 "some of the most common UI mistakes, setting you on the path to making an app that is a joy to use no matter what platform it's running on."
 msgstr ""
+"设计用户界面没有“正确的方式”，但有很多方法可以让应用问题更少更易于使用。就此，下面的章节有助于避免常见的 UI "
+"设计错误，让您以更合适的方法设计应用，以适应各种平台。"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:27 mkt/ecosystem/templates/ecosystem/macros.html:30
 msgid "Intro to Responsive Design"
@@ -17874,7 +17878,7 @@ msgstr "响应式设计简介"
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:31 mkt/ecosystem/templates/ecosystem/design_ui.html:43
 msgid ""
 "One app, multiple screens. How do you make a UI that looks and works as great on a smartphone as it does on the desktop? Learn how to design and build UIs that change to fit your user's screen."
-msgstr ""
+msgstr "一个应用，多个屏幕，如何保证界面在智能手机上能和桌面上呈现同样的外观，完成相同的功能？看看如何设计和构建适合用户屏幕的 UI 。"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:39 mkt/ecosystem/templates/ecosystem/macros.html:34
 msgid "Responsive Navigation Patterns"
@@ -17886,7 +17890,7 @@ msgstr "Firefox OS 的 UI 设计准则"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:56
 msgid "Want to make your app look and feel like it's a Firefox OS native? These guidelines will show you how."
-msgstr ""
+msgstr "想让您的应用看起来像是 Firefox OS 原生的？这些指引将会告诉您该怎样做。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:12
 msgid "Developer Preview Phone"
@@ -17969,7 +17973,7 @@ msgstr "文档和工具"
 msgid ""
 "If you already have a Firefox OS device and want some guidance and direction, you can <a href=\"%(devhub_url)s\">get started at the Firefox Marketplace Developer Hub</a>. The <a href=\"%(mdn_url)s"
 "\">Mozilla Developer Network</a> also provides a wealth of useful resources such as API documentation and further information on Open Web App development."
-msgstr ""
+msgstr "文档和工具"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
 msgid ""
