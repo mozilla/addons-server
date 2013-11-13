@@ -1163,13 +1163,13 @@ class TestContentRatings(amo.tests.TestCase):
         self.app.save()
 
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
-        doc = pq(r.content)
+        doc = pq(r.content.decode('utf-8'))
         eq_(dict(doc('#ratings-edit form')[0].form_values())['appname'],
             u'Español')
 
         self.app.update(default_locale='en-US')
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
-        doc = pq(r.content)
+        doc = pq(r.content.decode('utf-8'))
         eq_(dict(doc('#ratings-edit form')[0].form_values())['appname'],
             u'English')
 
