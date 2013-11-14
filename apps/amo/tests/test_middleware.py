@@ -2,7 +2,7 @@
 from django import http, test
 from django.conf import settings
 
-from commonware.middleware import HidePasswordOnException
+from commonware.middleware import ScrubRequestOnException
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -82,7 +82,7 @@ class AdminMessageTest(amo.tests.TestCase):
 def test_hide_password_middleware():
     request = RequestFactory().post('/', dict(x=1, password=2, password2=2))
     request.POST._mutable = False
-    HidePasswordOnException().process_exception(request, Exception())
+    ScrubRequestOnException().process_exception(request, Exception())
     eq_(request.POST['x'], '1')
     eq_(request.POST['password'], '******')
     eq_(request.POST['password2'], '******')

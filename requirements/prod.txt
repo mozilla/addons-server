@@ -11,6 +11,7 @@ celery==3.0.24
 celery-tasktree==0.3.2
 certifi==0.0.8
 chardet==1.0.1
+commonware==0.4.2
 cssutils==0.9.7b3
 curling==0.2.6
 defusedxml==0.4.1
@@ -96,7 +97,6 @@ tastypie-services==0.2.2
 ## Not on pypi.
 -e git+https://github.com/mozilla/amo-validator.git@b7aaeaf4548d334a1ffe5348e1d64b6fd5d3a7b8#egg=amo-validator
 -e git+https://github.com/mozilla/app-validator.git@9ce687a48803e819b9e86d12b19f81958b151400#egg=app-validator
--e git+https://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
