@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-14 10:58+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2013-11-14 13:39+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384426685.0\n"
+"X-POOTLE-MTIME: 1384436394.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -19687,6 +19687,12 @@ msgid ""
 "Podcasts is an offline-capable, entirely HTML5/JS audio app. It's chiefly designed for Firefox OS, but support for other platforms and browsers is an eventual design goal. It allows users to "
 "subscribe to any podcast and listen to it right from their Firefox OS device! <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Read the full developer walkthrough</a>"
 msgstr ""
+"Podcasts je aplikace v HTML5/JS s možností běhu offline pro práci se zvukem. "
+"Je navržena pro Firefox OS, ale takovým způsobem, aby ji bylo možné převést "
+"i na jiné platformy a prohlížeče. Umožňuje se uživatelům přihlásit k "
+"jakémukoliv podcastu a poslouchat jej přímo na zařízení s Firefox OS! <a "
+"href=\"%(walkthrough_link)s\" class=\"walkthrough\">Přečtěte si o celém "
+"vývojovém procesu</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:51
 msgid "Translation files"
@@ -19705,22 +19711,31 @@ msgid ""
 "Podcasts is a <a href=\"%(packaged_apps_link)s\">packaged app</a>, so it requires a build step to be installed to Firefox OS. The <code>Makefile</code> contains a multi-step process that will "
 "create a <code>www-built</code> folder used to install the app on a phone or the <a href=\"%(simulator_link)s\">Firefox OS Simulator</a>."
 msgstr ""
+"Podcasts je <a href=\"%(packaged_apps_link)s\">zabalená aplikace</a>, vyžaduje "
+"tedy sestavení před instalací do Firefox OS. <code>Makefile</code> obsahuje "
+"několik kroků procesu, jeho výsledkem je složka <code>www-built</code>, "
+"která slouží k instalaci aplikace do telefonu nebo <a href=\"%"
+"(simulator_link)s\">simulátoru Firefox OS</a>."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:78
 msgid "Used to store settings and basic podcast metadata. Not used for podcast audio files or cover art."
 msgstr ""
+"Slouží k ukládání nastavení a základních metadat podcastů. Neukládají se zde "
+"však zvukové soubory podcastů ani přebaly alb."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:87
 msgid "An asynchronous and fast datastore for maintaining podcast audio and images."
-msgstr ""
+msgstr "Asynchronní úložiště dat pro spravování audia a obrázků."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:96
 msgid "Allows cross-domain requests on Firefox OS without CORS."
-msgstr ""
+msgstr "Umožňuje mezi-doménové požadavky na Firefox OS bez CORS."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:121
 msgid "Backbone lets us do data-binding and MVC-style coding, making the app a lot easier to develop."
 msgstr ""
+"Backbone umožňuje spojování dat a MVC kódování vzhledu, což velmi usnadňuje "
+"vývoj aplikace."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
