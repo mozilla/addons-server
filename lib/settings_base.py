@@ -466,8 +466,6 @@ DOMAIN_METHODS = {
             'tower.management.commands.extract.extract_tower_template'),
         ('mkt/templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
-    ],
-    'lhtml': [
         ('**/templates/**.lhtml',
             'tower.management.commands.extract.extract_tower_template'),
     ],
