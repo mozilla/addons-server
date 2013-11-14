@@ -40,7 +40,7 @@ The following command will install the required development files on Ubuntu or,
 if you're running a recent version, you can `install them automatically
 <apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev>`_::
 
-    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig
+    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig openssl
 
 On versions 12.04 and later, you will need to install a patched version of
 M2Crypto instead of the version from PyPI.::
