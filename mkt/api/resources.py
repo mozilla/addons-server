@@ -471,7 +471,7 @@ class PriceTierSerializer(ModelSerializer):
 class PriceTierViewSet(generics.CreateAPIView,
                        generics.RetrieveUpdateDestroyAPIView,
                        ModelViewSet):
-    permission_classes = [GroupPermission('Admin', '%')]
+    permission_classes = [GroupPermission('Prices', 'Edit')]
     authentication_classes = [RestOAuthAuthentication]
     serializer_class = PriceTierSerializer
     model = Price
@@ -493,7 +493,7 @@ class PriceCurrencySerializer(ModelSerializer):
 
 
 class PriceCurrencyViewSet(ModelViewSet):
-    permission_classes = [GroupPermission('Admin', '%')]
+    permission_classes = [GroupPermission('Prices', 'Edit')]
     authentication_classes = [RestOAuthAuthentication]
     serializer_class = PriceCurrencySerializer
     model = PriceCurrency
