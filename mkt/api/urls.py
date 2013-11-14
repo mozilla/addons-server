@@ -8,9 +8,9 @@ from tastypie_services.services import (ErrorResource, SettingsResource)
 from mkt.submit.api import PreviewResource, StatusResource, ValidationResource
 from mkt.api.base import AppRouter, handle_500, SlugRouter
 from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
-                               ConfigResource, error_reporter,
-                               PriceTierViewSet, PriceCurrencyViewSet,
-                               RefreshManifestViewSet, RegionResource)
+                               error_reporter, PriceTierViewSet,
+                               PriceCurrencyViewSet, RefreshManifestViewSet,
+                               RegionResource, site_config)
 from mkt.collections.views import CollectionImageViewSet, CollectionViewSet
 from mkt.features.views import AppFeaturesList
 from mkt.ratings.resources import RatingResource
@@ -41,7 +41,6 @@ subapps.register('refresh-manifest', RefreshManifestViewSet,
                  base_name='app-refresh-manifest')
 
 services = Api(api_name='services')
-services.register(ConfigResource())
 services.register(RegionResource())
 services.register(CarrierResource())
 
@@ -62,6 +61,7 @@ urlpatterns = patterns('',
     url(r'^apps/app/', include(subapps.urls)),
     url(r'^', include(services.urls)),
     url(r'^services/', include(svcs.urls)),
+    url(r'^services/config/site/', site_config, name='site-config'),
     url(r'^fireplace/report_error', error_reporter, name='error-reporter'),
     url(r'^rocketfuel/', include(rocketfuel.urls)),
     url(r'^rocketfuel/collections/', include(subcollections.urls)),

@@ -1,18 +1,18 @@
 import json
 
 from nose.tools import eq_
+from django.core.urlresolvers import reverse
 
-from mkt.api.tests.test_oauth import BaseOAuth
-from mkt.api.base import get_url
+from mkt.api.tests.test_oauth import RestOAuth
 
 
-class TestConfig(BaseOAuth):
+class TestConfig(RestOAuth):
 
     def setUp(self):
-        super(TestConfig, self).setUp(api_name='services')
-        self.url = get_url('config', pk='site')
+        super(TestConfig, self).setUp()
+        self.url = reverse('site-config')
 
-    def test(self):
+    def testConfig(self):
         self.create_switch('allow-refund')
         res = self.anon.get(self.url)
         eq_(res.status_code, 200)
