@@ -9,7 +9,6 @@ from . import api, views, views_themes
 
 
 reviewers_api = Api(api_name='reviewers')
-reviewers_api.register(api.ReviewingResource())
 reviewers_api.register(api.ReviewersSearchResource())
 
 # All URLs under /reviewers/.
@@ -87,4 +86,6 @@ url_patterns = patterns('',
 
 api_patterns = patterns('',
     url(r'^', include(reviewers_api.urls)),  # The API.
+    url(r'^reviewers/reviewing', api.ReviewingView.as_view(),
+        name='reviewing-list')
 )

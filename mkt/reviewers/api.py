@@ -1,36 +1,24 @@
-from amo.urlresolvers import reverse
+from rest_framework.generics import ListAPIView
 
-from mkt.api.authentication import OAuthAuthentication
-from mkt.api.authorization import PermissionAuthorization
-from mkt.api.base import MarketplaceResource
-from mkt.reviewers.utils import AppsReviewing
+from mkt.api.authentication import (RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
+from mkt.api.authorization import GroupPermission, PermissionAuthorization
 from mkt.reviewers.forms import ApiReviewersSearchForm
+from mkt.reviewers.serializers import ReviewingSerializer
+from mkt.reviewers.utils import AppsReviewing
 from mkt.search.api import SearchResource
 from mkt.search.utils import S
 from mkt.webapps.models import WebappIndexer
 
 
-class Wrapper(object):
-    def __init__(self, pk):
-        self.pk = pk
+class ReviewingView(ListAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [GroupPermission('Apps', 'Review')]
+    serializer_class = ReviewingSerializer
 
-
-class ReviewingResource(MarketplaceResource):
-
-    class Meta(MarketplaceResource.Meta):
-        authentication = OAuthAuthentication()
-        authorization = PermissionAuthorization('Apps', 'Review')
-        list_allowed_methods = ['get']
-        resource_name = 'reviewing'
-
-    def get_resource_uri(self, bundle):
-        return reverse('api_dispatch_detail',
-                       kwargs={'api_name': 'apps', 'resource_name': 'app',
-                               'pk': bundle.obj.pk})
-
-    def obj_get_list(self, request, **kwargs):
-        return [Wrapper(r['app'].pk)
-                for r in AppsReviewing(request).get_apps()]
+    def get_queryset(self):
+        return [row['app'] for row in AppsReviewing(self.request).get_apps()]
 
 
 class ReviewersSearchResource(SearchResource):
