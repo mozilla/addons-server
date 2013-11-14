@@ -58,7 +58,8 @@
           <input type="hidden" name="appname" value="{{ app_name }}">
           <input type="hidden" name="platform" value="{{ settings.IARC_PLATFORM }}">
           <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
-          {# TODO: Also pass token and pingback URL once we know how these are defined. #}
+          <input type="hidden" name="token" value="{{ addon.iarc_token() }}">
+          <input type="hidden" name="pingback_url" value="{{ url('content-ratings-pingback', addon.app_slug)|absolutify }}">
           <p class="listing-footer">
             <input type="submit" value="{{ _('Create an IARC Ratings Certificate') }}"
                    class="create-iarc-rating button"

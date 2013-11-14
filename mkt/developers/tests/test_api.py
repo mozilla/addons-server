@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import hashlib
 import json
 
 from django.core.urlresolvers import NoReverseMatch
@@ -228,8 +227,6 @@ class TestContentRating(amo.tests.TestCase):
 class TestContentRatingPingback(RestOAuth):
 
     def setUp(self):
-        from django.conf import settings
-
         super(TestContentRatingPingback, self).setUp()
         self.app = app_factory()
         self.url = reverse('content-ratings-pingback', args=[self.app.pk])
@@ -244,8 +241,7 @@ class TestContentRatingPingback(RestOAuth):
                     {
                         'TYPE': 'string',
                         'NAME': 'token',
-                        'VALUE': hashlib.sha512(
-                            settings.SECRET_KEY + str(self.app.id)).hexdigest()
+                        'VALUE': self.app.iarc_token()
                     },
                     {
                         'TYPE': 'int',

@@ -1,7 +1,5 @@
-import hashlib
 import json
 
-from django.conf import settings
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
@@ -162,8 +160,7 @@ class ContentRatingsPingback(CORSMixin, APIView):
 
         # Verify token.
         data = request.DATA
-        hash = hashlib.sha512(settings.SECRET_KEY + str(app.id)).hexdigest()
-        if hash != data.get('token'):
+        if app.iarc_token() != data.get('token'):
             return Response({'detail': 'Token mismatch'},
                             status=status.HTTP_400_BAD_REQUEST)
 
