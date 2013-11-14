@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-14 09:35+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2013-11-14 09:36+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384421719.0\n"
+"X-POOTLE-MTIME: 1384421818.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1340,7 +1340,7 @@ msgstr "trvalý odkaz"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "přeložit"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
