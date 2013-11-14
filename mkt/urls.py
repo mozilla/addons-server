@@ -12,20 +12,13 @@ import amo
 from apps.users.views import logout
 from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
-from mkt.abuse.urls import api_patterns as abuse_api_patterns
-from mkt.account.urls import api_patterns as account_api_patterns
 from mkt.api import oauth
-from mkt.comm.urls import api_patterns as comm_api_patterns
 from mkt.detail.views import manifest as mini_manifest
-from mkt.developers.urls import dev_api_patterns, payments_api_patterns
 from mkt.developers.views import login
 from mkt.operators.urls import url_patterns as operator_patterns
 from mkt.purchase.urls import webpay_services_patterns
-from mkt.receipts.urls import receipt_api_patterns
-from mkt.reviewers.urls import (api_patterns as reviewer_api_patterns,
-                                url_patterns as reviewer_url_patterns)
-from mkt.stats.urls import (app_site_patterns, stats_api_patterns,
-                            txn_api_patterns)
+from mkt.reviewers.urls import url_patterns as reviewer_url_patterns
+from mkt.stats.urls import app_site_patterns
 
 
 admin.autodiscover()
@@ -34,22 +27,6 @@ handler403 = 'mkt.site.views.handler403'
 handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
-api_patterns = patterns('',
-    url('', include('mkt.fireplace.urls')),
-    url('', include('mkt.api.urls')),
-    url('', include(abuse_api_patterns)),
-    url('', include(account_api_patterns)),
-    url('', include('mkt.installs.urls')),
-    url('', include(reviewer_api_patterns)),
-    url('', include('mkt.webpay.urls')),
-    url('', include(dev_api_patterns)),
-    url('', include(payments_api_patterns)),
-    url('', include(receipt_api_patterns)),
-    url('', include('mkt.monolith.urls')),
-    url('', include(comm_api_patterns)),
-    url('', include(stats_api_patterns)),
-    url('', include(txn_api_patterns)),
-)
 
 home = lambda request: HttpResponse('''<a
 href="https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni">
@@ -138,10 +115,7 @@ urlpatterns = patterns('',
     url('^oauth/authorize/$', oauth.authorize,
         name='mkt.developers.oauth_authorize'),
 
-    # Version the API here.
-    url('^api/', include(api_patterns)),
-    # Must go below to ensure these resolve first.
-    url('^api/v1/', include(api_patterns)),
+    url('^api/', include('mkt.api.urls')),
 
     url('^downloads/', include('mkt.downloads.urls')),
 
