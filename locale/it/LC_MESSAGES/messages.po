@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-10-27 13:19+0000\n"
-"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2013-11-14 17:30+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1382879952.0\n"
+"X-POOTLE-MTIME: 1384450205.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1327,7 +1327,7 @@ msgstr "link permanente"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "Traduci"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -4359,7 +4359,7 @@ msgstr "Le mie app"
 
 #: apps/devhub/helpers.py:72 mkt/developers/helpers.py:66 mkt/developers/templates/developers/nav.html:8 mkt/site/context_processors.py:40 mkt/templates/mkt/account-links.html:10
 msgid "My Submissions"
-msgstr "I miei caricamenti"
+msgstr "Le mie app"
 
 #: apps/devhub/helpers.py:106
 msgid "Developer Docs"
@@ -13714,7 +13714,7 @@ msgstr "Indirizzo email"
 
 #: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:59
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Ricordami su questo dispositivo"
 
 #: apps/users/templates/users/login_form.html:55 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
 msgid "Log in"
@@ -15510,240 +15510,240 @@ msgstr "Smartphone Android"
 
 #: mkt/constants/platforms.py:56 mkt/constants/platforms.py:59
 msgid "Tablets"
-msgstr ""
+msgstr "Tablet"
 
 #: mkt/constants/ratingdescriptors.py:13 mkt/constants/ratingdescriptors.py:127 mkt/constants/ratingdescriptors.py:175 mkt/constants/ratingdescriptors.py:288
 msgid "Violence"
-msgstr ""
+msgstr "Violenza"
 
 #: mkt/constants/ratingdescriptors.py:16
 msgid "Extreme Violence"
-msgstr ""
+msgstr "Violenza estrema"
 
 #: mkt/constants/ratingdescriptors.py:19 mkt/constants/ratingdescriptors.py:88 mkt/constants/ratingdescriptors.py:242
 msgid "Nudity"
-msgstr ""
+msgstr "Scene di nudo"
 
 #. L10n: `Sex` as in sexual, not as in gender.
 #: mkt/constants/ratingdescriptors.py:23 mkt/constants/ratingdescriptors.py:186
 msgid "Sex"
-msgstr ""
+msgstr "Sesso"
 
 #: mkt/constants/ratingdescriptors.py:26
 msgid "Explicit Sex"
-msgstr ""
+msgstr "Sesso esplicito"
 
 #: mkt/constants/ratingdescriptors.py:29 mkt/constants/ratingdescriptors.py:189 mkt/constants/ratingdescriptors.py:285
 msgid "Drugs"
-msgstr ""
+msgstr "Droghe"
 
 #: mkt/constants/ratingdescriptors.py:32
 msgid "Legal Drugs"
-msgstr ""
+msgstr "Droghe legali"
 
 #: mkt/constants/ratingdescriptors.py:35
 msgid "Illegal Drugs"
-msgstr ""
+msgstr "Droghe illegali"
 
 #: mkt/constants/ratingdescriptors.py:42
 msgid "Criminal Acts"
-msgstr ""
+msgstr "Atti criminali"
 
 #: mkt/constants/ratingdescriptors.py:45
 msgid "Shocking Content"
-msgstr ""
+msgstr "Contenuti scioccanti"
 
 #: mkt/constants/ratingdescriptors.py:48 mkt/constants/ratingdescriptors.py:133 mkt/constants/ratingdescriptors.py:201 mkt/constants/ratingdescriptors.py:269
 msgid "No Descriptors"
-msgstr ""
+msgstr "nessun descrittore"
 
 #: mkt/constants/ratingdescriptors.py:51 mkt/constants/ratingdescriptors.py:205
 msgid "Alcohol Reference"
-msgstr ""
+msgstr "Riferimenti a bevande alcoliche"
 
 #: mkt/constants/ratingdescriptors.py:54 mkt/constants/ratingdescriptors.py:208
 msgid "Blood"
-msgstr ""
+msgstr "Sangue"
 
 #: mkt/constants/ratingdescriptors.py:57 mkt/constants/ratingdescriptors.py:211
 msgid "Blood and Gore"
-msgstr ""
+msgstr "Sangue e mutilazioni"
 
 #: mkt/constants/ratingdescriptors.py:60 mkt/constants/ratingdescriptors.py:214
 msgid "Crude Humor"
-msgstr ""
+msgstr "Comicità volgare"
 
 #: mkt/constants/ratingdescriptors.py:63 mkt/constants/ratingdescriptors.py:217
 msgid "Drug Reference"
-msgstr ""
+msgstr "Riferimenti a droga"
 
 #: mkt/constants/ratingdescriptors.py:66 mkt/constants/ratingdescriptors.py:220
 msgid "Fantasy Violence"
-msgstr ""
+msgstr "Violenza fantastica"
 
 #: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:223
 msgid "Intense Violence"
-msgstr ""
+msgstr "Violenza esplicita"
 
 #: mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:230
 msgid "Mild Blood"
-msgstr ""
+msgstr "Sangue moderato"
 
 #: mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:233
 msgid "Mild Fantasy Violence"
-msgstr ""
+msgstr "Violenza fantastica moderata"
 
 #: mkt/constants/ratingdescriptors.py:82 mkt/constants/ratingdescriptors.py:236
 msgid "Mild Language"
-msgstr ""
+msgstr "Linguaggio leggermente volgare"
 
 #: mkt/constants/ratingdescriptors.py:85 mkt/constants/ratingdescriptors.py:239
 msgid "Mild Violence"
-msgstr ""
+msgstr "Violenza moderata"
 
 #: mkt/constants/ratingdescriptors.py:91 mkt/constants/ratingdescriptors.py:245
 msgid "Partial Nudity"
-msgstr ""
+msgstr "Nudità parziale"
 
 #: mkt/constants/ratingdescriptors.py:94 mkt/constants/ratingdescriptors.py:195 mkt/constants/ratingdescriptors.py:248
 msgid "Gambling"
-msgstr ""
+msgstr "Gioco d'azzardo"
 
 #: mkt/constants/ratingdescriptors.py:97 mkt/constants/ratingdescriptors.py:251 mkt/constants/ratingdescriptors.py:275
 msgid "Sexual Content"
-msgstr ""
+msgstr "Contenuto sessuale"
 
 #: mkt/constants/ratingdescriptors.py:100 mkt/constants/ratingdescriptors.py:254
 msgid "Sexual Themes"
-msgstr ""
+msgstr "Tematica sessuale"
 
 #: mkt/constants/ratingdescriptors.py:103 mkt/constants/ratingdescriptors.py:257
 msgid "Simulated Gambling"
-msgstr ""
+msgstr "Gioco d'azzardo simulato"
 
 #: mkt/constants/ratingdescriptors.py:106 mkt/constants/ratingdescriptors.py:260
 msgid "Strong Language"
-msgstr ""
+msgstr "Linguaggio volgare"
 
 #: mkt/constants/ratingdescriptors.py:109 mkt/constants/ratingdescriptors.py:263
 msgid "Strong Sexual Content"
-msgstr ""
+msgstr "Contenuto sessuale esplicito"
 
 #: mkt/constants/ratingdescriptors.py:112 mkt/constants/ratingdescriptors.py:266
 msgid "Suggestive Themes"
-msgstr ""
+msgstr "Tematiche allusive"
 
 #: mkt/constants/ratingdescriptors.py:115
 msgid "Tobacco Reference"
-msgstr ""
+msgstr "Riferimenti al tabacco"
 
 #: mkt/constants/ratingdescriptors.py:118
 msgid "Use of Alcohol"
-msgstr ""
+msgstr "Utilizzo di bevande alcoliche"
 
 #: mkt/constants/ratingdescriptors.py:121
 msgid "Use of Drugs"
-msgstr ""
+msgstr "Utilizzo di droghe"
 
 #: mkt/constants/ratingdescriptors.py:124
 msgid "Use of Tobacco"
-msgstr ""
+msgstr "Utilizzo di tabacco"
 
 #: mkt/constants/ratingdescriptors.py:130
 msgid "Violence References"
-msgstr ""
+msgstr "Riferimenti a contenuti violenti"
 
 #: mkt/constants/ratingdescriptors.py:136
 msgid "Comic Mischief"
-msgstr ""
+msgstr "Comicità grossolana o allusiva"
 
 #: mkt/constants/ratingdescriptors.py:139
 msgid "Alcohol and Tobacco Reference"
-msgstr ""
+msgstr "Riferimenti a bevande alcoliche e tabacco"
 
 #: mkt/constants/ratingdescriptors.py:142
 msgid "Drug and Alcohol Reference"
-msgstr ""
+msgstr "Riferimenti a droga e bevande alcoliche"
 
 #: mkt/constants/ratingdescriptors.py:145
 msgid "Use of Alcohol and Tobacco"
-msgstr ""
+msgstr "Utilizzo di bevande alcoliche e tabacco"
 
 #: mkt/constants/ratingdescriptors.py:148
 msgid "Use of Drug and Alcohol"
-msgstr ""
+msgstr "Utilizzo di droga e bevande alcoliche"
 
 #: mkt/constants/ratingdescriptors.py:151
 msgid "Drug and Tobacco Reference"
-msgstr ""
+msgstr "Riferimenti a droga e tabacco"
 
 #: mkt/constants/ratingdescriptors.py:154
 msgid "Drug, Alcohol, and Tobacco Reference"
-msgstr ""
+msgstr "Riferimenti a droga, bevande alcoliche e tabacco"
 
 #: mkt/constants/ratingdescriptors.py:157
 msgid "Use of Drug and Tobacco"
-msgstr ""
+msgstr "Utilizzo di droga e tabacco"
 
 #: mkt/constants/ratingdescriptors.py:160
 msgid "Use of Drug, Alcohol, and Tobacco"
-msgstr ""
+msgstr "Utilizzo di droga, bevande alcoliche e tabacco"
 
 #: mkt/constants/ratingdescriptors.py:163
 msgid "Scary Themes"
-msgstr ""
+msgstr "Tematiche inquietanti"
 
 #: mkt/constants/ratingdescriptors.py:166
 msgid "Hate Speech"
-msgstr ""
+msgstr "Incitazioni all'odio"
 
 #: mkt/constants/ratingdescriptors.py:169
 msgid "Crime"
-msgstr ""
+msgstr "Crimine"
 
 #: mkt/constants/ratingdescriptors.py:172
 msgid "Criminal Instruction"
-msgstr ""
+msgstr "Istruzioni per atti criminali"
 
 #: mkt/constants/ratingdescriptors.py:182
 msgid "Fear"
-msgstr ""
+msgstr "Paura"
 
 #: mkt/constants/ratingdescriptors.py:192 mkt/constants/ratingdescriptors.py:282
 msgid "Discrimination"
-msgstr ""
+msgstr "Discriminazione"
 
 #: mkt/constants/ratingdescriptors.py:198
 msgid "Online"
-msgstr ""
+msgstr "In linea"
 
 #: mkt/constants/ratingdescriptors.py:272
 msgid "Frightening Content"
-msgstr ""
+msgstr "Contenuti che incutono paura"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
-msgstr ""
+msgstr "Interazione con l'utente"
 
 #: mkt/constants/ratinginteractives.py:15
 msgid "Shares Info"
-msgstr ""
+msgstr "Condivide informazioni"
 
 #: mkt/constants/ratinginteractives.py:18
 msgid "Shares Location"
-msgstr ""
+msgstr "Condivide la posizione geografica"
 
 #: mkt/constants/ratinginteractives.py:21
 msgid "Digital Purchases"
-msgstr ""
+msgstr "Acquisti digitali"
 
 #: mkt/constants/ratinginteractives.py:24
 msgid "Social Networking"
-msgstr ""
+msgstr "Social network"
 
 #: mkt/constants/ratinginteractives.py:27
 msgid "Digital Content Portal"
-msgstr ""
+msgstr "Portale contenuti digitali"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "General Audiences"
@@ -15751,47 +15751,47 @@ msgstr "Per tutti"
 
 #: mkt/constants/ratingsbodies.py:6
 msgid "Not recommended for users younger than 3 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 3 anni"
 
 #: mkt/constants/ratingsbodies.py:7
 msgid "Not recommended for users younger than 6 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 6 anni"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Not recommended for users younger than 7 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 7 anni"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Not recommended for users younger than 10 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 10 anni"
 
 #: mkt/constants/ratingsbodies.py:10
 msgid "Not recommended for users younger than 12 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 12 anni"
 
 #: mkt/constants/ratingsbodies.py:11
 msgid "Not recommended for users younger than 13 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 13 anni"
 
 #: mkt/constants/ratingsbodies.py:12
 msgid "Not recommended for users younger than 14 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 14 anni"
 
 #: mkt/constants/ratingsbodies.py:13
 msgid "Not recommended for users younger than 16 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 16 anni"
 
 #: mkt/constants/ratingsbodies.py:14
 msgid "Not recommended for users younger than 17 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 17 anni"
 
 #: mkt/constants/ratingsbodies.py:15
 msgid "Not recommended for users younger than 18 years of age"
-msgstr ""
+msgstr "Non consigliata per utenti minori di 18 anni"
 
 #: mkt/constants/ratingsbodies.py:16
 msgid "Rejected for All Audiences"
-msgstr ""
+msgstr "Rifiutata per qualunque tipo di pubblico"
 
 #: mkt/constants/ratingsbodies.py:89
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -15803,47 +15803,47 @@ msgstr "Generico"
 
 #: mkt/constants/ratingsbodies.py:185
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Unterhaltungssoftware Selbstkontrolle (USK)"
 
 #: mkt/constants/ratingsbodies.py:192
 msgid "Everyone"
-msgstr ""
+msgstr "Tutti"
 
 #: mkt/constants/ratingsbodies.py:199
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Maggiori di 10 anni"
 
 #: mkt/constants/ratingsbodies.py:206
 msgid "Teen"
-msgstr ""
+msgstr "Maggiori di 13 anni"
 
 #: mkt/constants/ratingsbodies.py:213
 msgid "Mature 17+"
-msgstr ""
+msgstr "Maggiori di 17 anni"
 
 #: mkt/constants/ratingsbodies.py:220
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Solo adulti (più di 18 anni)"
 
 #: mkt/constants/ratingsbodies.py:227
 msgid "Rating Pending"
-msgstr ""
+msgstr "Classificazione in sospeso"
 
 #: mkt/constants/ratingsbodies.py:238
 msgid "N. America"
-msgstr ""
+msgstr "N. America"
 
 #: mkt/constants/ratingsbodies.py:242
 msgid "Entertainment Software Rating Board"
-msgstr ""
+msgstr "Entertainment Software Rating Board (ESRB)"
 
 #: mkt/constants/ratingsbodies.py:282
 msgid "Europe"
-msgstr ""
+msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:286
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Pan European Game Information (PEGI)"
 
 #: mkt/constants/regions.py:51
 msgid "Worldwide"
@@ -15935,7 +15935,7 @@ msgstr "Non è possibile effettuare la connessione con il server per i pagamenti
 
 #: mkt/developers/api.py:88
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "Impossibile eliminare un account condiviso"
 
 #: mkt/developers/forms.py:99
 msgid "All team members must have read and agreed to the developer agreement."
@@ -16027,11 +16027,11 @@ msgstr "Attiva nuove regioni"
 
 #: mkt/developers/forms.py:659
 msgid "Make my app available everywhere"
-msgstr ""
+msgstr "Rendi l'app disponibile in tutte le regioni"
 
 #: mkt/developers/forms.py:660
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Scegliere le regioni in cui rendere disponibile l'app"
 
 #: mkt/developers/forms.py:832
 msgid "Agree"
@@ -16083,7 +16083,7 @@ msgstr "Formato del file non valido. Sono supportati solo i file %s."
 
 #: mkt/developers/forms.py:1011
 msgid "Content rating record not found."
-msgstr ""
+msgstr "Elemento di classificazione dei contenuti non trovato."
 
 #: mkt/developers/forms_payments.py:56 mkt/submit/forms.py:269
 msgid "App Price"
@@ -16248,7 +16248,7 @@ msgstr "Sviluppatori"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:175
 msgid "Shared Account: {0}"
-msgstr ""
+msgstr "Account condiviso: {0}"
 
 #: mkt/developers/models.py:190
 msgid "Bango"
@@ -16330,7 +16330,7 @@ msgstr "La nuova versione è stata aggiunta correttamente."
 
 #: mkt/developers/views.py:310
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "Classificazione del contenuto salvata correttamente."
 
 #: mkt/developers/views.py:359
 msgid "Application for preload successfully submitted."
@@ -16622,7 +16622,7 @@ msgstr "Può visualizzare le impostazioni dell'app e gestire le richieste di rim
 
 #: mkt/developers/templates/developers/apps/profile.html:3
 msgid "Developer Profile"
-msgstr ""
+msgstr "Profilo sviluppatore"
 
 #: mkt/developers/templates/developers/apps/profile.html:19
 msgid "Your developer profile is set to be <b>public</b>."
@@ -16731,6 +16731,8 @@ msgstr "Visualizza il tuo piano di test più recente"
 #: mkt/developers/templates/developers/apps/status.html:139
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
 msgstr ""
+"Scopri come richiedere che la tua app venga preinstallata sui dispositivi "
+"Firefox OS"
 
 #: mkt/developers/templates/developers/apps/status.html:141
 msgid "Update your test plan"
@@ -16877,13 +16879,16 @@ msgstr "Inserire gli indirizzi email separati da virgole"
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
+"Le etichette aiutano gli utenti a trovare l'app e dovrebbero essere brevi "
+"descrizioni come schede, barra degli strumenti o twitter. Puoi utilizzare al "
+"massimo {0} etichette."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:123 mkt/developers/templates/developers/apps/listing/item_actions_app.html:69
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:9 mkt/developers/templates/developers/includes/addons_edit_nav.html:13
 msgid "Content Ratings"
-msgstr "Valutazioni del contenuto"
+msgstr "Classificazione dei contenuti"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:125
 msgid "Ratings from official ratings bodies for this app."
@@ -17081,7 +17086,7 @@ msgstr "Ci piacerebbe conoscere il motivo per cui hai deciso di cancellare la tu
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:46
 msgid "Team Members & License"
-msgstr ""
+msgstr "Licenza e componenti del team di sviluppo"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:47 mkt/developers/templates/developers/apps/listing/item_actions_app.html:79
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:19 mkt/developers/templates/developers/payments/premium.html:4
@@ -17094,11 +17099,11 @@ msgstr "Fornisci informazioni sui pagamenti per l'app."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Get content ratings for the app."
-msgstr ""
+msgstr "Ottieni la classificazione del contenuto per l'app."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
 msgid "Set Up Content Ratings"
-msgstr ""
+msgstr "Imposta la classificazione dei contenuti"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -17114,7 +17119,7 @@ msgstr "Aggiungi una nuova versione"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "Stato e versioni"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:86 mkt/developers/templates/developers/includes/addons_edit_nav.html:23
 #: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:162
@@ -17131,15 +17136,15 @@ msgstr "Transazioni"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:14
 msgid "This app's submission process has not been fully completed."
-msgstr ""
+msgstr "Il processo di caricamento di quest'app non è stato completato al 100%."
 
 #: mkt/developers/templates/developers/apps/listing/items.html:17
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "Quest'app deve ricevere una classificazione dei contenuti."
 
 #: mkt/developers/templates/developers/apps/listing/items.html:20
 msgid "This app needs a payment account set up."
-msgstr ""
+msgstr "È necessario configurare un conto pagamenti per l'app."
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:28
@@ -17160,7 +17165,7 @@ msgstr "Prezzo:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:59
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "Configurazione conto pagamenti"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:64
 msgid "Change Devices"
@@ -17169,10 +17174,13 @@ msgstr "Modifica dispositivi"
 #: mkt/developers/templates/developers/apps/listing/items.html:68
 msgid "<strong class=\"rating-notice\">This app will be deactivated by January 13th if no content ratings are assigned:</strong>"
 msgstr ""
+"<strong class=\"rating-notice\">Questa app sarà disattivata a partire dal 13 "
+"gennaio a meno che non le venga attribuita una classificazione dei "
+"contenuti:</strong>"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:71
 msgid "Set up Content Ratings"
-msgstr ""
+msgstr "Impostazioni per la classificazione dei contenuti"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -17210,57 +17218,80 @@ msgstr "Termini e condizioni per le app preinstallate"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr ""
+msgstr "Ottieni una classificazione per l'app"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
+"Per poter esporre l'app nel Marketplace è necessario conseguire un "
+"certificato dall'International Age Rating Coalition (IARC). Facendo clic sul "
+"pulsante sottostante si aprirà una nuova finestra con un breve questionario "
+"relativo ai contenuti dell'app che dovrai completare rispondendo sì o no "
+"alle varie domande. Al termine del questionario la finestra verrà chiusa e "
+"riceverai una classificazione in base all'età per l'app."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
+"Utilizzando lo strumento di certificazione dello IARC, accetti di rispettare "
+"la loro <a href=\"%(privacy_url)s\">Informativa sulla privacy</a> e il loro "
+"<a href=\"%(tos_url)s\">accordo sui termini di servizio</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
 msgstr ""
+"Il processo di classificazione di IARC è stato completato. Verrai "
+"reindirizzato alla <a href=\"%(ratings_url)s\">pagina di classificazione dei "
+"contenuti</a> dell'app."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr ""
+"Spiacenti, si è verificato un errore durante il tentativo di elaborare la "
+"classificazione dei contenuti sul nostro server. Puoi ritentare subito o in "
+"un secondo momento."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:63
 msgid "Create an IARC Ratings Certificate"
-msgstr ""
+msgstr "Genera un certificato di classificazione IARC"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
-msgstr ""
+msgstr "Hai già ottenuto una classificazione per l'app?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
+"Se hai già ricevuto la classificazione dell'app utilizzando lo strumento di "
+"classificazione dello IARC, menzionato in precedenza, e sei in possesso del "
+"codice di sicurezza rilasciato dallo IARC, puoi inserirlo manualmente qui di "
+"seguito:"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr ""
+msgstr "ID invio"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:98
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
+"L'ID d'invio è incluso nel certificato che ti è stato inviato. Si tratta di "
+"un numero, ad esempio &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
-msgstr ""
+msgstr "Codice di sicurezza"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
+"Il codice di sicurezza è incluso nel certificato che ti è stato inviato. È "
+"composto da numeri e lettere, ad esempio &quot;AB12CD3&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
-msgstr ""
+msgstr "Sistema di classificazione"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:200
 msgid "Region"
@@ -17268,11 +17299,11 @@ msgstr "Regione"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
-msgstr ""
+msgstr "Categoria di classificazione"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptions"
-msgstr ""
+msgstr "Descrizioni"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -17391,7 +17422,7 @@ msgstr "Aggiungi, gestisci o visualizza le transazioni del tuo conto pagamenti"
 
 #: mkt/developers/templates/developers/payments/premium.html:147
 msgid "Prices and Countries"
-msgstr ""
+msgstr "Prezzi e paesi"
 
 #: mkt/developers/templates/developers/payments/premium.html:163
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -17407,7 +17438,7 @@ msgstr "Non applicabile"
 
 #: mkt/developers/templates/developers/payments/premium.html:180
 msgid "Regions"
-msgstr ""
+msgstr "Regioni"
 
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Available Regions"
@@ -17442,10 +17473,14 @@ msgid ""
 "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck "
 "that region before saving."
 msgstr ""
+"L'app sarà disponibile nelle seguenti regioni non appena i pagamenti "
+"verranno attivati in accordo con il prezzo di vendita prescelto. Per non "
+"esporre l'app in una di queste regioni deseleziona le regioni da escludere "
+"prima di procedere al salvataggio."
 
 #: mkt/developers/templates/developers/payments/premium.html:238
 msgid "Regions and Listings"
-msgstr ""
+msgstr "Regioni e visualizzazione"
 
 #: mkt/developers/templates/developers/payments/premium.html:252
 msgid "Promote as upgrade to free version"
@@ -20018,7 +20053,7 @@ msgstr "Ricerca transazioni"
 
 #: mkt/lookup/forms.py:17
 msgid "Process a manual refund"
-msgstr ""
+msgstr "Elabora un rimborso manuale"
 
 #: mkt/lookup/forms.py:20
 msgid "Enter refund details to refund transaction"
@@ -20163,6 +20198,9 @@ msgstr "Non richiesto"
 #: mkt/lookup/templates/lookup/transaction_summary.html:60
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
 msgstr ""
+"Spunta questa casella se il provider per i pagamenti ha elaborato "
+"manualmente una richiesta di rimborso. Così facendo verrà effettuato il "
+"rimborso sui server Mozilla, senza però contattare il provider."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:66
 msgid "Refund this transaction"
@@ -20742,11 +20780,11 @@ msgstr "App con privilegi"
 
 #: mkt/reviewers/templates/reviewers/queue.html:57
 msgid "Premium with In-App"
-msgstr ""
+msgstr "Premium con pagamenti in-app"
 
 #: mkt/reviewers/templates/reviewers/queue.html:59
 msgid "Free with In-App"
-msgstr ""
+msgstr "Gratuita con pagamenti in-app"
 
 #: mkt/reviewers/templates/reviewers/queue.html:84
 msgid "Payment Category:"
@@ -20782,7 +20820,7 @@ msgstr "Versione %(version)s &middot; %(developer_name)s &middot; %(created)s <s
 
 #: mkt/reviewers/templates/reviewers/review.html:199
 msgid "App submission incomplete"
-msgstr ""
+msgstr "Invio dell'app non completato"
 
 #: mkt/reviewers/templates/reviewers/review.html:232
 msgid "Tested with:"
@@ -20826,7 +20864,7 @@ msgstr "Zip firmato"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:70 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "Quest'app non è ancora stata classificata"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:95 mkt/reviewers/templates/reviewers/includes/mobile_details.html:117
 msgid "Total Downloads"
@@ -21352,6 +21390,9 @@ msgstr "Se l'app ha un sito web di supporto o un forum, inserisci l'indirizzo in
 #: mkt/submit/forms.py:364
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
+"Questo indirizzo email verrà mostrato pubblicamente sul Marketplace, nella "
+"pagina dell'app, e utilizzato dagli utenti per contattarti e richiedere "
+"assistenza. "
 
 #: mkt/submit/forms.py:371
 msgid "Does your app require Flash support?"
@@ -21371,7 +21412,7 @@ msgstr ""
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Passi successivi"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -21458,75 +21499,95 @@ msgstr "Ulteriori informazioni sulle <b>app pacchettizzate</b> su MDN."
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Published!"
-msgstr ""
+msgstr "Pubblicata."
 
 #: mkt/submit/templates/submit/next_steps.html:26
 msgid "Almost There!"
-msgstr ""
+msgstr "Abbiamo quasi finito."
 
 #: mkt/submit/templates/submit/next_steps.html:29
 msgid "Submit App Manifest"
-msgstr ""
+msgstr "Invia il manifesto dell'app"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "Enter App Details"
-msgstr ""
+msgstr "Inserisci delle informazioni dettagliate sull'app"
 
 #: mkt/submit/templates/submit/next_steps.html:32
 msgid "<span>Set up <a href=\"%(url)s\">Content Ratings</a></span>"
 msgstr ""
+"<span>Impostazione <a href=\"%(url)s\">della classificazione "
+"dell'app</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:38
 msgid "Set up <a href=\"%(url)s\">Payments & Countries</a>"
-msgstr ""
+msgstr "Configurazione di <a href=\"%(url)s\">Pagamenti e paesi</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:43
 msgid "Wait for Review"
-msgstr ""
+msgstr "Attendere la revisione"
 
 #: mkt/submit/templates/submit/next_steps.html:50
 msgid "You must now set up <a href=\"%(url)s\">Content Ratings</a> and <a href=\"%(payment_url)s\">Payments & Countries</a> before we can review your app."
 msgstr ""
+"Prima di poter effettuare la revisione è necessario impostare <a href=\"%"
+"(url)s\">la classificazione dei contenuti</a> e configurare <a href=\"%"
+"(payment_url)s\">i pagamenti e paesi</a>."
 
 #: mkt/submit/templates/submit/next_steps.html:55
 msgid "You must now set up <a href=\"%(url)s\">Content Ratings</a> before we can review your app."
 msgstr ""
+"Prima di poter richiedere una revisione dovrai impostare <a href=\"%"
+"(url)s\">la classificazione dei contenuti</a>."
 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "At any point, you can"
-msgstr ""
+msgstr "In qualunque momento potrai:"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
 msgstr ""
+"ricontrollare le informazioni dell'app nella <a href=\"%(url)s\">pagina di "
+"modifica dei dettagli dell'app</a>;"
 
 #: mkt/submit/templates/submit/next_steps.html:69
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
 msgstr ""
+"visualizzare un elenco di tutte le tue app alla pagina <a href=\"%(url)s\">Le "
+"mie app</a>."
 
 #: mkt/submit/templates/submit/next_steps.html:78
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Non appena l'app sarà revisionata è necessario pubblicarla manualmente dalla "
+"pagina <a href=\"%(url)s\">Gestisci stato</a>. A questo punto verrà mostrata "
+"nelle pagine elenco e nei risultati di ricerca per permettere a tutti di "
+"apprezzarla."
 
 #: mkt/submit/templates/submit/next_steps.html:85
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
 msgstr ""
+"L'app è stata approvata. In questo momento appare nelle pagine elenco e nei "
+"risultati di ricerca per permettere a tutti di apprezzarla."
 
 #: mkt/submit/templates/submit/next_steps.html:90
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Non appena l'app sarà stata revisionata verrà mostrata nelle pagine elenco e "
+"nei risultati di ricerca per permettere a tutti di apprezzarla."
 
 #: mkt/submit/templates/submit/next_steps.html:100
 msgid "<strong>What's next:</strong> Set up Content Ratings"
 msgstr ""
+"<strong>Prossimo passo:</strong> imposta la classificazione dei contenuti"
 
 #: mkt/submit/templates/submit/next_steps.html:106
 msgid "<strong>What's next:</strong> Set up Payments & Countries"
-msgstr ""
+msgstr "<strong>Prossimo passo:</strong> configura pagamenti e paesi"
 
 #: mkt/submit/templates/submit/next_steps.html:112
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgstr "<strong>Prossimo passo:</strong> pubblica l'app"
 
 #: mkt/submit/templates/submit/payments-upsell.html:4 mkt/submit/templates/submit/payments.html:3
 msgid "App Payments"
