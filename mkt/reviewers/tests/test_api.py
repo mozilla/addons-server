@@ -4,8 +4,8 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 
-from mock import patch
 from nose.tools import eq_
 from test_utils import RequestFactory
 
@@ -15,7 +15,8 @@ from access.models import GroupUser
 from addons.models import Category
 from amo.tests import ESTestCase
 
-from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url, OAuthClient
+from mkt.api.tests.test_oauth import (BaseOAuth, get_absolute_url, OAuthClient,
+                                      RestOAuth)
 from mkt.api.base import get_url, list_url
 from mkt.api.models import Access, generate
 from mkt.constants.features import FeatureProfile
@@ -26,12 +27,12 @@ from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
 
-class TestReviewing(BaseOAuth):
+class TestReviewing(RestOAuth):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
-        super(TestReviewing, self).setUp(api_name='reviewers')
-        self.list_url = list_url('reviewing')
+        super(TestReviewing, self).setUp()
+        self.list_url = reverse('reviewing-list')
         self.user = UserProfile.objects.get(pk=2519)
         self.req = RequestFactory().get('/')
         self.req.amo_user = self.user
@@ -40,10 +41,10 @@ class TestReviewing(BaseOAuth):
         self._allowed_verbs(self.list_url, ('get'))
 
     def test_not_allowed(self):
-        eq_(self.anon.get(self.list_url).status_code, 401)
+        eq_(self.anon.get(self.list_url).status_code, 403)
 
     def test_still_not_allowed(self):
-        eq_(self.client.get(self.list_url).status_code, 401)
+        eq_(self.client.get(self.list_url).status_code, 403)
 
     def add_perms(self):
         self.grant_permission(self.user, 'Apps:Review')
