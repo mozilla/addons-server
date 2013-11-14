@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-14 16:58+0000\n"
+"PO-Revision-Date: 2013-11-14 21:51+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384448309.0\n"
+"X-POOTLE-MTIME: 1384465864.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2114,7 +2114,8 @@ msgstr "<h1>Oops! Není povoleno.</h1><p> Udělal(a) jste něco, co nemáte povo
 
 #: apps/amo/templates/amo/403.html:12 apps/amo/templates/amo/403_apps.html:17
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr "<p>Zkuste přejít o stránku zpět, obnovte ji, a poté to zkuste znovu./p>"
+msgstr ""
+"<p>Zkuste přejít o stránku zpět, obnovte ji, a poté to zkuste znovu.</p>"
 
 #: apps/amo/templates/amo/403_apps.html:4 apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -2707,9 +2708,9 @@ msgstr "Sbírky jsou skupiny podobných doplňků, které může kdokoliv vytvo�
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] "<span>%(num)s</span> týdenní odběratel"
-msgstr[1] "<span>%(num)s</span> týdenní odběratelé"
-msgstr[2] "<span>%(num)s</span> týdenních odběratelů"
+msgstr[0] "%(num)s týdenní odběratel"
+msgstr[1] "%(num)s týdenní odběratelé"
+msgstr[2] "%(num)s týdenních odběratelů"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -5849,8 +5850,10 @@ msgstr "Přidání do Marketplace"
 msgid ""
 "If this is a premium add-on you wish to sell in our Marketplace, be sure to enroll on the <a href=\"%(payments_url)s\">Manage Payments</a> page <b>before</b> your add-on is reviewed by an editor."
 msgstr ""
-"Pokud se jedná o placený doplněk, který chcete prostřednictvým Marketplace prodávat, ujistěte se, že máte vše nastaveno ve <a href=\"%(payments_url)s\">Správě plateb</a>  dříve, než pošlete doplněk "
-"na kontrolu redaktorem."
+"Pokud se jedná o placený doplněk, který chcete prostřednictvím Marketplace "
+"prodávat, ujistěte se, že máte vše nastaveno ve <a href=\"%"
+"(payments_url)s\">Správě plateb</a> <b>dříve</b>, než pošlete doplněk na "
+"kontrolu redaktorem."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -6258,8 +6261,13 @@ msgid ""
 "time to submit your add-on to <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. With over <em>1.5 billion</em> add-on downloads served, it's the best place to let your new creation live. "
 "Before you submit it, there are a few things to go over."
 msgstr ""
-"Fíha, to už jste dokončili svůj doplněk? Ok, pokud jste svůj doplněk otestovali a nevidite žádné problémy, je čas jej přidat na server <a href=\"https://addons.mozilla.org\">Doplňky Mozilly</a>. S "
-"více než <em>1,5 miliardou</em> již stažených doplňků je to nejlepší místo, kam můžete nově vytvořený doplněk přidat. Před jeho odesláním jsou zde některé věci, které je dobré shlédnout. "
+"Fíha, to už jste dokončili svůj doplněk? Lidi jako vy jsou často členy <a "
+"href=\"http://labs.mozilla.com/\">Mozilla Labs</a>. Nechcete se přidat? Ok, "
+"pokud jste svůj doplněk otestovali a nevidíte žádné problémy, je čas jej "
+"přidat na server <a href=\"https://addons.mozilla.org\">Doplňky Mozilly</a>. S "
+"více než <em>1,5 miliardou</em> již stažených doplňků je to nejlepší místo, "
+"kam můžete nově vytvořený doplněk přidat. Před jeho odesláním jsou zde "
+"některé věci, které je dobré shlédnout. "
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:115
 msgid ""
@@ -7477,8 +7485,10 @@ msgid ""
 "Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
 "directory assistants, child pornography finders, etc."
 msgstr ""
-"Ilegální nebo kriminální doplňky. Například doplňky, které vytváří <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">podvodná kliknutí</a>, umožňují stahovat <a href=\"http://cs.wikipedia.org/"
-"wiki/Warez\">warez</a>, pomáhají vyhledávat dětskou pornografii atd."
+"Ilegální nebo kriminální doplňky a doplňky, které vytváří <a "
+"href=\"http://en.wikipedia.org/wiki/Click_fraud\">podvodná kliknutí</a>, "
+"umožňují stahovat <a href=\"http://cs.wikipedia.org/wiki/Warez\">warez</a>, "
+"pomáhají vyhledávat dětskou pornografii atd."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
@@ -11091,9 +11101,13 @@ msgid ""
 "pinpoint which bit of code is causing the memory leak. The following is a good <a href=\"%(wiki_url)s\">guide to finding tools and strategies</a> that help manage leak testing. Mozilla's Carsten "
 "Book has also written an excellent HOW-TO article on the subject of <a href=\"%(leak_url)s\">leak testing in Firefox</a>."
 msgstr ""
-"Memory leaky jsou typickými chybami ve zdrojovém kódu aplikací, které způsobují, že si aplikace zabírají operační paměť, ale již ji po ukončení práce s ní korektně neuvolňují. Testování na memory "
-"leaky vám umožňuje zjistit, které části kódu mohou memory leaky způsobovat. Je dobré si přečíst o <a href=%(wiki_url)s\"\">nástrojích a strategiích</a>, která vám s hledáním memory leaků pomohou. "
-"Carsten Book z Mozilly také sepsal excelentní článek o <a href=%(leak_url)s\"\">testování memory leaků ve Firefoxu</a>."
+"Memory leaky jsou typickými chybami ve zdrojovém kódu aplikací, které "
+"způsobují, že si aplikace zabírají operační paměť, ale již ji po ukončení "
+"práce s ní korektně neuvolňují. Testování na memory leaky vám umožňuje "
+"zjistit, které části kódu mohou memory leaky způsobovat. Je dobré si přečíst "
+"o <a href=\"%(wiki_url)s\">nástrojích a strategiích</a>, která vám s hledáním "
+"memory leaků pomohou. Carsten Book z Mozilly také sepsal excelentní článek "
+"o <a href=\"%(leak_url)s\">testování memory leaků ve Firefoxu</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:223
 msgid "Can my add-on support multiple locales?"
@@ -13054,8 +13068,11 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h3>Co jsou denní uživatelé?</h3> <p> Doplňky stažené z tohoto webu se jednou denně kontrolují, zda nejsou dostupné v novější verzi. A právě celkový počet těchto dotazů je nazýván Aktivní denní "
-"uživatelé. Denní uživatelé mohou být členění dle verze doplňku, operačního systému, stavu doplňku, aplikace a jazyka.</p>"
+"<h2>Kdo jsou denní uživatelé?</h2> <p>Doplňky stažené z tohoto webu se "
+"jednou denně kontrolují, zda nejsou dostupné v novější verzi. A právě "
+"celkový počet těchto dotazů je nazýván Aktivní denní uživatelé. Denní "
+"uživatelé mohou být členění dle verze doplňku, operačního systému, stavu "
+"doplňku, aplikace a jazyka.</p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
@@ -16287,6 +16304,10 @@ msgid ""
 "<p> Please read the <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentation</a> on how to create a keypair and use it with the "
 "Marketplace API. Any testing should occur on the development server and not the production server. </p>"
 msgstr ""
+"<p>Prosíme, přečtěte si <a href=\"https://firefox-marketplace-api.readthedocs"
+".org/en/latest/topics/authentication.html#oauth\">dokumentaci</a> jak "
+"vytvořit klíč pro použití Marketplace API. Veškeré testování by mělo "
+"probíhat na vývojovém serveru, nikoliv na produkčním.</p>"
 
 #: mkt/developers/templates/developers/api.html:35 mkt/developers/templates/developers/api.html:59
 msgid "Application Name"
@@ -16322,7 +16343,7 @@ msgstr "Přihlášení / Registrace"
 
 #: mkt/developers/templates/developers/nav.html:36 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Testování aplikací"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -16396,6 +16417,8 @@ msgstr ""
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
 msgstr ""
+"Použijte tyto nástroje pro otestování vašich aplikací před nahráním na "
+"server Firefox Marketplace."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -16426,7 +16449,7 @@ msgstr "Množství"
 
 #: mkt/developers/templates/developers/validate_addon.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "Otestovat validitu aplikace"
 
 #: mkt/developers/templates/developers/validate_addon.html:17 mkt/submit/templates/submit/manifest.html:57
 msgid "Submit your app manifest URL"
@@ -17166,11 +17189,11 @@ msgstr "Skrýt vše"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "Otestovat instalaci aplikace"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:7 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "Otestovat platby v aplikaci"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -17567,6 +17590,9 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:49 mkt/ecosystem/templates/ecosystem/build_tools.html:29
 msgid "To help you start writing web apps quickly, we provide a few templates which has a lot already set up. Each template is a static web project with tools to help build and deploy."
 msgstr ""
+"Abychom vám pomohli s rychlým psaním webových aplikací, poskytujeme několik "
+"šablon, které jsou již přednastavené. Každá šablona je statický webový "
+"projekt s nástroji pro jeho sestavení a rozvoj."
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:55
 msgid "What you get:"
@@ -17599,34 +17625,47 @@ msgstr "předpřipravená rozvržení (pro některé šablony)"
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:73
 msgid "You can download the templates above, or view all the available templates in the <a rel=\"external\" href=\"%(url)s\">mortar</a> repo."
 msgstr ""
+"Šablony si můžete stáhnou výše, nebo si prohlédnout všechny dostupné šablony "
+"v repositáři <a rel=\"external\" href=\"%(url)s\">mortar</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:80
 msgid "<b>Note:</b> Open web apps in general do not require that you use volo and require.js. These are simply useful tools used by many Mozilla developers."
 msgstr ""
+"<b>Poznámka:</b> Otevřené webové aplikace obecně nevyžadují použití volo "
+"nebo require.js. Jde jen o užitečné nástroje, které používá mnoho vývojářů z "
+"Mozilly."
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:86
 msgid "Starting with the App Stub Template"
-msgstr ""
+msgstr "Začátek s šablonou App Stub"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:88
 msgid "You can simply use git to get the template from <a rel=\"external\" href=\"%(url)s\">this repo</a>:"
 msgstr ""
+"Šablonu stáhnete nejsnáze pomocí git z <a rel=\"external\" href=\"%"
+"(url)s\">tohoto repositáře</a>:"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:95
 msgid ""
 "Using volo is recommended, however. volo is a tool for automating projects, and you'll use it with this template, so go ahead and install it. You first need node.js, which you can download from <a "
 "rel=\"external\" href=\"%(url)s\">here</a>. Once you have node, install volo:"
 msgstr ""
+"Použití volo je doporučené. volo je nástroj pro automatizaci projektů a s "
+"touto šablonou jej budete využívat, proto si jej nainstalujte. Nejprve je "
+"třeba node.js, který stáhnete <a rel=\"external\" href=\"%(url)s\">zde</a>. "
+"Jakmile máte node, nainstalujte volo:"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:105
 msgid "Now you can just use the <code>create</code> command:"
-msgstr ""
+msgstr "Poté stačí použít příkaz <code>create</code>:"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:109
 msgid "When future templates are available, you can use the same <code>create</code> command with different template URLs."
 msgstr ""
+"Pro budoucí dostupné šablony můžete použít stejný příkaz <code>create</code> "
+"jen s rozdílnou URL šablony."
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:114
 msgid "What Now?"
@@ -17636,6 +17675,9 @@ msgstr "Co nyní?"
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:117
 msgid "All your HTML, CSS, and JavaScript are under the <code>www</code> directory, so start coding! You'll see a bunch of stuff in there, but feel free to remove anything you don't need."
 msgstr ""
+"Všechen váš HTML, CSS a JavaScriptový kód je ve složce <code>www</code>, "
+"můžete začít psát! Uvidíte spoustu zajímavých věcí, ale neváhejte odstranit, "
+"co nebudete potřebovat."
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:125
@@ -17644,10 +17686,18 @@ msgid ""
 "few libraries like <a rel=\"external\" href=\"%(url_zepto)s\">zepto</a>. The Marketplace JavaScript library is also included, which enables <a href=\"%(url_payments)s\">in-app payments</a> and <a "
 "href=\"%(url_receipts)s\">receipt verification</a>. You don't need this if you're a free app without in-app payments."
 msgstr ""
+"Šablony využívají <a rel=\"external\" href=\"%(url_require)s\">require.js</a> "
+"pro správu JavaScriptu. Pokud se podíváte do <code>www/js/app.js</code>, "
+"uvidíte, že definuje hlavní modul a načítá několik knihoven jako <a "
+"rel=\"external\" href=\"%(url_zepto)s\">zepto</a>. Také je vkládána "
+"JavaScriptová knihovna pro Marketplace, která umožňuje <a href=\"%"
+"(url_payments)s\">platby v rámci aplikace</a> a <a href=\"%"
+"(url_receipts)s\">potvrzení platby</a>. Pokud bude vaše aplikace zdarma a bez "
+"plateb, nebudete toto potřebovat."
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:140
 msgid "Below that, you'll see the line:"
-msgstr ""
+msgstr "Pod tím uvidíte tento řádek:"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:144
@@ -17655,6 +17705,10 @@ msgid ""
 "That defines the main module for your app, and you should start coding within the function. You can use <code>require</code> to load in other modules, the same way zepto is loaded. Check out the <a "
 "rel=\"external\" href=\"%(url)s\">require.js API</a> to learn more about modules."
 msgstr ""
+"Ten určuje hlavní modul pro vaši aplikaci a měli byste začít psát kód uvnitř "
+"této funkce. Můžete použít <code>require</code> pro načtení dalších modulů, "
+"podobně jako se načítá zepto. Pro více informací o modulech si přečtěte <a "
+"rel=\"external\" href=\"%(url)s\">require.js API</a>."
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:154
@@ -17662,6 +17716,10 @@ msgid ""
 "<strong>Note</strong>: By default, modules are loaded from <code>www/js/lib</code>. If you want to load something from <code>www/js</code>, which is your working directory, use the syntax "
 "<code>require('./mylib')</code> instead of just <code>require('mylib')</code>"
 msgstr ""
+"<strong>Poznámka:</strong> Ve výchozím stavu jsou načítány z "
+"<code>www/js/lib</code>. Pokud chcete načíst něco z <code>www/js</code>, což "
+"je pracovní složka, použijte syntaxi <code>require('./mylib')</code> místo "
+"<code>require('mylib')</code>."
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:164
@@ -17669,10 +17727,14 @@ msgid ""
 "You can edit CSS in <code>www/css/app.css</code>. Typically you should <code>@import</code> additional CSS files at the top of this file instead of using the <code>&lt;link&gt;</code> tag to "
 "include them. This allows the volo optimizer to inline all the CSS when building for deploying."
 msgstr ""
+"Můžete upravit CSS v <code>www/css/app.css</code>. Další CSS soubory je "
+"dobré <code>@import</code> na začátku tohoto souboru místo použití "
+"<code>&lt;link&gt;</code> tagu. To umožní volo optimalizaci vložit všechny "
+"CSS styly do aplikace během sestavování."
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:173
 msgid "Finally, volo provides several helpful commands that you can use:"
-msgstr ""
+msgstr "Navíc volo poskytuje několik užitečných příkazů, které můžete použít:"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:177
 msgid "Fire up a local development server"
@@ -17694,11 +17756,17 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:184
 msgid "All of these must be run at the root of your project. There are a few other commands and you can view the full list by simply typing <code>volo</code>."
 msgstr ""
+"Všechny musí být spuštěny v kořeni vašeho projektu. Existuje ještě několik "
+"dalších příkazů a celý jejich seznam můžete zobrazit zadáním "
+"<code>volo</code>."
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:192
 msgid "<strong>Note:</strong> volo itself only has a few built-in commands. The app template provides the <code>serve</code>, <code>build</code>, <code>ghdeploy</code>, and other commands."
 msgstr ""
+"<strong>Poznámka:</strong> Samotné volo má jen několik málo vestavěných "
+"funkcí. Šablona aplikace poskytuje příkazy <code>serve</code>, "
+"<code>build</code>, <code>ghdeploy</code> a další."
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:198
 msgid "Tutorial"
@@ -17709,6 +17777,10 @@ msgid ""
 "For more information about this template, see the <a href=\"%(url)s\">Weather App Tutorial</a> which shows you step-by-step how to build a weather app with this template. It dives into the volo "
 "commands more specifically and explains the template in more detail."
 msgstr ""
+"Pro více informací o této šabloně si přečtěte <a href=\"%(url)s\">Weather App "
+"Tutorial</a>, který vám ukáže krok za krokem jak sestavit pomocí této "
+"šablony aplikaci o počasí. Ukáže hlouběji volo příkazy a podrobněji šablonu "
+"vysvětlí."
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:5 mkt/ecosystem/templates/ecosystem/build_dev_tools.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:59
 #: mkt/ecosystem/templates/ecosystem/macros.html:190
@@ -18121,6 +18193,11 @@ msgid ""
 "What do you use to build Open Web Apps? The answer is &quot;anything you would normally use to build for the web.&quot; The following is a list of tools and resources to help you get started making "
 "Open Web Apps. They can be easily integrated into your existing web development workflow, if you have one, or you can build a new workflow around them."
 msgstr ""
+"Co používáte k sestavení otevřených webových aplikací? Odpověď je "
+"&quot;cokoliv byste použili pro běžnou tvorbu webu&quot;. Následuje seznam "
+"nástrojů a zdrojů, které vám pomohou začít s webovými aplikacemi. Jsou "
+"snadno integrovatelné do existujícího webového procesu, nebo si jej podle "
+"nich můžete postavit."
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:37 mkt/ecosystem/templates/ecosystem/macros.html:176
 msgid "App Validator"
@@ -18129,14 +18206,22 @@ msgstr "Validátor aplikace"
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:40
 msgid "Is your app ready for the Firefox Marketplace? The App validator will check your manifest and show you any errors it may have, or warnings you should consider."
 msgstr ""
+"Je vaše aplikace připravena pro Firefox Marketplace? Validátor zkontroluje "
+"váš manifest a zobrazí vám všechny nedostatky, které by mohl mít, nebo "
+"varování, která byste ještě mohli zvážit."
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:51
 msgid "You have a Firefox OS app but you don't have a Firefox OS phone to test it on? The Firefox OS simulator will let you run your app in the browser, so you can test early and often."
 msgstr ""
+"Máte aplikaci pro Firefox OS, ale nemáte telefon, na kterém byste ji mohli "
+"vyzkoušet? Firefox OS simulátor vám umožní spustit vaši aplikaci v "
+"prohlížeči, takže ji budete moci včas a často testovat."
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:62
 msgid "Firefox now ships with a default set of developer tools built from the ground up to ensure a great development experience that is both snappy and efficient."
 msgstr ""
+"Firefox obsahuje širokou sadu vývojářských nástrojů, které jsou postaveny od "
+"základu pro úžasný zážitek, a které jsou elegantní i efektivní zároveň."
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:14
 msgid "What is the purpose of your app?"
@@ -18634,6 +18719,9 @@ msgstr "Přidávání aplikací"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:127
 msgid "To add a <a href=\"%(packaged_apps)s\">packaged app</a> to the Simulator, open the Dashboard, click \"Add Directory\" and select the <a href=\"%(manifests)s\">manifest file</a> for your app."
 msgstr ""
+"Pro přidání <a href=\"%(packaged_apps)s\">zabalené aplikace</a> do Simulátoru, "
+"otevřete Dashboard a klepněte na \"Add Directory\" a vyberte <a href=\"%"
+"(manifests)s\">manifest soubor</a> pro vaši aplikaci."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:135
 msgid ""
@@ -18811,7 +18899,7 @@ msgstr "manifest vyžaduje oprávnění, které bude zamítnuto"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:225
 msgid "the manifest requests a permission for which access could not be determined"
-msgstr "manifest vyžaduje právo, které nebylo rozpoznáno"
+msgstr "manifest vyžaduje oprávnění, které nebylo rozpoznáno"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:227
 msgid "Simulator-specific warnings"
@@ -18820,14 +18908,20 @@ msgstr "Varování, která jsou specifická pro simulátor"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:228
 msgid "Finally, the Manager will emit warnings for apps that use features of Firefox OS not yet fully supported by the Simulator:"
 msgstr ""
+"Nakonec Manager zobrazí varování pro aplikace používající funkce Firefox OS, "
+"které nejsou Simulátorem zcela podporované:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:230
 msgid "the <code>type</code> field is \"certified\", but the Simulator does not yet fully supprt certified apps"
 msgstr ""
+"pole <code>type</code> je \"certified\", ale Simulátor ještě zcela nepodporuje "
+"certifikované aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:231
 msgid "the manifest requests a permission to use an API that is <a href=\"#Unsupported-APIs\">not yet supported</a> by the Simulator"
 msgstr ""
+"manifest vyžaduje oprávnění k využití API, které Simulátorem <a href"
+"=\"#Unsupported-APIs\">ještě není podporováno</a>"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:233
 msgid "Running the Simulator"
@@ -18978,10 +19072,14 @@ msgid ""
 "Once you've set up the device and desktop, and connected the device to your desktop via USB, you'll see the note \"Device connected.\" appear on the left of the Dashboard, and a new command appear "
 "in the entry for each app labeled \"Push\":"
 msgstr ""
+"Jakmile nastavíte své zařízení i počítač a připojíte své zařízení k počítači "
+"pomocí USB, v levé části Dashboard se zobrazí poznámka \"Device connected.\" "
+"a pro každou aplikace nový příkaz označený \"Push\":"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:373
 msgid "Click \"Push\", and the app will be installed on the Firefox OS device."
 msgstr ""
+"Klepněte na \"Push\" pro instalaci aplikace na vaše zařízení s Firefox OS."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:374
 msgid "Limitations of the Simulator"
@@ -19001,7 +19099,7 @@ msgstr "Na rozdíl od velikosti obrazovky doplněk Simulator nesimuluje hardwaro
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:382
 msgid "Audio/video codecs"
-msgstr ""
+msgstr "Audio a video kodeky"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:383
 msgid "The following codecs depend on hardware-accelerated decoding and are therefore not yet supported:"
@@ -19049,8 +19147,10 @@ msgid ""
 "If you find any bugs, please <a href=\"%(issues)s\">file them on GitHub</a>. If you have a question, try asking us on the <a href=\"%(mailing_list)s\"> dev-developer-tools mailing list</a> or on <a "
 "href=\"%(irc)s\">#devtools on irc.mozilla.org</a>."
 msgstr ""
-"Pokud naleznete jakoukoliv chybu, <a href=\"%(issues)s\">nahlaste ji na serveru GitHub</a>. Pokud máte otázku, zkuste se nás zeptat v <a href=\"%(mailing_list)s\">poštovní konferenci dev-developer-"
-"tools</a> nebo kanále<a href=\"%(irc)s\">#devtools na irc.mozilla.org</a>."
+"Pokud naleznete jakoukoliv chybu, <a href=\"%(issues)s\">nahlaste ji na "
+"serveru GitHub</a>. Pokud máte otázku, zkuste se nás zeptat v <a href=\"%"
+"(mailing_list)s\">poštovní konferenci dev-developer-tools</a> nebo kanále <a "
+"href=\"%(irc)s\">#devtools na irc.mozilla.org</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
