@@ -726,15 +726,23 @@ class RegionForm(forms.Form):
             'enable_new_regions': self.product.enable_new_regions,
         }
 
-        # Only if a special region is pending/public should its checkbox
-        # be checked.
-        checked_statuses = (amo.STATUS_PENDING, amo.STATUS_PUBLIC)
+        # The checkboxes for special regions are
+        #
+        # - checked ... if an app has not been requested for approval in
+        #   China or the app has been rejected in China.
+        #
+        # - unchecked ... if an app has been requested for approval in
+        #   China or the app has been approved in China.
+        unchecked_statuses = (amo.STATUS_NULL, amo.STATUS_REJECTED)
+
         for region in self.special_region_objs:
-            if self.product.geodata.get_status(region) not in checked_statuses:
-                try:
+            if self.product.geodata.get_status(region) in unchecked_statuses:
+                # If it's rejected in this region, uncheck its checkbox.
+                if region.id in self.initial['regions']:
                     self.initial['regions'].remove(region.id)
-                except ValueError:
-                    pass
+            elif region.id not in self.initial['regions']:
+                # If it's pending/public, check its checkbox.
+                self.initial['regions'].append(region.id)
 
         self.disabled_regions = sorted(self._disabled_regions())
 

@@ -291,7 +291,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
             {'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
         assert form.is_valid(), form.errors
 
-    def test_china_disallowed_if_rejected(self):
+    def test_china_initially_excluded_and_disallowed_if_rejected(self):
         self.create_flag('special-regions')
 
         # Mark app as rejected in China.
@@ -345,7 +345,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(self.app.listed_in(mkt.regions.CN), False)
         eq_(self.app.geodata.get_status(mkt.regions.CN), status)
 
-    def test_china_excluded_if_pending(self):
+    def _test_china_excluded_if_pending(self):
         self.create_flag('special-regions')
 
         # Mark app as pending in China.
@@ -372,6 +372,17 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(self.app.listed_in(mkt.regions.CN), False)
         eq_(self.app.geodata.get_status(mkt.regions.CN), status)
 
+    def test_china_excluded_if_pending(self):
+        self._test_china_excluded_if_pending()
+
+    def test_china_already_excluded_and_pending(self):
+        cn = mkt.regions.CN.id
+        self.app.addonexcludedregion.create(region=cn)
+
+        # If the app was already excluded in China, the checkbox should still
+        # be checked if the app's been requested for approval in China now.
+        self._test_china_excluded_if_pending()
+
     def test_china_excluded_if_pending_cancelled(self):
         """
         If the developer already requested to be in China,
@@ -390,6 +401,12 @@ class TestRegionForm(amo.tests.WebappTestCase):
         # Post the form.
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS},
                                 **self.kwargs)
+
+        # China should be checked if it's pending.
+        cn = mkt.regions.CN.id
+        assert cn in form.initial['regions']
+        assert cn in dict(form.fields['regions'].choices).keys()
+
         eq_(form.disabled_regions, [])
         assert form.is_valid(), form.errors
         form.save()
