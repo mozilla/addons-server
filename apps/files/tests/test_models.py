@@ -742,6 +742,12 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert f.no_restart
 
+    def test_no_restart_dictionary(self):
+        upload = self.upload('dictionary-explicit-type-test')
+        d = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
+        assert f.no_restart
+
     def test_no_restart_false(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
