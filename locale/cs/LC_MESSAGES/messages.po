@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-14 21:51+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2013-11-14 22:07+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384465864.0\n"
+"X-POOTLE-MTIME: 1384466858.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -17265,7 +17265,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:147
 msgid "Prices and Countries"
-msgstr ""
+msgstr "Ceny a země"
 
 #: mkt/developers/templates/developers/payments/premium.html:163
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -17281,11 +17281,11 @@ msgstr "Není aplikovatelné"
 
 #: mkt/developers/templates/developers/payments/premium.html:180
 msgid "Regions"
-msgstr ""
+msgstr "Regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Available Regions"
-msgstr ""
+msgstr "Dostupné regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:188
 msgid "Check out the <a href=\"%(status_url)s\">status page</a> to see what countries are currently enabled for sale."
@@ -17293,7 +17293,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:195
 msgid "Your app will be available in the following selected regions:"
-msgstr ""
+msgstr "Vaše aplikace bude dostupná pro následující zvolené regiony:"
 
 #: mkt/developers/templates/developers/payments/premium.html:201
 msgid "Retail price"
@@ -17309,7 +17309,7 @@ msgstr "Platební metoda"
 
 #: mkt/developers/templates/developers/payments/premium.html:214
 msgid "Other regions"
-msgstr ""
+msgstr "Ostatní regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:216
 msgid ""
@@ -17323,7 +17323,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:252
 msgid "Promote as upgrade to free version"
-msgstr ""
+msgstr "Propagace aktualizace k verzi zdarma"
 
 #: mkt/developers/templates/developers/payments/premium.html:262
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
@@ -20517,7 +20517,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:290
 msgid "More Info Requested"
-msgstr ""
+msgstr "Vyžadováno více informací"
 
 #: mkt/reviewers/helpers.py:33 mkt/reviewers/helpers.py:66 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
@@ -21110,7 +21110,7 @@ msgstr "Typ aplikace"
 
 #: mkt/search/forms.py:102
 msgid "Supported languages"
-msgstr ""
+msgstr "Podporované jazyky"
 
 #: mkt/site/context_processors.py:34
 msgid "Sign out"
@@ -21341,7 +21341,7 @@ msgstr "Zvolte prosím zařízení."
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
-msgstr ""
+msgstr "Zabalené aplikace nejsou pro tyto platformy dosud podporovány."
 
 #: mkt/submit/forms.py:147
 msgid "Agree and Continue"
@@ -21402,7 +21402,7 @@ msgstr ""
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Další kroky"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -21487,27 +21487,27 @@ msgstr "Přečtěte si více o <b>zabalených aplikacích</b> na MDN."
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Published!"
-msgstr ""
+msgstr "Publikováno!"
 
 #: mkt/submit/templates/submit/next_steps.html:26
 msgid "Almost There!"
-msgstr ""
+msgstr "Téměř hotovo!"
 
 #: mkt/submit/templates/submit/next_steps.html:29
 msgid "Submit App Manifest"
-msgstr ""
+msgstr "Přidat manifest aplikace"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "Enter App Details"
-msgstr ""
+msgstr "Vložte detaily k aplikaci"
 
 #: mkt/submit/templates/submit/next_steps.html:32
 msgid "<span>Set up <a href=\"%(url)s\">Content Ratings</a></span>"
-msgstr ""
+msgstr "<span>Nastavení <a href=\"%(url)s\">Hodnocení obsahu</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:38
 msgid "Set up <a href=\"%(url)s\">Payments & Countries</a>"
-msgstr ""
+msgstr "Nastavení <a href=\"%(url)s\">Plateb a zemí</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:43
 msgid "Wait for Review"
