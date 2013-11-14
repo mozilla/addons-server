@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-14 09:36+0000\n"
+"PO-Revision-Date: 2013-11-14 10:58+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384421818.0\n"
+"X-POOTLE-MTIME: 1384426685.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -18036,6 +18036,10 @@ msgid ""
 "What can you do with an Open Web App? What can't you do? Here you'll find some examples of the kind of Open Web Apps that are possible. Use them for inspiration, as example code, or as a jumping "
 "off point for your new app."
 msgstr ""
+"Co můžete dělat s otevřenou webovou aplikací? Co nemůžete dělat? Zde najdete "
+"některé příklady typů možných webových aplikací. Inspirujte se jimi, "
+"ukázkovými kódy, nebo je použijte jako odrazový můstek pro své vlastní "
+"nápady na nové aplikace."
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:24 mkt/ecosystem/templates/ecosystem/macros.html:81 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:9
@@ -18045,6 +18049,8 @@ msgstr "Chrono"
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:27
 msgid "Chrono is a simple chronometer with lap counter, built to highlight various aspects of the Firefox OS development process."
 msgstr ""
+"Chrono jsou jednoduché stopky s čítačem kol postavené pro zvýraznění "
+"vývojového procesu pro Firefox OS."
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:34 mkt/ecosystem/templates/ecosystem/macros.html:89 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:9
@@ -18056,6 +18062,9 @@ msgid ""
 "Face Value is a currency conversion app that does things differently: instead of converting arbitrary amounts it shows you the actual denominations in the country you're visiting. It lets you think "
 "in your home currency even with a foreign currency in your pocket."
 msgstr ""
+"Face Value je převodník měn, který jde na věc trochu jinak: místo převodu "
+"částek zobrazuje aktuální poměrné hodnoty v zemi, kterou právě navštěvujete. "
+"Můžete tedy myslet ve své měně i když máte v kapse nějakou jinou."
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:47 mkt/ecosystem/templates/ecosystem/macros.html:97 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:9
@@ -18636,10 +18645,16 @@ msgid ""
 "When you add an app, the Dashboard will run a series of tests on your manifest file, checking for common problems. See the section on <a href=\"#Manifest-validation\"> Manifest Validation</a> for "
 "details on what tests are run."
 msgstr ""
+"Když přidáte aplikaci, nástěnka spustí sérii testů vašeho souboru s "
+"manifestem a zkontroluje jej na nejčastější problémy. Pro informace, jaké "
+"testy jsou spouštěny, nahlédněte do sekce <a href=\"#Manifest-"
+"validation\">Kontrola manifestu</a>."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:150
 msgid "Unless manifest validation reveals that your app has errors, the Dashboard will then automatically run your app in the Simulator."
 msgstr ""
+"Pakliže kontrola manifestu nezjistí u vaší aplikace chyby, pak nástěnka "
+"automaticky spustí vaši aplikaci v simulátoru."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:155
 msgid "Managing apps"
@@ -18647,7 +18662,7 @@ msgstr "Správa aplikací"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:157
 msgid "Once you have added an app, it will appear in the Manager's list of installed apps:"
-msgstr ""
+msgstr "Jakmile přidáte aplikaci, objeví se v seznamu nainstalovaných aplikací:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:163
 msgid "Each entry gives us the following information about the app:"
@@ -18692,6 +18707,8 @@ msgstr "\"Run\": spustí aplikaci v doplňku Simulator"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:180
 msgid "If you've <a href=\"#Push-to-device\">connected a Firefox OS device</a> to your computer, you'll see a fourth command labeled \"Push to device\"."
 msgstr ""
+"Pokud je k vašemu počítači <a href=\"#Push-to-device\">připojeno zařízení s "
+"Firefox OS</a>, uvidíte čtvrtý příkaz nadepsaný \"Push to device\"."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:184
 msgid "Manifest validation"
@@ -18700,22 +18717,30 @@ msgstr "Kontrola manifestu"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:186
 msgid "When you supply a manifest, the Manager will run some validation tests on it. It reports three categories of problems:"
 msgstr ""
+"Když přidáte manifest, spustí se nad ním některé testy. Výsledkem mohou být "
+"chyby ve třech kategoriích:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:191
 msgid "manifest errors: problems that will prevent your app from running"
-msgstr ""
+msgstr "chyby manifestu: problémy, které zabraňují spuštění vaší aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:192
 msgid "manifest warnings: problems that may prevent your app from working properly"
 msgstr ""
+"varování u manifestu: problémy, které mohou zabránit správné funkčnosti vaší "
+"aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:193
 msgid "simulator-specific warnings: features your app is using that the Simulator doesn't yet support"
 msgstr ""
+"varování specifické pro simulátor: funkce, kterou vaše aplikace používá, "
+"není simulátorem podporována"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:196
 msgid "It summarises the problems encountered in the entry for the app: clicking on the summary provides more details."
 msgstr ""
+"Jednotlivé problémy jsou seskupeny u každé aplikace. Klepnutím na ně získáte "
+"podrobnější informace."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:200
 msgid "Manifest errors"
@@ -18724,6 +18749,8 @@ msgstr "Chyby v manifestu"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:202
 msgid "The Dashboard will report the following conditions as errors, meaning that you won't be able to run your app in the Simulator without fixing them:"
 msgstr ""
+"Nástěnka bude reportovat následující body jako chyby. Zároveň aplikace s "
+"chybami nebudete moci v simulátoru spustit dříve, než je opravíte:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:207
 msgid "the manifest does not include the mandatory \"name\" field"
@@ -18736,10 +18763,15 @@ msgstr "manifest není platný soubor formátu JSON"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:209
 msgid "the app is a hosted app, but the <code>type</code> field in its manifest is \"privileged\" or \"certified\", which are only available to packaged apps"
 msgstr ""
+"aplikace je hostována, ale pole <code>type</code> v manifestu obsahuje "
+"hodnotu \"privileged\" či \"certified\", které jsou dostupné pouze pro zabalené "
+"aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:212
 msgid "Here's the result of trying to add a manifest file with a missing \"name\":"
 msgstr ""
+"Na následujícím obrázku můžete vidět pokus o přidání souboru s manifestem, "
+"který neobsahuje atribut \"name\":"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:217
 msgid "Manifest warnings"
@@ -18747,7 +18779,7 @@ msgstr "Upozornění v manifestu"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:218
 msgid "The Dashboard will report the following manifest issues as warnings:"
-msgstr ""
+msgstr "Nástěnka bude varovat před následujícími chybami v manifestu:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:220
 msgid "missing icons"
@@ -18756,6 +18788,8 @@ msgstr "chybějící ikony"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:221
 msgid "the icon is less than 128 pixels: all apps submitted to the Marketplace must have at least one icon that is at least 128 pixels square"
 msgstr ""
+"ikona je menší než 128 pixelů: všechny aplikace nahrávané na Marketplace "
+"musí mít jednu ikonu, která má alespoň 128 pixelů"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:222
 msgid "the <code>type</code> field is unrecognized"
@@ -18771,7 +18805,7 @@ msgstr "manifest vyžaduje oprávnění, které bude zamítnuto"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:225
 msgid "the manifest requests a permission for which access could not be determined"
-msgstr ""
+msgstr "manifest vyžaduje právo, které nebylo rozpoznáno"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:227
 msgid "Simulator-specific warnings"
@@ -19429,6 +19463,9 @@ msgid ""
 "Chrono is a simple chronometer with lap counter, built to highlight various aspects of the Firefox OS development process. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full "
 "developer walkthrough </a>"
 msgstr ""
+"Chrono jsou jednoduché stopky s čítačem kol postavené pro zvýraznění "
+"vývojového procesu pro Firefox OS. <a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">Přečtěte si o celém vývojovém procesu</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:47 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:71
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:48 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:73
@@ -19526,6 +19563,11 @@ msgid ""
 "Face Value is a currency conversion app that does things differently: instead of converting arbitrary amounts it shows you the actual denominations in the country you're visiting. It lets you think "
 "in your home currency even with a foreign currency in your pocket. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"Face Value je převodník měn, který jde na věc trochu jinak: místo převodu "
+"částek zobrazuje aktuální poměrné hodnoty v zemi, kterou právě navštěvujete. "
+"Můžete tedy myslet ve své měně i když máte v kapse nějakou jinou. <a href=\""
+"%(walkthrough_link)s\" class=\"walkthrough\">Přečtěte si o celém vývojovém "
+"procesu</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:50 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:48
 msgid "Folder Structure"
@@ -19552,6 +19594,10 @@ msgid ""
 "The <code>CordovaLib</code>, <code>assets</code>, <code>cordova</code>, <code>face-value.xcodeproj</code>, and <code>face-value</code> folders contain Cordova files used to create a packaged iOS "
 "web app that can be submitted to the iOS App Store."
 msgstr ""
+"Složky <code>CordovaLib</code>, <code>assets</code>, <code>cordova</code>, "
+"<code>face-value.xcodeproj</code> a <code>face-value</code> obsahují soubory "
+"z Cordova použité k vytvoření zabalené iOS webové aplikace, kterou lze "
+"nahrát na iOS App Store."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:76
 msgid "Remembers user preferences and saves exchange rates for offline use."
@@ -19563,7 +19609,9 @@ msgstr "Pracuje dobře offline. Vyžaduje online připojení jen v případě, k
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:102
 msgid "By using backbone's data bindings, Face Value ensures that changes to the backend (such as exchange rate updates) are automatically reflected on the frontend."
-msgstr "Pomocí Bankbone Face Value zajišťuje, že změny na pozadí (jako jsou například aktualizace kurzů měn) se automaticky promítnout do rozhraní pro uživatele."
+msgstr ""
+"Použitím backbone zajišťuje Face Value, že se změny na pozadí (jako "
+"aktualizace kurzu) automaticky promítnou do běhu aplikace."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:112 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:112
 msgid "The lightweight jQuery-like library simplifies common tasks such as DOM manipulation."
