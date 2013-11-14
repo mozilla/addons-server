@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-13 21:04+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2013-11-14 09:35+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384376642.0\n"
+"X-POOTLE-MTIME: 1384421719.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -10817,8 +10817,9 @@ msgid ""
 "Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
 "experience."
 msgstr ""
-"Naší komunitou jsou každý rok vytvářeny tisíce doplňků. Vaše pomoc s testováním kompatibility nám pomůže se ujistit, že tyto doplňky jsou stále užitečné a můžeme tak i nadále poskytovat skvělou "
-"funčknost pro uživatele."
+"Naší komunitou jsou každý rok vytvářeny tisíce doplňků. Vaše pomoc s "
+"testováním kompatibility nám pomůže se ujistit, že tyto doplňky jsou stále "
+"užitečné a můžeme tak i nadále poskytovat skvělou funkčnost pro uživatele."
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
@@ -17832,6 +17833,9 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:72
 msgid "More specific details can be added as the project gets closer to completion, as is the case with most Firefox OS apps. A basic manifest will do to get started."
 msgstr ""
+"Více konkrétních podrobností může být přidáváno během dokončování projektu, "
+"jak je tomu v případě většiny aplikací pro Firefox OS. Základní manifest je "
+"na začátku zcela postačující."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:78
 msgid "App Layout &amp; Design"
@@ -17842,12 +17846,21 @@ msgid ""
 "Responsive design has become increasingly important as more screen resolutions become standard on different devices. Even if your app targets only Firefox OS, it's important to remember that "
 "Firefox OS can be installed on a variety of devices which use different screen resolutions. <a href=\"%(url)s\">CSS media queries</a> provide a means to adapt layout to device:"
 msgstr ""
+"Responsivní návrh je důležitý z důvodu různých rozlišení displeje na různých "
+"zařízeních. I pokud je vaše aplikace určená pouze pro Firefox OS, je "
+"důležité myslet na to, že Firefox OS lze nainstalovat na mnoho zařízení s "
+"různým rozlišením displeje. <a href=\"%(url)s\">CSS media queries</a> umožňují "
+"toto přizpůsobování:"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:91
 msgid ""
 "There are many JavaScript and CSS frameworks available to aid in responsive design and mobile app development (<a href=\"%(url)s\">Bootstrap</a>, etc.); choose the framework(s) that best fit your "
 "app and development style."
 msgstr ""
+"Existuje mnoho dostupných JavaScriptových a CSS frameworků, které vám při "
+"vývoji responsivního designu a mobilní aplikace pomohou (<a href=\"%"
+"(url)s\">Bootstrap</a>, apod.). Vyberte si ten, který bude nejvíce vyhovovat "
+"vaší aplikaci a vašemu vývojářskému stylu."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:99
 msgid ""
@@ -17855,6 +17868,12 @@ msgid ""
 "mobile development, like <a href=\"%(url_zepto)s\">zepto.js</a> (a light alternative to jQuery) and a utility to install your app on the Firefox OS Simulator. This quick start guide fits you with "
 "mortar's most basic layout template:"
 msgstr ""
+"Jedním ze zajímavých nástrojů je <a href=\"%(url_mortar)s\">mortar</a> od "
+"Mozilly. Mortar nenabízí pomoc s responsivním designem, ale obsahuje šablony "
+"aplikací a několik JavaScriptových nástrojů pro vývoj pro Firefox OS, jako "
+"<a href=\"%(url_zepto)s\">zepto.js</a> (jednoduchá alternativa k jQuery) a "
+"nástroj pro instalování vaší aplikace do simulátoru Firefox OS. Následující "
+"průvodce pro rychlý začátek odpovídá jednoduché šabloně v mortaru:"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:114
@@ -17862,6 +17881,9 @@ msgid ""
 "Feel free to modify the structure set forth by mortar &mdash; the snippet above should get you going. Note that all JavaScript code must be in separate <code>.js</code> files; no inline, scripting "
 "is allowed."
 msgstr ""
+"Neváhejte strukturu vygenerovanou mortarem modifikovat &mdash; ukázka výše "
+"by vám měla pomoci. Nezapomeňte, že veškerý JavaScriptový kód musí být v "
+"samostatných <code>.js</code> souborech; inline skripty nejsou povoleny."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:121
 msgid "Web APIs"
@@ -17872,11 +17894,18 @@ msgid ""
 "JavaScript APIs are being created and enhanced as quickly as devices are. Mozilla's <a href=\"%(url)s\">WebAPI</a> effort brings dozens of standard mobile features to JavaScript APIs. A list of "
 "device support and status is available on the <a href=\"%(url)s\">WebAPI</a> page. Of course JavaScript feature detection is still the best practice:"
 msgstr ""
+"JavaScriptová API jsou vytvářena a vylepšována stejně rychle jako samotná "
+"zařízení. <a href=\"%(url)s\">WebAPI</a> od Mozilly přináší mnoho standardních "
+"mobilních funkcí do JavaScriptového API. Seznam podporovaných zařízení a "
+"stav je dostupný na stránce <a href=\"%(url)s\">WebAPI</a>. Samozřejmě "
+"detekování JavaScriptových funkcí je stále \"best practice\":"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:134
 msgid "In this very basic app template we'll modify the display style of a <code>DIV</code> based on changes in the device's battery state:"
 msgstr ""
+"V jednoduchém návrhu aplikace můžeme změnit styl zobrazení prvku "
+"<code>DIV</code> podle stavu baterie zařízení:"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:144
@@ -17884,10 +17913,16 @@ msgid ""
 "In the code sample above, once you confirm that the <a href=\"%(url)s\">Battery API</a> is supported, you can add event listeners for <code>chargingchange</code> and <code>levelchange</code> to "
 "update the element's display."
 msgstr ""
+"V ukázce kódu výše můžete po ověření, zda je <a href=\"%"
+"(url)s\">BaterryAPI</a> dostupné, přidat odchytávání událostí pro "
+"<code>chargingchange</code> a <code>levelchange</code> a následně "
+"aktualizovat zobrazování prvku."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:152
 msgid "Check the <a href=\"%(url)s\">WebAPI</a> page frequently to keep up to date with device API statuses!"
 msgstr ""
+"Pravidelně sledujte stránku <a href=\"%(url)s\">WebAPI</a> pro aktuální stav "
+"API zařízení!"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:157
 msgid "WebRT APIs (Permissions-based APIs)"
@@ -17898,6 +17933,9 @@ msgstr ""
 msgid ""
 "There are a number of WebAPIs which are available but require permissions for that specific feature to be enabled. Apps may register permission requests within the <code>manifest.webapp</code> file:"
 msgstr ""
+"Několik dostupných WebAPI vyžaduje ověření pro zpřístupnění konkrétní "
+"funkce. Aplikace si musí požadavky na tato povolení registrovat do souboru "
+"<code>manifest.webapp</code>:"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:170
@@ -17905,6 +17943,10 @@ msgid ""
 "Once you've installed your app on Firefox OS Simulator, open the <code>Settings</code> app, select <code>App Permissions</code>, select your app, and enable permissions as desired. It's important "
 "to note that not all Web APIs have been implemented within the Firefox OS Simulator."
 msgstr ""
+"Po instalaci vaší aplikace na simulátor Firefox OS otevřete aplikaci "
+"<code>Nastavení</code>, vyberte <code>Práva aplikací</code>, vaší aplikaci a "
+"povolte požadovaná pověření. Je důležité pamatovat, že v simulátoru Firefox "
+"OS nejsou všechna Webová API implementována."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:178
 msgid "Tools &amp; Testing"
@@ -17913,22 +17955,32 @@ msgstr "Nástroje a testování"
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:180
 msgid "Testing is incredibly important when supporting mobile devices. There are many options for testing FirefoxOS apps:"
 msgstr ""
+"Testování je velmi důležité pro podporu mobilních zařízení. Existuje mnoho "
+"možností jak testovat aplikace pro Firefox OS:"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:187
 msgid ""
 "Installing and using the <a href=\"%(url)s\">Firefox OS Simulator</a> is the easiest way to get up and running with your app. After installed the simulator is accessible via the Tools -> Web "
 "Developer -> Firefox OS Simulator menu. The simulator launches with a JavaScript console so that you may debug your application from within the simulator!"
 msgstr ""
+"Nejjednodušší způsob je instalace <a href=\"%(url)s\">simulátoru Firefox "
+"OS</a> a spuštění aplikace na něm. Po instalaci je simulátor dostupný z "
+"nabídky Nástroje -> Vývoj webu -> Firefox OS Simulator. Simulátor se spouští "
+"s JavaScriptovou konzolou pro debugování aplikace uvnitř simulátoru!"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:196
 msgid "Unit Testing"
-msgstr "Unitové testy"
+msgstr "Unit testy"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:198
 msgid ""
 "Unit tests are extremely valuable when testing on different devices and builds. jQuery's <a href=\"%(url)s\">QUnit</a> is a popular client-side testing utility, but you can use any set of testing "
 "tools you'd like."
 msgstr ""
+"Unit testy jsou extrémně cenné při testování na různých zařízeních a různých "
+"sestavení. Populárním testovacím nástrojem pro jQuery je <a href=\"%"
+"(url)s\">QUnit</a>, ale můžete použít jakoukoliv sadu nástrojů, která vám "
+"bude vyhovovat."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:205
 msgid "Installing Firefox OS on a Device"
@@ -17939,6 +17991,10 @@ msgid ""
 "Since Firefox OS is an open source platform, code and tools are available to build and install Firefox OS on your own device. Build and installation instructions can be found on <a href=\"%(url_mdn)"
 "s\">MDN</a>. Firefox OS preview devices will be available via <a href=\"%(url_phone)s\">Geeksphone</a> soon."
 msgstr ""
+"Protože je Firefox OS otevřenou platformou, jsou dostupné kódy a nástroje "
+"pro sestavení a instalaci Firefox OS na vaše vlastní zařízení. Instrukce pro "
+"vlastní sestavení lze najít na <a href=\"%(url_mdn)s\">MDN</a>. Vývojářská "
+"zařízení budou brzy dostupná od <a href=\"%(url_phone)s\">Geeksphone</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:216
 msgid "App Submission and Distribution"
@@ -17950,6 +18006,14 @@ msgid ""
 "devices your app will support (i.e. Firefox OS, Desktop Firefox, Firefox Mobile, Firefox Tablet). Once validated you may add additional details about your app (screenshots, descriptions, price, "
 "etc.) and officially submit the app for listing within the Marketplace. Once approved your app is available to the world for purchase and installation."
 msgstr ""
+"Po dokončení aplikace ji lze <a href=\"%(url_submit)s\">nahrát</a> na <a "
+"href=\"%(url_mkt)s\">Firefox Marketplace</a>. Manifest vaší aplikace bude "
+"zkontrolován a můžete vybrat zařízení, která bude vaše aplikace podporovat "
+"(např. Firefox OS, prohlížeč Firefox, mobilní Firefox, Firefox pro tablety). "
+"Po kontrole můžete přidat podrobnosti k vaší aplikaci jako snímky "
+"obrazovky, popisky, cenu a nastavit její zobrazování v seznamu na "
+"Marketplace. Po schválení bude vaše aplikace dostupná pro získání a "
+"instalaci pro celý svět."
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:232
 msgid "More Marketplace &amp; Listing Information"
@@ -18561,6 +18625,11 @@ msgid ""
 "To add a hosted app, enter a URL in the textbox where it says \"URL for page or manifest.webapp\", then click \"Add URL\". If the URL points to a manifest, then that manifest will be used. If it "
 "doesn't, the Dashboard will generate a manifest for the URL: so you can add any website as an app just by entering its URL."
 msgstr ""
+"Pro přidání hostované aplikace vložte URL do textového pole, které je "
+"nadepsáno \"URL for page or manifest.webapp\" a klepněte na tlačítko \"Add "
+"URL\". Pokud URL odkazuje na manifest, bude použit. Pokud ne, vygeneruje "
+"Nástěnka pro URL manifest automaticky. Máte tak možnost přidat libovolnou "
+"aplikaci pouze vložením její URL."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:143
 msgid ""
