@@ -25,7 +25,7 @@ from amo.tests import req_factory_factory
 import reviews
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
-from addons.models import AddonDeviceType
+from addons.models import AddonDeviceType, AddonUser
 from amo.helpers import absolutify
 from amo.tests import (app_factory, check_links, days_ago,
                        formset, initial, version_factory)
@@ -1119,8 +1119,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def setUp(self):
         super(TestReviewApp, self).setUp()
-        self.app = self.get_app()
+        self.create_switch('iarc', db=True)
         self.mozilla_contact = 'contact@mozilla.com'
+        self.app = self.get_app()
+        self.app = amo.tests.make_game(self.app, True)
         self.app.update(status=amo.STATUS_PENDING,
                         mozilla_contact=self.mozilla_contact)
         self.version = self.app.current_version
@@ -1266,7 +1268,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert '<script>alert' not in res.content
         assert '&lt;script&gt;alert' in res.content
 
-    def test_pending_to_public_w_device_overrides(self):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_pending_to_public_w_device_overrides(self, storefront_mock):
         AddonDeviceType.objects.create(addon=self.app,
                                        device_type=amo.DEVICE_DESKTOP.id)
         AddonDeviceType.objects.create(addon=self.app,
@@ -1287,6 +1290,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved but waiting')
         self._check_email_body(msg)
+
+        assert not storefront_mock.called
 
     def test_pending_to_reject_w_device_overrides(self):
         # This shouldn't be possible unless there's form hacking.
@@ -1311,7 +1316,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
 
-    def test_pending_to_public_w_requirements_overrides(self):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_pending_to_public_w_requirements_overrides(self, storefront_mock):
         self.create_switch(name='buchets')
         data = {'action': 'public', 'comments': 'something',
                 'has_sms': True}
@@ -1326,6 +1332,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         # A reviewer changing features shouldn't generate a re-review.
         eq_(RereviewQueue.objects.count(), 0)
+
+        assert not storefront_mock.called
 
     def test_pending_to_reject_w_requirements_overrides(self):
         # Rejecting an app doesn't let you override features requirements.
@@ -1356,12 +1364,13 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert not AppLog.objects.filter(
             addon=self.app, activity_log__action=action_id).exists()
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.reviewers.views.messages.success')
     @mock.patch('addons.tasks.index_addons')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_pending_to_public(self, update_name, update_locales,
-                               index_addons, messages):
+                               index_addons, messages, storefront_mock):
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1386,6 +1395,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(messages.call_args_list[0][0][1],
             '"Web App Review" successfully processed (+60 points, 60 total).')
+
+        assert storefront_mock.called
 
     @mock.patch('mkt.reviewers.views.messages.success', new=mock.Mock)
     def test_incomplete_cant_approve(self):
@@ -1425,8 +1436,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert not es_translation in msg.body
         assert fr_translation in msg.body
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('lib.crypto.packaged.sign')
-    def test_public_signs(self, sign):
+    def test_public_signs(self, sign, storefront_mock):
         self.get_app().update(is_packaged=True)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1434,6 +1446,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
+
+        assert storefront_mock.called
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_require_sig_for_public(self, sign):
@@ -1444,7 +1458,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.client.post(self.url, data)
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
-    def test_pending_to_public_no_mozilla_contact(self):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_pending_to_public_no_mozilla_contact(self, storefront_mock):
         self.app.update(mozilla_contact='')
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
@@ -1461,11 +1476,14 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
+        assert storefront_mock.called
+
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('addons.tasks.index_addons')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_pending_to_public_waiting(self, update_name, update_locales,
-                                       index_addons):
+                                       index_addons, storefront_mock):
         self.get_app().update(_signal=False, make_public=amo.PUBLIC_WAIT)
         index_addons.delay.reset_mock()
 
@@ -1491,6 +1509,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         # It's zero for the view but happens after the transaction commits. If
         # this increases we could get tasks being called with stale data.
         eq_(index_addons.delay.call_count, 0)
+
+        assert not storefront_mock.called
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_waiting_signs(self, sign):
@@ -1597,7 +1617,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(len(mail.outbox), 0)
 
-    def test_escalation_to_public(self):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_escalation_to_public(self, storefront_mock):
         EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, amo.STATUS_PENDING)
         data = {'action': 'public', 'device_types': '', 'browsers': '',
@@ -1614,6 +1635,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved')
         self._check_email_body(msg)
+
+        assert storefront_mock.called
 
     def test_escalation_to_reject(self):
         EscalationQueue.objects.create(addon=self.app)

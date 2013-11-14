@@ -356,26 +356,15 @@ def get_settings():
     return dict([k, safe[k]] for k in _settings)
 
 
-class ConfigResource(CORSResource, MarketplaceResource):
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def site_config(request):
     """
     A resource that is designed to be exposed externally and contains
     settings or waffle flags that might be relevant to the client app.
     """
-    version = fields.CharField()
-    flags = fields.DictField('flags')
-    settings = fields.DictField('settings')
-
-    class Meta(MarketplaceResource.Meta):
-        detail_allowed_methods = ['get']
-        list_allowed_methods = []
-        resource_name = 'config'
-
-    def obj_get(self, request, **kw):
-        if kw['pk'] != 'site':
-            raise http_error(http.HttpNotFound,
-                             'No such configuration.')
-
-        return GenericObject({
+    request._request.CORS = ['GET']
+    return Response({
             # This is the git commit on IT servers.
             'version': getattr(settings, 'BUILD_ID_JS', ''),
             'flags': waffles(request),

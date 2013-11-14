@@ -197,6 +197,9 @@ def publicise(request, addon_id, addon):
         addon.update_name_from_package_manifest()
         addon.update_supported_locales()
 
+        if waffle.switch_is_active('iarc'):
+            addon.set_iarc_storefront_data()
+
     return redirect(addon.get_dev_url('versions'))
 
 

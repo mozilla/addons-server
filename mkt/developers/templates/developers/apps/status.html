@@ -31,6 +31,11 @@
               <a href="{{ addon.get_dev_url('payments') }}">
                 {{- _('Set Up Payments') -}}
               </a>
+            {% elif waffle.switch('iarc') and not addon.is_rated() and addon.is_complete()[0] %}
+              {{ status(_('This app is <b>incomplete</b> because it is missing content ratings.')) }}
+              <a href="{{ addon.get_dev_url('ratings') }}">
+                {{- _('Set Up Content Ratings') -}}
+              </a>
             {% else %}
               {{ status(_('This app is <b>incomplete</b>.')|safe) }}
               <a href="{{ url('submit.app.resume', addon.app_slug) }}">
@@ -58,8 +63,8 @@
           {% elif addon.status == amo.STATUS_REJECTED %}
             {{ status(_('This app has been <b>rejected</b> by a Firefox Marketplace reviewer.')|safe) }}
           {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}
-            {{ status(_('Your app has been <b>approved but is not public</b>.')|safe) }}
-            {{ _('It is awaiting your approval to make public.') }}
+            {{ status(_('Your app has been <b>approved but not yet published</b>.')|safe) }}
+            {{ _('This app is waiting for your approval to be published.') }}
           {% endif %}
           {% if not (addon.is_disabled or addon.is_incomplete()) %}
             <p><a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review"
@@ -106,7 +111,7 @@
         {% if addon.status == amo.STATUS_PUBLIC_WAITING %}
           <form method="post" action="{{ addon.get_dev_url('publicise') }}">
             {{ csrf() }}
-            <p class="listing-footer"><button type="submit">{{ _('Make App public') }}</button></p>
+            <p class="listing-footer"><button type="submit">{{ _('Publish App') }}</button></p>
           </form>
         {% endif %}
       </div>

@@ -8,5 +8,8 @@ PIL==1.1.7
 # Temporary.
 M2Crypto==0.20.2
 
+# To get SNI support in requests (needed by the app validator).
+pyOpenSSL==0.13.1
+
 # For the addon validator, including C speedups.
 simplejson==2.3.2
