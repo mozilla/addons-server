@@ -51,7 +51,7 @@ class IARC_Parser(object):
         for k, v in data['ROW'].items():
             # Get ratings body constant.
             ratings_body = RATINGS_BODY_MAPPING.get(
-                k.split('_')[-1], ratingsbodies.GENERIC)
+                k.split('_')[-1].lower(), ratingsbodies.GENERIC)
 
             if k.startswith('rating_'):
                 ratings[ratings_body] = RATINGS_MAPPING[ratings_body].get(
@@ -77,9 +77,9 @@ class IARC_Parser(object):
         if not data.get('interactive_elements'):
             return data
 
-        data['interactives'] = filter(
-            None, [s.strip().lower().replace(' ', '_') for s in
-                   data['interactive_elements'].split(',')])
+        data['interactives'] = filter(None,
+            [INTERACTIVES_MAPPING[s.strip()] for s in
+            data['interactive_elements'].split(',')])
         return data
 
 
