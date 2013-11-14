@@ -269,6 +269,9 @@ class ReviewApp(ReviewBase):
             # Failsafe.
             return
 
+        if waffle.switch_is_active('iarc'):
+            self.addon.set_iarc_storefront_data()
+
         self.addon.sign_if_packaged(self.version.pk)
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.

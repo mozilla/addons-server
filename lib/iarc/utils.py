@@ -180,13 +180,14 @@ class IARC_JSON_Parser(JSONParser, IARC_Parser):
 # to the ratings body constants in mkt/constants/ratingsbodies. Likewise for
 # the descriptors.
 RATINGS_BODY_MAPPING = {
-    'CLASSIND': ratingsbodies.CLASSIND,
-    'ESRB': ratingsbodies.ESRB,
-    'Generic': ratingsbodies.GENERIC,
-    'PEGI': ratingsbodies.PEGI,
-    'USK': ratingsbodies.USK,
+    'classind': ratingsbodies.CLASSIND,
+    'esrb': ratingsbodies.ESRB,
+    'generic': ratingsbodies.GENERIC,
+    'pegi': ratingsbodies.PEGI,
+    'usk': ratingsbodies.USK,
     'default': ratingsbodies.GENERIC,
 }
+
 
 RATINGS_MAPPING = {
     ratingsbodies.CLASSIND: {
@@ -233,9 +234,9 @@ RATINGS_MAPPING = {
     },
 }
 
+
 DESC_MAPPING = {
-    # All values will be capitalized and prepended with '%s_' % RATINGS_BODY in
-    # a loop.
+    # All values will be prepended with 'has_%s_' % RATINGS_BODY later.
     ratingsbodies.CLASSIND: {
         u'Viol\xEAncia': 'violence',
         u'Viol\xEAncia Extrema': 'violence_extreme',
@@ -284,7 +285,7 @@ DESC_MAPPING = {
         u'Comic Mischief ': 'comic_mischief',
         u'Alcohol and Tobacco Reference': 'alcohol_tobacco_ref',
         u'Drug and Alcohol Reference': 'drug_alcohol_ref',
-        u'Use of Alcohol and Tobacco': 'alcohol_tobacco_ref',
+        u'Use of Alcohol and Tobacco': 'alcohol_tobacco_use',
         u'Use of Drug and Alcohol': 'drug_alcohol_use',
         u'Drug and Tobacco Reference': 'drug_tobacco_ref',
         u'Drug, Alcohol and Tobacco Reference': 'drug_alcohol_tobacco_ref',
@@ -333,6 +334,7 @@ DESC_MAPPING = {
     },
 
     ratingsbodies.USK: {
+        u'No Descriptors': 'no_descs',
         u'\xC4ngstigende Inhalte': 'scary',
         u'Erotik/Sexuelle Inhalte': 'sex_content',
         u'Explizite Sprache': 'lang',
@@ -342,7 +344,29 @@ DESC_MAPPING = {
     },
 }
 
+
 for body, mappings in DESC_MAPPING.items():
     for native_desc, desc_slug in mappings.items():
         DESC_MAPPING[body][native_desc] = 'has_{0}_{1}'.format(
-            body.name, desc_slug).lower()
+            body.iarc_name, desc_slug).lower()
+
+# Change {body: {'key': 'val'}} to {'val': 'key'}.
+REVERSE_DESC_MAPPING_BY_BODY = (
+    dict([(unicode(v), unicode(k)) for k, v in body_mapping.iteritems()])
+    for body, body_mapping in DESC_MAPPING.iteritems())
+REVERSE_DESC_MAPPING = {}
+for mapping in REVERSE_DESC_MAPPING_BY_BODY:
+    REVERSE_DESC_MAPPING.update(mapping)
+
+
+INTERACTIVES_MAPPING = {
+    'Users Interact': 'has_users_interact',
+    'Shares Info': 'has_shares_info',
+    'Shares Location': 'has_shares_location',
+    'Digital Purchases': 'has_digital_purchases',
+    'Social Networking': 'has_social_networking',
+    'Digital Content Portal': 'has_digital_content_portal',
+}
+
+REVERSE_INTERACTIVES_MAPPING = dict(
+    (v, k) for k, v in INTERACTIVES_MAPPING.iteritems())

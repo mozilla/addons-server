@@ -56,9 +56,8 @@ from users.models import RequestUser
 
 import mkt
 from mkt.constants import regions
-from mkt.webapps.models import (
-    ContentRating, update_search_index as app_update_search_index,
-    WebappIndexer, Webapp)
+from mkt.webapps.models import (update_search_index as app_update_search_index,
+                                ContentRating, WebappIndexer, Webapp)
 from mkt.webapps.tasks import unindex_webapps
 
 
@@ -607,6 +606,9 @@ def app_factory(**kw):
     app = amo.tests.addon_factory(**kw)
     if waffle.switch_is_active('iarc') and kw.get('rated'):
         ContentRating.objects.create(addon=app, ratings_body=0, rating=0)
+        app.set_iarc_info(123, 'abc')
+        app.set_descriptors([])
+        app.set_interactives([])
     return app
 
 
@@ -863,11 +865,12 @@ def make_game(app, rated):
         type=amo.ADDON_WEBAPP)
     app.addoncategory_set.create(category=cat)
     if rated:
-        ContentRating.objects.get_or_create(
-            addon=app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
-            rating=mkt.ratingsbodies.CLASSIND_18.id)
-        ContentRating.objects.get_or_create(
-            addon=app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
-            rating=mkt.ratingsbodies.CLASSIND_L.id)
+        app.set_iarc_info(123, 'abc')
+        app.set_descriptors([])
+        app.set_interactives([])
+        app.set_content_ratings({
+            mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_18,
+            mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_A,
+        })
     app = app.reload()
     return app
