@@ -5,8 +5,8 @@ from rest_framework.routers import SimpleRouter
 from tastypie.api import Api
 from tastypie_services.services import (ErrorResource, SettingsResource)
 
-from mkt.submit.api import PreviewResource, StatusResource, ValidationResource
-from mkt.api.base import AppRouter, handle_500, SlugRouter
+from mkt.submit.api import PreviewResource, StatusViewSet, ValidationResource
+from mkt.api.base import AppRouter, handle_500
 from mkt.api.resources import (AppResource, CarrierViewSet, CategoryViewSet,
                                error_reporter, PriceTierViewSet,
                                PriceCurrencyViewSet, RefreshManifestViewSet,
@@ -22,8 +22,6 @@ api.register(AppResource())
 api.register(PreviewResource())
 api.register(SearchResource())
 api.register(SuggestionsResource())
-api.register(StatusResource())
-
 
 rocketfuel = SimpleRouter()
 rocketfuel.register(r'collections', CollectionViewSet,
@@ -34,6 +32,8 @@ subcollections.register('image', CollectionImageViewSet,
 
 apps = SimpleRouter()
 apps.register(r'category', CategoryViewSet, base_name='app-category')
+apps.register(r'status', StatusViewSet, base_name='app-status')
+
 subapps = AppRouter()
 subapps.register('refresh-manifest', RefreshManifestViewSet,
                  base_name='app-refresh-manifest')

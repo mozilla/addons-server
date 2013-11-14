@@ -152,9 +152,11 @@ class SlugChoiceField(serializers.ChoiceField):
     Companion to SlugChoiceFilter, this field accepts an id or a slug when
     de-serializing, but always return a slug for serializing.
 
-    Like SlugChoiceFilter, it needs to be initialized with a choices_dict
+    Like SlugChoiceFilter, it needs to be initialized with a `choices_dict`
     mapping the slugs to objects with id and slug properties. This will be used
     to overwrite the choices in the underlying code.
+
+    The values in the choices_dict passed must be unique.
     """
     def __init__(self, *args, **kwargs):
         # Create a choice dynamically to allow None, slugs and ids. Also store
