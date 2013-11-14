@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-14 13:39+0000\n"
+"PO-Revision-Date: 2013-11-14 16:58+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384436394.0\n"
+"X-POOTLE-MTIME: 1384448309.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -18082,7 +18082,9 @@ msgstr "Roller"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:59
 msgid "Roller is a micro blog app that allows you to post text, upload an image or paste a link that has an image extension such as jpg, gif, png or jpeg."
-msgstr "Roller je mikroblogovací aplikace, která vám umožňuje přidávat příspěvky, nahrávat obrázky či přidávat odkazy, které mají příponu obrázků jako jpg, gif, png či jpeg."
+msgstr ""
+"Roller je mikroblogovací aplikace, která vám umožňuje přidávat příspěvky, "
+"nahrávat obrázky či přidávat odkazy na obrázky jpg, gif, png či jpeg."
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:67 mkt/ecosystem/templates/ecosystem/macros.html:113 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:9
@@ -18091,7 +18093,9 @@ msgstr "Webfighter"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:70
 msgid "Webfighter is an R-Type and Tyrian inspired game where you must hunt down an alien bug and destroy it."
-msgstr "Webfighter je hra inspirovaná hrami, kde musíte \"vraždit mimozemšťany\"."
+msgstr ""
+"Webfighter je inspirovaný hrami R-Type a Tyrian, kde musíte lovit a ničit "
+"mimozemské brouky."
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:77 mkt/ecosystem/templates/ecosystem/macros.html:121 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:9
@@ -18100,7 +18104,9 @@ msgstr "General Notes"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:80
 msgid "General Notes is a simple note app that allows you to sync local and remote content."
-msgstr "General Notes je jednoduchá aplikace na poznámky, která vám umožňuje synchronizovat mistní a vzdálený obsah."
+msgstr ""
+"General Notes je jednoduchá aplikace na poznámky, která vám umožňuje "
+"synchronizovat místní a vzdálený obsah."
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:87
 msgid "rtcamera"
@@ -19645,14 +19651,17 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:35
 msgid "General Notes is a simple note app that allows you to sync local and remote content. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"General Notes je jednoduchá aplikace na poznámky, která vám umožňuje "
+"synchronizovat místní a vzdálený obsah. <a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">Přečtěte si o celém vývojovém procesu</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:53
 msgid "Stores local and remote notes on the client side."
-msgstr ""
+msgstr "Ukládá místní a vzdálené poznámky na straně klienta."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:61
 msgid "Enables the page and functionality to work offline."
-msgstr ""
+msgstr "Umožňuje funkčnost offline."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:77 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:54
 msgid "Both server and client code are written in JavaScript."
@@ -19660,7 +19669,7 @@ msgstr "Jak server, tak klient, jsou psány v JavaScriptu."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:85
 msgid "A key-value store that contains all the server notes."
-msgstr ""
+msgstr "Úložiště typu klíč-hodnota, které obsahuje všechny poznámky na serveru."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:126
 msgid "81%"
@@ -19771,6 +19780,10 @@ msgid ""
 "Roller is a micro blog app that allows you to post text, upload an image or paste a link that has an image extension such as jpg, gif, png or jpeg. <a href=\"%(walkthrough_link)s\" class="
 "\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"Roller je mikroblogovací aplikace, která vám umožňuje přidávat příspěvky, "
+"nahrávat obrázky či přidávat odkazy na obrázky jpg, gif, png či jpeg. <a "
+"href=\"%(walkthrough_link)s\" class=\"walkthrough\">Přečtěte si o celém "
+"vývojovém procesu</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:62
 msgid "A key-value store that contains all the post data for Roller."
@@ -19799,6 +19812,9 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"rtcamera je zábavná aplikace pro fotoaparát, která zpracovává obrázky v "
+"reálném čase za pomoci webových technologií. <a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">Přečtěte si o celém vývojovém procesu</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
@@ -19810,43 +19826,45 @@ msgstr "Wrapper pro IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
-msgstr ""
+msgstr "Výpočty transformací perspektivy."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "Přidává dotykové události."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
-msgstr ""
+msgstr "Po prvním načtení umožňuje používání offline bez síťového připojení."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "Pro stahování souborů do prohlížeče."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "Použito pro rychlé a efektivní zpracování obrazových dat."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
 msgstr ""
+"Použito pro přístup k zařízení fotoaparátu a získávání video streamu a "
+"zachytávání snímků."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
-msgstr ""
+msgstr "Ukládá zachycené obrázky do zařízení a získává je z Galerie."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
-msgstr ""
+msgstr "Generuje GIF obrázky na pozadí bez zpomalování UI."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
-msgstr ""
+msgstr "Nahrávání obrázků na různé servery ke sdílení a získání jejich URL."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
-msgstr ""
+msgstr "rtcamera používá x-appbar, x-deck, x-layout, x-modal a x-switch."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
@@ -19871,6 +19889,12 @@ msgid ""
 "addition to destroying the alien bug, kill as many enemies as possible to get the highest score. <a href=\"%(marketplace_link)s\">View on the marketplace</a> <a href=\"%(walkthrough_link)s\" class="
 "\"walkthrough\">Read the full developer walkthrough</a>"
 msgstr ""
+"Webfighter je inspirovaný hrami R-Type a Tyrian, kde musíte lovit a ničit "
+"mimozemské brouky. Vyberte si různé zbraně a proklestěte si cestu nepřáteli "
+"- čím více jich při tom zabijete, tím vyšší bude vaše skóre. <a href=\"%"
+"(marketplace_link)s\">Stáhněte z Marketplace</a> <a href=\"%"
+"(walkthrough_link)s\" class=\"walkthrough\">Přečtěte si o celém vývojovém "
+"procesu</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:56
 msgid "Used to generate the game graphics."
@@ -19883,6 +19907,8 @@ msgstr "Umožňuje hrát hru v režimu přes celou obrazovku."
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:72
 msgid "The player can purchase items in a store that will aid their quest. This shows the workflow for in-app payments."
 msgstr ""
+"Hráč může nakupovat předměty, které mu pomohou s jeho úkolem, což ukazuje "
+"možnosti plateb v rámci aplikace."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:99
 msgid "92%"
