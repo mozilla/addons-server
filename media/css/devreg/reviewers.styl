@@ -1407,3 +1407,44 @@ span.currently_viewing_warning {
         position: relative;
     }
 }
+
+.regional-queue {
+    min-width: 860px;
+    .action {
+        text-align: right;
+    }
+    .addon-row a.button {
+        border: 0;
+        display: inline-block;
+        font-size: inherit;
+        height: 35px;
+        line-height: 35px;
+        min-width: 80px;
+        padding: 0 10px;
+
+        &.approve {
+            background: $button-green-dark;
+
+            &:hover {
+                background: $button-green-light;
+            }
+        }
+        &.reject, &.duplicate, &.flag {
+            background: $button-red-dark;
+
+            &:hover {
+                background: $button-red-light;
+            }
+        }
+        &:hover {
+            color: $white;
+        }
+        &.disabled, &.disabled:hover {
+            background: #c1c5ca;
+            color: #919497;
+        }
+        + a.button {
+            margin-left: 10px;
+        }
+    }
+}

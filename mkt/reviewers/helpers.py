@@ -13,6 +13,7 @@ from access import acl
 from amo.helpers import impala_breadcrumbs
 from amo.urlresolvers import reverse
 
+import mkt
 from mkt.developers.helpers import mkt_page_title
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  create_sort_link, device_queue_search)
@@ -40,6 +41,8 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
                   'device': _('Device'),
                   'moderated': _('Moderated Reviews'),
                   'reviewing': _('Reviewing'),
+
+                  'region': _('Regional Queues'),
 
                   'pending_themes': _('Pending Themes'),
                   'flagged_themes': _('Flagged Themes'),
@@ -74,7 +77,8 @@ def queue_tabnav(context):
     """
     Returns tuple of tab navigation for the queue pages.
 
-    Each tuple contains three elements: (named_url. tab_code, tab_text)
+    Each tuple contains three elements: (url, tab_code, tab_text)
+
     """
     request = context['request']
     counts = context['queue_counts']
@@ -83,34 +87,39 @@ def queue_tabnav(context):
     # Apps.
     if acl.action_allowed(request, 'Apps', 'Review'):
         rv = [
-            ('reviewers.apps.queue_pending', 'pending',
+            (reverse('reviewers.apps.queue_pending'), 'pending',
              _('Apps ({0})', counts['pending']).format(counts['pending'])),
 
-            ('reviewers.apps.queue_rereview', 'rereview',
+            (reverse('reviewers.apps.queue_rereview'), 'rereview',
              _('Re-reviews ({0})', counts['rereview']).format(
              counts['rereview'])),
 
-            ('reviewers.apps.queue_updates', 'updates',
+            (reverse('reviewers.apps.queue_updates'), 'updates',
              _('Updates ({0})', counts['updates']).format(counts['updates'])),
         ]
         if acl.action_allowed(request, 'Apps', 'ReviewEscalated'):
-            rv.append(('reviewers.apps.queue_escalated', 'escalated',
+            rv.append((reverse('reviewers.apps.queue_escalated'), 'escalated',
                        _('Escalations ({0})', counts['escalated']).format(
                        counts['escalated'])))
         rv.extend([
-            ('reviewers.apps.queue_moderated', 'moderated',
+            (reverse('reviewers.apps.queue_moderated'), 'moderated',
              _('Moderated Reviews ({0})', counts['moderated'])
              .format(counts['moderated'])),
 
-            ('reviewers.apps.apps_reviewing', 'reviewing',
+            (reverse('reviewers.apps.apps_reviewing'), 'reviewing',
              _('Reviewing ({0})').format(len(apps_reviewing))),
         ])
+        if acl.action_allowed(request, 'Apps', 'ReviewRegionCN'):
+            url_ = reverse('reviewers.app.queue_region',
+                           args=[mkt.regions.CN.slug])
+            rv.append((url_, 'region',
+                      _('China ({0})').format(counts['region_cn'])))
     else:
         rv = []
 
     if waffle.switch_is_active('buchets') and 'pro' in request.GET:
         device_srch = device_queue_search(request)
-        rv.append(('reviewers.apps.queue_device', 'device',
+        rv.append((reverse('reviewers.apps.queue_device'), 'device',
                   _('Device ({0})').format(device_srch.count()),))
 
     return rv

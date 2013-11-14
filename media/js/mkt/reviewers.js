@@ -12,10 +12,12 @@ require(['prefetchManifest']);
         z.body.addClass('desktop');
     }
 
-     // Reviewer tool search.
+    // Reviewer tool search.
     initAdvancedMobileSearch();
     initMobileMenus();
     initClearSearch();
+
+    initRegionalQueue();
 
     if ($('.theme-search').length) {
         initSearch(true);
@@ -228,4 +230,43 @@ function syncPrettyMobileForm() {
             $('.multi-val', $valSelectField).length ? gettext('Any') :
                                                       firstPrettyVal);
     });
+}
+
+
+function initRegionalQueue() {
+    if (!$('.regional-queue').length) {
+        return;
+    }
+
+    // POST to the API to approve/reject an app in a regional queue.
+    z.doc.on('click', '.approve, .reject', _pd(function(e) {
+        var $this = $(this);
+        var $tr = $this.closest('tr');
+        var $buttons = $tr.find('.button');
+        var url = $tr.data('actionUrl');
+        var appName = $tr.find('.app-name').text();
+        var fmt = {app: appName};
+        var approved = $this.data('action') == 'approve';
+
+        $buttons.addClass('disabled');
+
+        $.post(url, {'approved': approved}).success(function() {
+            var msg;
+            var classes;
+            if (approved) {
+                msg = format(gettext('Approved app: {app}'), fmt);
+                classes = 'good';
+            } else {
+                msg = format(gettext('Rejected app: {app}'), fmt);
+                classes = 'bad';
+            }
+            require('notification')({message: msg, timeout: 1000, classes: classes});
+            $tr.hide();
+        }).error(function() {
+            var msg = approved ? format(gettext('Error approving app: {app}'), fmt) :
+                                 format(gettext('Error rejecting app: {app}'), fmt);
+            require('notification')({message: msg, timeout: 1000});
+            $buttons.removeClass('disabled');
+        });
+    }));
 }

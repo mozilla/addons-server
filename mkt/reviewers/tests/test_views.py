@@ -25,7 +25,7 @@ from amo.tests import req_factory_factory
 import reviews
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
-from addons.models import AddonDeviceType, AddonUser
+from addons.models import AddonDeviceType
 from amo.helpers import absolutify
 from amo.tests import (app_factory, check_links, days_ago,
                        formset, initial, version_factory)
@@ -49,7 +49,7 @@ from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
-from mkt.webapps.models import ContentRating, Webapp
+from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
 
 
@@ -70,12 +70,10 @@ class AppReviewerTest(amo.tests.TestCase):
         self.login_as_editor()
 
     def login_as_admin(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
 
     def login_as_editor(self):
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        self.login('editor@mozilla.com')
 
     def login_as_senior_reviewer(self):
         self.client.logout()
@@ -316,7 +314,7 @@ class FlagsMixin(object):
         eq_(self.apps[0].is_packaged, True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        td = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)').eq(0)
+        td = pq(res.content)('#addon-queue tbody tr td.flags').eq(0)
         flag = td('div.sprite-reviewer-packaged-app')
         eq_(flag.length, 1)
 
@@ -325,27 +323,27 @@ class FlagsMixin(object):
         eq_(self.apps[0].is_premium(), True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
+        tds = pq(res.content)('#addon-queue tbody tr td.flags')
         flags = tds('div.sprite-reviewer-premium')
         eq_(flags.length, 1)
 
     def test_flag_free_inapp_app(self):
         self.apps[0].update(premium_type=amo.ADDON_FREE_INAPP)
         res = self.client.get(self.url)
-        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
+        tds = pq(res.content)('#addon-queue tbody tr td.flags')
         eq_(tds('div.sprite-reviewer-premium.inapp.free').length, 1)
 
     def test_flag_premium_inapp_app(self):
         self.apps[0].update(premium_type=amo.ADDON_PREMIUM_INAPP)
         res = self.client.get(self.url)
-        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
+        tds = pq(res.content)('#addon-queue tbody tr td.flags')
         eq_(tds('div.sprite-reviewer-premium.inapp').length, 1)
 
     def test_flag_info(self):
         self.apps[0].current_version.update(has_info_request=True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
+        tds = pq(res.content)('#addon-queue tbody tr td.flags')
         flags = tds('div.sprite-reviewer-info')
         eq_(flags.length, 1)
 
@@ -353,7 +351,7 @@ class FlagsMixin(object):
         self.apps[0].current_version.update(has_editor_comment=True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
+        tds = pq(res.content)('#addon-queue tbody tr td.flags')
         flags = tds('div.sprite-reviewer-editor')
         eq_(flags.length, 1)
 
@@ -536,6 +534,53 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             user=UserProfile.objects.get(username='editor'))
         doc = pq(queue_apps(req).content)
         assert not doc('#addon-queue tbody tr').length
+
+
+class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
+                      XSSMixin):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.apps = [app_factory(name='WWW',
+                                 status=amo.STATUS_PUBLIC),
+                     app_factory(name='XXX',
+                                 status=amo.STATUS_PUBLIC),
+                     app_factory(name='YYY',
+                                 status=amo.STATUS_PUBLIC),
+                     app_factory(name='ZZZ',
+                                 status=amo.STATUS_PENDING)]
+        # WWW and XXX are the only ones actually requested to be public.
+        self.apps[0].geodata.update(region_cn_status=amo.STATUS_PENDING,
+            region_cn_nominated=self.days_ago(2))
+        self.apps[1].geodata.update(region_cn_status=amo.STATUS_PENDING,
+            region_cn_nominated=self.days_ago(1))
+        self.apps[2].geodata.update(region_cn_status=amo.STATUS_PUBLIC)
+
+        self.user = UserProfile.objects.get(username='editor')
+        self.grant_permission(self.user, 'Apps:ReviewRegionCN')
+        self.login_as_editor()
+        self.url = reverse('reviewers.apps.queue_region',
+                           args=[mkt.regions.CN.slug])
+
+    def test_template_links(self):
+        raise SkipTest, 'TODO(cvan): Figure out sorting issue'
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        links = pq(r.content)('.regional-queue tbody tr td:first-child a')
+        apps = Webapp.objects.order_by('-_geodata__region_cn_nominated')
+        src = '?src=queue-region-cn'
+        expected = [
+            (unicode(apps[0].name), apps[0].get_url_path() + src),
+            (unicode(apps[1].name), apps[1].get_url_path() + src),
+        ]
+        check_links(expected, links, verify=False)
+
+    def test_escalated_not_in_queue(self):
+        self.login_as_senior_reviewer()
+        self.apps[0].escalationqueue_set.create()
+        res = self.client.get(self.url)
+        eq_([a.app for a in res.context['addons']], [self.apps[1]])
 
 
 @mock.patch('versions.models.Version.is_privileged', False)
@@ -965,7 +1010,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         self.apps[0].update(status=amo.STATUS_BLOCKED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
+        tds = pq(res.content)('#addon-queue tbody tr td.flags')
         flags = tds('div.sprite-reviewer-blocked')
         eq_(flags.length, 1)
 
@@ -2326,27 +2371,24 @@ class TestMotd(AppReviewerTest, AccessMixin):
 
 
 class TestAbuseReports(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999', 'user_admin', 'group_admin',
+                       'user_admin_group')
 
     def setUp(self):
-        user = UserProfile.objects.all()[0]
         self.app = app_factory()
-        AbuseReport.objects.create(addon_id=self.app.id, message='eff')
-        AbuseReport.objects.create(addon_id=self.app.id, message='yeah',
-                                   reporter=user)
+        self.app.abuse_reports.create(message='eff')
+        self.app.abuse_reports.create(message='yeah', reporter_id=999)
         # Make a user abuse report to make sure it doesn't show up.
-        AbuseReport.objects.create(user=user, message='hey now')
+        AbuseReport.objects.create(message='hey now', user_id=999)
 
     def test_abuse_reports_list(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
         res = self.client.get(reverse('reviewers.apps.review.abuse',
                                       args=[self.app.app_slug]))
         eq_(res.status_code, 200)
         # We see the two abuse reports created in setUp.
         reports = res.context['reports']
-        eq_(len(reports), 2)
-        eq_(sorted([r.message for r in reports]), [u'eff', u'yeah'])
+        self.assertSetEqual([r.message for r in reports], [u'eff', u'yeah'])
 
 
 class TestModeratedQueue(AppReviewerTest, AccessMixin):
@@ -2449,7 +2491,7 @@ class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
         super(TestGetSigned, self).setUp()
         self.url = reverse('reviewers.signed', args=[self.app.app_slug,
                                                      self.version.pk])
-        self.client.login(username='editor@mozilla.com', password='password')
+        self.login('editor@mozilla.com')
 
     def test_not_logged_in(self):
         self.client.logout()
@@ -2457,7 +2499,7 @@ class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
 
     def test_not_reviewer(self):
         self.client.logout()
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         eq_(self.client.get(self.url).status_code, 403)
 
     @mock.patch('lib.crypto.packaged.sign')
@@ -2503,7 +2545,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         self.file.update(filename='mozball.zip')
         self.url = reverse('reviewers.mini_manifest', args=[self.app.id,
                                                             self.version.pk])
-        self.client.login(username='editor@mozilla.com', password='password')
+        self.login('editor@mozilla.com')
 
     def test_not_logged_in(self):
         self.client.logout()
@@ -2568,7 +2610,8 @@ class TestMiniManifestView(BasePackagedAppTest):
 
 
 class TestReviewersScores(AppReviewerTest, AccessMixin):
-    fixtures = ['base/users']
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
+                       'user_999')
 
     def setUp(self):
         super(TestReviewersScores, self).setUp()
@@ -2900,8 +2943,7 @@ class TestReviewPage(amo.tests.TestCase):
 
     def test_iarc_content_ratings(self):
         for body in [mkt.ratingsbodies.CLASSIND.id, mkt.ratingsbodies.USK.id]:
-            ContentRating.objects.create(addon=self.app, ratings_body=body,
-                                         rating=0)
+            self.app.content_ratings.create(ratings_body=body, rating=0)
         req = req_factory_factory(self.url, user=self.reviewer)
         res = app_review(req, app_slug=self.app.app_slug)
         doc = pq(res.content)

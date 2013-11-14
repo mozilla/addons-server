@@ -14,4 +14,12 @@ def parse_region(region):
         return regions.REGIONS_CHOICES_ID_DICT[int(region)]
     else:
         # Look up the region by slug.
-        return regions.REGIONS_DICT[region]
+        region_by_slug = regions.REGIONS_DICT.get(region)
+        if region_by_slug is not None:
+            return region_by_slug
+
+        # Look up the region by name.
+        region_lower = region.lower()
+        for region in regions.ALL_REGIONS:
+            if unicode(region.name).lower() == region_lower:
+                return region

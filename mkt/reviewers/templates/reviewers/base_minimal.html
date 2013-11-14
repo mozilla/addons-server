@@ -1,0 +1,41 @@
+{% extends 'reviewers/base.html' %}
+{% from 'site/helpers/form_row.html' import form_row %}
+
+{% block breadcrumbs %}
+  {{ reviewers_breadcrumbs(queue=tab) }}
+{% endblock %}
+
+{% block pillnav %}
+{% endblock %}
+
+{% block site_header_title %}
+  {% if action_allowed('Apps', 'Review') or action_allowed('Personas', 'Review') %}
+    <div id="site-nav">
+      <div class="pad">
+        <nav class="menu-nav app-nav no-img" role="navigation">
+          <ul>
+            <li class="slim">
+              <a href="{{ url('reviewers.home') }}">
+                &#11013;&nbsp; {{ _('Back to Reviewer Tools') }}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block queue_menu %}
+{% endblock %}
+
+{% block log_menu %}
+{% endblock %}
+
+{% block queues_overlay %}
+{% endblock %}
+
+{% block logs_overlay %}
+{% endblock %}
+
+{# Do not show "Message of the Day." #}
+{% set motd = '' %}

@@ -1,0 +1,62 @@
+{% extends 'reviewers/base_minimal.html' %}
+{% from 'reviewers/includes/macros.html' import app_flags with context %}
+{% from 'site/helpers/form_row.html' import form_row %}
+
+{% block breadcrumbs %}
+  {{ reviewers_breadcrumbs(items=[(None, _('Regional Queues')),
+                                  (None, region.name)]) }}
+{% endblock %}
+
+{% set page_title = _('{region} Review Queue').format(region=region.name) %}
+
+{% block title %}
+  {{ page_title }} | {{ super() }}
+{% endblock %}
+
+{% block content %}
+  <h1>{{ page_title }}</h1>
+
+  <section id="queue-island" class="island search-toggle">
+    {% if addons %}
+      <table id="addon-queue" class="data-grid items regional-queue">
+        <thead>
+          <tr class="listing-header">
+            <th>{{ sort_link(_('App'), 'name')|safe }}</th>
+            <th>{{ _('Flags') }}</th>
+            <th class="waiting-time">{{ sort_link(_('Waiting Time'), date_sort or 'created')|safe }}</th>
+            <th>{{ _('Devices') }}</th>
+            <th class="payments">{{ _('Payments') }}</th>
+            <th class="action">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for qa in addons %}
+            <tr data-addon="{{ qa.app.id }}" class="addon-row" id="addon-{{ qa.app.id }}"
+                data-action-url="{{ url('approve-region', qa.app.id, region.slug) }}">
+              <td class="app-name"><a href="{{ qa.app.get_url_path(src='queue-region-' + region.slug) }}" target="_blank">{{ qa.app.name }}</a></td>
+              <td class="flags">{{ app_flags(qa.app) }}</td>
+              <td class="waiting-time">{{ qa.created|timelabel }}</td>
+              <td>{{ device_list(qa.app) }}</td>
+              <td class="payments">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
+              <td class="action">
+                <a class="button approve" data-action="approve">{{ _('Approve') }}</button>
+                <a class="button reject" data-action="reject">{{ _('Reject') }}</button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      {{ no_results() }}
+    {% endif %}
+
+    {% if queue_counts[tab] == 0 %}
+      <div class="no-results">
+        {{ _('There are currently no items of this type to review.') }}
+      </div>
+    {% else %}
+      <div class="impala-paginator">{{ pager|impala_paginator }}</div>
+      <div class="mobile-paginator hidden">{{ pager|mobile_impala_paginator }}</div>
+    {% endif %}
+  </section>
+{% endblock %}

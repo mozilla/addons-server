@@ -51,7 +51,7 @@ def _view_on_get(request):
             acl.action_allowed(request, 'ReviewerTools', 'View'))
 
 
-def reviewer_required(only=None):
+def reviewer_required(only=None, region=None):
     """Requires the user to be logged in as a reviewer or admin, or allows
     someone with rule 'ReviewerTools:View' for GET requests.
 
@@ -70,7 +70,8 @@ def reviewer_required(only=None):
         @login_required
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            if acl.check_reviewer(request, only) or _view_on_get(request):
+            if (acl.check_reviewer(request, only, region=kw.get('region')) or
+                _view_on_get(request)):
                 return f(request, *args, **kw)
             else:
                 raise PermissionDenied

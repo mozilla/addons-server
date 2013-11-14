@@ -1,0 +1,57 @@
+@import 'lib';
+
+#notification {
+    border-box();
+    background-color: #3b3b3b;
+    bottom: -62px;
+    color: #fff;
+    cursor: pointer;
+    font-family: "MozTT", $open-stack;
+    grain();
+    height: 62px;
+    left: 0;
+    line-height: 42px; // height less padding.
+    margin: 0 auto;
+    padding: 10px 15px;
+    position: fixed;
+    right: 0;
+    // If this duration is increased update the duration in notification.js
+    // to ensure hiding the notification only happens when transition is complete.
+    transition-duration(.3s);
+    // Using bottom here rather than translateY as the latter causes problems
+    // on FF b2g (bug 886334)
+    transition-property(bottom);
+    width: 100%;
+    z-index: 9999;
+    &.show {
+        bottom: 0;
+        transition-duration(.3s);
+        transition-property(bottom);
+    }
+    &.hidden {
+        display: none;
+    }
+    &.good {
+        background-color: #003b00;
+    }
+    &.bad {
+        background-color: #3b0000;
+    }
+}
+
+#notification-content {
+    display: inline-block;
+    line-height: 1.5;
+    vertical-align: middle;
+    b {
+      text-transform: uppercase;
+      color: #0995b0;
+  }
+}
+
+@media (min-width: 600px) {
+    #notification {
+        border-radius: 4px 4px 0 0;
+        max-width: 600px;
+    }
+}

@@ -1,14 +1,19 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.exceptions import ParseError
+from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import GroupPermission, PermissionAuthorization
-from mkt.reviewers.forms import ApiReviewersSearchForm
+from mkt.api.base import SlugOrIdMixin
+from mkt.regions.utils import parse_region
+from mkt.reviewers.forms import ApiReviewersSearchForm, ApproveRegionForm
 from mkt.reviewers.serializers import ReviewingSerializer
 from mkt.reviewers.utils import AppsReviewing
 from mkt.search.api import SearchResource
 from mkt.search.utils import S
-from mkt.webapps.models import WebappIndexer
+from mkt.webapps.models import Webapp, WebappIndexer
 
 
 class ReviewingView(ListAPIView):
@@ -80,3 +85,33 @@ class ReviewersSearchResource(SearchResource):
         bundle.data = filtered_data
 
         return bundle
+
+
+class ApproveRegion(SlugOrIdMixin, CreateAPIView):
+    """
+    TODO: Document this API.
+    """
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    model = Webapp
+    slug_field = 'app_slug'
+
+    def get_permissions(self):
+        region = parse_region(self.request.parser_context['kwargs']['region'])
+        region_slug = region.slug.upper()
+        return (GroupPermission('Apps', 'ReviewRegion%s' % region_slug),)
+
+    def get_queryset(self):
+        region = parse_region(self.request.parser_context['kwargs']['region'])
+        return self.model.objects.pending_in_region(region)
+
+    def post(self, request, pk, region, *args, **kwargs):
+        app = self.get_object()
+        region = parse_region(region)
+
+        form = ApproveRegionForm(request.DATA, app=app, region=region)
+        if not form.is_valid():
+            raise ParseError(dict(form.errors.items()))
+        form.save()
+
+        return Response({'approved': bool(form.cleaned_data['approve'])})
