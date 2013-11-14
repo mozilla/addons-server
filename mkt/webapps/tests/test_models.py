@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import functools
+import hashlib
 import json
 import os
 import shutil
@@ -12,6 +13,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.db.models.signals import post_delete, post_save
+from django.test.utils import override_settings
 from django.utils.translation import ugettext_lazy as _
 
 import mock
@@ -588,6 +590,13 @@ class TestWebapp(amo.tests.TestCase):
             user=user)
         AddonPaymentAccount.objects.create(addon=app, payment_account=payment)
         assert app.has_payment_account()
+
+    @override_settings(SECRET_KEY='test')
+    def test_iarc_token(self):
+        app = Webapp()
+        app.id = 1
+        eq_(app.iarc_token(),
+            hashlib.sha512(settings.SECRET_KEY + str(app.id)).hexdigest())
 
 
 class DeletedAppTests(amo.tests.ESTestCase):

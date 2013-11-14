@@ -20,6 +20,7 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from addons.models import Addon, AddonDeviceType, AddonUpsell, AddonUser
+from amo.helpers import absolutify
 from amo.tests import (app_factory, assert_no_validation_errors,
                        version_factory)
 from amo.tests.test_helpers import get_image_path
@@ -1155,6 +1156,10 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(values['email'], self.req.amo_user.email)
         eq_(values['appname'], self.app.name)
         eq_(values['platform'], 'Firefox')
+        eq_(values['token'], self.app.iarc_token())
+        eq_(values['pingback_url'],
+            absolutify(reverse('content-ratings-pingback',
+                               args=[self.app.app_slug])))
 
     def test_edit_default_locale(self):
         """Ensures the form uses the app's default locale."""

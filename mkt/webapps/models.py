@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import hashlib
 import json
 import os
 import urlparse
@@ -942,6 +943,12 @@ class Webapp(Addon):
             return self.trending.get(region=by_region).value
         except ObjectDoesNotExist:
             return 0
+
+    def iarc_token(self):
+        """
+        Simple hash to verify token in pingback API.
+        """
+        return hashlib.sha512(settings.SECRET_KEY + str(self.id)).hexdigest()
 
     def set_iarc_info(self, submission_id, security_code):
         """
