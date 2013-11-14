@@ -106,14 +106,11 @@ class TestXMLParser(amo.tests.TestCase):
         eq_(data['ratings'][ratingsbodies.GENERIC], ratingsbodies.GENERIC_16)
 
         # Test descriptors.
-        eq_(data['descriptors'][ratingsbodies.GENERIC], ['has_generic_lang'])
-        eq_(data['descriptors'][ratingsbodies.USK], ['has_usk_lang'])
-        eq_(data['descriptors'][ratingsbodies.ESRB], [u'has_esrb_strong_lang'])
-        self.assertSetEqual(
-            data['descriptors'][ratingsbodies.CLASSIND],
-            [u'has_classind_sex_content', u'has_classind_lang'])
-        self.assertSetEqual(data['descriptors'][ratingsbodies.PEGI],
-                            ['has_pegi_lang', 'has_pegi_online'])
+        self.assertSetEqual(data['descriptors'],
+                            ['has_generic_lang', 'has_usk_lang',
+                             'has_esrb_strong_lang',
+                             'has_classind_sex_content', 'has_classind_lang',
+                             'has_pegi_lang', 'has_pegi_online'])
 
         # Test interactives.
         self.assertSetEqual(data['interactives'],
