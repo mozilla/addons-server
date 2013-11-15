@@ -1,3 +1,4 @@
+import functools
 import json
 import logging
 import sys
@@ -12,6 +13,7 @@ from django.db.models.sql import EmptyResultSet
 from django.http import HttpResponseNotFound
 
 import commonware.log
+from rest_framework.decorators import api_view
 from rest_framework.mixins import ListModelMixin
 from rest_framework.routers import Route, SimpleRouter
 from rest_framework.relations import HyperlinkedRelatedField
@@ -568,6 +570,16 @@ class CORSMixin(object):
         return super(CORSMixin, self).finalize_response(
             request, response, *args, **kwargs)
 
+
+def cors_api_view(methods):
+    def decorator(f):
+        @api_view(methods)
+        @functools.wraps(f)
+        def wrapped(request):
+            request._request.CORS = methods
+            return f(request)
+        return wrapped
+    return decorator
 
 class SlugOrIdMixin(object):
     """

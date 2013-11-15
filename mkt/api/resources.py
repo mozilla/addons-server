@@ -6,7 +6,7 @@ import commonware.log
 import waffle
 from celery_tasktree import TaskTree
 import raven.base
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import permission_classes
 from rest_framework import generics
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import AllowAny
@@ -40,13 +40,12 @@ from market.models import AddonPremium, Price, PriceCurrency
 from mkt.api.authentication import (SharedSecretAuthentication,
                                     OptionalOAuthAuthentication,
                                     RestOAuthAuthentication)
-from mkt.api.authorization import (AllowAppOwner, AllowReviewerReadOnly,
-                                   AppOwnerAuthorization, GroupPermission,
-                                   OwnerAuthorization)
-from mkt.api.base import (CORSMixin, CORSResource, http_error,
-                          MarketplaceModelResource, MarketplaceResource,
-                          SlugOrIdMixin)
-from mkt.api.forms import (CategoryForm, DeviceTypeForm, UploadForm)
+from mkt.api.authorization import (AllowAppOwner, AppOwnerAuthorization,
+                                   GroupPermission, OwnerAuthorization)
+from mkt.api.base import (cors_api_view, CORSMixin, CORSResource,
+                          http_error, MarketplaceModelResource,
+                          MarketplaceResource, SlugOrIdMixin)
+from mkt.api.forms import CategoryForm, DeviceTypeForm, UploadForm
 from mkt.api.http import HttpLegallyUnavailable
 from mkt.api.serializers import CarrierSerializer, RegionSerializer
 from mkt.carriers import CARRIER_MAP, CARRIERS
@@ -359,14 +358,13 @@ def get_settings():
     return dict([k, safe[k]] for k in _settings)
 
 
-@api_view(['GET'])
+@cors_api_view(['GET'])
 @permission_classes([AllowAny])
 def site_config(request):
     """
     A resource that is designed to be exposed externally and contains
     settings or waffle flags that might be relevant to the client app.
     """
-    request._request.CORS = ['GET']
     return Response({
             # This is the git commit on IT servers.
             'version': getattr(settings, 'BUILD_ID_JS', ''),
@@ -398,7 +396,7 @@ class CarrierViewSet(RegionViewSet):
         return CARRIER_MAP.get(self.kwargs['pk'], None)
 
 
-@api_view(['POST'])
+@cors_api_view(['POST'])
 @permission_classes([AllowAny])
 def error_reporter(request):
     request._request.CORS = ['POST']

@@ -17,27 +17,26 @@ from addons.models import Addon, AddonUser
 from constants.payments import CONTRIB_NO_CHARGE
 from devhub.models import AppLog
 from mkt.api.base import list_url
-from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
 from mkt.constants import apps
-from mkt.receipts.api import HttpPaymentRequired, ReceiptResource
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
-class TestAPI(BaseOAuth):
+class TestAPI(RestOAuth):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
-        super(TestAPI, self).setUp(api_name='receipts')
+        super(TestAPI, self).setUp()
         self.addon = Addon.objects.get(pk=337141)
-        self.url = list_url('install')
+        self.url = reverse('receipt.install')
         self.data = json.dumps({'app': self.addon.pk})
         self.profile = self.user.get_profile()
 
     def test_has_cors(self):
-        self.assertCORS(self.client.get(self.url), 'post')
+        self.assertCORS(self.client.post(self.url), 'post')
 
     def post(self, anon=False):
         client = self.client if not anon else self.anon
@@ -53,7 +52,7 @@ class TestAPI(BaseOAuth):
 
     def test_record_logged_out(self):
         res = self.post(anon=True)
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
 
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_cef_logs(self, cef):
@@ -119,69 +118,63 @@ class TestDevhubAPI(BaseOAuth):
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
-class TestReceipt(amo.tests.TestCase):
+class TestReceipt(RestOAuth):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
+        super(TestReceipt, self).setUp()
         self.addon = Addon.objects.get(pk=337141)
-        self.bundle = Bundle(data={'app': self.addon.pk})
+        self.data = json.dumps({'app': self.addon.pk})
         self.profile = UserProfile.objects.get(pk=2519)
-        self.resource = ReceiptResource()
+        self.url = reverse('receipt.install')
 
-    def get_request(self, profile):
-        request = RequestFactory().post('/')
-        if not profile:
-            request.user = AnonymousUser()
-        else:
-            request.user = profile.user
-            request.amo_user = profile
-        return request
-
-    def handle(self, profile):
-        return self.resource.handle(self.bundle, self.get_request(profile))
+    def post(self, anon=False):
+        client = self.client if not anon else self.anon
+        return client.post(self.url, data=self.data)
 
     def test_pending_free_for_developer(self):
         AddonUser.objects.create(addon=self.addon, user=self.profile)
         self.addon.update(status=amo.STATUS_PENDING)
-        ok_(self.handle(self.profile))
+        eq_(self.post().status_code, 201)
 
     def test_pending_free_for_anonymous(self):
         self.addon.update(status=amo.STATUS_PENDING)
-        with self.assertImmediate(http.HttpForbidden):
-            ok_(self.handle(None))
+        r = self.anon.post(self.url)
+        eq_(self.post(anon=True).status_code, 403)
+
 
     def test_pending_paid_for_developer(self):
         AddonUser.objects.create(addon=self.addon, user=self.profile)
         self.addon.update(status=amo.STATUS_PENDING,
                           premium_type=amo.ADDON_PREMIUM)
-        ok_(self.handle(self.profile))
+        eq_(self.post().status_code, 201)
         eq_(self.profile.installed_set.all()[0].install_type,
             apps.INSTALL_TYPE_DEVELOPER)
 
     def test_pending_paid_for_anonymous(self):
         self.addon.update(status=amo.STATUS_PENDING,
                           premium_type=amo.ADDON_PREMIUM)
-        with self.assertImmediate(http.HttpForbidden):
-            ok_(self.handle(None))
+        eq_(self.post(anon=True).status_code, 403)
 
     def test_not_record_addon(self):
         self.addon.update(type=amo.ADDON_EXTENSION)
-        with self.assertImmediate(http.HttpBadRequest):
-            ok_(self.handle(self.profile))
+        r = self.client.post(self.url)
+        eq_(r.status_code, 400)
 
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_paid(self, has_purchased):
         has_purchased.return_value = True
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        ok_(self.handle(self.profile))
+        r = self.post()
+        eq_(r.status_code, 201)
 
     def test_own_payments(self):
         self.addon.update(premium_type=amo.ADDON_OTHER_INAPP)
-        ok_(self.handle(self.profile))
+        eq_(self.post().status_code, 201)
 
     def test_no_charge(self):
         self.make_premium(self.addon, '0.00')
-        ok_(self.handle(self.profile))
+        eq_(self.post().status_code, 201)
         eq_(self.profile.installed_set.all()[0].install_type,
             apps.INSTALL_TYPE_USER)
         eq_(self.profile.addonpurchase_set.all()[0].type,
@@ -191,26 +184,26 @@ class TestReceipt(amo.tests.TestCase):
     def test_not_paid(self, has_purchased):
         has_purchased.return_value = False
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        with self.assertImmediate(HttpPaymentRequired):
-            ok_(self.handle(self.profile))
+        eq_(self.post().status_code, 402)
 
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_record_install(self, cef):
-        ok_(self.handle(self.profile))
+        self.post()
         installed = self.profile.installed_set.all()
         eq_(len(installed), 1)
         eq_(installed[0].install_type, apps.INSTALL_TYPE_USER)
 
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_record_multiple_installs(self, cef):
-        ok_(self.handle(self.profile))
-        ok_(self.handle(self.profile))
+        self.post()
+        r = self.post()
+        eq_(r.status_code, 201)
         eq_(self.profile.installed_set.count(), 1)
 
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_record_receipt(self, cef):
-        res = self.handle(self.profile)
-        ok_(Receipt(res).receipt_decoded())
+        r = self.post()
+        ok_(Receipt(r.data['receipt']).receipt_decoded())
 
 
 class TestReissue(amo.tests.TestCase):

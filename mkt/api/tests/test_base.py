@@ -9,6 +9,10 @@ from mock import patch, Mock
 from nose.tools import eq_, ok_
 
 from rest_framework.serializers import ValidationError
+from rest_framework.decorators import (authentication_classes,
+                                       permission_classes)
+from rest_framework.response import Response
+
 from tastypie import http
 from tastypie.authentication import Authentication
 from tastypie.authorization import Authorization
@@ -18,8 +22,8 @@ from test_utils import RequestFactory
 
 from access.middleware import ACLMiddleware
 from amo.tests import TestCase
-from mkt.api.base import (AppViewSet, CompatRelatedField, CORSResource,
-                          handle_500, MarketplaceResource)
+from mkt.api.base import (AppViewSet, cors_api_view, CompatRelatedField,
+                          CORSResource, handle_500, MarketplaceResource)
 from mkt.api.http import HttpTooManyRequests
 from mkt.api.serializers import Serializer
 from mkt.receipts.tests.test_views import RawRequestFactory
@@ -228,6 +232,17 @@ class TestCORSResource(TestCase):
         request = RequestFactory().get('/')
         UnfilteredCORS().method_check(request, allowed=['get'])
         eq_(request.CORS, ['get'])
+
+class TestCORSWrapper(TestCase):
+    def test_cors(self):
+        @cors_api_view(['GET', 'PATCH'])
+        @authentication_classes([])
+        @permission_classes([])
+        def foo(request):
+            return Response()
+        request = RequestFactory().get('/')
+        r = foo(request)
+        eq_(request.CORS, ['GET', 'PATCH'])
 
 
 class Form(forms.Form):

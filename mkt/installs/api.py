@@ -1,7 +1,7 @@
 from django.core.exceptions import PermissionDenied
 
 import commonware.log
-from rest_framework.decorators import (api_view, authentication_classes,
+from rest_framework.decorators import (authentication_classes,
                                        parser_classes, permission_classes)
 from rest_framework.parsers import FormParser, JSONParser
 from rest_framework.permissions import AllowAny
@@ -9,6 +9,7 @@ from rest_framework.response import Response
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
+from mkt.api.base import cors_api_view
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.installs.forms import InstallForm
 from mkt.installs.utils import install_type, record
@@ -17,13 +18,12 @@ from mkt.webapps.models import Installed
 log = commonware.log.getLogger('z.api')
 
 
-@api_view(['POST'])
+@cors_api_view(['POST'])
 @authentication_classes([RestOAuthAuthentication,
                          RestSharedSecretAuthentication])
 @parser_classes([JSONParser, FormParser])
 @permission_classes([AllowAny])
 def install(request):
-    request._request.CORS = ['POST']
     form = InstallForm(request.DATA, request=request)
 
     if form.is_valid():
