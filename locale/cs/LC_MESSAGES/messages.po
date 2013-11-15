@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-14 22:07+0000\n"
+"PO-Revision-Date: 2013-11-15 09:17+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384466858.0\n"
+"X-POOTLE-MTIME: 1384507055.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -15269,31 +15269,35 @@ msgstr ""
 
 #: mkt/constants/features.py:213
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
+"Aplikace vyžaduje od platformy skrze objekt LocalMediaStream přístup k videu "
+"z kamery."
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofon"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr ""
+msgstr "Aplikace vyžaduje od platformy přístup ke zvuku z mikrofonu zařízení."
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
-msgstr ""
+msgstr "Snímek obrazovky"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr ""
+"Aplikace vyžaduje od platformy přístup k obrazovce zařízení, aby mohla "
+"udělat snímek obrazovky."
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
@@ -15301,7 +15305,7 @@ msgstr ""
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
@@ -15309,7 +15313,7 @@ msgstr ""
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
@@ -15345,7 +15349,7 @@ msgstr ""
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
-msgstr ""
+msgstr "Upozornění"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
@@ -15353,7 +15357,7 @@ msgstr ""
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
@@ -15361,19 +15365,19 @@ msgstr ""
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
-msgstr ""
+msgstr "Sokety TCP"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "Aplikace vyžaduje od platformy přístup k otevírání TCP soketů."
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Podpora pro klávesnici třetí strany"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "Aplikace vyžaduje od platformy podporu pro klávesnice třetích stran."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15393,48 +15397,48 @@ msgstr "Telefony s Androidem"
 
 #: mkt/constants/platforms.py:56 mkt/constants/platforms.py:59
 msgid "Tablets"
-msgstr ""
+msgstr "Tablety"
 
 #: mkt/constants/ratingdescriptors.py:13 mkt/constants/ratingdescriptors.py:127 mkt/constants/ratingdescriptors.py:175 mkt/constants/ratingdescriptors.py:288
 msgid "Violence"
-msgstr ""
+msgstr "Násilí"
 
 #: mkt/constants/ratingdescriptors.py:16
 msgid "Extreme Violence"
-msgstr ""
+msgstr "Extrémní násilí"
 
 #: mkt/constants/ratingdescriptors.py:19 mkt/constants/ratingdescriptors.py:88 mkt/constants/ratingdescriptors.py:242
 msgid "Nudity"
-msgstr ""
+msgstr "Nahota"
 
 #. L10n: `Sex` as in sexual, not as in gender.
 #: mkt/constants/ratingdescriptors.py:23 mkt/constants/ratingdescriptors.py:186
 msgid "Sex"
-msgstr ""
+msgstr "Sex"
 
 #: mkt/constants/ratingdescriptors.py:26
 msgid "Explicit Sex"
-msgstr ""
+msgstr "Explicitní sex"
 
 #: mkt/constants/ratingdescriptors.py:29 mkt/constants/ratingdescriptors.py:189 mkt/constants/ratingdescriptors.py:285
 msgid "Drugs"
-msgstr ""
+msgstr "Drogy"
 
 #: mkt/constants/ratingdescriptors.py:32
 msgid "Legal Drugs"
-msgstr ""
+msgstr "Legální drogy"
 
 #: mkt/constants/ratingdescriptors.py:35
 msgid "Illegal Drugs"
-msgstr ""
+msgstr "Ilegální drogy"
 
 #: mkt/constants/ratingdescriptors.py:42
 msgid "Criminal Acts"
-msgstr ""
+msgstr "Trestné činy"
 
 #: mkt/constants/ratingdescriptors.py:45
 msgid "Shocking Content"
-msgstr ""
+msgstr "Šokující obsah"
 
 #: mkt/constants/ratingdescriptors.py:48 mkt/constants/ratingdescriptors.py:133 mkt/constants/ratingdescriptors.py:201 mkt/constants/ratingdescriptors.py:269
 msgid "No Descriptors"
@@ -15442,11 +15446,11 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:51 mkt/constants/ratingdescriptors.py:205
 msgid "Alcohol Reference"
-msgstr ""
+msgstr "Odkaz na alkohol"
 
 #: mkt/constants/ratingdescriptors.py:54 mkt/constants/ratingdescriptors.py:208
 msgid "Blood"
-msgstr ""
+msgstr "Krev"
 
 #: mkt/constants/ratingdescriptors.py:57 mkt/constants/ratingdescriptors.py:211
 msgid "Blood and Gore"
@@ -15454,11 +15458,11 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:60 mkt/constants/ratingdescriptors.py:214
 msgid "Crude Humor"
-msgstr ""
+msgstr "Černý humor"
 
 #: mkt/constants/ratingdescriptors.py:63 mkt/constants/ratingdescriptors.py:217
 msgid "Drug Reference"
-msgstr ""
+msgstr "Odkaz na drogy"
 
 #: mkt/constants/ratingdescriptors.py:66 mkt/constants/ratingdescriptors.py:220
 msgid "Fantasy Violence"
@@ -15526,15 +15530,15 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:121
 msgid "Use of Drugs"
-msgstr ""
+msgstr "Užívání drog"
 
 #: mkt/constants/ratingdescriptors.py:124
 msgid "Use of Tobacco"
-msgstr ""
+msgstr "Užívání tabáku"
 
 #: mkt/constants/ratingdescriptors.py:130
 msgid "Violence References"
-msgstr ""
+msgstr "Odkazy na násilí"
 
 #: mkt/constants/ratingdescriptors.py:136
 msgid "Comic Mischief"
@@ -15550,11 +15554,11 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:145
 msgid "Use of Alcohol and Tobacco"
-msgstr ""
+msgstr "Užívání alkoholu a tabáku"
 
 #: mkt/constants/ratingdescriptors.py:148
 msgid "Use of Drug and Alcohol"
-msgstr ""
+msgstr "Užívání drog a alkoholu"
 
 #: mkt/constants/ratingdescriptors.py:151
 msgid "Drug and Tobacco Reference"
@@ -15598,7 +15602,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:198
 msgid "Online"
-msgstr ""
+msgstr "Online"
 
 #: mkt/constants/ratingdescriptors.py:272
 msgid "Frightening Content"
@@ -15606,19 +15610,19 @@ msgstr ""
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
-msgstr ""
+msgstr "Interakce uživatelů"
 
 #: mkt/constants/ratinginteractives.py:15
 msgid "Shares Info"
-msgstr ""
+msgstr "Sdílení informací"
 
 #: mkt/constants/ratinginteractives.py:18
 msgid "Shares Location"
-msgstr ""
+msgstr "Sdílení umístění"
 
 #: mkt/constants/ratinginteractives.py:21
 msgid "Digital Purchases"
-msgstr ""
+msgstr "Digitální nákupy"
 
 #: mkt/constants/ratinginteractives.py:24
 msgid "Social Networking"
@@ -15654,23 +15658,23 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:11
 msgid "Not recommended for users younger than 13 years of age"
-msgstr ""
+msgstr "Není doporučeno pro uživatele mladší 13 let"
 
 #: mkt/constants/ratingsbodies.py:12
 msgid "Not recommended for users younger than 14 years of age"
-msgstr ""
+msgstr "Není doporučeno pro uživatele mladší 14 let"
 
 #: mkt/constants/ratingsbodies.py:13
 msgid "Not recommended for users younger than 16 years of age"
-msgstr ""
+msgstr "Není doporučeno pro uživatele mladší 16 let"
 
 #: mkt/constants/ratingsbodies.py:14
 msgid "Not recommended for users younger than 17 years of age"
-msgstr ""
+msgstr "Není doporučeno pro uživatele mladší 17 let"
 
 #: mkt/constants/ratingsbodies.py:15
 msgid "Not recommended for users younger than 18 years of age"
-msgstr ""
+msgstr "Není doporučeno pro uživatele mladší 18 let"
 
 #: mkt/constants/ratingsbodies.py:16
 msgid "Rejected for All Audiences"
@@ -15722,7 +15726,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:282
 msgid "Europe"
-msgstr ""
+msgstr "Evropa"
 
 #: mkt/constants/ratingsbodies.py:286
 msgid "Pan European Game Information"
@@ -15770,7 +15774,7 @@ msgstr "Nekorektní či ofenzivní obsah"
 
 #: mkt/constants/reviewers.py:32
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Obrázky násilí, války nebo zbraní"
 
 #: mkt/constants/reviewers.py:33
 msgid "Nazi or other hate content"
@@ -15818,7 +15822,7 @@ msgstr "Nepodařilo se připojit k platebnímu serveru."
 
 #: mkt/developers/api.py:88
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "Nelze smazat sdílený účet"
 
 #: mkt/developers/forms.py:99
 msgid "All team members must have read and agreed to the developer agreement."
@@ -15910,11 +15914,11 @@ msgstr "Povolení nových regionů"
 
 #: mkt/developers/forms.py:659
 msgid "Make my app available everywhere"
-msgstr ""
+msgstr "Nastavit dostupnost aplikace celosvětově"
 
 #: mkt/developers/forms.py:660
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Volba, kde bude má aplikace dostupná"
 
 #: mkt/developers/forms.py:832
 msgid "Agree"
@@ -15946,27 +15950,28 @@ msgstr "Typ transakce"
 
 #: mkt/developers/forms.py:949
 msgid "I agree to the Terms and Conditions"
-msgstr ""
+msgstr "Souhlasím s podmínkami"
 
 #: mkt/developers/forms.py:951
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "Nahrajte svůj testovací plán (.pdf, .xls pod 2,5 MB)"
 
 #: mkt/developers/forms.py:960
 msgid "Test plan required."
-msgstr ""
+msgstr "Vyžadován testovací plán."
 
 #: mkt/developers/forms.py:967
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr ""
+"Soubor je příliš velký. Velikost musí být pod %s. Aktuální velikost je %s."
 
 #: mkt/developers/forms.py:973
 msgid "Invalid file type. Only %s files are supported."
-msgstr ""
+msgstr "Neplatný typ souboru. Jsou podporovány pouze soubory %s."
 
 #: mkt/developers/forms.py:1011
 msgid "Content rating record not found."
-msgstr ""
+msgstr "Nebyl nalezen záznam o hodnocení obsahu."
 
 #: mkt/developers/forms_payments.py:56 mkt/submit/forms.py:269
 msgid "App Price"
@@ -15978,7 +15983,7 @@ msgstr "Zdarma (s platbami uvnitř aplikace)"
 
 #: mkt/developers/forms_payments.py:119
 msgid "Promotional Pricing"
-msgstr ""
+msgstr "Propagační cena"
 
 #: mkt/developers/forms_payments.py:132
 msgid "Only supports carrier billing"
@@ -15994,7 +15999,7 @@ msgstr "Podporuje všechny způsoby plateb"
 
 #: mkt/developers/forms_payments.py:215
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
+msgstr "Pokud je aplikace zdarma, musí být povoleny platby v aplikaci"
 
 #: mkt/developers/forms_payments.py:222
 msgid "Not a valid choice"
@@ -16070,7 +16075,7 @@ msgstr "Číslo bankovního účtu"
 
 #: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT kód"
 
 #: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
@@ -16131,7 +16136,7 @@ msgstr "Vývojáři"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:175
 msgid "Shared Account: {0}"
-msgstr ""
+msgstr "Sdílený účet: {0}"
 
 #: mkt/developers/models.py:190
 msgid "Bango"
@@ -16213,7 +16218,7 @@ msgstr "Nová verze byla úspěšně přidána."
 
 #: mkt/developers/views.py:310
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "Hodnocení obsahu bylo úspěšně uloženo."
 
 #: mkt/developers/views.py:359
 msgid "Application for preload successfully submitted."
@@ -16221,7 +16226,7 @@ msgstr ""
 
 #: mkt/developers/views.py:362
 msgid "There was an error with the form."
-msgstr ""
+msgstr "U formuláře se vyskytla chyba."
 
 #: mkt/developers/views.py:396
 msgid "Version successfully edited."
@@ -16412,7 +16417,7 @@ msgstr "Pravidla pro vývojáře jste již odsouhlasil(a)."
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_addon.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "Testování"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
@@ -16847,7 +16852,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
-msgstr ""
+msgstr "Úprava země na stránce kompatibility"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:28
 msgid "default"
@@ -16855,7 +16860,7 @@ msgstr "výchozí"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr ""
+msgstr "Úprava jazyku v souboru manifestu vaší aplikace"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
@@ -16917,6 +16922,7 @@ msgstr "128x128px"
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
 msgstr ""
+"Použito na stránkách vyhledávání, stránkách kategorií a domovské stránce."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:45
 msgid "Used in app detail pages."
@@ -16964,7 +16970,7 @@ msgstr "Řekněte nám prosím, proč svou aplikaci mažete"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:46
 msgid "Team Members & License"
-msgstr ""
+msgstr "Členové týmu a licence"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:47 mkt/developers/templates/developers/apps/listing/item_actions_app.html:79
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:19 mkt/developers/templates/developers/payments/premium.html:4
@@ -16977,11 +16983,11 @@ msgstr "Poskytuje informace o platbách pro tuto aplikaci."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Get content ratings for the app."
-msgstr ""
+msgstr "Získání hodnocení obsahu pro aplikaci."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
 msgid "Set Up Content Ratings"
-msgstr ""
+msgstr "Nastavení hodnocení obsahu"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -16997,7 +17003,7 @@ msgstr "Přidání nové verze"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "Stav a verze"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:86 mkt/developers/templates/developers/includes/addons_edit_nav.html:23
 #: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:162
@@ -17006,7 +17012,7 @@ msgstr "Platby v aplikaci"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:102 mkt/developers/templates/developers/includes/addons_edit_nav.html:38
 msgid "Messages"
-msgstr ""
+msgstr "Zprávy"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:115 mkt/developers/templates/developers/includes/addons_edit_nav.html:50
 msgid "Transactions"
@@ -17014,15 +17020,15 @@ msgstr "Transakce"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:14
 msgid "This app's submission process has not been fully completed."
-msgstr ""
+msgstr "Proces přidání aplikace nebyl plně dokončen."
 
 #: mkt/developers/templates/developers/apps/listing/items.html:17
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "Tato aplikace potřebuje hodnocení obsahu."
 
 #: mkt/developers/templates/developers/apps/listing/items.html:20
 msgid "This app needs a payment account set up."
-msgstr ""
+msgstr "Tato aplikace potřebuje nastavení účtu pro platby."
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:28
@@ -17043,7 +17049,7 @@ msgstr "Cena:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:59
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "Nastavení účtu pro platby"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:64
 msgid "Change Devices"
@@ -17055,7 +17061,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:71
 msgid "Set up Content Ratings"
-msgstr ""
+msgstr "Nastavení hodnocení obsahu"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -17067,11 +17073,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/home.html:21
 msgid "Download the test plan"
-msgstr ""
+msgstr "Stáhnout testovací plán"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
-msgstr ""
+msgstr "Dokončeno testování?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:37
 msgid "Submit your app for preload"
@@ -17261,7 +17267,7 @@ msgstr "Vaše aplikace je aktuálně nekompletní. Pro obnovu zvolte účet pro 
 
 #: mkt/developers/templates/developers/payments/premium.html:132
 msgid "Add, manage or view transactions for your payment account"
-msgstr ""
+msgstr "Přidávat, spravovat nebo zobrazovat transakce pro váš účet plateb"
 
 #: mkt/developers/templates/developers/payments/premium.html:147
 msgid "Prices and Countries"
@@ -17319,7 +17325,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:238
 msgid "Regions and Listings"
-msgstr ""
+msgstr "Regiony a seznamy"
 
 #: mkt/developers/templates/developers/payments/premium.html:252
 msgid "Promote as upgrade to free version"
@@ -17352,7 +17358,7 @@ msgstr "Úprava"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:47
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "View transactions"
-msgstr ""
+msgstr "Zobrazit transakce"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a new payment account"
@@ -17364,7 +17370,7 @@ msgstr "Odsouhlasit podmínky použití služby"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:56
 msgid "Payment Account deletion"
-msgstr ""
+msgstr "Smazání účtu plateb"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
@@ -17372,11 +17378,11 @@ msgstr "Přidat účet Bango"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:19
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr ""
+msgstr "Obvykle 9, 10 nebo 11 číslic. Například: 0114584906."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:26
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr ""
+msgstr "8 nebo 11 znaků. Například: WFBIUS6WPDX."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:36 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:30
 msgid "Optional"
@@ -17604,7 +17610,7 @@ msgstr "Minimalistická a dobře strukturovaná podoba HTML"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:58
 msgid "Prebuilt"
-msgstr ""
+msgstr "Předpřipraveno"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:60
 msgid "JavaScript libraries for interacting with the Marketplace"
@@ -17998,7 +18004,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:157
 msgid "WebRT APIs (Permissions-based APIs)"
-msgstr ""
+msgstr "WebRT API (API dle oprávnění)"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:160
@@ -18929,7 +18935,7 @@ msgstr "Spuštění doplňku Simulator"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:234
 msgid "There are two different ways the Simulator may be started:"
-msgstr ""
+msgstr "Existují dva odlišné způsoby, jak může být doplněk Simulator spuštěn:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:236
 msgid "if you add, update, or remove an app, or click the \"Run\" button next to your app's entry, the Dashboard will automatically run your app in the Simulator"
@@ -20341,11 +20347,11 @@ msgstr ""
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
-msgstr ""
+msgstr "Testovací plán"
 
 #: mkt/operators/templates/operators/preloads.html:41
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:55
 msgid "No preload candidates found"
@@ -20923,23 +20929,23 @@ msgstr "Aktuálně nejsou dostupné žádné kontroly."
 #: mkt/reviewers/templates/reviewers/themes/home.html:17
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} čekajících kontrol na motivy"
+msgstr[1] "{num} čekající kontroly na motivy"
+msgstr[2] "{num} čekajících kontrol na motivy"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:25
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} označená recenze"
+msgstr[1] "{num} označené recenze"
+msgstr[2] "{num} označených recenzí"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:32
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} aktualizace"
+msgstr[1] "{num} aktualizace"
+msgstr[2] "{num} aktualizací"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:47
 msgid "{num} unreviewed theme submission this week."
@@ -21547,15 +21553,15 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:100
 msgid "<strong>What's next:</strong> Set up Content Ratings"
-msgstr ""
+msgstr "<strong>Co dále:</strong> Nastavení hodnocení obsahu"
 
 #: mkt/submit/templates/submit/next_steps.html:106
 msgid "<strong>What's next:</strong> Set up Payments & Countries"
-msgstr ""
+msgstr "<strong>Co dále:</strong> Nastavení plateb a zemí"
 
 #: mkt/submit/templates/submit/next_steps.html:112
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgstr "<strong>Co dále:</strong> Publikování aplikace"
 
 #: mkt/submit/templates/submit/payments-upsell.html:4 mkt/submit/templates/submit/payments.html:3
 msgid "App Payments"
