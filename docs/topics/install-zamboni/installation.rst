@@ -348,9 +348,15 @@ Create an Admin User
 --------------------
 
 To log into your dev site, you can click the login / register link and login
-with Browser ID just like on the live site. However, if you want to grant
-yourself admin privileges there are some additional steps. After registering,
-find your user record::
+with Persona just like on the live site.
+
+If, however, you don't have Persona enabled on your site, you can register a
+new user "the old way" by filling in the registration form. Remember to
+activate this user using the link in the confirmation email sent: it's
+displayed in the console, check your server logs.
+
+In any case, if you want to grant yourself admin privileges there are some
+additional steps. After registering, find your user record::
 
     mysql> select * from auth_user order by date_joined desc limit 1\G
 
