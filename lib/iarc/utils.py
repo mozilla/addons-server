@@ -187,7 +187,8 @@ class IARC_JSON_Parser(JSONParser, IARC_Parser):
         for f in data['ROW']['FIELD']:
             d[f['NAME']] = f['VALUE']
 
-        return {'ROW': d}
+        # Return a list to match the parsed XML.
+        return [d]
 
 
 # These mappings are required to convert the IARC response strings, like "ESRB"

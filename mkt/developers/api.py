@@ -159,7 +159,7 @@ class ContentRatingsPingback(CORSMixin, APIView):
         app = get_object_or_404(Webapp, pk=pk)
 
         # Verify token.
-        data = request.DATA
+        data = request.DATA[0]
         if app.iarc_token() != data.get('token'):
             return Response({'detail': 'Token mismatch'},
                             status=status.HTTP_400_BAD_REQUEST)
