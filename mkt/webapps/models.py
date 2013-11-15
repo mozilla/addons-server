@@ -1778,15 +1778,12 @@ class ContentRating(amo.models.ModelBase):
     def get_body(self):
         """Gives us something like DEJUS."""
         body = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
-        body.label = unicode(body.name).lower()
-        return body
+        return mkt.ratingsbodies.dehydrate_ratings_body(body)
 
     def get_rating(self):
         """Gives us the rating class (containing the name and description)."""
         rating = self.get_body().ratings[self.rating]
-        if not hasattr(rating, 'label'):
-            rating.label = unicode(rating.name).lower().replace('+', '')
-        return rating
+        return mkt.ratingsbodies.dehydrate_rating(rating)
 
     def get_label(self):
         """Gives us the name to be used for the form options."""

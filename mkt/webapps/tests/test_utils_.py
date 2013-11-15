@@ -121,13 +121,13 @@ class TestAppToDict(amo.tests.TestCase):
         eq_(res['content_ratings']['ratings']['br'],
             {'body': 'CLASSIND',
              'body_label': 'classind',
-             'rating': '18+',
+             'rating': 'For ages 18+',
              'rating_label': '18',
              'description': unicode(ratingsbodies.CLASSIND_18.description)})
         eq_(res['content_ratings']['ratings']['generic'],
             {'body': 'Generic',
              'body_label': 'generic',
-             'rating': '18+',
+             'rating': 'For ages 18+',
              'rating_label': '18',
              'description': unicode(ratingsbodies.GENERIC_18.description)})
 
@@ -311,13 +311,13 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(res['content_ratings']['ratings']['br'],
             {'body': 'CLASSIND',
              'body_label': 'classind',
-             'rating': '18+',
+             'rating': 'For ages 18+',
              'rating_label': '18',
              'description': unicode(ratingsbodies.CLASSIND_18.description)})
         eq_(res['content_ratings']['ratings']['generic'],
             {'body': 'Generic',
              'body_label': 'generic',
-             'rating': '18+',
+             'rating': 'For ages 18+',
              'rating_label': '18',
              'description': unicode(ratingsbodies.GENERIC_18.description)})
 

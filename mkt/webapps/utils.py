@@ -268,15 +268,17 @@ def dehydrate_content_rating(rating):
     """
     {body.id, rating.id} to translated {rating labels, names, descriptions}.
     """
-    body = mkt.ratingsbodies.RATINGS_BODIES[int(rating['body'])]
-    rating = body.ratings[int(rating['rating'])]
+    body = mkt.ratingsbodies.dehydrate_ratings_body(
+        mkt.ratingsbodies.RATINGS_BODIES[int(rating['body'])])
+    rating = mkt.ratingsbodies.dehydrate_rating(
+        body.ratings[int(rating['rating'])])
 
     return {
         'body': unicode(body.name),
         'body_label': body.label,
-        'rating': unicode(rating.name),
+        'rating': rating.name,
         'rating_label': rating.label,
-        'description': unicode(rating.description),
+        'description': rating.description
     }
 
 

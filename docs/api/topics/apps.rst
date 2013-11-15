@@ -52,7 +52,7 @@ App
             "content_ratings": {
                 "ratings": {
                     "en": {"body": "ESRB", "body_label": "esrb", "rating": "Teen", "rating_label": "13", "description": "Not recommended..."},
-                    "generic": {"body": "Generic", "body_label": "generic", "rating": "13+", "rating_label": "13", "description": "Not recommended..."}
+                    "generic": {"body": "Generic", "body_label": "generic", "rating": "For ages 13+", "rating_label": "13", "description": "Not recommended..."}
                 },
                 "descriptors": [
                     {"label": "esrb-scary", "name": "Scary Themes", "ratings_body": "esrb"},
