@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-13 03:19+0000\n"
-"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
+"PO-Revision-Date: 2013-11-15 01:57+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384312792.0\n"
+"X-POOTLE-MTIME: 1384480646.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1286,7 +1286,7 @@ msgstr "永久链接"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "翻译"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -13206,7 +13206,7 @@ msgstr "电子邮件地址"
 
 #: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:59
 msgid "Remember me on this device"
-msgstr ""
+msgstr "在这台设备上记住我"
 
 #: apps/users/templates/users/login_form.html:55 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
 msgid "Log in"
@@ -14994,68 +14994,68 @@ msgstr "Android 智能机"
 
 #: mkt/constants/platforms.py:56 mkt/constants/platforms.py:59
 msgid "Tablets"
-msgstr ""
+msgstr "平板电脑"
 
 #: mkt/constants/ratingdescriptors.py:13 mkt/constants/ratingdescriptors.py:127 mkt/constants/ratingdescriptors.py:175 mkt/constants/ratingdescriptors.py:288
 msgid "Violence"
-msgstr ""
+msgstr "暴力"
 
 #: mkt/constants/ratingdescriptors.py:16
 msgid "Extreme Violence"
-msgstr ""
+msgstr "极度暴力"
 
 #: mkt/constants/ratingdescriptors.py:19 mkt/constants/ratingdescriptors.py:88 mkt/constants/ratingdescriptors.py:242
 msgid "Nudity"
-msgstr ""
+msgstr "裸露"
 
 #. L10n: `Sex` as in sexual, not as in gender.
 #: mkt/constants/ratingdescriptors.py:23 mkt/constants/ratingdescriptors.py:186
 msgid "Sex"
-msgstr ""
+msgstr "性行为"
 
 #: mkt/constants/ratingdescriptors.py:26
 msgid "Explicit Sex"
-msgstr ""
+msgstr "露骨的性行为"
 
 #: mkt/constants/ratingdescriptors.py:29 mkt/constants/ratingdescriptors.py:189 mkt/constants/ratingdescriptors.py:285
 msgid "Drugs"
-msgstr ""
+msgstr "毒品"
 
 #: mkt/constants/ratingdescriptors.py:32
 msgid "Legal Drugs"
-msgstr ""
+msgstr "合法的毒品"
 
 #: mkt/constants/ratingdescriptors.py:35
 msgid "Illegal Drugs"
-msgstr ""
+msgstr "非法的毒品"
 
 #: mkt/constants/ratingdescriptors.py:42
 msgid "Criminal Acts"
-msgstr ""
+msgstr "犯罪行为"
 
 #: mkt/constants/ratingdescriptors.py:45
 msgid "Shocking Content"
-msgstr ""
+msgstr "令人惊恐的内容"
 
 #: mkt/constants/ratingdescriptors.py:48 mkt/constants/ratingdescriptors.py:133 mkt/constants/ratingdescriptors.py:201 mkt/constants/ratingdescriptors.py:269
 msgid "No Descriptors"
-msgstr ""
+msgstr "没有描述"
 
 #: mkt/constants/ratingdescriptors.py:51 mkt/constants/ratingdescriptors.py:205
 msgid "Alcohol Reference"
-msgstr ""
+msgstr "涉及酒精饮料"
 
 #: mkt/constants/ratingdescriptors.py:54 mkt/constants/ratingdescriptors.py:208
 msgid "Blood"
-msgstr ""
+msgstr "血腥"
 
 #: mkt/constants/ratingdescriptors.py:57 mkt/constants/ratingdescriptors.py:211
 msgid "Blood and Gore"
-msgstr ""
+msgstr "血腥和伤害"
 
 #: mkt/constants/ratingdescriptors.py:60 mkt/constants/ratingdescriptors.py:214
 msgid "Crude Humor"
-msgstr ""
+msgstr "粗鲁的人"
 
 #: mkt/constants/ratingdescriptors.py:63 mkt/constants/ratingdescriptors.py:217
 msgid "Drug Reference"
@@ -15103,43 +15103,43 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:103 mkt/constants/ratingdescriptors.py:257
 msgid "Simulated Gambling"
-msgstr ""
+msgstr "模拟赌博"
 
 #: mkt/constants/ratingdescriptors.py:106 mkt/constants/ratingdescriptors.py:260
 msgid "Strong Language"
-msgstr ""
+msgstr "谩骂"
 
 #: mkt/constants/ratingdescriptors.py:109 mkt/constants/ratingdescriptors.py:263
 msgid "Strong Sexual Content"
-msgstr ""
+msgstr "强烈的与性有关的内容"
 
 #: mkt/constants/ratingdescriptors.py:112 mkt/constants/ratingdescriptors.py:266
 msgid "Suggestive Themes"
-msgstr ""
+msgstr "性暗示内容"
 
 #: mkt/constants/ratingdescriptors.py:115
 msgid "Tobacco Reference"
-msgstr ""
+msgstr "涉及烟草"
 
 #: mkt/constants/ratingdescriptors.py:118
 msgid "Use of Alcohol"
-msgstr ""
+msgstr "饮酒"
 
 #: mkt/constants/ratingdescriptors.py:121
 msgid "Use of Drugs"
-msgstr ""
+msgstr "使用毒品"
 
 #: mkt/constants/ratingdescriptors.py:124
 msgid "Use of Tobacco"
-msgstr ""
+msgstr "吸烟"
 
 #: mkt/constants/ratingdescriptors.py:130
 msgid "Violence References"
-msgstr ""
+msgstr "涉及暴力"
 
 #: mkt/constants/ratingdescriptors.py:136
 msgid "Comic Mischief"
-msgstr ""
+msgstr "恶作剧"
 
 #: mkt/constants/ratingdescriptors.py:139
 msgid "Alcohol and Tobacco Reference"
@@ -15183,43 +15183,43 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:169
 msgid "Crime"
-msgstr ""
+msgstr "犯罪"
 
 #: mkt/constants/ratingdescriptors.py:172
 msgid "Criminal Instruction"
-msgstr ""
+msgstr "犯罪指导"
 
 #: mkt/constants/ratingdescriptors.py:182
 msgid "Fear"
-msgstr ""
+msgstr "恐怖"
 
 #: mkt/constants/ratingdescriptors.py:192 mkt/constants/ratingdescriptors.py:282
 msgid "Discrimination"
-msgstr ""
+msgstr "歧视"
 
 #: mkt/constants/ratingdescriptors.py:198
 msgid "Online"
-msgstr ""
+msgstr "在线"
 
 #: mkt/constants/ratingdescriptors.py:272
 msgid "Frightening Content"
-msgstr ""
+msgstr "恐怖内容"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
-msgstr ""
+msgstr "用户交互"
 
 #: mkt/constants/ratinginteractives.py:15
 msgid "Shares Info"
-msgstr ""
+msgstr "分享信息"
 
 #: mkt/constants/ratinginteractives.py:18
 msgid "Shares Location"
-msgstr ""
+msgstr "分享位置"
 
 #: mkt/constants/ratinginteractives.py:21
 msgid "Digital Purchases"
-msgstr ""
+msgstr "数字化购买"
 
 #: mkt/constants/ratinginteractives.py:24
 msgid "Social Networking"
@@ -15267,15 +15267,15 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:14
 msgid "Not recommended for users younger than 17 years of age"
-msgstr ""
+msgstr "17岁以下不推荐"
 
 #: mkt/constants/ratingsbodies.py:15
 msgid "Not recommended for users younger than 18 years of age"
-msgstr ""
+msgstr "18岁以下不推荐"
 
 #: mkt/constants/ratingsbodies.py:16
 msgid "Rejected for All Audiences"
-msgstr ""
+msgstr "完全拒绝"
 
 #: mkt/constants/ratingsbodies.py:89
 msgid "Department of Justice, Rating, Titles and Qualification"
