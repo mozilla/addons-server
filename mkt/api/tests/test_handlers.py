@@ -1021,4 +1021,4 @@ class TestLargeTextField(TestCase):
         field = LargeTextField(view_name='app-privacy-policy-detail')
         field.context = {'request': None}
         url = field.field_to_native(app, None)
-        eq_(url, '/api/v1/apps/app/337141/privacy/')
+        eq_(url, '/api/apps/app/337141/privacy/')

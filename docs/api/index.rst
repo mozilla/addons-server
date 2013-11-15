@@ -22,6 +22,7 @@ This documentation covers interacting with the `Firefox Marketplace`_.
    topics/comm.rst
    topics/export.rst
    topics/features.rst
+   topics/feed.rst
    topics/fireplace.rst
    topics/payment.rst
    topics/ratings.rst

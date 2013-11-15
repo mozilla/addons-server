@@ -164,7 +164,8 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
 
     def from_native(self, data):
         if self.queryset is None:
-            raise Exception('Writable related fields must include a `queryset` argument')
+            raise Exception('Writable related fields must include a `queryset` '
+                            'argument')
 
         try:
             return self.queryset.get(pk=data)
@@ -172,7 +173,8 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
             try:
                 return self.queryset.get(**{self.slug_field: data})
             except ObjectDoesNotExist:
-                msg = self.error_messages['does_not_exist'] % ('pk_or_slug', smart_text(data))
+                msg = self.error_messages['does_not_exist'] % (
+                    'pk_or_slug', smart_text(data))
                 raise ValidationError(msg)
 
 

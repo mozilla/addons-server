@@ -7,7 +7,7 @@ from mkt.feed.views import FeedItemViewSet
 
 
 feed = SimpleRouter()
-feed.register(r'items', FeedItemViewSet, base_name='feed_items')
+feed.register(r'items', FeedItemViewSet, base_name='feeditem')
 
 urlpatterns = patterns('',
     url(r'^feed/', include(feed.urls)),
