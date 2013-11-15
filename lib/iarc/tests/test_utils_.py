@@ -87,8 +87,8 @@ class TestXMLParser(amo.tests.TestCase):
         self.client = get_iarc_client('service')
 
     def test_app_info(self):
-        xml = self.client.Get_App_Info()
-        data = IARC_XML_Parser().parse_string(xml)
+        xml = self.client.Get_App_Info(XMLString='foo')
+        data = IARC_XML_Parser().parse_string(xml)['rows'][0]
 
         eq_(data['submission_id'], 52)
         eq_(data['title'], 'Twitter')
