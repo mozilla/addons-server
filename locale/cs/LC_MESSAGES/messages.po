@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-15 09:17+0000\n"
+"PO-Revision-Date: 2013-11-15 10:36+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384507055.0\n"
+"X-POOTLE-MTIME: 1384511805.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -18940,25 +18940,38 @@ msgstr "Existují dva odlišné způsoby, jak může být doplněk Simulator spu
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:236
 msgid "if you add, update, or remove an app, or click the \"Run\" button next to your app's entry, the Dashboard will automatically run your app in the Simulator"
 msgstr ""
+"vaše aplikace bude v doplňku Simulator spuštěna, když přidáte, aktualizujete "
+"nebo odeberete aplikaci, případně klepnete na tlačítko \"Run\""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:237
 msgid "if you click the button labeled \"Stopped\" on the left-hand side of the Dashboard, the Simulator will boot to the Home screen and you'll need to navigate to your app"
 msgstr ""
+"pokud klepnete na tlačítko \"Stopped\" po levé straně nástěnky, spustí se "
+"simulátor a vy budete moci přejít ke své aplikaci"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:240
 msgid "Either way, once the Simulator is running, the button labeled \"Stopped\" turns green and the label changes to \"Running\". To stop the Simulator, click this button again."
 msgstr ""
+"Jakmile bude simulátor spuštěn, změní se tlačítko \"Stopped\" na \"Running\" a "
+"bude zelené. Pro ukončení simulátoru na tlačítko znovu klepněte."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:246
 msgid ""
 "The Simulator appears as a separate window, sized so the simulated screen area is 320x480 pixels, with a <a href=\"#Simulator-toolbar\">toolbar at the bottom that contains some extra features</a>."
 msgstr ""
+"Doplně Simulator se zobrazí v samostatném okně, které má rozměry 320x480 "
+"pixelů, spolu s <a href=\"#Simulator-toolbar\">lištou v dolní části, která "
+"obsahuje některé další funkce</a>."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:252
 msgid ""
 "To simulate touch events you can click the mouse button and drag while holding the button down. So by clicking and dragging right-to-left from the Home Screen, you'll see the built-in apps, as well "
 "as any apps you have added:"
 msgstr ""
+"Pro simulaci pohybu tahem můžete klepnout myší a táhnout při stisknutém "
+"tlačítku myši. Takže například klepnutím a tažením zprava doleva na úvodní "
+"obrazovce zobrazíte vestavěné aplikace spolu s aplikacemi, které jste "
+"přidali:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:262
 msgid "Simulator toolbar"
@@ -18966,25 +18979,33 @@ msgstr "Lišta doplňku Simulator"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:264
 msgid "You'll see three buttons on the toolbar at the bottom of the Simulator window:"
-msgstr ""
+msgstr "Na liště v dolní části okna simulátoru uvidíte tři tlačítka:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:271
 msgid "From left to right, these are the Home button, the Rotation Simulation button, and the Geolocation Simulation button."
 msgstr ""
+"Zleva doprava se na liště vyskytují tlačítka pro přechod na úvodní "
+"obrazovku, tlačítko pro simulování rotace a tlačítko pro simulaci geolokace."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:277
 msgid "the Home button takes you to the Home screen"
-msgstr ""
+msgstr "tlačítko Home vás přesune na úvodní obrazovku"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:278
 msgid "the Rotation Simulation button switches the device between portrait and landscape orientation. This will generate the <code>deviceorientation</code> event."
 msgstr ""
+"tlačítko pro simulaci rotace přepne mezi zobrazením zařízení na výšku či na "
+"šířku. Tato operace zavolá událost <code>deviceorientation</code>."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:279
 msgid ""
 "the Geolocation Simulation button triggers a dialog asking you to share your geographic location, either using your current coordinates or supplying custom coordinates: this will be made available "
 "to your app via the Geolocation API."
 msgstr ""
+"tlačítko pro simulaci geolokace vyvolá dialog žádající o zadání vašeho "
+"umístění. Máte možnost zadat vaše aktuální umístění či zvolit libovolné "
+"jiné. Zadané hodnoty budou dostupné ve vaší aplikaci při zvolání Geolocation "
+"API."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:281
 msgid "Enabling console logging"
@@ -18995,6 +19016,9 @@ msgid ""
 "If you check the \"Console\" box underneath the \"Stopped/Running\" switch, then the Error Console will be opened when you run the Simulator. Your app will be able to log to this console using the "
 "global console object."
 msgstr ""
+"Pokud zaškrtnete volbu \"Console pod přepínačem \"Stopped/Running\", bude při "
+"každém spuštění simulátoru spuštěna i Chybová konzole. Vaše aplikace bude "
+"schopna logovat do této konzole pomocí globálního objektu pro logování."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:289
 msgid "Attaching developer tools"
@@ -19005,34 +19029,54 @@ msgid ""
 "You can attach developer tools to the Simulator, to help debug your app. At the moment you can only attach the JavaScript Debugger and the Web Console, but we're working on adding support for more "
 "developer tools."
 msgstr ""
+"K doplňku Simulator lze připojit nástroje pro vývojáře, které vám pomohou "
+"ladit vaši aplikaci. V současné době můžete připojit pouze JavaScript "
+"Debugger a Webovou konzolu, ale pracujeme na tom, aby šlo připojit více "
+"nástrojů pro vývojáře."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:299
 msgid "While the Simulator is running another button appears underneath the \"Console\" checkbox. It is labeled \"Connect...\":"
 msgstr ""
+"Když je doplněk Simulator spuštěn, zobrazuje se pod zaškrtávacím políčkem "
+"\"Console\" další tlačítko. Je nadepsáno \"Connect...\":"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:305
 msgid "Click it, and you'll be taken to a page that looks like this:"
 msgstr ""
+"Klepněte na něj a dostanete se na stránku, která vypadá přibližně "
+"následovně:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:307
 msgid "Click \"Connect\" here and you'll see another page, this time like this:"
 msgstr ""
+"Klepněte na \"Connect\" a dostanete se na stránku, která vypadá následovně:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:310
 msgid ""
 "To use the JavaScript Debugger, select \"chrome://prosthesis/content/shell.xul\" here. Once it's launched, you'll need to find your app's scripts in the <a href=\"%(debug_toolbar)s\">script "
 "chooser</a>, but if you open your app and then connect the debugger, your app's main script will be selected by default:"
 msgstr ""
+"Pro použití JavaScript Debuggeru zvolte "
+"\"chrome://prosthesis/content/shell.xul\". Jakmile bude spuštěn, budete "
+"potřebovat nalézt skripty vaší aplikace ve <a href=\"%(debug_toolbar)s\">volbě "
+"skriptu</a>, ale pokud otevřete svou aplikaci a připojíte debugger, bude "
+"hlavní skript vaší aplikace předvybrán:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:320
 msgid "To use the Web Console with your app, select \"Main Process\" in the \"Connect to remote device\" window."
 msgstr ""
+"Pro použití Webové konzole spolu s vaší aplikaci zvolte \"Main Process\" v "
+"okně \"Connect to remote device\"."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:322
 msgid ""
 "At the moment, unfortunately, there's no single debugging target that will work with both the Web Console and the JS Debugger - but you can run two simultaneous instances of the debugging tools, "
 "one targeting \"shell.xul\" and the other targeting \"Main Process\"."
 msgstr ""
+"V současné době není bohužel k dispozici žádný pohled, v rámci kterého by "
+"byla současně dostupná Webová konzola a JS Debugger. Můžete však spustit dvě "
+"instance vývojářských nástrojů. V jedné budete mít \"shell.xul\", v druhé "
+"\"Main process\"."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:329
 msgid "Push to device"
