@@ -77,9 +77,10 @@ class IARC_Parser(object):
         if not data.get('interactive_elements'):
             return data
 
-        data['interactives'] = filter(None,
-            [INTERACTIVES_MAPPING[s.strip()] for s in
-            data['interactive_elements'].split(',')])
+        data['interactives'] = [
+            INTERACTIVES_MAPPING[s]
+            for s in filter(None, [s.strip() for s in
+                                   data['interactive_elements'].split(',')])]
         return data
 
 
