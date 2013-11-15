@@ -309,6 +309,21 @@ Run The Add-ons Server
 
     ./manage.py runserver --settings=settings_local_amo 0.0.0.0:8000
 
+.. note::
+
+   If you don't have a LESS compiler already installed, opening
+   http://localhost:8000 in your browser will raise a 500 server error.
+   If you don't want to run through the :doc:`./advanced-installation`
+   documentation just right now, you can disable all LESS pre-processing by
+   adding the following line to your settings_local file::
+
+      LESS_PREPROCESS = False
+
+   Be aware, however, that this will make the site VERY slow, as a huge amount
+   of LESS files will be served to your browser on EACH request, and each of
+   those will be compiled on the fly by the LESS javascript compiler.
+
+
 Run The Marketplace Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
