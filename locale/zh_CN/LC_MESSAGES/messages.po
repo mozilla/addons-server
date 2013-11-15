@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-15 01:57+0000\n"
-"Last-Translator: Shen <steekid@icloud.com>\n"
+"PO-Revision-Date: 2013-11-15 13:30+0000\n"
+"Last-Translator: xcffl <hc5023295@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384480646.0\n"
+"X-POOTLE-MTIME: 1384522211.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1784,11 +1784,11 @@ msgstr "{addon} 的许可协议已更改为 {0.name}。"
 
 #: apps/amo/log.py:322
 msgid "{addon} policy changed."
-msgstr "{addon} 的隐私政策已更改。"
+msgstr "{addon} 政策已更改。"
 
 #: apps/amo/log.py:328
 msgid "{addon} icon changed."
-msgstr "{addon} 的图标已更改。"
+msgstr "{addon} 图标已更改。"
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
@@ -1796,7 +1796,7 @@ msgstr "{addon} 的 {review} 已通过审核。"
 
 #: apps/amo/log.py:335
 msgid "{user} approved {review} for {addon}."
-msgstr "{user} 已审核通过 {addon} 的 {review}。"
+msgstr "{user} 核准了 {addon}  的 {review}。"
 
 #: apps/amo/log.py:344
 msgid "Review {0} for {addon} deleted."
@@ -1832,7 +1832,7 @@ msgstr "{addon} 的清单已更新。"
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} 已通过审核，正在等待公开发布。"
+msgstr "{addon} {version}  已通过审核但正在等候公开发布。"
 
 #: apps/amo/log.py:384 apps/constants/base.py:41
 msgid "Approved but waiting"
@@ -1840,15 +1840,15 @@ msgstr "已通过审核，正在等待公开发布"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
-msgstr "{addon} 已被购买。"
+msgstr "已订购 {addon} 。"
 
 #: apps/amo/log.py:397
 msgid "{addon} installed."
-msgstr "{addon} 已被安装。"
+msgstr "已安装 {addon} 。"
 
 #: apps/amo/log.py:402
 msgid "Refund requested for {addon}"
-msgstr "{addon} 已被申请退款。"
+msgstr "已请求 {addon} 的退款"
 
 #: apps/amo/log.py:407
 msgid "Refund declined for {addon} for {0}."
@@ -1912,11 +1912,11 @@ msgstr "高退款申请量"
 
 #: apps/amo/log.py:479
 msgid "{addon} re-reviewed because of manifest change."
-msgstr "{addon}重新审查因为重大变更。"
+msgstr "由于清单出现重大变更 {addon} 要重新审查。"
 
 #: apps/amo/log.py:480
 msgid "Manifest Change"
-msgstr "主要变更"
+msgstr "清单变更"
 
 #: apps/amo/log.py:487
 msgid "{addon} re-reviewed because app upgraded premium type."
@@ -2024,7 +2024,7 @@ msgstr "审核者修改了 {addon} 的最低版本需求。"
 
 #: apps/amo/log.py:624
 msgid "Requirements Changed by Reviewer"
-msgstr "审核者修改了版本需求"
+msgstr "请求已被审核者更改"
 
 #: apps/amo/log.py:631
 msgid "{addon} minimum requirements manually changed."
