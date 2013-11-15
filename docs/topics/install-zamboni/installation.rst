@@ -43,7 +43,7 @@ if you're running a recent version, you can `install them automatically
     sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig openssl
 
 On versions 12.04 and later, you will need to install a patched version of
-M2Crypto instead of the version from PyPI.::
+M2Crypto instead of the version from PyPI::
 
     pip install git+git://github.com/ametaireau/M2Crypto.git
 
@@ -152,6 +152,35 @@ Finish the install
 From inside your activated virtualenv, install the required python packages::
 
     pip install --no-deps -r requirements/dev.txt
+
+If you are on a linux box and get a compilation error while installing M2Crypto
+like the following::
+
+    SWIG/_m2crypto_wrap.c:6116:1: error: unknown type name ‘STACK’
+
+    ... snip a very long output of errors around STACK...
+
+    SWIG/_m2crypto_wrap.c:23497:20: error: expected expression before ‘)’ token
+
+       result = (STACK *)pkcs7_get0_signers(arg1,arg2,arg3);
+
+                        ^
+
+    error: command 'gcc' failed with exit status 1
+
+It may be because the SSLv2 symbols are not available on your platform. In this
+case, you can install Alexis' fork:
+
+* comment the line starting with ``M2Crypto`` in ``requirements/compiled.txt``
+* install Alexis' fork and rerun the install::
+
+    pip install git+git://github.com/ametaireau/M2Crypto.git
+    pip install --no-deps -r requirements/dev.txt
+
+* revert your changes to ``requirements/compiled.txt``::
+
+    git checkout requirements/compiled.txt
+
 
 .. _example-settings:
 
