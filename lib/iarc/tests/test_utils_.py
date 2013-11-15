@@ -93,8 +93,6 @@ class TestXMLParser(amo.tests.TestCase):
         eq_(data['submission_id'], 52)
         eq_(data['title'], 'Twitter')
         eq_(data['company'], 'Mozilla')
-        eq_(data['interactive_elements'],
-            'Shares Info, Shares Location, Social Networking, Users Interact, ')
         eq_(data['storefront'], 'Mozilla')
         eq_(data['platform'], 'Firefox')
 
