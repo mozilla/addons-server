@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-15 10:36+0000\n"
+"PO-Revision-Date: 2013-11-15 14:12+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384511805.0\n"
+"X-POOTLE-MTIME: 1384524766.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -5349,6 +5349,9 @@ msgstr "Pokud chcete zobrazit e-mailovou adresu podpory, můžete tak učinit zd
 #: apps/devhub/templates/devhub/addons/edit/support.html:52 mkt/developers/templates/developers/apps/edit/support.html:48
 msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
 msgstr ""
+"Pokud má váš doplněk stránky podpory či fórum, vložte zde jejich adresy. "
+"Pokud je vaše webová stránka lokalizována do dalších jazyků, může být do "
+"tohoto pole přidáno více jazykových variant."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6 mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -5706,7 +5709,7 @@ msgstr "Zakázaný"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:51 mkt/developers/templates/developers/includes/macros.html:100
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>Pozice ve frontě:</b>%(pos)s z %(total)s"
+msgstr "<b>Pozice ve frontě:</b> %(pos)s z %(total)s"
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:24
@@ -7225,6 +7228,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:127
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
 msgstr ""
+"Pro informace o další periodě sledujte <a href=\"%(link_blog)s\">blog Mozilla "
+"Add-ons</a> nebo <a href=\"%(link_twitter)s\">@mozamo</a> na Twitteru."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:132
 msgid "Last updated: January 31, 2013"
@@ -8897,7 +8902,7 @@ msgstr "Čekající patička"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Svůj návrh motivu budete moci aktualizovat až bude schválen."
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
@@ -8970,6 +8975,8 @@ msgstr "Váš motiv byl odeslán do fronty ke schválení. Jakmile bude zkontrol
 #: apps/devhub/templates/devhub/personas/submit_done.html:19
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
 msgstr ""
+"Poskytněte více informací o svém motivu <a href=\"%(edit_url)s\">úpravou "
+"stránky</a>."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -8977,7 +8984,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
-msgstr ""
+msgstr "Připojte se do konverzace v našich <a href=\"%(forums_url)s\">fórech</a>."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
@@ -9559,7 +9566,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
 msgid "Thumbnail Zoom Plus"
-msgstr ""
+msgstr "Thumbnail Zoom Plus"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
 msgid "Shows a full-size image popup when<br> you hover over a thumbnail or image link."
@@ -9567,7 +9574,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
 msgid "Get it now!"
-msgstr ""
+msgstr "Získat nyní!"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -13598,7 +13605,7 @@ msgstr "E-mailová adresa"
 
 #: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:59
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Zapamatovat si mě na tomto zařízení"
 
 #: apps/users/templates/users/login_form.html:55 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
 msgid "Log in"
@@ -13795,11 +13802,11 @@ msgstr "Zaregistrován(a) od"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
-msgstr ""
+msgstr "Čas posledního přihlášení"
 
 #: apps/users/templates/users/vcard.html:46
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP adresa posledního přihlášení"
 
 #: apps/users/templates/users/vcard.html:53
 msgid "Number of add-ons developed"
@@ -15063,7 +15070,7 @@ msgstr "Aplikace vyžaduje pro instalaci dalších zabalených aplikací API `na
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
-msgstr "Web Payment"
+msgstr "Webové platby"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
@@ -15199,21 +15206,26 @@ msgstr "Aplikace vyžaduje API `navigator.mozSms`."
 
 #: mkt/constants/features.py:144
 msgid "Touch"
-msgstr ""
+msgstr "Dotykové ovládání"
 
 #: mkt/constants/features.py:145
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr ""
+"Aplikace vyžaduje platformu, která podporuje dotykové ovládání. Tato volba "
+"indikuje, že aplikace nebude fungovat, když bude využívat myš."
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Display chytrého telefonu (qHD)"
 
 #: mkt/constants/features.py:152
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"Aplikace vyžaduje display telefonu (qHD rozlišení). Tato volba indikuje, že "
+"aplikace bude pravděpodobně nepoužitelná na větších displayích (např. na "
+"tabletech, desktopu či telefonech s velkým display)."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -15261,11 +15273,14 @@ msgstr "Aplikace vyžaduje platformu s podporou Gamepad API  (`navigator.getGame
 
 #: mkt/constants/features.py:204
 msgid "Quota Management"
-msgstr ""
+msgstr "Řízení kvót"
 
 #: mkt/constants/features.py:205
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr ""
+"Aplikace vyžaduje od platformy povolení limitu pro uložení, který je větší "
+"než normálně povolený limit pro aplikaci (`window.StorageInfo` či "
+"`window.persistentStorage`)."
 
 #: mkt/constants/features.py:213
 msgid "Camera"
@@ -15302,6 +15317,8 @@ msgstr "WebRTC MediaStream"
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr ""
+"Aplikace vyžaduje od platformy, aby jí povolila real-time komunikaci mezi "
+"prohlížeči pomocí media streamů."
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
@@ -15310,6 +15327,8 @@ msgstr "WebRTC DataChannel"
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
+"Aplikace vyžaduje od platformy, aby jí povolila jinou peer-to-peer výměnu "
+"dat než je audio či video."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
@@ -15318,6 +15337,8 @@ msgstr "WebRTC PeerConnection"
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
+"Aplikace vyžaduje od platformy, aby jí povolila streamování dat mezi "
+"jednotlivými uzly."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
@@ -15325,27 +15346,33 @@ msgstr ""
 
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "Aplikace vyžaduje od platformy povolení předčítání textu."
 
 #: mkt/constants/features.py:260
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Webové rozpoznání řeči"
 
 #: mkt/constants/features.py:261
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr ""
+"Aplikace vyžaduje od platformy, aby jí povolila zaznamenávání mluveného "
+"slova do psané podoby."
 
 #: mkt/constants/features.py:266
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Uzamčení kurzoru (Pointer Lock)"
 
 #: mkt/constants/features.py:267
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr ""
+"Aplikace vyžaduje od platformy poskytnutí dalších informací o kurzoru a jeho "
+"ovládání."
 
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr ""
+"Aplikace vyžaduje platformu, která povolí zobrazování upozornění uživateli "
+"na telefonu či desktopu."
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
@@ -15354,6 +15381,8 @@ msgstr "Upozornění"
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr ""
+"Aplikace vyžaduje platformu, která poskytne přístup k nastavení upozornění "
+"či události, které je možné naplánovat na konkrétní čas. "
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
@@ -15362,6 +15391,8 @@ msgstr "SystemXHR"
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr ""
+"Aplikace vyžaduje od platformy, aby umožnila odesílání asynchronních HTTP "
+"požadavků bez omezení dané same-origin policy."
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
@@ -16543,7 +16574,7 @@ msgstr "Tato aplikace je <b>nekompletní</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:41
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
-msgstr ""
+msgstr "Tato aplikace <b>čeká na kontrolu</a> redaktorem Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "You will receive an email when the review is complete."
@@ -16733,7 +16764,7 @@ msgstr "Minimální požadavky"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:49
 msgid "Device features required for this app to function."
-msgstr ""
+msgstr "Funkce zařízení, které jsou aplikací vyžadovány."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:67
 msgid "Auto-publish when approved"
@@ -16778,7 +16809,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/developers/templates/developers/apps/edit/basic.html:36
 msgid "This field can only be edited by updating it in the manifest."
-msgstr ""
+msgstr "Toto pole může být upravováno pouze v manifestu."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:85 mkt/reviewers/templates/reviewers/includes/mobile_details.html:107
 msgid "Developer Name"
@@ -17177,9 +17208,9 @@ msgstr "Kategorie:"
 #: mkt/developers/templates/developers/includes/macros.html:107
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>Odhadovaná doba čekání:</b> %(num)s pracovní den"
+msgstr[1] "<b>Odhadovaná doba čekání:</b> %(num)s pracovní dny"
+msgstr[2] "<b>Odhadovaná doba čekání:</b> %(num)s pracovních dní"
 
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
@@ -17188,6 +17219,9 @@ msgstr ""
 #: mkt/developers/templates/developers/includes/macros.html:123
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
 msgstr ""
+"Zaškrtněte boxy vlastností, které vaše aplikace vyžaduje pro to, aby "
+"fungovala správně. Vaše aplikace bude skryta pro uživatele, jejichž zařízení "
+"je nepodporují."
 
 #: mkt/developers/templates/developers/includes/macros.html:130
 msgid "Hide all"
@@ -17296,6 +17330,8 @@ msgstr "Dostupné regiony"
 #: mkt/developers/templates/developers/payments/premium.html:188
 msgid "Check out the <a href=\"%(status_url)s\">status page</a> to see what countries are currently enabled for sale."
 msgstr ""
+"Zkontrolujte <a href=\"%(status_url)s\">stránku se stavem</a>, abyste viděli, "
+"které země jsou povoleny pro prodej."
 
 #: mkt/developers/templates/developers/payments/premium.html:195
 msgid "Your app will be available in the following selected regions:"
@@ -17303,7 +17339,7 @@ msgstr "Vaše aplikace bude dostupná pro následující zvolené regiony:"
 
 #: mkt/developers/templates/developers/payments/premium.html:201
 msgid "Retail price"
-msgstr ""
+msgstr "Koncová cena"
 
 #: mkt/developers/templates/developers/payments/premium.html:202
 msgid "local currency"
@@ -17322,6 +17358,10 @@ msgid ""
 "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck "
 "that region before saving."
 msgstr ""
+"Vaše aplikace bude dostupná v následujících zvolených regionech, jakmile se "
+"stanou platby dostupné v závislosti na vámi zvolené ceně. Pro zrušení "
+"dostupnosti vaší aplikace v konkrétním regionu, můžete konkrétní region "
+"odškrtnout."
 
 #: mkt/developers/templates/developers/payments/premium.html:238
 msgid "Regions and Listings"
@@ -17423,6 +17463,8 @@ msgstr "Vaše aplikace nebude dostupná pro konkrétní regiony, protože v těc
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
 msgstr ""
+"Vaše aplikace bude zobrazena v libovolném regionu na Marketplace, který bude "
+"přidán v budoucnu."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
@@ -17430,7 +17472,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
-msgstr ""
+msgstr "Když budou nové regiony dostupné, obdržíte e-mailové upozornění."
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:6
 msgid "Select All"
@@ -21433,6 +21475,9 @@ msgstr "Pokud má vaše aplikace stránky podpory či fórum, vložte zde jejich
 #: mkt/submit/forms.py:364
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
+"E-mailová adresa bude veřejně zobrazena na Marketplace a bude používána "
+"koncovými uživateli pro kontakt související s podporou. Tato e-mailová "
+"adresa bude veřejně umístěna na detailu stránky aplikace."
 
 #: mkt/submit/forms.py:371
 msgid "Does your app require Flash support?"
@@ -21440,7 +21485,8 @@ msgstr "Vyžaduje vaše aplikace podporu Flashe?"
 
 #: mkt/submit/forms.py:379
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
-msgstr "Publikujte mou aplikaci na Firefox Marketplace jakmile bude zkontrolována."
+msgstr ""
+"Publikujte mou aplikaci na Firefox Marketplace, jakmile bude zkontrolována."
 
 #: mkt/submit/forms.py:381
 msgid ""
