@@ -141,5 +141,18 @@ MOCK_GET_RATING_CHANGES = '''<?xml version="1.0" encoding="utf-16"?>
     <FIELD NAME="rating_system" TYPE="string" VALUE="CLASSIND" />
     <FIELD NAME="change_reason" TYPE="string" VALUE="Significant issues found in special mission cut scenes." />
   </ROW>
+  <ROW>
+    <FIELD NAME="rowId" TYPE="int" VALUE="2" />
+    <FIELD NAME="change_date" TYPE="string" VALUE="11/12/2013" />
+    <FIELD NAME="submission_id" TYPE="string" VALUE="68" />
+    <FIELD NAME="security_code" TYPE="string" VALUE="GZ32CU8" />
+    <FIELD NAME="title" TYPE="string" VALUE="Other App" />
+    <FIELD NAME="company" TYPE="string" VALUE="Mozilla" />
+    <FIELD NAME="email" TYPE="string" VALUE="nobody@mozilla.com" />
+    <FIELD NAME="new_rating" TYPE="string" VALUE="12+" />
+    <FIELD NAME="new_descriptors" TYPE="string" VALUE="Gewalt" />
+    <FIELD NAME="rating_system" TYPE="string" VALUE="USK" />
+    <FIELD NAME="change_reason" TYPE="string" VALUE="Discrimination found to be within German law." />
+  </ROW>
 </WEBSERVICE>
 '''
