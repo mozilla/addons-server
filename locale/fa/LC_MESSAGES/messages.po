@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-16 15:09+0000\n"
+"PO-Revision-Date: 2013-11-16 15:14+0000\n"
 "Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: Persian <LL@li.org>\n"
 "Language: fa\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384614570.0\n"
+"X-POOTLE-MTIME: 1384614840.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -677,8 +677,9 @@ msgstr ""
 #: apps/discovery/templates/discovery/addons/detail.html:37
 #: mkt/reviewers/templates/reviewers/includes/details.html:125
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:147
+#, fuzzy
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "مشاهدهٔ سیاست حریم خصوصی"
 
 #. EULA stand for End User License Agreement
 #: apps/addons/templates/addons/details_box.html:125
@@ -778,8 +779,9 @@ msgstr ""
 #. {0} is the name of the add-on
 #: apps/addons/templates/addons/eula.html:6
 #: apps/discovery/templates/discovery/addons/eula.html:5
+#, fuzzy
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "توافق‌نامهٔ مجوز کاربر نهایی"
 
 #: apps/addons/templates/addons/eula.html:22
 #: apps/discovery/templates/discovery/addons/eula.html:11
@@ -1083,13 +1085,15 @@ msgstr ""
 msgid "Approved"
 msgstr ""
 
+# {0} is the count of addons in a collection
 #. {0} is the number of users.
 #: apps/addons/templates/addons/persona_preview.html:26
 #: apps/addons/templates/addons/listing/items_mobile.html:41
 #: apps/addons/templates/addons/listing/macros.html:31
+#, fuzzy
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> افزودنی"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
@@ -1536,8 +1540,9 @@ msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] ""
 
 #: apps/addons/templates/addons/impala/details.html:69
+#, fuzzy
 msgid "View statistics"
-msgstr ""
+msgstr "آمار مشاهده"
 
 #: apps/addons/templates/addons/impala/details.html:86
 msgid "Manage"
@@ -1553,9 +1558,12 @@ msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] ""
 
+# {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:148
+#, fuzzy
 msgid "Learn why {0} was created and find out what's next for this app."
 msgstr ""
+"بدانید که {0} به چه منظوری ایجاد گردید و در آینده چه تغییراتی خواهد کرد."
 
 # {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:151
@@ -1616,8 +1624,9 @@ msgid "About this Add-on"
 msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:251
+#, fuzzy
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Developer Comments"
 
 #: apps/addons/templates/addons/impala/details.html:261
 msgid "Version Information"
@@ -1773,8 +1782,9 @@ msgstr ""
 
 #: apps/addons/templates/addons/includes/collection_add_widget.html:7
 #: apps/addons/templates/addons/includes/collection_add_widget.html:10
+#, fuzzy
 msgid "Add to collection"
-msgstr ""
+msgstr "افزودن به مجموعه"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:4
 #: apps/devhub/templates/devhub/nav.html:38
@@ -1821,8 +1831,9 @@ msgid "Collector's Note"
 msgstr ""
 
 #: apps/addons/templates/addons/listing/items_mobile.html:25
+#, fuzzy
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "هنوز رتبه‌دهی نشده است"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/listing/items_mobile.html:32
@@ -1964,8 +1975,9 @@ msgid "View all Popular add-ons"
 msgstr ""
 
 #: apps/addons/templates/addons/mobile/home.html:67
+#, fuzzy
 msgid "More Add-ons"
-msgstr ""
+msgstr "افزودنی‌های من"
 
 #: apps/addons/templates/addons/mobile/home.html:70
 #: apps/amo/templates/amo/side_nav.html:13
@@ -2207,8 +2219,9 @@ msgid "Preview added to {addon}."
 msgstr ""
 
 #: apps/amo/log.py:105
+#, fuzzy
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "دسته بندی‌ها برای {addon} ویرایش شد."
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
@@ -3089,8 +3102,9 @@ msgstr "هیچ بررسی در این دوره پیدا نشد."
 
 #: apps/bandwagon/helpers.py:146
 #: apps/bandwagon/templates/bandwagon/favorites_widget.html:2
+#, fuzzy
 msgid "Add to favorites"
-msgstr ""
+msgstr "افزودن به افزودنی‌های محبوب"
 
 #: apps/bandwagon/helpers.py:147
 msgid "Favorite"
@@ -3098,8 +3112,9 @@ msgstr ""
 
 #: apps/bandwagon/helpers.py:147
 #: apps/bandwagon/templates/bandwagon/favorites_widget.html:2
+#, fuzzy
 msgid "Remove from favorites"
-msgstr ""
+msgstr "حذف از افزودنی‌های محبوب"
 
 #: apps/bandwagon/views.py:89
 #: apps/bandwagon/views.py:174
@@ -3170,8 +3185,9 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/devhub/templates/devhub/personas/submit.html:14
 #: mkt/developers/templates/developers/api.html:43
+#, fuzzy
 msgid "Create"
-msgstr ""
+msgstr "ایجاد شده در تاریخ"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:28
@@ -3239,8 +3255,9 @@ msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:62
+#, fuzzy
 msgid "About this Collection"
-msgstr ""
+msgstr "ایجاد مجموعه"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:68
 msgid "Add-ons synced to my Mobile Firefox"
@@ -3263,13 +3280,15 @@ msgid "More Options:"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:94
+#, fuzzy
 msgid "Edit Collection"
-msgstr ""
+msgstr "افزودن به مجموعه"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:96
 #: apps/bandwagon/templates/bandwagon/includes/delete.html:3
+#, fuzzy
 msgid "Delete Collection"
-msgstr ""
+msgstr "ایجاد مجموعه"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
@@ -3414,8 +3433,9 @@ msgid "Follow this Collection"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:17
+#, fuzzy
 msgid "Edit this Collection"
-msgstr ""
+msgstr "ایجاد مجموعه"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:21
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:23
@@ -3575,8 +3595,9 @@ msgid "Add Contributor"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:60
+#, fuzzy
 msgid "Contributor"
-msgstr ""
+msgstr "مشارکت"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
@@ -3661,8 +3682,9 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
+#, fuzzy
 msgid "Create a Collection"
-msgstr ""
+msgstr "ایجاد مجموعه"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
@@ -3951,11 +3973,13 @@ msgstr ""
 msgid "Language"
 msgstr "زبان"
 
+# Plural in this context means many of the add-on type
 #: apps/browse/templates/browse/language_tools.html:42
 #: apps/browse/templates/browse/language_tools.html:64
 #: apps/constants/base.py:175
+#, fuzzy
 msgid "Dictionary"
-msgstr ""
+msgstr "واژه‌نامه‌ها"
 
 #: apps/browse/templates/browse/language_tools.html:43
 #: apps/browse/templates/browse/language_tools.html:65
@@ -4110,8 +4134,9 @@ msgid "Apps by Name"
 msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:37
+#, fuzzy
 msgid "Recently Updated Apps"
-msgstr ""
+msgstr "به تازگی به روز رسانی شده"
 
 #: apps/browse/templates/browse/impala/base_listing.html:38
 msgid "Up & Coming Apps"
@@ -4372,8 +4397,9 @@ msgid "Application Build"
 msgstr ""
 
 #: apps/compat/templates/compat/reporter_detail.html:49
+#, fuzzy
 msgid "Platform"
-msgstr ""
+msgstr "سکوهای نرم‌افزاری"
 
 #: apps/compat/templates/compat/reporter_detail.html:50
 #: apps/devhub/templates/devhub/versions/list.html:175
@@ -4391,8 +4417,9 @@ msgid "Problem"
 msgstr ""
 
 #: apps/compat/templates/compat/reporter_detail.html:82
+#, fuzzy
 msgid "No reports found."
-msgstr ""
+msgstr "هیچ نتیجه‌ای پیدا نشد."
 
 #: apps/constants/applications.py:18
 #: mkt/constants/platforms.py:32
@@ -4503,8 +4530,9 @@ msgstr ""
 #: apps/constants/base.py:37
 #: mkt/reviewers/helpers.py:145
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:34
+#, fuzzy
 msgid "Deleted"
-msgstr ""
+msgstr "حذف"
 
 #: apps/constants/base.py:42
 msgid "Flagged for further review"
@@ -4585,8 +4613,9 @@ msgid "Dictionaries"
 msgstr "واژه‌نامه‌ها"
 
 #: apps/constants/base.py:190
+#, fuzzy
 msgid "Plugins"
-msgstr ""
+msgstr "متصل‌شونده"
 
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:191
@@ -5399,8 +5428,9 @@ msgid "Add-on Status"
 msgstr ""
 
 #: apps/devhub/views.py:218
+#, fuzzy
 msgid "User Collections"
-msgstr ""
+msgstr "افزودنی‌های من"
 
 #: apps/devhub/views.py:219
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:68
@@ -5770,8 +5800,9 @@ msgid "Submit an Add-on"
 msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:42
+#, fuzzy
 msgid "My Addons"
-msgstr ""
+msgstr "افزودنی‌های من"
 
 #: apps/devhub/templates/devhub/index.html:53
 #: apps/devhub/templates/devhub/addons/listing/items.html:38
@@ -6061,8 +6092,9 @@ msgid "Primary Author"
 msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon.html:50
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "مشارکت‌ها"
 
 #: apps/devhub/templates/devhub/package_addon.html:54
 msgid "Where will your add-on run?"
@@ -6594,8 +6626,9 @@ msgid "Technical Details for {0}"
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:21
+#, fuzzy
 msgid "Developer Comments"
-msgstr ""
+msgstr "Developer Comments"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:24
 msgid ""
@@ -6698,8 +6731,9 @@ msgid "Universally unique identifier"
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:136
+#, fuzzy
 msgid "UUID"
-msgstr ""
+msgstr "GUID"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:138
 msgid ""
@@ -6959,8 +6993,9 @@ msgid "Manage In-App Payments"
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:56
+#, fuzzy
 msgid "View App Listing"
-msgstr ""
+msgstr "مشاهدهٔ فهرست"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
@@ -8081,8 +8116,9 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
+#, fuzzy
 msgid "Plug-ins"
-msgstr ""
+msgstr "متصل‌شونده"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
 msgid "Plug-in Documentation Index"
@@ -10153,13 +10189,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:22
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:5
+#, fuzzy
 msgid "Manage Your Developer Profile"
-msgstr ""
+msgstr "Manage Developer Profile"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:24
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:7
+#, fuzzy
 msgid "Create a Developer Profile"
-msgstr ""
+msgstr "Manage Developer Profile"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:29
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:12
@@ -11186,12 +11224,14 @@ msgstr ""
 msgid "Displayed version: {0}"
 msgstr ""
 
+# {0} is the add-on name
 #. {0} is an add-on name.
 #: apps/devhub/templates/devhub/versions/list.html:168
 #: apps/versions/templates/versions/mobile/version_list.html:12
 #: mkt/lookup/templates/lookup/app_summary.html:114
+#, fuzzy
 msgid "Version History"
-msgstr ""
+msgstr "تاریخچهٔ نسخه‌های {0}"
 
 #: apps/devhub/templates/devhub/versions/list.html:176
 #: mkt/developers/templates/developers/apps/status.html:7
@@ -11494,9 +11534,11 @@ msgstr ""
 msgid "Recommended for You"
 msgstr ""
 
+# 100%
 #: apps/discovery/templates/discovery/pane.html:66
+#, fuzzy
 msgid "What is this?"
-msgstr ""
+msgstr "این چیست؟"
 
 #: apps/discovery/templates/discovery/pane.html:85
 msgid "Learn More About Add-ons"
@@ -11636,8 +11678,9 @@ msgid "Approved reviews"
 msgstr ""
 
 #: apps/editors/forms.py:23
+#, fuzzy
 msgid "Deleted reviews"
-msgstr ""
+msgstr "حذف بررسی"
 
 #: apps/editors/forms.py:31
 #: apps/editors/forms.py:50
@@ -12883,8 +12926,9 @@ msgstr ""
 #: apps/localizers/templates/localizers/categories.html:58
 #: apps/stats/templates/stats/popup.html:27
 #: apps/users/templates/users/pwreset_confirm.html:33
+#, fuzzy
 msgid "Update"
-msgstr ""
+msgstr "به‌هنگام شده"
 
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:24
@@ -13063,8 +13107,9 @@ msgstr ""
 
 #: apps/pages/templates/pages/credits.html:34
 #: mkt/reviewers/forms.py:86
+#, fuzzy
 msgid "Reviewers"
-msgstr ""
+msgstr "بررسی‌ها"
 
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
@@ -13159,9 +13204,11 @@ msgstr ""
 msgid "References for Open Source Licenses"
 msgstr ""
 
+# The title for a user if they are a developer
 #: apps/pages/templates/pages/dev_faq.html:44
+#, fuzzy
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "Add-ons Developer"
 
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid ""
@@ -14758,8 +14805,9 @@ msgid_plural "Reviews for %(addon)s by %(user)s"
 msgstr[0] ""
 
 #: apps/reviews/templates/reviews/review_list.html:49
+#, fuzzy
 msgid "No reviews found."
-msgstr ""
+msgstr "هیچ نتیجه‌ای پیدا نشد."
 
 #: apps/reviews/templates/reviews/review_list.html:64
 msgid "<strong>Average</strong> (%(total)s)"
@@ -14982,8 +15030,9 @@ msgid "Category"
 msgstr "Category"
 
 #: apps/search/templates/search/results.html:84
+#, fuzzy
 msgid "Tag"
-msgstr ""
+msgstr "برچسب‌ها"
 
 #: apps/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
@@ -15165,15 +15214,18 @@ msgstr ""
 msgid "by Add-on Status"
 msgstr ""
 
+# 100%
 #: apps/stats/templates/stats/collection_report_menu.html:6
+#, fuzzy
 msgid "Subscribers"
-msgstr ""
+msgstr "مشترک شدن"
 
 #: apps/stats/templates/stats/collection_report_menu.html:12
 #: mkt/reviewers/templates/reviewers/includes/details.html:65
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:87
+#, fuzzy
 msgid "Ratings"
-msgstr ""
+msgstr "رتبه"
 
 #: apps/stats/templates/stats/dashboard.html:3
 msgid "Add-on Statistics"
@@ -15937,8 +15989,9 @@ msgid "Delete User Photo"
 msgstr ""
 
 #: apps/users/templates/users/delete_photo.html:14
+#, fuzzy
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "هم‌اکنون حساب کاربری من را حذف کن"
 
 #: apps/users/templates/users/edit.html:20
 #: apps/users/templates/users/includes/navigation.html:12
@@ -15983,12 +16036,14 @@ msgid "Old Password"
 msgstr ""
 
 #: apps/users/templates/users/edit.html:71
+#, fuzzy
 msgid "New Password"
-msgstr ""
+msgstr "گذرواژهٔ جدید"
 
 #: apps/users/templates/users/edit.html:76
+#, fuzzy
 msgid "Confirm Password"
-msgstr ""
+msgstr "تأیید گذرواژه"
 
 #: apps/users/templates/users/edit.html:83
 msgid "Profile"
@@ -16112,15 +16167,17 @@ msgstr ""
 
 #: apps/users/templates/users/login_form.html:44
 #: apps/users/templates/users/mobile/login.html:59
+#, fuzzy
 msgid "Remember me on this device"
-msgstr ""
+msgstr "من را روی این رایانه به خاطر بسپار"
 
 #: apps/users/templates/users/login_form.html:55
 #: apps/users/templates/users/pwreset_complete.html:15
 #: apps/users/templates/users/mobile/login.html:70
 #: templates/mobile/header_auth.html:15
+#, fuzzy
 msgid "Log in"
-msgstr ""
+msgstr "Log In"
 
 #: apps/users/templates/users/login_modal.html:3
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
@@ -16373,9 +16430,10 @@ msgstr ""
 msgid "Log in with BrowserID"
 msgstr ""
 
+# {0} is the add-on name
 #: apps/versions/feeds.py:27
 msgid "%s Version History"
-msgstr ""
+msgstr "تاریخچه نسخه های %s"
 
 #: apps/versions/feeds.py:35
 msgid "Version History with Changelogs"
@@ -16524,8 +16582,9 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:45
 #: mkt/reviewers/templates/reviewers/themes/single.html:26
 #: mkt/reviewers/templates/reviewers/themes/themes.html:46
+#, fuzzy
 msgid "Reviewer"
-msgstr ""
+msgstr "بررسی"
 
 #: mkt/constants/bango.py:7
 #: mkt/constants/bango.py:32
@@ -18627,8 +18686,9 @@ msgid "Your email address"
 msgstr ""
 
 #: mkt/developers/forms.py:855
+#, fuzzy
 msgid "Text"
-msgstr ""
+msgstr "بعدی"
 
 #: mkt/developers/forms.py:859
 msgid "You must agree to the Privacy Policy."
@@ -18831,8 +18891,9 @@ msgstr ""
 #: mkt/developers/helpers.py:36
 #: mkt/developers/helpers.py:65
 #: mkt/reviewers/forms.py:85
+#, fuzzy
 msgid "Developers"
-msgstr ""
+msgstr "توسعه‌دهنده"
 
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:175
@@ -19870,8 +19931,9 @@ msgstr ""
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:28
+#, fuzzy
 msgid "Created:"
-msgstr ""
+msgstr "ایجاد شده در تاریخ"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:44
 msgid "Packaged App Version:"
@@ -20021,8 +20083,9 @@ msgid "Rating Category"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#, fuzzy
 msgid "Descriptions"
-msgstr ""
+msgstr "شرح"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -20038,8 +20101,9 @@ msgid "Pick one or two categories."
 msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:86
+#, fuzzy
 msgid "Categories:"
-msgstr ""
+msgstr "دسته بندی‌ها"
 
 #: mkt/developers/templates/developers/includes/macros.html:107
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
@@ -23599,8 +23663,9 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:39
 #: mkt/submit/forms.py:344
+#, fuzzy
 msgid "Description:"
-msgstr ""
+msgstr "شرح"
 
 #: mkt/reviewers/forms.py:50
 msgid "Attachment exceeds maximum size of %s."
@@ -23673,8 +23738,9 @@ msgstr ""
 #: mkt/reviewers/helpers.py:38
 #: mkt/reviewers/helpers.py:165
 #: mkt/reviewers/helpers.py:184
+#, fuzzy
 msgid "Updates"
-msgstr ""
+msgstr "به‌هنگام شده"
 
 #: mkt/reviewers/helpers.py:39
 msgid "Escalations"
@@ -24034,8 +24100,9 @@ msgid "Requirements"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:172
+#, fuzzy
 msgid "More about this app"
-msgstr ""
+msgstr "اطلاعات بیشتر دربارهٔ این افزودنی"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:20
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
@@ -24056,8 +24123,9 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49
 #: mkt/reviewers/templates/reviewers/includes/search_results_themes.html:26
 #: mkt/site/templates/site/helpers/no_results.html:1
+#, fuzzy
 msgid "No results found"
-msgstr ""
+msgstr "هیچ نتیجه‌ای پیدا نشد."
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
