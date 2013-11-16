@@ -415,6 +415,30 @@ class Webapp(Addon):
 
         return not bool(reasons), reasons
 
+    def is_fully_complete(self):
+        """
+        Central method to determine if app is fully complete. That is,
+        like `is_complete`, but considers payments-related and IARC
+        information.
+        """
+        is_complete = True
+        reasons = {
+            'details': True,
+            'content_ratings': True,
+            'payments': True
+        }
+        if not self.is_complete()[0]:
+            is_complete = False
+            reasons['details'] = False
+        if waffle.switch_is_active('iarc') and not self.is_rated():
+            is_complete = False
+            reasons['content_ratings'] = False
+        if self.needs_payment() and not self.has_payment_account():
+            is_complete = False
+            reasons['payments'] = False
+
+        return is_complete, reasons
+
     def is_rated(self):
         return self.content_ratings.exists()
 
@@ -967,7 +991,7 @@ class Webapp(Addon):
 
     def set_content_ratings(self, data):
         """
-        Sets content ratings on this app.
+        Sets content ratings on this app. Tries to set status to PENDING.
 
         This overwrites or creates ratings, it doesn't delete and expects data
         of the form::
@@ -1667,6 +1691,17 @@ class ContentRating(amo.models.ModelBase):
     def get_label(self):
         """Gives us the name to be used for the form options."""
         return u'%s - %s' % (self.get_body().name, self.get_rating().name)
+
+
+def update_status_content_ratings(sender, instance, **kw):
+    # Flips the app's status from NULL if it has everything else together.
+    if instance.addon.is_incomplete() and instance.addon.is_fully_complete()[0]:
+        instance.addon.update(status=amo.STATUS_PENDING)
+
+
+models.signals.post_save.connect(update_status_content_ratings,
+                                 sender=ContentRating,
+                                 dispatch_uid='c_rating_update_app_status')
 
 
 # The RatingDescriptors table is created with dynamic fields based on

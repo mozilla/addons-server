@@ -489,12 +489,19 @@ class TestWebapp(amo.tests.TestCase):
         assert app_factory(rated=True).is_rated()
         assert not app_factory().is_rated()
 
-    def test_set_content_ratings(self):
+    @mock.patch('mkt.webapps.models.Webapp.is_complete')
+    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
+    def test_set_content_ratings(self, pay_mock, complete_mock):
+        self.create_switch('iarc')
+        pay_mock.return_value = True
+        complete_mock.return_value = (True, [])
+
         rb = mkt.ratingsbodies
 
-        app = app_factory()
+        app = app_factory(status=amo.STATUS_NULL)
         app.set_content_ratings({})
         assert not app.is_rated()
+        eq_(app.status, amo.STATUS_NULL)
 
         # Create.
         app.set_content_ratings({
@@ -507,6 +514,7 @@ class TestWebapp(amo.tests.TestCase):
             assert ContentRating.objects.filter(
                 addon=app, ratings_body=expected[0],
                 rating=expected[1]).exists()
+        eq_(app.reload().status, amo.STATUS_PENDING)
 
         # Update.
         app.set_content_ratings({
@@ -521,6 +529,7 @@ class TestWebapp(amo.tests.TestCase):
             assert ContentRating.objects.filter(
                 addon=app, ratings_body=expected[0],
                 rating=expected[1]).exists()
+        eq_(app.reload().status, amo.STATUS_PENDING)
 
     def test_set_descriptors(self):
         app = app_factory()
@@ -642,6 +651,31 @@ class TestWebapp(amo.tests.TestCase):
         app.id = 1
         eq_(app.iarc_token(),
             hashlib.sha512(settings.SECRET_KEY + str(app.id)).hexdigest())
+
+    def test_is_fully_complete_not_done(self):
+        self.create_switch('iarc')
+        app = app_factory(premium_type=amo.ADDON_PREMIUM)
+
+        is_complete, reasons = app.is_fully_complete()
+        assert not is_complete
+        for reason in ('details', 'content_ratings', 'payments'):
+            assert not reasons[reason]
+
+    @mock.patch('mkt.webapps.models.Webapp.is_complete')
+    @mock.patch('mkt.webapps.models.Webapp.is_rated')
+    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
+    def test_is_fully_complete_done(self, mock1, mock2, complete_mock):
+        self.create_switch('iarc')
+        mock1.return_value = True
+        mock2.return_value = True
+        complete_mock.return_value = (True, [])
+
+        app = app_factory()
+        is_complete, reasons = app.is_fully_complete()
+        assert is_complete
+        assert reasons['details']
+        assert reasons['content_ratings']
+        assert reasons['payments']
 
 
 class DeletedAppTests(amo.tests.ESTestCase):
