@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-15 10:25+0000\n"
+"PO-Revision-Date: 2013-11-16 15:09+0000\n"
 "Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: Persian <LL@li.org>\n"
 "Language: fa\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1384511111.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1384614570.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -299,7 +299,6 @@ msgstr ""
 msgid "<strong>{0}</strong> add-on"
 msgid_plural "<strong>{0}</strong> add-ons"
 msgstr[0] "<strong>{0}</strong> افزودنی"
-msgstr[1] "<strong>{0}</strong> افزودنی"
 
 #. {0} is the number of subscribers.
 #: apps/addons/templates/addons/collections_sidebar.html:29
@@ -5334,21 +5333,17 @@ msgstr ""
 #. L10n: first parameter is the number of errors
 #: apps/devhub/helpers.py:198
 #: mkt/developers/helpers.py:172
-#, fuzzy
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} error"
-msgstr[1] "{0} errors"
+msgstr[0] "{0} خطا"
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
 #: apps/devhub/helpers.py:201
 #: mkt/developers/helpers.py:175
-#, fuzzy
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} warning"
-msgstr[1] "{0} warnings"
+msgstr[0] "{0} هشدار"
 
 #: apps/devhub/models.py:379
 #: apps/reviews/templates/reviews/add.html:86
@@ -15631,7 +15626,7 @@ msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
 msgstr ""
-"قالب این نشانی معتبر نیست. نشانی‌های معتبر مشابه htt_p://example.com/mypage "
+"قالب این URL معتبر نیست. URLهای معتبر مشابه http://example.com/my_page "
 "هستند."
 
 #: apps/users/forms.py:218
