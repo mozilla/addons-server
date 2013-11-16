@@ -38,50 +38,56 @@ class IARC_Parser(object):
     Base class for IARC XML and JSON parsers.
     """
 
-    def _process_ratings_and_descriptors(self, data):
+    def _process_iarc_items(self, data):
         """
-        Looks for keys starting with 'rating_' or 'descriptors_' and trades
-        them for a 'ratings' and 'descriptors' dictionary.
+        Looks for IARC keys ('interactive_elements' or keys starting with
+        'rating_' or 'descriptors_') and trades them for a 'ratings' dictionary
+        or descriptor and interactive lists.
 
         """
-        d = {}  # New data object we'll return.
-        ratings = {}
-        descriptors = []
+        rows = []  # New data object we'll return.
 
-        for k, v in data['ROW'].items():
-            # Get ratings body constant.
-            ratings_body = RATINGS_BODY_MAPPING.get(
-                k.split('_')[-1].lower(), ratingsbodies.GENERIC)
+        for row in data:
+            d = {}
+            ratings = {}
+            descriptors = []
+            interactives = []
 
-            if k.startswith('rating_'):
-                ratings[ratings_body] = RATINGS_MAPPING[ratings_body].get(
-                    v, RATINGS_MAPPING[ratings_body]['default'])
-            elif k.startswith('descriptors_'):
-                native_descs = filter(None, [s.strip() for s in v.split(',')])
-                descriptors.extend(
-                    filter(None, [DESC_MAPPING[ratings_body].get(desc)
-                                  for desc in native_descs]))
-            else:
-                d[k] = v
+            for k, v in row.items():
+                # Get ratings body constant.
+                ratings_body = RATINGS_BODY_MAPPING.get(
+                    k.split('_')[-1].lower(), ratingsbodies.GENERIC)
 
-        if ratings:
-            d['ratings'] = ratings
-        if descriptors:
-            d['descriptors'] = descriptors
+                if k == 'rating_system':
+                    # This key is used in the Get_Rating_Changes API.
+                    d[k] = RATINGS_BODY_MAPPING.get(v.lower(),
+                                                    ratingsbodies.GENERIC)
+                elif k == 'interactive_elements':
+                    interactives = [INTERACTIVES_MAPPING[s] for s in
+                                    filter(None, [s.strip()
+                                                  for s in v.split(',')])]
+                elif k.startswith('rating_'):
+                    ratings[ratings_body] = RATINGS_MAPPING[ratings_body].get(
+                        v, RATINGS_MAPPING[ratings_body]['default'])
+                elif k.startswith('descriptors_'):
+                    native_descs = filter(None,
+                                          [s.strip() for s in v.split(',')])
+                    descriptors.extend(
+                        filter(None, [DESC_MAPPING[ratings_body].get(desc)
+                                      for desc in native_descs]))
+                else:
+                    d[k] = v
 
-        return d
+            if ratings:
+                d['ratings'] = ratings
+            if descriptors:
+                d['descriptors'] = descriptors
+            if interactives:
+                d['interactives'] = interactives
 
-    def _process_interactive_elements(self, data):
-        """Split and normalize the 'interactive_elements' key into a list."""
-        data['interactives'] = []
-        if not data.get('interactive_elements'):
-            return data
+            rows.append(d)
 
-        data['interactives'] = [
-            INTERACTIVES_MAPPING[s]
-            for s in filter(None, [s.strip() for s in
-                                   data['interactive_elements'].split(',')])]
-        return data
+        return rows
 
 
 class IARC_XML_Parser(XMLParser, IARC_Parser):
@@ -109,8 +115,11 @@ class IARC_XML_Parser(XMLParser, IARC_Parser):
         data = self._xml_convert(tree.getroot())
 
         # Process ratings, descriptors, interactives.
-        data = self._process_ratings_and_descriptors(data)
-        data = self._process_interactive_elements(data)
+        data = self._process_iarc_items(data)
+
+        # If it's a list, it had one or more "ROW" tags.
+        if isinstance(data, list):
+            data = {'rows': data}
 
         return data
 
@@ -132,9 +141,15 @@ class IARC_XML_Parser(XMLParser, IARC_Parser):
         if len(children) == 0:
             return self._type_convert(element.get('VALUE'))
         else:
-            data = {}
-            for child in children:
-                data[child.get('NAME', child.tag)] = self._xml_convert(child)
+            if children[0].tag == 'ROW':
+                data = []
+                for child in children:
+                    data.append(self._xml_convert(child))
+            else:
+                data = {}
+                for child in children:
+                    data[child.get('NAME',
+                                   child.tag)] = self._xml_convert(child)
 
         return data
 
@@ -147,9 +162,7 @@ class IARC_JSON_Parser(JSONParser, IARC_Parser):
         data = super(IARC_JSON_Parser, self).parse(stream, media_type,
                                                    parser_context)
         data = self._convert(data)
-
-        data = self._process_ratings_and_descriptors(data)
-        data = self._process_interactive_elements(data)
+        data = self._process_iarc_items(data)
 
         return data
 
@@ -174,7 +187,8 @@ class IARC_JSON_Parser(JSONParser, IARC_Parser):
         for f in data['ROW']['FIELD']:
             d[f['NAME']] = f['VALUE']
 
-        return {'ROW': d}
+        # Return a list to match the parsed XML.
+        return [d]
 
 
 # These mappings are required to convert the IARC response strings, like "ESRB"

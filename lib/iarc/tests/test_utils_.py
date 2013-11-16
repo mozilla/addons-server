@@ -87,14 +87,12 @@ class TestXMLParser(amo.tests.TestCase):
         self.client = get_iarc_client('service')
 
     def test_app_info(self):
-        xml = self.client.Get_App_Info()
-        data = IARC_XML_Parser().parse_string(xml)
+        xml = self.client.Get_App_Info(XMLString='foo')
+        data = IARC_XML_Parser().parse_string(xml)['rows'][0]
 
         eq_(data['submission_id'], 52)
         eq_(data['title'], 'Twitter')
         eq_(data['company'], 'Mozilla')
-        eq_(data['interactive_elements'],
-            'Shares Info, Shares Location, Social Networking, Users Interact, ')
         eq_(data['storefront'], 'Mozilla')
         eq_(data['platform'], 'Firefox')
 
@@ -116,3 +114,39 @@ class TestXMLParser(amo.tests.TestCase):
         self.assertSetEqual(data['interactives'],
                             ['has_shares_info', 'has_shares_location',
                              'has_social_networking', 'has_users_interact'])
+
+    def test_rating_changes(self):
+        xml = self.client.Get_Rating_Changes(XMLString='foo')
+        data = IARC_XML_Parser().parse_string(xml)
+
+        eq_(len(data['rows']), 2)
+
+        row = data['rows'][0]
+        eq_(row['rowId'], 1)
+        eq_(row['submission_id'], 52)
+        eq_(row['title'], 'Twitter')
+        eq_(row['company'], 'Mozilla')
+        eq_(row['change_date'], '11/12/2013')
+        eq_(row['security_code'], 'FZ32CU8')
+        eq_(row['email'], 'nobody@mozilla.com')
+        eq_(row['rating_system'], ratingsbodies.CLASSIND)
+        eq_(row['new_rating'], '18+')
+        eq_(row['new_descriptors'],
+            u'Conte\xfado Impactante, Cont\xe9udo Sexual, Drogas, Linguagem '
+            u'Impr\xf3pria, Nudez, Viol\xeancia Extrema')
+        eq_(row['change_reason'],
+            'Significant issues found in special mission cut scenes.')
+
+        row = data['rows'][1]
+        eq_(row['rowId'], 2)
+        eq_(row['submission_id'], 68)
+        eq_(row['title'], 'Other App')
+        eq_(row['company'], 'Mozilla')
+        eq_(row['change_date'], '11/12/2013')
+        eq_(row['security_code'], 'GZ32CU8')
+        eq_(row['email'], 'nobody@mozilla.com')
+        eq_(row['new_rating'], '12+')
+        eq_(row['new_descriptors'], 'Gewalt')
+        eq_(row['rating_system'], ratingsbodies.USK)
+        eq_(row['change_reason'],
+            'Discrimination found to be within German law.')

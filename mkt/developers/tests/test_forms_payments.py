@@ -588,7 +588,7 @@ class TestPaidRereview(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
 
 
-class TestRestoreApp(amo.tests.TestCase):
+class TestRestoreAppStatus(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -597,12 +597,12 @@ class TestRestoreApp(amo.tests.TestCase):
 
     def test_to_public(self):
         self.addon.highest_status = amo.STATUS_PUBLIC
-        forms_payments._restore_app(self.addon)
+        forms_payments._restore_app_status(self.addon)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
 
     def test_to_null(self):
         self.addon.highest_status = amo.STATUS_NULL
-        forms_payments._restore_app(self.addon)
+        forms_payments._restore_app_status(self.addon)
         # Apps without a highest status default to PENDING.
         eq_(self.addon.status, amo.STATUS_PENDING)
 

@@ -1106,12 +1106,13 @@ class IARCGetAppInfoForm(happyforms.Form):
         # Handle response.
         data = lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
 
-        if data.get('ratings'):
+        if data.get('rows'):
+            row = data['rows'][0]
             # We found a rating, so store the id and code for future use.
             app.set_iarc_info(iarc_id, iarc_code)
-            app.set_content_ratings(data.get('ratings', {}))
-            app.set_descriptors(data.get('descriptors', []))
-            app.set_interactives(data.get('interactives', []))
+            app.set_content_ratings(row.get('ratings', {}))
+            app.set_descriptors(row.get('descriptors', []))
+            app.set_interactives(row.get('interactives', []))
 
         else:
             msg = _('Content rating record not found.')

@@ -415,6 +415,30 @@ class Webapp(Addon):
 
         return not bool(reasons), reasons
 
+    def is_fully_complete(self):
+        """
+        Central method to determine if app is fully complete. That is,
+        like `is_complete`, but considers payments-related and IARC
+        information.
+        """
+        is_complete = True
+        reasons = {
+            'details': True,
+            'content_ratings': True,
+            'payments': True
+        }
+        if not self.is_complete()[0]:
+            is_complete = False
+            reasons['details'] = False
+        if waffle.switch_is_active('iarc') and not self.is_rated():
+            is_complete = False
+            reasons['content_ratings'] = False
+        if self.needs_payment() and not self.has_payment_account():
+            is_complete = False
+            reasons['payments'] = False
+
+        return is_complete, reasons
+
     def is_rated(self):
         return self.content_ratings.exists()
 
@@ -967,7 +991,7 @@ class Webapp(Addon):
 
     def set_content_ratings(self, data):
         """
-        Sets content ratings on this app.
+        Sets content ratings on this app. Tries to set status to PENDING.
 
         This overwrites or creates ratings, it doesn't delete and expects data
         of the form::
@@ -1023,32 +1047,32 @@ class Webapp(Addon):
             ri.update(**create_kwargs)
 
     def set_iarc_storefront_data(self):
-         """Send app data to IARC for them to verify."""
-         if not waffle.switch_is_active('iarc'):
-             return
+        """Send app data to IARC for them to verify."""
+        if not waffle.switch_is_active('iarc'):
+            return
 
-         iarc_info = self.iarc_info  # Should have 1-to-1 IARC info already.
+        iarc_info = self.iarc_info  # Should have 1-to-1 IARC info already.
 
-         with amo.utils.no_translation(self.default_locale):
-             delocalized_self = Addon.objects.get(pk=self.pk)
+        with amo.utils.no_translation(self.default_locale):
+            delocalized_self = Addon.objects.get(pk=self.pk)
 
-         xmls = []
-         for cr in self.content_ratings.all():
-             xmls.append(render_xml('set_storefront_data.xml', {
-                 'submission_id': iarc_info.submission_id,
-                 'security_code': iarc_info.security_code,
-                 'rating_system': cr.get_body().iarc_name,
-                 'release_date': datetime.date.today(),
-                 'title': unicode(delocalized_self.name),
-                 'rating': cr.get_rating().iarc_name,
-                 'descriptors': self.rating_descriptors.iarc_deserialize(
-                     body=cr.get_body()),
-                 'interactive_elements':
-                     self.rating_interactives.iarc_deserialize(),
-             }))
+        xmls = []
+        for cr in self.content_ratings.all():
+            xmls.append(render_xml('set_storefront_data.xml', {
+                'submission_id': iarc_info.submission_id,
+                'security_code': iarc_info.security_code,
+                'rating_system': cr.get_body().iarc_name,
+                'release_date': datetime.date.today(),
+                'title': unicode(delocalized_self.name),
+                'rating': cr.get_rating().iarc_name,
+                'descriptors': self.rating_descriptors.iarc_deserialize(
+                    body=cr.get_body()),
+                'interactive_elements':
+                    self.rating_interactives.iarc_deserialize(),
+            }))
 
-         for xml in xmls:
-             get_iarc_client('services').Set_Storefront_Data(XMLString=xml)
+        for xml in xmls:
+            get_iarc_client('services').Set_Storefront_Data(XMLString=xml)
 
 
 class Trending(amo.models.ModelBase):
@@ -1611,6 +1635,7 @@ class IARCInfo(amo.models.ModelBase):
 
     class Meta:
         db_table = 'webapps_iarc_info'
+        unique_together = ('addon', 'submission_id')
 
     def __unicode__(self):
         return u'app:%s' % self.addon.app_slug
@@ -1667,6 +1692,17 @@ class ContentRating(amo.models.ModelBase):
     def get_label(self):
         """Gives us the name to be used for the form options."""
         return u'%s - %s' % (self.get_body().name, self.get_rating().name)
+
+
+def update_status_content_ratings(sender, instance, **kw):
+    # Flips the app's status from NULL if it has everything else together.
+    if instance.addon.is_incomplete() and instance.addon.is_fully_complete()[0]:
+        instance.addon.update(status=amo.STATUS_PENDING)
+
+
+models.signals.post_save.connect(update_status_content_ratings,
+                                 sender=ContentRating,
+                                 dispatch_uid='c_rating_update_app_status')
 
 
 # The RatingDescriptors table is created with dynamic fields based on

@@ -820,12 +820,13 @@ class TestPriceTier(RestOAuth):
     fixtures = ['data/user_2519', 'data/admin', 'market/prices']
 
     def setUp(self):
+        self.permission = 'Prices:Edit'
         RestOAuth.setUp(self)
         self.list_url = reverse('price-tier-list')
         self.detail_url = reverse('price-tier-detail', kwargs={'pk': 1})
 
     def test_list(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.get(self.list_url)
         j = json.loads(res.content)
         eq_(len(j['objects']), 2)
@@ -838,7 +839,7 @@ class TestPriceTier(RestOAuth):
             })
 
     def test_detail(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.get(self.detail_url)
         j = json.loads(res.content)
         eq_(j, {
@@ -854,7 +855,7 @@ class TestPriceTier(RestOAuth):
         eq_(res.status_code, 403)
 
     def test_post_admin(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.post(
             self.list_url,
             json.dumps({'name': '3',
@@ -873,7 +874,7 @@ class TestPriceTier(RestOAuth):
         eq_(res.status_code, 403)
 
     def test_put(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.put(
             self.detail_url,
             json.dumps({'name': '1',
@@ -892,7 +893,7 @@ class TestPriceTier(RestOAuth):
         eq_(res.status_code, 403)
 
     def test_delete(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.delete(self.detail_url)
         eq_(res.status_code, 204)
         assert not Price.objects.filter(pk=1).exists()
@@ -902,13 +903,14 @@ class TestPriceCurrency(RestOAuth):
     fixtures = ['data/user_2519', 'data/admin', 'market/prices']
 
     def setUp(self):
+        self.permission = 'Prices:Edit'
         RestOAuth.setUp(self)
         self.list_url = reverse('price-currency-list')
         self.detail_url = reverse('price-currency-detail', kwargs={'pk': 1})
         self.tier_url = reverse('price-tier-detail', kwargs={'pk': 1})
 
     def test_list(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.get(self.list_url)
         j = json.loads(res.content)
         eq_(len(j['objects']), 6)
@@ -922,7 +924,7 @@ class TestPriceCurrency(RestOAuth):
             'tier': self.tier_url})
 
     def test_detail(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.get(self.detail_url)
         j = json.loads(res.content)
         eq_(j, {
@@ -940,7 +942,7 @@ class TestPriceCurrency(RestOAuth):
         eq_(res.status_code, 403)
 
     def test_post_admin(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.post(
             self.list_url,
             json.dumps({
@@ -964,7 +966,7 @@ class TestPriceCurrency(RestOAuth):
         eq_(res.status_code, 403)
 
     def test_put(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.put(
             self.detail_url,
             json.dumps({
@@ -986,7 +988,7 @@ class TestPriceCurrency(RestOAuth):
         eq_(res.status_code, 403)
 
     def test_delete(self):
-        self.grant_permission(self.profile, 'Admin:Adminner')
+        self.grant_permission(self.profile, self.permission)
         res = self.client.delete(self.detail_url)
         eq_(res.status_code, 204)
         assert not PriceCurrency.objects.filter(pk=1).exists()

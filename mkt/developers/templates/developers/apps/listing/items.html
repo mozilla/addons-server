@@ -6,19 +6,21 @@
   <div class="item addon" data-addonid="{{ addon.id }}">
     <div class="info">
       {{ dev_heading(addon, amo) }}
+
       {% if addon.is_incomplete() %}
         <p class="incomplete">
-          {# is_complete doesn't check for payments/ratings.
-             Thus is_incomplete + is_complete == needs payments/ratings #}
-          {% if not addon.is_complete()[0] %}
+          {% set complete = addon.is_fully_complete() %}
+          {% if not complete[1].details %}
             {{ _("This app's submission process has not been fully completed.") }}
-          {% else %}
-            {% if waffle.switch('iarc') and not addon.is_rated() %}
-              {{ _('This app needs to get a content rating.') }}
-            {% endif %}
-            {% if addon.needs_payment() and not addon.has_payment_account()  %}
-              {{ _('This app needs a payment account set up.') }}
-            {% endif %}
+          {% endif %}
+
+          {% if not complete[1].content_ratings %}
+            {# Don't worry, the waffle is handled in is_fully_complete(). #}
+            {{ _('This app needs to get a content rating.') }}
+          {% endif %}
+
+          {% if not complete[1].payments %}
+            {{ _('This app needs a payment account set up.') }}
           {% endif %}
         </p>
       {% else %}

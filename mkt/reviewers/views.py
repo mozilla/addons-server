@@ -854,7 +854,7 @@ def performance(request, username=None):
     return jingo.render(request, 'reviewers/performance.html', ctx)
 
 
-@permission_required('Apps', 'Review')
+@any_permission_required([('Apps', 'Review'), ('Personas', 'Review')])
 def leaderboard(request):
     return jingo.render(request, 'reviewers/leaderboard.html', context(request,
         **{'scores': ReviewerScore.all_users_by_score()}))
