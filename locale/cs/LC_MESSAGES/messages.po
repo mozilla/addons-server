@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-15 14:12+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2013-11-16 17:33+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384524766.0\n"
+"X-POOTLE-MTIME: 1384623204.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1940,7 +1940,7 @@ msgstr "Měna u účtu byla změněna"
 
 #: apps/amo/log.py:442
 msgid "Valid receipt was checked for {addon}."
-msgstr ""
+msgstr "Platnost účtu byla zkontrolována pro {addon}."
 
 #: apps/amo/log.py:447
 msgid "Escalation cleared for {addon}."
@@ -2102,7 +2102,7 @@ msgstr "Stav verze {version} byl změněn na {0}."
 #. L10n: {0} is the status
 #: apps/amo/log.py:646
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Uživatel {0.name} {0.id} byl smazán pomocí vyhledávacího nástroje."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -3267,7 +3267,7 @@ msgstr "Naposledy aktualizované plné motivy"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Žádané kompletní vzhledy"
 
 #: apps/browse/templates/browse/impala/base_listing.html:30
 msgid "Featured Apps"
@@ -4029,7 +4029,7 @@ msgstr "Platba selhala."
 
 #: apps/constants/payments.py:135
 msgid "The reversal failed."
-msgstr ""
+msgstr "Obrácení selhalo."
 
 #: apps/constants/payments.py:136
 msgid "The payment was received, but not completed and is awaiting processing."
@@ -4194,7 +4194,7 @@ msgstr "Při nahrávání se vyskytla chyba. Zkuste to prosím znovu."
 
 #: apps/devhub/forms.py:491
 msgid "Override failed validation"
-msgstr ""
+msgstr "Přepsat nezdařenou validaci"
 
 #: apps/devhub/forms.py:530
 msgid "Need at least one platform."
@@ -4457,7 +4457,7 @@ msgstr "Změny byly úspěšně uloženy."
 
 #: apps/devhub/views.py:342 apps/devhub/views.py:1736
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Zkontrolujte prosím chyby ve formuláři"
 
 #: apps/devhub/views.py:360
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -6241,6 +6241,10 @@ msgid ""
 "Even entomologists don't like bugs in their software, so it's important to test your add-on thoroughly before it's ready for general consumption. At minimum, you should make sure your add-on works "
 "on all the platforms and applications it claims to support."
 msgstr ""
+"Ani entomologové nemají rádi mouchy na svém softwaru, je tedy důležité váš "
+"doplněk pečlivě otestovat před jeho uveřejněním pro běžné používání. Určitě "
+"byste se měli ujistit, že váš doplněk funguje na všech platformách a "
+"aplikacích, jejichž podporu uvádíte."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:97
 msgid ""
@@ -6376,6 +6380,8 @@ msgstr "Vytvoření tzv. sandboxed HTTP spojení "
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
 msgstr ""
+"Tento článek vysvětluje, jak vytvořit oddělená HTTP připojení, která "
+"neovlivní uživatelská cookies."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -8288,7 +8294,10 @@ msgstr "Vytvoření obrázku patičky motivu"
 
 #: apps/devhub/templates/devhub/docs/themes.html:120
 msgid "The footer image is displayed as the background of the bottom of the browser window, behind the add-on and find bars. It will be anchored to the bottom-left corner of the browser window."
-msgstr "Obrázek patičky je zobrazen jako pozadí dolní části okna webového prohlížeče a to na pozadí stavového řádku a lišty vyhledávání. Bude <b>ukotven za levý dolní roh</b> okna prohlížeče."
+msgstr ""
+"Obrázek patičky je zobrazen jako pozadí dolní části okna webového prohlížeče "
+"a to na pozadí stavového řádku a lišty vyhledávání. Bude ukotven za levý "
+"dolní roh okna prohlížeče."
 
 #: apps/devhub/templates/devhub/docs/themes.html:128
 msgid "View a sample Theme Footer here."
@@ -16574,7 +16583,7 @@ msgstr "Tato aplikace je <b>nekompletní</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:41
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
-msgstr "Tato aplikace <b>čeká na kontrolu</a> redaktorem Firefox Marketplace."
+msgstr "Tato aplikace <b>čeká na kontrolu</b> redaktorem Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "You will receive an email when the review is complete."
