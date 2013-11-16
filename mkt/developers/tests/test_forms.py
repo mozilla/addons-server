@@ -800,6 +800,21 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         eq_(iarc_info.submission_id, 1)
         eq_(iarc_info.security_code, 'a')
 
+    def test_allow_subm(self):
+        form = forms.IARCGetAppInfoForm({'submission_id': 'subm-1231',
+                                         'security_code': 'a'})
+        assert form.is_valid(), form.errors
+        form.save(self.app)
+
+        iarc_info = self.app.iarc_info
+        eq_(iarc_info.submission_id, 1231)
+        eq_(iarc_info.security_code, 'a')
+
+    def test_bad_submission_id(self):
+        form = forms.IARCGetAppInfoForm({'submission_id': 'subwayeatfresh-133',
+                                         'security_code': 'jksubwaysux'})
+        assert not form.is_valid()
+
     def test_incomplete(self):
         form = forms.IARCGetAppInfoForm({'submission_id': 1})
         assert not form.is_valid(), 'Form was expected to be invalid.'

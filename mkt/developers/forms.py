@@ -1090,6 +1090,16 @@ class IARCGetAppInfoForm(happyforms.Form):
     submission_id = forms.CharField()
     security_code = forms.CharField()
 
+    def clean_submission_id(self):
+        submission_id = (
+            # Also allow "subm-1234" since that's what IARC tool displays.
+            self.cleaned_data['submission_id'].lower().replace('subm-', ''))
+
+        if submission_id.isdigit():
+            return submission_id
+
+        raise forms.ValidationError(_('Please enter a valid submission ID.'))
+
     def save(self, app, *args, **kwargs):
         iarc_id = self.cleaned_data['submission_id']
         iarc_code = self.cleaned_data['security_code']
