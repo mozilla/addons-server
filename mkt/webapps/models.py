@@ -1047,32 +1047,32 @@ class Webapp(Addon):
             ri.update(**create_kwargs)
 
     def set_iarc_storefront_data(self):
-         """Send app data to IARC for them to verify."""
-         if not waffle.switch_is_active('iarc'):
-             return
+        """Send app data to IARC for them to verify."""
+        if not waffle.switch_is_active('iarc'):
+            return
 
-         iarc_info = self.iarc_info  # Should have 1-to-1 IARC info already.
+        iarc_info = self.iarc_info  # Should have 1-to-1 IARC info already.
 
-         with amo.utils.no_translation(self.default_locale):
-             delocalized_self = Addon.objects.get(pk=self.pk)
+        with amo.utils.no_translation(self.default_locale):
+            delocalized_self = Addon.objects.get(pk=self.pk)
 
-         xmls = []
-         for cr in self.content_ratings.all():
-             xmls.append(render_xml('set_storefront_data.xml', {
-                 'submission_id': iarc_info.submission_id,
-                 'security_code': iarc_info.security_code,
-                 'rating_system': cr.get_body().iarc_name,
-                 'release_date': datetime.date.today(),
-                 'title': unicode(delocalized_self.name),
-                 'rating': cr.get_rating().iarc_name,
-                 'descriptors': self.rating_descriptors.iarc_deserialize(
-                     body=cr.get_body()),
-                 'interactive_elements':
-                     self.rating_interactives.iarc_deserialize(),
-             }))
+        xmls = []
+        for cr in self.content_ratings.all():
+            xmls.append(render_xml('set_storefront_data.xml', {
+                'submission_id': iarc_info.submission_id,
+                'security_code': iarc_info.security_code,
+                'rating_system': cr.get_body().iarc_name,
+                'release_date': datetime.date.today(),
+                'title': unicode(delocalized_self.name),
+                'rating': cr.get_rating().iarc_name,
+                'descriptors': self.rating_descriptors.iarc_deserialize(
+                    body=cr.get_body()),
+                'interactive_elements':
+                    self.rating_interactives.iarc_deserialize(),
+            }))
 
-         for xml in xmls:
-             get_iarc_client('services').Set_Storefront_Data(XMLString=xml)
+        for xml in xmls:
+            get_iarc_client('services').Set_Storefront_Data(XMLString=xml)
 
 
 class Trending(amo.models.ModelBase):
@@ -1635,6 +1635,7 @@ class IARCInfo(amo.models.ModelBase):
 
     class Meta:
         db_table = 'webapps_iarc_info'
+        unique_together = ('addon', 'submission_id')
 
     def __unicode__(self):
         return u'app:%s' % self.addon.app_slug
