@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-17 18:51+0000\n"
+"PO-Revision-Date: 2013-11-17 18:59+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384714302.0\n"
+"X-POOTLE-MTIME: 1384714752.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -15246,7 +15246,7 @@ msgstr "Aplikace vyžaduje API `navigator.mozNetworkStats`."
 
 #: mkt/constants/features.py:105 mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:406
 msgid "Proximity"
-msgstr ""
+msgstr "Proximity"
 
 #: mkt/constants/features.py:106
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
@@ -15254,7 +15254,7 @@ msgstr "Aplikace vyžaduje proximity sensor (`ondeviceproximity` API)."
 
 #: mkt/constants/features.py:111
 msgid "Simple Push"
-msgstr ""
+msgstr "Simple Push"
 
 #: mkt/constants/features.py:112
 msgid "The app requires the `navigator.mozPush` API."
@@ -15813,11 +15813,11 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:192
 msgid "Everyone"
-msgstr ""
+msgstr "Všichni"
 
 #: mkt/constants/ratingsbodies.py:199
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Všichni starší 10 let"
 
 #: mkt/constants/ratingsbodies.py:206
 msgid "Teen"
@@ -17278,7 +17278,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr ""
+msgstr "ID odeslání"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:98
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
@@ -17286,7 +17286,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
-msgstr ""
+msgstr "Bezpečnostní kód"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
