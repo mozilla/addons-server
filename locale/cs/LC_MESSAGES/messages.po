@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-16 17:46+0000\n"
+"PO-Revision-Date: 2013-11-16 22:27+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384624006.0\n"
+"X-POOTLE-MTIME: 1384640866.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -7141,6 +7141,10 @@ msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
 msgstr ""
+"<strong>Důležité</strong>: doplněk musí mít širokou základnu uživatelů "
+"Firefoxu a musí být perfektně zpracován ve všech ohledech: z pohledu "
+"uživatelské přívětivosti, výkonu, bezpečnosti a  užitečnosti či zábavy. "
+"Motivy vzhledu též musí dobře vizuálně vypadat."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:53
 msgid "Nominating an Add-on"
@@ -7169,6 +7173,8 @@ msgstr "volitelně: odkaz na jakékoliv externí recenze nebo články, které s
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, a video overview/demo/tutorial of the add-on not more than 5 minutes long"
 msgstr ""
+"optimálně video s přehledem/demem/návodem k doplňku, které není delší než 5 "
+"minut"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
@@ -7176,6 +7182,13 @@ msgid ""
 "for improvement. Common reasons for rejection include lacking wide appeal to consumers, a suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured "
 "add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"Nominace rozšíření jsou procházena Advisory Board každý měsíc (u nominací "
+"motivů každé tři měsíce) a o výsledku budete informování e-mailem spolu s "
+"případnými tipy na vylepšení. Mezi běžné důvody zamítnutí se řadí malý "
+"přínos pro velkou skupinu uživatelů, nedokonalá použitelnost, kvalita či "
+"bezpečnostní problémy, nekompatibilita či podobnost k jinému doporučovanému "
+"rozšíření. Zamítnuté doplňky nemohou být znovu nominovány po dobu tří "
+"měsíců."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -7191,6 +7204,10 @@ msgid ""
 "Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
 "a good indicator the add-on may not be very useful to our users."
 msgstr ""
+"Malý růst &mdash; Doplňky, které jsou doporučovány, obvykle získají větší "
+"množství stažení a řadu nových uživatelů. Pokud doplněk v žádném měřítku "
+"neroste, je to dobrý indikátor, že doplněk není užitečný pro velkou skupinu "
+"našich uživatelů."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
@@ -7211,6 +7228,8 @@ msgstr "Připojení se k Featured Add-ons Advisory Board"
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
 msgstr ""
+"Každých šest měsíců je ustanoven nový Advisory Board, který je sestaven na "
+"základě žádostí z naší komunity okolo doplňků. Členové musí:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
@@ -7219,10 +7238,15 @@ msgstr "být aktivním členem komunity doplňků (nezáleží na tom, zda jako 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
 msgstr ""
+"aktivně zkoušet všechny nominované doplňky, poskytovat k nim reakce a "
+"účastnit se každý měsíc hlasování"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid "join a monthly conference call to go through the votes and select the next month's featured add-ons (featured complete themes will be discussed on every third call)"
 msgstr ""
+"účastnit se každý měsíc telekonference, kde budou probírány hlasování a "
+"volba doporučovaných doplňků pro následující měsíc (doporučované motivy jsou "
+"probírány každé třetí volání)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:111
 msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
@@ -7233,6 +7257,9 @@ msgid ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
 "feature."
 msgstr ""
+"Členové týmu serveru Doplňky Mozilly mají právo veta u volby libovolného "
+"doplňku a to z důvodu bezpečnosti, soukromí, kompatibility či jiného důvodu, "
+"ale obecně je na členech, aby zvolili, které doplňky budou propagovány."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:121
 msgid ""
@@ -7240,6 +7267,13 @@ msgid ""
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
 "features may not appear in that locale."
 msgstr ""
+"Tyto zásady pro doporučované doplňky jsou platné pro seznam doporučovaných "
+"doplňků na addons.mozilla.org. Doplňky doporučované na jiných místech jsou "
+"často brány z tohoto seznamu, ale Mozilla může doporučovat libovolný doplněk "
+"na jiných místech bez ohledu na souhlas hodnotitelů. Vedle toho mohou "
+"některé jazykově specifické vlastnosti přebít globální nastavení, takže "
+"pokud jsou pro jazyk k dispozici některé speciální vlastnosti, mohou "
+"nahradit globálně doporučované doplňky."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:127
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
@@ -8103,6 +8137,14 @@ msgid ""
 "\"try it on.\" When you're ready, just click the green <code>Add to Firefox</code> button. Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you "
 "wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
 msgstr ""
+"V rámci několika sekund můžete nainstalovat motiv a přeměnit tak vzhled "
+"webového prohlížeče Firefox. Pro náhled libovolného motivu přes něj "
+"jednoduše přejeďte myší a uvidíte jej dočasně ve svém prohlížeči. Pokud se "
+"vám líbí, jednoduše klepněte na tlačítko <code>Přidat do Firefoxu</code>. "
+"Jakmile je motiv nainstalován, je uložen ve Správci doplňků, kde jej můžete "
+"povolit či zakázat dle svého přání. Jednoduše přejděte do nabídky "
+"<code>Nástroje</code> &gt; <code>Správce doplňků</code> a zvolte sekci "
+"<code>Vzhled</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:105
 msgid "Yes. Themes are free to download and free to use."
@@ -8115,6 +8157,8 @@ msgstr "Existují dva snadné způsoby, jak změnit motiv. Můžete:"
 #: apps/devhub/templates/devhub/docs/themes-faq.html:123
 msgid "Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite theme, and click on your choice to instantly change the look of your browser."
 msgstr ""
+"Navštivte <a href=\"%(gallery_url)s\">galerii</a>, zvolte svůj oblíbený motiv "
+"a klepněte na něj. Vzhled prohlížeče se vám rázem změní."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:130
 msgid ""
