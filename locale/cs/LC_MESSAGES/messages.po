@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-16 22:27+0000\n"
+"PO-Revision-Date: 2013-11-17 11:44+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384640866.0\n"
+"X-POOTLE-MTIME: 1384688658.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -8950,10 +8950,12 @@ msgstr "Nahrát nový návrh"
 #: apps/devhub/templates/devhub/personas/edit.html:226
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr ""
+"Po nahrání a odeslání provede tým AMO kontrolu vámi aktualizovaného vzhledu. "
+"Váš aktuální vzhled bude v mezidobí stále k dispozici na webu."
 
 #: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Vámi dříve odeslaný vzhled, který čeká na kontrolu."
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -9044,6 +9046,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr ""
+"Zobrazte si a odebírejte svůj <a href=\"%(feed_url)s\">přehled aktivit</a>. "
+"Mějte tak přehled o recenzích, sbírkách a dalších věcech."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
@@ -9547,6 +9551,8 @@ msgstr "Chrańte své online soukromí pomocí doplňků v této kolekci."
 #: apps/discovery/modules.py:339
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
+"Skvělé doplňky o práci, zábavě, soukromí, produktivitě&hellip; zkrátka o "
+"všem!"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -9625,7 +9631,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
 msgid "Best Overall Add-on"
-msgstr ""
+msgstr "Celkově nejlepší doplněk"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
 msgid "Thumbnail Zoom Plus"
@@ -9634,6 +9640,8 @@ msgstr "Thumbnail Zoom Plus"
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
 msgid "Shows a full-size image popup when<br> you hover over a thumbnail or image link."
 msgstr ""
+"Zobrazí plnou velikost obrázku ve vyskakovacím okně, <br> když přejedete nad "
+"náhledem nebo odkazem na obrázek."
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
 msgid "Get it now!"
@@ -10244,7 +10252,6 @@ msgstr "Nástěnka redaktorů"
 # 100%
 #: apps/editors/templates/editors/leaderboard.html:18 apps/editors/templates/editors/performance.html:65 mkt/reviewers/templates/reviewers/leaderboard.html:18
 #: mkt/reviewers/templates/reviewers/performance.html:19
-#, fuzzy
 msgid "No review points awarded yet."
 msgstr "Dosud jste neobdržel(a) žádný bod."
 
@@ -11511,6 +11518,8 @@ msgstr "Za jakých okolností se může můj doplněk objevit v seznamu doporuč
 #: apps/pages/templates/pages/dev_faq.html:542 apps/pages/templates/pages/dev_faq.html:552
 msgid "<a href=\"%(url)s\">This page</a> describes the process by which the Recommended lists are managed."
 msgstr ""
+"<a href=\"%(url)s\">Tato stránka</a> popisuje proces, v rámci něhož jsou "
+"seznamy doporučených doplňků spravovány."
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -11658,10 +11667,15 @@ msgstr ""
 #: apps/pages/templates/pages/faq.html:55
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Plné motivy</a></strong>kompletně mění "
+"vzhled aplikace %(app_name)s, což zahrnuje ikony, barvy, dialogy a další "
+"změny vzhledu."
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Motivy</a></strong> jsou odlehčené vzhledy, "
+"které umožňují změnit obrázek na pozadí lišt aplikace %(app_name)s."
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
@@ -11685,6 +11699,13 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
+"Ve většině případů mohou být doplňky nainstalovány jednoduchým klepnutím na "
+"tlačítko pro instalaci. Doplňky mohou být spravovány, zakazovány či "
+"odinstalovávány ve Správci doplňků aplikace  %(app_name)s. Pro detailní "
+"informaci přečtěte <a href=\"%(extension_url)s\">tento článek o rozšíření</a> "
+"nebo <a href=\"%(theme_url)s\">tento o motivech či plných motivech</a>. Pokud "
+"máte problémy s instalací doplňků, přečtěte si článek <a href=\"%"
+"(troubleshooting_url)s\">Řešení problémů s rozšířeními a motivy</a>."
 
 #: apps/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
@@ -13132,6 +13153,10 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>Co jsou denní uživatelé?</h2> <p>Motivy nainstalované z této stránky "
+"jednou denně kontrolují, zda pro ně není k dispozici aktualizace. Celkový "
+"počet těchto dotazů udává počet aktivních denních uživatelů či celkový počet "
+"lidí, kteří motiv v konkrétní den použili.</p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid ""
@@ -14023,11 +14048,11 @@ msgstr ""
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Barva v hexadecimálním formátu"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "Musí se jednat o barvu v hexa kódu. Např. #FF0035."
 
 #: mkt/collections/serializers.py:246
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
@@ -15620,7 +15645,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:118
 msgid "Use of Alcohol"
-msgstr ""
+msgstr "Užívání alkoholu"
 
 #: mkt/constants/ratingdescriptors.py:121
 msgid "Use of Drugs"
@@ -15636,15 +15661,15 @@ msgstr "Odkazy na násilí"
 
 #: mkt/constants/ratingdescriptors.py:136
 msgid "Comic Mischief"
-msgstr ""
+msgstr "Užívání drog"
 
 #: mkt/constants/ratingdescriptors.py:139
 msgid "Alcohol and Tobacco Reference"
-msgstr ""
+msgstr "Odkaz na alkohol či tabák"
 
 #: mkt/constants/ratingdescriptors.py:142
 msgid "Drug and Alcohol Reference"
-msgstr ""
+msgstr "Odkaz na drogy či alkohol"
 
 #: mkt/constants/ratingdescriptors.py:145
 msgid "Use of Alcohol and Tobacco"
@@ -15656,43 +15681,43 @@ msgstr "Užívání drog a alkoholu"
 
 #: mkt/constants/ratingdescriptors.py:151
 msgid "Drug and Tobacco Reference"
-msgstr ""
+msgstr "Odkaz na dogy či tabák"
 
 #: mkt/constants/ratingdescriptors.py:154
 msgid "Drug, Alcohol, and Tobacco Reference"
-msgstr ""
+msgstr "Odkaz na drogy, alkohol či tabák"
 
 #: mkt/constants/ratingdescriptors.py:157
 msgid "Use of Drug and Tobacco"
-msgstr ""
+msgstr "Užívání drog či tabáku"
 
 #: mkt/constants/ratingdescriptors.py:160
 msgid "Use of Drug, Alcohol, and Tobacco"
-msgstr ""
+msgstr "Užití drog, alkoholu či tabáku"
 
 #: mkt/constants/ratingdescriptors.py:163
 msgid "Scary Themes"
-msgstr ""
+msgstr "Strašidelné motivy"
 
 #: mkt/constants/ratingdescriptors.py:166
 msgid "Hate Speech"
-msgstr ""
+msgstr "Nenávistné projevy"
 
 #: mkt/constants/ratingdescriptors.py:169
 msgid "Crime"
-msgstr ""
+msgstr "Zločin"
 
 #: mkt/constants/ratingdescriptors.py:172
 msgid "Criminal Instruction"
-msgstr ""
+msgstr "Navádění ke zločinu"
 
 #: mkt/constants/ratingdescriptors.py:182
 msgid "Fear"
-msgstr ""
+msgstr "Strach"
 
 #: mkt/constants/ratingdescriptors.py:192 mkt/constants/ratingdescriptors.py:282
 msgid "Discrimination"
-msgstr ""
+msgstr "Diskriminace"
 
 #: mkt/constants/ratingdescriptors.py:198
 msgid "Online"
@@ -15700,7 +15725,7 @@ msgstr "Online"
 
 #: mkt/constants/ratingdescriptors.py:272
 msgid "Frightening Content"
-msgstr ""
+msgstr "Děsivý obsah"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
@@ -15720,23 +15745,23 @@ msgstr "Digitální nákupy"
 
 #: mkt/constants/ratinginteractives.py:24
 msgid "Social Networking"
-msgstr ""
+msgstr "Sociální sítě"
 
 #: mkt/constants/ratinginteractives.py:27
 msgid "Digital Content Portal"
-msgstr ""
+msgstr "Digital Content Portal"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "General Audiences"
-msgstr ""
+msgstr "Obecné publikum"
 
 #: mkt/constants/ratingsbodies.py:6
 msgid "Not recommended for users younger than 3 years of age"
-msgstr ""
+msgstr "Není doporučeno pro uživatele mladší 3 let"
 
 #: mkt/constants/ratingsbodies.py:7
 msgid "Not recommended for users younger than 6 years of age"
-msgstr ""
+msgstr "Není doporučeno pro uživatele mladší 6 let"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Not recommended for users younger than 7 years of age"
@@ -15804,15 +15829,15 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:220
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Pouze pro osoby starší 18 let"
 
 #: mkt/constants/ratingsbodies.py:227
 msgid "Rating Pending"
-msgstr ""
+msgstr "Čeká na hodnocení"
 
 #: mkt/constants/ratingsbodies.py:238
 msgid "N. America"
-msgstr ""
+msgstr "Severní Amerika"
 
 #: mkt/constants/ratingsbodies.py:242
 msgid "Entertainment Software Rating Board"
@@ -16850,6 +16875,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
 msgstr ""
+"Na e-mailovou adresu (nebo více e-mailových adres oddělených čárkou) této "
+"aplikace bude Mozilla posílat libovolné e-maily související s kontrolou. "
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
@@ -16858,6 +16885,8 @@ msgstr "Vložte e-mailové adresy, které budou oddělené čárkami"
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
+"Štítky pomáhají uživatelům nalézt vaši aplikaci a měli by být krátké. Např. "
+"panely, lišta či Twitter. Můžete vyplnit maximálně {0} štítků."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:123 mkt/developers/templates/developers/apps/listing/item_actions_app.html:69
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11
@@ -16868,7 +16897,7 @@ msgstr "Hodnocení obsahu"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:125
 msgid "Ratings from official ratings bodies for this app."
-msgstr ""
+msgstr "Hodnocení aplikace od oficiálních autorit."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/developers/templates/developers/apps/edit/basic.html:36
 msgid "This field can only be edited by updating it in the manifest."
@@ -16914,6 +16943,8 @@ msgstr "URL souboru s manifestem nemůže být po přidání vaší aplikace zm�
 #: mkt/developers/templates/developers/apps/edit/basic.html:105
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
 msgstr ""
+"Vysvětlení vlastností, funkcionality a jiné relevantní informace. Toto pole "
+"je zobrazeno na stránce o doplňku."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:126
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
@@ -16942,7 +16973,7 @@ msgstr "Země a jazyk"
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
 msgid "Country and Language Details for {0}"
-msgstr ""
+msgstr "Detaily o zemi a jazyku pro {0}"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
@@ -17152,6 +17183,8 @@ msgstr "Změna zařízení"
 #: mkt/developers/templates/developers/apps/listing/items.html:68
 msgid "<strong class=\"rating-notice\">This app will be deactivated by January 13th if no content ratings are assigned:</strong>"
 msgstr ""
+"<strong class=\"rating-notice\">Tato aplikace bude 13. ledna deaktivována, "
+"pokud k ní nebude doplněno hodnocení obsahu:</strong>"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:71
 msgid "Set up Content Ratings"
