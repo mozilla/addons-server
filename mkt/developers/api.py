@@ -157,6 +157,11 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
     slug_field = 'app_slug'
 
     def post(self, request, pk, *args, **kwargs):
+        if request.content_type != 'application/json':
+            return Response({
+                'detail': "Endpoint only accepts 'application/json'."
+            }, status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
+
         app = self.get_object()
         log.info(u'Received IARC pingback for app:%s' % app.id)
 

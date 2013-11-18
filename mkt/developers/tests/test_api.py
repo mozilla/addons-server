@@ -337,6 +337,15 @@ class TestContentRatingPingback(RestOAuth):
         res = self.anon.post(url, data=json.dumps(self.data))
         eq_(res.status_code, 200)
 
+    def test_invalid_content_type(self):
+        res = self.anon.post(self.url, data=json.dumps(self.data),
+                             content_type='application/xml')
+        eq_(res.status_code, 415)
+
+        res = self.anon.post(self.url, data=json.dumps(self.data),
+                             content_type='application/x-www-form-urlencoded')
+        eq_(res.status_code, 415)
+
     def test_post_content_ratings_pingback(self):
         res = self.anon.post(self.url, data=json.dumps(self.data))
         eq_(res.status_code, 200)
