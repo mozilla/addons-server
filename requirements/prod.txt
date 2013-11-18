@@ -96,7 +96,7 @@ suds==0.3.9
 tastypie-services==0.2.2
 
 ## Not on pypi.
--e git+https://github.com/mozilla/amo-validator.git@b7aaeaf4548d334a1ffe5348e1d64b6fd5d3a7b8#egg=amo-validator
+-e git+https://github.com/mozilla/amo-validator.git@ea654ff8a65459d319bb7591487f655af92a7bfe#egg=amo-validator
 -e git+https://github.com/mozilla/app-validator.git@9ce687a48803e819b9e86d12b19f81958b151400#egg=app-validator
 -e git+https://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
