@@ -634,6 +634,10 @@ class TestWebapp(amo.tests.TestCase):
         eq_(data['rating_system'], 'PEGI')
         eq_(data['descriptors'], 'Fear')
 
+    def test_set_iarc_storefront_data_not_rated_by_iarc(self):
+        self.create_switch('iarc')
+        assert not app_factory().set_iarc_storefront_data()
+
     def test_has_payment_account(self):
         app = app_factory()
         assert not app.has_payment_account()
