@@ -245,6 +245,19 @@ class ActivityLogManager(amo.models.ManagerBase):
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
 
+    def user_position(self, values_qs, user):
+        try:
+            return next(i for (i, d) in enumerate(list(values_qs))
+                        if d.get('user') == user.id) + 1
+        except StopIteration:
+            return None
+
+    def total_reviews_user_position(self, user, webapp=False, theme=False):
+        return self.user_position(self.total_reviews(webapp, theme), user)
+
+    def monthly_reviews_user_position(self, user, webapp=False, theme=False):
+        return self.user_position(self.monthly_reviews(webapp, theme), user)
+
     def _by_type(self, webapp=False):
         qs = super(ActivityLogManager, self).get_query_set()
         table = (table_name('log_activity_app') if webapp
