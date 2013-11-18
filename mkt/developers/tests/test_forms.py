@@ -291,33 +291,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
             {'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
         assert form.is_valid(), form.errors
 
-    def test_china_initially_excluded_and_disallowed_if_rejected(self):
-        self.create_flag('special-regions')
-
-        # Mark app as rejected in China.
-        status = amo.STATUS_REJECTED
-        self.app.geodata.set_status(mkt.regions.CN, status, save=True)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
-
-        # Post the form.
-        form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
-                                 'special_regions': [mkt.regions.CN.id]},
-                                **self.kwargs)
-        cn = mkt.regions.CN.id
-        assert cn not in form.initial['regions']
-        assert cn in dict(form.fields['regions'].choices).keys()
-        eq_(form.disabled_regions, [cn])
-
-        # Form should be invalid because this app was already rejected in
-        # China.
-        assert not form.is_valid(), 'Form should be invalid'
-        error_msg = u'You cannot select %s.' % unicode(mkt.regions.CN.name)
-        eq_(form.errors, {'special_regions': [error_msg]})
-
-        # App should still be rejected.
-        self.app = self.app.reload()
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
-
     def test_china_initially_excluded_if_null(self):
         self.create_flag('special-regions')
         form = forms.RegionForm(None, **self.kwargs)
@@ -325,63 +298,52 @@ class TestRegionForm(amo.tests.WebappTestCase):
         assert cn not in form.initial['regions']
         assert cn in dict(form.fields['regions'].choices).keys()
 
-    def test_china_disabled_and_excluded_if_rejected(self):
+    def _test_china_excluded_if_pending_or_rejected(self):
         self.create_flag('special-regions')
 
-        # Mark app as rejected in China.
-        status = amo.STATUS_REJECTED
-        self.app.geodata.set_status(mkt.regions.CN, status, save=True)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
+        # Mark app as pending/rejected in China.
+        for status in (amo.STATUS_PENDING, amo.STATUS_REJECTED):
+            self.app.geodata.set_status(mkt.regions.CN, status, save=True)
+            eq_(self.app.geodata.get_status(mkt.regions.CN), status)
 
-        # Post the form.
-        form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS},
-                                **self.kwargs)
-        eq_(form.disabled_regions, [mkt.regions.CN.id])
-        assert form.is_valid(), form.errors
-        form.save()
+            # Post the form.
+            form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
+                                     'special_regions': [mkt.regions.CN.id]},
+                                    **self.kwargs)
 
-        # App should be unlisted in China and still rejected.
-        self.app = self.app.reload()
-        eq_(self.app.listed_in(mkt.regions.CN), False)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
+            # China should be checked if it's pending and
+            # unchecked if rejected.
+            cn = mkt.regions.CN.id
+            if status == amo.STATUS_PENDING:
+                assert cn in form.initial['regions'], (
+                    status, form.initial['regions'])
+            else:
+                assert cn not in form.initial['regions'], (
+                    status, form.initial['regions'])
+            choices = dict(form.fields['regions'].choices).keys()
+            assert cn in choices, (status, choices)
 
-    def _test_china_excluded_if_pending(self):
-        self.create_flag('special-regions')
+            eq_(form.disabled_regions, [])
+            assert form.is_valid(), form.errors
+            form.save()
 
-        # Mark app as pending in China.
-        status = amo.STATUS_PENDING
-        self.app.geodata.set_status(mkt.regions.CN, status, save=True)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
+            # App should be unlisted in China and always pending after
+            # requesting China.
+            self.app = self.app.reload()
+            eq_(self.app.listed_in(mkt.regions.CN), False)
+            eq_(self.app.geodata.get_status(mkt.regions.CN),
+                amo.STATUS_PENDING)
 
-        # Post the form.
-        form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
-                                 'special_regions': [mkt.regions.CN.id]},
-                                **self.kwargs)
+    def test_china_excluded_if_pending_or_rejected(self):
+        self._test_china_excluded_if_pending_or_rejected()
 
-        # China should be checked if it's pending.
-        cn = mkt.regions.CN.id
-        assert cn in form.initial['regions']
-        assert cn in dict(form.fields['regions'].choices).keys()
-
-        eq_(form.disabled_regions, [])
-        assert form.is_valid(), form.errors
-        form.save()
-
-        # App should be unlisted in China and still pending.
-        self.app = self.app.reload()
-        eq_(self.app.listed_in(mkt.regions.CN), False)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
-
-    def test_china_excluded_if_pending(self):
-        self._test_china_excluded_if_pending()
-
-    def test_china_already_excluded_and_pending(self):
+    def test_china_already_excluded_and_pending_or_rejected(self):
         cn = mkt.regions.CN.id
         self.app.addonexcludedregion.create(region=cn)
 
         # If the app was already excluded in China, the checkbox should still
         # be checked if the app's been requested for approval in China now.
-        self._test_china_excluded_if_pending()
+        self._test_china_excluded_if_pending_or_rejected()
 
     def test_china_excluded_if_pending_cancelled(self):
         """

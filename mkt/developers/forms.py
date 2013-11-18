@@ -89,15 +89,10 @@ def toggle_app_for_special_regions(request, app, enabled_regions=None):
     if not waffle.flag_is_active(request, 'special-regions'):
         return
 
-    # We omit `amo.STATUS_REJECTED` because we shouldn't be altering that
-    # status. If a reviewer rejects that app in China, that's permanent!
-    valid_statuses = (amo.STATUS_NULL, amo.STATUS_PENDING, amo.STATUS_PUBLIC)
-
     for region in mkt.regions.SPECIAL_REGIONS:
         status = app.geodata.get_status(region)
 
-        if (status in valid_statuses and
-            enabled_regions is not None):
+        if enabled_regions is not None:
             if region.id in enabled_regions:
                 # If it's not already enabled, mark as pending.
                 if status != amo.STATUS_PUBLIC:
@@ -764,13 +759,6 @@ class RegionForm(forms.Form):
                 if not self.product.content_ratings_in(region):
                     disabled_regions.add(region.id)
 
-        # If it's been rejected for China, for example, don't ever allow
-        # the developer to opt in again.
-        for region in self.regions_before:
-            status = self.product.geodata.get_status(region)
-            if status == amo.STATUS_REJECTED:
-                disabled_regions.add(region)
-
         return disabled_regions
 
     @property
@@ -820,16 +808,6 @@ class RegionForm(forms.Form):
                 if region in self.disabled_regions:
                     raise region_error(region)
         return regions
-
-    def clean_special_regions(self):
-        special_regions = self.cleaned_data['special_regions']
-        if not self.is_toggling():
-            # Handle special regions.
-            for region in special_regions:
-                status = self.product.geodata.get_status(region)
-                if status == amo.STATUS_REJECTED:
-                    raise region_error(region)
-        return special_regions
 
     def save(self):
         # Don't save regions if we are toggling.
