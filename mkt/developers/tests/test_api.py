@@ -332,6 +332,11 @@ class TestContentRatingPingback(RestOAuth):
             }
         }
 
+    def test_slug_url(self):
+        url = reverse('content-ratings-pingback', args=[self.app.app_slug])
+        res = self.anon.post(url, data=json.dumps(self.data))
+        eq_(res.status_code, 200)
+
     def test_post_content_ratings_pingback(self):
         res = self.anon.post(self.url, data=json.dumps(self.data))
         eq_(res.status_code, 200)

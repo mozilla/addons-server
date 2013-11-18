@@ -1,7 +1,6 @@
 import json
 
 from django.http import Http404
-from django.shortcuts import get_object_or_404
 
 import commonware
 from curling.lib import HttpClientError, HttpServerError
@@ -11,11 +10,10 @@ from tastypie.exceptions import ImmediateHttpResponse, NotFound
 from tower import ugettext as _
 
 from rest_framework import status
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from rest_framework.views import APIView
 
 import lib.iarc
 from mkt.api.authentication import OAuthAuthentication
@@ -150,13 +148,16 @@ class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):
         return super(ContentRatingList, self).get(self, request)
 
 
-class ContentRatingsPingback(CORSMixin, APIView):
+class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
     cors_allowed_methods = ['post']
     parser_classes = (lib.iarc.utils.IARC_JSON_Parser,)
     permission_classes = (AllowAny,)
 
+    queryset = Webapp.objects.all()
+    slug_field = 'app_slug'
+
     def post(self, request, pk, *args, **kwargs):
-        app = get_object_or_404(Webapp, pk=pk)
+        app = self.get_object()
 
         # Verify token.
         data = request.DATA[0]
