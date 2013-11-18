@@ -44,6 +44,8 @@ from translations.query import order_by_translation
 from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config
 
+import mkt
+from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import DEFAULT_ACTION_VISIBILITY
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search)
@@ -132,6 +134,8 @@ def queue_counts(request):
         'themes': Persona.objects.no_cache()
                                  .filter(addon__status=amo.STATUS_PENDING)
                                  .count(),
+
+        'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
     }
 
     if acl.action_allowed(request, 'SeniorPersonasTools', 'View'):
@@ -439,17 +443,24 @@ def app_review(request, addon):
 QueuedApp = collections.namedtuple('QueuedApp', 'app created')
 
 
-def _queue(request, apps, tab, pager_processor=None, date_sort='created'):
+def _queue(request, apps, tab, pager_processor=None, date_sort='created',
+           template='reviewers/queue.html', data=None):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, apps, per_page)
 
-    return jingo.render(request, 'reviewers/queue.html', context(request, **{
+    ctx = {
         'addons': pager.object_list,
         'pager': pager,
         'tab': tab,
         'search_form': _get_search_form(request),
         'date_sort': date_sort
-    }))
+    }
+
+    # Additional context variables.
+    if data is not None:
+        ctx.update(data)
+
+    return jingo.render(request, template, context(request, **ctx))
 
 
 def _do_sort(request, qs, date_sort='created'):
@@ -529,6 +540,26 @@ def queue_apps(request):
             for app in Webapp.version_and_file_transformer(apps)]
 
     return _queue(request, apps, 'pending', date_sort='nomination')
+
+
+@reviewer_required(only='app')
+def queue_region(request, region=None):
+    # TODO: Create a landing page that lists all the special regions.
+    if region is None:
+        raise http.Http404
+
+    region = parse_region(region)
+    column = '_geodata__region_%s_nominated' % region.slug
+
+    qs = Webapp.objects.pending_in_region(region)
+
+    apps = _do_sort(request, qs, date_sort=column)
+    apps = [QueuedApp(app, app.geodata.get_nominated_date(region))
+            for app in apps]
+
+    return _queue(request, apps, 'region', date_sort=column,
+                  template='reviewers/queue_region.html',
+                  data={'region': region})
 
 
 @reviewer_required(only='app')

@@ -14,6 +14,7 @@
   </a>
 </h1>
 
+{% block pillnav %}
   {% if action_allowed('Apps', 'Review') and action_allowed('Personas', 'Review') %}
     <nav class="pill-nav">
       {# Duplicate if statement because eventually there will be three tabs.
@@ -34,6 +35,7 @@
       {% endif %}
     </nav>
   {% endif %}
+{% endblock %}
 {% endblock %}
 
 {% block extrahead %}

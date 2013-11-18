@@ -265,8 +265,13 @@ function initDailyMessage(doc) {
 
 
 function initQueue() {
-    var url = $('#addon-queue').attr('data-url'),
-        addon_ids = $.map($('.addon-row'), function(el) {
+    var $q = $('#addon-queue[data-url]');
+    if (!$q.length) {
+        return;
+    }
+
+    var url = $q.attr('data-url');
+    var addon_ids = $.map($('.addon-row'), function(el) {
             return $(el).attr('data-addon');
         });
     if(!(('localStorage' in window) && window.localStorage['dont_poll'])) {

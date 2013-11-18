@@ -17,6 +17,8 @@ url_patterns = patterns('',
     url(r'^$', views.route_reviewer, name='reviewers'),
     url(r'^apps/queue/$', views.queue_apps,
         name='reviewers.apps.queue_pending'),
+    url(r'^apps/queue/region/(?P<region>[^ /]+)?$', views.queue_region,
+        name='reviewers.apps.queue_region'),
     url(r'^apps/queue/rereview/$', views.queue_rereview,
         name='reviewers.apps.queue_rereview'),
     url(r'^apps/queue/updates/$', views.queue_updates,
@@ -86,6 +88,8 @@ url_patterns = patterns('',
 
 api_patterns = patterns('',
     url(r'^', include(reviewers_api.urls)),  # The API.
+    url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/approve/(?P<region>[^ /]+)?$',
+        api.ApproveRegion.as_view(), name='approve-region'),
     url(r'^reviewers/reviewing', api.ReviewingView.as_view(),
-        name='reviewing-list')
+        name='reviewing-list'),
 )

@@ -103,29 +103,36 @@ def toggle_app_for_special_regions(request, app, enabled_regions=None):
                 if status != amo.STATUS_PUBLIC:
                     # Developer requested for it to be in China.
                     status = amo.STATUS_PENDING
-                    app.geodata.set_status(region, status, save=True)
-                    log.info(u'[Webapp:%s] App marked as pending (special) '
-                             u'region (%s).' % (app, region.slug))
+                    value, changed = app.geodata.set_status(region, status)
+                    if changed:
+                        log.info(u'[Webapp:%s] App marked as pending '
+                                 u'special region (%s).' % (app, region.slug))
+                        value, changed = app.geodata.set_nominated_date(
+                            region, save=True)
+                        log.info(u'[Webapp:%s] Setting nomination date for to '
+                                 u'now for region (%s).' % (app, region.slug))
             else:
                 # Developer cancelled request for approval.
                 status = amo.STATUS_NULL
-                app.geodata.set_status(region, status, save=True)
-                log.info(u'[Webapp:%s] App marked as null (special) '
-                         u'region (%s).' % (app, region.slug))
+                value, changed = app.geodata.set_status(
+                    region, status, save=True)
+                if changed:
+                    log.info(u'[Webapp:%s] App marked as null special '
+                             u'region (%s).' % (app, region.slug))
 
         if status == amo.STATUS_PUBLIC:
             # Reviewer approved for it to be in China.
             aer = app.addonexcludedregion.filter(region=region.id)
             if aer.exists():
                 aer.delete()
-                log.info(u'[Webapp:%s] App included in new (special) '
+                log.info(u'[Webapp:%s] App included in new special '
                          u'region (%s).' % (app, region.slug))
         else:
             # Developer requested for it to be in China.
             aer, created = app.addonexcludedregion.get_or_create(
                 region=region.id)
             if created:
-                log.info(u'[Webapp:%s] App excluded from new (special) '
+                log.info(u'[Webapp:%s] App excluded from new special '
                          u'region (%s).' % (app, region.slug))
 
 

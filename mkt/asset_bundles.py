@@ -24,6 +24,7 @@ CSS = {
         'css/devreg/buttons.styl',
 
         # Popups, Modals, Tooltips.
+        'css/devreg/notification.styl',
         'css/devreg/overlay.styl',
         'css/devreg/popups.styl',
         'css/devreg/device.styl',

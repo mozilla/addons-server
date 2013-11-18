@@ -264,3 +264,76 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         res = self.client.get(self.url + ({'dev': 'android'},))
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
+
+
+class TestApproveRegion(RestOAuth):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def url(self, **kwargs):
+        kw = {'pk': '337141', 'region': 'cn'}
+        kw.update(kwargs)
+        return reverse('approve-region', kwargs=kw)
+
+    def test_verbs(self):
+        self.grant_permission(self.profile, 'Apps:ReviewRegionCN')
+        self._allowed_verbs(self.url(), ['post'])
+
+    def test_anon(self):
+        res = self.anon.post(self.url())
+        eq_(res.status_code, 403)
+
+    def test_bad_webapp(self):
+        self.grant_permission(self.profile, 'Apps:ReviewRegionCN')
+        res = self.client.post(self.url(pk='999'))
+        eq_(res.status_code, 404)
+
+    def test_webapp_not_pending_in_region(self):
+        self.grant_permission(self.profile, 'Apps:ReviewRegionCN')
+        res = self.client.post(self.url())
+        eq_(res.status_code, 404)
+
+    def test_good_but_no_permission(self):
+        res = self.client.post(self.url())
+        eq_(res.status_code, 403)
+
+    def test_good_webapp_but_wrong_region_permission(self):
+        self.grant_permission(self.profile, 'Apps:ReviewRegionBR')
+
+        app = Webapp.objects.get(id=337141)
+        app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+
+        res = self.client.post(self.url())
+        eq_(res.status_code, 403)
+
+    def test_good_webapp_but_wrong_region_queue(self):
+        self.grant_permission(self.profile, 'Apps:ReviewRegionCN')
+
+        app = Webapp.objects.get(id=337141)
+        app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+
+        res = self.client.post(self.url(region='br'))
+        eq_(res.status_code, 403)
+
+    def test_good_rejected(self):
+        self.grant_permission(self.profile, 'Apps:ReviewRegionCN')
+
+        app = Webapp.objects.get(id=337141)
+        app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+
+        res = self.client.post(self.url())
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)
+        eq_(obj['approved'], False)
+        eq_(app.geodata.reload().get_status('cn'), amo.STATUS_REJECTED)
+
+    def test_good_approved(self):
+        self.grant_permission(self.profile, 'Apps:ReviewRegionCN')
+
+        app = Webapp.objects.get(id=337141)
+        app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+
+        res = self.client.post(self.url(), data=json.dumps({'approve': '1'}))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)
+        eq_(obj['approved'], True)
+        eq_(app.geodata.reload().get_status('cn'), amo.STATUS_PUBLIC)

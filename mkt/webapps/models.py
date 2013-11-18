@@ -33,7 +33,7 @@ from amo.decorators import skip_cache
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
-from amo.utils import JSONEncoder, memoize, memoize_key, smart_path
+from amo.utils import JSONEncoder, memoize, memoize_key, smart_path, urlparams
 from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
@@ -117,6 +117,22 @@ class WebappManager(amo.models.ManagerBase):
         # ** Unreviewed -- LITE
         # ** Rejected   -- REJECTED
         return self.filter(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+
+    @skip_cache
+    def pending_in_region(self, region):
+        """
+        Apps that have been approved by reviewers but unapproved by
+        reviewers in special regions (e.g., China).
+
+        """
+        region = parse_region(region)
+        column_prefix = '_geodata__region_%s' % region.slug
+        return self.filter(**{
+            'status': amo.STATUS_PUBLIC,
+            'disabled_by_user': False,
+            'escalationqueue__isnull': True,
+            '%s_status' % column_prefix: amo.STATUS_PENDING,
+        }).order_by('-%s_nominated' % column_prefix)
 
     def rated(self):
         """IARC."""
@@ -230,16 +246,20 @@ class Webapp(Addon):
             kwargs['app_slug'] = self.app_slug
         return reverse('api_dispatch_%s' % (action or 'detail'), kwargs=kwargs)
 
-    def get_url_path(self, more=False, add_prefix=True):
+    def get_url_path(self, more=False, add_prefix=True, src=None):
         # We won't have to do this when Marketplace absorbs all apps views,
         # but for now pretend you didn't see this.
         try:
-            return reverse('detail', args=[self.app_slug],
+            url_ = reverse('detail', args=[self.app_slug],
                            add_prefix=add_prefix)
         except NoReverseMatch:
             # Fall back to old details page until the views get ported.
             return super(Webapp, self).get_url_path(more=more,
                                                     add_prefix=add_prefix)
+        else:
+            if src is not None:
+                return urlparams(url_, src=src)
+            return url_
 
     def get_detail_url(self, action=None):
         """Reverse URLs for 'detail', 'details.record', etc."""
@@ -1856,18 +1876,27 @@ class Geodata(amo.models.ModelBase):
 
     def get_status(self, region):
         """
-        Returns the status of listing in a given region (e.g., China).
+        Return the status of listing in a given region (e.g., China).
         """
         return getattr(self, 'region_%s_status' % parse_region(region).slug,
                        amo.STATUS_PUBLIC)
 
     def set_status(self, region, status, save=False):
+        """Return a tuple of `(value, changed)`."""
+
+        value, changed = None, False
+
         attr = 'region_%s_status' % parse_region(region).slug
         if hasattr(self, attr):
             value = setattr(self, attr, status)
-            if save:
-                self.save()
-            return value
+
+            if self.get_status(region) != value:
+                changed = True
+                # Save only if the value is different.
+                if save:
+                    self.save()
+
+        return None, changed
 
     def get_status_slug(self, region):
         return {
@@ -1887,13 +1916,47 @@ class Geodata(amo.models.ModelBase):
             'unavailable': _('requires additional review')
         }
 
+    def get_nominated_date(self, region):
+        """
+        Return the timestamp of when the app was approved in a region.
+        """
+        return getattr(self,
+                       'region_%s_nominated' % parse_region(region).slug)
 
-# Add a dynamic status field to `Geodata` model for each special region:
+    def set_nominated_date(self, region, timestamp=None, save=False):
+        """Return a tuple of `(value, saved)`."""
+
+        value, changed = None, False
+
+        attr = 'region_%s_nominated' % parse_region(region).slug
+        if hasattr(self, attr):
+            if timestamp is None:
+                timestamp = datetime.datetime.now()
+            value = setattr(self, attr, timestamp)
+
+            if self.get_nominated_date(region) != value:
+                changed = True
+                # Save only if the value is different.
+                if save:
+                    self.save()
+
+        return None, changed
+
+
+# (1) Add a dynamic status field to `Geodata` model for each special region:
 # -  0: STATUS_NULL (Unavailable)
 # -  2: STATUS_PENDING (Pending)
 # -  4: STATUS_PUBLIC (Public)
 # - 12: STATUS_REJECTED (Rejected)
+#
+# (2) Add a dynamic nominated field to keep track of timestamp for when
+# the developer requested approval for each region.
 for region in mkt.regions.SPECIAL_REGIONS:
-    field = models.PositiveIntegerField(help_text=region.name,
+    help_text = _('{region} approval status').format(region=region.name)
+    field = models.PositiveIntegerField(help_text=help_text,
         choices=amo.STATUS_CHOICES.items(), db_index=True, default=0)
     field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
+
+    help_text = _('{region} nomination date').format(region=region.name)
+    field = models.DateTimeField(help_text=help_text, null=True)
+    field.contribute_to_class(Geodata, 'region_%s_nominated' % region.slug)
