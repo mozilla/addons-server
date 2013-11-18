@@ -46,6 +46,11 @@ Search
     :param optional languages: Filters apps by a supported language. Language
         codes should be provided in ISO 639-1 format, using a comma-separated
         list if supplying multiple languages.
+    :type offline: string
+    :param optional languages: Filters by whether the app works offline or not.
+        'True' to show offline-capable apps; 'False' to show apps requiring
+        online support; any other value will show all apps unfiltered by
+        offline support.
     :type languages: string
     :param optional region: Filters apps by a supported region. A region
         code should be provided in ISO 3166 format (e.g., `pl`). If not

@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
+from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models.signals import post_delete, post_save
 from django.test.utils import override_settings
@@ -714,6 +715,26 @@ class TestWebapp(amo.tests.TestCase):
         assert reasons['details']
         assert reasons['content_ratings']
         assert reasons['payments']
+
+    @mock.patch('mkt.webapps.models.cache.get')
+    def test_is_offline_when_packaged(self, mock_get):
+        mock_get.return_value = ''
+        eq_(Webapp(is_packaged=True).is_offline, True)
+        eq_(Webapp(is_packaged=False).is_offline, False)
+
+    def test_is_offline_when_appcache_path(self):
+        app = app_factory()
+        manifest = {'name': 'Swag'}
+
+        # If there's no appcache_path defined, ain't an offline-capable app.
+        am = AppManifest.objects.create(version=app.current_version,
+                                        manifest=json.dumps(manifest))
+        eq_(app.is_offline, False)
+
+        # If there's an appcache_path defined, this is an offline-capable app.
+        manifest['appcache_path'] = '/manifest.appcache'
+        am.update(manifest=json.dumps(manifest))
+        eq_(app.reload().is_offline, True)
 
 
 class DeletedAppTests(amo.tests.ESTestCase):

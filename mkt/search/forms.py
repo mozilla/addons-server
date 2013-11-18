@@ -98,6 +98,8 @@ class ApiSearchForm(forms.Form):
         widget=forms.CheckboxSelectMultiple(),
         label=_lazy(u'App type'), choices=APP_TYPE_CHOICES)
     manifest_url = forms.CharField(required=False, label=_lazy('Manifest URL'))
+    offline = forms.NullBooleanField(required=False,
+        label=_lazy('Works offline'))
     languages = forms.CharField(required=False,
         label=_lazy('Supported languages'))
 

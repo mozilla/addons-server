@@ -75,6 +75,7 @@ def app_to_dict(app, region=None, profile=None, request=None):
         'icons': dict([(icon_size,
                         app.get_icon_url(icon_size))
                        for icon_size in (16, 48, 64, 128)]),
+        'is_offline': app.is_offline,
         'is_packaged': app.is_packaged,
         'manifest_url': app.get_manifest_url(),
         'payment_required': False,
@@ -171,8 +172,8 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
 
     attrs = ('created', 'current_version', 'default_locale', 'homepage',
-             'manifest_url', 'previews', 'ratings', 'status', 'support_email',
-             'support_url', 'weekly_downloads')
+             'is_offline', 'manifest_url', 'previews', 'ratings', 'status',
+             'support_email', 'support_url', 'weekly_downloads')
     data = dict((a, getattr(obj, a, None)) for a in attrs)
 
     if getattr(obj, 'content_ratings', None):
@@ -187,11 +188,10 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         'categories': [c for c in obj.category],
         'content_ratings': {
             'ratings': getattr(obj, 'content_ratings', []),
-            'descriptors':
-                dehydrate_descriptors(getattr(obj, 'content_descriptors', [])),
-            'interactive_elements':
-                dehydrate_interactives(getattr(obj, 'interactive_elements',
-                                       [])),
+            'descriptors': dehydrate_descriptors(
+                getattr(obj, 'content_descriptors', [])),
+            'interactive_elements': dehydrate_interactives(
+                getattr(obj, 'interactive_elements', [])),
         },
         'description': get_attr_lang(src, 'description', obj.default_locale),
         'device_types': [DEVICE_TYPES[d].api_name for d in src.get('device')],

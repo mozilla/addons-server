@@ -116,6 +116,22 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'manifest_url': url})
         ok_({'term': {'manifest_url': url}} in qs['filter']['and'])
 
+    def test_offline(self):
+        """Ensure we are filtering by offline-capable apps."""
+        qs = self._filter(self.req, {'offline': 'True'})
+        ok_({'term': {'is_offline': True}} in qs['filter']['and'])
+
+    def test_online(self):
+        """Ensure we are filtering by apps that require online access."""
+        qs = self._filter(self.req, {'offline': 'False'})
+        ok_({'term': {'is_offline': False}} in qs['filter']['and'])
+
+    def test_offline_and_online(self):
+        """Ensure we are not filtering by offline/online by default."""
+        qs = self._filter(self.req, {})
+        ok_({'term': {'is_offline': True}} not in qs['filter']['and'])
+        ok_({'term': {'is_offline': False}} not in qs['filter']['and'])
+
     def test_languages(self):
         qs = self._filter(self.req, {'languages': 'fr'})
         ok_({'in': {'supported_locales': ['fr']}} in qs['filter']['and'])

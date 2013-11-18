@@ -464,6 +464,19 @@ class Webapp(Addon):
     def is_rated(self):
         return self.content_ratings.exists()
 
+    @property
+    def is_offline(self):
+        """
+        Returns a boolean of whether this is an app that degrades
+        gracefully offline (i.e., is a packaged app or has an
+        `appcache_path` defined in its manifest).
+
+        """
+        if self.is_packaged:
+            return True
+        manifest = self.get_manifest_json()
+        return bool(manifest and 'appcache_path' in manifest)
+
     def has_payment_account(self):
         """App doesn't have a payment account set up yet."""
         try:
@@ -1369,6 +1382,7 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'is_disabled': {'type': 'boolean'},
                     'is_escalated': {'type': 'boolean'},
+                    'is_offline': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
                     'latest_version': {
@@ -1510,6 +1524,7 @@ class WebappIndexer(MappingType, Indexable):
                       for icon_size in (16, 48, 64, 128)]
         d['interactive_elements'] = obj.get_interactives(es=True)
         d['is_escalated'] = is_escalated
+        d['is_offline'] = getattr(obj, 'is_offline', False)
         if latest_version:
             d['latest_version'] = {
                 'status': status,
@@ -1792,7 +1807,8 @@ class ContentRating(amo.models.ModelBase):
 
 def update_status_content_ratings(sender, instance, **kw):
     # Flips the app's status from NULL if it has everything else together.
-    if instance.addon.is_incomplete() and instance.addon.is_fully_complete()[0]:
+    if (instance.addon.is_incomplete() and
+        instance.addon.is_fully_complete()[0]):
         instance.addon.update(status=amo.STATUS_PENDING)
 
 

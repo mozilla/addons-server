@@ -276,6 +276,31 @@ class TestApi(BaseOAuth, ESTestCase):
             obj = res.json['objects'][0]
             eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_offline_filtering(self):
+        def check(offline, visible):
+            res = self.client.get(self.url + ({'offline': offline},))
+            eq_(res.status_code, 200)
+            objs = res.json['objects']
+            eq_(len(objs), int(visible))
+
+        # Should NOT show up in offline.
+        # Should show up in online.
+        # Should show up everywhere if not filtered.
+        check(offline='True', visible=False)
+        check(offline='False', visible=True)
+        check(offline='None', visible=True)
+
+        # Mark that app is capable offline.
+        self.webapp.update(is_packaged=True)
+        self.refresh('webapp')
+
+        # Should show up in offline.
+        # Should NOT show up in online.
+        # Should show up everywhere if not filtered.
+        check(offline='True', visible=True)
+        check(offline='False', visible=False)
+        check(offline='None', visible=True)
+
     def test_q(self):
         res = self.client.get(self.url + ({'q': 'something'},))
         eq_(res.status_code, 200)
