@@ -366,12 +366,6 @@ def build_dev_tools(request):
         {'page': 'build_dev_tools', 'category': 'build'})
 
 
-def build_payments(request):
-    """Build - Payments page."""
-    return jingo.render(request, 'ecosystem/build_payments.html',
-        {'page': 'build_payments', 'category': 'build'})
-
-
 def apps_documentation(request, page=None):
     """Page template for all reference apps."""
 
@@ -510,12 +504,3 @@ def apps_documentation(request, page=None):
 
     return jingo.render(request, ('ecosystem/reference_apps/%s.html' % page),
            ctx)
-
-
-def firefox_os_simulator(request):
-    """Landing page for Firefox OS Simulator."""
-    ctx = {
-        'page': 'firefox_os_simulator',
-        'category': 'build',
-    }
-    return jingo.render(request, 'ecosystem/firefox_os_simulator.html', ctx)
