@@ -95,10 +95,10 @@
                 </th>
                 <td>
                   {{ form.submission_id }}
-                  {{ form.submission_id.errors }}
                   {{ tip(None,
                            _('The submission ID can be found on the certificate sent to you.
                               It is a numeric value like &quot;14&quot;.')) }}
+                  {{ form.submission_id.errors }}
                 </td>
               </tr>
               <tr>
@@ -110,10 +110,10 @@
                 </th>
                 <td>
                   {{ form.security_code }}
-                  {{ form.security_code.errors }}
                   {{ tip(None,
                            _('The security code can be found on the certificate sent to you.
                               It is a mix of letters and numbers like &quot;AB12CD3&quot;.')) }}
+                  {{ form.security_code.errors }}
                 </td>
               </tr>
             </tbody>
