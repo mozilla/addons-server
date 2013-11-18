@@ -1071,7 +1071,11 @@ class Webapp(Addon):
         if not waffle.switch_is_active('iarc'):
             return
 
-        iarc_info = self.iarc_info  # Should have 1-to-1 IARC info already.
+        try:
+            iarc_info = self.iarc_info
+        except IARCInfo.DoesNotExist:
+            # App wasn't rated by IARC, return.
+            return
 
         with amo.utils.no_translation(self.default_locale):
             delocalized_self = Addon.objects.get(pk=self.pk)
