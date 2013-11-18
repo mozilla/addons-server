@@ -246,11 +246,11 @@ function initRegionalQueue() {
         var url = $tr.data('actionUrl');
         var appName = $tr.find('.app-name').text();
         var fmt = {app: appName};
-        var approved = $this.data('action') == 'approve';
+        var approved = $this.data('action') == 'approve' ? '1' : '';
 
         $buttons.addClass('disabled');
 
-        $.post(url, {'approved': approved}).success(function() {
+        $.post(url, {'approve': approved}).success(function() {
             var msg;
             var classes;
             if (approved) {
