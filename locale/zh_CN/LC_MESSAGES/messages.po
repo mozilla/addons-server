@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-15 13:30+0000\n"
-"Last-Translator: xcffl <hc5023295@gmail.com>\n"
+"PO-Revision-Date: 2013-11-18 09:03+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384522211.0\n"
+"X-POOTLE-MTIME: 1384765397.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2032,7 +2032,7 @@ msgstr "{addon} 最低版本需求已被手动修改。"
 
 #: apps/amo/log.py:632
 msgid "Requirements Changed"
-msgstr "版本需求已修改"
+msgstr "需求已变更"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
@@ -2107,7 +2107,7 @@ msgstr "上一页"
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:29 mkt/developers/templates/developers/apps/includes/validation_test_results.html:43
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:56 mkt/stats/templates/sitestats/stats.html:76
 msgid "Next"
-msgstr "下一个"
+msgstr "下一页"
 
 #: apps/amo/templates/amo/paginator.html:32 apps/editors/templates/editors/includes/paginator_history.html:11
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
@@ -6891,7 +6891,8 @@ msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
 msgstr ""
-"精选附加组件是 <a href=\"%(link_gallery)s\">AMO</a>，Firefox 附加组件管理器和其他 Mozilla 网站上隆重推荐的最高品质的扩展和主题。这些附加组件充分展示了 Firefox 的定制能力，为众多用户带来了帮助。"
+"精选附加组件是 <a href=\"%(link_gallery)s\">AMO</a>、Firefox 附加组件管理器和其他 Mozilla "
+"网站上隆重推荐的最高品质的扩展和主题。这些附加组件充分地展现了 Firefox 的定制能力，为众多用户带来了帮助。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
@@ -6912,15 +6913,15 @@ msgstr "一款附加组件参评精选之前，请确保符合以下条件："
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid "The add-on must have a complete and informative listing on AMO. This means:"
-msgstr "附加组件在 AMO 上必须有完整的信息，具体是："
+msgstr "附加组件在 AMO 上必须有完整的信息。具体来说是："
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:41
 msgid "a 64-pixel custom icon"
-msgstr "64 像素的自定义图标"
+msgstr "一个64像素的自定义图标"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:42
 msgid "a clear and concise name (no lengthy keywords)"
-msgstr "简明扼要的名称（没有冗长的关键字）"
+msgstr "简洁明了的名字（不要冗长的关键字）"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:43
 msgid "a clear and concise summary of the add-on's functionality"
@@ -15059,47 +15060,47 @@ msgstr "粗鲁的人"
 
 #: mkt/constants/ratingdescriptors.py:63 mkt/constants/ratingdescriptors.py:217
 msgid "Drug Reference"
-msgstr ""
+msgstr "涉及毒品"
 
 #: mkt/constants/ratingdescriptors.py:66 mkt/constants/ratingdescriptors.py:220
 msgid "Fantasy Violence"
-msgstr ""
+msgstr "幻想暴力"
 
 #: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:223
 msgid "Intense Violence"
-msgstr ""
+msgstr "激烈的暴力"
 
 #: mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:230
 msgid "Mild Blood"
-msgstr ""
+msgstr "轻度流血情节"
 
 #: mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:233
 msgid "Mild Fantasy Violence"
-msgstr ""
+msgstr "轻度幻想暴力"
 
 #: mkt/constants/ratingdescriptors.py:82 mkt/constants/ratingdescriptors.py:236
 msgid "Mild Language"
-msgstr ""
+msgstr "轻度粗俗用语"
 
 #: mkt/constants/ratingdescriptors.py:85 mkt/constants/ratingdescriptors.py:239
 msgid "Mild Violence"
-msgstr ""
+msgstr "轻度暴力"
 
 #: mkt/constants/ratingdescriptors.py:91 mkt/constants/ratingdescriptors.py:245
 msgid "Partial Nudity"
-msgstr ""
+msgstr "轻度裸体情节"
 
 #: mkt/constants/ratingdescriptors.py:94 mkt/constants/ratingdescriptors.py:195 mkt/constants/ratingdescriptors.py:248
 msgid "Gambling"
-msgstr ""
+msgstr "赌博"
 
 #: mkt/constants/ratingdescriptors.py:97 mkt/constants/ratingdescriptors.py:251 mkt/constants/ratingdescriptors.py:275
 msgid "Sexual Content"
-msgstr ""
+msgstr "色情内容"
 
 #: mkt/constants/ratingdescriptors.py:100 mkt/constants/ratingdescriptors.py:254
 msgid "Sexual Themes"
-msgstr ""
+msgstr "色情主题"
 
 #: mkt/constants/ratingdescriptors.py:103 mkt/constants/ratingdescriptors.py:257
 msgid "Simulated Gambling"
@@ -15143,43 +15144,43 @@ msgstr "恶作剧"
 
 #: mkt/constants/ratingdescriptors.py:139
 msgid "Alcohol and Tobacco Reference"
-msgstr ""
+msgstr "涉及烟草和酒精"
 
 #: mkt/constants/ratingdescriptors.py:142
 msgid "Drug and Alcohol Reference"
-msgstr ""
+msgstr "涉及酒精和药物"
 
 #: mkt/constants/ratingdescriptors.py:145
 msgid "Use of Alcohol and Tobacco"
-msgstr ""
+msgstr "饮酒和吸烟"
 
 #: mkt/constants/ratingdescriptors.py:148
 msgid "Use of Drug and Alcohol"
-msgstr ""
+msgstr "饮酒和吸毒"
 
 #: mkt/constants/ratingdescriptors.py:151
 msgid "Drug and Tobacco Reference"
-msgstr ""
+msgstr "涉及烟草和毒品"
 
 #: mkt/constants/ratingdescriptors.py:154
 msgid "Drug, Alcohol, and Tobacco Reference"
-msgstr ""
+msgstr "涉及酒精、烟草和毒品"
 
 #: mkt/constants/ratingdescriptors.py:157
 msgid "Use of Drug and Tobacco"
-msgstr ""
+msgstr "吸毒和吸烟"
 
 #: mkt/constants/ratingdescriptors.py:160
 msgid "Use of Drug, Alcohol, and Tobacco"
-msgstr ""
+msgstr "饮酒、吸毒和吸烟"
 
 #: mkt/constants/ratingdescriptors.py:163
 msgid "Scary Themes"
-msgstr ""
+msgstr "恐吓主题"
 
 #: mkt/constants/ratingdescriptors.py:166
 msgid "Hate Speech"
-msgstr ""
+msgstr "仇恨言论"
 
 #: mkt/constants/ratingdescriptors.py:169
 msgid "Crime"
@@ -15223,11 +15224,11 @@ msgstr "数字化购买"
 
 #: mkt/constants/ratinginteractives.py:24
 msgid "Social Networking"
-msgstr ""
+msgstr "社交网路"
 
 #: mkt/constants/ratinginteractives.py:27
 msgid "Digital Content Portal"
-msgstr ""
+msgstr "数字内容门户"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "General Audiences"
@@ -15235,35 +15236,35 @@ msgstr "大众级"
 
 #: mkt/constants/ratingsbodies.py:6
 msgid "Not recommended for users younger than 3 years of age"
-msgstr ""
+msgstr "不建议3岁以下的用户使用"
 
 #: mkt/constants/ratingsbodies.py:7
 msgid "Not recommended for users younger than 6 years of age"
-msgstr ""
+msgstr "不建议6岁以下的用户使用"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Not recommended for users younger than 7 years of age"
-msgstr ""
+msgstr "不建议7岁以下的用户使用"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Not recommended for users younger than 10 years of age"
-msgstr ""
+msgstr "不建议10岁以下的用户使用"
 
 #: mkt/constants/ratingsbodies.py:10
 msgid "Not recommended for users younger than 12 years of age"
-msgstr ""
+msgstr "不建议12岁以下的用户使用"
 
 #: mkt/constants/ratingsbodies.py:11
 msgid "Not recommended for users younger than 13 years of age"
-msgstr ""
+msgstr "不建议13岁以下的用户使用"
 
 #: mkt/constants/ratingsbodies.py:12
 msgid "Not recommended for users younger than 14 years of age"
-msgstr ""
+msgstr "不建议14岁以下的用户使用"
 
 #: mkt/constants/ratingsbodies.py:13
 msgid "Not recommended for users younger than 16 years of age"
-msgstr ""
+msgstr "不建议16岁以下的用户使用"
 
 #: mkt/constants/ratingsbodies.py:14
 msgid "Not recommended for users younger than 17 years of age"
@@ -15287,47 +15288,47 @@ msgstr "通用"
 
 #: mkt/constants/ratingsbodies.py:185
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "娱乐软件自律团体"
 
 #: mkt/constants/ratingsbodies.py:192
 msgid "Everyone"
-msgstr ""
+msgstr "所有人"
 
 #: mkt/constants/ratingsbodies.py:199
 msgid "Everyone 10+"
-msgstr ""
+msgstr "所有人（10岁以上）"
 
 #: mkt/constants/ratingsbodies.py:206
 msgid "Teen"
-msgstr ""
+msgstr "少年"
 
 #: mkt/constants/ratingsbodies.py:213
 msgid "Mature 17+"
-msgstr ""
+msgstr "17岁以上"
 
 #: mkt/constants/ratingsbodies.py:220
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "仅限成年人（18岁以上）"
 
 #: mkt/constants/ratingsbodies.py:227
 msgid "Rating Pending"
-msgstr ""
+msgstr "分级待定"
 
 #: mkt/constants/ratingsbodies.py:238
 msgid "N. America"
-msgstr ""
+msgstr "北美"
 
 #: mkt/constants/ratingsbodies.py:242
 msgid "Entertainment Software Rating Board"
-msgstr ""
+msgstr "娱乐软件分级委员会"
 
 #: mkt/constants/ratingsbodies.py:282
 msgid "Europe"
-msgstr ""
+msgstr "欧洲"
 
 #: mkt/constants/ratingsbodies.py:286
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "泛欧洲游戏信息组织"
 
 #: mkt/constants/regions.py:51
 msgid "Worldwide"
@@ -15419,7 +15420,7 @@ msgstr "无法连接到支付服务器。"
 
 #: mkt/developers/api.py:88
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "不能删除已分享的账户"
 
 #: mkt/developers/forms.py:99
 msgid "All team members must have read and agreed to the developer agreement."
@@ -15511,11 +15512,11 @@ msgstr "启用新地区"
 
 #: mkt/developers/forms.py:659
 msgid "Make my app available everywhere"
-msgstr ""
+msgstr "在所有地区发布我的应用"
 
 #: mkt/developers/forms.py:660
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "选择我的应用在哪些地方发布"
 
 #: mkt/developers/forms.py:832
 msgid "Agree"
@@ -15567,7 +15568,7 @@ msgstr "错误的文件类型。仅支持 %s 文件。"
 
 #: mkt/developers/forms.py:1011
 msgid "Content rating record not found."
-msgstr ""
+msgstr "找不到内容分级记录。"
 
 #: mkt/developers/forms_payments.py:56 mkt/submit/forms.py:269
 msgid "App Price"
@@ -15732,7 +15733,7 @@ msgstr "开发者"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:175
 msgid "Shared Account: {0}"
-msgstr ""
+msgstr "已分享的账户：{0}"
 
 #: mkt/developers/models.py:190
 msgid "Bango"
@@ -15814,7 +15815,7 @@ msgstr "新版本添加成功。"
 
 #: mkt/developers/views.py:310
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "内容分级保存成功。"
 
 #: mkt/developers/views.py:359
 msgid "Application for preload successfully submitted."
@@ -16105,7 +16106,7 @@ msgstr "可以查看应用的设置以及管理退款申请"
 
 #: mkt/developers/templates/developers/apps/profile.html:3
 msgid "Developer Profile"
-msgstr ""
+msgstr "开发者简介"
 
 #: mkt/developers/templates/developers/apps/profile.html:19
 msgid "Your developer profile is set to be <b>public</b>."
@@ -16213,7 +16214,7 @@ msgstr "查看您最近提交的测试计划"
 
 #: mkt/developers/templates/developers/apps/status.html:139
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
-msgstr ""
+msgstr "了解如何让你的程序预装在Firefox OS设备上"
 
 #: mkt/developers/templates/developers/apps/status.html:141
 msgid "Update your test plan"
@@ -16353,7 +16354,7 @@ msgstr "请输入电子邮件地址（如输入多个则请以英文逗号分隔
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "标签帮助用户找到您的应用并做简短描述，例如标签页、工具栏，或者微博客。您最多可以使用 {0} 个标签。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:123 mkt/developers/templates/developers/apps/listing/item_actions_app.html:69
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11
@@ -16555,7 +16556,7 @@ msgstr "请告诉我们您删除应用的理由"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:46
 msgid "Team Members & License"
-msgstr ""
+msgstr "团队成员和许可证"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:47 mkt/developers/templates/developers/apps/listing/item_actions_app.html:79
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:19 mkt/developers/templates/developers/payments/premium.html:4
@@ -16568,11 +16569,11 @@ msgstr "提供应用的付款信息。"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Get content ratings for the app."
-msgstr ""
+msgstr "为程序获得内容分级。"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
 msgid "Set Up Content Ratings"
-msgstr ""
+msgstr "设置内容分级"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -16588,7 +16589,7 @@ msgstr "添加新版本"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "状态和版本"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:86 mkt/developers/templates/developers/includes/addons_edit_nav.html:23
 #: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:162
@@ -16605,15 +16606,15 @@ msgstr "流程"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:14
 msgid "This app's submission process has not been fully completed."
-msgstr ""
+msgstr "程序提交步骤尚未完全完成。"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:17
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "该程序需要获取内容分级。"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:20
 msgid "This app needs a payment account set up."
-msgstr ""
+msgstr "该程序需要设置一个支付账户。"
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:28
@@ -16634,7 +16635,7 @@ msgstr "价格："
 
 #: mkt/developers/templates/developers/apps/listing/items.html:59
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "设置支付账户"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:64
 msgid "Change Devices"
@@ -16642,11 +16643,11 @@ msgstr "更改设备"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:68
 msgid "<strong class=\"rating-notice\">This app will be deactivated by January 13th if no content ratings are assigned:</strong>"
-msgstr ""
+msgstr "<strong class=\"rating-notice\">如果1月13日之前仍未指定内容分级，这个应用将被停用：</strong>"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:71
 msgid "Set up Content Ratings"
-msgstr ""
+msgstr "设置内容分级"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -16683,57 +16684,61 @@ msgstr "预装应用需遵守条款"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr ""
+msgstr "让我的软件获得评级"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
+"为了让应用能够发布到应用市场，您必须获得国际年龄分级联盟(International Age Rating Coalition "
+"(IARC))认证。点击下面的按钮打开一个新窗口，填写一份有关您的应用内容的简短的是非题问卷。完成后，窗口会关闭，您的应用会获得年龄分级。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
+"您要同意遵守他们的<a href=\"%(privacy_url)s\">隐私政策</a>和<a href=\"%"
+"(tos_url)s\">服务协议条款</a>才能使用 IARC 分级认证工具。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr ""
+msgstr "IARC 内容分级过程完成，现在将要返回您的应用的<a href=\"%(ratings_url)s\">内容分级页面</a>。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
-msgstr ""
+msgstr "抱歉，我们处理内容分级时遇到错误，您可以继续尝试或者稍后再试。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:63
 msgid "Create an IARC Ratings Certificate"
-msgstr ""
+msgstr "创建 IARC 分级认证"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
-msgstr ""
+msgstr "你的程序已经有分级了？"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
-msgstr ""
+msgstr "如果你已经通过上述的IARC全球分级工具为你的程序获得了分级并且拥有一个IARC安全码，你可以在此手动输入该安全码。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr ""
+msgstr "提交 ID"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:98
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
-msgstr ""
+msgstr "可以在发送给您的证书中找到提交 ID。这是一个类似“14”的数值。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
-msgstr ""
+msgstr "安全码"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
-msgstr ""
+msgstr "可以在发送给您的证书中找到安全码。这是一组字母数字混合的代码，类似于“AB12CD3”。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
-msgstr ""
+msgstr "分级系统"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:200
 msgid "Region"
@@ -16741,11 +16746,11 @@ msgstr "地区"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
-msgstr ""
+msgstr "分级类别"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptions"
-msgstr ""
+msgstr "描述"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -16854,7 +16859,7 @@ msgstr "添加、管理或查看支付账户的交易"
 
 #: mkt/developers/templates/developers/payments/premium.html:147
 msgid "Prices and Countries"
-msgstr ""
+msgstr "价格和国家"
 
 #: mkt/developers/templates/developers/payments/premium.html:163
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -16870,7 +16875,7 @@ msgstr "不适用"
 
 #: mkt/developers/templates/developers/payments/premium.html:180
 msgid "Regions"
-msgstr ""
+msgstr "地区"
 
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Available Regions"
@@ -16904,11 +16909,11 @@ msgstr "其他地区"
 msgid ""
 "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck "
 "that region before saving."
-msgstr ""
+msgstr "只要基于您选定的价格点的付款功能已开通，您的应用就会在下述地区发布。如果要排除一个地区，请在保存之前选空对应的复选框。"
 
 #: mkt/developers/templates/developers/payments/premium.html:238
 msgid "Regions and Listings"
-msgstr ""
+msgstr "地区和列表"
 
 #: mkt/developers/templates/developers/payments/premium.html:252
 msgid "Promote as upgrade to free version"
@@ -17980,10 +17985,12 @@ msgid ""
 "If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using "
 "the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
 msgstr ""
+"如果您没有 Firefox OS 设备，浏览其他标签页看看如何获得一部。您完全不必等待——现在就可以使用 <a href=\"%"
+"(simulator_url)s\">Firefox OS 模拟器</a>开发和测试 Firefox OS 应用。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:122
 msgid "Sharing with the community"
-msgstr ""
+msgstr "分享到社区"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:124
 msgid ""
@@ -17991,6 +17998,9 @@ msgid ""
 "we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You "
 "can edit pages after creating a Mozilla Persona user account and logging in."
 msgstr ""
+"与建立已久的平台相比，在新生平台上进行开发很难获取有用的信息资源。为了给 Firefox OS "
+"开发者尽可能多的帮助，我们希望您一起来努力！我们邀请您将自己知道的有用信息添加到 <a href=\"%(mdn_url)s\" "
+"target=\"_blank\">Mozilla 开发者网络</a>，创建一个 Mozilla Persona 用户账户并登录后即可开始编辑页面。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:133
 msgid ""
@@ -17999,22 +18009,33 @@ msgid ""
 "In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
 "mail</a>."
 msgstr ""
+"我们特别希望您能分享 <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">Firefox OS "
+"自身的剖析与应用技巧</a>，<a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">开发 Firefox OS "
+"应用</a>以及<a href=\"%(mdn_devphone_url)s\" target=\"_blank\">在各种设备上安装使用 Firefox OS "
+"的经验</a>。此外，也随时欢迎您通过 <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> 或者 <a "
+"href=\"%(b2g_mail_url)s\" target=\"_blank\">电子邮件</a>提出问题或者分享反馈信息、资源。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:16
 msgid ""
 "<p>The Firefox OS Simulator is still at an early stage of development, and isn't complete or fully reliable.</p> <p>If you find any bugs, please <a href=\"%(issues)s\">file them on GitHub</a>, and "
 "if you have any questions, try asking on the <a href=\"%(dev_tools_list)s\">dev-developer-tools mailing list</a> or on <a href=\"%(irc)s\">#devtools on irc.mozilla.org</a>.</p>"
 msgstr ""
+"<p>Firefox OS 模拟器仍然处于早期开发阶段，尚未完成且并不完全可靠。</p><p>如果您发现任何缺陷，请 <a href=\"%"
+"(issues)s\">在 GitHub 上提交</a>，如果有任何问题，可以尝试在 <a href=\"%(dev_tools_list)s\">dev-"
+"developer-tools 邮件列表</a> 或者 <a href=\"%(irc)s\">irc.mozilla.org 的 #devtools "
+"频道</a>上提出。</p>"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:29
 msgid ""
 "The Firefox OS Simulator add-on is a tool that enables you to test and debug your app on the desktop. The code-test-debug cycle is much faster with the simulator than with a real device, and of "
 "course, you don't need a real device in order to use it."
 msgstr ""
+"您可以使用 Firefox OS "
+"模拟器附加组件在桌面环境下检测和调试您的应用。在模拟器上进行编码－测试－排错的循环要比在真实设备上更有效率。而且当然，您不需要有真实设备就可以使用它。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:36
 msgid "Essentially, the Simulator add-on consists of:"
-msgstr ""
+msgstr "大致来说，模拟器附加组件包括以下部分："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:38
 msgid ""
@@ -18023,10 +18044,15 @@ msgid ""
 "tool hosted by the Firefox browser that enables you to start and stop the Simulator and to install, uninstall, and debug apps running in it. The Dashboard also helps you push apps to a real device, "
 "and checks app manifests for common problems. </li>"
 msgstr ""
+"<li><strong>模拟器</strong>：包括 <a href=\"%(using_b2g)s\">Firefox OS "
+"桌面客户端</a>，也就是运行在您的桌面电脑上的 Firefox OS 版本。模拟器还包括一些标准 Firefox OS 桌面版本不具备的 <a "
+"href=\"#Simulator-toolbar\">额外的模拟功能</a>。</li><li><strong>仪表盘</strong>：运行在 "
+"Firefox 浏览器上的工具，帮助您运行和关闭模拟器，安装、卸载和调试运行在上面的应用。仪表盘还可以帮助您将应用推送到真实设备上，检查应用清单文件是否"
+"存在一些常见的问题。</li>"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:54
 msgid "The screenshot below shows a debugging session using the Simulator."
-msgstr ""
+msgstr "下面的截图展示了一次使用模拟器调试的过程。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:56
 msgid ""
@@ -18107,11 +18133,11 @@ msgstr "安装模拟器时仪表盘会自动打开，你也随时可以通过“
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:118
 msgid "The Dashboard is the tool you use to add your app to the Simulator and run it. Here's what it looks like:"
-msgstr ""
+msgstr "您可以使用仪表盘工具将应用添加到模拟器并运行，看上去就像这样："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:124
 msgid "Adding, updating, and removing apps"
-msgstr ""
+msgstr "添加、更新和移除应用"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:125
 msgid "Adding apps"
@@ -18120,22 +18146,28 @@ msgstr "添加应用"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:127
 msgid "To add a <a href=\"%(packaged_apps)s\">packaged app</a> to the Simulator, open the Dashboard, click \"Add Directory\" and select the <a href=\"%(manifests)s\">manifest file</a> for your app."
 msgstr ""
+"为了向模拟器中添加一个<a href=\"%(packaged_apps)s\">打包应用程序</a>，请打开控制面板，点击”添加目录”并为你的程序选择<a "
+"href=\"%(manifests)s\">清单文件</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:135
 msgid ""
 "To add a hosted app, enter a URL in the textbox where it says \"URL for page or manifest.webapp\", then click \"Add URL\". If the URL points to a manifest, then that manifest will be used. If it "
 "doesn't, the Dashboard will generate a manifest for the URL: so you can add any website as an app just by entering its URL."
 msgstr ""
+"要添加托管应用，在标有“页面或 manifest.webapp 网址”的文本框里输入网址，然后点击“添加网址”。如果网址指向清单文件，则会使用它。如果不"
+"是，仪表盘会为这个网址生成一个清单文件：因此您可以将任何网站的网址作为应用添加进来。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:143
 msgid ""
 "When you add an app, the Dashboard will run a series of tests on your manifest file, checking for common problems. See the section on <a href=\"#Manifest-validation\"> Manifest Validation</a> for "
 "details on what tests are run."
 msgstr ""
+"当你添加一个程序时，控制面板会对你的清单文件运行一系列的测试以检查常见问题。参见<a href=\"#Manifest-"
+"validation\">清单文件验证</a>以获取有关测试的更多细节。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:150
 msgid "Unless manifest validation reveals that your app has errors, the Dashboard will then automatically run your app in the Simulator."
-msgstr ""
+msgstr "除非在清单文件验证过程中发现你的程序存在错误，控制面板接下来将会在模拟器中运行你的程序。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:155
 msgid "Managing apps"
@@ -18143,19 +18175,19 @@ msgstr "管理应用"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:157
 msgid "Once you have added an app, it will appear in the Manager's list of installed apps:"
-msgstr ""
+msgstr "一旦你添加了一个程序，它将出现在管理列表中的已安装程序部分："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:163
 msgid "Each entry gives us the following information about the app:"
-msgstr ""
+msgstr "每个条目向我们提供有关程序的如下信息："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:168
 msgid "its name, taken from the manifest"
-msgstr ""
+msgstr "从清单文件中提取的名称"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:169
 msgid "its type, which will be one of \"Packaged\", \"Hosted\", or \"Generated\""
-msgstr ""
+msgstr "类型，可以是“封装”、“托管”或者“生成”三者之一"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:170
 msgid "a link to its manifest file"
@@ -18205,11 +18237,11 @@ msgstr "清单警告：可能导致应用无法正确运行的问题"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:193
 msgid "simulator-specific warnings: features your app is using that the Simulator doesn't yet support"
-msgstr ""
+msgstr "针对模拟器的警告：应用使用到的特性模拟器尚未支持"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:196
 msgid "It summarises the problems encountered in the entry for the app: clicking on the summary provides more details."
-msgstr ""
+msgstr "这里汇总了应用中存在的问题：点击汇总信息获得更多详情。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:200
 msgid "Manifest errors"
@@ -18217,7 +18249,7 @@ msgstr "资源配置文件错误"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:202
 msgid "The Dashboard will report the following conditions as errors, meaning that you won't be able to run your app in the Simulator without fixing them:"
-msgstr ""
+msgstr "仪表盘会认为下述情况是错误的，也就是要修复这些问题您的应用才能在模拟器上运行："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:207
 msgid "the manifest does not include the mandatory \"name\" field"
@@ -18229,11 +18261,11 @@ msgstr "该应用配置清单不是有效的 JSON 文件"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:209
 msgid "the app is a hosted app, but the <code>type</code> field in its manifest is \"privileged\" or \"certified\", which are only available to packaged apps"
-msgstr ""
+msgstr "一个托管的应用，但是在清单的 <code>type</code> 字段却设置为“获得特权”或者“已认证”的，只有封装应用才可以这样设置。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:212
 msgid "Here's the result of trying to add a manifest file with a missing \"name\":"
-msgstr ""
+msgstr "清单文件缺少 \"name\" 时会出现这样的结果："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:217
 msgid "Manifest warnings"
@@ -18249,7 +18281,7 @@ msgstr "缺少图标"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:221
 msgid "the icon is less than 128 pixels: all apps submitted to the Marketplace must have at least one icon that is at least 128 pixels square"
-msgstr ""
+msgstr "图标小于128像素：每一个提交到应用市场的应用都至少要有一个不小于128像素见方的图标"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:222
 msgid "the <code>type</code> field is unrecognized"
@@ -18257,15 +18289,15 @@ msgstr "无法识别 <code>type</code> 字段"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:223
 msgid "the manifest requests a permission that is unrecognized"
-msgstr ""
+msgstr "清单请求了无法识别的权限"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:224
 msgid "the manifest requests a permission which will be denied"
-msgstr ""
+msgstr "清单请求了被禁止的权限"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:225
 msgid "the manifest requests a permission for which access could not be determined"
-msgstr ""
+msgstr "清单请求了一个访问行为无法判定的权限"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:227
 msgid "Simulator-specific warnings"
@@ -18273,7 +18305,7 @@ msgstr "模拟器特定警告"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:228
 msgid "Finally, the Manager will emit warnings for apps that use features of Firefox OS not yet fully supported by the Simulator:"
-msgstr ""
+msgstr "最后，管理器会显示警告信息，说明这个应用调用了哪些模拟器尚不支持的 Firefox OS 特性："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:230
 msgid "the <code>type</code> field is \"certified\", but the Simulator does not yet fully supprt certified apps"
@@ -18339,6 +18371,8 @@ msgid ""
 "the Geolocation Simulation button triggers a dialog asking you to share your geographic location, either using your current coordinates or supplying custom coordinates: this will be made available "
 "to your app via the Geolocation API."
 msgstr ""
+"地理位置模拟按钮会触发一个对话框询问您是否分享自己的地理位置，或者使用您的当前坐标，或者提供您常出现的位置：这样您的应用就可以通过地理位置 API "
+"获取这些信息。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:281
 msgid "Enabling console logging"
@@ -18349,6 +18383,7 @@ msgid ""
 "If you check the \"Console\" box underneath the \"Stopped/Running\" switch, then the Error Console will be opened when you run the Simulator. Your app will be able to log to this console using the "
 "global console object."
 msgstr ""
+"如果您选中了“已停止/正在运行”开关下面的“控制台”复选框，运行模拟器时就会打开故障控制台。应用可以通过全局控制台对象将日志记录到这个控制台里。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:289
 msgid "Attaching developer tools"
@@ -18359,34 +18394,39 @@ msgid ""
 "You can attach developer tools to the Simulator, to help debug your app. At the moment you can only attach the JavaScript Debugger and the Web Console, but we're working on adding support for more "
 "developer tools."
 msgstr ""
+"您可以在模拟器上附加开发者工具，帮助调试应用。现在只能附加 JavaScript 调试器和 Web 控制台，但我们正在努力添加更多开发者工具支持。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:299
 msgid "While the Simulator is running another button appears underneath the \"Console\" checkbox. It is labeled \"Connect...\":"
-msgstr ""
+msgstr "模拟器运行时“控制台”复选框下面会显示另一个按钮，标记为“连接...“："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:305
 msgid "Click it, and you'll be taken to a page that looks like this:"
-msgstr ""
+msgstr "点击后就会显示类似这样的页面："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:307
 msgid "Click \"Connect\" here and you'll see another page, this time like this:"
-msgstr ""
+msgstr "点击这里的“连接”会看到另一个页面，此时类似于这样："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:310
 msgid ""
 "To use the JavaScript Debugger, select \"chrome://prosthesis/content/shell.xul\" here. Once it's launched, you'll need to find your app's scripts in the <a href=\"%(debug_toolbar)s\">script "
 "chooser</a>, but if you open your app and then connect the debugger, your app's main script will be selected by default:"
 msgstr ""
+"选择这里的\"chrome://prosthesis/content/shell.xul\"使用 JavaScript 调试器，启动后在<a href=\"%"
+"(debug_toolbar)s\">脚本选择器</a>中找到应用的脚本，但如果您先打开应用再连接到调试器，应用的主要脚本就会被默认选中："
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:320
 msgid "To use the Web Console with your app, select \"Main Process\" in the \"Connect to remote device\" window."
-msgstr ""
+msgstr "要对应用使用 Web 控制台，在“连接到远程设备”窗口选择“主进程”。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:322
 msgid ""
 "At the moment, unfortunately, there's no single debugging target that will work with both the Web Console and the JS Debugger - but you can run two simultaneous instances of the debugging tools, "
 "one targeting \"shell.xul\" and the other targeting \"Main Process\"."
 msgstr ""
+"此时，很遗憾，单一调试目标不能同时运行 Web 控制台和 JS 调试器——但是您可以运行两个模拟实例的调试工具，一个指向 "
+"\"shell.xul\"，另一个指向\"Main Process\"。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:329
 msgid "Push to device"
@@ -18394,7 +18434,7 @@ msgstr "推送到设备"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:331
 msgid "If you have a Firefox OS device you can connect it to the Simulator, and can then push apps from the Dashboard to the device."
-msgstr ""
+msgstr "如果有 Firefox OS 设备您可以把它连接到模拟器，然后从仪表盘把应用推送到设备。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:336
 msgid "Connecting a device"
@@ -18472,23 +18512,23 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:402
 msgid "Telephony"
-msgstr ""
+msgstr "电话"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:403
 msgid "WebSMS"
-msgstr ""
+msgstr "WebSMS"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:404
 msgid "WebBluetooth"
-msgstr ""
+msgstr "WebBluetooth"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:405
 msgid "Ambient Light"
-msgstr ""
+msgstr "环境光线"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:408
 msgid "navigator.onLine and offline events"
-msgstr ""
+msgstr "navigator.onLine 和 offline 事件"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:411
 msgid "Getting help"
@@ -18499,6 +18539,9 @@ msgid ""
 "If you find any bugs, please <a href=\"%(issues)s\">file them on GitHub</a>. If you have a question, try asking us on the <a href=\"%(mailing_list)s\"> dev-developer-tools mailing list</a> or on <a "
 "href=\"%(irc)s\">#devtools on irc.mozilla.org</a>."
 msgstr ""
+"如果发现任何缺陷，请<a href=\"%(issues)s\">在 GitHub 提交</a>。如果有任何问题，可以在<a href=\"%"
+"(mailing_list)s\">dev-developer-tools 邮件列表</a>或者 <a href=\"%"
+"(irc)s\">irc.mozilla.org 的 #devtools 频道提出</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -18506,15 +18549,15 @@ msgstr "为开放的应用市场开发 HTML5 网络应用。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr ""
+msgstr "了解如何设计应用，针对 Firefox OS 移动环境优化用户体验"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr ""
+msgstr "开发测试应用时需要的全部工具、文档和参考资料"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr ""
+msgstr "看看如何将应用分发到以用户和开发者为尊的开放应用市场"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -18535,6 +18578,8 @@ msgstr "看看这里已经有哪些人啦"
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
 msgstr ""
+"您是正在寻求与 Mozilla 合作的网络公司、第三方服务商或者原始设备制造商？<a href=\"%"
+"(partner_url)s\">查看我们的合作伙伴页面了解更多信息。</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
@@ -18652,7 +18697,7 @@ msgstr "带字幕查看"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:307
 msgid "Made in partnership with our friends at Treehouse"
-msgstr ""
+msgstr "在树屋（Treehouse）与我们的朋友合作"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:309
 msgid "Check them out!"
@@ -18732,39 +18777,40 @@ msgstr "徽章，广告栏和图标"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
-msgstr ""
+msgstr "您可以在自己的网站放置“在火狐应用市场下载”的徽章，指向火狐应用市场中您的产品从而提升下载量。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "准则"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "您不能以任何方式修改徽章"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
 msgstr ""
+"与其他应用市场（“在 Google Play 下载”，“在 App Store 下载”）标志共同使用时，火狐应用市场的徽章的尺寸应该不小于他们。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
-msgstr ""
+msgstr "徽章链接到火狐应用市场的应用详情页面<br>例如：https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "橘色"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "灰色"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "黑色"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "标志"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
@@ -18772,46 +18818,48 @@ msgstr "要查看和下载火狐应用市场标志，请访问<a href=\"%(style_
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:15
 msgid "One your app is finished, you need to deploy it. If you're publishing through the Firefox Marketplace you have some options on how to deploy your app."
-msgstr ""
+msgstr "应用开发完成就要发布了。如果要通过火狐应用市场发布，您有几种方式可以选择。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:27
 msgid "You can host your app on a publicly accessible Web server, just like any other website."
-msgstr ""
+msgstr "您可以将应用托管在可以公开访问的网站服务器上，就像其他网站那样。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:38
 msgid "You can package your app as a zip file, instead of hosting it on a web server."
-msgstr ""
+msgstr "您可以将应用封装为 zip 文件，而不是托管到网站服务器上。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:15
 msgid ""
 "Payments are processed on a country by country basis, with different prices and payment methods available in each country. A list of price points is <a href=\"%(mdn_url)s\">documented in MDN</a> "
 "and is <a href=\"%(api_url)s\">available through the API</a>."
 msgstr ""
+"支付功能要针对不同国家分别处理，因为每个国家有不同的价格和支付方式。价格点列表位于<a href=\"%(mdn_url)s\">MDN "
+"文档中</a>并且可以<a href=\"%(api_url)s\">通过 API 调用</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:24
 msgid "These are the currently supported countries in the Marketplace."
-msgstr ""
+msgstr "以下是应用市场目前支持的国家。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:33
 msgid "Developer setup"
-msgstr ""
+msgstr "开发者设置"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:34
 msgid "Paid apps"
-msgstr ""
+msgstr "付费应用"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:35
 msgid "In-app payments"
-msgstr ""
+msgstr "应用内支付"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:36
 msgid "Carrier billing"
-msgstr ""
+msgstr "运营商账单"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:46 mkt/ecosystem/templates/ecosystem/publish_payments.html:47 mkt/ecosystem/templates/ecosystem/publish_payments.html:54
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:55 mkt/ecosystem/templates/ecosystem/publish_payments.html:62 mkt/ecosystem/templates/ecosystem/publish_payments.html:63
 msgid "varies"
-msgstr ""
+msgstr "变化"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
@@ -19007,6 +19055,9 @@ msgid ""
 "The <code>CordovaLib</code>, <code>assets</code>, <code>cordova</code>, <code>face-value.xcodeproj</code>, and <code>face-value</code> folders contain Cordova files used to create a packaged iOS "
 "web app that can be submitted to the iOS App Store."
 msgstr ""
+"<code>CordovaLib</code>, <code>assets</code>, <code>cordova</code>, <code"
+">face-value.xcodeproj</code>, 和 <code>face-value</code> 文件夹包含了 Cordova "
+"文件，使用它们可以创建封装的 iOS 网络应用并提交到 iOS App Store 。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:76
 msgid "Remembers user preferences and saves exchange rates for offline use."
@@ -19052,6 +19103,8 @@ msgstr "本地笔记"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:35
 msgid "General Notes is a simple note app that allows you to sync local and remote content. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"General Notes 是一款简单的笔记应用，您可以同步本地和远程的内容。<a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">阅读完整的开发步骤</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:53
 msgid "Stores local and remote notes on the client side."
@@ -19094,6 +19147,9 @@ msgid ""
 "Podcasts is an offline-capable, entirely HTML5/JS audio app. It's chiefly designed for Firefox OS, but support for other platforms and browsers is an eventual design goal. It allows users to "
 "subscribe to any podcast and listen to it right from their Firefox OS device! <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Read the full developer walkthrough</a>"
 msgstr ""
+"播客（Podcasts）是一款支持离线，完全基于 HTML5/JS 的音频应用。主要为 Firefox OS "
+"设计，但最终目标是同时支持其他平台和浏览器。用户可以在 Firefox OS 设备上订阅任何广播并收听！<a href=\"%"
+"(walkthrough_link)s\" class=\"walkthrough\">阅读完整的开发步骤</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:51
 msgid "Translation files"
@@ -19112,14 +19168,18 @@ msgid ""
 "Podcasts is a <a href=\"%(packaged_apps_link)s\">packaged app</a>, so it requires a build step to be installed to Firefox OS. The <code>Makefile</code> contains a multi-step process that will "
 "create a <code>www-built</code> folder used to install the app on a phone or the <a href=\"%(simulator_link)s\">Firefox OS Simulator</a>."
 msgstr ""
+"播客（Podcasts）是一款<a href=\"%(packaged_apps_link)s\">封装应用</a>，需要一个构建过程以便安装到 "
+"Firefox OS 。<code>Makefile</code> 包含了创建 <code>www-built</code> 的步骤，从而可以创建 "
+"<code>www-built</code> 文件夹用于在手机或者 <a href=\"%(simulator_link)s\">Firefox OS "
+"模拟器</a>上安装应用。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:78
 msgid "Used to store settings and basic podcast metadata. Not used for podcast audio files or cover art."
-msgstr ""
+msgstr "用于存储设置和基本的广播元数据，但不用于广播音频文件或者作品。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:87
 msgid "An asynchronous and fast datastore for maintaining podcast audio and images."
-msgstr ""
+msgstr "一种用于维护播客音频和图像的异步快速数据存储。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:96
 msgid "Allows cross-domain requests on Firefox OS without CORS."
@@ -19210,43 +19270,43 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
-msgstr ""
+msgstr "首次加载之后，就可以离线使用，不需要网络连接。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "要下载文件到浏览器。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "用于快速而高效地处理图像数据。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
-msgstr ""
+msgstr "用于访问摄像头设备并从捕获帧中获得视频流。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
-msgstr ""
+msgstr "存储捕获的设备图像并接收到画廊视图。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
-msgstr ""
+msgstr "在后台生成 GIF 文件而无需影响界面。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
-msgstr ""
+msgstr "将图像上传到其他服务器供分享，并获得网址。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
-msgstr ""
+msgstr "rtcamera 使用 x-appbar, x-deck, x-layout, x-modal 和 x-switch 。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "1%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "83%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
@@ -19263,6 +19323,9 @@ msgid ""
 "addition to destroying the alien bug, kill as many enemies as possible to get the highest score. <a href=\"%(marketplace_link)s\">View on the marketplace</a> <a href=\"%(walkthrough_link)s\" class="
 "\"walkthrough\">Read the full developer walkthrough</a>"
 msgstr ""
+"Webfighter 是一款 R 类和泰尔灵感游戏，您必须找到外星怪物并消灭它们。作为一款横版卷轴射击游戏，选择不同的武器消灭挡住你去路的敌人。消灭外星"
+"怪物的同时，尽可能多的消灭敌人获取最高的分数。<a href=\"%(marketplace_link)s\">在应用市场查看</a><a href=\"%"
+"(walkthrough_link)s\" class=\"walkthrough\">阅读完整的开发步骤</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:56
 msgid "Used to generate the game graphics."
@@ -19274,7 +19337,7 @@ msgstr "允许游戏在全屏模式下运行。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:72
 msgid "The player can purchase items in a store that will aid their quest. This shows the workflow for in-app payments."
-msgstr ""
+msgstr "玩家可以在商城订购装备帮助他们寻找，这显示了应用内支付的流程。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:99
 msgid "92%"
@@ -19302,7 +19365,7 @@ msgstr "事务查找"
 
 #: mkt/lookup/forms.py:17
 msgid "Process a manual refund"
-msgstr ""
+msgstr "处理手动退款"
 
 #: mkt/lookup/forms.py:20
 msgid "Enter refund details to refund transaction"
@@ -19310,7 +19373,7 @@ msgstr "为退款交易输入退款详情"
 
 #: mkt/lookup/forms.py:33
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "删除原因"
 
 #: mkt/lookup/views.py:151
 msgid "Currently unable to retrieve refund status."
@@ -19358,7 +19421,7 @@ msgstr "视图"
 
 #: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Privileged Packaged app"
-msgstr ""
+msgstr "特权封装应用"
 
 #: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
 msgid "Packaged app"
@@ -19402,7 +19465,7 @@ msgstr "已拒绝 {0} 个"
 
 #: mkt/lookup/templates/lookup/app_summary.html:106 mkt/lookup/templates/lookup/user_summary.html:54
 msgid "Bango portal"
-msgstr ""
+msgstr "Bango portal"
 
 #: mkt/lookup/templates/lookup/app_summary.html:119
 msgid "Version (ID)"
@@ -19446,7 +19509,7 @@ msgstr "未请求"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:60
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
-msgstr ""
+msgstr "如果支付服务提供者已经处理了手动退款，选中这个复选框。这将会在 Mozilla 服务器上退款但并不通知支付服务提供者。"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:66
 msgid "Refund this transaction"
@@ -19466,7 +19529,7 @@ msgstr "购买结果为"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:25
 msgid "This user has not purchased any apps."
-msgstr ""
+msgstr "这个用户没有购买任何应用。"
 
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
@@ -19474,7 +19537,7 @@ msgstr "账户查询结果"
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "常规"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -19507,7 +19570,7 @@ msgstr "自动审核"
 #. The account is the name of the payment account.
 #: mkt/lookup/templates/lookup/user_summary.html:57
 msgid "View transactions for: {account}"
-msgstr ""
+msgstr "查看此账户交易：{account}"
 
 #: mkt/lookup/templates/lookup/user_summary.html:64
 msgid "Developer Program"
@@ -19532,23 +19595,23 @@ msgstr "未命名"
 #: mkt/lookup/templates/lookup/user_summary.html:111 mkt/lookup/templates/lookup/user_summary.html:119 mkt/lookup/templates/lookup/user_summary.html:123
 #: mkt/lookup/templates/lookup/user_summary.html:127
 msgid "Delete User"
-msgstr ""
+msgstr "删除用户"
 
 #: mkt/lookup/templates/lookup/user_summary.html:114
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr ""
+msgstr "删除这个用户将会<strong>永久</strong>删除他的账户。"
 
 #: mkt/lookup/templates/lookup/user_summary.html:124
 msgid "Are you sure you wish to delete this user?"
-msgstr ""
+msgstr "你是否确实要删除这个用户？"
 
 #: mkt/lookup/templates/lookup/user_summary.html:134
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "用户已删除。"
 
 #: mkt/lookup/templates/lookup/user_summary.html:136
 msgid "Deleted by"
-msgstr ""
+msgstr "删除者"
 
 #: mkt/lookup/templates/lookup/user_summary.html:139 mkt/reviewers/templates/reviewers/themes/history_table.html:10
 msgid "Reason"
@@ -19572,11 +19635,11 @@ msgstr "账户概览"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr ""
+msgstr "账户已删除"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:6
 msgid "App Lookup"
-msgstr ""
+msgstr "应用查询"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:11
 msgid "Lookup"
@@ -19588,15 +19651,15 @@ msgstr "账户查找"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
-msgstr ""
+msgstr "运营商仪表盘"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr ""
+msgstr "<small>运营商</small>仪表盘"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
-msgstr ""
+msgstr "预加载预览"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
@@ -19650,15 +19713,15 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "要查看火狐应用市场服务条款请访问："
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
-msgstr ""
+msgstr "要获取支持请访问："
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
-msgstr ""
+msgstr "您的购买历史："
 
 #: mkt/ratings/templates/ratings/rating.html:22
 msgid "by <strong>%(user_name)s</strong>"
@@ -19702,11 +19765,11 @@ msgstr "测试收据详情"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
-msgstr ""
+msgstr "这是收据内容的占位页面。如果您从应用市场安装了一个真实应用，此页会显示更多详细情况。"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
-msgstr ""
+msgstr "将应用上传到市场之前应测试安装，您可以选择不同种类的收据测试处理。"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
@@ -19730,7 +19793,7 @@ msgstr "描述："
 
 #: mkt/reviewers/forms.py:50
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "附件超过最大体积 %s 。"
 
 #: mkt/reviewers/forms.py:77 mkt/reviewers/templates/reviewers/review.html:234
 msgid "Device Types:"
@@ -19746,15 +19809,15 @@ msgstr "排除的设备类型："
 
 #: mkt/reviewers/forms.py:87
 msgid "Senior Reviewers"
-msgstr ""
+msgstr "资深审核者"
 
 #: mkt/reviewers/forms.py:88
 msgid "Staff"
-msgstr ""
+msgstr "职员"
 
 #: mkt/reviewers/forms.py:92
 msgid "Action Visibility to Users:"
-msgstr ""
+msgstr "用户可见操作："
 
 #: mkt/reviewers/forms.py:96
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
@@ -19776,11 +19839,11 @@ msgstr "其他人正在审核这个主题。"
 
 #: mkt/reviewers/forms.py:286
 msgid "Has Editor Comment"
-msgstr ""
+msgstr "有编辑评论"
 
 #: mkt/reviewers/forms.py:290
 msgid "More Info Requested"
-msgstr ""
+msgstr "请求更多信息"
 
 #: mkt/reviewers/helpers.py:33 mkt/reviewers/helpers.py:66 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
@@ -19800,7 +19863,7 @@ msgstr "升级"
 
 #: mkt/reviewers/helpers.py:40
 msgid "Device"
-msgstr ""
+msgstr "设备"
 
 #: mkt/reviewers/helpers.py:42
 msgid "Reviewing"
@@ -19808,7 +19871,7 @@ msgstr "正在审核"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Pending Themes"
-msgstr ""
+msgstr "待定主题"
 
 #: mkt/reviewers/helpers.py:45 mkt/reviewers/templates/reviewers/themes/queue.html:4
 msgid "Flagged Themes"
@@ -19816,7 +19879,7 @@ msgstr "已标记的主题"
 
 #: mkt/reviewers/helpers.py:46
 msgid "Update Themes"
-msgstr ""
+msgstr "更新主题"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
@@ -19849,7 +19912,7 @@ msgstr "正在审核（{0}）"
 
 #: mkt/reviewers/helpers.py:114
 msgid "Device ({0})"
-msgstr ""
+msgstr "设备 ({0})"
 
 #: mkt/reviewers/helpers.py:161 mkt/reviewers/helpers.py:181
 msgid "Flagged"
@@ -19942,11 +20005,11 @@ msgstr "已移除{0}"
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:326
 msgid "Requirements changed by reviewer: {0}"
-msgstr ""
+msgstr "审核者修改了需求：{0}"
 
 #: mkt/reviewers/views.py:348
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr ""
+msgstr "已成功处理 \"{0}\" （+{1} 点，共 {2} ）。"
 
 #: mkt/reviewers/views_themes.py:303
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
@@ -19954,7 +20017,7 @@ msgstr "您的主题锁已成功释放。其他审核者现在可以审核这些
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "您目前没有审核任何应用。"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
@@ -19984,7 +20047,7 @@ msgstr[0] "{num} 个应用待审核"
 #: mkt/reviewers/templates/reviewers/home.html:24
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] ""
+msgstr[0] "{num} 个再审核{num} 个再审核"
 
 #: mkt/reviewers/templates/reviewers/home.html:31
 msgid "{num} Update Review"
@@ -20015,15 +20078,15 @@ msgstr "{0}的评价得分"
 
 #: mkt/reviewers/templates/reviewers/queue.html:49
 msgid "Privileged App"
-msgstr ""
+msgstr "特权应用"
 
 #: mkt/reviewers/templates/reviewers/queue.html:57
 msgid "Premium with In-App"
-msgstr ""
+msgstr "应用内付费"
 
 #: mkt/reviewers/templates/reviewers/queue.html:59
 msgid "Free with In-App"
-msgstr ""
+msgstr "应用内免费"
 
 #: mkt/reviewers/templates/reviewers/queue.html:84
 msgid "Payment Category:"
@@ -20056,10 +20119,12 @@ msgstr "应用历史"
 #: mkt/reviewers/templates/reviewers/review.html:87
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
+"Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/review.html:199
 msgid "App submission incomplete"
-msgstr ""
+msgstr "应用尚未完成提交"
 
 #: mkt/reviewers/templates/reviewers/review.html:232
 msgid "Tested with:"
@@ -20079,11 +20144,11 @@ msgstr "排除设备："
 
 #: mkt/reviewers/templates/reviewers/review.html:280
 msgid "Minimum Requirements Override:"
-msgstr ""
+msgstr "覆盖最低需求："
 
 #: mkt/reviewers/templates/reviewers/review.html:290
 msgid "Make this action visible to"
-msgstr ""
+msgstr "操作呈现给"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
@@ -20091,15 +20156,15 @@ msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:38 mkt/reviewers/templates/reviewers/includes/mobile_details.html:60
 msgid "App domain"
-msgstr ""
+msgstr "应用域名"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:43 mkt/reviewers/templates/reviewers/includes/mobile_details.html:65
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
-msgstr ""
+msgstr "<strong>IDN 域名！</strong> punycode 版本：%(punycode_app_domain)s"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:50 mkt/reviewers/templates/reviewers/includes/mobile_details.html:72
 msgid "Signed Zip"
-msgstr ""
+msgstr "已签名 Zip"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:70 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
 msgid "This app has not yet been rated"
@@ -20264,11 +20329,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:73
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "请求更多信息：{0}"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:75
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "已打标签: {0}"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:96
 msgid "Approve Theme"
@@ -20308,7 +20373,7 @@ msgstr "任何应用类型"
 
 #: mkt/search/forms.py:34
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "特权封装应用"
 
 #: mkt/search/forms.py:39
 msgid "Free with In-app"
@@ -20352,7 +20417,7 @@ msgstr "应用类型"
 
 #: mkt/search/forms.py:102
 msgid "Supported languages"
-msgstr ""
+msgstr "支持的语言"
 
 #: mkt/site/context_processors.py:34
 msgid "Sign out"
@@ -20571,7 +20636,7 @@ msgstr "设备已更改： {0}"
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
 msgid "Requirements changed: {0}"
-msgstr ""
+msgstr "需求已更改：{0}"
 
 #: mkt/submit/forms.py:51
 msgid "Cannot be free and paid."
@@ -20583,7 +20648,7 @@ msgstr "请选择一个设备。"
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
-msgstr ""
+msgstr "那些平台尚不支持封装应用。"
 
 #: mkt/submit/forms.py:147
 msgid "Agree and Continue"
@@ -20624,7 +20689,7 @@ msgstr "如果您的应用有支持网站或者论坛，在这里输入地址。
 
 #: mkt/submit/forms.py:364
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
-msgstr ""
+msgstr "这个邮件地址会公开显示在应用市场以便最终用户联系您获得支持。邮件地址会公开显示在应用详情页面。"
 
 #: mkt/submit/forms.py:371
 msgid "Does your app require Flash support?"
@@ -20642,7 +20707,7 @@ msgstr "如果选中此项，您的应用一旦被审核者核准就会立即公
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "后续步骤"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -20686,6 +20751,8 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
+"我们已经保存好您的应用准备后续操作了！应用目前正在等待审核，一旦完成您需要在<a href=\"%"
+"(url)s\">状态管理页面</a>手动启用应用，从而让他显示出来并可以被搜索到。到那时，就可以随意调整应用的详情和设置了。"
 
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
@@ -20711,7 +20778,7 @@ msgstr "设备类型"
 
 #: mkt/submit/templates/submit/manifest.html:109
 msgid "App Minimum Requirements"
-msgstr ""
+msgstr "应用最低需求"
 
 #: mkt/submit/templates/submit/manifest.html:115
 msgid "<b>What's next:</b> fill out the rest of your app's details"
@@ -20759,39 +20826,39 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "At any point, you can"
-msgstr ""
+msgstr "任何时候您都可以"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr ""
+msgstr "在<a href=\"%(url)s\">编辑列表</a>修改应用详情"
 
 #: mkt/submit/templates/submit/next_steps.html:69
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
-msgstr ""
+msgstr "在<a href=\"%(url)s\">我的作品</a>查看您提交过的所有作品列表"
 
 #: mkt/submit/templates/submit/next_steps.html:78
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
-msgstr ""
+msgstr "一旦应用完成审核，您要在<a href=\"%(url)s\">状态管理</a>手动发布应用。之后他就会显示在列表页面并且可以被其他人搜索到。"
 
 #: mkt/submit/templates/submit/next_steps.html:85
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
-msgstr ""
+msgstr "应用已经被核准！现在就去让他显示在列表页面并且被其他人搜索到。"
 
 #: mkt/submit/templates/submit/next_steps.html:90
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
-msgstr ""
+msgstr "一旦应用完成审核，就可以显示在列表页面并且被其他人搜索到。"
 
 #: mkt/submit/templates/submit/next_steps.html:100
 msgid "<strong>What's next:</strong> Set up Content Ratings"
-msgstr ""
+msgstr "<strong>下面要：</strong>建立内容评级"
 
 #: mkt/submit/templates/submit/next_steps.html:106
 msgid "<strong>What's next:</strong> Set up Payments & Countries"
-msgstr ""
+msgstr "<strong>下面要：</strong>设置支付和国别"
 
 #: mkt/submit/templates/submit/next_steps.html:112
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgstr "<strong>下面要：</strong>发布您的应用"
 
 #: mkt/submit/templates/submit/payments-upsell.html:4 mkt/submit/templates/submit/payments.html:3
 msgid "App Payments"
@@ -20891,7 +20958,7 @@ msgstr "您必须提供至少一个种类。"
 
 #: mkt/webapps/tasks.py:113
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "火狐应用市场中您的应用 \"{app}\" 的问题"
 
 #: templates/amo_footer.html:11 templates/includes/lang_switcher.html:2
 msgid "Other languages"
