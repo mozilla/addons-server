@@ -27,6 +27,7 @@ class RATING(object):
     name = None
     label = None
     description = None
+    adult = False
 
 
 class RATING_BODY(object):
@@ -79,6 +80,7 @@ class CLASSIND_18(RATING):
     id = 5
     age = 18
     iarc_name = '18+'
+    adult = True
 
 
 class CLASSIND(RATING_BODY):
@@ -126,6 +128,7 @@ class GENERIC_18(RATING):
     id = 4
     age = 18
     iarc_name = '18+'
+    adult = True
 
 
 class GENERIC(RATING_BODY):
@@ -169,6 +172,7 @@ class USK_18(RATING):
     id = 4
     age = 18
     iarc_name = '18+'
+    adult = True
 
 
 class USK_REJECTED(RATING):
@@ -228,6 +232,7 @@ class ESRB_A(RATING):
     age = 18
     iarc_name = 'Adults Only'
     name = _lazy('Adults Only 18+')  # L10n: `18+` is age eighteen and over.
+    adult = True
 
 
 class ESRB_RP(RATING):
@@ -279,6 +284,7 @@ class PEGI_18(RATING):
     id = 4
     age = 18
     iarc_name = '18+'
+    adult = True
 
 
 class PEGI(RATING_BODY):

@@ -4,11 +4,12 @@ import mock
 from nose.tools import eq_
 
 import amo.tests
+from devhub.models import ActivityLog
 
 import mkt
 import mkt.constants
-from mkt.developers.cron import (exclude_new_region, process_iarc_changes,
-                                 send_new_region_emails)
+from mkt.developers.cron import (_flag_rereview_adult, exclude_new_region,
+                                 process_iarc_changes, send_new_region_emails)
 from mkt.webapps.models import IARCInfo
 
 
@@ -90,7 +91,6 @@ class TestIARCChangesCron(amo.tests.TestCase):
         })
 
         process_iarc_changes()
-
         app = app.reload()
 
         # Check ratings.
@@ -107,3 +107,34 @@ class TestIARCChangesCron(amo.tests.TestCase):
             ['has_classind_shocking', 'has_classind_sex_content',
              'has_classind_drugs', 'has_classind_lang', 'has_classind_nudity',
              'has_classind_violence_extreme'])
+
+    def test_rereview_flag_adult(self):
+        amo.set_user(amo.tests.user_factory())
+        app = amo.tests.app_factory()
+
+        app.set_content_ratings({
+            mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_E,
+            mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_18,
+        })
+        _flag_rereview_adult(app, mkt.ratingsbodies.ESRB,
+                             mkt.ratingsbodies.ESRB_T)
+        assert not app.rereviewqueue_set.count()
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.CONTENT_RATING_TO_ADULT.id).exists()
+
+        # Adult should get flagged to rereview.
+        _flag_rereview_adult(app, mkt.ratingsbodies.ESRB,
+                             mkt.ratingsbodies.ESRB_A)
+        eq_(app.rereviewqueue_set.count(), 1)
+        eq_(ActivityLog.objects.filter(
+            action=amo.LOG.CONTENT_RATING_TO_ADULT.id).count(), 1)
+
+        # Test things same same if rating stays the same as adult.
+        app.set_content_ratings({
+            mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_A,
+        })
+        _flag_rereview_adult(app, mkt.ratingsbodies.ESRB,
+                             mkt.ratingsbodies.ESRB_A)
+        eq_(app.rereviewqueue_set.count(), 1)
+        eq_(ActivityLog.objects.filter(
+            action=amo.LOG.CONTENT_RATING_TO_ADULT.id).count(), 1)
