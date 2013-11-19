@@ -191,7 +191,7 @@ class TestContentRating(amo.tests.TestCase):
         rating = res['objects'][0]
         eq_(rating['body_slug'], 'classind')
         eq_(rating['body_name'], 'CLASSIND')
-        eq_(rating['name'], '0+')
+        assert rating['name']
         eq_(rating['slug'], '0')
         assert 'description' in rating
 

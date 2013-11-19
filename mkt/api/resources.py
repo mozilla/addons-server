@@ -378,7 +378,7 @@ class RegionResource(CORSResource, MarketplaceResource):
     id = fields.IntegerField('id')
     default_currency = fields.CharField('default_currency')
     default_language = fields.CharField('default_language')
-    ratingsbodies = fields.ListField('ratingsbodies')
+    ratingsbody = fields.CharField('ratingsbody', null=True)
 
     class Meta(MarketplaceResource.Meta):
         detail_allowed_methods = ['get']
@@ -386,8 +386,9 @@ class RegionResource(CORSResource, MarketplaceResource):
         resource_name = 'region'
         slug_lookup = 'slug'
 
-    def dehydrate_ratingsbodies(self, bundle):
-        return [rb.name for rb in bundle.obj.ratingsbodies]
+    def dehydrate_ratingsbody(self, bundle):
+        if bundle.obj.ratingsbody:
+            return bundle.obj.ratingsbody.name
 
     def obj_get_list(self, request=None, **kwargs):
         return REGIONS_DICT.values()
@@ -406,9 +407,6 @@ class CarrierResource(CORSResource, MarketplaceResource):
         list_allowed_methods = ['get']
         resource_name = 'carrier'
         slug_lookup = 'slug'
-
-    def dehydrate_ratingsbodies(self, bundle):
-        return [rb.name for rb in bundle.obj.ratingsbodies]
 
     def obj_get_list(self, request=None, **kwargs):
         return CARRIERS

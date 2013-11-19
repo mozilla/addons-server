@@ -105,13 +105,13 @@ class ContentRatingSerializer(ModelSerializer):
         return obj.get_body().name
 
     def get_body_slug(self, obj):
-        return obj.get_body().slug
+        return obj.get_body().label
 
     def get_rating_name(self, obj):
         return obj.get_rating().name
 
     def get_rating_slug(self, obj):
-        return obj.get_rating().slug
+        return obj.get_rating().label
 
     def get_rating_description(self, obj):
         return obj.get_rating().description

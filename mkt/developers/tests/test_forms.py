@@ -239,7 +239,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
     def test_rated_games_with_content_rating(self):
         # This game has a government content rating!
         for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
-            rb = region.ratingsbodies[0]
+            rb = region.ratingsbody
             ContentRating.objects.create(
                 addon=self.app, ratings_body=rb.id, rating=rb.ratings[0].id)
 
@@ -633,7 +633,7 @@ class TestAdminSettingsForm(TestAdmin):
             excluded_regions)
 
         # Add Brazil content rating.
-        rb_br = mkt.regions.BR.ratingsbodies[0]
+        rb_br = mkt.regions.BR.ratingsbody
         br_0_idx = mkt.ratingsbodies.ALL_RATINGS().index(rb_br.ratings[0])
         self.data['app_ratings'] = [br_0_idx]
 
@@ -657,11 +657,11 @@ class TestAdminSettingsForm(TestAdmin):
         game in Brazil only.
         """
         self.log_in_with('Apps:Configure')
-        rb_br = mkt.regions.BR.ratingsbodies[0]
+        rb_br = mkt.regions.BR.ratingsbody
         ContentRating.objects.create(addon=self.webapp, ratings_body=rb_br.id,
                                      rating=rb_br.ratings[0].id)
 
-        rb_de = mkt.regions.DE.ratingsbodies[0]
+        rb_de = mkt.regions.DE.ratingsbody
         ContentRating.objects.create(addon=self.webapp, ratings_body=rb_de.id,
                                      rating=rb_de.ratings[0].id)
 
@@ -693,11 +693,11 @@ class TestAdminSettingsForm(TestAdmin):
         self.create_switch('iarc')
 
         self.log_in_with('Apps:Configure')
-        rb_br = mkt.regions.BR.ratingsbodies[0]
+        rb_br = mkt.regions.BR.ratingsbody
         ContentRating.objects.create(addon=self.webapp, ratings_body=rb_br.id,
                                      rating=rb_br.ratings[0].id)
 
-        rb_de = mkt.regions.DE.ratingsbodies[0]
+        rb_de = mkt.regions.DE.ratingsbody
         ContentRating.objects.create(addon=self.webapp, ratings_body=rb_de.id,
                                      rating=rb_de.ratings[0].id)
 

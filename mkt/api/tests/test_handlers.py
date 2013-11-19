@@ -270,20 +270,18 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         rating = ratingsbodies.CLASSIND_12
         app = self.create_app()
         app.content_ratings.create(
-            ratings_body=ratingsbodies.CLASSIND.id,
-            rating=rating.id)
+            ratings_body=ratingsbodies.CLASSIND.id, rating=rating.id)
         app.save()
 
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
-        cr = data.get('content_ratings')
+        cr = data.get('content_ratings')['ratings']
 
         self.assertIn('br', cr.keys())
-        eq_(len(cr['br']), 1)
-        eq_(cr['br'][0]['body'], 'CLASSIND')
-        eq_(cr['br'][0]['name'], rating.name)
-        eq_(cr['br'][0]['description'], unicode(rating.description))
+        eq_(cr['br']['body'], 'CLASSIND')
+        eq_(cr['br']['rating'], rating.name)
+        eq_(cr['br']['description'], unicode(rating.description))
 
     def test_dehydrate(self):
         app = self.create_app()

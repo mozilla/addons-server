@@ -824,7 +824,7 @@ class TestRegions(amo.tests.TestCase):
 
     def test_games_form_enabled_with_content_rating(self):
         for region in (mkt.regions.BR, mkt.regions.DE):
-            rb = region.ratingsbodies[0]
+            rb = region.ratingsbody
             ContentRating.objects.create(
                 addon=self.webapp, ratings_body=rb.id, rating=rb.ratings[0].id)
 
