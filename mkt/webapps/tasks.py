@@ -12,6 +12,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
 from django.template import Context, loader
 
+import pytz
 from celery.exceptions import RetryTaskError
 from celeryutils import task
 from pyelasticsearch.exceptions import ElasticHttpNotFoundError
@@ -28,12 +29,13 @@ from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.es.utils import get_indices
 from lib.metrics import get_monolith_client
+from users.models import UserProfile
 from users.utils import get_task_user
 
 import mkt
 from mkt.constants.regions import WORLDWIDE
 from mkt.developers.tasks import fetch_icon, _fetch_manifest, validator
-from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
+from mkt.webapps.models import AppManifest, Installed, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 
 
@@ -371,7 +373,7 @@ def clean_apps(pks, **kw):
 
 @task(ignore_result=False)
 def dump_apps(ids, **kw):
-    task_log.info(u'Dumping apps {0} to {0}. [{0}]'
+    task_log.info(u'Dumping apps {0} to {1}. [{2}]'
                   .format(ids[0], ids[-1], len(ids)))
     for id in ids:
         dump_app(id)
@@ -398,6 +400,74 @@ def zip_apps(*args, **kw):
     cmd = ['tar', 'czf', target_file, '-C',
            settings.DUMPED_APPS_PATH, 'apps'] + files
     task_log.info(u'Creating app dump {0}'.format(target_file))
+    subprocess.call(cmd)
+    return target_file
+
+
+@task(ignore_result=False)
+def dump_user_installs(ids, **kw):
+    task_log.info(u'Dumping user installs {0} to {1}. [{2}]'
+                  .format(ids[0], ids[-1], len(ids)))
+
+    for id in ids:
+        try:
+            user = UserProfile.objects.get(pk=id)
+        except UserProfile.DoesNotExist:
+            task_log.info('User profile does not exist: {0}'.format(id))
+            return
+
+        hash = hashlib.sha256('%s%s' % (str(id),
+                                        settings.SECRET_KEY)).hexdigest()
+        target_dir = os.path.join(settings.DUMPED_USERS_PATH, 'users', hash[0])
+        target_file = os.path.join(target_dir, '%s.json' % hash)
+
+        if not os.path.exists(target_dir):
+            os.makedirs(target_dir)
+
+        # Gather data about user.
+        installed = []
+        zone = pytz.timezone(settings.TIME_ZONE)
+        for install in Installed.objects.filter(user=user):
+            installed.append({
+                'id': install.addon.pk,
+                'slug': install.addon.app_slug,
+                'installed': pytz.utc.normalize(
+                    zone.localize(install.created)).strftime(
+                        '%Y-%m-%dT%H:%M:%S')
+            })
+
+        data = {
+            'user': hash,
+            'region': user.region,
+            'lang': user.lang,
+            'installed_apps': installed,
+        }
+
+        task_log.info('Dumping user {0} to {1}'.format(id, target_file))
+        json.dump(data, open(target_file, 'w'), cls=JSONEncoder)
+
+
+@task
+def zip_users(*args, **kw):
+    # Note: not using storage because all these operations should be local.
+    today = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+    target_dir = os.path.join(settings.DUMPED_USERS_PATH, 'tarballs')
+    target_file = os.path.join(target_dir, '{0}.tgz'.format(today))
+
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+
+    # Put some .txt files in place.
+    context = Context({'date': today, 'url': settings.SITE_URL})
+    files = ['license.txt', 'readme.txt']
+    for f in files:
+        template = loader.get_template('webapps/dump/users/' + f)
+        dest = os.path.join(settings.DUMPED_USERS_PATH, f)
+        open(dest, 'w').write(template.render(context))
+
+    cmd = ['tar', 'czf', target_file, '-C',
+           settings.DUMPED_USERS_PATH, 'users'] + files
+    task_log.info(u'Creating user dump {0}'.format(target_file))
     subprocess.call(cmd)
     return target_file
 

@@ -269,6 +269,12 @@ DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
 # Tarballs in DUMPED_APPS_PATH deleted 30 days after they have been written.
 DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
 
+# Where dumped apps will be written too.
+DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
+
+# Tarballs in DUMPED_USERS_PATH deleted 30 days after they have been written.
+DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
+
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('about', 'admin', 'apps', 'blocklist', 'credits',
                      'developer_agreement', 'developer_faq', 'developers',

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import hashlib
 import json
 import os
 import stat
@@ -24,9 +25,10 @@ from users.models import UserProfile
 from versions.models import Version
 
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
-from mkt.webapps.tasks import (dump_app, notify_developers_of_failure,
-                               update_manifests, zip_apps)
+from mkt.webapps.models import Installed, Webapp
+from mkt.webapps.tasks import (dump_app, dump_user_installs,
+                               notify_developers_of_failure, update_manifests,
+                               zip_apps)
 
 
 original = {
@@ -570,6 +572,33 @@ class TestDumpApps(amo.tests.TestCase):
     def test_public(self, dump_app):
         call_command('process_addons', task='dump_apps')
         assert dump_app.called
+
+
+class TestDumpUserInstalls(amo.tests.TestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        # Create a user install.
+        self.app = Webapp.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=2519)
+        Installed.objects.create(addon=self.app, user=self.user)
+
+    def test_dump_user_installs(self):
+        dump_user_installs([self.user.pk])
+        hash = hashlib.sha256('%s%s' % (str(self.user.pk),
+                                        settings.SECRET_KEY)).hexdigest()
+        data = json.load(open(os.path.join(settings.DUMPED_USERS_PATH, 'users',
+                                           hash[0], '%s.json' % hash), 'r'))
+        eq_(data['user'], hash)
+        eq_(data['region'], self.user.region)
+        eq_(data['lang'], self.user.lang)
+        installed = data['installed_apps'][0]
+        eq_(installed['id'], self.app.id)
+        eq_(installed['slug'], self.app.app_slug)
+        self.assertCloseToNow(
+            datetime.datetime.strptime(installed['installed'],
+                                       '%Y-%m-%dT%H:%M:%S'),
+            datetime.datetime.utcnow())
 
 
 class TestFixMissingIcons(amo.tests.TestCase):

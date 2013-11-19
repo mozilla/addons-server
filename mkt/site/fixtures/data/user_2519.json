@@ -43,7 +43,9 @@
             "created": "2007-03-05 13:09:34",
             "notes": null,
             "modified": "2010-05-07 15:22:13",
-            "notifyevents": true
+            "notifyevents": true,
+            "lang": "en-US",
+            "region": "en"
         }
     }
 ]

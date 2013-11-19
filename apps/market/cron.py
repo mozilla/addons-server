@@ -35,3 +35,12 @@ def mkt_gc(**kw):
             settings.DUMPED_APPS_DAYS_DELETE):
             log.debug('Deleting old tarball: {0}'.format(app))
             os.remove(app)
+
+    # Delete the dumped user installs over 30 days.
+    tarball_path = os.path.join(settings.DUMPED_USERS_PATH, 'tarballs')
+    for filename in os.listdir(tarball_path):
+        filepath = os.path.join(tarball_path, filename)
+        if (os.stat(filepath).st_mtime < time.time() -
+            settings.DUMPED_USERS_DAYS_DELETE):
+            log.debug('Deleting old tarball: {0}'.format(filepath))
+            os.remove(filepath)

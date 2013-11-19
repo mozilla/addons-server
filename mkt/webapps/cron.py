@@ -9,6 +9,7 @@ from django.db.models import Count
 
 import commonware.log
 import cronjobs
+from celery import chord
 from celery.task.sets import TaskSet
 from lib.es.utils import raise_if_reindex_in_progress
 
@@ -16,7 +17,8 @@ import amo
 from amo.utils import chunked
 
 from .models import Installed, Webapp
-from .tasks import update_trending, webapp_update_weekly_downloads
+from .tasks import (dump_user_installs, update_trending,
+                    webapp_update_weekly_downloads, zip_users)
 
 log = commonware.log.getLogger('z.cron')
 
@@ -62,3 +64,26 @@ def update_app_trending():
 
     for ids in chunked(all_ids, chunk_size):
         update_trending.delay(ids)
+
+
+@cronjobs.register
+def dump_user_installs_cron():
+    """
+    """
+    chunk_size = 100
+    # Get valid users to dump.
+    user_ids = set(Installed.objects.filter(addon__type=amo.ADDON_WEBAPP)
+                   .values_list('user', flat=True))
+
+    # Remove old dump data before running.
+    user_dir = os.path.join(settings.DUMPED_USERS_PATH, 'users')
+    if os.path.exists(user_dir):
+        shutil.rmtree(user_dir)
+
+    grouping = []
+    for chunk in chunked(user_ids, chunk_size):
+        grouping.append(dump_user_installs.subtask(args=[chunk]))
+
+    post = zip_users.subtask(immutable=True)
+    ts = chord(grouping, post)
+    ts.apply_async()
