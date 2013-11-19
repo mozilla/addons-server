@@ -199,7 +199,9 @@ class TestApi(BaseOAuth, ESTestCase):
             obj = res.json['objects'][0]
             eq_(obj['absolute_url'], self.webapp.get_absolute_url())
             eq_(obj['app_type'], self.webapp.app_type)
-            eq_(obj['content_ratings'], None)
+            eq_(obj['content_ratings'],
+                {'descriptors': [], 'interactive_elements': [],
+                 'ratings': None})
             eq_(obj['current_version'], u'1.0')
             eq_(obj['description'], unicode(self.webapp.description))
             eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
