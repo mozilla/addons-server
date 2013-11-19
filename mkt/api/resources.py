@@ -17,7 +17,8 @@ from rest_framework.serializers import (BooleanField, CharField,
                                         HyperlinkedIdentityField,
                                         HyperlinkedRelatedField,
                                         ModelSerializer)
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
+from rest_framework.viewsets import (GenericViewSet, ModelViewSet,
+                                     ReadOnlyModelViewSet)
 
 from tastypie import fields, http
 from tastypie.serializers import Serializer
@@ -42,10 +43,12 @@ from mkt.api.authentication import (SharedSecretAuthentication,
 from mkt.api.authorization import (AllowAppOwner, AllowReviewerReadOnly,
                                    AppOwnerAuthorization, GroupPermission,
                                    OwnerAuthorization)
-from mkt.api.base import (CORSMixin, CORSResource, GenericObject, http_error,
-                          MarketplaceModelResource, MarketplaceResource, SlugOrIdMixin)
+from mkt.api.base import (CORSMixin, CORSResource, http_error,
+                          MarketplaceModelResource, MarketplaceResource,
+                          SlugOrIdMixin)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, UploadForm)
 from mkt.api.http import HttpLegallyUnavailable
+from mkt.api.serializers import CarrierSerializer, RegionSerializer
 from mkt.carriers import CARRIER_MAP, CARRIERS
 from mkt.developers import tasks
 from mkt.regions import get_region, REGIONS_DICT
@@ -372,47 +375,27 @@ def site_config(request):
         })
 
 
-class RegionResource(CORSResource, MarketplaceResource):
-    name = fields.CharField('name')
-    slug = fields.CharField('slug')
-    id = fields.IntegerField('id')
-    default_currency = fields.CharField('default_currency')
-    default_language = fields.CharField('default_language')
-    ratingsbody = fields.CharField('ratingsbody', null=True)
+class RegionViewSet(CORSMixin, ReadOnlyModelViewSet):
+    cors_allowed_methods = ['get']
+    authentication_classes = []
+    permission_classes = [AllowAny]
+    serializer_class = RegionSerializer
 
-    class Meta(MarketplaceResource.Meta):
-        detail_allowed_methods = ['get']
-        list_allowed_methods = ['get']
-        resource_name = 'region'
-        slug_lookup = 'slug'
-
-    def dehydrate_ratingsbody(self, bundle):
-        if bundle.obj.ratingsbody:
-            return bundle.obj.ratingsbody.name
-
-    def obj_get_list(self, request=None, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         return REGIONS_DICT.values()
 
-    def obj_get(self, request=None, **kwargs):
-        return REGIONS_DICT.get(kwargs['pk'], None)
+    def get_object(self, *args, **kwargs):
+        return REGIONS_DICT.get(self.kwargs['pk'], None)
 
 
-class CarrierResource(CORSResource, MarketplaceResource):
-    name = fields.CharField('name')
-    slug = fields.CharField('slug')
-    id = fields.IntegerField('id')
+class CarrierViewSet(RegionViewSet):
+    serializer_class = CarrierSerializer
 
-    class Meta(MarketplaceResource.Meta):
-        detail_allowed_methods = ['get']
-        list_allowed_methods = ['get']
-        resource_name = 'carrier'
-        slug_lookup = 'slug'
-
-    def obj_get_list(self, request=None, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         return CARRIERS
 
-    def obj_get(self, request=None, **kwargs):
-        return CARRIER_MAP.get(kwargs['pk'], None)
+    def get_object(self, *args, **kwargs):
+        return CARRIER_MAP.get(self.kwargs['pk'], None)
 
 
 @api_view(['POST'])

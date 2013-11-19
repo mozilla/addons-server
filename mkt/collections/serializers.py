@@ -174,9 +174,9 @@ class CollectionSerializer(serializers.ModelSerializer):
         source='*',
         view_name='collection-image-detail',
         predicate=lambda o: o.has_image)
-    carrier = SlugChoiceField(required=False,
+    carrier = SlugChoiceField(required=False, empty=None,
         choices_dict=mkt.carriers.CARRIER_MAP)
-    region = SlugChoiceField(required=False,
+    region = SlugChoiceField(required=False, empty=None,
         choices_dict=mkt.regions.REGIONS_DICT)
     category = SlugModelChoiceField(required=False,
         queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
