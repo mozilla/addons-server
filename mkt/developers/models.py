@@ -233,6 +233,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
             raise NotImplementedError('Currently we only support Bango '
                                       'so the associated account must '
                                       'have a account_id')
+
         res = None
         if product_uri:
             data = {'seller_product': uri_to_pk(product_uri)}
@@ -240,7 +241,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
                 res = client.api.bango.product.get_object(**data)
             except ObjectDoesNotExist:
                 # The product does not exist in Solitude so create it.
-                res = client.api.bango.product.post(data={
+                res = client.api.provider.bango.product.post(data={
                     'seller_bango': payment_account.uri,
                     'seller_product': product_uri,
                     'name': unicode(addon.name),
@@ -249,60 +250,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
                     'secret': secret
                 })
 
-        product_uri = res['resource_uri']
-        bango_number = res['bango_id']
-
-        # If the app is already premium this does nothing.
-        if addon.premium_type != amo.ADDON_FREE_INAPP:
-            cls._push_bango_premium(bango_number, product_uri,
-                                    addon.addonpremium.price.price)
-
-        return product_uri
-
-    @classmethod
-    def _push_bango_premium(cls, bango_number, product_uri, price):
-        if price != 0:
-            # Make the Bango product premium.
-            client.api.bango.premium.post(
-                data={'bango': bango_number,
-                      'price': price,
-                      'currencyIso': 'USD',
-                      'seller_product_bango': product_uri})
-
-        # Update the Bango rating.
-        client.api.bango.rating.post(
-            data={'bango': bango_number,
-                  'rating': 'UNIVERSAL',
-                  'ratingScheme': 'GLOBAL',
-                  'seller_product_bango': product_uri})
-        # Bug 836865.
-        client.api.bango.rating.post(
-            data={'bango': bango_number,
-                  'rating': 'GENERAL',
-                  'ratingScheme': 'USA',
-                  'seller_product_bango': product_uri})
-
-        return product_uri
-
-    def update_price(self, new_price):
-        if self.provider == 'bango':
-            # Get the Bango number for this product.
-            res = client.api.by_url(self.product_uri).get_object()
-            bango_number = res['bango_id']
-
-            AddonPaymentAccount._push_bango_premium(
-                bango_number, self.product_uri, new_price)
-
-    def delete(self):
-        if self.provider == 'bango':
-            # TODO(solitude): Once solitude supports DeleteBangoNumber, that
-            # goes here.
-            # ...also, make it a (celery) task.
-
-            # client.delete_product_bango(self.product_uri)
-            pass
-
-        super(AddonPaymentAccount, self).delete()
+        return res['resource_uri']
 
 
 class UserInappKey(amo.models.ModelBase):

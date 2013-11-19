@@ -221,17 +221,6 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         eq_(apa.account_uri, 'acuri')
         eq_(apa.product_uri, 'bpruri')
 
-        client.api.bango.premium.post.assert_called_with(
-            data={'bango': 'bango#', 'price': self.price.price,
-                  'currencyIso': 'USD', 'seller_product_bango': 'bpruri'})
-
-        eq_(client.api.bango.rating.post.call_args_list[0][1]['data'],
-            {'bango': 'bango#', 'rating': 'UNIVERSAL',
-             'ratingScheme': 'GLOBAL', 'seller_product_bango': 'bpruri'})
-        eq_(client.api.bango.rating.post.call_args_list[1][1]['data'],
-            {'bango': 'bango#', 'rating': 'GENERAL',
-             'ratingScheme': 'USA', 'seller_product_bango': 'bpruri'})
-
     @patch('uuid.uuid4', Mock(return_value='lol'))
     @patch('mkt.developers.models.generate_key', Mock(return_value='poop'))
     @patch('mkt.developers.models.client')
@@ -262,28 +251,3 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
             'bango', addon=self.app, payment_account=self.account)
         ok_('packageId' in
             client.api.bango.product.post.call_args[1]['data'])
-
-    @patch('mkt.developers.models.client')
-    def test_update_price(self, client):
-        new_price = 123456
-        get = Mock()
-        get.get_object.return_value = {'bango_id': 'bango#'}
-        client.api.by_url.return_value = get
-
-        payment_account = PaymentAccount.objects.create(
-            user=self.user, name='paname', uri='/path/to/object',
-            solitude_seller=self.seller)
-
-        apa = AddonPaymentAccount.objects.create(
-            addon=self.app, provider='bango', account_uri='acuri',
-            payment_account=payment_account,
-            product_uri='bpruri')
-
-        apa.update_price(new_price)
-
-        client.api.bango.premium.post.assert_called_with(
-            data={'bango': 'bango#', 'price': new_price,
-                  'currencyIso': 'USD', 'seller_product_bango': 'bpruri'})
-        client.api.bango.rating.post.assert_called_with(
-            data={'bango': 'bango#', 'rating': 'GENERAL',
-                  'ratingScheme': 'USA', 'seller_product_bango': 'bpruri'})
