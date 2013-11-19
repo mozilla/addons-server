@@ -1,5 +1,5 @@
-from datetime import datetime, timedelta
 import time
+from datetime import datetime, timedelta
 
 import mock
 from nose.tools import eq_
@@ -19,7 +19,10 @@ class TestGarbage(amo.tests.TestCase):
         amo.log(amo.LOG.CUSTOM_TEXT, 'testing', user=self.user,
                 created=datetime(2001, 1, 1))
 
-    def test_garbage_collection(self):
+    @mock.patch('os.stat')
+    @mock.patch('os.listdir')
+    @mock.patch('os.remove')
+    def test_garbage_collection(self, rm_mock, ls_mock, stat_mock):
         eq_(ActivityLog.objects.all().count(), 1)
         mkt_gc()
         eq_(ActivityLog.objects.all().count(), 0)
