@@ -13,7 +13,7 @@
           <h3>{{ addon.name }}</h3>
         </a>
         <div class="more adu">
-          {{ _('{0} users')|f(addon.average_daily_users|numberfmt) }}
+          {{ _('{0} users')|f(addon.persona.popularity|numberfmt) }}
         </div>
       </div>
     </li>
