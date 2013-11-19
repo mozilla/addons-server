@@ -149,7 +149,7 @@ class AccountCase(TestCase):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         self.seller = SolitudeSeller.objects.create(user_id=2519)
         self.account = PaymentAccount.objects.create(user_id=2519,
-            solitude_seller=self.seller, bango_package_id=123)
+            solitude_seller=self.seller, bango_package_id=123, name='mine')
         self.payment_list = reverse('app-payment-account-list')
 
     def create(self):
@@ -243,13 +243,14 @@ class TestPaymentAccount(RestOAuth, AccountCase):
         eq_(res.status_code, 403, res.content)
 
     def other(self, shared=False):
-        other_account = PaymentAccount.objects.create(user_id=31337,
-            solitude_seller=self.seller, bango_package_id=123,
-            seller_uri='seller_uri', uri='uri', shared=shared)
-        other_url = get_absolute_url(
-            get_url('account', pk=other_account.pk),
+        self.seller2 = SolitudeSeller.objects.create(user_id=31337, uuid='foo')
+        self.other_account = PaymentAccount.objects.create(user_id=31337,
+            solitude_seller=self.seller2, bango_package_id=123,
+            seller_uri='seller_uri', uri='uri', shared=shared, name='other')
+        self.other_url = get_absolute_url(
+            get_url('account', pk=self.other_account.pk),
             api_name='payments', absolute=False)
-        return self.data(overrides={'payment_account': other_url})
+        return self.data(overrides={'payment_account': self.other_url})
 
     @patch('mkt.developers.models.client')
     def test_cant_use_someone_elses(self, client):
@@ -268,6 +269,101 @@ class TestPaymentAccount(RestOAuth, AccountCase):
         self.create_user()
         res = self.client.post(self.payment_list, data=json.dumps(data))
         eq_(res.status_code, 201, res.content)
+
+    @patch('mkt.developers.models.client')
+    def test_get_payments_account(self, payserver_client):
+        self.setup_mock(payserver_client)
+        res = self.client.get(self.payment_url)
+        eq_(res.status_code, 200, res.content)
+        data = json.loads(res.content)
+        eq_(data['account_name'], 'mine')
+
+    @patch('mkt.developers.models.client')
+    def test_get_other_payments_account(self, payserver_client):
+        self.other()
+        self.setup_mock(payserver_client)
+        res = self.client.get(self.other_url)
+        eq_(res.status_code, 404, res.content)
+
+    @patch('mkt.developers.models.client')
+    def test_update_payments_account(self, payserver_client):
+        self.setup_mock(payserver_client)
+        new_data = {
+             'bankAccountPayeeName': 'name',
+             'companyName': 'company',
+             'vendorName': 'vendor',
+             'financeEmailAddress': 'a@a.com',
+             'adminEmailAddress': 'a@a.com',
+             'supportEmailAddress': 'a@a.com',
+             'address1': 'address 1',
+             'addressCity': 'city',
+             'addressState': 'state',
+             'addressZipCode': 'zip',
+             'addressPhone': '123',
+             'countryIso': 'BRA',
+             'currencyIso': 'EUR',
+             'bankAccountNumber': '123',
+             'bankAccountCode': '123',
+             'bankName': 'asd',
+             'bankAddress1': 'address 2',
+             'bankAddressZipCode': '123',
+             'bankAddressIso': 'BRA',
+             'account_name': 'new'
+        }
+        res = self.client.put(self.payment_url, data=json.dumps(new_data))
+        eq_(res.status_code, 204, res.content)
+        self.account.reload()
+        eq_(self.account.name, 'new')
+
+    @patch('mkt.developers.models.client')
+    def test_update_other_payments_account(self, payserver_client):
+        self.other()
+        self.setup_mock(payserver_client)
+        new_data = {
+             'bankAccountPayeeName': 'name',
+             'companyName': 'company',
+             'vendorName': 'vendor',
+             'financeEmailAddress': 'a@a.com',
+             'adminEmailAddress': 'a@a.com',
+             'supportEmailAddress': 'a@a.com',
+             'address1': 'address 1',
+             'addressCity': 'city',
+             'addressState': 'state',
+             'addressZipCode': 'zip',
+             'addressPhone': '123',
+             'countryIso': 'BRA',
+             'currencyIso': 'EUR',
+             'bankAccountNumber': '123',
+             'bankAccountCode': '123',
+             'bankName': 'asd',
+             'bankAddress1': 'address 2',
+             'bankAddressZipCode': '123',
+             'bankAddressIso': 'BRA',
+             'account_name': 'h4x0r'
+        }
+        res = self.client.put(self.other_url, data=json.dumps(new_data))
+        eq_(res.status_code, 404, res.content)
+        self.other_account.reload()
+        eq_(self.other_account.name, 'other')  # not h4x0r.
+
+    @patch('mkt.developers.models.client')
+    def test_delete_payments_account(self, payserver_client):
+        self.setup_mock(payserver_client)
+        eq_(self.account.inactive, False)
+        res = self.client.delete(self.payment_url)
+        eq_(res.status_code, 204, res.content)
+        self.account.reload()
+        eq_(self.account.inactive, True)
+
+    @patch('mkt.developers.models.client')
+    def test_delete_others_payments_account(self, payserver_client):
+        self.other()
+        self.setup_mock(payserver_client)
+        eq_(self.other_account.inactive, False)
+        res = self.client.delete(self.other_url)
+        eq_(res.status_code, 404, res.content)
+        self.other_account.reload()
+        eq_(self.other_account.inactive, False)
 
 
 class TestPaymentStatus(RestOAuth, AccountCase):
