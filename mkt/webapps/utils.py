@@ -175,7 +175,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
              'support_url', 'weekly_downloads')
     data = dict((a, getattr(obj, a, None)) for a in attrs)
 
-    if obj.content_ratings:
+    if getattr(obj, 'content_ratings', None):
         for region_key in obj.content_ratings:
             obj.content_ratings[region_key] = dehydrate_content_rating(
                 obj.content_ratings[region_key])
@@ -186,10 +186,12 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         'author': src.get('author', ''),
         'categories': [c for c in obj.category],
         'content_ratings': {
-            'ratings': obj.content_ratings,
-            'descriptors': dehydrate_descriptors(obj.content_descriptors),
+            'ratings': getattr(obj, 'content_ratings', []),
+            'descriptors':
+                dehydrate_descriptors(getattr(obj, 'content_descriptors', [])),
             'interactive_elements':
-                dehydrate_interactives(obj.interactive_elements),
+                dehydrate_interactives(getattr(obj, 'interactive_elements',
+                                       [])),
         },
         'description': get_attr_lang(src, 'description', obj.default_locale),
         'device_types': [DEVICE_TYPES[d].api_name for d in src.get('device')],
