@@ -43,7 +43,7 @@ if you're running a recent version, you can `install them automatically
     sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig openssl
 
 On versions 12.04 and later, you will need to install a patched version of
-M2Crypto instead of the version from PyPI.::
+M2Crypto instead of the version from PyPI::
 
     pip install git+git://github.com/ametaireau/M2Crypto.git
 
@@ -152,6 +152,35 @@ Finish the install
 From inside your activated virtualenv, install the required python packages::
 
     pip install --no-deps -r requirements/dev.txt
+
+If you are on a linux box and get a compilation error while installing M2Crypto
+like the following::
+
+    SWIG/_m2crypto_wrap.c:6116:1: error: unknown type name ‘STACK’
+
+    ... snip a very long output of errors around STACK...
+
+    SWIG/_m2crypto_wrap.c:23497:20: error: expected expression before ‘)’ token
+
+       result = (STACK *)pkcs7_get0_signers(arg1,arg2,arg3);
+
+                        ^
+
+    error: command 'gcc' failed with exit status 1
+
+It may be because the SSLv2 symbols are not available on your platform. In this
+case, you can install Alexis' fork:
+
+* comment the line starting with ``M2Crypto`` in ``requirements/compiled.txt``
+* install Alexis' fork and rerun the install::
+
+    pip install git+git://github.com/ametaireau/M2Crypto.git
+    pip install --no-deps -r requirements/dev.txt
+
+* revert your changes to ``requirements/compiled.txt``::
+
+    git checkout requirements/compiled.txt
+
 
 .. _example-settings:
 
@@ -280,6 +309,21 @@ Run The Add-ons Server
 
     ./manage.py runserver --settings=settings_local_amo 0.0.0.0:8000
 
+.. note::
+
+   If you don't have a LESS compiler already installed, opening
+   http://localhost:8000 in your browser will raise a 500 server error.
+   If you don't want to run through the :doc:`./advanced-installation`
+   documentation just right now, you can disable all LESS pre-processing by
+   adding the following line to your settings_local file::
+
+      LESS_PREPROCESS = False
+
+   Be aware, however, that this will make the site VERY slow, as a huge amount
+   of LESS files will be served to your browser on EACH request, and each of
+   those will be compiled on the fly by the LESS javascript compiler.
+
+
 Run The Marketplace Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -304,9 +348,15 @@ Create an Admin User
 --------------------
 
 To log into your dev site, you can click the login / register link and login
-with Browser ID just like on the live site. However, if you want to grant
-yourself admin privileges there are some additional steps. After registering,
-find your user record::
+with Persona just like on the live site.
+
+If, however, you don't have Persona enabled on your site, you can register a
+new user "the old way" by filling in the registration form. Remember to
+activate this user using the link in the confirmation email sent: it's
+displayed in the console, check your server logs.
+
+In any case, if you want to grant yourself admin privileges there are some
+additional steps. After registering, find your user record::
 
     mysql> select * from auth_user order by date_joined desc limit 1\G
 
