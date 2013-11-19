@@ -24,7 +24,7 @@
     <menu class="nav-action-menu">
       <div>
         {% for url_, tab_code, text in tabs %}
-          <button data-url="{{ url_ }}">{{ text }}</button>
+          <button data-url="{{ url(url_) }}">{{ text }}</button>
         {% endfor %}
       </div>
       <button data-url="#cancel">{{ _('Cancel') }}</button>
