@@ -39,7 +39,7 @@ class TestRatingsBodies(amo.tests.TestCase):
 
     def test_ratings_by_name_lazy_translation(self):
         generic_3_choice = ratingsbodies.RATINGS_BY_NAME()[6]
-        eq_(generic_3_choice[1], 'Generic - 3+')
+        eq_(generic_3_choice[1], 'Generic - For ages 3+')
 
     def test_ratings_has_ratingsbody(self):
         eq_(ratingsbodies.GENERIC_3.ratingsbody, ratingsbodies.GENERIC)
@@ -47,3 +47,21 @@ class TestRatingsBodies(amo.tests.TestCase):
         eq_(ratingsbodies.ESRB_E.ratingsbody, ratingsbodies.ESRB)
         eq_(ratingsbodies.USK_0.ratingsbody, ratingsbodies.USK)
         eq_(ratingsbodies.PEGI_3.ratingsbody, ratingsbodies.PEGI)
+
+    def test_dehydrate_rating(self):
+        self.create_switch('iarc')
+
+        for rating in ratingsbodies.ALL_RATINGS():
+            rating = ratingsbodies.dehydrate_rating(rating)
+            assert isinstance(rating.name, unicode)
+            assert rating.label
+            assert isinstance(rating.description, unicode)
+
+    def test_dehydrate_ratings_body(self):
+        self.create_switch('iarc')
+
+        for k, body in ratingsbodies.RATINGS_BODIES.iteritems():
+            body = ratingsbodies.dehydrate_ratings_body(body)
+            assert isinstance(body.name, unicode)
+            assert body.label
+            assert isinstance(body.description, unicode)

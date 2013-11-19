@@ -638,6 +638,40 @@ class TestWebapp(amo.tests.TestCase):
         self.create_switch('iarc')
         assert not app_factory().set_iarc_storefront_data()
 
+    def test_get_descriptors_es(self):
+        app = app_factory()
+        eq_(app.get_descriptors(es=True), [])
+
+        app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
+        self.assertSetEqual(
+            app.get_descriptors(es=True), ['ESRB_BLOOD', 'PEGI_SCARY'])
+
+    def test_get_descriptors_dehydrated(self):
+        app = app_factory()
+        eq_(app.get_descriptors(), [])
+
+        app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
+        eq_(sorted(app.get_descriptors(), key=lambda x: x['name']),
+            [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
+             {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
+
+    def test_get_interactives_es(self):
+        app = app_factory()
+        eq_(app.get_interactives(es=True), [])
+
+        app.set_interactives(['has_social_networking', 'has_shares_info'])
+        self.assertSetEqual(app.get_interactives(es=True),
+                            ['SOCIAL_NETWORKING', 'SHARES_INFO'])
+
+    def test_get_interactives_dehydrated(self):
+        app = app_factory()
+        eq_(app.get_interactives(), [])
+
+        app.set_interactives(['has_social_networking', 'has_shares_info'])
+        eq_(app.get_interactives(),
+            [{'label': 'shares-info', 'name': 'Shares Info'},
+             {'label': 'social-networking', 'name': 'Social Networking'}])
+
     def test_has_payment_account(self):
         app = app_factory()
         assert not app.has_payment_account()
@@ -1156,12 +1190,11 @@ class TestContentRating(amo.tests.WebappTestCase):
     def setUp(self):
         self.app = self.get_app()
 
-    @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
-                       (mkt.ratingsbodies.CLASSIND,))
-    @mock.patch.object(mkt.regions.US, 'ratingsbodies',
-                       (mkt.ratingsbodies.ESRB,))
-    @mock.patch.object(mkt.regions.VE, 'ratingsbodies',
-                       (mkt.ratingsbodies.GENERIC,))
+    @mock.patch.object(mkt.regions.BR, 'ratingsbody',
+                       mkt.ratingsbodies.CLASSIND)
+    @mock.patch.object(mkt.regions.US, 'ratingsbody', mkt.ratingsbodies.ESRB)
+    @mock.patch.object(mkt.regions.VE, 'ratingsbody',
+                       mkt.ratingsbodies.GENERIC)
     def test_get_regions_and_slugs(self):
         classind_rating = ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
@@ -1176,12 +1209,11 @@ class TestContentRating(amo.tests.WebappTestCase):
         assert mkt.regions.US.slug not in slugs
         assert mkt.regions.VE.slug not in slugs
 
-    @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
-                       (mkt.ratingsbodies.CLASSIND,))
-    @mock.patch.object(mkt.regions.DE, 'ratingsbodies',
-                       (mkt.ratingsbodies.ESRB,))
-    @mock.patch.object(mkt.regions.VE, 'ratingsbodies',
-                       (mkt.ratingsbodies.GENERIC,))
+    @mock.patch.object(mkt.regions.BR, 'ratingsbody',
+                       mkt.ratingsbodies.CLASSIND)
+    @mock.patch.object(mkt.regions.DE, 'ratingsbody', mkt.ratingsbodies.ESRB)
+    @mock.patch.object(mkt.regions.VE, 'ratingsbody',
+                       mkt.ratingsbodies.GENERIC)
     def test_get_regions_and_slugs_generic_fallback(self):
         gen_rating = ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
@@ -1202,19 +1234,19 @@ class TestContentRating(amo.tests.WebappTestCase):
     @mock.patch.object(mkt.ratingsbodies.CLASSIND, 'name', 'CLASSIND')
     @mock.patch.object(mkt.ratingsbodies.CLASSIND_10, 'name', '10+')
     @mock.patch.object(mkt.ratingsbodies.ESRB_E, 'name', 'Everybody 10+')
-    @mock.patch.object(mkt.ratingsbodies.ESRB_E, 'slug', '10')
+    @mock.patch.object(mkt.ratingsbodies.ESRB_E, 'label', '10')
     def test_get_ratings(self):
-        # Infer the slug from the name.
+        # Infer the label from the name.
         cr = ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
             rating=mkt.ratingsbodies.CLASSIND_10.id)
-        eq_(cr.get_rating().slug, '10')
-        eq_(cr.get_body().slug, 'classind')
+        eq_(cr.get_rating().label, '10')
+        eq_(cr.get_body().label, 'classind')
 
-        # When already has slug set.
+        # When already has label set.
         eq_(ContentRating.objects.create(
                 addon=self.app, ratings_body=mkt.ratingsbodies.ESRB.id,
-                rating=mkt.ratingsbodies.ESRB_E.id).get_rating().slug,
+                rating=mkt.ratingsbodies.ESRB_E.id).get_rating().label,
             '10')
 
 
@@ -1251,9 +1283,9 @@ class TestContentRatingsIn(amo.tests.WebappTestCase):
                 [])
             eq_(self.app.content_ratings_in(region=region, category=cat), [])
 
-    @mock.patch.object(mkt.regions.CO, 'ratingsbodies', ())
-    @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
-                       (mkt.ratingsbodies.CLASSIND,))
+    @mock.patch.object(mkt.regions.CO, 'ratingsbody', None)
+    @mock.patch.object(mkt.regions.BR, 'ratingsbody',
+                       mkt.ratingsbodies.CLASSIND)
     def test_generic_fallback(self):
         # Test region with no rating body returns generic content rating.
         crs = ContentRating.objects.create(
@@ -1537,11 +1569,8 @@ class TestWebappIndexer(amo.tests.TestCase):
         obj, doc = self._get_doc()
         eq_(doc['is_escalated'], True)
 
-    @mock.patch.object(mkt.regions.BR, 'ratingsbodies',
-                       (mkt.ratingsbodies.PEGI,))
-    @mock.patch.object(mkt.ratingsbodies.PEGI, 'name', 'peggyhill')
-    @mock.patch.object(mkt.ratingsbodies.PEGI_12, 'name', '12+')
-    @mock.patch.object(mkt.ratingsbodies.PEGI_12, 'description', 'be old')
+    @mock.patch.object(mkt.regions.BR, 'ratingsbody',
+                       mkt.ratingsbodies.PEGI)
     def test_extract_content_ratings(self):
         # These ones shouldn't appear, outside region.
         ContentRating.objects.create(
@@ -1556,18 +1585,12 @@ class TestWebappIndexer(amo.tests.TestCase):
             addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
             rating=mkt.ratingsbodies.PEGI_12.id)
         obj, doc = self._get_doc()
-        eq_(doc['content_ratings']['br'][0], {
-            'body': 'peggyhill',
-            'body_slug': 'peggyhill',
-            'name': '12+',
-            'slug': '12',
-            'description': unicode('be old')})
+        eq_(doc['content_ratings']['br'],
+            {'body': mkt.ratingsbodies.PEGI.id,
+             'rating': mkt.ratingsbodies.PEGI_12.id})
 
-    @mock.patch.object(mkt.regions.VE, 'ratingsbodies', ())
-    @mock.patch.object(mkt.regions.RS, 'ratingsbodies', ())
-    @mock.patch.object(mkt.ratingsbodies.GENERIC, 'name', 'genny')
-    @mock.patch.object(mkt.ratingsbodies.GENERIC_12, 'name', 'genny-name')
-    @mock.patch.object(mkt.ratingsbodies.GENERIC_12, 'description', 'g-desc')
+    @mock.patch.object(mkt.regions.VE, 'ratingsbody', None)
+    @mock.patch.object(mkt.regions.RS, 'ratingsbody', None)
     def test_extract_content_ratings_generic_fallback(self):
         # These ones shouldn't appear, they are associated w/ region.
         ContentRating.objects.create(
@@ -1584,12 +1607,9 @@ class TestWebappIndexer(amo.tests.TestCase):
             addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
             rating=mkt.ratingsbodies.GENERIC_12.id)
         obj, doc = self._get_doc()
-        eq_(doc['content_ratings']['generic'][0], {
-            'body': 'genny',
-            'body_slug': 'genny',
-            'name': 'genny-name',
-            'slug': 'genny-name',
-            'description': unicode('g-desc')})
+        eq_(doc['content_ratings']['generic'],
+            {'body': mkt.ratingsbodies.GENERIC.id,
+             'rating': mkt.ratingsbodies.GENERIC_12.id})
 
         # Make sure the content rating is shoved in the generic region,
         # not the actual regions (it'd be redundant).

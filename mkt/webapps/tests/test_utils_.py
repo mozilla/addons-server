@@ -43,7 +43,7 @@ class TestAppToDict(amo.tests.TestCase):
         eq_(int(preview['id']), obj.pk)
 
     def test_no_rating(self):
-        eq_(app_to_dict(self.app)['content_ratings'], None)
+        eq_(app_to_dict(self.app)['content_ratings']['ratings'], None)
 
     def test_no_price(self):
         res = app_to_dict(self.app)
@@ -112,6 +112,38 @@ class TestAppToDict(amo.tests.TestCase):
         res = app_to_dict(self.app)
         self.assertSetEqual(res['categories'], ['cat1', 'cat2'])
 
+    def test_content_ratings(self):
+        self.app.set_content_ratings({
+            ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
+            ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
+        })
+        res = app_to_dict(self.app)
+        eq_(res['content_ratings']['ratings']['br'],
+            {'body': 'CLASSIND',
+             'body_label': 'classind',
+             'rating': 'For ages 18+',
+             'rating_label': '18',
+             'description': unicode(ratingsbodies.CLASSIND_18.description)})
+        eq_(res['content_ratings']['ratings']['generic'],
+            {'body': 'Generic',
+             'body_label': 'generic',
+             'rating': 'For ages 18+',
+             'rating_label': '18',
+             'description': unicode(ratingsbodies.GENERIC_18.description)})
+
+    def test_content_descriptors(self):
+        self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
+        res = app_to_dict(self.app)
+        eq_(res['content_ratings']['descriptors'],
+            [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
+             {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
+
+    def test_interactive_elements(self):
+        self.app.set_interactives(['has_social_networking', 'has_shares_info'])
+        res = app_to_dict(self.app)
+        eq_(res['content_ratings']['interactive_elements'],
+            [{'label': 'shares-info', 'name': 'Shares Info'},
+             {'label': 'social-networking', 'name': 'Social Networking'}])
 
 class TestAppToDictPrices(amo.tests.TestCase):
     fixtures = fixture('user_2519')
@@ -266,19 +298,37 @@ class TestESAppToDict(amo.tests.ESTestCase):
                     (expected[k], k, v))
 
     def test_content_ratings(self):
-        rating = ratingsbodies.CLASSIND_18
-        self.app.content_ratings.create(
-            ratings_body=ratingsbodies.CLASSIND.id,
-            rating=rating.id)
+        self.app.set_content_ratings({
+            ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
+            ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
+        })
+        self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
+        self.app.set_interactives(['has_social_networking', 'has_shares_info'])
         self.app.save()
         self.refresh('webapp')
+
         res = es_app_to_dict(self.get_obj())
-        eq_(res['content_ratings'],
-            {'br': [{'body': 'CLASSIND',
-                     'body_slug': 'classind',
-                     'name': rating.name,
-                     'slug': '18',
-                     'description': unicode(rating.description)}]})
+        eq_(res['content_ratings']['ratings']['br'],
+            {'body': 'CLASSIND',
+             'body_label': 'classind',
+             'rating': 'For ages 18+',
+             'rating_label': '18',
+             'description': unicode(ratingsbodies.CLASSIND_18.description)})
+        eq_(res['content_ratings']['ratings']['generic'],
+            {'body': 'Generic',
+             'body_label': 'generic',
+             'rating': 'For ages 18+',
+             'rating_label': '18',
+             'description': unicode(ratingsbodies.GENERIC_18.description)})
+
+        eq_(sorted(res['content_ratings']['descriptors'],
+                   key=lambda x: x['name']),
+            [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
+             {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
+        eq_(sorted(res['content_ratings']['interactive_elements'],
+                   key=lambda x: x['name']),
+            [{'label': 'shares-info', 'name': 'Shares Info'},
+             {'label': 'social-networking', 'name': 'Social Networking'}])
 
     def test_show_downloads_count(self):
         """Show weekly_downloads in results if app stats are public."""
