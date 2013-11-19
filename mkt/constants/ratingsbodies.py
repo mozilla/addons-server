@@ -337,7 +337,8 @@ def RATINGS_BY_NAME():
         if rb in (CLASSIND, GENERIC) or waffle.switch_is_active('iarc'):
             for r in rb.ratings:
                 ratings_choices.append(
-                    (all_ratings.index(r), u'%s - %s' % (rb.name, r.name)))
+                    (all_ratings.index(r),
+                     u'%s - %s' % (rb.name, dehydrate_rating(r).name)))
     return ratings_choices
 
 
