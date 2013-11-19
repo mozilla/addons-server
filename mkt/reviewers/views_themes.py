@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 
 import jingo
-from tower import ugettext as _
+from tower import ugettext as _, ungettext as ngettext
 
 import amo
 from access import acl
@@ -19,7 +19,7 @@ from amo.search import TempS
 from amo.urlresolvers import reverse
 from amo.utils import days_ago, paginate
 from devhub.models import ActivityLog
-from editors.models import RereviewQueueTheme
+from editors.models import RereviewQueueTheme, ReviewerScore
 from editors.views import reviewer_required
 from search.views import name_only_query
 from zadmin.decorators import admin_required
@@ -278,6 +278,7 @@ def themes_commit(request):
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
     formset = ThemeReviewFormset(request.POST)
 
+    scores = []
     for form in formset:
         try:
             lock = ThemeLock.objects.filter(
@@ -287,7 +288,18 @@ def themes_commit(request):
             # Address off-by-one error caused by management form.
             continue
         if lock and form.is_valid():
-            form.save()
+            scores.append(form.save())
+
+    # Success message.
+    points = sum(scores)
+    success = ngettext(
+        # L10n: {0} is the number of reviews. {1} is the points just earned.
+        # L10n: {2} is the total number of points the reviewer has overall.
+        '{0} theme review successfully processed (+{1} points, {2} total).',
+        '{0} theme reviews successfully processed (+{1} points, {2} total).',
+        len(scores)).format(len(scores), points,
+                            ReviewerScore.get_total(request.amo_user))
+    amo.messages.success(request, success)
 
     if 'theme_redirect_url' in request.session:
         return redirect(request.session['theme_redirect_url'])
