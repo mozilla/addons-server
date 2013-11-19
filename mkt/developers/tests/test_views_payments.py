@@ -36,7 +36,7 @@ def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
     payment = PaymentAccount.objects.create(user=user, solitude_seller=seller,
                                             agreed_tos=True, seller_uri=uid,
                                             uri=uid,
-                                            bango_package_id=package_id)
+                                            account_id=package_id)
     return AddonPaymentAccount.objects.create(addon=app,
         product_uri='/path/to/%s/' % app.pk, account_uri=payment.uri,
         payment_account=payment)
@@ -464,7 +464,7 @@ class TestPayments(amo.tests.TestCase):
         acct = PaymentAccount.objects.create(
             user=user, uri='asdf-%s' % user.pk, name='test', inactive=False,
             seller_uri='suri-%s' % user.pk, solitude_seller=seller,
-            bango_package_id=123, agreed_tos=True)
+            account_id=123, agreed_tos=True)
         return acct, api, user
 
     def is_owner(self, user):

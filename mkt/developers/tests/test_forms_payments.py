@@ -323,7 +323,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
         data = dict(user=user, uri='asdf-%s' % user.pk, name='test',
                     inactive=False, solitude_seller=seller,
-                    seller_uri='suri-%s' % user.pk, bango_package_id=123,
+                    seller_uri='suri-%s' % user.pk, account_id=123,
                     agreed_tos=True, shared=False)
         data.update(**kwargs)
         return models.PaymentAccount.objects.create(**data)
@@ -530,7 +530,7 @@ class TestPaidRereview(amo.tests.TestCase):
 
         self.account = models.PaymentAccount.objects.create(
             user=self.user, uri='asdf', name='test', inactive=False,
-            solitude_seller=seller, bango_package_id=123, agreed_tos=True)
+            solitude_seller=seller, account_id=123, agreed_tos=True)
 
         self.kwargs = {
             'addon': self.addon,

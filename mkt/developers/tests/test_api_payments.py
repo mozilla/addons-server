@@ -149,7 +149,7 @@ class AccountCase(TestCase):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         self.seller = SolitudeSeller.objects.create(user_id=2519)
         self.account = PaymentAccount.objects.create(user_id=2519,
-            solitude_seller=self.seller, bango_package_id=123, name='mine')
+            solitude_seller=self.seller, account_id=123, name='mine')
         self.payment_list = reverse('app-payment-account-list')
 
     def create(self):
@@ -245,7 +245,7 @@ class TestPaymentAccount(RestOAuth, AccountCase):
     def other(self, shared=False):
         self.seller2 = SolitudeSeller.objects.create(user_id=31337, uuid='foo')
         self.other_account = PaymentAccount.objects.create(user_id=31337,
-            solitude_seller=self.seller2, bango_package_id=123,
+            solitude_seller=self.seller2, account_id=123,
             seller_uri='seller_uri', uri='uri', shared=shared, name='other')
         self.other_url = get_absolute_url(
             get_url('account', pk=self.other_account.pk),
