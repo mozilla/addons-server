@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+
 from rest_framework import fields, serializers
 from rest_framework.compat import smart_text
 
@@ -116,3 +117,82 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
                 msg = self.error_messages['does_not_exist'] % ('pk_or_slug', smart_text(data))
                 raise ValidationError(msg)
 
+
+class ReverseChoiceField(serializers.ChoiceField):
+    """
+    A ChoiceField that serializes and de-serializes using the human-readable
+    version of the `choices_dict` that is passed.
+
+    The values in the choices_dict passed must be unique.
+    """
+    def __init__(self, *args, **kwargs):
+        self.choices_dict = kwargs.pop('choices_dict')
+        kwargs['choices'] = self.choices_dict.items()
+        self.reversed_choices_dict = dict((v, k) for k, v
+                                          in self.choices_dict.items())
+        return super(ReverseChoiceField, self).__init__(*args, **kwargs)
+
+    def to_native(self, value):
+        """
+        Convert "actual" value to "human-readable" when serializing.
+        """
+        value = self.choices_dict.get(value, None)
+        return super(ReverseChoiceField, self).to_native(value)
+
+    def from_native(self, value):
+        """
+        Convert "human-readable" value to "actual" when de-serializing.
+        """
+        value = self.reversed_choices_dict.get(value, None)
+        return super(ReverseChoiceField, self).from_native(value)
+
+
+class SlugChoiceField(serializers.ChoiceField):
+    """
+    Companion to SlugChoiceFilter, this field accepts an id or a slug when
+    de-serializing, but always return a slug for serializing.
+
+    Like SlugChoiceFilter, it needs to be initialized with a choices_dict
+    mapping the slugs to objects with id and slug properties. This will be used
+    to overwrite the choices in the underlying code.
+    """
+    def __init__(self, *args, **kwargs):
+        # Create a choice dynamically to allow None, slugs and ids. Also store
+        # choices_dict and ids_choices_dict to re-use them later in to_native()
+        # and from_native().
+        self.choices_dict = kwargs.pop('choices_dict')
+        slugs_choices = self.choices_dict.items()
+        ids_choices = [(v.id, v) for v in self.choices_dict.values()]
+        self.ids_choices_dict = dict(ids_choices)
+        kwargs['choices'] = slugs_choices + ids_choices
+        return super(SlugChoiceField, self).__init__(*args, **kwargs)
+
+    def to_native(self, value):
+        if value:
+            choice = self.ids_choices_dict.get(value, None)
+            if choice is not None:
+                value = choice.slug
+        return super(SlugChoiceField, self).to_native(value)
+
+    def from_native(self, value):
+        if isinstance(value, basestring):
+            choice = self.choices_dict.get(value, None)
+            if choice is not None:
+                value = choice.id
+        return super(SlugChoiceField, self).from_native(value)
+
+
+class SlugModelChoiceField(serializers.PrimaryKeyRelatedField):
+    def field_to_native(self, obj, field_name):
+        attr = self.source or field_name
+        value = getattr(obj, attr)
+        return getattr(value, 'slug', None)
+
+    def from_native(self, data):
+        if isinstance(data, basestring):
+            try:
+                data = self.queryset.only('pk').get(slug=data).pk
+            except ObjectDoesNotExist:
+                msg = self.error_messages['does_not_exist'] % smart_text(data)
+                raise serializers.ValidationError(msg)
+        return super(SlugModelChoiceField, self).from_native(data)
