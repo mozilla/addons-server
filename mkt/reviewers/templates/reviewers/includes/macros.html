@@ -5,7 +5,8 @@
    is_selected -- boolean condition to highlight this element #}
   {% if tabs %}
     <li{% if is_selected %} class="selected"{% endif %}>
-      <a href="{{ tabs[0][0] }}" class="controller trigger-{{ type }}">{{ title }}</a>
+      {% set tab_url = tabs[0][0] %}
+      <a href="{{ tab_url if tab_url.startswith('/') else url(tab_url) }}" class="controller trigger-{{ type }}">{{ title }}</a>
       <ul>
         {% for url_, tab_code, text in tabs %}
           <li><a href="{{ url_ if url_.startswith('/') else url(url_) }}">{{ text }}</a></li>
