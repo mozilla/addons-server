@@ -393,7 +393,7 @@ def zip_apps(*args, **kw):
     context = Context({'date': today, 'url': settings.SITE_URL})
     files = ['license.txt', 'readme.txt']
     for f in files:
-        template = loader.get_template('webapps/dump/' + f)
+        template = loader.get_template('webapps/dump/apps/' + f)
         dest = os.path.join(settings.DUMPED_APPS_PATH, f)
         open(dest, 'w').write(template.render(context))
 
