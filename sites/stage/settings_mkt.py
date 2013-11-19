@@ -104,6 +104,7 @@ SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
 WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
 DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
+DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',

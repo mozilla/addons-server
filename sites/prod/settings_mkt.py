@@ -155,6 +155,7 @@ APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
 DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
+DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/marketplace.firefox.com.ini'

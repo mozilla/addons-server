@@ -96,6 +96,7 @@ SENTRY_DSN = private_mkt.SENTRY_DSN
 WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
 DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
+DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 
 SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
 SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
