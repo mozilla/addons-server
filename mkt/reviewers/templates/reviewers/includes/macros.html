@@ -8,7 +8,7 @@
       <a href="{{ tabs[0][0] }}" class="controller trigger-{{ type }}">{{ title }}</a>
       <ul>
         {% for url_, tab_code, text in tabs %}
-          <li><a href="{{ url_ }}">{{ text }}</a></li>
+          <li><a href="{{ url_ if url_.startswith('/') else url(url_) }}">{{ text }}</a></li>
         {% endfor %}
       </ul>
     </li>
@@ -24,7 +24,7 @@
     <menu class="nav-action-menu">
       <div>
         {% for url_, tab_code, text in tabs %}
-          <button data-url="{{ url(url_) }}">{{ text }}</button>
+          <button data-url="{{ url_ if url_.startswith('/') else url(url_) }}">{{ text }}</button>
         {% endfor %}
       </div>
       <button data-url="#cancel">{{ _('Cancel') }}</button>
@@ -36,9 +36,9 @@
 {# type -- string (e.g. 'queue', 'log')
    tabs -- list of named_url/tab_code/tab_text tuples #}
   <ul class="tabnav{{ ' search-toggle' if not no_search_toggle }}">
-    {% for named_url, tab_code, text in tabs %}
+    {% for url_, tab_code, text in tabs %}
       <li{% if tab == tab_code %} class="selected trigger-{{ type }}"{% endif %}>
-        <a href="{{ named_url }}">{{ text }}</a>
+        <a href="{{ url_ if url_.startswith('/') else url(url_) }}">{{ text }}</a>
         <div class="tabnav-sprite hidden"></div>
       </li>
     {% endfor %}
