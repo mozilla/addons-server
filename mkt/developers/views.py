@@ -57,7 +57,7 @@ from mkt.developers.utils import check_upload
 from mkt.developers.tasks import run_validator, save_test_plan
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.tasks import _update_manifest, update_manifests
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import IARCInfo, Webapp
 
 from . import forms, tasks
 
@@ -305,7 +305,15 @@ def content_ratings(request, addon_id, addon):
 @waffle_switch('iarc')
 @dev_required
 def content_ratings_edit(request, addon_id, addon):
-    form = IARCGetAppInfoForm(request.POST or None)
+    initial = {}
+    try:
+        app_info = addon.iarc_info
+        initial['submission_id'] = app_info.submission_id
+        initial['security_code'] = app_info.security_code
+    except IARCInfo.DoesNotExist:
+        pass
+
+    form = IARCGetAppInfoForm(data=request.POST or None, initial=initial)
 
     if request.method == 'POST' and form.is_valid():
         try:

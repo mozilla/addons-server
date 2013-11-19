@@ -1195,3 +1195,15 @@ class TestContentRatings(amo.tests.TestCase):
 
         for i, name in enumerate(doc('.name')):
             eq_(name.text, ratings[i].ratingsbody.name)
+
+    def test_edit_iarc_app_form(self):
+        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
+        doc = pq(r.content)
+        assert not doc('#id_submission_id').attr('value')
+        assert not doc('#id_security_code').attr('value')
+
+        self.app.set_iarc_info(1234, 'abcd')
+        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
+        doc = pq(r.content)
+        eq_(doc('#id_submission_id').attr('value'), '1234')
+        eq_(doc('#id_security_code').attr('value'), 'abcd')
