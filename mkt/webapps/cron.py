@@ -69,6 +69,7 @@ def update_app_trending():
 @cronjobs.register
 def dump_user_installs_cron():
     """
+    Sets up tasks to do user install dumps.
     """
     chunk_size = 100
     # Get valid users to dump.

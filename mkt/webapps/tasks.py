@@ -34,8 +34,8 @@ from users.utils import get_task_user
 
 import mkt
 from mkt.constants.regions import WORLDWIDE
-from mkt.developers.tasks import fetch_icon, _fetch_manifest, validator
-from mkt.webapps.models import AppManifest, Installed, Webapp, WebappIndexer
+from mkt.developers.tasks import _fetch_manifest, fetch_icon, validator
+from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 
 
@@ -409,14 +409,14 @@ def dump_user_installs(ids, **kw):
     task_log.info(u'Dumping user installs {0} to {1}. [{2}]'
                   .format(ids[0], ids[-1], len(ids)))
 
-    for id in ids:
+    for user_id in ids:
         try:
-            user = UserProfile.objects.get(pk=id)
+            user = UserProfile.objects.get(pk=user_id)
         except UserProfile.DoesNotExist:
-            task_log.info('User profile does not exist: {0}'.format(id))
-            return
+            task_log.info('User profile does not exist: {0}'.format(user_id))
+            continue
 
-        hash = hashlib.sha256('%s%s' % (str(id),
+        hash = hashlib.sha256('%s%s' % (str(user.id),
                                         settings.SECRET_KEY)).hexdigest()
         target_dir = os.path.join(settings.DUMPED_USERS_PATH, 'users', hash[0])
         target_file = os.path.join(target_dir, '%s.json' % hash)
@@ -427,7 +427,7 @@ def dump_user_installs(ids, **kw):
         # Gather data about user.
         installed = []
         zone = pytz.timezone(settings.TIME_ZONE)
-        for install in Installed.objects.filter(user=user):
+        for install in user.installed_set.filter(addon__type=amo.ADDON_WEBAPP):
             installed.append({
                 'id': install.addon.pk,
                 'slug': install.addon.app_slug,
@@ -443,7 +443,7 @@ def dump_user_installs(ids, **kw):
             'installed_apps': installed,
         }
 
-        task_log.info('Dumping user {0} to {1}'.format(id, target_file))
+        task_log.info('Dumping user {0} to {1}'.format(user.id, target_file))
         json.dump(data, open(target_file, 'w'), cls=JSONEncoder)
 
 

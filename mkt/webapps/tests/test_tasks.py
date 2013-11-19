@@ -25,7 +25,7 @@ from users.models import UserProfile
 from versions.models import Version
 
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Installed, Webapp
+from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs,
                                notify_developers_of_failure, update_manifests,
                                zip_apps)
@@ -581,7 +581,7 @@ class TestDumpUserInstalls(amo.tests.TestCase):
         # Create a user install.
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
-        Installed.objects.create(addon=self.app, user=self.user)
+        self.app.installed.create(user=self.user)
 
     def test_dump_user_installs(self):
         dump_user_installs([self.user.pk])
