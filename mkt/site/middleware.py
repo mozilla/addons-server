@@ -224,23 +224,6 @@ class DeviceDetectionMiddleware(object):
         return response
 
 
-class RestrictJSONUploadSizeMiddleware(object):
-
-    def process_view(self, request, view_func, args, kwargs):
-        if not kwargs == {'api_name': 'apps', 'resource_name': 'validation'}:
-            return
-        if (int(request.META.get('CONTENT_LENGTH', 0) or 0) >
-            mkt.constants.MAX_PACKAGED_APP_SIZE):
-            response = http.HttpResponse()
-            response.status_code = 413
-            response.content = json.dumps(
-                {'reason':
-                 'Packaged app too large for submission by this method. '
-                 'Packages must be smaller than %d bytes.' %
-                 mkt.constants.MAX_PACKAGED_APP_SIZE})
-            return response
-
-
 class DoNotTrackTrackingMiddleware(object):
     """A small middleware to record DNT counts."""
 

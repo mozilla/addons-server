@@ -70,7 +70,8 @@ Validate
 
     Returns a :ref:`validation <validation-response-label>` result.
 
-    :status 201: successfully created.
+    :status 201: successfully created, processed.
+    :status 202: successfully created, still processing.
 
 .. _validation-response-label:
 

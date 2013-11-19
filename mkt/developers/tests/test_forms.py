@@ -463,7 +463,7 @@ class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):
         validation = json.loads(form.file_upload.validation)
         assert 'messages' in validation, 'No messages in validation.'
         eq_(validation['messages'][0]['message'],
-            u'Packaged app too large for submission. Packages must be less '
+            u'Packaged app too large for submission. Packages must be smaller '
             u'than 5 bytes.')
 
     def test_origin_exists(self):
