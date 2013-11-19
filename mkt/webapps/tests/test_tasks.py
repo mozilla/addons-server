@@ -582,14 +582,18 @@ class TestDumpUserInstalls(amo.tests.TestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
         self.app.installed.create(user=self.user)
+        self.hash = hashlib.sha256('%s%s' % (str(self.user.pk),
+                                             settings.SECRET_KEY)).hexdigest()
+        self.path = os.path.join(settings.DUMPED_USERS_PATH, 'users',
+                                 self.hash[0], '%s.json' % self.hash)
+
+    def dump_and_load(self):
+        dump_user_installs([self.user.pk])
+        return json.load(open(self.path, 'r'))
 
     def test_dump_user_installs(self):
-        dump_user_installs([self.user.pk])
-        hash = hashlib.sha256('%s%s' % (str(self.user.pk),
-                                        settings.SECRET_KEY)).hexdigest()
-        data = json.load(open(os.path.join(settings.DUMPED_USERS_PATH, 'users',
-                                           hash[0], '%s.json' % hash), 'r'))
-        eq_(data['user'], hash)
+        data = self.dump_and_load()
+        eq_(data['user'], self.hash)
         eq_(data['region'], self.user.region)
         eq_(data['lang'], self.user.lang)
         installed = data['installed_apps'][0]
@@ -599,6 +603,17 @@ class TestDumpUserInstalls(amo.tests.TestCase):
             datetime.datetime.strptime(installed['installed'],
                                        '%Y-%m-%dT%H:%M:%S'),
             datetime.datetime.utcnow())
+
+    def test_dump_exludes_deleted(self):
+        """We can't recommend deleted apps, so don't include them."""
+        app = amo.tests.app_factory()
+        app.installed.create(user=self.user)
+        app.delete()
+
+        data = self.dump_and_load()
+        eq_(len(data['installed_apps']), 1)
+        installed = data['installed_apps'][0]
+        eq_(installed['id'], self.app.id)
 
 
 class TestFixMissingIcons(amo.tests.TestCase):

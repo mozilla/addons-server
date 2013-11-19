@@ -20,6 +20,7 @@ from test_utils import RequestFactory
 from tower import ugettext as _
 
 import amo
+from addons.models import Addon
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
@@ -428,9 +429,14 @@ def dump_user_installs(ids, **kw):
         installed = []
         zone = pytz.timezone(settings.TIME_ZONE)
         for install in user.installed_set.filter(addon__type=amo.ADDON_WEBAPP):
+            try:
+                app = install.addon
+            except Addon.DoesNotExist:
+                continue
+
             installed.append({
-                'id': install.addon.pk,
-                'slug': install.addon.app_slug,
+                'id': app.id,
+                'slug': app.app_slug,
                 'installed': pytz.utc.normalize(
                     zone.localize(install.created)).strftime(
                         '%Y-%m-%dT%H:%M:%S')
