@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-05 22:44+0000\n"
+"PO-Revision-Date: 2013-11-20 13:27+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1383691445.0\n"
+"X-POOTLE-MTIME: 1384954058.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -91,8 +91,8 @@ msgstr "Validatie van {0} afgerond"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uw add-on is gevalideerd zonder fouten en met {0} bericht."
+msgstr[1] "Uw add-on is gevalideerd zonder fouten en met {0} berichten."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -272,7 +272,13 @@ msgstr "Gedetecteerd: {0}"
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
+"Waarschuwing: door betalingsaccount “{0}” te verwijderen krijgt die "
+"geassocieerde app de status onvolledig en is deze niet langer beschikbaar "
+"voor verkoop:"
 msgstr[1] ""
+"Waarschuwing: door betalingsaccount “{0}” te verwijderen krijgen die "
+"geassocieerde apps de status onvolledig en zijn ze niet langer beschikbaar "
+"voor verkoop:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -1585,8 +1591,8 @@ msgstr "Add-on heeft validatie doorstaan."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} bericht"
+msgstr[1] "{0} berichten"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
