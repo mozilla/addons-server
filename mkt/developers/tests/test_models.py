@@ -245,9 +245,9 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
     @patch('mkt.developers.models.client')
     def test_create_new(self, client):
         client.api.bango.product.get_object.side_effect = ObjectDoesNotExist
-        client.api.bango.product.post.return_value = {
+        client.api.provider.bango.product.post.return_value = {
                 'resource_uri': '', 'bango_id': 1}
         AddonPaymentAccount.create(
             'bango', addon=self.app, payment_account=self.account)
         ok_('packageId' in
-            client.api.bango.product.post.call_args[1]['data'])
+            client.api.provider.bango.product.post.call_args[1]['data'])

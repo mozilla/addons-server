@@ -500,11 +500,10 @@ class TestPayments(amo.tests.TestCase):
                                          'accounts': acct.pk,
                                          'regions': ALL_REGION_IDS}),
                                          follow=True)
-        eq_(api.bango.premium.post.call_count, 1)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
-        kw = api.bango.product.post.call_args[1]['data']
+        kw = api.provider.bango.product.post.call_args[1]['data']
         ok_(kw['secret'], kw)
         kw = api.generic.product.post.call_args[1]['data']
         eq_(kw['access'], ACCESS_PURCHASE)
