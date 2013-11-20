@@ -37,7 +37,7 @@ define('payments', [], function() {
     function setupPaymentAccountOverlay($overlay, onsubmit) {
         $overlay.on('submit', 'form', _pd(function() {
             var $form = $(this);
-            var $waiting_overlay = getOverlay('bango-waiting');
+            var $waiting_overlay = getOverlay('payment-account-waiting');
             var $old_overlay = $overlay.children('section');
             $old_overlay.detach();
             $form.find('.error').remove();
@@ -67,7 +67,7 @@ define('payments', [], function() {
                     // If the error occurred on an unknown field,
                     // stick the error at the top. Maybe with more detail.
                     if (parsed_errors.__all__ !== null) {
-                        var target = $old_overlay.find('#bango-account-errors');
+                        var target = $old_overlay.find('#payment-account-errors');
                         $('<div>').addClass('error')
                                   .insertAfter(target)
                                   .text(parsed_errors.__all__);
@@ -75,7 +75,7 @@ define('payments', [], function() {
                 } catch(err) {
                     // There was a JSON parse error, just stick the error
                     // message on the form.
-                    $old_overlay.find('#bango-account-errors')
+                    $old_overlay.find('#payment-account-errors')
                                 .html(error_data.responseText);
                 }
 
