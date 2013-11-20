@@ -18,10 +18,10 @@ from market.models import Price, PriceCurrency
 from tags.models import AddonTag, Tag
 from users.models import UserProfile
 
-from mkt.api.base import get_url, list_url
+from mkt.api.base import get_url
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth
-from mkt.constants import carriers, ratingsbodies, regions
+from mkt.constants import ratingsbodies, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 from reviews.models import Review
@@ -708,34 +708,6 @@ class TestCategoryHandler(RestOAuth):
         res = self.anon.get(reverse('app-category-detail',
                                     kwargs={'pk': self.other.pk}))
         eq_(res.status_code, 404)
-
-
-class TestRegionsCarriers(BaseOAuth, AMOPaths):
-
-    def setUp(self):
-        super(TestRegionsCarriers, self).setUp(api_name='services')
-
-    def test_regions_list(self):
-        res = self.client.get(list_url('region'))
-        data = json.loads(res.content)
-        eq_(set(r['slug'] for r in data['objects']),
-            set(r.slug for r in regions.ALL_REGIONS))
-
-    def test_region(self):
-        res = self.client.get(get_url('region', pk='co'))
-        data = json.loads(res.content)
-        eq_(data['default_currency'], regions.CO.default_currency)
-
-    def test_carriers_list(self):
-        res = self.client.get(list_url('carrier'))
-        data = json.loads(res.content)
-        eq_(set(r['slug'] for r in data['objects']),
-            set(r.slug for r in carriers.CARRIERS))
-
-    def test_carrier(self):
-        res = self.client.get(get_url('carrier', pk='telefonica'))
-        data = json.loads(res.content)
-        eq_(data['id'], carriers.TELEFONICA.id)
 
 
 class TestErrorReporter(RestOAuth):

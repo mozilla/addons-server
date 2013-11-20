@@ -104,3 +104,18 @@ class PotatoCaptchaSerializer(serializers.Serializer):
             self.fields.pop('tuber')
             self.fields.pop('sprout')
         return attrs
+
+
+class CarrierSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    slug = serializers.CharField()
+    id = serializers.IntegerField()
+
+
+class RegionSerializer(CarrierSerializer):
+    default_currency = serializers.CharField()
+    default_language = serializers.CharField()
+    ratingsbody = serializers.CharField()
+
+    def transform_ratingsbody(self, obj, value):
+        return obj.ratingsbody.name if obj.ratingsbody else None
