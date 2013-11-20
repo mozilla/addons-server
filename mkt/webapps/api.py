@@ -33,24 +33,3 @@ class AppSerializer(serializers.ModelSerializer):
     class Meta:
         model = Webapp
         fields = ('name', 'resource_uri', 'id')
-
-    def field_from_native(self, data, files, field_name, into):
-        try:
-            value = data[field_name]
-        except KeyError:
-            if self.required:
-                raise ValidationError(self.error_messages['required'])
-            return
-        if value in (None, ''):
-            obj = None
-        else:
-            try:
-                try:
-                    pk = int(value)
-                    obj = Webapp.objects.get(pk=pk)
-                except ValueError:
-                    obj = Webapp.objects.get(app_slug=value)
-            except Webapp.DoesNotExist:
-                msg = "Invalid pk '%s' - object does not exist." % (data,)
-                raise ValidationError(msg)
-        into[self.source or field_name] = obj

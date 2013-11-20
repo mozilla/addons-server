@@ -1,4 +1,6 @@
-from rest_framework import fields
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from rest_framework import fields, serializers
+from rest_framework.compat import smart_text
 
 from amo.utils import to_language
 
@@ -7,7 +9,7 @@ class TranslationSerializerField(fields.WritableField):
     """
     Django-rest-framework custom serializer field for our TranslatedFields.
 
-    - When deserializing, in `from_native`, it accepts both a string or a 
+    - When deserializing, in `from_native`, it accepts both a string or a
       dictionary. If a string is given, it'll be considered to be in the
       default language.
 
@@ -35,6 +37,8 @@ class TranslationSerializerField(fields.WritableField):
 
     def field_to_native(self, obj, field_name):
         field = getattr(obj, field_name)
+        if field is None:
+            return None
         if not self.return_all_translations:
             return unicode(field)
         else:
@@ -52,3 +56,62 @@ class TranslationSerializerField(fields.WritableField):
             return data
         data = super(TranslationSerializerField, self).from_native(data)
         return unicode(data)
+
+
+class SplitField(fields.Field):
+    """
+    A field that accepts a primary key as input but serializes a
+    nested representation of the object represented by that key as
+    output.
+    """
+    def __init__(self, input, output, **kwargs):
+        self.input = input
+        self.output = output
+        self.source = input.source
+
+    def field_from_native(self, data, files, field_name, into):
+        self.input.initialize(parent=self.parent, field_name=field_name)
+        self.input.field_from_native(data, files, field_name, into)
+
+    def field_to_native(self, obj, field_name):
+        self.output.initialize(parent=self.parent, field_name=field_name)
+        return self.output.field_to_native(obj, field_name)
+
+
+class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
+    """
+    Combines SlugRelatedField and PrimaryKeyRelatedField. Takes a
+    `render_as` argument (either "pk" or "slug") to indicate how to
+    serialize.
+    """
+    default_error_messages = serializers.SlugRelatedField.default_error_messages
+    read_only = False
+
+    def __init__(self, *args, **kwargs):
+        self.render_as = kwargs.pop('render_as', 'pk')
+        if self.render_as not in ['pk', 'slug']:
+            raise ValueError("'render_as' must be one of 'pk' or 'slug', "
+                             "not %r" % (self.render_as,))
+        self.slug_field = kwargs.pop('slug_field', 'slug')
+        super(SlugOrPrimaryKeyRelatedField, self).__init__(
+            *args, **kwargs)
+
+    def to_native(self, obj):
+        if self.render_as == 'slug':
+            return getattr(obj, self.slug_field)
+        else:
+            return obj.pk
+
+    def from_native(self, data):
+        if self.queryset is None:
+            raise Exception('Writable related fields must include a `queryset` argument')
+
+        try:
+            return self.queryset.get(pk=data)
+        except:
+            try:
+                return self.queryset.get(**{self.slug_field: data})
+            except ObjectDoesNotExist:
+                msg = self.error_messages['does_not_exist'] % ('pk_or_slug', smart_text(data))
+                raise ValidationError(msg)
+

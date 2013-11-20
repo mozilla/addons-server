@@ -7,6 +7,7 @@ from django.contrib.auth.models import AnonymousUser
 from mock import Mock, patch
 from multidb import this_thread_is_pinned
 from nose.tools import eq_, ok_
+from rest_framework.request import Request
 from tastypie.exceptions import ImmediateHttpResponse
 
 from access.models import Group, GroupUser
@@ -102,7 +103,7 @@ class TestOAuthAuthentication(TestCase):
                  HTTP_AUTHORIZATION=client.sign('GET', url)[1]['Authorization'])
 
     def test_accepted(self):
-        req = self.call()
+        req = Request(self.call())
         ok_(self.auth.is_authenticated(req))
         if req.method in ['DELETE', 'PATCH', 'POST', 'PUT']:
             ok_(this_thread_is_pinned())
@@ -140,7 +141,7 @@ class TestRestOAuthAuthentication(TestOAuthAuthentication):
         self.auth = authentication.RestOAuthAuthentication()
 
     def test_accepted(self):
-        req = self.call()
+        req = Request(self.call())
         eq_(self.auth.authenticate(req), (self.profile.user, None))
         if req.method in ['DELETE', 'PATCH', 'POST', 'PUT']:
             ok_(this_thread_is_pinned())
@@ -151,15 +152,16 @@ class TestRestOAuthAuthentication(TestOAuthAuthentication):
         c = Mock()
         c.key = self.access.key
         c.secret = 'mom'
-        ok_(not self.auth.authenticate(self.call(client=OAuthClient(c))))
+        ok_(not self.auth.authenticate(
+            Request(self.call(client=OAuthClient(c)))))
 
     def test_request_admin(self):
         self.add_group_user(self.profile, 'Admins')
-        ok_(not self.auth.authenticate(self.call()))
+        ok_(not self.auth.authenticate(Request(self.call())))
 
     def test_request_has_role(self):
         self.add_group_user(self.profile, 'App Reviewers')
-        ok_(self.auth.authenticate(self.call()))
+        ok_(self.auth.authenticate(Request(self.call())))
 
 
 class TestRestAnonymousAuthentication(TestCase):

@@ -1,6 +1,6 @@
 import commonware.log
 
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, SAFE_METHODS
 from tastypie.authorization import Authorization, ReadOnlyAuthorization
 from waffle import flag_is_active, switch_is_active
 
@@ -94,6 +94,31 @@ class PermissionAuthorization(Authorization):
 
     has_permission = is_authorized
 
+class AnyOf(BasePermission):
+    """
+    Takes multiple permission objects and succeeds if any single one does.
+    """
+
+    def __init__(self, *perms):
+        # DRF calls the items in permission_classes, might as well do
+        # it here too.
+        self.perms = [p() for p in perms]
+
+    def has_permission(self, request, view):
+        return any(perm.has_permission(request, view) for perm in self.perms)
+
+    def has_object_permission(self, request, view, obj):
+        # This method must call `has_permission` for each
+        # sub-permission since the default implementation of
+        # `has_object_permission` returns True unconditionally, and
+        # some permission objects might not override it.
+        return any((perm.has_permission(request, view) and
+                    perm.has_object_permission(request, view, obj))
+                   for perm in self.perms)
+
+    def __call__(self):
+        return self
+
 
 class AllowSelf(BasePermission):
     """
@@ -152,40 +177,25 @@ class AllowAppOwner(BasePermission):
             return False
 
 
-class AllowAppOwnerOrPermission(BasePermission):
-    """
-    Allows app owners or users with the specified permission.
-    """
-    def __init__(self, app, action):
-        self.app = app
-        self.action = action
-
-    def has_permission(self, request, view):
-        return not request.user.is_anonymous()
-
-    def has_object_permission(self, request, view, object):
-        try:
-            return (
-                acl.action_allowed(request, self.app, self.action) or
-                object.authors.filter(user__id=request.amo_user.pk).exists())
-
-        # Appropriately handles AnonymousUsers when `amo_user` is None.
-        except AttributeError:
-            return False
-
-    def __call__(self, *a):
-        """
-        Ignore DRF's nonsensical need to call this object.
-        """
-        return self
-
-
 class AllowReviewerReadOnly(BasePermission):
 
-    def is_authorized(self, request, object=None):
-        if request.method == 'GET' and acl.action_allowed(request,
-                                                          'Apps', 'Review'):
-            return True
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS  and acl.action_allowed(
+            request, 'Apps', 'Review')
+
+    def has_object_permission(self, request, view, object):
+        return self.has_permission(request, view)
+
+
+class AllowReadOnly(BasePermission):
+    """
+    The request does not modify the resource.
+    """
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS
+
+    def has_object_permission(self, request, view, object):
+        return request.method in SAFE_METHODS
 
 
 def flag(name):

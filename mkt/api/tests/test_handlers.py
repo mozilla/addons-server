@@ -678,7 +678,7 @@ class TestCategoryHandler(RestOAuth):
         eq_(data['meta']['total_count'], 0)
 
     def test_get_slug(self):
-        url = reverse('app-category-detail', kwargs={'slug': self.cat.slug})
+        url = reverse('app-category-detail', kwargs={'pk': self.cat.slug})
         res = self.client.get(url)
         data = json.loads(res.content)
         eq_(data['id'], self.cat.pk)

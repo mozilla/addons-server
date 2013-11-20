@@ -43,7 +43,7 @@ from mkt.api.authorization import (AllowAppOwner, AllowReviewerReadOnly,
                                    AppOwnerAuthorization, GroupPermission,
                                    OwnerAuthorization)
 from mkt.api.base import (CORSMixin, CORSResource, GenericObject, http_error,
-                          MarketplaceModelResource, MarketplaceResource)
+                          MarketplaceModelResource, MarketplaceResource, SlugOrIdMixin)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, UploadForm)
 from mkt.api.http import HttpLegallyUnavailable
 from mkt.carriers import CARRIER_MAP, CARRIERS
@@ -328,12 +328,12 @@ class CategorySerializer(ModelSerializer):
 
 
 class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSMixin,
-                      GenericViewSet):
+                      SlugOrIdMixin, GenericViewSet):
     model = Category
     serializer_class = CategorySerializer
     permission_classes = (AllowAny,)
     cors_allowed_methods = ('get',)
-    slug_lookup = 'slug'
+    slug_field = 'slug'
 
     def get_queryset(self):
         qs = Category.objects.filter(type=amo.ADDON_WEBAPP,
@@ -426,7 +426,7 @@ def error_reporter(request):
 
 class RefreshManifestViewSet(GenericViewSet, CORSMixin):
     model = Webapp
-    permission_classes = (AllowAppOwner, AllowReviewerReadOnly)
+    permission_classes = [AllowAppOwner]
     cors_allowed_methods = ('post',)
     slug_lookup = 'app_slug'
 

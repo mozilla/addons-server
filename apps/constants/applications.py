@@ -177,19 +177,11 @@ class DEVICE_GAIA(object):
     api_name = 'firefoxos'
 
 
-DEVICE_TYPES = {
-    DEVICE_DESKTOP.id: DEVICE_DESKTOP,
-    DEVICE_MOBILE.id: DEVICE_MOBILE,
-    DEVICE_TABLET.id: DEVICE_TABLET,
-    DEVICE_GAIA.id: DEVICE_GAIA
-}
+DEVICE_TYPE_LIST = [DEVICE_DESKTOP, DEVICE_MOBILE, DEVICE_TABLET, DEVICE_GAIA]
+DEVICE_TYPES = dict((d.id, d) for d in DEVICE_TYPE_LIST)
+REVERSE_DEVICE_LOOKUP = dict((d.id, d.api_name) for d in DEVICE_TYPE_LIST)
+DEVICE_LOOKUP = dict((d.api_name, d) for d in DEVICE_TYPE_LIST)
 
-REVERSE_DEVICE_LOOKUP = {
-    DEVICE_DESKTOP.id: 'desktop',
-    DEVICE_MOBILE.id: 'android-mobile',
-    DEVICE_TABLET.id: 'android-tablet',
-    DEVICE_GAIA.id: 'firefoxos',
-}
 
 
 # UAs will attempt to match in this order.
