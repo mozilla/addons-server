@@ -771,7 +771,7 @@ def app_view_manifest(request, addon):
                 pass
 
     return escape_all({'content': smart_decode(content),
-                       'headers': headers,
+                       'headers': dict(headers),
                        'success': success,
                        'permissions': _get_permissions(manifest)})
 
