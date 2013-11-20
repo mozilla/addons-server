@@ -7,7 +7,7 @@
     <FIELD NAME="submission_id" VALUE="{{ submission_id }}" TYPE="Int" />
     <FIELD NAME="security_code" VALUE="{{ security_code }}" TYPE="String" />
     <FIELD NAME="rating_system" VALUE="{{ rating_system }}" TYPE="String" />
-    <FIELD NAME="release_date" VALUE="{{ release_date.strftime('%Y-%m-%d') }}" TYPE="String" />
+    <FIELD NAME="release_date" VALUE="{{ release_date and release_date.strftime('%Y-%m-%d') or '' }}" TYPE="String" />
     <FIELD NAME="storefront_title" VALUE="{{ title }}" TYPE="String" />
     <FIELD NAME="storefront_rating" VALUE="{{ rating }}" TYPE="String" />
     <FIELD NAME="storefront_descriptors" VALUE="{{ descriptors }}" TYPE="String" />
