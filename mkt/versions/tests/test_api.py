@@ -20,7 +20,8 @@ class TestVersionSerializer(TestCase):
     def setUp(self):
         self.app = app_factory()
         self.features = self.app.current_version.features
-        self.serializer = VersionSerializer()
+        self.request = RequestFactory().get('/')
+        self.serializer = VersionSerializer(context={'request': self.request})
 
     def native(self, obj=None, **kwargs):
         if not obj:
