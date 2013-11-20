@@ -56,8 +56,7 @@
           <input type="hidden" name="email" value="{{ request.amo_user.email }}">
           <input type="hidden" name="company" value="{{ settings.IARC_COMPANY }}">
           <input type="hidden" name="appname" value="{{ app_name }}">
-          {# TODO: use settings.IARC_PLATFORM if IARC ever makes that field consistent. They should be able to accept 'Firefox'. #}
-          <input type="hidden" name="platform" value="2000">
+          <input type="hidden" name="platform" value="{{ settings.IARC_PLATFORM }}">
           <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
           <input type="hidden" name="token" value="{{ addon.iarc_token() }}">
           <input type="hidden" name="pingback_url" value="{{ url('content-ratings-pingback', addon.app_slug)|absolutify }}">
