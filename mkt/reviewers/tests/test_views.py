@@ -18,6 +18,7 @@ import requests
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
+from requests.structures import CaseInsensitiveDict
 
 import amo
 import amo.tests
@@ -1859,8 +1860,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_manifest_json(self, mock_get):
         m = mock.Mock()
         m.content = 'the manifest contents <script>'
-        m.headers = {'content-type':
-                     'application/x-web-app-manifest+json <script>'}
+        m.headers = CaseInsensitiveDict({'content-type':
+                     'application/x-web-app-manifest+json <script>'})
         mock_get.return_value = m
 
         expected = {
@@ -1880,7 +1881,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_manifest_json_unicode(self, mock_get):
         m = mock.Mock()
         m.content = u'كك some foreign ish'
-        m.headers = {}
+        m.headers = CaseInsensitiveDict({})
         mock_get.return_value = m
 
         r = self.client.get(reverse('reviewers.apps.review.manifest',
@@ -1895,7 +1896,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         m = mock.Mock()
         with storage.open(self.manifest_path('non-utf8.webapp')) as fp:
             m.content = fp.read()
-        m.headers = {}
+        m.headers = CaseInsensitiveDict({})
         mock_get.return_value = m
 
         r = self.client.get(reverse('reviewers.apps.review.manifest',
@@ -1908,7 +1909,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_manifest_json_encoding_empty(self, mock_get):
         m = mock.Mock()
         m.content = ''
-        m.headers = {}
+        m.headers = CaseInsensitiveDict({})
         mock_get.return_value = m
 
         r = self.client.get(reverse('reviewers.apps.review.manifest',
@@ -1921,7 +1922,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_manifest_json_traceback_in_response(self, mock_get):
         m = mock.Mock()
         m.content = {'name': 'Some name'}
-        m.headers = {}
+        m.headers = CaseInsensitiveDict({})
         mock_get.side_effect = requests.exceptions.SSLError
         mock_get.return_value = m
 
