@@ -1013,16 +1013,17 @@ class Webapp(Addon):
         content_ratings = {}
         for cr in self.content_ratings.all():
             body = cr.get_body()
-            rating = cr.get_rating()
-            for _region in cr.get_region_slugs():
-                rating = {
+            rating_class = cr.get_rating()
+            for region in cr.get_region_slugs():
+                rating_serialized = {
                     'body': body.id,
-                    'rating': rating.id
+                    'rating': rating_class.id
                 }
                 if not es:
-                    rating = dehydrate_content_rating(rating)
+                    rating_serialized = dehydrate_content_rating(
+                        rating_serialized)
 
-                content_ratings[_region] = rating
+                content_ratings[region] = rating_serialized
         return content_ratings
 
     def get_descriptors(self, es=False):
