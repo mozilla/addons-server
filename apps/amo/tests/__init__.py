@@ -52,7 +52,7 @@ from lib.es.signals import process, reset
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
-from users.models import RequestUser
+from users.models import RequestUser, UserProfile
 
 import mkt
 from mkt.constants import regions
@@ -601,17 +601,6 @@ def assert_no_validation_errors(validation):
                              error.rstrip().split("\n")[-1])
 
 
-def app_factory(**kw):
-    kw.update(type=amo.ADDON_WEBAPP)
-    app = amo.tests.addon_factory(**kw)
-    if waffle.switch_is_active('iarc') and kw.get('rated'):
-        ContentRating.objects.create(addon=app, ratings_body=0, rating=0)
-        app.set_iarc_info(123, 'abc')
-        app.set_descriptors([])
-        app.set_interactives([])
-    return app
-
-
 def _get_created(created):
     """
     Returns a datetime.
@@ -674,32 +663,15 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
     return a
 
 
-def version_factory(file_kw={}, **kw):
-    min_app_version = kw.pop('min_app_version', '4.0')
-    max_app_version = kw.pop('max_app_version', '5.0')
-    version = kw.pop('version', '%.1f' % random.uniform(0, 2))
-    v = Version.objects.create(version=version, **kw)
-    v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
-    v.save()
-    if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
-        a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
-        av_min, _ = AppVersion.objects.get_or_create(application=a,
-                                                     version=min_app_version)
-        av_max, _ = AppVersion.objects.get_or_create(application=a,
-                                                     version=max_app_version)
-        ApplicationsVersions.objects.get_or_create(application=a, version=v,
-                                                   min=av_min, max=av_max)
-    file_factory(version=v, **file_kw)
-    return v
-
-
-def file_factory(**kw):
-    v = kw['version']
-    p, _ = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
-    status = kw.pop('status', amo.STATUS_PUBLIC)
-    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=p, status=status, **kw)
-    return f
+def app_factory(**kw):
+    kw.update(type=amo.ADDON_WEBAPP)
+    app = amo.tests.addon_factory(**kw)
+    if waffle.switch_is_active('iarc') and kw.get('rated'):
+        app.content_ratings.create(ratings_body=0, rating=0)
+        app.set_iarc_info(123, 'abc')
+        app.set_descriptors([])
+        app.set_interactives([])
+    return app
 
 
 def collection_factory(**kw):
@@ -725,6 +697,15 @@ def collection_factory(**kw):
     return c
 
 
+def file_factory(**kw):
+    v = kw['version']
+    p, _ = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
+    status = kw.pop('status', amo.STATUS_PUBLIC)
+    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
+                            platform=p, status=status, **kw)
+    return f
+
+
 def req_factory_factory(url, user=None, post=False, data=None):
     """Creates a request factory, logged in with the user."""
     req = RequestFactory()
@@ -739,6 +720,38 @@ def req_factory_factory(url, user=None, post=False, data=None):
     req.APP = None
     req.check_ownership = partial(check_ownership, req)
     return req
+
+
+user_factory_counter = 0
+
+
+def user_factory(**kw):
+    global user_factory_counter
+
+    username = 'factoryuser%d' % user_factory_counter
+    user = UserProfile.objects.create(
+        username=username, email='%s@mozilla.com' % username, **kw)
+    user_factory_counter = user.id + 1
+    return user
+
+
+def version_factory(file_kw={}, **kw):
+    min_app_version = kw.pop('min_app_version', '4.0')
+    max_app_version = kw.pop('max_app_version', '5.0')
+    version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    v = Version.objects.create(version=version, **kw)
+    v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
+    v.save()
+    if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
+        a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
+        av_min, _ = AppVersion.objects.get_or_create(application=a,
+                                                     version=min_app_version)
+        av_max, _ = AppVersion.objects.get_or_create(application=a,
+                                                     version=max_app_version)
+        ApplicationsVersions.objects.get_or_create(application=a, version=v,
+                                                   min=av_min, max=av_max)
+    file_factory(version=v, **file_kw)
+    return v
 
 
 class ESTestCase(TestCase):

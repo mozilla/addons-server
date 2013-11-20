@@ -3,9 +3,14 @@ import logging
 
 import cronjobs
 from celery.task.sets import TaskSet
+from tower import ugettext as _
+
+import amo
+from amo.utils import chunked
+from editors.models import RereviewQueue
 
 import lib.iarc
-from amo.utils import chunked
+
 from lib.iarc.utils import DESC_MAPPING, RATINGS_MAPPING
 from mkt.developers.tasks import region_email, region_exclude
 from mkt.webapps.models import AddonExcludedRegion, Webapp
@@ -91,7 +96,8 @@ def process_iarc_changes(date=None):
             ratings_body = row.get('rating_system')
             rating = RATINGS_MAPPING[ratings_body].get(row['new_rating'])
 
-            # TODO: If rating is adult, flag for re-review.
+            _flag_rereview_adult(app, ratings_body, rating)
+
             # Save new rating.
             app.set_content_ratings({ratings_body: rating})
 
@@ -112,3 +118,15 @@ def process_iarc_changes(date=None):
         except Exception as e:
             log.debug('Exception: %s' % e)
             continue
+
+
+def _flag_rereview_adult(app, ratings_body, rating):
+    """Flag app for rereview if it receives an Adult content rating."""
+    old_rating = app.content_ratings.filter(ratings_body=ratings_body.id)
+    if not old_rating.exists():
+        return
+
+    if rating.adult and not old_rating[0].get_rating().adult:
+        RereviewQueue.flag(
+            app, amo.LOG.CONTENT_RATING_TO_ADULT,
+            message=_('Content rating changed to Adult.'))
