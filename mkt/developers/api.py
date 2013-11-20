@@ -158,14 +158,18 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
 
     def post(self, request, pk, *args, **kwargs):
         app = self.get_object()
+        log.info(u'Received IARC pingback for app:%s' % app.id)
 
         # Verify token.
         data = request.DATA[0]
         if app.iarc_token() != data.get('token'):
+            log.info(u'Token mismatch in IARC pingback for app:%s' % app.id)
             return Response({'detail': 'Token mismatch'},
                             status=status.HTTP_400_BAD_REQUEST)
 
         if data.get('ratings'):
+            log.info(u'Setting content ratings from IARC pingback for app:%s' %
+                     app.id)
             # We found a rating, so store the id and code for future use.
             if 'submission_id' in data and 'security_code' in data:
                 app.set_iarc_info(data['submission_id'], data['security_code'])
