@@ -300,7 +300,7 @@
 
   {% include 'developers/includes/addons_edit_nav.html' %}
   {% include 'developers/payments/includes/account_list.html' %}
-  {% include 'developers/payments/includes/add_payment_account_bango.html' %}
-  {% include 'developers/payments/includes/edit_payment_account_bango.html' %}
+  {% include provider.templates['add'] %}
+  {% include provider.templates['edit'] %}
   {% include 'developers/payments/includes/accept_terms.html' %}
 {% endblock %}

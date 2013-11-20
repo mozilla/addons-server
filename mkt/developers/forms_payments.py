@@ -542,6 +542,12 @@ class BangoAccountListForm(happyforms.Form):
                 _restore_app_status(self.addon)
 
 
+class ReferenceAccountForm(happyforms.Form):
+    account_name = forms.CharField(max_length=50, label=_lazy(u'Account name'))
+    name = forms.CharField(max_length=50, label=_lazy(u'Name'))
+    email = forms.CharField(max_length=50, label=_lazy(u'Email'))
+
+
 class PaymentCheckForm(happyforms.Form):
     app = SluggableModelChoiceField(queryset=
             Addon.objects.filter(premium_type__in=amo.ADDON_HAS_PAYMENTS,

@@ -699,6 +699,14 @@ class TestPayments(amo.tests.TestCase):
         self.portal_url = self.webapp.get_dev_url(
                                'payments.bango_portal_from_addon')
 
+    def test_template_switches(self):
+        payments_url = self.webapp.get_dev_url('payments')
+        with self.settings(PAYMENT_PROVIDERS=['reference']):
+            res = self.client.get(payments_url)
+        tmpl = self.extract_script_template(res.content,
+                                            '#payment-account-add-template')
+        eq_(len(tmpl('.payment-account-reference')), 1)
+
     def test_bango_portal_links(self):
         payments_url = self.webapp.get_dev_url('payments')
         res = self.client.get(payments_url)
@@ -875,7 +883,8 @@ class TestPaymentAccountsAdd(PaymentsBase):
         self.assertLoginRequired(self.client.post(self.url, data={}))
 
     @mock.patch('mkt.developers.models.client')
-    def test_create(self, client):
+    @mock.patch('mkt.developers.providers.Bango.client')
+    def test_create(self, models, providers):
         res = self.client.post(self.url, data={
             'bankAccountPayeeName': 'name',
             'companyName': 'company',
@@ -898,6 +907,7 @@ class TestPaymentAccountsAdd(PaymentsBase):
             'bankAddressIso': 'BRA',
             'account_name': 'account'
         })
+        eq_(res.status_code, 200)
         output = json.loads(res.content)
         ok_('pk' in output)
         ok_('agreement-url' in output)

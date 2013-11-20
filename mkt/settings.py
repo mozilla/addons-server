@@ -314,3 +314,7 @@ COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
 #   override-app-purchase
 # For them to be able purchase apps.
 PURCHASE_LIMITED = False
+
+# A list of the payment providers supported by the marketplace. Currently there
+# can be only one value, however we expect this to change in the future.
+PAYMENT_PROVIDERS = ['bango']

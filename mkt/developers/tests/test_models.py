@@ -14,7 +14,10 @@ from users.models import UserProfile
 from devhub.models import ActivityLog
 from mkt.developers.models import (AddonPaymentAccount, CantCancel,
                                    PaymentAccount, SolitudeSeller)
+from mkt.developers.providers import get_provider
 from mkt.site.fixtures import fixture
+
+from test_providers import Patcher
 
 
 class TestActivityLogCount(amo.tests.TestCase):
@@ -80,7 +83,7 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(len(ActivityLog.objects.for_developer()), 1)
 
 
-class TestPaymentAccount(amo.tests.TestCase):
+class TestPaymentAccount(Patcher, amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
@@ -91,23 +94,21 @@ class TestPaymentAccount(amo.tests.TestCase):
             SolitudeSeller.objects.create(
                 resource_uri='selleruri', user=self.user))
         self.solsel.patcher = solsel_patcher
+        super(TestPaymentAccount, self).setUp()
 
-        client_patcher = patch('mkt.developers.models.client')
-        self.client = client_patcher.start()
-        self.client.patcher = client_patcher
 
     def tearDown(self):
         self.solsel.patcher.stop()
-        self.client.patcher.stop()
+        super(TestPaymentAccount, self).tearDown()
 
     def test_create_bango(self):
         # Return a seller object without hitting Bango.
-        self.client.api.bango.package.post.return_value = {
+        self.patched_provider.package.post.return_value = {
             'resource_uri': 'zipzap',
             'package_id': 123,
         }
 
-        res = PaymentAccount.create_bango(
+        res = get_provider().account_create(
             self.user, {'account_name': 'Test Account'})
         eq_(res.name, 'Test Account')
         eq_(res.user, self.user)
@@ -115,11 +116,11 @@ class TestPaymentAccount(amo.tests.TestCase):
         eq_(res.account_id, 123)
         eq_(res.uri, 'zipzap')
 
-        self.client.api.bango.package.post.assert_called_with(
+        self.patched_provider.package.post.assert_called_with(
             data={'paypalEmailAddress': 'nobody@example.com',
                   'seller': 'selleruri'})
 
-        self.client.api.bango.bank.post.assert_called_with(
+        self.patched_provider.bank.post.assert_called_with(
             data={'seller_bango': 'zipzap'})
 
     def test_cancel(self):
@@ -153,7 +154,7 @@ class TestPaymentAccount(amo.tests.TestCase):
         package = Mock()
         package.get.return_value = {'full': {'vendorName': 'a',
                                              'some_other_value': 'b'}}
-        self.client.api.bango.package.return_value = package
+        self.patched_client.api.bango.package.return_value = package
 
         res = PaymentAccount.objects.create(
             name='asdf', user=self.user, uri='/foo/bar/123',
@@ -164,7 +165,7 @@ class TestPaymentAccount(amo.tests.TestCase):
         eq_(deets['vendorName'], 'a')
         assert 'some_other_value' not in deets
 
-        self.client.api.bango.package.assert_called_with('123')
+        self.patched_client.api.bango.package.assert_called_with('123')
         package.get.assert_called_with(data={'full': True})
 
     def test_update_account_details(self):
@@ -178,7 +179,7 @@ class TestPaymentAccount(amo.tests.TestCase):
             something_other_value='not a package key')
         eq_(res.name, 'new name')
 
-        self.client.api.by_url(res.uri).patch.assert_called_with(
+        self.patched_client.api.by_url(res.uri).patch.assert_called_with(
             data={'vendorName': 'new vendor name'})
 
 

@@ -22,7 +22,7 @@ from . import views
 from . import views_payments
 
 
-def bango_patterns(prefix):
+def provider_patterns(prefix):
     return patterns('',
         url('^accounts$', views_payments.payment_accounts,
             name='mkt.developers.%s.payment_accounts' % prefix),
@@ -170,7 +170,8 @@ urlpatterns = decorate(write, patterns('',
         name='mkt.developers.transactions'),
 
     # Bango-specific stuff.
-    url('^bango/', include(bango_patterns('bango'))),
+    url('^bango/', include(provider_patterns('bango'))),
+    url('^reference/', include(provider_patterns('reference'))),
 
     url('^test/$', views.testing, name='mkt.developers.apps.testing'),
     url('^test/receipts/', include(test_patterns)),

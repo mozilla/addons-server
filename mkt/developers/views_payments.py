@@ -8,11 +8,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware
-from curling.lib import HttpClientError
 import jingo
-from jingo import helpers
 import jinja2
 import waffle
+
+from curling.lib import HttpClientError
+from jingo import helpers
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
@@ -32,6 +33,7 @@ from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import (CantCancel, PaymentAccount, UserInappKey,
                                    uri_to_pk)
+from mkt.developers.providers import get_provider
 
 from . import forms, forms_payments
 
@@ -123,6 +125,8 @@ def payments(request, addon_id, addon, webapp=False):
     if tier_zero:
         paid_region_ids_by_slug = tier_zero.region_ids_by_slug()
 
+    provider = get_provider()
+
     return jingo.render(
         request, 'developers/payments/premium.html',
         {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
@@ -136,7 +140,7 @@ def payments(request, addon_id, addon, webapp=False):
          'is_incomplete': addon.status == amo.STATUS_NULL,
          'is_packaged': addon.is_packaged,
          # Bango values
-         'bango_account_form': forms_payments.BangoPaymentAccountForm(),
+         'account_form': provider.forms['account'](),
          'bango_account_list_form': bango_account_list_form,
          # Waffles
          'payments_enabled':
@@ -151,6 +155,7 @@ def payments(request, addon_id, addon, webapp=False):
              PAYMENT_METHOD_OPERATOR: _('Carrier'),
          },
          'all_paid_region_ids_by_slug': paid_region_ids_by_slug,
+         'provider': provider,
         })
 
 
@@ -200,14 +205,16 @@ def payment_accounts_form(request):
 @login_required
 @json_view
 def payments_accounts_add(request):
-    form = forms_payments.BangoPaymentAccountForm(request.POST)
+    provider = get_provider()
+    form = provider.forms['account'](request.POST)
     if not form.is_valid():
         return json_view.error(form.errors)
 
     try:
-        obj = PaymentAccount.create_bango(request.amo_user, form.cleaned_data)
+        obj = provider.account_create(request.amo_user, form.cleaned_data)
     except HttpClientError as e:
-        log.error('Client error create Bango account; %s' % e)
+        log.error('Client error create {0} account: {1}'.format(
+            provider.name, e))
         return http.HttpResponseBadRequest(json.dumps(e.content))
 
     return {'pk': obj.pk, 'agreement-url': obj.get_agreement_url()}
