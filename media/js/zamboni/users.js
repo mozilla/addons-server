@@ -14,7 +14,9 @@ $('#recaptcha_different').click(function(e) {
 
 $('#recaptcha_audio').click(function(e) {
     e.preventDefault();
-    Recaptcha.switch_type('audio');
+    var toggleType = this.getAttribute('data-nextType') || 'audio';
+    Recaptcha.switch_type(toggleType);
+    this.setAttribute('data-nextType', toggleType === 'audio' ? 'image' : 'audio');
 });
 
 $('#recaptcha_help').click(function(e) {
