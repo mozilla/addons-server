@@ -423,7 +423,10 @@ def dump_user_installs(ids, **kw):
         target_file = os.path.join(target_dir, '%s.json' % hash)
 
         if not os.path.exists(target_dir):
-            os.makedirs(target_dir)
+            try:
+                os.makedirs(target_dir)
+            except OSError:
+                pass  # Catch race condition if file exists now.
 
         # Gather data about user.
         installed = []
