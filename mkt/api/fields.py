@@ -64,6 +64,7 @@ class SplitField(fields.Field):
     nested representation of the object represented by that key as
     output.
     """
+    label = None
     def __init__(self, input, output, **kwargs):
         self.input = input
         self.output = output

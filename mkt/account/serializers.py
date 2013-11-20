@@ -66,11 +66,9 @@ class UserSerializer(AccountSerializer):
     A wacky serializer type that unserializes PK numbers and
     serializes user fields.
     """
-    resource_uri = CompatRelatedField(
-        view_name='api_dispatch_detail', read_only=True,
-        tastypie={'resource_name': 'settings',
-                  'api_name': 'account'},
-        source='*')
+    resource_uri = serializers.HyperlinkedRelatedField(
+        view_name='account-settings', source='pk',
+        read_only=True)
 
     class Meta:
         model = UserProfile

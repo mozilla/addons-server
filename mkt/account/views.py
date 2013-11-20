@@ -152,7 +152,11 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
                 'email': request.amo_user.email,
             }
         }
-        permissions = PermissionsSerializer(context={'request': request})
+        # Serializers give up if they aren't passed an instance, so we
+        # do that here despite PermissionsSerializer not needing one
+        # really.
+        permissions = PermissionsSerializer(context={'request': request},
+                                            instance=True)
         data.update(permissions.data)
         return data
 
