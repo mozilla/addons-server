@@ -1160,7 +1160,7 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(values['appname'], self.app.name)
         eq_(values['platform'], 'Firefox')
         eq_(values['token'], self.app.iarc_token())
-        eq_(values['pingback_url'],
+        eq_(values['pingbackurl'],
             absolutify(reverse('content-ratings-pingback',
                                args=[self.app.app_slug])))
 
