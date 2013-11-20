@@ -101,6 +101,7 @@ class ThemeReviewTestMixin(object):
                 len(expected))
 
     @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
+    @mock.patch('amo.messages.success')
     @mock.patch('mkt.reviewers.tasks.reject_rereview')
     @mock.patch('mkt.reviewers.tasks.approve_rereview')
     @mock.patch('addons.tasks.version_changed')
@@ -109,7 +110,8 @@ class ThemeReviewTestMixin(object):
     @mock.patch('amo.storage_utils.copy_stored_file')
     def test_commit(self, copy_mock, create_preview_mock,
                     send_mail_jinja_mock, version_changed_mock,
-                    approve_rereview_mock, reject_rereview_mock):
+                    approve_rereview_mock, reject_rereview_mock,
+                    message_mock):
         if self.flagged:
             # Feels redundant to test this for flagged queue.
             return
@@ -252,6 +254,10 @@ class ThemeReviewTestMixin(object):
             eq_(send_mail_jinja_mock.call_args_list[2], expected_calls[2])
             eq_(send_mail_jinja_mock.call_args_list[3], expected_calls[3])
             eq_(send_mail_jinja_mock.call_args_list[4], expected_calls[4])
+
+            eq_(message_mock.call_args_list[0][0][1],
+                '5 theme reviews successfully processed '
+                '(+15 points, 15 total).')
 
         # Reviewer points accrual.
         assert ReviewerScore.objects.all()[0].score > 0
