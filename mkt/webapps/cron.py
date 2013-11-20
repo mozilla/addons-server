@@ -56,14 +56,20 @@ def update_app_trending():
     """
     Update trending for all apps.
 
-    In testing on the server, each calculation takes about 2.5s. A chunk size
-    of 50 means each task will take about 2 minutes.
+    Spread these tasks out successively by 15 seconds so they don't hit
+    Monolith all at once.
+
     """
     chunk_size = 50
-    all_ids = list(Webapp.objects.values_list('id', flat=True))
+    seconds_between = 15
 
+    all_ids = list(Webapp.objects.filter(status=amo.STATUS_PUBLIC)
+                   .values_list('id', flat=True))
+
+    countdown = 0
     for ids in chunked(all_ids, chunk_size):
-        update_trending.delay(ids)
+        update_trending.delay(ids, countdown=countdown)
+        countdown += seconds_between
 
 
 @cronjobs.register
