@@ -75,6 +75,10 @@ def process_iarc_changes(date=None):
 
     for row in data.get('rows', []):
         iarc_id = row.get('submission_id')
+        if not iarc_id:
+            log.debug('IARC changes contained no submission ID: %s' % row)
+            continue
+
         try:
             app = Webapp.objects.get(iarc_info__submission_id=iarc_id)
         except Webapp.DoesNotExist:
@@ -102,7 +106,7 @@ def process_iarc_changes(date=None):
             reason = row.get('change_reason')
             if reason:
                 # TODO: Log to the amo.log tables.
-                log.info('New rating for app %s: %s:%s, %s' % (
+                log.info('New IARC rating for app %s: %s:%s, %s' % (
                     app, ratings_body.name, rating.name, reason))
 
         except Exception as e:
