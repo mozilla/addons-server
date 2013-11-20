@@ -21,7 +21,7 @@ from .models import (BlocklistApp, BlocklistCA, BlocklistDetail, BlocklistGfx,
 
 
 App = collections.namedtuple('App', 'guid min max')
-BlItem = collections.namedtuple('BlItem', 'rows os modified block_id')
+BlItem = collections.namedtuple('BlItem', 'rows os modified block_id prefs')
 
 
 def blocklist(request, apiver, app, appver):
@@ -83,6 +83,7 @@ def get_items(apiver, app, appver=None):
     # item and collapse each item's apps.
     addons = (BlocklistItem.objects.no_cache()
               .select_related('details')
+              .prefetch_related('prefs')
               .filter(Q(app__guid__isnull=True) | Q(app__guid=app))
               .order_by('-modified')
               .extra(select={'app_guid': 'blapps.guid',
@@ -92,14 +93,16 @@ def get_items(apiver, app, appver=None):
     for guid, rows in sorted_groupby(addons, 'guid'):
         rows = list(rows)
         rr = []
+        prefs = []
         for id, rs in sorted_groupby(rows, 'id'):
             rs = list(rs)
             rr.append(rs[0])
+            prefs.extend(p.pref for p in rs[0].prefs.all())
             rs[0].apps = [App(r.app_guid, r.app_min, r.app_max)
                           for r in rs if r.app_guid]
         os = [r.os for r in rr if r.os]
         items[guid] = BlItem(rr, os[0] if os else None, rows[0].modified,
-                             rows[0].block_id)
+                             rows[0].block_id, prefs)
         details[guid] = sorted(rows, key=attrgetter('id'))[0]
     return items, details
 
