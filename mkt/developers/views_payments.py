@@ -333,7 +333,7 @@ def bango_portal_from_addon(request, addon_id, addon, webapp=True):
                    'pk=%s') % request.user.pk)
         return http.HttpResponseForbidden()
 
-    package_id = addon.app_payment_account.payment_account.bango_package_id
+    package_id = addon.app_payment_account.payment_account.account_id
     return _redirect_to_bango_portal(package_id, 'addon_id: %s' % addon_id)
 
 

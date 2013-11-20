@@ -63,7 +63,8 @@ class PaymentAccount(amo.models.ModelBase):
     uri = models.CharField(max_length=255, unique=True)
     # A soft-delete so we can talk to Solitude asynchronously.
     inactive = models.BooleanField(default=False)
-    bango_package_id = models.IntegerField(blank=True, null=True)
+    # The id for this account from the provider.
+    account_id = models.IntegerField(blank=True, null=True)
 
     shared = models.BooleanField(default=False)
 
@@ -108,7 +109,7 @@ class PaymentAccount(amo.models.ModelBase):
         obj = cls.objects.create(user=user, uri=uri,
                                  solitude_seller=user_seller,
                                  seller_uri=user_seller.resource_uri,
-                                 bango_package_id=res['package_id'],
+                                 account_id=res['package_id'],
                                  name=form_data['account_name'])
 
         log.info('[User:%s] Created Bango payment account (uri: %s)' %
@@ -179,7 +180,7 @@ class PaymentAccount(amo.models.ModelBase):
 
     def get_lookup_portal_url(self):
         return reverse('lookup.bango_portal_from_package',
-                       args=[self.bango_package_id])
+                       args=[self.account_id])
 
 
 class AddonPaymentAccount(amo.models.ModelBase):
@@ -228,10 +229,10 @@ class AddonPaymentAccount(amo.models.ModelBase):
 
     @classmethod
     def _create_bango(cls, product_uri, addon, payment_account, secret):
-        if not payment_account.bango_package_id:
+        if not payment_account.account_id:
             raise NotImplementedError('Currently we only support Bango '
                                       'so the associated account must '
-                                      'have a bango_package_id')
+                                      'have a account_id')
         res = None
         if product_uri:
             data = {'seller_product': uri_to_pk(product_uri)}
@@ -243,7 +244,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
                     'seller_bango': payment_account.uri,
                     'seller_product': product_uri,
                     'name': unicode(addon.name),
-                    'packageId': payment_account.bango_package_id,
+                    'packageId': payment_account.account_id,
                     'categoryId': 1,
                     'secret': secret
                 })

@@ -112,7 +112,7 @@ class TestPaymentAccount(amo.tests.TestCase):
         eq_(res.name, 'Test Account')
         eq_(res.user, self.user)
         eq_(res.seller_uri, 'selleruri')
-        eq_(res.bango_package_id, 123)
+        eq_(res.account_id, 123)
         eq_(res.uri, 'zipzap')
 
         self.client.api.bango.package.post.assert_called_with(
@@ -200,7 +200,7 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
             solitude_seller=self.seller,
             user=self.user, name='paname', uri='acuri',
             inactive=False, seller_uri='selluri',
-            bango_package_id=123
+            account_id=123
         )
 
     @patch('uuid.uuid4', Mock(return_value='lol'))
