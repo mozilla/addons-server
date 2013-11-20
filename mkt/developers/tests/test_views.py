@@ -1158,7 +1158,7 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(values['password'], 's3kr3t')
         eq_(values['email'], self.req.amo_user.email)
         eq_(values['appname'], self.app.name)
-        eq_(values['platform'], '2000')  # TODO: Fix when IARC updates.
+        eq_(values['platform'], 'Firefox')
         eq_(values['token'], self.app.iarc_token())
         eq_(values['pingback_url'],
             absolutify(reverse('content-ratings-pingback',
