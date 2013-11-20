@@ -449,6 +449,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # `mkt.webapps.tasks.unindex_webapps.delay([id])`
         if not self.type == amo.ADDON_WEBAPP:
             tasks.unindex_addons.delay([id])
+        else:
+            self.set_iarc_storefront_data(disable=True)
 
         return True
 

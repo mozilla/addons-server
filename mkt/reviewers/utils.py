@@ -359,6 +359,8 @@ class ReviewApp(ReviewBase):
         if not acl.action_allowed(self.request, 'Addons', 'Edit'):
             return
 
+        self.addon.set_iarc_storefront_data(disable=True)
+
         # Disable disables all files, not just those in this version.
         self.set_files(amo.STATUS_DISABLED,
                        File.objects.filter(version__addon=self.addon),

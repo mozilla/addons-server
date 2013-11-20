@@ -1157,7 +1157,7 @@ class Webapp(Addon):
         if not created:
             ri.update(**create_kwargs)
 
-    def set_iarc_storefront_data(self):
+    def set_iarc_storefront_data(self, disable=False):
         """Send app data to IARC for them to verify."""
         if not waffle.switch_is_active('iarc'):
             return
@@ -1177,7 +1177,7 @@ class Webapp(Addon):
                 'submission_id': iarc_info.submission_id,
                 'security_code': iarc_info.security_code,
                 'rating_system': cr.get_body().iarc_name,
-                'release_date': datetime.date.today(),
+                'release_date': datetime.date.today() if not disable else '',
                 'title': unicode(delocalized_self.name),
                 'rating': cr.get_rating().iarc_name,
                 'descriptors': self.rating_descriptors.iarc_deserialize(
