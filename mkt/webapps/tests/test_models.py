@@ -638,6 +638,17 @@ class TestWebapp(amo.tests.TestCase):
         self.create_switch('iarc')
         assert not app_factory().set_iarc_storefront_data()
 
+    @mock.patch('mkt.webapps.models.render_xml')
+    @mock.patch('lib.iarc.client.MockClient.call')
+    def test_set_iarc_storefront_data_disable(self, storefront_mock,
+                                              render_mock):
+        self.create_switch('iarc')
+        app = app_factory(rated=True)
+        app.set_iarc_info(123, 'abc')
+        app.set_iarc_storefront_data(disable=True)
+        data = render_mock.call_args_list[0][0][1]
+        eq_(data['release_date'], '')
+
     def test_get_descriptors_es(self):
         app = app_factory()
         eq_(app.get_descriptors(es=True), [])
