@@ -76,12 +76,24 @@ Running Tests
     great most of the time.  See the docs for more stuff you can do with
     :mod:`nose and logging <nose.plugins.logcapture>`.
 
+There's also a few useful makefile targets like ``test``, ``tdd`` and
+``test_force_db``::
+
+    make test
+
 
 Building Docs
 ~~~~~~~~~~~~~
 
-* If you're working on the docs, use ``make loop`` to keep your built pages
-  up-to-date.
+To simply build the docs::
+
+    make docs
+
+If you're working on the docs, use ``make loop`` to keep your built pages
+up-to-date::
+
+    cd docs
+    make loop
 
 
 Indices and tables

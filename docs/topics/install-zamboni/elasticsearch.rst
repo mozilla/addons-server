@@ -34,14 +34,21 @@ Settings
 .. literalinclude:: /../scripts/elasticsearch/elasticsearch.yml
 
 We use a custom analyzer for indexing add-on names since they're a little
-different from normal text. To get the same results as our servers, put this in
-your elasticsearch.yml (available at
-:src:`scripts/elasticsearch/elasticsearch.yml`)
+different from normal text.
 
-Once installed, we can configure Elasticsearch. Zamboni has a ```config.yml```
-in the ```scripts/elasticsearch/``` directory. If on OSX, copy that file into
-```/usr/local/Cellar/elasticsearch/x.x.x/config/```. On Linux, the directory is
-```/etc/elasticsearch/```.
+To get the same results as our servers, configure Elasticsearch by copying the
+:src:`scripts/elasticsearch/elasticsearch.yml` (available in the
+``scripts/elasticsearch/`` folder of your install) to your system:
+
+* If on OSX, copy that file into
+  ``/usr/local/Cellar/elasticsearch/*/config/``.
+* On Linux, the directory is ``/etc/elasticsearch/``.
+
+.. note::
+
+   If you are on a linux box, make sure to comment out the 4 lines relevant to
+   the path configuration, unless it corresponds to an existing
+   ``/usr/local/var`` folder and you want it to be stored there.
 
 If you don't do this your results will be slightly different, but you probably
 won't notice.
@@ -49,27 +56,36 @@ won't notice.
 Launching and Setting Up
 ------------------------
 
-Launch the Elasticsearch service. If you used homebrew, `brew info
-elasticsearch` will show you the commands to launch. If you used aptitude,
-Elasticsearch will come with an start-stop daemon in /etc/init.d.
+Launch the Elasticsearch service. If you used homebrew, ``brew info
+elasticsearch`` will show you the commands to launch. If you used aptitude,
+Elasticsearch will come with a start-stop daemon in /etc/init.d.
 
 Zamboni has commands that sets up mappings and indexes objects such as add-ons
-and apps for you. Setting up the mappings is analagous defining the structure
-of a table, indexing is analagous to storing rows.
+and apps for you. Setting up the mappings is analagous to defining the
+structure of a table, indexing is analagous to storing rows.
 
 For AMO, this will set up all indexes and start the indexing processeses::
 
-    ./manage.py reindex --settings=your_local_mkt_settings
+    ./manage.py reindex --settings=your_local_amo_settings
 
 For Marketplace, use this to only create the apps index and index apps::
 
     ./manage.py reindex_mkt --settings=your_local_mkt_settings
 
+Or you could use the makefile target (using the ``settings_local.py`` file)::
+
+    make reindex
+
+If you need to use another settings file and add arguments::
+
+    make SETTINGS=settings_amo ARGS='--with-stats --wipe --force' reindex
+
+
 Indexing
 --------
 
-Zamboni has other indexing commands. It is worth nothing the index is
-maintained incrementally through post_save and post_delete hooks.::
+Zamboni has other indexing commands. It is worth noting that the index is
+maintained incrementally through post_save and post_delete hooks::
 
     ./manage.py cron reindex_addons  # Index all the add-ons.
 
@@ -94,15 +110,15 @@ Querying Elasticsearch in Django
 We use `elasticutils <http://github.com/mozilla/elasticutils>`_, a Python
 library that gives us a search API to elasticsearch.
 
-We attach elasticutils to Django models with a mixin. This lets us do things like
-`.search()` which returns an object which acts a lot like Django's ORM's object
-manager. `.filter(**kwargs)` can be run on this search object.::
+We attach elasticutils to Django models with a mixin. This lets us do things
+like ``.search()`` which returns an object which acts a lot like Django's ORM's
+object manager. ``.filter(**kwargs)`` can be run on this search object::
 
     query_results = list(
         MyModel.search().filter(my_field=a_str.lower())
         .values_dict('that_field'))
 
-On Marketplace, apps use ```mkt/webapps/models:WebappIndexer``` as its
+On Marketplace, apps use ``mkt/webapps/models:WebappIndexer`` as its
 interface to Elasticsearch. Search is done a little differently using
 this and results are a list of ``WebappIndexer`` objects::
 
@@ -111,7 +127,7 @@ this and results are a list of ``WebappIndexer`` objects::
 Testing with Elasticsearch
 --------------------------
 
-All test cases using Elasticsearch should inherit from `amo.tests.ESTestCase`.
+All test cases using Elasticsearch should inherit from ``amo.tests.ESTestCase``.
 All such tests will be skipped by the test runner unless::
 
     RUN_ES_TESTS = True

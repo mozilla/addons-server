@@ -81,6 +81,36 @@ The ``REDIS_BACKEND`` is parsed like ``CACHE_BACKEND`` if you need something
 other than the default settings.
 
 
+-------
+Node.js
+-------
+
+`Node.js <http://nodejs.org/>`_ is needed for Stylus and LESS, which in turn
+are needed to precompile the CSS files.
+
+If you want to serve the CSS files from another domain than the webserver, you
+will need to precompile them. Otherwise you can have them compiled on the fly,
+using javascript in your browser, if you set ``LESS_PREPROCESS = False`` in
+your local settings.
+
+First, we need to install node and npm::
+
+    brew install node
+    curl http://npmjs.org/install.sh | sh
+
+Optionally make the local scripts available on your path if you don't already
+have this in your profile::
+
+    export PATH="./node_modules/.bin/:${PATH}"
+
+Not working?
+ * If you're having trouble installing node, try
+   http://shapeshed.com/journal/setting-up-nodejs-and-npm-on-mac-osx/.  You
+   need brew, which we used earlier.
+ * If you're having trouble with npm, check out the README on
+   https://github.com/isaacs/npm
+
+
 ----------
 Stylus CSS
 ----------
@@ -103,8 +133,12 @@ LESS CSS
 We're slowing switching over from regular CSS to LESS.  You can learn more about
 LESS at http://lesscss.org.
 
-If you are serving your CSS from the same domain as the page, you don't
-need to do anything.  Otherwise, see "Installing LESS (alternative)" below.
+If you already ran ``npm install`` you don't need to do anything more.
+
+In your ``settings_local.py`` (or ``settings_local_mkt.py``) ensure you are
+pointing to the correct executable for ``less``::
+
+    LESS_BIN = path('node_modules/less/bin/lessc')
 
 You can make the CSS live refresh on save by adding ``#!watch`` to the URL or by
 adding the following to your ``settings_local.py``::
@@ -116,43 +150,3 @@ If you want syntax highlighting, try:
  * emacs: http://jdhuntington.com/emacs/less-css-mode.el
  * TextMate: https://github.com/appden/less.tmbundle
  * Coda: http://groups.google.com/group/coda-users/browse_thread/thread/b3327b0cb893e439?pli=1
-
-
-Installing LESS (alternative)
-*****************************
-
-You only need to do this if your CSS is being served from a separate domain, or
-if you're using zamboni in production and running the build scripts.
-
-If you aren't serving your CSS from the same domain as zamboni, you'll need
-to install node so that we can compile it on the fly.
-
-First, we need to install node, npm and LESS::
-
-    brew install node
-    curl http://npmjs.org/install.sh | sh
-
-Install all of zamboni's dependencies locally::
-
-    cd zamboni
-    npm install
-
-Make the local scripts available on your path if you don't already have this in
-your profile::
-
-    export PATH="./node_modules/.bin/:${PATH}"
-
-If you type ``lessc``, it should say "lessc: no input files."
-
-Next, add this to your settings_local.py::
-
-    LESS_PREPROCESS = True
-    LESS_BIN = 'lessc'
-
-Make sure ``LESS_BIN`` is correct.
-
-Not working?
- * If you're having trouble installing node, try http://shapeshed.com/journal/setting-up-nodejs-and-npm-on-mac-osx/.  You need brew, which we used earlier.
- * If you're having trouble with npm, check out the README on https://github.com/isaacs/npm
- * If you can't run LESS after installing, make sure it's in your PATH.  You should be
-   able to type "lessc", and have "lessc: no input files" returned.

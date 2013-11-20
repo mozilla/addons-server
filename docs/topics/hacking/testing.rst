@@ -31,7 +31,7 @@ for the full set, but some common ones are:
 
 * ``--noinput`` tells Django not to ask about creating or destroying test
   databases.
-* ``--loggging-clear-handlers`` tells nose that you don't want to see any
+* ``--logging-clear-handlers`` tells nose that you don't want to see any
   logging output.  Without this, our debug logging will spew all over your
   console during test runs.  This can be useful for debugging, but it's not that
   great most of the time.  See the docs for more stuff you can do with
@@ -40,6 +40,30 @@ for the full set, but some common ones are:
 Our continuous integration server adds some additional flags for other features
 (for example, coverage statistics).  To see what those commands are check out
 the build script at :src:`scripts/build.sh`.
+
+There are a few useful makefile targets that you can use:
+
+Run all the tests using your ``settings_local.py`` file::
+
+    make test
+
+If you need to rebuild the database::
+
+    make test_force_db
+
+To fail and stop running tests on the first failure::
+
+    make tdd
+
+If you wish to add arguments, or run a specific test, overload the variables
+(check the Makefile for more information)::
+
+    make SETTINGS=settings_mkt ARGS='--verbosity 2 zamboni.apps.amo.tests.test_url_prefix:MiddlewareTest.test_get_app' test
+
+Those targets include some useful options, like the ``--with-id`` which allows
+you to re-run only the tests failed from the previous run::
+
+    make test_failed
 
 
 Database Setup
