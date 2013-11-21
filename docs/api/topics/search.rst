@@ -141,43 +141,57 @@ features table.
 Each bit in the features bitfield represents the presence or absence
 of a feature.
 
-Feature table version 1:
+Feature table version 2:
 
 =====  ============================
   bit   feature
 =====  ============================
-    0   Quota Management
-    1   Gamepad
-    2   Full Screen
-    3   WebM
-    4   H.264
-    5   Web Audio
-    6   Audio
-    7   MP3
-    8   Smartphone-Sized Displays
-    9   Touch
-   10   WebSMS
-   11   WebFM
-   12   Vibration
-   13   Time/Clock
-   14   Screen Orientation
-   15   Simple Push
-   16   Proximity
-   17   Network Stats
-   18   Network Information
-   19   Idle
-   20   Geolocation
-   21   IndexedDB
-   22   Device Storage
-   23   Contacts
-   24   Bluetooth
-   25   Battery
-   26   Archive
-   27   Ambient Light Sensor
-   28   Web Activities
-   29   Web Payment
-   30   Packaged Apps Install API
-   31   App Management API
+    0   Third-Party Keyboard Support
+    1   TCP Sockets
+    2   SystemXHR
+    3   Alarms
+    4   Notifications
+    5   Pointer Lock
+    6   Web Speech Recognition
+    7   Web Speech Synthesis
+    8   WebRTC PeerConnection
+    9   WebRTC DataChannel
+   10   WebRTC MediaStream
+   11   Screen Capture
+   12   Microphone
+   13   Camera
+   14   Quota Management
+   15   Gamepad
+   16   Full Screen
+   17   WebM
+   18   H.264
+   19   Web Audio
+   20   Audio
+   21   MP3
+   22   Smartphone-Sized Displays
+   23   Touch
+   24   WebSMS
+   25   WebFM
+   26   Vibration
+   27   Time/Clock
+   28   Screen Orientation
+   29   Simple Push
+   30   Proximity
+   31   Network Stats
+   32   Network Information
+   33   Idle
+   34   Geolocation
+   35   IndexedDB
+   36   Device Storage
+   37   Contacts
+   38   Bluetooth
+   39   Battery
+   40   Archive
+   41   Ambient Light Sensor
+   42   Web Activities
+   43   Web Payment
+   44   Packaged Apps Install API
+   45   App Management API
 =====  ============================
 
 
@@ -185,5 +199,5 @@ For example, a device with the 'App Management API', 'Proximity',
 'Ambient Light Sensor', and 'Vibration' features would send this
 feature profile signature::
 
-    88011000.32.1
+    220044000000.46.2
 
