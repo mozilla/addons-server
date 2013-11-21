@@ -19,7 +19,7 @@
       {% endif %}
     </dd>
     <dt>{{ _('Status') }}</dt>
-    <dd{% if product.status == amo.STATUS_BLOCKED %} class="warn"{% endif %}>{{ amo.STATUS_CHOICES[product.status] }}
+    <dd{% if product.status == amo.STATUS_BLOCKED %} class="warn"{% endif %}>{{ amo.MKT_STATUS_CHOICES[product.status] }}
       {% if product.in_rereview_queue() %}&middot; <b id="queue-rereview">{{ _('In re-review queue') }}</b>{% endif %}
       {% if product.in_escalation_queue() %}&middot; <b id="queue-escalation">{{ _('In escalation queue') }}</b>{% endif %}
     </dd>

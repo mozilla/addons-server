@@ -320,7 +320,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         eq_(version.count(), 1)
         # Test that the status of the "deleted" version is STATUS_DELETED.
         eq_(str(version[0].status[0]),
-            str(amo.STATUS_CHOICES[amo.STATUS_DELETED]))
+            str(amo.MKT_STATUS_CHOICES[amo.STATUS_DELETED]))
 
     def test_anonymous_delete_redirects(self):
         self.client.logout()

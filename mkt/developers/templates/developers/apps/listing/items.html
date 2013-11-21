@@ -29,7 +29,7 @@
                 <span class="{{ mkt_status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
               {% else %}
                 <span class="{{ mkt_status_class(addon) }}">
-                  <b>{{ amo.STATUS_CHOICES[addon.status] }}</b></span>
+                  <b>{{ amo.MKT_STATUS_CHOICES[addon.status] }}</b></span>
               {% endif %}
             </a>
           </li>

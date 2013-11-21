@@ -26,7 +26,7 @@
       <li class="currently_viewing_warning"></li>
       <li>
         <ul>
-          <li><b>{{ _('Status') }}</b>: {{ amo.STATUS_CHOICES[product.status] }}</li>
+          <li><b>{{ _('Status') }}</b>: {{ amo.MKT_STATUS_CHOICES[product.status] }}</li>
           {% if product.in_rereview_queue() %}
             <li>&middot; <b id="queue-rereview">{{ _('In re-review queue') }}</b></li>
           {% endif %}

@@ -43,6 +43,16 @@ STATUS_CHOICES = {
     STATUS_BLOCKED: _(u'Blocked'),
 }
 
+
+# Marketplace app status terms.
+MKT_STATUS_CHOICES = STATUS_CHOICES.copy()
+MKT_STATUS_CHOICES[STATUS_PUBLIC] = _(u'Published')
+MKT_STATUS_CHOICES[STATUS_PUBLIC_WAITING] = _(u'Approved but unpublished')
+
+# Marketplace file status terms.
+MKT_STATUS_FILE_CHOICES = MKT_STATUS_CHOICES.copy()
+MKT_STATUS_FILE_CHOICES[STATUS_DISABLED] = _(u'Obsolete')
+
 # We need to expose nice values that aren't localisable.
 STATUS_CHOICES_API = {
     STATUS_NULL: 'incomplete',
