@@ -82,6 +82,7 @@ class TestIARCChangesCron(amo.tests.TestCase):
         The mock client always returns the same data. Set up the app so it
         matches the submission ID and verify the data is saved as expected.
         """
+        amo.set_user(amo.tests.user_factory())
         app = amo.tests.app_factory()
         IARCInfo.objects.create(addon=app, submission_id=52,
                                 security_code='FZ32CU8')
@@ -100,6 +101,9 @@ class TestIARCChangesCron(amo.tests.TestCase):
         eq_(cr.rating, mkt.ratingsbodies.CLASSIND_18.id)
         cr = app.content_ratings.get(ratings_body=mkt.ratingsbodies.ESRB.id)
         eq_(cr.rating, mkt.ratingsbodies.ESRB_E.id)
+
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONTENT_RATING_CHANGED.id).count()
 
         # Check descriptors.
         self.assertSetEqual(

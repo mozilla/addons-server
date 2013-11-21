@@ -654,6 +654,11 @@ class CONTENT_RATING_TO_ADULT(_LOG):
     review_queue = True
 
 
+class CONTENT_RATING_CHANGED(_LOG):
+    id = 127
+    format = _('{addon} content rating changed.')
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 
