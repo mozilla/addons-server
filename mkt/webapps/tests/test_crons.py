@@ -143,7 +143,8 @@ class TestSignApps(amo.tests.TestCase):
 class TestUpdateTrending(amo.tests.TestCase):
 
     def setUp(self):
-        self.app = Webapp.objects.create(type=amo.ADDON_WEBAPP)
+        self.app = Webapp.objects.create(type=amo.ADDON_WEBAPP,
+                                         status=amo.STATUS_PUBLIC)
 
     @mock.patch('mkt.webapps.tasks._get_trending')
     def test_trending_saved(self, _mock):
