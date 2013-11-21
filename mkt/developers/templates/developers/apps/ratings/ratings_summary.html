@@ -36,7 +36,7 @@
               <td class="content-rating">{{ iarc_rating_icon(cr) }}</td>
               <td class="content-descriptors">
                 {% for descriptor in addon.get_descriptors(body=ratings_body.label) %}
-                  {% if ratings_body.label in == 'pegi' %}
+                  {% if ratings_body.label == 'pegi' %}
                     <img class="icon {{ descriptor.label }}" title="{{ descriptor.name }}">
                   {% else %}
                     <p>{{ descriptor.name }}</p>
