@@ -16,6 +16,7 @@
         position: relative;
     }
     table {
+        margin-bottom: 16px;
         text-align: center;
 
         th, td {
@@ -27,8 +28,8 @@
         tbody td {
             background: #fff;
             /* padding-left/right set in padding, changing bottom/top. */
-            padding-bottom: 32px;
-            padding-top: 32px;
+            padding-bottom: 20px;
+            padding-top: 20px;
             vertical-align: middle;
         }
     }
@@ -59,10 +60,7 @@ $box-blue = #00d5ff;
 $box-yellow = #ffd300;
 $box-orange = #ff7c00;
 $box-red = #ff2600;
-.content-rating {
-    color: $text;
-    margin-bottom: 12px;
-
+.content-rating, .interactive-elements, .content-descriptors {
     .icon {
         background: #000;
         border-radius: 5px;
@@ -74,6 +72,12 @@ $box-red = #ff2600;
         vertical-align: middle;
         width: 64px;
     }
+}
+
+.content-rating {
+    color: $text;
+    margin-bottom: 12px;
+
     .icon-body-esrb {
         height: 90px;
         width: 58px;
@@ -176,5 +180,53 @@ $box-red = #ff2600;
         margin: 0;
         vertical-align: middle;
         width: 100%;
+    }
+}
+
+.interactive-elements .icon {
+    height: 60px;
+    width: 60px;
+
+    &.shares-info {
+        background-image: url('../../img/icons/ratings/interactives/ESRB_shares-info_small.png');
+    }
+    &.shares-location {
+        background-image: url('../../img/icons/ratings/interactives/ESRB_shares-location_small.png');
+    }
+    &.users-interact {
+        background-image: url('../../img/icons/ratings/interactives/ESRB_users-interact_small.png');
+    }
+}
+
+.content-descriptors .icon {
+    height: 60px;
+    width: 60px;
+
+    &.pegi-discrimination {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_discrimination.png');
+    }
+    &.pegi-drugs {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_drugs.png');
+    }
+    &.pegi-scary {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_fear.png');
+    }
+    &.pegi-gambling {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_gambling.png');
+    }
+    &.pegi-lang {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_language.png');
+    }
+    &.pegi-nudity {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_nudity.png');
+    }
+    &.pegi-online {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_online.png');
+    }
+    &.pegi-sex {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_sex.png');
+    }
+    &.pegi-violence {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_violence.png');
     }
 }

@@ -1038,14 +1038,17 @@ class Webapp(Addon):
                 content_ratings[_region] = rating
         return content_ratings
 
-    def get_descriptors(self, es=False):
+    def get_descriptors(self, es=False, body=''):
         """
-        Return list of (label, strings) for descriptors for consumer pages.
-        (e.g. [('esrb-blood', u'Blood), ('classind-lang', u'Language')])
+        Return list of serialized content descriptors.
+        (e.g. [{'label': 'esrb-blood', 'name': u'Blood},
+               {'label': 'classind-lang', 'name': u'Language'}])
 
         es -- denotes whether to return ES-friendly results (just the keys of
               the descriptors) to fetch and dehydrate later.
               (e.g. ['ESRB_BLOOD', 'CLASSIND_LANG').
+        body -- ratings body label to filter by
+                (e.g. 'pegi', 'esrb', 'generic').
 
         """
         try:
@@ -1057,7 +1060,8 @@ class Webapp(Addon):
         for key in mkt.ratingdescriptors.RATING_DESCS.keys():
             field = 'has_%s' % key.lower()
             if getattr(app_descriptors, field):
-                descriptors.append(key)
+                if key.lower().startswith(body):
+                    descriptors.append(key)
 
         if not es and descriptors:
             descriptors = dehydrate_descriptors(descriptors)
@@ -1065,9 +1069,9 @@ class Webapp(Addon):
 
     def get_interactives(self, es=False):
         """
-        Return list of (label, strings) for interactives for consumer pages.
-        (e.g. [('social-networking', u'Social Networking'),
-               ('milk', u'Milk')])
+        Return list of serialized interactive elements.
+        (e.g. [{'label': 'social-networking', 'name': u'Social Networking'},
+               {'label': 'milk', 'name': u'Milk'}])
 
         es -- denotes whether to return ES-friendly results (just the keys of
               the interactive elements) to fetch and dehydrate later.

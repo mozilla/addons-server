@@ -18,12 +18,13 @@
     </h2>
 
     <div class="island">
+      <h3>{{ _('Content Ratings') }}</h3>
       <table class="ratings-summary data-grid">
         <thead>
           <th>{{ _('Rating System') }}</th>
           <th>{{ _('Region') }}</th>
           <th>{{ _('Rating Category') }}</th>
-          <th>{{ _('Descriptions') }}</th>
+          <th>{{ _('Descriptors') }}</th>
         </thead>
         <tbody>
           {% for cr in addon.content_ratings.order_by('ratings_body') %}
@@ -33,11 +34,28 @@
               <td class="name">{{ ratings_body.name }}</td>
               <td class="regions">{{ ratings_body.description or '&mdash;'|safe }}</td>
               <td class="content-rating">{{ iarc_rating_icon(cr) }}</td>
-              <td class="desc">{{ rating.description or '&mdash;'|safe }}</td>
+              <td class="content-descriptors">
+                {% for descriptor in addon.get_descriptors(body=ratings_body.label) %}
+                  {% if ratings_body.label in == 'pegi' %}
+                    <img class="icon {{ descriptor.label }}" title="{{ descriptor.name }}">
+                  {% else %}
+                    <p>{{ descriptor.name }}</p>
+                  {% endif %}
+                {% else %}
+                  &mdash;
+                {% endfor %}
+              </td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
+
+      <h3>{{ _('Interactive Elements') }}</h3>
+      <div class="interactive-elements c">
+        {% for interactive in addon.get_interactives() %}
+          <img class="icon {{ interactive.label }}" title="{{ interactive.name }}">
+        {% endfor %}
+      </div>
     </div>
   </section>
 
