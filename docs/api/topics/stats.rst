@@ -281,6 +281,8 @@ Apps installed
 The number of apps installed each day over time, optionally filtered by
 region.
 
+.. note:: Zero values are not stored.
+
 .. http:get:: /api/v1/stats/global/apps_installed/
 
     **Request**:
@@ -436,6 +438,8 @@ Installs
 The number of apps installs each day over time, optionally filtered by
 region.
 
+.. note:: Zero values are not stored.
+
 .. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/installs/
 
     **Request**:
@@ -472,6 +476,8 @@ Visits
 ~~~~~~
 
 The number of page visits each day over time.
+
+.. note:: Zero values are not stored.
 
 .. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/visits/
 
