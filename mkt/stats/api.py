@@ -65,7 +65,8 @@ STATS = {
     },
     'apps_installed': {
         'metric': 'app_installs',
-        'dimensions': {'region': None},
+# TODO: Add back when we track regions (bug 941666)
+#        'dimensions': {'region': None},
     },
     'total_developers': {
         'metric': 'total_dev_count'
@@ -82,7 +83,8 @@ STATS = {
 APP_STATS = {
     'installs': {
         'metric': 'app_installs',
-        'dimensions': {'region': None},
+# TODO: Add back when we track regions (bug 941666)
+#        'dimensions': {'region': None},
     },
     'visits': {
         'metric': 'app_visits',
