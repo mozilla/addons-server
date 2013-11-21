@@ -21,6 +21,7 @@ from mkt.api.base import CORSMixin, MarketplaceModelResource, SlugOrIdMixin
 from mkt.developers.forms import ContentRatingForm
 from mkt.developers.forms_payments import BangoPaymentAccountForm
 from mkt.developers.models import CantCancel, PaymentAccount
+from mkt.developers.providers import get_provider
 from mkt.webapps.models import ContentRating, Webapp
 
 
@@ -57,7 +58,7 @@ class AccountResource(MarketplaceModelResource):
 
     def obj_create(self, bundle, request=None, **kwargs):
         try:
-            bundle.obj = PaymentAccount.create_bango(
+            bundle.obj = get_provider().account_create(
                 request.amo_user, bundle.data)
         except HttpClientError as e:
             log.error('Client error create Bango account; %s' % e)

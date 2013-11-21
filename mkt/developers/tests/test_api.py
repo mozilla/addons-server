@@ -23,6 +23,8 @@ from mkt.developers.tests.test_views_payments import setup_payment_account
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ContentRating
 
+from test_providers import Patcher
+
 
 package_data = {
     'companyName': 'company',
@@ -54,36 +56,33 @@ payment_data = package_data.copy()
 payment_data.update(bank_data)
 
 
-class CreateAccountTests(BaseOAuth):
+class CreateAccountTests(Patcher, BaseOAuth):
 
     def setUp(self):
-        BaseOAuth.setUp(self, api_name='payments')
+        super(CreateAccountTests, self).setUp(api_name='payments')
 
-    @mock.patch('mkt.developers.models.client')
-    def test_add(self, client):
+    def test_add(self):
         r = self.client.post(list_url('account'),
                              data=json.dumps(payment_data))
-        eq_(r.status_code, 201)
+        eq_(r.status_code, 201, r.content)
         pa = PaymentAccount.objects.get(name='account')
         eq_(pa.user.pk, self.user.pk)
-        d = client.api.bango.package.post.call_args[1]['data']
+        d = self.patched_provider.package.post.call_args[1]['data']
         for k, v in d.iteritems():
             if k not in ['paypalEmailAddress', 'seller']:
                 eq_(payment_data[k], v)
 
-    @mock.patch('mkt.developers.models.client')
-    def test_add_fail(self, client):
+    def test_add_fail(self):
         err = {'broken': True}
-        client.api.bango.package.post.side_effect = HttpClientError(
+        self.patched_provider.package.post.side_effect = HttpClientError(
             content=err)
         r = self.client.post(list_url('account'),
                              data=json.dumps(payment_data))
         eq_(r.status_code, 500)
         eq_(json.loads(r.content), err)
 
-    @mock.patch('mkt.developers.models.client')
-    def test_add_fail2(self, client):
-        client.api.bango.package.post.side_effect = HttpServerError()
+    def test_add_fail2(self):
+        self.patched_provider.package.post.side_effect = HttpServerError()
         r = self.client.post(list_url('account'),
                              data=json.dumps(payment_data))
         eq_(r.status_code, 500)

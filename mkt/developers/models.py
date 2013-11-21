@@ -10,6 +10,7 @@ from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
 from amo.urlresolvers import reverse
+from constants.payments import PROVIDER_BANGO, PROVIDER_CHOICES
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
@@ -65,7 +66,9 @@ class PaymentAccount(amo.models.ModelBase):
     inactive = models.BooleanField(default=False)
     # The id for this account from the provider.
     account_id = models.IntegerField(blank=True, null=True)
-
+    # Each account will be for a particular provider.
+    provider = models.IntegerField(choices=PROVIDER_CHOICES,
+                                   default=PROVIDER_BANGO)
     shared = models.BooleanField(default=False)
 
     BANGO_PACKAGE_VALUES = (
@@ -81,40 +84,6 @@ class PaymentAccount(amo.models.ModelBase):
     class Meta:
         db_table = 'payment_accounts'
         unique_together = ('user', 'uri')
-
-    @classmethod
-    def create_bango(cls, user, form_data):
-        # Get the seller object.
-        user_seller = SolitudeSeller.create(user)
-
-        # Get the data together for the package creation.
-        package_values = dict((k, v) for k, v in form_data.items() if
-                              k in cls.BANGO_PACKAGE_VALUES)
-        # Dummy value since we don't really use this.
-        package_values.setdefault('paypalEmailAddress', 'nobody@example.com')
-        package_values['seller'] = user_seller.resource_uri
-
-        log.info('[User:%s] Creating Bango package' % user)
-        res = client.api.bango.package.post(data=package_values)
-        uri = res['resource_uri']
-
-        # Get the data together for the bank details creation.
-        bank_details_values = dict((k, v) for k, v in form_data.items() if
-                                   k in cls.BANGO_BANK_DETAILS_VALUES)
-        bank_details_values['seller_bango'] = uri
-
-        log.info('[User:%s] Creating Bango bank details' % user)
-        client.api.bango.bank.post(data=bank_details_values)
-
-        obj = cls.objects.create(user=user, uri=uri,
-                                 solitude_seller=user_seller,
-                                 seller_uri=user_seller.resource_uri,
-                                 account_id=res['package_id'],
-                                 name=form_data['account_name'])
-
-        log.info('[User:%s] Created Bango payment account (uri: %s)' %
-                 (user, uri))
-        return obj
 
     def cancel(self, disable_refs=False):
         """Cancels the payment account.

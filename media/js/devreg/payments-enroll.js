@@ -128,20 +128,22 @@ define('payments-enroll', ['payments'], function(payments) {
     }
 
     function init() {
-        z.body.on('keyup', '#id_bankAccountCode', _.debounce(_pd(function() {
-            var $this = $(this);
-            var result = getCodeType($this.val());
-            // L10n: {0} is the name of a bank detected from the bank account code.
-            $this.siblings('small').text(result ? format(gettext('Detected: {0}'), result) : '');
-        }), 200));
+        if ($('#id_bankAccountCode').length > 0) {
+            z.body.on('keyup', '#id_bankAccountCode', _.debounce(_pd(function() {
+                var $this = $(this);
+                var result = getCodeType($this.val());
+                // L10n: {0} is the name of a bank detected from the bank account code.
+                $this.siblings('small').text(result ? format(gettext('Detected: {0}'), result) : '');
+            }), 200));
 
-        // Handle bouncing between bank account fields gracefully.
-        z.body.on('keyup', '.bank-accounts-strip input', _.debounce(handleBankAccount, 200));
+            // Handle bouncing between bank account fields gracefully.
+            z.body.on('keyup', '.bank-accounts-strip input', _.debounce(handleBankAccount, 200));
 
-        // This generates the pre-filled bank account name.
-        z.body.on('keyup', '.bank-accounts-strip input, #id_bankName, #id_bankAccountPayeeName',
-            _.debounce(generateAccountName, 1000)  // We don't need this to run very often.
-        );
+            // This generates the pre-filled bank account name.
+            z.body.on('keyup', '.bank-accounts-strip input, #id_bankName, #id_bankAccountPayeeName',
+                _.debounce(generateAccountName, 1000)  // We don't need this to run very often.
+            );
+        }
     }
 
     return {init: init};

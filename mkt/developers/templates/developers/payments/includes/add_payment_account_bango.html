@@ -9,118 +9,118 @@
       <div id="payment-account-errors"></div>
       <div>
         <div class="field">
-          {{ bango_account_form.bankAccountPayeeName.label_tag() }}
-          {{ bango_account_form.bankAccountPayeeName }}
+          {{ account_form.bankAccountPayeeName.label_tag() }}
+          {{ account_form.bankAccountPayeeName }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.bankAccountNumber.label_tag() }}
+          {{ account_form.bankAccountNumber.label_tag() }}
           <div class="faux-input">
-            {{ bango_account_form.bankAccountNumber }}
+            {{ account_form.bankAccountNumber }}
             <div class="payment-account-note">{% trans %}Usually 9, 10 or 11 digits. Example: 0114584906.{% endtrans %}</div>
           </div>
         </div>
         <div class="field">
-          {{ bango_account_form.bankAccountCode.label_tag() }}
+          {{ account_form.bankAccountCode.label_tag() }}
           <div class="faux-input">
-            {{ bango_account_form.bankAccountCode }}
+            {{ account_form.bankAccountCode }}
             <div class="payment-account-note">{% trans %}Either 8 or 11 characters. Example: WFBIUS6WPDX.{% endtrans %}</div>
             <small></small>
           </div>
         </div>
 
         <div class="field">
-          {{ bango_account_form.currencyIso.label_tag() }}
-          {{ bango_account_form.currencyIso }}
+          {{ account_form.currencyIso.label_tag() }}
+          {{ account_form.currencyIso }}
         </div>
         <div class="field">
-          <label data-optional="{{ _('Optional') }}">{{ bango_account_form.vatNumber.label }}</label>
-          {{ bango_account_form.vatNumber }}
+          <label data-optional="{{ _('Optional') }}">{{ account_form.vatNumber.label }}</label>
+          {{ account_form.vatNumber }}
         </div>
 
         <div class="field no-border">
-          {{ bango_account_form.address1.label_tag() }}
-          {{ bango_account_form.address1 }}
+          {{ account_form.address1.label_tag() }}
+          {{ account_form.address1 }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.address2.label_tag() }}
-          {{ bango_account_form.address2 }}
+          {{ account_form.address2.label_tag() }}
+          {{ account_form.address2 }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.addressCity.label_tag() }}
-          {{ bango_account_form.addressCity }}
+          {{ account_form.addressCity.label_tag() }}
+          {{ account_form.addressCity }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.addressState.label_tag() }}
-          {{ bango_account_form.addressState }}
+          {{ account_form.addressState.label_tag() }}
+          {{ account_form.addressState }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.addressZipCode.label_tag() }}
-          {{ bango_account_form.addressZipCode }}
+          {{ account_form.addressZipCode.label_tag() }}
+          {{ account_form.addressZipCode }}
         </div>
         <div class="field">
-          {{ bango_account_form.countryIso.label_tag() }}
-          {{ bango_account_form.countryIso }}
+          {{ account_form.countryIso.label_tag() }}
+          {{ account_form.countryIso }}
         </div>
         <div class="field">
-          {{ bango_account_form.addressPhone.label_tag() }}
-          {{ bango_account_form.addressPhone }}
+          {{ account_form.addressPhone.label_tag() }}
+          {{ account_form.addressPhone }}
         </div>
 
         <div class="field">
-          {{ bango_account_form.bankName.label_tag() }}
-          {{ bango_account_form.bankName }}
+          {{ account_form.bankName.label_tag() }}
+          {{ account_form.bankName }}
         </div>
 
         <div class="field no-border">
-          {{ bango_account_form.bankAddress1.label_tag() }}
-          {{ bango_account_form.bankAddress1 }}
+          {{ account_form.bankAddress1.label_tag() }}
+          {{ account_form.bankAddress1 }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.bankAddress2.label_tag() }}
-          {{ bango_account_form.bankAddress2 }}
+          {{ account_form.bankAddress2.label_tag() }}
+          {{ account_form.bankAddress2 }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.bankAddressCity.label_tag() }}
-          {{ bango_account_form.bankAddressCity }}
+          {{ account_form.bankAddressCity.label_tag() }}
+          {{ account_form.bankAddressCity }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.bankAddressState.label_tag() }}
-          {{ bango_account_form.bankAddressState }}
+          {{ account_form.bankAddressState.label_tag() }}
+          {{ account_form.bankAddressState }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.bankAddressZipCode.label_tag() }}
-          {{ bango_account_form.bankAddressZipCode }}
+          {{ account_form.bankAddressZipCode.label_tag() }}
+          {{ account_form.bankAddressZipCode }}
         </div>
         <div class="field">
-          {{ bango_account_form.bankAddressIso.label_tag() }}
-          {{ bango_account_form.bankAddressIso }}
+          {{ account_form.bankAddressIso.label_tag() }}
+          {{ account_form.bankAddressIso }}
         </div>
 
         <div class="field no-border">
-          {{ bango_account_form.companyName.label_tag() }}
-          {{ bango_account_form.companyName }}
+          {{ account_form.companyName.label_tag() }}
+          {{ account_form.companyName }}
         </div>
         <div class="field">
-          {{ bango_account_form.vendorName.label_tag() }}
-          {{ bango_account_form.vendorName }}
+          {{ account_form.vendorName.label_tag() }}
+          {{ account_form.vendorName }}
         </div>
 
         <div class="field no-border">
-          {{ bango_account_form.financeEmailAddress.label_tag() }}
-          {{ bango_account_form.financeEmailAddress }}
+          {{ account_form.financeEmailAddress.label_tag() }}
+          {{ account_form.financeEmailAddress }}
         </div>
         <div class="field no-border">
-          {{ bango_account_form.adminEmailAddress.label_tag() }}
-          {{ bango_account_form.adminEmailAddress }}
+          {{ account_form.adminEmailAddress.label_tag() }}
+          {{ account_form.adminEmailAddress }}
         </div>
         <div class="field">
-          {{ bango_account_form.supportEmailAddress.label_tag() }}
-          {{ bango_account_form.supportEmailAddress }}
+          {{ account_form.supportEmailAddress.label_tag() }}
+          {{ account_form.supportEmailAddress }}
         </div>
 
         <div class="field">
-          {{ bango_account_form.account_name.label_tag() }}
-          {{ bango_account_form.account_name }}
+          {{ account_form.account_name.label_tag() }}
+          {{ account_form.account_name }}
         </div>
       </div>
       <div class="listing-footer">
