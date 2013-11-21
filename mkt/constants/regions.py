@@ -63,8 +63,7 @@ class US(REGION):
     slug = 'us'
     mcc = 310
     weight = 1
-    # TODO: Don't flip these until we deploy IARC (bug 931948).
-    # ratingsbody = ratingsbodies.ESRB
+    ratingsbody = ratingsbodies.ESRB
 
 
 class UK(REGION):
@@ -73,7 +72,7 @@ class UK(REGION):
     slug = 'uk'
     default_currency = 'GBP'
     mcc = 235
-    # ratingsbody = ratingsbodies.PEGI
+    ratingsbody = ratingsbodies.PEGI
 
 
 class BR(REGION):
@@ -93,7 +92,7 @@ class SPAIN(REGION):
     default_currency = 'EUR'
     default_language = 'es'
     mcc = 214
-    # ratingsbody = ratingsbodies.PEGI
+    ratingsbody = ratingsbodies.PEGI
 
 
 class CO(REGION):
@@ -121,7 +120,7 @@ class PL(REGION):
     default_currency = 'PLN'
     default_language = 'pl'
     mcc = 260
-    # ratingsbody = ratingsbodies.PEGI
+    ratingsbody = ratingsbodies.PEGI
 
 
 class MX(REGION):
@@ -140,7 +139,7 @@ class HU(REGION):
     default_currency = 'HUF'
     default_language = 'hu'
     mcc = 216
-    # ratingsbody = ratingsbodies.PEGI
+    ratingsbody = ratingsbodies.PEGI
 
 
 class DE(REGION):
@@ -178,7 +177,7 @@ class GR(REGION):
     default_currency = 'EUR'
     default_language = 'el'
     mcc = 202
-    # ratingsbody = ratingsbodies.PEGI
+    ratingsbody = ratingsbodies.PEGI
 
 
 class PE(REGION):
