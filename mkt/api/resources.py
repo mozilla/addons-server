@@ -42,8 +42,8 @@ from mkt.api.authentication import (SharedSecretAuthentication,
                                     RestOAuthAuthentication)
 from mkt.api.authorization import (AllowAppOwner, AppOwnerAuthorization,
                                    GroupPermission, OwnerAuthorization)
-from mkt.api.base import (cors_api_view, CORSMixin, CORSResource,
-                          http_error, MarketplaceModelResource,
+from mkt.api.base import (CompatToOneField, cors_api_view, CORSMixin,
+                          CORSResource, http_error, MarketplaceModelResource,
                           MarketplaceResource, SlugOrIdMixin)
 from mkt.api.forms import CategoryForm, DeviceTypeForm, UploadForm
 from mkt.api.http import HttpLegallyUnavailable
@@ -60,8 +60,8 @@ log = commonware.log.getLogger('z.api')
 
 
 class AppResource(CORSResource, MarketplaceModelResource):
-    payment_account = fields.ToOneField('mkt.developers.api.AccountResource',
-                                        'app_payment_account', null=True)
+    payment_account = CompatToOneField(None, 'app_payment_account', null=True,
+                                       url_name='payment-account-detail')
     premium_type = fields.IntegerField(null=True)
     previews = fields.ToManyField('mkt.submit.api.PreviewResource',
                                   'previews', readonly=True)

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.utils import translation
 
 import commonware.log
@@ -52,7 +53,6 @@ def app_to_dict(app, region=None, profile=None, request=None):
     """Return app data as dict for API."""
     # Sad circular import issues.
     from mkt.api.resources import AppResource
-    from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
     from mkt.submit.api import PreviewResource
     from mkt.webapps.models import reverse_version
@@ -109,8 +109,8 @@ def app_to_dict(app, region=None, profile=None, request=None):
     if app.premium:
         q = AddonPaymentAccount.objects.filter(addon=app)
         if len(q) > 0 and q[0].payment_account:
-            data['payment_account'] = AccountResource().get_resource_uri(
-                q[0].payment_account)
+            data['payment_account'] = reverse('payment-account-detail',
+                kwargs={'pk': q[0].payment_account.pk})
 
         if (region in app.get_price_region_ids() or
             payments_enabled(request)):
@@ -160,7 +160,6 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     # Circular import.
     from mkt.api.base import GenericObject
     from mkt.api.resources import AppResource, PrivacyPolicyResource
-    from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
     from mkt.webapps.models import Installed, Webapp
 
@@ -224,8 +223,8 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     if src.get('premium_type') in amo.ADDON_PREMIUMS:
         acct = list(AddonPaymentAccount.objects.filter(addon=app))
         if acct and acct.payment_account:
-            data['payment_account'] = AccountResource().get_resource_uri(
-                acct.payment_account)
+            data['payment_account'] = reverse('payment-account-detail',
+                kwargs={'pk': acct.payment_account.pk})
     else:
         data['payment_account'] = None
 

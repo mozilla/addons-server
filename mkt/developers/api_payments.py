@@ -1,30 +1,116 @@
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 
 import commonware
-
+from curling.lib import HttpClientError, HttpServerError
+from rest_framework import status
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
-                                   RetrieveModelMixin, UpdateModelMixin)
-from rest_framework.permissions import BasePermission
+                                   ListModelMixin, RetrieveModelMixin,
+                                   UpdateModelMixin)
+from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.relations import HyperlinkedRelatedField
 from rest_framework.response import Response
 from rest_framework.serializers import (HyperlinkedModelSerializer,
+                                        Serializer,
                                         ValidationError)
 from rest_framework.viewsets import GenericViewSet
+from tower import ugettext as _
 
 import amo
 from addons.models import AddonUpsell
 
 from mkt.api.authorization import (AllowAppOwner, GroupPermission,
                                    switch)
+from mkt.api.authentication import (RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
 from mkt.api.base import AppViewSet, CompatRelatedField
 from mkt.constants.payments import PAYMENT_STATUSES
-from mkt.developers.forms_payments import PaymentCheckForm
-from mkt.developers.models import AddonPaymentAccount
+from mkt.developers.forms_payments import (BangoPaymentAccountForm,
+                                           PaymentCheckForm)
+from mkt.developers.models import (AddonPaymentAccount, CantCancel,
+                                   PaymentAccount)
+from mkt.developers.providers import get_provider
 from mkt.webapps.models import Webapp
+
 
 from lib.pay_server import get_client
 
 log = commonware.log.getLogger('z.api.payments')
+
+
+class PaymentAccountSerializer(Serializer):
+    """
+    Fake serializer that returns <PaymentAccount>.get_details() when
+    serializing a PaymentAccount instance. Use only for read operations.
+    """
+    def to_native(self, obj):
+        data = obj.get_details()
+        data['resource_uri'] = reverse('payment-account-detail',
+                                       kwargs={'pk': obj.pk})
+        return data
+
+
+class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
+                            GenericViewSet):
+    queryset = PaymentAccount.objects.all()
+    # PaymentAccountSerializer is not a real serializer, it just calls
+    # get_details() on the object. It's only used for GET requests, in every
+    # other case we use BangoPaymentAccountForm directly.
+    serializer_class = PaymentAccountSerializer
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    # Security checks are performed in get_queryset(), so we allow any
+    # authenticated users by default.
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        """
+        Return the queryset specific to the user using the view. (This replaces
+        permission checks, unauthorized users won't be able to see that an
+        account they don't have access to exists, we'll return 404 for them.)
+        """
+        qs = super(PaymentAccountViewSet, self).get_queryset()
+        return qs.filter(user=self.request.amo_user, inactive=False)
+
+    def create(self, request, *args, **kwargs):
+        form = BangoPaymentAccountForm(request.DATA)
+        if form.is_valid():
+            try:
+                provider = get_provider()
+                obj = provider.account_create(request.amo_user, form.data)
+            except HttpClientError as e:
+                log.error('Client error creating Bango account; %s' % e)
+                return Response(e.content,
+                                status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            except HttpServerError as e:
+                log.error('Error creating Bango payment account; %s' % e)
+                return Response(_(u'Could not connect to payment server.'),
+                               status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            serializer = self.get_serializer(obj)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def partial_update(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = BangoPaymentAccountForm(request.DATA, account=True)
+        if form.is_valid():
+            self.object.update_account_details(**form.data)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, *args, **kwargs):
+        account = self.get_object()
+        try:
+            account.cancel(disable_refs=True)
+        except CantCancel:
+            return Response(_('Cannot delete shared account'),
+                            status=status.HTTP_409_CONFLICT)
+        log.info('Account cancelled: %s' % account.pk)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class PaymentSerializer(HyperlinkedModelSerializer):
@@ -124,9 +210,8 @@ class AddonPaymentAccountSerializer(HyperlinkedModelSerializer):
         source='addon',
         tastypie={'resource_name': 'app', 'api_name': 'apps'},
         view_name='api_dispatch_detail')
-    payment_account = CompatRelatedField(
-        tastypie={'resource_name': 'account', 'api_name': 'payments'},
-        view_name='api_dispatch_detail')
+    payment_account = HyperlinkedRelatedField(
+        view_name='payment-account-detail')
 
     class Meta:
         model = AddonPaymentAccount
