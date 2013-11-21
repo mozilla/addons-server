@@ -99,7 +99,8 @@ class TestGlobalStatsResource(RestOAuth):
         res = self.client.get(self.url('apps_installed'), data=data)
         eq_(res.status_code, 200)
         ok_(client.called)
-        eq_(client.call_args[1], {'region': 'us'})
+        # TODO: Update to expect `{'region': 'us'}` when regions added back.
+        eq_(client.call_args[1], {})
 
     def test_coersion(self, mocked):
         client = mock.MagicMock()
