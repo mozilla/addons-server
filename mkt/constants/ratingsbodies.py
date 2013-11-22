@@ -316,6 +316,9 @@ for rb in RATINGS_BODIES.values():
         r.ratingsbody = rb
 
 
+ALL_RATINGS_BODIES = [CLASSIND, GENERIC, USK, ESRB, PEGI]
+
+
 def ALL_RATINGS():
     """
     List of all ratings with waffled bodies.

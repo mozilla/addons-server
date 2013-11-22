@@ -24,7 +24,7 @@ import mkt
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import ContentRating, IARCInfo, Webapp
+from mkt.webapps.models import IARCInfo, Webapp
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -206,11 +206,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
         # No matter what the developer tells us, still exclude Brazilian
         # and German games.
         form = forms.RegionForm(data=None, **self.kwargs)
-        self.assertSetEqual(form.initial['regions'],
-            set(mkt.regions.REGION_IDS) -
-            set(mkt.regions.SPECIAL_REGION_IDS) -
-            set([mkt.regions.BR.id, mkt.regions.DE.id,
-                 mkt.regions.WORLDWIDE.id]))
+        assert mkt.regions.BR.id not in form.initial['regions']
+        assert mkt.regions.DE.id not in form.initial['regions']
         eq_(form.initial['enable_new_regions'], True)
 
     def test_unrated_games_already_excluded(self):
@@ -238,10 +235,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
     def test_rated_games_with_content_rating(self):
         # This game has a government content rating!
-        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
-            rb = region.ratingsbody
-            ContentRating.objects.create(
-                addon=self.app, ratings_body=rb.id, rating=rb.ratings[0].id)
+        for body in mkt.ratingsbodies.RATINGS_BODIES.keys():
+            self.app.content_ratings.create(ratings_body=body, rating=0)
 
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         self.app.addoncategory_set.create(category=games)
@@ -600,6 +595,7 @@ class TestAdminSettingsForm(TestAdmin):
         self.request.user = self.user
         self.request.groups = ()
         self.kwargs = {'instance': self.webapp, 'request': self.request}
+        self.create_switch('iarc')
 
     @mock.patch('mkt.developers.forms.index_webapps.delay')
     def test_reindexed(self, index_webapps_mock):
@@ -658,12 +654,12 @@ class TestAdminSettingsForm(TestAdmin):
         """
         self.log_in_with('Apps:Configure')
         rb_br = mkt.regions.BR.ratingsbody
-        ContentRating.objects.create(addon=self.webapp, ratings_body=rb_br.id,
-                                     rating=rb_br.ratings[0].id)
+        self.webapp.content_ratings.create(ratings_body=rb_br.id,
+                                           rating=rb_br.ratings[0].id)
 
         rb_de = mkt.regions.DE.ratingsbody
-        ContentRating.objects.create(addon=self.webapp, ratings_body=rb_de.id,
-                                     rating=rb_de.ratings[0].id)
+        self.webapp.content_ratings.create(ratings_body=rb_de.id,
+                                           rating=rb_de.ratings[0].id)
 
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.webapp, category=games)
@@ -677,13 +673,8 @@ class TestAdminSettingsForm(TestAdmin):
         form.save(self.webapp)
 
         regions = self.webapp.get_region_ids()
-        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
-            if region == mkt.regions.BR:
-                assert region.id not in regions, (
-                    'should not be listed in %s' % region.slug)
-            else:
-                assert region.id in regions, (
-                    'should be listed in %s' % region.slug)
+        assert mkt.regions.BR.id not in regions
+        assert mkt.regions.DE.id in regions
 
     def test_exclude_unrated_games_with_waffle(self):
         """
@@ -691,15 +682,15 @@ class TestAdminSettingsForm(TestAdmin):
         game in Brazil only. Include all ratings bodies in the form choices.
         """
         self.create_switch('iarc')
-
         self.log_in_with('Apps:Configure')
+
         rb_br = mkt.regions.BR.ratingsbody
-        ContentRating.objects.create(addon=self.webapp, ratings_body=rb_br.id,
-                                     rating=rb_br.ratings[0].id)
+        self.webapp.content_ratings.create(ratings_body=rb_br.id,
+                                          rating=rb_br.ratings[0].id)
 
         rb_de = mkt.regions.DE.ratingsbody
-        ContentRating.objects.create(addon=self.webapp, ratings_body=rb_de.id,
-                                     rating=rb_de.ratings[0].id)
+        self.webapp.content_ratings.create(ratings_body=rb_de.id,
+                                           rating=rb_de.ratings[0].id)
 
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.webapp, category=games)
@@ -713,13 +704,8 @@ class TestAdminSettingsForm(TestAdmin):
         form.save(self.webapp)
 
         regions = self.webapp.get_region_ids()
-        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
-            if region == mkt.regions.BR:
-                assert region.id not in regions, (
-                    'should not be listed in %s' % region.slug)
-            else:
-                assert region.id in regions, (
-                    'should be listed in %s' % region.slug)
+        assert mkt.regions.BR.id not in regions
+        assert mkt.regions.DE.id in regions
 
     def test_adding_tags(self):
         self.data.update({'tags': 'tag one, tag two'})

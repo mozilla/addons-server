@@ -30,7 +30,6 @@ from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from tastypie.exceptions import ImmediateHttpResponse
 from test_utils import RequestFactory
-import waffle
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -57,7 +56,7 @@ from users.models import RequestUser, UserProfile
 import mkt
 from mkt.constants import regions
 from mkt.webapps.models import (update_search_index as app_update_search_index,
-                                ContentRating, WebappIndexer, Webapp)
+                                WebappIndexer, Webapp)
 from mkt.webapps.tasks import unindex_webapps
 
 
@@ -666,8 +665,10 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
 def app_factory(**kw):
     kw.update(type=amo.ADDON_WEBAPP)
     app = amo.tests.addon_factory(**kw)
-    if waffle.switch_is_active('iarc') and kw.get('rated'):
-        app.content_ratings.create(ratings_body=0, rating=0)
+    if kw.get('rated'):
+        app.set_content_ratings(
+            dict((body, body.ratings[0]) for body in
+            mkt.ratingsbodies.ALL_RATINGS_BODIES))
         app.set_iarc_info(123, 'abc')
         app.set_descriptors([])
         app.set_interactives([])
@@ -878,12 +879,11 @@ def make_game(app, rated):
         type=amo.ADDON_WEBAPP)
     app.addoncategory_set.create(category=cat)
     if rated:
+        app.set_content_ratings(
+            dict((body, body.ratings[0]) for body in
+            mkt.ratingsbodies.ALL_RATINGS_BODIES))
         app.set_iarc_info(123, 'abc')
         app.set_descriptors([])
         app.set_interactives([])
-        app.set_content_ratings({
-            mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_18,
-            mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_A,
-        })
     app = app.reload()
     return app

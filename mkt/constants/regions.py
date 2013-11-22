@@ -149,7 +149,7 @@ class DE(REGION):
     default_currency = 'EUR'
     default_language = 'de'
     mcc = 262
-    ratingsbody = ratingsbodies.GENERIC
+    ratingsbody = ratingsbodies.USK
 
 
 class ME(REGION):

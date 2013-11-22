@@ -25,7 +25,7 @@ import mkt
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, uri_to_pk, UserInappKey)
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
+from mkt.webapps.models import AddonExcludedRegion as AER
 
 # Id without any significance but to be different of 1.
 TEST_PACKAGE_ID = 2
@@ -824,17 +824,14 @@ class TestRegions(amo.tests.TestCase):
         self.assertNoFormErrors(r)
 
         td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled-regions]')
-              .attr('data-disabled-regions'),
-            '[%d, %d]' % (mkt.regions.BR.id, mkt.regions.DE.id))
+        disabled_regions = json.loads(td.find('div[data-disabled-regions]')
+              .attr('data-disabled-regions'))
+        assert mkt.regions.BR.id in disabled_regions
+        assert mkt.regions.DE.id in disabled_regions
         eq_(td.find('.note.disabled-regions').length, 1)
 
     def test_games_form_enabled_with_content_rating(self):
-        for region in (mkt.regions.BR, mkt.regions.DE):
-            rb = region.ratingsbody
-            ContentRating.objects.create(
-                addon=self.webapp, ratings_body=rb.id, rating=rb.ratings[0].id)
-
+        amo.tests.make_game(self.webapp, True)
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.webapp, category=games)
 
