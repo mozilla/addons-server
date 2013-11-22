@@ -6,17 +6,11 @@
           <h2 class="title nav-title">{{ _('Design') }}</h2>
           <ol>
             <li>
-              <a href="{{ url('ecosystem.design_concept') }}"
-                 {%- if section == 'design_concept' %}
-                 class="selected"
-                 {% endif %}>
+              <a href="{{ url('ecosystem.design_concept') }}">
                 {{- _('Concept: A Great App') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.design_fundamentals') }}"
-                 {%- if section == 'design_fundamentals' %}
-                 class="selected"
-                 {% endif %}>
+              <a href="{{ url('ecosystem.design_fundamentals') }}">
                 {{- _('Design Fundamentals') }}</a>
             </li>
             <li class="has-children{{ ' active' if section in ('design_ui', 'design_patterns') }}">
@@ -45,10 +39,7 @@
           <h2 class="title nav-title">{{ _('Build') }}</h2>
           <ol>
             <li>
-              <a href="{{ url('ecosystem.build_quick') }}"
-                {%- if section == 'build_quick' %}
-                class="selected"
-                {% endif %}>
+              <a href="{{ url('ecosystem.build_quick') }}">
                 {{- _('Quick Start') }}</a>
             </li>
             <li>
@@ -59,8 +50,7 @@
               <a href="{{ url('ecosystem.build_ffos') }}">
                 {{- _('Intro to Firefox OS') }}</a>
             </li>
-            <li class="has-children{{ ' active' if section in ('build_reference',
-                                                               'chrono',
+            <li class="has-children{{ ' active' if section in ('chrono',
                                                                'face_value',
                                                                'generalnotes',
                                                                'podcasts',
