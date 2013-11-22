@@ -113,6 +113,8 @@ class TestMigrateGeodata(amo.tests.TestCase):
     def test_migration_of_rated_games(self):
         # This adds a ContentRating for only Brazil, not Germany.
         amo.tests.make_game(self.webapp, rated=True)
+        self.webapp.content_ratings.filter(
+            ratings_body=mkt.regions.DE.ratingsbody.id).delete()
 
         regions = (mkt.regions.BR.id, mkt.regions.DE.id)
         for region in regions:
