@@ -68,7 +68,7 @@
           {% if waffle.switch('iarc') and not addon.is_rated() and addon.is_public() %}
             <li class="ratings">
               {% trans %}
-                <strong class="rating-notice">This app will be deactivated by January 13th if no content ratings are assigned:</strong>
+                <strong class="rating-notice">This app may be disabled in the future if no content ratings are assigned by then:</strong>
               {% endtrans %}
               <a href="{{ addon.get_dev_url('ratings') }}">{{ _('Set up Content Ratings') }}</a>
             </li>
