@@ -1,6 +1,8 @@
 import json
 
 from django.core.urlresolvers import reverse
+
+from curling.lib import HttpClientError, HttpServerError
 from mock import Mock, patch
 from nose.tools import eq_, ok_
 
@@ -14,8 +16,39 @@ from mkt.api.tests.test_oauth import get_absolute_url, RestOAuth
 from mkt.developers.api_payments import AddonPaymentAccountSerializer
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
+from mkt.developers.tests.test_providers import Patcher
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+
+
+package_data = {
+    'companyName': 'company',
+    'vendorName': 'vendor',
+    'financeEmailAddress': 'a@a.com',
+    'adminEmailAddress': 'a@a.com',
+    'supportEmailAddress': 'a@a.com',
+    'address1': 'address 1',
+    'addressCity': 'city',
+    'addressState': 'state',
+    'addressZipCode': 'zip',
+    'addressPhone': '123',
+    'countryIso': 'BRA',
+    'currencyIso': 'EUR',
+    'account_name': 'new'
+}
+
+bank_data = {
+    'bankAccountPayeeName': 'name',
+    'bankAccountNumber': '123',
+    'bankAccountCode': '123',
+    'bankName': 'asd',
+    'bankAddress1': 'address 2',
+    'bankAddressZipCode': '123',
+    'bankAddressIso': 'BRA',
+}
+
+payment_data = package_data.copy()
+payment_data.update(bank_data)
 
 
 class UpsellCase(TestCase):
@@ -142,21 +175,30 @@ class TestPayment(RestOAuth, UpsellCase):
         eq_(res.status_code, 200)
 
 
-class AccountCase(TestCase):
-
+class AccountCase(Patcher, TestCase):
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         self.seller = SolitudeSeller.objects.create(user_id=2519)
         self.account = PaymentAccount.objects.create(user_id=2519,
             solitude_seller=self.seller, account_id=123, name='mine')
-        self.payment_list = reverse('app-payment-account-list')
+        self.app_payment_list = reverse('app-payment-account-list')
+        self.payment_list = reverse('payment-account-list')
+        self.payment_url = reverse('payment-account-detail',
+                                   kwargs={'pk': self.account.pk})
+
+        super(AccountCase, self).setUp()
+
+        self.patched_client.api.generic.product.get_object.return_value = {
+            'resource_uri': 'foo'}
+        self.patched_client.api.bango.product.get_object.return_value = {
+            'resource_uri': 'foo', 'bango_id': 'bar'}
 
     def create(self):
         self.payment = AddonPaymentAccount.objects.create(addon=self.app,
             payment_account=self.account)
-        self.payment_detail = reverse('app-payment-account-detail',
-                                      kwargs={'pk': self.payment.pk})
+        self.app_payment_detail = reverse('app-payment-account-detail',
+                                          kwargs={'pk': self.payment.pk})
 
     def create_price(self):
         price = Price.objects.create(price='1')
@@ -165,33 +207,14 @@ class AccountCase(TestCase):
     def create_user(self):
         AddonUser.objects.create(addon=self.app, user=self.profile)
 
-
-class TestSerializer(AccountCase):
-    fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
-
-    def test_serialize(self):
-        # Just a smoke test that we can serialize this correctly.
-        self.create()
-        res = AddonPaymentAccountSerializer(self.payment).data
-        eq_(res['url'], self.payment_detail)
-
-    def test_free(self):
-        # Just a smoke test that we can serialize this correctly.
-        self.create()
-        self.app.update(premium_type=amo.ADDON_FREE)
-        res = AddonPaymentAccountSerializer(self.payment)
-        ok_(not res.is_valid())
-
-
-class TestPaymentAccount(RestOAuth, AccountCase):
-    fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
-
-    def setUp(self):
-        super(TestPaymentAccount, self).setUp()
-        AccountCase.setUp(self)
-        self.payment_url = get_absolute_url(
-            get_url('account', pk=self.account.pk),
-            api_name='payments', absolute=False)
+    def other(self, shared=False):
+        self.seller2 = SolitudeSeller.objects.create(user_id=31337, uuid='foo')
+        self.other_account = PaymentAccount.objects.create(user_id=31337,
+            solitude_seller=self.seller2, account_id=123,
+            seller_uri='seller_uri', uri='uri', shared=shared, name='other')
+        self.other_url = reverse('payment-account-detail',
+                                   kwargs={'pk': self.other_account.pk})
+        return self.data(overrides={'payment_account': self.other_url})
 
     def data(self, overrides=None):
         res = {
@@ -203,33 +226,153 @@ class TestPaymentAccount(RestOAuth, AccountCase):
             res.update(overrides)
         return res
 
+
+class TestSerializer(AccountCase):
+    fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
+
+    def test_serialize(self):
+        # Just a smoke test that we can serialize this correctly.
+        self.create()
+        res = AddonPaymentAccountSerializer(self.payment).data
+        eq_(res['url'], self.app_payment_detail)
+
+    def test_free(self):
+        # Just a smoke test that we can serialize this correctly.
+        self.create()
+        self.app.update(premium_type=amo.ADDON_FREE)
+        res = AddonPaymentAccountSerializer(self.payment)
+        ok_(not res.is_valid())
+
+
+class TestPaymentAccount(AccountCase, RestOAuth):
+    fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
+
+    def test_anonymous(self):
+        r = self.anon.get(self.payment_url)
+        eq_(r.status_code, 403)
+
+        r = self.anon.get(self.payment_list)
+        eq_(r.status_code, 403)
+
+    def test_get_payments_account_list(self):
+        self.other()
+        res = self.client.get(self.payment_list)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['account_name'], 'mine')
+        eq_(data['objects'][0]['resource_uri'], self.payment_url)
+
+    def test_get_payments_account(self):
+        res = self.client.get(self.payment_url)
+        eq_(res.status_code, 200, res.content)
+        data = json.loads(res.content)
+        eq_(data['account_name'], 'mine')
+        eq_(data['resource_uri'], self.payment_url)
+
+    def test_get_other_payments_account(self):
+        self.other()
+        res = self.client.get(self.other_url)
+        eq_(res.status_code, 404, res.content)
+
+    def test_create(self):
+        res = self.client.post(self.payment_list,
+                               data=json.dumps(payment_data))
+        data = json.loads(res.content)
+        eq_(data['account_name'], 'new')
+        new_account = PaymentAccount.objects.get(name='new')
+        ok_(new_account.pk != self.account.pk)
+        eq_(new_account.user, self.user.get_profile())
+        data = self.patched_provider.package.post.call_args[1]['data']
+        expected = package_data.copy()
+        expected.pop('account_name')
+        for key in expected.keys():
+            eq_(package_data[key], data[key])
+
+    def test_update_payments_account(self):
+        res = self.client.put(self.payment_url,
+                              data=json.dumps(payment_data))
+        eq_(res.status_code, 204, res.content)
+        self.account.reload()
+        eq_(self.account.name, 'new')
+        data = self.patched_client.api.by_url().patch.call_args[1]['data']
+        expected = package_data.copy()
+        expected.pop('account_name')
+        for key in expected.keys():
+            eq_(package_data[key], data[key])
+
+    def test_update_other_payments_account(self):
+        self.other()
+        res = self.client.put(self.other_url,
+                              data=json.dumps(payment_data))
+        eq_(res.status_code, 404, res.content)
+        self.other_account.reload()
+        eq_(self.other_account.name, 'other')  # not "new".
+
+    def test_delete_payments_account(self):
+        self.create_user()
+        self.create()
+        eq_(self.account.inactive, False)
+        res = self.client.delete(self.payment_url)
+        eq_(res.status_code, 204, res.content)
+        self.account.reload()
+        eq_(self.account.inactive, True)
+
+    def test_delete_shared(self):
+        self.create_user()
+        self.create()
+        self.account.update(shared=True)
+        eq_(self.account.inactive, False)
+        res = self.client.delete(self.payment_url)
+        eq_(res.status_code, 409)
+
+    def test_delete_others_payments_account(self):
+        self.create_user()
+        self.create()
+        self.other()
+        eq_(self.other_account.inactive, False)
+        res = self.client.delete(self.other_url)
+        eq_(res.status_code, 404, res.content)
+        self.other_account.reload()
+        eq_(self.other_account.inactive, False)
+
+    def test_create_fail(self):
+        err = {'broken': True}
+        self.patched_provider.package.post.side_effect = HttpClientError(
+            content=err)
+        res = self.client.post(self.payment_list,
+                               data=json.dumps(payment_data))
+        eq_(res.status_code, 500)
+        eq_(json.loads(res.content), err)
+
+    def test_create_fail2(self):
+        self.patched_provider.package.post.side_effect = HttpServerError()
+        res = self.client.post(self.payment_list,
+                               data=json.dumps(payment_data))
+        eq_(res.status_code, 500)
+
+
+class TestAddonPaymentAccount(AccountCase, RestOAuth):
+    fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
+
     def test_empty(self):
-        eq_(self.client.post(self.payment_list, data={}).status_code, 400)
+        eq_(self.client.post(self.app_payment_list, data={}).status_code, 400)
 
     def test_not_allowed(self):
-        res = self.client.post(self.payment_list, data=json.dumps(self.data()))
+        res = self.client.post(self.app_payment_list,
+                               data=json.dumps(self.data()))
         eq_(res.status_code, 403)
 
-    def setup_mock(self, client):
-        client.api.generic.product.get_object.return_value = {
-            'resource_uri': 'foo'}
-        client.api.bango.product.get_object.return_value = {
-            'resource_uri': 'foo', 'bango_id': 'bar'}
-
-    @patch('mkt.developers.models.client')
-    def test_allowed(self, client):
-        self.setup_mock(client)
+    def test_allowed(self):
         self.create_price()
         self.create_user()
-        res = self.client.post(self.payment_list, data=json.dumps(self.data()))
+        res = self.client.post(self.app_payment_list,
+                               data=json.dumps(self.data()))
         eq_(res.status_code, 201, res.content)
 
         account = AddonPaymentAccount.objects.get()
         eq_(account.payment_account, self.account)
 
-    @patch('mkt.developers.models.client')
-    def test_cant_change_addon(self, client):
-        self.setup_mock(client)
+    def test_cant_change_addon(self):
         app = app_factory(premium_type=amo.ADDON_PREMIUM)
         AddonUser.objects.create(addon=app, user=self.profile)
         self.create()
@@ -238,140 +381,30 @@ class TestPaymentAccount(RestOAuth, AccountCase):
 
         data = self.data({'payment_account': self.payment_url,
                           'addon': app.get_api_url(pk=True)})
-        res = self.client.patch(self.payment_detail, data=json.dumps(data))
+        res = self.client.patch(self.app_payment_detail, data=json.dumps(data))
         # Ideally we should make this a 400.
         eq_(res.status_code, 403, res.content)
 
-    def other(self, shared=False):
-        self.seller2 = SolitudeSeller.objects.create(user_id=31337, uuid='foo')
-        self.other_account = PaymentAccount.objects.create(user_id=31337,
-            solitude_seller=self.seller2, account_id=123,
-            seller_uri='seller_uri', uri='uri', shared=shared, name='other')
-        self.other_url = get_absolute_url(
-            get_url('account', pk=self.other_account.pk),
-            api_name='payments', absolute=False)
-        return self.data(overrides={'payment_account': self.other_url})
-
-    @patch('mkt.developers.models.client')
-    def test_cant_use_someone_elses(self, client):
+    def test_cant_use_someone_elses(self):
         data = self.other(shared=False)
-        self.setup_mock(client)
         self.create_price()
         self.create_user()
-        res = self.client.post(self.payment_list, data=json.dumps(data))
+        res = self.client.post(self.app_payment_list, data=json.dumps(data))
         eq_(res.status_code, 403, res.content)
 
-    @patch('mkt.developers.models.client')
-    def test_can_shared(self, client):
+    def test_can_shared(self):
         data = self.other(shared=True)
-        self.setup_mock(client)
         self.create_price()
         self.create_user()
-        res = self.client.post(self.payment_list, data=json.dumps(data))
+        res = self.client.post(self.app_payment_list, data=json.dumps(data))
         eq_(res.status_code, 201, res.content)
 
-    @patch('mkt.developers.models.client')
-    def test_get_payments_account(self, payserver_client):
-        self.setup_mock(payserver_client)
-        res = self.client.get(self.payment_url)
-        eq_(res.status_code, 200, res.content)
-        data = json.loads(res.content)
-        eq_(data['account_name'], 'mine')
 
-    @patch('mkt.developers.models.client')
-    def test_get_other_payments_account(self, payserver_client):
-        self.other()
-        self.setup_mock(payserver_client)
-        res = self.client.get(self.other_url)
-        eq_(res.status_code, 404, res.content)
-
-    @patch('mkt.developers.models.client')
-    def test_update_payments_account(self, payserver_client):
-        self.setup_mock(payserver_client)
-        new_data = {
-             'bankAccountPayeeName': 'name',
-             'companyName': 'company',
-             'vendorName': 'vendor',
-             'financeEmailAddress': 'a@a.com',
-             'adminEmailAddress': 'a@a.com',
-             'supportEmailAddress': 'a@a.com',
-             'address1': 'address 1',
-             'addressCity': 'city',
-             'addressState': 'state',
-             'addressZipCode': 'zip',
-             'addressPhone': '123',
-             'countryIso': 'BRA',
-             'currencyIso': 'EUR',
-             'bankAccountNumber': '123',
-             'bankAccountCode': '123',
-             'bankName': 'asd',
-             'bankAddress1': 'address 2',
-             'bankAddressZipCode': '123',
-             'bankAddressIso': 'BRA',
-             'account_name': 'new'
-        }
-        res = self.client.put(self.payment_url, data=json.dumps(new_data))
-        eq_(res.status_code, 204, res.content)
-        self.account.reload()
-        eq_(self.account.name, 'new')
-
-    @patch('mkt.developers.models.client')
-    def test_update_other_payments_account(self, payserver_client):
-        self.other()
-        self.setup_mock(payserver_client)
-        new_data = {
-             'bankAccountPayeeName': 'name',
-             'companyName': 'company',
-             'vendorName': 'vendor',
-             'financeEmailAddress': 'a@a.com',
-             'adminEmailAddress': 'a@a.com',
-             'supportEmailAddress': 'a@a.com',
-             'address1': 'address 1',
-             'addressCity': 'city',
-             'addressState': 'state',
-             'addressZipCode': 'zip',
-             'addressPhone': '123',
-             'countryIso': 'BRA',
-             'currencyIso': 'EUR',
-             'bankAccountNumber': '123',
-             'bankAccountCode': '123',
-             'bankName': 'asd',
-             'bankAddress1': 'address 2',
-             'bankAddressZipCode': '123',
-             'bankAddressIso': 'BRA',
-             'account_name': 'h4x0r'
-        }
-        res = self.client.put(self.other_url, data=json.dumps(new_data))
-        eq_(res.status_code, 404, res.content)
-        self.other_account.reload()
-        eq_(self.other_account.name, 'other')  # not h4x0r.
-
-    @patch('mkt.developers.models.client')
-    def test_delete_payments_account(self, payserver_client):
-        self.setup_mock(payserver_client)
-        eq_(self.account.inactive, False)
-        res = self.client.delete(self.payment_url)
-        eq_(res.status_code, 204, res.content)
-        self.account.reload()
-        eq_(self.account.inactive, True)
-
-    @patch('mkt.developers.models.client')
-    def test_delete_others_payments_account(self, payserver_client):
-        self.other()
-        self.setup_mock(payserver_client)
-        eq_(self.other_account.inactive, False)
-        res = self.client.delete(self.other_url)
-        eq_(res.status_code, 404, res.content)
-        self.other_account.reload()
-        eq_(self.other_account.inactive, False)
-
-
-class TestPaymentStatus(RestOAuth, AccountCase):
+class TestPaymentStatus(AccountCase, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
 
     def setUp(self):
         super(TestPaymentStatus, self).setUp()
-        AccountCase.setUp(self)
         self.create()
         self.payment.account_uri = '/bango/package/1/'
         self.payment.save()
@@ -400,12 +433,11 @@ class TestPaymentStatus(RestOAuth, AccountCase):
         eq_(res.status_code, 200)
 
 
-class TestPaymentDebug(RestOAuth, AccountCase):
+class TestPaymentDebug(AccountCase, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
 
     def setUp(self):
         super(TestPaymentDebug, self).setUp()
-        AccountCase.setUp(self)
         self.create()
         self.payment.account_uri = '/bango/package/1/'
         self.payment.save()

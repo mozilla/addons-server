@@ -2,18 +2,16 @@ from django import http
 from django.conf.urls import include, patterns, url
 
 from rest_framework.routers import SimpleRouter
-from tastypie.api import Api
 
 from lib.misc.urlconf_decorator import decorate
 
 import amo
 from amo.decorators import write
 from mkt.api.base import AppRouter
-from mkt.developers.api import (AccountResource, ContentRatingList,
-                                ContentRatingsPingback)
+from mkt.developers.api import ContentRatingList, ContentRatingsPingback
 from mkt.developers.api_payments import (
-    AddonPaymentAccountViewSet, PaymentCheckViewSet, PaymentDebugViewSet,
-    PaymentViewSet, UpsellViewSet)
+    AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
+    PaymentDebugViewSet, PaymentViewSet, UpsellViewSet)
 from mkt.developers.decorators import use_apps
 from mkt.receipts.urls import test_patterns
 from mkt.stats.urls import all_apps_stats_patterns
@@ -177,10 +175,9 @@ urlpatterns = decorate(write, patterns('',
     url('^test/receipts/', include(test_patterns)),
 ))
 
-payments = Api(api_name='payments')
-payments.register(AccountResource())
-
 api_payments = SimpleRouter()
+api_payments.register(r'account', PaymentAccountViewSet,
+                      base_name='payment-account')
 api_payments.register(r'upsell', UpsellViewSet, base_name='app-upsell')
 api_payments.register(r'app', AddonPaymentAccountViewSet,
                       base_name='app-payment-account')
@@ -193,7 +190,6 @@ app_payments.register(r'payments/debug', PaymentDebugViewSet,
                       base_name='app-payments-debug')
 
 payments_api_patterns = patterns('',
-    url(r'^', include(payments.urls)),
     url(r'^payments/', include(api_payments.urls)),
     url(r'^apps/app/', include(app_payments.urls)),
 )
