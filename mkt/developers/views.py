@@ -34,7 +34,6 @@ from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.urlresolvers import reverse
 from amo.utils import escape_all
-from comm.utils import create_comm_note
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -44,6 +43,7 @@ from users.views import _login
 from versions.models import Version
 
 from mkt.api.models import Access, generate
+from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,

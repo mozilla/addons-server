@@ -26,14 +26,13 @@ from comm.models import (CommunicationNote, CommunicationNoteRead,
                          CommunicationThread, user_has_perm_note,
                          user_has_perm_thread)
 from comm.tasks import consume_email, mark_thread_read
-from comm.utils import filter_notes_by_read_status
 from versions.models import Version
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
 from mkt.comm.forms import AppSlugForm
-from mkt.reviewers.utils import send_note_emails
+from mkt.comm.utils import filter_notes_by_read_status, post_create_comm_note
 
 
 class AuthorSerializer(ModelSerializer):
@@ -320,19 +319,22 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
             files=files, instance=instance, many=many, partial=partial)
 
     def inherit_permissions(self, obj, parent):
-        for key in ('developer', 'reviewer', 'senior_reviewer',
-                    'mozilla_contact', 'staff'):
+        """
+        Inherit parent's permission flags as pre_save.
+        If note, inherit from thread. If reply, inherit from note.
+        """
+        for key in ('developer', 'reviewer', 'senior_reviewer', 'staff',
+                    'mozilla_contact'):
             perm = 'read_permission_%s' % key
-
             setattr(obj, perm, getattr(parent, perm))
-
-    def post_save(self, obj, created=False):
-        if created:
-            send_note_emails(obj)
 
     def pre_save(self, obj):
         """Inherit permissions from the thread."""
         self.inherit_permissions(obj, self.comm_thread)
+
+    def post_save(self, obj, created=False):
+        if created:
+            post_create_comm_note(obj)
 
     def mark_as_read(self, profile):
         CommunicationNoteRead.objects.get_or_create(note=self.get_object(),
@@ -340,6 +342,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
 
 
 class ReplyViewSet(NoteViewSet):
+    """A note, but a reply to another note."""
     cors_allowed_methods = ['get', 'post']
 
     def initialize_request(self, request, *args, **kwargs):

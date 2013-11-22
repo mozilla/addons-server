@@ -16,10 +16,10 @@ from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
-from comm.utils import create_comm_note, get_recipients
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
 
+from mkt.comm.utils import create_comm_note, get_recipients
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
 from mkt.site.helpers import product_as_dict

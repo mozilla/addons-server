@@ -6,7 +6,6 @@ from django.core.urlresolvers import reverse
 
 import mock
 from nose.tools import eq_
-from test_utils import RequestFactory
 
 from amo.tests import addon_factory, req_factory_factory, version_factory
 from comm.models import (CommunicationNote, CommunicationNoteRead,
@@ -19,50 +18,71 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
 
-class TestThreadDetail(RestOAuth):
+class CommTestMixin(object):
+
+    def _thread_factory(self, note=False, perms=None, no_perms=None, **kw):
+        create_perms = {}
+        for perm in perms or []:
+            create_perms['read_permission_%s' % perm] = True
+        for perm in no_perms or []:
+            create_perms['read_permission_%s' % perm] = False
+        kw.update(create_perms)
+
+        thread = self.addon.threads.create(**kw)
+        if note:
+            self._note_factory(thread)
+        return thread
+
+    def _note_factory(self, thread, perms=None, no_perms=None, **kw):
+        author = kw.pop('author', self.profile)
+        body = kw.pop('body', 'something')
+
+        create_perms = {}
+        for perm in perms or []:
+            create_perms['read_permission_%s' % perm] = True
+        for perm in no_perms or []:
+            create_perms['read_permission_%s' % perm] = False
+        kw.update(create_perms)
+
+        return thread.notes.create(author=author, body=body, **kw)
+
+
+class TestThreadDetail(RestOAuth, CommTestMixin):
     fixtures = fixture('webapp_337141', 'user_2519', 'user_support_staff')
 
     def setUp(self):
         super(TestThreadDetail, self).setUp()
         self.addon = Webapp.objects.get(pk=337141)
 
-    def check_permissions(self):
-        req = RequestFactory().get(reverse('comm-thread-detail',
-                                           kwargs={'pk': self.thread.pk}))
-        req.user = self.user
-        req.amo_user = self.profile
-        req.groups = req.amo_user.groups.all()
+    def check_permissions(self, thread):
+        req = req_factory_factory(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}),
+            user=self.profile)
 
         return ThreadPermission().has_object_permission(
-            req, 'comm-thread-detail', self.thread)
+            req, 'comm-thread-detail', thread)
 
     def test_response(self):
-        thread = CommunicationThread.objects.create(addon=self.addon)
-        CommunicationNote.objects.create(thread=thread,
-            author=self.profile, note_type=0, body='something')
-        res = self.client.get(reverse('comm-thread-detail',
-                                      kwargs={'pk': thread.pk}))
+        thread = self._thread_factory(note=True)
+
+        res = self.client.get(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
         eq_(res.status_code, 200)
-        assert 'recent_notes' in res.json
         eq_(len(res.json['recent_notes']), 1)
         eq_(res.json['addon'], self.addon.id)
 
     def test_recent_notes_perm(self):
         staff = UserProfile.objects.get(username='support_staff')
         self.addon.addonuser_set.create(user=self.profile)
-
-        thread = CommunicationThread.objects.create(
-            addon=self.addon, read_permission_developer=True)
-        CommunicationNote.objects.create(
-            thread=thread, author=staff, note_type=0, body='allowed',
-            read_permission_developer=True)
-        no_dev_note = CommunicationNote.objects.create(
-            thread=thread, author=staff, note_type=6, body='denied',
-            read_permission_developer=False)
+        thread = self._thread_factory(read_permission_developer=True)
+        self._note_factory(
+            thread, perms=['developer'], author=staff, body='allowed')
+        no_dev_note = self._note_factory(
+            thread, no_perms=['developer'], author=staff)
 
         # Test that the developer can't access no-developer note.
-        res = self.client.get(reverse('comm-thread-detail',
-                                      kwargs={'pk': thread.pk}))
+        res = self.client.get(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
         eq_(res.status_code, 200)
         eq_(len(res.json['recent_notes']), 1)
         eq_(res.json['recent_notes'][0]['body'], 'allowed')
@@ -70,91 +90,78 @@ class TestThreadDetail(RestOAuth):
 
         # Test that the author always has permissions.
         no_dev_note.update(author=self.profile)
-        res = self.client.get(reverse('comm-thread-detail',
-                                      kwargs={'pk': thread.pk}))
+        res = self.client.get(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
         eq_(len(res.json['recent_notes']), 2)
 
     def test_cc(self):
-        self.thread = CommunicationThread.objects.create(addon=self.addon)
         # Test with no CC.
-        assert not self.check_permissions()
+        thread = self._thread_factory()
+        assert not self.check_permissions(thread)
 
         # Test with CC created.
-        CommunicationThreadCC.objects.create(thread=self.thread,
-            user=self.profile)
-        assert self.check_permissions()
+        thread.thread_cc.create(user=self.profile)
+        assert self.check_permissions(thread)
 
     def test_addon_dev_allowed(self):
-        self.thread = CommunicationThread.objects.create(addon=self.addon,
-            read_permission_developer=True)
+        thread = self._thread_factory(perms=['developer'])
         self.addon.addonuser_set.create(user=self.profile)
-        assert self.check_permissions()
+        assert self.check_permissions(thread)
 
     def test_addon_dev_denied(self):
-        # Test when the user is a developer of a different add-on.
-        self.thread = CommunicationThread.objects.create(addon=self.addon,
-            read_permission_developer=True)
-        addon = addon_factory()
-        self.profile.addonuser_set.create(addon=addon)
-        assert not self.check_permissions()
+        """Test when the user is a developer of a different add-on."""
+        thread = self._thread_factory(perms=['developer'])
+        self.profile.addonuser_set.create(addon=addon_factory())
+        assert not self.check_permissions(thread)
 
     def test_read_public(self):
-        self.thread = CommunicationThread.objects.create(addon=self.addon,
-            read_permission_public=True)
-        assert self.check_permissions()
+        thread = self._thread_factory(perms=['public'])
+        assert self.check_permissions(thread)
 
     def test_read_moz_contact(self):
-        thread = CommunicationThread.objects.create(addon=self.addon,
-            read_permission_mozilla_contact=True)
-        thread.addon.mozilla_contact = self.profile.email
-        thread.addon.save()
-        self.thread = thread
-        assert self.check_permissions()
+        thread = self._thread_factory(perms=['mozilla_contact'])
+        self.addon.update(mozilla_contact=self.profile.email)
+        assert self.check_permissions(thread)
 
     def test_read_reviewer(self):
+        thread = self._thread_factory(perms=['reviewer'])
         self.grant_permission(self.profile, 'Apps:Review')
-        self.thread = CommunicationThread.objects.create(addon=self.addon,
-            read_permission_reviewer=True)
-        assert self.check_permissions()
+        assert self.check_permissions(thread)
 
     def test_read_senior_reviewer(self):
+        thread = self._thread_factory(perms=['senior_reviewer'])
         self.grant_permission(self.profile, 'Apps:ReviewEscalated')
-        self.thread = CommunicationThread.objects.create(addon=self.addon,
-            read_permission_senior_reviewer=True)
-        assert self.check_permissions()
+        assert self.check_permissions(thread)
 
     def test_read_staff(self):
+        thread = self._thread_factory(perms=['staff'])
         self.grant_permission(self.profile, 'Admin:%')
-        self.thread = CommunicationThread.objects.create(addon=self.addon,
-            read_permission_staff=True)
-        assert self.check_permissions()
+        assert self.check_permissions(thread)
 
     def test_cors_allowed(self):
-        thread = CommunicationThread.objects.create(addon=self.addon)
-        res = self.client.get(reverse('comm-thread-detail',
-                                      kwargs={'pk': thread.pk}))
+        thread = self._thread_factory()
+
+        res = self.client.get(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
         self.assertCORS(res, 'get', 'post', 'patch')
 
     def test_mark_read(self):
-        thread = CommunicationThread.objects.create(addon=self.addon)
-        n1 = CommunicationNote.objects.create(author=self.profile,
-            thread=thread, note_type=0, body='something')
-        n2 = CommunicationNote.objects.create(author=self.profile,
-            thread=thread, note_type=0, body='something2')
+        thread = self._thread_factory()
+        note1 = self._note_factory(thread)
+        note2 = self._note_factory(thread)
 
-        res = self.client.patch(reverse('comm-thread-detail',
-                                        kwargs={'pk': thread.pk}),
-                                data=json.dumps({'is_read': True}))
+        res = self.client.patch(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}),
+            data=json.dumps({'is_read': True}))
         eq_(res.status_code, 204)
-        assert n1.read_by_users.filter(user=self.profile).exists()
-        assert n2.read_by_users.filter(user=self.profile).exists()
+        assert note1.read_by_users.filter(user=self.profile).exists()
+        assert note2.read_by_users.filter(user=self.profile).exists()
 
     def test_review_url(self):
-        thread = CommunicationThread.objects.create(addon=self.addon)
-        CommunicationNote.objects.create(
-            thread=thread, author=self.profile, note_type=0, body='something')
-        res = self.client.get(reverse('comm-thread-detail',
-                                      kwargs={'pk': thread.pk}))
+        thread = self._thread_factory(note=True)
+
+        res = self.client.get(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
         eq_(res.status_code, 200)
         eq_(res.json['addon_meta']['review_url'],
             reverse('reviewers.apps.review', args=[self.addon.app_slug]))
@@ -190,7 +197,7 @@ class TestThreadDetail(RestOAuth):
                 [{"id": thread2.id, "version__version": version2.version},
                  {"id": thread1.id, "version__version": version1.version}])
 
-class TestThreadList(RestOAuth):
+class TestThreadList(RestOAuth, CommTestMixin):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
@@ -199,21 +206,15 @@ class TestThreadList(RestOAuth):
         self.list_url = reverse('comm-thread-list')
 
     def test_response(self):
-        """Test the list response, we don't want public threads in
-        the list."""
-        CommunicationThread.objects.create(addon=self.addon,
-            read_permission_public=True)
-        thread = CommunicationThread.objects.create(addon=self.addon)
-        CommunicationNote.objects.create(author=self.profile, thread=thread,
-            note_type=0)
+        """Test the list response, we don't want public threads in the list."""
+        self._thread_factory(note=True, perms=['public'])
+
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
 
     def test_addon_filter(self):
-        thread = CommunicationThread.objects.create(addon=self.addon)
-        CommunicationNote.objects.create(author=self.profile, thread=thread,
-            note_type=0, body='something')
+        self._thread_factory(note=True)
 
         res = self.client.get(self.list_url, {'app': '337141'})
         eq_(res.status_code, 200)
@@ -257,34 +258,34 @@ class TestThreadList(RestOAuth):
              {"id": thread1.id, "version__version": version1.version}])
 
 
-class TestNote(RestOAuth):
+class TestNote(RestOAuth, CommTestMixin):
     fixtures = fixture('webapp_337141', 'user_2519', 'user_999',
                        'user_support_staff')
 
     def setUp(self):
         super(TestNote, self).setUp()
         self.addon = Webapp.objects.get(pk=337141)
-        self.thread = CommunicationThread.objects.create(addon=self.addon,
-            read_permission_developer=True, version=self.addon.current_version)
-        self.thread_url = reverse('comm-thread-detail',
-                                  kwargs={'pk': self.thread.id})
-        self.list_url = reverse('comm-note-list',
-                                kwargs={'thread_id': self.thread.id})
+        self.thread = self._thread_factory(
+            perms=['developer'], version=self.addon.current_version)
+        self.thread_url = reverse(
+            'comm-thread-detail', kwargs={'pk': self.thread.id})
+        self.list_url = reverse(
+            'comm-note-list', kwargs={'thread_id': self.thread.id})
 
         self.profile.addonuser_set.create(addon=self.addon)
 
     def test_response(self):
-        note = CommunicationNote.objects.create(author=self.profile,
-            thread=self.thread, note_type=0, body='something')
-        res = self.client.get(reverse('comm-note-detail',
-                                      kwargs={'thread_id': self.thread.id,
-                                              'pk': note.id}))
+        note = self._note_factory(self.thread)
+
+        res = self.client.get(reverse(
+            'comm-note-detail',
+            kwargs={'thread_id': self.thread.id, 'pk': note.id}))
         eq_(res.status_code, 200)
         eq_(res.json['body'], 'something')
         eq_(res.json['reply_to'], None)
         eq_(res.json['is_read'], False)
 
-        CommunicationNoteRead.objects.create(user=self.profile, note=note)
+        note.mark_read(self.profile)
         res = self.client.get(reverse('comm-note-detail',
                                       kwargs={'thread_id': self.thread.id,
                                               'pk': note.id}))
@@ -292,28 +293,24 @@ class TestNote(RestOAuth):
 
     def test_show_read_filter(self):
         """Test `is_read` filter."""
-        note = CommunicationNote.objects.create(
-            author=self.profile, thread=self.thread, note_type=0,
-            body='something')
-        CommunicationNoteRead.objects.create(user=self.profile, note=note)
+        note = self._note_factory(self.thread)
+        note.mark_read(self.profile)
 
         # Test with `show_read=true`.
         res = self.client.get(self.list_url, {'show_read': 'truey'})
         eq_(res.json['objects'][0]['is_read'], True)
 
         # Test with `show_read=false`.
-        CommunicationNoteRead.objects.all().delete()
+        note.reads_set.all().delete()
         res = self.client.get(self.list_url, {'show_read': '0'})
         eq_(res.json['objects'][0]['is_read'], False)
 
     def test_read_perms(self):
         staff = UserProfile.objects.get(username='support_staff')
-        CommunicationNote.objects.create(
-            author=staff, thread=self.thread, note_type=0, body='oncetoldme',
-            read_permission_developer=True)
-        no_dev_note = CommunicationNote.objects.create(
-            author=staff, thread=self.thread, note_type=6, body='denied',
-            read_permission_developer=False)
+        self._note_factory(
+            self.thread, perms=['developer'], author=staff, body='oncetoldme')
+        no_dev_note = self._note_factory(
+            self.thread, no_perms=['developer'], author=staff)
 
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
@@ -332,8 +329,7 @@ class TestNote(RestOAuth):
         eq_(res.json['body'], 'something')
 
     def test_creation_denied(self):
-        self.thread.read_permission_developer = False
-        self.thread.save()
+        self.thread.update(read_permission_developer=False)
         res = self.client.post(self.list_url, data=json.dumps(
             {'note_type': '0', 'body': 'something'}))
         eq_(res.status_code, 403)
@@ -343,10 +339,9 @@ class TestNote(RestOAuth):
         self.assertCORS(res, 'get', 'post', 'delete', 'patch')
 
     def test_reply_list(self):
-        note = CommunicationNote.objects.create(author=self.profile,
-            thread=self.thread, note_type=0, body='something')
-        note.replies.create(body='somethingelse', note_type=0,
-            thread=self.thread, author=self.profile)
+        note = self._note_factory(self.thread)
+        note.replies.create(thread=self.thread, author=self.profile)
+
         res = self.client.get(reverse('comm-note-replies-list',
                                       kwargs={'thread_id': self.thread.id,
                                               'note_id': note.id}))
@@ -355,26 +350,26 @@ class TestNote(RestOAuth):
         eq_(res.json['objects'][0]['reply_to'], note.id)
 
     def test_reply_create(self):
-        note = CommunicationNote.objects.create(author=self.profile,
-            thread=self.thread, note_type=0, body='something')
-        res = self.client.post(reverse('comm-note-replies-list',
-                                       kwargs={'thread_id': self.thread.id,
-                                               'note_id': note.id}),
-                               data=json.dumps({'note_type': '0',
-                                                'body': 'something'}))
+        note = self._note_factory(self.thread)
+
+        res = self.client.post(
+            reverse('comm-note-replies-list',
+                    kwargs={'thread_id': self.thread.id, 'note_id': note.id}),
+                    data=json.dumps({'note_type': '0',
+                                     'body': 'something'}))
         eq_(res.status_code, 201)
         eq_(note.replies.count(), 1)
 
     def test_note_emails(self):
         self.create_switch(name='comm-dashboard')
-        note = CommunicationNote.objects.create(author=self.profile,
-            thread=self.thread, note_type=0, body='something',
-            read_permission_developer=True)
-        res = self.client.post(reverse('comm-note-replies-list',
-                                       kwargs={'thread_id': self.thread.id,
-                                               'note_id': note.id}),
-                               data=json.dumps({'note_type': '0',
-                                                'body': 'something'}))
+        note = self._note_factory(self.thread, perms=['developer'])
+
+        res = self.client.post(
+            reverse('comm-note-replies-list',
+                    kwargs={'thread_id': self.thread.id,
+                            'note_id': note.id}),
+                    data=json.dumps({'note_type': '0',
+                                     'body': 'something'}))
         eq_(res.status_code, 201)
 
         # Decrement authors.count() by 1 because the author of the note is
@@ -382,13 +377,14 @@ class TestNote(RestOAuth):
         eq_(len(mail.outbox), self.thread.addon.authors.count() - 1)
 
     def test_mark_read(self):
-        note = CommunicationNote.objects.create(author=self.profile,
-            thread=self.thread, note_type=0, body='something')
-        CommunicationNoteRead.objects.create(user=self.profile, note=note)
-        res = self.client.patch(reverse('comm-note-detail',
-                                        kwargs={'thread_id': self.thread.id,
-                                                'pk': note.id}),
-                                data=json.dumps({'is_read': True}))
+        note = self._note_factory(self.thread)
+        note.mark_read(self.profile)
+
+        res = self.client.patch(
+            reverse('comm-note-detail',
+                    kwargs={'thread_id': self.thread.id,
+                            'pk': note.id}),
+                    data=json.dumps({'is_read': True}))
         eq_(res.status_code, 204)
         assert note.read_by_users.filter(user=self.profile).exists()
 
