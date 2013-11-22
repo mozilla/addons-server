@@ -247,9 +247,11 @@ $(".moz-menu .tab a").click(_pd(function() {
     this.blur();
 }));
 
-$("#sort-menu .label").click(_pd(function() {
+$("#sort-menu").delegate('.label', 'click', _pd(function() {
     $("#sort-menu").toggleClass("expand");
     this.blur();
+    // Hack the window resize to fix #sort-menu height calculation.
+    $(window).trigger('resize');
 }));
 
 z.eula = (function(){

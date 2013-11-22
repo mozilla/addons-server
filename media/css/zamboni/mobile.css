@@ -231,12 +231,12 @@ table th {
     -webkit-transition: .5s height ease;
     border: 0px solid transparent;
     border-width: 1px 0;
+    margin: 0 -14px;
 }
 
 #sort-menu.expand ul {
     border-color: #a9badb;
-    height: 254px;
-    margin: 0 -14px;
+    height: 407px;
 }
 .purchases #sort-menu.expand ul {
     height: 100px;
