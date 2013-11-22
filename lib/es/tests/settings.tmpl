@@ -1,7 +1,0 @@
-try:
-    from settings_local_mkt import *
-except ImportError:
-    from settings_local import *
-
-IN_TEST_SUITE = True
-DATABASES['default']['NAME'] = '%(DB)s'
