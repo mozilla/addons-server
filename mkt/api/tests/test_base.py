@@ -22,8 +22,8 @@ from test_utils import RequestFactory
 
 from access.middleware import ACLMiddleware
 from amo.tests import TestCase
-from mkt.api.base import (AppViewSet, cors_api_view, CompatRelatedField,
-                          CORSResource, handle_500, MarketplaceResource)
+from mkt.api.base import (AppViewSet, cors_api_view, CORSResource, handle_500,
+                          MarketplaceResource)
 from mkt.api.http import HttpTooManyRequests
 from mkt.api.serializers import Serializer
 from mkt.receipts.tests.test_views import RawRequestFactory
@@ -264,55 +264,3 @@ class TestAppViewSet(TestCase):
     def test_not_ok(self):
         self.viewset.initialize_request(self.request, pk='invalid')
         eq_(self.viewset.app, None)
-
-
-class TestCompatRelatedField(TestCase):
-    def setUp(self):
-        self.request = RequestFactory().get('/')
-        self.field = CompatRelatedField(
-            tastypie={'resource_name': 'app', 'api_name': 'apps'},
-            source='addon', slug_field='app_slug', read_only=True)
-        # Mimic what DRF does when it initializes the fields on a serializer
-        # by passing a context.
-        self.field.context = {'request': self.request}
-
-    def test_from_native(self):
-        mock_queryset = Mock()
-        self.field.queryset = mock_queryset
-        self.field.from_native('slug')
-        mock_queryset.get.assert_called_once_with(app_slug='slug')
-
-    def test_from_native_string_pk(self):
-        mock_queryset = Mock()
-        self.field.queryset = mock_queryset
-        self.field.from_native('1337')
-        mock_queryset.get.assert_called_once_with(pk=1337)
-
-    def test_from_native_pk(self):
-        mock_queryset = Mock()
-        self.field.queryset = mock_queryset
-        self.field.from_native(1337)
-        mock_queryset.get.assert_called_once_with(pk=1337)
-
-    def test_from_native_url(self):
-        mock_queryset = Mock()
-        self.field.queryset = mock_queryset
-        self.field.from_native('/api/v1/apps/app/1/')
-        # Note: DRF doesn't convert back the pk to a string here. It's fine.
-        mock_queryset.get.assert_called_once_with(pk='1')
-
-    def test_from_native_url_with_protocol(self):
-        mock_queryset = Mock()
-        self.field.queryset = mock_queryset
-        self.field.from_native('https://localhost/api/v1/apps/app/1/')
-        # Note: DRF doesn't convert back the pk to a string here. It's fine.
-        mock_queryset.get.assert_called_once_with(pk='1')
-
-    def test_from_native_bad(self):
-        with self.assertRaises(ValidationError):
-            self.field.from_native(object())
-
-    def test_to_native(self):
-        obj = Webapp(id=1)
-        value = self.field.to_native(obj)
-        eq_(value, '/api/v1/apps/app/1/')
