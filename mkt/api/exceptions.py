@@ -1,5 +1,10 @@
+from django.conf import settings
+from django.core.signals import got_request_exception
+
 from rest_framework import status
 from rest_framework.exceptions import APIException
+from rest_framework.response import Response
+from rest_framework.views import exception_handler
 from tastypie.exceptions import TastypieError
 
 
@@ -34,3 +39,39 @@ class ServiceUnavailable(APIException):
 
     def __init__(self, detail=None):
         self.detail = detail or self.default_detail
+
+
+def custom_exception_handler(exc):
+    """
+    Custom exception handler for DRF, which doesn't provide one for HTTP
+    responses like tastypie does.
+    """
+    # Call REST framework's default exception handler first,
+    # to get the standard error response.
+    response = exception_handler(exc)
+
+    # If the response is None, then DRF didn't handle the exception and we
+    # should do it ourselves.
+    if response is None:
+        # Start with a generic default error message.
+        data = {"detail": "Internal Server Error"}
+
+        # Include traceback if DEBUG is active.
+        if settings.DEBUG:
+            import traceback
+            import sys
+
+            data['error_message'] = unicode(exc)
+            data['traceback'] = '\n'.join(
+                traceback.format_exception(*(sys.exc_info())))
+
+        request = getattr(exc, '_request', None)
+        klass = getattr(exc, '_klass', None)
+
+        # Send the signal so other apps are aware of the exception.
+        got_request_exception.send(klass, request=request)
+
+        # Send the 500 response back.
+        response = Response(data, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    return response

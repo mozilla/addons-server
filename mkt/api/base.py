@@ -561,6 +561,22 @@ class SlugRouter(SimpleRouter):
         return url(regex, view, name=name)
 
 
+class MarketplaceView(object):
+    """
+    Base view for DRF views.
+
+    It includes:
+    - An implement of handle_exception() that goes with our custom exception
+      handler. It stores the request and originating class in the exception
+      before it's handed over the the handler, so that the handler can in turn
+      properly propagate the got_request_exception signal if necessary.
+    """
+    def handle_exception(self, exc):
+        exc._request = self.request._request
+        exc._klass = self.__class__
+        return super(MarketplaceView, self).handle_exception(exc)
+
+
 class CORSMixin(object):
     """
     Mixin to enable CORS for DRF API.
@@ -580,6 +596,7 @@ def cors_api_view(methods):
             return f(request)
         return wrapped
     return decorator
+
 
 class SlugOrIdMixin(object):
     """
