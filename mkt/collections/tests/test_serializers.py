@@ -18,7 +18,7 @@ from mkt.collections.serializers import (CollectionMembershipField,
                                          CollectionSerializer,
                                          DataURLImageField)
 from mkt.constants.features import FeatureProfile
-from mkt.search.api import WithFeaturedResource
+from mkt.search.api import FeaturedSearchView
 from mkt.site.fixtures import fixture
 from mkt.webapps.api import AppSerializer
 
@@ -126,7 +126,7 @@ class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
     def setUp(self):
         self.create_switch('collections-use-es-for-apps')
         super(TestCollectionMembershipFieldES, self).setUp()
-        self.field.context['search_resource'] = WithFeaturedResource()
+        self.field.context['view'] = FeaturedSearchView()
         self.user = UserProfile.objects.get(pk=2519)
         AddonUser.objects.create(addon=self.app, user=self.user)
         self.refresh('webapp')

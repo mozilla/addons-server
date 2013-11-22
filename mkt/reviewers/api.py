@@ -4,13 +4,13 @@ from rest_framework.response import Response
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import GroupPermission, PermissionAuthorization
+from mkt.api.authorization import GroupPermission
 from mkt.api.base import SlugOrIdMixin
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import ApiReviewersSearchForm, ApproveRegionForm
 from mkt.reviewers.serializers import ReviewingSerializer
 from mkt.reviewers.utils import AppsReviewing
-from mkt.search.api import SearchResource
+from mkt.search.api import SearchResultSerializer, SearchView
 from mkt.search.utils import S
 from mkt.webapps.models import Webapp, WebappIndexer
 
@@ -24,66 +24,44 @@ class ReviewingView(ListAPIView):
     def get_queryset(self):
         return [row['app'] for row in AppsReviewing(self.request).get_apps()]
 
+SEARCH_FIELDS = [u'device_types', u'id', u'is_escalated', u'is_packaged',
+                 u'latest_version', u'name', u'premium_type', u'price', u'slug',
+                 u'status']
 
-class ReviewersSearchResource(SearchResource):
 
-    class Meta(SearchResource.Meta):
-        resource_name = 'search'
-        authorization = PermissionAuthorization('Apps', 'Review')
-        fields = ['device_types', 'id', 'is_escalated', 'is_packaged',
-                  'latest_version', 'name', 'premium_type', 'price', 'slug',
-                  'status']
+class ReviewersSearchView(SearchView):
+    cors_allowed_methods = ['get']
+    authentication_classes = [RestSharedSecretAuthentication,
+                              RestOAuthAuthentication]
+    permission_classes = [GroupPermission('Apps', 'Review')]
 
-    def get_search_data(self, request):
-        form = ApiReviewersSearchForm(request.GET if request else None)
-        if not form.is_valid():
-            raise self.form_errors(form)
-        return form.cleaned_data
-
-    def get_feature_profile(self, request):
-        # We don't want automatic feature profile filtering in the reviewers
-        # API.
-        return None
-
-    def get_region(self, request):
-        # We don't want automatic region filtering in the reviewers API.
-        return None
-
-    def apply_filters(self, request, qs, data=None):
-        qs = super(ReviewersSearchResource, self).apply_filters(request, qs,
-                                                                data=data)
-        for k in ('has_info_request', 'has_editor_comment'):
-            if data.get(k, None) is not None:
-                qs = qs.filter(**{
-                    'latest_version.%s' % k: data[k]
-                })
-        if data.get('is_escalated', None) is not None:
-            qs = qs.filter(is_escalated=data['is_escalated'])
-        return qs
-
-    def get_query(self, request, base_filters=None):
-        form_data = self.get_search_data(request)
-
-        if base_filters is None:
-            base_filters = {}
+    def get(self, request, *args, **kwargs):
+        form_data = self.get_search_data(request, ApiReviewersSearchForm)
+        base_filters = {'type': form_data['type']}
         if form_data.get('status') != 'any':
             base_filters['status'] = form_data.get('status')
-        return S(WebappIndexer).filter(**base_filters)
+        qs = S(WebappIndexer).filter(**base_filters)
+        qs = self.apply_filters(request, qs, data=form_data)
+        qs = apply_reviewer_filters(request, qs, data=form_data)
+        page = self.paginate_queryset(qs)
+        return Response(self.get_pagination_serializer(page).data)
 
-    def dehydrate(self, bundle):
-        bundle = super(ReviewersSearchResource, self).dehydrate(bundle)
+    def serialize(self, request, app):
+        full_data = SearchView.serialize(self, request, app)
+        data = {}
+        for k in SEARCH_FIELDS:
+            data[k] = full_data.get(k)
+        return data
 
-        # Add reviewer-specific stuff that's not in the standard dehydrate.
-        bundle.data['latest_version'] = bundle.obj.latest_version
-        bundle.data['is_escalated'] = bundle.obj.is_escalated
-
-        # Throw away anything not in _meta.fields.
-        filtered_data = {}
-        for k in self._meta.fields:
-            filtered_data[k] = bundle.data[k]
-        bundle.data = filtered_data
-
-        return bundle
+def apply_reviewer_filters(request, qs, data=None):
+    for k in ('has_info_request', 'has_editor_comment'):
+        if data.get(k, None) is not None:
+            qs = qs.filter(**{
+                'latest_version.%s' % k: data[k]
+            })
+    if data.get('is_escalated', None) is not None:
+        qs = qs.filter(is_escalated=data['is_escalated'])
+    return qs
 
 
 class ApproveRegion(SlugOrIdMixin, CreateAPIView):

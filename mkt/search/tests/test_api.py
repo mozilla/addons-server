@@ -2,11 +2,12 @@
 import json
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
 
 from mock import MagicMock, patch
 from nose.tools import eq_, ok_
-from tastypie.exceptions import ImmediateHttpResponse
+from rest_framework.exceptions import ParseError, PermissionDenied
 
 import amo
 import mkt
@@ -15,13 +16,13 @@ from access.middleware import ACLMiddleware
 from addons.models import AddonCategory, AddonDeviceType, AddonUpsell, Category
 from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase, TestCase
+from amo.urlresolvers import reverse
 from stats.models import ClientData
 from tags.models import Tag
 from translations.helpers import truncate
 from users.models import UserProfile
 
-from mkt.api.base import list_url
-from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
+from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
                                        COLLECTIONS_TYPE_OPERATOR)
@@ -29,7 +30,7 @@ from mkt.collections.models import Collection
 from mkt.constants import regions
 from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
-from mkt.search.api import SearchResource
+from mkt.search.api import SearchView
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.search.views import DEFAULT_SORTING
 from mkt.site.fixtures import fixture
@@ -37,11 +38,11 @@ from mkt.webapps.models import Installed, Webapp
 from mkt.webapps.tasks import unindex_webapps
 
 
-class TestSearchResource(TestCase):
+class TestGetRegion(TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
-        self.resource = SearchResource()
+        self.resource = SearchView()
         self.factory = RequestFactory()
         self.profile = UserProfile.objects.get(pk=2519)
         self.user = self.profile.user
@@ -90,7 +91,7 @@ class TestSearchResource(TestCase):
             ok_(mock_process_request.called)
 
         # Test invalid value (should raise exception).
-        with self.assertRaises(ImmediateHttpResponse):
+        with self.assertRaises(ParseError):
             self.region_for('cvanland')  # Scary place
 
     def test_get_region_permission(self):
@@ -104,18 +105,18 @@ class TestSearchResource(TestCase):
         eq_(self.region_for('us'), regions.US)
 
     def test_no_permission_not_curator(self):
-        with self.assertRaises(ImmediateHttpResponse):
+        with self.assertRaises(PermissionDenied):
             eq_(self.region_for('None'), None)
         eq_(self.region_for('us'), regions.US)
 
 
 @patch('versions.models.Version.is_privileged', False)
-class TestApi(BaseOAuth, ESTestCase):
+class TestApi(RestOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.client = OAuthClient(None)
-        self.url = list_url('search')
+        self.client = RestOAuthClient(None)
+        self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
         self.category = Category.objects.create(name='test', slug='test',
                                                 type=amo.ADDON_WEBAPP)
@@ -135,18 +136,19 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(res.json['meta']['total_count'], 1)
 
     def test_wrong_category(self):
-        res = self.client.get(self.url + ({'cat': self.category.slug + 'xq'},))
+        res = self.client.get(self.url,
+                              data={'cat': self.category.slug + 'xq'})
         eq_(res.status_code, 400)
         eq_(res['Content-Type'], 'application/json')
 
     def test_wrong_weight(self):
         self.category.update(weight=-1)
-        res = self.client.get(self.url + ({'cat': self.category.slug},))
+        res = self.client.get(self.url, data={'cat': self.category.slug })
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
 
     def test_wrong_sort(self):
-        res = self.client.get(self.url + ({'sort': 'awesomeness'},))
+        res = self.client.get(self.url, data={'sort': 'awesomeness'})
         eq_(res.status_code, 400)
 
     def test_sort(self):
@@ -160,7 +162,7 @@ class TestApi(BaseOAuth, ESTestCase):
                 mocked_qs.order_by.assert_called_with(es_sort)
 
     def test_right_category(self):
-        res = self.client.get(self.url + ({'cat': self.category.pk},))
+        res = self.client.get(self.url, data={'cat': self.category.pk})
         eq_(res.status_code, 200)
         eq_(res.json['objects'], [])
 
@@ -171,7 +173,8 @@ class TestApi(BaseOAuth, ESTestCase):
 
     def test_right_category_present(self):
         self.create()
-        res = self.client.get(self.url + ({'cat': self.category.pk},))
+        res = self.client.get(
+            self.url, data={'cat': self.category.pk})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 1)
@@ -180,6 +183,7 @@ class TestApi(BaseOAuth, ESTestCase):
         user = UserProfile.objects.all()[0]
 
         def fakeauth(auth, req, **kw):
+            req.user = user.user
             req.amo_user = user
             return True
 
@@ -187,41 +191,48 @@ class TestApi(BaseOAuth, ESTestCase):
                    '.is_authenticated', fakeauth):
             with self.settings(SITE_URL=''):
                 self.create()
-            res = self.client.get(self.url + ({'cat': self.category.pk},))
+            res = self.client.get(
+                self.url, data={'cat': self.category.pk})
             obj = res.json['objects'][0]
             assert 'user' in obj
 
     def test_dehydrate(self):
-        with self.settings(SITE_URL=''):
-            self.create()
-            res = self.client.get(self.url + ({'cat': self.category.pk},))
-            eq_(res.status_code, 200)
-            obj = res.json['objects'][0]
-            eq_(obj['absolute_url'], self.webapp.get_absolute_url())
-            eq_(obj['app_type'], self.webapp.app_type)
-            eq_(obj['content_ratings'],
-                {'descriptors': [], 'interactive_elements': [],
-                 'ratings': None})
-            eq_(obj['current_version'], u'1.0')
-            eq_(obj['description'], unicode(self.webapp.description))
-            eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
-            eq_(obj['id'], str(self.webapp.id))
-            eq_(obj['manifest_url'], self.webapp.get_manifest_url())
-            eq_(obj['payment_account'], None)
-            self.assertApiUrlEqual(obj['privacy_policy'],
-                                   '/apps/app/337141/privacy/')
-            eq_(obj['public_stats'], self.webapp.public_stats)
-            eq_(obj['ratings'], {'average': 0.0, 'count': 0})
-            self.assertApiUrlEqual(obj['resource_uri'], '/apps/app/337141/')
-            eq_(obj['slug'], self.webapp.app_slug)
-            eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
-            ok_('1.0' in obj['versions'])
-            self.assertApiUrlEqual(obj['versions']['1.0'],
-                                   '/apps/versions/1268829/')
+        def fakeauth(auth, req, **kw):
+            req.user = AnonymousUser()
+            return True
 
-            # These only exists if requested by a reviewer.
-            ok_('latest_version' not in obj)
-            ok_('reviewer_flags' not in obj)
+        with patch('mkt.api.authentication.SharedSecretAuthentication'
+                   '.is_authenticated', fakeauth):
+            with self.settings(SITE_URL=''):
+                self.create()
+                res = self.client.get(self.url, data={'cat': self.category.pk})
+                eq_(res.status_code, 200)
+                obj = res.json['objects'][0]
+                eq_(obj['absolute_url'], self.webapp.get_absolute_url())
+                eq_(obj['app_type'], self.webapp.app_type)
+                eq_(obj['content_ratings'],
+                    {'descriptors': [], 'interactive_elements': [],
+                     'ratings': None})
+                eq_(obj['current_version'], u'1.0')
+                eq_(obj['description'], unicode(self.webapp.description))
+                eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
+                eq_(obj['id'], str(self.webapp.id))
+                eq_(obj['manifest_url'], self.webapp.get_manifest_url())
+                eq_(obj['payment_account'], None)
+                self.assertApiUrlEqual(obj['privacy_policy'],
+                                       '/apps/app/337141/privacy/')
+                eq_(obj['public_stats'], self.webapp.public_stats)
+                eq_(obj['ratings'], {'average': 0.0, 'count': 0})
+                self.assertApiUrlEqual(obj['resource_uri'], '/apps/app/337141/')
+                eq_(obj['slug'], self.webapp.app_slug)
+                eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
+                ok_('1.0' in obj['versions'])
+                self.assertApiUrlEqual(obj['versions']['1.0'],
+                                       '/apps/versions/1268829/')
+
+        # These only exists if requested by a reviewer.
+        ok_('latest_version' not in obj)
+        ok_('reviewer_flags' not in obj)
 
     def test_upsell(self):
         upsell = app_factory(premium_type=amo.ADDON_PREMIUM)
@@ -261,7 +272,7 @@ class TestApi(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url + ({'region': 'br'},))
+        res = self.client.get(self.url, data={'region': 'br'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
@@ -269,20 +280,20 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_languages_filtering(self):
         # This webapp's supported_locales: [u'en-US', u'es', u'pt-BR']
 
-        res = self.client.get(self.url + ({'languages': 'fr'},))
+        res = self.client.get(self.url, data={'languages': 'fr'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
 
         for lang in ('fr,pt-BR', 'es, pt-BR', 'es', 'pt-BR'):
-            res = self.client.get(self.url + ({'languages': lang},))
+            res = self.client.get(self.url, data={'languages': lang})
             eq_(res.status_code, 200)
             obj = res.json['objects'][0]
             eq_(obj['slug'], self.webapp.app_slug)
 
     def test_offline_filtering(self):
         def check(offline, visible):
-            res = self.client.get(self.url + ({'offline': offline},))
+            res = self.client.get(self.url, data={'offline': offline})
             eq_(res.status_code, 200)
             objs = res.json['objects']
             eq_(len(objs), int(visible))
@@ -306,7 +317,7 @@ class TestApi(BaseOAuth, ESTestCase):
         check(offline='None', visible=True)
 
     def test_q(self):
-        res = self.client.get(self.url + ({'q': 'something'},))
+        res = self.client.get(self.url, data={'q': 'something'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -317,7 +328,7 @@ class TestApi(BaseOAuth, ESTestCase):
         app3 = app_factory(name='test app test31')
         self.refresh('webapp')
 
-        res = self.client.get(self.url + ({'q': 'test app test21'},))
+        res = self.client.get(self.url, data={'q': 'test app test21'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 3)
         # app2 should be first since it's an exact match and is boosted higher.
@@ -333,7 +344,7 @@ class TestApi(BaseOAuth, ESTestCase):
         Tag(tag_text='whatsupp').save_tag(self.webapp)
         self.webapp.save()
         self.refresh('webapp')
-        res = self.client.get(self.url + ({'q': 'whatsupp'},))
+        res = self.client.get(self.url, data={'q': 'whatsupp'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -342,7 +353,7 @@ class TestApi(BaseOAuth, ESTestCase):
         self.webapp.name = {'es': 'Páginas Amarillos'}
         self.webapp.save()
         self.refresh('webapp')
-        res = self.client.get(self.url + ({'q': 'paginas'},))
+        res = self.client.get(self.url, data={'q': 'paginas'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -351,14 +362,14 @@ class TestApi(BaseOAuth, ESTestCase):
         self.webapp.name = 'AirCombat'
         self.webapp.save()
         self.refresh('webapp')
-        res = self.client.get(self.url + ({'q': 'air combat'},))
+        res = self.client.get(self.url, data={'q': 'air combat'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_name_localized(self):
-        res = self.client.get(self.url + ({'q': 'something',
-                                           'lang': 'es'},))
+        res = self.client.get(self.url,
+                              data={'q': 'something', 'lang': 'es'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -369,8 +380,8 @@ class TestApi(BaseOAuth, ESTestCase):
         self.refresh('webapp')
 
         # Make a request in another language that we know will fail.
-        res = self.client.get(self.url + ({'q': 'something',
-                                           'lang': 'de'},))
+        res = self.client.get(self.url,
+                              data={'q': 'something', 'lang': 'de'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -381,7 +392,7 @@ class TestApi(BaseOAuth, ESTestCase):
             addon=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
         self.webapp.save()
         self.refresh('webapp')
-        res = self.client.get(self.url + ({'device': 'desktop'},))
+        res = self.client.get(self.url, data={'device': 'desktop'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -394,34 +405,34 @@ class TestApi(BaseOAuth, ESTestCase):
         f.save()
         self.webapp.save()
         self.refresh('webapp')
-        res = self.client.get(self.url + ({'dev': 'firefoxos'},))
+        res = self.client.get(self.url, data={'dev': 'firefoxos'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
 
     def test_premium_types(self):
-        res = self.client.get(self.url + (
-            {'premium_types': 'free'},))
+        res = self.client.get(self.url,
+                              data={'premium_types': 'free'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_premium_types_empty(self):
-        res = self.client.get(self.url + (
-            {'premium_types': 'premium'},))
+        res = self.client.get(self.url,
+                              data={'premium_types': 'premium'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
 
     def test_multiple_premium_types(self):
-        res = self.client.get(self.url + (
-            {'premium_types': 'free'},
-            {'premium_types': 'premium'}))
+        res = self.client.get(self.url,
+                              data={'premium_types': ['free', 'premium']})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_hosted(self):
-        res = self.client.get(self.url + ({'app_type': 'hosted'},))
+        res = self.client.get(self.url,
+                              data={'app_type': 'hosted'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -430,7 +441,8 @@ class TestApi(BaseOAuth, ESTestCase):
         self.webapp.update(is_packaged=True)
         self.refresh('webapp')
 
-        res = self.client.get(self.url + ({'app_type': 'packaged'},))
+        res = self.client.get(self.url,
+                              data={'app_type': 'packaged'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -441,11 +453,13 @@ class TestApi(BaseOAuth, ESTestCase):
             self.webapp.update(is_packaged=True)
             self.refresh('webapp')
 
-            res = self.client.get(self.url + ({'app_type': 'packaged'},))
+            res = self.client.get(self.url,
+                                  data={'app_type': 'packaged'})
             eq_(res.status_code, 200)
             eq_(len(res.json['objects']), 0)
 
-            res = self.client.get(self.url + ({'app_type': 'privileged'},))
+            res = self.client.get(self.url,
+                                  data={'app_type': 'privileged'})
             eq_(res.status_code, 200)
             eq_(len(res.json['objects']), 1)
             obj = res.json['objects'][0]
@@ -461,17 +475,17 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_('latest_version' in obj, False)
 
     def test_addon_type_anon(self):
-        res = self.client.get(self.url + ({'type': 'app'},))
+        res = self.client.get(self.url, data={'type': 'app'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'type': 'vindaloo'},))
+        res = self.client.get(self.url, data={'type': 'vindaloo'})
         eq_(res.status_code, 400)
-        error = res.json['error_message']
+        error = res.json['detail']
         eq_(error.keys(), ['type'])
 
-        res = self.client.get(self.url + ({'type': 'theme'},))
+        res = self.client.get(self.url, data={'type': 'theme'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
 
@@ -496,7 +510,7 @@ class TestApi(BaseOAuth, ESTestCase):
 
         self.reindex(Webapp, 'webapp')
 
-        res = self.client.get(self.url + ({'region': 'br'},))
+        res = self.client.get(self.url, data={'region': 'br'})
         eq_(res.status_code, 200)
 
         objects = res.json['objects']
@@ -519,18 +533,18 @@ class TestApi(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.reindex(Webapp, 'webapp')
 
-        res = self.client.get(self.url + ({'q': 'whatsapp'},))
+        res = self.client.get(self.url, data={'q': 'whatsapp'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
 
-class TestApiFeatures(BaseOAuth, ESTestCase):
+class TestApiFeatures(RestOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.client = OAuthClient(None)
-        self.url = list_url('search')
+        self.client = RestOAuthClient(None)
+        self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
         self.category = Category.objects.create(name='test',
                                                 type=amo.ADDON_WEBAPP)
@@ -545,7 +559,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url + (self.qs,))
+        res = self.client.get(self.url, data=self.qs)
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -556,7 +570,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url + (self.qs,))
+        res = self.client.get(self.url, data=self.qs)
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -567,7 +581,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url + (self.qs,))
+        res = self.client.get(self.url, data=self.qs)
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 0)
@@ -580,7 +594,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url + (self.qs,))
+        res = self.client.get(self.url, data=self.qs)
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -593,18 +607,18 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url + (qs,))
+        res = self.client.get(self.url, data=qs)
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
 
-class BaseFeaturedTests(BaseOAuth, ESTestCase):
+class BaseFeaturedTests(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
-    list_url = list_url('search/featured')
+    list_url = reverse('featured-search-api')
 
-    def setUp(self, api_name=None):
-        super(BaseFeaturedTests, self).setUp(api_name='fireplace')
+    def setUp(self):
+        super(BaseFeaturedTests, self).setUp()
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
         AddonDeviceType.objects.create(addon=self.app,
@@ -692,6 +706,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         Add a second collection, then ensure than the old one is not present
         in the results since we are limiting at 1 collection of each type
         """
+        mock_field_to_native.return_value = None
         self.col.add_app(self.app)
         self.col = Collection.objects.create(name='Me', description='Hello',
             collection_type=self.col_type, category=self.cat, is_public=True,
@@ -703,7 +718,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         # not returning.
         eq_(mock_field_to_native.call_count, 1)
 
-    @patch('mkt.search.api.WithFeaturedResource.get_region')
+    @patch('mkt.search.api.SearchView.get_region')
     @patch('mkt.search.api.CollectionFilterSetWithFallback')
     def test_collection_filterset_called(self, mock_fallback, mock_region):
         """
@@ -756,30 +771,35 @@ class TestSuggestionsApi(ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.url = list_url('suggest')
+        self.url = reverse('suggestions-api')
         self.refresh('webapp')
-        self.client = OAuthClient(None)
-
-    def test_suggestions(self):
-        app1 = Webapp.objects.get(pk=337141)
-        app1.save()
-        app2 = app_factory(name=u"Second âpp", description=u"Second dèsc" * 25,
+        self.client = RestOAuthClient(None)
+        self.app1 = Webapp.objects.get(pk=337141)
+        self.app1.save()
+        self.app2 = app_factory(name=u"Second âpp", description=u"Second dèsc" * 25,
                            created=self.days_ago(3))
         self.refresh('webapp')
 
+    def tearDown(self):
+        # Cleanup to remove these from the index.
+        unindex_webapps([self.app1.id, self.app2.id])
+        self.app1.delete()
+        self.app2.delete()
+
+    def test_suggestions(self):
         response = self.client.get(self.url)
         parsed = json.loads(response.content)
         eq_(parsed[0], '')
-        self.assertSetEqual(parsed[1], [unicode(app1.name),
-                                        unicode(app2.name)])
-        self.assertSetEqual(parsed[2], [unicode(app1.description),
-                                        unicode(truncate(app2.description))])
-        self.assertSetEqual(parsed[3], [absolutify(app1.get_detail_url()),
-                                        absolutify(app2.get_detail_url())])
-        self.assertSetEqual(parsed[4], [app1.get_icon_url(64),
-                                        app2.get_icon_url(64)])
+        self.assertSetEqual(parsed[1], [unicode(self.app1.name),
+                                        unicode(self.app2.name)])
+        self.assertSetEqual(parsed[2], [unicode(self.app1.description),
+                                        unicode(truncate(self.app2.description))])
+        self.assertSetEqual(parsed[3], [absolutify(self.app1.get_detail_url()),
+                                        absolutify(self.app2.get_detail_url())])
+        self.assertSetEqual(parsed[4], [self.app1.get_icon_url(64),
+                                        self.app2.get_icon_url(64)])
 
-        # Cleanup to remove these from the index.
-        unindex_webapps([app1.id, app2.id])
-        app1.delete()
-        app2.delete()
+    def test_suggestions_filtered(self):
+        response = self.client.get(self.url, data={'q': 'Second'})
+        parsed = json.loads(response.content)
+        eq_(parsed[1], [unicode(self.app2.name)])

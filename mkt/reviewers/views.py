@@ -230,8 +230,7 @@ def context(request, **kw):
     statuses = dict((k, unicode(v)) for k, v in amo.STATUS_CHOICES_API.items())
     ctx = dict(motd=unmemoized_get_config('mkt_reviewers_motd'),
                queue_counts=queue_counts(request),
-               search_url=reverse('api_dispatch_list', kwargs={
-                   'api_name': 'reviewers', 'resource_name': 'search'}),
+               search_url=reverse('reviewers-search-api'),
                statuses=statuses, point_types=amo.REVIEWED_MARKETPLACE)
     ctx.update(kw)
     return ctx

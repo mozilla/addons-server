@@ -1,15 +1,11 @@
 from django.conf.urls import include, patterns, url
 
-from tastypie.api import Api
-
 import amo
 from apps.editors.views import queue_viewing, review_viewing
 from mkt.receipts.urls import receipt_patterns
+from mkt.reviewers.api import ReviewersSearchView
 from . import api, views, views_themes
 
-
-reviewers_api = Api(api_name='reviewers')
-reviewers_api.register(api.ReviewersSearchResource())
 
 # All URLs under /reviewers/.
 url_patterns = patterns('',
@@ -87,7 +83,8 @@ url_patterns = patterns('',
 )
 
 api_patterns = patterns('',
-    url(r'^', include(reviewers_api.urls)),  # The API.
+    url('^reviewers/search', ReviewersSearchView.as_view(),
+        name='reviewers-search-api'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/approve/(?P<region>[^ /]+)?$',
         api.ApproveRegion.as_view(), name='approve-region'),
     url(r'^reviewers/reviewing', api.ReviewingView.as_view(),

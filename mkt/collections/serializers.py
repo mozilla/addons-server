@@ -75,9 +75,8 @@ class CollectionMembershipField(serializers.RelatedField):
         Relies on a SearchResource instance in self.context['search_resource']
         to properly rehydrate results returned by ES.
         """
-        search_resource = self.context['search_resource']
         profile = get_feature_profile(request)
-        region = search_resource.get_region(request)
+        region = self.context['view'].get_region(request)
 
         qs = Webapp.from_search(request, region=region)
         filters = {'collection.id': obj.pk}
@@ -85,8 +84,7 @@ class CollectionMembershipField(serializers.RelatedField):
             filters.update(**profile.to_kwargs(prefix='features.has_'))
         qs = qs.filter(**filters).order_by('collection.order')
 
-        return [bundle.data
-                for bundle in search_resource.rehydrate_results(request, qs)]
+        return [self.context['view'].serialize(request, app) for app in qs]
 
 
 class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):
