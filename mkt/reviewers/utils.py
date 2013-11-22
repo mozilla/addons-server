@@ -16,7 +16,7 @@ from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
-from comm.utils import create_comm_thread, get_recipients
+from comm.utils import create_comm_note, get_recipients
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
 
@@ -141,6 +141,7 @@ class ReviewBase(object):
             data['tested'] = 'Tested with %s' % br
 
         if self.comm_thread and waffle.switch_is_active('comm-dashboard'):
+            # Send via Commbadge.
             recipients = get_recipients(self.comm_note)
 
             data['thread_id'] = str(self.comm_thread.id)
@@ -193,10 +194,8 @@ class ReviewBase(object):
                  (self.addon, emails))
 
         # Create thread.
-        self.create_comm_thread(action='info')
-
-        subject = u'Submission Update: %s'  # notify_email will format this.
-        self.notify_email('info', subject)
+        self._create_comm_note(comm.MORE_INFO_REQUIRED)
+        self.notify_email('info', u'Submission Update: %s')
 
     def send_escalate_mail(self):
         self.log_action(amo.LOG.ESCALATE_MANUAL)
@@ -216,14 +215,11 @@ class ReviewApp(ReviewBase):
         self.data = data
         self.files = self.version.files.all()
 
-    def create_comm_thread(self, **kwargs):
-        res = create_comm_thread(action=kwargs['action'], addon=self.addon,
-            comments=self.data['comments'],
-            perms=self.data['action_visibility'],
-            profile=self.request.amo_user,
-            version=self.version)
-        if res:
-            self.comm_thread, self.comm_note = res
+    def _create_comm_note(self, note_type):
+        self.comm_thread, self.comm_note = create_comm_note(
+            self.addon, self.version, self.request.amo_user,
+            self.data['comments'], note_type=note_type,
+            perms=self.data['action_visibility'])
 
     def process_public(self):
         if self.addon.is_incomplete():
@@ -232,7 +228,6 @@ class ReviewApp(ReviewBase):
 
         # Hold onto the status before we change it.
         status = self.addon.status
-        self.create_comm_thread(action='approve')
         if self.addon.make_public == amo.PUBLIC_IMMEDIATELY:
             self.process_public_immediately()
         else:
@@ -240,6 +235,9 @@ class ReviewApp(ReviewBase):
 
         if self.in_escalate:
             EscalationQueue.objects.filter(addon=self.addon).delete()
+
+        # Create thread.
+        self._create_comm_note(comm.APPROVAL)
 
         # Assign reviewer incentive scores.
         return ReviewerScore.award_points(self.request.amo_user, self.addon, status)
@@ -269,9 +267,6 @@ class ReviewApp(ReviewBase):
             # Failsafe.
             return
 
-        if waffle.switch_is_active('iarc'):
-            self.addon.set_iarc_storefront_data()
-
         self.addon.sign_if_packaged(self.version.pk)
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
@@ -284,6 +279,9 @@ class ReviewApp(ReviewBase):
         self.addon.update_version(_signal=False)
         self.addon.update_name_from_package_manifest()
         self.addon.update_supported_locales()
+
+        if waffle.switch_is_active('iarc'):
+            self.addon.set_iarc_storefront_data()
 
         # Note: Post save signal happens in the view after the transaction is
         # committed to avoid multiple indexing tasks getting fired with stale
@@ -316,7 +314,7 @@ class ReviewApp(ReviewBase):
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
         self.log_action(amo.LOG.REJECT_VERSION)
-        self.create_comm_thread(action='reject')
+        self._create_comm_note(comm.REJECTION)
         self.notify_email('pending_to_sandbox', u'Submission Update: %s')
 
         log.info(u'Making %s disabled' % self.addon)
@@ -328,16 +326,15 @@ class ReviewApp(ReviewBase):
 
     def process_escalate(self):
         """Ask for escalation for an app."""
-        self.create_comm_thread(action='escalate')
         EscalationQueue.objects.get_or_create(addon=self.addon)
+        self._create_comm_note(comm.ESCALATION)
         self.notify_email('author_super_review', u'Submission Update: %s')
-
         self.send_escalate_mail()
 
     def process_comment(self):
         self.version.update(has_editor_comment=True)
         self.log_action(amo.LOG.COMMENT_VERSION)
-        self.create_comm_thread(action='comment')
+        self._create_comm_note(comm.REVIEWER_COMMENT)
 
     def process_clear_escalation(self):
         """Clear app from escalation queue."""
@@ -359,8 +356,6 @@ class ReviewApp(ReviewBase):
         if not acl.action_allowed(self.request, 'Addons', 'Edit'):
             return
 
-        self.addon.set_iarc_storefront_data(disable=True)
-
         # Disable disables all files, not just those in this version.
         self.set_files(amo.STATUS_DISABLED,
                        File.objects.filter(version__addon=self.addon),
@@ -370,10 +365,11 @@ class ReviewApp(ReviewBase):
             EscalationQueue.objects.filter(addon=self.addon).delete()
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
-        self.create_comm_thread(action='disable')
-        subject = u'App disabled by reviewer: %s'
-        self.notify_email('disabled', subject)
 
+        self.addon.set_iarc_storefront_data(disable=True)
+
+        self._create_comm_note(comm.DISABLED)
+        self.notify_email('disabled', u'App disabled by reviewer: %s')
         self.log_action(amo.LOG.APP_DISABLED)
         log.info(u'App %s has been disabled by a reviewer.' % self.addon)
 

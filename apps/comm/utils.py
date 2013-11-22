@@ -7,22 +7,14 @@ import waffle
 
 from access.models import Group
 from comm.models import (CommunicationNote, CommunicationNoteRead,
-                         CommunicationThreadCC, CommunicationThread,
-                         CommunicationThreadToken, user_has_perm_thread)
+                         CommunicationThreadCC, CommunicationThreadToken,
+                         user_has_perm_thread)
+
 from mkt.constants import comm
 from users.models import UserProfile
 
 
 log = commonware.log.getLogger('comm')
-action_note_types = {
-    'approve': comm.APPROVAL,
-    'disable': comm.DISABLED,
-    'escalate': comm.ESCALATION,
-    'info': comm.MORE_INFO_REQUIRED,
-    'comment': comm.REVIEWER_COMMENT,
-    'reject': comm.REJECTION,
-    'resubmit': comm.RESUBMISSION
-}
 
 
 class CommEmailParser(object):
@@ -162,38 +154,43 @@ def get_recipients(note, fresh_thread=False):
     return new_recipients_list
 
 
-def create_comm_thread(**kwargs):
+def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
+                     perms=None):
+    """
+    Creates a note on an app version's thread.
+    Creates a thread if a thread doesn't already exist.
+    CC's app's Mozilla contacts to auto-join thread.
+
+    app -- app object.
+    version -- app version.
+    author -- UserProfile for the note's author.
+    body -- string/text for note comment.
+    note_type -- integer for note_type (mkt constant), defaults to 0/NO_ACTION
+                 (e.g. comm.APPROVAL, comm.REJECTION, comm.NO_ACTION).
+    perms -- list of groups to grant permission to, will set flags on Thread.
+             (e.g. ['developer', 'reviewer', 'public']).
+
+    """
     if not waffle.switch_is_active('comm-dashboard'):
-        return
+        return None, None
 
-    addon = kwargs['addon']
-    version = kwargs['version']
-    thread = CommunicationThread.objects.filter(addon=addon, version=version)
+    # Dict of {'read_permission_GROUP_TYPE': boolean}.
+    # Perm for dev, reviewer, senior_reviewer, moz_contact all True by default.
+    create_perms = dict(('read_permission_%s' % key, True) for key in perms)
 
-    perms = {}
-    for key in kwargs['perms']:
-        perms['read_permission_%s' % key] = True
+    # Create thread + note.
+    thread, created = app.threads.safer_get_or_create(
+        version=version, defaults=create_perms)
+    note = thread.notes.create(note_type=note_type, body=body, author=author,
+                               **create_perms)
 
-    if thread.exists():
-        thread = thread[0]
-    else:
-        thread = CommunicationThread.objects.create(addon=addon,
-            version=version, **perms)
-
-    note = CommunicationNote.objects.create(
-        note_type=action_note_types[kwargs['action']],
-        body=kwargs['comments'], author=kwargs['profile'],
-        thread=thread, **perms)
-
-    moz_emails = addon.get_mozilla_contacts()
-
-    # CC mozilla contact.
-    for email in moz_emails:
+    # CC mozilla contacts for them to join thread.
+    for email in app.get_mozilla_contacts():
         try:
             moz_contact = UserProfile.objects.get(email=email)
-        except UserProfile.DoesNotExist:
-            pass
-        else:
             CommunicationThreadCC.objects.get_or_create(
                 thread=thread, user=moz_contact)
+        except UserProfile.DoesNotExist:
+            pass
+
     return thread, note

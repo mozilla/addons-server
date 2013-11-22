@@ -151,6 +151,7 @@ class TestWebapp(amo.tests.TestCase):
         eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
 
     def test_get_comm_thread_url(self):
+        self.create_switch('comm-dashboard')
         app = app_factory(app_slug='putain')
         eq_(app.get_comm_thread_url(), '/comm/app/putain')
 
