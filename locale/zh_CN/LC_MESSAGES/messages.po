@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-18 14:03+0000\n"
+"PO-Revision-Date: 2013-11-22 12:40+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384783435.0\n"
+"X-POOTLE-MTIME: 1385124049.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -19667,7 +19667,7 @@ msgstr ""
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
-msgstr ""
+msgstr "测试计划"
 
 #: mkt/operators/templates/operators/preloads.html:41
 msgid "{0}, {1}"
