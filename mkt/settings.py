@@ -305,6 +305,7 @@ LOGOUT_REDIRECT_URL = '/developers/'
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
                      'rocketfuel']
+COMMONPLACE_REPOS_APPCACHED = ['fireplace']
 
 # Limit payments to only people who are in a whitelist. This is useful for
 # dev and stage server where only developers and testers should be able to make

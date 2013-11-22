@@ -18,4 +18,7 @@ urlpatterns = patterns('',
         name='commonplace.rocketfuel'),
     url('^stats/.*$', views.commonplace, {'repo': 'marketplace-stats'},
         name='commonplace.stats'),
+
+    url('^manifest.appcache$', views.appcache_manifest,
+        name='commonplace.appcache'),
 )
