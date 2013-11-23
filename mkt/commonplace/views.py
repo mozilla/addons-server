@@ -73,7 +73,6 @@ def appcache_manifest(request):
 
 @memoize('appcache-manifest-template')
 def appcache_manifest_template(repo):
-    repo = 'fireplace'
     ctx = {
         'BUILD_ID': get_build_id(repo),
         'imgurls': get_imgurls(repo),
