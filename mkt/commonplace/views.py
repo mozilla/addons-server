@@ -50,7 +50,7 @@ def commonplace(request, repo, **kwargs):
         'repo': repo,
         'site_settings': site_settings,
         'flags': waffles(request),
-        'appcache': repo == 'fireplace',
+        'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,
     }
 
     # This is where the `build_{repo}.py` files get written to after
