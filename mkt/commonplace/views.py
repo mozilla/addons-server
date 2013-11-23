@@ -48,7 +48,7 @@ def commonplace(request, repo, **kwargs):
     }
     ctx = {
         'BUILD_ID': get_build_id(repo),
-        'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,
+        'appcache': False,  #repo in settings.COMMONPLACE_REPOS_APPCACHED,
         'flags': waffles(request),
         'repo': repo,
         'site_settings': site_settings,
