@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-21 20:56+0000\n"
+"PO-Revision-Date: 2013-11-21 20:57+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385067370.0\n"
+"X-POOTLE-MTIME: 1385067435.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -20849,7 +20849,6 @@ msgstr "Autorovi (či autorům) se pošle e-mail s žádostí o více informací
 # 88%
 # 100%
 #: mkt/reviewers/utils.py:428
-#, fuzzy
 msgid "Escalate"
 msgstr "Zvýšen důraz"
 
