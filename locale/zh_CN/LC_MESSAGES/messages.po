@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-22 12:40+0000\n"
-"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
+"PO-Revision-Date: 2013-11-23 10:07+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385124049.0\n"
+"X-POOTLE-MTIME: 1385201232.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -19187,7 +19187,7 @@ msgstr "在 Firefox OS 上不使用 CORS（跨来源资源共享），但允许�
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:121
 msgid "Backbone lets us do data-binding and MVC-style coding, making the app a lot easier to develop."
-msgstr ""
+msgstr "Backbone 可以进行数据绑定和 MVC 风格编码，让应用程序开发更容易。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
@@ -19246,27 +19246,29 @@ msgstr "摄影视图"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "选择图像"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"rtcamera 是一款有趣的实时处理图像的拍照应用，使用了 Web 技术。<a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">阅读完整的开发步骤</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "生成动态 GIF。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "IndexedDB 封装。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
-msgstr ""
+msgstr "计算透视变换。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "添加触控事件。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
@@ -19663,7 +19665,7 @@ msgstr "预加载预览"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr ""
+msgstr "选择加入预装"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
@@ -19671,11 +19673,11 @@ msgstr "测试计划"
 
 #: mkt/operators/templates/operators/preloads.html:41
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:55
 msgid "No preload candidates found"
-msgstr ""
+msgstr "没有候选的预装项目"
 
 #. L10n: {0} is the addon name.
 #: mkt/purchase/webpay.py:42
@@ -19689,27 +19691,27 @@ msgstr "{0} 的收据"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "收据"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
-msgstr ""
+msgstr "账单地址："
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "订单号："
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "订购日期："
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "细目"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "销售者"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
@@ -20052,7 +20054,7 @@ msgstr[0] "{num} 个再审核{num} 个再审核"
 #: mkt/reviewers/templates/reviewers/home.html:31
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
-msgstr[0] ""
+msgstr[0] "{num}个评论更新{num}个评论更新"
 
 #: mkt/reviewers/templates/reviewers/home.html:40
 msgid "{c} unreviewed app submission this week."
@@ -20168,7 +20170,7 @@ msgstr "已签名 Zip"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:70 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "该应用尚无评分"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:95 mkt/reviewers/templates/reviewers/includes/mobile_details.html:117
 msgid "Total Downloads"
@@ -20180,7 +20182,7 @@ msgstr "设备类型"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Requirements"
-msgstr ""
+msgstr "需求"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:172
 msgid "More about this app"
@@ -20205,11 +20207,11 @@ msgstr "找不到结果"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
-msgstr ""
+msgstr "主题队列"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:28
 msgid "Theme Logs"
-msgstr ""
+msgstr "主题日志"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
@@ -20238,22 +20240,22 @@ msgstr "暂时尚无评论。"
 #: mkt/reviewers/templates/reviewers/themes/home.html:17
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
+msgstr[0] "{num}个待决定的主题审核{num}个待决定的主题审核"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:25
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
+msgstr[0] "{num}个打标签的审核{num}个打标签的审核"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:32
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
+msgstr[0] "{num}个更新{num}个更新"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:47
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
-msgstr[0] ""
+msgstr[0] "本周有{num}个提交的主题没有审核。本周有{num}个提交的主题没有审核。"
 
 #: mkt/reviewers/templates/reviewers/themes/logs.html:4
 msgid "Theme Review Log"
@@ -20313,7 +20315,7 @@ msgstr "释放我的主题锁"
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:33
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "交互主题队列"
 
 #: mkt/reviewers/templates/reviewers/themes/single.html:8
 msgid "Theme Review for {0}"
@@ -20325,7 +20327,7 @@ msgstr "（可能重复提交）"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:67
 msgid "Past Review Notes"
-msgstr ""
+msgstr "过往审核说明"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:73
 msgid "More Info Requested: {0}"
@@ -20790,39 +20792,40 @@ msgstr "在 MDN 上进一步了解<b>封包的应用</b>。"
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Published!"
-msgstr ""
+msgstr "已发布！"
 
 #: mkt/submit/templates/submit/next_steps.html:26
 msgid "Almost There!"
-msgstr ""
+msgstr "快完成啦！"
 
 #: mkt/submit/templates/submit/next_steps.html:29
 msgid "Submit App Manifest"
-msgstr ""
+msgstr "提交应用清单文件"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "Enter App Details"
-msgstr ""
+msgstr "输入应用详情"
 
 #: mkt/submit/templates/submit/next_steps.html:32
 msgid "<span>Set up <a href=\"%(url)s\">Content Ratings</a></span>"
-msgstr ""
+msgstr "<span>建立<a href=\"%(url)s\">内容评级</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:38
 msgid "Set up <a href=\"%(url)s\">Payments & Countries</a>"
-msgstr ""
+msgstr "设置<a href=\"%(url)s\">支付和国别</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:43
 msgid "Wait for Review"
-msgstr ""
+msgstr "等待审核"
 
 #: mkt/submit/templates/submit/next_steps.html:50
 msgid "You must now set up <a href=\"%(url)s\">Content Ratings</a> and <a href=\"%(payment_url)s\">Payments & Countries</a> before we can review your app."
 msgstr ""
+"应用必须设置<a href=\"%(url)s\">内容评级</a>、<a href=\"%(payment_url)s\">支付和国别</a>才能参加审核。"
 
 #: mkt/submit/templates/submit/next_steps.html:55
 msgid "You must now set up <a href=\"%(url)s\">Content Ratings</a> before we can review your app."
-msgstr ""
+msgstr "您必须设置<a href=\"%(url)s\">内容评级</a>我们才能审核应用。"
 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "At any point, you can"
