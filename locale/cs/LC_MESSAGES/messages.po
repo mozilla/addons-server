@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-21 20:57+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2013-11-23 15:01+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385067435.0\n"
+"X-POOTLE-MTIME: 1385218887.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2376,7 +2376,7 @@ msgstr "Verze"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "https://developer.mozilla.org/en/Install_Manifests"
+msgstr "https://developer.mozilla.org/docs/Install_Manifests"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "If your supported application does not require an install.rdf file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
@@ -6274,7 +6274,7 @@ msgstr ""
 "přidat na server <a href=\"https://addons.mozilla.org\">Doplňky Mozilly</a>. S "
 "více než <em>1,5 miliardou</em> již stažených doplňků je to nejlepší místo, "
 "kam můžete nově vytvořený doplněk přidat. Před jeho odesláním jsou zde "
-"některé věci, které je dobré shlédnout. "
+"některé věci, které je dobré shlédnout."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:115
 msgid ""
@@ -6393,7 +6393,7 @@ msgstr "Přečtěte si, jak zobrazovat obsah z webu v rozšíření bez bezpečn
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:125
 msgid "Five Wrong Reasons to Use eval in an Extension"
-msgstr "Pět špatných důvodů, proč používat eval() v rozšíření "
+msgstr "Pět špatných důvodů, proč používat eval v rozšíření"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:129
 msgid "In this blog post, Wladimir Palant gives five wrong ways to evaluate code in an extension."
@@ -11302,8 +11302,9 @@ msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
 msgstr ""
-" \"Nástroje pro vývojáře\" je místo na webu, které vám poskytuje nástroje na správu vašich doplňků. Poskytuje funkcionalitu nutnou pro odeslání vašich doplňků na AMO, správu informací o nich a "
-"statistiky o recenzích."
+"\"Nástroje pro vývojáře\" je místo na webu, které vám poskytuje nástroje na "
+"správu vašich doplňků. Poskytuje funkcionalitu nutnou pro odeslání vašich "
+"doplňků na AMO, správu informací o nich a statistiky o recenzích."
 
 #: apps/pages/templates/pages/dev_faq.html:333
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
