@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-23 15:32+0000\n"
+"PO-Revision-Date: 2013-11-23 16:22+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385220768.0\n"
+"X-POOTLE-MTIME: 1385223754.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -17266,22 +17266,34 @@ msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
+"Abyste mohli mít svou aplikaci umístěnu na Marketplace, musíte získat "
+"certifikát International Age Rating Coalition (IARC). Klepnutím na tlačítko "
+"umístěné níže se vám otevře nové okno, kde odpovíte na několik jednoduchých "
+"otázek typu ano/ne ohledně obsahu vaší aplikace. Po dokončení se okno zavře "
+"a vaše aplikace získá hodnocení."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
+"Použitím nástroje pro certifikaci od IARC souhlasíte s jejich <a href=\"%"
+"(privacy_url)s\">zásadami ochrany soukromí</a> a <a href=\"%"
+"(tos_url)s\">podmínkami použití služby</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
 msgstr ""
+"Proces hodnoceni dle IARC je dokončen. Budete přesměrován(a) na vaši <a "
+"href=\"%(ratings_url)s\">stránku s hodnocením obsahu</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr ""
+"Omlouváme se, ale na naší straně nastala chyba se zpracováním hodnocení "
+"obsahu. Můžete to zkusit znovu nebo někdy později."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:63
 msgid "Create an IARC Ratings Certificate"
-msgstr ""
+msgstr "Vytvoření certifikátu hodnocení dle IARC"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
@@ -17937,11 +17949,11 @@ msgstr "Přidání JavaSkriptové knihovny"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:179
 msgid "Build an optimized version of the app into www-built"
-msgstr ""
+msgstr "Vytvoření optimalizované verze aplikace pro www"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:180
 msgid "Deploy the built version to github (need to build first)"
-msgstr ""
+msgstr "Nahrání sestavené verze na github (nejprve ji musíte sestavit)"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:184
@@ -19355,23 +19367,23 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:402
 msgid "Telephony"
-msgstr ""
+msgstr "Telefonování"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:403
 msgid "WebSMS"
-msgstr ""
+msgstr "WebSMS"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:404
 msgid "WebBluetooth"
-msgstr ""
+msgstr "WebBluetooth"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:405
 msgid "Ambient Light"
-msgstr ""
+msgstr "Ambient Light"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:408
 msgid "navigator.onLine and offline events"
-msgstr ""
+msgstr "navigator.onLine a offline události"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:411
 msgid "Getting help"
@@ -19649,7 +19661,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "Průvodci"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
@@ -19793,11 +19805,11 @@ msgstr "Úvodní obrazovka"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:23
 msgid "Timer"
-msgstr ""
+msgstr "Timer"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:28
 msgid "Lap History"
-msgstr ""
+msgstr "Lap History"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:35
 msgid ""
@@ -20108,7 +20120,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:28
 msgid "Liking a Post"
-msgstr ""
+msgstr "Příspěvek se líbí"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:35
 msgid ""
@@ -20134,11 +20146,11 @@ msgstr "69 %"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Pohled Galerie"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
-msgstr ""
+msgstr "Pohled Kamera"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
@@ -20212,11 +20224,11 @@ msgstr "83 %"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
 msgid "Webfighter game sample"
-msgstr ""
+msgstr "Příklad hry Webfighter"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:28
 msgid "Enemy damage"
-msgstr ""
+msgstr "Poškození nepřítele"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:35
 msgid ""
@@ -20267,7 +20279,7 @@ msgstr "Aplikace je zpracovávána, čekejte prosím."
 
 #: mkt/lookup/forms.py:9
 msgid "Transaction Lookup"
-msgstr ""
+msgstr "Vyhledávání transakce"
 
 #: mkt/lookup/forms.py:17
 msgid "Process a manual refund"
@@ -20275,15 +20287,15 @@ msgstr "Provedení ručního vrácení peněz"
 
 #: mkt/lookup/forms.py:20
 msgid "Enter refund details to refund transaction"
-msgstr ""
+msgstr "Vložte detaily k procesu vrácení platby"
 
 #: mkt/lookup/forms.py:33
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "Důvod smazání"
 
 #: mkt/lookup/views.py:151
 msgid "Currently unable to retrieve refund status."
-msgstr ""
+msgstr "Aktuálně není možné získat informaci o stavu vrácení platby."
 
 #: mkt/lookup/views.py:178
 msgid "A refund has already been processed."
@@ -20295,7 +20307,7 @@ msgstr "Pro tuto transakci nemůže požádat o vrácení peněz."
 
 #: mkt/lookup/views.py:224
 msgid "Refund for this transaction now pending."
-msgstr ""
+msgstr "Vrácení platby pro tuto transakci je ve stavu čekající."
 
 #: mkt/lookup/views.py:233
 msgid "Refund for this transaction successfully approved."
@@ -20596,15 +20608,15 @@ msgstr "Koupě {0} na Firefox Marketplace"
 #. L10n: {0} is the app name.
 #: mkt/purchase/webpay_tasks.py:27
 msgid "Receipt for {0}"
-msgstr ""
+msgstr "Stvrzenka pro {0}"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Stvrzenka"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
-msgstr ""
+msgstr "Zaplaceno:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
@@ -20648,19 +20660,19 @@ msgstr "Nahlášení"
 
 #: mkt/receipts/forms.py:20
 msgid "No receipt"
-msgstr ""
+msgstr "Žádná stvrzenka"
 
 #: mkt/receipts/forms.py:21
 msgid "Test receipt"
-msgstr ""
+msgstr "Test stvrzenky"
 
 #: mkt/receipts/forms.py:22
 msgid "Expired test receipt"
-msgstr ""
+msgstr "Vypršený test stvrzenky"
 
 #: mkt/receipts/forms.py:23
 msgid "Invalid test receipt"
-msgstr ""
+msgstr "Neplatný test stvrzenky"
 
 #: mkt/receipts/forms.py:24
 msgid "Refunded test receipt"
@@ -20885,11 +20897,13 @@ msgstr "Odebere aplikaci ze seznamu aplikací pro kontrolu administrátorem. Aut
 
 #: mkt/reviewers/utils.py:446
 msgid "Clear Re-review"
-msgstr ""
+msgstr "Vymazat opětovnou kontrolu"
 
 #: mkt/reviewers/utils.py:448
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
 msgstr ""
+"Odebrat tuto aplikaci z fronty pro opětovnou kontrolu. Autor o tom neobdrží "
+"žádný e-mail a neuvidí k tomu zde žádný komentář."
 
 #: mkt/reviewers/utils.py:453
 msgid "Disable app"
@@ -20905,7 +20919,7 @@ msgstr "Nové aplikace (ne starší 5 dní)"
 
 #: mkt/reviewers/views.py:248
 msgid "Only senior reviewers can review blocklisted apps."
-msgstr ""
+msgstr "Zablokované aplikace může kontrolovat pouze zkušený redaktor."
 
 #: mkt/reviewers/views.py:299
 msgid "Device(s) changed by reviewer: {0}"
@@ -20922,11 +20936,14 @@ msgstr "Požadavky byly změněny redaktorem:  {0}"
 
 #: mkt/reviewers/views.py:348
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr ""
+msgstr "\"{0}\" úspěšně zpracován (+{1} body, {2} celkem)."
 
 #: mkt/reviewers/views_themes.py:303
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
+"Vaše zámky u motivů byly úspěšně odstraněny. Jiní redaktoři nyní mohou tyto "
+"doplňky kontrolovat. Můžete nyní chtít obnovit stránku a vidět změny níže v "
+"tabulce."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
@@ -20997,7 +21014,7 @@ msgstr "Aplikace byla smazána."
 
 #: mkt/reviewers/templates/reviewers/performance.html:3
 msgid "Reviewer Scores for {0}"
-msgstr ""
+msgstr "Skóre redaktora pro {0}"
 
 #: mkt/reviewers/templates/reviewers/queue.html:49
 msgid "Privileged App"
@@ -21005,11 +21022,11 @@ msgstr "Privilegované aplikace"
 
 #: mkt/reviewers/templates/reviewers/queue.html:57
 msgid "Premium with In-App"
-msgstr ""
+msgstr "Premium s platbami v aplikaci"
 
 #: mkt/reviewers/templates/reviewers/queue.html:59
 msgid "Free with In-App"
-msgstr ""
+msgstr "Zdarma s platbami v aplikaci"
 
 #: mkt/reviewers/templates/reviewers/queue.html:84
 msgid "Payment Category:"
@@ -21025,11 +21042,11 @@ msgstr "Aktuálně nečekají na kontrolu žádné položky."
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr ""
+msgstr "Ve frontě pro opětovnou kontrolu"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
-msgstr ""
+msgstr "Ve frontě pro detailní kontrolu"
 
 #: mkt/reviewers/templates/reviewers/review.html:57
 msgid "Review This App"
@@ -21238,7 +21255,7 @@ msgstr "Aktuálně nejsou dostupné žádné motivy na kontrolu."
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:20
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Uvolnit mé zámky u motivů"
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:33
 msgid "Interactive Theme Queue"
@@ -21302,15 +21319,15 @@ msgstr "Libovolný typ aplikace"
 
 #: mkt/search/forms.py:34
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "Privilegovaná zabalená aplikace"
 
 #: mkt/search/forms.py:39
 msgid "Free with In-app"
-msgstr ""
+msgstr "Zdarma s platbami v aplikaci"
 
 #: mkt/search/forms.py:41
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Premium s platbami v aplikaci"
 
 #: mkt/search/forms.py:42
 msgid "Other System for In-App"
