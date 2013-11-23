@@ -142,26 +142,3 @@ $(document).ready(function() {
             .append('<input type="hidden" name="detailed" value="1">').submit();
     }));
 });
-
-
-$(function () {
-    // Click to translate.
-    $('.review .translate').live('click', _pd(function(event) {
-        $this = $(this);
-        // Flag when translated.
-        if ($this.data('translated')) {
-            return;
-        }
-        $this.data('translated', true);
-        // Find text target.
-        $target = $this.parent().siblings('.description');
-        // Retrieve the translation and insert it into the target.
-        $.get($this.attr('href'), {}, function(response, status) {
-            if (status == "success") {
-                $target.text(response);
-            } else {
-                console.error(status);
-            }
-        }, 'text')
-    }));
-});
