@@ -27,11 +27,13 @@ from comm.models import (CommunicationNote, CommunicationNoteRead,
                          user_has_perm_thread)
 from comm.tasks import consume_email, mark_thread_read
 from comm.utils import filter_notes_by_read_status
+from versions.models import Version
+
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, SilentListModelMixin
+from mkt.comm.forms import AppSlugForm
 from mkt.reviewers.utils import send_note_emails
-from mkt.webpay.forms import PrepareForm
 
 
 class AuthorSerializer(ModelSerializer):
@@ -66,7 +68,8 @@ class AddonSerializer(ModelSerializer):
 
     class Meta:
         model = Addon
-        fields = ('name', 'url', 'thumbnail_url', 'slug', 'review_url')
+        fields = ('name', 'url', 'thumbnail_url', 'app_slug', 'slug',
+                  'review_url')
 
     def get_review_url(self, obj):
         return reverse('reviewers.apps.review', args=[obj.app_slug])
@@ -76,11 +79,14 @@ class ThreadSerializer(ModelSerializer):
     addon_meta = AddonSerializer(source='addon', read_only=True)
     recent_notes = SerializerMethodField('get_recent_notes')
     notes_count = SerializerMethodField('get_notes_count')
+    version_number = SerializerMethodField('get_version_number')
+    version_is_obsolete = SerializerMethodField('get_version_is_obsolete')
 
     class Meta:
         model = CommunicationThread
         fields = ('id', 'addon', 'addon_meta', 'version', 'notes_count',
-                  'recent_notes', 'created', 'modified')
+                  'recent_notes', 'created', 'modified', 'version_number',
+                  'version_is_obsolete')
         view_name = 'comm-thread-detail'
 
     def get_recent_notes(self, obj):
@@ -91,6 +97,18 @@ class ThreadSerializer(ModelSerializer):
 
     def get_notes_count(self, obj):
         return obj.notes.count()
+
+    def get_version_number(self, obj):
+        try:
+            return Version.with_deleted.get(id=obj.version_id).version
+        except Version.DoesNotExist:
+            return ''
+
+    def get_version_is_obsolete(self, obj):
+        try:
+            return Version.with_deleted.get(id=obj.version_id).deleted
+        except Version.DoesNotExist:
+            return True
 
 
 class ThreadPermission(BasePermission):
@@ -228,14 +246,20 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         cc = profile.comm_thread_cc.values_list('thread', flat=True)
 
         # This gives 404 when an app with given slug/id is not found.
+        data = {}
         if 'app' in request.GET:
-            form = PrepareForm(request.GET)
+            form = AppSlugForm(request.GET)
             if not form.is_valid():
                 raise Http404()
 
             notes, cc = list(notes), list(cc)
+            # TODO: use CommunicationThread.with_perms once other PR merged in.
             queryset = CommunicationThread.objects.filter(pk__in=notes + cc,
                 addon=form.cleaned_data['app'])
+
+            # Thread IDs and version numbers from same app.
+            data['app_threads'] = (queryset.order_by('version__version')
+                .values('id', 'version__version'))
         else:
             # We list all the threads which uses an add-on authored by the
             # user and with read permissions for add-on devs.
@@ -246,7 +270,19 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
                 Q(pk__in=notes + cc) | q_dev)
 
         self.queryset = queryset
-        return SilentListModelMixin.list(self, request)
+        res = SilentListModelMixin.list(self, request)
+        if res.data:
+            res.data.update(data)
+        return res
+
+    def retrieve(self, *args, **kwargs):
+        res = super(ThreadViewSet, self).retrieve(*args, **kwargs)
+
+        # Thread IDs and version numbers from same app.
+        res.data['app_threads'] = (
+            CommunicationThread.objects.filter(addon_id=res.data['addon'])
+            .order_by('version__version').values('id', 'version__version'))
+        return res
 
     def mark_as_read(self, profile):
         mark_thread_read(self.get_object(), profile)

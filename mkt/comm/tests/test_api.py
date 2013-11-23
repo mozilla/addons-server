@@ -8,10 +8,10 @@ import mock
 from nose.tools import eq_
 from test_utils import RequestFactory
 
-from amo.tests import addon_factory, req_factory_factory
-from users.models import UserProfile
+from amo.tests import addon_factory, req_factory_factory, version_factory
 from comm.models import (CommunicationNote, CommunicationNoteRead,
                          CommunicationThread, CommunicationThreadCC)
+from users.models import UserProfile
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.api import EmailCreationPermission, post_email, ThreadPermission
@@ -159,6 +159,36 @@ class TestThreadDetail(RestOAuth):
         eq_(res.json['addon_meta']['review_url'],
             reverse('reviewers.apps.review', args=[self.addon.app_slug]))
 
+    def test_version_number(self):
+        version = version_factory(addon=self.addon, version='7.12')
+        thread = CommunicationThread.objects.create(
+            addon=self.addon, version=version, read_permission_public=True)
+
+        res = self.client.get(reverse('comm-thread-detail', args=[thread.pk]))
+        eq_(json.loads(res.content)['version_number'], '7.12')
+        eq_(json.loads(res.content)['version_is_obsolete'], False)
+
+        version.delete()
+        res = self.client.get(reverse('comm-thread-detail', args=[thread.pk]))
+        eq_(json.loads(res.content)['version_number'], '7.12')
+        eq_(json.loads(res.content)['version_is_obsolete'], True)
+
+    def test_app_threads(self):
+        version1 = version_factory(addon=self.addon, version='7.12')
+        thread1 = CommunicationThread.objects.create(
+            addon=self.addon, version=version1, read_permission_public=True)
+
+        version2 = version_factory(addon=self.addon, version='1.16')
+        thread2 = CommunicationThread.objects.create(
+            addon=self.addon, version=version2, read_permission_public=True)
+
+        for thread in (thread1, thread2):
+            res = self.client.get(reverse('comm-thread-detail',
+                                  args=[thread.pk]))
+            eq_(res.status_code, 200)
+            eq_(json.loads(res.content)['app_threads'],
+                [{"id": thread2.id, "version__version": version2.version},
+                 {"id": thread1.id, "version__version": version1.version}])
 
 class TestThreadList(RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
@@ -193,12 +223,38 @@ class TestThreadList(RestOAuth):
         res = self.client.get(self.list_url, {'app': '1000'})
         eq_(res.status_code, 404)
 
+    def test_app_slug(self):
+        thread = CommunicationThread.objects.create(addon=self.addon)
+        CommunicationNote.objects.create(author=self.profile, thread=thread,
+            note_type=0, body='something')
+
+        res = self.client.get(self.list_url, {'app': self.addon.app_slug})
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'][0]['addon_meta']['app_slug'],
+            self.addon.app_slug)
+
     def test_creation(self):
         version = self.addon.current_version
         res = self.client.post(self.list_url, data=json.dumps(
             {'addon': self.addon.id, 'version': version.id}))
 
         eq_(res.status_code, 201)
+
+    def test_app_threads(self):
+        version1 = version_factory(addon=self.addon, version='7.12')
+        thread1 = CommunicationThread.objects.create(
+            addon=self.addon, version=version1, read_permission_public=True)
+        CommunicationThreadCC.objects.create(user=self.profile, thread=thread1)
+
+        version2 = version_factory(addon=self.addon, version='1.16')
+        thread2 = CommunicationThread.objects.create(
+            addon=self.addon, version=version2, read_permission_public=True)
+        CommunicationThreadCC.objects.create(user=self.profile, thread=thread2)
+
+        res = self.client.get(self.list_url, {'app': self.addon.app_slug})
+        eq_(res.json['app_threads'],
+            [{"id": thread2.id, "version__version": version2.version},
+             {"id": thread1.id, "version__version": version1.version}])
 
 
 class TestNote(RestOAuth):

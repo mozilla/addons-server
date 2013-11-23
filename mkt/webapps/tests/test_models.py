@@ -150,15 +150,8 @@ class TestWebapp(amo.tests.TestCase):
         eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
 
     def test_get_comm_thread_url(self):
-        self.create_switch('comm-dashboard')
-        webapp = app_factory()
-        eq_(webapp.get_comm_thread_url(), '/comm/')
-
-        thread, note = create_comm_thread(
-            addon=webapp, version=webapp.versions.get(), perms=[],
-            action='approve', comments='lol',
-            profile=UserProfile.objects.create(username='lol'))
-        eq_(webapp.get_comm_thread_url(), '/comm/thread/%s' % thread.id)
+        app = app_factory(app_slug='putain')
+        eq_(app.get_comm_thread_url(), '/comm/app/putain')
 
     def test_get_origin(self):
         url = 'http://www.xx.com:4000/randompath/manifest.webapp'
