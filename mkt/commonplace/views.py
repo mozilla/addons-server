@@ -17,6 +17,8 @@ from mkt.api.resources import waffles
 
 def get_build_id(repo):
     try:
+        # This is where the `build_{repo}.py` files get written to after
+        # compiling and minifying our assets.
         # Get the `BUILD_ID` from `build_{repo}.py` and use that to
         # cache-bust the assets for this repo's CSS/JS minified bundles.
         module = 'build_%s' % repo
@@ -41,24 +43,16 @@ def get_imgurls(repo):
 def commonplace(request, repo, **kwargs):
     if repo not in settings.COMMONPLACE_REPOS:
         return HttpResponseNotFound
-
     site_settings = {
         'persona_unverified_issuer': settings.BROWSERID_DOMAIN
     }
-
     ctx = {
+        'BUILD_ID': get_build_id(repo),
+        'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,
+        'flags': waffles(request),
         'repo': repo,
         'site_settings': site_settings,
-        'flags': waffles(request),
-        'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,
     }
-
-    # This is where the `build_{repo}.py` files get written to after
-    # compiling and minifying our assets.
-    site.addsitedir('/var/tmp/')
-
-    ctx['BUILD_ID'] = get_build_id(repo)
-
     return jingo.render(request, 'commonplace/index.html', ctx)
 
 
