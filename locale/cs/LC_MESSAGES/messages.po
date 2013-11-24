@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-23 16:22+0000\n"
+"PO-Revision-Date: 2013-11-24 21:51+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385223754.0\n"
+"X-POOTLE-MTIME: 1385329889.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -8178,20 +8178,34 @@ msgid ""
 "Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the "
 "<code>Appearance</code> tab."
 msgstr ""
+"Jakmile je motiv nainstalován, je uložen ve Správci doplňků, kde jej můžete "
+"povolit či zakázat dle libosti. Jednoduše přejděte do nabídky "
+"<code>Nástroje</code> &gt; <code>Správce doplňků</code>, kde zvolte sekci "
+"<code>Vzhled</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:142
 msgid "Yes. If you have a non-default Complete Theme installed, Firefox will automatically switch to a default theme in order to allow you to use your choice of Background Theme designs."
 msgstr ""
+"Ano. Pokud máte nainstalován jiný než výchozí motiv vzhledu, Firefox provede "
+"automatické přepnutí na výchozí motiv, abyste mohli lehký motiv vzhledu "
+"použít."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:152
 msgid ""
 "To undo the design you most recently selected, go to <code>Tools</code> &gt; <code>Add-ons</code> in the menu bar and select the <code>Appearance</code> tab. Next to the theme you want to undo, "
 "click the <code>Disable</code> button."
 msgstr ""
+"Pro vrácení zpět vzhledu, který jste zvolili, přejděte do nabídky "
+"<code>Nástroje</code> &gt; <code>Správce doplňků</code>, kde zvolte sekci "
+"<code>Vzhled</code>. Vedle motivu, který chcete zakázat, klepněte na "
+"tlačítko <code>Zakázat</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:163
 msgid "We're always looking for ways to improve themes, and would love to hear what you think. Visit the <a href=\"%(forum_url)s\">themes forum</a> to send us your feedback."
 msgstr ""
+"Stále hledáme způsoby, jak vylepšit motivy a rádi uslyšíme, co si myslíte. "
+"Pro odeslání reakce navštivte naše <a href=\"%(forum_url)s\">fórum pro "
+"motivy</a>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:170
 msgid "Creating Your Own Themes"
@@ -8206,16 +8220,25 @@ msgid ""
 "Absolutely! All you need to do is create two graphics files in your favorite graphics editing program (e.g., Photoshop). To get started <a href=\"%(tutorial_url)s\">read more about how to create a "
 "theme</a>."
 msgstr ""
+"Ano! Vše, co potřebujete, je vytvořit dva grafické soubory ve vašem "
+"oblíbeném programu na práci s grafikou (např. Photoshop). Pro začátek si <a "
+"href=\"%(tutorial_url)s\">přečtěte něco o vytváření motivů</a>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:186
 msgid ""
 "Yes. We are big fans of creativity, but want to ensure that the art displayed in the Themes gallery meets a basic set of guidelines. Please review the <a href=\"%(tos_url)s\">Terms of Service</a> "
 "for authoritative and complete language, but the following gives you an overview of the requirements:"
 msgstr ""
+"Ano. Jsme velcí příznivci kreativity, ale chceme si být jisti, že grafika "
+"umístěná v naší galerii splňuje základní sadu pravidel. Přečtěte si prosím "
+"<a href=\"%(tos_url)s\">Zásady používání služby</a>, kde naleznete kompletní "
+"podmínky, ale ty následující by vám měli dát obecný přehled:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:196
 msgid "You either own all the elements of your design OR you are authorized worldwide to reproduce and distribute them (and allow others to do so) by the owner or the law."
 msgstr ""
+"Vlastníte všechny prvky svého návrhu nebo máte celosvětová práva pro jejich "
+"reprodukci a distribuci (a ostatní tak také mohou činit) od vlastníka práv."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:203
 msgid "Your design does not contain sexually explicit or offensive content."
@@ -8260,6 +8283,10 @@ msgid ""
 "Yes. If at any point you need to edit or delete your theme design after it has been submitted to the gallery, you can access it from the <a href=\"%(dashboard_url)s\">Submissions dashboard</a>. "
 "From there, you can view your current designs. By clicking on each, you can make changes to each design's settings."
 msgstr ""
+"Ano. V libovolném bodě po odeslání vzhledu do galerie, kdy jej budete chtít "
+"upravit či smazat, tak můžete učinit v <a href=\"%"
+"(dashboard_url)s\">nástěnce</a>. Na tomto místě můžete vidět vaše aktuální "
+"vzhledy. Klepnutím na jeden z nich na něm můžete provést úpravy."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:268
 msgid "The theme you upload may not exceed 300 KB for the header or the footer image."
@@ -8590,11 +8617,11 @@ msgstr "Zobrazit hash"
 
 #: apps/devhub/templates/devhub/payments/issue-refund.html:3 apps/devhub/templates/devhub/payments/issue-refund.html:38 apps/devhub/templates/devhub/payments/refunds.html:49
 msgid "Issue Refund"
-msgstr ""
+msgstr "Vrácení peněz"
 
 #: apps/devhub/templates/devhub/payments/issue-refund.html:41 apps/devhub/templates/devhub/payments/refunds.html:51
 msgid "Decline Refund"
-msgstr ""
+msgstr "Zamítnout vrácení"
 
 #: apps/devhub/templates/devhub/payments/payments.html:21
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -15576,7 +15603,7 @@ msgstr "Šokující obsah"
 
 #: mkt/constants/ratingdescriptors.py:48 mkt/constants/ratingdescriptors.py:133 mkt/constants/ratingdescriptors.py:201 mkt/constants/ratingdescriptors.py:269
 msgid "No Descriptors"
-msgstr ""
+msgstr "No Descriptors"
 
 #: mkt/constants/ratingdescriptors.py:51 mkt/constants/ratingdescriptors.py:205
 msgid "Alcohol Reference"
@@ -15600,23 +15627,23 @@ msgstr "Odkaz na drogy"
 
 #: mkt/constants/ratingdescriptors.py:66 mkt/constants/ratingdescriptors.py:220
 msgid "Fantasy Violence"
-msgstr ""
+msgstr "Násilné fantazie"
 
 #: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:223
 msgid "Intense Violence"
-msgstr ""
+msgstr "Intenzivní násilí"
 
 #: mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:230
 msgid "Mild Blood"
-msgstr ""
+msgstr "Mírná krev"
 
 #: mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:233
 msgid "Mild Fantasy Violence"
-msgstr ""
+msgstr "Mírné násilné fantazie"
 
 #: mkt/constants/ratingdescriptors.py:82 mkt/constants/ratingdescriptors.py:236
 msgid "Mild Language"
-msgstr ""
+msgstr "Mírný jazyk"
 
 #: mkt/constants/ratingdescriptors.py:85 mkt/constants/ratingdescriptors.py:239
 msgid "Mild Violence"
@@ -17297,11 +17324,13 @@ msgstr "Vytvoření certifikátu hodnocení dle IARC"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
-msgstr ""
+msgstr "Máte již svou aplikaci ohodnocenu?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
+"Pokud jste již provedli hodnocení aplikace pomocí IARC Global Ratings Tool "
+"výše a máte bezpečnostní kód IARC, můžete jej ručně vložit zde."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
@@ -17310,6 +17339,8 @@ msgstr "ID odeslání"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:98
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
+"ID odeslání je nalezitelné na certifikátu, který vám byl odeslán. Jedná se o "
+"číselnou hodnotu jako &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
@@ -17318,6 +17349,8 @@ msgstr "Bezpečnostní kód"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
+"Bezpečnostní kód je nalezitelný na certifikátu, který vám byl odeslán. Jedná "
+"se o mix znaků a čísel jako &quot;AB12CD3&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
@@ -19993,7 +20026,7 @@ msgstr "Přidání nové poznámky"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:28
 msgid "Local Notes"
-msgstr ""
+msgstr "Lokální poznámky"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:35
 msgid "General Notes is a simple note app that allows you to sync local and remote content. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
@@ -20032,11 +20065,11 @@ msgstr "5 %"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:18
 msgid "Podcast Listing"
-msgstr ""
+msgstr "Podcast Listing"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:23
 msgid "Top Podcasts"
-msgstr ""
+msgstr "Top Podcasts"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:35
 msgid ""
@@ -20112,11 +20145,11 @@ msgstr "90 %"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:18
 msgid "Default Feed View"
-msgstr ""
+msgstr "Výchozí pohled"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:23
 msgid "Writing a Status Update"
-msgstr ""
+msgstr "Psaní statusu"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:28
 msgid "Liking a Post"
@@ -20395,18 +20428,17 @@ msgstr "Soubor (ID, velikost)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:52
 msgid "Lookup Tool"
-msgstr ""
+msgstr "Nástroje"
 
 # 78%
 # 100%
 #: mkt/lookup/templates/lookup/base.html:10
-#, fuzzy
 msgid "<small>Marketplace</small> Lookup Tool"
 msgstr "Nástroje redaktora <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup results for <a href=\"%(tx_url)s\">Transaction %(uuid)s</a>"
-msgstr ""
+msgstr "Výsledky hledání pro <a href=\"%(tx_url)s\">transakce %(uuid)s</a>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:22
 msgid "Buyer"
@@ -20676,7 +20708,7 @@ msgstr "Neplatný test stvrzenky"
 
 #: mkt/receipts/forms.py:24
 msgid "Refunded test receipt"
-msgstr ""
+msgstr "Test vrácené platby"
 
 #: mkt/receipts/views.py:98 mkt/receipts/views.py:188
 msgid "There was a problem installing the app."
@@ -20684,19 +20716,23 @@ msgstr "Při instalaci aplikace se vyskytl problém."
 
 #: mkt/receipts/templates/receipts/test_details.html:3 mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_details.html:14
 msgid "Test receipt details"
-msgstr ""
+msgstr "Detaily testovací platby"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
 msgstr ""
+"Toto je zástupná stránka pro detaily přijaté platby. Pokud si nainstalujete "
+"reálnou aplikaci z Marketplace, bude tato stránka zobrazovat více detailů."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
 msgstr ""
+"Otestujte instalaci své aplikace dříve, než ji nahrajete na Marketplace. "
+"Můžete zvolit různé způsoby, jak otestovat práci s platbami."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
-msgstr ""
+msgstr "Typ příjmu"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
@@ -20716,7 +20752,7 @@ msgstr "Popis:"
 
 #: mkt/reviewers/forms.py:50
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Příloha překročila maximální velikost %s."
 
 #: mkt/reviewers/forms.py:77 mkt/reviewers/templates/reviewers/review.html:234
 msgid "Device Types:"
@@ -21131,7 +21167,7 @@ msgstr "více..."
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:34
 msgid "%(stars)s by %(user)s on %(date)s (%(locale)s)"
-msgstr ""
+msgstr "%(stars)s od %(user)s dne %(date)s (%(locale)s)"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:11 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13 mkt/reviewers/templates/reviewers/themes/queue_list.html:11
 msgid "Clear Search"
