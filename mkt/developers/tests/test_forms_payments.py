@@ -285,6 +285,17 @@ class TestPremiumForm(amo.tests.TestCase):
 
         self.assertSetEqual(self.addon.device_types, [amo.DEVICE_MOBILE])
 
+    def test_can_change_devices_for_android_app_behind_flag(self):
+        self.create_flag('android-payments')
+        data = {'paid_platforms': ['paid-firefoxos', 'paid-android-mobile'],
+                'price': 'free', 'allow_inapp': 'True'}
+        self.make_premium(self.addon)
+        form = forms_payments.PremiumForm(data=data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_MOBILE,
+                                                      amo.DEVICE_GAIA])
+
     def test_initial(self):
         form = forms_payments.PremiumForm(**self.kwargs)
         eq_(form._initial_price_id(), Price.objects.get(price='0.99').pk)
