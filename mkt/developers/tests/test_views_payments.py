@@ -776,6 +776,21 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.get(self.portal_url)
         eq_(res.status_code, 403)
 
+    def test_device_checkboxes_present_with_android_payments(self):
+        self.create_flag('android-payments')
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#paid-android-mobile input[type="checkbox"]')), 1)
+        eq_(len(pqr('#paid-android-tablet input[type="checkbox"]')), 1)
+
+    def test_device_checkboxes_not_present_without_android_payments(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#paid-android-mobile input[type="checkbox"]')), 0)
+        eq_(len(pqr('#paid-android-tablet input[type="checkbox"]')), 0)
+
 
 class TestRegions(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
