@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-24 21:51+0000\n"
+"PO-Revision-Date: 2013-11-25 10:11+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385329889.0\n"
+"X-POOTLE-MTIME: 1385374302.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -9667,7 +9667,7 @@ msgstr "Přerušit instalaci"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:6
 msgid "Amp Your Firefox Contest"
-msgstr ""
+msgstr "Soutěž Nalaď si svůj Firefox"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
 msgid "Best Overall Add-on"
@@ -15615,7 +15615,7 @@ msgstr "Krev"
 
 #: mkt/constants/ratingdescriptors.py:57 mkt/constants/ratingdescriptors.py:211
 msgid "Blood and Gore"
-msgstr ""
+msgstr "Krev a sražená krev"
 
 #: mkt/constants/ratingdescriptors.py:60 mkt/constants/ratingdescriptors.py:214
 msgid "Crude Humor"
@@ -15647,15 +15647,15 @@ msgstr "Mírný jazyk"
 
 #: mkt/constants/ratingdescriptors.py:85 mkt/constants/ratingdescriptors.py:239
 msgid "Mild Violence"
-msgstr ""
+msgstr "Náznaky násilí"
 
 #: mkt/constants/ratingdescriptors.py:91 mkt/constants/ratingdescriptors.py:245
 msgid "Partial Nudity"
-msgstr ""
+msgstr "Částečná nahota"
 
 #: mkt/constants/ratingdescriptors.py:94 mkt/constants/ratingdescriptors.py:195 mkt/constants/ratingdescriptors.py:248
 msgid "Gambling"
-msgstr ""
+msgstr "Hazard"
 
 #: mkt/constants/ratingdescriptors.py:97 mkt/constants/ratingdescriptors.py:251 mkt/constants/ratingdescriptors.py:275
 msgid "Sexual Content"
@@ -15851,7 +15851,7 @@ msgstr "Generické"
 
 #: mkt/constants/ratingsbodies.py:185
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Entertainment Software Self-Regulation Body"
 
 #: mkt/constants/ratingsbodies.py:192
 msgid "Everyone"
@@ -15863,11 +15863,11 @@ msgstr "Všichni starší 10 let"
 
 #: mkt/constants/ratingsbodies.py:206
 msgid "Teen"
-msgstr ""
+msgstr "Dospívající"
 
 #: mkt/constants/ratingsbodies.py:213
 msgid "Mature 17+"
-msgstr ""
+msgstr "Věk 17+"
 
 #: mkt/constants/ratingsbodies.py:220
 msgid "Adults Only 18+"
@@ -15883,7 +15883,7 @@ msgstr "Severní Amerika"
 
 #: mkt/constants/ratingsbodies.py:242
 msgid "Entertainment Software Rating Board"
-msgstr ""
+msgstr "Entertainment Software Rating Board"
 
 #: mkt/constants/ratingsbodies.py:282
 msgid "Europe"
@@ -15891,7 +15891,7 @@ msgstr "Evropa"
 
 #: mkt/constants/ratingsbodies.py:286
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Pan European Game Information"
 
 #: mkt/constants/regions.py:51
 msgid "Worldwide"
@@ -16027,7 +16027,7 @@ msgstr "Aplikace již pro tuto doménu existuje. Pro doménu je povolena pouze j
 
 #: mkt/developers/forms.py:292
 msgid "Only one rating from each ratings body may be selected."
-msgstr ""
+msgstr "Může být zvoleno pouze jedno z nabízených hodnocení."
 
 #: mkt/developers/forms.py:373 mkt/webapps/models.py:407
 msgid "You must upload at least one screenshot or video."
@@ -20594,11 +20594,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:6
 msgid "App Lookup"
-msgstr ""
+msgstr "Hledání aplikací"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:11
 msgid "Lookup"
-msgstr ""
+msgstr "Hledání"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
@@ -20764,7 +20764,7 @@ msgstr "Prohlížeče:"
 
 #: mkt/reviewers/forms.py:82
 msgid "Device Type Override:"
-msgstr ""
+msgstr "Přenastavení typu zařízení:"
 
 #: mkt/reviewers/forms.py:87
 msgid "Senior Reviewers"
@@ -20781,6 +20781,8 @@ msgstr "Akce je viditelná pro uživatele:"
 #: mkt/reviewers/forms.py:96
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
 msgstr ""
+"Upozornit mě až bude příště manifest aktualizován. (Informace o následných "
+"aktualizacích nebudou e-mailem zasílány)"
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:152
@@ -20798,7 +20800,7 @@ msgstr "Někdo jiný aktuálně kontroluje tento motiv."
 
 #: mkt/reviewers/forms.py:286
 msgid "Has Editor Comment"
-msgstr ""
+msgstr "Obsahuje komentář od redaktora"
 
 #: mkt/reviewers/forms.py:290
 msgid "More Info Requested"
@@ -21138,11 +21140,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:50 mkt/reviewers/templates/reviewers/includes/mobile_details.html:72
 msgid "Signed Zip"
-msgstr ""
+msgstr "Podepsaný ZIP"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:70 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "Tato aplikace dosud nebyla hodnocena"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:95 mkt/reviewers/templates/reviewers/includes/mobile_details.html:117
 msgid "Total Downloads"
@@ -21275,11 +21277,11 @@ msgstr "Vaše historie kontrol"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "Odeslat kontrolu"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:89
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Odeslat kontroly"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:93
 msgid "{0} out of {1} reviewed"
