@@ -25,20 +25,21 @@ from mkt.webpay.resources import PricesViewSet
 from stats.models import Contribution
 
 
-class TestPrepare(PurchaseTest, BaseOAuth):
+class TestPrepare(PurchaseTest, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519', 'prices')
 
     def setUp(self):
-        BaseOAuth.setUp(self, api_name='webpay')
+        RestOAuth.setUp(self)  # Avoid calling PurchaseTest.setUp().
         self.create_switch('marketplace')
-        self.list_url = list_url('prepare')
+        self.list_url = reverse('webpay-prepare')
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_allowed(self):
         self._allowed_verbs(self.list_url, ['post'])
 
     def test_anon(self):
-        eq_(self.anon.post(self.list_url, data={}).status_code, 401)
+        res = self.anon.post(self.list_url, data=json.dumps({'app': 337141}))
+        eq_(res.status_code, 403)
 
     def test_good(self):
         self.setup_base()
@@ -58,7 +59,7 @@ class TestPrepare(PurchaseTest, BaseOAuth):
         self.setup_package()
         res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
         eq_(res.status_code, 409)
-        eq_(res.content, '{"reason": "Already purchased app."}')
+        eq_(res.json, {"reason": "Already purchased app."})
 
     def _post(self):
         return self.client.post(self.list_url,
@@ -223,7 +224,7 @@ class TestNotification(RestOAuth):
         self.grant_permission(self.profile, 'Transaction:NotifyFailure')
         self.contribution = Contribution.objects.create(addon_id=337141,
                                                         uuid='sample:uuid')
-        self.get_url = reverse('failure-detail',
+        self.get_url = reverse('webpay-failurenotification',
                                kwargs={'pk': self.contribution.pk})
         self.data = {'url': 'https://someserver.com', 'attempts': 5}
 
@@ -248,7 +249,7 @@ class TestNotification(RestOAuth):
         eq_(res.status_code, 400)
 
     def test_not_there(self):
-        self.get_url = reverse('failure-detail',
+        self.get_url = reverse('webpay-failurenotification',
                                kwargs={'pk': self.contribution.pk + 42})
         res = self.client.patch(self.get_url, data=json.dumps(self.data))
         eq_(res.status_code, 404)
@@ -325,7 +326,7 @@ class TestSigCheck(TestCase):
         with self.settings(APP_PURCHASE_SECRET=secret,
                            APP_PURCHASE_KEY=key,
                            APP_PURCHASE_AUD=aud):
-            res = self.client.post(reverse('webpay.sig_check'))
+            res = self.client.post(reverse('webpay-sig_check'))
         eq_(res.status_code, 201, res)
         data = json.loads(res.content)
         req = jwt.decode(data['sig_check_jwt'].encode('ascii'), secret)

@@ -32,12 +32,13 @@ from mkt.api.authentication import (OAuthAuthentication,
                                     RestSharedSecretAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
-                                   Authorization, GroupPermission,
+                                   GroupPermission,
                                    OwnerAuthorization,
                                    PermissionAuthorization)
-from mkt.api.base import (CORSResource, CORSMixin, GenericObject, http_error,
+from mkt.api.base import (CORSResource, CORSMixin, http_error,
                           MarketplaceModelResource, MarketplaceResource,
                           MarketplaceView)
+from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
 from mkt.purchase.utils import payments_enabled
 from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
@@ -50,35 +51,34 @@ from . import tasks
 log = commonware.log.getLogger('z.webpay')
 
 
-class PreparePayResource(CORSResource, MarketplaceResource):
-    webpayJWT = fields.CharField(attribute='webpayJWT', readonly=True)
-    contribStatusURL = fields.CharField(attribute='contribStatusURL',
-                                        readonly=True)
+class PreparePayView(CORSMixin, MarketplaceView, GenericAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [AllowAny]
+    cors_allowed_methods = ['post']
 
-    class Meta(MarketplaceResource.Meta):
-        always_return_data = True
-        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
-        authorization = Authorization()
-        detail_allowed_methods = []
-        list_allowed_methods = ['post']
-        object_class = GenericObject
-        resource_name = 'prepare'
-        validation = CleanedDataFormValidation(form_class=PrepareForm)
+    def post(self, request, *args, **kwargs):
+        form = PrepareForm(request.DATA)
+        if not form.is_valid():
+            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+        app = form.cleaned_data['app']
 
-    def obj_create(self, bundle, request, **kwargs):
         region = getattr(request, 'REGION', None)
-        app = bundle.data['app']
-
         if region and region.id not in app.get_price_region_ids():
             log.info('Region {0} is not in {1}'
                      .format(region.id, app.get_price_region_ids()))
             if payments_enabled(request):
                 log.info('Flag not active')
-                raise http_error(http.HttpForbidden,
-                                 'Payments are limited and flag not enabled')
+                return Response('Payments are limited and flag not enabled',
+                                status=status.HTTP_403_FORBIDDEN)
 
-        bundle.obj = GenericObject(_prepare_pay(request, bundle.data['app']))
-        return bundle
+        try:
+            data = _prepare_pay(request._request, app)
+        except AlreadyPurchased:
+            return Response({'reason': u'Already purchased app.'},
+                            status=status.HTTP_409_CONFLICT)
+
+        return Response(data, status=status.HTTP_201_CREATED)
 
 
 class StatusPayResource(CORSResource, MarketplaceModelResource):
