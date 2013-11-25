@@ -21,7 +21,6 @@ class TestGlobalStatsResource(RestOAuth):
 
     def setUp(self):
         super(TestGlobalStatsResource, self).setUp()
-        self.create_switch('stats-api')
         self.grant_permission(self.profile, 'Stats:View')
         self.data = {'start': '2013-04-01',
                      'end': '2013-04-15',
@@ -120,7 +119,6 @@ class TestAppStatsResource(RestOAuth):
 
     def setUp(self):
         super(TestAppStatsResource, self).setUp()
-        self.create_switch('stats-api')
         self.app = amo.tests.app_factory(status=amo.STATUS_PUBLIC)
         self.app.addonuser_set.create(user=self.user.get_profile())
         self.data = {'start': '2013-04-01', 'end': '2013-04-15',

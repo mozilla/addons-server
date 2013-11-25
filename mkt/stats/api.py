@@ -148,9 +148,6 @@ class GlobalStats(CORSMixin, APIView):
         if metric not in STATS:
             raise http.Http404('No metric by that name.')
 
-        if not waffle.switch_is_active('stats-api'):
-            raise NotImplemented('Stats not enabled for this host.')
-
         stat = STATS[metric]
 
         # Perform form validation.
@@ -186,9 +183,6 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
     def get(self, request, pk, metric):
         if metric not in APP_STATS:
             raise http.Http404('No metric by that name.')
-
-        if not waffle.switch_is_active('stats-api'):
-            raise NotImplemented('Stats not enabled for this host.')
 
         app = self.get_object()
 
