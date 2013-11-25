@@ -47,9 +47,8 @@ class TestPrepare(PurchaseTest, RestOAuth):
         res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
         contribution = Contribution.objects.get()
         eq_(res.status_code, 201)
-        eq_(res.json['contribStatusURL'], reverse('api_dispatch_detail',
-            kwargs={'api_name': 'webpay', 'resource_name': 'status',
-                    'uuid': contribution.uuid}))
+        eq_(res.json['contribStatusURL'],
+            reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
         ok_(res.json['webpayJWT'])
 
     @patch('mkt.webapps.models.Webapp.has_purchased')
@@ -74,17 +73,16 @@ class TestPrepare(PurchaseTest, RestOAuth):
             eq_(self._post().status_code, 201)
 
 
-class TestStatus(BaseOAuth):
+class TestStatus(RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
-        super(TestStatus, self).setUp(api_name='webpay')
+        super(TestStatus, self).setUp()
         self.contribution = Contribution.objects.create(
             addon_id=337141, user_id=2519, type=CONTRIB_PURCHASE,
             uuid='some:uid')
-        self.get_url = ('api_dispatch_detail', {
-            'api_name': 'webpay', 'resource_name': 'status',
-            'uuid': self.contribution.uuid})
+        self.get_url = reverse('webpay-status',
+                               kwargs={'uuid': self.contribution.uuid})
 
     def test_allowed(self):
         self._allowed_verbs(self.get_url, ['get'])
@@ -111,6 +109,12 @@ class TestStatus(BaseOAuth):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200, res.content)
         eq_(res.json['status'], 'incomplete', res.content)
+
+    def test_not_owner(self):
+        userprofile2 = UserProfile.objects.get(pk=31337)
+        self.contribution.update(user=userprofile2)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 403, res.content)
 
 
 class TestPrices(RestOAuth):

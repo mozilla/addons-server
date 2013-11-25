@@ -127,9 +127,7 @@ def _prepare_pay(request, addon):
                     'Preparing JWT for: %s' % (addon.pk), severity=3)
 
     if request.API:
-        url = reverse('api_dispatch_detail', kwargs={
-            'resource_name': 'status', 'api_name': 'webpay',
-            'uuid': uuid_})
+        url = reverse('webpay-status', kwargs={'uuid': uuid_})
     else:
         url = reverse('webpay.pay_status', args=[addon.app_slug, uuid_])
     return {'webpayJWT': jwt_, 'contribStatusURL': url}

@@ -2,8 +2,7 @@ import calendar
 import time
 
 from django.conf import settings
-from django.conf.urls.defaults import url
-from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 
 import commonware.log
 import django_filters
@@ -25,19 +24,14 @@ from amo.utils import send_mail_jinja
 from market.models import Price
 from stats.models import Contribution
 
-from mkt.api.authentication import (OAuthAuthentication,
-                                    OptionalOAuthAuthentication,
+from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
-                                    RestSharedSecretAuthentication,
-                                    SharedSecretAuthentication)
-from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
-                                   GroupPermission,
-                                   OwnerAuthorization,
-                                   PermissionAuthorization)
-from mkt.api.base import (CORSResource, CORSMixin, http_error,
-                          MarketplaceModelResource, MarketplaceResource,
-                          MarketplaceView)
+                                    RestSharedSecretAuthentication)
+from mkt.api.authorization import (AllowOwner, AnonymousReadOnlyAuthorization,
+                                   GroupPermission, PermissionAuthorization)
+from mkt.api.base import (CORSResource, CORSMixin, MarketplaceModelResource,
+                          MarketplaceResource, MarketplaceView)
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
 from mkt.purchase.utils import payments_enabled
@@ -45,8 +39,8 @@ from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import PriceSerializer
 
-
 from . import tasks
+
 
 log = commonware.log.getLogger('z.webpay')
 
@@ -81,46 +75,33 @@ class PreparePayView(CORSMixin, MarketplaceView, GenericAPIView):
         return Response(data, status=status.HTTP_201_CREATED)
 
 
-class StatusPayResource(CORSResource, MarketplaceModelResource):
+class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [AllowOwner]
+    cors_allowed_methods = ['get']
+    queryset = Contribution.objects.filter(type=amo.CONTRIB_PURCHASE)
+    lookup_field = 'uuid'
 
-    class Meta(MarketplaceModelResource.Meta):
-        always_return_data = True
-        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
-        authorization = OwnerAuthorization()
-        detail_allowed_methods = ['get']
-        queryset = Contribution.objects.filter(type=amo.CONTRIB_PURCHASE)
-        resource_name = 'status'
-
-    def obj_get(self, request=None, **kw):
+    def get_object(self):
         try:
-            obj = super(StatusPayResource, self).obj_get(request=request, **kw)
-        except ObjectDoesNotExist:
+            obj = super(StatusPayView, self).get_object()
+        except Http404:
             # Anything that's not correct will be raised as a 404 so that it's
             # harder to iterate over contribution values.
             log.info('Contribution not found')
             return None
 
-        if not OwnerAuthorization().is_authorized(request, object=obj):
-            raise http_error(http.HttpForbidden,
-                             'You are not an author of that app.')
-
-        if not obj.addon.has_purchased(request.amo_user):
+        if not obj.addon.has_purchased(self.request.amo_user):
             log.info('Not in AddonPurchase table')
             return None
 
         return obj
 
-    def base_urls(self):
-        return [
-            url(r"^(?P<resource_name>%s)/(?P<uuid>[^/]+)/$" %
-                self._meta.resource_name,
-                self.wrap_view('dispatch_detail'),
-                name='api_dispatch_detail')
-        ]
-
-    def full_dehydrate(self, bundle):
-        bundle.data = {'status': 'complete' if bundle.obj.id else 'incomplete'}
-        return bundle
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        data = {'status': 'complete' if self.object else 'incomplete'}
+        return Response(data)
 
 
 class PriceFilter(django_filters.FilterSet):
