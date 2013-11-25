@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-25 10:55+0000\n"
+"PO-Revision-Date: 2013-11-25 12:30+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385376903.0\n"
+"X-POOTLE-MTIME: 1385382634.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -17354,7 +17354,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
-msgstr ""
+msgstr "Systém hodnocení"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:200
 msgid "Region"
@@ -17821,7 +17821,7 @@ msgstr "Stáhnout šablonu"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:47
 msgid "Introduction to App Generator Templates"
-msgstr ""
+msgstr "Úvod do generátoru koster aplikací"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:49 mkt/ecosystem/templates/ecosystem/build_tools.html:29
 msgid "To help you start writing web apps quickly, we provide a few templates which has a lot already set up. Each template is a static web project with tools to help build and deploy."
@@ -19942,7 +19942,7 @@ msgstr "Kanadské dolary na Eura"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:28
 msgid "Conversion Selector"
-msgstr ""
+msgstr "Volba konverze"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:35
 msgid ""
@@ -20018,7 +20018,7 @@ msgstr "16 %"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:18
 msgid "Note Listing"
-msgstr ""
+msgstr "Seznam poznámek"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:23
 msgid "Writing a New Note"
@@ -20590,7 +20590,7 @@ msgstr "Souhrn účtu"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr ""
+msgstr "Účet smazán"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:6
 msgid "App Lookup"
@@ -21116,11 +21116,11 @@ msgstr "Přiložení dalšího souboru"
 
 #: mkt/reviewers/templates/reviewers/review.html:274
 msgid "Device Override:"
-msgstr ""
+msgstr "Přepsání zařízení:"
 
 #: mkt/reviewers/templates/reviewers/review.html:280
 msgid "Minimum Requirements Override:"
-msgstr ""
+msgstr "Přepsání minimálních nároků:"
 
 #: mkt/reviewers/templates/reviewers/review.html:290
 msgid "Make this action visible to"
@@ -21845,6 +21845,9 @@ msgstr ""
 #: mkt/submit/templates/submit/next_steps.html:78
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Jakmile bude vaše aplikace zkontrolována, budete ji moci ručně publikovat na "
+"stránce <a href=\"%(url)s\">Správa stavů</a>. Následně se zobrazí na "
+"stránkách a bude dostupná ve vyhledávání."
 
 #: mkt/submit/templates/submit/next_steps.html:85
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
@@ -21855,6 +21858,8 @@ msgstr ""
 #: mkt/submit/templates/submit/next_steps.html:90
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Jakmile bude vaše aplikace zkontrolována, zobrazí se na stránkách s "
+"aplikacemi a ve vyhledávání."
 
 #: mkt/submit/templates/submit/next_steps.html:100
 msgid "<strong>What's next:</strong> Set up Content Ratings"
@@ -21914,7 +21919,7 @@ msgstr "Mozilla mě může e-mailem kontaktovat v souvislosti s novinkami a prů
 
 #: mkt/submit/tests/test_forms.py:227 mkt/webapps/tests/test_models.py:1523
 msgid "Héllo"
-msgstr ""
+msgstr "Hezký den"
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
@@ -21974,7 +21979,7 @@ msgstr "Musíte zvolit alespoň jednu kategorii."
 
 #: mkt/webapps/tasks.py:113
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "Problém s vaší aplikací \"{app}\" na Firefox Marketplace"
 
 #: templates/amo_footer.html:11 templates/includes/lang_switcher.html:2
 msgid "Other languages"
