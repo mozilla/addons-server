@@ -146,9 +146,7 @@ def payments(request, addon_id, addon, webapp=False):
          'payments_enabled':
              waffle.flag_is_active(request, 'allow-b2g-paid-submission') and
              not waffle.switch_is_active('disabled-payments'),
-         'api_pricelist_url':
-             reverse('api_dispatch_list', kwargs={'resource_name': 'prices',
-                                                  'api_name': 'webpay'}),
+         'api_pricelist_url': reverse('price-list'),
          'payment_methods': {
              PAYMENT_METHOD_ALL: _('All'),
              PAYMENT_METHOD_CARD: _('Credit card'),

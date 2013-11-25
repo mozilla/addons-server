@@ -289,9 +289,7 @@ class TestPayments(amo.tests.TestCase):
     def test_check_api_url_in_context(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         res = self.client.get(self.url)
-        eq_(res.context['api_pricelist_url'],
-            reverse('api_dispatch_list', kwargs={'resource_name': 'prices',
-                                                 'api_name': 'webpay'}))
+        eq_(res.context['api_pricelist_url'], reverse('price-list'))
 
     def test_regions_display_free(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
