@@ -143,10 +143,8 @@
       <dt>{{ _('Flags') }}</dt>
       <dd>{{ flags|join(', ') }}</dd>
     {% endif %}
-    {% if waffle.switch('buchets') %}
-      <dt>{{ _('Requirements') }}</dt>
-      <dd>{{ feature_list|join(', ') }}</dd>
-    {% endif %}
+    <dt>{{ _('Requirements') }}</dt>
+    <dd>{{ feature_list|join(', ') }}</dd>
   </dl>
 </div>
 

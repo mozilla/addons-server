@@ -42,7 +42,7 @@
                      _("No, this app's stats are not publicly viewable.")) }}
           </td>
         </tr>
-        {% if waffle.switch('buchets') and not addon.is_packaged %}
+        {% if not addon.is_packaged %}
           <tr>
             <th>
               {{ tip(_("Minimum Requirements"),

@@ -4,7 +4,6 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
-from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
 from test_utils import RequestFactory
@@ -15,16 +14,16 @@ from access.models import GroupUser
 from addons.models import Category
 from amo.tests import ESTestCase
 from amo.urlresolvers import reverse
+from users.models import UserProfile
 
-from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth
 from mkt.api.base import list_url
 from mkt.api.models import Access, generate
+from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth
 from mkt.constants.features import FeatureProfile
 from mkt.reviewers.api import ReviewersSearchResource
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from users.models import UserProfile
 
 
 class TestReviewing(RestOAuth):
@@ -233,7 +232,6 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_no_feature_profile_filtering(self):
-        self.create_switch('buchets')
         feature_profile = FeatureProfile().to_signature()
         qs = {'q': 'something', 'pro': feature_profile, 'dev': 'firefoxos'}
 

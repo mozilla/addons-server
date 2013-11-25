@@ -84,8 +84,7 @@ def manifest(request):
     form = forms.NewWebappForm(request.POST or None, request=request)
 
     features_form = forms.AppFeaturesForm(request.POST or None)
-    features_form_valid = (True if not waffle.switch_is_active('buchets')
-                           else features_form.is_valid())
+    features_form_valid = features_form.is_valid()
 
     if (request.method == 'POST' and form.is_valid()
         and features_form_valid):
@@ -120,9 +119,7 @@ def manifest(request):
                                                   manifest=True)
 
             # Create feature profile.
-            if waffle.switch_is_active('buchets'):
-                addon.current_version.features.update(
-                    **features_form.cleaned_data)
+            addon.current_version.features.update(**features_form.cleaned_data)
 
         # Call task outside of `commit_on_success` to avoid it running before
         # the transaction is committed and not finding the app.

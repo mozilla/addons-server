@@ -4,10 +4,8 @@ import urlparse
 from django.utils.encoding import smart_str
 
 import jinja2
-import waffle
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy
-
 
 from access import acl
 from amo.helpers import impala_breadcrumbs
@@ -117,7 +115,7 @@ def queue_tabnav(context):
     else:
         rv = []
 
-    if waffle.switch_is_active('buchets') and 'pro' in request.GET:
+    if 'pro' in request.GET:
         device_srch = device_queue_search(request)
         rv.append((reverse('reviewers.apps.queue_device'), 'device',
                   _('Device ({0})').format(device_srch.count()),))

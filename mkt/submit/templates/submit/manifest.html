@@ -104,12 +104,10 @@
         {{ form.packaged }}
       </div>
 
-      {% if waffle.switch('buchets') %}
       <div id="upload-webapp-features">
         <h3>{{ _('App Minimum Requirements') }}</h3>
         {{ upload_webapp_features(features_form) }}
       </div>
-      {% endif %}
 
       <footer class="listing-footer hidden">
         {% trans %}

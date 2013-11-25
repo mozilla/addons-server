@@ -1,5 +1,3 @@
-import waffle
-
 import amo
 from apps.search.views import _get_locale_analyzer
 
@@ -129,7 +127,7 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
         # Sort by a default if there was no query so results are predictable.
         qs = qs.order_by(sorting_default)
 
-    if profile and waffle.switch_is_active('buchets'):
+    if profile:
         # Exclude apps that require any features we don't support.
         qs = qs.filter(**profile.to_kwargs(prefix='features.has_'))
 

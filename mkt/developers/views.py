@@ -6,8 +6,8 @@ import traceback
 from collections import defaultdict
 from datetime import datetime
 
-from django import http
 from django import forms as django_forms
+from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
@@ -45,21 +45,22 @@ from versions.models import Version
 
 from mkt.api.models import Access, generate
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
-                                  AppFormDetails, AppFormMedia,
-                                  AppFormSupport, AppFormTechnical,
-                                  AppVersionForm, CategoryForm,
-                                  IARCGetAppInfoForm, NewPackagedAppForm,
-                                  PreloadTestPlanForm, PreviewFormSet,
-                                  TransactionFilterForm, trap_duplicate)
+from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
+                                  AppFormMedia, AppFormSupport,
+                                  AppFormTechnical, AppVersionForm,
+                                  CategoryForm, IARCGetAppInfoForm,
+                                  NewPackagedAppForm, PreloadTestPlanForm,
+                                  PreviewFormSet, TransactionFilterForm,
+                                  trap_duplicate)
 from mkt.developers.models import PreloadTestPlan
-from mkt.developers.utils import check_upload
 from mkt.developers.tasks import run_validator, save_test_plan
+from mkt.developers.utils import check_upload
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
-from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webapps.models import IARCInfo, Webapp
+from mkt.webapps.tasks import _update_manifest, update_manifests
 
 from . import forms, tasks
+
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -131,8 +132,7 @@ def edit(request, addon_id, addon, webapp=False):
         'previews': addon.get_previews(),
         'version': addon.current_version or addon.latest_version
     }
-    if (waffle.switch_is_active('buchets') and not addon.is_packaged and
-        data['version']):
+    if not addon.is_packaged and data['version']:
         data['feature_list'] = [unicode(f) for f in
                                 data['version'].features.to_list()]
     if acl.action_allowed(request, 'Apps', 'Configure'):
@@ -386,7 +386,7 @@ def preload_submit(request, addon_id, addon, webapp):
 
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
-    show_features = waffle.switch_is_active('buchets') and addon.is_packaged
+    show_features = addon.is_packaged
     formdata = request.POST if request.method == 'POST' else None
     version = get_object_or_404(Version, pk=version_id, addon=addon)
     version.addon = addon  # Avoid extra useless query.
@@ -762,8 +762,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
     elif section == 'technical':
         # Only show the list of features if app isn't packaged.
-        if (waffle.switch_is_active('buchets') and not addon.is_packaged and
-                section == 'technical'):
+        if not addon.is_packaged and section == 'technical':
             appfeatures = version.features
             formdata = request.POST if request.method == 'POST' else None
             appfeatures_form = AppFeaturesForm(formdata, instance=appfeatures)

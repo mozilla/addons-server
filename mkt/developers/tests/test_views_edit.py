@@ -16,13 +16,13 @@ from waffle.models import Switch
 
 import amo
 import amo.tests
-from access.models import GroupUser, Group
+from access.models import Group, GroupUser
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
+                           Category)
 from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           Category)
 from comm.models import CommunicationNote
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog
@@ -151,8 +151,6 @@ class TestEditListingWebapp(TestEdit):
         eq_(doc('.view-stats').length, 0)
 
     def test_edit_with_no_current_version(self):
-        self.create_switch('buchets')
-
         # Disable file for latest version, and then update app.current_version.
         app = self.get_webapp()
         app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
@@ -479,8 +477,6 @@ class TestEditBasic(TestEdit):
         eq_(self.get_webapp().description, self.get_dict()['description'])
 
     def test_edit_basic_not_public(self):
-        self.create_switch('buchets')
-
         # Disable file for latest version, and then update app.current_version.
         app = self.get_webapp()
         app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
@@ -1099,7 +1095,6 @@ class TestEditTechnical(TestEdit):
         super(TestEditTechnical, self).setUp()
         self.url = self.get_url('technical')
         self.edit_url = self.get_url('technical', edit=True)
-        self.create_switch('buchets')
 
     def test_form_url(self):
         self.check_form_url('technical')
@@ -1379,7 +1374,6 @@ class TestEditVersion(TestEdit):
                        'user_admin_group', 'webapp_337141')
 
     def setUp(self):
-        self.create_switch('buchets')
         self.webapp = self.get_webapp()
         self.webapp.update(is_packaged=True)
         self.version_pk = self.webapp.latest_version.pk

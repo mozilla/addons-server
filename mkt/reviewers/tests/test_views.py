@@ -22,14 +22,13 @@ from requests.structures import CaseInsensitiveDict
 
 import amo
 import amo.tests
-from amo.tests import req_factory_factory
 import reviews
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import AddonDeviceType
 from amo.helpers import absolutify
-from amo.tests import (app_factory, check_links, days_ago,
-                       formset, initial, version_factory)
+from amo.tests import (app_factory, check_links, days_ago, formset, initial,
+                       req_factory_factory, version_factory)
 from amo.urlresolvers import reverse
 from amo.utils import isotime
 from devhub.models import ActivityLog, ActivityLogAttachment, AppLog
@@ -941,8 +940,6 @@ class TestDeviceQueue(AppReviewerTest, AccessMixin):
                        'user_999')
 
     def setUp(self):
-        self.create_switch('buchets')
-
         self.app1 = app_factory(name='XXX',
                                 version_kw={'version': '1.0',
                                             'created': self.days_ago(2),
@@ -1364,7 +1361,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_pending_to_public_w_requirements_overrides(self, storefront_mock):
-        self.create_switch(name='buchets')
         data = {'action': 'public', 'comments': 'something',
                 'has_sms': True}
         data.update(self._attachment_management_form(num=0))
@@ -1383,7 +1379,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def test_pending_to_reject_w_requirements_overrides(self):
         # Rejecting an app doesn't let you override features requirements.
-        self.create_switch(name='buchets')
         data = {'action': 'reject', 'comments': 'something',
                 'has_sms': True}
         data.update(self._attachment_management_form(num=0))
@@ -1396,7 +1391,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def test_pending_to_reject_w_requirements_overrides_nothing_changed(self):
         self.version.features.update(has_sms=True)
-        self.create_switch(name='buchets')
         data = {'action': 'public', 'comments': 'something',
                 'has_sms': True}
         data.update(self._attachment_management_form(num=0))

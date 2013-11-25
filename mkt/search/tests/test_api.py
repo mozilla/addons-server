@@ -12,8 +12,7 @@ import amo
 import mkt
 import mkt.regions
 from access.middleware import ACLMiddleware
-from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
-                           Category)
+from addons.models import AddonCategory, AddonDeviceType, AddonUpsell, Category
 from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase, TestCase
 from stats.models import ClientData
@@ -30,8 +29,8 @@ from mkt.collections.models import Collection
 from mkt.constants import regions
 from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
-from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.search.api import SearchResource
+from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 from mkt.webapps.tasks import unindex_webapps
@@ -525,7 +524,6 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.create_switch('buchets')
         self.client = OAuthClient(None)
         self.url = list_url('search')
         self.webapp = Webapp.objects.get(pk=337141)
@@ -602,7 +600,6 @@ class BaseFeaturedTests(BaseOAuth, ESTestCase):
 
     def setUp(self, api_name=None):
         super(BaseFeaturedTests, self).setUp(api_name='fireplace')
-        self.create_switch('buchets')
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
         AddonDeviceType.objects.create(addon=self.app,

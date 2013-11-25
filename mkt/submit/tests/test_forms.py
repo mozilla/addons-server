@@ -199,7 +199,6 @@ class TestAppFeaturesForm(amo.tests.TestCase):
         self.form = forms.AppFeaturesForm()
         self.app = Webapp.objects.get(pk=337141)
         self.features = self.app.current_version.features
-        self.create_switch('buchets')
 
     def _check_log(self, action):
         assert AppLog.objects.filter(

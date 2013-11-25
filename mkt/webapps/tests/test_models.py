@@ -11,7 +11,6 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models.signals import post_delete, post_save
 from django.test.utils import override_settings
@@ -27,7 +26,6 @@ from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from amo.urlresolvers import reverse
-from comm.utils import create_comm_thread
 from constants.applications import DEVICE_TYPES
 from editors.models import EscalationQueue, RereviewQueue
 from files.models import File
@@ -35,9 +33,8 @@ from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
-from lib.iarc.utils import (
-    DESC_MAPPING, INTERACTIVES_MAPPING, REVERSE_DESC_MAPPING,
-    REVERSE_INTERACTIVES_MAPPING)
+from lib.iarc.utils import (DESC_MAPPING, INTERACTIVES_MAPPING,
+                            REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
 from market.models import AddonPremium, Price
 from users.models import UserProfile
 from versions.models import update_status, Version
@@ -1471,7 +1468,6 @@ class TestAppFeatures(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
 
     def setUp(self):
         super(TestAppFeatures, self).setUp()
-        self.create_switch('buchets')
 
         self.model = AppFeatures
         self.related_name = 'features'

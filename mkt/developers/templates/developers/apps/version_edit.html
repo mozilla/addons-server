@@ -47,19 +47,17 @@
             </td>
           </tr>
 
-          {% if waffle.switch('buchets') %}
-            <tr>
-              <th>
-                {{ tip(_("Minimum Requirements"),
-                       _("Device features required for this app to function.")) }}
-              </th>
-              <td>
-                <div id="upload-webapp-features">
-                  {{ upload_webapp_features(appfeatures_form) }}
-                </div>
-              </td>
-            </tr>
-          {% endif %}
+          <tr>
+            <th>
+              {{ tip(_("Minimum Requirements"),
+                     _("Device features required for this app to function.")) }}
+            </th>
+            <td>
+              <div id="upload-webapp-features">
+                {{ upload_webapp_features(appfeatures_form) }}
+              </div>
+            </td>
+          </tr>
 
           {% if version.all_files[0].status == amo.STATUS_PENDING %}
             <tr>

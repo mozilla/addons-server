@@ -2,17 +2,15 @@ from django.conf import settings
 from django.views import debug
 
 import commonware.log
-import waffle
 import raven.base
-from rest_framework.decorators import permission_classes
+import waffle
 from rest_framework import generics
+from rest_framework.decorators import permission_classes
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.serializers import (BooleanField, CharField,
-                                        ChoiceField,
-                                        DecimalField,
-                                        HyperlinkedIdentityField,
+from rest_framework.serializers import (BooleanField, CharField, ChoiceField,
+                                        DecimalField, HyperlinkedIdentityField,
                                         HyperlinkedRelatedField,
                                         ModelSerializer)
 from rest_framework.viewsets import (GenericViewSet, ModelViewSet,
@@ -27,9 +25,7 @@ from market.models import Price, PriceCurrency
 from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import AllowAppOwner, GroupPermission
 from mkt.api.base import cors_api_view, CORSMixin, SlugOrIdMixin
-
 from mkt.api.serializers import CarrierSerializer, RegionSerializer
-
 from mkt.carriers import CARRIER_MAP, CARRIERS
 from mkt.regions import REGIONS_DICT
 from mkt.webapps.tasks import _update_manifest
@@ -63,7 +59,7 @@ class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSMixin,
 
 
 def waffles(request):
-    switches = ['in-app-sandbox', 'allow-refund', 'buchets', 'rocketfuel']
+    switches = ['in-app-sandbox', 'allow-refund', 'rocketfuel']
     flags = ['allow-b2g-paid-submission', 'override-region-exclusion']
     res = dict([s, waffle.switch_is_active(s)] for s in switches)
     res.update(dict([f, waffle.flag_is_active(request, f)] for f in flags))

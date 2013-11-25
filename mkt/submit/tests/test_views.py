@@ -13,11 +13,11 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
+                           Category)
 from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           Category)
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
@@ -27,9 +27,9 @@ from users.models import UserProfile
 
 import mkt
 from mkt.site.fixtures import fixture
+from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.submit.models import AppSubmissionChecklist
-from mkt.submit.decorators import read_dev_agreement_required
 from mkt.webapps.models import AddonExcludedRegion as AER, AppFeatures, Webapp
 
 
@@ -266,10 +266,6 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 
 class TestCreateWebApp(BaseWebAppTest):
-
-    def setUp(self):
-        super(TestCreateWebApp, self).setUp()
-        self.create_switch('buchets')
 
     @mock.patch('mkt.developers.tasks.fetch_icon')
     def test_post_app_redirect(self, fi_mock):

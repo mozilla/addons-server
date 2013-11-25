@@ -16,7 +16,6 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 import jingo
 import requests
-import waffle
 from tower import ugettext as _
 
 import amo
@@ -46,10 +45,10 @@ from zadmin.models import set_config, unmemoized_get_config
 
 import mkt
 from mkt.regions.utils import parse_region
-from mkt.reviewers.forms import DEFAULT_ACTION_VISIBILITY
+from mkt.reviewers.forms import (ApiReviewersSearchForm,
+                                 DEFAULT_ACTION_VISIBILITY)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search)
-from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.site import messages
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
@@ -146,7 +145,7 @@ def queue_counts(request):
             'rereview_themes': RereviewQueueTheme.objects.count()
         })
 
-    if waffle.switch_is_active('buchets') and 'pro' in request.GET:
+    if 'pro' in request.GET:
         counts.update({'device': device_queue_search(request).count()})
 
     rv = {}
@@ -262,7 +261,7 @@ def _review(request, addon, version):
     postdata = request.POST if request.method == 'POST' else None
     all_forms = [form, attachment_formset]
 
-    if waffle.switch_is_active('buchets') and version:
+    if version:
         features_list = [unicode(f) for f in version.features.to_list()]
         appfeatures_form = AppFeaturesForm(data=postdata,
                                            instance=version.features)
@@ -280,10 +279,9 @@ def _review(request, addon, version):
         old_types = set(o.id for o in addon.device_types)
         new_types = set(form.cleaned_data.get('device_override'))
 
-        if waffle.switch_is_active('buchets'):
-            old_features = set(features_list)
-            new_features = set(unicode(f) for f
-                               in appfeatures_form.instance.to_list())
+        old_features = set(features_list)
+        new_features = set(unicode(f) for f
+                           in appfeatures_form.instance.to_list())
 
         if form.cleaned_data.get('action') == 'public':
             if old_types != new_types:
@@ -310,8 +308,7 @@ def _review(request, addon, version):
                 amo.log(amo.LOG.REVIEW_DEVICE_OVERRIDE, addon,
                         addon.current_version, details={'comments': msg})
 
-            if (waffle.switch_is_active('buchets') and
-                 old_features != new_features):
+            if old_features != new_features:
                 # The reviewer overrode the requirements. We need to not
                 # publish this app immediately.
                 if addon.make_public == amo.PUBLIC_IMMEDIATELY:
@@ -348,8 +345,9 @@ def _review(request, addon, version):
             # L10N: {0} is the type of review. {1} is the points they earned.
             #       {2} is the points they now have total.
             success = _(
-              '"{0}" successfully processed (+{1} points, {2} total).'.format(
-              rev_str, score.score, ReviewerScore.get_total(request.amo_user)))
+                '"{0}" successfully processed (+{1} points, {2} total).'
+                .format(rev_str, score.score,
+                        ReviewerScore.get_total(request.amo_user)))
         else:
             success = _('Review successfully processed.')
         messages.success(request, success)
@@ -614,7 +612,7 @@ def queue_device(request):
     A device specific queue matching apps which require features that our
     device support based on the `profile` query string.
     """
-    if waffle.switch_is_active('buchets') and 'pro' in request.GET:
+    if 'pro' in request.GET:
         apps = [QueuedApp(app, app.all_versions[0].nomination)
                 for app in device_queue_search(request)]
     else:

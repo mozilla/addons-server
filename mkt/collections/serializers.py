@@ -2,11 +2,11 @@
 import os
 import uuid
 
+import waffle
 from rest_framework import serializers
 from rest_framework.fields import get_component
 from rest_framework.reverse import reverse
 from tower import ugettext_lazy as _
-import waffle
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -21,8 +21,8 @@ except ImportError:
     build_id = ''
 import mkt
 from addons.models import Category
-from mkt.api.fields import (TranslationSerializerField,
-                            SlugChoiceField, SlugModelChoiceField)
+from mkt.api.fields import (SlugChoiceField, SlugModelChoiceField,
+                            TranslationSerializerField)
 from mkt.features.utils import get_feature_profile
 from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Webapp
@@ -60,7 +60,7 @@ class CollectionMembershipField(serializers.RelatedField):
 
         # Filter apps based on feature profiles.
         profile = get_feature_profile(request)
-        if profile and waffle.switch_is_active('buchets'):
+        if profile:
             value = value.filter(**profile.to_kwargs(
                 prefix='app___current_version__features__has_'))
 
@@ -80,7 +80,7 @@ class CollectionMembershipField(serializers.RelatedField):
 
         qs = Webapp.from_search(request, region=region)
         filters = {'collection.id': obj.pk}
-        if profile and waffle.switch_is_active('buchets'):
+        if profile:
             filters.update(**profile.to_kwargs(prefix='features.has_'))
         qs = qs.filter(**filters).order_by('collection.order')
 
