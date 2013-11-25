@@ -219,10 +219,17 @@ class ReviewApp(ReviewBase):
         self.files = self.version.files.all()
 
     def _create_comm_note(self, note_type):
+        # Permissions default to developers + reviewers + Mozilla contacts.
+        # For escalation/comment, exclude the developer from the conversation.
+        perm_overrides = {
+            comm.ESCALATION: {'developer': False},
+            comm.COMMENT: {'developer': False},
+        }
+
         self.comm_thread, self.comm_note = create_comm_note(
             self.addon, self.version, self.request.amo_user,
             self.data['comments'], note_type=note_type,
-            perms=self.data['action_visibility'])
+            perms=perm_overrides.get(note_type))
 
     def process_public(self):
         if self.addon.is_incomplete():

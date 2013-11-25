@@ -55,17 +55,6 @@ class ReviewAppAttachmentForm(happyforms.Form):
 AttachmentFormSet = forms.formsets.formset_factory(ReviewAppAttachmentForm,
                                                    extra=1)
 
-# This contains default values for action visibility.
-# `disabled` will be disabled (not allowed to check).
-DEFAULT_ACTION_VISIBILITY = {
-    'escalate': {
-        'disabled': ['developer']
-    },
-    'comment': {
-        'disabled': ['developer']
-    },
-}
-
 
 class ReviewAppForm(happyforms.Form):
 
@@ -81,17 +70,6 @@ class ReviewAppForm(happyforms.Form):
         choices=[(k, v.name) for k, v in amo.DEVICE_TYPES.items()],
         coerce=int, label=_lazy(u'Device Type Override:'),
         widget=forms.CheckboxSelectMultiple, required=False)
-
-    thread_perms = [('developer', _lazy('Developers')),
-                    ('reviewer', _lazy('Reviewers')),
-                    ('senior_reviewer', _lazy('Senior Reviewers')),
-                    ('staff', _lazy('Staff')),
-                    ('mozilla_contact', _lazy('Mozilla Contact'))]
-    action_visibility = forms.TypedMultipleChoiceField(
-        choices=thread_perms,
-        coerce=unicode, label=_lazy('Action Visibility to Users:'),
-        widget=forms.CheckboxSelectMultiple, required=False)
-
     notify = forms.BooleanField(
         required=False, label=_lazy(u'Notify me the next time the manifest is '
                                     u'updated. (Subsequent updates will not '

@@ -45,8 +45,7 @@ from zadmin.models import set_config, unmemoized_get_config
 
 import mkt
 from mkt.regions.utils import parse_region
-from mkt.reviewers.forms import (ApiReviewersSearchForm,
-                                 DEFAULT_ACTION_VISIBILITY)
+from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search)
 from mkt.site import messages
@@ -399,8 +398,7 @@ def _review(request, addon, version):
                   actions=actions, actions_minimal=actions_minimal,
                   tab=queue_type, product_attrs=product_attrs,
                   attachment_formset=attachment_formset,
-                  appfeatures_form=appfeatures_form,
-                  default_visibility=DEFAULT_ACTION_VISIBILITY)
+                  appfeatures_form=appfeatures_form)
 
     if features_list is not None:
         ctx['feature_list'] = features_list
