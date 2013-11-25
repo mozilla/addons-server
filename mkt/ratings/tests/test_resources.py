@@ -382,8 +382,10 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
     def test_update(self):
         self._create_default_review()
         new_data = {
+            'app': self.app.id,
             'body': 'Totally rocking the free web.',
-            'rating': 4
+            'rating': 4,
+            'version': self.app.current_version.id
         }
         log_review_id = amo.LOG.EDIT_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 0)

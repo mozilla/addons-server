@@ -8,11 +8,13 @@ from django.core.urlresolvers import reverse
 from mock import patch
 
 import amo.tests
+
 from addons.models import AddonUser
 from files.models import FileUpload
 from users.models import UserProfile
 
 from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
+
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -58,7 +60,7 @@ class TestAddValidationHandler(ValidationHandler):
         obj = FileUpload.objects.get(uuid=content['id'])
         eq_(obj.user, self.user)
 
-    @patch('mkt.api.resources.tasks.fetch_manifest')
+    @patch('mkt.webapps.api.tasks.fetch_manifest')
     def test_fetch(self, fetch):
         self.create()
         assert fetch.called
@@ -211,6 +213,7 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         eq_(res.status_code, expected_status)
         data = json.loads(res.content)
         return res, data
+
 
     def test_verbs(self):
         self._allowed_verbs(self.get_url, ['get', 'patch'])  # FIXME disallow put

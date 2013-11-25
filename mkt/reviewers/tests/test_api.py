@@ -14,10 +14,10 @@ import mkt.regions
 from access.models import GroupUser
 from addons.models import Category
 from amo.tests import ESTestCase
+from amo.urlresolvers import reverse
 
-from mkt.api.tests.test_oauth import (BaseOAuth, get_absolute_url, OAuthClient,
-                                      RestOAuth)
-from mkt.api.base import get_url, list_url
+from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth
+from mkt.api.base import list_url
 from mkt.api.models import Access, generate
 from mkt.constants.features import FeatureProfile
 from mkt.reviewers.api import ReviewersSearchResource
@@ -67,7 +67,7 @@ class TestReviewing(RestOAuth):
         res = self.client.get(self.list_url)
         data = json.loads(res.content)
         eq_(data['objects'][0]['resource_uri'],
-            get_absolute_url(get_url('app', '337141'), absolute=False))
+            reverse('app-detail', kwargs={'pk': 337141}))
 
 
 class TestApiReviewer(BaseOAuth, ESTestCase):

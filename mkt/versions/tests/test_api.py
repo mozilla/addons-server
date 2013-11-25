@@ -37,11 +37,8 @@ class TestVersionSerializer(TestCase):
         ok_(all(k in native for k in added_keys))
 
     def test_addon(self):
-        eq_(self.native()['app'], reverse('api_dispatch_detail', kwargs={
-            'resource_name': 'app',
-            'api_name': 'apps',
-            'pk': self.app.pk}
-        ))
+        eq_(self.native()['app'], reverse('app-detail',
+                                          kwargs={'pk': self.app.pk}))
 
     def test_is_current_version(self):
         old_version = Version.objects.create(addon=self.app, version='0.1')
@@ -87,11 +84,8 @@ class TestVersionViewSet(RestOAuth):
         eq_(data['developer_name'], version.developer_name)
         eq_(data['is_current_version'],
             version == self.app.current_version)
-        eq_(data['app'], reverse('api_dispatch_detail', kwargs={
-            'resource_name': 'app',
-            'api_name': 'apps',
-            'pk': self.app.pk}
-        ))
+        eq_(data['app'], reverse('app-detail',
+                                 kwargs={'pk': self.app.pk}))
 
         for key in features:
             ok_(getattr(version.features, 'has_' + key))

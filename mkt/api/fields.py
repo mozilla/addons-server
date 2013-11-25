@@ -1,9 +1,67 @@
+from django.core import validators
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.db.models.fields import BLANK_CHOICE_DASH
+from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import fields, serializers
 from rest_framework.compat import smart_text
 
 from amo.utils import to_language
+
+
+class MultiSlugChoiceField(fields.WritableField):
+    """
+    Like SlugChoiceField but accepts a list of values rather a single one.
+    """
+    type_name = 'MultiSlugChoiceField'
+    type_label = 'multiple choice'
+    default_error_messages = {
+        'invalid_choice': _('Select a valid choice. %(value)s is not one of '
+                            'the available choices.'),
+    }
+
+    def __init__(self, choices_dict=None, *args, **kwargs):
+        super(MultiSlugChoiceField, self).__init__(*args, **kwargs)
+        # Create a choice dynamically to allow None, slugs and ids. Also store
+        # choices_dict and ids_choices_dict to re-use them later in to_native()
+        # and from_native().
+        self.choices_dict = choices_dict
+        slugs_choices = self.choices_dict.items()
+        ids_choices = [(v.id, v) for v in self.choices_dict.values()]
+        self.ids_choices_dict = dict(ids_choices)
+        self.choices = slugs_choices + ids_choices
+        if not self.required:
+            self.choices = BLANK_CHOICE_DASH + self.choices
+
+    def validate(self, value):
+        """
+        Validates that the input is in self.choices.
+        """
+        super(MultiSlugChoiceField, self).validate(value)
+        for v in value:
+            if not self.valid_value(v):
+                raise ValidationError(self.error_messages['invalid_choice'] % {
+                    'value': v})
+
+    def valid_value(self, value):
+        """
+        Check to see if the provided value is a valid choice.
+        """
+        for k, v in self.choices:
+            if isinstance(v, (list, tuple)):
+                # This is an optgroup, so look inside the group for options
+                for k2, v2 in v:
+                    if value == smart_text(k2):
+                        return True
+            else:
+                if value == smart_text(k) or value == k:
+                    return True
+        return False
+
+    def from_native(self, value):
+        if value in validators.EMPTY_VALUES:
+            return None
+        return super(MultiSlugChoiceField, self).from_native(value)
 
 
 class TranslationSerializerField(fields.WritableField):
@@ -198,3 +256,16 @@ class SlugModelChoiceField(serializers.PrimaryKeyRelatedField):
                 msg = self.error_messages['does_not_exist'] % smart_text(data)
                 raise serializers.ValidationError(msg)
         return super(SlugModelChoiceField, self).from_native(data)
+
+
+class LargeTextField(serializers.HyperlinkedRelatedField):
+    """
+    Accepts a value for a field when unserializing, but serializes as
+    a link to a separate resource. Used for text too long for common
+    inclusion in a resource.
+    """
+    def field_to_native(self, obj, field_name):
+        return self.to_native(obj)
+
+    def from_native(self, value):
+        return value

@@ -1,13 +1,15 @@
-from mkt.api.resources import AppResource as BaseAppResource
+from mkt.webapps.api import AppSerializer, AppViewSet as BaseAppViewset
 
 
-class AppResource(BaseAppResource):
-
-    class Meta(BaseAppResource.Meta):
-        list_allowed_methods = []
-        detail_allowed_methods = ['get']
-
+class FireplaceAppSerializer(AppSerializer):
     upsold = None
+    tags = None
+    class Meta(AppSerializer.Meta):
+        exclude = AppSerializer.Meta.exclude + [
+            'absolute_url', 'app_type', 'categories', 'created',
+            'default_locale', 'payment_account' 'regions',
+            'supported_locales', 'weekly_downloads', 'upsold', 'tags',]
 
-    def dehydrate_extra(self, bundle):
-        pass
+class AppViewSet(BaseAppViewset):
+
+    serializer_class = FireplaceAppSerializer

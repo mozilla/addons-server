@@ -23,7 +23,7 @@ from mkt.api.authorization import (AllowAppOwner, GroupPermission,
                                    switch)
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import AppViewSet, CompatRelatedField
+from mkt.api.base import AppViewSet
 from mkt.constants.payments import PAYMENT_STATUSES
 from mkt.developers.forms_payments import (BangoPaymentAccountForm,
                                            PaymentCheckForm)
@@ -133,9 +133,7 @@ class PaymentViewSet(RetrieveModelMixin, GenericViewSet):
 
 
 class UpsellSerializer(HyperlinkedModelSerializer):
-    free = premium = CompatRelatedField(
-        tastypie={'resource_name': 'app', 'api_name': 'apps'},
-        view_name='api_dispatch_detail')
+    free = premium = HyperlinkedRelatedField(view_name='app-detail')
 
     class Meta:
         model = AddonUpsell
@@ -206,13 +204,9 @@ class AddonPaymentAccountPermission(BasePermission):
 
 
 class AddonPaymentAccountSerializer(HyperlinkedModelSerializer):
-    addon = CompatRelatedField(
-        source='addon',
-        tastypie={'resource_name': 'app', 'api_name': 'apps'},
-        view_name='api_dispatch_detail')
+    addon = HyperlinkedRelatedField(view_name='app-detail')
     payment_account = HyperlinkedRelatedField(
         view_name='payment-account-detail')
-
     class Meta:
         model = AddonPaymentAccount
         fields = ('addon', 'payment_account', 'provider',

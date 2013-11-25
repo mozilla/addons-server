@@ -54,7 +54,7 @@ payment_data.update(bank_data)
 class UpsellCase(TestCase):
 
     def url(self, app):
-        return get_absolute_url(get_url('app', pk=app.pk), absolute=False)
+        return reverse('app-detail', kwargs={'pk': app.pk})
 
     def setUp(self):
         self.free = Webapp.objects.get(pk=337141)

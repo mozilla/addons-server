@@ -184,19 +184,19 @@ class TestAccount(RestOAuth):
         eq_(res.status_code, 403)
 
 
-class TestInstalled(BaseOAuth):
+class TestInstalled(RestOAuth):
     fixtures = fixture('user_2519', 'user_10482', 'webapp_337141')
 
     def setUp(self):
-        super(TestInstalled, self).setUp(api_name='account')
-        self.list_url = list_url('installed/mine')
+        super(TestInstalled, self).setUp()
+        self.list_url = reverse('installed-apps')
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ('get'))
 
     def test_not_allowed(self):
-        eq_(self.anon.get(self.list_url).status_code, 401)
+        eq_(self.anon.get(self.list_url).status_code, 403)
 
     def test_installed(self):
         ins = Installed.objects.create(user=self.user, addon_id=337141)
@@ -204,7 +204,7 @@ class TestInstalled(BaseOAuth):
         eq_(res.status_code, 200, res.content)
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 1)
-        eq_(data['objects'][0]['id'], str(ins.addon.pk))
+        eq_(data['objects'][0]['id'], ins.addon.pk)
 
     def not_there(self):
         res = self.client.get(self.list_url)

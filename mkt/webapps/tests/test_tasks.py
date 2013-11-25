@@ -538,7 +538,7 @@ class TestDumpApps(amo.tests.TestCase):
     def test_dump_app(self):
         fn = dump_app(337141)
         result = json.load(open(fn, 'r'))
-        eq_(result['id'], str(337141))
+        eq_(result['id'], 337141)
 
     def test_zip_apps(self):
         dump_app(337141)

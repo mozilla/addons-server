@@ -16,37 +16,44 @@ from addons.models import (AddonCategory, AddonDeviceType, Category,
 from market.models import PriceCurrency
 from mkt.constants import ratingsbodies, regions
 from mkt.site.fixtures import fixture
+from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
-from mkt.webapps.utils import (app_to_dict, es_app_to_dict,
-                               get_supported_locales)
+from mkt.webapps.utils import es_app_to_dict, get_supported_locales
 from users.models import UserProfile
 from versions.models import Version
 
 
-class TestAppToDict(amo.tests.TestCase):
+class TestAppSerializer(amo.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
         self.app = amo.tests.app_factory(version_kw={'version': '1.8'})
         self.profile = UserProfile.objects.get(pk=2519)
+        self.request = RequestFactory().get('/')
+
+    def serialize(self, app, profile=None):
+        a = AppSerializer(instance=app,
+                          context={'request': self.request,
+                                   'profile': profile})
+        return a.data
 
     def test_no_previews(self):
-        eq_(app_to_dict(self.app)['previews'], [])
+        eq_(self.serialize(self.app)['previews'], [])
 
     def test_with_preview(self):
         obj = Preview.objects.create(**{
             'filetype': 'image/png', 'thumbtype': 'image/png',
             'addon': self.app})
-        preview = app_to_dict(self.app)['previews'][0]
+        preview = self.serialize(self.app)['previews'][0]
         self.assertSetEqual(preview,
             ['filetype', 'id', 'image_url', 'thumbnail_url', 'resource_uri'])
         eq_(int(preview['id']), obj.pk)
 
     def test_no_rating(self):
-        eq_(app_to_dict(self.app)['content_ratings']['ratings'], None)
+        eq_(self.serialize(self.app)['content_ratings']['ratings'], None)
 
     def test_no_price(self):
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], False)
@@ -58,48 +65,48 @@ class TestAppToDict(amo.tests.TestCase):
 
     def test_installed(self):
         self.app.installed.create(user=self.profile)
-        res = app_to_dict(self.app, profile=self.profile)
+        res = self.serialize(self.app, profile=self.profile)
         self.check_profile(res['user'], installed=True)
 
     def test_purchased(self):
         self.app.addonpurchase_set.create(user=self.profile)
-        res = app_to_dict(self.app, profile=self.profile)
+        res = self.serialize(self.app, profile=self.profile)
         self.check_profile(res['user'], purchased=True)
 
     def test_owned(self):
         self.app.addonuser_set.create(user=self.profile)
-        res = app_to_dict(self.app, profile=self.profile)
+        res = self.serialize(self.app, profile=self.profile)
         self.check_profile(res['user'], developed=True)
 
     def test_locales(self):
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['default_locale'], 'en-US')
         eq_(res['supported_locales'], [])
 
     def test_multiple_locales(self):
         self.app.current_version.update(supported_locales='en-US,it')
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         self.assertSetEqual(res['supported_locales'], ['en-US', 'it'])
 
     def test_regions(self):
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         self.assertSetEqual([region['slug'] for region in res['regions']],
                             [region.slug for region in self.app.get_regions()])
 
     def test_current_version(self):
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         ok_('current_version' in res)
         eq_(res['current_version'], self.app.current_version.version)
 
     def test_versions_one(self):
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         self.assertSetEqual([v.version for v in self.app.versions.all()],
                             res['versions'].keys())
 
     def test_versions_multiple(self):
         ver = Version.objects.create(addon=self.app, version='1.9')
         self.app.update(_current_version=ver, _latest_version=ver)
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['current_version'], ver.version)
         self.assertSetEqual([v.version for v in self.app.versions.all()],
                             res['versions'].keys())
@@ -109,7 +116,7 @@ class TestAppToDict(amo.tests.TestCase):
         cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, slug='cat2')
         AddonCategory.objects.create(addon=self.app, category=cat1)
         AddonCategory.objects.create(addon=self.app, category=cat2)
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         self.assertSetEqual(res['categories'], ['cat1', 'cat2'])
 
     def test_content_ratings(self):
@@ -117,7 +124,7 @@ class TestAppToDict(amo.tests.TestCase):
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
         })
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['content_ratings']['ratings']['br'],
             {'body': 'CLASSIND',
              'body_label': 'classind',
@@ -133,43 +140,51 @@ class TestAppToDict(amo.tests.TestCase):
 
     def test_content_descriptors(self):
         self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['content_ratings']['descriptors'],
             [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
              {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
 
     def test_interactive_elements(self):
         self.app.set_interactives(['has_social_networking', 'has_shares_info'])
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['content_ratings']['interactive_elements'],
             [{'label': 'shares-info', 'name': 'Shares Info'},
              {'label': 'social-networking', 'name': 'Social Networking'}])
 
-class TestAppToDictPrices(amo.tests.TestCase):
+class TestAppSerializerPrices(amo.tests.TestCase):
     fixtures = fixture('user_2519')
+
+    def serialize(self, app, profile=None, region=None, request=None):
+        a = AppSerializer(instance=app,
+                          context={'request': request or self.request,
+                                   'profile': profile,
+                                   'region': region})
+        return a.data
 
     def setUp(self):
         self.app = amo.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
         self.profile = UserProfile.objects.get(pk=2519)
         self.create_flag('override-app-purchase', everyone=True)
+        self.request = RequestFactory().get('/')
 
     def test_some_price(self):
         self.make_premium(self.app, price='0.99')
-        res = app_to_dict(self.app, region=regions.US.id)
+        res = self.serialize(self.app, region=regions.US.id)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)
 
     def test_no_charge(self):
         self.make_premium(self.app, price='0.00')
-        res = app_to_dict(self.app, region=regions.US.id)
+        res = self.serialize(self.app, region=regions.US.id)
         eq_(res['price'], Decimal('0.00'))
         eq_(res['price_locale'], '$0.00')
         eq_(res['payment_required'], False)
 
     def test_wrong_region(self):
         self.make_premium(self.app, price='0.99')
-        res = app_to_dict(self.app, region=regions.PL.id)
+        res = self.serialize(self.app, region=regions.PL.id)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], True)
@@ -181,7 +196,7 @@ class TestAppToDictPrices(amo.tests.TestCase):
                                      provider=1)
 
         with self.activate(locale='fr'):
-            res = app_to_dict(self.app, region=regions.PL.id)
+            res = self.serialize(self.app, region=regions.PL.id)
             eq_(res['price'], Decimal('5.01'))
             eq_(res['price_locale'], u'5,01\xa0PLN')
 
@@ -190,21 +205,21 @@ class TestAppToDictPrices(amo.tests.TestCase):
         premium.price = None
         premium.save()
 
-        res = app_to_dict(self.app)
+        res = self.serialize(self.app)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
 
     def test_cannot_purchase(self):
         self.make_premium(self.app, price='0.99')
-        res = app_to_dict(self.app, region=regions.UK.id)
+        res = self.serialize(self.app, region=regions.UK.id)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], True)
 
     def test_can_purchase(self):
         self.make_premium(self.app, price='0.99')
-        res = app_to_dict(self.app, region=regions.UK.id)
-        res = app_to_dict(self.app, region=regions.UK.id)
+        res = self.serialize(self.app, region=regions.UK.id)
+        res = self.serialize(self.app, region=regions.UK.id)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], True)
@@ -219,7 +234,7 @@ class TestAppToDictPrices(amo.tests.TestCase):
         req = RequestFactory().get('/')
         req.user = self.profile.user
         with self.settings(PURCHASE_LIMITED=True):
-            res = app_to_dict(self.app, region=regions.US.id, request=req)
+            res = self.serialize(self.app, region=regions.US.id, request=req)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)
@@ -232,7 +247,7 @@ class TestAppToDictPrices(amo.tests.TestCase):
         req = RequestFactory().get('/')
         req.user = AnonymousUser()
         with self.settings(PURCHASE_LIMITED=True):
-            res = app_to_dict(self.app, region=regions.US.id, request=req)
+            res = self.serialize(self.app, region=regions.US.id, request=req)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)

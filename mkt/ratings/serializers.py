@@ -6,7 +6,7 @@ from rest_framework.exceptions import PermissionDenied
 from reviews.models import Review, ReviewFlag
 
 from mkt.account.serializers import AccountSerializer
-from mkt.api.base import CompatRelatedField
+from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
 from mkt.api.exceptions import Conflict
 from mkt.regions import get_region, REGIONS_DICT
 from mkt.versions.api import SimpleVersionSerializer
@@ -14,10 +14,13 @@ from mkt.webapps.models import Webapp
 
 
 class RatingSerializer(serializers.ModelSerializer):
-    app = CompatRelatedField(tastypie={'resource_name': 'app',
-                                       'api_name': 'apps'},
-                             source='addon',
-                             slug_field='app_slug')
+    app = SplitField(
+        SlugOrPrimaryKeyRelatedField(slug_field='app_slug',
+                                     queryset=Webapp.objects.all(),
+                                     source='addon'),
+        serializers.HyperlinkedRelatedField(view_name='app-detail',
+                                            read_only=True,
+                                            source='addon'))
     body = serializers.CharField()
     user = AccountSerializer(read_only=True)
     report_spam = serializers.SerializerMethodField('get_report_spam_link')
@@ -102,10 +105,10 @@ class RatingSerializer(serializers.ModelSerializer):
 
     def validate_app(self, attrs, source):
         if not getattr(self, 'object'):
-            # The CompatRelatedField does part of the job for us, but our
-            # get_app_from_value does extra checks.
             app = attrs[source]
             attrs[source] = RatingSerializer.get_app_from_value(app.pk)
+        else:
+            attrs[source] = self.object.addon
         return attrs
 
 

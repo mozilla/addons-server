@@ -4,7 +4,6 @@ from rest_framework.exceptions import ParseError
 import amo
 from mkt.api.authorization import (AllowAppOwner, AllowReadOnly, AnyOf,
                                    GroupPermission)
-from mkt.api.base import CompatRelatedField
 from mkt.constants import APP_FEATURES
 from mkt.features.api import AppFeaturesSerializer
 from versions.models import Version
@@ -20,9 +19,8 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
 
 
 class VersionSerializer(serializers.ModelSerializer):
-    addon = CompatRelatedField(view_name='api_dispatch_detail', read_only=True,
-                               tastypie={'resource_name': 'app',
-                                         'api_name': 'apps'})
+    addon = serializers.HyperlinkedRelatedField(view_name='app-detail',
+                                                read_only=True)
 
     class Meta:
         model = Version

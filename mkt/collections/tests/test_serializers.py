@@ -11,7 +11,6 @@ from amo.urlresolvers import reverse
 from users.models import UserProfile
 
 import mkt
-from mkt.api.resources import AppResource
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_OPERATOR)
 from mkt.constants.features import FeatureProfile
@@ -21,6 +20,7 @@ from mkt.collections.serializers import (CollectionMembershipField,
                                          DataURLImageField)
 from mkt.search.api import WithFeaturedResource
 from mkt.site.fixtures import fixture
+from mkt.webapps.api import AppSerializer
 
 
 class CollectionDataMixin(object):
@@ -51,7 +51,10 @@ class BaseTestCollectionMembershipField(object):
         return request
 
     def test_to_native(self):
-        resource = AppResource().full_dehydrate(Bundle(obj=self.app))
+        request = self.get_request({})
+        resource = AppSerializer(self.app)
+        resource.context = {'request': request}
+        self.field.context['request'] = request
         native = self.field.to_native(self.membership)
         for key, value in native.iteritems():
             if key == 'resource_uri':

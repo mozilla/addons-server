@@ -240,13 +240,11 @@ class Webapp(Addon):
 
     def get_api_url(self, action=None, api=None, resource=None, pk=False):
         """Reverse a URL for the API."""
-        kwargs = {'api_name': api or 'apps',
-                  'resource_name': resource or 'app'}
         if pk:
-            kwargs['pk'] = self.pk
+            key = self.pk
         else:
-            kwargs['app_slug'] = self.app_slug
-        return reverse('api_dispatch_%s' % (action or 'detail'), kwargs=kwargs)
+            key = self.app_slug
+        return reverse('app-detail', kwargs={'pk': key})
 
     def get_url_path(self, more=False, add_prefix=True, src=None):
         # We won't have to do this when Marketplace absorbs all apps views,
