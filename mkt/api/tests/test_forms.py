@@ -6,8 +6,7 @@ from nose.tools import eq_, ok_
 from addons.models import Addon
 import amo
 import amo.tests
-from mkt.api.forms import (PreviewJSONForm, SluggableModelChoiceField,
-                           StatusForm)
+from mkt.api.forms import PreviewJSONForm, SluggableModelChoiceField
 
 
 class TestPreviewForm(amo.tests.TestCase, amo.tests.AMOPaths):
@@ -49,32 +48,6 @@ class TestPreviewForm(amo.tests.TestCase, amo.tests.AMOPaths):
         form = PreviewJSONForm({'position': 1})
         assert not form.is_valid()
         eq_(form.errors['file'], ['This field is required.'])
-
-
-class TestSubmitForm(amo.tests.TestCase):
-
-    def setUp(self):
-        self.addon = Addon()
-
-    def test_status_null(self):
-        self.addon.status = amo.STATUS_NULL
-        status = StatusForm(instance=self.addon).fields['status']
-        eq_([k for k, v in status.choices],
-            ['incomplete', 'pending'])
-
-    def test_status_public(self):
-        self.addon.status = amo.STATUS_PUBLIC_WAITING
-        status = StatusForm(instance=self.addon).fields['status']
-        eq_([k for k, v in status.choices],
-            ['public', 'waiting'])
-
-    def test_status_other(self):
-        for s in amo.STATUS_CHOICES.keys():
-            if s in [amo.STATUS_NULL, amo.STATUS_PUBLIC_WAITING]:
-                continue
-            self.addon.status = s
-            status = StatusForm(instance=self.addon).fields['status']
-            eq_([k for k, v in status.choices], [k])
 
 
 class TestSluggableChoiceField(amo.tests.TestCase):

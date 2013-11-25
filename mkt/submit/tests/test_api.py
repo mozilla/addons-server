@@ -1,17 +1,18 @@
 import base64
 import json
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
+
+from django.core.urlresolvers import reverse
 
 from mock import patch
 
 import amo.tests
-from addons.models import Addon, AddonUser
+from addons.models import AddonUser
 from files.models import FileUpload
 from users.models import UserProfile
 
-from mkt.api.tests.test_oauth import BaseOAuth
-from mkt.api.tests.test_handlers import CreateHandler
+from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -196,79 +197,115 @@ class TestGetValidationHandler(ValidationHandler):
         eq_(data['valid'], False)
 
 
-class TestAppStatusHandler(CreateHandler, amo.tests.AMOPaths):
-    fixtures = fixture('user_2519', 'platform_all')
+class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
+    fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
         super(TestAppStatusHandler, self).setUp()
-        self.list_url = ('api_dispatch_list', {'resource_name': 'status'})
+        self.app = Webapp.objects.get(pk=337141)
+        AddonUser.objects.create(addon=self.app, user=self.user.get_profile())
+        self.get_url = reverse('app-status-detail', kwargs={'pk': self.app.pk})
 
-    def create_app(self):
-        obj = self.create()
-        res = self.client.post(('api_dispatch_list', {'resource_name': 'app'}),
-                               data=json.dumps({'manifest': obj.uuid}))
-        pk = json.loads(res.content)['id']
-        self.get_url = ('api_dispatch_detail',
-                        {'resource_name': 'status', 'pk': pk})
-        return Webapp.objects.get(pk=pk)
+    def get(self, expected_status=200):
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, expected_status)
+        data = json.loads(res.content)
+        return res, data
 
     def test_verbs(self):
-        self._allowed_verbs(self.list_url, [])
+        self._allowed_verbs(self.get_url, ['get', 'patch'])  # FIXME disallow put
 
     def test_has_no_cors(self):
-        res = self.client.get(self.list_url)
+        res = self.client.get(self.get_url)
         assert 'access-control-allow-origin' not in res
 
     def test_status(self):
-        self.create_app()
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
+        res, data = self.get()
+        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(data['status'], 'public')
         eq_(data['disabled_by_user'], False)
+
+        self.app.update(status=amo.STATUS_NULL)
+        res, data = self.get()
         eq_(data['status'], 'incomplete')
+        eq_(data['disabled_by_user'], False)
+
+        self.app.update(status=amo.STATUS_PENDING)
+        res, data = self.get()
+        eq_(data['status'], 'pending')
+        eq_(data['disabled_by_user'], False)
+
+        self.app.update(disabled_by_user=True)
+        res, data = self.get()
+        eq_(data['status'], 'pending')
+        eq_(data['disabled_by_user'], True)
+
+    def test_status_not_mine(self):
+        AddonUser.objects.get(user=self.user.get_profile()).delete()
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 403)
 
     def test_disable(self):
-        app = self.create_app()
+        eq_(self.app.disabled_by_user, False)
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'disabled_by_user': True}))
-        eq_(res.status_code, 202, res.content)
-        app = app.__class__.objects.get(pk=app.pk)
-        eq_(app.disabled_by_user, True)
-        eq_(app.status, amo.STATUS_NULL)
+        eq_(res.status_code, 200)
+        self.app.reload()
+        eq_(self.app.disabled_by_user, True)
+        eq_(self.app.status, amo.STATUS_PUBLIC)  # Unchanged, doesn't matter.
 
-    def test_change_status_fails(self):
-        self.create_app()
+    def test_disable_not_mine(self):
+        AddonUser.objects.get(user=self.user.get_profile()).delete()
         res = self.client.patch(self.get_url,
-                        data=json.dumps({'status': 'pending'}))
+                                data=json.dumps({'disabled_by_user': True}))
+        eq_(res.status_code, 403)
+
+    def test_change_status_to_pending_fails(self):
+        res = self.client.patch(self.get_url,
+                                data=json.dumps({'status': 'pending'}))
         eq_(res.status_code, 400)
-        assert isinstance(self.get_error(res)['status'], list)
+        data = json.loads(res.content)
+        ok_('status' in data)
 
-    @patch('mkt.webapps.models.Webapp.is_complete')
-    def test_change_status_passes(self, is_complete):
-        is_complete.return_value = True, []
-        app = self.create_app()
+    @patch('mkt.webapps.models.Webapp.is_fully_complete')
+    def test_change_status_to_pending(self, is_fully_complete):
+        is_fully_complete.return_value = True, []
+        self.app.update(status=amo.STATUS_NULL)
         res = self.client.patch(self.get_url,
-                        data=json.dumps({'status': 'pending'}))
-        eq_(res.status_code, 202, res.content)
-        eq_(app.__class__.objects.get(pk=app.pk).status, amo.STATUS_PENDING)
+                                data=json.dumps({'status': 'pending'}))
+        eq_(res.status_code, 200)
+        self.app.reload()
+        eq_(self.app.disabled_by_user, False)
+        eq_(self.app.status, amo.STATUS_PENDING)
 
-    @patch('mkt.webapps.models.Webapp.is_complete')
-    def test_cant_skip(self, is_complete):
-        is_complete.return_value = True, []
-        app = self.create_app()
+    def test_change_status_to_public_fails(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        res = self.client.patch(self.get_url,
+                                data=json.dumps({'status': 'public'}))
+        eq_(res.status_code, 400)
+        data = json.loads(res.content)
+        ok_('status' in data)
+        eq_(self.app.reload().status, amo.STATUS_PENDING)
+
+    @patch('mkt.webapps.models.Webapp.is_fully_complete')
+    def test_incomplete_app(self, is_fully_complete):
+        is_fully_complete.return_value = False, ['Stop !', 'Hammer Time !']
+        self.app.update(status=amo.STATUS_NULL)
+        res = self.client.patch(self.get_url,
+                                data=json.dumps({'status': 'pending'}))
+        eq_(res.status_code, 400)
+        data = json.loads(res.content)
+        eq_(data['status'][0], 'Stop !')
+        eq_(data['status'][1], 'Hammer Time !')
+
+    @patch('mkt.webapps.models.Webapp.is_fully_complete')
+    def test_public_waiting(self, is_fully_complete):
+        is_fully_complete.return_value = True, []
+        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
         res = self.client.patch(self.get_url,
                         data=json.dumps({'status': 'public'}))
-        eq_(res.status_code, 400)
-        assert 'available choices' in self.get_error(res)['status'][0]
-        eq_(Addon.objects.get(pk=app.pk).status, amo.STATUS_NULL)
-
-    def test_public_waiting(self):
-        app = self.create_app()
-        app.update(status=amo.STATUS_PUBLIC_WAITING)
-        res = self.client.patch(self.get_url,
-                        data=json.dumps({'status': 'public'}))
-        eq_(res.status_code, 202)
-        eq_(app.__class__.objects.get(pk=app.pk).status, amo.STATUS_PUBLIC)
+        eq_(res.status_code, 200)
+        eq_(self.app.reload().status, amo.STATUS_PUBLIC)
 
 
 class TestPreviewHandler(BaseOAuth, amo.tests.AMOPaths):

@@ -4,6 +4,9 @@ from django.db import transaction
 from django.http import HttpResponse
 
 import commonware.log
+from rest_framework import mixins
+from rest_framework.exceptions import MethodNotAllowed
+from rest_framework.viewsets import GenericViewSet
 from tastypie import fields, http
 from tastypie.authorization import Authorization
 from tastypie.resources import ALL_WITH_RELATIONS
@@ -14,15 +17,18 @@ from amo.decorators import write
 from addons.models import Addon, Preview
 from files.models import FileUpload
 
-import mkt.constants
 from mkt.api.authentication import (OAuthAuthentication,
-                                    OptionalOAuthAuthentication)
-from mkt.api.authorization import AppOwnerAuthorization, OwnerAuthorization
+                                    OptionalOAuthAuthentication,
+                                    RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
+from mkt.api.authorization import (AllowAppOwner, AppOwnerAuthorization,
+                                   OwnerAuthorization)
 from mkt.api.base import CORSResource, http_error, MarketplaceModelResource
-from mkt.api.forms import (NewPackagedForm, PreviewArgsForm, PreviewJSONForm,
-                           StatusForm)
+from mkt.api.forms import NewPackagedForm, PreviewArgsForm, PreviewJSONForm
+from mkt.submit.serializers import AppStatusSerializer
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
+from mkt.webapps.models import Webapp
 
 log = commonware.log.getLogger('z.api')
 
@@ -93,55 +99,19 @@ class ValidationResource(CORSResource, MarketplaceModelResource):
         return bundle
 
 
-class StatusResource(MarketplaceModelResource):
+class StatusViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
+                    GenericViewSet):
+    queryset = Webapp.objects.all()
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [AllowAppOwner]
+    serializer_class = AppStatusSerializer
 
-    class Meta(MarketplaceModelResource.Meta):
-        queryset = Addon.objects.filter(type=amo.ADDON_WEBAPP)
-        fields = ['status', 'disabled_by_user']
-        list_allowed_methods = []
-        allowed_methods = ['patch', 'get']
-        always_return_data = True
-        authentication = OAuthAuthentication()
-        authorization = AppOwnerAuthorization()
-        resource_name = 'status'
-        serializer = Serializer(formats=['json'])
-
-    @write
-    @transaction.commit_on_success
-    def obj_update(self, bundle, request, **kwargs):
-        try:
-            obj = self.get_object_list(bundle.request).get(**kwargs)
-        except Addon.DoesNotExist:
-            raise http_error(http.HttpNotFound, 'No such addon.')
-
-        if not AppOwnerAuthorization().is_authorized(request, object=obj):
-            raise http_error(http.HttpForbidden,
-                             'You are not an author of that app.')
-
-        form = StatusForm(bundle.data, instance=obj)
-        if not form.is_valid():
-            raise self.form_errors(form)
-
-        form.save()
-        log.info('App status updated: %s' % obj.pk)
-        bundle.obj = obj
-        return bundle
-
-    @write
-    def obj_get(self, request=None, **kwargs):
-        obj = super(StatusResource, self).obj_get(request=request, **kwargs)
-        if not AppOwnerAuthorization().is_authorized(request, object=obj):
-            raise http_error(http.HttpForbidden,
-                             'You are not an author of that app.')
-
-        log.info('App status retreived: %s' % obj.pk)
-        return obj
-
-    def dehydrate_status(self, bundle):
-        return amo.STATUS_CHOICES_API[int(bundle.data['status'])]
-
-    def hydrate_status(self, bundle):
-        return amo.STATUS_CHOICES_API_LOOKUP[int(bundle.data['status'])]
+    def update(self, request, *args, **kwargs):
+        # PUT is disallowed, only PATCH is accepted for this endpoint.
+        if request.method == 'PUT':
+            raise MethodNotAllowed('PUT')
+        return super(StatusViewSet, self).update(request, *args, **kwargs)
 
 
 class PreviewResource(CORSResource, MarketplaceModelResource):
