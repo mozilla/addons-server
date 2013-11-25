@@ -684,7 +684,7 @@ Transaction failure
     **Response**
 
     :status 202: Notification will be sent.
-    :statuscode 401: The API user is not authorized to report failures.
+    :statuscode 403: The API user is not authorized to report failures.
 
 .. _CORS: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
 .. _WebPay: https://github.com/mozilla/webpay

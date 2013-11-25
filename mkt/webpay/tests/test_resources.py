@@ -215,49 +215,47 @@ class TestPrices(RestOAuth):
         eq_(res.json['localized'], {})
 
 
-class TestNotification(BaseOAuth):
+class TestNotification(RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
-        super(TestNotification, self).setUp(api_name='webpay')
+        super(TestNotification, self).setUp()
         self.grant_permission(self.profile, 'Transaction:NotifyFailure')
         self.contribution = Contribution.objects.create(addon_id=337141,
                                                         uuid='sample:uuid')
-        self.list_url = ('api_dispatch_list', {'resource_name': 'failure'})
-        self.get_url = ['api_dispatch_detail',
-                        {'resource_name': 'failure',
-                         'pk': self.contribution.pk}]
+        self.get_url = reverse('failure-detail',
+                               kwargs={'pk': self.contribution.pk})
+        self.data = {'url': 'https://someserver.com', 'attempts': 5}
 
     def test_list_allowed(self):
         self._allowed_verbs(self.get_url, ['patch'])
 
     def test_notify(self):
-        url = 'https://someserver.com'
-        res = self.client.patch(self.get_url,
-                                data=json.dumps({'url': url, 'attempts': 5}))
+        res = self.client.patch(self.get_url, data=json.dumps(self.data))
         eq_(res.status_code, 202)
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        assert url in msg.body
+        assert self.data['url'] in msg.body
         eq_(msg.recipients(), [u'steamcube@mozilla.com'])
 
     def test_no_permission(self):
         GroupUser.objects.filter(user=self.profile).delete()
-        res = self.client.patch(self.get_url, data=json.dumps({}))
-        eq_(res.status_code, 401)
+        res = self.client.patch(self.get_url,  data=json.dumps(self.data))
+        eq_(res.status_code, 403)
 
     def test_missing(self):
         res = self.client.patch(self.get_url, data=json.dumps({}))
         eq_(res.status_code, 400)
 
     def test_not_there(self):
-        self.get_url[1]['pk'] += 1
-        res = self.client.patch(self.get_url, data=json.dumps({}))
+        self.get_url = reverse('failure-detail',
+                               kwargs={'pk': self.contribution.pk + 42})
+        res = self.client.patch(self.get_url, data=json.dumps(self.data))
         eq_(res.status_code, 404)
 
     def test_no_uuid(self):
         self.contribution.update(uuid=None)
-        res = self.client.patch(self.get_url, data=json.dumps({}))
+        res = self.client.patch(self.get_url, data=json.dumps(self.data))
         eq_(res.status_code, 404)
 
 

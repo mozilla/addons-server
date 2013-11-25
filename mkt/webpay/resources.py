@@ -7,8 +7,10 @@ from django.core.exceptions import ObjectDoesNotExist
 
 import commonware.log
 import django_filters
+from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -26,9 +28,12 @@ from stats.models import Contribution
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
                                     RestAnonymousAuthentication,
+                                    RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
-                                   Authorization, OwnerAuthorization,
+                                   Authorization, GroupPermission,
+                                   OwnerAuthorization,
                                    PermissionAuthorization)
 from mkt.api.base import (CORSResource, CORSMixin, GenericObject, http_error,
                           MarketplaceModelResource, MarketplaceResource,
@@ -136,31 +141,30 @@ class PricesViewSet(MarketplaceView, CORSMixin, ListModelMixin,
     filter_class = PriceFilter
 
 
-class FailureNotificationResource(MarketplaceModelResource):
+class FailureNotificationView(MarketplaceView, GenericAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [GroupPermission('Transaction', 'NotifyFailure')]
+    queryset = Contribution.objects.filter(uuid__isnull=False)
 
-    class Meta:
-        authentication = OAuthAuthentication()
-        authorization = PermissionAuthorization('Transaction', 'NotifyFailure')
-        detail_allowed_methods = ['patch']
-        queryset = Contribution.objects.filter(uuid__isnull=False)
-        resource_name = 'failure'
-
-    def obj_update(self, bundle, **kw):
-        form = FailureForm(bundle.data)
+    def patch(self, request, *args, **kwargs):
+        form = FailureForm(request.DATA)
         if not form.is_valid():
-            raise self.form_errors(form)
+            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        data = {'transaction_id': bundle.obj,
-                'transaction_url': absolutify(
-                    urlparams(reverse('mkt.developers.transactions'),
-                              transaction_id=bundle.obj.uuid)),
-                'url': form.cleaned_data['url'],
-                'retries': form.cleaned_data['attempts']}
-        owners = bundle.obj.addon.authors.values_list('email', flat=True)
+        obj = self.get_object()
+        data = {
+            'transaction_id': obj,
+            'transaction_url': absolutify(
+                urlparams(reverse('mkt.developers.transactions'),
+                          transaction_id=obj.uuid)),
+            'url': form.cleaned_data['url'],
+            'retries': form.cleaned_data['attempts']}
+        owners = obj.addon.authors.values_list('email', flat=True)
         send_mail_jinja('Payment notification failure.',
                         'webpay/failure.txt',
                         data, recipient_list=owners)
-        return bundle
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 
 class ProductIconResource(CORSResource, MarketplaceModelResource):
