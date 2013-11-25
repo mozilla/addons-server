@@ -6,9 +6,12 @@ from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist
 
 import commonware.log
+import django_filters
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
 from tastypie import fields, http
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.validation import CleanedDataFormValidation
@@ -17,21 +20,25 @@ import amo
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
-from constants.payments import PROVIDER_LOOKUP
+from market.models import Price
+from stats.models import Contribution
+
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
+                                    RestAnonymousAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
                                    Authorization, OwnerAuthorization,
                                    PermissionAuthorization)
-from mkt.api.base import (CORSResource, GenericObject, http_error,
-                          MarketplaceModelResource, MarketplaceResource)
-from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
-from mkt.webpay.models import ProductIcon
+from mkt.api.base import (CORSResource, CORSMixin, GenericObject, http_error,
+                          MarketplaceModelResource, MarketplaceResource,
+                          MarketplaceView)
 from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
 from mkt.purchase.utils import payments_enabled
-from market.models import Price, price_locale
-from stats.models import Contribution
+from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
+from mkt.webpay.models import ProductIcon
+from mkt.webpay.serializers import PriceSerializer
+
 
 from . import tasks
 
@@ -111,44 +118,22 @@ class StatusPayResource(CORSResource, MarketplaceModelResource):
         return bundle
 
 
-class PriceResource(CORSResource, MarketplaceModelResource):
-    prices = fields.ListField(attribute='prices', readonly=True)
-    localized = fields.DictField(attribute='suggested', readonly=True,
-                                 blank=True, null=True)
-    pricePoint = fields.CharField(attribute='name', readonly=True)
-    name = fields.CharField(attribute='tier_name', readonly=True)
+class PriceFilter(django_filters.FilterSet):
+    pricePoint = django_filters.CharFilter(name="name")
 
     class Meta:
-        detail_allowed_methods = ['get']
-        filtering = {'pricePoint': 'exact'}
-        include_resource_uri = False
-        list_allowed_methods = ['get']
-        queryset = Price.objects.filter(active=True).order_by('price')
-        resource_name = 'prices'
+        model = Price
+        fields = ['pricePoint']
 
-    def _get_prices(self, bundle):
-        """Both localized and prices need access to this. """
-        provider = bundle.request.GET.get('provider', None)
-        if provider:
-            provider = PROVIDER_LOOKUP[provider]
-        return bundle.obj.prices(provider=provider)
 
-    def dehydrate_localized(self, bundle):
-        region = bundle.request.REGION
-
-        for price in self._get_prices(bundle):
-            if price['region'] == region.id:
-                result = price.copy()
-                result.update({
-                    'locale': price_locale(price['price'], price['currency']),
-                    'region': region.name,
-                })
-                return result
-
-        return {}
-
-    def dehydrate_prices(self, bundle):
-        return self._get_prices(bundle)
+class PricesViewSet(MarketplaceView, CORSMixin, ListModelMixin,
+                    RetrieveModelMixin, GenericViewSet):
+    queryset = Price.objects.filter(active=True).order_by('price')
+    serializer_class = PriceSerializer
+    cors_allowed_methods = ['get']
+    authentication_classes = [RestAnonymousAuthentication]
+    permission_classes = [AllowAny]
+    filter_class = PriceFilter
 
 
 class FailureNotificationResource(MarketplaceModelResource):

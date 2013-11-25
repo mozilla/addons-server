@@ -3,6 +3,7 @@ from decimal import Decimal
 import jwt
 
 from django.core import mail
+from django.http import HttpRequest
 
 from mock import patch
 from nose.tools import eq_, ok_
@@ -15,11 +16,12 @@ from market.models import Price, PriceCurrency
 from users.models import UserProfile, GroupUser
 
 from mkt.api.base import get_url, list_url
-from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
 from mkt.constants import regions
 from mkt.purchase.tests.utils import PurchaseTest
 from mkt.site.fixtures import fixture
 from mkt.webpay.models import ProductIcon
+from mkt.webpay.resources import PricesViewSet
 from stats.models import Contribution
 
 
@@ -110,19 +112,19 @@ class TestStatus(BaseOAuth):
         eq_(res.json['status'], 'incomplete', res.content)
 
 
-class TestPrices(BaseOAuth):
+class TestPrices(RestOAuth):
 
     def make_currency(self, amount, tier, currency, region):
         return PriceCurrency.objects.create(price=Decimal(amount), tier=tier,
             currency=currency, provider=PROVIDER_BANGO, region=region.id)
 
     def setUp(self):
-        super(TestPrices, self).setUp(api_name='webpay')
+        super(TestPrices, self).setUp()
         self.price = Price.objects.create(name='1', price=Decimal(1))
         self.currency = self.make_currency(3, self.price, 'DE', regions.DE)
         self.us_currency = self.make_currency(3, self.price, 'USD', regions.US)
-        self.list_url = list_url('prices')
-        self.get_url = get_url('prices', self.price.pk)
+        self.list_url = reverse('price-list')
+        self.get_url = reverse('price-detail', kwargs={'pk': self.price.pk})
 
         # If regions change, this will blow up.
         assert regions.BR.default_currency == 'BRL'
@@ -142,8 +144,9 @@ class TestPrices(BaseOAuth):
         # Ensure that price is in the JSON since solitude depends upon it.
         eq_(res.json['price'], '1.00')
 
-    def test_price_point(self):
-        res = self.client.get(self.list_url + ({'pricePoint': '1'},))
+    def test_list_filtered_price_point(self):
+        Price.objects.create(name='42', price=Decimal(42))
+        res = self.client.get(self.list_url, {'pricePoint': '1'})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 1)
@@ -155,9 +158,9 @@ class TestPrices(BaseOAuth):
         self.assertSetEqual(self.get_currencies(res.json['objects'][0]),
                             ['USD', 'DE'])
 
-    def test_list_filtered(self):
+    def test_list_filtered_provider(self):
         self.currency.update(provider=0)
-        res = self.client.get(self.list_url + ({'provider': 'bango'},))
+        res = self.client.get(self.list_url, {'provider': 'bango'})
         eq_(self.get_currencies(res.json['objects'][0]), ['USD'])
 
     def test_prices(self):
@@ -165,21 +168,26 @@ class TestPrices(BaseOAuth):
         eq_(res.status_code, 200)
         self.assertSetEqual(self.get_currencies(res.json), ['USD', 'DE'])
 
-    def test_prices_filtered(self):
+    def test_prices_filtered_provider(self):
         self.currency.update(provider=0)
-        res = self.client.get(self.get_url + ({'provider': 'bango'},))
+        res = self.client.get(self.get_url, {'provider': 'bango'})
         eq_(res.status_code, 200)
         self.assertSetEqual(self.get_currencies(res.json), ['USD'])
 
     def test_has_cors(self):
         self.assertCORS(self.client.get(self.get_url), 'get')
 
-    @patch('mkt.webpay.resources.PriceResource.dehydrate_prices')
-    def test_other_cors(self, prices):
-        prices.side_effect = ValueError
+    @patch('mkt.api.exceptions.got_request_exception')
+    @patch('market.models.Price.prices')
+    def test_other_cors(self, prices, got_request_exception):
+        prices.side_effect = ValueError('The Price Is Not Right.')
         res = self.client.get(self.get_url)
         eq_(res.status_code, 500)
         self.assertCORS(res, 'get')
+        exception_handler_args = got_request_exception.send.call_args
+        eq_(exception_handler_args[0][0], PricesViewSet)
+        eq_(exception_handler_args[1]['request'].path, self.get_url)
+        ok_(isinstance(exception_handler_args[1]['request'], HttpRequest))
 
     def test_locale(self):
         self.make_currency(5, self.price, 'BRL', regions.BR)

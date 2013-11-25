@@ -473,13 +473,15 @@ Pay Tiers
 
     :param meta: :ref:`meta-response-label`.
     :type meta: object
-    :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <pay-tier-response-label>`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`pay tiers <pay-tier-response-label>`.
     :type objects: array
     :statuscode 200: successfully completed.
 
 .. _pay-tier-response-label:
 
 .. http:get:: /api/v1/webpay/prices/(int:id)/
+
+    Returns a specific pay tier.
 
     **Response**
 

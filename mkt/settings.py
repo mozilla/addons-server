@@ -291,6 +291,7 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.DjangoFilterBackend',
     ),
+    'EXCEPTION_HANDLER': 'mkt.api.exceptions.custom_exception_handler',
     'PAGINATE_BY': 25,
     'PAGINATE_BY_PARAM': 'limit'
 }
