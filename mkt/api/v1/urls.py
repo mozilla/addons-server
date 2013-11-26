@@ -3,13 +3,12 @@ from django.conf.urls import include, patterns, url
 
 from rest_framework.routers import SimpleRouter
 from tastypie.api import Api
-from tastypie_services.services import (ErrorResource, SettingsResource)
 
 from mkt.abuse.urls import api_patterns as abuse_api_patterns
 from mkt.account.urls import api_patterns as account_api_patterns
-from mkt.api.base import AppRouter, handle_500
+from mkt.api.base import AppRouter
 from mkt.api.resources import (CarrierViewSet, CategoryViewSet,
-                               error_reporter, PriceTierViewSet,
+                               error_reporter, ErrorViewSet, PriceTierViewSet,
                                PriceCurrencyViewSet, RefreshManifestViewSet,
                                RegionViewSet, site_config)
 from mkt.collections.views import CollectionImageViewSet, CollectionViewSet
@@ -50,18 +49,16 @@ subapps.register('refresh-manifest', RefreshManifestViewSet,
 subapps.register('privacy', PrivacyPolicyViewSet,
                  base_name='app-privacy-policy')
 
-services = Api(api_name='services')
-if settings.ALLOW_TASTYPIE_SERVICES:
-    services.register(ErrorResource(set_handler=handle_500))
-    if getattr(settings, 'CLEANSED_SETTINGS_ACCESS', False):
-        services.register(SettingsResource())
+services = SimpleRouter()
 
-svcs = SimpleRouter()
-svcs.register(r'carrier', CarrierViewSet, base_name='carriers')
-svcs.register(r'region', RegionViewSet, base_name='regions')
-svcs.register(r'price-tier', PriceTierViewSet,
+if settings.ENABLE_API_ERROR_SERVICE:
+    services.register(r'error', ErrorViewSet, base_name='error')
+
+services.register(r'carrier', CarrierViewSet, base_name='carriers')
+services.register(r'region', RegionViewSet, base_name='regions')
+services.register(r'price-tier', PriceTierViewSet,
               base_name='price-tier')
-svcs.register(r'price-currency', PriceCurrencyViewSet,
+services.register(r'price-currency', PriceCurrencyViewSet,
               base_name='price-currency')
 
 urlpatterns = patterns('',
@@ -69,8 +66,7 @@ urlpatterns = patterns('',
     url(r'^', include(api.urls)),
     url(r'^apps/', include(apps.urls)),
     url(r'^apps/app/', include(subapps.urls)),
-    url(r'^', include(services.urls)),
-    url(r'^services/', include(svcs.urls)),
+    url(r'^services/', include(services.urls)),
     url(r'^services/config/site/', site_config, name='site-config'),
     url(r'^fireplace/report_error', error_reporter, name='error-reporter'),
     url(r'^rocketfuel/', include(rocketfuel.urls)),

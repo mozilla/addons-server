@@ -186,7 +186,7 @@ try:
 except AttributeError:
     pass
 
-ALLOW_TASTYPIE_SERVICES = True
+ENABLE_API_ERROR_SERVICE = True
 
 # Until Bango can properly do refunds.
 BANGO_FAKE_REFUNDS = True

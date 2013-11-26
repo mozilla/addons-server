@@ -174,7 +174,7 @@ MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
 # This is mainly for Marionette tests.
 WEBAPP_MANIFEST_NAME = 'Marketplace Stage'
 
-ALLOW_TASTYPIE_SERVICES = True
+ENABLE_API_ERROR_SERVICE = True
 
 NEWRELIC_INI = '/etc/newrelic.d/marketplace.allizom.org.ini'
 
