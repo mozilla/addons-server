@@ -25,20 +25,21 @@ from mkt.webpay.resources import PricesViewSet
 from stats.models import Contribution
 
 
-class TestPrepare(PurchaseTest, BaseOAuth):
+class TestPrepare(PurchaseTest, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519', 'prices')
 
     def setUp(self):
-        BaseOAuth.setUp(self, api_name='webpay')
+        RestOAuth.setUp(self)  # Avoid calling PurchaseTest.setUp().
         self.create_switch('marketplace')
-        self.list_url = list_url('prepare')
+        self.list_url = reverse('webpay-prepare')
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_allowed(self):
         self._allowed_verbs(self.list_url, ['post'])
 
     def test_anon(self):
-        eq_(self.anon.post(self.list_url, data={}).status_code, 401)
+        res = self.anon.post(self.list_url, data=json.dumps({'app': 337141}))
+        eq_(res.status_code, 403)
 
     def test_good(self):
         self.setup_base()
@@ -46,9 +47,8 @@ class TestPrepare(PurchaseTest, BaseOAuth):
         res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
         contribution = Contribution.objects.get()
         eq_(res.status_code, 201)
-        eq_(res.json['contribStatusURL'], reverse('api_dispatch_detail',
-            kwargs={'api_name': 'webpay', 'resource_name': 'status',
-                    'uuid': contribution.uuid}))
+        eq_(res.json['contribStatusURL'],
+            reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
         ok_(res.json['webpayJWT'])
 
     @patch('mkt.webapps.models.Webapp.has_purchased')
@@ -58,7 +58,7 @@ class TestPrepare(PurchaseTest, BaseOAuth):
         self.setup_package()
         res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
         eq_(res.status_code, 409)
-        eq_(res.content, '{"reason": "Already purchased app."}')
+        eq_(res.json, {"reason": "Already purchased app."})
 
     def _post(self):
         return self.client.post(self.list_url,
@@ -73,17 +73,16 @@ class TestPrepare(PurchaseTest, BaseOAuth):
             eq_(self._post().status_code, 201)
 
 
-class TestStatus(BaseOAuth):
+class TestStatus(RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
-        super(TestStatus, self).setUp(api_name='webpay')
+        super(TestStatus, self).setUp()
         self.contribution = Contribution.objects.create(
             addon_id=337141, user_id=2519, type=CONTRIB_PURCHASE,
             uuid='some:uid')
-        self.get_url = ('api_dispatch_detail', {
-            'api_name': 'webpay', 'resource_name': 'status',
-            'uuid': self.contribution.uuid})
+        self.get_url = reverse('webpay-status',
+                               kwargs={'uuid': self.contribution.uuid})
 
     def test_allowed(self):
         self._allowed_verbs(self.get_url, ['get'])
@@ -110,6 +109,12 @@ class TestStatus(BaseOAuth):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200, res.content)
         eq_(res.json['status'], 'incomplete', res.content)
+
+    def test_not_owner(self):
+        userprofile2 = UserProfile.objects.get(pk=31337)
+        self.contribution.update(user=userprofile2)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 403, res.content)
 
 
 class TestPrices(RestOAuth):
@@ -215,49 +220,47 @@ class TestPrices(RestOAuth):
         eq_(res.json['localized'], {})
 
 
-class TestNotification(BaseOAuth):
+class TestNotification(RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
-        super(TestNotification, self).setUp(api_name='webpay')
+        super(TestNotification, self).setUp()
         self.grant_permission(self.profile, 'Transaction:NotifyFailure')
         self.contribution = Contribution.objects.create(addon_id=337141,
                                                         uuid='sample:uuid')
-        self.list_url = ('api_dispatch_list', {'resource_name': 'failure'})
-        self.get_url = ['api_dispatch_detail',
-                        {'resource_name': 'failure',
-                         'pk': self.contribution.pk}]
+        self.get_url = reverse('webpay-failurenotification',
+                               kwargs={'pk': self.contribution.pk})
+        self.data = {'url': 'https://someserver.com', 'attempts': 5}
 
     def test_list_allowed(self):
         self._allowed_verbs(self.get_url, ['patch'])
 
     def test_notify(self):
-        url = 'https://someserver.com'
-        res = self.client.patch(self.get_url,
-                                data=json.dumps({'url': url, 'attempts': 5}))
+        res = self.client.patch(self.get_url, data=json.dumps(self.data))
         eq_(res.status_code, 202)
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        assert url in msg.body
+        assert self.data['url'] in msg.body
         eq_(msg.recipients(), [u'steamcube@mozilla.com'])
 
     def test_no_permission(self):
         GroupUser.objects.filter(user=self.profile).delete()
-        res = self.client.patch(self.get_url, data=json.dumps({}))
-        eq_(res.status_code, 401)
+        res = self.client.patch(self.get_url,  data=json.dumps(self.data))
+        eq_(res.status_code, 403)
 
     def test_missing(self):
         res = self.client.patch(self.get_url, data=json.dumps({}))
         eq_(res.status_code, 400)
 
     def test_not_there(self):
-        self.get_url[1]['pk'] += 1
-        res = self.client.patch(self.get_url, data=json.dumps({}))
+        self.get_url = reverse('webpay-failurenotification',
+                               kwargs={'pk': self.contribution.pk + 42})
+        res = self.client.patch(self.get_url, data=json.dumps(self.data))
         eq_(res.status_code, 404)
 
     def test_no_uuid(self):
         self.contribution.update(uuid=None)
-        res = self.client.patch(self.get_url, data=json.dumps({}))
+        res = self.client.patch(self.get_url, data=json.dumps(self.data))
         eq_(res.status_code, 404)
 
 
@@ -327,7 +330,7 @@ class TestSigCheck(TestCase):
         with self.settings(APP_PURCHASE_SECRET=secret,
                            APP_PURCHASE_KEY=key,
                            APP_PURCHASE_AUD=aud):
-            res = self.client.post(reverse('webpay.sig_check'))
+            res = self.client.post(reverse('webpay-sig_check'))
         eq_(res.status_code, 201, res)
         data = json.loads(res.content)
         req = jwt.decode(data['sig_check_jwt'].encode('ascii'), secret)

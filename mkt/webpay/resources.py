@@ -2,13 +2,14 @@ import calendar
 import time
 
 from django.conf import settings
-from django.conf.urls.defaults import url
-from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 
 import commonware.log
 import django_filters
+from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -23,99 +24,84 @@ from amo.utils import send_mail_jinja
 from market.models import Price
 from stats.models import Contribution
 
-from mkt.api.authentication import (OAuthAuthentication,
-                                    OptionalOAuthAuthentication,
+from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     RestAnonymousAuthentication,
-                                    SharedSecretAuthentication)
-from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
-                                   Authorization, OwnerAuthorization,
-                                   PermissionAuthorization)
-from mkt.api.base import (CORSResource, CORSMixin, GenericObject, http_error,
-                          MarketplaceModelResource, MarketplaceResource,
-                          MarketplaceView)
+                                    RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
+from mkt.api.authorization import (AllowOwner, AnonymousReadOnlyAuthorization,
+                                   GroupPermission, PermissionAuthorization)
+from mkt.api.base import (CORSResource, CORSMixin, MarketplaceModelResource,
+                          MarketplaceResource, MarketplaceView)
+from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
 from mkt.purchase.utils import payments_enabled
 from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import PriceSerializer
 
-
 from . import tasks
+
 
 log = commonware.log.getLogger('z.webpay')
 
 
-class PreparePayResource(CORSResource, MarketplaceResource):
-    webpayJWT = fields.CharField(attribute='webpayJWT', readonly=True)
-    contribStatusURL = fields.CharField(attribute='contribStatusURL',
-                                        readonly=True)
+class PreparePayView(CORSMixin, MarketplaceView, GenericAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [AllowAny]
+    cors_allowed_methods = ['post']
 
-    class Meta(MarketplaceResource.Meta):
-        always_return_data = True
-        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
-        authorization = Authorization()
-        detail_allowed_methods = []
-        list_allowed_methods = ['post']
-        object_class = GenericObject
-        resource_name = 'prepare'
-        validation = CleanedDataFormValidation(form_class=PrepareForm)
+    def post(self, request, *args, **kwargs):
+        form = PrepareForm(request.DATA)
+        if not form.is_valid():
+            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+        app = form.cleaned_data['app']
 
-    def obj_create(self, bundle, request, **kwargs):
         region = getattr(request, 'REGION', None)
-        app = bundle.data['app']
-
         if region and region.id not in app.get_price_region_ids():
             log.info('Region {0} is not in {1}'
                      .format(region.id, app.get_price_region_ids()))
             if payments_enabled(request):
                 log.info('Flag not active')
-                raise http_error(http.HttpForbidden,
-                                 'Payments are limited and flag not enabled')
+                return Response('Payments are limited and flag not enabled',
+                                status=status.HTTP_403_FORBIDDEN)
 
-        bundle.obj = GenericObject(_prepare_pay(request, bundle.data['app']))
-        return bundle
-
-
-class StatusPayResource(CORSResource, MarketplaceModelResource):
-
-    class Meta(MarketplaceModelResource.Meta):
-        always_return_data = True
-        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
-        authorization = OwnerAuthorization()
-        detail_allowed_methods = ['get']
-        queryset = Contribution.objects.filter(type=amo.CONTRIB_PURCHASE)
-        resource_name = 'status'
-
-    def obj_get(self, request=None, **kw):
         try:
-            obj = super(StatusPayResource, self).obj_get(request=request, **kw)
-        except ObjectDoesNotExist:
+            data = _prepare_pay(request._request, app)
+        except AlreadyPurchased:
+            return Response({'reason': u'Already purchased app.'},
+                            status=status.HTTP_409_CONFLICT)
+
+        return Response(data, status=status.HTTP_201_CREATED)
+
+
+class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [AllowOwner]
+    cors_allowed_methods = ['get']
+    queryset = Contribution.objects.filter(type=amo.CONTRIB_PURCHASE)
+    lookup_field = 'uuid'
+
+    def get_object(self):
+        try:
+            obj = super(StatusPayView, self).get_object()
+        except Http404:
             # Anything that's not correct will be raised as a 404 so that it's
             # harder to iterate over contribution values.
             log.info('Contribution not found')
             return None
 
-        if not OwnerAuthorization().is_authorized(request, object=obj):
-            raise http_error(http.HttpForbidden,
-                             'You are not an author of that app.')
-
-        if not obj.addon.has_purchased(request.amo_user):
+        if not obj.addon.has_purchased(self.request.amo_user):
             log.info('Not in AddonPurchase table')
             return None
 
         return obj
 
-    def base_urls(self):
-        return [
-            url(r"^(?P<resource_name>%s)/(?P<uuid>[^/]+)/$" %
-                self._meta.resource_name,
-                self.wrap_view('dispatch_detail'),
-                name='api_dispatch_detail')
-        ]
-
-    def full_dehydrate(self, bundle):
-        bundle.data = {'status': 'complete' if bundle.obj.id else 'incomplete'}
-        return bundle
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        data = {'status': 'complete' if self.object else 'incomplete'}
+        return Response(data)
 
 
 class PriceFilter(django_filters.FilterSet):
@@ -136,31 +122,30 @@ class PricesViewSet(MarketplaceView, CORSMixin, ListModelMixin,
     filter_class = PriceFilter
 
 
-class FailureNotificationResource(MarketplaceModelResource):
+class FailureNotificationView(MarketplaceView, GenericAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [GroupPermission('Transaction', 'NotifyFailure')]
+    queryset = Contribution.objects.filter(uuid__isnull=False)
 
-    class Meta:
-        authentication = OAuthAuthentication()
-        authorization = PermissionAuthorization('Transaction', 'NotifyFailure')
-        detail_allowed_methods = ['patch']
-        queryset = Contribution.objects.filter(uuid__isnull=False)
-        resource_name = 'failure'
-
-    def obj_update(self, bundle, **kw):
-        form = FailureForm(bundle.data)
+    def patch(self, request, *args, **kwargs):
+        form = FailureForm(request.DATA)
         if not form.is_valid():
-            raise self.form_errors(form)
+            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        data = {'transaction_id': bundle.obj,
-                'transaction_url': absolutify(
-                    urlparams(reverse('mkt.developers.transactions'),
-                              transaction_id=bundle.obj.uuid)),
-                'url': form.cleaned_data['url'],
-                'retries': form.cleaned_data['attempts']}
-        owners = bundle.obj.addon.authors.values_list('email', flat=True)
+        obj = self.get_object()
+        data = {
+            'transaction_id': obj,
+            'transaction_url': absolutify(
+                urlparams(reverse('mkt.developers.transactions'),
+                          transaction_id=obj.uuid)),
+            'url': form.cleaned_data['url'],
+            'retries': form.cleaned_data['attempts']}
+        owners = obj.addon.authors.values_list('email', flat=True)
         send_mail_jinja('Payment notification failure.',
                         'webpay/failure.txt',
                         data, recipient_list=owners)
-        return bundle
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 
 class ProductIconResource(CORSResource, MarketplaceModelResource):
