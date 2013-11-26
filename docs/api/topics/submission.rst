@@ -284,7 +284,7 @@ Content ratings
     :param submission_id: The submission ID received from IARC.
     :type submission_id: string
     :param security_code: The security code received from IARC.
-    :type security_cOde: string
+    :type security_code: string
 
     **Response**
 
