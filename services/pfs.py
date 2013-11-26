@@ -136,6 +136,7 @@ def get_output(data):
             version='12.0.5.146',
             InstallerHash='sha256:eb6e5fb375c7e2f75c14d8678c595569bfc3da5fb5b1a7a0b293197867e42545',
             InstallerLocation='http://fpdownload.macromedia.com/pub/shockwave/default/english/win95nt/latest/Shockwave_Installer_FF.exe',
+            manualInstallationURL='http://get.adobe.com/shockwave/otherversions',
             needsRestart='false',
             InstallerShowsUI='false')
 
