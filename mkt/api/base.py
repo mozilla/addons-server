@@ -540,7 +540,8 @@ class CORSMixin(object):
     Mixin to enable CORS for DRF API.
     """
     def finalize_response(self, request, response, *args, **kwargs):
-        request._request.CORS = self.cors_allowed_methods
+        if not hasattr(request._request, 'CORS'):
+            request._request.CORS = self.cors_allowed_methods
         return super(CORSMixin, self).finalize_response(
             request, response, *args, **kwargs)
 

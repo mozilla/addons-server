@@ -181,7 +181,7 @@ class RatingViewSet(CORSMixin, ModelViewSet):
     def flag(self, request, pk=None):
         self.kwargs[self.lookup_field] = pk
         self.get_object()  # Will check that the Review instance is valid.
-        self.cors_allowed_methods = RatingFlagViewSet.cors_allowed_methods
+        request._request.CORS = RatingFlagViewSet.cors_allowed_methods
         view = RatingFlagViewSet.as_view({'post': 'create'})
         return view(request, *self.args, **{'review': pk})
 
