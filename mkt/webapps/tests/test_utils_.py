@@ -239,34 +239,6 @@ class TestAppSerializerPrices(amo.tests.TestCase):
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], True)
 
-    def test_waffle_fallback(self):
-        self.make_premium(self.app, price='0.99')
-        flag = waffle.models.Flag.objects.get(name='override-app-purchase')
-        flag.everyone = None
-        flag.users.add(self.profile.user)
-        flag.save()
-
-        req = RequestFactory().get('/')
-        req.user = self.profile.user
-        with self.settings(PURCHASE_LIMITED=True):
-            res = self.serialize(self.app, region=regions.US.id, request=req)
-        eq_(res['price'], Decimal('0.99'))
-        eq_(res['price_locale'], '$0.99')
-        eq_(res['payment_required'], True)
-
-    def test_waffle_fallback_anon(self):
-        flag = waffle.models.Flag.objects.get(name='override-app-purchase')
-        flag.everyone = True
-        flag.save()
-        self.make_premium(self.app, price='0.99')
-        req = RequestFactory().get('/')
-        req.user = AnonymousUser()
-        with self.settings(PURCHASE_LIMITED=True):
-            res = self.serialize(self.app, region=regions.US.id, request=req)
-        eq_(res['price'], Decimal('0.99'))
-        eq_(res['price_locale'], '$0.99')
-        eq_(res['payment_required'], True)
-
 
 @mock.patch('versions.models.Version.is_privileged', False)
 class TestESAppToDict(amo.tests.ESTestCase):

@@ -29,7 +29,6 @@ from mkt.api.authorization import (AllowOwner, AllowReadOnly, AnyOf,
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
-from mkt.purchase.utils import payments_enabled
 from mkt.webpay.forms import FailureForm, PrepareForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import PriceSerializer, ProductIconSerializer
@@ -56,10 +55,8 @@ class PreparePayView(CORSMixin, MarketplaceView, GenericAPIView):
         if region and region.id not in app.get_price_region_ids():
             log.info('Region {0} is not in {1}'
                      .format(region.id, app.get_price_region_ids()))
-            if payments_enabled(request):
-                log.info('Flag not active')
-                return Response('Payments are limited and flag not enabled',
-                                status=status.HTTP_403_FORBIDDEN)
+            return Response('Payments are limited and flag not enabled',
+                            status=status.HTTP_403_FORBIDDEN)
 
         try:
             data = _prepare_pay(request._request, app)

@@ -47,13 +47,13 @@
       </div>
 
       <section id="submit-payment-type">
-        {% if not payments_enabled and not is_paid %}
+        {% if not is_paid %}
           <h2>{{ _('App Compatibility') }}</h2>
         {% endif %}
 
-        <div class="island hasappendix{{ ' tabbable ' if payments_enabled or is_paid }}">
+        <div class="island hasappendix{{ ' tabbable ' if is_paid }}">
           <div class="free tab {{ 'active' if not is_paid }}">
-            {% if payments_enabled or is_paid %}
+            {% if is_paid %}
               <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
             {% endif %}
             <div class="error">{{ form.errors.free_platforms }}</div>
@@ -72,7 +72,7 @@
             {% endif %}
           </div>
 
-          {% if payments_enabled or is_paid %}
+          {% if is_paid %}
             {% set paid_platforms = form.fields['paid_platforms'].choices %}
             {% set has_multiple_paid_platforms = paid_platforms|length > 1 %}
             <div class="paid tab {{ 'active' if is_paid }}">

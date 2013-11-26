@@ -143,9 +143,6 @@ def payments(request, addon_id, addon, webapp=False):
          'account_form': provider.forms['account'](),
          'bango_account_list_form': bango_account_list_form,
          # Waffles
-         'payments_enabled':
-             waffle.flag_is_active(request, 'allow-b2g-paid-submission') and
-             not waffle.switch_is_active('disabled-payments'),
          'api_pricelist_url': reverse('price-list'),
          'payment_methods': {
              PAYMENT_METHOD_ALL: _('All'),

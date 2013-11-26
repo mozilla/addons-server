@@ -31,7 +31,6 @@ from mkt.api.fields import (LargeTextField, ReverseChoiceField,
 from mkt.constants.features import FeatureProfile
 from mkt.developers import tasks
 from mkt.developers.forms import IARCGetAppInfoForm
-from mkt.purchase.utils import payments_enabled
 from mkt.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS, get_region,
                          REGIONS_DICT)
 from mkt.submit.forms import mark_for_rereview
@@ -178,14 +177,12 @@ class AppSerializer(serializers.ModelSerializer):
 
     def get_price(self, app):
         region = self.context.get('region')
-        if (region in app.get_price_region_ids() or
-            payments_enabled(self.context['request'])):
+        if region in app.get_price_region_ids():
             return app.get_price(region=region)
 
     def get_price_locale(self, app):
         region = self.context.get('region')
-        if (region in app.get_price_region_ids() or
-            payments_enabled(self.context['request'])):
+        if region in app.get_price_region_ids():
             return app.get_price_locale(region=region)
 
     def get_ratings_aggregates(self, app):
