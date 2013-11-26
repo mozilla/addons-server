@@ -46,7 +46,7 @@ class RatingSerializer(serializers.ModelSerializer):
             self.fields.pop('is_author')
             self.fields.pop('has_flagged')
 
-        if self.request.method in ('PUT', 'PATCH'):
+        if self.request and self.request.method in ('PUT', 'PATCH'):
             # Don't let users modify 'app' field at edit time
             self.fields['app'].read_only = True
 
