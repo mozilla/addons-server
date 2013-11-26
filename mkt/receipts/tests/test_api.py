@@ -1,23 +1,18 @@
 import json
 
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 
 import mock
 from nose.tools import eq_, ok_
 from receipts.receipts import Receipt
-from tastypie import http
-from tastypie.bundle import Bundle
-from test_utils import RequestFactory
 
 import amo.tests
 
 from addons.models import Addon, AddonUser
 from constants.payments import CONTRIB_NO_CHARGE
 from devhub.models import AppLog
-from mkt.api.base import list_url
-from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import apps
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
@@ -91,17 +86,17 @@ class TestAPI(RestOAuth):
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
-class TestDevhubAPI(BaseOAuth):
+class TestDevhubAPI(RestOAuth):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
-        super(TestDevhubAPI, self).setUp(api_name='receipts')
+        super(TestDevhubAPI, self).setUp()
         self.data = json.dumps({'manifest_url': 'http://foo.com',
                                 'receipt_type': 'expired'})
-        self.url = list_url('test')
+        self.url = reverse('receipt.test')
 
     def test_has_cors(self):
-        self.assertCORS(self.client.get(self.url), 'post')
+        self.assertCORS(self.client.post(self.url), 'post')
 
     def test_decode(self):
         res = self.anon.post(self.url, data=self.data)

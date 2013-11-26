@@ -5,17 +5,12 @@ from rest_framework.decorators import (authentication_classes,
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from tastypie.authorization import Authorization
-from tastypie.validation import CleanedDataFormValidation
-
-
 from constants.payments import CONTRIB_NO_CHARGE
 from lib.cef_loggers import receipt_cef
 from market.models import AddonPurchase
 from mkt.api.authentication import (RestOAuthAuthentication,
-                                    OptionalOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import cors_api_view, CORSResource, MarketplaceResource
+from mkt.api.base import cors_api_view
 from mkt.constants import apps
 from mkt.installs.utils import install_type, record
 from mkt.receipts.forms import ReceiptForm, TestInstall
@@ -82,23 +77,19 @@ def install_record(obj, request, install_type):
     return create_receipt(installed)
 
 
-class TestReceiptResource(CORSResource, MarketplaceResource):
+@cors_api_view(['POST'])
+@permission_classes((AllowAny,))
+def test_receipt(request):
+    form = TestInstall(request.DATA)
+    if not form.is_valid():
+        return Response({'error_message': form.errors}, status=400)
 
-    class Meta(MarketplaceResource.Meta):
-        always_return_data = True
-        authentication = OptionalOAuthAuthentication()
-        authorization = Authorization()
-        detail_allowed_methods = []
-        list_allowed_methods = ['post']
-        object_class = dict
-        resource_name = 'test'
-        validation = CleanedDataFormValidation(form_class=TestInstall)
-
-    def obj_create(self, bundle, request=None, **kwargs):
-        receipt_cef.log(request, None, 'sign', 'Test receipt signing')
-        bundle.data = {'receipt': create_test_receipt(
-            bundle.data['root'], bundle.data['receipt_type'])}
-        return bundle
+    receipt_cef.log(request._request, None, 'sign', 'Test receipt signing')
+    data = {
+        'receipt': create_test_receipt(form.cleaned_data['root'],
+                                       form.cleaned_data['receipt_type'])
+    }
+    return Response(data, status=201)
 
 
 @cors_api_view(['POST'])
