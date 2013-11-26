@@ -13,8 +13,8 @@ from tastypie.resources import ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 
 import amo
-from amo.decorators import write
 from addons.models import Addon, Preview
+from amo.decorators import write
 from files.models import FileUpload
 
 from mkt.api.authentication import (OAuthAuthentication,
@@ -25,12 +25,14 @@ from mkt.api.authorization import (AllowAppOwner, AppOwnerAuthorization,
                                    OwnerAuthorization)
 from mkt.api.base import CORSResource, http_error, MarketplaceModelResource
 from mkt.api.forms import NewPackagedForm, PreviewArgsForm, PreviewJSONForm
-from mkt.submit.serializers import AppStatusSerializer
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
+from mkt.submit.serializers import AppStatusSerializer
 from mkt.webapps.models import Webapp
 
+
 log = commonware.log.getLogger('z.api')
+
 
 class HttpRequestTooBig(HttpResponse):
     status_code = 413

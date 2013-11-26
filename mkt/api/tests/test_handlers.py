@@ -148,7 +148,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(obj['resource_uri'],
             reverse('app-detail', kwargs={'pk': upsell.id}))
 
-
     def test_get(self):
         self.create_app()
         res = self.client.get(self.get_url)
@@ -212,7 +211,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         app = self.create_app()
         data = self.base_data()
         self.client.put(self.get_url, data=json.dumps(data))
-        res = self.client.get(reverse('app-privacy-policy-detail', args=[app.pk]))
+        res = self.client.get(reverse('app-privacy-policy-detail',
+                                      args=[app.pk]))
         eq_(res.json['privacy_policy'], data['privacy_policy'])
 
     def test_get_privacy_policy_slug(self):
@@ -267,8 +267,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def test_get_content_ratings(self):
         rating = ratingsbodies.CLASSIND_12
         app = self.create_app()
-        app.content_ratings.create(
-            ratings_body=ratingsbodies.CLASSIND.id, rating=rating.id)
+        app.content_ratings.create(ratings_body=ratingsbodies.CLASSIND.id,
+                                   rating=rating.id)
         app.save()
 
         res = self.client.get(self.get_url)
@@ -280,6 +280,49 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(cr['br']['body'], 'CLASSIND')
         eq_(cr['br']['rating'], rating.name)
         eq_(cr['br']['description'], unicode(rating.description))
+
+    def test_get_content_descriptors(self):
+        app = self.create_app()
+        app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
+
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+
+        eq_(data['content_ratings']['descriptors'],
+            [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
+             {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
+
+    def test_get_interactive_elements(self):
+        app = self.create_app()
+        app.set_interactives(['has_social_networking', 'has_shares_info'])
+
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+
+        eq_(data['content_ratings']['interactive_elements'],
+            [{'label': 'shares-info', 'name': 'Shares Info'},
+             {'label': 'social-networking', 'name': 'Social Networking'}])
+
+    def test_post_content_ratings(self):
+        """Test the @action on AppViewSet to attach the content ratings."""
+        app = self.create_app()
+        url = reverse('app-content-ratings', kwargs={'pk': app.pk})
+        res = self.client.post(url, data=json.dumps(
+            {'submission_id': 50, 'security_code': 'AB12CD3'}))
+        eq_(res.status_code, 204)
+        eq_(res.content, '')
+
+    def test_post_content_ratings_bad(self):
+        """Test the @action on AppViewSet to attach the content ratings."""
+        app = self.create_app()
+        url = reverse('app-content-ratings', kwargs={'pk': app.pk})
+        # Missing `security_code`.
+        res = self.client.post(url, data=json.dumps({'submission_id': 50}))
+        eq_(res.status_code, 400)
+        eq_(json.loads(res.content),
+            {'security_code': ['This field is required.']})
 
     def test_dehydrate(self):
         app = self.create_app()

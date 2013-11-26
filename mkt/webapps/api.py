@@ -1,31 +1,36 @@
-from decimal import Decimal
 import json
+from decimal import Decimal
 
+from django import forms as django_forms
 from django.core.urlresolvers import reverse
 from django.http import Http404
 
 import commonware
 from rest_framework import (exceptions, permissions, response, serializers,
-                            viewsets)
-from tower import ugettext_lazy as _lazy, ungettext as ngettext
+                            status, viewsets)
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from tower import ungettext as ngettext
 
+import amo
 from addons.models import (AddonCategory, AddonUpsell, AddonUser, Category,
                            Preview)
-import amo
 from amo.utils import no_translation
 from files.models import FileUpload, Platform
-from market.models import AddonPremium, Price
 from lib.metrics import record_action
+from market.models import AddonPremium, Price
 
-from mkt.api.authentication import (RestOAuthAuthentication,
-                                    RestSharedSecretAuthentication,
-                                    RestAnonymousAuthentication)
-from mkt.api.authorization import (AllowAppOwner, AllowReviewerReadOnly, AnyOf)
+from mkt.api.authentication import (RestAnonymousAuthentication,
+                                    RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
+from mkt.api.authorization import AllowAppOwner, AllowReviewerReadOnly, AnyOf
 from mkt.api.base import CORSMixin, get_url, SlugOrIdMixin
 from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.fields import (LargeTextField, ReverseChoiceField,
                             TranslationSerializerField)
+from mkt.constants.features import FeatureProfile
 from mkt.developers import tasks
+from mkt.developers.forms import IARCGetAppInfoForm
 from mkt.purchase.utils import payments_enabled
 from mkt.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS, get_region,
                          REGIONS_DICT)
@@ -33,9 +38,9 @@ from mkt.submit.forms import mark_for_rereview
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures,
                                 get_excluded_in, reverse_version, Webapp)
 
-from mkt.constants.features import FeatureProfile
 
 log = commonware.log.getLogger('z.api')
+
 
 class AppFeaturesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -90,6 +95,7 @@ class SemiSerializerMethodField(serializers.SerializerMethodField):
     def field_from_native(self, data, files, field_name, into):
         into[field_name] = data.get(field_name, None)
 
+
 class AppSerializer(serializers.ModelSerializer):
 
     app_type = serializers.ChoiceField(
@@ -113,7 +119,9 @@ class AppSerializer(serializers.ModelSerializer):
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
     name = TranslationSerializerField(required=False)
-    payment_account = serializers.HyperlinkedRelatedField(view_name='payment-account-detail', source='app_payment_account', required=False)
+    payment_account = serializers.HyperlinkedRelatedField(
+        view_name='payment-account-detail', source='app_payment_account',
+        required=False)
     payment_required = serializers.SerializerMethodField(
         'get_payment_required')
     premium_type = ReverseChoiceField(
@@ -223,8 +231,8 @@ class AppSerializer(serializers.ModelSerializer):
                     v in app.versions.all())
 
     def get_weekly_downloads(self, app):
-         if app.public_stats:
-             return app.weekly_downloads
+        if app.public_stats:
+            return app.weekly_downloads
 
     def validate_categories(self, attrs, source):
         if not attrs.get('categories'):
@@ -260,7 +268,6 @@ class AppSerializer(serializers.ModelSerializer):
         # Send app to re-review queue if public and new devices are added.
         if added_devices and obj.status in amo.WEBAPPS_APPROVED_STATUSES:
             mark_for_rereview(obj, added_devices, removed_devices)
-
 
     def save_categories(self, obj, categories):
         before = set(obj.categories.values_list('id', flat=True))
@@ -389,7 +396,8 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     serializer_class = AppSerializer
     slug_field = 'app_slug'
     cors_allowed_methods = ('get', 'put', 'post', 'delete')
-    permission_classes = [AnyOf(AllowAppOwner, AllowReviewerReadOnly, PublicAppReadOnly)]
+    permission_classes = [AnyOf(AllowAppOwner, AllowReviewerReadOnly,
+                                PublicAppReadOnly)]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -486,9 +494,22 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         serializer = self.get_pagination_serializer(page)
         return response.Response(serializer.data)
 
-
     def partial_update(self, request, *args, **kwargs):
         raise exceptions.MethodNotAllowed('PATCH')
+
+    @action()
+    def content_ratings(self, request, *args, **kwargs):
+        app = self.get_object()
+        form = IARCGetAppInfoForm(data=request.DATA)
+
+        if form.is_valid():
+            try:
+                form.save(app)
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            except django_forms.ValidationError:
+                pass
+
+        return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PrivacyPolicyViewSet(CORSMixin, SlugOrIdMixin, viewsets.GenericViewSet):
