@@ -1,22 +1,20 @@
 from django.conf.urls import include, patterns, url
 
 from rest_framework import routers
-from tastypie.api import Api
 
 from mkt.webpay.resources import (FailureNotificationView,
                                   PreparePayView, PricesViewSet,
-                                  ProductIconResource, sig_check,
+                                  ProductIconViewSet, sig_check,
                                   StatusPayView)
 
-api = Api(api_name='webpay')
-api.register(ProductIconResource())
 
-api_router = routers.SimpleRouter()
-api_router.register(r'prices', PricesViewSet)
+api = routers.SimpleRouter()
+api.register(r'prices', PricesViewSet)
+api.register(r'product/icon', ProductIconViewSet)
 
 urlpatterns = patterns('',
     url(r'^', include(api.urls)),
-    url(r'^webpay/', include(api_router.urls)),
+    url(r'^webpay/', include(api.urls)),
     url(r'^webpay/status/(?P<uuid>[^/]+)/', StatusPayView.as_view(),
         name='webpay-status'),
     url(r'^webpay/prepare/', PreparePayView.as_view(),

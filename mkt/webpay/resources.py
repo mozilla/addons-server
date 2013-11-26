@@ -13,9 +13,6 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from tastypie import fields, http
-from tastypie.exceptions import ImmediateHttpResponse
-from tastypie.validation import CleanedDataFormValidation
 
 import amo
 from amo.helpers import absolutify, urlparams
@@ -24,20 +21,18 @@ from amo.utils import send_mail_jinja
 from market.models import Price
 from stats.models import Contribution
 
-from mkt.api.authentication import (OptionalOAuthAuthentication,
-                                    RestAnonymousAuthentication,
+from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AllowOwner, AnonymousReadOnlyAuthorization,
-                                   GroupPermission, PermissionAuthorization)
-from mkt.api.base import (CORSResource, CORSMixin, MarketplaceModelResource,
-                          MarketplaceResource, MarketplaceView)
+from mkt.api.authorization import (AllowOwner, AllowReadOnly, AnyOf,
+                                   GroupPermission)
+from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
 from mkt.purchase.utils import payments_enabled
-from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
+from mkt.webpay.forms import FailureForm, PrepareForm
 from mkt.webpay.models import ProductIcon
-from mkt.webpay.serializers import PriceSerializer
+from mkt.webpay.serializers import PriceSerializer, ProductIconSerializer
 
 from . import tasks
 
@@ -148,37 +143,30 @@ class FailureNotificationView(MarketplaceView, GenericAPIView):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
-class ProductIconResource(CORSResource, MarketplaceModelResource):
-    url = fields.CharField(readonly=True)
+class ProductIconViewSet(CORSMixin, MarketplaceView, ListModelMixin,
+                         RetrieveModelMixin, GenericViewSet):
+    authentication_classes = [RestOAuthAuthentication,
+                               RestSharedSecretAuthentication,
+                               RestAnonymousAuthentication]
+    permission_classes = [AnyOf(AllowReadOnly,
+                                GroupPermission('ProductIcon', 'Create'))]
+    queryset = ProductIcon.objects.all()
+    serializer_class = ProductIconSerializer
+    cors_allowed_methods = ['get', 'post']
+    filter_fields = ('ext_url', 'ext_size', 'size')
 
-    class Meta(MarketplaceResource.Meta):
-        authentication = OptionalOAuthAuthentication()
-        authorization = AnonymousReadOnlyAuthorization(
-                authorizer=PermissionAuthorization('ProductIcon', 'Create'))
-        detail_allowed_methods = ['get']
-        fields = ['ext_url', 'ext_size', 'size']
-        filtering = {
-            'ext_url': 'exact',
-            'ext_size': 'exact',
-            'size': 'exact',
-        }
-        list_allowed_methods = ['get', 'post']
-        queryset = ProductIcon.objects.filter()
-        resource_name = 'product/icon'
-        validation = CleanedDataFormValidation(form_class=ProductIconForm)
-
-    def dehydrate_url(self, bundle):
-        return bundle.obj.url()
-
-    def obj_create(self, bundle, request, **kwargs):
-        log.info('Resizing product icon %s @ %s to %s for webpay'
-                 % (bundle.data['ext_url'], bundle.data['ext_size'],
-                    bundle.data['size']))
-        tasks.fetch_product_icon.delay(bundle.data['ext_url'],
-                                       bundle.data['ext_size'],
-                                       bundle.data['size'])
-        # Tell the client that deferred processing will create an object.
-        raise ImmediateHttpResponse(response=http.HttpAccepted())
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.DATA)
+        if serializer.is_valid():
+            log.info('Resizing product icon %s @ %s to %s for webpay' %
+                  (serializer.data['ext_url'],
+                   serializer.data['ext_size'],
+                   serializer.data['size']))
+            tasks.fetch_product_icon.delay(serializer.data['ext_url'],
+                                           serializer.data['ext_size'],
+                                           serializer.data['size'])
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])

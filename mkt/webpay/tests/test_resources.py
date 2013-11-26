@@ -16,8 +16,7 @@ from constants.payments import PROVIDER_BANGO
 from market.models import Price, PriceCurrency
 from users.models import UserProfile, GroupUser
 
-from mkt.api.base import get_url, list_url
-from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import regions
 from mkt.purchase.tests.utils import PurchaseTest
 from mkt.site.fixtures import fixture
@@ -281,12 +280,12 @@ class TestNotification(RestOAuth):
         eq_(res.status_code, 404)
 
 
-class TestProductIconResource(BaseOAuth):
+class TestProductIconResource(RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
-        super(TestProductIconResource, self).setUp(api_name='webpay')
-        self.list_url = list_url('product/icon')
+        super(TestProductIconResource, self).setUp()
+        self.list_url = reverse('producticon-list')
         p = patch('mkt.webpay.resources.tasks.fetch_product_icon')
         self.fetch_product_icon = p.start()
         self.addCleanup(p.stop)
@@ -317,25 +316,43 @@ class TestProductIconResource(BaseOAuth):
 
     def test_post_without_perms(self):
         res = self.post(self.data, with_perms=False)
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
 
-    def test_anon_get(self):
-        data = {
+    def test_anon_get_filtering(self):
+        icon = ProductIcon.objects.create(**{
             'ext_size': 128,
             'ext_url': 'http://someappnoreally.com/icons/icon_128.png',
             'size': 64,
             'format': 'png'
-        }
-        icon = ProductIcon.objects.create(**data)
-
-        # We don't need to filter by these:
-        data.pop('size')
-        data.pop('format')
-        res = self.anon.get(self.list_url, data=data)
+        })
+        extra_icon = ProductIcon.objects.create(**{
+            'ext_size': 256,
+            'ext_url': 'http://someappnoreally.com/icons/icon_256.png',
+            'size': 64,
+            'format': 'png'
+        })
+        res = self.anon.get(self.list_url)
         eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 2)
 
-        ob = json.loads(res.content)['objects'][0]
-        eq_(ob['url'], icon.url())
+        res = self.anon.get(self.list_url, data={'ext_size': 128})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['url'], icon.url())
+
+        res = self.anon.get(self.list_url, data={'size': 64})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 2)
+
+        res = self.anon.get(self.list_url,
+            data={'ext_url': 'http://someappnoreally.com/icons/icon_256.png'})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['url'], extra_icon.url())
 
 
 class TestSigCheck(TestCase):
