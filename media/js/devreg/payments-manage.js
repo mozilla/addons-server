@@ -64,7 +64,7 @@ define('payments-manage', ['payments'], function(payments) {
             }));
 
             // Plop in text of agreement.
-            $('.agreement-text').text(response.text);
+            $('.agreement-text').html(response.text);
         });
     }
 
