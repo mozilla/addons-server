@@ -2,6 +2,7 @@ import json
 from decimal import Decimal
 import jwt
 
+from django.conf import settings
 from django.core import mail
 from django.http import HttpRequest
 
@@ -30,43 +31,59 @@ class TestPrepare(PurchaseTest, RestOAuth):
 
     def setUp(self):
         RestOAuth.setUp(self)  # Avoid calling PurchaseTest.setUp().
+        self.user = UserProfile.objects.get(pk=2519)
         self.create_switch('marketplace')
         self.list_url = reverse('webpay-prepare')
-        self.user = UserProfile.objects.get(pk=2519)
+        self.setup_base()
+        self.setup_package()
+
+    def _post(self, client=None, extra_headers=None):
+        if client is None:
+            client = self.client
+        if extra_headers is None:
+            extra_headers = {}
+        return client.post(self.list_url, data=json.dumps({'app': 337141}),
+                           **extra_headers)
 
     def test_allowed(self):
         self._allowed_verbs(self.list_url, ['post'])
 
     def test_anon(self):
-        res = self.anon.post(self.list_url, data=json.dumps({'app': 337141}))
+        res = self._post(self.anon)
         eq_(res.status_code, 403)
+        eq_(res.json,
+            {'detail': 'Authentication credentials were not provided.'})
 
-    def test_good(self):
-        self.setup_base()
-        self.setup_package()
-        res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
+    def test_good(self, client=None, extra_headers=None):
+        res = self._post(client=client, extra_headers=extra_headers)
+        eq_(res.status_code, 201, res.content)
         contribution = Contribution.objects.get()
-        eq_(res.status_code, 201)
         eq_(res.json['contribStatusURL'],
             reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
         ok_(res.json['webpayJWT'])
 
+    @patch.object(settings, 'SECRET_KEY', 'gubbish')
+    def test_good_shared_secret(self):
+        # Like test_good, except we do shared secret auth manually.
+        extra_headers = {
+            'HTTP_AUTHORIZATION': 'mkt-shared-secret '
+                                  'cfinke@m.com,56b6f1a3dd735d962c56'
+                                  'ce7d8f46e02ec1d4748d2c00c407d75f0969d08bb'
+                                  '9c68c31b3371aa8130317815c89e5072e31bb94b4'
+                                  '121c5c165f3515838d4d6c60c4,165d631d3c3045'
+                                  '458b4516242dad7ae'
+        }
+        self.user.update(email='cfinke@m.com')
+        self.test_good(client=self.anon, extra_headers=extra_headers)
+
     @patch('mkt.webapps.models.Webapp.has_purchased')
     def test_already_purchased(self, has_purchased):
         has_purchased.return_value = True
-        self.setup_base()
-        self.setup_package()
-        res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
+        res = self._post()
         eq_(res.status_code, 409)
         eq_(res.json, {"reason": "Already purchased app."})
 
-    def _post(self):
-        return self.client.post(self.list_url,
-                                data=json.dumps({'app': 337141}))
-
     def test_waffle_fallback(self):
-        self.setup_base()
-        self.setup_package()
         flag = self.create_flag('override-app-purchase', everyone=None)
         flag.users.add(self.user.user)
         with self.settings(PURCHASE_LIMITED=True):

@@ -221,8 +221,10 @@ class RestSharedSecretAuthentication(BaseAuthentication,
     """SharedSecretAuthentication suitable for DRF."""
 
     def authenticate(self, request):
-        result = self.is_authenticated(request)
-
+        result = self.is_authenticated(request._request)
+        user = getattr(request._request, 'user', None)
+        if user:
+            request._user = user
         if not (result and request.user):
             return None
         return (request.user, None)
