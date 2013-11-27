@@ -19,7 +19,7 @@
              href="{{ shared_url('reviews.detail', addon, review.id) }}">{{ _('permalink') }}</a>
           {% if waffle.switch('reviews-translate') %}
             &middot;
-            <a class="translate"
+            <a class="translate" rel="nofollow" target="_blank"
                href="{{ shared_url('reviews.translate', addon, review.id, LANG) }}">{{ _('translate') }}</a>
           {% endif %}
         </p>
