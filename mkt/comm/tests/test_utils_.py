@@ -2,6 +2,7 @@ import os.path
 
 from django.conf import settings
 
+import mock
 from nose.tools import eq_
 
 import amo
@@ -133,6 +134,7 @@ class TestCreateCommNote(TestCase):
         eq_(reply.read_by_users.count(), 2)
         eq_(last_word.read_by_users.count(), 1)
 
+    @mock.patch('mkt.comm.utils.post_create_comm_note', new=mock.Mock)
     def test_custom_perms(self):
         thread, note = create_comm_note(
             self.app, self.app.current_version, self.user, 'escalatedquickly',
