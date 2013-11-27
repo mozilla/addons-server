@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-15 10:11+0000\n"
+"PO-Revision-Date: 2013-11-27 14:30+0000\n"
 "Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1384510266.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1385562644.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -103,13 +103,15 @@ msgid "Finished validating {0}"
 msgstr "اعتبار سنجی {0} پایان یافت"
 
 #: media/js/common/upload-addon.js:307
+#, fuzzy
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "تغییرات ذخیره شد"
 
 #: media/js/common/upload-addon.js:312
+#, fuzzy
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "تغییرات ذخیره شد"
 
 #: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
@@ -144,13 +146,15 @@ msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] ""
 
 #: media/js/common/upload-packaged-app.js:298
+#, fuzzy
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "تغییرات ذخیره شد"
 
 #: media/js/common/upload-packaged-app.js:303
+#, fuzzy
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "تغییرات ذخیره شد"
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
@@ -159,9 +163,10 @@ msgstr[0] ""
 
 #: media/js/devreg/devhub.js:200
 #: media/js/zamboni/devhub.js:183
+#, fuzzy
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "تغییرات ذخیره شد"
 
 #: media/js/devreg/devhub.js:205
 #: media/js/zamboni/devhub.js:188
@@ -174,8 +179,9 @@ msgid "Changes Saved"
 msgstr "تغییرات ذخیره شد"
 
 #: media/js/devreg/devhub.js:435
+#, fuzzy
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "ایمیل یک نویسنده جدید را وارد کنید"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
@@ -189,7 +195,7 @@ msgstr "هنگام آپلود فایل شما خطایی رخ داد."
 #: media/js/devreg/devhub.js:886
 #: media/js/zamboni/devhub.js:925
 msgid "Learn more"
-msgstr ""
+msgstr "بیشتر بدانید"
 
 #: media/js/devreg/devhub.js:890
 #: media/js/zamboni/devhub.js:929
@@ -203,7 +209,7 @@ msgstr ""
 
 #: media/js/devreg/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "بیشتر..."
 
 #: media/js/devreg/expandable.js:18
 msgid "less..."
@@ -318,8 +324,9 @@ msgstr ""
 
 #: media/js/devreg/payments-manage.js:59
 #: media/js/devreg/payments-manage.js:108
+#, fuzzy
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "اشکالی در تماس با سرویس دهنده به وجود آمده است."
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
@@ -504,7 +511,7 @@ msgstr ""
 
 #: media/js/impala/stats/chart.js:272
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} مجموعه"
 
 #: media/js/impala/stats/chart.js:273
 #: media/js/mkt/stats/chart.js:328
@@ -556,7 +563,7 @@ msgstr ""
 #: media/js/impala/stats/chart.js:447
 #: media/js/mkt/stats/chart.js:395
 msgid "More Info..."
-msgstr ""
+msgstr "اطّلاعات بیشتر..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/impala/stats/chart.js:451
@@ -566,7 +573,7 @@ msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
-msgstr ""
+msgstr "مجوعه‌ها ایجاد شدند"
 
 #: media/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
@@ -643,7 +650,7 @@ msgstr ""
 #: media/js/mkt/stats/csv_keys.js:63
 #: media/js/mkt/stats/csv_keys.js:64
 msgid "Homepage Featured"
-msgstr ""
+msgstr "صفحه خانگی ویژه"
 
 #: media/js/impala/stats/csv_keys.js:50
 #: media/js/impala/stats/csv_keys.js:51
@@ -719,7 +726,7 @@ msgstr ""
 #: media/js/impala/stats/csv_keys.js:70
 #: media/js/mkt/stats/csv_keys.js:85
 msgid "Collections"
-msgstr ""
+msgstr "مجوعه‌ها"
 
 #: media/js/impala/stats/csv_keys.js:71
 #: media/js/impala/stats/csv_keys.js:72
@@ -812,7 +819,7 @@ msgstr ""
 #: media/js/impala/stats/csv_keys.js:99
 #: media/js/mkt/stats/csv_keys.js:125
 msgid "Average Contribution"
-msgstr ""
+msgstr "میانگین مشارکت"
 
 #: media/js/impala/stats/csv_keys.js:108
 #: media/js/mkt/stats/csv_keys.js:133
@@ -1168,7 +1175,7 @@ msgstr ""
 
 #: media/js/mkt/consumer_init.js:24
 msgid "Click here to view the mobile Marketplace!"
-msgstr ""
+msgstr "برای نمایش بازار برنامه‌های تلفن همراه اینجا کلیک کنید!"
 
 #: media/js/mkt/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
@@ -1191,10 +1198,12 @@ msgid ""
 "Persona login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
+"ورود به سیستم Persona شکت خورد. شاید شما یک حساب کاربری تحت این آدرس پست "
+"الکترونیکی ندارید؟"
 
 #: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "ورود به سیستم Persona شکست خورد. با یک خطای سرویس دهنده مواجه شد."
 
 #: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
@@ -1242,7 +1251,7 @@ msgstr ""
 
 #: media/js/mkt/reviewers.js:105
 msgid "More Information Requested"
-msgstr ""
+msgstr "اطّلاعات بیشتر درخواست شده است"
 
 #: media/js/mkt/reviewers.js:108
 msgid "Contains Editor Comment"
@@ -1550,7 +1559,7 @@ msgstr "افزودن به {0}"
 
 #: media/js/zamboni/buttons.js:113
 msgid "Download Now"
-msgstr ""
+msgstr "هم‌اکنون بارگیری کن"
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -1590,7 +1599,7 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:382
 msgid "View other versions"
-msgstr ""
+msgstr "نمایش سایر نسخه‌ها"
 
 #: media/js/zamboni/buttons.js:597
 #: media/js/zamboni/mobile/buttons.js:39
@@ -1825,8 +1834,9 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:79
 #: media/js/zamboni/mobile/buttons.js:80
+#, fuzzy
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "برای {0} {1} موجود نیست"
 
 #: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"

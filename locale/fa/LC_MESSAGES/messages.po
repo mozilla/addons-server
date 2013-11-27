@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-11-16 15:14+0000\n"
+"PO-Revision-Date: 2013-11-27 14:30+0000\n"
 "Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: Persian <LL@li.org>\n"
 "Language: fa\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384614840.0\n"
+"X-POOTLE-MTIME: 1385562650.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
-msgstr ""
+msgstr "هم‌اکنون بارگیری کن"
 
 #: apps/addons/buttons.py:205
 #: apps/addons/templates/addons/impala/details.html:88
@@ -52,7 +52,7 @@ msgstr ""
 #: apps/addons/buttons.py:236
 msgctxt "install_button"
 msgid "Featured"
-msgstr ""
+msgstr "ویژه"
 
 #: apps/addons/buttons.py:241
 msgctxt "install_button"
@@ -182,7 +182,7 @@ msgstr ""
 #: apps/browse/templates/browse/impala/category_landing.html:24
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
-msgstr ""
+msgstr "ویژه"
 
 #: apps/addons/models.py:291
 #, fuzzy
@@ -226,7 +226,7 @@ msgstr "مشارکت در {0}"
 
 #: apps/addons/views.py:608
 msgid "Abuse reported."
-msgstr ""
+msgstr "سوء استفاده گزارش شد."
 
 #: apps/addons/widgets.py:48
 msgid "My add-on doesn't fit into any of the categories"
@@ -252,12 +252,12 @@ msgstr ""
 #: apps/addons/templates/addons/button.html:35
 #: apps/addons/templates/addons/impala/button.html:21
 msgid "Added to Mobile"
-msgstr ""
+msgstr "به تلفن همراه افزوده شد"
 
 #: apps/addons/templates/addons/button.html:37
 #: apps/addons/templates/addons/impala/button.html:23
 msgid "Add to Mobile"
-msgstr ""
+msgstr "افزودن به تلفن همراه"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: apps/addons/templates/addons/button.html:68
@@ -380,7 +380,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/collections_teaser.html:63
 msgid "Learn more about this add-on"
-msgstr "دربارهٔ این افزودنی بیشتر بدانید"
+msgstr "درباره‌ی این افزودنی بیشتر بدانید"
 
 # {0} is the HTML collection name link.
 #: apps/addons/templates/addons/collections_teaser.html:73
@@ -655,7 +655,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:106
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
 msgid "Abuse Reports"
-msgstr ""
+msgstr "گزارش‌های سوء استفاده"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116
@@ -695,7 +695,7 @@ msgstr ""
 #: apps/addons/templates/addons/details_box.html:166
 #: apps/addons/templates/addons/details_box.html:226
 msgid "More about this add-on"
-msgstr "اطلاعات بیشتر دربارهٔ این افزودنی"
+msgstr "اطلاعات بیشتر درباره‌ی این افزودنی"
 
 #: apps/addons/templates/addons/details_box.html:175
 msgid "Image Gallery"
@@ -812,7 +812,7 @@ msgstr "افزودنی‌های {0}"
 #: apps/addons/templates/addons/home.html:51
 #: apps/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "ضمیمه‌های ویژه"
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
@@ -828,7 +828,7 @@ msgstr ""
 #: apps/browse/views.py:293
 #: apps/browse/views.py:472
 msgid "Most Popular"
-msgstr ""
+msgstr "محبوب‌ترین"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
@@ -840,7 +840,7 @@ msgstr ""
 #: apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:38
 msgid "See all »"
-msgstr ""
+msgstr "مشاهده همه »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
@@ -850,13 +850,13 @@ msgstr ""
 #: apps/browse/templates/browse/personas/category_landing.html:61
 #: apps/discovery/templates/discovery/pane.html:97
 msgid "Featured Themes"
-msgstr ""
+msgstr "مضامین ویژه"
 
 #: apps/addons/templates/addons/home.html:77
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:4
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
-msgstr ""
+msgstr "مجموعه‌های ویژه"
 
 #: apps/addons/templates/addons/listing_header.html:3
 #: apps/addons/templates/addons/impala/listing/sorter.html:2
@@ -1016,7 +1016,7 @@ msgstr ""
 #: apps/addons/templates/addons/persona_detail.html:41
 #: apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "مشاهده‌ی همه‌ی {0} مضمون"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -1025,7 +1025,7 @@ msgstr ""
 #: apps/addons/templates/addons/persona_detail.html:54
 #: apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "مشاهده‌ی همه‌ی مضمون‌های این هنرمند"
 
 #: apps/addons/templates/addons/persona_detail.html:73
 #: apps/addons/templates/addons/mobile/home.html:40
@@ -1161,7 +1161,7 @@ msgstr ""
 #: apps/addons/templates/addons/popups.html:21
 #: apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "درباره‌ی فایرفاکس بیشتر بدانید"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
@@ -1255,7 +1255,7 @@ msgstr ""
 #: apps/addons/templates/addons/popups.html:141
 #: apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "نمایش سایر نسخه‌ها"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
@@ -1282,7 +1282,7 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
-msgstr ""
+msgstr "گزارش سوء استفاده"
 
 #: apps/addons/templates/addons/report_abuse.html:19
 msgid ""
@@ -1341,7 +1341,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/report_abuse_full.html:3
 msgid "Report abuse for {0}"
-msgstr ""
+msgstr "گزارش سوء استفاده برای {0}"
 
 #: apps/addons/templates/addons/review_add_box.html:4
 #: apps/addons/templates/addons/impala/review_add_box.html:6
@@ -1507,11 +1507,11 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr ""
+msgstr "میانگین"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr ""
+msgstr "یک بررسی بنویسید"
 
 #: apps/addons/templates/addons/impala/details-more.html:38
 msgid "Related Categories"
@@ -1527,7 +1527,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details-more.html:77
 msgid "Part of these Collections"
-msgstr ""
+msgstr "بخشی از این مجموعه‌ها"
 
 #: apps/addons/templates/addons/impala/details-more.html:87
 msgid "Other apps by %(author)s"
@@ -1617,11 +1617,11 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:232
 msgid "About this App"
-msgstr ""
+msgstr "درباره‌ی این برنامه"
 
 #: apps/addons/templates/addons/impala/details.html:234
 msgid "About this Add-on"
-msgstr ""
+msgstr "درباره‌ی این افزودنی"
 
 #: apps/addons/templates/addons/impala/details.html:251
 #, fuzzy
@@ -1630,7 +1630,7 @@ msgstr "Developer Comments"
 
 #: apps/addons/templates/addons/impala/details.html:261
 msgid "Version Information"
-msgstr ""
+msgstr "اطّلاعات نسخه"
 
 #: apps/addons/templates/addons/impala/details.html:268
 msgid "See complete version history"
@@ -1702,7 +1702,7 @@ msgstr "گام بعدی برای {0}"
 #: apps/addons/templates/addons/impala/developers.html:85
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
+msgstr[0] "درباره‌ی توسعه دهنده"
 
 #: apps/addons/templates/addons/impala/developers.html:92
 #: apps/users/templates/users/edit.html:118
@@ -1782,7 +1782,6 @@ msgstr ""
 
 #: apps/addons/templates/addons/includes/collection_add_widget.html:7
 #: apps/addons/templates/addons/includes/collection_add_widget.html:10
-#, fuzzy
 msgid "Add to collection"
 msgstr "افزودن به مجموعه"
 
@@ -1968,7 +1967,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/home.html:49
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "نمایش همه‌ی افزودنی‌های ویژه"
 
 #: apps/addons/templates/addons/mobile/home.html:55
 msgid "View all Popular add-ons"
@@ -2038,7 +2037,7 @@ msgstr ""
 #: apps/users/templates/users/profile.html:86
 #: apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
-msgstr "افزودنی‌های من"
+msgstr "مجوعه‌های من"
 
 #: apps/amo/context_processors.py:78
 #: apps/discovery/templates/discovery/pane_account.html:10
@@ -2083,7 +2082,7 @@ msgstr ""
 #: templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr ""
+msgstr "قطب توسعه دهنده"
 
 #: apps/amo/context_processors.py:102
 #: apps/editors/helpers.py:73
@@ -2129,7 +2128,6 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3
 #: apps/stats/templates/stats/stats.html:77
 #: templates/menu_links.html:12
-#, fuzzy
 msgid "Collections"
 msgstr "مجموعه‌ها"
 
@@ -2328,7 +2326,7 @@ msgstr ""
 
 #: apps/amo/log.py:255
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} به مجموعه‌ی {collection} افزوده شد."
 
 #: apps/amo/log.py:261
 msgid "{addon} removed from {collection}."
@@ -2341,7 +2339,7 @@ msgstr ""
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} در {0} ویژه شده است."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
@@ -2780,7 +2778,7 @@ msgstr "بالاترین رتبه"
 
 #: apps/amo/templates/amo/side_nav.html:23
 msgid "Explore"
-msgstr ""
+msgstr "مرور"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23
@@ -2809,14 +2807,14 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
-msgstr ""
+msgstr "مجموعه‌هایی که من ساخته‌ام"
 
 #: apps/amo/templates/amo/site_nav.html:68
 #: apps/bandwagon/templates/bandwagon/user_listing.html:4
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "مجموعه‌هایی که من دنبال می‌کنم"
 
 #: apps/amo/templates/amo/site_nav.html:71
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
@@ -2827,7 +2825,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "افزودنی‌های برای تلفن همراه"
 
 #: apps/amo/templates/amo/site_nav.html:84
 #: apps/browse/feeds.py:207
@@ -3015,13 +3013,15 @@ msgstr ""
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
 msgid "Collections :: %s"
-msgstr ""
+msgstr "مجموعه‌ها :: %s"
 
 #: apps/bandwagon/feeds.py:50
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:145
 msgid ""
 "Collections are groups of related add-ons that anyone can create and share."
 msgstr ""
+"مجموعه‌ها گروه‌هایی از افزودنی‌های مرتبط هستند که هرکس میتواند ایجاد کند و "
+"به اشتراک بگذارد."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:70
@@ -3261,7 +3261,7 @@ msgstr "ایجاد مجموعه"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:68
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "افزودنی‌های همگام شده با فایرفاکس تلفن همراه من"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:77
 msgid "Make this Collection Private"
@@ -3273,7 +3273,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Learn about collections"
-msgstr ""
+msgstr "درباره‌ی مجموعه‌ها بیشتر بدانید"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:93
 msgid "More Options:"
@@ -3318,7 +3318,7 @@ msgstr "مجموعه‌ها چیستند؟"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:149
 msgid "Explore Collections"
-msgstr ""
+msgstr "مرور مجموعه‌ها"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:154
 msgid "Common Tags"
@@ -3330,7 +3330,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:176
 msgid "See all collections by this user"
-msgstr ""
+msgstr "مشاهده‌ی همه‌ی مجموعه‌های این کاربر"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:182
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
@@ -3375,11 +3375,11 @@ msgstr "مجموعه‌های محبوب"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:6
 msgid "Highest Rated Collections"
-msgstr ""
+msgstr "بالاترین رتبه‌ی مجموعه‌ها"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:7
 msgid "Recently Added Collections"
-msgstr ""
+msgstr "مجموعه‌های اخیراً افزوده شده"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:32
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
@@ -3595,9 +3595,8 @@ msgid "Add Contributor"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:60
-#, fuzzy
 msgid "Contributor"
-msgstr "مشارکت"
+msgstr "مشارکت کننده"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
@@ -3630,9 +3629,8 @@ msgstr ""
 #: mkt/submit/templates/submit/next_steps.html:118
 #: mkt/submit/templates/submit/payments-upsell.html:36
 #: mkt/submit/templates/submit/payments.html:31
-#, fuzzy
 msgid "Continue"
-msgstr "مشارکت"
+msgstr "ادامه"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:84
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
@@ -4054,7 +4052,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "محبوب‌ترین ضمیمه‌ها"
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
@@ -4087,7 +4085,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "محبوب‌ترین مضمون‌های کامل"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
@@ -4201,7 +4199,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/category_landing.html:7
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:6
 msgid "View All Most Popular"
-msgstr ""
+msgstr "نمایش همه‌ی محبوب‌ترین‌ها"
 
 #: apps/browse/templates/browse/personas/category_landing.html:8
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:7
@@ -4237,15 +4235,15 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
-msgstr ""
+msgstr "هیچ مضمونی یافت نشد"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "مضمون‌های آسان برای استفاده برای فایرفاکس"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
-msgstr ""
+msgstr "مضمون‌های بیشتر"
 
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
@@ -4442,7 +4440,7 @@ msgstr "سان‌برد"
 #: apps/constants/applications.py:89
 #: mkt/search/forms.py:48
 msgid "Mobile"
-msgstr ""
+msgstr "تلفن همراه"
 
 #: apps/constants/applications.py:104
 msgid "Firefox for Android"
@@ -4469,7 +4467,7 @@ msgstr ""
 #: mkt/constants/platforms.py:33
 #: mkt/constants/platforms.py:45
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "فایرفاکس تلفن همراه"
 
 #: apps/constants/applications.py:168
 #: mkt/constants/platforms.py:34
@@ -5697,7 +5695,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/builder.html:99
 #: mkt/developers/templates/developers/builder.html:99
 msgid "Great Developer Features"
-msgstr ""
+msgstr "ویژگی‌های بزرگ توسعه دهنده"
 
 #: apps/devhub/templates/devhub/builder.html:101
 #: mkt/developers/templates/developers/builder.html:101
@@ -5927,7 +5925,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:173
 msgid "Developer Forums"
-msgstr ""
+msgstr "انجمن‌های توسعه دهنده"
 
 #: apps/devhub/templates/devhub/index.html:175
 msgid ""
@@ -6041,7 +6039,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/nav.html:100
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "انجمن افزودنی‌ها"
 
 #: apps/devhub/templates/devhub/package_addon.html:17
 msgid ""
@@ -6092,9 +6090,8 @@ msgid "Primary Author"
 msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon.html:50
-#, fuzzy
 msgid "Contributors"
-msgstr "مشارکت‌ها"
+msgstr "مشارکت کنندگان"
 
 #: apps/devhub/templates/devhub/package_addon.html:54
 msgid "Where will your add-on run?"
@@ -8094,7 +8091,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
 msgid "How to Create Themes"
-msgstr ""
+msgstr "چگونه مضمون‌ها را ایجاد کنید"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
 msgid ""
@@ -8378,7 +8375,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies.html:27
 #: apps/devhub/templates/devhub/docs/policies.html:115
 msgid "Contacting Us"
-msgstr ""
+msgstr "تماس گرفتن با ما"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:12
 msgid ""
@@ -11354,11 +11351,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:137
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "خرید کردن آسان شد"
 
 #: apps/discovery/modules.py:138
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "ذخیره‌ی موارد مورد علاقه‌تان را به راحتی مرورگرتان."
 
 #: apps/discovery/modules.py:146
 msgid "Build the perfect website"
@@ -11507,11 +11504,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:329
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "مرور بدون نگرانی"
 
 #: apps/discovery/modules.py:330
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "حفاظت از حریم خصوصی برخط شما با افزودنی‌های در این مجموعه."
 
 #: apps/discovery/modules.py:339
 msgid ""
@@ -14811,7 +14808,7 @@ msgstr "هیچ نتیجه‌ای پیدا نشد."
 
 #: apps/reviews/templates/reviews/review_list.html:64
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>میانگین</strong> (%(total)s)"
 
 #: apps/reviews/templates/reviews/review_list.html:79
 msgid "Write a New Review"
@@ -14872,15 +14869,15 @@ msgstr[0] ""
 
 #: apps/search/forms.py:12
 msgid "Most popular this week"
-msgstr "محبوب‌ترین افزودنی‌ها در این هفته"
+msgstr "محبوب‌ترین این هفته"
 
 #: apps/search/forms.py:13
 msgid "Most popular this month"
-msgstr "محبوب‌ترین افزودنی‌ها در ماه جاری"
+msgstr "محبوب‌ترین‌های این ماه"
 
 #: apps/search/forms.py:14
 msgid "Most popular all time"
-msgstr "محبوب‌ترین افزودنی‌ها در هر زمانی"
+msgstr "محبوب‌ترین همه‌ی زمان‌ها"
 
 #: apps/search/forms.py:24
 msgid "search for add-ons"
@@ -16236,7 +16233,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:75
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "محبوب‌ترین مضمون‌های من"
 
 #: apps/users/templates/users/profile.html:77
 msgid "Themes I've created"
@@ -22462,6 +22459,8 @@ msgid ""
 "The world's most popular brands and all your favorite apps are building "
 "their experience on Firefox Marketplace."
 msgstr ""
+"محبوب‌ترین برندهای جهان و همه‌ی برنامه‌های مورد علاقه‌ی شما در حال تولید "
+"تجربه‌شان روی بازار برنامه‌های فایرفاکس هستند."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid ""
@@ -24108,7 +24107,7 @@ msgstr "اطلاعات بیشتر دربارهٔ این افزودنی"
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:170
 msgid "more..."
-msgstr ""
+msgstr "بیشتر..."
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:34
 msgid "%(stars)s by %(user)s on %(date)s (%(locale)s)"
@@ -25038,11 +25037,11 @@ msgstr ""
 
 #: templates/menu_links.html:22
 msgid "About Firefox"
-msgstr ""
+msgstr "درباره فایرفاکس"
 
 #: templates/menu_links.html:23
 msgid "Join Mozilla"
-msgstr ""
+msgstr "پیوستن به Mozilla"
 
 #: templates/menu_links.html:24
 msgid "Participate"
@@ -25058,7 +25057,7 @@ msgstr ""
 
 #: templates/menu_links.html:28
 msgid "Careers"
-msgstr ""
+msgstr "مشاغل"
 
 #: templates/menu_links.html:29
 msgid "Partnerships"
