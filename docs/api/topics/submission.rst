@@ -219,7 +219,7 @@ Screenshots or videos
 
 .. _screenshot-post-label:
 
-.. http:post:: /api/v1/apps/preview/?app=(int:app_id)
+.. http:post:: /api/v1/apps/app/(int:id|string:app_slug)/preview/
 
     **Request**
 

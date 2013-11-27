@@ -13,8 +13,7 @@ from rest_framework.response import Response
 from tower import ungettext as ngettext
 
 import amo
-from addons.models import (AddonCategory, AddonUpsell, AddonUser, Category,
-                           Preview)
+from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from amo.utils import no_translation
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
@@ -24,7 +23,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowAppOwner, AllowReviewerReadOnly, AnyOf
-from mkt.api.base import CORSMixin, get_url, SlugOrIdMixin
+from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.fields import (LargeTextField, ReverseChoiceField,
                             TranslationSerializerField)
@@ -34,7 +33,9 @@ from mkt.developers.forms import IARCGetAppInfoForm
 from mkt.purchase.utils import payments_enabled
 from mkt.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS, get_region,
                          REGIONS_DICT)
+from mkt.submit.api import PreviewViewSet
 from mkt.submit.forms import mark_for_rereview
+from mkt.submit.serializers import PreviewSerializer
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures,
                                 get_excluded_in, reverse_version, Webapp)
 
@@ -60,24 +61,6 @@ def http_error(errorclass, reason, extra_data=None):
         data.update(extra_data)
     r.content = json.dumps(data)
     return response.Response(r)
-
-
-class PreviewSerializer(serializers.ModelSerializer):
-    filetype = serializers.CharField()
-    id = serializers.IntegerField(source='pk')
-    image_url = serializers.CharField()
-    resource_uri = serializers.SerializerMethodField('get_resource_uri')
-    thumbnail_url = serializers.CharField()
-
-    class Meta:
-        model = Preview
-        fields = ['filetype', 'image_url', 'id', 'resource_uri',
-                  'thumbnail_url']
-
-    def get_resource_uri(self, request):
-        if self.object is None:
-            return None
-        return get_url('preview', pk=self.object.pk)
 
 
 class RegionSerializer(serializers.Serializer):
@@ -510,6 +493,13 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
                 pass
 
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(methods=['POST'],
+            cors_allowed_methods=PreviewViewSet.cors_allowed_methods)
+    def preview_list(self, request, *args, **kwargs):
+        kwargs['app'] = self.get_object()
+        view = PreviewViewSet.as_view({'post': '_create'})
+        return view(request, *args, **kwargs)
 
 
 class PrivacyPolicyViewSet(CORSMixin, SlugOrIdMixin, viewsets.GenericViewSet):
