@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils import translation
@@ -184,8 +186,13 @@ def dehydrate_content_rating(rating):
     """
     {body.id, rating.id} to translated {rating labels, names, descriptions}.
     """
-    body = mkt.ratingsbodies.dehydrate_ratings_body(
-        mkt.ratingsbodies.RATINGS_BODIES[int(rating['body'])])
+    try:
+        body = mkt.ratingsbodies.dehydrate_ratings_body(
+            mkt.ratingsbodies.RATINGS_BODIES[int(rating['body'])])
+    except TypeError:
+        # Legacy ES format (bug 943371).
+        return {}
+
     rating = mkt.ratingsbodies.dehydrate_rating(
         body.ratings[int(rating['rating'])])
 

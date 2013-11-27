@@ -1,4 +1,5 @@
 from decimal import Decimal
+import json
 
 from django.contrib.auth.models import AnonymousUser
 
@@ -18,7 +19,8 @@ from mkt.constants import ratingsbodies, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
-from mkt.webapps.utils import es_app_to_dict, get_supported_locales
+from mkt.webapps.utils import (dehydrate_content_rating, es_app_to_dict,
+                               get_supported_locales)
 from users.models import UserProfile
 from versions.models import Version
 
@@ -151,6 +153,19 @@ class TestAppSerializer(amo.tests.TestCase):
         eq_(res['content_ratings']['interactive_elements'],
             [{'label': 'shares-info', 'name': 'Shares Info'},
              {'label': 'social-networking', 'name': 'Social Networking'}])
+
+    def test_dehydrate_content_rating_old_es(self):
+        """Test dehydrate works with old ES mapping."""
+        self.create_switch('iarc')
+
+        rating = dehydrate_content_rating(
+            [json.dumps({'body': u'CLASSIND',
+                         'slug': u'0',
+                         'description': u'General Audiences',
+                         'name': u'0+',
+                         'body_slug': u'classind'})])
+        eq_(rating, {})
+
 
 class TestAppSerializerPrices(amo.tests.TestCase):
     fixtures = fixture('user_2519')
