@@ -8,7 +8,7 @@ import commonware.log
 import django_filters
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
@@ -48,7 +48,7 @@ log = commonware.log.getLogger('z.webpay')
 class PreparePayView(CORSMixin, MarketplaceView, GenericAPIView):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     cors_allowed_methods = ['post']
 
     def post(self, request, *args, **kwargs):
