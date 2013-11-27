@@ -19,8 +19,7 @@ class RatingSerializer(serializers.ModelSerializer):
                                      queryset=Webapp.objects.all(),
                                      source='addon'),
         serializers.HyperlinkedRelatedField(view_name='app-detail',
-                                            read_only=True,
-                                            source='addon'))
+                                            read_only=True, source='addon'))
     body = serializers.CharField()
     user = AccountSerializer(read_only=True)
     report_spam = serializers.SerializerMethodField('get_report_spam_link')

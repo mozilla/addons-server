@@ -6,6 +6,9 @@ Site
 
 Configuration about the site.
 
+
+.. _categories:
+
 Categories
 ==========
 
@@ -44,6 +47,9 @@ Categories
             "resource_uri": "/api/v1/apps/category/1/",
             "slug": "games"
         }
+
+
+.. _carriers:
 
 Carriers
 ========

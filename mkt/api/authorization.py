@@ -96,6 +96,7 @@ class PermissionAuthorization(Authorization):
 
     has_permission = is_authorized
 
+
 class AnyOf(BasePermission):
     """
     Takes multiple permission objects and succeeds if any single one does.
@@ -190,7 +191,7 @@ class AllowRelatedAppOwner(BasePermission):
 
 class AllowReviewerReadOnly(BasePermission):
     def has_permission(self, request, view):
-        return request.method in SAFE_METHODS  and acl.action_allowed(
+        return request.method in SAFE_METHODS and acl.action_allowed(
             request, 'Apps', 'Review')
 
     def has_object_permission(self, request, view, object):

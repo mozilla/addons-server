@@ -5,10 +5,9 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 
-from mock import patch, Mock
+from mock import patch
 from nose.tools import eq_, ok_
 
-from rest_framework.serializers import ValidationError
 from rest_framework.decorators import (authentication_classes,
                                        permission_classes)
 from rest_framework.response import Response
@@ -28,7 +27,6 @@ from mkt.api.http import HttpTooManyRequests
 from mkt.api.serializers import Serializer
 from mkt.receipts.tests.test_views import RawRequestFactory
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
 
 
 class SampleResource(MarketplaceResource):
@@ -164,7 +162,8 @@ class TestThrottling(TestCase):
             self.resource.throttle_check(self.request)
 
     def test_get_throttle_identifiers_multiple_auth(self):
-        self.resource._meta.authentication = [FakeAuthentication(), FakeAuthentication()]
+        self.resource._meta.authentication = [FakeAuthentication(),
+                                              FakeAuthentication()]
         identifiers = list(self.resource.get_throttle_identifiers(self.request))
         eq_(identifiers, ['fake'])
 
@@ -232,6 +231,7 @@ class TestCORSResource(TestCase):
         request = RequestFactory().get('/')
         UnfilteredCORS().method_check(request, allowed=['get'])
         eq_(request.CORS, ['get'])
+
 
 class TestCORSWrapper(TestCase):
     def test_cors(self):

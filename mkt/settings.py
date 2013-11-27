@@ -64,6 +64,7 @@ INSTALLED_APPS += (
     'mkt.detail',
     'mkt.developers',
     'mkt.ecosystem',
+    'mkt.feed',
     'mkt.files',
     'mkt.lookup',
     'mkt.monolith',

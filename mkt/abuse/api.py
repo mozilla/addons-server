@@ -14,7 +14,6 @@ from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Webapp
 
 
-
 class AbuseThrottle(UserRateThrottle):
     THROTTLE_RATES = {
         'user': '30/hour',
@@ -34,8 +33,8 @@ class BaseAbuseSerializer(serializers.ModelSerializer):
 
 
 class UserAbuseSerializer(BaseAbuseSerializer):
-    user = SplitField(serializers.PrimaryKeyRelatedField(),
-                      UserSerializer())
+    user = SplitField(serializers.PrimaryKeyRelatedField(), UserSerializer())
+
     class Meta:
         model = AbuseReport
         fields = ('text', 'ip_address', 'reporter', 'user')
