@@ -15,20 +15,7 @@ from mkt.site.fixtures import fixture
 from mkt.stats.api import APP_STATS, STATS, _get_monolith_data
 
 
-@mock.patch('monolith.client.Client')
-@mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-class TestGlobalStatsResource(RestOAuth):
-
-    def setUp(self):
-        super(TestGlobalStatsResource, self).setUp()
-        self.grant_permission(self.profile, 'Stats:View')
-        self.data = {'start': '2013-04-01',
-                     'end': '2013-04-15',
-                     'interval': 'day'}
-
-    def url(self, metric=None):
-        metric = metric or STATS.keys()[0]
-        return reverse('global_stats', kwargs={'metric': metric})
+class StatsAPITestMixin(object):
 
     def test_cors(self, mocked):
         res = self.client.get(self.url(), data=self.data)
@@ -45,6 +32,22 @@ class TestGlobalStatsResource(RestOAuth):
     def test_anon(self, mocked):
         res = self.anon.get(self.url())
         eq_(res.status_code, 403)
+
+
+@mock.patch('monolith.client.Client')
+@mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
+class TestGlobalStatsResource(RestOAuth, StatsAPITestMixin):
+
+    def setUp(self):
+        super(TestGlobalStatsResource, self).setUp()
+        self.grant_permission(self.profile, 'Stats:View')
+        self.data = {'start': '2013-04-01',
+                     'end': '2013-04-15',
+                     'interval': 'day'}
+
+    def url(self, metric=None):
+        metric = metric or STATS.keys()[0]
+        return reverse('global_stats', kwargs={'metric': metric})
 
     def test_bad_metric(self, mocked):
         res = self.client.get(self.url('foo'))
@@ -114,7 +117,7 @@ class TestGlobalStatsResource(RestOAuth):
 
 @mock.patch('monolith.client.Client')
 @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-class TestAppStatsResource(RestOAuth):
+class TestAppStatsResource(RestOAuth, StatsAPITestMixin):
     fixtures = fixture('user_2519')
 
     def setUp(self):
@@ -128,22 +131,6 @@ class TestAppStatsResource(RestOAuth):
         pk = pk or self.app.pk
         metric = metric or APP_STATS.keys()[0]
         return reverse('app_stats', kwargs={'pk': pk, 'metric': metric})
-
-    def test_cors(self, mocked):
-        res = self.client.get(self.url(), data=self.data)
-        self.assertCORS(res, 'get')
-
-    def test_verbs(self, mocked):
-        self._allowed_verbs(self.url(), ['get'])
-
-    def test_monolith_down(self, mocked):
-        mocked.side_effect = requests.ConnectionError
-        res = self.client.get(self.url(), data=self.data)
-        eq_(res.status_code, 503)
-
-    def test_anon(self, mocked):
-        res = self.anon.get(self.url())
-        eq_(res.status_code, 403)
 
     def test_owner(self, mocked):
         res = self.client.get(self.url(), data=self.data)
@@ -169,6 +156,36 @@ class TestAppStatsResource(RestOAuth):
         data = json.loads(res.content)
         for f in ('start', 'end', 'interval'):
             eq_(data['detail'][f], ['This field is required.'])
+
+
+@mock.patch('monolith.client.Client')
+@mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
+class TestAppStatsTotalResource(RestOAuth, StatsAPITestMixin):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestAppStatsTotalResource, self).setUp()
+        self.app = amo.tests.app_factory(status=amo.STATUS_PUBLIC)
+        self.app.addonuser_set.create(user=self.user.get_profile())
+        self.data = None  # For the mixin tests.
+
+    def url(self, pk=None, metric=None):
+        pk = pk or self.app.pk
+        return reverse('app_stats_total', kwargs={'pk': pk})
+
+    def test_owner(self, mocked):
+        res = self.client.get(self.url())
+        eq_(res.status_code, 200)
+
+    def test_perms(self, mocked):
+        self.app.addonuser_set.all().delete()
+        self.grant_permission(self.profile, 'Stats:View')
+        res = self.client.get(self.url())
+        eq_(res.status_code, 200)
+
+    def test_bad_app(self, mocked):
+        res = self.client.get(self.url(pk=99999999))
+        eq_(res.status_code, 404)
 
 
 class TestTransactionResource(RestOAuth):

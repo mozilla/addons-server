@@ -14,6 +14,8 @@ series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
 stats_api_patterns = patterns('',
     url(r'^stats/global/(?P<metric>[^/]+)/$', api.GlobalStats.as_view(),
         name='global_stats'),
+    url(r'^stats/app/(?P<pk>[^/<>"\']+)/totals/$',
+        api.AppStatsTotal.as_view(), name='app_stats_total'),
     url(r'^stats/app/(?P<pk>[^/<>"\']+)/(?P<metric>[^/]+)/$',
         api.AppStats.as_view(), name='app_stats'),
 )
