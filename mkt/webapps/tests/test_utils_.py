@@ -122,6 +122,7 @@ class TestAppSerializer(amo.tests.TestCase):
         self.assertSetEqual(res['categories'], ['cat1', 'cat2'])
 
     def test_content_ratings(self):
+        self.create_switch('iarc')
         self.app.set_content_ratings({
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
@@ -300,6 +301,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
                     (expected[k], k, v))
 
     def test_content_ratings(self):
+        self.create_switch('iarc')
         self.app.set_content_ratings({
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
@@ -331,6 +333,30 @@ class TestESAppToDict(amo.tests.ESTestCase):
                    key=lambda x: x['name']),
             [{'label': 'shares-info', 'name': 'Shares Info'},
              {'label': 'social-networking', 'name': 'Social Networking'}])
+
+    def test_content_ratings_no_switch(self):
+        self.app.set_content_ratings({
+            ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
+            ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
+        })
+        self.app.save()
+        self.refresh('webapp')
+
+        res = es_app_to_dict(self.get_obj())
+        assert 'us' not in res['content_ratings']['ratings']
+        assert 'generic' not in res['content_ratings']['ratings']
+        eq_(res['content_ratings']['ratings']['br'],
+            {'body': 'CLASSIND',
+             'body_label': 'classind',
+             'rating': 'For ages 18+',
+             'rating_label': '18',
+             'description': unicode(ratingsbodies.CLASSIND_18.description)})
+        eq_(res['content_ratings']['ratings']['de'],
+            {'body': 'Generic',
+             'body_label': 'generic',
+             'rating': 'For ages 18+',
+             'rating_label': '18',
+             'description': unicode(ratingsbodies.GENERIC_18.description)})
 
     def test_show_downloads_count(self):
         """Show weekly_downloads in results if app stats are public."""
