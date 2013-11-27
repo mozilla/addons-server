@@ -128,6 +128,17 @@ class SplitField(fields.Field):
         self.input = input
         self.output = output
         self.source = input.source
+        self._read_only = False
+
+    def get_read_only(self):
+        return self._read_only
+
+    def set_read_only(self, val):
+        self._read_only = val
+        self.input.read_only = val
+        self.output.read_only = val
+
+    read_only = property(get_read_only, set_read_only)
 
     def field_from_native(self, data, files, field_name, into):
         self.input.initialize(parent=self.parent, field_name=field_name)
