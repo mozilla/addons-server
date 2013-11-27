@@ -316,7 +316,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
                 'purchased': False,
             },
             'versions': {
-                '1.0': '/api/v1/apps/versions/1268829/'
+                '1.0': '/api/apps/versions/1268829/'
             },
             'weekly_downloads': None,
         }
