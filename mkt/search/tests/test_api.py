@@ -210,7 +210,7 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['privacy_policy'], '/api/apps/app/337141/privacy/')
             eq_(obj['public_stats'], self.webapp.public_stats)
             eq_(obj['ratings'], {'average': 0.0, 'count': 0})
-            eq_(obj['resource_uri'], '/api/v1/apps/app/337141/')
+            eq_(obj['resource_uri'], '/api/apps/app/337141/')
             eq_(obj['slug'], self.webapp.app_slug)
             eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
             eq_(obj['versions'], {u'1.0': u'/api/apps/versions/1268829/'})
