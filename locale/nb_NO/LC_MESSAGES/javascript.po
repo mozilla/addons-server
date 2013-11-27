@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 15:27-0700\n"
+"POT-Creation-Date: 2013-11-27 07:58-0700\n"
 "PO-Revision-Date: 2013-10-25 19:48+0000\n"
 "Last-Translator: Håvard <havard.mork@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -263,7 +263,7 @@ msgid "Iraqi Bank Code"
 msgstr "Irakisk bankkode"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:135
+#: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
 msgstr "Oppdaget: {0}"
 
@@ -1048,37 +1048,53 @@ msgstr "OK"
 msgid "Payment failed. Try again later."
 msgstr "Betaling mislykket. Prøv igjen senere."
 
-#: media/js/mkt/reviewers.js:98
+#: media/js/mkt/reviewers.js:100
 msgid "Packaged App"
 msgstr "Innpakket app"
 
-#: media/js/mkt/reviewers.js:102
+#: media/js/mkt/reviewers.js:104
 msgid "Privileged App"
 msgstr "Priviligert app"
 
-#: media/js/mkt/reviewers.js:105
+#: media/js/mkt/reviewers.js:107
 msgid "More Information Requested"
 msgstr "Mer informasjon er forespurt"
 
-#: media/js/mkt/reviewers.js:108
+#: media/js/mkt/reviewers.js:110
 msgid "Contains Editor Comment"
 msgstr "Inneholder redaktør-kommentar"
 
-#: media/js/mkt/reviewers.js:112
+#: media/js/mkt/reviewers.js:114
 msgid "Premium App"
 msgstr "Premium-app"
 
-#: media/js/mkt/reviewers.js:115
+#: media/js/mkt/reviewers.js:117
 msgid "Escalated"
 msgstr "Eskalert"
 
-#: media/js/mkt/reviewers.js:120
+#: media/js/mkt/reviewers.js:122
 msgid "Free"
 msgstr "Gratis"
 
-#: media/js/mkt/reviewers.js:228
+#: media/js/mkt/reviewers.js:230
 msgid "Any"
 msgstr "Alle"
+
+#: media/js/mkt/reviewers.js:257
+msgid "Approved app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:260
+msgid "Rejected app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:266
+msgid "Error approving app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:267
+msgid "Error rejecting app: {app}"
+msgstr ""
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1283,7 +1299,7 @@ msgstr "Totalt enheter tilbakebetalt etter kilde"
 msgid "Total Installs"
 msgstr "Totalt installasjoner"
 
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:331
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Velg en applikasjon først"
 
@@ -1514,33 +1530,37 @@ msgstr "Kvittering kontrollert av appen."
 msgid "Receipt was not checked by app."
 msgstr "Kvittering ble ikke kontrollert av appen."
 
-#: media/js/zamboni/editors.js:280
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{name} så på denne utvidelsen først."
 
-#: media/js/zamboni/editors.js:291
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "Laster &hellip;"
 
-#: media/js/zamboni/editors.js:296
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Versjonnotat"
 
-#: media/js/zamboni/editors.js:301
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "Notat for redaktører"
 
-#: media/js/zamboni/editors.js:306
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "Versjonsnotat ikke funnet"
 
-#: media/js/zamboni/editors.js:366
+#: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Gjennomsnittelig rangering"
 
-#: media/js/zamboni/editors.js:422
+#: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Antall rangeringer"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr ""
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."

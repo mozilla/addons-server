@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 15:27-0700\n"
+"POT-Creation-Date: 2013-11-27 07:58-0700\n"
 "PO-Revision-Date: 2013-11-20 13:27+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -263,7 +263,7 @@ msgid "Iraqi Bank Code"
 msgstr "Iraaks BC-nummer"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:135
+#: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
 msgstr "Gedetecteerd: {0}"
 
@@ -271,14 +271,8 @@ msgstr "Gedetecteerd: {0}"
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
-"Waarschuwing: door betalingsaccount “{0}” te verwijderen krijgt die "
-"geassocieerde app de status onvolledig en is deze niet langer beschikbaar "
-"voor verkoop:"
-msgstr[1] ""
-"Waarschuwing: door betalingsaccount “{0}” te verwijderen krijgen die "
-"geassocieerde apps de status onvolledig en zijn ze niet langer beschikbaar "
-"voor verkoop:"
+msgstr[0] "Waarschuwing: door betalingsaccount “{0}” te verwijderen krijgt die geassocieerde app de status onvolledig en is deze niet langer beschikbaar voor verkoop:"
+msgstr[1] "Waarschuwing: door betalingsaccount “{0}” te verwijderen krijgen die geassocieerde apps de status onvolledig en zijn ze niet langer beschikbaar voor verkoop:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -1056,37 +1050,53 @@ msgstr "OK"
 msgid "Payment failed. Try again later."
 msgstr "Betaling mislukt. Probeer het later nog eens."
 
-#: media/js/mkt/reviewers.js:98
+#: media/js/mkt/reviewers.js:100
 msgid "Packaged App"
 msgstr "Verpakte app"
 
-#: media/js/mkt/reviewers.js:102
+#: media/js/mkt/reviewers.js:104
 msgid "Privileged App"
 msgstr "Voorkeursapp"
 
-#: media/js/mkt/reviewers.js:105
+#: media/js/mkt/reviewers.js:107
 msgid "More Information Requested"
 msgstr "Meer informatie gevraagd"
 
-#: media/js/mkt/reviewers.js:108
+#: media/js/mkt/reviewers.js:110
 msgid "Contains Editor Comment"
 msgstr "Bevat opmerking door editor"
 
-#: media/js/mkt/reviewers.js:112
+#: media/js/mkt/reviewers.js:114
 msgid "Premium App"
 msgstr "Premium-app"
 
-#: media/js/mkt/reviewers.js:115
+#: media/js/mkt/reviewers.js:117
 msgid "Escalated"
 msgstr "Geëscaleerd"
 
-#: media/js/mkt/reviewers.js:120
+#: media/js/mkt/reviewers.js:122
 msgid "Free"
 msgstr "Gratis"
 
-#: media/js/mkt/reviewers.js:228
+#: media/js/mkt/reviewers.js:230
 msgid "Any"
 msgstr "Elke"
+
+#: media/js/mkt/reviewers.js:257
+msgid "Approved app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:260
+msgid "Rejected app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:266
+msgid "Error approving app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:267
+msgid "Error rejecting app: {app}"
+msgstr ""
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1291,7 +1301,7 @@ msgstr "Totale aantal gerestitueerde eenheden op bron"
 msgid "Total Installs"
 msgstr "Totaal aantal installaties"
 
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:331
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Selecteer eerst een toepassing"
 
@@ -1522,33 +1532,37 @@ msgstr "Ontvangst gecontroleerd door app."
 msgid "Receipt was not checked by app."
 msgstr "Ontvangst niet gecontroleerd door app."
 
-#: media/js/zamboni/editors.js:280
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{name} bekeek deze add-on eerst."
 
-#: media/js/zamboni/editors.js:291
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "Laden…"
 
-#: media/js/zamboni/editors.js:296
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Versieopmerkingen"
 
-#: media/js/zamboni/editors.js:301
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "Opmerkingen voor beoordelaars"
 
-#: media/js/zamboni/editors.js:306
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "Geen versieopmerkingen gevonden"
 
-#: media/js/zamboni/editors.js:366
+#: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Gemiddeld aantal beoordelingen"
 
-#: media/js/zamboni/editors.js:422
+#: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Aantal beoordelingen"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr ""
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."

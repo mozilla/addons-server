@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 15:27-0700\n"
+"POT-Creation-Date: 2013-11-27 07:58-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Download Now"
 msgstr "Íosluchtaigh Anois"
 
-#: apps/addons/buttons.py:205 apps/addons/templates/addons/impala/details.html:88 mkt/developers/templates/developers/apps/status.html:232 mkt/ecosystem/templates/ecosystem/publish_badges.html:45
+#: apps/addons/buttons.py:205 apps/addons/templates/addons/impala/details.html:88 mkt/developers/templates/developers/apps/status.html:237 mkt/ecosystem/templates/ecosystem/publish_badges.html:45
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:126
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:115 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:92 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:199
@@ -66,11 +66,11 @@ msgstr "Cuir le {0}"
 msgid "This name is already in use. Please choose another."
 msgstr "Tá an t-ainm seo in úsáid cheana. Roghnaigh ainm eile."
 
-#: apps/addons/forms.py:62 mkt/developers/forms.py:520 mkt/submit/forms.py:403
+#: apps/addons/forms.py:62 mkt/developers/forms.py:568 mkt/submit/forms.py:403
 msgid "This slug is already in use. Please choose another."
 msgstr "Tá an sluga seo in úsáid cheana. Roghaigh ceann eile."
 
-#: apps/addons/forms.py:65 mkt/developers/forms.py:523 mkt/submit/forms.py:407
+#: apps/addons/forms.py:65 mkt/developers/forms.py:571 mkt/submit/forms.py:407
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Ní féidir \"%s\" a úsáid mar shluga. Roghnaigh ceann eile."
 
@@ -125,7 +125,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr ""
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:786
+#: apps/addons/forms.py:256 mkt/developers/forms.py:895 mkt/webapps/api.py:246
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Ní cheadaítear níos mó ná {0} chatagóir."
@@ -177,7 +177,7 @@ msgstr "Beidh úsáideoirí in ann níos mó nó níos lú ná an méid seo a th
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Cuirfear ceist ar úsáideoirí i gcónaí i mBainisteoir na mBreiseán (Firefox 4 agus níos déanaí)"
 
-#: apps/addons/models.py:1988
+#: apps/addons/models.py:1990
 msgid "Listed"
 msgstr "Liostaithe"
 
@@ -299,7 +299,7 @@ msgstr "<strong>Níos mó ná 5000 uirlisí breise saor in aisce</strong> lenar 
 #: apps/browse/templates/browse/personas/grid.html:7 apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:192 apps/devhub/templates/devhub/nav.html:77
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7 apps/devhub/templates/devhub/docs/themes.html:28
-#: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/templates/editors/performance.html:74 apps/search/templates/search/personas.html:39 mkt/reviewers/templates/reviewers/base.html:33
+#: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/templates/editors/performance.html:74 apps/search/templates/search/personas.html:39 mkt/reviewers/templates/reviewers/base.html:34
 #: mkt/reviewers/templates/reviewers/performance.html:28 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Téamaí"
@@ -351,12 +351,13 @@ msgstr "Tabhair deontas"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:153 apps/devhub/templates/devhub/addons/forms_shared/media.html:180 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:49 apps/devhub/templates/devhub/versions/edit.html:127 apps/devhub/templates/devhub/versions/list.html:276
 #: apps/devhub/templates/devhub/versions/list.html:319 apps/devhub/templates/devhub/versions/list.html:352 apps/reviews/templates/reviews/edit_review.html:16
-#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/developers/templates/developers/apps/status.html:324
-#: mkt/developers/templates/developers/apps/status.html:348 mkt/developers/templates/developers/apps/version_edit.html:83 mkt/developers/templates/developers/apps/edit/admin.html:143
+#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/developers/templates/developers/apps/status.html:329
+#: mkt/developers/templates/developers/apps/status.html:353 mkt/developers/templates/developers/apps/version_edit.html:81 mkt/developers/templates/developers/apps/edit/admin.html:143
 #: mkt/developers/templates/developers/apps/edit/basic.html:147 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:68
 #: mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:129 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:117
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:129 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:27
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:117 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 #: mkt/submit/templates/submit/done.html:50
 msgid "or"
 msgstr "nó"
@@ -466,7 +467,7 @@ msgid "Add-on Information for {0}"
 msgstr "Eolas faoi Bhreiseán {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:74 mkt/developers/views.py:73
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:74 mkt/developers/views.py:74
 #: mkt/reviewers/templates/reviewers/includes/details.html:73 mkt/reviewers/templates/reviewers/includes/mobile_details.html:95
 msgid "Updated"
 msgstr "Nuashonraithe"
@@ -511,7 +512,7 @@ msgstr "Amharc ar Staitisticí"
 msgid "Average Daily Users"
 msgstr "Meánlíon na nÚsáideoirí Laethúla"
 
-#: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:67 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
+#: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:67 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:36
 #: mkt/reviewers/templates/reviewers/includes/details.html:106 mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
 msgid "Abuse Reports"
 msgstr "Tuairiscí ar Dhrochúsáid"
@@ -575,7 +576,7 @@ msgstr ""
 msgid "Version {0}:"
 msgstr "Leagan {0}:"
 
-#: apps/addons/templates/addons/details_box.html:229 mkt/reviewers/templates/reviewers/includes/details.html:175
+#: apps/addons/templates/addons/details_box.html:229 mkt/reviewers/templates/reviewers/includes/details.html:173
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "Níl aon rud suimiúil anseo! Níor chuir an forbróir aon mhionsonraí san áireamh."
 
@@ -676,7 +677,7 @@ msgstr "Nuashonraithe {0}"
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
 #: apps/addons/templates/addons/listing/items_mobile.html:49 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
-#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:301 mkt/reviewers/views.py:323 mkt/submit/forms.py:34 mkt/submit/forms.py:44
+#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:303 mkt/reviewers/views.py:324 mkt/submit/forms.py:34 mkt/submit/forms.py:44
 msgid "Added {0}"
 msgstr "Curtha leis ar {0}"
 
@@ -836,7 +837,7 @@ msgstr "Ceadúnas"
 msgid "Awaiting Review"
 msgstr "Ag feitheamh le Réamhscrúdú"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:53 mkt/constants/ratingsbodies.py:170
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:53
 msgid "Rejected"
 msgstr "Diúltaithe"
 
@@ -1014,14 +1015,15 @@ msgstr "Seol Tuairisc"
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:50 apps/devhub/templates/devhub/versions/edit.html:128
 #: apps/devhub/templates/devhub/versions/list.html:276 apps/devhub/templates/devhub/versions/list.html:319 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:110 mkt/developers/templates/developers/apps/status.html:324 mkt/developers/templates/developers/apps/status.html:348
-#: mkt/developers/templates/developers/apps/version_edit.html:84 mkt/developers/templates/developers/apps/edit/admin.html:145 mkt/developers/templates/developers/apps/edit/basic.html:149
+#: apps/zadmin/templates/zadmin/validation.html:110 mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/apps/status.html:353
+#: mkt/developers/templates/developers/apps/version_edit.html:82 mkt/developers/templates/developers/apps/edit/admin.html:145 mkt/developers/templates/developers/apps/edit/basic.html:149
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:70 mkt/developers/templates/developers/apps/edit/technical.html:70
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
 #: mkt/developers/templates/developers/payments/includes/account_list.html:61 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:118 mkt/lookup/templates/lookup/user_summary.html:128 mkt/lookup/templates/lookup/user_summary.html:131
-#: mkt/reviewers/templates/reviewers/includes/macros.html:30
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:118
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:28 mkt/lookup/templates/lookup/user_summary.html:128 mkt/lookup/templates/lookup/user_summary.html:131
+#: mkt/reviewers/templates/reviewers/includes/macros.html:31
 msgid "Cancel"
 msgstr "Cealaigh"
 
@@ -1070,7 +1072,7 @@ msgid "Detailed Review"
 msgstr "Léirmheas Mionsonraithe"
 
 #: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/reviews/templates/reviews/add.html:14 apps/reviews/templates/reviews/reply.html:14
-#: apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26 mkt/reviewers/helpers.py:128 mkt/reviewers/helpers.py:142
+#: apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26 mkt/reviewers/helpers.py:135 mkt/reviewers/helpers.py:149
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:4
 msgid "Reviews"
 msgstr "Léirmheasanna"
@@ -1237,7 +1239,7 @@ msgstr "Suíomh tacaíochta"
 msgid "Support E-mail"
 msgstr "Ríomhphost tacaíochta"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/devhub/models.py:382 mkt/developers/templates/developers/apps/version_edit.html:4
+#: apps/addons/templates/addons/impala/details.html:208 apps/devhub/models.py:395 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "Leagan {0}"
 
@@ -1293,7 +1295,8 @@ msgstr ""
 #: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:121
 #: mkt/developers/templates/developers/apps/owner.html:77 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:55 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4 mkt/stats/templates/devstats/stats.html:77 mkt/stats/templates/sitestats/stats.html:94
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4 mkt/stats/templates/devstats/stats.html:77 mkt/stats/templates/sitestats/stats.html:94
 msgid "close"
 msgstr "dún"
 
@@ -1367,7 +1370,7 @@ msgstr "{0} úsáideoir"
 msgid "permalink"
 msgstr "buan-nasc"
 
-#: apps/addons/templates/addons/impala/review_list_box.html:23 apps/reviews/templates/reviews/review.html:44
+#: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
 msgstr ""
 
@@ -1531,7 +1534,7 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Fill ar leathanach baile na mbreiseán {0}"
 
 #: apps/addons/templates/addons/mobile/home.html:19 apps/amo/helpers.py:251 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
-#: apps/editors/templates/editors/performance.html:72 mkt/reviewers/templates/reviewers/base.html:29 mkt/reviewers/templates/reviewers/performance.html:26 templates/menu_links.html:4
+#: apps/editors/templates/editors/performance.html:72 mkt/reviewers/templates/reviewers/base.html:30 mkt/reviewers/templates/reviewers/performance.html:26 templates/menu_links.html:4
 #: templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:53
 msgid "Add-ons"
 msgstr "Breiseáin"
@@ -1583,7 +1586,7 @@ msgid "Theme Info &raquo;"
 msgstr ""
 
 #: apps/amo/context_processors.py:55 apps/devhub/templates/devhub/nav.html:82 mkt/ecosystem/templates/ecosystem/build_dev_tools.html:58 mkt/ecosystem/templates/ecosystem/build_tools.html:5
-#: mkt/ecosystem/templates/ecosystem/build_tools.html:13 mkt/ecosystem/templates/ecosystem/macros.html:164 mkt/site/context_processors.py:22
+#: mkt/ecosystem/templates/ecosystem/build_tools.html:13 mkt/ecosystem/templates/ecosystem/macros.html:150 mkt/site/context_processors.py:22
 msgid "Tools"
 msgstr "Uirlisí"
 
@@ -1785,7 +1788,7 @@ msgstr "Coimeádta"
 msgid "{addon} {version} escalated."
 msgstr ""
 
-#: apps/amo/log.py:198 mkt/reviewers/forms.py:294
+#: apps/amo/log.py:198 mkt/reviewers/forms.py:297
 msgid "Escalated"
 msgstr "Géaraithe"
 
@@ -1818,7 +1821,7 @@ msgid "Comment on {addon} {version}."
 msgstr "Nóta tráchta ar {addon} {version}."
 
 #: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:453
-#: mkt/reviewers/utils.py:433 mkt/reviewers/templates/reviewers/themes/history_table.html:11
+#: mkt/reviewers/utils.py:438 mkt/reviewers/templates/reviewers/themes/history_table.html:11
 msgid "Comment"
 msgstr "Nóta"
 
@@ -2132,8 +2135,16 @@ msgid "{version} status changed to {0}."
 msgstr ""
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:646
+#: apps/amo/log.py:647
 msgid "User {0.name} {0.id} deleted via lookup tool."
+msgstr ""
+
+#: apps/amo/log.py:653
+msgid "{addon} content rating changed to Adult."
+msgstr ""
+
+#: apps/amo/log.py:659
+msgid "{addon} content rating changed."
 msgstr ""
 
 #: apps/amo/templates/amo/403.html:3
@@ -2220,10 +2231,8 @@ msgstr "An neach daonna thú?"
 #: apps/amo/templates/amo/recaptcha.html:8
 msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
-"or <a href=\"#\" id=\"recaptcha_audio\">listen to something</a> instead. </p>"
+"or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Cuir isteach <strong>an dá fhocal</strong> thíos, <strong>le spás amháin eatarthu</strong>. </p> <p> Mura bhfuil tú in ann iad a léamh, bain triail as <a href=\"#\" id=\"recaptcha_different"
-"\">focail dhifriúla</a> nó <a href=\"#\" id=\"recaptcha_audio\">éist le rud éigin</a> ina ionad. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
@@ -2503,8 +2512,9 @@ msgstr "Bain ó na ceanáin"
 
 #: apps/bandwagon/views.py:89 apps/bandwagon/views.py:174 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:81
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/search/forms.py:18 apps/search/forms.py:92 apps/search/forms.py:105
-#: apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/views.py:72 mkt/developers/views.py:80 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:44 mkt/submit/templates/submit/details.html:55
+#: apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/forms_payments.py:547 mkt/developers/views.py:73 mkt/developers/views.py:81
+#: mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:44
+#: mkt/submit/templates/submit/details.html:55
 msgid "Name"
 msgstr "Ainm"
 
@@ -2800,7 +2810,7 @@ msgstr "Scrios {0}"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35 apps/devhub/templates/devhub/versions/list.html:181 mkt/developers/templates/developers/api.html:70
-#: mkt/developers/templates/developers/apps/status.html:240 mkt/developers/templates/developers/apps/listing/item_actions.html:14
+#: mkt/developers/templates/developers/apps/status.html:245 mkt/developers/templates/developers/apps/listing/item_actions.html:14
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:14
 #: mkt/developers/templates/developers/payments/includes/account_list.html:45 mkt/ratings/templates/ratings/rating.html:47
 msgid "Delete"
@@ -2816,7 +2826,7 @@ msgid "Edit {0}"
 msgstr "Cuir {0} in eagar"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:27
-#: mkt/developers/templates/developers/apps/edit/basic.html:103 mkt/ecosystem/templates/ecosystem/reference_apps/app.html:23 mkt/reviewers/templates/reviewers/includes/details.html:156
+#: mkt/developers/templates/developers/apps/edit/basic.html:103 mkt/ecosystem/templates/ecosystem/reference_apps/app.html:23 mkt/reviewers/templates/reviewers/includes/details.html:154
 #: mkt/reviewers/templates/reviewers/themes/themes.html:61
 msgid "Description"
 msgstr "Cur Síos"
@@ -2831,12 +2841,12 @@ msgstr "Rannpháirtithe agus Tuilleadh"
 #: apps/devhub/templates/devhub/addons/edit/support.html:75 apps/devhub/templates/devhub/addons/edit/technical.html:153 apps/devhub/templates/devhub/addons/forms_shared/media.html:180
 #: apps/devhub/templates/devhub/payments/in-app-config.html:49 apps/devhub/templates/devhub/payments/premium.html:25 apps/devhub/templates/devhub/payments/voluntary.html:64
 #: apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300 apps/devhub/templates/devhub/versions/edit.html:127
-#: apps/translations/templates/translations/trans-menu.html:48 mkt/developers/templates/developers/apps/owner.html:52 mkt/developers/templates/developers/apps/version_edit.html:83
+#: apps/translations/templates/translations/trans-menu.html:48 mkt/developers/templates/developers/apps/owner.html:52 mkt/developers/templates/developers/apps/version_edit.html:81
 #: mkt/developers/templates/developers/apps/edit/admin.html:143 mkt/developers/templates/developers/apps/edit/basic.html:147 mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:68 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48 mkt/developers/templates/developers/payments/premium.html:70
-#: mkt/developers/templates/developers/payments/premium.html:140 mkt/developers/templates/developers/payments/premium.html:232 mkt/developers/templates/developers/payments/premium.html:245
-#: mkt/developers/templates/developers/payments/premium.html:285
+#: mkt/developers/templates/developers/payments/premium.html:144 mkt/developers/templates/developers/payments/premium.html:243 mkt/developers/templates/developers/payments/premium.html:257
+#: mkt/developers/templates/developers/payments/premium.html:297
 msgid "Save Changes"
 msgstr "Sábháil na hAthruithe"
 
@@ -2872,8 +2882,9 @@ msgstr ""
 msgid "User"
 msgstr "Úsáideoir"
 
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:41 apps/devhub/templates/devhub/addons/edit/support.html:20 mkt/developers/templates/developers/apps/edit/support.html:18
-#: mkt/ecosystem/templates/ecosystem/partners.html:126 mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:41 apps/devhub/templates/devhub/addons/edit/support.html:20 mkt/developers/forms_payments.py:548
+#: mkt/developers/templates/developers/apps/edit/support.html:18 mkt/ecosystem/templates/ecosystem/partners.html:126 mkt/ecosystem/templates/ecosystem/partners.html:127
+#: mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
 msgstr "Ríomhphost"
 
@@ -2904,9 +2915,9 @@ msgstr "<b>Rabhadh:</b> Má athraíonn tú úinéir an bhailiúcháin seo, ní b
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:188 apps/devhub/templates/devhub/addons/submit/describe.html:90
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:52 apps/devhub/templates/devhub/addons/submit/upload_webapp.html:42
 #: apps/devhub/templates/devhub/payments/paypal.html:17 apps/devhub/templates/devhub/payments/tier.html:17 apps/devhub/templates/devhub/payments/upsell.html:19
-#: mkt/developers/templates/developers/apps/status.html:274 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/reviewers/templates/reviewers/themes/themes.html:110
+#: mkt/developers/templates/developers/apps/status.html:279 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/reviewers/templates/reviewers/themes/themes.html:110
 #: mkt/reviewers/templates/reviewers/themes/themes.html:127 mkt/reviewers/templates/reviewers/themes/themes.html:133 mkt/reviewers/templates/reviewers/themes/themes.html:140
-#: mkt/submit/templates/submit/details.html:175 mkt/submit/templates/submit/manifest.html:119 mkt/submit/templates/submit/next_steps.html:118 mkt/submit/templates/submit/payments-upsell.html:36
+#: mkt/submit/templates/submit/details.html:175 mkt/submit/templates/submit/manifest.html:117 mkt/submit/templates/submit/next_steps.html:118 mkt/submit/templates/submit/payments-upsell.html:36
 #: mkt/submit/templates/submit/payments.html:31
 msgid "Continue"
 msgstr "Ar Aghaidh"
@@ -2998,7 +3009,7 @@ msgstr "Cuir isteach ainm an bhreiseáin le cur leis"
 msgid "Add to Collection"
 msgstr "Cuir le Bailiúchán"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:116 mkt/constants/payments.py:7 mkt/reviewers/helpers.py:157 mkt/reviewers/helpers.py:177
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:116 mkt/constants/payments.py:7 mkt/reviewers/helpers.py:164 mkt/reviewers/helpers.py:184
 msgid "Pending"
 msgstr "Ar feitheamh"
 
@@ -3022,7 +3033,7 @@ msgstr ""
 msgid "Blocked Add-ons"
 msgstr "Breiseáin Faoi Chosc"
 
-#: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6 mkt/developers/templates/developers/apps/status.html:298
+#: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6 mkt/developers/templates/developers/apps/status.html:303
 msgid "Blocklist"
 msgstr "Liosta Coiscthe"
 
@@ -3110,17 +3121,17 @@ msgstr "Líon is mó úsáideoirí"
 msgid "Up & Coming"
 msgstr "Teacht Chun Cinn"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 mkt/developers/views.py:74 mkt/developers/views.py:81
+#: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 mkt/developers/views.py:75 mkt/developers/views.py:82
 msgid "Created"
 msgstr "Cruthaithe"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:76 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:75
+#: apps/browse/views.py:452 apps/devhub/views.py:76 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:76
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Downloads"
 msgstr "Íosluchtuithe"
 
 #: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/discovery/templates/discovery/addons/detail.html:72 apps/reviews/templates/reviews/add.html:85
-#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:76 mkt/reviewers/templates/reviewers/includes/details.html:92
+#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:77 mkt/reviewers/templates/reviewers/includes/details.html:92
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:114
 msgid "Rating"
 msgstr "Rátáil"
@@ -3378,7 +3389,7 @@ msgstr "Cruthaigh Do Théama Féin"
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
 
-#: apps/browse/templates/browse/personas/base.html:51 apps/devhub/templates/devhub/versions/list.html:107 mkt/developers/templates/developers/apps/status.html:66
+#: apps/browse/templates/browse/personas/base.html:51 apps/devhub/templates/devhub/versions/list.html:107 mkt/developers/templates/developers/apps/status.html:71
 msgid "Learn more"
 msgstr "Tuilleadh eolais"
 
@@ -3431,7 +3442,7 @@ msgstr ""
 msgid "&laquo; All Themes"
 msgstr ""
 
-#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:149 mkt/search/forms.py:25
+#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:151 mkt/search/forms.py:25
 msgid "All"
 msgstr "Uile"
 
@@ -3471,9 +3482,10 @@ msgstr ""
 msgid "All active add-ons"
 msgstr "Gach breiseán gníomhach"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:180 apps/constants/base.py:421 mkt/developers/forms.py:893 mkt/developers/templates/developers/transactions.html:41
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:180 apps/constants/base.py:421 mkt/developers/forms.py:986 mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:22
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:28 mkt/reviewers/templates/reviewers/includes/search_results.html:5
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/queue_region.html:24
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "Aip"
 
@@ -3613,7 +3625,7 @@ msgstr ""
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: apps/constants/applications.py:149 mkt/api/forms.py:230 mkt/reviewers/forms.py:301
+#: apps/constants/applications.py:149 mkt/api/forms.py:140 mkt/reviewers/forms.py:304
 msgid "Unknown"
 msgstr "Anaithnid"
 
@@ -3674,7 +3686,7 @@ msgstr "Réamhscrúdú Déanta, ag fanacht le Scrúdú Iomlán anois"
 msgid "Pending a review choice"
 msgstr "Fanacht le rogha de stíl léirmheasa"
 
-#: apps/constants/base.py:37 mkt/reviewers/helpers.py:145 mkt/reviewers/templates/reviewers/themes/history_table.html:34
+#: apps/constants/base.py:37 mkt/reviewers/helpers.py:152 mkt/reviewers/templates/reviewers/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Scriosta"
 
@@ -3750,7 +3762,7 @@ msgstr "Forlíontáin"
 msgid "Language Packs (Application)"
 msgstr "Pacáistí Teanga (Feidhmchlár)"
 
-#: apps/constants/base.py:193 apps/editors/templates/editors/performance.html:73 mkt/reviewers/helpers.py:36 mkt/reviewers/templates/reviewers/base.html:27
+#: apps/constants/base.py:193 apps/editors/templates/editors/performance.html:73 mkt/reviewers/helpers.py:35 mkt/reviewers/templates/reviewers/base.html:28
 #: mkt/reviewers/templates/reviewers/performance.html:27 mkt/site/helpers.py:189 templates/mobile/base_apps.html:41
 msgid "Apps"
 msgstr "Aipeanna"
@@ -4129,7 +4141,7 @@ msgstr ""
 msgid "Recent Changes for My Add-ons"
 msgstr ""
 
-#: apps/devhub/forms.py:85 mkt/developers/forms.py:130
+#: apps/devhub/forms.py:85 mkt/developers/forms.py:179
 msgid "Must have at least one owner."
 msgstr "Ní mór úinéir amháin a bheith ann."
 
@@ -4448,7 +4460,7 @@ msgstr[2] "{0} rabhadh"
 msgstr[3] "{0} rabhadh"
 msgstr[4] "{0} rabhadh"
 
-#: apps/devhub/models.py:379 apps/reviews/templates/reviews/add.html:86 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:392 apps/reviews/templates/reviews/add.html:86 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Léirmheas"
 
@@ -4505,7 +4517,7 @@ msgid "User Reviews"
 msgstr "Léirmheasanna ó Úsáideoirí"
 
 #: apps/devhub/views.py:335 apps/devhub/views.py:339 apps/devhub/views.py:458 apps/devhub/views.py:481 apps/devhub/views.py:528 apps/devhub/views.py:651 apps/devhub/views.py:1334
-#: mkt/developers/views.py:486 mkt/developers/views_payments.py:103 mkt/developers/views_payments.py:308 mkt/reviewers/views.py:666
+#: mkt/developers/views.py:501 mkt/developers/views_payments.py:105 mkt/developers/views_payments.py:313 mkt/reviewers/views.py:695
 msgid "Changes successfully saved."
 msgstr "Sábháladh na hathruithe."
 
@@ -4565,7 +4577,7 @@ msgstr "Bailíochtaigh Breiseán"
 msgid "Check Add-on Compatibility"
 msgstr ""
 
-#: apps/devhub/views.py:800 mkt/developers/views.py:568
+#: apps/devhub/views.py:800 mkt/developers/views.py:583
 msgid "There was an error with the submission."
 msgstr ""
 
@@ -4594,7 +4606,7 @@ msgstr ""
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#: apps/devhub/views.py:1279 mkt/developers/views.py:863
+#: apps/devhub/views.py:1279 mkt/developers/views.py:877
 msgid "There was an error uploading your preview."
 msgstr "Tharla earráid agus do réamhamharc á uasluchtú."
 
@@ -4733,7 +4745,7 @@ msgstr "{0} :: Cuardaigh"
 #: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/templates/editors/queue.html:27 apps/search/templates/search/collections.html:17
 #: apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18 apps/search/templates/search/mobile/results.html:8 mkt/developers/templates/developers/search.html:9
 #: mkt/lookup/templates/lookup/includes/app_search.html:17 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/forms.py:275 mkt/reviewers/forms.py:277 mkt/reviewers/templates/reviewers/includes/queue_search.html:8 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:9
+#: mkt/reviewers/forms.py:278 mkt/reviewers/forms.py:280 mkt/reviewers/templates/reviewers/includes/queue_search.html:8 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:9
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:10 mkt/search/forms.py:83 mkt/search/forms.py:85 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
 #: mkt/templates/mkt/header.html:13 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
@@ -4774,7 +4786,7 @@ msgid "My Addons"
 msgstr "Mo Chuid Breiseán"
 
 #: apps/devhub/templates/devhub/index.html:53 apps/devhub/templates/devhub/addons/listing/items.html:38 apps/devhub/templates/devhub/personas/edit.html:43
-#: mkt/developers/templates/developers/apps/listing/items.html:32
+#: mkt/developers/templates/developers/apps/listing/items.html:34
 msgid "Status:"
 msgstr "Stádas:"
 
@@ -4790,7 +4802,7 @@ msgstr "Ionad sa Chiú:"
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s as %(total)s"
 
-#: apps/devhub/templates/devhub/index.html:78 mkt/developers/templates/developers/apps/status.html:252
+#: apps/devhub/templates/devhub/index.html:78 mkt/developers/templates/developers/apps/status.html:257
 msgid "Upload New Version"
 msgstr "Uasluchtaigh Leagan Nua"
 
@@ -5377,7 +5389,7 @@ msgstr "Leathanach Baile"
 msgid "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/media.html:3 mkt/reviewers/templates/reviewers/includes/details.html:161
+#: apps/devhub/templates/devhub/addons/edit/media.html:3 mkt/reviewers/templates/reviewers/includes/details.html:159
 msgid "Images"
 msgstr "Íomhánna"
 
@@ -5741,7 +5753,7 @@ msgstr ""
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/developers/templates/developers/apps/status.html:223 mkt/developers/templates/developers/apps/listing/items.html:35
+#: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/developers/templates/developers/apps/status.html:228 mkt/developers/templates/developers/apps/listing/items.html:37
 msgid "Disabled"
 msgstr "Díchumasaithe"
 
@@ -8463,11 +8475,11 @@ msgstr ""
 msgid "Manage Refunds"
 msgstr ""
 
-#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:898 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
+#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:991 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
 msgstr ""
 
-#: apps/devhub/templates/devhub/payments/refunds.html:14 mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:154 mkt/purchase/templates/purchase/receipt.html:39
+#: apps/devhub/templates/devhub/payments/refunds.html:14 mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:158 mkt/purchase/templates/purchase/receipt.html:39
 #: mkt/reviewers/templates/reviewers/includes/details.html:57 mkt/reviewers/templates/reviewers/includes/mobile_details.html:79 mkt/reviewers/templates/reviewers/includes/search_results.html:9
 #: mkt/search/forms.py:18
 msgid "Price"
@@ -8653,8 +8665,8 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
-#: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:231
-#: mkt/developers/forms_payments.py:53 mkt/reviewers/forms.py:302 mkt/submit/forms.py:374
+#: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:141
+#: mkt/developers/forms_payments.py:53 mkt/reviewers/forms.py:305 mkt/submit/forms.py:374
 msgid "Yes"
 msgstr "Tá"
 
@@ -8664,8 +8676,8 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
-#: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:232
-#: mkt/developers/forms_payments.py:53 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:303 mkt/submit/forms.py:375
+#: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:142
+#: mkt/developers/forms_payments.py:53 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:306 mkt/submit/forms.py:375
 msgid "No"
 msgstr "Níl"
 
@@ -8955,7 +8967,7 @@ msgstr ""
 msgid "This add-on is <b>incomplete</b>."
 msgstr "Tá an breiseán seo <b>neamhiomlán</b>."
 
-#: apps/devhub/templates/devhub/versions/list.html:40 mkt/developers/templates/developers/apps/status.html:37
+#: apps/devhub/templates/devhub/versions/list.html:40 mkt/developers/templates/developers/apps/status.html:42
 msgid "Please complete your app."
 msgstr "Cuir d'aip i gcrích, le do thoil."
 
@@ -9063,10 +9075,10 @@ msgstr "Leagan ar taispeáint: {0}"
 msgid "Version History"
 msgstr "Stair na Leaganacha"
 
-#: apps/devhub/templates/devhub/versions/list.html:176 mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:212
+#: apps/devhub/templates/devhub/versions/list.html:176 mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:217
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/apps/preload/home.html:3
 #: mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8 mkt/lookup/templates/lookup/app_summary.html:65
-#: mkt/lookup/templates/lookup/app_summary.html:121 mkt/reviewers/forms.py:283 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:121 mkt/reviewers/forms.py:286 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7 mkt/reviewers/templates/reviewers/themes/queue_list.html:46
 msgid "Status"
 msgstr "Stádas"
@@ -9123,11 +9135,11 @@ msgstr "Scrios Leagan {version}"
 msgid "Deleting this version will permanently delete:"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:270 mkt/developers/templates/developers/apps/status.html:344
+#: apps/devhub/templates/devhub/versions/list.html:270 mkt/developers/templates/developers/apps/status.html:349
 msgid "Are you sure you wish to delete this version?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:275 mkt/developers/templates/developers/apps/status.html:347
+#: apps/devhub/templates/devhub/versions/list.html:275 mkt/developers/templates/developers/apps/status.html:352
 msgid "Delete Version"
 msgstr "Scrios Leagan"
 
@@ -9498,18 +9510,23 @@ msgid "Search by add-on name / author email"
 msgstr "Cuardaigh ainm an bhreiseáin / seoladh ríomhphoist an údair"
 
 #: apps/editors/forms.py:86 mkt/ecosystem/templates/ecosystem/publish_payments.html:43 mkt/ecosystem/templates/ecosystem/publish_payments.html:44
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:45 mkt/ecosystem/templates/ecosystem/publish_payments.html:51 mkt/ecosystem/templates/ecosystem/publish_payments.html:52
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:53 mkt/ecosystem/templates/ecosystem/publish_payments.html:59 mkt/ecosystem/templates/ecosystem/publish_payments.html:60
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:61 mkt/ecosystem/templates/ecosystem/publish_payments.html:67 mkt/ecosystem/templates/ecosystem/publish_payments.html:68
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:69 mkt/ecosystem/templates/ecosystem/publish_payments.html:71 mkt/ecosystem/templates/ecosystem/publish_payments.html:75
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:76 mkt/ecosystem/templates/ecosystem/publish_payments.html:77 mkt/ecosystem/templates/ecosystem/publish_payments.html:79
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:83 mkt/ecosystem/templates/ecosystem/publish_payments.html:84 mkt/ecosystem/templates/ecosystem/publish_payments.html:85
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:87
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:45 mkt/ecosystem/templates/ecosystem/publish_payments.html:51 mkt/ecosystem/templates/ecosystem/publish_payments.html:59
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:67 mkt/ecosystem/templates/ecosystem/publish_payments.html:75 mkt/ecosystem/templates/ecosystem/publish_payments.html:76
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:77 mkt/ecosystem/templates/ecosystem/publish_payments.html:83 mkt/ecosystem/templates/ecosystem/publish_payments.html:84
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:85 mkt/ecosystem/templates/ecosystem/publish_payments.html:91 mkt/ecosystem/templates/ecosystem/publish_payments.html:92
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:93 mkt/ecosystem/templates/ecosystem/publish_payments.html:95 mkt/ecosystem/templates/ecosystem/publish_payments.html:99
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:100 mkt/ecosystem/templates/ecosystem/publish_payments.html:101 mkt/ecosystem/templates/ecosystem/publish_payments.html:103
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:107 mkt/ecosystem/templates/ecosystem/publish_payments.html:108 mkt/ecosystem/templates/ecosystem/publish_payments.html:109
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:111
 msgid "yes"
 msgstr "tá"
 
-#: apps/editors/forms.py:87 mkt/ecosystem/templates/ecosystem/publish_payments.html:70 mkt/ecosystem/templates/ecosystem/publish_payments.html:78
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:86
+#: apps/editors/forms.py:87 mkt/ecosystem/templates/ecosystem/publish_payments.html:52 mkt/ecosystem/templates/ecosystem/publish_payments.html:53
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:54 mkt/ecosystem/templates/ecosystem/publish_payments.html:55 mkt/ecosystem/templates/ecosystem/publish_payments.html:60
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:61 mkt/ecosystem/templates/ecosystem/publish_payments.html:62 mkt/ecosystem/templates/ecosystem/publish_payments.html:63
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:68 mkt/ecosystem/templates/ecosystem/publish_payments.html:69 mkt/ecosystem/templates/ecosystem/publish_payments.html:70
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:71 mkt/ecosystem/templates/ecosystem/publish_payments.html:94 mkt/ecosystem/templates/ecosystem/publish_payments.html:102
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:110
 msgid "no"
 msgstr "níl"
 
@@ -9602,7 +9619,7 @@ msgstr "Scrúduithe Iomlána"
 msgid "Preliminary Reviews"
 msgstr "Réamhscrúduithe"
 
-#: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:40 mkt/reviewers/helpers.py:41
+#: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:40 mkt/reviewers/helpers.py:40
 msgid "Moderated Reviews"
 msgstr "Scrúduithe le Ceannasaí"
 
@@ -9664,13 +9681,13 @@ msgstr "Breiseán"
 msgid "Type"
 msgstr "Cineál"
 
-#: apps/editors/helpers.py:184 mkt/reviewers/templates/reviewers/queue.html:30
+#: apps/editors/helpers.py:184 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/queue_region.html:26
 msgid "Waiting Time"
 msgstr "Am Feithimh"
 
 #: apps/editors/helpers.py:185 apps/editors/templates/editors/review.html:280 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
-#: mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/includes/details.html:143 mkt/reviewers/templates/reviewers/includes/mobile_details.html:165
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:7
+#: mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25 mkt/reviewers/templates/reviewers/includes/details.html:143
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:165 mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
 msgstr "Bratacha"
 
@@ -9728,15 +9745,16 @@ msgstr[2] "{0} lá"
 msgstr[3] "{0} lá"
 msgstr[4] "{0} lá"
 
-#: apps/editors/helpers.py:436 mkt/reviewers/utils.py:411
+#: apps/editors/helpers.py:436 mkt/reviewers/utils.py:416
 msgid "Push to public"
 msgstr ""
 
-#: apps/editors/helpers.py:444 mkt/constants/reviewers.py:24 mkt/reviewers/utils.py:416 mkt/reviewers/templates/reviewers/themes/queue.html:71 mkt/reviewers/templates/reviewers/themes/themes.html:93
+#: apps/editors/helpers.py:444 mkt/constants/reviewers.py:24 mkt/reviewers/utils.py:421 mkt/reviewers/templates/reviewers/queue_region.html:43 mkt/reviewers/templates/reviewers/themes/queue.html:71
+#: mkt/reviewers/templates/reviewers/themes/themes.html:93
 msgid "Reject"
 msgstr "Diúltaigh"
 
-#: apps/editors/helpers.py:447 mkt/reviewers/utils.py:422
+#: apps/editors/helpers.py:447 mkt/reviewers/utils.py:427
 msgid "Request more information"
 msgstr ""
 
@@ -9824,60 +9842,63 @@ msgstr ""
 msgid "Premium Add-on"
 msgstr ""
 
-#: apps/editors/models.py:180 mkt/reviewers/templates/reviewers/apps_reviewing.html:44 mkt/reviewers/templates/reviewers/apps_reviewing.html:84 mkt/reviewers/templates/reviewers/queue.html:65
+#: apps/editors/models.py:180 mkt/reviewers/templates/reviewers/apps_reviewing.html:44 mkt/reviewers/templates/reviewers/apps_reviewing.html:84
+#: mkt/reviewers/templates/reviewers/includes/macros.html:88
 msgid "More Information Requested"
 msgstr ""
 
-#: apps/editors/models.py:181 mkt/reviewers/templates/reviewers/apps_reviewing.html:47 mkt/reviewers/templates/reviewers/apps_reviewing.html:87 mkt/reviewers/templates/reviewers/queue.html:68
+#: apps/editors/models.py:181 mkt/reviewers/templates/reviewers/apps_reviewing.html:47 mkt/reviewers/templates/reviewers/apps_reviewing.html:87
+#: mkt/reviewers/templates/reviewers/includes/macros.html:91
 msgid "Contains Editor Comment"
 msgstr ""
 
-#: apps/editors/views.py:120
+#: apps/editors/views.py:121
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
-#: apps/editors/views.py:121 mkt/reviewers/views.py:78
+#: apps/editors/views.py:122 mkt/reviewers/views.py:79
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:122 mkt/reviewers/views.py:79
+#: apps/editors/views.py:123 mkt/reviewers/views.py:80
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:433
+#: apps/editors/views.py:457
 msgid "An unknown error occurred"
 msgstr ""
 
-#: apps/editors/views.py:469 mkt/reviewers/views.py:242
+#: apps/editors/views.py:493 mkt/reviewers/views.py:245
 msgid "Self-reviews are not allowed."
 msgstr "Níl cead agat do bhreiseán féin a iniúchadh."
 
-#: apps/editors/views.py:501 mkt/reviewers/views.py:350
+#: apps/editors/views.py:525 mkt/reviewers/views.py:352
 msgid "Review successfully processed."
 msgstr "Próiseáladh an léirmheas."
 
-#: apps/editors/views.py:681
+#: apps/editors/views.py:705
 msgid "was approved"
 msgstr "ceadaithe"
 
-#: apps/editors/views.py:682
+#: apps/editors/views.py:706
 msgid "given preliminary review"
 msgstr "réamhscrúdú déanta"
 
-#: apps/editors/views.py:683
+#. L10n: An app is rejected for a particular region.
+#: apps/editors/views.py:707 mkt/webapps/models.py:2006
 msgid "rejected"
 msgstr "diúltaithe"
 
-#: apps/editors/views.py:684
+#: apps/editors/views.py:708
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "géaraithe"
 
-#: apps/editors/views.py:686
+#: apps/editors/views.py:710
 msgid "needs more information"
 msgstr ""
 
-#: apps/editors/views.py:687
+#: apps/editors/views.py:711
 msgid "needs super review"
 msgstr ""
 
@@ -9901,12 +9922,12 @@ msgstr "<i>gan ainm</i> ar %(date)s [%(ip_address)s]"
 msgid "Return to the Editor Tools homepage"
 msgstr ""
 
-#: apps/editors/templates/editors/base.html:28 mkt/reviewers/templates/reviewers/base.html:50 mkt/reviewers/templates/reviewers/base.html:90 mkt/reviewers/templates/reviewers/themes/base.html:14
+#: apps/editors/templates/editors/base.html:28 mkt/reviewers/templates/reviewers/base.html:52 mkt/reviewers/templates/reviewers/base.html:92 mkt/reviewers/templates/reviewers/themes/base.html:14
 #: mkt/reviewers/templates/reviewers/themes/queue.html:25
 msgid "Queues"
 msgstr "Ciúnna"
 
-#: apps/editors/templates/editors/base.html:48 mkt/reviewers/templates/reviewers/base.html:55 mkt/reviewers/templates/reviewers/base.html:94 mkt/reviewers/templates/reviewers/themes/base.html:19
+#: apps/editors/templates/editors/base.html:48 mkt/reviewers/templates/reviewers/base.html:57 mkt/reviewers/templates/reviewers/base.html:96 mkt/reviewers/templates/reviewers/themes/base.html:19
 msgid "Logs"
 msgstr "Logchomhaid"
 
@@ -9918,13 +9939,13 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#: apps/editors/templates/editors/base.html:57 apps/editors/templates/editors/includes/daily-message.html:4 mkt/reviewers/templates/reviewers/base.html:60
-#: mkt/reviewers/templates/reviewers/base.html:81
+#: apps/editors/templates/editors/base.html:57 apps/editors/templates/editors/includes/daily-message.html:4 mkt/reviewers/templates/reviewers/base.html:62
+#: mkt/reviewers/templates/reviewers/base.html:83
 msgid "Announcement"
 msgstr "Fógra"
 
 #. "Filter" is a button label (verb)
-#: apps/editors/templates/editors/eventlog.html:24 mkt/reviewers/templates/reviewers/includes/macros.html:61 mkt/reviewers/templates/reviewers/themes/includes/logs_filter_deleted.html:12
+#: apps/editors/templates/editors/eventlog.html:24 mkt/reviewers/templates/reviewers/includes/macros.html:62 mkt/reviewers/templates/reviewers/themes/includes/logs_filter_deleted.html:12
 #: mkt/templates/mkt/header.html:18
 msgid "Filter"
 msgstr "Scag"
@@ -9939,7 +9960,7 @@ msgstr "Dáta"
 msgid "Event"
 msgstr "Imeacht"
 
-#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:128
+#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:134
 msgid "More details."
 msgstr "Tuilleadh mionsonraí."
 
@@ -10020,8 +10041,12 @@ msgstr ""
 msgid "New Editors"
 msgstr "Eagarthóirí Nua"
 
+#: apps/editors/templates/editors/home.html:80 apps/editors/templates/editors/home.html:95
+msgid "You're #{0} with {1} reviews"
+msgstr ""
+
 #. num = number of reviews in the queue
-#: apps/editors/templates/editors/home.html:119
+#: apps/editors/templates/editors/home.html:125
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
 msgstr[0] ""
@@ -10124,7 +10149,7 @@ msgstr "Cuardach Casta"
 msgid "clear search"
 msgstr "glan an cuardach"
 
-#: apps/editors/templates/editors/queue.html:72 apps/editors/templates/editors/queue.html:117 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5
+#: apps/editors/templates/editors/queue.html:72 apps/editors/templates/editors/queue.html:122 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:72
 msgid "Process Reviews"
 msgstr "Próiseáil Léirmheasanna"
@@ -10137,32 +10162,32 @@ msgstr ""
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
 msgstr "le %(user)s ar %(date)s %(stars)s (%(locale)s)"
 
-#: apps/editors/templates/editors/queue.html:101 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:48
+#: apps/editors/templates/editors/queue.html:106 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:48
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-#: apps/editors/templates/editors/queue.html:114 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:69
+#: apps/editors/templates/editors/queue.html:119 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:69
 msgid "All reviews have been moderated. Good work!"
 msgstr ""
 
-#: apps/editors/templates/editors/queue.html:156
+#: apps/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
 msgstr ""
 
 # %1 is the queue mode
-#: apps/editors/templates/editors/queue.html:164
+#: apps/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
 msgstr "Níl aon bhreiseáin den chineál seo le hiniúchadh faoi láthair."
 
-#: apps/editors/templates/editors/queue.html:176 mkt/reviewers/templates/reviewers/queue.html:118 mkt/reviewers/templates/reviewers/themes/queue_list.html:87
+#: apps/editors/templates/editors/queue.html:181 mkt/reviewers/templates/reviewers/queue.html:94 mkt/reviewers/templates/reviewers/themes/queue_list.html:87
 msgid "Helpful Links:"
 msgstr "Nascanna Cabhracha:"
 
-#: apps/editors/templates/editors/queue.html:177
+#: apps/editors/templates/editors/queue.html:182
 msgid "Add-on Policy"
 msgstr "Polasaí Breiseáin"
 
-#: apps/editors/templates/editors/queue.html:179 mkt/reviewers/templates/reviewers/queue.html:119 mkt/reviewers/templates/reviewers/themes/queue_list.html:88
+#: apps/editors/templates/editors/queue.html:184 mkt/reviewers/templates/reviewers/queue.html:95 mkt/reviewers/templates/reviewers/themes/queue_list.html:88
 msgid "Editors' Guide"
 msgstr "Lámhleabhar d'Eagarthóirí"
 
@@ -10283,7 +10308,7 @@ msgstr "Folaigh Nótaí"
 msgid "No reviews found for this period."
 msgstr "Níor aimsíodh aon rud sa tréimhse seo."
 
-#: apps/editors/templates/editors/includes/daily-message.html:6 mkt/reviewers/templates/reviewers/base.html:83
+#: apps/editors/templates/editors/includes/daily-message.html:6 mkt/reviewers/templates/reviewers/base.html:85
 msgid "Dismiss this announcement"
 msgstr ""
 
@@ -10357,67 +10382,67 @@ msgstr "Tharla earráid agus comhad %s á rochtain. %s."
 msgid "There was an error accessing file %s."
 msgstr "Tharla earráid agus comhad %s á rochtain."
 
-#: apps/files/utils.py:185
+#: apps/files/utils.py:186
 msgid "Could not parse uploaded file."
 msgstr "Níorbh fhéidir an comhad uasluchtaithe a pharsáil."
 
-#: apps/files/utils.py:223
+#: apps/files/utils.py:224
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr "Níor aimsíodh comhad \"manifest.webapp\" sa bhfréamhchomhadlann san aip phacáistithe."
 
-#: apps/files/utils.py:245
+#: apps/files/utils.py:246
 msgid "Could not decode the webapp manifest file."
 msgstr "Níorbh fhéidir an comhad \"manifest.webapp\" a dhíchódú."
 
-#: apps/files/utils.py:251
+#: apps/files/utils.py:252
 msgid "The webapp manifest is not valid JSON."
 msgstr "Ní comhad bailí JSON é \"manifest.webapp\"."
 
-#: apps/files/utils.py:260
+#: apps/files/utils.py:261
 msgid "Your specified app locales are not in the correct format."
 msgstr ""
 
-#: apps/files/utils.py:277
+#: apps/files/utils.py:278
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr ""
 
-#: apps/files/utils.py:328
+#: apps/files/utils.py:329
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:336
+#: apps/files/utils.py:337
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:386
+#: apps/files/utils.py:387
 msgid "Invalid archive."
 msgstr "Cartlann neamhbhailí."
 
-#: apps/files/utils.py:472 apps/files/utils.py:475
+#: apps/files/utils.py:473 apps/files/utils.py:476
 msgid "Could not parse install.rdf."
 msgstr "Níorbh fhéidir install.rdf a pharsáil."
 
-#: apps/files/utils.py:485
+#: apps/files/utils.py:486
 msgid "Could not find a UUID."
 msgstr ""
 
-#: apps/files/utils.py:487
+#: apps/files/utils.py:488
 msgid "UUID doesn't match add-on."
 msgstr ""
 
-#: apps/files/utils.py:491
+#: apps/files/utils.py:492
 msgid "Duplicate UUID found."
 msgstr ""
 
-#: apps/files/utils.py:494
+#: apps/files/utils.py:495
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: apps/files/utils.py:497
+#: apps/files/utils.py:498
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
 
-#: apps/files/utils.py:517
+#: apps/files/utils.py:518
 msgid "<em:type> doesn't match add-on"
 msgstr ""
 
@@ -10595,7 +10620,7 @@ msgid "E-Mail Your Team:"
 msgstr "Seol Ríomhphoist chuig d'Fhoireann:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8 apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12 mkt/constants/submit.py:6
-#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
+#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
 msgid "Submit"
 msgstr "Seol"
 
@@ -10642,6 +10667,110 @@ msgstr ""
 
 #: apps/market/tasks.py:117
 msgid "Add-on disabled on the Firefox Marketplace."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
+msgid "About Mozilla Add-ons"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:12
+msgid "What is this website?"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:13
+msgid ""
+"addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
+"the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:19
+msgid "Who creates these add-ons?"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:20
+msgid ""
+"The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
+"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:26
+msgid "How do I keep up with what's happening at AMO?"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:27
+msgid "There are several ways to find out the latest news from the world of add-ons:"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:29
+msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:32
+msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:34
+msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:39
+msgid "This sounds great! How can I get involved?"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:40
+msgid "There are plenty of ways to get involved. If you're on the technical side:"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:42
+msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:45
+msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:49
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:55
+msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:58
+msgid "Tell your friends! <a href=\"%(url)s\">Spread Firefox</a> and let people know which add-ons you use."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:61
+msgid "Participate in our <a href=\"%(url)s\">forums</a>."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:63
+msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:68
+msgid "I have a question"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:69
+msgid ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
+"forums</a>."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:74
+msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:78
+msgid "Who works on this website?"
+msgstr ""
+
+#: apps/pages/templates/pages/about.lhtml:79
+msgid ""
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
+"\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
@@ -11956,7 +12085,7 @@ msgstr "Scrios an léirmheas"
 msgid "Other (please specify)"
 msgstr "Cúis eile (sonraigh, le do thoil)"
 
-#: apps/reviews/views.py:135
+#: apps/reviews/views.py:146
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Go raibh maith agat; cuireadh bratach leis an léirmheas seo agus déanfaidh eagarthóir iniúchadh air."
 
@@ -12552,11 +12681,11 @@ msgstr ""
 msgid "Custom Date Range"
 msgstr "Raon Saincheaptha Dátaí"
 
-#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:904
+#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:997
 msgid "From"
 msgstr "Ó"
 
-#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:907
+#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:1000
 msgid "To"
 msgstr "Go"
 
@@ -13276,6 +13405,7 @@ msgid "Delete Account"
 msgstr "Scrios an Cuntas"
 
 #: apps/users/templates/users/edit.html:223 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:115
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:25
 msgid "Update Account"
 msgstr "Nuashonraigh an Cuntas"
 
@@ -13657,6 +13787,10 @@ msgstr ""
 msgid "Purchase Date"
 msgstr "Dáta Ceannaigh"
 
+#: mkt/api/fields.py:19
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
 #: mkt/api/serializers.py:100 mkt/site/forms.py:50
 msgid "Form could not be submitted."
 msgstr ""
@@ -13681,7 +13815,7 @@ msgstr "Dath heicsidheachúlach"
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr ""
 
-#: mkt/collections/serializers.py:246
+#: mkt/collections/serializers.py:192
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
 
@@ -13803,7 +13937,7 @@ msgstr "An Antartaice"
 msgid "Antigua and Barbuda"
 msgstr "Antigua agus Barbúda"
 
-#: mkt/constants/bango.py:49 mkt/constants/regions.py:200
+#: mkt/constants/bango.py:49 mkt/constants/regions.py:203
 msgid "Argentina"
 msgstr "An Airgintín"
 
@@ -13887,7 +14021,7 @@ msgstr "An Bhotsuáin"
 msgid "Bouvet Island"
 msgstr "Oileán Bouvet"
 
-#: mkt/constants/bango.py:70 mkt/constants/ratingsbodies.py:84 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:70 mkt/constants/ratingsbodies.py:96 mkt/constants/regions.py:80
 msgid "Brazil"
 msgstr "An Bhrasaíl"
 
@@ -13943,7 +14077,7 @@ msgstr "Sead"
 msgid "Chile"
 msgstr "An tSile"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:209
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:212
 msgid "China"
 msgstr "An tSín"
 
@@ -13955,7 +14089,7 @@ msgstr "Oileán na Nollag"
 msgid "Cocos (Keeling) Islands"
 msgstr "Oileáin na gCócónna (Keeling)"
 
-#: mkt/constants/bango.py:87 mkt/constants/regions.py:97 mkt/ecosystem/templates/ecosystem/publish_payments.html:42
+#: mkt/constants/bango.py:87 mkt/constants/regions.py:100 mkt/ecosystem/templates/ecosystem/publish_payments.html:42
 msgid "Colombia"
 msgstr "An Cholóim"
 
@@ -14091,7 +14225,7 @@ msgstr "An Ghaimbia"
 msgid "Georgia"
 msgstr "An tSeoirsia"
 
-#: mkt/constants/bango.py:121 mkt/constants/ratingsbodies.py:181 mkt/constants/regions.py:144
+#: mkt/constants/bango.py:121 mkt/constants/ratingsbodies.py:195 mkt/constants/regions.py:147 mkt/ecosystem/templates/ecosystem/publish_payments.html:50
 msgid "Germany"
 msgstr "An Ghearmáin"
 
@@ -14103,7 +14237,7 @@ msgstr "Gána"
 msgid "Gibraltar"
 msgstr "Giobráltar"
 
-#: mkt/constants/bango.py:124 mkt/constants/regions.py:172
+#: mkt/constants/bango.py:124 mkt/constants/regions.py:175
 msgid "Greece"
 msgstr "An Ghréig"
 
@@ -14163,7 +14297,7 @@ msgstr "Hondúras"
 msgid "Hong Kong"
 msgstr "Hong Cong"
 
-#: mkt/constants/bango.py:139 mkt/constants/regions.py:134
+#: mkt/constants/bango.py:139 mkt/constants/regions.py:137 mkt/ecosystem/templates/ecosystem/publish_payments.html:58
 msgid "Hungary"
 msgstr "An Ungáir"
 
@@ -14339,7 +14473,7 @@ msgstr "Oileán Mhuirís"
 msgid "Mayotte"
 msgstr "Mayotte"
 
-#: mkt/constants/bango.py:183 mkt/constants/regions.py:125
+#: mkt/constants/bango.py:183 mkt/constants/regions.py:128 mkt/ecosystem/templates/ecosystem/publish_payments.html:66
 msgid "Mexico"
 msgstr "Meicsiceo"
 
@@ -14359,7 +14493,7 @@ msgstr "Monacó"
 msgid "Mongolia"
 msgstr "An Mhongóil"
 
-#: mkt/constants/bango.py:188 mkt/constants/regions.py:154
+#: mkt/constants/bango.py:188 mkt/constants/regions.py:157
 msgid "Montenegro"
 msgstr "Montainéagró"
 
@@ -14461,7 +14595,7 @@ msgstr "Nua-Ghuine Phapua"
 msgid "Paraguay"
 msgstr "Paragua"
 
-#: mkt/constants/bango.py:213 mkt/constants/regions.py:182
+#: mkt/constants/bango.py:213 mkt/constants/regions.py:185
 msgid "Peru"
 msgstr "Peiriú"
 
@@ -14473,7 +14607,7 @@ msgstr "Na hOileáin Fhilipíneacha"
 msgid "Pitcairn"
 msgstr "Oileán Pitcairn"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:115 mkt/ecosystem/templates/ecosystem/publish_payments.html:50
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:118 mkt/ecosystem/templates/ecosystem/publish_payments.html:74
 msgid "Poland"
 msgstr "An Pholainn"
 
@@ -14553,7 +14687,7 @@ msgstr "An Araib Shádach"
 msgid "Senega"
 msgstr "An tSeineagáil"
 
-#: mkt/constants/bango.py:236 mkt/constants/regions.py:163
+#: mkt/constants/bango.py:236 mkt/constants/regions.py:166
 msgid "Serbia"
 msgstr "An tSeirbia"
 
@@ -14605,7 +14739,7 @@ msgstr "An tSeoirsia Theas agus Oileáin Sandwich Theas"
 msgid "South Sudan"
 msgstr "An tSúdáin Theas"
 
-#: mkt/constants/bango.py:249 mkt/constants/regions.py:87 mkt/ecosystem/templates/ecosystem/publish_payments.html:58
+#: mkt/constants/bango.py:249 mkt/constants/regions.py:90 mkt/ecosystem/templates/ecosystem/publish_payments.html:82
 msgid "Spain"
 msgstr "An Spáinn"
 
@@ -14709,11 +14843,11 @@ msgstr "An Úcráin"
 msgid "United Arab Emirates"
 msgstr "Aontas na nÉimíríochtaí Arabacha"
 
-#: mkt/constants/bango.py:275 mkt/constants/regions.py:68 mkt/ecosystem/templates/ecosystem/publish_payments.html:66
+#: mkt/constants/bango.py:275 mkt/constants/regions.py:71 mkt/ecosystem/templates/ecosystem/publish_payments.html:90
 msgid "United Kingdom"
 msgstr "An Ríocht Aontaithe"
 
-#: mkt/constants/bango.py:276 mkt/constants/regions.py:58 mkt/ecosystem/templates/ecosystem/publish_payments.html:74
+#: mkt/constants/bango.py:276 mkt/constants/regions.py:62 mkt/ecosystem/templates/ecosystem/publish_payments.html:98
 msgid "United States"
 msgstr "Stáit Aontaithe Mheiriceá"
 
@@ -14721,7 +14855,7 @@ msgstr "Stáit Aontaithe Mheiriceá"
 msgid "United States Minor Outlying Islands"
 msgstr "Mion-Oileáin Imeallacha S.A.M."
 
-#: mkt/constants/bango.py:278 mkt/constants/regions.py:191
+#: mkt/constants/bango.py:278 mkt/constants/regions.py:194
 msgid "Uruguay"
 msgstr "Uragua"
 
@@ -14857,7 +14991,7 @@ msgstr ""
 msgid "Idle"
 msgstr "Díomhaoin"
 
-#: mkt/constants/features.py:92 mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:407
+#: mkt/constants/features.py:92
 msgid "Network Information"
 msgstr ""
 
@@ -14873,7 +15007,7 @@ msgstr ""
 msgid "The app requires the `navigator.mozNetworkStats` API."
 msgstr ""
 
-#: mkt/constants/features.py:105 mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:406
+#: mkt/constants/features.py:105
 msgid "Proximity"
 msgstr "Cóngaracht"
 
@@ -14905,7 +15039,7 @@ msgstr "Am/Clog"
 msgid "The app requires the `navigator.mozTime` API."
 msgstr ""
 
-#: mkt/constants/features.py:127 mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:409
+#: mkt/constants/features.py:127
 msgid "Vibration"
 msgstr ""
 
@@ -15356,107 +15490,86 @@ msgstr ""
 msgid "General Audiences"
 msgstr "Lucht Ginearálta"
 
-#: mkt/constants/ratingsbodies.py:6
-msgid "Not recommended for users younger than 3 years of age"
-msgstr ""
-
+#. L10n: %d is the age in years.
 #: mkt/constants/ratingsbodies.py:7
-msgid "Not recommended for users younger than 6 years of age"
+msgid "Not recommended for users younger than %d years of age"
 msgstr ""
 
 #: mkt/constants/ratingsbodies.py:8
-msgid "Not recommended for users younger than 7 years of age"
-msgstr ""
-
-#: mkt/constants/ratingsbodies.py:9
-msgid "Not recommended for users younger than 10 years of age"
-msgstr ""
-
-#: mkt/constants/ratingsbodies.py:10
-msgid "Not recommended for users younger than 12 years of age"
-msgstr ""
-
-#: mkt/constants/ratingsbodies.py:11
-msgid "Not recommended for users younger than 13 years of age"
-msgstr ""
-
-#: mkt/constants/ratingsbodies.py:12
-msgid "Not recommended for users younger than 14 years of age"
-msgstr ""
-
-#: mkt/constants/ratingsbodies.py:13
-msgid "Not recommended for users younger than 16 years of age"
-msgstr ""
-
-#: mkt/constants/ratingsbodies.py:14
-msgid "Not recommended for users younger than 17 years of age"
-msgstr ""
-
-#: mkt/constants/ratingsbodies.py:15
-msgid "Not recommended for users younger than 18 years of age"
-msgstr ""
-
-#: mkt/constants/ratingsbodies.py:16
 msgid "Rejected for All Audiences"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:89
+#: mkt/constants/ratingsbodies.py:10
+msgid "For all ages"
+msgstr ""
+
+#. L10n: %d is the age in years. For ages %d and higher.
+#: mkt/constants/ratingsbodies.py:12
+msgid "For ages %d+"
+msgstr ""
+
+#: mkt/constants/ratingsbodies.py:13
+msgid "Rating Rejected"
+msgstr ""
+
+#: mkt/constants/ratingsbodies.py:97
 msgid "Department of Justice, Rating, Titles and Qualification"
 msgstr "An Roinn Dlí, Rátála, Teideal agus Cáilíochta"
 
-#: mkt/constants/ratingsbodies.py:135
+#: mkt/constants/ratingsbodies.py:142 mkt/constants/ratingsbodies.py:144
 msgid "Generic"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:185
+#: mkt/constants/ratingsbodies.py:196
 msgid "Entertainment Software Self-Regulation Body"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:192
+#: mkt/constants/ratingsbodies.py:205
 msgid "Everyone"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:199
+#: mkt/constants/ratingsbodies.py:213
 msgid "Everyone 10+"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:206
+#: mkt/constants/ratingsbodies.py:220
 msgid "Teen"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:213
+#: mkt/constants/ratingsbodies.py:227
 msgid "Mature 17+"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:220
+#: mkt/constants/ratingsbodies.py:234
 msgid "Adults Only 18+"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:227
+#: mkt/constants/ratingsbodies.py:242
 msgid "Rating Pending"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:238
+#: mkt/constants/ratingsbodies.py:254
 msgid "N. America"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:242
+#. L10n: `N.` stands for North.
+#: mkt/constants/ratingsbodies.py:255
 msgid "Entertainment Software Rating Board"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:282
+#: mkt/constants/ratingsbodies.py:299
 msgid "Europe"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:286
+#: mkt/constants/ratingsbodies.py:300
 msgid "Pan European Game Information"
 msgstr ""
 
-#: mkt/constants/regions.py:51
+#: mkt/constants/regions.py:55
 msgid "Worldwide"
 msgstr "Ar fud an domhain"
 
-#: mkt/constants/regions.py:106 mkt/ecosystem/templates/ecosystem/publish_payments.html:82
+#: mkt/constants/regions.py:109 mkt/ecosystem/templates/ecosystem/publish_payments.html:106
 msgid "Venezuela"
 msgstr "Veiniséala"
 
@@ -15480,7 +15593,7 @@ msgstr "Cuir Bratach Leis"
 msgid "Duplicate"
 msgstr "Cóipeáil"
 
-#: mkt/constants/reviewers.py:25 mkt/reviewers/templates/reviewers/themes/queue.html:70
+#: mkt/constants/reviewers.py:25 mkt/reviewers/templates/reviewers/queue_region.html:42 mkt/reviewers/templates/reviewers/themes/queue.html:70
 msgid "Approve"
 msgstr "Ceadaigh"
 
@@ -15536,159 +15649,171 @@ msgstr "Gníomhaíochtaí Riaracháin"
 msgid "(Unsupported)"
 msgstr "(Gan tacaíocht)"
 
-#: mkt/developers/api.py:65
+#: mkt/developers/api_payments.py:87
 msgid "Could not connect to payment server."
 msgstr ""
 
-#: mkt/developers/api.py:88
+#: mkt/developers/api_payments.py:110
 msgid "Cannot delete shared account"
 msgstr ""
 
-#: mkt/developers/forms.py:99
+#: mkt/developers/cron.py:132
+msgid "Content rating changed to Adult."
+msgstr ""
+
+#: mkt/developers/forms.py:58
+msgid "You cannot select {region}."
+msgstr ""
+
+#: mkt/developers/forms.py:148
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
 
-#: mkt/developers/forms.py:133
+#: mkt/developers/forms.py:182
 msgid "At least one team member must be listed."
 msgstr ""
 
-#: mkt/developers/forms.py:137
+#: mkt/developers/forms.py:186
 msgid "A team member can only be listed once."
 msgstr ""
 
-#: mkt/developers/forms.py:164
+#: mkt/developers/forms.py:213
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:168
+#: mkt/developers/forms.py:217
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:172
+#: mkt/developers/forms.py:221
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:176
+#: mkt/developers/forms.py:225
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:180
+#: mkt/developers/forms.py:229
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled by Mozilla. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:184
+#: mkt/developers/forms.py:233
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:199
+#: mkt/developers/forms.py:248
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
 
-#: mkt/developers/forms.py:292
+#: mkt/developers/forms.py:341
 msgid "Only one rating from each ratings body may be selected."
 msgstr ""
 
-#: mkt/developers/forms.py:373 mkt/webapps/models.py:407
+#: mkt/developers/forms.py:421 mkt/webapps/models.py:430
 msgid "You must upload at least one screenshot or video."
 msgstr ""
 
-#: mkt/developers/forms.py:414
+#: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be less than %s."
 msgstr ""
 
-#: mkt/developers/forms.py:426
+#: mkt/developers/forms.py:474
 msgid "Error extracting manifest from zip file."
 msgstr "Earráid agus an lastliosta á bhaint as an gcomhad zip."
 
-#: mkt/developers/forms.py:479
+#: mkt/developers/forms.py:527
 msgid "Provide a detailed description of your app"
 msgstr ""
 
-#: mkt/developers/forms.py:480 mkt/submit/forms.py:345
+#: mkt/developers/forms.py:528 mkt/submit/forms.py:345
 msgid "This description will appear on the details page."
 msgstr ""
 
-#: mkt/developers/forms.py:552
+#: mkt/developers/forms.py:600
 msgid "Please specify your app's Privacy Policy"
 msgstr ""
 
-#: mkt/developers/forms.py:573
+#: mkt/developers/forms.py:621
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
 
-#: mkt/developers/forms.py:628
+#: mkt/developers/forms.py:676
 msgid "Your comments"
 msgstr ""
 
-#: mkt/developers/forms.py:651
+#: mkt/developers/forms.py:699
 msgid "Choose the regions your app will be listed in:"
 msgstr ""
 
-#: mkt/developers/forms.py:655 mkt/developers/forms.py:708
+#: mkt/developers/forms.py:703 mkt/developers/forms.py:804
 msgid "You must select at least one region."
 msgstr ""
 
-#: mkt/developers/forms.py:657
+#: mkt/developers/forms.py:708
 msgid "Enable new regions"
 msgstr ""
 
-#: mkt/developers/forms.py:659
-msgid "Make my app available everywhere"
+#: mkt/developers/forms.py:710
+msgid "Make my app available in most regions"
 msgstr ""
 
-#: mkt/developers/forms.py:660
+#: mkt/developers/forms.py:711
 msgid "Choose where my app is made available"
 msgstr ""
 
-#: mkt/developers/forms.py:832
+#: mkt/developers/forms.py:925
 msgid "Agree"
 msgstr "Aontaím"
 
-#: mkt/developers/forms.py:849
+#: mkt/developers/forms.py:942
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: mkt/developers/forms.py:852
+#: mkt/developers/forms.py:945
 msgid "Your email address"
 msgstr ""
 
-#: mkt/developers/forms.py:855
+#: mkt/developers/forms.py:948
 msgid "Text"
 msgstr "Téacs"
 
-#: mkt/developers/forms.py:859
+#: mkt/developers/forms.py:952
 msgid "You must agree to the Privacy Policy."
 msgstr ""
 
-#: mkt/developers/forms.py:860 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:953 mkt/developers/forms_payments.py:398 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Tír"
 
-#: mkt/developers/forms.py:895
+#: mkt/developers/forms.py:988
 msgid "Transaction Type"
 msgstr ""
 
-#: mkt/developers/forms.py:949
+#: mkt/developers/forms.py:1042
 msgid "I agree to the Terms and Conditions"
 msgstr ""
 
-#: mkt/developers/forms.py:951
+#: mkt/developers/forms.py:1044
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr ""
 
-#: mkt/developers/forms.py:960
+#: mkt/developers/forms.py:1053
 msgid "Test plan required."
 msgstr ""
 
-#: mkt/developers/forms.py:967
+#: mkt/developers/forms.py:1060
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr ""
 
-#: mkt/developers/forms.py:973
+#: mkt/developers/forms.py:1066
 msgid "Invalid file type. Only %s files are supported."
 msgstr ""
 
-#: mkt/developers/forms.py:1011
+#: mkt/developers/forms.py:1086
+msgid "Please enter a valid submission ID."
+msgstr ""
+
+#: mkt/developers/forms.py:1113
 msgid "Content rating record not found."
 msgstr ""
 
@@ -15724,128 +15849,132 @@ msgstr ""
 msgid "Not a valid choice"
 msgstr "Rogha neamhbhailí"
 
-#: mkt/developers/forms_payments.py:325 mkt/developers/templates/developers/payments/premium.html:261
+#: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:273
 msgid "This is a paid upgrade of"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:326
+#: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
 msgstr "Ní nuashonrú é seo"
 
-#: mkt/developers/forms_payments.py:369
+#: mkt/developers/forms_payments.py:370
 msgid "Account Holder Name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:371
+#: mkt/developers/forms_payments.py:372
 msgid "Company Name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:373
+#: mkt/developers/forms_payments.py:374
 msgid "Vendor Name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:375
+#: mkt/developers/forms_payments.py:376
 msgid "Financial Email"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:378
+#: mkt/developers/forms_payments.py:379
 msgid "Administrative Email"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:381
+#: mkt/developers/forms_payments.py:382
 msgid "Support Email"
 msgstr "Ríomhphost Tacaíochta"
 
-#: mkt/developers/forms_payments.py:385
+#: mkt/developers/forms_payments.py:386
 msgid "Address"
 msgstr "Seoladh"
 
-#: mkt/developers/forms_payments.py:387
+#: mkt/developers/forms_payments.py:388
 msgid "Address 2"
 msgstr "Seoladh 2"
 
-#: mkt/developers/forms_payments.py:389
+#: mkt/developers/forms_payments.py:390
 msgid "City/Municipality"
 msgstr "Cathair/Bardas"
 
-#: mkt/developers/forms_payments.py:391
+#: mkt/developers/forms_payments.py:392
 msgid "State/Province/Region"
 msgstr "Stát/Cúige/Réigiún"
 
-#: mkt/developers/forms_payments.py:393
+#: mkt/developers/forms_payments.py:394
 msgid "Zip/Postal Code"
 msgstr "Cód Poist"
 
-#: mkt/developers/forms_payments.py:395
+#: mkt/developers/forms_payments.py:396
 msgid "Phone"
 msgstr "Fón"
 
-#: mkt/developers/forms_payments.py:400
+#: mkt/developers/forms_payments.py:401
 msgid "I prefer to be paid in"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:403
+#: mkt/developers/forms_payments.py:404
 msgid "VAT Number"
 msgstr "Uimhir VAT"
 
-#: mkt/developers/forms_payments.py:406
+#: mkt/developers/forms_payments.py:407
 msgid "Bank Account Number"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:409
+#: mkt/developers/forms_payments.py:410
 msgid "SWIFT code"
 msgstr "Cód SWIFT"
 
-#: mkt/developers/forms_payments.py:411
+#: mkt/developers/forms_payments.py:412
 msgid "Bank Name"
 msgstr "Ainm an Bhainc"
 
-#: mkt/developers/forms_payments.py:413
+#: mkt/developers/forms_payments.py:414
 msgid "Bank Address"
 msgstr "Seoladh an Bhainc"
 
-#: mkt/developers/forms_payments.py:415
+#: mkt/developers/forms_payments.py:416
 msgid "Bank Address 2"
 msgstr "Seoladh an Bhainc 2"
 
-#: mkt/developers/forms_payments.py:417
+#: mkt/developers/forms_payments.py:418
 msgid "Bank City/Municipality"
 msgstr "Cathair an Bhainc"
 
-#: mkt/developers/forms_payments.py:420
+#: mkt/developers/forms_payments.py:421
 msgid "Bank State/Province/Region"
 msgstr "Stát/Réigiún an Bhainc"
 
-#: mkt/developers/forms_payments.py:422
+#: mkt/developers/forms_payments.py:423
 msgid "Bank Zip/Postal Code"
 msgstr "Cód Poist an Bhainc"
 
-#: mkt/developers/forms_payments.py:424
+#: mkt/developers/forms_payments.py:425
 msgid "Bank Country"
 msgstr "Tír an Bhainc"
 
 # Entities for Account name page
-#: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:427 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "Ainm an Chuntais"
 
-#: mkt/developers/forms_payments.py:454 mkt/developers/templates/developers/payments/premium.html:124
+#: mkt/developers/forms_payments.py:455 mkt/developers/templates/developers/payments/premium.html:128
 msgid "Payment Account"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:504
+#: mkt/developers/forms_payments.py:505
 msgid "You cannot remove a payment account from an app."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:508
+#: mkt/developers/forms_payments.py:509
 msgid "You are not permitted to change payment accounts."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:552
+#: mkt/developers/forms_payments.py:546
+msgid "Account name"
+msgstr ""
+
+#: mkt/developers/forms_payments.py:560
 msgid "No payment account set up for that app"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:555
+#: mkt/developers/forms_payments.py:563
 msgid "Account not set up"
 msgstr "Níl aon chuntas socraithe"
 
@@ -15854,11 +15983,11 @@ msgid "Developers"
 msgstr "Forbróirí"
 
 #. L10n: {0} is the name of the account.
-#: mkt/developers/models.py:175
+#: mkt/developers/models.py:145
 msgid "Shared Account: {0}"
 msgstr ""
 
-#: mkt/developers/models.py:190
+#: mkt/developers/models.py:160
 msgid "Bango"
 msgstr "Bango"
 
@@ -15928,87 +16057,87 @@ msgstr "Scriosadh an aip."
 msgid "Password was incorrect. App was not deleted."
 msgstr "Focal faire mícheart. Níor scriosadh an aip."
 
-#: mkt/developers/views.py:217
+#: mkt/developers/views.py:220
 msgid "App successfully resubmitted."
 msgstr ""
 
-#: mkt/developers/views.py:248
+#: mkt/developers/views.py:251
 msgid "New version successfully added."
 msgstr ""
 
-#: mkt/developers/views.py:310
+#: mkt/developers/views.py:321
 msgid "Content ratings successfully saved."
 msgstr ""
 
-#: mkt/developers/views.py:359
+#: mkt/developers/views.py:374
 msgid "Application for preload successfully submitted."
 msgstr ""
 
-#: mkt/developers/views.py:362
+#: mkt/developers/views.py:377
 msgid "There was an error with the form."
 msgstr ""
 
-#: mkt/developers/views.py:396
+#: mkt/developers/views.py:411
 msgid "Version successfully edited."
 msgstr ""
 
-#: mkt/developers/views.py:437
+#: mkt/developers/views.py:452
 msgid "Version successfully made public."
 msgstr ""
 
-#: mkt/developers/views.py:452
+#: mkt/developers/views.py:467
 msgid "Version \"{0}\" deleted."
 msgstr ""
 
-#: mkt/developers/views.py:914
+#: mkt/developers/views.py:928
 msgid "Terms of service accepted."
 msgstr ""
 
-#: mkt/developers/views.py:927
+#: mkt/developers/views.py:941
 msgid "Users with the admin role cannot use the API."
 msgstr ""
 
-#: mkt/developers/views.py:935
+#: mkt/developers/views.py:949
 msgid "No such API key."
 msgstr ""
 
-#: mkt/developers/views.py:947
+#: mkt/developers/views.py:961
 msgid "New API key generated."
 msgstr ""
 
-#: mkt/developers/views.py:965
+#: mkt/developers/views.py:979
 msgid "Created blocklisted version."
 msgstr ""
 
-#: mkt/developers/views.py:967
+#: mkt/developers/views.py:981
 msgid "App already blocklisted."
 msgstr ""
 
-#: mkt/developers/views_payments.py:79 mkt/developers/views_payments.py:96
+#: mkt/developers/views_payments.py:81 mkt/developers/views_payments.py:98
 msgid "We encountered a problem connecting to the payment server."
 msgstr ""
 
-#: mkt/developers/views_payments.py:150 mkt/ecosystem/templates/ecosystem/publish_payments.html:37
+#: mkt/developers/views_payments.py:152 mkt/ecosystem/templates/ecosystem/publish_payments.html:37
 msgid "Credit card"
 msgstr ""
 
-#: mkt/developers/views_payments.py:151
+#: mkt/developers/views_payments.py:153
 msgid "Carrier"
 msgstr "Iompróir"
 
-#: mkt/developers/views_payments.py:260
+#: mkt/developers/views_payments.py:265
 msgid "Secret was reset successfully."
 msgstr ""
 
-#: mkt/developers/views_payments.py:264
+#: mkt/developers/views_payments.py:269
 msgid "Key and secret were created successfully."
 msgstr ""
 
-#: mkt/developers/views_payments.py:290
+#: mkt/developers/views_payments.py:295
 msgid "Your app is not configured for in-app payments."
 msgstr ""
 
-#: mkt/developers/views_payments.py:296
+#: mkt/developers/views_payments.py:301
 msgid "No payment account for this app."
 msgstr ""
 
@@ -16184,7 +16313,7 @@ msgstr ""
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
 msgstr ""
 
-#: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:126
+#: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:124
 msgid "Learn more about <b>app manifests</b> on MDN."
 msgstr ""
 
@@ -16254,183 +16383,191 @@ msgid "Set Up Payments"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:35
+msgid "This app is <b>incomplete</b> because it is missing content ratings."
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/status.html:37 mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
+msgid "Set Up Content Ratings"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/status.html:40
 msgid "This app is <b>incomplete</b>."
 msgstr "Tá an aip seo <b>neamhiomlán</b>."
 
-#: mkt/developers/templates/developers/apps/status.html:41
+#: mkt/developers/templates/developers/apps/status.html:46
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:43
+#: mkt/developers/templates/developers/apps/status.html:48
 msgid "You will receive an email when the review is complete."
 msgstr "Gheobhaidh tú ríomhphost nuair a bheidh an léirmheas déanta."
 
-#: mkt/developers/templates/developers/apps/status.html:45
+#: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app is <b>public</b>."
 msgstr "Aip <b>phoiblí</b> é seo."
 
-#: mkt/developers/templates/developers/apps/status.html:47
+#: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
 msgstr "Bhí an aip seo <b>díchumasaithe ag Mozilla</b>."
 
-#: mkt/developers/templates/developers/apps/status.html:48
+#: mkt/developers/templates/developers/apps/status.html:53
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:53
+#: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
 msgstr "Bhí an aip seo s'agat <b>díchumasaithe ag Mozilla</b>."
 
-#: mkt/developers/templates/developers/apps/status.html:54
+#: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:59
+#: mkt/developers/templates/developers/apps/status.html:64
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:61
-msgid "Your app has been <b>approved but is not public</b>."
+#: mkt/developers/templates/developers/apps/status.html:66
+msgid "Your app has been <b>approved but not yet published</b>."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:62
-msgid "It is awaiting your approval to make public."
+#: mkt/developers/templates/developers/apps/status.html:67
+msgid "This app is waiting for your approval to be published."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:72
+#: mkt/developers/templates/developers/apps/status.html:77
 msgid "Reviewed by <b>%(reviewer)s</b>"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:85
+#: mkt/developers/templates/developers/apps/status.html:90
 msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:90
+#: mkt/developers/templates/developers/apps/status.html:95
 msgid "Once you have addressed these concerns, you may resubmit your app below."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:101
+#: mkt/developers/templates/developers/apps/status.html:106
 msgid "Resubmit App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:109
-msgid "Make App public"
+#: mkt/developers/templates/developers/apps/status.html:114
+msgid "Publish App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:117
+#: mkt/developers/templates/developers/apps/status.html:122
 msgid "Pre-Installed App Status"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:123
+#: mkt/developers/templates/developers/apps/status.html:128
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:127
+#: mkt/developers/templates/developers/apps/status.html:132
 msgid "Not Submitted"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:131
+#: mkt/developers/templates/developers/apps/status.html:136
 msgid "New version of the test plan available"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:136
+#: mkt/developers/templates/developers/apps/status.html:141
 msgid "View your most recently submitted test plan"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:139
+#: mkt/developers/templates/developers/apps/status.html:144
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:141
+#: mkt/developers/templates/developers/apps/status.html:146
 msgid "Update your test plan"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:154 mkt/developers/templates/developers/apps/status.html:173
+#: mkt/developers/templates/developers/apps/status.html:159 mkt/developers/templates/developers/apps/status.html:178
 msgid "List App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:154 mkt/developers/templates/developers/apps/status.html:176 mkt/developers/templates/developers/apps/status.html:318
-#: mkt/developers/templates/developers/apps/status.html:323
+#: mkt/developers/templates/developers/apps/status.html:159 mkt/developers/templates/developers/apps/status.html:181 mkt/developers/templates/developers/apps/status.html:323
+#: mkt/developers/templates/developers/apps/status.html:328
 msgid "Delist App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:159
+#: mkt/developers/templates/developers/apps/status.html:164
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:164
+#: mkt/developers/templates/developers/apps/status.html:169
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:184 mkt/developers/templates/developers/apps/status.html:195 mkt/developers/templates/developers/apps/listing/delete_form.html:9
+#: mkt/developers/templates/developers/apps/status.html:189 mkt/developers/templates/developers/apps/status.html:200 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
 msgstr "Scrios an Aip"
 
-#: mkt/developers/templates/developers/apps/status.html:189
+#: mkt/developers/templates/developers/apps/status.html:194
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:204
+#: mkt/developers/templates/developers/apps/status.html:209
 msgid "Packaged Versions"
 msgstr "Leaganacha Pacáistithe"
 
-#: mkt/developers/templates/developers/apps/status.html:213
+#: mkt/developers/templates/developers/apps/status.html:218
 msgid "Submission date"
 msgstr "Dáta seolta"
 
-#: mkt/developers/templates/developers/apps/status.html:237 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
-#: mkt/ecosystem/templates/ecosystem/macros.html:197 mkt/submit/templates/submit/next_steps.html:44
+#: mkt/developers/templates/developers/apps/status.html:242 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
+#: mkt/ecosystem/templates/ecosystem/macros.html:180 mkt/submit/templates/submit/next_steps.html:44
 msgid "Publish"
 msgstr "Foilsigh"
 
-#: mkt/developers/templates/developers/apps/status.html:258
+#: mkt/developers/templates/developers/apps/status.html:263
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for install."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:283
+#: mkt/developers/templates/developers/apps/status.html:288
 msgid "Blocklist App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:289
+#: mkt/developers/templates/developers/apps/status.html:294
 msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:320
+#: mkt/developers/templates/developers/apps/status.html:325
 msgid "Are you sure you wish to delist your app?"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:334
+#: mkt/developers/templates/developers/apps/status.html:339
 msgid "Delete Version &quot;{version}&quot;"
 msgstr "Scrios Leagan &quot;{version}&quot;"
 
-#: mkt/developers/templates/developers/apps/status.html:335
+#: mkt/developers/templates/developers/apps/status.html:340
 msgid "Deleting the only version will result in the following:"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:336
+#: mkt/developers/templates/developers/apps/status.html:341
 msgid "Deleting this version will result in the following:"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:338
+#: mkt/developers/templates/developers/apps/status.html:343
 msgid "all associated user reviews will be deleted"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:339
+#: mkt/developers/templates/developers/apps/status.html:344
 msgid "the app status will be marked as &quot;incomplete&quot;"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:340
+#: mkt/developers/templates/developers/apps/status.html:345
 msgid "the app will be removed from our review queue"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:341
+#: mkt/developers/templates/developers/apps/status.html:346
 msgid "the app will not be listed in our public pages"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:343
+#: mkt/developers/templates/developers/apps/status.html:348
 msgid "These changes cannot be undone."
 msgstr ""
 
@@ -16443,19 +16580,19 @@ msgstr ""
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:48
+#: mkt/developers/templates/developers/apps/version_edit.html:52 mkt/developers/templates/developers/apps/edit/technical.html:48
 msgid "Minimum Requirements"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:49
+#: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:49
 msgid "Device features required for this app to function."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/version_edit.html:67
+#: mkt/developers/templates/developers/apps/version_edit.html:65
 msgid "Auto-publish when approved"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/version_edit.html:68
+#: mkt/developers/templates/developers/apps/version_edit.html:66
 msgid ""
 "If selected this version will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about this version's approval and you will "
 "need to log in and manually publish it."
@@ -16484,7 +16621,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/admin.html:123 mkt/developers/templates/developers/apps/listing/item_actions_app.html:69
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:4
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:9 mkt/developers/templates/developers/includes/addons_edit_nav.html:13
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:9 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:21
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:13
 msgid "Content Ratings"
 msgstr ""
 
@@ -16696,10 +16834,6 @@ msgstr ""
 msgid "Get content ratings for the app."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
-msgid "Set Up Content Ratings"
-msgstr ""
-
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
 msgstr ""
@@ -16717,7 +16851,7 @@ msgid "Status &amp; Versions"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:86 mkt/developers/templates/developers/includes/addons_edit_nav.html:23
-#: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:162
+#: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:166
 msgid "In-App Payments"
 msgstr "Íocaíochtaí Laistigh den Aip"
 
@@ -16733,44 +16867,44 @@ msgstr ""
 msgid "This app's submission process has not been fully completed."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/listing/items.html:17
+#: mkt/developers/templates/developers/apps/listing/items.html:19
 msgid "This app needs to get a content rating."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/listing/items.html:20
+#: mkt/developers/templates/developers/apps/listing/items.html:23
 msgid "This app needs a payment account set up."
 msgstr ""
 
 #. {0} is a date.
-#: mkt/developers/templates/developers/apps/listing/items.html:28
+#: mkt/developers/templates/developers/apps/listing/items.html:30
 msgid "Created:"
 msgstr "Cruthaithe:"
 
-#: mkt/developers/templates/developers/apps/listing/items.html:44
+#: mkt/developers/templates/developers/apps/listing/items.html:46
 msgid "Packaged App Version:"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/listing/items.html:49
+#: mkt/developers/templates/developers/apps/listing/items.html:51
 msgid "Pending Version:"
 msgstr "Leagan ar feitheamh:"
 
-#: mkt/developers/templates/developers/apps/listing/items.html:56
+#: mkt/developers/templates/developers/apps/listing/items.html:58
 msgid "Price:"
 msgstr "Praghas:"
 
-#: mkt/developers/templates/developers/apps/listing/items.html:59
+#: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "Set up Payment Account"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/listing/items.html:64
+#: mkt/developers/templates/developers/apps/listing/items.html:66
 msgid "Change Devices"
 msgstr "Athraigh Gléasanna"
 
-#: mkt/developers/templates/developers/apps/listing/items.html:68
-msgid "<strong class=\"rating-notice\">This app will be deactivated by January 13th if no content ratings are assigned:</strong>"
+#: mkt/developers/templates/developers/apps/listing/items.html:70
+msgid "<strong class=\"rating-notice\">This app may be disabled in the future if no content ratings are assigned by then:</strong>"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/listing/items.html:71
+#: mkt/developers/templates/developers/apps/listing/items.html:73
 msgid "Set up Content Ratings"
 msgstr ""
 
@@ -16827,19 +16961,19 @@ msgstr ""
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:63
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:64
 msgid "Create an IARC Ratings Certificate"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:74
 msgid "Already Have Your App Rated?"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:78
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:91
 msgid "Submission ID"
 msgstr ""
 
@@ -16847,7 +16981,7 @@ msgstr ""
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:106
 msgid "Security Code"
 msgstr ""
 
@@ -16855,20 +16989,24 @@ msgstr ""
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
 msgid "Rating System"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:200
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25 mkt/developers/templates/developers/payments/premium.html:211
 msgid "Region"
 msgstr "Réigiún"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Rating Category"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
-msgid "Descriptions"
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
+msgid "Descriptors"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
+msgid "Interactive Elements"
 msgstr ""
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
@@ -16948,109 +17086,109 @@ msgstr ""
 msgid "Changing to Free will put your app back into review."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:80
+#: mkt/developers/templates/developers/payments/premium.html:84
 msgid "Paid mode requires that your app only supports Firefox OS."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:81 mkt/developers/templates/developers/payments/premium.html:84 mkt/submit/templates/submit/manifest.html:44
+#: mkt/developers/templates/developers/payments/premium.html:86 mkt/developers/templates/developers/payments/premium.html:88 mkt/submit/templates/submit/manifest.html:44
 msgid "Paid / In-app"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:93
+#: mkt/developers/templates/developers/payments/premium.html:97
 msgid "Change to Paid"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:94
+#: mkt/developers/templates/developers/payments/premium.html:98
 msgid "Changing to Paid will put your app back into review."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:98
+#: mkt/developers/templates/developers/payments/premium.html:102
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:110 mkt/developers/templates/developers/payments/includes/account_list.html:6
+#: mkt/developers/templates/developers/payments/premium.html:114 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:115
+#: mkt/developers/templates/developers/payments/premium.html:119
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:132
+#: mkt/developers/templates/developers/payments/premium.html:136
 msgid "Add, manage or view transactions for your payment account"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:147
+#: mkt/developers/templates/developers/payments/premium.html:151
 msgid "Prices and Countries"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:163
+#: mkt/developers/templates/developers/payments/premium.html:167
 msgid "Does your app use Mozilla's in-app payments platform?"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:173
+#: mkt/developers/templates/developers/payments/premium.html:177
 msgid "A server error occurred. Please try again later."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:176
+#: mkt/developers/templates/developers/payments/premium.html:184
 msgid "Not applicable"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:180
+#: mkt/developers/templates/developers/payments/premium.html:188
 msgid "Regions"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:186
+#: mkt/developers/templates/developers/payments/premium.html:194
 msgid "Available Regions"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:188
+#: mkt/developers/templates/developers/payments/premium.html:199
 msgid "Check out the <a href=\"%(status_url)s\">status page</a> to see what countries are currently enabled for sale."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:195
+#: mkt/developers/templates/developers/payments/premium.html:206
 msgid "Your app will be available in the following selected regions:"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:201
+#: mkt/developers/templates/developers/payments/premium.html:212
 msgid "Retail price"
 msgstr "Praghas miondíola"
 
-#: mkt/developers/templates/developers/payments/premium.html:202
+#: mkt/developers/templates/developers/payments/premium.html:213
 msgid "local currency"
 msgstr "Airgeadra áitiúil"
 
-#: mkt/developers/templates/developers/payments/premium.html:203
+#: mkt/developers/templates/developers/payments/premium.html:214
 msgid "Billing method"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:214
+#: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Other regions"
 msgstr "Réigiúin eile"
 
-#: mkt/developers/templates/developers/payments/premium.html:216
+#: mkt/developers/templates/developers/payments/premium.html:227
 msgid ""
 "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck "
 "that region before saving."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:238
+#: mkt/developers/templates/developers/payments/premium.html:249
 msgid "Regions and Listings"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:252
+#: mkt/developers/templates/developers/payments/premium.html:264
 msgid "Promote as upgrade to free version"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:262
+#: mkt/developers/templates/developers/payments/premium.html:274
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:270
+#: mkt/developers/templates/developers/payments/premium.html:282
 msgid "Linking this app will promote your premium app next to the free version."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/premium.html:277
+#: mkt/developers/templates/developers/payments/premium.html:289
 msgid "No free apps"
 msgstr ""
 
@@ -17099,16 +17237,22 @@ msgstr ""
 msgid "Optional"
 msgstr "Roghnach"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:127
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:127 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:25
 msgid "Register Payment Account"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:138 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:138 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:36
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:36
 msgid "Processing Request..."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:140 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:128
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:140 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:37
 msgid "Please wait while we contact the payment server."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
+msgid "Add Reference Account"
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
@@ -17122,6 +17266,14 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
 msgstr "Athraigh Cuntas Bango"
+
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
+msgid "Modify Reference Account"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/region_form.html:3
+msgid "Regions that require extra consideration:"
+msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -17155,75 +17307,75 @@ msgstr ""
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr ""
 
-#: mkt/ecosystem/views.py:289
+#: mkt/ecosystem/views.py:121
 msgid "App Stub"
 msgstr ""
 
-#: mkt/ecosystem/views.py:292
+#: mkt/ecosystem/views.py:124
 msgid ""
 "App Stub is the simplest of the app templates: It provides an unstyled HTML document and is therefore the best choice for porting over existing web content or for implementing an existing design."
 msgstr ""
 
-#: mkt/ecosystem/views.py:298
+#: mkt/ecosystem/views.py:130
 msgid "well-structured and minimal HTML to get started quickly"
 msgstr ""
 
-#: mkt/ecosystem/views.py:299
+#: mkt/ecosystem/views.py:131
 msgid "<a href=\"http://requirejs.org\" rel=\"external\" target=\"_blank\">RequireJS</a> for JavaScript management"
 msgstr ""
 
-#: mkt/ecosystem/views.py:301
+#: mkt/ecosystem/views.py:133
 msgid "<a href=\"http://volojs.org\" rel=\"external\" target=\"_blank\">Volo.js</a> for adding JavaScript packages, compiling assets, and deploying to Github"
 msgstr ""
 
-#: mkt/ecosystem/views.py:308
+#: mkt/ecosystem/views.py:140
 msgid "List/Detail View"
 msgstr ""
 
-#: mkt/ecosystem/views.py:311
+#: mkt/ecosystem/views.py:143
 msgid ""
 "In addition to all the basic app template features, the List/Detail View template provides a simple list of content items and a details page for each of them. The template simplifies common app "
 "tasks, like automated content updating across the app, intelligent back button behavior, etc."
 msgstr ""
 
-#: mkt/ecosystem/views.py:319 mkt/ecosystem/views.py:338
+#: mkt/ecosystem/views.py:151 mkt/ecosystem/views.py:170
 msgid "includes all of <a href=\"https://github.com/mozilla/mortar-app-stub\">App Stub's</a> features"
 msgstr ""
 
-#: mkt/ecosystem/views.py:321
+#: mkt/ecosystem/views.py:153
 msgid "a navigation stack for managing app structure"
 msgstr ""
 
-#: mkt/ecosystem/views.py:322
+#: mkt/ecosystem/views.py:154
 msgid "a header element and automatic back button"
 msgstr ""
 
-#: mkt/ecosystem/views.py:323
+#: mkt/ecosystem/views.py:155
 msgid "data propagation across the app, via <a href=\"http://backbonejs.org\">Backbone.js</a>"
 msgstr ""
 
-#: mkt/ecosystem/views.py:329
+#: mkt/ecosystem/views.py:161
 msgid "Game Stub"
 msgstr ""
 
-#: mkt/ecosystem/views.py:332
+#: mkt/ecosystem/views.py:164
 msgid ""
 "Game Stub is a template for developing 2D Games apps in HTML5, CSS and JavaScript. It greatly reduces the time spent on the basics of games development, such as creating a canvas and an event loop."
 msgstr ""
 
-#: mkt/ecosystem/views.py:340
+#: mkt/ecosystem/views.py:172
 msgid "a canvas element and example code drawing a game entity onto it"
 msgstr ""
 
-#: mkt/ecosystem/views.py:342
+#: mkt/ecosystem/views.py:174
 msgid "an event loop using requestAnimationFrame"
 msgstr ""
 
-#: mkt/ecosystem/views.py:343
+#: mkt/ecosystem/views.py:175
 msgid "a means to pause and unpause the game as the app loses and regains focus"
 msgstr ""
 
-#: mkt/ecosystem/views.py:495
+#: mkt/ecosystem/views.py:321
 msgid "Gaia Building Blocks"
 msgstr ""
 
@@ -17231,61 +17383,57 @@ msgstr ""
 msgid "Design"
 msgstr "Dearadh"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/design_concept.html:5 mkt/ecosystem/templates/ecosystem/design_concept.html:13
-#: mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:13
+#: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
 msgstr "Coincheap: Aip Iontach"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:5 mkt/ecosystem/templates/ecosystem/design_fundamentals.html:13
-#: mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:20
+#: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:28 mkt/ecosystem/templates/ecosystem/design_ui.html:5 mkt/ecosystem/templates/ecosystem/design_ui.html:13
-#: mkt/ecosystem/templates/ecosystem/landing.html:27 mkt/ecosystem/templates/ecosystem/macros.html:25
+#: mkt/ecosystem/templates/ecosystem/landing.html:27 mkt/ecosystem/templates/ecosystem/macros.html:19
 msgid "UI Guidelines"
 msgstr "Treoirlínte Comhéadain"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:33 mkt/ecosystem/templates/ecosystem/landing.html:31 mkt/ecosystem/templates/ecosystem/macros.html:45
+#: mkt/ecosystem/templates/ecosystem/base.html:33 mkt/ecosystem/templates/ecosystem/landing.html:31 mkt/ecosystem/templates/ecosystem/macros.html:39
 msgid "Build"
 msgstr "Tóg"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:37 mkt/ecosystem/templates/ecosystem/build_quick.html:6 mkt/ecosystem/templates/ecosystem/landing.html:40
-#: mkt/ecosystem/templates/ecosystem/macros.html:52
+#: mkt/ecosystem/templates/ecosystem/base.html:37 mkt/ecosystem/templates/ecosystem/landing.html:40 mkt/ecosystem/templates/ecosystem/macros.html:43
 msgid "Quick Start"
 msgstr "Mearthosú"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/build_quick.html:185 mkt/ecosystem/templates/ecosystem/build_tools.html:48
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:13 mkt/ecosystem/templates/ecosystem/landing.html:42 mkt/ecosystem/templates/ecosystem/macros.html:183
+#: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/build_tools.html:48 mkt/ecosystem/templates/ecosystem/landing.html:42
+#: mkt/ecosystem/templates/ecosystem/macros.html:166
 msgid "Firefox OS Simulator"
 msgstr "Ionsamhlóir Firefox OS"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/build_reference.html:5 mkt/ecosystem/templates/ecosystem/build_reference.html:13
-#: mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:72
+#: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:62
 msgid "Reference Apps"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:210
+#: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:193
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5 mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
 msgid "Deploying Your App"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:215
+#: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:198
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:23
 msgid "Hosted Apps"
 msgstr "Aipeanna Óstáilte"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:219
+#: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:202
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:34
 msgid "Packaged Apps"
 msgstr "Aipeanna Pacáistithe"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:235
+#: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:218
 msgid "Badges, Banners, and Icons"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5 mkt/ecosystem/templates/ecosystem/build_app_generator.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:26
-#: mkt/ecosystem/templates/ecosystem/macros.html:172
+#: mkt/ecosystem/templates/ecosystem/macros.html:158
 msgid "App Generator"
 msgstr "Gineadóir Aipeanna"
 
@@ -17448,7 +17596,7 @@ msgid ""
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:5 mkt/ecosystem/templates/ecosystem/build_dev_tools.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:59
-#: mkt/ecosystem/templates/ecosystem/macros.html:190
+#: mkt/ecosystem/templates/ecosystem/macros.html:173
 msgid "Firefox Developer Tools"
 msgstr "Uirlisí Forbartha Firefox"
 
@@ -17494,272 +17642,13 @@ msgstr ""
 msgid "See also"
 msgstr "Féach freisin"
 
-#: mkt/ecosystem/templates/ecosystem/build_payments.html:5 mkt/ecosystem/templates/ecosystem/macros.html:156 mkt/lookup/templates/lookup/app_summary.html:81
-#: mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47 mkt/reviewers/templates/reviewers/queue.html:33
-msgid "Payments"
-msgstr "Íocaíochtaí"
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:14
-msgid "Firefox OS Quick Start"
-msgstr "Mearthosú Firefox OS"
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:16
-msgid ""
-"The <a href=\"%(url)s\">Firefox OS</a> platform gives web developers exactly what they've wanted for years: a mobile environment dedicated to apps created with just HTML, CSS, and JavaScript. This "
-"guide aims to get you up and running with an environment and basic app architecture so that you can create the next great app!"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:26
-msgid "If you'd like to follow along with this guide, you can <a href=\"%(url)s\">download the quick start app</a>."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:31
-msgid "App Structure"
-msgstr "Struchtúr na hAipe"
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:32
-msgid "Packaged vs. Hosted Apps"
-msgstr "Aipeanna Pacáistithe vs. Óstáilte"
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:34
-msgid ""
-"There are two types of Firefox OS apps: <code>packaged</code> and <code>hosted</code>. Packed apps are essentially a <code>zip</code> file containing all of of an apps assets: HTML, CSS, "
-"JavaScript, images, manifest, etc. Hosted apps are run from a server at a given domain, just like a standard website. Both app types require a valid manifest. When it comes time to list your app on "
-"the Firefox Marketplace, you will either upload your app as a zip file or provide the URL to where your hosted app lives."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:49
-msgid ""
-"For the purposes of this guide, you'll be creating a hosted app which will live at your <code>localhost</code> address. Once your app is ready to list on the Firefox Marketplace, you can make the "
-"decision to bundle as a packed app or launch as a hosted app."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:56
-msgid "App Manifests"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:58
-msgid ""
-"Every Firefox app requires an manifest.webapp file at the app root. The <code><a href=\"%(url)s\">manifest.webapp</a></code> file provides important information about the app, like version, name, "
-"description, icon location, locale strings, domains the app can be installed from, and much more (Only the name and description are required). The simple manifest included within the app template "
-"looks like:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:72
-msgid "More specific details can be added as the project gets closer to completion, as is the case with most Firefox OS apps. A basic manifest will do to get started."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:78
-msgid "App Layout &amp; Design"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:80
-msgid ""
-"Responsive design has become increasingly important as more screen resolutions become standard on different devices. Even if your app targets only Firefox OS, it's important to remember that "
-"Firefox OS can be installed on a variety of devices which use different screen resolutions. <a href=\"%(url)s\">CSS media queries</a> provide a means to adapt layout to device:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:91
-msgid ""
-"There are many JavaScript and CSS frameworks available to aid in responsive design and mobile app development (<a href=\"%(url)s\">Bootstrap</a>, etc.); choose the framework(s) that best fit your "
-"app and development style."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:99
-msgid ""
-"One nice utility is Mozilla's <a href=\"%(url_mortar)s\">mortar</a>. Mortar doesn't provide responsive design help, but does provide app templates a few JavaScript utilities to aid in Firefox OS "
-"mobile development, like <a href=\"%(url_zepto)s\">zepto.js</a> (a light alternative to jQuery) and a utility to install your app on the Firefox OS Simulator. This quick start guide fits you with "
-"mortar's most basic layout template:"
-msgstr ""
-
-#. Do not localize text in <code></code>
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:114
-msgid ""
-"Feel free to modify the structure set forth by mortar &mdash; the snippet above should get you going. Note that all JavaScript code must be in separate <code>.js</code> files; no inline, scripting "
-"is allowed."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:121
-msgid "Web APIs"
-msgstr "APIanna Gréasáin"
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:123
-msgid ""
-"JavaScript APIs are being created and enhanced as quickly as devices are. Mozilla's <a href=\"%(url)s\">WebAPI</a> effort brings dozens of standard mobile features to JavaScript APIs. A list of "
-"device support and status is available on the <a href=\"%(url)s\">WebAPI</a> page. Of course JavaScript feature detection is still the best practice:"
-msgstr ""
-
-#. Do not localize text in <code></code>
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:134
-msgid "In this very basic app template we'll modify the display style of a <code>DIV</code> based on changes in the device's battery state:"
-msgstr ""
-
-#. Do not localize text in <code></code>
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:144
-msgid ""
-"In the code sample above, once you confirm that the <a href=\"%(url)s\">Battery API</a> is supported, you can add event listeners for <code>chargingchange</code> and <code>levelchange</code> to "
-"update the element's display."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:152
-msgid "Check the <a href=\"%(url)s\">WebAPI</a> page frequently to keep up to date with device API statuses!"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:157
-msgid "WebRT APIs (Permissions-based APIs)"
-msgstr ""
-
-#. Do not localize text in <code></code>
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:160
-msgid ""
-"There are a number of WebAPIs which are available but require permissions for that specific feature to be enabled. Apps may register permission requests within the <code>manifest.webapp</code> file:"
-msgstr ""
-
-#. Do not localize text in <code></code>
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:170
-msgid ""
-"Once you've installed your app on Firefox OS Simulator, open the <code>Settings</code> app, select <code>App Permissions</code>, select your app, and enable permissions as desired. It's important "
-"to note that not all Web APIs have been implemented within the Firefox OS Simulator."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:178
-msgid "Tools &amp; Testing"
-msgstr "Uirlisí agus Tástáil"
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:180
-msgid "Testing is incredibly important when supporting mobile devices. There are many options for testing FirefoxOS apps:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:187
-msgid ""
-"Installing and using the <a href=\"%(url)s\">Firefox OS Simulator</a> is the easiest way to get up and running with your app. After installed the simulator is accessible via the Tools -> Web "
-"Developer -> Firefox OS Simulator menu. The simulator launches with a JavaScript console so that you may debug your application from within the simulator!"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:196
-msgid "Unit Testing"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:198
-msgid ""
-"Unit tests are extremely valuable when testing on different devices and builds. jQuery's <a href=\"%(url)s\">QUnit</a> is a popular client-side testing utility, but you can use any set of testing "
-"tools you'd like."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:205
-msgid "Installing Firefox OS on a Device"
-msgstr "Firefox OS a shuiteáil ar Ghléas"
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:207
-msgid ""
-"Since Firefox OS is an open source platform, code and tools are available to build and install Firefox OS on your own device. Build and installation instructions can be found on <a href=\"%(url_mdn)"
-"s\">MDN</a>. Firefox OS preview devices will be available via <a href=\"%(url_phone)s\">Geeksphone</a> soon."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:216
-msgid "App Submission and Distribution"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:218
-msgid ""
-"Once your app is complete, it can be <a href=\"%(url_submit)s\">submitted</a> to the <a href=\"%(url_mkt)s\">Firefox Marketplace</a>. Your app's manifest will be validated and you may choose which "
-"devices your app will support (i.e. Firefox OS, Desktop Firefox, Firefox Mobile, Firefox Tablet). Once validated you may add additional details about your app (screenshots, descriptions, price, "
-"etc.) and officially submit the app for listing within the Marketplace. Once approved your app is available to the world for purchase and installation."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:232
-msgid "More Marketplace &amp; Listing Information"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:236
-msgid "Submitting an App to the Firefox OS Marketplace"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:241 mkt/ecosystem/templates/ecosystem/macros.html:205
-msgid "Marketplace Review Criteria"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_quick.html:246
-msgid "App Submission Video Walkthrough"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:15
-msgid ""
-"What can you do with an Open Web App? What can't you do? Here you'll find some examples of the kind of Open Web Apps that are possible. Use them for inspiration, as example code, or as a jumping "
-"off point for your new app."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:24 mkt/ecosystem/templates/ecosystem/macros.html:81 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:6
-#: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:9
-msgid "Chrono"
-msgstr "Chrono"
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:27
-msgid "Chrono is a simple chronometer with lap counter, built to highlight various aspects of the Firefox OS development process."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:34 mkt/ecosystem/templates/ecosystem/macros.html:89 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:6
-#: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:9
-msgid "Face Value"
-msgstr "Aghaidhluach"
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:37
-msgid ""
-"Face Value is a currency conversion app that does things differently: instead of converting arbitrary amounts it shows you the actual denominations in the country you're visiting. It lets you think "
-"in your home currency even with a foreign currency in your pocket."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:47 mkt/ecosystem/templates/ecosystem/macros.html:97 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:6
-#: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:9
-msgid "Podcasts"
-msgstr "Podchraoltaí"
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:50
-msgid "Podcasts is an offline-capable, HTML5/JS audio app."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:56 mkt/ecosystem/templates/ecosystem/macros.html:105 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:6
-#: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:9
-msgid "Roller"
-msgstr "Roller"
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:59
-msgid "Roller is a micro blog app that allows you to post text, upload an image or paste a link that has an image extension such as jpg, gif, png or jpeg."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:67 mkt/ecosystem/templates/ecosystem/macros.html:113 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:6
-#: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:9
-msgid "Webfighter"
-msgstr "Webfighter"
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:70
-msgid "Webfighter is an R-Type and Tyrian inspired game where you must hunt down an alien bug and destroy it."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:77 mkt/ecosystem/templates/ecosystem/macros.html:121 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:6
-#: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:9
-msgid "General Notes"
-msgstr "Nótaí Ginearálta"
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:80
-msgid "General Notes is a simple note app that allows you to sync local and remote content."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:87
-msgid "rtcamera"
-msgstr "rtcamera"
-
-#: mkt/ecosystem/templates/ecosystem/build_reference.html:90
-msgid "rtcamera is a fun camera app to process images in real time."
-msgstr ""
-
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:15
 msgid ""
 "What do you use to build Open Web Apps? The answer is &quot;anything you would normally use to build for the web.&quot; The following is a list of tools and resources to help you get started making "
 "Open Web Apps. They can be easily integrated into your existing web development workflow, if you have one, or you can build a new workflow around them."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/build_tools.html:37 mkt/ecosystem/templates/ecosystem/macros.html:176
+#: mkt/ecosystem/templates/ecosystem/build_tools.html:37 mkt/ecosystem/templates/ecosystem/macros.html:162
 msgid "App Validator"
 msgstr "Bailíochtóir Aipeanna"
 
@@ -17775,191 +17664,13 @@ msgstr ""
 msgid "Firefox now ships with a default set of developer tools built from the ground up to ensure a great development experience that is both snappy and efficient."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:14
-msgid "What is the purpose of your app?"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:16
-msgid ""
-"If you already have a list of tasks, an idea for your app and the type of user you are targeting, it's time to create a goal statement: Define your app's purpose and the most important user in one "
-"sentence. This is your main use case."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:24
-msgid "Example: A wish list creation tool for people who never do impulse shopping."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:30
-msgid "Focus on one main use case"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:32
-msgid ""
-"It is possible that you cannot include all the tasks on your list in your goal statement. That is ok, because you should focus on one main use cases, which is how most people will use your "
-"application. Awesome apps do one thing well."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:40
-msgid "How will people use your app?"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:42
-msgid ""
-"By now, you've identified your main use case, target users, and key features. Your main scenario should also consider the user environment in which your app is used. For example, a young mom with "
-"her baby at daycare might use your app to note a nice stroller (potential multi-tasking, pausing and continuing the task later). A different user might plan her next laptop purchase at home, in an "
-"armchair, without interruptions."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:53
-msgid "Concentrate on a few key features"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:55
-msgid "Look at your task list again. Filter your list through the goal statement. If the tasks do not align with your goal statement, exclude them in your app."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:62
-msgid ""
-"Describe each core task as a feature and then ask yourself, is this feature essential? Or is it nice-to-have but not required by the target user to complete the defined task? Be honest with "
-"yourself. If you end up with a short list of features, you are on the right track."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:71
-msgid "Remember, the best apps usually do one thing well. Apps often fail not because they have too little features, but too many."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:77
-msgid "Your app in its most basic form"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:79
-msgid "Once you have a few key moments, you can translate those steps into screens. You can sketch out the user flow, that is, what do your users go from one screen to another to complete a task."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_concept.html:86
-msgid ""
-"Think about the information a user wants to see and record. Consider which user interface (UI) elements correspond to the information above. Put things that your users need most often in the most "
-"prominent places in the screens. Even just writing out the sequence of moments helps define a wireframe model of your app and its features."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:15
-msgid ""
-"Consider incorporating the following principles in your app to optimize the user experience. Please note that this is only a small set of design principles to get you started and it's by no means "
-"comprehensive."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:22
-msgid "Be consistent"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:24
-msgid "Be consistent in your language. Refer to an action or an item with the same term in your app, and use each term for only one action or item."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:31
-msgid "Be consistent in your user interface (UI). For example, if you place your back button on the top left corner, it should not appear on the bottom left corner in other screens within your app."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:38
-msgid ""
-"Be consistent in your visual elements. If two elements look the same, they should have the same behavior. If two elements have different functions, they should have distinctively different looks."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:44
-msgid "Be concise and use appropriate language"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:46
-msgid "The text you use should express the most important information in a concise way. Most users don't read a lot before they decide to continue or to abandon a task."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:52
-msgid "Always provide clues and immediate feedback"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:54
-msgid "Provide clues which make the correct steps apparent. For example, a big &quot;+&quot; button to indicate adding items if that's the correct next step."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:61
-msgid ""
-"Always give immediate feedback when the users take an action. For example, if users click on a &quot;new message&quot; button, lead them directly to the screen for creating a new message. You could "
-"also temporarily change the color of the “new message” button and provide a tactile feedback to show that your app understands the users' command."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:71
-msgid "If an action takes more than a few seconds, provide a status update. For example, if your app is downloading the new messages, you could show the progress with a loading icon."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:77
-msgid "Minimize typing"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:79
-msgid "Use selectors, checkboxes, radio buttons etc., whenever you can. Typing on mobile devices is often a slow and tedious task."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:84
-msgid "Aim for a pleasant first launch experience"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:86
-msgid "People often spend only a minute or two deciding whether to continue or abandon an app. Some of the factors you may want to consider include:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:93
-msgid "provide a quick introduction to your app (and provide an easy way to end it anytime)"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:98
-msgid "instant access to features and suggestions"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:99
-msgid "minimize initial user input"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:101
-msgid "express the most important information in a concise way"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:105
-msgid "Present action choices if possible"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:107
-msgid "If your alert says &quot;Delete all contacts?&quot;, you should provide action labels like &quot;Delete&quot; instead of &quot;OK&quot;."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:114
-msgid "Also, try to avoid using alerts that only notify about a situation. Give your users a choice of actions to address the situation."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:120
-msgid "Focus on the main task"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:122
-msgid "Decide the main task of each screen and place features related to the main task in the most prominent places."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:127
-msgid "Prepare for interruptions"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:129
-msgid ""
-"People may use your app anywhere. Prepare for interruptions by saving the user's work automatically if possible. Ideally, information and tasks should behave normally even without an Internet "
-"connection."
-msgstr ""
-
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:15
 msgid ""
 "There's no &quot;right way&quot; to design a user interface, but there are plenty of ways to make your app less fun and easy to use. With this in mind, the following sections can help avoid making "
 "some of the most common UI mistakes, setting you on the path to making an app that is a joy to use no matter what platform it's running on."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/design_ui.html:27 mkt/ecosystem/templates/ecosystem/macros.html:30
+#: mkt/ecosystem/templates/ecosystem/design_ui.html:27 mkt/ecosystem/templates/ecosystem/macros.html:24
 msgid "Intro to Responsive Design"
 msgstr ""
 
@@ -17968,11 +17679,11 @@ msgid ""
 "One app, multiple screens. How do you make a UI that looks and works as great on a smartphone as it does on the desktop? Learn how to design and build UIs that change to fit your user's screen."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/design_ui.html:39 mkt/ecosystem/templates/ecosystem/macros.html:34
+#: mkt/ecosystem/templates/ecosystem/design_ui.html:39 mkt/ecosystem/templates/ecosystem/macros.html:28
 msgid "Responsive Navigation Patterns"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/design_ui.html:52 mkt/ecosystem/templates/ecosystem/macros.html:38
+#: mkt/ecosystem/templates/ecosystem/design_ui.html:52 mkt/ecosystem/templates/ecosystem/macros.html:32
 msgid "UI Guidelines for Firefox OS"
 msgstr ""
 
@@ -18080,498 +17791,6 @@ msgid ""
 "mail</a>."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:16
-msgid ""
-"<p>The Firefox OS Simulator is still at an early stage of development, and isn't complete or fully reliable.</p> <p>If you find any bugs, please <a href=\"%(issues)s\">file them on GitHub</a>, and "
-"if you have any questions, try asking on the <a href=\"%(dev_tools_list)s\">dev-developer-tools mailing list</a> or on <a href=\"%(irc)s\">#devtools on irc.mozilla.org</a>.</p>"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:29
-msgid ""
-"The Firefox OS Simulator add-on is a tool that enables you to test and debug your app on the desktop. The code-test-debug cycle is much faster with the simulator than with a real device, and of "
-"course, you don't need a real device in order to use it."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:36
-msgid "Essentially, the Simulator add-on consists of:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:38
-msgid ""
-"<li> <strong>the Simulator</strong>: this includes the <a href=\"%(using_b2g)s\">Firefox OS desktop client</a>, which is a version of the higher layers of Firefox OS that runs on your desktop. The "
-"Simulator also includes some <a href=\"#Simulator-toolbar\">additional emulation features</a> that aren't in the standard Firefox OS desktop builds. </li> <li> <strong>the Dashboard</strong>: a "
-"tool hosted by the Firefox browser that enables you to start and stop the Simulator and to install, uninstall, and debug apps running in it. The Dashboard also helps you push apps to a real device, "
-"and checks app manifests for common problems. </li>"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:54
-msgid "The screenshot below shows a debugging session using the Simulator."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:56
-msgid ""
-"The Dashboard is on the top-right, running inside a Firefox tab. We've added one app, a packaged app called \"Where am I?\". At the top-left the app is running in the Simulator. We've also "
-"connected the debugging tools, which are in the window at the bottom. You can see that we've just hit a breakpoint in the app."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:65
-msgid "This guide covers the following topics:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:67
-msgid "how to install the Simulator add-on"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:68
-msgid "how to add, remove, and update apps"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:69
-msgid "manifest validation"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:70
-msgid "how to run the Simulator"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:71
-msgid "how to connect developer tools such as the JS debugger to apps running in the Simulator"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:72
-msgid "the limitations of the Simulator compared with a real Firefox OS device"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:75
-msgid "For a practical walkthrough that shows how to use the Simulator to debug a real web app, see the <a href=\"%(walkthrough)s\">Simulator Walkthrough</a> page."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:81
-msgid "Installing the Simulator add-on"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:83
-msgid ""
-"The Simulator is packaged and distributed as a Firefox add-on. To install it:<br /> <br /> 1. Using Firefox, go to the appropriate link for your host operating system. You'll probably have to tell "
-"Firefox to allow the site to install software:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:90
-msgid "Firefox OS Simulator Preview for Windows"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:91
-msgid "Firefox OS Simulator Preview for Mac"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:92
-msgid "Firefox OS Simulator Preview for Linux"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:95
-msgid ""
-"2. Click \"Add to Firefox\".<br /> 3. Once the add-on has downloaded you will be prompted to install it: click \"Install Now\".<br /> <br /> Because of the size of the add-on, Firefox may freeze "
-"for several seconds while installing it, and a dialog titled \"Warning: Unresponsive script\" may appear. It it does, click \"Continue\" to wait for installation to finish. This issue is being "
-"tracked as <a href=\"%(bug_814505)s\">bug 814505</a>.<br /> <br /> Once you have installed the Simulator add-on, Firefox will periodically check for newer versions and keep it up to date for you."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:110
-msgid ""
-"The Dashboard opens automatically when you install the Simulator, and you can reopen it at any time by going to the \"Firefox\" menu (or the \"Tools\" menu on OS X and Linux), then \"Web Developer"
-"\", then \"Firefox OS Simulator\":"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:118
-msgid "The Dashboard is the tool you use to add your app to the Simulator and run it. Here's what it looks like:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:124
-msgid "Adding, updating, and removing apps"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:125
-msgid "Adding apps"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:127
-msgid "To add a <a href=\"%(packaged_apps)s\">packaged app</a> to the Simulator, open the Dashboard, click \"Add Directory\" and select the <a href=\"%(manifests)s\">manifest file</a> for your app."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:135
-msgid ""
-"To add a hosted app, enter a URL in the textbox where it says \"URL for page or manifest.webapp\", then click \"Add URL\". If the URL points to a manifest, then that manifest will be used. If it "
-"doesn't, the Dashboard will generate a manifest for the URL: so you can add any website as an app just by entering its URL."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:143
-msgid ""
-"When you add an app, the Dashboard will run a series of tests on your manifest file, checking for common problems. See the section on <a href=\"#Manifest-validation\"> Manifest Validation</a> for "
-"details on what tests are run."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:150
-msgid "Unless manifest validation reveals that your app has errors, the Dashboard will then automatically run your app in the Simulator."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:155
-msgid "Managing apps"
-msgstr "Aipeanna a bhainistiú"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:157
-msgid "Once you have added an app, it will appear in the Manager's list of installed apps:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:163
-msgid "Each entry gives us the following information about the app:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:168
-msgid "its name, taken from the manifest"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:169
-msgid "its type, which will be one of \"Packaged\", \"Hosted\", or \"Generated\""
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:170
-msgid "a link to its manifest file"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:171
-msgid "the result of manifest validation"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:173
-msgid "It also gives us three commands:"
-msgstr "Tugann sé trí ordú dúinn freisin:"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:175
-msgid "\"Remove\": remove the app from the Simulator or the Dashboard. You can undo this action as long as the Dashboard tab is open."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:176
-msgid ""
-"\"Update\": use this to update the app in the Simulator after you have made changes to it. This also makes the Dashboard validate the manifest again. If you make changes to your app they will not "
-"be reflected automatically in the installed app: you will need to click \"Update\", and restart the Simulator if it is running."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:177
-msgid "\"Run\": run the app in the Simulator"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:180
-msgid "If you've <a href=\"#Push-to-device\">connected a Firefox OS device</a> to your computer, you'll see a fourth command labeled \"Push to device\"."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:184
-msgid "Manifest validation"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:186
-msgid "When you supply a manifest, the Manager will run some validation tests on it. It reports three categories of problems:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:191
-msgid "manifest errors: problems that will prevent your app from running"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:192
-msgid "manifest warnings: problems that may prevent your app from working properly"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:193
-msgid "simulator-specific warnings: features your app is using that the Simulator doesn't yet support"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:196
-msgid "It summarises the problems encountered in the entry for the app: clicking on the summary provides more details."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:200
-msgid "Manifest errors"
-msgstr "Earráidí sa lastliosta"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:202
-msgid "The Dashboard will report the following conditions as errors, meaning that you won't be able to run your app in the Simulator without fixing them:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:207
-msgid "the manifest does not include the mandatory \"name\" field"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:208
-msgid "the manifest is not valid JSON"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:209
-msgid "the app is a hosted app, but the <code>type</code> field in its manifest is \"privileged\" or \"certified\", which are only available to packaged apps"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:212
-msgid "Here's the result of trying to add a manifest file with a missing \"name\":"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:217
-msgid "Manifest warnings"
-msgstr "Rabhaidh sa lastliosta"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:218
-msgid "The Dashboard will report the following manifest issues as warnings:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:220
-msgid "missing icons"
-msgstr "deilbhíní ar iarraidh"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:221
-msgid "the icon is less than 128 pixels: all apps submitted to the Marketplace must have at least one icon that is at least 128 pixels square"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:222
-msgid "the <code>type</code> field is unrecognized"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:223
-msgid "the manifest requests a permission that is unrecognized"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:224
-msgid "the manifest requests a permission which will be denied"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:225
-msgid "the manifest requests a permission for which access could not be determined"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:227
-msgid "Simulator-specific warnings"
-msgstr "Rabhaidh sainiúil don ionsamhlóir"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:228
-msgid "Finally, the Manager will emit warnings for apps that use features of Firefox OS not yet fully supported by the Simulator:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:230
-msgid "the <code>type</code> field is \"certified\", but the Simulator does not yet fully supprt certified apps"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:231
-msgid "the manifest requests a permission to use an API that is <a href=\"#Unsupported-APIs\">not yet supported</a> by the Simulator"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:233
-msgid "Running the Simulator"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:234
-msgid "There are two different ways the Simulator may be started:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:236
-msgid "if you add, update, or remove an app, or click the \"Run\" button next to your app's entry, the Dashboard will automatically run your app in the Simulator"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:237
-msgid "if you click the button labeled \"Stopped\" on the left-hand side of the Dashboard, the Simulator will boot to the Home screen and you'll need to navigate to your app"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:240
-msgid "Either way, once the Simulator is running, the button labeled \"Stopped\" turns green and the label changes to \"Running\". To stop the Simulator, click this button again."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:246
-msgid ""
-"The Simulator appears as a separate window, sized so the simulated screen area is 320x480 pixels, with a <a href=\"#Simulator-toolbar\">toolbar at the bottom that contains some extra features</a>."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:252
-msgid ""
-"To simulate touch events you can click the mouse button and drag while holding the button down. So by clicking and dragging right-to-left from the Home Screen, you'll see the built-in apps, as well "
-"as any apps you have added:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:262
-msgid "Simulator toolbar"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:264
-msgid "You'll see three buttons on the toolbar at the bottom of the Simulator window:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:271
-msgid "From left to right, these are the Home button, the Rotation Simulation button, and the Geolocation Simulation button."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:277
-msgid "the Home button takes you to the Home screen"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:278
-msgid "the Rotation Simulation button switches the device between portrait and landscape orientation. This will generate the <code>deviceorientation</code> event."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:279
-msgid ""
-"the Geolocation Simulation button triggers a dialog asking you to share your geographic location, either using your current coordinates or supplying custom coordinates: this will be made available "
-"to your app via the Geolocation API."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:281
-msgid "Enabling console logging"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:283
-msgid ""
-"If you check the \"Console\" box underneath the \"Stopped/Running\" switch, then the Error Console will be opened when you run the Simulator. Your app will be able to log to this console using the "
-"global console object."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:289
-msgid "Attaching developer tools"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:291
-msgid ""
-"You can attach developer tools to the Simulator, to help debug your app. At the moment you can only attach the JavaScript Debugger and the Web Console, but we're working on adding support for more "
-"developer tools."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:299
-msgid "While the Simulator is running another button appears underneath the \"Console\" checkbox. It is labeled \"Connect...\":"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:305
-msgid "Click it, and you'll be taken to a page that looks like this:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:307
-msgid "Click \"Connect\" here and you'll see another page, this time like this:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:310
-msgid ""
-"To use the JavaScript Debugger, select \"chrome://prosthesis/content/shell.xul\" here. Once it's launched, you'll need to find your app's scripts in the <a href=\"%(debug_toolbar)s\">script "
-"chooser</a>, but if you open your app and then connect the debugger, your app's main script will be selected by default:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:320
-msgid "To use the Web Console with your app, select \"Main Process\" in the \"Connect to remote device\" window."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:322
-msgid ""
-"At the moment, unfortunately, there's no single debugging target that will work with both the Web Console and the JS Debugger - but you can run two simultaneous instances of the debugging tools, "
-"one targeting \"shell.xul\" and the other targeting \"Main Process\"."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:329
-msgid "Push to device"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:331
-msgid "If you have a Firefox OS device you can connect it to the Simulator, and can then push apps from the Dashboard to the device."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:336
-msgid "Connecting a device"
-msgstr "Ceangal le gléas"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:338
-msgid ""
-"To connect a device to the Simulator, you need the <a href=\"%(adb)s\">Android Debug Bridge (adb)</a> to be installed, but the Simulator add-on bundles adb for you. You do, though, need to "
-"configure both the Firefox OS device and your desktop OS."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:347
-msgid ""
-"On your Firefox OS device: open the Settings app, then <code>Device Information</code> &gt; <code>More Information</code> &gt; <code>Developer</code>. In the developer menu, check \"Remote debugging"
-"\"."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:354
-msgid ""
-"Set up your OS to detect the device. Instructions for this are OS-specific, and are detailed in point 3 of <a href=\"%(android_tools)s\">\"Setting up a Device for Development\" </a> on the Android "
-"developer site. The vendor ID to use for Firefox OS Geeksphone devices is <code>05c6</code>."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:363
-msgid "Pushing apps to the device"
-msgstr "Aipeanna a bhrú chuig an ghléas"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:365
-msgid ""
-"Once you've set up the device and desktop, and connected the device to your desktop via USB, you'll see the note \"Device connected.\" appear on the left of the Dashboard, and a new command appear "
-"in the entry for each app labeled \"Push\":"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:373
-msgid "Click \"Push\", and the app will be installed on the Firefox OS device."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:374
-msgid "Limitations of the Simulator"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:375
-msgid "Note that the Firefox OS Simulator isn't a perfect simulation."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:376
-msgid "Hardware limitations"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:378
-msgid "Apart from screen size, the Simulator does not simulate the hardware limitations of a Firefox OS device such as available memory or CPU speed."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:382
-msgid "Audio/video codecs"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:383
-msgid "The following codecs depend on hardware-accelerated decoding and are therefore not yet supported:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:390
-msgid "Unsupported APIs"
-msgstr "APIanna gan tacaíocht"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:392
-msgid ""
-"Certain APIs that work on the device won't work on the Simulator, generally because the supporting hardware is not available on the desktop. We've implemented simulations for some APIs such as "
-"geolocation, and expect to add more in future releases. However, at the moment the following APIs are not supported. Using them might throw errors or just return incorrect results:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:402
-msgid "Telephony"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:403
-msgid "WebSMS"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:404
-msgid "WebBluetooth"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:405
-msgid "Ambient Light"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:408
-msgid "navigator.onLine and offline events"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:411
-msgid "Getting help"
-msgstr "Cabhair"
-
-#: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:413
-msgid ""
-"If you find any bugs, please <a href=\"%(issues)s\">file them on GitHub</a>. If you have a question, try asking us on the <a href=\"%(mailing_list)s\"> dev-developer-tools mailing list</a> or on <a "
-"href=\"%(irc)s\">#devtools on irc.mozilla.org</a>."
-msgstr ""
-
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
 msgstr ""
@@ -18637,96 +17856,127 @@ msgid ""
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
-msgid ""
-"Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your "
-"app to:"
+msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:200
+#: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:205
+#: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:208
+#: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:234
+#: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:236
+#: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:247
+#: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:251
+#: mkt/ecosystem/templates/ecosystem/landing.html:249
 msgid "Code &amp; Tools"
 msgstr "Cód agus Uirlisí"
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:255
+#: mkt/ecosystem/templates/ecosystem/landing.html:253
 msgid "Events &amp; Meetups"
 msgstr "Imeachtaí agus Cruinnithe"
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:273
+#: mkt/ecosystem/templates/ecosystem/landing.html:271
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:281
+#: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
 msgstr "Ba mhaith liom clárú!"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:56
+#: mkt/ecosystem/templates/ecosystem/macros.html:47
 msgid "Intro to Open Web Apps"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:60
+#: mkt/ecosystem/templates/ecosystem/macros.html:51
 msgid "Intro to Firefox OS"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:133
+#: mkt/ecosystem/templates/ecosystem/macros.html:71 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:9
+msgid "Chrono"
+msgstr "Chrono"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:79 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:9
+msgid "Face Value"
+msgstr "Aghaidhluach"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:87 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:9
+msgid "Podcasts"
+msgstr "Podchraoltaí"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:95 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:9
+msgid "Roller"
+msgstr "Roller"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:103 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:9
+msgid "Webfighter"
+msgstr "Webfighter"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:111 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:9
+msgid "General Notes"
+msgstr "Nótaí Ginearálta"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:123
 msgid "Intro to Manifests"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:137
+#: mkt/ecosystem/templates/ecosystem/macros.html:127
 msgid "For Current Web Developers"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:141
+#: mkt/ecosystem/templates/ecosystem/macros.html:131
 msgid "For Current Mobile Developers"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:145
+#: mkt/ecosystem/templates/ecosystem/macros.html:135
 msgid "Using Apps Offline"
 msgstr "Aipeanna a úsáid as líne"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:149
+#: mkt/ecosystem/templates/ecosystem/macros.html:139
 msgid "Developing Game Apps"
 msgstr "Cluichí a Fhorbairt"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:201
+#: mkt/ecosystem/templates/ecosystem/macros.html:143 mkt/lookup/templates/lookup/app_summary.html:81 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47
+#: mkt/reviewers/templates/reviewers/queue.html:34 mkt/reviewers/templates/reviewers/queue_region.html:28
+msgid "Payments"
+msgstr "Íocaíochtaí"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:184
 msgid "Marketplace Submission"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:227 mkt/ecosystem/templates/ecosystem/publish_payments.html:5 mkt/ecosystem/templates/ecosystem/publish_payments.html:13
+#: mkt/ecosystem/templates/ecosystem/macros.html:188
+msgid "Marketplace Review Criteria"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:210 mkt/ecosystem/templates/ecosystem/publish_payments.html:5 mkt/ecosystem/templates/ecosystem/publish_payments.html:13
 msgid "Payments Status"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:274
+#: mkt/ecosystem/templates/ecosystem/macros.html:257
 msgid "View with subtitles"
 msgstr "Féach air le fotheidil"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:307
+#: mkt/ecosystem/templates/ecosystem/macros.html:290
 msgid "Made in partnership with our friends at Treehouse"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:309
+#: mkt/ecosystem/templates/ecosystem/macros.html:292
 msgid "Check them out!"
 msgstr ""
 
@@ -18880,8 +18130,8 @@ msgstr ""
 msgid "Carrier billing"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:46 mkt/ecosystem/templates/ecosystem/publish_payments.html:47 mkt/ecosystem/templates/ecosystem/publish_payments.html:54
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:55 mkt/ecosystem/templates/ecosystem/publish_payments.html:62 mkt/ecosystem/templates/ecosystem/publish_payments.html:63
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:46 mkt/ecosystem/templates/ecosystem/publish_payments.html:47 mkt/ecosystem/templates/ecosystem/publish_payments.html:78
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:79 mkt/ecosystem/templates/ecosystem/publish_payments.html:86 mkt/ecosystem/templates/ecosystem/publish_payments.html:87
 msgid "varies"
 msgstr ""
 
@@ -19844,84 +19094,92 @@ msgstr ""
 msgid "Someone else is reviewing this theme."
 msgstr ""
 
-#: mkt/reviewers/forms.py:286
+#: mkt/reviewers/forms.py:289
 msgid "Has Editor Comment"
 msgstr ""
 
-#: mkt/reviewers/forms.py:290
+#: mkt/reviewers/forms.py:293
 msgid "More Info Requested"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:33 mkt/reviewers/helpers.py:66 mkt/site/context_processors.py:44
+#: mkt/reviewers/helpers.py:32 mkt/reviewers/helpers.py:67 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:37
+#: mkt/reviewers/helpers.py:36
 msgid "Re-reviews"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:165 mkt/reviewers/helpers.py:184
+#: mkt/reviewers/helpers.py:37 mkt/reviewers/helpers.py:172 mkt/reviewers/helpers.py:191
 msgid "Updates"
 msgstr "Nuashonruithe"
 
-#: mkt/reviewers/helpers.py:39
+#: mkt/reviewers/helpers.py:38
 msgid "Escalations"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:40
+#: mkt/reviewers/helpers.py:39
 msgid "Device"
 msgstr "Gléas"
 
-#: mkt/reviewers/helpers.py:42
+#: mkt/reviewers/helpers.py:41
 msgid "Reviewing"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:44
+#: mkt/reviewers/helpers.py:43 mkt/reviewers/templates/reviewers/queue_region.html:6
+msgid "Regional Queues"
+msgstr ""
+
+#: mkt/reviewers/helpers.py:45
 msgid "Pending Themes"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:45 mkt/reviewers/templates/reviewers/themes/queue.html:4
+#: mkt/reviewers/helpers.py:46 mkt/reviewers/templates/reviewers/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:46
+#: mkt/reviewers/helpers.py:47
 msgid "Update Themes"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:87
+#: mkt/reviewers/helpers.py:89
 msgctxt "pending"
 msgid "Apps ({0})"
 msgstr "Aipeanna ({0})"
 
-#: mkt/reviewers/helpers.py:90
+#: mkt/reviewers/helpers.py:92
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:94
+#: mkt/reviewers/helpers.py:96
 msgctxt "updates"
 msgid "Updates ({0})"
 msgstr "Nuashonruithe ({0})"
 
-#: mkt/reviewers/helpers.py:98
+#: mkt/reviewers/helpers.py:100
 msgctxt "escalated"
 msgid "Escalations ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:102
+#: mkt/reviewers/helpers.py:104
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:106
+#: mkt/reviewers/helpers.py:108
 msgid "Reviewing ({0})"
 msgstr ""
 
 #: mkt/reviewers/helpers.py:114
+msgid "China ({0})"
+msgstr ""
+
+#: mkt/reviewers/helpers.py:121
 msgid "Device ({0})"
 msgstr "Gléas ({0})"
 
-#: mkt/reviewers/helpers.py:161 mkt/reviewers/helpers.py:181
+#: mkt/reviewers/helpers.py:168 mkt/reviewers/helpers.py:188
 msgid "Flagged"
 msgstr ""
 
@@ -19945,80 +19203,89 @@ msgstr ""
 msgid "A question about your Theme submission"
 msgstr ""
 
-#: mkt/reviewers/utils.py:412
+#: mkt/reviewers/utils.py:417
 msgid "This will approve the sandboxed app so it appears on the public side."
 msgstr ""
 
-#: mkt/reviewers/utils.py:418
+#: mkt/reviewers/utils.py:423
 msgid "This will reject the app and remove it from the review queue."
 msgstr ""
 
-#: mkt/reviewers/utils.py:424
+#: mkt/reviewers/utils.py:429
 msgid "This will send the author(s) an email requesting more information."
 msgstr ""
 
-#: mkt/reviewers/utils.py:428
+#: mkt/reviewers/utils.py:433
 msgid "Escalate"
 msgstr "Géaraigh"
 
-#: mkt/reviewers/utils.py:430
+#: mkt/reviewers/utils.py:435
 msgid "Flag this app for an admin to review."
 msgstr ""
 
-#: mkt/reviewers/utils.py:435
+#: mkt/reviewers/utils.py:440
 msgid "Make a comment on this app. The author won't be able to see this."
 msgstr ""
 
-#: mkt/reviewers/utils.py:439
+#: mkt/reviewers/utils.py:444
 msgid "Clear Escalation"
 msgstr ""
 
-#: mkt/reviewers/utils.py:441
+#: mkt/reviewers/utils.py:446
 msgid "Clear this app from the escalation queue. The author will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:446
+#: mkt/reviewers/utils.py:451
 msgid "Clear Re-review"
 msgstr ""
 
-#: mkt/reviewers/utils.py:448
+#: mkt/reviewers/utils.py:453
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:453
+#: mkt/reviewers/utils.py:458
 msgid "Disable app"
 msgstr "Díchumasaigh an aip"
 
-#: mkt/reviewers/utils.py:455
+#: mkt/reviewers/utils.py:460
 msgid "Disable the app, removing it from public results. Sends comments to author."
 msgstr ""
 
-#: mkt/reviewers/views.py:77
+#: mkt/reviewers/views.py:78
 msgid "New Apps (Under 5 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:248
+#: mkt/reviewers/views.py:251
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
-#: mkt/reviewers/views.py:299
+#: mkt/reviewers/views.py:301
 msgid "Device(s) changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:303 mkt/reviewers/views.py:324 mkt/submit/forms.py:36 mkt/submit/forms.py:45
+#: mkt/reviewers/views.py:305 mkt/reviewers/views.py:325 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
 msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:326
+#: mkt/reviewers/views.py:327
 msgid "Requirements changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:348
+#: mkt/reviewers/views.py:350
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr ""
 
-#: mkt/reviewers/views_themes.py:303
+#: mkt/reviewers/views_themes.py:300
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+#: mkt/reviewers/views_themes.py:315
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 
@@ -20026,24 +19293,29 @@ msgstr ""
 msgid "You are currently not reviewing any apps."
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/search_results.html:6
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/queue_region.html:27
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
 msgstr "Gléasanna"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:35 mkt/reviewers/templates/reviewers/apps_reviewing.html:75 mkt/reviewers/templates/reviewers/queue.html:47
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:35 mkt/reviewers/templates/reviewers/apps_reviewing.html:75 mkt/reviewers/templates/reviewers/includes/macros.html:70
 msgid "Packaged App"
 msgstr "Aip Phacáistithe"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:38 mkt/reviewers/templates/reviewers/apps_reviewing.html:78 mkt/reviewers/templates/reviewers/queue.html:53
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:38 mkt/reviewers/templates/reviewers/apps_reviewing.html:78 mkt/reviewers/templates/reviewers/includes/macros.html:76
 msgid "Blocklisted App"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:41 mkt/reviewers/templates/reviewers/apps_reviewing.html:81 mkt/reviewers/templates/reviewers/queue.html:61
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:41 mkt/reviewers/templates/reviewers/apps_reviewing.html:81 mkt/reviewers/templates/reviewers/includes/macros.html:84
 msgid "Premium App"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/base.html:11
 msgid "<small>Marketplace</small> Reviewer Tools"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/base_minimal.html:19
+msgid "Back to Reviewer Tools"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/home.html:17
@@ -20103,28 +19375,20 @@ msgstr "Bhí an aip scriosta."
 msgid "Reviewer Scores for {0}"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/queue.html:49
-msgid "Privileged App"
-msgstr ""
-
-#: mkt/reviewers/templates/reviewers/queue.html:57
-msgid "Premium with In-App"
-msgstr ""
-
-#: mkt/reviewers/templates/reviewers/queue.html:59
-msgid "Free with In-App"
-msgstr ""
-
-#: mkt/reviewers/templates/reviewers/queue.html:84
+#: mkt/reviewers/templates/reviewers/queue.html:60
 msgid "Payment Category:"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/queue.html:88
+#: mkt/reviewers/templates/reviewers/queue.html:64
 msgid "Abuse Reports:"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/queue.html:103 mkt/reviewers/templates/reviewers/themes/queue_list.html:75
+#: mkt/reviewers/templates/reviewers/queue.html:79 mkt/reviewers/templates/reviewers/queue_region.html:55 mkt/reviewers/templates/reviewers/themes/queue_list.html:75
 msgid "There are currently no items of this type to review."
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/queue_region.html:10
+msgid "{region} Review Queue"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
@@ -20203,13 +19467,25 @@ msgstr "Líon iomlán íosluchtuithe"
 msgid "Device Types"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:147
+#: mkt/reviewers/templates/reviewers/includes/details.html:146
 msgid "Requirements"
 msgstr "Riachtanais"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:172
+#: mkt/reviewers/templates/reviewers/includes/details.html:170
 msgid "More about this app"
 msgstr "Tuilleadh eolais faoin aip seo"
+
+#: mkt/reviewers/templates/reviewers/includes/macros.html:72
+msgid "Privileged App"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/macros.html:80
+msgid "Premium with In-App"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/macros.html:82
+msgid "Free with In-App"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:20 mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:170
@@ -20457,6 +19733,10 @@ msgid "App type"
 msgstr "Cineál na haipe"
 
 #: mkt/search/forms.py:102
+msgid "Works offline"
+msgstr ""
+
+#: mkt/search/forms.py:104
 msgid "Supported languages"
 msgstr "Teangacha a dtacaítear leo"
 
@@ -20816,15 +20096,15 @@ msgstr "Seol Aip Eile"
 msgid "Device Type"
 msgstr "Cineál an Ghléis"
 
-#: mkt/submit/templates/submit/manifest.html:109
+#: mkt/submit/templates/submit/manifest.html:108
 msgid "App Minimum Requirements"
 msgstr ""
 
-#: mkt/submit/templates/submit/manifest.html:115
+#: mkt/submit/templates/submit/manifest.html:113
 msgid "<b>What's next:</b> fill out the rest of your app's details"
 msgstr ""
 
-#: mkt/submit/templates/submit/manifest.html:129
+#: mkt/submit/templates/submit/manifest.html:127
 msgid "Learn more about <b>packaged apps</b> on MDN."
 msgstr ""
 
@@ -20938,7 +20218,7 @@ msgstr ""
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr ""
 
-#: mkt/submit/tests/test_forms.py:227 mkt/webapps/tests/test_models.py:1523
+#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1669
 msgid "Héllo"
 msgstr "Dia Dhuit"
 
@@ -20981,23 +20261,41 @@ msgstr "Bánaigh"
 msgid "Expand"
 msgstr "Leathnaigh"
 
-#: mkt/webapps/models.py:398
+#: mkt/webapps/models.py:421
 msgid "You must provide a support email."
 msgstr "Caithfidh tú seoladh ríomhphoist a sholáthar."
 
-#: mkt/webapps/models.py:400
+#: mkt/webapps/models.py:423
 msgid "You must provide an app name."
 msgstr "Caithfidh tú ainm a chur ar an aip."
 
-#: mkt/webapps/models.py:402
+#: mkt/webapps/models.py:425
 msgid "You must provide at least one device type."
 msgstr ""
 
-#: mkt/webapps/models.py:405
+#: mkt/webapps/models.py:428
 msgid "You must provide at least one category."
 msgstr ""
 
-#: mkt/webapps/tasks.py:113
+#. L10n: An app is awaiting approval for a particular region.
+#: mkt/webapps/models.py:2004
+msgid "awaiting approval"
+msgstr ""
+
+#. L10n: An app requires additional review for a particular region.
+#: mkt/webapps/models.py:2008
+msgid "requires additional review"
+msgstr ""
+
+#: mkt/webapps/models.py:2047
+msgid "{region} approval status"
+msgstr ""
+
+#: mkt/webapps/models.py:2052
+msgid "{region} nomination date"
+msgstr ""
+
+#: mkt/webapps/tasks.py:116
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr ""
 

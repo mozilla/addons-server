@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 15:27-0700\n"
+"POT-Creation-Date: 2013-11-27 07:58-0700\n"
 "PO-Revision-Date: 2013-11-23 15:08+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -271,7 +271,7 @@ msgid "Iraqi Bank Code"
 msgstr "Bankovní kód Iráku"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:135
+#: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
 msgstr "Rozpoznáno: {0}"
 
@@ -279,15 +279,9 @@ msgstr "Rozpoznáno: {0}"
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
-"Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociovanou aplikaci do "
-"nekompletního stavu a již nebude dostupná k prodeji:"
-msgstr[1] ""
-"Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociované aplikace do "
-"nekompletního stavu a již nebudou dostupné k prodeji:"
-msgstr[2] ""
-"Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociované aplikace do "
-"nekompletního stavu a již nebudou dostupné k prodeji:"
+msgstr[0] "Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociovanou aplikaci do nekompletního stavu a již nebude dostupná k prodeji:"
+msgstr[1] "Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociované aplikace do nekompletního stavu a již nebudou dostupné k prodeji:"
+msgstr[2] "Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociované aplikace do nekompletního stavu a již nebudou dostupné k prodeji:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -1065,37 +1059,53 @@ msgstr "OK"
 msgid "Payment failed. Try again later."
 msgstr "Platba selhala. Zkuste to prosím později."
 
-#: media/js/mkt/reviewers.js:98
+#: media/js/mkt/reviewers.js:100
 msgid "Packaged App"
 msgstr "Zabalená aplikace"
 
-#: media/js/mkt/reviewers.js:102
+#: media/js/mkt/reviewers.js:104
 msgid "Privileged App"
 msgstr "Privilegovaná aplikace"
 
-#: media/js/mkt/reviewers.js:105
+#: media/js/mkt/reviewers.js:107
 msgid "More Information Requested"
 msgstr "Požadováno více informací"
 
-#: media/js/mkt/reviewers.js:108
+#: media/js/mkt/reviewers.js:110
 msgid "Contains Editor Comment"
 msgstr "Obsahuje komentář redaktora"
 
-#: media/js/mkt/reviewers.js:112
+#: media/js/mkt/reviewers.js:114
 msgid "Premium App"
 msgstr "Placená aplikace"
 
-#: media/js/mkt/reviewers.js:115
+#: media/js/mkt/reviewers.js:117
 msgid "Escalated"
 msgstr "Detailní kontrola"
 
-#: media/js/mkt/reviewers.js:120
+#: media/js/mkt/reviewers.js:122
 msgid "Free"
 msgstr "Zdarma"
 
-#: media/js/mkt/reviewers.js:228
+#: media/js/mkt/reviewers.js:230
 msgid "Any"
 msgstr "Libovolné"
+
+#: media/js/mkt/reviewers.js:257
+msgid "Approved app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:260
+msgid "Rejected app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:266
+msgid "Error approving app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:267
+msgid "Error rejecting app: {app}"
+msgstr ""
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1301,7 +1311,7 @@ msgstr "Celkový počet vrácení peněz dle zdroje"
 msgid "Total Installs"
 msgstr "Celkový počet instalací"
 
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:331
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Prvně zvolte aplikaci"
 
@@ -1514,10 +1524,7 @@ msgstr "Nebyly nalezeny žádné výsledky."
 
 #: media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Omlouváme se, ale nemůžeme pro vás nalézt žádná doporučení. <br>Navštivte "
-"prosím <a href=\"{0}\">stránku s doplňky</a> a vyberte si takové, které vám "
-"nejlépe sednou."
+msgstr "Omlouváme se, ale nemůžeme pro vás nalézt žádná doporučení. <br>Navštivte prosím <a href=\"{0}\">stránku s doplňky</a> a vyberte si takové, které vám nejlépe sednou."
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1539,33 +1546,37 @@ msgstr "Potvrzení bylo aplikací zkontrolováno."
 msgid "Receipt was not checked by app."
 msgstr "Potvrzení nebylo aplikací zkontrolováno."
 
-#: media/js/zamboni/editors.js:280
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{name} prohlédl tento doplněk jako první"
 
-#: media/js/zamboni/editors.js:291
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "Načítání&hellip;"
 
-#: media/js/zamboni/editors.js:296
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Poznámky k verzi"
 
-#: media/js/zamboni/editors.js:301
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "Poznámky pro redaktory"
 
-#: media/js/zamboni/editors.js:306
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "Nebyla nalezena žádná verze poznámek."
 
-#: media/js/zamboni/editors.js:366
+#: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Průměrný počet kontrol"
 
-#: media/js/zamboni/editors.js:422
+#: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Počet kontrol"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr ""
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
