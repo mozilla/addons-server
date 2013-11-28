@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-23 15:08+0000\n"
+"PO-Revision-Date: 2013-11-28 12:38+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1385219325.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1385642313.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1296,19 +1296,19 @@ msgstr "Libovolné"
 
 #: media/js/mkt/reviewers.js:257
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Schválená aplikace: {app}"
 
 #: media/js/mkt/reviewers.js:260
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Zamítnutá aplikace: {app}"
 
 #: media/js/mkt/reviewers.js:266
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Chyba při schválení aplikace: {app}"
 
 #: media/js/mkt/reviewers.js:267
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Chyba při zamítnutí aplikace: {app}"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1837,7 +1837,7 @@ msgstr "Počet kontrol"
 
 #: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "Chyba při načítání překladu"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."

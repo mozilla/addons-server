@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-25 12:30+0000\n"
+"PO-Revision-Date: 2013-11-28 12:44+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1385382634.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1385642696.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2783,11 +2783,11 @@ msgstr "Uživatel {0.name} {0.id} byl smazán pomocí vyhledávacího nástroje.
 
 #: apps/amo/log.py:653
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Hodnocení doplňku {addon} bylo změněno na Adult."
 
 #: apps/amo/log.py:659
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Hodnocení doplňku {addon} bylo změněno."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -20661,8 +20661,9 @@ msgstr "Obecné publikum"
 
 #. L10n: %d is the age in years.
 #: mkt/constants/ratingsbodies.py:7
+#, fuzzy
 msgid "Not recommended for users younger than %d years of age"
-msgstr ""
+msgstr "Není doporučeno pro uživatele mladší 3 let"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rejected for All Audiences"
@@ -21195,8 +21196,9 @@ msgid "You are not permitted to change payment accounts."
 msgstr "Nemáte oprávnění ke změně účtů pro platby."
 
 #: mkt/developers/forms_payments.py:546
+#, fuzzy
 msgid "Account name"
-msgstr ""
+msgstr "Název účtu"
 
 #: mkt/developers/forms_payments.py:560
 msgid "No payment account set up for that app"
@@ -21759,8 +21761,9 @@ msgstr ""
 "Tato aplikace byla redaktorem serveru Firefox Marketplace <b>zamítnuta</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:66
+#, fuzzy
 msgid "Your app has been <b>approved but not yet published</b>."
-msgstr ""
+msgstr "Aplikace byla <b>schválena, ale není veřejná</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:67
 msgid "This app is waiting for your approval to be published."
@@ -22536,8 +22539,9 @@ msgid "Rating Category"
 msgstr "Kategorie hodnocení"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
+#, fuzzy
 msgid "Descriptors"
-msgstr ""
+msgstr "Popisy"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Interactive Elements"
@@ -25596,9 +25600,10 @@ msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" úspěšně zpracován (+{1} body, {2} celkem)."
 
 #: mkt/reviewers/views_themes.py:300
+#, fuzzy
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
+msgstr[0] "\"{0}\" úspěšně zpracován (+{1} body, {2} celkem)."
 msgstr[1] ""
 msgstr[2] ""
 
