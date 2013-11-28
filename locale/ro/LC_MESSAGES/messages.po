@@ -3,15 +3,17 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2009-06-10 05:12-0700\n"
-"Last-Translator: alexxed <alexxed@gmail.com>\n"
+"PO-Revision-Date: 2013-08-14 09:35+0000\n"
+"Last-Translator: Raul <raul.malea@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
-"X-Generator: Narro 0.9.4 on http://tradu.softwareliber.ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1376472918.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -4380,20 +4382,20 @@ msgstr ""
 # {0} is a number
 #. L10n: first parameter is the number of errors
 #: apps/devhub/helpers.py:198 mkt/developers/helpers.py:172
-#, fuzzy
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} error"
-msgstr[1] "{0} errors"
+msgstr[0] "{0} eroare"
+msgstr[1] "{0} erori"
+msgstr[2] "{0} erori"
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
 #: apps/devhub/helpers.py:201 mkt/developers/helpers.py:175
-#, fuzzy
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} warning"
-msgstr[1] "{0} warnings"
+msgstr[0] "{0} avertisment"
+msgstr[1] "{0} avertismente"
+msgstr[2] "{0} avertismente"
 
 #: apps/devhub/models.py:392 apps/reviews/templates/reviews/add.html:86 apps/reviews/templates/reviews/edit_review.html:10
 #, fuzzy
