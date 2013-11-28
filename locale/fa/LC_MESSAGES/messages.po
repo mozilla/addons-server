@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-28 13:57+0000\n"
+"PO-Revision-Date: 2013-11-28 13:59+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385647072.0\n"
+"X-POOTLE-MTIME: 1385647198.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1147,7 +1147,7 @@ msgstr ""
 #: apps/addons/templates/addons/popups.html:21
 #: apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "درباره‌ی فایرفاکس بیشتر بدانید"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
@@ -1368,6 +1368,9 @@ msgid ""
 "available to add-on developers and they may need to contact you to help "
 "resolve your issue."
 msgstr ""
+"لطفاً گزارش مشکلات را در بررسی‌ها ارسال نکنید. ما نشانی پست الکترونیکی شما "
+"را در اختیار توسعه‌دهندگان افزودنی قرار نمی‌دهیم و ممکن است آنها نیاز داشته "
+"باشند با شما تماس بگیرند تا به رفع مشکلتان کمک کنند."
 
 #: apps/addons/templates/addons/review_add_box.html:32
 #: apps/addons/templates/addons/impala/review_add_box.html:46
@@ -1386,7 +1389,7 @@ msgstr "رهنمون‌های بررسی"
 #: apps/addons/templates/addons/review_add_box.html:41
 #: apps/addons/templates/addons/impala/review_add_box.html:59
 msgid "Detailed Review"
-msgstr ""
+msgstr "بررسی مفصل"
 
 #: apps/addons/templates/addons/review_list_box.html:5
 #: apps/addons/templates/addons/impala/details-more.html:27
@@ -1598,7 +1601,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:232
 msgid "About this App"
-msgstr ""
+msgstr "درباره‌ی این برنامه"
 
 #: apps/addons/templates/addons/impala/details.html:234
 msgid "About this Add-on"
@@ -1900,11 +1903,12 @@ msgid ""
 "href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr ""
 
+# {0} is the application name.  Example:  Firefox
 #: apps/addons/templates/addons/mobile/home.html:17
 #: templates/header_title.html:4
 #: templates/impala/header_title.html:3
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "بازگشت به صفحهٔ آغازهٔ افزودنی‌های {0}"
 
 #: apps/addons/templates/addons/mobile/home.html:19
 #: apps/amo/helpers.py:251
@@ -2104,7 +2108,7 @@ msgstr ""
 #: apps/stats/templates/stats/stats.html:77
 #: templates/menu_links.html:12
 msgid "Collections"
-msgstr ""
+msgstr "مجموعه‌ها"
 
 #: apps/amo/helpers.py:185
 #: apps/amo/templates/amo/site_nav.html:83
@@ -2967,6 +2971,9 @@ msgid ""
 "least one of the below applications supported. Only the versions listed "
 "below are allowed for these applications."
 msgstr ""
+"افزودنی‌هایی که به وب‌گاه افزودنی‌های موزیلا ارسال می‌شوند باید دارای یک "
+"پروندهٔ install.rdf با کمینه یکی از برنامه‌های پشتیبانی شدهٔ زیر باشند.  "
+"تنها نسخه‌هایی که در زیر ذکر شده‌اند برای این برنامه‌ها مجاز می‌باشند."
 
 #: apps/applications/templates/applications/appversions.html:25
 msgid "GUID"
@@ -3438,7 +3445,7 @@ msgstr "حذف"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:20
 msgid "Are you sure?"
-msgstr ""
+msgstr "آیا مطمئن هستید؟"
 
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5
@@ -3987,7 +3994,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/search_tools.html:90
 msgid "Additional Resources"
-msgstr ""
+msgstr "منابع دیگر"
 
 #. {0} is an app name, like Firefox.
 #: apps/browse/templates/browse/search_tools.html:93
@@ -4385,7 +4392,7 @@ msgstr ""
 #: apps/constants/applications.py:18
 #: mkt/constants/platforms.py:32
 msgid "Firefox"
-msgstr ""
+msgstr "فایرفاکس"
 
 #: apps/constants/applications.py:43
 msgid "Thunderbird"
@@ -4430,7 +4437,7 @@ msgstr ""
 #: mkt/constants/platforms.py:33
 #: mkt/constants/platforms.py:45
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "فایرفاکس تلفن همراه"
 
 #: apps/constants/applications.py:168
 #: mkt/constants/platforms.py:34
@@ -5323,13 +5330,13 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} خطا"
 
+# {0} is a number
 #. L10n: first parameter is the number of warnings
 #: apps/devhub/helpers.py:201
 #: mkt/developers/helpers.py:175
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} هشدار"
 
 #: apps/devhub/models.py:392
 #: apps/reviews/templates/reviews/add.html:86
@@ -13898,7 +13905,7 @@ msgstr "هرزنوشته و مطلب نامربوط به بررسی"
 #: apps/pages/templates/pages/dev_faq.html:570
 #: apps/reviews/models.py:132
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "استفاده از لحن یا کلمات نامناسب"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:572
@@ -14781,7 +14788,7 @@ msgstr "دلایل دیگر (لطفاً آنها را مشخص کنید)"
 
 #: apps/reviews/views.py:146
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr ""
+msgstr "متشکریم؛ این بررسی برای تأیید ویرایش‌گران علامت خورد."
 
 #: apps/reviews/templates/reviews/add.html:4
 msgid "Add a review for {0}"
@@ -14858,7 +14865,7 @@ msgstr ""
 
 #: apps/reviews/templates/reviews/review.html:76
 msgid "Report this review"
-msgstr ""
+msgstr "گزارش این بررسی"
 
 #: apps/reviews/templates/reviews/review.html:82
 msgid "Reply to review"
@@ -16064,7 +16071,7 @@ msgstr "تأیید حذف حساب کاربری"
 #: apps/users/templates/users/register.html:67
 #: apps/users/templates/users/mobile/login.html:52
 msgid "Password"
-msgstr ""
+msgstr "گذرواژه"
 
 #: apps/users/templates/users/delete.html:49
 msgid "I understand this step cannot be undone."
@@ -16176,7 +16183,7 @@ msgstr ""
 #: apps/users/templates/users/edit.html:167
 #: mkt/constants/features.py:273
 msgid "Notifications"
-msgstr ""
+msgstr "اعلامیه‌ها"
 
 #: apps/users/templates/users/edit.html:169
 msgid ""
@@ -16377,7 +16384,7 @@ msgstr "ارسال پیوند بازنشانی گذرواژه"
 
 #: apps/users/templates/users/pwreset_sent.html:10
 msgid "The password reset link was sent to your email address."
-msgstr ""
+msgstr "پیوند بازنشانی گذرواژه به نشانی پست الکترونیکی شما ارسال شد."
 
 #: apps/users/templates/users/register.html:4
 msgid "New User Registration"
@@ -16466,7 +16473,7 @@ msgstr ""
 
 #: apps/users/templates/users/vcard.html:2
 msgid "Developer Information"
-msgstr ""
+msgstr "اطلاعات توسعه‌دهنده"
 
 #: apps/users/templates/users/vcard.html:34
 msgid "User since"
@@ -23972,7 +23979,7 @@ msgstr ""
 
 #: templates/categories.html:2
 msgid "Choose a category"
-msgstr ""
+msgstr "انتخاب یک دسته"
 
 #: templates/categories.html:5
 msgid "Mobile Categories"
