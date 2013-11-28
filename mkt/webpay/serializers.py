@@ -3,6 +3,8 @@ from rest_framework import serializers
 from constants.payments import PROVIDER_LOOKUP
 from market.models import Price, price_locale
 
+from mkt.webpay.models import ProductIcon
+
 
 class PriceSerializer(serializers.ModelSerializer):
     prices = serializers.SerializerMethodField('get_prices')
@@ -31,3 +33,16 @@ class PriceSerializer(serializers.ModelSerializer):
                 })
                 return result
         return {}
+
+
+class ProductIconSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField('get_url')
+
+    def get_url(self, obj):
+        if not obj.pk:
+            return ''
+        return obj.url()
+
+    class Meta:
+        model = ProductIcon
+        exclude = ('format',)
