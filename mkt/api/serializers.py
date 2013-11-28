@@ -3,6 +3,7 @@ from django.utils.simplejson import JSONDecodeError
 
 import commonware.log
 from rest_framework import serializers
+from rest_framework.reverse import reverse
 from tastypie.serializers import Serializer
 from tastypie.exceptions import UnsupportedFormat
 from tower import ugettext as _
@@ -62,7 +63,7 @@ class PotatoCaptchaSerializer(serializers.Serializer):
     always submit "potato" as the value for "sprout". This is to prevent dumb
     bots from spamming us.
 
-    If a wrong value is entered for "sprout" or "tuber" is present, a 
+    If a wrong value is entered for "sprout" or "tuber" is present, a
     ValidationError will be returned.
 
     Note: this is completely disabled for authenticated users.
@@ -119,3 +120,25 @@ class RegionSerializer(CarrierSerializer):
 
     def transform_ratingsbody(self, obj, value):
         return obj.ratingsbody.name if obj.ratingsbody else None
+
+
+class URLSerializerMixin(serializers.ModelSerializer):
+    """
+    ModelSerializer mixin that adds a field named `url` to the object with that
+    resource's URL. DRF will automatically populate the `Location` header from
+    this field when appropriate.
+
+    You may define that url in one of two ways:
+    1) By defining a `url_basename` property on the Meta class. The URL will
+       then be determined by reversing `<url_basename>-detail`, with the `pk`
+       passed as a keyword argument.
+    2) By overriding the get_url method.
+    """
+    url = serializers.SerializerMethodField('get_url')
+
+    def get_url(self, obj):
+        if 'request' in self.context and hasattr(self.Meta, 'url_basename'):
+            return reverse('%s-detail' % self.Meta.url_basename,
+                           request=self.context['request'],
+                           kwargs={'pk': obj.pk})
+        return None

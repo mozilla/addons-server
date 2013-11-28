@@ -94,6 +94,13 @@ APP_STATS = {
         'coerce': {'count': lambda d: '{0:.2f}'.format(d)},
     },
 }
+APP_STATS_TOTAL = {
+    'installs': {
+        'metric': 'app_installs',
+    },
+    # TODO: Add more metrics here as needed. The total API will iterate over
+    # them and return statistical totals information on them all.
+}
 
 
 def _get_monolith_data(stat, start, end, interval, dimensions):
@@ -207,6 +214,69 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
         return Response(_get_monolith_data(stat, qs.get('start'),
                                            qs.get('end'), qs.get('interval'),
                                            dimensions))
+
+
+class AppStatsTotal(CORSMixin, SlugOrIdMixin, ListAPIView):
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    cors_allowed_methods = ['get']
+    permission_classes = [AnyOf(AllowAppOwner,
+                                GroupPermission('Stats', 'View'))]
+    queryset = Webapp.objects.all()
+    slug_field = 'app_slug'
+
+    def get(self, request, pk):
+        app = self.get_object()
+
+        try:
+            client = get_monolith_client()
+        except requests.ConnectionError as e:
+            log.info('Monolith connection error: {0}'.format(e))
+            raise ServiceUnavailable
+
+        # Note: We have to do this as separate requests so that if one fails
+        # the rest can still be returned.
+        data = {}
+        for metric, stat in APP_STATS_TOTAL.items():
+            data[metric] = {}
+            query = {
+                'query': {
+                    'match_all': {}
+                },
+                'facets': {
+                    metric: {
+                        'statistical': {
+                            'field': stat['metric']
+                        },
+                        'facet_filter': {
+                            'term': {
+                                'app-id': app.id
+                            }
+                        }
+                    }
+                },
+                'size': 0
+            }
+
+            try:
+                resp = client.raw(query)
+            except ValueError as e:
+                log.info('Received value error from monolith client: %s' % e)
+                continue
+
+            for metric, facet in resp.get('facets', {}).items():
+                count = facet.get('count', 0)
+
+                # We filter out facets with count=0 to avoid returning things
+                # like `'max': u'-Infinity'`.
+                if count > 0:
+                    for field in ('max', 'mean', 'min', 'std_deviation',
+                                  'sum_of_squares', 'total', 'variance'):
+                        value = facet.get(field)
+                        if value is not None:
+                            data[metric][field] = value
+
+        return Response(data)
 
 
 class TransactionAPI(CORSMixin, APIView):

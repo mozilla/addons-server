@@ -7,14 +7,12 @@ from rest_framework.test import APIRequestFactory
 import amo
 from amo.tests import TestCase
 from addons.models import AddonCategory, Category
-from versions.models import Version
-from translations.models import Translation
-
 from mkt.api.fields import (SlugOrPrimaryKeyRelatedField,
                             TranslationSerializerField)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-
+from versions.models import Version
+from translations.models import Translation
 
 
 class TestTranslationSerializerField(TestCase):
@@ -211,4 +209,3 @@ class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
                                              slug_field='app_slug')
         field.field_from_native({'addon': app.app_slug}, None, 'addon', into)
         eq_(into, {'addon': app})
-

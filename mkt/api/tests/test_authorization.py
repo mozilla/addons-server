@@ -201,12 +201,12 @@ class TestAnyOf(TestCase):
     def test_has_object_permission_fail(self):
         request = RequestFactory().get('/')
         ok_(not AnyOf(AllowNone, AllowNone
-                  )().has_object_permission(request, 'myview', None))
+                      )().has_object_permission(request, 'myview', None))
 
     def test_has_object_permission_partial_fail(self):
         request = RequestFactory().get('/')
         ok_(not AnyOf(FailPartialPermission, PartialFailPermission
-                  )().has_object_permission(request, 'myview', None))
+                      )().has_object_permission(request, 'myview', None))
 
 
 class TestAllowNone(TestCase):

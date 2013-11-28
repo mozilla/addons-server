@@ -1,7 +1,6 @@
 import datetime
 import importlib
 import os
-import site
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -43,16 +42,21 @@ def get_imgurls(repo):
 def commonplace(request, repo, **kwargs):
     if repo not in settings.COMMONPLACE_REPOS:
         return HttpResponseNotFound
+    BUILD_ID = get_build_id(repo)
     site_settings = {
         'persona_unverified_issuer': settings.BROWSERID_DOMAIN
     }
     ctx = {
-        'BUILD_ID': get_build_id(repo),
-        'appcache': False,  #repo in settings.COMMONPLACE_REPOS_APPCACHED,
+        'BUILD_ID': BUILD_ID,
+        'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,
         'flags': waffles(request),
         'repo': repo,
         'site_settings': site_settings,
     }
+    if BUILD_ID:
+        ctx.update(BUILD_ID_JS=BUILD_ID,
+                   BUILD_ID_CSS=BUILD_ID,
+                   BUILD_ID_IMG=BUILD_ID)
     return jingo.render(request, 'commonplace/index.html', ctx)
 
 

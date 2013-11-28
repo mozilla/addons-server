@@ -543,3 +543,40 @@ The gross revenue of app purchases over time.
                 ...
             ],
         }
+
+
+Totals Statistics
+=================
+
+Statistical information about metrics tracked. The information includes
+the total, minimum and maximum, and other statistical calculations for
+various metrics tracked.
+
+Metrics
+-------
+
+Provided are the following metrics.
+
+Per-app totals
+~~~~~~~~~~~~~~
+
+Statistical information about per-app metrics.
+
+.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/totals/
+
+    **Response**:
+
+    .. code-block:: json
+
+        {
+            "installs": {
+                "max": 224.0,
+                "mean": 184.80000000000001,
+                "min": 132.0,
+                "sum_of_squares": 692112.0,
+                "std_deviation": 21.320412753978232,
+                "total": 3696.0,
+                "variance": 454.55999999999767
+            },
+            ...
+        }

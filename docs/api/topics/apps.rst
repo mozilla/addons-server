@@ -157,7 +157,7 @@ App
         rating keyed under "generic".
     :type content_ratings.ratings: object
     :param content_ratings.descriptors: IARC content descriptors, flags about
-    the app that might affect its suitability for younger-aged users.
+        the app that might affect its suitability for younger-aged users.
     :type content_ratings.descriptors: array
     :param content_ratings.interactive_elements: IARC interactive elements,
         aspects about the app relating to whether the app shares info or

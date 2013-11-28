@@ -84,7 +84,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         eq_(data['user']['can_rate'], True)
         eq_(data['user']['has_rated'], True)
         eq_(len(data['objects']), 1)
-        eq_(data['objects'][0]['app'], '/api/v1/apps/app/337141/')
+        eq_(data['objects'][0]['app'], '/api/apps/app/337141/')
         eq_(data['objects'][0]['body'], rev.body)
         eq_(data['objects'][0]['created'],
             rev.created.replace(microsecond=0).isoformat())
@@ -382,10 +382,8 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
     def test_update(self):
         self._create_default_review()
         new_data = {
-            'app': self.app.id,
             'body': 'Totally rocking the free web.',
             'rating': 4,
-            'version': self.app.current_version.id
         }
         log_review_id = amo.LOG.EDIT_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 0)

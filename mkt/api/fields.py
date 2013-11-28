@@ -128,6 +128,17 @@ class SplitField(fields.Field):
         self.input = input
         self.output = output
         self.source = input.source
+        self._read_only = False
+
+    def get_read_only(self):
+        return self._read_only
+
+    def set_read_only(self, val):
+        self._read_only = val
+        self.input.read_only = val
+        self.output.read_only = val
+
+    read_only = property(get_read_only, set_read_only)
 
     def field_from_native(self, data, files, field_name, into):
         self.input.initialize(parent=self.parent, field_name=field_name)
@@ -164,7 +175,8 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
 
     def from_native(self, data):
         if self.queryset is None:
-            raise Exception('Writable related fields must include a `queryset` argument')
+            raise Exception('Writable related fields must include a `queryset` '
+                            'argument')
 
         try:
             return self.queryset.get(pk=data)
@@ -172,7 +184,8 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
             try:
                 return self.queryset.get(**{self.slug_field: data})
             except ObjectDoesNotExist:
-                msg = self.error_messages['does_not_exist'] % ('pk_or_slug', smart_text(data))
+                msg = self.error_messages['does_not_exist'] % (
+                    'pk_or_slug', smart_text(data))
                 raise ValidationError(msg)
 
 
