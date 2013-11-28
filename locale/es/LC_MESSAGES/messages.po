@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-03 21:04+0000\n"
+"PO-Revision-Date: 2013-11-18 08:42+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1383512695.0\n"
+"X-POOTLE-MTIME: 1384764149.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -1332,7 +1332,7 @@ msgstr "enlace permanente"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "traducir"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -13844,7 +13844,7 @@ msgstr "Dirección de correo electrónico"
 
 #: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:59
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Recuérdame en este dispositivo"
 
 #: apps/users/templates/users/login_form.html:55 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
 msgid "Log in"
@@ -15647,240 +15647,240 @@ msgstr "Teléfonos inteligentes Android"
 
 #: mkt/constants/platforms.py:56 mkt/constants/platforms.py:59
 msgid "Tablets"
-msgstr ""
+msgstr "Tabletas"
 
 #: mkt/constants/ratingdescriptors.py:13 mkt/constants/ratingdescriptors.py:127 mkt/constants/ratingdescriptors.py:175 mkt/constants/ratingdescriptors.py:288
 msgid "Violence"
-msgstr ""
+msgstr "Violencia"
 
 #: mkt/constants/ratingdescriptors.py:16
 msgid "Extreme Violence"
-msgstr ""
+msgstr "Violencia extrema"
 
 #: mkt/constants/ratingdescriptors.py:19 mkt/constants/ratingdescriptors.py:88 mkt/constants/ratingdescriptors.py:242
 msgid "Nudity"
-msgstr ""
+msgstr "Desnudez"
 
 #. L10n: `Sex` as in sexual, not as in gender.
 #: mkt/constants/ratingdescriptors.py:23 mkt/constants/ratingdescriptors.py:186
 msgid "Sex"
-msgstr ""
+msgstr "Sexo"
 
 #: mkt/constants/ratingdescriptors.py:26
 msgid "Explicit Sex"
-msgstr ""
+msgstr "Sexo explícito"
 
 #: mkt/constants/ratingdescriptors.py:29 mkt/constants/ratingdescriptors.py:189 mkt/constants/ratingdescriptors.py:285
 msgid "Drugs"
-msgstr ""
+msgstr "Drogas y fármacos"
 
 #: mkt/constants/ratingdescriptors.py:32
 msgid "Legal Drugs"
-msgstr ""
+msgstr "Fármacos legales"
 
 #: mkt/constants/ratingdescriptors.py:35
 msgid "Illegal Drugs"
-msgstr ""
+msgstr "Drogas ilegales"
 
 #: mkt/constants/ratingdescriptors.py:42
 msgid "Criminal Acts"
-msgstr ""
+msgstr "Hechos delictivos"
 
 #: mkt/constants/ratingdescriptors.py:45
 msgid "Shocking Content"
-msgstr ""
+msgstr "Contenido impactante"
 
 #: mkt/constants/ratingdescriptors.py:48 mkt/constants/ratingdescriptors.py:133 mkt/constants/ratingdescriptors.py:201 mkt/constants/ratingdescriptors.py:269
 msgid "No Descriptors"
-msgstr ""
+msgstr "Sin descriptores"
 
 #: mkt/constants/ratingdescriptors.py:51 mkt/constants/ratingdescriptors.py:205
 msgid "Alcohol Reference"
-msgstr ""
+msgstr "Referencias al alcohol"
 
 #: mkt/constants/ratingdescriptors.py:54 mkt/constants/ratingdescriptors.py:208
 msgid "Blood"
-msgstr ""
+msgstr "Sangre"
 
 #: mkt/constants/ratingdescriptors.py:57 mkt/constants/ratingdescriptors.py:211
 msgid "Blood and Gore"
-msgstr ""
+msgstr "Sangre y violencia"
 
 #: mkt/constants/ratingdescriptors.py:60 mkt/constants/ratingdescriptors.py:214
 msgid "Crude Humor"
-msgstr ""
+msgstr "Humor crudo"
 
 #: mkt/constants/ratingdescriptors.py:63 mkt/constants/ratingdescriptors.py:217
 msgid "Drug Reference"
-msgstr ""
+msgstr "Referencia a drogas"
 
 #: mkt/constants/ratingdescriptors.py:66 mkt/constants/ratingdescriptors.py:220
 msgid "Fantasy Violence"
-msgstr ""
+msgstr "Violencia fantástica"
 
 #: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:223
 msgid "Intense Violence"
-msgstr ""
+msgstr "Violencia intensa"
 
 #: mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:230
 msgid "Mild Blood"
-msgstr ""
+msgstr "Algo de sangre"
 
 #: mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:233
 msgid "Mild Fantasy Violence"
-msgstr ""
+msgstr "Algo de violencia fantástica"
 
 #: mkt/constants/ratingdescriptors.py:82 mkt/constants/ratingdescriptors.py:236
 msgid "Mild Language"
-msgstr ""
+msgstr "Lenguaje atrevido"
 
 #: mkt/constants/ratingdescriptors.py:85 mkt/constants/ratingdescriptors.py:239
 msgid "Mild Violence"
-msgstr ""
+msgstr "Algo de violencia"
 
 #: mkt/constants/ratingdescriptors.py:91 mkt/constants/ratingdescriptors.py:245
 msgid "Partial Nudity"
-msgstr ""
+msgstr "Desnudez parcial"
 
 #: mkt/constants/ratingdescriptors.py:94 mkt/constants/ratingdescriptors.py:195 mkt/constants/ratingdescriptors.py:248
 msgid "Gambling"
-msgstr ""
+msgstr "Juegos de azar"
 
 #: mkt/constants/ratingdescriptors.py:97 mkt/constants/ratingdescriptors.py:251 mkt/constants/ratingdescriptors.py:275
 msgid "Sexual Content"
-msgstr ""
+msgstr "Contenido sexual"
 
 #: mkt/constants/ratingdescriptors.py:100 mkt/constants/ratingdescriptors.py:254
 msgid "Sexual Themes"
-msgstr ""
+msgstr "Temas sexuales"
 
 #: mkt/constants/ratingdescriptors.py:103 mkt/constants/ratingdescriptors.py:257
 msgid "Simulated Gambling"
-msgstr ""
+msgstr "Juegos simulados"
 
 #: mkt/constants/ratingdescriptors.py:106 mkt/constants/ratingdescriptors.py:260
 msgid "Strong Language"
-msgstr ""
+msgstr "Lenguaje fuerte"
 
 #: mkt/constants/ratingdescriptors.py:109 mkt/constants/ratingdescriptors.py:263
 msgid "Strong Sexual Content"
-msgstr ""
+msgstr "Fuerte contenido sexual"
 
 #: mkt/constants/ratingdescriptors.py:112 mkt/constants/ratingdescriptors.py:266
 msgid "Suggestive Themes"
-msgstr ""
+msgstr "Temas sugerentes"
 
 #: mkt/constants/ratingdescriptors.py:115
 msgid "Tobacco Reference"
-msgstr ""
+msgstr "Referencia al tabaco"
 
 #: mkt/constants/ratingdescriptors.py:118
 msgid "Use of Alcohol"
-msgstr ""
+msgstr "Uso de alcohol"
 
 #: mkt/constants/ratingdescriptors.py:121
 msgid "Use of Drugs"
-msgstr ""
+msgstr "Uso de drogas"
 
 #: mkt/constants/ratingdescriptors.py:124
 msgid "Use of Tobacco"
-msgstr ""
+msgstr "Uso de tabaco"
 
 #: mkt/constants/ratingdescriptors.py:130
 msgid "Violence References"
-msgstr ""
+msgstr "Referencias a la violencia"
 
 #: mkt/constants/ratingdescriptors.py:136
 msgid "Comic Mischief"
-msgstr ""
+msgstr "Travesura cómica"
 
 #: mkt/constants/ratingdescriptors.py:139
 msgid "Alcohol and Tobacco Reference"
-msgstr ""
+msgstr "Referencia a alcohol y tabaco"
 
 #: mkt/constants/ratingdescriptors.py:142
 msgid "Drug and Alcohol Reference"
-msgstr ""
+msgstr "Referencia a drogas y alcohol"
 
 #: mkt/constants/ratingdescriptors.py:145
 msgid "Use of Alcohol and Tobacco"
-msgstr ""
+msgstr "Uso de alcohol y tabaco"
 
 #: mkt/constants/ratingdescriptors.py:148
 msgid "Use of Drug and Alcohol"
-msgstr ""
+msgstr "Uso de drogas y alcohol "
 
 #: mkt/constants/ratingdescriptors.py:151
 msgid "Drug and Tobacco Reference"
-msgstr ""
+msgstr "Referencia a drogas y tabaco"
 
 #: mkt/constants/ratingdescriptors.py:154
 msgid "Drug, Alcohol, and Tobacco Reference"
-msgstr ""
+msgstr "Referencias a drogas, alcohol y tabaco"
 
 #: mkt/constants/ratingdescriptors.py:157
 msgid "Use of Drug and Tobacco"
-msgstr ""
+msgstr "Uso de drogas y tabaco"
 
 #: mkt/constants/ratingdescriptors.py:160
 msgid "Use of Drug, Alcohol, and Tobacco"
-msgstr ""
+msgstr "Uso de drogas, alcohol y tabaco"
 
 #: mkt/constants/ratingdescriptors.py:163
 msgid "Scary Themes"
-msgstr ""
+msgstr "Temas de miedo"
 
 #: mkt/constants/ratingdescriptors.py:166
 msgid "Hate Speech"
-msgstr ""
+msgstr "Lenguaje de odio"
 
 #: mkt/constants/ratingdescriptors.py:169
 msgid "Crime"
-msgstr ""
+msgstr "Crimen"
 
 #: mkt/constants/ratingdescriptors.py:172
 msgid "Criminal Instruction"
-msgstr ""
+msgstr "Enseñanza de técnicas criminales"
 
 #: mkt/constants/ratingdescriptors.py:182
 msgid "Fear"
-msgstr ""
+msgstr "Horror"
 
 #: mkt/constants/ratingdescriptors.py:192 mkt/constants/ratingdescriptors.py:282
 msgid "Discrimination"
-msgstr ""
+msgstr "Discriminación"
 
 #: mkt/constants/ratingdescriptors.py:198
 msgid "Online"
-msgstr ""
+msgstr "En línea"
 
 #: mkt/constants/ratingdescriptors.py:272
 msgid "Frightening Content"
-msgstr ""
+msgstr "Contenido aterrador"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
-msgstr ""
+msgstr "Interacción de los usuarios"
 
 #: mkt/constants/ratinginteractives.py:15
 msgid "Shares Info"
-msgstr ""
+msgstr "Comparte información"
 
 #: mkt/constants/ratinginteractives.py:18
 msgid "Shares Location"
-msgstr ""
+msgstr "Comparte la ubicación"
 
 #: mkt/constants/ratinginteractives.py:21
 msgid "Digital Purchases"
-msgstr ""
+msgstr "Compras digitales"
 
 #: mkt/constants/ratinginteractives.py:24
 msgid "Social Networking"
-msgstr ""
+msgstr "Redes sociales"
 
 #: mkt/constants/ratinginteractives.py:27
 msgid "Digital Content Portal"
-msgstr ""
+msgstr "Portal de contenido digital"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "General Audiences"
@@ -15893,7 +15893,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rejected for All Audiences"
-msgstr ""
+msgstr "Rechazado para cualquier tipo de público"
 
 #: mkt/constants/ratingsbodies.py:10
 msgid "For all ages"
@@ -15918,48 +15918,48 @@ msgstr "Genérico"
 
 #: mkt/constants/ratingsbodies.py:196
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Cuerpo de autorregulación de software de entretenimiento"
 
 #: mkt/constants/ratingsbodies.py:205
 msgid "Everyone"
-msgstr ""
+msgstr "Para todas las edades"
 
 #: mkt/constants/ratingsbodies.py:213
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Mayores de 10 años"
 
 #: mkt/constants/ratingsbodies.py:220
 msgid "Teen"
-msgstr ""
+msgstr "Adolescente"
 
 #: mkt/constants/ratingsbodies.py:227
 msgid "Mature 17+"
-msgstr ""
+msgstr "Mayores de 17 años"
 
 #: mkt/constants/ratingsbodies.py:234
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Solamente adultos mayores de 18"
 
 #: mkt/constants/ratingsbodies.py:242
 msgid "Rating Pending"
-msgstr ""
+msgstr "Clasificación pendiente"
 
 #: mkt/constants/ratingsbodies.py:254
 msgid "N. America"
-msgstr ""
+msgstr "América del Norte"
 
 #. L10n: `N.` stands for North.
 #: mkt/constants/ratingsbodies.py:255
 msgid "Entertainment Software Rating Board"
-msgstr ""
+msgstr "Órgano de clasificación de software de entretenimiento"
 
 #: mkt/constants/ratingsbodies.py:299
 msgid "Europe"
-msgstr ""
+msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:300
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Información Paneuropea sobre Videojuegos"
 
 #: mkt/constants/regions.py:55
 msgid "Worldwide"
@@ -16051,7 +16051,7 @@ msgstr "No se puede conectar con el servidor de pagos."
 
 #: mkt/developers/api_payments.py:110
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "No se puede eliminar la cuenta compartida"
 
 #: mkt/developers/cron.py:132
 msgid "Content rating changed to Adult."
@@ -16155,7 +16155,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:711
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Elegir dónde estará disponible mi aplicación"
 
 #: mkt/developers/forms.py:925
 msgid "Agree"
@@ -16211,7 +16211,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:1113
 msgid "Content rating record not found."
-msgstr ""
+msgstr "Ficha de clasificación del contenido no encontrada."
 
 #: mkt/developers/forms_payments.py:56 mkt/submit/forms.py:269
 msgid "App Price"
@@ -16380,7 +16380,7 @@ msgstr "Desarrolladores"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:145
 msgid "Shared Account: {0}"
-msgstr ""
+msgstr "Cuenta compartida: {0}"
 
 #: mkt/developers/models.py:160
 msgid "Bango"
