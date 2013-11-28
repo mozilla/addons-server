@@ -16,6 +16,11 @@ from mkt.api.resources import ErrorViewSet
 
 class TestErrorService(RestOAuth):
     def setUp(self):
+        if not settings.ENABLE_API_ERROR_SERVICE:
+            # Because this service is activated in urls, you can't reliably
+            # test it if the setting is False, because you'd need to force
+            # django to re-parse urls before and after the test.
+            raise SkipTest()
         super(TestErrorService, self).setUp()
         self.url = reverse('error-list')
 
@@ -28,12 +33,6 @@ class TestErrorService(RestOAuth):
     @override_settings(DEBUG=False)
     @patch('mkt.api.exceptions.got_request_exception')
     def test_error_service_debug_false(self, got_request_exception):
-        if not settings.ENABLE_API_ERROR_SERVICE:
-            # Because this service is activated in urls, you can't reliably
-            # test it if the setting is False, because you'd need to force
-            # django to re-parse urls before and after the test.
-            raise SkipTest()
-
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data.keys(), ['detail'])
@@ -43,12 +42,6 @@ class TestErrorService(RestOAuth):
     @override_settings(DEBUG=True)
     @patch('mkt.api.exceptions.got_request_exception')
     def test_error_service_debug_true(self, got_request_exception):
-        if not settings.ENABLE_API_ERROR_SERVICE:
-            # Because this service is activated in urls, you can't reliably
-            # test it if the setting is False, because you'd need to force
-            # django to re-parse urls before and after the test.
-            raise SkipTest()
-
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(set(data.keys()), set(['detail', 'error_message', 'traceback']))
