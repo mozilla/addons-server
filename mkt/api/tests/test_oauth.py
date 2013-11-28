@@ -7,6 +7,7 @@ import urlparse
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.test.client import Client, FakePayload
+from django.utils.encoding import smart_str
 
 from nose.tools import eq_
 from oauthlib import oauth1
@@ -69,7 +70,11 @@ class OAuthClient(Client):
         cl = oauth1.Client(self.access.key,
                            client_secret=self.access.secret,
                            signature_method=self.signature_method)
-        return cl.sign(url, http_method=method)
+        url, headers, body = cl.sign(url, http_method=method)
+        # We give cl.sign a str, but it gives us back a unicode, which cause
+        # double-encoding problems later down the road with the django test
+        # client. To fix that, ensure it's still an str after signing.
+        return smart_str(url), headers, body
 
     def kw(self, headers, **kw):
         kw.setdefault('HTTP_HOST', 'testserver')
