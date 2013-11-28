@@ -474,7 +474,8 @@ class TestTransactionRefund(TestCase):
     def bango_ret(self, status):
         return {
             'status': status,
-            'transaction': 'transaction_uri'
+            'transaction': 'transaction_uri',
+            'uuid': 'some:uid'
         }
 
     def request(self, data):
