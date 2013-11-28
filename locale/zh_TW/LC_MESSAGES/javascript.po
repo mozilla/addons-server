@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-27 16:22+0000\n"
+"PO-Revision-Date: 2013-11-28 14:49+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1385569347.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1385650145.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -301,7 +301,7 @@ msgid ""
 msgid_plural ""
 "Warning: deleting payment account \"{0}\" will move those associated apps to "
 "an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
+msgstr[0] "警告: 刪除付款帳號「{0}」將會使下列已關聯的應用程式進入未完成狀態，並將會被下架:"
 
 #: media/js/devreg/payments-manage.js:58
 #: media/js/devreg/payments-manage.js:107
