@@ -1,10 +1,60 @@
 import json
 
-from nose.tools import eq_
+from mock import patch
+from nose import SkipTest
+from nose.tools import eq_, ok_
+
+from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.http import HttpRequest
+from django.test.utils import override_settings
 
 import mkt
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.api.resources import ErrorViewSet
+
+
+class TestErrorService(RestOAuth):
+    def setUp(self):
+        super(TestErrorService, self).setUp()
+        self.url = reverse('error-list')
+
+    def verify_exception(self, got_request_exception):
+        exception_handler_args = got_request_exception.send.call_args
+        eq_(exception_handler_args[0][0], ErrorViewSet)
+        eq_(exception_handler_args[1]['request'].path, self.url)
+        ok_(isinstance(exception_handler_args[1]['request'], HttpRequest))
+
+    @override_settings(DEBUG=False)
+    @patch('mkt.api.exceptions.got_request_exception')
+    def test_error_service_debug_false(self, got_request_exception):
+        if not settings.ENABLE_API_ERROR_SERVICE:
+            # Because this service is activated in urls, you can't reliably
+            # test it if the setting is False, because you'd need to force
+            # django to re-parse urls before and after the test.
+            raise SkipTest()
+
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        eq_(data.keys(), ['detail'])
+        eq_(data['detail'], 'Internal Server Error')
+        self.verify_exception(got_request_exception)
+
+    @override_settings(DEBUG=True)
+    @patch('mkt.api.exceptions.got_request_exception')
+    def test_error_service_debug_true(self, got_request_exception):
+        if not settings.ENABLE_API_ERROR_SERVICE:
+            # Because this service is activated in urls, you can't reliably
+            # test it if the setting is False, because you'd need to force
+            # django to re-parse urls before and after the test.
+            raise SkipTest()
+
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        eq_(set(data.keys()), set(['detail', 'error_message', 'traceback']))
+        eq_(data['detail'], 'Internal Server Error')
+        eq_(data['error_message'], 'This is a test.')
+        self.verify_exception(got_request_exception)
 
 
 class TestConfig(RestOAuth):

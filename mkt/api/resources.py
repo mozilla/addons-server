@@ -24,7 +24,8 @@ from market.models import Price, PriceCurrency
 
 from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import AllowAppOwner, GroupPermission
-from mkt.api.base import cors_api_view, CORSMixin, SlugOrIdMixin
+from mkt.api.base import (cors_api_view, CORSMixin, MarketplaceView,
+                          SlugOrIdMixin)
 from mkt.api.serializers import CarrierSerializer, RegionSerializer
 from mkt.carriers import CARRIER_MAP, CARRIERS
 from mkt.regions import REGIONS_DICT
@@ -32,6 +33,20 @@ from mkt.webapps.tasks import _update_manifest
 
 
 log = commonware.log.getLogger('z.api')
+
+
+class TestError(Exception):
+    pass
+
+
+class ErrorViewSet(MarketplaceView, GenericViewSet):
+    permission_classes = (AllowAny,)
+
+    def list(self, request, *args, **kwargs):
+        # All this does is throw an error. This is used for testing
+        # the error handling on dev servers.
+        # See mkt.api.exceptions for the error handler code.
+        raise TestError('This is a test.')
 
 
 class CategorySerializer(ModelSerializer):
