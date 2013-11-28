@@ -17,9 +17,9 @@
     <div class="island">
       <p>{% include "developers/apps/preload/home_help.html" %}</p>
       <p class="listing-footer">
-        <a class="button" href="{{ settings.PREINSTALL_TEST_PLAN_URL }}" download>
-          {{ _('Download the test plan') }}
-        </a>
+        <a class="button" href="{{ media(get_doc_path(settings.PREINSTALL_TEST_PLAN_URL, 'xlsx')) }}"
+           download="preload_testplan.xlsx">
+          {{ _('Download the test plan') }}</a>
       </p>
     </div>
 

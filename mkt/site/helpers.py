@@ -306,3 +306,20 @@ def get_doc_template(context, template):
             return jinja2.Markup(template.render())
     template = env.get_template('%s/en-US.html' % template)
     return jinja2.Markup(template.render())
+
+
+@register.function
+@jinja2.contextfunction
+def get_doc_path(context, path, extension):
+    """
+    Gets the path to a localizable document in the current language with
+    fallback to en-US.
+    """
+    lang = getattr(context['request'], 'LANG', 'en-US')
+    if lang in settings.AMO_LANGUAGES:
+        try:
+            localized_file_path = '%s/%s.%s' % (path, lang, extension)
+            with open(localized_file_path):
+                return localized_file_path
+        except IOError:
+            return '%s/en-US.%s' % (path, extension)
