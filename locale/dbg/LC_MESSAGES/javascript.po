@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 15:27-0700\n"
+"POT-Creation-Date: 2013-11-27 07:58-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -294,7 +294,7 @@ msgid "Iraqi Bank Code"
 msgstr "Īřȧɋī Ɓȧƞķ Ƈǿḓḗ"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:135
+#: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
 msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 
@@ -1246,37 +1246,53 @@ msgstr "ǾĶ"
 msgid "Payment failed. Try again later."
 msgstr "Ƥȧẏḿḗƞŧ ƒȧīŀḗḓ. Ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
-#: media/js/mkt/reviewers.js:98
+#: media/js/mkt/reviewers.js:100
 msgid "Packaged App"
 msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥ"
 
-#: media/js/mkt/reviewers.js:102
+#: media/js/mkt/reviewers.js:104
 msgid "Privileged App"
 msgstr "Ƥřīṽīŀḗɠḗḓ Ȧƥƥ"
 
-#: media/js/mkt/reviewers.js:105
+#: media/js/mkt/reviewers.js:107
 msgid "More Information Requested"
 msgstr "Ḿǿřḗ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧḗḓ"
 
-#: media/js/mkt/reviewers.js:108
+#: media/js/mkt/reviewers.js:110
 msgid "Contains Editor Comment"
 msgstr "Ƈǿƞŧȧīƞş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
 
-#: media/js/mkt/reviewers.js:112
+#: media/js/mkt/reviewers.js:114
 msgid "Premium App"
 msgstr "Ƥřḗḿīŭḿ Ȧƥƥ"
 
-#: media/js/mkt/reviewers.js:115
+#: media/js/mkt/reviewers.js:117
 msgid "Escalated"
 msgstr "Ḗşƈȧŀȧŧḗḓ"
 
-#: media/js/mkt/reviewers.js:120
+#: media/js/mkt/reviewers.js:122
 msgid "Free"
 msgstr "Ƒřḗḗ"
 
-#: media/js/mkt/reviewers.js:228
+#: media/js/mkt/reviewers.js:230
 msgid "Any"
 msgstr "Ȧƞẏ"
+
+#: media/js/mkt/reviewers.js:257
+msgid "Approved app: {app}"
+msgstr "Ȧƥƥřǿṽḗḓ ȧƥƥ: {ȧƥƥ}"
+
+#: media/js/mkt/reviewers.js:260
+msgid "Rejected app: {app}"
+msgstr "Řḗĵḗƈŧḗḓ ȧƥƥ: {ȧƥƥ}"
+
+#: media/js/mkt/reviewers.js:266
+msgid "Error approving app: {app}"
+msgstr "Ḗřřǿř ȧƥƥřǿṽīƞɠ ȧƥƥ: {ȧƥƥ}"
+
+#: media/js/mkt/reviewers.js:267
+msgid "Error rejecting app: {app}"
+msgstr "Ḗřřǿř řḗĵḗƈŧīƞɠ ȧƥƥ: {ȧƥƥ}"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1514,7 +1530,7 @@ msgstr "Ŧǿŧȧŀ Īƞşŧȧŀŀş"
 
 #: media/js/zamboni/admin_validation.js:24
 #: media/js/zamboni/devhub.js:1438
-#: media/js/zamboni/editors.js:331
+#: media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
@@ -1763,33 +1779,37 @@ msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 msgid "Receipt was not checked by app."
 msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
-#: media/js/zamboni/editors.js:280
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
 
-#: media/js/zamboni/editors.js:291
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "Ŀǿȧḓīƞɠ&hellip;"
 
-#: media/js/zamboni/editors.js:296
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
-#: media/js/zamboni/editors.js:301
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 
-#: media/js/zamboni/editors.js:306
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
 
-#: media/js/zamboni/editors.js:366
+#: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
 
-#: media/js/zamboni/editors.js:422
+#: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ŧřȧƞşŀȧŧīǿƞ"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."

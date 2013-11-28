@@ -2,18 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-07-29 12:14+0400\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"POT-Creation-Date: 2013-11-27 07:58-0700\n"
+"PO-Revision-Date: 2013-11-13 23:59+0400\n"
+"Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Translate Toolkit 1.8.1\n"
-"X-Poedit-Language: Russian\n"
-"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -95,9 +93,9 @@ msgstr "Закончена валидация {0}"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ваше дополнение прошло проверку без ошибок и с {0} сообщением."
+msgstr[1] "Ваше дополнение прошло проверку без ошибок и с {0} сообщениями."
+msgstr[2] "Ваше дополнение прошло проверку без ошибок и с {0} сообщениями."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -148,9 +146,9 @@ msgstr "Ваше приложение прошло валидацию без о�
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ваше дополнение не прошло проверку с {0} ошибкой и {1} сообщением(ями)."
+msgstr[1] "Ваше дополнение не прошло проверку с {0} ошибками и {1} сообщением(ями)."
+msgstr[2] "Ваше дополнение не прошло проверку с {0} ошибками и {1} сообщением(ями)."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -272,7 +270,7 @@ msgid "Iraqi Bank Code"
 msgstr "Иракский банковский код"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:135
+#: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
 msgstr "Обнаружен: {0}"
 
@@ -280,9 +278,9 @@ msgstr "Обнаружен: {0}"
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Внимание: удаление расчетного счета \"{0}\" переместит связанное с ним приложение в статус незавершенного, и оно больше не будет доступно для продажи:"
+msgstr[1] "Внимание: удаление расчетного счета \"{0}\" переместит связанные с ним приложения в статус незавершенных, и они больше не будут доступны для продажи:"
+msgstr[2] "Внимание: удаление расчетного счета \"{0}\" переместит связанные с ним приложения в статус незавершенных, и они больше не будут доступны для продажи:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -295,7 +293,7 @@ msgstr "Возникла проблема при связи с сервером 
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
-msgstr ""
+msgstr "Ошибка аутентификации"
 
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
@@ -1026,11 +1024,11 @@ msgstr "Ошибка входа через Persona. Произошла ошиб�
 
 #: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "Показать все результаты"
 
 #: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Найдено более {0} результатов, попробуйте уточнить параметры поиска."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
@@ -1060,37 +1058,53 @@ msgstr "OK"
 msgid "Payment failed. Try again later."
 msgstr "Платеж не прошел. Пожалуйста, попробуйте позже."
 
-#: media/js/mkt/reviewers.js:98
+#: media/js/mkt/reviewers.js:100
 msgid "Packaged App"
 msgstr "Упакованное приложение"
 
-#: media/js/mkt/reviewers.js:102
+#: media/js/mkt/reviewers.js:104
 msgid "Privileged App"
 msgstr "Привилегированное приложение"
 
-#: media/js/mkt/reviewers.js:105
+#: media/js/mkt/reviewers.js:107
 msgid "More Information Requested"
 msgstr "Запрошено больше информации"
 
-#: media/js/mkt/reviewers.js:108
+#: media/js/mkt/reviewers.js:110
 msgid "Contains Editor Comment"
 msgstr "Содержит комментарий редактора"
 
-#: media/js/mkt/reviewers.js:112
+#: media/js/mkt/reviewers.js:114
 msgid "Premium App"
-msgstr ""
+msgstr "Премиум приложение"
 
-#: media/js/mkt/reviewers.js:115
+#: media/js/mkt/reviewers.js:117
 msgid "Escalated"
 msgstr "Отправлено наверх"
 
-#: media/js/mkt/reviewers.js:120
+#: media/js/mkt/reviewers.js:122
 msgid "Free"
 msgstr "Бесплатно"
 
-#: media/js/mkt/reviewers.js:228
+#: media/js/mkt/reviewers.js:230
 msgid "Any"
 msgstr "Любая"
+
+#: media/js/mkt/reviewers.js:257
+msgid "Approved app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:260
+msgid "Rejected app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:266
+msgid "Error approving app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:267
+msgid "Error rejecting app: {app}"
+msgstr ""
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1296,7 +1310,7 @@ msgstr "Всего копий за которые возвращены день�
 msgid "Total Installs"
 msgstr "Всего установок"
 
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:331
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Сначала выберите приложение"
 
@@ -1531,33 +1545,37 @@ msgstr "Квитанция была проверена приложением."
 msgid "Receipt was not checked by app."
 msgstr "Квитанция не была проверена приложением."
 
-#: media/js/zamboni/editors.js:280
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{name} просматривал это дополнение первым."
 
-#: media/js/zamboni/editors.js:291
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "Загрузка&hellip;"
 
-#: media/js/zamboni/editors.js:296
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Примечания к версии"
 
-#: media/js/zamboni/editors.js:301
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "Примечания для проверяющих"
 
-#: media/js/zamboni/editors.js:306
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "Примечаний к версии не найдено"
 
-#: media/js/zamboni/editors.js:366
+#: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Средние отзывы"
 
-#: media/js/zamboni/editors.js:422
+#: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Число отзывов"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr ""
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1602,9 +1620,9 @@ msgstr "Дополнение прошло валидацию."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} замечание"
+msgstr[1] "{0} замечания"
+msgstr[2] "{0} замечаний"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"

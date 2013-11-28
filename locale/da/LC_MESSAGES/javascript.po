@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 15:27-0700\n"
-"PO-Revision-Date: 2013-06-05 13:28+0100\n"
+"POT-Creation-Date: 2013-11-27 07:58-0700\n"
+"PO-Revision-Date: 2013-11-15 21:06+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: media/js/common/ratingwidget.js:31
@@ -183,11 +183,11 @@ msgstr ""
 
 #: media/js/devreg/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "mere..."
 
 #: media/js/devreg/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "mindre..."
 
 #: media/js/devreg/init.js:35 media/js/mkt/init.js:47 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -262,7 +262,7 @@ msgid "Iraqi Bank Code"
 msgstr ""
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:135
+#: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
 msgstr ""
 
@@ -361,27 +361,27 @@ msgstr "Alle rettigheder forbeholdes"
 
 #: media/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: media/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: media/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: media/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: media/js/impala/persona_creation.js:131
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
@@ -1013,11 +1013,11 @@ msgstr "Log ind med Persona mislykkedes. Der opstod en serverfejl."
 
 #: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "Vis alle resultater"
 
 #: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Mere end {0} resultater fundet. Overvej at forfine din søgning."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
@@ -1047,36 +1047,52 @@ msgstr "OK"
 msgid "Payment failed. Try again later."
 msgstr "Betaling mislykkedes. Prøv igen senere."
 
-#: media/js/mkt/reviewers.js:98
+#: media/js/mkt/reviewers.js:100
 msgid "Packaged App"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:102
+#: media/js/mkt/reviewers.js:104
 msgid "Privileged App"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:105
+#: media/js/mkt/reviewers.js:107
 msgid "More Information Requested"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:108
+#: media/js/mkt/reviewers.js:110
 msgid "Contains Editor Comment"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:112
+#: media/js/mkt/reviewers.js:114
 msgid "Premium App"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:115
+#: media/js/mkt/reviewers.js:117
 msgid "Escalated"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:120
+#: media/js/mkt/reviewers.js:122
 msgid "Free"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:228
+#: media/js/mkt/reviewers.js:230
 msgid "Any"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:257
+msgid "Approved app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:260
+msgid "Rejected app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:266
+msgid "Error approving app: {app}"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:267
+msgid "Error rejecting app: {app}"
 msgstr ""
 
 #: media/js/mkt/themes_review.js:174
@@ -1282,7 +1298,7 @@ msgstr "Refunderede enheder i alt efter kilde"
 msgid "Total Installs"
 msgstr "Installeringer i alt"
 
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:331
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Vælg et program først"
 
@@ -1513,32 +1529,36 @@ msgstr ""
 msgid "Receipt was not checked by app."
 msgstr ""
 
-#: media/js/zamboni/editors.js:280
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: media/js/zamboni/editors.js:291
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "Indlæser&hellip;"
 
-#: media/js/zamboni/editors.js:296
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Versionsbemærkninger"
 
-#: media/js/zamboni/editors.js:301
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: media/js/zamboni/editors.js:306
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "Ingen versionsbemærkninger fundet"
 
-#: media/js/zamboni/editors.js:366
+#: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr ""
 
-#: media/js/zamboni/editors.js:422
+#: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
+msgstr ""
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
 msgstr ""
 
 #: media/js/zamboni/global.js:416
