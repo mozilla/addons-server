@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-10-01 08:53+0000\n"
+"PO-Revision-Date: 2013-11-19 13:00+0000\n"
 "Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1380617639.0\n"
+"X-POOTLE-MTIME: 1384866004.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2066,7 +2066,7 @@ msgstr "{version}의 상태가 {0}(으)로 변경됐습니다."
 #. L10n: {0} is the status
 #: apps/amo/log.py:647
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "사용자 {0.name} {0.id} 이(가) 검색 도구를 통해 삭제됐습니다."
 
 #: apps/amo/log.py:653
 msgid "{addon} content rating changed to Adult."
@@ -2308,6 +2308,10 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
+"<p> %(consumer)s님이 당신의 대리인으로써 인증을 받길 원하고 있습니다. 인증시 다음의 권한이 부여됩니다: </p><ul> "
+"<li>부가 기능의 업로드, 변경, 삭제를 대신 할 수 있습니다.</li> <li>부가 기능 세부 버전의 업로드, 변경, 삭제를 대신 할 "
+"수 있습니다.</li> <li> 사용자 이름과 이메일 주소 같은 당신의 개인 정보를 열람할 수 있습니다. (비밀번호는 제외)</li> "
+"</ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29 mkt/developers/templates/developers/payments/includes/account_list.html:62
 msgid "Confirm"
@@ -4405,7 +4409,7 @@ msgstr "변경 내역이 성공적으로 저장되었습니다."
 
 #: apps/devhub/views.py:342 apps/devhub/views.py:1736
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "오류 유형에 체크해 주세요."
 
 #: apps/devhub/views.py:360
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -5284,6 +5288,8 @@ msgstr "기술 지원 질의서에 이메일 주소를 표시하고 싶다면 �
 #: apps/devhub/templates/devhub/addons/edit/support.html:52 mkt/developers/templates/developers/apps/edit/support.html:48
 msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
 msgstr ""
+"부가 기능이 기술 지원용 웹사이트나 포럼을 보유하고 있다면, 이곳에 주소를 입력해 주세요. 언어별로 사이트가 구축되어 있다면 각 언어마다 "
+"따로 항목을 추가해서 입력할 수도 있습니다."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6 mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -5771,11 +5777,11 @@ msgstr "대략적인 심사 <a href=\"{0}\">대기 시간</a>을 조회해 보�
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:57
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "심사 대기열을 줄여보세요!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:59
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "AMO 심사자가 되서 부가 기능 심사를 더 빠르게 받아봅시다."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:68
 msgid "Enrolling in Marketplace"
@@ -6302,7 +6308,7 @@ msgstr "Sandboxed HTTP 연결 생성하기"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
-msgstr ""
+msgstr "이 문서는 사용자의 쿠키에 영향을 끼치지 않는 샌드박스 HTTP 연결 생성 방법에 대해 설명하고 있습니다."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -6956,6 +6962,8 @@ msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
+"많은 개발자들이 포럼, 토론 그룹, 이메일 주소와 같은 기술 지원 수단을 제공하고 있습니다. 본 사이트의 부가 기능 사용자 평가 페이지 "
+"보다는 위의 수단을 통해 질문 사항을 올리는 것이 좋습니다."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -8831,7 +8839,7 @@ msgstr "대기중 하단"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "승급이 되면 이곳에서 테마 디자인을 업데이트 할 수 있습니다."
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
@@ -9481,23 +9489,23 @@ msgstr "설치 취소"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:6
 msgid "Amp Your Firefox Contest"
-msgstr ""
+msgstr "Firefox 경연대회를 홍보해 주세요"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
 msgid "Best Overall Add-on"
-msgstr ""
+msgstr "최고의 부가 기능"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
 msgid "Thumbnail Zoom Plus"
-msgstr ""
+msgstr "Thumbnail Zoom Plus"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
 msgid "Shows a full-size image popup when<br> you hover over a thumbnail or image link."
-msgstr ""
+msgstr "썸네일이나 이미지 링크에 마우스 커서를 올리면<br> 원래 화면 크기의 이미지를 보여줍니다."
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
 msgid "Get it now!"
-msgstr ""
+msgstr "지금 받아가세요!"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -9684,7 +9692,7 @@ msgstr "전체 심사 대기중"
 
 #: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "거부 또는 미심사"
 
 #: apps/editors/helpers.py:106
 msgid "Queue"
@@ -10450,11 +10458,11 @@ msgstr "앱 나열시 노출될 개발자 이름이 설치 선언문에 들어�
 
 #: apps/files/utils.py:329
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "압축 파일내 잘못된 파일 이름: {0}"
 
 #: apps/files/utils.py:337
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "압축 파일내 파일 용량 제한 초과: {0}"
 
 #: apps/files/utils.py:387
 msgid "Invalid archive."
@@ -11467,7 +11475,7 @@ msgstr "부가 기능이 추천 목록에 오르려면 어떻게 해야 하나�
 
 #: apps/pages/templates/pages/dev_faq.html:542 apps/pages/templates/pages/dev_faq.html:552
 msgid "<a href=\"%(url)s\">This page</a> describes the process by which the Recommended lists are managed."
-msgstr ""
+msgstr "<a href=\"%(url)s\">이 페이지</a>는 추천 목록이 관리되는 과정을 서술하고 있습니다."
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -13807,11 +13815,11 @@ msgstr "가입한 날짜"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
-msgstr ""
+msgstr "마지막 로그인 시간"
 
 #: apps/users/templates/users/vcard.html:46
 msgid "IP address of last login"
-msgstr ""
+msgstr "마지막 로그인 IP 주소"
 
 #: apps/users/templates/users/vcard.html:53
 msgid "Number of add-ons developed"
@@ -13951,31 +13959,31 @@ msgstr ""
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "기본 모음집"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
-msgstr ""
+msgstr "추천 앱 목록"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "관리자의 선반"
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "16진수 색깔 코드"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "올바른 16진수 코드여야 합니다. 예. #FF0035"
 
 #: mkt/collections/serializers.py:192
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
-msgstr ""
+msgstr "같은 분류/통신사/지역 조합에서 한 개 이상의 추천 앱/관리자의 선반 모음집을 보유할 수 없습니다."
 
 #: mkt/commonplace/templates/commonplace/index.html:15
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
+msgstr "Firefox 마켓플레이스는 웹 플랫폼용 앱의 공식 유통처입니다."
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:45
@@ -15217,13 +15225,15 @@ msgstr "이 앱은 터치 이벤트를 지원하는 플랫폼을 필요로 합�
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "스마트폰 크기 화면 (qHD)"
 
 #: mkt/constants/features.py:152
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"이 앱은 스마트폰 정도의 화면크기 (qHD 해상도) 가 필요합니다. 이 옵션은 더 큰 화면 (태블릿, 데스크톱, DPI가 크거나 높은 "
+"휴대폰 등) 에서는 본 앱을 사용할 수 없다는 내용을 표시합니다."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -15279,111 +15289,111 @@ msgstr "이 앱은 일반적으로 앱에 허용된 한계치보다 저장 공�
 
 #: mkt/constants/features.py:213
 msgid "Camera"
-msgstr ""
+msgstr "카메라"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
-msgstr ""
+msgstr "본 앱은 LocalMediaStream 오브젝트로 카메라 장치를 이용한 동영상 촬영 기능을 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
-msgstr ""
+msgstr "마이크"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr ""
+msgstr "본 앱은 마이크 장치를 이용한 오디오 녹음을 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
-msgstr ""
+msgstr "화면 캡쳐"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr ""
+msgstr "본 앱은 단말기 화면 캡쳐를 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
-msgstr ""
+msgstr "본 앱은 웹 실시간 커뮤니케이션 브라우저 대 브라우저 인바운드 미디어 스트림을 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
-msgstr ""
+msgstr "본 앱은 오디오와 동영상 이외의 피어 투 피어 데이터 교환을 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
-msgstr ""
+msgstr "본 앱은 피어간 스트리밍 데이터 통신을 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Web Speech Synthesis"
 
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "본 앱은 글자 읽기 기능 사용을 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:260
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Web Speech Recognition"
 
 #: mkt/constants/features.py:261
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr ""
+msgstr "본 앱은 음성 문자 변환 기능을 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:266
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Pointer Lock"
 
 #: mkt/constants/features.py:267
 msgid "The app requires the platform to provide additional information and control about the pointer."
-msgstr ""
+msgstr "본 앱은 포인터에 대한 추가적인 정보 및 제어를 제공하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
-msgstr ""
+msgstr "본 앱은 사용자에게 스마트폰 내 표시 및 데스크톱 알림을 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
-msgstr ""
+msgstr "알람"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
-msgstr ""
+msgstr "본 앱은 특정 시간에 알림 및 이벤트를 예약해서 단말기에 알람 설정을 제공하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
-msgstr ""
+msgstr "본 앱은 동일 origin 정책 제한이 걸려있지 않은 비동기 HTTP 요청 전송을 허용하고 있는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP Sockets"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "본 앱은 원본 그대로 TCP socket 열람을 허용하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "서드파티 키보드 지원"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "본 앱은 서드파티 키보드를 지원하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15670,7 +15680,7 @@ msgstr "정당성, 이용 등급, 제목, 자격 요건등의 담당 부서"
 
 #: mkt/constants/ratingsbodies.py:142 mkt/constants/ratingsbodies.py:144
 msgid "Generic"
-msgstr ""
+msgstr "일반"
 
 #: mkt/constants/ratingsbodies.py:196
 msgid "Entertainment Software Self-Regulation Body"
@@ -15869,11 +15879,11 @@ msgstr "한 개 이상의 스크린샷이나 동영상을 업로드해야 합니
 
 #: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be less than %s."
-msgstr ""
+msgstr "제출하기엔 너무 큰 용량의 패키지형 앱입니다. 패키지 크기는 %s보다 작아야 합니다."
 
 #: mkt/developers/forms.py:474
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "zip 파일에서 설치선언문 압축을 푸는 도중에 오류가 발생했습니다."
 
 #: mkt/developers/forms.py:527
 msgid "Provide a detailed description of your app"
@@ -15905,7 +15915,7 @@ msgstr "한 개 이상의 지역을 선택해야 합니다."
 
 #: mkt/developers/forms.py:708
 msgid "Enable new regions"
-msgstr ""
+msgstr "새 지역 활성화"
 
 #: mkt/developers/forms.py:710
 msgid "Make my app available in most regions"
@@ -15945,23 +15955,23 @@ msgstr "거래 방식"
 
 #: mkt/developers/forms.py:1042
 msgid "I agree to the Terms and Conditions"
-msgstr ""
+msgstr "이용 약관에 동의합니다"
 
 #: mkt/developers/forms.py:1044
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "테스트 계획을 업로드 하세요 (2.5MB 미만의 .pdf, .xls)"
 
 #: mkt/developers/forms.py:1053
 msgid "Test plan required."
-msgstr ""
+msgstr "테스트 계획이 필요합니다."
 
 #: mkt/developers/forms.py:1060
 msgid "File too large. Keep size under %s. Current size %s."
-msgstr ""
+msgstr "파일이 너무 큽니다. %s 미만의 크기여야 합니다. 현재 크기는 %s 입니다."
 
 #: mkt/developers/forms.py:1066
 msgid "Invalid file type. Only %s files are supported."
-msgstr ""
+msgstr "잘못된 파일 종류입니다. %s 파일만 지원합니다."
 
 #: mkt/developers/forms.py:1086
 msgid "Please enter a valid submission ID."
@@ -16074,7 +16084,7 @@ msgstr "은행 계좌번호"
 
 #: mkt/developers/forms_payments.py:410
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT 코드"
 
 #: mkt/developers/forms_payments.py:412
 msgid "Bank Name"
@@ -16118,7 +16128,7 @@ msgstr "앱에서 지불 계정을 삭제할 수 없습니다."
 
 #: mkt/developers/forms_payments.py:509
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "지불 계좌를 변경할 수 있는 권한이 없습니다."
 
 #: mkt/developers/forms_payments.py:546
 msgid "Account name"
@@ -16126,11 +16136,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:560
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "앱에 설정된 지불 계좌 없음"
 
 #: mkt/developers/forms_payments.py:563
 msgid "Account not set up"
-msgstr ""
+msgstr "계좌 설정 안됨"
 
 #: mkt/developers/helpers.py:36 mkt/developers/helpers.py:65 mkt/reviewers/forms.py:85
 msgid "Developers"
@@ -16197,7 +16207,7 @@ msgstr "아이콘은 사각형이어야 합니다."
 #. in px.
 #: mkt/developers/utils.py:104
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
-msgstr ""
+msgstr "앱 미리보기 크기는 최소 {0}px x {1}px 혹은 {1}px x {0}px 이상이어야 합니다."
 
 #: mkt/developers/views.py:149
 msgid "Paid apps cannot be deleted. Disable this app instead."
@@ -16225,11 +16235,11 @@ msgstr ""
 
 #: mkt/developers/views.py:374
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "사전 탑재용 애플리케이션이 성공적으로 제출됐습니다."
 
 #: mkt/developers/views.py:377
 msgid "There was an error with the form."
-msgstr ""
+msgstr "양식에 오류가 있습니다."
 
 #: mkt/developers/views.py:411
 msgid "Version successfully edited."
@@ -16237,7 +16247,7 @@ msgstr "버전을 수정했습니다."
 
 #: mkt/developers/views.py:452
 msgid "Version successfully made public."
-msgstr ""
+msgstr "버전이 성공적으로 공개 상태가 되었습니다."
 
 # 77%
 #: mkt/developers/views.py:467
@@ -16302,11 +16312,13 @@ msgstr "API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
-msgstr ""
+msgstr "마켓플레이스 API에 접근하려면 아래 양식을 통해 OAuth 키 페어를 생성해 주세요."
 
 #: mkt/developers/templates/developers/api.html:18
 msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
 msgstr ""
+"마켓플레이스 API에 접근하려면 <a href=\"%(terms)s\">이용 약관</a>에 동의한 후 아래 양식을 통해 OAuth 키 페어를 "
+"생성해 주세요."
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
@@ -16350,7 +16362,7 @@ msgstr "로그인 / 로그아웃"
 
 #: mkt/developers/templates/developers/nav.html:36 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "앱 테스트"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -16419,11 +16431,11 @@ msgstr "이미 개발자 동의서에 동의하셨습니다."
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_addon.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "테스트 작업"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
-msgstr ""
+msgstr "Firefox 마켓플레이스에 제출하기에 앞서 다음의 도구를 사용해 앱을 테스트해 보세요."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -16452,7 +16464,7 @@ msgstr "금액"
 
 #: mkt/developers/templates/developers/validate_addon.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "앱 안정성 검사"
 
 #: mkt/developers/templates/developers/validate_addon.html:17 mkt/submit/templates/submit/manifest.html:57
 msgid "Submit your app manifest URL"
@@ -16611,23 +16623,23 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:122
 msgid "Pre-Installed App Status"
-msgstr ""
+msgstr "사전 설치된 앱 상태"
 
 #: mkt/developers/templates/developers/apps/status.html:128
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
-msgstr ""
+msgstr "%(last_submission)s에 <strong class=\"submitted\">애플리케이션 제출됨</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:132
 msgid "Not Submitted"
-msgstr ""
+msgstr "제출되지 않음"
 
 #: mkt/developers/templates/developers/apps/status.html:136
 msgid "New version of the test plan available"
-msgstr ""
+msgstr "새 버전의 테스트 계획이 있습니다"
 
 #: mkt/developers/templates/developers/apps/status.html:141
 msgid "View your most recently submitted test plan"
-msgstr ""
+msgstr "가장 최근에 제출된 테스트 계획 보기"
 
 #: mkt/developers/templates/developers/apps/status.html:144
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
@@ -16635,7 +16647,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:146
 msgid "Update your test plan"
-msgstr ""
+msgstr "테스트 계획 업데이트하기"
 
 #: mkt/developers/templates/developers/apps/status.html:159 mkt/developers/templates/developers/apps/status.html:178
 msgid "List App"
@@ -16669,7 +16681,7 @@ msgstr "패키지 버전"
 
 #: mkt/developers/templates/developers/apps/status.html:218
 msgid "Submission date"
-msgstr ""
+msgstr "제출일"
 
 #: mkt/developers/templates/developers/apps/status.html:242 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:180 mkt/submit/templates/submit/next_steps.html:44
@@ -16747,13 +16759,15 @@ msgstr "앱의 동작을 위해 필요한 단말기 기능입니다."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:65
 msgid "Auto-publish when approved"
-msgstr ""
+msgstr "승인시 자동 게시"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:66
 msgid ""
 "If selected this version will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about this version's approval and you will "
 "need to log in and manually publish it."
 msgstr ""
+"이 버전을 즉시 게시로 선택하면 심사자 승인시 즉시 게시됩니다. 이 옵션을 선택하지 않았을 경우 버전 승인시 이메일로 알림을 받게 되며 "
+"로그인해서 직접 게시해야 합니다."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
@@ -17015,7 +17029,7 @@ msgstr "앱 내부 결제 설정"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:102 mkt/developers/templates/developers/includes/addons_edit_nav.html:38
 msgid "Messages"
-msgstr ""
+msgstr "메시지"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:115 mkt/developers/templates/developers/includes/addons_edit_nav.html:50
 msgid "Transactions"
@@ -17069,23 +17083,23 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr ""
+msgstr "단말기 사전 탑재됨"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr ""
+msgstr "사전 탑재형 앱"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:21
 msgid "Download the test plan"
-msgstr ""
+msgstr "테스트 계획 다운로드 받기"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
-msgstr ""
+msgstr "테스트 작업이 완료됐습니까?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:37
 msgid "Submit your app for preload"
-msgstr ""
+msgstr "앱을 사전 탑재용으로 제출하기"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -17093,10 +17107,15 @@ msgid ""
 "below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our servers "
 "where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"제작한 앱을 스마트폰 제조사에 의해 <strong>FirefoxOS 단말기에 사전 탑재</strong>되는 용도로 제출할 수 있습니다. "
+"사전 탑재 앱이 되려면 아래의 테스트 템플릿을 다운로드 받아 앱을 테스트하고 템플릿의 기입해야 할 부분에 전부 기입한 다음, 결과를 <a "
+"href=\"%(submit_url)s\">사전 제출용 앱 제출 양식</a>을 통해 저희에게 보내야 합니다. 저희는 테스트 결과를 서버에 "
+"보관해서 흥미를 가진 스마트폰 제조사가 언제든지 열람할 수 있도록 할 계획입니다. 다른 질문 사항이 있으시면 %(email)s로 이메일을 "
+"보내주시기 바랍니다."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr ""
+msgstr "사전 제출형 앱의 계약 조건"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
@@ -17192,6 +17211,8 @@ msgstr[0] "<b>예상 대기 시간:</b> %(num)s 작업일"
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
 msgstr ""
+"대부분의 앱이 1주일 안에 심사가 끝납니다. 심사가 이보다 더 길어질 경우 %(email)s로 이메일을 보내 심사 현황을 점검하시기 "
+"바랍니다."
 
 #: mkt/developers/templates/developers/includes/macros.html:123
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -17203,11 +17224,11 @@ msgstr "모두 감추기"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "앱 설치작업 테스트"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:7 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "앱 내부 결제 기능 테스트"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -17275,7 +17296,7 @@ msgstr "앱이 현재 미완성 상태입니다. 복구할 결제 계좌와 소�
 
 #: mkt/developers/templates/developers/payments/premium.html:136
 msgid "Add, manage or view transactions for your payment account"
-msgstr ""
+msgstr "결제용 계좌의 등록, 관리, 거래 내역 조회를 할 수 있습니다"
 
 #: mkt/developers/templates/developers/payments/premium.html:151
 msgid "Prices and Countries"
@@ -17299,15 +17320,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:194
 msgid "Available Regions"
-msgstr ""
+msgstr "가능 지역"
 
 #: mkt/developers/templates/developers/payments/premium.html:199
 msgid "Check out the <a href=\"%(status_url)s\">status page</a> to see what countries are currently enabled for sale."
-msgstr ""
+msgstr "현재 판매가 활성화된 국가를 보려면 <a href=\"%(status_url)s\">현황 페이지</a>를 확인하시기 바랍니다."
 
 #: mkt/developers/templates/developers/payments/premium.html:206
 msgid "Your app will be available in the following selected regions:"
-msgstr ""
+msgstr "앱이 다음의 선택한 지역에서 판매될 것입니다:"
 
 #: mkt/developers/templates/developers/payments/premium.html:212
 msgid "Retail price"
@@ -17323,7 +17344,7 @@ msgstr "결제 방법"
 
 #: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Other regions"
-msgstr ""
+msgstr "기타 지역"
 
 #: mkt/developers/templates/developers/payments/premium.html:227
 msgid ""
@@ -17366,7 +17387,7 @@ msgstr "수정"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:47
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "View transactions"
-msgstr ""
+msgstr "거래내역 조회"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a new payment account"
@@ -17378,7 +17399,7 @@ msgstr "이용 약관 수락"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:56
 msgid "Payment Account deletion"
-msgstr ""
+msgstr "결제용 계좌 삭제"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
@@ -17386,11 +17407,11 @@ msgstr "Bango 계정 추가"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:19
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr ""
+msgstr "보통 9, 10, 11자리 숫자입니다. 예: 0114584906"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:26
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr ""
+msgstr "8 아니면 11 글자입니다. 예: WFBIUS6WPDX"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:36 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:30
 msgid "Optional"
@@ -17420,7 +17441,7 @@ msgstr "설정한 지불 계정이 아직 없습니다."
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_list.html:4
 msgid "The current payment account was associated with the app by an app owner."
-msgstr ""
+msgstr "현재 결제 계좌는 앱 소유자에 의해 앱에 지정되었습니다."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
@@ -17444,15 +17465,15 @@ msgstr "앱이 결제 시스템을 지원하지 않는 특정 지역에선 노�
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
-msgstr ""
+msgstr "앱이 향후 추가될 모든 지역의 마켓플레이스에 노출됩니다."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
-msgstr ""
+msgstr "(선택한 가격 포인트를 통해 결정된 가격으로 결제됩니다)"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
-msgstr ""
+msgstr "새 지역이 추가되면 이메일 알림을 받습니다."
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:6
 msgid "Select All"
@@ -17546,7 +17567,7 @@ msgstr "디자인"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "구상: 위대한 앱"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
@@ -17577,7 +17598,7 @@ msgstr "앱 참고 자료"
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:193
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5 mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
 msgid "Deploying Your App"
-msgstr ""
+msgstr "앱 배치하기"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:198
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:23
@@ -17592,7 +17613,7 @@ msgstr "패키징된 앱"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:218
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "버튼, 배너, 아이콘"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5 mkt/ecosystem/templates/ecosystem/build_app_generator.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:26
 #: mkt/ecosystem/templates/ecosystem/macros.html:158
@@ -17891,12 +17912,17 @@ msgid ""
 "Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the "
 "phone vibrate, placing phone calls, and sending text messages."
 msgstr ""
+"Firefox OS는 새로운 모바일 운영체제로 대부분 오픈 웹 표준으로 이루어져 있습니다. Firefox OS에서 HTML5 앱은 직접 "
+"스마트폰의 하드웨어와 핵심 기능을 제어할 수 있습니다 — 진동, 전화 받기, 메세지 전송 같은 것들"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
 msgid ""
 "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
 "and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
 msgstr ""
+"저희는 개발자들이 웹에서의 역량을 모바일로 가져오는데 있어 중요한 역할을 하게 될거라고 믿고 있습니다. 그래서 여러 협력사와 함께 앱 "
+"개발, 테스트, Firefox OS 커스터마이징에 대해 배울 수 있는 단말기를 개발했습니다. 본 페이지는 개발자들에게 개발자용 문서 자료 "
+"링크, 단말기 정보 및 구입처 등에 관한 유용한 정보를 제공하고 있습니다."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
@@ -17904,23 +17930,30 @@ msgstr "Keon"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:46 mkt/ecosystem/templates/ecosystem/dev_phone.html:58
 msgid "ZTE OPEN"
-msgstr ""
+msgstr "ZTE OPEN"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:48
 msgid ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</"
 "a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">미국 쇼핑몰에서 구입</a> <a href=\"%"
+"(uk_ebay_url)s\" class=\"button\">영국 쇼핑몰에서 구입</a> <a href=\"%(hk_ebay_url)s\" "
+"class=\"button\">홍콩 쇼핑몰에서 구입</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid ""
 "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"ZTE와의 고된 작업 끝에 전세계 개발자와 얼리어답터를 겨냥해서 만든 강력한 단말기, ZTE OPEN Firefox OS 스마트폰을 "
+"발매하게 되서 무척이나 자랑스럽습니다. 이 스마트폰은 ZTE의 미국, 영국, 홍콩 eBay 쇼핑몰을 통해서 $79.99/£59.99에 "
+"구입할 수 있으며 각종 테스트와 실험을 할 수 있도록 언락 상태로 판매됩니다. <a href=\"%(zte_url)s\">자세한 정보 "
+"보기</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
-msgstr ""
+msgstr "알림: 아시아 및 오세아니아 지역 사용자는 홍콩에서 판매되는 새 단말기를 구입하면 배송비가 절약됩니다."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:77
 msgid "Peak"
@@ -17928,7 +17961,7 @@ msgstr "최종 목표"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:80
 msgid "Geeksphone"
-msgstr ""
+msgstr "Peak"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:82
 msgid ""
@@ -17936,32 +17969,46 @@ msgid ""
 "Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these "
 "devices are still very valid for developer testing, having full updates available to them."
 msgstr ""
+"Mozilla, Geeksphone, Telefónica가 공동으로 Geeksphone Keon과 Peak를 개발했습니다. 실제 "
+"Firefox OS 단말기 상에서 개발하기를 원하는 개발자들을 위한 개발자용 프리뷰 폰으로 로우엔드와 하이엔드 사용자를 각기 섭렵하고 "
+"있습니다. 향후 다른 계획이 세워질 수는 있겠지만 현재로써는 이것 이외의 단말기는 없음을 알려드립니다. 하지만 지속적으로 유통이 될 "
+"것이고 이들 단말기는 개발자 테스트 및 업데이트 완벽 지원 등으로 앞으로도 계속 유용하게 쓰일 것입니다."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:92
 msgid ""
 "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-"
 "to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
 msgstr ""
+"<strong>Geeksphone Keon이나 Peak을 처음 받았을 땐 대부분 Firefox OS 구버전인 1.0.1이 탑재되어 "
+"있습니다. 다른 작업을 하기에 앞서 <a href=\"%(geeksphone_update_url)s\">Geeksphone 플래시 업데이트 "
+"안내</a>를 참고해서 Firefox OS 버전을 업데이트해야 합니다.</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
-msgstr ""
+msgstr "문서 및 도구"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:103
 msgid ""
 "If you already have a Firefox OS device and want some guidance and direction, you can <a href=\"%(devhub_url)s\">get started at the Firefox Marketplace Developer Hub</a>. The <a href=\"%(mdn_url)s"
 "\">Mozilla Developer Network</a> also provides a wealth of useful resources such as API documentation and further information on Open Web App development."
 msgstr ""
+"이미 Firefox OS 단말기를 보유하고 있고 다른 사람들에게 정보를 제공하고 싶다면 <a href=\"%"
+"(devhub_url)s\">Firefox 마켓플레이스 개발자 허브에서 하시면 됩니다</a>. <a href=\"%"
+"(mdn_url)s\">Mozilla 개발자 네트워크</a>에서도 API 문서자료나 오픈 웹 앱 개발에 대한 정보와 같이 유용한 자료를 "
+"제공하고 있습니다."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
 msgid ""
 "If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using "
 "the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
 msgstr ""
+"Firefox OS 단말기가 없다면 새 탭을 켜서 입수 방법을 찾아보세요. 하지만 굳이 단말기가 올 때 까지 기다리지 않으셔도 됩니다 — "
+"<a href=\"%(simulator_url)s\">Firefox OS 시뮬레이터</a>에서 당장 Firefox OS 앱의 개발과 "
+"테스트를 시작할 수 있으니까요."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:122
 msgid "Sharing with the community"
-msgstr ""
+msgstr "커뮤니티와 공유"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:124
 msgid ""
@@ -17969,6 +18016,10 @@ msgid ""
 "we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You "
 "can edit pages after creating a Mozilla Persona user account and logging in."
 msgstr ""
+"초창기의 플랫폼을 개발할 땐 어느정도 구축이 된 플랫폼 보다 유용한 정보들을 찾기가 훨씬 더 어렵습니다. Firefox OS 개발자들에게 "
+"가능한한 많은 도움을 줘야 하고, 저희는 당신의 협조가 절실합니다! 당신을 <a href=\"%(mdn_url)s\" "
+"target=\"_blank\">Mozilla 개발자 네트워크</a>에 초대하고 싶습니다. 가지고 있는 유용한 정보들을 올려주세요. "
+"Mozilla 페르소나 사용자 계정을 생성하고 로그인 한 다음 페이지들을 편집할 수 있습니다."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:133
 msgid ""
@@ -17977,6 +18028,12 @@ msgid ""
 "In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
 "mail</a>."
 msgstr ""
+"저희는 <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">Firefox OS 해킹에 대한 팁과 "
+"트릭</a>, <a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">Firefox OS 앱 개발에 대한 "
+"팁</a>, <a href=\"%(mdn_devphone_url)s\" target=\"_blank\">이종 단말기 상에서의 Firefox OS "
+"구동 경험</a>과 관련된 정보가 추가되는걸 무엇보다도 좋아합니다. 물론 <a href=\"%(b2g_irc_url)s\" "
+"target=\"_blank\">IRC</a>와 <a href=\"%(b2g_mail_url)s\" target=\"_blank\">이메일</a>을 "
+"통한 질문이나 피드백, 자료 공유도 언제든 환영입니다."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -17984,15 +18041,15 @@ msgstr "오픈 마켓플레이스용 HTML5 웹 앱 개발"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr ""
+msgstr "Firefox OS와 모바일에 최적화된 사용자 경험을 제공하는 앱 디자인 방법 배우기"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr ""
+msgstr "앱을 개발하고 테스트하는데 필요한 도구, 문서, 참고자료"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr ""
+msgstr "사용자와 개발자를 먼저 우대하는 오픈 마켓플레이스에 앱을 배포하는 방법"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -18016,13 +18073,15 @@ msgstr "웹 관련 기업, 서드파티 서비스, Mozilla와 파트너가 되�
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
-msgstr ""
+msgstr "Mozilla 앱 플랫폼"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
 msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
+"웹용 앱 개발 작업은 개발자들이 앱의 기능, 콘텐트 외에도 Firefox 마켓플레이스를 통한 수억의 사용자들과 접촉할 수 있는 것은 "
+"물론이고 다른 방식으로 앱을 배포할 수 있는 등 개발에 대한 모든 것을 제공하고 있습니다."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -18035,12 +18094,18 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
+"Firefox 마켓플레이스는 사용자들에게 가장 많은 영향을 끼치는 앱과 콘텐트를 검색해서 써보고 구입할 수 있는 기회를 제공하고 "
+"있습니다. 이는 하위 분류에 있던 흥미롭고 유용하며 고품질의 앱을 사용자들이 자신들의 일상에서 최대한 활용할 수 있도록 모든 분류를 "
+"망라해서 노출된다는 것을 의미합니다."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
+"Mozilla의 전세계적 영향력은 전세계 수억명의 사용자들까지 확장되었습니다. 지능적인 마켓플레이스 전시 노하우와 Mozilla 마켓팅 "
+"채널의 효과적인 사용을 통해 Mozilla는 개발자들이 목표로 삼은 전세계 사용자들의 손에 앱을 들려줄 수 있도록 도울 수 있게 "
+"되었습니다."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
@@ -18048,7 +18113,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
-msgstr ""
+msgstr "헌신적인 얼리 어답터 그룹에 앱 테스트를 맡겨보세요."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
@@ -18056,7 +18121,7 @@ msgstr "초기 팬층을 확보해서 인기를 얻어봅시다."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
-msgstr ""
+msgstr "기술적 상식을 갖춘 소비자들을 겨냥해서 앱을 만들어 보세요."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
@@ -18065,6 +18130,8 @@ msgstr "Firefox 앱과 핵스"
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
+"Firefox OS, 마켓플레이스, 앱 생태계에 관한 월간 뉴스레터를 구독해 보세요. <a href=\"%"
+"(dev_phone_url)s\">개발자용 스마트폰 미리보기도 확인해 보시구요</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -18088,7 +18155,7 @@ msgstr "가입하기!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:47
 msgid "Intro to Open Web Apps"
-msgstr ""
+msgstr "오픈 웹 앱 소개"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:51
 msgid "Intro to Firefox OS"
@@ -18153,7 +18220,7 @@ msgstr "마켓플레이스 심사 기준"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:210 mkt/ecosystem/templates/ecosystem/publish_payments.html:5 mkt/ecosystem/templates/ecosystem/publish_payments.html:13
 msgid "Payments Status"
-msgstr ""
+msgstr "결제 상태"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:257
 msgid "View with subtitles"
@@ -18237,47 +18304,55 @@ msgstr "Firefox 마켓플레이스 YouTube 채널"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "버튼, 배너, 아이콘"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
 msgstr ""
+"\"Firefox Marketplace에서 다운로드 받기\" 버튼은 보유하고 있는 웹 사이트에서 Firefox 마켓플레이스에 있는 제품으로 "
+"연결되는 홍보 자원으로 사용해야 합니다."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "가이드라인"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "어떤 방법으로든 버튼을 변조해선 안됩니다"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
 msgstr ""
+"다른 마켓플레이스 로고들과 나란히 사용될 때는 (\"다운로드하기 Google Play\", \"App Store에서 다운로드 하기\") "
+"Firefox Marketplace 버튼의 크기가 다른 버튼과 같거나 더 커야합니다."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
 msgstr ""
+"버튼에 Firefox Marketplace의 앱 상세 정보 페이지 링크가 걸려 있어야 합니다<br> 예: "
+"https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "오렌지색"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "회색"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "검은색"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "로고"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 msgstr ""
+"Firefox Marketplace 로고를 보고 다운로드 받으려면 <a href=\"%(style_guide_url)s\">Mozilla "
+"스타일 가이드</a>를 방문하시기 바랍니다."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:15
 msgid "One your app is finished, you need to deploy it. If you're publishing through the Firefox Marketplace you have some options on how to deploy your app."
