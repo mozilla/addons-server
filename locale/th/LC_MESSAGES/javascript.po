@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Translate Toolkit 1.9.0\n"
 "X-POOTLE-MTIME: 1383890507.0\n"
 
 #: media/js/common/ratingwidget.js:31
@@ -19,11 +19,14 @@ msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} ดาว"
 
-#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-addon.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "มีปัญหาในการติดต่อกับเซอร์เวอร์"
 
-#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
+#: media/js/common/upload-addon.js:52
+#: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
 msgstr "เลือกไฟล์…"
 
@@ -32,24 +35,29 @@ msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .xpi .jar หรือ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
+#: media/js/common/upload-addon.js:87
+#: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
 msgstr "เสร็จสิ้น {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
+#: media/js/common/upload-addon.js:90
+#: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
 msgstr "{0} จาก {1}"
 
-#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
+#: media/js/common/upload-addon.js:120
+#: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
+#: media/js/common/upload-addon.js:142
+#: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
 msgstr "กำลังอัปโหลด {0}"
 
-#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
+#: media/js/common/upload-addon.js:169
+#: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
 msgstr "เกิดข้อผิดพลาดกับ {0}"
 
@@ -58,30 +66,39 @@ msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
 
-#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-addon.js:188
+#: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;และอื่นๆ {0}"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-addon.js:202
+#: media/js/common/upload-addon.js:329
+#: media/js/common/upload-packaged-app.js:197
+#: media/js/common/upload-packaged-app.js:323
+#: media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
 msgid "See full validation report"
 msgstr "ดูรายงานการตรวจสอบ"
 
-#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-addon.js:214
+#: media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
 msgstr "กำลังตรวจสอบ {0}"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252
+#: media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ได้รับการตอบสนองที่ว่างเปล่าจากแม่ข่าย; สถานะ: {0}"
 
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263
+#: media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "ข้อผิดพลาดของแม่ข่ายที่ไม่คาดคิดขณะกำลังทำการตรวจสอบ"
 
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301
+#: media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "เสร็จสิ้นการตรวจสอบ {0}"
 
@@ -106,7 +123,8 @@ msgstr "ไม่รู้จักรูปแบบไฟล์ที่คุ
 msgid "You cancelled the upload."
 msgstr "คุณได้ยกเลิกการอัปโหลด"
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
+#: media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "รูปภาพต้องเป็น PNG หรือไม่ก็ JPG"
 
@@ -118,7 +136,9 @@ msgstr "วิดีโอต้องเป็นแบบ WebM"
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr ""
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:181
+#: media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "แอพของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
@@ -137,16 +157,19 @@ msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200
+#: media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "แอพของคุณได้ผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดและ {0} คำเตือน"
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205
+#: media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "แอพของคุณได้ผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดหรือคำเตือน"
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419
+#: media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
 msgstr "การเปลี่ยนแปลงถูกบันทึกแล้ว"
 
@@ -158,19 +181,23 @@ msgstr ""
 msgid "Refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616
+#: media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "เกิดข้อผิดพลาดขึ้นในระหว่างการอัปโหลดไฟล์ของคุณ"
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886
+#: media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "เรียนรู้เพิ่มเติม"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890
+#: media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "ตัวอย่าง"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192
+#: media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "รูปภาพที่เปลี่ยนกำลังดำเนินการอยู่"
 
@@ -182,11 +209,18 @@ msgstr ""
 msgid "less..."
 msgstr ""
 
-#: media/js/devreg/init.js:35 media/js/mkt/init.js:47 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "คุณสมบัตินี้ถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ โปรดกลับมาอีกครั้งในภายหลัง"
+#: media/js/devreg/init.js:35
+#: media/js/mkt/init.js:47
+#: media/js/zamboni/init.js:32
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"คุณสมบัตินี้ถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ "
+"โปรดกลับมาอีกครั้งในภายหลัง"
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
+#: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "ลบการแปลนี้"
 
@@ -261,16 +295,29 @@ msgstr ""
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:24
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
+msgid ""
+"Warning: deleting payment account \"{0}\" will move that associated app to an "
+"incomplete status and it will no longer be available for sale:"
+msgid_plural ""
+"Warning: deleting payment account \"{0}\" will move those associated apps to "
+"an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
 
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
-#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/payments-manage.js:58
+#: media/js/devreg/payments-manage.js:107
+#: media/js/devreg/validator.js:193
+#: media/js/devreg/validator.js:438
+#: media/js/devreg/validator.js:457
+#: media/js/mkt/buttons.js:85
+#: media/js/mkt/buttons.js:94
+#: media/js/zamboni/validator.js:194
+#: media/js/zamboni/validator.js:449
+#: media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "ข้อผิดพลาด"
 
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
+#: media/js/devreg/payments-manage.js:59
+#: media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
 msgstr ""
 
@@ -282,53 +329,69 @@ msgstr ""
 msgid "You do not currently have any payment accounts."
 msgstr ""
 
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71
+#: media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
 msgstr "การทดสอบทั้งหมดผ่านอย่างประสบความสำเร็จ"
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:358
+#: media/js/zamboni/validator.js:74
+#: media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr "การทดสอบเหล่านี้ไม่ทำงาน"
 
-#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:119
+#: media/js/devreg/validator.js:132
+#: media/js/zamboni/validator.js:120
+#: media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "ทดสอบ"
 
-#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:194
+#: media/js/zamboni/validator.js:195
 msgid "Warning"
 msgstr "คำเตือน"
 
-#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:281
+#: media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
 msgstr "การทดสอบความเข้ากันได้"
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:329
+#: media/js/zamboni/validator.js:331
 msgid "App failed validation."
 msgstr "แอพไม่ผ่านการตรวจสอบ"
 
-#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:331
+#: media/js/zamboni/validator.js:333
 msgid "App passed validation."
 msgstr "แอพได้ผ่านการตรวจสอบ"
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:361
+#: media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ข้อผิดพลาด"
 
-#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:363
+#: media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} คำเตือน"
 
-#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:440
+#: media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
 msgstr "งานการตรวจสอบไม่สามารถเสร็จสิ้นได้เพราะมีข้อผิดพลาด"
 
-#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:458
+#: media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10
+#: media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
 msgstr "ติดตามชุดนี้"
 
@@ -341,7 +404,8 @@ msgid "Following"
 msgstr "กำลังติดตาม"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:17
+#: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ชุดตกแต่งนี้เข้ากันไม่ได้กับรุ่น {0} ของคุณ"
 
@@ -377,15 +441,18 @@ msgstr "สัญญาอนุญาตครีเอทีฟคอมมอ
 msgid "Your Theme's Name"
 msgstr "ชื่อชุดตกแต่งของคุณ"
 
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23
+#: media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "ปักธงสำหรับการวิจารณ์"
 
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40
+#: media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "คุณต้องป้อนข้อมูล"
 
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133
+#: media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "ทำเครื่องหมายสำหรับการลบ"
 
@@ -393,19 +460,23 @@ msgstr "ทำเครื่องหมายสำหรับการลบ
 msgid "Updating results&hellip;"
 msgstr "กำลังปรับปรุงผลลัพธ์&hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
+#: media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
 msgstr "หมวดหมู่"
 
-#: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
+#: media/js/impala/suggestions.js:39
+#: media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr ""
 
-#: media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
+#: media/js/impala/suggestions.js:41
+#: media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "ค้นหาแอพสำหรับ <b>{0}</b>"
 
-#: media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
+#: media/js/impala/suggestions.js:43
+#: media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
 
@@ -413,7 +484,8 @@ msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
 msgid "use original"
 msgstr "ใช้ต้นฉบับ"
 
-#: media/js/impala/stats/chart.js:267 media/js/mkt/stats/chart.js:320
+#: media/js/impala/stats/chart.js:267
+#: media/js/mkt/stats/chart.js:320
 msgid "Week of {0}"
 msgstr "สัปดาห์ที่ {0}"
 
@@ -421,7 +493,8 @@ msgstr "สัปดาห์ที่ {0}"
 msgid "downloads"
 msgstr "ดาวน์โหลด"
 
-#: media/js/impala/stats/chart.js:270 media/js/mkt/stats/chart.js:326
+#: media/js/impala/stats/chart.js:270
+#: media/js/mkt/stats/chart.js:326
 msgid "{0} users"
 msgstr "{0} ผู้ใช้"
 
@@ -433,27 +506,40 @@ msgstr "{0} ส่วนเสริม"
 msgid "{0} collections"
 msgstr "{0} ชุด"
 
-#: media/js/impala/stats/chart.js:273 media/js/mkt/stats/chart.js:328
+#: media/js/impala/stats/chart.js:273
+#: media/js/mkt/stats/chart.js:328
 msgid "{0} reviews"
 msgstr "{0} บทวิจารณ์"
 
-#: media/js/impala/stats/chart.js:275 media/js/mkt/stats/chart.js:323 media/js/mkt/stats/chart_column.js:125
+#: media/js/impala/stats/chart.js:275
+#: media/js/mkt/stats/chart.js:323
+#: media/js/mkt/stats/chart_column.js:125
 msgid "{0} sales"
 msgstr "{0} การขาย"
 
-#: media/js/impala/stats/chart.js:276 media/js/mkt/stats/chart.js:324 media/js/mkt/stats/chart_column.js:126
+#: media/js/impala/stats/chart.js:276
+#: media/js/mkt/stats/chart.js:324
+#: media/js/mkt/stats/chart_column.js:126
 msgid "{0} refunds"
 msgstr "{0} การคืนเงิน"
 
-#: media/js/impala/stats/chart.js:277 media/js/mkt/stats/chart.js:325
+#: media/js/impala/stats/chart.js:277
+#: media/js/mkt/stats/chart.js:325
 msgid "{0} installs"
 msgstr "{0} การติดตั้ง"
 
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102 media/js/mkt/stats/csv_keys.js:128
+#: media/js/impala/stats/chart.js:369
+#: media/js/impala/stats/csv_keys.js:3
+#: media/js/impala/stats/csv_keys.js:102
+#: media/js/mkt/stats/csv_keys.js:128
 msgid "Downloads"
 msgstr "ดาวน์โหลด"
 
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:6 media/js/mkt/stats/csv_keys.js:129
+#: media/js/impala/stats/chart.js:379
+#: media/js/impala/stats/csv_keys.js:6
+#: media/js/impala/stats/csv_keys.js:103
+#: media/js/mkt/stats/csv_keys.js:6
+#: media/js/mkt/stats/csv_keys.js:129
 msgid "Daily Users"
 msgstr "ผู้ใช้ต่อวัน"
 
@@ -461,16 +547,20 @@ msgstr "ผู้ใช้ต่อวัน"
 msgid "Amount, in USD"
 msgstr "จำนวนในดอลลาร์สหรัฐ"
 
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:123
+#: media/js/impala/stats/chart.js:421
+#: media/js/impala/stats/csv_keys.js:97
+#: media/js/mkt/stats/csv_keys.js:123
 msgid "Number of Contributions"
 msgstr "จำนวนการบริจาค"
 
-#: media/js/impala/stats/chart.js:447 media/js/mkt/stats/chart.js:395
+#: media/js/impala/stats/chart.js:447
+#: media/js/mkt/stats/chart.js:395
 msgid "More Info..."
 msgstr "ข้อมูลเพิ่มเติม..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: media/js/impala/stats/chart.js:451 media/js/mkt/stats/chart.js:399
+#: media/js/impala/stats/chart.js:451
+#: media/js/mkt/stats/chart.js:399
 msgid "Details for {0}"
 msgstr "รายละเอียดสำหรับ {0}"
 
@@ -510,165 +600,252 @@ msgstr "ผู้ติดตาม"
 msgid "Ratings"
 msgstr "การจัดอันดับ"
 
-#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107 media/js/mkt/stats/chart_column.js:147
+#: media/js/impala/stats/csv_keys.js:36
+#: media/js/impala/stats/csv_keys.js:107
+#: media/js/mkt/stats/chart_column.js:147
 msgid "Sales"
 msgstr "ขาย"
 
-#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106 media/js/mkt/stats/chart.js:364 media/js/mkt/stats/csv_keys.js:3 media/js/mkt/stats/csv_keys.js:132
+#: media/js/impala/stats/csv_keys.js:39
+#: media/js/impala/stats/csv_keys.js:106
+#: media/js/mkt/stats/chart.js:364
+#: media/js/mkt/stats/csv_keys.js:3
+#: media/js/mkt/stats/csv_keys.js:132
 msgid "Installs"
 msgstr "ติดตั้ง"
 
-#: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57
+#: media/js/impala/stats/csv_keys.js:42
+#: media/js/mkt/stats/csv_keys.js:57
 msgid "Unknown"
 msgstr "ไม่ทราบ"
 
-#: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58
+#: media/js/impala/stats/csv_keys.js:43
+#: media/js/mkt/stats/csv_keys.js:58
 msgid "Add-ons Manager"
 msgstr "ตัวจัดการส่วนเสริม"
 
-#: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59
+#: media/js/impala/stats/csv_keys.js:44
+#: media/js/mkt/stats/csv_keys.js:59
 msgid "Search Results"
 msgstr "ผลลัพธ์การค้นหา"
 
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
+#: media/js/impala/stats/csv_keys.js:45
+#: media/js/impala/stats/csv_keys.js:46
+#: media/js/impala/stats/csv_keys.js:47
+#: media/js/mkt/stats/csv_keys.js:60
+#: media/js/mkt/stats/csv_keys.js:61
 #: media/js/mkt/stats/csv_keys.js:62
 msgid "Homepage Promo"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64
+#: media/js/impala/stats/csv_keys.js:48
+#: media/js/impala/stats/csv_keys.js:49
+#: media/js/mkt/stats/csv_keys.js:63
+#: media/js/mkt/stats/csv_keys.js:64
 msgid "Homepage Featured"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66
+#: media/js/impala/stats/csv_keys.js:50
+#: media/js/impala/stats/csv_keys.js:51
+#: media/js/mkt/stats/csv_keys.js:65
+#: media/js/mkt/stats/csv_keys.js:66
 msgid "Homepage Up and Coming"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67
+#: media/js/impala/stats/csv_keys.js:52
+#: media/js/mkt/stats/csv_keys.js:67
 msgid "Homepage Most Popular"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70
+#: media/js/impala/stats/csv_keys.js:53
+#: media/js/impala/stats/csv_keys.js:55
+#: media/js/mkt/stats/csv_keys.js:68
+#: media/js/mkt/stats/csv_keys.js:70
 msgid "Detail Page"
 msgstr "หน้ารายละเอียด"
 
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71
+#: media/js/impala/stats/csv_keys.js:54
+#: media/js/impala/stats/csv_keys.js:56
+#: media/js/mkt/stats/csv_keys.js:69
+#: media/js/mkt/stats/csv_keys.js:71
 msgid "Detail Page (bottom)"
 msgstr "หน้ารายละเอียด (ด้านล่าง)"
 
-#: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72
+#: media/js/impala/stats/csv_keys.js:57
+#: media/js/mkt/stats/csv_keys.js:72
 msgid "Detail Page (Development Channel)"
 msgstr "หน้ารายละเอียด (ช่องการพัฒนา)"
 
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
+#: media/js/impala/stats/csv_keys.js:58
+#: media/js/impala/stats/csv_keys.js:59
+#: media/js/impala/stats/csv_keys.js:60
+#: media/js/mkt/stats/csv_keys.js:73
+#: media/js/mkt/stats/csv_keys.js:74
 #: media/js/mkt/stats/csv_keys.js:75
 msgid "Often Used With"
 msgstr "ใช้บ่อยๆ โดย"
 
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62 media/js/mkt/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:77
+#: media/js/impala/stats/csv_keys.js:61
+#: media/js/impala/stats/csv_keys.js:62
+#: media/js/mkt/stats/csv_keys.js:76
+#: media/js/mkt/stats/csv_keys.js:77
 msgid "Others By Author"
 msgstr "อื่น ๆ โดยผู้สร้าง"
 
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79
+#: media/js/impala/stats/csv_keys.js:63
+#: media/js/impala/stats/csv_keys.js:64
+#: media/js/mkt/stats/csv_keys.js:78
+#: media/js/mkt/stats/csv_keys.js:79
 msgid "Dependencies"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81
+#: media/js/impala/stats/csv_keys.js:65
+#: media/js/impala/stats/csv_keys.js:66
+#: media/js/mkt/stats/csv_keys.js:80
+#: media/js/mkt/stats/csv_keys.js:81
 msgid "Upsell"
 msgstr "เพิ่มยอดขาย"
 
-#: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83
+#: media/js/impala/stats/csv_keys.js:68
+#: media/js/mkt/stats/csv_keys.js:83
 msgid "Sharing"
 msgstr "การแบ่งปัน"
 
-#: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84
+#: media/js/impala/stats/csv_keys.js:69
+#: media/js/mkt/stats/csv_keys.js:84
 msgid "Category Pages"
 msgstr "หน้าหมวดหมู่"
 
-#: media/js/impala/stats/csv_keys.js:70 media/js/mkt/stats/csv_keys.js:85
+#: media/js/impala/stats/csv_keys.js:70
+#: media/js/mkt/stats/csv_keys.js:85
 msgid "Collections"
 msgstr "ชุด"
 
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86
+#: media/js/impala/stats/csv_keys.js:71
+#: media/js/impala/stats/csv_keys.js:72
+#: media/js/mkt/stats/csv_keys.js:86
 msgid "Category Landing Featured Carousel"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90
+#: media/js/impala/stats/csv_keys.js:73
+#: media/js/impala/stats/csv_keys.js:74
+#: media/js/mkt/stats/csv_keys.js:89
+#: media/js/mkt/stats/csv_keys.js:90
 msgid "Category Landing Top Rated"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92
+#: media/js/impala/stats/csv_keys.js:75
+#: media/js/impala/stats/csv_keys.js:76
+#: media/js/mkt/stats/csv_keys.js:91
+#: media/js/mkt/stats/csv_keys.js:92
 msgid "Category Landing Most Popular"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94
+#: media/js/impala/stats/csv_keys.js:77
+#: media/js/impala/stats/csv_keys.js:78
+#: media/js/mkt/stats/csv_keys.js:93
+#: media/js/mkt/stats/csv_keys.js:94
 msgid "Category Landing Recently Added"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96
+#: media/js/impala/stats/csv_keys.js:79
+#: media/js/impala/stats/csv_keys.js:80
+#: media/js/mkt/stats/csv_keys.js:95
+#: media/js/mkt/stats/csv_keys.js:96
 msgid "Browse Listing Featured Sort"
 msgstr "ดูรายการตามการแนะนำ"
 
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98
+#: media/js/impala/stats/csv_keys.js:81
+#: media/js/impala/stats/csv_keys.js:82
+#: media/js/mkt/stats/csv_keys.js:97
+#: media/js/mkt/stats/csv_keys.js:98
 msgid "Browse Listing Users Sort"
 msgstr "เรียกดูรายการตามผู้ใช้"
 
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100
+#: media/js/impala/stats/csv_keys.js:83
+#: media/js/impala/stats/csv_keys.js:84
+#: media/js/mkt/stats/csv_keys.js:99
+#: media/js/mkt/stats/csv_keys.js:100
 msgid "Browse Listing Rating Sort"
 msgstr "เรียกดูรายการตามการจัดอันดับ"
 
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102
+#: media/js/impala/stats/csv_keys.js:85
+#: media/js/impala/stats/csv_keys.js:86
+#: media/js/mkt/stats/csv_keys.js:101
+#: media/js/mkt/stats/csv_keys.js:102
 msgid "Browse Listing Created Sort"
 msgstr "เรียกดูรายการตามการสร้าง"
 
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104
+#: media/js/impala/stats/csv_keys.js:87
+#: media/js/impala/stats/csv_keys.js:88
+#: media/js/mkt/stats/csv_keys.js:103
+#: media/js/mkt/stats/csv_keys.js:104
 msgid "Browse Listing Name Sort"
 msgstr "เรียกดูรายการตามชื่อ"
 
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106
+#: media/js/impala/stats/csv_keys.js:89
+#: media/js/impala/stats/csv_keys.js:90
+#: media/js/mkt/stats/csv_keys.js:105
+#: media/js/mkt/stats/csv_keys.js:106
 msgid "Browse Listing Popular Sort"
 msgstr "เรียกดูรายการตามความนิยม"
 
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108
+#: media/js/impala/stats/csv_keys.js:91
+#: media/js/impala/stats/csv_keys.js:92
+#: media/js/mkt/stats/csv_keys.js:107
+#: media/js/mkt/stats/csv_keys.js:108
 msgid "Browse Listing Updated Sort"
 msgstr "เรียกดูรายการตามการปรับปรุง"
 
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110
+#: media/js/impala/stats/csv_keys.js:93
+#: media/js/impala/stats/csv_keys.js:94
+#: media/js/mkt/stats/csv_keys.js:109
+#: media/js/mkt/stats/csv_keys.js:110
 msgid "Browse Listing Up and Coming Sort"
 msgstr "เรียกดูรายการตามที่กำลังจะมาถึง"
 
-#: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124
+#: media/js/impala/stats/csv_keys.js:98
+#: media/js/mkt/stats/csv_keys.js:124
 msgid "Total Amount Contributed"
 msgstr "จำนวนการบริจาครวม"
 
-#: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125
+#: media/js/impala/stats/csv_keys.js:99
+#: media/js/mkt/stats/csv_keys.js:125
 msgid "Average Contribution"
 msgstr "การบริจาคโดยเฉลี่ย"
 
-#: media/js/impala/stats/csv_keys.js:108 media/js/mkt/stats/csv_keys.js:133
+#: media/js/impala/stats/csv_keys.js:108
+#: media/js/mkt/stats/csv_keys.js:133
 msgid "Usage"
 msgstr "การใช้งาน"
 
-#: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137
+#: media/js/impala/stats/csv_keys.js:111
+#: media/js/mkt/stats/csv_keys.js:137
 msgid "Firefox"
 msgstr "Firefox"
 
-#: media/js/impala/stats/csv_keys.js:112 media/js/mkt/stats/csv_keys.js:138
+#: media/js/impala/stats/csv_keys.js:112
+#: media/js/mkt/stats/csv_keys.js:138
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: media/js/impala/stats/csv_keys.js:113 media/js/mkt/stats/csv_keys.js:139
+#: media/js/impala/stats/csv_keys.js:113
+#: media/js/mkt/stats/csv_keys.js:139
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: media/js/impala/stats/csv_keys.js:114 media/js/mkt/stats/csv_keys.js:140
+#: media/js/impala/stats/csv_keys.js:114
+#: media/js/mkt/stats/csv_keys.js:140
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: media/js/impala/stats/csv_keys.js:115 media/js/mkt/stats/csv_keys.js:141
+#: media/js/impala/stats/csv_keys.js:115
+#: media/js/mkt/stats/csv_keys.js:141
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: media/js/impala/stats/csv_keys.js:116 media/js/mkt/stats/csv_keys.js:142
+#: media/js/impala/stats/csv_keys.js:116
+#: media/js/mkt/stats/csv_keys.js:142
 msgid "Fennec"
 msgstr "Fennec"
 
@@ -703,12 +880,14 @@ msgid "Downloads from {0} to {1}"
 msgstr "การดาวน์โหลดจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:139 media/js/mkt/stats/csv_keys.js:152
+#: media/js/impala/stats/csv_keys.js:139
+#: media/js/mkt/stats/csv_keys.js:152
 msgid "Daily Users, last {0} days"
 msgstr "ผู้ใช้ต่อวันใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:141 media/js/mkt/stats/csv_keys.js:153
+#: media/js/impala/stats/csv_keys.js:141
+#: media/js/mkt/stats/csv_keys.js:153
 msgid "Daily Users from {0} to {1}"
 msgstr "ผู้ใช้ต่อวันจาก {0} ถึง {1}"
 
@@ -893,39 +1072,49 @@ msgid "Sales from {0} to {1}"
 msgstr "การขายจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:253 media/js/mkt/stats/csv_keys.js:147
+#: media/js/impala/stats/csv_keys.js:253
+#: media/js/mkt/stats/csv_keys.js:147
 msgid "Installs, last {0} days"
 msgstr "การติดตั้งใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:255 media/js/mkt/stats/csv_keys.js:149
+#: media/js/impala/stats/csv_keys.js:255
+#: media/js/mkt/stats/csv_keys.js:149
 msgid "Installs from {0} to {1}"
 msgstr "การติดตั้งจาก {0} ถึง {1}"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:261 media/js/mkt/stats/csv_keys.js:223
+#: media/js/impala/stats/csv_keys.js:261
+#: media/js/mkt/stats/csv_keys.js:223
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> ใน {1} วันล่าสุด"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269 media/js/mkt/stats/csv_keys.js:225 media/js/mkt/stats/csv_keys.js:231
+#: media/js/impala/stats/csv_keys.js:263
+#: media/js/impala/stats/csv_keys.js:269
+#: media/js/mkt/stats/csv_keys.js:225
+#: media/js/mkt/stats/csv_keys.js:231
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> จาก {1} ถึง {2}"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:267 media/js/mkt/stats/csv_keys.js:229
+#: media/js/impala/stats/csv_keys.js:267
+#: media/js/mkt/stats/csv_keys.js:229
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> เฉลี่ยใน {1} วันล่าสุด"
 
-#: media/js/impala/stats/overview.js:19 media/js/mkt/stats/overview.js:17
+#: media/js/impala/stats/overview.js:19
+#: media/js/mkt/stats/overview.js:17
 msgid "No data available."
 msgstr "ไม่มีข้อมูล"
 
-#: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88
+#: media/js/impala/stats/table.js:74
+#: media/js/mkt/stats/table.js:88
 msgid "Date"
 msgstr "วันที่"
 
-#: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96
+#: media/js/impala/stats/topchart.js:96
+#: media/js/mkt/stats/topchart.js:96
 msgid "Other"
 msgstr "อื่น ๆ"
 
@@ -933,15 +1122,18 @@ msgstr "อื่น ๆ"
 msgid "The manifest could not be found at the given location."
 msgstr ""
 
-#: media/js/mkt/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/mkt/apps.js:87
+#: media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr ""
 
-#: media/js/mkt/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/mkt/apps.js:90
+#: media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr ""
 
-#: media/js/mkt/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/mkt/apps.js:93
+#: media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr ""
 
@@ -957,7 +1149,8 @@ msgstr "ข้อผิดพลาดภายในเซอร์เวอร
 msgid "Internal server error on app installation."
 msgstr "ข้อผิดพลาดภายในเซอร์เวอร์บนการติดตั้งแอพ"
 
-#: media/js/mkt/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/mkt/apps.js:106
+#: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr "การติดตั้งล้มเหลว โปรดลองอีกครั้ง"
 
@@ -994,7 +1187,9 @@ msgid "Message must not be empty."
 msgstr "ข้อความต้องไม่ว่างเปล่า"
 
 #: media/js/mkt/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
 msgstr ""
 
 #: media/js/mkt/login.js:78
@@ -1127,15 +1322,25 @@ msgstr "เดือน"
 msgid "Day"
 msgstr "วัน"
 
-#: media/js/mkt/stats/chart.js:352 media/js/mkt/stats/csv_keys.js:9 media/js/mkt/stats/csv_keys.js:18 media/js/mkt/stats/csv_keys.js:27
+#: media/js/mkt/stats/chart.js:352
+#: media/js/mkt/stats/csv_keys.js:9
+#: media/js/mkt/stats/csv_keys.js:18
+#: media/js/mkt/stats/csv_keys.js:27
 msgid "Amount Earned"
 msgstr "จำนวนเงินที่ได้รับ"
 
-#: media/js/mkt/stats/chart.js:356 media/js/mkt/stats/csv_keys.js:12 media/js/mkt/stats/csv_keys.js:21 media/js/mkt/stats/csv_keys.js:30 media/js/mkt/stats/csv_keys.js:134
+#: media/js/mkt/stats/chart.js:356
+#: media/js/mkt/stats/csv_keys.js:12
+#: media/js/mkt/stats/csv_keys.js:21
+#: media/js/mkt/stats/csv_keys.js:30
+#: media/js/mkt/stats/csv_keys.js:134
 msgid "Units Sold"
 msgstr "หน่วยการขาย"
 
-#: media/js/mkt/stats/chart.js:360 media/js/mkt/stats/csv_keys.js:15 media/js/mkt/stats/csv_keys.js:24 media/js/mkt/stats/csv_keys.js:33
+#: media/js/mkt/stats/chart.js:360
+#: media/js/mkt/stats/csv_keys.js:15
+#: media/js/mkt/stats/csv_keys.js:24
+#: media/js/mkt/stats/csv_keys.js:33
 msgid "Units Refunded"
 msgstr "หน่วยการคืนเงิน"
 
@@ -1155,11 +1360,13 @@ msgstr "ตามค่าเงิน {0}"
 msgid "by source {0}"
 msgstr "ตามต้นฉบับ {0}"
 
-#: media/js/mkt/stats/chart_column.js:131 media/js/mkt/stats/table.js:95
+#: media/js/mkt/stats/chart_column.js:131
+#: media/js/mkt/stats/table.js:95
 msgid "Currency"
 msgstr "สกุลเงิน"
 
-#: media/js/mkt/stats/chart_column.js:135 media/js/mkt/stats/table.js:98
+#: media/js/mkt/stats/chart_column.js:135
+#: media/js/mkt/stats/table.js:98
 msgid "Source"
 msgstr "ต้นฉบับ"
 
@@ -1171,27 +1378,39 @@ msgstr "รายได้"
 msgid "Refunds"
 msgstr "ให้เงินคืน"
 
-#: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
+#: media/js/mkt/stats/csv_keys.js:36
+#: media/js/mkt/stats/csv_keys.js:192
+#: media/js/mkt/stats/csv_keys.js:193
 msgid "Apps Added"
 msgstr "แอพที่เพิ่ม"
 
-#: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
+#: media/js/mkt/stats/csv_keys.js:39
+#: media/js/mkt/stats/csv_keys.js:196
+#: media/js/mkt/stats/csv_keys.js:197
 msgid "Apps Installed"
 msgstr "แอพที่ติดตั้ง"
 
-#: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
+#: media/js/mkt/stats/csv_keys.js:42
+#: media/js/mkt/stats/csv_keys.js:200
+#: media/js/mkt/stats/csv_keys.js:201
 msgid "Reviews"
 msgstr "บทวิจารณ์"
 
-#: media/js/mkt/stats/csv_keys.js:45 media/js/mkt/stats/csv_keys.js:208 media/js/mkt/stats/csv_keys.js:209
+#: media/js/mkt/stats/csv_keys.js:45
+#: media/js/mkt/stats/csv_keys.js:208
+#: media/js/mkt/stats/csv_keys.js:209
 msgid "New Users"
 msgstr "ผู้ใช้ใหม่"
 
-#: media/js/mkt/stats/csv_keys.js:48 media/js/mkt/stats/csv_keys.js:204 media/js/mkt/stats/csv_keys.js:205
+#: media/js/mkt/stats/csv_keys.js:48
+#: media/js/mkt/stats/csv_keys.js:204
+#: media/js/mkt/stats/csv_keys.js:205
 msgid "Total Users"
 msgstr "ผู้ใช้รวม"
 
-#: media/js/mkt/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:212 media/js/mkt/stats/csv_keys.js:213
+#: media/js/mkt/stats/csv_keys.js:51
+#: media/js/mkt/stats/csv_keys.js:212
+#: media/js/mkt/stats/csv_keys.js:213
 msgid "Total Visitors"
 msgstr "ผู้เยี่ยมชมรวม"
 
@@ -1259,35 +1478,44 @@ msgstr ""
 msgid "Units Refunded from {0} to {1}"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:168 media/js/mkt/stats/csv_keys.js:169
+#: media/js/mkt/stats/csv_keys.js:168
+#: media/js/mkt/stats/csv_keys.js:169
 msgid "Total Units Sold by Currency"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:172 media/js/mkt/stats/csv_keys.js:173
+#: media/js/mkt/stats/csv_keys.js:172
+#: media/js/mkt/stats/csv_keys.js:173
 msgid "Total Amount Earned by Currency"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:176 media/js/mkt/stats/csv_keys.js:177
+#: media/js/mkt/stats/csv_keys.js:176
+#: media/js/mkt/stats/csv_keys.js:177
 msgid "Total Units Refunded by Currency"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:180 media/js/mkt/stats/csv_keys.js:181
+#: media/js/mkt/stats/csv_keys.js:180
+#: media/js/mkt/stats/csv_keys.js:181
 msgid "Total Units Sold by Source"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:184 media/js/mkt/stats/csv_keys.js:185
+#: media/js/mkt/stats/csv_keys.js:184
+#: media/js/mkt/stats/csv_keys.js:185
 msgid "Total Amount Earned by Source"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:188 media/js/mkt/stats/csv_keys.js:189
+#: media/js/mkt/stats/csv_keys.js:188
+#: media/js/mkt/stats/csv_keys.js:189
 msgid "Total Units Refunded by Source"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:216 media/js/mkt/stats/csv_keys.js:217
+#: media/js/mkt/stats/csv_keys.js:216
+#: media/js/mkt/stats/csv_keys.js:217
 msgid "Total Installs"
 msgstr ""
 
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/zamboni/admin_validation.js:24
+#: media/js/zamboni/devhub.js:1438
+#: media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "เลือกแอพพลิเคชั่นก่อน"
 
@@ -1322,8 +1550,12 @@ msgid "Admins and editors must provide a password to log in."
 msgstr "ผู้ดูแลระบบและผู้แก้ไขต้องใช้รหัสผ่านสำหรับการเข้าระบบ"
 
 #: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "การเข้าสู่ระบบ BrowserID ล้มเหลว บางทีคุณอาจจะไม่ได้มีบัญชีที่ใช้ที่อยู่อีเมลนั้น?"
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"การเข้าสู่ระบบ BrowserID ล้มเหลว "
+"บางทีคุณอาจจะไม่ได้มีบัญชีที่ใช้ที่อยู่อีเมลนั้น?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
@@ -1347,7 +1579,8 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "คุณจำเป็นต้องใช้ Firefox 10.0 หรือสูงกว่า"
 
 #: media/js/zamboni/buttons.js:171
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla ทำเครื่องหมายว่ารุ่นนี้ไม่เข้ากันกับรุ่น Firefox ของคุณ"
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -1364,7 +1597,8 @@ msgid "Not available for your platform"
 msgstr "ไม่พร้อมใช้งานสำหรับแพลตฟอร์มของคุณ"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+#: media/js/zamboni/buttons.js:317
+#: media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
 msgstr "ไม่พร้อมใช้งานสำหรับ {0} {1}"
 
@@ -1376,9 +1610,14 @@ msgstr "ทำงานได้กับ {app} {min} - {max}"
 msgid "View other versions"
 msgstr "ดูรุ่นอื่น"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งโปรแกรมเสริมสำหรับการค้นหา"
+#: media/js/zamboni/buttons.js:597
+#: media/js/zamboni/mobile/buttons.js:39
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) "
+"เพื่อติดตั้งโปรแกรมเสริมสำหรับการค้นหา"
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1416,7 +1655,8 @@ msgstr "ความคิดเห็น"
 msgid "Remove this add-on from the collection"
 msgstr "เอาส่วนเสริมนี้ออกจากชุด"
 
-#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
+#: media/js/zamboni/collections.js:439
+#: media/js/zamboni/collections.js:468
 msgid "Remove"
 msgstr "เอาออก"
 
@@ -1478,7 +1718,8 @@ msgstr "เริ่มการทดสอบ…"
 msgid "Waiting for test results..."
 msgstr "กำลังรอผลการทดสอบ…"
 
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1475
+#: media/js/zamboni/devhub.js:1480
 msgid "Internal Server Error"
 msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
 
@@ -1491,8 +1732,12 @@ msgid "No results found."
 msgstr "ไม่พบผลลัพธ์"
 
 #: media/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "ขออภัย เราไม่สามารถค้นหาคำแนะนำใด ๆ สำหรับคุณ <br>โปรดเยี่ยมชม<a href=\"{0}\">เว็บไซต์ส่วนเสริม</a>เพื่อค้นหาส่วนเสริมที่เหมาะสมกับคุณ"
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr ""
+"ขออภัย เราไม่สามารถค้นหาคำแนะนำใด ๆ สำหรับคุณ <br>โปรดเยี่ยมชม<a "
+"href=\"{0}\">เว็บไซต์ส่วนเสริม</a>เพื่อค้นหาส่วนเสริมที่เหมาะสมกับคุณ"
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1570,7 +1815,8 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "ยังเหลืออีกอย่างน้อย {0} ตัวอักษร"
 
-#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
+#: media/js/zamboni/perf.js:29
+#: media/js/zamboni/perf.js:42
 msgid "All"
 msgstr "ทั้งหมด"
 
@@ -1603,7 +1849,8 @@ msgstr "ยังไม่ถูกตรวจสอบ"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "ทดลอง <span>(เรียนรู้เพิ่มเติม)</span>"
 
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79
+#: media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "ไม่พร้อมใช้งานสำหรับ {0}"
 
