@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2010-10-30 03:44+0200\n"
+"PO-Revision-Date: 2013-11-28 12:53+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.5\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1385643190.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -575,10 +576,11 @@ msgstr ""
 msgid "Nothing to see here! The developer did not include any details."
 msgstr ""
 
+# 100%
 #: apps/addons/templates/addons/details_box.html:246
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr ""
+msgstr "Хувилбарын тэмдэглэл"
 
 #: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:110
 #: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
@@ -1537,11 +1539,12 @@ msgstr ""
 msgid "Highest Rated"
 msgstr ""
 
+# 100%
 #: apps/addons/templates/addons/mobile/home.html:72 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:88
 #: apps/browse/views.py:57 apps/browse/views.py:67 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:16 apps/search/forms.py:90 apps/search/forms.py:106
 #: mkt/search/forms.py:19
 msgid "Newest"
-msgstr ""
+msgstr "Хамгийн сүүлийн"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
@@ -2506,9 +2509,10 @@ msgstr ""
 msgid "Added"
 msgstr ""
 
+# 100%
 #: apps/bandwagon/views.py:173 mkt/search/forms.py:15
 msgid "Popularity"
-msgstr ""
+msgstr "Олонд тархсанаар нь"
 
 #: apps/bandwagon/views.py:295
 msgid "Collection created!"
@@ -2638,11 +2642,12 @@ msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] ""
 msgstr[1] ""
 
+# 100%
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
 #: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:22
 #: templates/includes/lang_switcher.html:10
 msgid "Go"
-msgstr ""
+msgstr "Илгээх"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:144
 #, fuzzy
@@ -3096,16 +3101,18 @@ msgstr ""
 msgid "Created"
 msgstr "Created"
 
+# 100%
 #: apps/browse/views.py:452 apps/devhub/views.py:76 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:76
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Downloads"
-msgstr ""
+msgstr "Татаж авалт"
 
+# 100%
 #: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/discovery/templates/discovery/addons/detail.html:72 apps/reviews/templates/reviews/add.html:85
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:77 mkt/reviewers/templates/reviewers/includes/details.html:92
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:114
 msgid "Rating"
-msgstr ""
+msgstr "Үнэлгээгээр нь"
 
 #. {0} is the category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:5 apps/browse/templates/browse/creatured.html:13
@@ -9870,10 +9877,11 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
+# 100%
 #: apps/editors/templates/editors/eventlog.html:30 mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:118
 #: mkt/lookup/templates/lookup/transaction_summary.html:20 mkt/reviewers/templates/reviewers/logs.html:16 mkt/reviewers/templates/reviewers/themes/logs.html:16
 msgid "Date"
-msgstr ""
+msgstr "Огноо"
 
 #: apps/editors/templates/editors/eventlog.html:31 apps/editors/templates/editors/reviewlog.html:35 mkt/reviewers/templates/reviewers/logs.html:17
 #: mkt/reviewers/templates/reviewers/themes/logs.html:17
@@ -19320,7 +19328,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:95 mkt/reviewers/templates/reviewers/includes/mobile_details.html:117
 msgid "Total Downloads"
-msgstr ""
+msgstr "Нийт татаж авалт"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:113 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135
 msgid "Device Types"
