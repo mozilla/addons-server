@@ -1,11 +1,10 @@
 import base64
 import json
-from nose import SkipTest
+
 from nose.tools import eq_, ok_
+from mock import patch
 
 from django.core.urlresolvers import reverse
-
-from mock import patch
 
 import amo.tests
 from addons.models import AddonUser
@@ -17,32 +16,45 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
 
-class ValidationHandler(BaseOAuth):
+def fake_fetch_manifest(url, upload_pk=None, **kw):
+    upload = FileUpload.objects.get(pk=upload_pk)
+    upload.update(validation=json.dumps({'fake_validation': True}))
+
+
+class ValidationHandler(RestOAuth):
     fixtures = fixture('user_2519', 'user_admin')
 
     def setUp(self):
         super(ValidationHandler, self).setUp()
-        self.list_url = ('api_dispatch_list', {'resource_name': 'validation'})
+        self.list_url = reverse('app-validation-list')
         self.get_url = None
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_has_cors(self):
-        self.assertCORS(self.client.get(self.list_url), 'post')
+        self.assertCORS(self.client.get(self.list_url), 'post', 'get')
 
-    def create(self):
-        res = self.client.post(self.list_url,
-                               data=json.dumps({'manifest':
-                                                'http://foo.com'}))
-        self.get_url = ('api_dispatch_detail',
-                        {'resource_name': 'validation',
-                         'pk': json.loads(res.content)['id']})
-        return res
+    @patch('mkt.submit.api.tasks')
+    def create(self, tasks_mock, client=None):
+        tasks_mock.fetch_manifest.side_effect = fake_fetch_manifest
+        manifest_url = u'http://foo.com/'
+
+        if client is None:
+            client = self.client
+
+        res = client.post(self.list_url,
+                          data=json.dumps({'manifest': manifest_url}))
+        data = json.loads(res.content)
+        self.get_url = reverse('app-validation-detail',
+            kwargs={'pk': data['id']})
+        eq_(tasks_mock.fetch_manifest.call_args[0][0], manifest_url)
+        eq_(tasks_mock.fetch_manifest.call_args[0][1], data['id'])
+        return res, data
 
     def get(self):
         return FileUpload.objects.all()[0]
 
     def get_error(self, response):
-        return json.loads(response.content)['error_message']
+        return json.loads(response.content)
 
 
 class TestAddValidationHandler(ValidationHandler):
@@ -51,17 +63,11 @@ class TestAddValidationHandler(ValidationHandler):
         self._allowed_verbs(self.list_url, ['post'])
 
     def test_good(self):
-        res = self.create()
-        eq_(res.status_code, 201)  # Note! This should be a 202.
-        content = json.loads(res.content)
-        eq_(content['processed'], True)
-        obj = FileUpload.objects.get(uuid=content['id'])
+        res, data = self.create()
+        eq_(res.status_code, 201)
+        eq_(data['processed'], True)
+        obj = FileUpload.objects.get(uuid=data['id'])
         eq_(obj.user, self.user)
-
-    @patch('mkt.webapps.api.tasks.fetch_manifest')
-    def test_fetch(self, fetch):
-        self.create()
-        assert fetch.called
 
     def test_missing(self):
         res = self.client.post(self.list_url, data=json.dumps({}))
@@ -75,10 +81,11 @@ class TestAddValidationHandler(ValidationHandler):
         eq_(self.get_error(res)['manifest'], ['Enter a valid URL.'])
 
     def test_anon(self):
-        res = self.anon.post(self.list_url,
-                             data=json.dumps({'manifest':
-                                              'http://foo.com'}))
+        res, data = self.create(client=self.anon)
         eq_(res.status_code, 201)
+        eq_(data['processed'], True)
+        obj = FileUpload.objects.get(uuid=data['id'])
+        eq_(obj.user, None)
 
 
 class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
@@ -91,36 +98,39 @@ class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
         self.data = {'data': self.file, 'name': name,
                      'type': 'application/zip'}
 
-    def create(self):
-        res = self.client.post(self.list_url,
-                               data=json.dumps({'upload': self.data}))
-        if res.status_code < 400:
-            self.get_url = ('api_dispatch_detail',
-                            {'resource_name': 'validation',
-                             'pk': json.loads(res.content)['id']})
+    @patch('mkt.submit.api.tasks')
+    def create(self, tasks_mock, client=None):
+        if client is None:
+            client = self.client
 
+        res = client.post(self.list_url,
+                          data=json.dumps({'upload': self.data}))
+        data = json.loads(res.content)
+        self.get_url = reverse('app-validation-detail',
+            kwargs={'pk': data['id']})
+        eq_(tasks_mock.validator.delay.call_args[0][0], data['id'])
         return res
 
     def test_good(self):
-        raise SkipTest('Caused zipfile IOErrors')
         res = self.create()
-        eq_(res.status_code, 201)  # Note! This should be a 202.
+        eq_(res.status_code, 202)
         content = json.loads(res.content)
-        eq_(content['processed'], True)
+        eq_(content['processed'], False)
         obj = FileUpload.objects.get(uuid=content['id'])
         eq_(obj.user, self.user)
 
-    @patch('mkt.constants.MAX_PACKAGED_APP_SIZE', 2)
+    @patch('mkt.developers.forms.MAX_PACKAGED_APP_SIZE', 2)
     def test_too_big(self):
-        res = self.create()
-        eq_(res.status_code, 413)
-        eq_(json.loads(res.content)['reason'],
-            'Packaged app too large for submission by this method. '
+        res = self.client.post(self.list_url,
+                               data=json.dumps({'upload': self.data}))
+        eq_(res.status_code, 400)
+        eq_(json.loads(res.content)['upload'][0],
+            'Packaged app too large for submission. '
             'Packages must be smaller than 2 bytes.')
 
     def form_errors(self, data, errors):
-        self.data = data
-        res = self.create()
+        res = self.client.post(self.list_url,
+                               data=json.dumps({'upload': data}))
         eq_(res.status_code, 400)
         eq_(self.get_error(res)['upload'], errors)
 
@@ -147,8 +157,7 @@ class TestGetValidationHandler(ValidationHandler):
 
     def create(self):
         res = FileUpload.objects.create(user=self.user, path='http://foo.com')
-        self.get_url = ('api_dispatch_detail',
-                        {'resource_name': 'validation', 'pk': res.pk})
+        self.get_url = reverse('app-validation-detail', kwargs={'pk': res.pk})
         return res
 
     def test_verbs(self):
@@ -166,8 +175,7 @@ class TestGetValidationHandler(ValidationHandler):
         eq_(res.status_code, 200)
 
     def test_not_found(self):
-        url = ('api_dispatch_detail',
-                {'resource_name': 'validation', 'pk': '123123123'})
+        url = reverse('app-validation-detail', kwargs={'pk': 12121212121212})
         res = self.client.get(url)
         eq_(res.status_code, 404)
 

@@ -1,6 +1,9 @@
+import json
+
 from rest_framework import serializers
 
 import amo
+from files.models import FileUpload
 from mkt.api.fields import ReverseChoiceField
 from mkt.webapps.models import Webapp
 
@@ -41,3 +44,15 @@ class AppStatusSerializer(serializers.ModelSerializer):
                     'App status can not be changed to the one you specified.')
 
         return attrs
+
+
+class FileUploadSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(source='pk', read_only=True)
+    processed = serializers.BooleanField(read_only=True)
+
+    class Meta:
+        model = FileUpload
+        fields = ('id', 'processed', 'valid', 'validation')
+
+    def transform_validation(self, obj, value):
+        return json.loads(value) if value else value

@@ -587,6 +587,10 @@ class FileUpload(amo.models.ModelBase):
         fu.add_file(chunks, filename, size, is_webapp)
         return fu
 
+    @property
+    def processed(self):
+        return bool(self.valid or self.validation)
+
 
 class FileValidation(amo.models.ModelBase):
     file = models.OneToOneField(File, related_name='validation')

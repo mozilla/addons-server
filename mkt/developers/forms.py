@@ -459,10 +459,13 @@ class NewPackagedAppForm(happyforms.Form):
             errors.append({
                 'type': 'error',
                 'message': _('Packaged app too large for submission. Packages '
-                             'must be less than %s.' % filesizeformat(
+                             'must be smaller than %s.' % filesizeformat(
                                  self.max_size)),
                 'tier': 1,
             })
+            # Immediately raise an error, do not process the rest of the view,
+            # which would read the file.
+            raise self.persist_errors(errors, upload)
 
         manifest = None
         try:
@@ -497,26 +500,32 @@ class NewPackagedAppForm(happyforms.Form):
                 })
 
         if errors:
-            # Persist the error with this into FileUpload, but do not persist
-            # the file contents, which are too large.
-            validation = {
-                'errors': len(errors),
-                'success': False,
-                'messages': errors,
-            }
-            self.file_upload = FileUpload.objects.create(
-                is_webapp=True, user=self.user,
-                name=getattr(upload, 'name', ''),
-                validation=json.dumps(validation))
-            # Raise an error so the form is invalid.
-            raise forms.ValidationError(' '.join(
-                [e['message'] for e in errors][0]))
+            raise self.persist_errors(errors, upload)
 
         # Everything passed validation.
         self.file_upload = FileUpload.from_post(
             upload, upload.name, upload.size, is_webapp=True)
         self.file_upload.user = self.user
         self.file_upload.save()
+
+    def persist_errors(self, errors, upload):
+        """
+        Persist the error with this into FileUpload (but do not persist
+        the file contents, which are too large) and return a ValidationError.
+        """
+        validation = {
+            'errors': len(errors),
+            'success': False,
+            'messages': errors,
+        }
+
+        self.file_upload = FileUpload.objects.create(
+                is_webapp=True, user=self.user,
+                name=getattr(upload, 'name', ''),
+                validation=json.dumps(validation))
+
+        # Return a ValidationError to be raised by the view.
+        return forms.ValidationError(' '.join(e['message'] for e in errors))
 
 
 class AppFormBasic(addons.forms.AddonFormBase):
