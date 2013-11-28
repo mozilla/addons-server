@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-28 12:34+0000\n"
+"PO-Revision-Date: 2013-11-28 12:35+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385642065.0\n"
+"X-POOTLE-MTIME: 1385642142.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1084,7 +1084,7 @@ msgstr "Elke"
 
 #: media/js/mkt/reviewers.js:257
 msgid "Approved app: {app}"
-msgstr " "
+msgstr ""
 
 #: media/js/mkt/reviewers.js:260
 msgid "Rejected app: {app}"
