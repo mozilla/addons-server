@@ -449,7 +449,7 @@ class BangoPaymentAccountForm(happyforms.Form):
         self.account.update_account_details(**self.cleaned_data)
 
 
-class BangoAccountListForm(happyforms.Form):
+class AccountListForm(happyforms.Form):
     accounts = forms.ModelChoiceField(
         queryset=PaymentAccount.objects.none(),
         label=_lazy(u'Payment Account'), required=False)
@@ -458,7 +458,7 @@ class BangoAccountListForm(happyforms.Form):
         self.addon = kwargs.pop('addon')
         user = kwargs.pop('user')
 
-        super(BangoAccountListForm, self).__init__(*args, **kwargs)
+        super(AccountListForm, self).__init__(*args, **kwargs)
 
         self.is_owner = None
         if self.addon:

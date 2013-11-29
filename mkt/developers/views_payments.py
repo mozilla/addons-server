@@ -60,14 +60,14 @@ def payments(request, addon_id, addon, webapp=False):
     upsell_form = forms_payments.UpsellForm(
         request.POST or None, addon=addon, user=request.amo_user)
 
-    bango_account_list_form = forms_payments.BangoAccountListForm(
+    account_list_form = forms_payments.AccountListForm(
         request.POST or None, addon=addon, user=request.amo_user)
 
     if request.method == 'POST':
 
         success = all(form.is_valid() for form in
                       [premium_form, region_form, upsell_form,
-                       bango_account_list_form])
+                       account_list_form])
 
         if success:
             region_form.save()
@@ -91,7 +91,7 @@ def payments(request, addon_id, addon, webapp=False):
                 try:
                     if not is_free_inapp:
                         upsell_form.save()
-                    bango_account_list_form.save()
+                    account_list_form.save()
                 except client.Error as err:
                     log.error('Error saving payment information (%s)' % err)
                     messages.error(
@@ -153,7 +153,7 @@ def payments(request, addon_id, addon, webapp=False):
          'is_packaged': addon.is_packaged,
          # Bango values
          'account_form': provider.forms['account'](),
-         'bango_account_list_form': bango_account_list_form,
+         'account_list_form': account_list_form,
          # Waffles
          'api_pricelist_url': reverse('price-list'),
          'payment_methods': {
@@ -200,11 +200,11 @@ def payment_accounts(request):
 
 @login_required
 def payment_accounts_form(request):
-    bango_account_form = forms_payments.BangoAccountListForm(
+    bango_account_form = forms_payments.AccountListForm(
         user=request.amo_user, addon=None)
     return jingo.render(
         request, 'developers/payments/includes/bango_accounts_form.html',
-        {'bango_account_list_form': bango_account_form})
+        {'account_list_form': bango_account_form})
 
 
 @write

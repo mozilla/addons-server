@@ -538,7 +538,7 @@ class TestPayments(amo.tests.TestCase):
                                          'price': self.price.pk,
                                          'regions': ALL_REGION_IDS}),
                                          follow=True)
-        self.assertFormError(res, 'bango_account_list_form', 'accounts',
+        self.assertFormError(res, 'account_list_form', 'accounts',
                              [u'You are not permitted to change payment '
                                'accounts.'])
 
@@ -577,7 +577,7 @@ class TestPayments(amo.tests.TestCase):
                                          'regions': ALL_REGION_IDS}),
                                          follow=True)
 
-        self.assertFormError(res, 'bango_account_list_form', 'accounts',
+        self.assertFormError(res, 'account_list_form', 'accounts',
                              [u'You are not permitted to change payment '
                                'accounts.'])
 
@@ -1072,14 +1072,14 @@ class TestPaymentAccountsForm(PaymentsBase):
     def test_mine(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        eq_(res.context['bango_account_list_form']
+        eq_(res.context['account_list_form']
                .fields['accounts'].choices.queryset.get(), self.account)
 
     def test_mine_disagreed_tos(self):
         self.account.update(agreed_tos=False)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        self.assertSetEqual(res.context['bango_account_list_form']
+        self.assertSetEqual(res.context['account_list_form']
                                .fields['accounts'].choices.queryset.all(), [])
 
 
