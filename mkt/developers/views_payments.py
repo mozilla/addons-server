@@ -1,6 +1,5 @@
 import json
 import urllib
-from datetime import datetime
 
 from django import http
 from django.conf import settings
@@ -13,7 +12,6 @@ import jinja2
 import waffle
 
 from curling.lib import HttpClientError
-from jingo import helpers
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
@@ -388,20 +386,13 @@ def get_seller_product(account):
                   .get_object_or_404())
 
 
-# TODO(andym): move these into a tastypie API.
+# TODO(andym): move these into a DRF API.
 @login_required
 @json_view
 def agreement(request, id):
     account = get_object_or_404(PaymentAccount, pk=id, user=request.user)
-    # It's a shame we have to do another get to find this out.
-    package = client.api.bango.package(account.uri).get_object_or_404()
+    provider = get_provider()
     if request.method == 'POST':
-        # Set the agreement.
-        account.update(agreed_tos=True)
-        return (client.api.bango.sbi.post(
-                data={'seller_bango': package['resource_uri']}))
-    res = (client.api.bango.sbi.agreement
-            .get_object(data={'seller_bango': package['resource_uri']}))
-    res['valid'] = helpers.datetime(
-            datetime.strptime(res['valid'], '%Y-%m-%dT%H:%M:%S'))
-    return res
+        return provider.terms_update(request.amo_user, account)
+
+    return provider.terms_retrieve(request.amo_user, account)

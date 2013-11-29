@@ -28,7 +28,7 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
 
 # Id without any significance but to be different of 1.
-TEST_PACKAGE_ID = 2
+TEST_PACKAGE_ID = '2'
 
 
 def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):

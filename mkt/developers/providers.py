@@ -1,5 +1,6 @@
 import os
 import uuid
+from datetime import datetime
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -32,6 +33,12 @@ class Provider(object):
         kw.update({'seller_uri': kw['solitude_seller'].resource_uri,
                    'provider': self.provider})
         return PaymentAccount.objects.create(**kw)
+
+    def terms_create(self, user, account):
+        raise NotImplementedError
+
+    def terms_retrieve(self, user, account):
+        raise NotImplementedError
 
 
 class Bango(Provider):
@@ -86,6 +93,17 @@ class Bango(Provider):
                                   account_id=res['package_id'],
                                   name=form_data['account_name'])
 
+    def terms_update(self, user, account):
+        package = client.api.bango.package(account.uri).get_object_or_404()
+        account.update(agreed_tos=True)
+        return client.api.bango.sbi.post(data=
+            {'seller_bango': package['resource_uri']})
+
+    def terms_retrieve(self, user, account):
+        package = client.api.bango.package(account.uri).get_object_or_404()
+        return client.api.bango.sbi.agreement.get_object(data=
+            {'seller_bango': package['resource_uri']})
+
 
 class Reference(Provider):
     client = client.api.provider.reference
@@ -110,6 +128,15 @@ class Reference(Provider):
                                   account_id=res['resource_pk'],
                                   name=name)
 
+    def terms_retrieve(self, user, account):
+        log.info('[User:%s] Retrieving terms for: %s' % (user.pk, account.pk))
+        return self.client.terms(account.account_id).get()
+
+    def terms_update(self, user, account):
+        log.info('[User:%s] Updating terms for: %s' % (user.pk, account.pk))
+        account.update(agreed_tos=True)
+        return self.client.sellers(account.account_id).put(
+            {'agreement': datetime.now().strftime('%Y-%m-%d')})
 
 ALL_PROVIDERS = dict((l.name, l) for l in (Bango(), Reference()))
 

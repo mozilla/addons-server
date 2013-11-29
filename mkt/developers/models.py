@@ -65,7 +65,7 @@ class PaymentAccount(amo.models.ModelBase):
     # A soft-delete so we can talk to Solitude asynchronously.
     inactive = models.BooleanField(default=False)
     # The id for this account from the provider.
-    account_id = models.IntegerField(blank=True, null=True)
+    account_id = models.CharField(max_length=255)
     # Each account will be for a particular provider.
     provider = models.IntegerField(choices=PROVIDER_CHOICES,
                                    default=PROVIDER_BANGO)
