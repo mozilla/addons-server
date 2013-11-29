@@ -92,4 +92,8 @@ api_patterns = patterns('',
         api.ApproveRegion.as_view(), name='approve-region'),
     url(r'^reviewers/reviewing', api.ReviewingView.as_view(),
         name='reviewing-list'),
+    url('^reviewers/(?P<addon_slug>[\w-]+)/review/(?P<review_pk>\d+)/translate'
+        '/(?P<language>[a-z]{2}(-[A-Z]{2})?)$',
+        views.review_translate,
+        name='reviewers.review_translate'),
 )

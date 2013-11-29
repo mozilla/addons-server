@@ -24,20 +24,18 @@ class TestAddonView(amo.tests.TestCase):
         self.request.GET = {}
 
     def test_301_by_id(self):
-        r = self.view(self.request, str(self.addon.id))
-        eq_(r.status_code, 301)
-        eq_(r['Location'], self.slug_path)
+        res = self.view(self.request, str(self.addon.id))
+        self.assert3xx(res, self.slug_path, 301)
 
     def test_301_with_querystring(self):
         self.request.GET = mock.Mock()
         self.request.GET.urlencode.return_value = 'q=1'
-        r = self.view(self.request, str(self.addon.id))
-        eq_(r.status_code, 301)
-        eq_(r['Location'], self.slug_path + '?q=1')
+        res = self.view(self.request, str(self.addon.id))
+        self.assert3xx(res, self.slug_path + '?q=1', 301)
 
     def test_200_by_slug(self):
-        r = self.view(self.request, self.addon.slug)
-        eq_(r, mock.sentinel.OK)
+        res = self.view(self.request, self.addon.slug)
+        eq_(res, mock.sentinel.OK)
 
     def test_404_by_id(self):
         with self.assertRaises(http.Http404):
@@ -50,15 +48,14 @@ class TestAddonView(amo.tests.TestCase):
     def test_alternate_qs_301_by_id(self):
         qs = lambda: Addon.objects.filter(type=1)
         view = dec.addon_view_factory(qs=qs)(self.func)
-        r = view(self.request, str(self.addon.id))
-        eq_(r.status_code, 301)
-        eq_(r['Location'], self.slug_path)
+        res = view(self.request, str(self.addon.id))
+        self.assert3xx(res, self.slug_path, 301)
 
     def test_alternate_qs_200_by_slug(self):
         qs = lambda: Addon.objects.filter(type=1)
         view = dec.addon_view_factory(qs=qs)(self.func)
-        r = view(self.request, self.addon.slug)
-        eq_(r, mock.sentinel.OK)
+        res = view(self.request, self.addon.slug)
+        eq_(res, mock.sentinel.OK)
 
     def test_alternate_qs_404_by_id(self):
         qs = lambda: Addon.objects.filter(type=2)
@@ -73,23 +70,23 @@ class TestAddonView(amo.tests.TestCase):
             view(self.request, self.addon.slug)
 
     def test_addon_no_slug(self):
-        a = Addon.objects.create(type=1, name='xxxx')
-        r = self.view(self.request, a.slug)
-        eq_(r, mock.sentinel.OK)
+        app = Addon.objects.create(type=1, name='xxxx')
+        res = self.view(self.request, app.slug)
+        eq_(res, mock.sentinel.OK)
 
     def test_slug_isdigit(self):
-        a = Addon.objects.create(type=1, name='xxxx')
-        a.update(slug=str(a.id))
-        r = self.view(self.request, a.slug)
+        app = Addon.objects.create(type=1, name='xxxx')
+        app.update(slug=str(app.id))
+        r = self.view(self.request, app.slug)
         eq_(r, mock.sentinel.OK)
         request, addon = self.func.call_args[0]
-        eq_(addon, a)
+        eq_(addon, app)
 
     def test_app(self):
-        a = Addon.objects.create(type=amo.ADDON_WEBAPP, name='xxxx')
-        a.update(slug=str(a.id) + 'foo', app_slug=str(a.id))
-        r = self.view(self.request, app_slug=str(a.id))
-        eq_(r, mock.sentinel.OK)
+        app = amo.tests.app_factory(name='xxxx')
+        app.update(slug=str(app.id) + 'foo', app_slug=str(app.id))
+        res = self.view(self.request, app_slug=str(app.id))
+        eq_(res, mock.sentinel.OK)
         eq_(self.func.call_args[0][1].type, amo.ADDON_WEBAPP)
 
 

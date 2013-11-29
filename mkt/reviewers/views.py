@@ -17,6 +17,7 @@ import commonware.log
 import jingo
 import requests
 from tower import ugettext as _
+from waffle.decorators import waffle_switch
 
 import amo
 from abuse.models import AbuseReport
@@ -39,6 +40,7 @@ from files.models import File
 from lib.crypto.packaged import SigningError
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
+from reviews.views import translate_review
 from translations.query import order_by_translation
 from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config
@@ -917,3 +919,10 @@ def attachment(request, attachment):
         response['Content-Disposition'] = 'attachment; filename=%s' % filename
         response['Content-Length'] = os.path.getsize(full_path)
     return response
+
+
+@waffle_switch('reviews-translate')
+@permission_required('Apps', 'Review')
+def review_translate(request, addon_slug, review_pk, language):
+    review = get_object_or_404(Review, addon__slug=addon_slug, pk=review_pk)
+    return translate_review(request, review, language)

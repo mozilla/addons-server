@@ -28,6 +28,12 @@
               by {{ user }} on {{ date }}
               {{ stars }} ({{ locale }})
             {% endtrans %}
+            {% if waffle.switch('reviews-translate') %}
+            - <a class="translate" rel="nofollow" target="_blank"
+                 href="{{ url('reviewers.review_translate', review.instance.addon.slug, review.instance.id, LANG) }}">
+                 {{ _('translate') }}
+              </a>
+            {% endif %}
           </p>
         {% else %}
           <p>
