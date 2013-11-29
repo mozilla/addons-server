@@ -6,12 +6,13 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
 import commonware
+from tower import ugettext_lazy as _
 
 from constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from lib.pay_server import client
 from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
-
+from mkt.developers.utils import uri_to_pk
 
 root = 'developers/payments/includes/'
 
@@ -21,6 +22,12 @@ log = commonware.log.getLogger('z.devhub.providers')
 class Provider(object):
 
     def account_create(self, user, form_data):
+        raise NotImplementedError
+
+    def account_retrieve(self, account):
+        raise NotImplementedError
+
+    def account_update(self, account, form_data):
         raise NotImplementedError
 
     def setup_seller(self, user):
@@ -34,36 +41,39 @@ class Provider(object):
                    'provider': self.provider})
         return PaymentAccount.objects.create(**kw)
 
-    def terms_create(self, user, account):
+    def terms_create(self, account):
         raise NotImplementedError
 
-    def terms_retrieve(self, user, account):
+    def terms_retrieve(self, account):
         raise NotImplementedError
 
 
 class Bango(Provider):
+    """
+    The special Bango implementation.
+    """
+    bank_values = (
+        'seller_bango', 'bankAccountPayeeName', 'bankAccountNumber',
+        'bankAccountCode', 'bankName', 'bankAddress1', 'bankAddress2',
+        'bankAddressZipCode', 'bankAddressIso'
+    )
     client = client.api.bango
-    name = 'bango'
-    provider = PROVIDER_BANGO
-    templates = {
-        'add': os.path.join(root, 'add_payment_account_bango.html'),
-        'edit': os.path.join(root, 'edit_payment_account_bango.html'),
-    }
     forms = {
         'account': forms_payments.BangoPaymentAccountForm,
     }
-
+    full = 'Bango'
+    name = 'bango'
     package_values = (
         'adminEmailAddress', 'supportEmailAddress', 'financeEmailAddress',
         'paypalEmailAddress', 'vendorName', 'companyName', 'address1',
         'address2', 'addressCity', 'addressState', 'addressZipCode',
         'addressPhone', 'countryIso', 'currencyIso', 'vatNumber'
     )
-    bank_values = (
-        'seller_bango', 'bankAccountPayeeName', 'bankAccountNumber',
-        'bankAccountCode', 'bankName', 'bankAddress1', 'bankAddress2',
-        'bankAddressZipCode', 'bankAddressIso'
-    )
+    provider = PROVIDER_BANGO
+    templates = {
+        'add': os.path.join(root, 'add_payment_account_bango.html'),
+        'edit': os.path.join(root, 'edit_payment_account_bango.html'),
+    }
 
     def account_create(self, user, form_data):
         # Get the seller object.
@@ -93,28 +103,48 @@ class Bango(Provider):
                                   account_id=res['package_id'],
                                   name=form_data['account_name'])
 
-    def terms_update(self, user, account):
-        package = client.api.bango.package(account.uri).get_object_or_404()
-        account.update(agreed_tos=True)
-        return client.api.bango.sbi.post(data=
-            {'seller_bango': package['resource_uri']})
+    def account_retrieve(self, account):
+        data = {'account_name': account.name}
+        package_data = (self.client.package(uri_to_pk(account.uri))
+                        .get(data={'full': True}))
+        data.update((k, v) for k, v in package_data.get('full').items() if
+                    k in self.package_values)
+        return data
 
-    def terms_retrieve(self, user, account):
-        package = client.api.bango.package(account.uri).get_object_or_404()
-        return client.api.bango.sbi.agreement.get_object(data=
-            {'seller_bango': package['resource_uri']})
+    def account_update(self, account, form_data):
+        account.update(name=form_data.pop('account_name'))
+        self.client.api.by_url(account.uri).patch(
+            data=dict((k, v) for k, v in form_data.items() if
+                      k in self.package_values))
+
+    def terms_update(self, account):
+        package = self.client.package(account.uri).get_object_or_404()
+        account.update(agreed_tos=True)
+        return self.client.sbi.post(data={
+            'seller_bango': package['resource_uri']})
+
+    def terms_retrieve(self, account):
+        package = self.client.package(account.uri).get_object_or_404()
+        return self.client.sbi.agreement.get_object(data={
+            'seller_bango': package['resource_uri']})
 
 
 class Reference(Provider):
+    """
+    The reference implementation provider. If another provider
+    implements to the reference specification, then it should be able to
+    just inherit from this with minor changes.
+    """
     client = client.api.provider.reference
+    forms = {
+        'account': forms_payments.ReferenceAccountForm,
+    }
+    full = _('Reference Implementation')
     name = 'reference'
     provider = PROVIDER_REFERENCE
     templates = {
         'add': os.path.join(root, 'add_payment_account_reference.html'),
         'edit': os.path.join(root, 'edit_payment_account_reference.html'),
-    }
-    forms = {
-        'account': forms_payments.ReferenceAccountForm,
     }
 
     def account_create(self, user, form_data):
@@ -128,22 +158,33 @@ class Reference(Provider):
                                   account_id=res['resource_pk'],
                                   name=name)
 
-    def terms_retrieve(self, user, account):
-        log.info('[User:%s] Retrieving terms for: %s' % (user.pk, account.pk))
+    def account_retrieve(self, account):
+        data = {'account_name': account.name}
+        data.update(self.client.sellers(account.account_id).get())
+        return data
+
+    def account_update(self, account, form_data):
+        account.update(name=form_data.pop('account_name'))
+        self.client.sellers(account.account_id).put(form_data)
+
+    def terms_retrieve(self, account):
         return self.client.terms(account.account_id).get()
 
-    def terms_update(self, user, account):
-        log.info('[User:%s] Updating terms for: %s' % (user.pk, account.pk))
+    def terms_update(self, account):
         account.update(agreed_tos=True)
-        return self.client.sellers(account.account_id).put(
-            {'agreement': datetime.now().strftime('%Y-%m-%d')})
+        return self.client.sellers(account.account_id).put({
+            'agreement': datetime.now().strftime('%Y-%m-%d')})
 
-ALL_PROVIDERS = dict((l.name, l) for l in (Bango(), Reference()))
+
+ALL_PROVIDERS = ALL_PROVIDERS_BY_ID = {}
+for p in (Bango, Reference):
+    ALL_PROVIDERS[p.name] = p
+    ALL_PROVIDERS_BY_ID[p.provider] = p
 
 
 def get_provider():
     if len(settings.PAYMENT_PROVIDERS) != 1:
-        raise ImproperlyConfigured('You must have only one payment provider '
-            'in zamboni. Having multiple providers at one time will be added '
-            'at a later date.')
-    return ALL_PROVIDERS[settings.PAYMENT_PROVIDERS[0]]
+        raise ImproperlyConfigured(
+            'You must have only one payment provider in zamboni. Having '
+            'multiple providers at one time will be added at a later date.')
+    return ALL_PROVIDERS[settings.PAYMENT_PROVIDERS[0]]()

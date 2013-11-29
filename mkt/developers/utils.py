@@ -13,6 +13,13 @@ from mkt.constants import APP_PREVIEW_MINIMUMS
 from lib.video import library as video_library
 
 
+def uri_to_pk(uri):
+    """
+    Convert a resource URI to the primary key of the resource.
+    """
+    return uri.rstrip('/').split('/')[-1]
+
+
 def check_upload(file_obj, upload_type, content_type):
     errors = []
     upload_hash = ''

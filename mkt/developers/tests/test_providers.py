@@ -14,18 +14,29 @@ from users.models import UserProfile
 
 
 class Patcher(object):
+    """
+    This class patch your test case so that any attempt to call solitude
+    from zamboni through these classes will use the mock.
+
+    Use this class as mixin on any tests that alter payment accounts.
+
+    If you override setUp or tearDown be sure to call super.
+    """
 
     def setUp(self, *args, **kw):
         super(Patcher, self).setUp(*args, **kw)
-        client_patcher = patch('mkt.developers.models.client')
+        client_patcher = patch('mkt.developers.models.client',
+                               name='test_providers.Patcher.client_patcher')
         self.patched_client = client_patcher.start()
         self.patched_client.patcher = client_patcher
 
-        bango_patcher = patch('mkt.developers.providers.Bango.client')
+        bango_patcher = patch('mkt.developers.providers.Bango.client',
+                              name='test_providers.Patcher.bango_patcher')
         self.bango_patcher = bango_patcher.start()
         self.bango_patcher.patcher = bango_patcher
 
-        ref_patcher = patch('mkt.developers.providers.Reference.client')
+        ref_patcher = patch('mkt.developers.providers.Reference.client',
+                            name='test_providers.Patcher.ref_patcher')
         self.ref_patcher = ref_patcher.start()
         self.ref_patcher.patcher = ref_patcher
 
@@ -68,13 +79,24 @@ class TestReference(Patcher, TestCase):
         return PaymentAccount.objects.create(user=self.user,
                                              solitude_seller=seller)
 
+    def test_terms_retrieve(self):
+        account = self.make_account()
+        self.ref.terms_retrieve(account)
+        assert self.ref_patcher.terms.called
+
+    def test_terms_update(self):
+        account = self.make_account()
+        self.ref.terms_update(account)
+        eq_(account.reload().agreed_tos, True)
+        assert self.ref_patcher.sellers.called
+
     def test_account_retrieve(self):
         account = self.make_account()
-        self.ref.terms_retrieve(self.user, account)
-        assert self.ref_patcher.terms.called
+        self.ref.account_retrieve(account)
+        assert self.ref_patcher.sellers.called
 
     def test_account_update(self):
         account = self.make_account()
-        self.ref.terms_update(self.user, account)
-        eq_(account.reload().agreed_tos, True)
+        self.ref.account_update(account, {'account_name': 'foo'})
+        eq_(account.reload().name, 'foo')
         assert self.ref_patcher.sellers.called

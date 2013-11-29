@@ -19,10 +19,9 @@ from market.models import AddonPremium, Price
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
                            FREE_PLATFORMS, PAID_PLATFORMS)
+from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.site.forms import AddonChoiceField
 from mkt.submit.forms import DeviceTypeForm
-
-from .models import AddonPaymentAccount, PaymentAccount
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -546,6 +545,15 @@ class ReferenceAccountForm(happyforms.Form):
     account_name = forms.CharField(max_length=50, label=_lazy(u'Account name'))
     name = forms.CharField(max_length=50, label=_lazy(u'Name'))
     email = forms.CharField(max_length=50, label=_lazy(u'Email'))
+
+    def __init__(self, *args, **kwargs):
+        self.account = kwargs.pop('account', None)
+        super(ReferenceAccountForm, self).__init__(*args, **kwargs)
+
+    def save(self):
+        # Save the account name, if it was updated.
+        provider = self.account.get_provider()
+        provider.account_update(self.account, self.cleaned_data)
 
 
 class PaymentCheckForm(happyforms.Form):

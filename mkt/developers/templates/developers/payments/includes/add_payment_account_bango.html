@@ -4,7 +4,7 @@
       <a class="close" title="{{ _('close') }}">&times;</a>
       <h2>{{ _('Add Bango Account') }}</h2>
     </header>
-    <form action="{{ url('mkt.developers.bango.add_payment_account') }}" method="post" class="island">
+    <form action="{{ url('mkt.developers.provider.add_payment_account') }}" method="post" class="island">
       {{ csrf() }}
       <div id="payment-account-errors"></div>
       <div>

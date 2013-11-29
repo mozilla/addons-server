@@ -168,8 +168,7 @@ urlpatterns = decorate(write, patterns('',
         name='mkt.developers.transactions'),
 
     # Bango-specific stuff.
-    url('^bango/', include(provider_patterns('bango'))),
-    url('^reference/', include(provider_patterns('reference'))),
+    url('^provider/', include(provider_patterns('provider'))),
 
     url('^test/$', views.testing, name='mkt.developers.apps.testing'),
     url('^test/receipts/', include(test_patterns)),

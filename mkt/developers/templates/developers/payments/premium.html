@@ -125,9 +125,9 @@
               <tr>
                 <th><label data-for="accounts">{{ _('Payment Account') }}</label></th>
                 <td>
-                  <div id="bango-account-list" data-url="{{ url('mkt.developers.bango.payment_accounts_form') }}">
+                  <div id="bango-account-list" data-url="{{ url('mkt.developers.provider.payment_accounts_form') }}">
                     {{ account_list_form.errors }}
-                    {% include 'developers/payments/includes/bango_accounts_list.html' %}
+                    {% include 'developers/payments/includes/accounts_list.html' %}
                   </div>
                   {% if can_edit and account_list_form.is_owner %}
                     <a href="#" class="payment-account-note" id="payment-account-action" data-action="add">

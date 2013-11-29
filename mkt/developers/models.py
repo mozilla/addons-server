@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 import commonware.log
-from tower import ugettext_lazy as _lazy, ugettext as _
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.urlresolvers import reverse
@@ -14,17 +14,11 @@ from constants.payments import PROVIDER_BANGO, PROVIDER_CHOICES
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
+from mkt.developers.utils import uri_to_pk
 from mkt.purchase import webpay
 from users.models import UserForeignKey
 
 log = commonware.log.getLogger('z.devhub')
-
-
-def uri_to_pk(uri):
-    """
-    Convert a resource URI to the primary key of the resource.
-    """
-    return uri.rstrip('/').split('/')[-1]
 
 
 class CantCancel(Exception):
@@ -123,19 +117,12 @@ class PaymentAccount(amo.models.ModelBase):
                      'payment account deletion'.format(acc_ref.addon_id))
             acc_ref.delete()
 
-    def update_account_details(self, **kwargs):
-        self.update(name=kwargs.pop('account_name'))
-        client.api.by_url(self.uri).patch(
-            data=dict((k, v) for k, v in kwargs.items() if
-                      k in self.BANGO_PACKAGE_VALUES))
-
-    def get_details(self):
-        data = {'account_name': self.name}
-        package_data = (client.api.bango.package(uri_to_pk(self.uri))
-                        .get(data={'full': True}))
-        data.update((k, v) for k, v in package_data.get('full').items() if
-                    k in self.BANGO_PACKAGE_VALUES)
-        return data
+    def get_provider(self):
+        """Returns an instance of the payment provider for this account."""
+        # TODO: fix circular import. Providers imports models which imports
+        # forms which imports models.
+        from mkt.developers.providers import ALL_PROVIDERS_BY_ID
+        return ALL_PROVIDERS_BY_ID[self.provider]()
 
     def __unicode__(self):
         date = self.created.strftime('%m/%y')
@@ -145,7 +132,7 @@ class PaymentAccount(amo.models.ModelBase):
         return _(u'Shared Account: {0}'.format(self.name))
 
     def get_agreement_url(self):
-        return reverse('mkt.developers.bango.agreement', args=[self.pk])
+        return reverse('mkt.developers.provider.agreement', args=[self.pk])
 
     def get_lookup_portal_url(self):
         return reverse('lookup.bango_portal_from_package',

@@ -13,17 +13,17 @@ import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType,
                            AddonPremium, AddonUpsell, AddonUser, Category)
-from constants.payments import (PAYMENT_METHOD_ALL,
-                                PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_OPERATOR)
+from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
+                                PAYMENT_METHOD_OPERATOR, PROVIDER_REFERENCE)
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
 from mkt.constants.regions import ALL_REGION_IDS
+from mkt.developers.tests.test_providers import Patcher
 from market.models import Price
 from users.models import UserProfile
 
 import mkt
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller, uri_to_pk, UserInappKey)
+                                   SolitudeSeller, UserInappKey, uri_to_pk)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
 
@@ -684,8 +684,9 @@ class TestPayments(amo.tests.TestCase):
         self.login(self.user)
         addon_account = setup_payment_account(self.webapp, self.user)
         eq_(self.webapp.status, amo.STATUS_PUBLIC)
-        self.client.post(reverse('mkt.developers.bango.delete_payment_account',
-                                 args=[addon_account.payment_account.pk]))
+        self.client.post(reverse(
+            'mkt.developers.provider.delete_payment_account',
+            args=[addon_account.payment_account.pk]))
         eq_(self.webapp.reload().status, amo.STATUS_NULL)
 
     def setup_bango_portal(self):
@@ -742,6 +743,13 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.get(self.portal_url)
         eq_(res.status_code, 400)
         eq_(json.loads(res.content), err)
+
+    def test_not_bango(self):
+        self.setup_bango_portal()
+        self.account.payment_account.provider = PROVIDER_REFERENCE
+        self.account.payment_account.save()
+        res = self.client.get(self.portal_url)
+        eq_(res.status_code, 403)
 
     def test_bango_portal_redirect_role_error(self):
         # Checks that only the owner can access the page (vs. developers).
@@ -915,20 +923,18 @@ class PaymentsBase(amo.tests.TestCase):
                                              agreed_tos=True)
 
 
-class TestPaymentAccountsAdd(PaymentsBase):
+class TestPaymentAccountsAdd(Patcher, PaymentsBase):
     # TODO: this test provides bare coverage and might need to be expanded.
 
     def setUp(self):
         super(TestPaymentAccountsAdd, self).setUp()
-        self.url = reverse('mkt.developers.bango.add_payment_account')
+        self.url = reverse('mkt.developers.provider.add_payment_account')
 
     def test_login_required(self):
         self.client.logout()
         self.assertLoginRequired(self.client.post(self.url, data={}))
 
-    @mock.patch('mkt.developers.models.client')
-    @mock.patch('mkt.developers.providers.Bango.client')
-    def test_create(self, models, providers):
+    def test_create(self):
         res = self.client.post(self.url, data={
             'bankAccountPayeeName': 'name',
             'companyName': 'company',
@@ -962,7 +968,7 @@ class TestPaymentAccounts(PaymentsBase):
 
     def setUp(self):
         super(TestPaymentAccounts, self).setUp()
-        self.url = reverse('mkt.developers.bango.payment_accounts')
+        self.url = reverse('mkt.developers.provider.payment_accounts')
 
     def test_login_required(self):
         self.client.logout()
@@ -982,43 +988,48 @@ class TestPaymentPortal(PaymentsBase):
         super(TestPaymentPortal, self).setUp()
         self.create_switch('bango-portal')
         self.app_slug = 'app-slug'
+        self.url = reverse('mkt.developers.provider.payment_accounts')
+        self.bango_url = reverse(
+            'mkt.developers.apps.payments.bango_portal_from_addon',
+            args=[self.app_slug])
 
     def test_with_app_slug(self):
-        url = reverse('mkt.developers.bango.payment_accounts')
-        res = self.client.get(url, {'app-slug': self.app_slug})
+        res = self.client.get(self.url, {'app-slug': self.app_slug})
         eq_(res.status_code, 200)
         output = json.loads(res.content)
-        eq_(output[0]['portal-url'],
-            reverse('mkt.developers.apps.payments.bango_portal_from_addon',
-                    args=[self.app_slug]))
+        eq_(output[0]['portal-url'], self.bango_url)
 
     def test_without_app_slug(self):
-        url = reverse('mkt.developers.bango.payment_accounts')
-        res = self.client.get(url)
+        res = self.client.get(self.url)
         eq_(res.status_code, 200)
         output = json.loads(res.content)
         ok_('portal-url' not in output[0])
 
+    def test_not_bango(self):
+        PaymentAccount.objects.update(provider=PROVIDER_REFERENCE)
+        print self.bango_url
+        res = self.client.get(self.bango_url)
+        eq_(res.status_code, 403)
 
-class TestPaymentAccount(PaymentsBase):
+
+class TestPaymentAccount(Patcher, PaymentsBase):
 
     def setUp(self):
         super(TestPaymentAccount, self).setUp()
-        self.url = reverse('mkt.developers.bango.payment_account',
+        self.url = reverse('mkt.developers.provider.payment_account',
                            args=[self.account.pk])
 
     def test_login_required(self):
         self.client.logout()
         self.assertLoginRequired(self.client.get(self.url))
 
-    @mock.patch('mkt.developers.models.client')
-    def test_get(self, client):
+    def test_get(self):
         package = mock.Mock()
         package.get.return_value = {'full': {'vendorName': 'testval'}}
-        client.api.bango.package.return_value = package
+        self.bango_patcher.package.return_value = package
 
         res = self.client.get(self.url)
-        client.api.bango.package.assert_called_with('123')
+        self.bango_patcher.package.assert_called_with('123')
 
         eq_(res.status_code, 200)
         output = json.loads(res.content)
@@ -1028,29 +1039,27 @@ class TestPaymentAccount(PaymentsBase):
         eq_(output['vendorName'], 'testval')
 
 
-class TestPaymentAgreement(PaymentsBase):
+class TestPaymentAgreement(Patcher, PaymentsBase):
 
     def setUp(self):
         super(TestPaymentAgreement, self).setUp()
-        self.url = reverse('mkt.developers.bango.agreement',
+        self.url = reverse('mkt.developers.provider.agreement',
                            args=[self.account.pk])
 
     def test_anon(self):
         self.client.logout()
         self.assertLoginRequired(self.client.get(self.url))
 
-    @mock.patch('mkt.developers.views_payments.client.api')
-    def test_get(self, api):
-        api.bango.sbi.agreement.get_object.return_value = {
+    def test_get(self):
+        self.bango_patcher.sbi.agreement.get_object.return_value = {
             'text': 'blah', 'valid': '2010-08-31T00:00:00'}
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['text'], 'blah')
 
-    @mock.patch('mkt.developers.views_payments.client.api')
-    def test_set(self, api):
-        api.bango.sbi.post.return_value = {
+    def test_set(self):
+        self.bango_patcher.sbi.post.return_value = {
             'expires': '2014-08-31T00:00:00',
             'valid': '2014-08-31T00:00:00'}
         res = self.client.post(self.url)
@@ -1063,7 +1072,7 @@ class TestPaymentAccountsForm(PaymentsBase):
 
     def setUp(self):
         super(TestPaymentAccountsForm, self).setUp()
-        self.url = reverse('mkt.developers.bango.payment_accounts_form')
+        self.url = reverse('mkt.developers.provider.payment_accounts_form')
 
     def test_login_required(self):
         self.client.logout()
@@ -1087,7 +1096,7 @@ class TestPaymentDelete(PaymentsBase):
 
     def setUp(self):
         super(TestPaymentDelete, self).setUp()
-        self.url = reverse('mkt.developers.bango.delete_payment_account',
+        self.url = reverse('mkt.developers.provider.delete_payment_account',
                            args=[self.account.pk])
 
     def test_login_required(self):
