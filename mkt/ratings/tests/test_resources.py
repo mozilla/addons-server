@@ -161,21 +161,59 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         eq_(data['info']['slug'], self.app.app_slug)
         eq_(data['info']['current_version'], self.app.current_version.version)
 
-    def test_filter_by_invalid_app_slug(self):
+    def test_filter_by_invalid_app(self):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
-        self._get_filter(app='wrongslug', expected_status=400)
+        self._get_filter(app='wrongslug', expected_status=404)
+        self._get_filter(app=2465478, expected_status=404)
 
-    def test_filter_by_nonpublic_app(self):
+    @patch('mkt.ratings.views.get_region')
+    def test_filter_by_nonpublic_app(self, get_region_mock):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
         self.app.update(status=amo.STATUS_PENDING)
-        self._get_filter(app=self.app.app_slug, expected_status=400)
+        get_region_mock.return_value = 'us'
+        res, data = self._get_filter(app=self.app.app_slug, expected_status=403)
+        eq_(data['detail'], 'The app requested is not public or not available '
+                            'in region "us".')
 
-    @patch('mkt.ratings.serializers.get_region')
+    def test_filter_by_nonpublic_app_admin(self):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        self.grant_permission(self.user, 'Addons:Edit')
+        self.app.update(status=amo.STATUS_PENDING)
+        self._get_filter(app=self.app.app_slug)
+
+    def test_filter_by_nonpublic_app_owner(self):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        AddonUser.objects.create(user=self.user, addon=self.app)
+        self.app.update(status=amo.STATUS_PENDING)
+        self._get_filter(app=self.app.app_slug)
+
+    @patch('mkt.ratings.views.get_region')
     def test_filter_by_app_excluded_in_region(self, get_region_mock):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
         get_region_mock.return_value = 'br'
-        r, data = self._get_filter(app=self.app.app_slug, expected_status=400)
-        eq_(data['detail'], 'App not available in this region')
+        res, data = self._get_filter(app=self.app.app_slug, expected_status=403)
+        eq_(data['detail'], 'The app requested is not public or not available '
+                            'in region "br".')
+
+    @patch('mkt.ratings.views.get_region')
+    def test_filter_by_app_excluded_in_region_admin(self, get_region_mock):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        self.grant_permission(self.user, 'Addons:Edit')
+        AddonExcludedRegion.objects.create(addon=self.app,
+                                           region=mkt.regions.BR.id)
+        get_region_mock.return_value = 'br'
+        self._get_filter(app=self.app.app_slug)
+
+    @patch('mkt.ratings.views.get_region')
+    def test_filter_by_app_excluded_in_region_owner(self, get_region_mock):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        AddonUser.objects.create(user=self.user, addon=self.app)
+        AddonExcludedRegion.objects.create(addon=self.app,
+                                           region=mkt.regions.BR.id)
+        get_region_mock.return_value = 'br'
+        self._get_filter(app=self.app.app_slug)
 
     def test_anonymous_get_list_without_app(self):
         res, data = self._get_url(self.list_url, client=self.anon)
@@ -302,12 +340,12 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
                                            region=mkt.regions.BR.id)
         get_region_mock.return_value = 'br'
         res, data = self._create()
-        eq_(400, res.status_code)
+        eq_(403, res.status_code)
 
     def test_create_for_nonpublic(self):
         self.app.update(status=amo.STATUS_PENDING)
         res, data = self._create()
-        eq_(400, res.status_code)
+        eq_(403, res.status_code)
 
     def test_create_duplicate_rating(self):
         self._create()
