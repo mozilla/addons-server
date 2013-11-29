@@ -613,7 +613,8 @@ class TestAppDetail(RestOAuth):
 
     def setUp(self, api_name='apps'):
         super(TestAppDetail, self).setUp()
-        self.get_url = reverse('app-detail', kwargs={'pk': 337141})
+        self.app = Webapp.objects.get(pk=337141)
+        self.get_url = reverse('app-detail', kwargs={'pk': self.app.app_slug})
 
     def test_price(self):
         res = self.client.get(self.get_url)
@@ -636,10 +637,9 @@ class TestAppDetail(RestOAuth):
         eq_(res.status_code, 404)
 
     def test_nonregion(self):
-        app = Webapp.objects.get(pk=337141)
-        app.addonexcludedregion.create(region=regions.BR.id)
-        app.support_url = u'http://www.example.com/fake_support_url'
-        app.save()
+        self.app.addonexcludedregion.create(region=regions.BR.id)
+        self.app.support_url = u'http://www.example.com/fake_support_url'
+        self.app.save()
         res = self.client.get(self.get_url, data={'region': 'br'})
         eq_(res.status_code, 451)
         data = json.loads(res.content)['detail']
@@ -655,11 +655,10 @@ class TestAppDetail(RestOAuth):
         eq_(res.status_code, 200)
 
     def test_packaged_manifest_url(self):
-        app = Webapp.objects.get(pk=337141)
-        app.update(is_packaged=True)
-        res = self.client.get(self.get_url, pk=app.pk)
+        self.app.update(is_packaged=True)
+        res = self.client.get(self.get_url, pk=self.app.app_slug)
         data = json.loads(res.content)
-        eq_(app.get_manifest_url(), data['manifest_url'])
+        eq_(self.app.get_manifest_url(), data['manifest_url'])
 
     def test_user_info_with_shared_secret(self):
         def fakeauth(auth, req, **kw):
@@ -679,12 +678,11 @@ class TestAppDetail(RestOAuth):
             reverse('app-detail', kwargs={'pk': free.pk}))
 
     def test_tags(self):
-        app = Webapp.objects.get(pk=337141)
         tag1 = Tag.objects.create(tag_text='example1')
         tag2 = Tag.objects.create(tag_text='example2')
-        AddonTag.objects.create(tag=tag1, addon=app)
-        AddonTag.objects.create(tag=tag2, addon=app)
-        res = self.client.get(self.get_url, pk=app.pk)
+        AddonTag.objects.create(tag=tag1, addon=self.app)
+        AddonTag.objects.create(tag=tag2, addon=self.app)
+        res = self.client.get(self.get_url, pk=self.app.app_slug)
         data = json.loads(res.content)
         eq_(data['tags'], ['example1', 'example2'])
 

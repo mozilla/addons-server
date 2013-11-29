@@ -564,7 +564,8 @@ class SlugOrIdMixin(object):
     """
 
     def get_object(self, queryset=None):
-        if 'pk' in self.kwargs and not self.kwargs['pk'].isdigit():
+        pk = self.kwargs.get('pk')
+        if pk and not pk.isdigit():
             # If the `pk` contains anything other than a digit, it's a `slug`.
             self.kwargs.update(pk=None, slug=self.kwargs['pk'])
         return super(SlugOrIdMixin, self).get_object(queryset=queryset)
