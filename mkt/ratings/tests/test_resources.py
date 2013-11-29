@@ -393,6 +393,23 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         eq_(data['rating'], new_data['rating'])
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
 
+    def test_update_admin(self):
+        self.grant_permission(self.user, 'Addons:Edit')
+        rev = Review.objects.create(addon=self.app, user=self.user2,
+                                    body='abcd')
+        new_data = {
+            'body': 'Edited by admin',
+            'rating': 1,
+        }
+        log_review_id = amo.LOG.EDIT_REVIEW.id
+        res = self.client.put(reverse('ratings-detail', kwargs={'pk': rev.pk}),
+                              json.dumps(new_data))
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['body'], new_data['body'])
+        eq_(data['rating'], new_data['rating'])
+        eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
+
     def test_update_bad_data(self):
         self._create_default_review()
         res, data = self._update({'body': None})
