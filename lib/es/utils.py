@@ -5,22 +5,21 @@ from .models import Reindexing
 from django.core.management.base import CommandError
 
 
-def get_indices(index):
-    # Do we have a reindexing going on ?
-    try:
-        reindex = Reindexing.objects.get(alias=index)
-        # Yes. Let's reindex on both indexes
-        return [idx for idx in reindex.new_index, reindex.old_index
-                if idx is not None]
-    except Reindexing.DoesNotExist:
-        return [index]
+# shortcut functions
+is_reindexing_amo = Reindexing.objects.is_reindexing_amo
+is_reindexing_mkt = Reindexing.objects.is_reindexing_mkt
+flag_reindexing_amo = Reindexing.objects.flag_reindexing_amo
+flag_reindexing_mkt = Reindexing.objects.flag_reindexing_mkt
+unflag_reindexing_amo = Reindexing.objects.unflag_reindexing_amo
+unflag_reindexing_mkt = Reindexing.objects.unflag_reindexing_mkt
+get_indices = Reindexing.objects.get_indices
 
 
 def index_objects(ids, model, search, index=None, transforms=None):
     if index is None:
         index = model._get_index()
 
-    indices = get_indices(index)
+    indices = Reindexing.objects.get_indices(index)
 
     if transforms is None:
         transforms = []
@@ -38,17 +37,13 @@ def index_objects(ids, model, search, index=None, transforms=None):
     amo.search.get_es().flush_bulk(forced=True)
 
 
-def database_flagged():
-    """Returns True if the Database is being indexed"""
-    return Reindexing.objects.exists()
+def raise_if_reindex_in_progress(site):
+    """Checks if the database indexation flag is on for the given site.
 
-
-def raise_if_reindex_in_progress():
-    """Checks if the database indexation flag is on.
-
-    If it's one, and if no "FORCE_INDEXING" variable is present in the env,
+    If it's on, and if no "FORCE_INDEXING" variable is present in the env,
     raises a CommandError.
     """
-    if database_flagged() and 'FORCE_INDEXING' not in os.environ:
+    already_reindexing = Reindexing.objects._is_reindexing(site)
+    if already_reindexing and 'FORCE_INDEXING' not in os.environ:
         raise CommandError("Indexation already occuring. Add a FORCE_INDEXING "
                            "variable in the environ to force it")

@@ -236,7 +236,7 @@ def weekly_downloads():
     """
     Update 7-day add-on download counts.
     """
-    raise_if_reindex_in_progress()
+    raise_if_reindex_in_progress('amo')
     cursor = connection.cursor()
     cursor.execute("""
         SELECT addon_id, SUM(count) AS weekly_count

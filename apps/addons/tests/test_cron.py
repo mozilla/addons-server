@@ -1,8 +1,11 @@
 import os
 import datetime
 
+from nose.exc import SkipTest
 from nose.tools import eq_
 import mock
+
+from django.conf import settings
 
 import amo
 import amo.tests
@@ -10,7 +13,7 @@ from addons import cron
 from addons.models import Addon, AppSupport
 from django.core.management.base import CommandError
 from files.models import File, Platform
-from lib.es.management.commands.reindex import flag_database, unflag_database
+from lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
 from stats.models import UpdateCount
 from versions.models import Version
 
@@ -231,7 +234,7 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
                 addon.average_daily_users, addon.total_downloads + 10000))
 
         adu = cron.update_addon_average_daily_users
-        flag_database('new', 'old', 'alias')
+        flag_reindexing_amo('new', 'old', 'alias')
         try:
             # Should fail.
             self.assertRaises(CommandError, adu)
@@ -240,7 +243,7 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
             os.environ['FORCE_INDEXING'] = '1'
             adu()
         finally:
-            unflag_database()
+            unflag_reindexing_amo()
             del os.environ['FORCE_INDEXING']
 
         addon = Addon.objects.get(pk=3615)
@@ -248,6 +251,12 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
 
 
 class TestReindex(amo.tests.ESTestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        if not settings.MARKETPLACE:
+            raise SkipTest('Only a marketplace management command')
+        super(TestReindex, cls).setUpClass()
 
     @mock.patch('addons.models.update_search_index', new=mock.Mock)
     def setUp(self):

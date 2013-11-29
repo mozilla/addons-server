@@ -95,7 +95,7 @@ def _update_addons_current_version(data, **kw):
 @cronjobs.register
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
-    raise_if_reindex_in_progress()
+    raise_if_reindex_in_progress('amo')
     cursor = connections[multidb.get_slave()].cursor()
     q = """SELECT
                addon_id, AVG(`count`)
@@ -140,7 +140,7 @@ def _update_addon_average_daily_users(data, **kw):
 @cronjobs.register
 def update_daily_theme_user_counts():
     """Store the day's theme popularity counts into ThemeUserCount."""
-    raise_if_reindex_in_progress()
+    raise_if_reindex_in_progress('amo')
     d = Persona.objects.values_list('addon', 'popularity').order_by('id')
 
     date = datetime.now().strftime('%M-%d-%y')

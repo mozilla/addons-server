@@ -15,7 +15,7 @@ cron_log = commonware.log.getLogger('mkt.cron')
 
 @cronjobs.register
 def index_latest_mkt_stats(index=None, aliased=True):
-    raise_if_reindex_in_progress()
+    raise_if_reindex_in_progress('mkt')
     yesterday = datetime.date.today() - datetime.timedelta(days=1)
 
     try:

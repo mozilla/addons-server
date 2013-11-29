@@ -13,7 +13,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
-from lib.es.management.commands.reindex import flag_database, unflag_database
+from lib.es.utils import flag_reindexing_mkt, unflag_reindexing_mkt
 from users.models import UserProfile
 
 import mkt
@@ -55,7 +55,7 @@ class TestWeeklyDownloads(amo.tests.TestCase):
         self.add_install(user=UserProfile.objects.get(pk=10482),
                          created=datetime.today() - timedelta(days=2))
 
-        flag_database('new', 'old', 'alias')
+        flag_reindexing_mkt('new', 'old', 'alias')
         try:
             # Should fail.
             self.assertRaises(CommandError, update_weekly_downloads)
@@ -65,7 +65,7 @@ class TestWeeklyDownloads(amo.tests.TestCase):
             os.environ['FORCE_INDEXING'] = '1'
             update_weekly_downloads()
         finally:
-            unflag_database()
+            unflag_reindexing_mkt()
             del os.environ['FORCE_INDEXING']
 
         eq_(self.get_webapp().weekly_downloads, 2)

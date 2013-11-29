@@ -26,7 +26,7 @@ log = commonware.log.getLogger('z.cron')
 @cronjobs.register
 def update_weekly_downloads():
     """Update the weekly "downloads" from the users_install table."""
-    raise_if_reindex_in_progress()
+    raise_if_reindex_in_progress('mkt')
     interval = datetime.datetime.today() - datetime.timedelta(days=7)
     counts = (Installed.objects.values('addon')
                                .filter(created__gte=interval,

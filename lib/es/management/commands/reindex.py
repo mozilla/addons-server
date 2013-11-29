@@ -1,4 +1,3 @@
-import datetime
 import json
 import logging
 import os
@@ -20,8 +19,8 @@ from amo.utils import timestamp_index
 from apps.addons.search import setup_mapping as put_amo_mapping
 from bandwagon.cron import reindex_collections
 from compat.cron import compatibility_report
-from lib.es.models import Reindexing
-from lib.es.utils import database_flagged
+from lib.es.utils import (is_reindexing_amo, unflag_reindexing_amo,
+                          flag_reindexing_amo)
 from stats.search import setup_indexes as put_stats_mapping
 from users.cron import reindex_users
 
@@ -208,16 +207,14 @@ def create_index(index, is_stats, stdout=sys.stdout):
 def flag_database(new_index, old_index, alias, stdout=sys.stdout):
     """Flags the database to indicate that the reindexing has started."""
     log('Flagging the database to start the reindexation', stdout=stdout)
-    return Reindexing.objects.create(new_index=new_index, old_index=old_index,
-                                     alias=alias,
-                                     start_date=datetime.datetime.now())
+    flag_reindexing_amo(new_index=new_index, old_index=old_index, alias=alias)
 
 
 @task_with_callbacks
 def unflag_database(stdout=sys.stdout):
     """Unflag the database to indicate that the reindexing is over."""
     log('Unflagging the database', stdout=stdout)
-    Reindexing.objects.all().delete()
+    unflag_reindexing_amo()
 
 
 _SUMMARY = """
@@ -264,7 +261,7 @@ class Command(BaseCommand):
 
         force = kwargs.get('force', False)
 
-        if database_flagged() and not force:
+        if is_reindexing_amo() and not force:
             raise CommandError('Indexation already occuring - use --force to '
                                'bypass')
 
@@ -373,7 +370,7 @@ class Command(BaseCommand):
         try:
             tree.apply_async()
             time.sleep(10)   # give celeryd some time to flag the DB
-            while database_flagged():
+            while is_reindexing_amo():
                 sys.stdout.write('.')
                 sys.stdout.flush()
                 time.sleep(5)

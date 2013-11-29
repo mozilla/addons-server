@@ -13,9 +13,9 @@ import amo.search
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from es.management.commands.reindex import (call_es, database_flagged,
-                                            unflag_database)
+from es.management.commands.reindex import call_es
 from es.management.commands.fixup_mkt_index import Command as FixupCommand
+from lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
 
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp, WebappIndexer
@@ -31,8 +31,8 @@ class TestIndexCommand(amo.tests.ESTestCase):
 
     def setUp(self):
         super(TestIndexCommand, self).setUp()
-        if database_flagged():
-            unflag_database()
+        if is_reindexing_amo():
+            unflag_reindexing_amo()
 
         self.url = reverse('search.search')
 
@@ -99,15 +99,13 @@ class TestIndexCommand(amo.tests.ESTestCase):
         # Wait for the reindex in the thread to flag the database.
         # The database transaction isn't shared with the thread, so force the
         # commit.
-        while t.is_alive() and not database_flagged():
+        while t.is_alive() and not is_reindexing_amo():
             connection._commit()
             connection.clean_savepoints()
 
         # We should still be able to search in the foreground while the reindex
-        # is being done in the background.
-        #
-        # We should also be able to index new documents, and
-        # they should not be lost.
+        # is being done in the background. We should also be able to index new
+        # documents, and they should not be lost.
         old_addons_count = len(wanted)
         while t.is_alive() and len(wanted) < old_addons_count + 3:
             wanted.append(amo.tests.addon_factory())
@@ -117,8 +115,8 @@ class TestIndexCommand(amo.tests.ESTestCase):
             self.check_results(wanted)
 
         if len(wanted) == old_addons_count:
-            raise AssertionError("Could not index objects in foreground while "
-                                 "reindexing in the background.")
+            raise AssertionError('Could not index objects in foreground while '
+                                 'reindexing in the background.')
 
         t.join()  # Wait for the thread to finish.
         t.stdout.seek(0)
