@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-28 12:44+0000\n"
+"PO-Revision-Date: 2013-11-30 14:08+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385642696.0\n"
+"X-POOTLE-MTIME: 1385820539.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2944,6 +2944,10 @@ msgid ""
 "id=\"recaptcha_different\">try different words</a> or <a href=\"#\" "
 "id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Zadejte prosím <strong>obě slova</strong> uvedená níže a <strong>oddělte "
+"je mezerou</strong>.</p> <p>Pokud máte problém s přečtením, <a href=\"#\" "
+"id=\"recaptcha_different\">zkuste jiná slova</a> nebo <a href=\"#\" "
+"id=\"recaptcha_audio\">vyzkoušejte jinou metodu kontroly</a>.</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4
 #: apps/amo/templates/amo/side_nav.html:19
@@ -13776,7 +13780,7 @@ msgstr "Noví redaktoři"
 #: apps/editors/templates/editors/home.html:80
 #: apps/editors/templates/editors/home.html:95
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Jste #{0}. s {1} kontrolami"
 
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:125
@@ -14542,11 +14546,11 @@ msgstr "Doplněk byl na Firefox Marketplace zakázán."
 #: apps/pages/templates/pages/about.lhtml:3
 #: apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "O serveru Doplňky Mozilly"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "K čemu slouží tento web?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
@@ -14556,10 +14560,15 @@ msgid ""
 "application works. Take a look around and explore the thousands of ways to "
 "customize the way you do things online."
 msgstr ""
+"Web addons.mozilla.org, též známý jako \"AMO\", je oficiální web Mozilly s "
+"doplňky pro aplikace jako je Firefox, Thunderbird či SeaMonkey. Doplňky vám "
+"poskytují nové funkce a mění způsob, jakým se váš prohlížeč či aplikace "
+"chová. Porozhlédněte se okolo a podívejte se na tisíce způsobů, jak si "
+"přizpůsobit svůj online svět."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Kdo tyto doplňky vytváří?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
@@ -14569,49 +14578,67 @@ msgid ""
 "released. Add-ons marked as Experimental have not been reviewed and should "
 "only be installed with caution."
 msgstr ""
+"Doplňky, které zde naleznete, jsou vytvářeny tisíci vývojáři z naší "
+"komunity, která zahrnuje jednotlivce, kteří je vytváří ve svém volném čase, "
+"ale i velké korporace. Všechny veřejné doplňky, které jsou zde vystaveny, "
+"jsou kontrolovány týmem redaktorů dříve, než jsou publikovány. Doplňky "
+"označené jako experimentální nebyly zkontrolovány a jejich používání je na "
+"vlastní riziko."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Jak mohu sledovat, co se okolo AMO děje?"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid ""
 "There are several ways to find out the latest news from the world of add-"
 "ons:"
 msgstr ""
+"Existuje několik možností, jak sledovat poslední novinky ze světa doplňků:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid ""
 "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information "
 "for both add-on enthusiasts and developers."
 msgstr ""
+"Náš <a href=\"%(url)s\">blog serveru Doplňky Mozilly</a> je pravidelně "
+"aktualizován informacemi určenými pro uživatele doplňků a jejich vývojáře."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid ""
 "We often post news, tips, and tricks to our Twitter account, <a href=\"%"
 "(url)s\">mozamo</a>"
 msgstr ""
+"Často publikujeme novinky, tipy a triky v rámci našeho účtu na Twitteru, "
+"který je <a href=\"%(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid ""
 "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-"
 "ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Naše <a href=\"%(url)s\">fóra</a> jsou dobrým místem pro komunikaci s "
+"komunitou okolo doplňků a diskusi o nadcházejících změnách na AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "To zní skvěle! Jak se mohu zapojit?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
+"Existuje několik způsobů, jak se můžete zapojit. Pokud jste technicky "
+"zdatný(á), můžete:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid ""
 "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and "
 "update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Vytvořit vlastní doplněk</a>. Poskytujeme pro ně hosting a "
+"aktualizační služby zdarma. Můžete díky tomu získat velké množství "
+"uživatelů."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid ""
@@ -14619,6 +14646,9 @@ msgid ""
 "editor</a>! Our editors are add-on fans with a technical background who "
 "review add-ons for code quality and stability."
 msgstr ""
+"Pokud máte zkušenosti s vývojem doplňků, <a href=\"%(url)s\">můžete se stát "
+"redaktorem</a>! Naši redaktoři jsou technicky založení fanoušci doplňků, "
+"kteří kontrolují jejich kvalitu a stabilitu."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid ""
@@ -14626,32 +14656,41 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current "
 "bugs."
 msgstr ""
+"Pomozte vylepšit tento web. Jeho zdrojové kódy jsou volně dostupné. Máte tak "
+"možnost nahlásit chybu a opravit ji. Všechny existující chyby naleznete v "
+"<a href=\"%(url)s\"> Bugzille</a>."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid ""
 "If you're interested in add-ons but not quite as technical, there are still "
 "ways to help:"
 msgstr ""
+"Pokud máte zájem o doplňky, ale nejste technicky založený(á), stále existuje "
+"několik možností, jak se zapojit:"
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid ""
 "Tell your friends! <a href=\"%(url)s\">Spread Firefox</a> and let people know "
 "which add-ons you use."
 msgstr ""
+"Řekněte o nich svým přátelům! <a href=\"%(url)s\">Rozšiřujte povědomí o "
+"Firefoxu</a> a říkejte lidem, jaké doplňky používáte."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Zapojte se v našich <a href=\"%(url)s\">fórech</a>."
 
 #: apps/pages/templates/pages/about.lhtml:63
 msgid ""
 "Review add-ons on the site. Add-on authors are more likely to improve their "
 "add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Recenze doplňků na webu. Vývojáři doplňků rádi vylepšují své doplňky a píší "
+"nové, když vědí, že se lidem jejich práce líbí."
 
 #: apps/pages/templates/pages/about.lhtml:68
 msgid "I have a question"
-msgstr ""
+msgstr "Mám otázku"
 
 #: apps/pages/templates/pages/about.lhtml:69
 msgid ""
@@ -14659,16 +14698,22 @@ msgid ""
 "Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can "
 "<a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"Dobrým místem, kde začít, je <a href=\"%(faq_url)s\"><abbr title=\"Často "
+"kladené otázky (Frequently Asked Questions)\">FAQ</abbr></a>. Pokud tam "
+"nenaleznete odpověď na svůj dotaz, můžete se <a href=\"%(forum_url)s\">zeptat "
+"v našem fóru</a>."
 
 #: apps/pages/templates/pages/about.lhtml:74
 msgid ""
 "If you really need to contact someone from the Mozilla team, please see our "
 "<a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"Pokud skutečně potřebujete kontaktovat někoho z týmu Mozilly, podívejte se "
+"na naši stránku s <a href=\"%(url)s\">kontaktními informacemi</a>."
 
 #: apps/pages/templates/pages/about.lhtml:78
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Kdo pracuje na tomto webu?"
 
 #: apps/pages/templates/pages/about.lhtml:79
 msgid ""
@@ -14677,6 +14722,9 @@ msgid ""
 "significant contributors can be found on our <a href=\"%(url)s\"> Site "
 "Credits</a> page."
 msgstr ""
+"Za uplynulé roky se na tomto webu podílela řada lidí a to jak dobrovolníků z "
+"řad komunity, tak placených zaměstnanců. Seznam významných přispěvatelů "
+"můžete nalézt na <a href=\"%(url)s\">stránce s poděkováním</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -18789,7 +18837,7 @@ msgstr "Datum koupě"
 
 #: mkt/api/fields.py:19
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "Zvolte platnou volbu. Hodnota %(value)s není jednou z platných voleb."
 
 #: mkt/api/serializers.py:100
 #: mkt/site/forms.py:50
@@ -18806,7 +18854,7 @@ msgstr "Seznam doporučovaných aplikací"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "Pouze pro operátory"
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
@@ -18821,6 +18869,8 @@ msgid ""
 "You can not have more than one Featured Apps/Operator Shelf collection for "
 "the same category/carrier/region combination."
 msgstr ""
+"Nemůžete mít více než jednu sbírku doporučených aplikací či aplikací "
+"operátorů pro stejnou kombinaci kategorii/operátora/region."
 
 #: mkt/commonplace/templates/commonplace/index.html:15
 msgid ""
@@ -20661,9 +20711,8 @@ msgstr "Obecné publikum"
 
 #. L10n: %d is the age in years.
 #: mkt/constants/ratingsbodies.py:7
-#, fuzzy
 msgid "Not recommended for users younger than %d years of age"
-msgstr "Není doporučeno pro uživatele mladší 3 let"
+msgstr "Není doporučeno pro uživatele mladší %d let"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rejected for All Audiences"
@@ -20671,16 +20720,16 @@ msgstr "Zamítnuto pro všechny uživatele"
 
 #: mkt/constants/ratingsbodies.py:10
 msgid "For all ages"
-msgstr ""
+msgstr "Pro všechny věkové skupiny"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:12
 msgid "For ages %d+"
-msgstr ""
+msgstr "Pro věk %d+"
 
 #: mkt/constants/ratingsbodies.py:13
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Hodnocení zamítnuto"
 
 #: mkt/constants/ratingsbodies.py:97
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -20846,11 +20895,11 @@ msgstr "Nelze smazat sdílený účet"
 
 #: mkt/developers/cron.py:132
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Hodnocení obsahu změněno na Adult."
 
 #: mkt/developers/forms.py:58
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "Nemůžete zvolit region {region}."
 
 #: mkt/developers/forms.py:148
 msgid "All team members must have read and agreed to the developer agreement."
@@ -20978,7 +21027,7 @@ msgstr "Povolení nových regionů"
 
 #: mkt/developers/forms.py:710
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Zviditelnit mou aplikaci ve většině regionů"
 
 #: mkt/developers/forms.py:711
 msgid "Choose where my app is made available"
@@ -21037,7 +21086,7 @@ msgstr "Neplatný typ souboru. Jsou podporovány pouze soubory %s."
 
 #: mkt/developers/forms.py:1086
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Vložte prosím platné ID odeslání."
 
 #: mkt/developers/forms.py:1113
 msgid "Content rating record not found."
@@ -21196,7 +21245,6 @@ msgid "You are not permitted to change payment accounts."
 msgstr "Nemáte oprávnění ke změně účtů pro platby."
 
 #: mkt/developers/forms_payments.py:546
-#, fuzzy
 msgid "Account name"
 msgstr "Název účtu"
 
@@ -21313,7 +21361,7 @@ msgstr "Hodnocení obsahu bylo úspěšně uloženo."
 
 #: mkt/developers/views.py:374
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "Aplikace pro zahrnutí do systému byla úspěšně odeslána."
 
 #: mkt/developers/views.py:377
 msgid "There was an error with the form."
@@ -21708,7 +21756,7 @@ msgstr "Nastavení plateb"
 
 #: mkt/developers/templates/developers/apps/status.html:35
 msgid "This app is <b>incomplete</b> because it is missing content ratings."
-msgstr ""
+msgstr "Aplikace je <b>nekompletní</b>, protože neobsahuje hodnocení obsahu."
 
 #: mkt/developers/templates/developers/apps/status.html:37
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
@@ -21761,13 +21809,12 @@ msgstr ""
 "Tato aplikace byla redaktorem serveru Firefox Marketplace <b>zamítnuta</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:66
-#, fuzzy
 msgid "Your app has been <b>approved but not yet published</b>."
-msgstr "Aplikace byla <b>schválena, ale není veřejná</b>."
+msgstr "Aplikace byla <b>schválena, ale není publikována</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:67
 msgid "This app is waiting for your approval to be published."
-msgstr ""
+msgstr "Tato aplikace čeká na vaše schválení, aby mohla být veřejná."
 
 #: mkt/developers/templates/developers/apps/status.html:77
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -21794,7 +21841,7 @@ msgstr "Znovu odeslat aplikaci"
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Publish App"
-msgstr ""
+msgstr "Publikovat aplikaci"
 
 #: mkt/developers/templates/developers/apps/status.html:122
 msgid "Pre-Installed App Status"
@@ -22002,7 +22049,7 @@ msgstr "Přidat propagaci"
 #: mkt/lookup/templates/lookup/app_summary.html:25
 #: mkt/reviewers/forms.py:89
 msgid "Mozilla Contact"
-msgstr ""
+msgstr "Kontakt na Mozillu"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid ""
@@ -22398,6 +22445,8 @@ msgid ""
 "<strong class=\"rating-notice\">This app may be disabled in the future if no "
 "content ratings are assigned by then:</strong>"
 msgstr ""
+"<strong class=\"rating-notice\">Tato aplikace může být v budoucnu zakázána, "
+"pokud k ní nebude přiřazeno žádné hodnocení obsahu:</strong>"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:73
 msgid "Set up Content Ratings"
@@ -22406,11 +22455,11 @@ msgstr "Nastavení hodnocení obsahu"
 #: mkt/developers/templates/developers/apps/preload/home.html:10
 #: mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr ""
+msgstr "Integrovaná"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr ""
+msgstr "Integrovaná aplikace"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:21
 msgid "Download the test plan"
@@ -22423,7 +22472,7 @@ msgstr "Dokončeno testování?"
 #: mkt/developers/templates/developers/apps/preload/home.html:31
 #: mkt/developers/templates/developers/apps/preload/submit.html:37
 msgid "Submit your app for preload"
-msgstr ""
+msgstr "Přidejte svou integrovanou aplikaci"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -22435,10 +22484,18 @@ msgid ""
 "results on our servers where they will be reviewed by interested phone "
 "operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"Můžete přidat svou aplikaci jako tu, která bude <strong>integrována a "
+"distribuována se zařízeními s Firefox OS</strong> konkrétními telefonními "
+"operátory. Pro zahrnutí aplikace jako integrované můžete stáhnout níže "
+"zkušební šablonu, vyzkoušet svou aplikaci, vyplnit šablonu a nahrát nám zpět "
+"své výsledky na <a href=\"%(submit_url)s\">stránce pro odeslání</a>. Vaše "
+"výsledky testů budeme uchovávat na našich serverech, kde budou kontrolovány "
+"zájemci z řad telefonních operátorů. Pokud máte nějaké další otázky, můžete "
+"nám je poslat na e-mail %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr ""
+msgstr "Podmínky pro integrovanou aplikaci"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
@@ -22539,13 +22596,12 @@ msgid "Rating Category"
 msgstr "Kategorie hodnocení"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
-#, fuzzy
 msgid "Descriptors"
 msgstr "Popisy"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Interactive Elements"
-msgstr ""
+msgstr "Interaktivní prvky"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -22861,7 +22917,7 @@ msgstr "Probíhá kontaktování platebního serveru, vyčkejte prosím."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
-msgstr ""
+msgstr "Přidat referenční účet"
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -22879,11 +22935,11 @@ msgstr "Úprava účtu Bango"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
-msgstr ""
+msgstr "Upravit referenční účet"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:3
 msgid "Regions that require extra consideration:"
-msgstr ""
+msgstr "Regiony, které vyžadují extra zvažování:"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -22911,7 +22967,7 @@ msgstr ""
 msgid ""
 "(Subject to payments being available in that region for the selected price "
 "point)."
-msgstr ""
+msgstr "(Platby jsou dostupné pro tento region za zvolené ceny)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -23317,7 +23373,7 @@ msgstr "Navíc volo poskytuje několik užitečných příkazů, které můžete
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:177
 msgid "Fire up a local development server"
-msgstr ""
+msgstr "Spuštění místního vývojářského serveru"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:178
 msgid "Add the JavaScript library"
@@ -23832,6 +23888,8 @@ msgstr ""
 msgid ""
 "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
 msgstr ""
+"Firefox Marketplace je otevřen a přijímá aplikace. Přidání své aplikace "
+"provedete na:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
@@ -25040,6 +25098,9 @@ msgid ""
 "box. This will refund it in the Mozilla servers but not contact the payment "
 "provider."
 msgstr ""
+"Toto políčko zaškrtněte, pokud bylo ruční vrácení platby provedeno "
+"poskytovatelem plateb. Vrácení bude zaevidováno na serverech Mozilly, ale "
+"váš poskytovatel plateb nebude kontaktován."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:66
 msgid "Refund this transaction"
@@ -25083,7 +25144,7 @@ msgstr "Propojený PayPal"
 
 #: mkt/lookup/templates/lookup/user_summary.html:45
 msgid "Marketplace Credit"
-msgstr ""
+msgstr "Peníze na Marketplace"
 
 #: mkt/lookup/templates/lookup/user_summary.html:48
 msgid "apps purchased"
@@ -25188,20 +25249,20 @@ msgstr "Pohled na účet"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
-msgstr ""
+msgstr "Nástěnka pro operátory"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr ""
+msgstr "Nástěnka <small>operátora</small>"
 
 #: mkt/operators/templates/operators/preloads.html:4
 #: mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
-msgstr ""
+msgstr "Kandidáti na integrované aplikace"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr ""
+msgstr "Schválit jako integrovanou"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
@@ -25213,7 +25274,7 @@ msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:55
 msgid "No preload candidates found"
-msgstr ""
+msgstr "Nebyly nalezeni žádní kandidáti na integrovanou aplikaci"
 
 #. L10n: {0} is the addon name.
 #: mkt/purchase/webpay.py:42
@@ -25432,7 +25493,7 @@ msgstr "Probíhající kontrola"
 #: mkt/reviewers/helpers.py:43
 #: mkt/reviewers/templates/reviewers/queue_region.html:6
 msgid "Regional Queues"
-msgstr ""
+msgstr "Regionální fronty"
 
 #: mkt/reviewers/helpers.py:45
 msgid "Pending Themes"
@@ -25478,7 +25539,7 @@ msgstr "Probíhá kontrola ({0})"
 
 #: mkt/reviewers/helpers.py:114
 msgid "China ({0})"
-msgstr ""
+msgstr "Čína ({0})"
 
 #: mkt/reviewers/helpers.py:121
 msgid "Device ({0})"
@@ -25600,12 +25661,11 @@ msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" úspěšně zpracován (+{1} body, {2} celkem)."
 
 #: mkt/reviewers/views_themes.py:300
-#, fuzzy
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "\"{0}\" úspěšně zpracován (+{1} body, {2} celkem)."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} motiv úspěšně zpracován (+{1} bodů, {2} celkem)."
+msgstr[1] "{0} motivy úspěšně zpracovány (+{1} bodů, {2} celkem)."
+msgstr[2] "{0} motivů úspěšně zpracováno (+{1} bodů, {2} celkem)."
 
 #: mkt/reviewers/views_themes.py:315
 msgid ""
@@ -25652,7 +25712,7 @@ msgstr "Nástroje redaktora <small>Marketplace</small>"
 
 #: mkt/reviewers/templates/reviewers/base_minimal.html:19
 msgid "Back to Reviewer Tools"
-msgstr ""
+msgstr "Zpět na nástroje pro redaktora"
 
 #: mkt/reviewers/templates/reviewers/home.html:17
 msgid "{num} Pending App Review"
@@ -25717,7 +25777,7 @@ msgstr "Aktuálně nečekají na kontrolu žádné položky."
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:10
 msgid "{region} Review Queue"
-msgstr ""
+msgstr "Fronta na schválení pro region {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:31
 #: mkt/reviewers/templates/reviewers/includes/details.html:23
@@ -25786,7 +25846,7 @@ msgstr "Doména aplikace"
 #: mkt/reviewers/templates/reviewers/includes/details.html:43
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:65
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
-msgstr ""
+msgstr "<strong>IDN doména!</strong> verze punycode: %(punycode_app_domain)s"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:50
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:72
@@ -25924,7 +25984,7 @@ msgstr "Možnosti kontroly"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Pokročilé možnosti po kontrole"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
@@ -26072,7 +26132,7 @@ msgstr "Typ aplikace"
 
 #: mkt/search/forms.py:102
 msgid "Works offline"
-msgstr ""
+msgstr "Funguje offline"
 
 #: mkt/search/forms.py:104
 msgid "Supported languages"
@@ -26746,20 +26806,20 @@ msgstr "Musíte zvolit alespoň jednu kategorii."
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2004
 msgid "awaiting approval"
-msgstr ""
+msgstr "čeká na schválení"
 
 #. L10n: An app requires additional review for a particular region.
 #: mkt/webapps/models.py:2008
 msgid "requires additional review"
-msgstr ""
+msgstr "vyžaduje další kontrolu"
 
 #: mkt/webapps/models.py:2047
 msgid "{region} approval status"
-msgstr ""
+msgstr "Stav schválení regionu {region} "
 
 #: mkt/webapps/models.py:2052
 msgid "{region} nomination date"
-msgstr ""
+msgstr "Datum nominace regionu {region}"
 
 #: mkt/webapps/tasks.py:116
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
