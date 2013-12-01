@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-28 14:49+0000\n"
+"PO-Revision-Date: 2013-11-30 07:26+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385650145.0\n"
+"X-POOTLE-MTIME: 1385796388.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1266,19 +1266,19 @@ msgstr "任何"
 
 #: media/js/mkt/reviewers.js:257
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "已通過審查應用程式：{app}"
 
 #: media/js/mkt/reviewers.js:260
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "已拒絕應用程式：{app}"
 
 #: media/js/mkt/reviewers.js:266
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "審查錯誤應用程式：{app}"
 
 #: media/js/mkt/reviewers.js:267
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "拒絕錯誤應用程式：{app}"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1784,7 +1784,7 @@ msgstr "評論次數"
 
 #: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "讀取翻譯錯誤"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1826,7 +1826,7 @@ msgstr "附加元件通過驗證。"
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "{0} 則通知{0} 則通知"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
