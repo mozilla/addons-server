@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-23 10:07+0000\n"
-"Last-Translator: Shen <steekid@icloud.com>\n"
+"PO-Revision-Date: 2013-12-01 07:37+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385201232.0\n"
+"X-POOTLE-MTIME: 1385883448.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2049,11 +2049,11 @@ msgstr "已通过查找工具删除用户 {0.name} {0.id} 。"
 
 #: apps/amo/log.py:653
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "{addon} 内容分级已改为成人。"
 
 #: apps/amo/log.py:659
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "{addon} 内容分级已更改。"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2145,6 +2145,9 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> 请输入下面的两个<strong>单词</strong>，<strong>以空格分隔</strong>。 </p> <p> "
+"如果真的很难读出，你可以<a href=\"#\" id=\"recaptcha_different\">再换一组单词</a>或者<a href=\"#\" "
+"id=\"recaptcha_audio\">尝试不同类型的挑战</a>。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
@@ -2345,15 +2348,15 @@ msgstr "{0} :: 收藏集 :: {1}"
 
 #: apps/bandwagon/forms.py:19
 msgid "Only I can view this collection."
-msgstr "只有我可以查看此收藏集。"
+msgstr "只有我能查看此收藏集。"
 
 #: apps/bandwagon/forms.py:20
 msgid "Anybody can view this collection."
-msgstr "任何人都可以查看此收藏集。"
+msgstr "任何人都能查看此收藏集。"
 
 #: apps/bandwagon/forms.py:121
 msgid "Give your collection a name."
-msgstr "给您的收藏集命名。"
+msgstr "给您的收藏集起个名。"
 
 #: apps/bandwagon/forms.py:124
 msgid "URL:"
@@ -2493,12 +2496,12 @@ msgstr "名称："
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:39
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "或<a id=\"collections-new-cancel\" href=\"#\">取消</a>"
+msgstr "或者 <a id=\"collections-new-cancel\" href=\"#\">取消</a>"
 
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr "您必须有一个附加组件帐户才能对收藏集进行评价。"
+msgstr "您必须有一个附加组件帐户才能对收藏集评分。"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:19 templates/base.html:134 templates/impala/base.html:197
 msgid "Create an Add-ons Account"
@@ -2506,7 +2509,7 @@ msgstr "创建附加组件账户"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:23 templates/base.html:137 templates/impala/base.html:200
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "或<a href=\"%(login)s\">以您现有的帐户登录</a>"
+msgstr "或者 <a href=\"%(login)s\">登录您已有的帐户</a>"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
@@ -2519,7 +2522,8 @@ msgstr "私有"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:45 apps/bandwagon/templates/bandwagon/mobile/listing_items.html:9
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> 位关注者"
+msgstr[0] "<span>%(num)s</span> 个关注者"
+msgstr[1] "<span>%(num)s</span> 个关注者"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:62
 msgid "About this Collection"
@@ -2583,7 +2587,7 @@ msgstr "常用标签"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "More by this User"
-msgstr "此用户的其他收藏集"
+msgstr "该用户的更多内容"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:176
 msgid "See all collections by this user"
@@ -2608,7 +2612,7 @@ msgstr "以下这些附加组件已被您使用<b>添加到收藏夹</b>功能�
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
-msgstr "我收藏的附加组件"
+msgstr "我最喜爱的附加组件"
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:24
 msgid "<span>%(addons)s</span> add-on"
@@ -2618,7 +2622,7 @@ msgstr[0] "<span>%(addons)s</span> 个附加组件"
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:31
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> 位关注者"
+msgstr[0] "<span>%(followers)s</span> 个关注者"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:5
 msgid "Popular Collections"
@@ -2642,14 +2646,14 @@ msgstr "收藏集是相关附加组件的集合，任何人都可以创建与分
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s 位周关注者"
+msgstr[0] "%(num)s 名周订阅者"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s 位月关注者"
+msgstr[0] "每月 %(num)s 个关注者"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2657,11 +2661,11 @@ msgstr[0] "%(num)s 位月关注者"
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s 位关注者"
+msgstr[0] "%(num)s 名订阅者"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:56 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9 apps/devhub/templates/devhub/personas/edit.html:27
 msgid "by {0}"
-msgstr "作者：{0}"
+msgstr "作者 {0}"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:5 apps/bandwagon/templates/bandwagon/collection_widgets.html:7 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Stop Following"
@@ -2669,11 +2673,11 @@ msgstr "停止关注"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:6 apps/bandwagon/templates/bandwagon/collection_widgets.html:7 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Follow this Collection"
-msgstr "关注此收藏集"
+msgstr "关注这个收藏集"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:17
 msgid "Edit this Collection"
-msgstr "编辑此收藏集"
+msgstr "编辑这个收藏集"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:21 apps/bandwagon/templates/bandwagon/collection_widgets.html:23 apps/devhub/templates/devhub/addons/listing/item_actions.html:45
 #: apps/stats/templates/stats/stats.html:75 apps/stats/templates/stats/stats.html:79 apps/stats/templates/stats/stats.html:81 mkt/lookup/templates/lookup/helpers/app_header.html:33
@@ -2755,8 +2759,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"您可以添加多个贡献者到这个收藏集。被添加的贡献者可以从这个收藏集添加和移除附加组件，但不能更改名称或描述。在下面的输入框中输入他的电子邮件地址就能将其添加为贡献者（贡献者必须拥有一个 Mozilla 附加组"
-"件帐户）。"
+"您可以添加多个贡献者到这个收藏集。被添加的贡献者可以从这个收藏集添加和移除附加组件，但不能更改名称和描述。在下面的框中输入他的电子邮件地址就能将其添加为"
+"贡献者了（贡献者必须拥有一个 Mozilla 附加组件帐户）。"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40 apps/devhub/templates/devhub/payments/refunds.html:13 mkt/constants/apps.py:8
 msgid "User"
@@ -2787,11 +2791,11 @@ msgstr "贡献者"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
-msgstr "管理员设置"
+msgstr "管理设置"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:76
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>警告：</b>改变此收藏集的所有者，您将不能再编辑它，并且只能添加和删除附加组件。"
+msgstr "<b>警告：</b>改变此收藏集的所有者后您就不能再编辑它了，只能添加和删除附加组件。"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:188 apps/devhub/templates/devhub/addons/submit/describe.html:90
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:52 apps/devhub/templates/devhub/addons/submit/upload_webapp.html:42
@@ -2826,7 +2830,7 @@ msgstr "最新的收藏集"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:8
 msgid "Collections by Name"
-msgstr "按名称排序的收藏集"
+msgstr "按名称排序收藏集"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:9
 msgid "Recently Updated Collections"
@@ -2876,7 +2880,9 @@ msgstr "您收藏集中的附加组件"
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
-msgstr "要在此收藏集中添加一个附加组件，请在下面的框中输入名称后回车。您也可以使用遍及整个网站的<strong>添加到收藏集</strong>链接来添加附加组件。"
+msgstr ""
+"要在此收藏集中增加一个附加组件，请在下面的框中输入其名称然后回车。您也可以使用遍布整个网站的<strong>添加到收藏集</strong>链接来添加附加"
+"组件。"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:420 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
@@ -2884,7 +2890,7 @@ msgstr "附加组件"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:26
 msgid "Enter the name of the add-on to include"
-msgstr "输入要添加的附加组件名称"
+msgstr "输入要加入的附加组件名称"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:28
 msgid "Add to Collection"
@@ -2908,11 +2914,11 @@ msgstr "收藏集"
 
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:8
 msgid "Groups of related add-ons that anyone can create."
-msgstr "任何人都可以创建的相关附加组件的集合。"
+msgstr "任何人都可以建立的一组相关的附加组件名单。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:3 apps/blocklist/templates/blocklist/blocked_list.html:3 apps/blocklist/templates/blocklist/blocked_list.html:10
 msgid "Blocked Add-ons"
-msgstr "已被封锁的附加组件"
+msgstr "封锁的附加组件"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6 mkt/developers/templates/developers/apps/status.html:303
 msgid "Blocklist"
@@ -2925,7 +2931,7 @@ msgstr "为了保护您，<b>{0}</b> 已被封锁。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:15
 msgid "Why was it blocked?"
-msgstr "为什么被封锁了？"
+msgstr "为什么它被封锁？"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:17
 msgid "Who is affected?"
@@ -2937,7 +2943,7 @@ msgstr "这是什么意思？"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:22
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr "强烈建议用户禁用有问题的附加组件或插件，但是如果用户决定承担描述的这些风险，依然可以选择继续使用。"
+msgstr "强烈建议用户禁用有问题的附加组件或者插件，但如果用户决定接受描述的这些风险，依然可以选择使用它们。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:27
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
@@ -2948,20 +2954,21 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"当 Mozilla 注意到有附加组件、插件，或其他第三方软件严重危及 %(app)s 的安全性、稳定性或性能，并符合<a href=\"%(criteria)s\">特定标准</a>时，该软件就可能被封锁，防止被公众使用。有关更多信息，请阅读<a "
-"href=\"%(support)s\">这篇用户支持文章</a>。"
+"当 Mozilla 发现有附加组件、插件，或其他第三方软件严重危及 %(app)s 的安全性、稳定性或性能，并且符合<a href=\"%"
+"(criteria)s\">特定标准</a>时，该软件就可能被封锁，防止被公众使用。有关更多信息，请阅读<a href=\"%"
+"(support)s\">这篇支持文章</a>。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "%(date)s 被封锁。<a href=\"%(link)s\">查看封锁请求</a>。"
+msgstr "阻止于 %(date)s 。<a href=\"%(link)s\">查看阻止请求</a> 。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
-msgstr "%(date)s 被封锁。"
+msgstr "%(date)s 阻止。"
 
 #: apps/blocklist/templates/blocklist/blocked_list.html:11
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr "已知以下软件会对 {app} 造成严重的安全性、稳定性或性能问题。"
+msgstr "已知在 {app} 上，以下软件会引发严重的安全性、稳定性或者性能问题。"
 
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:76 apps/browse/feeds.py:98
@@ -2997,12 +3004,12 @@ msgstr "搜索工具"
 
 #: apps/browse/views.py:55 apps/browse/views.py:65 apps/search/forms.py:88
 msgid "Most Users"
-msgstr "最多用户"
+msgstr "用户最多"
 
 #: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:291 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:96
 msgid "Up & Coming"
-msgstr "新秀"
+msgstr "崭露头角"
 
 #: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 mkt/developers/views.py:75 mkt/developers/views.py:82
 msgid "Created"
@@ -3129,7 +3136,8 @@ msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 浏览
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr ""
-"在 <a href=\"https://developer.mozilla.org/\">Mozilla 开发者网络</a>学习如何<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">为 Firefox 制作 OpenSearch 插件</a>"
+"在 <a href=\"https://developer.mozilla.org/\">Mozilla 开发者中心</a> <a href=\"https:"
+"//developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">自己制作</a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:187
 msgid "Complete Themes"
@@ -3149,11 +3157,11 @@ msgstr "最新的扩展"
 
 #: apps/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
-msgstr "按名称排序的扩展"
+msgstr "按名称排序扩展"
 
 #: apps/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr "按周下载量排序的扩展"
+msgstr "按周下载量排序扩展"
 
 #: apps/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
@@ -3232,12 +3240,12 @@ msgstr[0] "浏览 %(name)s 中的 %(cnt)s 个扩展 &raquo;"
 #: apps/browse/templates/browse/impala/category_landing.html:52
 msgid "See the %(cnt)s app in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s apps in %(name)s &raquo;"
-msgstr[0] "浏览 %(name)s 里的 %(cnt)s 个应用 &raquo;"
+msgstr[0] "浏览 %(name)s 中的 %(cnt)s 个应用 &raquo;"
 
 #: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47 apps/perf/templates/perf/index.html:109 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
-msgstr "找不到结果。"
+msgstr "未找到结果。"
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
@@ -3266,19 +3274,21 @@ msgstr "详细了解"
 
 #: apps/browse/templates/browse/personas/category_landing.html:6 apps/browse/templates/browse/personas/mobile/category_landing.html:5
 msgid "View All Recently Added"
-msgstr "浏览所有最近添加的"
+msgstr "查看所有最近添加的"
 
 #: apps/browse/templates/browse/personas/category_landing.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:6
 msgid "View All Most Popular"
-msgstr "浏览所有最热门的"
+msgstr "查看全部热门作品"
 
 #: apps/browse/templates/browse/personas/category_landing.html:8 apps/browse/templates/browse/personas/mobile/category_landing.html:7
 msgid "View All Top Rated"
-msgstr "浏览所有评分最高的"
+msgstr "查看所有最高评分"
 
 #: apps/browse/templates/browse/personas/category_landing.html:40
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "用超过30万款设计让你的浏览器更具个性！将鼠标移动到背景主题上即可预览效果。<a href=\"%(url)s\" class=\"more-info\">开始浏览</a>"
+msgstr ""
+"用超过30万款设计让您的浏览器彰显个性！将鼠标移动到背景主题上即可预览效果。<a href=\"%(url)s\" class=\"more-"
+"info\">开始探索吧</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
@@ -3295,7 +3305,7 @@ msgstr "新秀主题"
 
 #: apps/browse/templates/browse/personas/category_landing.html:87
 msgid "View All Up & Coming"
-msgstr "查看全部新秀作品"
+msgstr "查看所有潜力作品"
 
 #: apps/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
@@ -3392,7 +3402,7 @@ msgstr "您的附加组件的报告"
 
 #: apps/compat/templates/compat/reporter.html:30 apps/compat/templates/compat/reporter_detail.html:9
 msgid "Add-on Compatibility Center"
-msgstr "附加组件兼容性中心"
+msgstr "附加组件兼容中心"
 
 #: apps/compat/templates/compat/reporter.html:34
 msgid "Enter the GUID of an add-on below to view any reports we've received."
@@ -3487,7 +3497,7 @@ msgstr "未知"
 
 #: apps/constants/applications.py:154 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:47 templates/mobile/header.html:5
 msgid "Desktop"
-msgstr "桌面"
+msgstr "桌面版"
 
 #: apps/constants/applications.py:161 mkt/constants/platforms.py:33 mkt/constants/platforms.py:45
 msgid "Firefox Mobile"
@@ -3512,7 +3522,7 @@ msgstr "等待初步审核"
 
 #: apps/constants/base.py:28
 msgid "Pending approval"
-msgstr "等待审核中"
+msgstr "等待审核"
 
 #: apps/constants/base.py:29
 msgid "Awaiting Full Review"
@@ -3540,7 +3550,7 @@ msgstr "已初步审核并等待全面审核"
 
 #: apps/constants/base.py:36
 msgid "Pending a review choice"
-msgstr "等待审核选择"
+msgstr "等待选择审核"
 
 #: apps/constants/base.py:37 mkt/reviewers/helpers.py:152 mkt/reviewers/templates/reviewers/themes/history_table.html:34
 msgid "Deleted"
@@ -3651,11 +3661,11 @@ msgstr "仅在此附加组件页面和开发者简介中询问"
 
 #: apps/constants/base.py:341
 msgid "Ask after users start downloading this add-on"
-msgstr "在用户开始下载此附加组件后询问"
+msgstr "用户开始下载这个附加组件后询问"
 
 #: apps/constants/base.py:342
 msgid "Ask before users can download this add-on"
-msgstr "在用户下载此附加组件前询问"
+msgstr "用户下载这个附加组件前询问"
 
 #: apps/constants/base.py:409
 msgid "Exception"
@@ -3819,7 +3829,7 @@ msgstr "知识共享“署名-相同方式共享 3.0”"
 
 #: apps/constants/payments.py:18
 msgid "Australian Dollar"
-msgstr "澳大利亚元"
+msgstr "澳元"
 
 #: apps/constants/payments.py:19
 msgid "Brazilian Real"
@@ -3871,23 +3881,23 @@ msgstr "挪威克朗"
 
 #: apps/constants/payments.py:31
 msgid "New Zealand Dollar"
-msgstr "挪威克朗"
+msgstr "新西兰元"
 
 #: apps/constants/payments.py:32 mkt/constants/bango.py:26
 msgid "Philippine Peso"
-msgstr "新西兰元"
+msgstr "菲律宾比索"
 
 #: apps/constants/payments.py:33
 msgid "Polish Zloty"
-msgstr "菲律宾比索"
+msgstr "波兰兹罗提"
 
 #: apps/constants/payments.py:34
 msgid "Pound Sterling"
-msgstr "波兰兹罗提"
+msgstr "英镑"
 
 #: apps/constants/payments.py:35
 msgid "Singapore Dollar"
-msgstr "英镑"
+msgstr "新加坡元"
 
 #: apps/constants/payments.py:36
 msgid "Swedish Krona"
@@ -3919,11 +3929,11 @@ msgstr "购买"
 
 #: apps/constants/payments.py:78 apps/constants/payments.py:85
 msgid "Refund"
-msgstr "应用内购买"
+msgstr "退还"
 
 #: apps/constants/payments.py:79
 msgid "Voluntary"
-msgstr "退款"
+msgstr "自愿"
 
 #: apps/constants/payments.py:122
 msgid "Approved Instantly"
@@ -3999,11 +4009,11 @@ msgstr "我的附加组件的近期更改"
 
 #: apps/devhub/forms.py:85 mkt/developers/forms.py:179
 msgid "Must have at least one owner."
-msgstr "至少需要一位所有者。"
+msgstr "至少要有一个所有者。"
 
 #: apps/devhub/forms.py:88
 msgid "At least one author must be listed."
-msgstr "至少需要列出一位作者。"
+msgstr "至少要列出一个作者"
 
 #: apps/devhub/forms.py:92
 msgid "An author can only be listed once."
@@ -4011,28 +4021,28 @@ msgstr "每位作者只能被列出一次。"
 
 #: apps/devhub/forms.py:110
 msgid "Password incorrect."
-msgstr "密码错误。"
+msgstr "密码不正确。"
 
 #: apps/devhub/forms.py:129 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:128 mkt/constants/submit.py:7
 #: mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
 msgid "Details"
-msgstr "详细信息"
+msgstr "详情"
 
 #: apps/devhub/forms.py:138
 msgid "What is your license's name?"
-msgstr "您的许可协议的名称是什么？"
+msgstr "您的许可协议的名称是？"
 
 #: apps/devhub/forms.py:141
 msgid "Provide the text of your license."
-msgstr "请提供您的许可协议的内容。"
+msgstr "提供您许可协议的文字内容。"
 
 #: apps/devhub/forms.py:177
 msgid "License text is required when choosing Other."
-msgstr "选择其他时必须填写许可协议的内容。"
+msgstr "选择其他时必须填写许可协议的文本内容。"
 
 #: apps/devhub/forms.py:224
 msgid "This add-on has an End User License Agreement"
-msgstr "这个附加组件包含一份最终用户许可协议"
+msgstr "这个附加组件有一份最终用户许可协议"
 
 #: apps/devhub/forms.py:226
 msgid "Please specify your add-on's End User License Agreement:"
@@ -4040,7 +4050,7 @@ msgstr "请指定您的附加组件的最终用户许可协议："
 
 #: apps/devhub/forms.py:229
 msgid "This add-on has a Privacy Policy"
-msgstr "这个附加组件有隐私政策"
+msgstr "这个附加组件有自己的隐私策略"
 
 #: apps/devhub/forms.py:231
 msgid "Please specify your add-on's Privacy Policy:"
@@ -4048,11 +4058,11 @@ msgstr "请指定您的附加组件的隐私政策："
 
 #: apps/devhub/forms.py:270
 msgid "Why did you make this app?"
-msgstr "您开发这个应用的原因是什么？"
+msgstr "你为什么开发这个应用？"
 
 #: apps/devhub/forms.py:271
 msgid "What's next for this app?"
-msgstr "这个应用的下一步计划是什么？"
+msgstr "这个应用的下一步计划是？"
 
 #: apps/devhub/forms.py:273
 msgid "Why did you make this add-on?"
@@ -4088,7 +4098,7 @@ msgstr "请输入小于 ${0} 的建议金额。"
 
 #: apps/devhub/forms.py:372
 msgid "PayPal ID required to accept contributions."
-msgstr "必须提供一个 PayPal 帐号用于接受捐款。"
+msgstr "需要 PayPal 帐号以便接受捐助。"
 
 #: apps/devhub/forms.py:378
 msgid "Could not validate PayPal id."
@@ -4749,7 +4759,7 @@ msgstr "附加组件验证器"
 
 #: apps/devhub/templates/devhub/index.html:201
 msgid "Check your add-on for common problems and errors. Open to anyone, not just add-ons hosted here."
-msgstr "为您的附加组件检查可能存在的常见问题和错误。对任何附加组件都是开放的，而不仅限于托管在这里的附加组件。"
+msgstr "为您的附加组件检查可能存在的常见错误和问题。不止这里托管的附加组件，更开放给每个人。"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4766,7 +4776,7 @@ msgstr "更多应用..."
 
 #: apps/devhub/templates/devhub/nav.html:32 apps/devhub/templates/devhub/addons/submit/base.html:4 mkt/developers/templates/developers/nav.html:25 mkt/developers/templates/developers/nav.html:39
 msgid "Submit a New App"
-msgstr "提交新的应用"
+msgstr "提交一个新的应用"
 
 #: apps/devhub/templates/devhub/nav.html:44
 msgid "more add-ons..."
@@ -4840,15 +4850,15 @@ msgstr "唯一 ID"
 
 #: apps/devhub/templates/devhub/package_addon.html:37
 msgid "Package Name"
-msgstr "包名"
+msgstr "打包名称"
 
 #: apps/devhub/templates/devhub/package_addon.html:41
 msgid "Who's working on your add-on?"
-msgstr "哪些人与您一起开发这个附加组件？"
+msgstr "谁与您共同制作这个附加组件？"
 
 #: apps/devhub/templates/devhub/package_addon.html:43
 msgid "Tell us about the people or companies behind this add-on. This information appears in the add-on's About dialog."
-msgstr "告诉我们关于这个附加组件背后的人或企业。这些信息将会出现在附加组件的“关于”对话框里。"
+msgstr "告诉我们为这个附加组件付出努力的人或者公司。这些信息将会显示在附加组件的“关于”对话框里。"
 
 #: apps/devhub/templates/devhub/package_addon.html:49
 msgid "Primary Author"
@@ -4874,7 +4884,7 @@ msgstr "支持的应用程序和版本"
 
 #: apps/devhub/templates/devhub/package_addon.html:80
 msgid "Choose pre-built features"
-msgstr "选择预建特性"
+msgstr "选择预生成特性"
 
 #: apps/devhub/templates/devhub/package_addon.html:82
 msgid "Get started quickly by selecting user interface components to include in your add-on package. We'll include documented code for each item you select so your extension will work out of the box."
@@ -4886,11 +4896,13 @@ msgstr "提交并生成"
 
 #: apps/devhub/templates/devhub/package_addon.html:102
 msgid "Advanced Building"
-msgstr "进阶构建"
+msgstr "高级构建"
 
 #: apps/devhub/templates/devhub/package_addon.html:104
 msgid "Want to create XULRunner applications, XPCOM components, and other advanced skeletons? Visit the <a href=\"%(url)s\">MozDev Project Wizard</a>."
-msgstr "想要创建 XULRunner 应用程序、XPCOM 组件或其他高级框架吗？请访问 <a href=\"%(url)s\">MozDev Project Wizard</a>。"
+msgstr ""
+"您想要建立 XULRunner 应用程序，XPCOM 组件，或其他先进的架构吗？访问 <a href=\"%(url)s\">MozDev "
+"项目向导</a>。"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:10
 msgid "Add-on packaged successfully!"
@@ -4908,7 +4920,7 @@ msgstr "请稍候&hellip;"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:24
 msgid "JavaScript needs to be enabled to fetch the packaged add-on."
-msgstr "下载附加组件包需要启用 JavaScript。"
+msgstr "下载封装的附加组件需要启用 JavaScript。"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:29
 msgid "What do I do next?"
@@ -4918,7 +4930,9 @@ msgstr "接下来我要做什么？"
 msgid ""
 "<ol> <li> Follow the instructions in the packaged source code to create your own preferences and make your own customizations. </li> <li>Remove any source code that you don't eventually use.</li> "
 "<li>Read the documentation and ask for help when you need it!</li> </ol>"
-msgstr "<ol> <li>根据打包源代码中的说明创建您自己的设置并进行自己的自定义。</li><li>移除任何您最终用不到的源代码。</li> <li>阅读文档并在需要的时候寻求帮助！</li> </ol>"
+msgstr ""
+"<ol> <li>根据打包源代码中的说明创建你自己的设置并进行自己的自定义。</li><li>移除任何你最终用不到的源代码。</li> "
+"<li>阅读文档并在需要的时候寻求帮助！</li> </ol>"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:41
 msgid ""
@@ -9901,7 +9915,7 @@ msgstr "新审核员"
 
 #: apps/editors/templates/editors/home.html:80 apps/editors/templates/editors/home.html:95
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "您是 #{0}，共 {1} 条评论"
 
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:125
@@ -10516,115 +10530,127 @@ msgstr "%s 等级"
 
 #: apps/market/tasks.py:114
 msgid "App disabled on the Firefox Marketplace."
-msgstr "Firefox 市场的应用被禁用。"
+msgstr "火狐应用市场中被禁用的应用。"
 
 #: apps/market/tasks.py:117
 msgid "Add-on disabled on the Firefox Marketplace."
-msgstr "Firefox 市场禁用了附加组件。"
+msgstr "火狐应用市场中被禁用的附加组件。"
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "关于 Mozilla 附加组件"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "这是个什么网站？"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org，俗称“AMO”，是 Mozilla 官方的为 Mozilla 附加组件所设立的站点，服务如 "
+"Firefox、Thunderbird 和 "
+"SeaMonkey。附加组件可以增添或改变你使用浏览器或应用程序的功能或方式。四处逛逛，探索无数的方法来定制你的在线网络生活。"
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "谁创造了这些附加组件？"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"这里列出的附加组件是由我们社区广泛的开发者所创作，从个人爱好者到大型企业。所有公开列出的附加组件都已由一组编辑在发布之前进行审核。尚未审核的附加组件被标"
+"记为“实验性”，应谨慎安装。"
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "我该如何了解 AMO 上发生的事？"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "有几种方法能找出在附加组件世界的最新消息："
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "我们的<a href=\"%(url)s\">附加组件博客</a>为附加组件开发者和爱好者定期提供最新消息。"
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "我们的 Twitter 账户 <a href=\"%(url)s\">mozamo</a> 会时常发布新闻、提示和小技巧。"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "我们的<a href=\"%(url)s\">论坛</a>是附加组件社群交流与讨论 AMO 最新变化的一个好地方。"
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "这听起来真棒！我该如何参与？"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "这里有很多方式可以参与进来。如果你在技术方面更感兴趣："
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">制作你自己的附加组件</a>。我们提供免费的托管和更新服务，并能帮助你接触到大量的用户群体。"
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
 msgstr ""
+"如果你有附加组件的开发经验，<a href=\"%"
+"(url)s\">成为一名编辑</a>也不错！我们的编辑是有技术背景的附加组件爱好者，负责审查附加组件源代码的质量和稳定性。"
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
-msgstr ""
+msgstr "帮助改善本网站。它是开源的，你可以提出缺陷和提交补丁。<a href=\"%(url)s\">Bugzilla</a> 包含了所有我们现有的缺陷。"
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "如果你对附加组件感兴趣，但没有太多技术知识，还是有办法来帮忙的："
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! <a href=\"%(url)s\">Spread Firefox</a> and let people know which add-ons you use."
-msgstr ""
+msgstr "告诉你的朋友！<a href=\"%(url)s\">推广 Firefox</a> 并让人们知道你在用哪些附加组件。"
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "参与我们的<a href=\"%(url)s\">论坛</a>。"
 
 #: apps/pages/templates/pages/about.lhtml:63
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "为本站的附加组件评分。让附加组件的作者知道人们欣赏他们的作品，以此激励他们改进和编写新的附加组件。"
 
 #: apps/pages/templates/pages/about.lhtml:68
 msgid "I have a question"
-msgstr ""
+msgstr "我有个问题"
 
 #: apps/pages/templates/pages/about.lhtml:69
 msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
 msgstr ""
+"你可以从我们的<a href=\"%(faq_url)s\"><abbr "
+"title=\"最常被问到问题\">常见问题</abbr></a>入手。如果你还是没能找到答案，可以到<a href=\"%"
+"(forum_url)s\">我们的论坛问问</a>。"
 
 #: apps/pages/templates/pages/about.lhtml:74
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "如果你真的需要联系 Mozilla 团队中的某人，请查阅我们的<a href=\"%(url)s\">联系信息</a>页面。"
 
 #: apps/pages/templates/pages/about.lhtml:78
 msgid "Who works on this website?"
-msgstr ""
+msgstr "这个网站是谁的作品？"
 
 #: apps/pages/templates/pages/about.lhtml:79
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"多年以来，有很多人对本站作出过贡献，包括社区志愿者和一个专门的 AMO 团队。显著贡献者的名单可在我们的<a href=\"%"
+"(url)s\">网站贡献</a>页面找到。"
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -13668,7 +13694,7 @@ msgstr "购买日期"
 
 #: mkt/api/fields.py:19
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "请选择一个有效的选项。%(value)s 不是一个可用的选项。"
 
 #: mkt/api/serializers.py:100 mkt/site/forms.py:50
 msgid "Form could not be submitted."
@@ -15370,7 +15396,7 @@ msgstr "大众级"
 #. L10n: %d is the age in years.
 #: mkt/constants/ratingsbodies.py:7
 msgid "Not recommended for users younger than %d years of age"
-msgstr ""
+msgstr "不推荐不满 %d 岁的用户使用"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rejected for All Audiences"
@@ -15378,16 +15404,16 @@ msgstr "完全拒绝"
 
 #: mkt/constants/ratingsbodies.py:10
 msgid "For all ages"
-msgstr ""
+msgstr "适用所有年龄段"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:12
 msgid "For ages %d+"
-msgstr ""
+msgstr "适用年龄大于 %d"
 
 #: mkt/constants/ratingsbodies.py:13
 msgid "Rating Rejected"
-msgstr ""
+msgstr "分级被驳回"
 
 #: mkt/constants/ratingsbodies.py:97
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -15536,11 +15562,11 @@ msgstr "不能删除已分享的账户"
 
 #: mkt/developers/cron.py:132
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "内容分级已改为成人。"
 
 #: mkt/developers/forms.py:58
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "您无法选择 {region}。"
 
 #: mkt/developers/forms.py:148
 msgid "All team members must have read and agreed to the developer agreement."
@@ -15632,7 +15658,7 @@ msgstr "启用新地区"
 
 #: mkt/developers/forms.py:710
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "让我的应用在大部分地区可用"
 
 #: mkt/developers/forms.py:711
 msgid "Choose where my app is made available"
@@ -15688,7 +15714,7 @@ msgstr "错误的文件类型。仅支持 %s 文件。"
 
 #: mkt/developers/forms.py:1086
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "请输入一个有效的提交ID。"
 
 #: mkt/developers/forms.py:1113
 msgid "Content rating record not found."
@@ -15844,7 +15870,7 @@ msgstr "您不被允许修改付款帐号。"
 
 #: mkt/developers/forms_payments.py:546
 msgid "Account name"
-msgstr ""
+msgstr "账号名称"
 
 #: mkt/developers/forms_payments.py:560
 msgid "No payment account set up for that app"
@@ -15885,7 +15911,7 @@ msgstr "清单的编码与 HTTP Content-Type 中提供的字符集不匹配。"
 
 #: mkt/developers/tasks.py:460
 msgid "{region} region added to the Firefox Marketplace"
-msgstr "{region} 区域已添加到 Firefox 市场"
+msgstr "{region} 区域已添加到火狐应用市场"
 
 #: mkt/developers/tasks.py:463
 msgid "New regions added to the Firefox Marketplace"
@@ -16258,7 +16284,7 @@ msgstr "设置付款"
 
 #: mkt/developers/templates/developers/apps/status.html:35
 msgid "This app is <b>incomplete</b> because it is missing content ratings."
-msgstr ""
+msgstr "此应用<b>不完整</b>，因为它缺少内容分级。"
 
 #: mkt/developers/templates/developers/apps/status.html:37 mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
 msgid "Set Up Content Ratings"
@@ -16298,15 +16324,15 @@ msgstr "您的应用被网站管理员阻止。如果有问题，请邮件联系
 
 #: mkt/developers/templates/developers/apps/status.html:64
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
-msgstr "这个应用已经被 Firefox 市场编辑 <b>拒绝</b>。"
+msgstr "这个应用已经被火狐应用市场的审核者<b>拒绝</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:66
 msgid "Your app has been <b>approved but not yet published</b>."
-msgstr ""
+msgstr "你的应用<b>已被批准但尚未发布</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:67
 msgid "This app is waiting for your approval to be published."
-msgstr ""
+msgstr "此应用在你批准后方可发布。"
 
 #: mkt/developers/templates/developers/apps/status.html:77
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -16326,7 +16352,7 @@ msgstr "重新提交应用"
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Publish App"
-msgstr ""
+msgstr "发布应用"
 
 #: mkt/developers/templates/developers/apps/status.html:122
 msgid "Pre-Installed App Status"
@@ -16367,7 +16393,7 @@ msgstr "不列出应用"
 
 #: mkt/developers/templates/developers/apps/status.html:164
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
-msgstr "您的应用禁止列出，因而不再显示在 Firefox 市场中。您可以随时重新列出应用。"
+msgstr "您的应用禁止列出，因而不再显示在火狐应用市场中。您可以随时重新列出应用。"
 
 #: mkt/developers/templates/developers/apps/status.html:169
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
@@ -16776,7 +16802,7 @@ msgstr "更改设备"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:70
 msgid "<strong class=\"rating-notice\">This app may be disabled in the future if no content ratings are assigned by then:</strong>"
-msgstr ""
+msgstr "<strong class=\"rating-notice\">此应用没有指定内容分级，在未来可能会被禁用：</strong>"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:73
 msgid "Set up Content Ratings"
@@ -16881,11 +16907,11 @@ msgstr "分级类别"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
 msgid "Descriptors"
-msgstr ""
+msgstr "描述"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Interactive Elements"
-msgstr ""
+msgstr "互动元素"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -16966,7 +16992,7 @@ msgstr "您的应用仅支持 Firefox OS 时才能使用收费模式。"
 
 #: mkt/developers/templates/developers/payments/premium.html:86 mkt/developers/templates/developers/payments/premium.html:88 mkt/submit/templates/submit/manifest.html:44
 msgid "Paid / In-app"
-msgstr "付费版 / 应用内购"
+msgstr "付费版 / 应用内购买"
 
 #: mkt/developers/templates/developers/payments/premium.html:97
 msgid "Change to Paid"
@@ -16974,7 +17000,7 @@ msgstr "改为收费"
 
 #: mkt/developers/templates/developers/payments/premium.html:98
 msgid "Changing to Paid will put your app back into review."
-msgstr "改为收费时您的应用需要再次审核。"
+msgstr "改为收费时你的应用需要再次审核。"
 
 #: mkt/developers/templates/developers/payments/premium.html:102
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
@@ -16998,7 +17024,7 @@ msgstr "价格和国家"
 
 #: mkt/developers/templates/developers/payments/premium.html:167
 msgid "Does your app use Mozilla's in-app payments platform?"
-msgstr "您的应用是否使用 Mozilla 的应用内支付平台？"
+msgstr "你的应用是否使用 Mozilla 的应用内支付平台？"
 
 #: mkt/developers/templates/developers/payments/premium.html:177
 msgid "A server error occurred. Please try again later."
@@ -17056,7 +17082,7 @@ msgstr "以升级至免费版本方式促销"
 
 #: mkt/developers/templates/developers/payments/premium.html:274
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
-msgstr "如果您有免费的应用，可以在这里将收费版本的应用链接至免费版本以促进销售。"
+msgstr "如果你有免费的应用，可以在这里将收费版本的应用链接至免费版本以促进销售。"
 
 #: mkt/developers/templates/developers/payments/premium.html:282
 msgid "Linking this app will promote your premium app next to the free version."
@@ -17127,11 +17153,11 @@ msgstr "正在联系支付服务器，请等候。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
-msgstr ""
+msgstr "添加参考账户"
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
-msgstr "您没有设置支付帐号。"
+msgstr "你没有设置支付帐号。"
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_list.html:4
 msgid "The current payment account was associated with the app by an app owner."
@@ -17143,11 +17169,11 @@ msgstr "修改 Bango 帐号"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
-msgstr ""
+msgstr "修改参考账户"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:3
 msgid "Regions that require extra consideration:"
-msgstr ""
+msgstr "需要额外考虑的区域："
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -17155,7 +17181,7 @@ msgstr "了解为什么一些区域受到限制。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
-msgstr "您的应用不再显示于某些地区，因为那些地区不支持付款。我们修改了您的地区选择。请在保存之前审核这些修改。"
+msgstr "你的应用不再显示于某些地区，因为那些地区不支持付款。我们修改了你的地区选择。请在保存之前审核这些修改。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
@@ -17341,7 +17367,7 @@ msgstr "预览版"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:60
 msgid "JavaScript libraries for interacting with the Marketplace"
-msgstr "用于和“市场”交互的 JavaScript 库"
+msgstr "用来和应用市场交互的 JavaScript 库"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:65
 msgid "require.js for structuring your JavaScript code"
@@ -17756,7 +17782,7 @@ msgstr "Mozilla 可以接触到全球数以亿计的 Firefox 用户。通过智�
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
-msgstr ""
+msgstr "火狐应用市场目前开放并接受应用。提交你的应用到："
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
@@ -17861,7 +17887,7 @@ msgstr "提交到应用市场"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:188
 msgid "Marketplace Review Criteria"
-msgstr "Marketplace 审查标准"
+msgstr "应用市场审查标准"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:210 mkt/ecosystem/templates/ecosystem/publish_payments.html:5 mkt/ecosystem/templates/ecosystem/publish_payments.html:13
 msgid "Payments Status"
@@ -17893,11 +17919,11 @@ msgstr "通过强大的网络平台，开放的市场，和想你一样的合作
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
-msgstr "<strong>网络即是平台</strong> &ndash; 您的 HTML5 应用一次编写即可通过整个网络进行分发。"
+msgstr "<strong>网络即是平台</strong> &ndash; 您的 HTML5 应用仅需一次编写即可发布到整个网络。"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:51
 msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
-msgstr "<strong>无缝支付</strong> &ndash; 通过多种支付模式以及运营商捆绑付费，我们让您的应用能够获得收入。"
+msgstr "<strong>无缝支付</strong> &ndash; 通过多种支付方式以及运营商融合计费，您无需做多余的操作，即可让您的应用实现盈利。"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
@@ -17909,7 +17935,7 @@ msgstr "加入最大最好的"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
-msgstr "世界最热门的品牌和所有您最喜爱的应用都已经入驻 Firefox 市场。"
+msgstr "世界最热门的品牌和所有您最喜爱的应用都已经入驻火狐应用市场。"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
@@ -17945,7 +17971,7 @@ msgstr "YouTube"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:123
 msgid "Firefox Marketplace YouTube channel"
-msgstr "Firefox 市场的 YouTube 频道"
+msgstr "火狐应用市场的 YouTube 频道"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
@@ -18040,11 +18066,11 @@ msgstr "新建一个应用之前我需要了解什么？"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:23
 msgid "How can I upload my App to the Firefox Marketplace?"
-msgstr "我如何将我的应用上传到 Firefox 市场？"
+msgstr "我如何将我的应用上传到火狐应用市场？"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
 msgid "I need help with the App Manifest."
-msgstr "我需要有关应用资源配置的帮助。"
+msgstr "我需要有关应用清单的帮助。"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
 msgid "How do I create an installable App?"
@@ -18116,7 +18142,7 @@ msgstr "Chrono 的运行不需要网络连接。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:60
 msgid "Uses the Open Web Apps installation API to allow installation on the device independently on Marketplace."
-msgstr "使用开放网络应用安装 API 可以让设备上地安装过程不依赖于市场。"
+msgstr "使用“开放网络应用安装 API”，让在设备上安装的过程不依赖于应用市场。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:72 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:181
 msgid "Custom Elements"
@@ -18134,7 +18160,7 @@ msgstr "第三方库"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:93
 msgid "Uses a volo.js script to optimize app before release, i.e. by auto-generating an appcache manifest."
-msgstr "在发布前使用 volo.js 脚本优化应用，例如自动生成应用缓存资源配置。"
+msgstr "在发布前使用 volo.js 脚本优化应用，例如自动生成应用缓存清单。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:102 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:93
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:70
@@ -18286,7 +18312,7 @@ msgstr "启用页面与功能脱机工作。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:77 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:54
 msgid "Both server and client code are written in JavaScript."
-msgstr "服务器和客户端代码都是由 JavaScript 编写。"
+msgstr "服务器和客户端代码都由 JavaScript 编写。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:85
 msgid "A key-value store that contains all the server notes."
@@ -18389,7 +18415,9 @@ msgstr "喜欢一个帖子"
 msgid ""
 "Roller is a micro blog app that allows you to post text, upload an image or paste a link that has an image extension such as jpg, gif, png or jpeg. <a href=\"%(walkthrough_link)s\" class="
 "\"walkthrough\"> Read the full developer walkthrough </a>"
-msgstr "Roller 是一个微博应用，使您可以发布文本，上传图像或者粘贴链接，图像扩展名可以是 jpg, gif, png 或者 jpeg 。<a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> 阅读完整的开发者攻略 </a>"
+msgstr ""
+"Roller 是一款微博应用，使您可以发布文本，上传图像或者粘贴链接，图像扩展名可以是 jpg, gif, png 或者 jpeg 。<a href=\""
+"%(walkthrough_link)s\" class=\"walkthrough\"> 阅读完整的开发者攻略 </a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:62
 msgid "A key-value store that contains all the post data for Roller."
@@ -18579,11 +18607,11 @@ msgstr "全天"
 
 #: mkt/lookup/templates/lookup/app_summary.html:34
 msgid "Manifest"
-msgstr "资源配置"
+msgstr "清单"
 
 #: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
 msgid "View"
-msgstr "视图"
+msgstr "查看"
 
 #: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Privileged Packaged app"
@@ -18647,7 +18675,7 @@ msgstr "查找工具"
 
 #: mkt/lookup/templates/lookup/base.html:10
 msgid "<small>Marketplace</small> Lookup Tool"
-msgstr "<small>Marketplace</small> 查找工具"
+msgstr "<small>应用市场</small> 查找工具"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup results for <a href=\"%(tx_url)s\">Transaction %(uuid)s</a>"
@@ -18719,7 +18747,7 @@ msgstr "PayPal 已链接"
 
 #: mkt/lookup/templates/lookup/user_summary.html:45
 msgid "Marketplace Credit"
-msgstr "市场信用值"
+msgstr "应用市场信用值"
 
 #: mkt/lookup/templates/lookup/user_summary.html:48
 msgid "apps purchased"
@@ -18846,7 +18874,7 @@ msgstr "没有候选的预装项目"
 #. L10n: {0} is the addon name.
 #: mkt/purchase/webpay.py:42
 msgid "Firefox Marketplace purchase of {0}"
-msgstr "在 Firefox 市场购买 {0}"
+msgstr "在火狐应用市场购买 {0}"
 
 #. L10n: {0} is the app name.
 #: mkt/purchase/webpay_tasks.py:27
@@ -19037,7 +19065,7 @@ msgstr "正在审核"
 
 #: mkt/reviewers/helpers.py:43 mkt/reviewers/templates/reviewers/queue_region.html:6
 msgid "Regional Queues"
-msgstr ""
+msgstr "区域队列"
 
 #: mkt/reviewers/helpers.py:45
 msgid "Pending Themes"
@@ -19082,7 +19110,7 @@ msgstr "正在审核（{0}）"
 
 #: mkt/reviewers/helpers.py:114
 msgid "China ({0})"
-msgstr ""
+msgstr "中国 ({0})"
 
 #: mkt/reviewers/helpers.py:121
 msgid "Device ({0})"
@@ -19188,7 +19216,7 @@ msgstr "已成功处理 \"{0}\" （+{1} 点，共 {2} ）。"
 #: mkt/reviewers/views_themes.py:300
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
+msgstr[0] "{0} 个主题审核成功（+ {1} 点，共 {2} 点）。"
 
 #: mkt/reviewers/views_themes.py:315
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
@@ -19221,7 +19249,7 @@ msgstr "<small>Marketplace</small> 评论工具"
 
 #: mkt/reviewers/templates/reviewers/base_minimal.html:19
 msgid "Back to Reviewer Tools"
-msgstr ""
+msgstr "返回审核员工具"
 
 #: mkt/reviewers/templates/reviewers/home.html:17
 msgid "{num} Pending App Review"
@@ -19274,7 +19302,7 @@ msgstr "当前类别没有待审核的项目。"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:10
 msgid "{region} Review Queue"
-msgstr ""
+msgstr "{region} 审核队列"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
@@ -19603,7 +19631,7 @@ msgstr "应用类型"
 
 #: mkt/search/forms.py:102
 msgid "Works offline"
-msgstr ""
+msgstr "可离线工作"
 
 #: mkt/search/forms.py:104
 msgid "Supported languages"
@@ -19659,7 +19687,7 @@ msgstr "如果您输入了地址，请再次检查拼写。"
 
 #: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
-msgstr "访问 <a class=\"sync\" href=\"%(home)s\">Firefox 市场首页</a>。"
+msgstr "访问 <a class=\"sync\" href=\"%(home)s\">火狐应用市场首页</a>。"
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
@@ -19887,7 +19915,7 @@ msgstr "您的应用是否需要 Flash 支持？"
 
 #: mkt/submit/forms.py:379
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
-msgstr "一旦通过审核就在 Firefox 市场中发布我的应用。"
+msgstr "一旦通过审核就在火狐应用市场中发布我的应用。"
 
 #: mkt/submit/forms.py:381
 msgid ""
@@ -20078,7 +20106,9 @@ msgstr "市场开发者计划"
 msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
-msgstr "我们很高兴您实用 web 技术构建应用，提交到 Firefox 市场是让用户在他们的设备上发现和使用应用的最好方式。首先，您要加入下面的“市场开发者计划”。"
+msgstr ""
+"我们很高兴您使用 Web "
+"技术构建应用，提交应用到火狐应用市场市场是让用户在他们的设备上发现和使用应用的最好方式。首先，您要加入下面的“应用市场开发者计划”。"
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -20149,20 +20179,20 @@ msgstr "您必须提供至少一个种类。"
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2004
 msgid "awaiting approval"
-msgstr ""
+msgstr "等待审核"
 
 #. L10n: An app requires additional review for a particular region.
 #: mkt/webapps/models.py:2008
 msgid "requires additional review"
-msgstr ""
+msgstr "需要额外审核"
 
 #: mkt/webapps/models.py:2047
 msgid "{region} approval status"
-msgstr ""
+msgstr "{region} 审核状态"
 
 #: mkt/webapps/models.py:2052
 msgid "{region} nomination date"
-msgstr ""
+msgstr "{region} 提交日期"
 
 #: mkt/webapps/tasks.py:116
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
