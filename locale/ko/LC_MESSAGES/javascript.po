@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-10-01 08:49+0000\n"
+"PO-Revision-Date: 2013-12-01 22:48+0000\n"
 "Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1380617380.0\n"
+"X-POOTLE-MTIME: 1385938083.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -88,7 +88,7 @@ msgstr "{0} 검사 완료"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "부가 기능이 오류 없이 {0}개의 메시지와 함께 유효성 검사를 통과했습니다."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -263,7 +263,7 @@ msgstr "은행 인식: {0}"
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
+msgstr[0] "경고: 지불 계좌 \"{0}\"을(를) 삭제하면 해당 계좌와 연동된 앱들이 미완료 상태로 옮겨져서 판매할 수 없게 됩니다:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -276,7 +276,7 @@ msgstr "결제 서버로 접속하는 과정에서 문제가 발생했습니다.
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
-msgstr ""
+msgstr "인증 오류"
 
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
@@ -999,15 +999,15 @@ msgstr "Persona 로그인 실패입니다. 아마도 이메일 주소에 대한 
 
 #: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
-msgstr "Persona 로그인 실패입니다. 서버에 에러가 발생했습니다."
+msgstr "페르소나 로그인이 실패했습니다. 서버에 오류가 발생했습니다."
 
 #: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "모든 결과 표시"
 
 #: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "{0}개 이상의 결과가 발견되어 검색 결과를 간추렸습니다."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
@@ -1039,11 +1039,11 @@ msgstr "지불에 실패했습니다. 잠시 후 다시 시도해보세요."
 
 #: media/js/mkt/reviewers.js:100
 msgid "Packaged App"
-msgstr "패키징 방식 앱"
+msgstr "패키지형 앱"
 
 #: media/js/mkt/reviewers.js:104
 msgid "Privileged App"
-msgstr "특권이 부여된 앱"
+msgstr "특별권한 앱"
 
 #: media/js/mkt/reviewers.js:107
 msgid "More Information Requested"
@@ -1055,7 +1055,7 @@ msgstr "편집자 코멘트 있음"
 
 #: media/js/mkt/reviewers.js:114
 msgid "Premium App"
-msgstr ""
+msgstr "유료 앱"
 
 #: media/js/mkt/reviewers.js:117
 msgid "Escalated"
@@ -1071,19 +1071,19 @@ msgstr "모두"
 
 #: media/js/mkt/reviewers.js:257
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "승인된 앱: {app}"
 
 #: media/js/mkt/reviewers.js:260
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "승인 거부된 앱: {app}"
 
 #: media/js/mkt/reviewers.js:266
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "승인 도중 오류가 발생한 앱: {app}"
 
 #: media/js/mkt/reviewers.js:267
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "승인 거부 도중 오류가 발생한 앱: {app}"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1544,7 +1544,7 @@ msgstr "심사 횟수"
 
 #: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "번역 결과를 불러오는 과정에서 오류 발생"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1554,7 +1554,7 @@ msgstr "읽는 중..."
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> 글자가 남았습니다."
+msgstr[0] "<b>{0}</b>자 남았습니다."
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
@@ -1585,7 +1585,7 @@ msgstr "부가 기능이 검사를 통과했습니다."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "알림 {0}개"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
