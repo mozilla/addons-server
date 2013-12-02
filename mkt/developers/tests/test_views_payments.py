@@ -789,6 +789,21 @@ class TestPayments(amo.tests.TestCase):
         eq_(len(pqr('#paid-android-mobile input[type="checkbox"]')), 0)
         eq_(len(pqr('#paid-android-tablet input[type="checkbox"]')), 0)
 
+    def test_cannot_be_paid_with_android_payments_just_ffos(self):
+        self.create_flag('android-payments')
+        self.webapp.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['cannot_be_paid'], False)
+
+    def test_cannot_be_paid_without_android_payments_just_ffos(self):
+        self.webapp.addondevicetype_set.filter(
+            device_type=amo.DEVICE_GAIA.id).delete()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['cannot_be_paid'], True)
+
     def test_cannot_be_paid_with_android_payments(self):
         self.create_flag('android-payments')
         for device_type in (amo.DEVICE_GAIA,
