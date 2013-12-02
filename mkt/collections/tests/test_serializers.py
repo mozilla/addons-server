@@ -54,7 +54,7 @@ class BaseTestCollectionMembershipField(object):
         resource = AppSerializer(self.app)
         resource.context = {'request': request}
         self.field.context['request'] = request
-        native = self.field.to_native(self.membership)
+        native = self.field.to_native(self.collection.apps()[0])
         for key, value in native.iteritems():
             if key == 'resource_uri':
                 eq_(value, self.app.get_api_url(pk=self.app.pk))
@@ -64,11 +64,10 @@ class BaseTestCollectionMembershipField(object):
     def _field_to_native_profile(self, profile='0.0'):
         request = self.get_request({'pro': profile, 'dev': 'firefoxos'})
         self.field.parent = self.collection
-        self.field.source = 'collectionmembership_set'
+        self.field.source = 'apps'
         self.field.context['request'] = request
 
-        return self.field.field_to_native(self.collection,
-                                          'collectionmembership_set')
+        return self.field.field_to_native(self.collection, 'apps')
 
     def test_ordering(self):
         self.app2 = amo.tests.app_factory()
@@ -77,6 +76,21 @@ class BaseTestCollectionMembershipField(object):
         eq_(len(result), 2)
         eq_(int(result[0]['id']), self.app2.id)
         eq_(int(result[1]['id']), self.app.id)
+
+    def test_app_delete(self):
+        self.app.delete()
+        result = self._field_to_native_profile()
+        eq_(len(result), 0)
+
+    def test_app_disable(self):
+        self.app.update(disabled_by_user=True)
+        result = self._field_to_native_profile()
+        eq_(len(result), 0)
+
+    def test_app_pending(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        result = self._field_to_native_profile()
+        eq_(len(result), 0)
 
     def test_field_to_native_profile(self):
         result = self._field_to_native_profile(self.profile)
@@ -134,6 +148,24 @@ class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
         eq_(len(result), 2)
         eq_(int(result[0]['id']), self.app2.id)
         eq_(int(result[1]['id']), self.app.id)
+
+    def test_app_delete(self):
+        self.app.delete()
+        self.refresh('webapp')
+        result = self._field_to_native_profile()
+        eq_(len(result), 0)
+
+    def test_app_disable(self):
+        self.app.update(disabled_by_user=True)
+        self.refresh('webapp')
+        result = self._field_to_native_profile()
+        eq_(len(result), 0)
+
+    def test_app_pending(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        self.refresh('webapp')
+        result = self._field_to_native_profile()
+        eq_(len(result), 0)
 
 
 class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):

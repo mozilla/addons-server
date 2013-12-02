@@ -34,14 +34,15 @@ from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
 
 class CollectionMembershipField(serializers.RelatedField):
     """
-    RelatedField subclass that serializes an M2M to CollectionMembership into
-    a list of apps, rather than a list of CollectionMembership objects.
+    RelatedField subclass that serializes apps in a Collection, taking into
+    account feature profile and optionally relying on ElasticSearch to find
+    the apps instead of making a DB query.
 
     Specifically created for use with CollectionSerializer; you probably don't
     want to use this elsewhere.
     """
     def to_native(self, value):
-        return AppSerializer(value.app, context=self.context).data
+        return AppSerializer(value, context=self.context).data
 
     def field_to_native(self, obj, field_name):
         if not hasattr(self, 'context') or not 'request' in self.context:
@@ -56,15 +57,15 @@ class CollectionMembershipField(serializers.RelatedField):
             and waffle.switch_is_active('collections-use-es-for-apps')):
             return self.field_to_native_es(obj, request)
 
-        value = get_component(obj, self.source)
+        qs = get_component(obj, self.source)
 
         # Filter apps based on feature profiles.
         profile = get_feature_profile(request)
         if profile:
-            value = value.filter(**profile.to_kwargs(
-                prefix='app___current_version__features__has_'))
+            qs = qs.filter(**profile.to_kwargs(
+                prefix='_current_version__features__has_'))
 
-        return [self.to_native(item) for item in value.all()]
+        return [self.to_native(app) for app in qs]
 
     def field_to_native_es(self, obj, request):
         """
@@ -114,8 +115,7 @@ class CollectionSerializer(serializers.ModelSerializer):
     description = TranslationSerializerField()
     slug = serializers.CharField(required=False)
     collection_type = serializers.IntegerField()
-    apps = CollectionMembershipField(many=True,
-                                     source='collectionmembership_set')
+    apps = CollectionMembershipField(many=True, source='apps')
     image = HyperlinkedRelatedOrNullField(
         source='*',
         view_name='collection-image-detail',

@@ -1506,8 +1506,11 @@ class WebappIndexer(MappingType, Indexable):
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['category'] = list(obj.categories.values_list('slug', flat=True))
-        d['collection'] = [{'id': cms.collection_id, 'order': cms.order}
-                           for cms in obj.collectionmembership_set.all()]
+        if obj.is_public:
+            d['collection'] = [{'id': cms.collection_id, 'order': cms.order}
+                               for cms in obj.collectionmembership_set.all()]
+        else:
+            d['collection'] = []
         d['content_ratings'] = (obj.get_content_ratings_by_region(es=True) or
                                 None)
         d['content_descriptors'] = obj.get_descriptors(es=True)

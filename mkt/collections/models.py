@@ -5,7 +5,7 @@ from django.db import models
 
 import amo.models
 import mkt.regions
-from addons.models import Category, clean_slug
+from addons.models import Addon, Category, clean_slug
 from amo.decorators import use_master
 from amo.utils import to_language
 from mkt.webapps.models import Webapp
@@ -76,7 +76,15 @@ class Collection(amo.models.ModelBase):
                             'app_collection_%s.png' % (self.pk,))
 
     def apps(self):
-        return self._apps.order_by('collectionmembership')
+        """
+        Public apps on the collection, ordered by their position in the
+        CollectionMembership model.
+
+        Use this method everytime you want to display apps for a collection to
+        an user.
+        """
+        return self._apps.filter(disabled_by_user=False,
+            status=amo.STATUS_PUBLIC).order_by('collectionmembership')
 
     def add_app(self, app, order=None):
         """
@@ -159,5 +167,16 @@ class CollectionMembership(amo.models.ModelBase):
         ordering = ('order',)
 
 
+def remove_deleted_apps(*args, **kwargs):
+    instance = kwargs.get('instance')
+    CollectionMembership.objects.filter(app_id=instance.pk).delete()
+
+
+# Save translations when saving a Collection.
 models.signals.pre_save.connect(save_signal, sender=Collection,
                                 dispatch_uid='collection_translations')
+
+# Delete collection membership when deleting an app (sender needs to be Addon,
+# not Webapp, because that's the real model underneath).
+models.signals.post_delete.connect(remove_deleted_apps, sender=Addon,
+                                   dispatch_uid='apps_collections_cleanup')
