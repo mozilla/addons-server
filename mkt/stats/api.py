@@ -94,6 +94,13 @@ APP_STATS = {
         'coerce': {'count': lambda d: '{0:.2f}'.format(d)},
     },
 }
+STATS_TOTAL = {
+    'installs': {
+        'metric': 'app_installs',
+    },
+    # TODO: Add more metrics here as needed. The total API will iterate over
+    # them and return statistical totals information on them all.
+}
 APP_STATS_TOTAL = {
     'installs': {
         'metric': 'app_installs',
@@ -216,7 +223,76 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
                                            dimensions))
 
 
-class AppStatsTotal(CORSMixin, SlugOrIdMixin, ListAPIView):
+class StatsTotalBase(object):
+    """
+    A place for a few helper methods for totals stats API.
+    """
+    def get_client(self):
+        try:
+            client = get_monolith_client()
+        except requests.ConnectionError as e:
+            log.info('Monolith connection error: {0}'.format(e))
+            raise ServiceUnavailable
+        return client
+
+    def get_query(self, metric, field):
+        return {
+            'query': {
+                'match_all': {}
+            },
+            'facets': {
+                metric: {
+                    'statistical': {
+                        'field': field
+                    }
+                }
+            },
+            'size': 0
+        }
+
+    def process_response(self, resp, data):
+        for metric, facet in resp.get('facets', {}).items():
+            count = facet.get('count', 0)
+
+            # We filter out facets with count=0 to avoid returning things
+            # like `'max': u'-Infinity'`.
+            if count > 0:
+                for field in ('max', 'mean', 'min', 'std_deviation',
+                              'sum_of_squares', 'total', 'variance'):
+                    value = facet.get(field)
+                    if value is not None:
+                        data[metric][field] = value
+
+
+class GlobalStatsTotal(CORSMixin, APIView, StatsTotalBase):
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    cors_allowed_methods = ['get']
+    permission_classes = [GroupPermission('Stats', 'View')]
+    slug_field = 'app_slug'
+
+    def get(self, request):
+        client = self.get_client()
+
+        # Note: We have to do this as separate requests so that if one fails
+        # the rest can still be returned.
+        data = {}
+        for metric, stat in STATS_TOTAL.items():
+            data[metric] = {}
+            query = self.get_query(metric, stat['metric'])
+
+            try:
+                resp = client.raw(query)
+            except ValueError as e:
+                log.info('Received value error from monolith client: %s' % e)
+                continue
+
+            data = self.process_response(resp, data)
+
+        return Response(data)
+
+
+class AppStatsTotal(CORSMixin, SlugOrIdMixin, ListAPIView, StatsTotalBase):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     cors_allowed_methods = ['get']
@@ -227,36 +303,14 @@ class AppStatsTotal(CORSMixin, SlugOrIdMixin, ListAPIView):
 
     def get(self, request, pk):
         app = self.get_object()
-
-        try:
-            client = get_monolith_client()
-        except requests.ConnectionError as e:
-            log.info('Monolith connection error: {0}'.format(e))
-            raise ServiceUnavailable
+        client = self.get_client()
 
         # Note: We have to do this as separate requests so that if one fails
         # the rest can still be returned.
         data = {}
         for metric, stat in APP_STATS_TOTAL.items():
             data[metric] = {}
-            query = {
-                'query': {
-                    'match_all': {}
-                },
-                'facets': {
-                    metric: {
-                        'statistical': {
-                            'field': stat['metric']
-                        },
-                        'facet_filter': {
-                            'term': {
-                                'app-id': app.id
-                            }
-                        }
-                    }
-                },
-                'size': 0
-            }
+            query = self.get_query(metric, stat['metric'])
 
             try:
                 resp = client.raw(query)
@@ -264,17 +318,7 @@ class AppStatsTotal(CORSMixin, SlugOrIdMixin, ListAPIView):
                 log.info('Received value error from monolith client: %s' % e)
                 continue
 
-            for metric, facet in resp.get('facets', {}).items():
-                count = facet.get('count', 0)
-
-                # We filter out facets with count=0 to avoid returning things
-                # like `'max': u'-Infinity'`.
-                if count > 0:
-                    for field in ('max', 'mean', 'min', 'std_deviation',
-                                  'sum_of_squares', 'total', 'variance'):
-                        value = facet.get(field)
-                        if value is not None:
-                            data[metric][field] = value
+            data = self.process_response(resp, data)
 
         return Response(data)
 

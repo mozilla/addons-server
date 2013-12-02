@@ -17,26 +17,35 @@ from mkt.stats.api import APP_STATS, STATS, _get_monolith_data
 
 class StatsAPITestMixin(object):
 
-    def test_cors(self, mocked):
+    def setUp(self):
+        super(StatsAPITestMixin, self).setUp()
+        patches = [
+            mock.patch('monolith.client.Client'),
+            mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0'),
+        ]
+        for patch in patches:
+            patch.start()
+            self.addCleanup(patch.stop)
+
+    def test_cors(self):
         res = self.client.get(self.url(), data=self.data)
         self.assertCORS(res, 'get')
 
-    def test_verbs(self, mocked):
+    def test_verbs(self):
         self._allowed_verbs(self.url(), ['get'])
 
+    @mock.patch('monolith.client.Client')
     def test_monolith_down(self, mocked):
         mocked.side_effect = requests.ConnectionError
         res = self.client.get(self.url(), data=self.data)
         eq_(res.status_code, 503)
 
-    def test_anon(self, mocked):
+    def test_anon(self):
         res = self.anon.get(self.url())
         eq_(res.status_code, 403)
 
 
-@mock.patch('monolith.client.Client')
-@mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-class TestGlobalStatsResource(RestOAuth, StatsAPITestMixin):
+class TestGlobalStatsResource(StatsAPITestMixin, RestOAuth):
 
     def setUp(self):
         super(TestGlobalStatsResource, self).setUp()
@@ -49,22 +58,23 @@ class TestGlobalStatsResource(RestOAuth, StatsAPITestMixin):
         metric = metric or STATS.keys()[0]
         return reverse('global_stats', kwargs={'metric': metric})
 
-    def test_bad_metric(self, mocked):
+    def test_bad_metric(self):
         res = self.client.get(self.url('foo'))
         eq_(res.status_code, 404)
 
-    def test_missing_args(self, mocked):
+    def test_missing_args(self):
         res = self.client.get(self.url())
         eq_(res.status_code, 400)
         data = json.loads(res.content)
         for f in ('start', 'end', 'interval'):
             eq_(data['detail'][f], ['This field is required.'])
 
-    def test_good(self, mocked):
+    def test_good(self):
         res = self.client.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
         eq_(json.loads(res.content)['objects'], [])
 
+    @mock.patch('monolith.client.Client')
     def test_dimensions(self, mocked):
         client = mock.MagicMock()
         mocked.return_value = client
@@ -76,6 +86,7 @@ class TestGlobalStatsResource(RestOAuth, StatsAPITestMixin):
         ok_(client.called)
         eq_(client.call_args[1], {'region': 'br', 'package_type': 'hosted'})
 
+    @mock.patch('monolith.client.Client')
     def test_dimensions_default(self, mocked):
         client = mock.MagicMock()
         mocked.return_value = client
@@ -86,6 +97,7 @@ class TestGlobalStatsResource(RestOAuth, StatsAPITestMixin):
         ok_(client.called)
         eq_(client.call_args[1], {'region': 'us', 'package_type': 'hosted'})
 
+    @mock.patch('monolith.client.Client')
     def test_dimensions_default_is_none(self, mocked):
         client = mock.MagicMock()
         mocked.return_value = client
@@ -104,6 +116,7 @@ class TestGlobalStatsResource(RestOAuth, StatsAPITestMixin):
         # TODO: Update to expect `{'region': 'us'}` when regions added back.
         eq_(client.call_args[1], {})
 
+    @mock.patch('monolith.client.Client')
     def test_coersion(self, mocked):
         client = mock.MagicMock()
         client.return_value = [{'count': 1.99, 'date': '2013-10-10'}]
@@ -115,9 +128,7 @@ class TestGlobalStatsResource(RestOAuth, StatsAPITestMixin):
         eq_(type(data['objects'][0]['count']), str)
 
 
-@mock.patch('monolith.client.Client')
-@mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-class TestAppStatsResource(RestOAuth, StatsAPITestMixin):
+class TestAppStatsResource(StatsAPITestMixin, RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
@@ -132,25 +143,25 @@ class TestAppStatsResource(RestOAuth, StatsAPITestMixin):
         metric = metric or APP_STATS.keys()[0]
         return reverse('app_stats', kwargs={'pk': pk, 'metric': metric})
 
-    def test_owner(self, mocked):
+    def test_owner(self):
         res = self.client.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
 
-    def test_perms(self, mocked):
+    def test_perms(self):
         self.app.addonuser_set.all().delete()
         self.grant_permission(self.profile, 'Stats:View')
         res = self.client.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
 
-    def test_bad_app(self, mocked):
+    def test_bad_app(self):
         res = self.client.get(self.url(pk=99999999))
         eq_(res.status_code, 404)
 
-    def test_bad_metric(self, mocked):
+    def test_bad_metric(self):
         res = self.client.get(self.url(metric='foo'))
         eq_(res.status_code, 404)
 
-    def test_missing_args(self, mocked):
+    def test_missing_args(self):
         res = self.client.get(self.url())
         eq_(res.status_code, 400)
         data = json.loads(res.content)
@@ -158,9 +169,23 @@ class TestAppStatsResource(RestOAuth, StatsAPITestMixin):
             eq_(data['detail'][f], ['This field is required.'])
 
 
-@mock.patch('monolith.client.Client')
-@mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-class TestAppStatsTotalResource(RestOAuth, StatsAPITestMixin):
+class TestGlobalStatsTotalResource(StatsAPITestMixin, RestOAuth):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestGlobalStatsTotalResource, self).setUp()
+        self.grant_permission(self.profile, 'Stats:View')
+        self.data = None  # For the mixin tests.
+
+    def url(self):
+        return reverse('global_stats_total')
+
+    def test_perms(self):
+        res = self.client.get(self.url())
+        eq_(res.status_code, 200)
+
+
+class TestAppStatsTotalResource(StatsAPITestMixin, RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
@@ -173,17 +198,17 @@ class TestAppStatsTotalResource(RestOAuth, StatsAPITestMixin):
         pk = pk or self.app.pk
         return reverse('app_stats_total', kwargs={'pk': pk})
 
-    def test_owner(self, mocked):
+    def test_owner(self):
         res = self.client.get(self.url())
         eq_(res.status_code, 200)
 
-    def test_perms(self, mocked):
+    def test_perms(self):
         self.app.addonuser_set.all().delete()
         self.grant_permission(self.profile, 'Stats:View')
         res = self.client.get(self.url())
         eq_(res.status_code, 200)
 
-    def test_bad_app(self, mocked):
+    def test_bad_app(self):
         res = self.client.get(self.url(pk=99999999))
         eq_(res.status_code, 404)
 

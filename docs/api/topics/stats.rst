@@ -557,6 +557,30 @@ Metrics
 
 Provided are the following metrics.
 
+Global totals
+~~~~~~~~~~~~~
+
+Statistical information about global metrics.
+
+.. http:get:: /api/v1/stats/global/totals/
+
+    **Response**:
+
+    .. code-block:: json
+
+        {
+            "installs": {
+                "max": 2019.0,
+                "mean": 11.56877361380578,
+                "min": 1.0,
+                "sum_of_squares": 40141960.0,
+                "std_deviation": 43.768557273891901,
+                "total": 226586.0,
+                "variance": 1915.6866058379558
+            },
+            ...
+        }
+
 Per-app totals
 ~~~~~~~~~~~~~~
 
