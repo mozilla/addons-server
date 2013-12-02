@@ -29,7 +29,7 @@ from lib.crypto import generate_key
 from lib.pay_server import client
 
 from market.models import Price
-from mkt.constants import DEVICE_LOOKUP
+from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import (CantCancel, PaymentAccount, UserInappKey,
                                    uri_to_pk)
@@ -106,10 +106,12 @@ def payments(request, addon_id, addon, webapp=False):
             return redirect(addon.get_dev_url('payments'))
 
     # TODO: This needs to be updated as more platforms support payments.
+    android_payments_enabled = waffle.flag_is_active(request, 'android-payments')
     cannot_be_paid = (
         addon.premium_type == amo.ADDON_FREE and
         any(premium_form.device_data['free-%s' % x] == y for x, y in
-            [('android-mobile', True), ('android-tablet', True),
+            [('android-mobile', not android_payments_enabled),
+             ('android-tablet', not android_payments_enabled),
              ('desktop', True), ('firefoxos', False)]))
 
     try:
@@ -126,6 +128,8 @@ def payments(request, addon_id, addon, webapp=False):
         paid_region_ids_by_slug = tier_zero.region_ids_by_slug()
 
     provider = get_provider()
+    paid_platform_names = [unicode(platform[1])
+                           for platform in PAID_PLATFORMS(request)]
 
     return jingo.render(
         request, 'developers/payments/premium.html',
@@ -136,7 +140,8 @@ def payments(request, addon_id, addon, webapp=False):
          'DEVICE_LOOKUP': DEVICE_LOOKUP,
          'is_paid': (addon.premium_type in amo.ADDON_PREMIUMS
                      or addon.premium_type == amo.ADDON_FREE_INAPP),
-         'no_paid': cannot_be_paid,
+         'cannot_be_paid': cannot_be_paid,
+         'paid_platform_names': paid_platform_names,
          'is_incomplete': addon.status == amo.STATUS_NULL,
          'is_packaged': addon.is_packaged,
          # Bango values
