@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+import base64
 import datetime
 
 from django.test.utils import override_settings
@@ -47,7 +49,7 @@ class TestRenderSetStorefrontData(amo.tests.TestCase):
             'release_date': datetime.date(2013, 11, 1),
             'title': 'Twitter',
             'rating': '16+',
-            'descriptors': 'violence, sex',
+            'descriptors': u'N\xc3\xa3o h\xc3\xa1 inadequa\xc3\xa7\xc3\xb5es',
             'interactive_elements': 'users interact'})
         assert xml.startswith('<?xml version="1.0" encoding="utf-8"?>')
         assert '<FIELD NAME="password" VALUE="s3kr3t"' in xml
@@ -60,9 +62,14 @@ class TestRenderSetStorefrontData(amo.tests.TestCase):
         assert '<FIELD NAME="storefront_title" VALUE="Twitter"' in xml
         assert '<FIELD NAME="storefront_rating" VALUE="16+"' in xml
         assert ('<FIELD NAME="storefront_descriptors" '
-                'VALUE="violence, sex"') in xml
+                u'VALUE="N\xc3\xa3o h\xc3\xa1 inadequa\xc3\xa7\xc3\xb5es"'
+                in xml)
         assert ('<FIELD NAME="storefront_interactive_elements" '
                 'VALUE="users interact"') in xml
+
+        # The client base64 encodes these. Mimic what the client does here to
+        # ensure no unicode problems.
+        base64.b64encode(xml.encode('utf-8'))
 
 
 class TestRenderRatingChanges(amo.tests.TestCase):

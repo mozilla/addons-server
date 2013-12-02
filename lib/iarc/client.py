@@ -51,8 +51,12 @@ class Client(object):
         if self.client is None:
             self.client = sudsclient.Client(wsdl[self.wsdl_name], cache=None)
 
-        # IARC requires messages be base64 encoded.
+        # IARC requires messages be base64 encoded and base64 requires
+        # byte-strings.
         for k, v in data.items():
+            if isinstance(v, unicode):
+                # Encode it as a byte-string.
+                v = v.encode('utf-8')
             data[k] = base64.b64encode(v)
 
         with statsd.timer('mkt.iarc.request.%s' % name.lower()):
