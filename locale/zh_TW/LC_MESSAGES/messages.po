@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-12-02 06:54+0000\n"
+"PO-Revision-Date: 2013-12-02 11:35+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385967257.0\n"
+"X-POOTLE-MTIME: 1385984139.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -19028,7 +19028,7 @@ msgstr "犯罪"
 
 #: mkt/constants/ratingdescriptors.py:172
 msgid "Criminal Instruction"
-msgstr ""
+msgstr "引誘犯罪"
 
 #: mkt/constants/ratingdescriptors.py:182
 msgid "Fear"
@@ -19706,15 +19706,15 @@ msgstr "成功新增新版本。"
 
 #: mkt/developers/views.py:321
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "已儲存內容分級。"
 
 #: mkt/developers/views.py:374
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "已送出預載應用程式。"
 
 #: mkt/developers/views.py:377
 msgid "There was an error with the form."
-msgstr ""
+msgstr "表單中有錯誤。"
 
 #: mkt/developers/views.py:411
 msgid "Version successfully edited."
@@ -19850,7 +19850,7 @@ msgstr "登入 / 註冊"
 #: mkt/developers/templates/developers/nav.html:36
 #: mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "測試應用程式"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -19933,13 +19933,13 @@ msgstr "您已經同意此開發者協議。"
 #: mkt/receipts/templates/receipts/test_details.html:8
 #: mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "測試"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid ""
 "Use these tools for testing your apps prior to submission to the Firefox "
 "Marketplace."
-msgstr ""
+msgstr "使用這些工具在送出到 Firefox Marketplace 前測試您的應用程式。"
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -19969,7 +19969,7 @@ msgstr "數量"
 #: mkt/developers/templates/developers/validate_addon.html:3
 #: mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "測試應用程式驗證"
 
 #: mkt/developers/templates/developers/validate_addon.html:17
 #: mkt/submit/templates/submit/manifest.html:57
@@ -20055,7 +20055,7 @@ msgstr "可以檢視應用程式的設定與處理退費申請"
 
 #: mkt/developers/templates/developers/apps/profile.html:3
 msgid "Developer Profile"
-msgstr ""
+msgstr "開發者個人資料"
 
 #: mkt/developers/templates/developers/apps/profile.html:19
 msgid "Your developer profile is set to be <b>public</b>."
@@ -20084,12 +20084,12 @@ msgstr "設定付款"
 
 #: mkt/developers/templates/developers/apps/status.html:35
 msgid "This app is <b>incomplete</b> because it is missing content ratings."
-msgstr ""
+msgstr "因為缺少內容分級資訊，此應用程式尚未 <b>完成</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:37
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
 msgid "Set Up Content Ratings"
-msgstr ""
+msgstr "設定內容分級"
 
 #: mkt/developers/templates/developers/apps/status.html:40
 msgid "This app is <b>incomplete</b>."
