@@ -308,15 +308,6 @@ COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
                      'rocketfuel']
 COMMONPLACE_REPOS_APPCACHED = ['fireplace']
 
-# Limit payments to only people who are in a whitelist. This is useful for
-# dev and stage server where only developers and testers should be able to make
-# payments and not the general public.
-#
-# If you set this to True, then you will need to give people the waffle flag:
-#   override-app-purchase
-# For them to be able purchase apps.
-PURCHASE_LIMITED = False
-
 # A list of the payment providers supported by the marketplace. Currently there
 # can be only one value, however we expect this to change in the future.
 PAYMENT_PROVIDERS = ['bango']

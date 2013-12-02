@@ -16,7 +16,6 @@ from market.models import Price
 from users.models import UserProfile
 
 import mkt
-from mkt.purchase.utils import payments_enabled
 from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.regions.api import RegionResource
 
@@ -158,7 +157,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         price_tier = src.get('price_tier')
         if price_tier:
             price = Price.objects.get(name=price_tier)
-            if (data['upsell'] or payments_enabled(request)):
+            if data['upsell']:
                 price_currency = price.get_price_currency(region=region)
                 if price_currency and price_currency.paid:
                     data['price'] = price.get_price(region=region)

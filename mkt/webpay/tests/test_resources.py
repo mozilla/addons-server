@@ -82,12 +82,6 @@ class TestPrepare(PurchaseTest, RestOAuth):
         eq_(res.status_code, 409)
         eq_(res.json, {"reason": "Already purchased app."})
 
-    def test_waffle_fallback(self):
-        flag = self.create_flag('override-app-purchase', everyone=None)
-        flag.users.add(self.user.user)
-        with self.settings(PURCHASE_LIMITED=True):
-            eq_(self._post().status_code, 201)
-
 
 class TestStatus(RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')

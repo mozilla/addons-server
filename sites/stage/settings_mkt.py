@@ -180,8 +180,6 @@ NEWRELIC_INI = '/etc/newrelic.d/marketplace.allizom.org.ini'
 
 ES_USE_PLUGINS = True
 
-PURCHASE_LIMITED = True
-
 BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'
 
 MONOLITH_INDEX = 'mktstage-time_*'

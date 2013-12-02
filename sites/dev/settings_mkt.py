@@ -205,8 +205,6 @@ POSTFIX_AUTH_TOKEN = private_mkt.POSTFIX_AUTH_TOKEN
 
 POSTFIX_DOMAIN = 'marketplace-dev.allizom.org'
 
-PURCHASE_LIMITED = True
-
 MONOLITH_INDEX = 'mktdev-time_*'
 
 # IARC content ratings.
