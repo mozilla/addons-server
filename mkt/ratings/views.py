@@ -172,7 +172,7 @@ class RatingViewSet(CORSMixin, ModelViewSet):
         extra_info = {
             'average': app.average_rating,
             'slug': app.app_slug,
-            'current_version': app.current_version.version
+            'current_version': getattr(app.current_version, 'version', None)
         }
 
         return extra_user, extra_info
