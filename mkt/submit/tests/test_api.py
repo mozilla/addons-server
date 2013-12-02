@@ -11,7 +11,7 @@ from addons.models import AddonUser
 from files.models import FileUpload
 from users.models import UserProfile
 
-from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -221,7 +221,7 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         return res, data
 
     def test_verbs(self):
-        self._allowed_verbs(self.get_url, ['get', 'patch'])  # FIXME disallow put
+        self._allowed_verbs(self.get_url, ['get', 'patch'])
 
     def test_has_no_cors(self):
         res = self.client.get(self.get_url)
@@ -316,7 +316,7 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         eq_(self.app.reload().status, amo.STATUS_PUBLIC)
 
 
-class TestPreviewHandler(BaseOAuth, amo.tests.AMOPaths):
+class TestPreviewHandler(RestOAuth, amo.tests.AMOPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
@@ -325,18 +325,17 @@ class TestPreviewHandler(BaseOAuth, amo.tests.AMOPaths):
         self.user = UserProfile.objects.get(pk=2519)
         AddonUser.objects.create(user=self.user, addon=self.app)
         self.file = base64.b64encode(open(self.preview_image(), 'r').read())
-        self.list_url = ('api_dispatch_list', {'resource_name': 'preview'},
-                         {'app': self.app.pk})
+        self.list_url = reverse('app-preview-list',
+                                kwargs={'pk': self.app.pk})
         self.good = {'file': {'data': self.file, 'type': 'image/jpg'},
                      'position': 1}
 
-    def test_has_cors(self):
-        self.assertCORS(self.client.get(self.list_url), 'post')
+    def get_error(self, response):
+        return json.loads(response.content)
 
-    def test_no_addon(self):
-        _list_url = ('api_dispatch_list', {'resource_name': 'preview'})
-        res = self.client.post(_list_url, data=json.dumps(self.good))
-        eq_(res.status_code, 404)
+    def test_has_cors(self):
+        self.assertCORS(self.client.post(self.list_url),
+                        'post', 'delete', 'get')
 
     def test_post_preview(self):
         res = self.client.post(self.list_url, data=json.dumps(self.good))
@@ -346,11 +345,12 @@ class TestPreviewHandler(BaseOAuth, amo.tests.AMOPaths):
         eq_(previews.all()[0].position, 1)
 
     def test_wrong_url(self):
-        url = list(self.list_url)
-        url[-1]['app'] = 'booyah'
-        res = self.client.post(url, data=json.dumps(self.good))
-        eq_(res.status_code, 400)
-        eq_(self.get_error(res)['app'], [u'Enter a whole number.'])
+        self.list_url = reverse('app-preview-list',
+                                kwargs={'pk': 'booyah'})
+        res = self.client.post(self.list_url, data=json.dumps(self.good))
+        eq_(res.status_code, 404)
+        data = json.loads(res.content)
+        eq_(data['detail'], 'Not found')
 
     def test_not_mine(self):
         self.app.authors.clear()
@@ -371,8 +371,8 @@ class TestPreviewHandler(BaseOAuth, amo.tests.AMOPaths):
     def create(self):
         self.client.post(self.list_url, data=json.dumps(self.good))
         self.preview = self.app.previews.all()[0]
-        self.get_url = ('api_dispatch_detail',
-                        {'resource_name': 'preview', 'pk': self.preview.pk})
+        self.get_url = reverse('app-preview-detail',
+                               kwargs={'pk': self.preview.pk})
 
     def test_delete(self):
         self.create()
@@ -387,8 +387,8 @@ class TestPreviewHandler(BaseOAuth, amo.tests.AMOPaths):
         eq_(res.status_code, 403)
 
     def test_delete_not_there(self):
-        self.get_url = ('api_dispatch_detail',
-                        {'resource_name': 'preview', 'pk': 123})
+        self.get_url = reverse('app-preview-detail',
+                               kwargs={'pk': 123123123})
         res = self.client.delete(self.get_url)
         eq_(res.status_code, 404)
 
@@ -404,7 +404,7 @@ class TestPreviewHandler(BaseOAuth, amo.tests.AMOPaths):
         eq_(res.status_code, 403)
 
     def test_get_not_there(self):
-        self.get_url = ('api_dispatch_detail',
-                        {'resource_name': 'preview', 'pk': 123})
+        self.get_url = reverse('app-preview-detail',
+                               kwargs={'pk': 123123123})
         res = self.client.get(self.get_url)
         eq_(res.status_code, 404)

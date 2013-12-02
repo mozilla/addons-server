@@ -19,12 +19,11 @@ from mkt.receipts.urls import receipt_api_patterns
 from mkt.reviewers.urls import api_patterns as reviewer_api_patterns
 from mkt.search.api import SearchResource, SuggestionsResource
 from mkt.stats.urls import stats_api_patterns, txn_api_patterns
-from mkt.submit.api import PreviewResource, StatusViewSet, ValidationViewSet
+from mkt.submit.api import PreviewViewSet, StatusViewSet, ValidationViewSet
 from mkt.webapps.api import AppViewSet, PrivacyPolicyViewSet
 
 # Endpoints using tastypie.
 api = Api(api_name='apps')
-api.register(PreviewResource())
 api.register(SearchResource())
 api.register(SuggestionsResource())
 
@@ -38,6 +37,7 @@ subcollections.register('image', CollectionImageViewSet,
                         base_name='collection-image')
 
 apps = SimpleRouter()
+apps.register(r'preview', PreviewViewSet, base_name='app-preview')
 apps.register(r'validation', ValidationViewSet, base_name='app-validation')
 apps.register(r'category', CategoryViewSet, base_name='app-category')
 apps.register(r'status', StatusViewSet, base_name='app-status')

@@ -102,10 +102,6 @@ class NewPackagedForm(NewPackagedAppForm):
         return super(NewPackagedForm, self).clean_upload()
 
 
-class PreviewArgsForm(happyforms.Form):
-    app = forms.IntegerField(required=False)
-
-
 class PreviewJSONForm(happyforms.Form):
     file = JSONField(required=True)
     position = forms.IntegerField(required=True)
