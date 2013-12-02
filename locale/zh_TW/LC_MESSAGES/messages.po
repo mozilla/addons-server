@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-12-02 11:35+0000\n"
+"PO-Revision-Date: 2013-12-02 14:40+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385984139.0\n"
+"X-POOTLE-MTIME: 1385995245.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -20880,7 +20880,7 @@ msgstr[0] "<b>預計等待時間:</b> %(num)s 個工作天"
 msgid ""
 "Most apps are reviewed in about a week. If your review has taken longer than "
 "this, you can send an email to %(email)s to check the status."
-msgstr ""
+msgstr "大部分應用程式可在一星期內審查完成，若您的審查花了超過一週，您可以寄信給 %(email)s 詢問進度。"
 
 #: mkt/developers/templates/developers/includes/macros.html:123
 msgid ""
@@ -20895,12 +20895,12 @@ msgstr "全部隱藏"
 #: mkt/developers/templates/developers/includes/testing_nav.html:3
 #: mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "安裝測試應用程式"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:7
 #: mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "測試應用程式內付款"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid ""
@@ -20986,11 +20986,11 @@ msgstr "您的應用程式目前不完整。選擇一個付款帳號以及價位
 
 #: mkt/developers/templates/developers/payments/premium.html:136
 msgid "Add, manage or view transactions for your payment account"
-msgstr ""
+msgstr "新增、管理或檢視您的付款帳號中的交易內容"
 
 #: mkt/developers/templates/developers/payments/premium.html:151
 msgid "Prices and Countries"
-msgstr ""
+msgstr "價格與國家"
 
 #: mkt/developers/templates/developers/payments/premium.html:167
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -21006,11 +21006,11 @@ msgstr "不適用"
 
 #: mkt/developers/templates/developers/payments/premium.html:188
 msgid "Regions"
-msgstr ""
+msgstr "地區"
 
 #: mkt/developers/templates/developers/payments/premium.html:194
 msgid "Available Regions"
-msgstr ""
+msgstr "可用地區"
 
 #: mkt/developers/templates/developers/payments/premium.html:199
 msgid ""
@@ -21043,11 +21043,11 @@ msgid ""
 "Your app will become available in the following selected regions once "
 "payments become available based on your chosen price point. To exclude your "
 "app from appearing in a region, you may uncheck that region before saving."
-msgstr ""
+msgstr "一旦您設定的價格可在下列區域使用時，您的應用程式將自動在這些區域上架。若要將您的應用程式自某些地區排除，您可以在儲存前取消勾選該區域。"
 
 #: mkt/developers/templates/developers/payments/premium.html:249
 msgid "Regions and Listings"
-msgstr ""
+msgstr "區域與上架"
 
 #: mkt/developers/templates/developers/payments/premium.html:264
 msgid "Promote as upgrade to free version"
@@ -21085,7 +21085,7 @@ msgstr "修改"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:47
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "View transactions"
-msgstr ""
+msgstr "檢視交易"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a new payment account"
@@ -21097,7 +21097,7 @@ msgstr "同意服務條款"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:56
 msgid "Payment Account deletion"
-msgstr ""
+msgstr "刪除付款帳號"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
@@ -21137,7 +21137,7 @@ msgstr "正在連線至付款伺服器，請稍後。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
-msgstr ""
+msgstr "新增參考帳號"
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -21154,11 +21154,11 @@ msgstr "修改 Bango 帳號"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
-msgstr ""
+msgstr "修改參考帳號"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:3
 msgid "Regions that require extra consideration:"
-msgstr ""
+msgstr "需要特別注意的地區:"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -21175,17 +21175,17 @@ msgstr "您的應用程式不再顯示於某些地區，因為這些地區不支
 msgid ""
 "Your app will be displayed in any regional Marketplace that is added in the "
 "future."
-msgstr ""
+msgstr "您的應用程式將於未來 Marketplace 可用的所有區域上架。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid ""
 "(Subject to payments being available in that region for the selected price "
 "point)."
-msgstr ""
+msgstr "（視該區域中是否可使用選擇的價格帶而定）"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
-msgstr ""
+msgstr "您將會在有新的區域時收到郵件通知。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:6
 msgid "Select All"
@@ -21307,7 +21307,7 @@ msgstr "設計"
 #: mkt/ecosystem/templates/ecosystem/landing.html:23
 #: mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "概念: 一套好的應用程式"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24
 #: mkt/ecosystem/templates/ecosystem/landing.html:25
@@ -21354,7 +21354,7 @@ msgstr "參考應用程式"
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
 msgid "Deploying Your App"
-msgstr ""
+msgstr "部署您的應用程式"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58
 #: mkt/ecosystem/templates/ecosystem/landing.html:59
@@ -21373,7 +21373,7 @@ msgstr "已封裝的應用程式"
 #: mkt/ecosystem/templates/ecosystem/base.html:66
 #: mkt/ecosystem/templates/ecosystem/macros.html:218
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "徽章、橫幅與圖示"
 
 # 專有名詞不要翻譯
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5
@@ -21729,7 +21729,7 @@ msgstr "Firefox OS UI 準則"
 msgid ""
 "Want to make your app look and feel like it's a Firefox OS native? These "
 "guidelines will show you how."
-msgstr ""
+msgstr "想要讓您的應用程式看起來、感覺起來都像是原生的 Firefox OS 應用程式嗎？請參考下列指南。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:12
 msgid "Developer Preview Phone"
@@ -21737,7 +21737,7 @@ msgstr "開發者預覽手機"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:20
 msgid "Bringing the Open Web to mobile devices."
-msgstr ""
+msgstr "將 Open Web 帶到行動裝置。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:22
 msgid ""
@@ -21764,7 +21764,7 @@ msgstr "Keon"
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:46
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:58
 msgid "ZTE OPEN"
-msgstr ""
+msgstr "ZTE OPEN"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:48
 msgid ""
@@ -21787,7 +21787,7 @@ msgstr ""
 msgid ""
 "NOTE: New devices have been made available from Hong Kong to cut down on "
 "postage costs for Asian and Oceanian users."
-msgstr ""
+msgstr "註: 有新的裝置已在香港發售，以節省亞太地區使用者的運費。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:77
 msgid "Peak"
@@ -21795,7 +21795,7 @@ msgstr "Peak"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:80
 msgid "Geeksphone"
-msgstr ""
+msgstr "Geeksphone"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:82
 msgid ""
@@ -21955,19 +21955,19 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid ""
 "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
-msgstr ""
+msgstr "Firefox Marketplace 已經開放應用程式上架，請將您的程式送到:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
-msgstr ""
+msgstr "讓一些早期採納者來測試您的程式。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
-msgstr ""
+msgstr "建立早期的粉絲，提早得到知名度。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
-msgstr ""
+msgstr "讓您的應用程式目標於重度消費者。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
@@ -22101,7 +22101,7 @@ msgstr "跟 Treehouse 的夥伴一起製作"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:292
 msgid "Check them out!"
-msgstr ""
+msgstr "快來看看！"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid ""
@@ -22146,13 +22146,13 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
-msgstr ""
+msgstr "加入最大與最棒的"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid ""
 "The world's most popular brands and all your favorite apps are building "
 "their experience on Firefox Marketplace."
-msgstr ""
+msgstr "世界知名的品牌與您最愛的應用程式都在 Firefox Marketplace 中打造他們的創新體驗。"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid ""
@@ -22162,7 +22162,7 @@ msgstr "一個最棒的全球與在地 HTML5 應用程式 真正跨平台，跨�
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
-msgstr ""
+msgstr "現在可用！"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:100
 msgid "Android Tablets"
@@ -22194,7 +22194,7 @@ msgstr "Firefox Marketplace 的 YouTube 頻道"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "徽章、橫幅與圖示"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid ""
