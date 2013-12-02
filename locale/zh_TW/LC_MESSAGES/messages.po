@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-12-01 14:47+0000\n"
+"PO-Revision-Date: 2013-12-02 06:54+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385909274.0\n"
+"X-POOTLE-MTIME: 1385967257.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -22096,7 +22096,6 @@ msgid "View with subtitles"
 msgstr "啟用字幕"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:290
-#, fuzzy
 msgid "Made in partnership with our friends at Treehouse"
 msgstr "跟 Treehouse 的夥伴一起製作"
 
@@ -22753,7 +22752,6 @@ msgid ""
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:62
-#, fuzzy
 msgid "A key-value store that contains all the post data for Roller."
 msgstr "一個包含了 Roller 中所有發布資料的 Key-Value Store。"
 
@@ -23976,12 +23974,10 @@ msgid "There are currently no Themes to review."
 msgstr "目前沒有任何可審核的佈景主題。"
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:20
-#, fuzzy
 msgid "Release My Theme Locks"
 msgstr "發布我的佈景主題鎖"
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:33
-#, fuzzy
 msgid "Interactive Theme Queue"
 msgstr "互動佈景主題列表"
 
