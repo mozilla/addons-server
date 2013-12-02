@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-20 13:27+0000\n"
+"PO-Revision-Date: 2013-12-02 07:13+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384954058.0\n"
+"X-POOTLE-MTIME: 1385968433.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2087,11 +2087,11 @@ msgstr "Gebruiker {0.name} {0.id} verwijderd via zoekhulpmiddel."
 
 #: apps/amo/log.py:653
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Inhoudswaardering {addon} gewijzigd in Volwassen."
 
 #: apps/amo/log.py:659
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Inhoudwaardering {addon} gewijzigd."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2186,6 +2186,10 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Voer hieronder <strong>beide woorden</strong> in, <strong>gescheiden "
+"door een spatie</strong>. </p> <p> Als dit moeilijk te lezen is, kunt u <a "
+"href=\"#\" id=\"recaptcha_different\">andere woorden proberen</a> of <a href=\"#\" "
+"id=\"recaptcha_audio\">een andere soort captcha</a> proberen. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
@@ -10223,7 +10227,7 @@ msgstr "Nieuwe editors"
 
 #: apps/editors/templates/editors/home.html:80 apps/editors/templates/editors/home.html:95
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "U bent nr. {0} met {1} beoordelingen"
 
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:125
@@ -10847,107 +10851,151 @@ msgstr "Add-on uitgeschakeld op de Firefox Marketplace."
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Over Mozilla Add-ons"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "Wat is deze website?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, algemeen bekend als “AMO”, is de officiële website van "
+"Mozilla voor add-ons bij Mozilla-software, zoals Firefox, Thunderbird en "
+"SeaMonkey. Met add-ons kunt u nieuwe functies toevoegen en de manier waarop "
+"uw browser of toepassing werkt veranderen. Kijk eens rond en verken de "
+"duizenden wijzen om de manier waarop u online dingen doet te wijzigen."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Wie maakt deze add-ons?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"De add-ons die u hier kunt vinden zijn gemaakt door duizenden ontwikkelaars "
+"uit onze gemeenschap, variërend van individuele hobbyisten tot grote "
+"bedrijven. Alle gepubliceerde add-ons worden beoordeeld door een team "
+"editors voordat ze worden vrijgegeven. Als Experimenteel gemarkeerde add-ons "
+"zijn niet beoordeeld en moeten met voorzorg worden geïnstalleerd."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Hoe houd ik de ontwikkelingen bij AMO in de gaten?"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
+"Er zijn verschillende manieren om het laatste nieuws uit de wereld van add-"
+"ons te ontvangen:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
 msgstr ""
+"Onze <a href=\"%(url)s\">Add-onsblog</a> wordt regelmatig bijgewerkt met "
+"informatie voor zowel add-on-fans als ontwikkelaars."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
 msgstr ""
+"We plaatsen vaak nieuws, tips en trucs op onze Twitter-account, <a href=\"%"
+"(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Onze <a href=\"%(url)s\">forums</a> zijn een goede plek om contact te leggen "
+"met de add-onsgemeenschap en toekomstige veranderingen van AMO te bespreken."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Dat klinkt goed! Hoe kan ik meedoen?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
+"Er zijn meer dan genoeg manieren om mee te doen. Als u technisch bent "
+"ingesteld:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Maak uw eigen add-on</a>. Wij bieden gratis hosting en "
+"updatediensten en kunnen u helpen een groot publiek te bereiken."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
 msgstr ""
+"Als u ontwikkelervaring met add-ons hebt, <a href=\"%(url)s\"> word dan een "
+"editor</a>! Onze editors zijn fans van add-ons met een technische "
+"achtergrond, die add-ons beoordelen op codekwaliteit en stabiliteit."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
 msgstr ""
+"Help deze website te verbeteren. Hij is opensource, en u kunt bugs melden en "
+"verbeteringen indienen. <a href=\"%(url)s\"> Bugzilla</a> bevat alle huidige "
+"bugs."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr ""
+"Als u interesse hebt in add-ons maar niet zo technisch bent zijn er nog "
+"steeds manieren om te helpen:"
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! <a href=\"%(url)s\">Spread Firefox</a> and let people know which add-ons you use."
 msgstr ""
+"Vertel het uw vrienden! <a href=\"%(url)s\">Verspreid Firefox</a> en laat "
+"mensen weten welke add-ons u gebruikt."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Doe mee aan onze <a href=\"%(url)s\">forums</a>."
 
 #: apps/pages/templates/pages/about.lhtml:63
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Beoordeel add-ons op de website. Add-onschrijvers zullen hun add-ons eerder "
+"verbeteren en nieuwe add-ons schrijven als ze weten dat hun werk wordt "
+"gewaardeerd."
 
 #: apps/pages/templates/pages/about.lhtml:68
 msgid "I have a question"
-msgstr ""
+msgstr "Ik heb een vraag"
 
 #: apps/pages/templates/pages/about.lhtml:69
 msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
 msgstr ""
+"Een goede plek om te starten is onze <a href=\"%(faq_url)s\"><abbr "
+"title=\"Frequently Asked Questions\">FAQ</abbr></a>. Als u daar geen antwoord "
+"vindt kunt u het <a href=\"%(forum_url)s\">op onze forums vragen</a>."
 
 #: apps/pages/templates/pages/about.lhtml:74
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"Als u echt contact wilt opnemen met iemand uit het Mozilla-team, lees dan "
+"onze pagina met <a href=\"%(url)s\">contactinformatie</a>."
 
 #: apps/pages/templates/pages/about.lhtml:78
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Wie werkt aan deze website?"
 
 #: apps/pages/templates/pages/about.lhtml:79
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"Gedurende de jaren hebben veel mensen bijgedragen aan deze website, zowel "
+"vrijwilligers uit de gemeenschap als een toegewijd AMO-team. Een lijst met "
+"belangrijke medewerkers kunt u vinden op onze pagina met <a href=\"%"
+"(url)s\">Dankzeggingen</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -14117,7 +14165,7 @@ msgstr "Aanschafdatum"
 
 #: mkt/api/fields.py:19
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "Selecteer een geldige optie. %(value)s is niet beschikbaar."
 
 #: mkt/api/serializers.py:100 mkt/site/forms.py:50
 msgid "Form could not be submitted."
@@ -15821,7 +15869,7 @@ msgstr "Algemeen publiek"
 #. L10n: %d is the age in years.
 #: mkt/constants/ratingsbodies.py:7
 msgid "Not recommended for users younger than %d years of age"
-msgstr ""
+msgstr "Niet aanbevolen voor gebruikers jonger dan %d jaar"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rejected for All Audiences"
@@ -15829,16 +15877,16 @@ msgstr "Afgewezen voor alle publiek"
 
 #: mkt/constants/ratingsbodies.py:10
 msgid "For all ages"
-msgstr ""
+msgstr "Voor alle leeftijden"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:12
 msgid "For ages %d+"
-msgstr ""
+msgstr "Leeftijd %d+"
 
 #: mkt/constants/ratingsbodies.py:13
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Waardering afgewezen"
 
 #: mkt/constants/ratingsbodies.py:97
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -15987,11 +16035,11 @@ msgstr "Kan gedeelde account niet verwijderen"
 
 #: mkt/developers/cron.py:132
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Inhoudswaardering gewijzigd in Volwassen."
 
 #: mkt/developers/forms.py:58
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "U kunt {region} niet selecteren."
 
 #: mkt/developers/forms.py:148
 msgid "All team members must have read and agreed to the developer agreement."
@@ -16083,7 +16131,7 @@ msgstr "Nieuwe regio’s inschakelen"
 
 #: mkt/developers/forms.py:710
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Mijn app beschikbaar stellen in de meeste regio’s"
 
 #: mkt/developers/forms.py:711
 msgid "Choose where my app is made available"
@@ -16139,7 +16187,7 @@ msgstr "Ongeldig bestandstype. Alleen bestanden van het type %s worden ondersteu
 
 #: mkt/developers/forms.py:1086
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Voer een geldige indienings-ID in."
 
 #: mkt/developers/forms.py:1113
 msgid "Content rating record not found."
@@ -16295,7 +16343,7 @@ msgstr "U mag betalingsaccounts niet wijzigen."
 
 #: mkt/developers/forms_payments.py:546
 msgid "Account name"
-msgstr ""
+msgstr "Accountnaam"
 
 #: mkt/developers/forms_payments.py:560
 msgid "No payment account set up for that app"
@@ -16712,7 +16760,7 @@ msgstr "Betalingen instellen"
 
 #: mkt/developers/templates/developers/apps/status.html:35
 msgid "This app is <b>incomplete</b> because it is missing content ratings."
-msgstr ""
+msgstr "Deze app is <b>onvolledig</b> omdat de inhoudswaardering ontbreekt."
 
 #: mkt/developers/templates/developers/apps/status.html:37 mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
 msgid "Set Up Content Ratings"
@@ -16756,11 +16804,11 @@ msgstr "Deze app is <b>afgewezen</b> door een Firefox Marketplace-beoordelaar."
 
 #: mkt/developers/templates/developers/apps/status.html:66
 msgid "Your app has been <b>approved but not yet published</b>."
-msgstr ""
+msgstr "Uw app is <b>goedgekeurd maar nog niet gepubliceerd</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:67
 msgid "This app is waiting for your approval to be published."
-msgstr ""
+msgstr "Deze app wacht op uw toestemming tot publicatie."
 
 #: mkt/developers/templates/developers/apps/status.html:77
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -16780,7 +16828,7 @@ msgstr "App opnieuw indienen"
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Publish App"
-msgstr ""
+msgstr "App publiceren"
 
 #: mkt/developers/templates/developers/apps/status.html:122
 msgid "Pre-Installed App Status"
@@ -17241,6 +17289,8 @@ msgstr "Apparaten wijzigen"
 #: mkt/developers/templates/developers/apps/listing/items.html:70
 msgid "<strong class=\"rating-notice\">This app may be disabled in the future if no content ratings are assigned by then:</strong>"
 msgstr ""
+"<strong class=\"rating-notice\">Deze app wordt in de toekomst mogelijk "
+"uitgeschakeld als er dan nog geen inhoudswaardering is:</strong>"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:73
 msgid "Set up Content Ratings"
@@ -17346,11 +17396,11 @@ msgstr "Waarderingscategorie"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
 msgid "Descriptors"
-msgstr ""
+msgstr "Beschrijvers"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Interactive Elements"
-msgstr ""
+msgstr "Interactieve elementen"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -17601,7 +17651,7 @@ msgstr "Een ogenblik geduld terwijl we contact opnemen met de betalingsserver."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
-msgstr ""
+msgstr "Referentie-account toevoegen"
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -17617,11 +17667,11 @@ msgstr "Bango-account aanpassen"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
-msgstr ""
+msgstr "Referentie-account aanpassen"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:3
 msgid "Regions that require extra consideration:"
-msgstr ""
+msgstr "Regio’s die extra aandacht behoeven:"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -18272,6 +18322,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
 msgstr ""
+"De Firefox Marketplace is nu open en accepteert apps. Dien uw app in bij:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
@@ -19570,7 +19621,7 @@ msgstr "Beoordeling"
 
 #: mkt/reviewers/helpers.py:43 mkt/reviewers/templates/reviewers/queue_region.html:6
 msgid "Regional Queues"
-msgstr ""
+msgstr "Regionale wachtlijsten"
 
 #: mkt/reviewers/helpers.py:45
 msgid "Pending Themes"
@@ -19615,7 +19666,7 @@ msgstr "Beoordelen ({0})"
 
 #: mkt/reviewers/helpers.py:114
 msgid "China ({0})"
-msgstr ""
+msgstr "China ({0})"
 
 #: mkt/reviewers/helpers.py:121
 msgid "Device ({0})"
@@ -19721,8 +19772,8 @@ msgstr "“{0}” succesvol verwerkt (+{1} punten, totaal {2})."
 #: mkt/reviewers/views_themes.py:300
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} themabeoordeling succesvol verwerkt (+{1} punten, {2} totaal)."
+msgstr[1] "{0} themabeoordelingen succesvol verwerkt (+{1} punten, {2} totaal)."
 
 #: mkt/reviewers/views_themes.py:315
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
@@ -19757,7 +19808,7 @@ msgstr "<small>Marketplace</small>-beoordelaarshulpmiddelen"
 
 #: mkt/reviewers/templates/reviewers/base_minimal.html:19
 msgid "Back to Reviewer Tools"
-msgstr ""
+msgstr "Terug naar Beoordelaarshulpmiddelen"
 
 #: mkt/reviewers/templates/reviewers/home.html:17
 msgid "{num} Pending App Review"
@@ -19815,7 +19866,7 @@ msgstr "Er zijn momenteel geen items van dit type te beoordelen."
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:10
 msgid "{region} Review Queue"
-msgstr ""
+msgstr "Beoordelingswachtrij {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
@@ -20148,7 +20199,7 @@ msgstr "App-type"
 
 #: mkt/search/forms.py:102
 msgid "Works offline"
-msgstr ""
+msgstr "Werkt offline"
 
 #: mkt/search/forms.py:104
 msgid "Supported languages"
@@ -20707,20 +20758,20 @@ msgstr "U dient ten minste één categorie op te geven."
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2004
 msgid "awaiting approval"
-msgstr ""
+msgstr "wacht op goedkeuring"
 
 #. L10n: An app requires additional review for a particular region.
 #: mkt/webapps/models.py:2008
 msgid "requires additional review"
-msgstr ""
+msgstr "vereist aanvullende beoordeling"
 
 #: mkt/webapps/models.py:2047
 msgid "{region} approval status"
-msgstr ""
+msgstr "goedkeuringsstatus {region}"
 
 #: mkt/webapps/models.py:2052
 msgid "{region} nomination date"
-msgstr ""
+msgstr "nominatiedatum {region}"
 
 #: mkt/webapps/tasks.py:116
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
