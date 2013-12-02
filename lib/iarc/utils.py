@@ -139,7 +139,7 @@ class IARC_XML_Parser(XMLParser, IARC_Parser):
         children = list(element)
 
         if len(children) == 0:
-            return self._type_convert(element.get('VALUE'))
+            return self._type_convert(element.get('VALUE', ''))
         else:
             if children[0].tag == 'ROW':
                 data = []

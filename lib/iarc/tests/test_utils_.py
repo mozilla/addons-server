@@ -86,6 +86,19 @@ class TestXMLParser(amo.tests.TestCase):
     def setUp(self):
         self.client = get_iarc_client('service')
 
+    def test_missing_value(self):
+        """Sometimes the VALUE attribute in the XML is missing."""
+        xml = '''<?xml version="1.0" encoding="utf-16"?>
+            <WEBSERVICE SERVICE_NAME="SET_STOREFRONT_DATA" TYPE="REQUEST">
+            <ROW>
+            <FIELD NAME="rating_PEGI" TYPE="string" VALUE="16+" />
+            <FIELD NAME="descriptors_PEGI" TYPE="string" />
+            </ROW>
+            </WEBSERVICE>'''
+        data = IARC_XML_Parser().parse_string(xml)
+        assert 'ratings' in data['rows'][0]
+        assert 'descriptors' not in data['rows'][0]
+
     def test_app_info(self):
         xml = self.client.Get_App_Info(XMLString='foo')
         data = IARC_XML_Parser().parse_string(xml)['rows'][0]
