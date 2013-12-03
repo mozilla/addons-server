@@ -149,7 +149,9 @@ class DE(REGION):
     default_currency = 'EUR'
     default_language = 'de'
     mcc = 262
-    ratingsbody = ratingsbodies.USK
+    # TODO: change to GENERIC on IARC deploy (switch_is_active('iarc')).
+    # ratingsbody = ratingsbodies.USK
+    ratingsbody = ratingsbodies.GENERIC
 
 
 class ME(REGION):
@@ -254,11 +256,20 @@ SPECIAL_REGION_IDS = sorted(x.id for x in SPECIAL_REGIONS)
 # Regions not including worldwide.
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]
 
-# Regions that have ratings bodies.
-ALL_REGIONS_WITH_CONTENT_RATINGS = [x for x in ALL_REGIONS if x.ratingsbody]
-
-# Regions without ratings bodies and fallback to the GENERIC rating body.
-ALL_REGIONS_WO_CONTENT_RATINGS = (set(ALL_REGIONS) -
-                                  set(ALL_REGIONS_WITH_CONTENT_RATINGS))
-
 GENERIC_RATING_REGION_SLUG = 'generic'
+
+def ALL_REGIONS_WITH_CONTENT_RATINGS():
+    """Regions that have ratings bodies."""
+    import waffle
+
+    if waffle.switch_is_active('iarc'):
+        return [x for x in ALL_REGIONS if x.ratingsbody]
+
+    # Only require content ratings in Brazil/Germany without IARC switch.
+    return [BR, DE]
+
+def ALL_REGIONS_WO_CONTENT_RATINGS():
+    """
+    Regions without ratings bodies and fallback to the GENERIC rating body.
+    """
+    return set(ALL_REGIONS) - set(ALL_REGIONS_WITH_CONTENT_RATINGS())

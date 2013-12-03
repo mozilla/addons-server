@@ -68,7 +68,7 @@ def toggle_game(app):
     """
     if not Webapp.category('games'):
         return
-    for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+    for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
         if app.listed_in(category='games'):
             if app.content_ratings_in(region):
                 aer = app.addonexcludedregion.filter(region=region.id)
@@ -764,7 +764,7 @@ class RegionForm(forms.Form):
         games = Webapp.category('games')
 
         if games and self.product.categories.filter(id=games.id).exists():
-            for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+            for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
                 if not self.product.content_ratings_in(region):
                     disabled_regions.add(region.id)
 

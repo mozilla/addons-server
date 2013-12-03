@@ -1232,6 +1232,7 @@ class TestContentRating(amo.tests.WebappTestCase):
 
     def setUp(self):
         self.app = self.get_app()
+        self.create_switch('iarc')
 
     @mock.patch.object(mkt.regions.BR, 'ratingsbody',
                        mkt.ratingsbodies.CLASSIND)
@@ -1634,6 +1635,8 @@ class TestWebappIndexer(amo.tests.TestCase):
     @mock.patch.object(mkt.regions.VE, 'ratingsbody', None)
     @mock.patch.object(mkt.regions.RS, 'ratingsbody', None)
     def test_extract_content_ratings_generic_fallback(self):
+        self.create_switch('iarc')
+
         # These ones shouldn't appear, they are associated w/ region.
         ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,

@@ -1,10 +1,8 @@
-import json
-
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.utils import translation
 
 import commonware.log
+import waffle
 
 import amo
 from addons.models import AddonUser
@@ -94,7 +92,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     if getattr(obj, 'content_ratings', None):
         for region_key in obj.content_ratings:
             obj.content_ratings[region_key] = dehydrate_content_rating(
-                obj.content_ratings[region_key])
+                obj.content_ratings[region_key], region_key)
 
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
@@ -181,10 +179,17 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     return data
 
 
-def dehydrate_content_rating(rating):
+def dehydrate_content_rating(rating, region=None):
     """
     {body.id, rating.id} to translated {rating labels, names, descriptions}.
     """
+    if (not waffle.switch_is_active('iarc') and
+        region not in ['br', 'de']):
+        # Ratings only enabled for Brazil and Germany before IARC work.
+        # When removing this waffle switch, remove the whole `if`
+        # clause.
+        return
+
     try:
         body = mkt.ratingsbodies.dehydrate_ratings_body(
             mkt.ratingsbodies.RATINGS_BODIES[int(rating['body'])])

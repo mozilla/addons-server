@@ -22,7 +22,7 @@ class Command(BaseCommand):
         paid_types = amo.ADDON_PREMIUMS + (amo.ADDON_FREE_INAPP,)
 
         games_cat = Webapp.category('games')
-        content_region_ids = [x.id for x in ALL_REGIONS_WITH_CONTENT_RATINGS]
+        content_region_ids = [x.id for x in ALL_REGIONS_WITH_CONTENT_RATINGS()]
 
         apps = Webapp.objects.all()
         for app in apps:

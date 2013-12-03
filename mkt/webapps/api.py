@@ -266,7 +266,7 @@ class AppSerializer(serializers.ModelSerializer):
         if not games:
             return
 
-        for region in ALL_REGIONS_WITH_CONTENT_RATINGS:
+        for region in ALL_REGIONS_WITH_CONTENT_RATINGS():
             if (self.product.listed_in(region) and
                 not self.product.content_ratings_in(region)):
 

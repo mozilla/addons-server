@@ -968,7 +968,7 @@ class TestDetails(TestSubmit):
         r = self.client.post(self.url, self.get_dict(categories=[games.id]))
         self.assertNoFormErrors(r)
         self.assertSetEqual(AER.objects.values_list('region', flat=True),
-            [x.id for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS])
+            [x.id for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()])
 
     def test_other_categories_are_not_excluded(self):
         # Keep the category around for good measure.

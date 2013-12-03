@@ -547,7 +547,7 @@ class Webapp(Addon):
         user_region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
         # See if it's a game without a content rating.
-        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS:
+        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
             if (user_region == region and self.listed_in(category='games') and
                 not self.content_ratings_in(region, 'games')):
                 unrated_game = True
@@ -1029,7 +1029,7 @@ class Webapp(Addon):
                 }
                 if not es:
                     rating_serialized = dehydrate_content_rating(
-                        rating_serialized)
+                        rating_serialized, region)
 
                 content_ratings[region] = rating_serialized
         return content_ratings
@@ -1774,19 +1774,25 @@ class ContentRating(amo.models.ModelBase):
         return u'%s: %s' % (self.addon, self.get_label())
 
     def get_regions(self):
-        """Gives us the region classes that use this rating body."""
-        if self.get_body() == mkt.ratingsbodies.GENERIC:
-            # All regions w/o specified ratings bodies use GENERIC.
-            return mkt.regions.ALL_REGIONS_WO_CONTENT_RATINGS
+        """Gives us a list of Region classes that use this rating body."""
+        # All regions w/o specified ratings bodies fallback to Generic.
+        generic_regions = []
+        if (waffle.switch_is_active('iarc') and
+            self.get_body() == mkt.ratingsbodies.GENERIC):
+            generic_regions = mkt.regions.ALL_REGIONS_WO_CONTENT_RATINGS()
 
-        return [x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS
-                if self.get_body() == x.ratingsbody]
+        return [x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()
+                if self.get_body() == x.ratingsbody] + list(generic_regions)
 
     def get_region_slugs(self):
         """Gives us the region slugs that use this rating body."""
-        if self.get_body() == mkt.ratingsbodies.GENERIC:
+        if (waffle.switch_is_active('iarc') and
+            self.get_body() == mkt.ratingsbodies.GENERIC):
             # For the generic rating body, we just pigeonhole all of the misc.
-            # regions into one region slug, GENERIC.
+            # regions into one region slug, GENERIC. Reduces redundancy in the
+            # final data structure. Rather than
+            # {'pe': {generic_rating}, 'ar': {generic_rating}, etc}, generic
+            # regions will just use single {'generic': {generic rating}}
             return [mkt.regions.GENERIC_RATING_REGION_SLUG]
         return [x.slug for x in self.get_regions()]
 

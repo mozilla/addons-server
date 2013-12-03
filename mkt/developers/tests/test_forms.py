@@ -211,7 +211,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.initial['enable_new_regions'], True)
 
     def test_unrated_games_already_excluded(self):
-        regions = [x.id for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS]
+        regions = [x.id for x in
+                   mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()]
         for region in regions:
             self.app.addonexcludedregion.create(region=region)
 
@@ -620,7 +621,7 @@ class TestAdminSettingsForm(TestAdmin):
         form.save(self.webapp)
 
         excluded_regions = [
-            x.id for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS
+            x.id for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()
         ]
 
         # After the form was saved, it should be excluded in Brazil.
