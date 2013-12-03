@@ -6,7 +6,7 @@ import time
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial, wraps
-from urlparse import urlsplit, urlunsplit
+from urlparse import SplitResult, urlsplit, urlunsplit
 
 from django import forms
 from django.conf import settings
@@ -448,6 +448,33 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         self.assertSetEqual(verbs, actual)
         eq_(res['Access-Control-Allow-Headers'],
             'X-HTTP-Method-Override, Content-Type')
+
+    def assertApiUrlEqual(self, *args, **kwargs):
+        """
+        Allows equality comparison of two or more URLs agnostic of API version.
+        This is done by prepending '/api/vx' (where x is equal to the `version`
+        keyword argument or API_CURRENT_VERSION) to each string passed as a
+        positional argument if that URL doesn't already start with that string.
+
+        Example usage:
+
+        url = '/api/v1/apps/app/bastacorp/'
+        self.assertApiUrlEqual(url, '/apps/app/bastacorp1/')
+
+        # settings.API_CURRENT_VERSION = 2
+        url = '/api/v1/apps/app/bastacorp/'
+        self.assertApiUrlEqual(url, '/apps/app/bastacorp/', version=1)
+        """
+        PATH = 2
+        version = kwargs.get('version', settings.API_CURRENT_VERSION)
+        urls = list(args)
+        prefix = '/api/v%d' % version
+        for idx, url in enumerate(urls):
+            urls[idx] = list(urlsplit(url))
+            if not urls[idx][PATH].startswith(prefix):
+                urls[idx][PATH] = prefix + urls[idx][PATH]
+            urls[idx] = SplitResult(*urls[idx])
+        eq_(*urls)
 
     def update_session(self, session):
         """
