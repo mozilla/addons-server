@@ -1300,19 +1300,19 @@ msgstr "Било коју"
 
 #: media/js/mkt/reviewers.js:257
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Одобрена апликација: {app}"
 
 #: media/js/mkt/reviewers.js:260
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Одбијена апликација: {app}"
 
 #: media/js/mkt/reviewers.js:266
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Грешка приликом одобравања апликације: {app}"
 
 #: media/js/mkt/reviewers.js:267
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Грешка приликом одбијања апликације: {app} "
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1584,7 +1584,7 @@ msgstr "Манифест апликације је у погрешном фор�
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "Инсталација апликације није успела."
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
@@ -1840,7 +1840,7 @@ msgstr "Број рецензија"
 
 #: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "Грешка при учитавању превода"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
