@@ -4,19 +4,18 @@ import json
 import logging
 import os
 import sys
-import time
 import traceback
-import urllib2
 import urlparse
 import uuid
 import zipfile
+from datetime import date
 
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils import translation
 from django.utils.http import urlencode
 
+import requests
 from appvalidator import validate_app, validate_packaged_app
 from celery_tasktree import task_with_callbacks
 from celeryutils import task
@@ -28,17 +27,19 @@ import amo
 from addons.models import Addon
 from amo.decorators import set_modified_on, write
 from amo.helpers import absolutify
-from amo.utils import (remove_icons, resize_image, send_mail_jinja, strip_bom,
-                       to_language)
+from amo.utils import remove_icons, resize_image, send_mail_jinja, strip_bom
 from files.models import FileUpload, File, FileValidation
 from files.utils import SafeUnzip
 
 from mkt.constants import APP_PREVIEW_SIZES
-from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 
 log = logging.getLogger('z.mkt.developers.task')
+
+CT_URL = (
+    'https://developer.mozilla.org/docs/Web/Apps/Manifest#Serving_manifests'
+)
 
 
 @task
@@ -205,19 +206,21 @@ def get_preview_sizes(ids, **kw):
 def _fetch_content(url):
     with statsd.timer('developers.tasks.fetch_content'):
         try:
-            stream = urllib2.urlopen(url, timeout=30)
-            if not 200 <= stream.getcode() < 300:
-                raise Exception(
-                    'An invalid HTTP status code was returned.')
-            if not stream.headers.keys():
-                raise Exception(
-                    'The HTTP server did not return headers.')
-            return stream
-        except urllib2.HTTPError, e:
-            raise Exception(
-                '%s responded with %s (%s).' % (url, e.code, e.msg))
-        except urllib2.URLError, e:
-            # Unpack the URLError to try and find a useful message.
+            res = requests.get(url, timeout=30, stream=True)
+
+            if not 200 <= res.status_code < 300:
+                statsd.incr('developers.tasks.fetch_content.error')
+                raise Exception('An invalid HTTP status code was returned.')
+
+            if not res.headers.keys():
+                statsd.incr('developers.tasks.fetch_content.error')
+                raise Exception('The HTTP server did not return headers.')
+
+            statsd.incr('developers.tasks.fetch_content.success')
+            return res
+        except requests.RequestException as e:
+            statsd.incr('developers.tasks.fetch_content.error')
+            log.error('fetch_content connection error: %s' % e)
             raise Exception('The file could not be retrieved.')
 
 
@@ -228,7 +231,8 @@ class ResponseTooLargeException(Exception):
 def get_content_and_check_size(response, max_size):
     # Read one extra byte. Reject if it's too big so we don't have issues
     # downloading huge files.
-    content = response.read(max_size + 1)
+    content = response.iter_content(chunk_size=max_size + 1,
+                                    decode_unicode=True).next()
     if len(content) > max_size:
         raise ResponseTooLargeException('Too much data.')
     return content
@@ -330,8 +334,6 @@ def failed_validation(*messages, **kwargs):
                        'prelim': True})
 
 
-CT_URL = (
-    'https://developer.mozilla.org/docs/Web/Apps/Manifest#Serving_manifests')
 def _fetch_manifest(url, upload=None):
     def fail(message, upload=None):
         if upload is None:
@@ -348,7 +350,7 @@ def _fetch_manifest(url, upload=None):
                'again.'), upload=upload)
         return
 
-    ct = response.headers.get('Content-Type', '')
+    ct = response.headers.get('content-type', '')
     if not ct.startswith('application/x-web-app-manifest+json'):
         fail(_('Manifests must be served with the HTTP header '
                '"Content-Type: application/x-web-app-manifest+json". See %s '
@@ -416,17 +418,17 @@ def subscribe_to_responsys(campaign, address, format='html', source_url='',
         'SOURCE_URL': source_url,
         'EMAIL_ADDRESS_': address,
         'EMAIL_FORMAT_': 'H' if format == 'html' else 'T',
-        }
+    }
 
     data['%s_FLG' % campaign] = 'Y'
     data['%s_DATE' % campaign] = date.today().strftime('%Y-%m-%d')
     data['_ri_'] = settings.RESPONSYS_ID
 
     try:
-        res = urllib2.urlopen('http://awesomeness.mozilla.org/pub/rf',
-                              data=urlencode(data))
-        return res.code == 200
-    except urllib2.URLError:
+        res = requests.get('http://awesomeness.mozilla.org/pub/rf',
+                           data=urlencode(data))
+        return res.status_code == 200
+    except requests.RequestException:
         return False
 
 
@@ -457,8 +459,9 @@ def region_email(ids, regions, **kw):
         to = set(product.authors.values_list('email', flat=True))
 
         if len(regions) == 1:
-            subject = _(u'{region} region added to the Firefox Marketplace'
-                ).format(region=regions[0])
+            subject = _(
+                u'{region} region added to the Firefox Marketplace').format(
+                    region=regions[0])
         else:
             subject = _(u'New regions added to the Firefox Marketplace')
 
