@@ -125,22 +125,19 @@ class APIVersionMiddleware(object):
     """
 
     def process_request(self, request):
-        try:
-            version = v_re.match(request.META['PATH_INFO']).group('version')
-        except AttributeError:
-            # Not in the API.
-            return
-
-        # If you are in the API, but don't have a version, this will be None.
-        request.API_VERSION = version
+        if getattr(request, 'API', False):
+            url = request.META.get('PATH_INFO', '')
+            version = v_re.match(url).group('version')
+            if not version:
+                version = 1
+            request.API_VERSION = int(version)
 
     def process_response(self, request, response):
-        # Not in the API.
-        if not hasattr(request, 'API_VERSION'):
+        if not getattr(request, 'API', False):
             return response
 
         response['API-Version'] = request.API_VERSION
-        if not request.API_VERSION:
+        if request.API_VERSION < settings.API_CURRENT_VERSION:
             response['API-Status'] = 'Deprecated'
         return response
 

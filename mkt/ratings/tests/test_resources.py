@@ -84,7 +84,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         eq_(data['user']['can_rate'], True)
         eq_(data['user']['has_rated'], True)
         eq_(len(data['objects']), 1)
-        eq_(data['objects'][0]['app'], '/api/apps/app/337141/')
+        self.assertApiUrlEqual(data['objects'][0]['app'], '/apps/app/337141/')
         eq_(data['objects'][0]['body'], rev.body)
         eq_(data['objects'][0]['created'],
             rev.created.replace(microsecond=0).isoformat())

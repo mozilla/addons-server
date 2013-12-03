@@ -240,6 +240,7 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         eq_(data['meta']['previous'], None)
         eq_(data['meta']['offset'], 0)
         next = urlparse(data['meta']['next'])
+        ok_(next.path.startswith('/api/v1'))
         eq_(next.path, self.list_url)
         eq_(QueryDict(next.query).dict(), {u'limit': u'3', u'offset': u'3'})
 
@@ -252,6 +253,7 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         eq_(data['meta']['total_count'], 4)
         eq_(data['meta']['limit'], 3)
         prev = urlparse(data['meta']['previous'])
+        ok_(prev.path.startswith('/api/v1'))
         eq_(next.path, self.list_url)
         eq_(QueryDict(prev.query).dict(), {u'limit': u'3', u'offset': u'0'})
         eq_(data['meta']['offset'], 3)

@@ -3,6 +3,7 @@ from urlparse import parse_qs
 from django.conf import settings
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseServerError
+from django.test.utils import override_settings
 
 import mock
 from multidb import this_thread_is_pinned
@@ -153,23 +154,52 @@ class TestPinningMiddleware(amo.tests.TestCase):
         eq_(self.pinned_header(), 'False')
 
 
+@override_settings(API_CURRENT_VERSION=2)
 class TestAPIVersionMiddleware(amo.tests.TestCase):
 
     def setUp(self):
-        self.dep = APIVersionMiddleware()
+        self.api_version_middleware = APIVersionMiddleware()
+        self.prefix_middleware = RedirectPrefixedURIMiddleware()
 
-    def req(self, url, header):
+    def response(self, url):
         req = RequestFactory().get(url)
-        self.dep.process_request(req)
-        res = self.dep.process_response(req, HttpResponse())
+        self.prefix_middleware.process_request(req)
+        resp = self.api_version_middleware.process_request(req)
+        if resp:
+            return resp
+        return self.api_version_middleware.process_response(req, HttpResponse())
+
+    def header(self, res, header):
         return res.get(header, None)
 
-    def test_notice(self):
-        eq_(self.req('/foo/', 'API-Status'), None)
-        eq_(self.req('/foo/api/', 'API-Status'), None)
-        eq_(self.req('/api/', 'API-Status'), 'Deprecated')
-        eq_(self.req('/api/v1/', 'API-Status'), None)
-        eq_(self.req('/api/v1/', 'API-Version'), '1')
+    def test_non_api(self):
+        res1 = self.response('/foo/')
+        eq_(self.header(res1, 'API-Version'), None)
+        eq_(self.header(res1, 'API-Status'), None)
+
+        res2 = self.response('/foo/')
+        eq_(self.header(res2, 'API-Version'), None)
+        eq_(self.header(res2, 'API-Status'), None)
+
+    def test_version_not_specified(self):
+        res = self.response('/api/')
+        eq_(self.header(res, 'API-Version'), '1')
+        eq_(self.header(res, 'API-Status'), 'Deprecated')
+
+    def test_old_version(self):
+        res = self.response('/api/v1/')
+        eq_(self.header(res, 'API-Version'), '1')
+        eq_(self.header(res, 'API-Status'), 'Deprecated')
+
+    def test_current_version(self):
+        res = self.response('/api/v2/')
+        eq_(self.header(res, 'API-Version'), '2')
+        eq_(self.header(res, 'API-Status'), None)
+
+    def test_future_version(self):
+        res = self.response('/api/v3/')
+        eq_(self.header(res, 'API-Version'), '3')
+        eq_(self.header(res, 'API-Status'), None)
 
 
 class TestFilterMiddleware(amo.tests.TestCase):

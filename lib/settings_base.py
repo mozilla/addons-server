@@ -1618,3 +1618,7 @@ IARC_SUBMISSION_ENDPOINT = ''
 
 # The payment providers supported.
 PAYMENT_PROVIDERS = []
+
+# The currently-recommended version of the API. Any requests to versions older
+# than this will include the `API-Status: Deprecated` header.
+API_CURRENT_VERSION = 1
