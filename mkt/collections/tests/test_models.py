@@ -64,6 +64,53 @@ class TestCollection(amo.tests.TestCase):
         eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
             [0, 1, 2, 3])
 
+    def test_app_deleted(self):
+        collection = self.collection
+        app = amo.tests.app_factory()
+        collection.add_app(app)
+        self.assertSetEqual(collection.apps(), [app])
+        self.assertSetEqual(collection.collectionmembership_set.all(),
+            [CollectionMembership.objects.get(collection=collection, app=app)])
+
+        app.delete()
+
+        self.assertSetEqual(collection.apps(), [])
+        self.assertSetEqual(collection.collectionmembership_set.all(), [])
+
+    def test_app_disabled_by_user(self):
+        collection = self.collection
+        app = amo.tests.app_factory()
+        collection.add_app(app)
+        self.assertSetEqual(collection.apps(), [app])
+        self.assertSetEqual(collection.collectionmembership_set.all(),
+            [CollectionMembership.objects.get(collection=collection, app=app)])
+
+        app.update(disabled_by_user=True)
+
+        self.assertSetEqual(collection.apps(), [])
+
+        # The collection membership still exists here, the app is not deleted,
+        # only disabled.
+        self.assertSetEqual(collection.collectionmembership_set.all(),
+            [CollectionMembership.objects.get(collection=collection, app=app)])
+
+    def test_app_pending(self):
+        collection = self.collection
+        app = amo.tests.app_factory()
+        collection.add_app(app)
+        self.assertSetEqual(collection.apps(), [app])
+        self.assertSetEqual(collection.collectionmembership_set.all(),
+            [CollectionMembership.objects.get(collection=collection, app=app)])
+
+        app.update(status=amo.STATUS_PENDING)
+
+        self.assertSetEqual(collection.apps(), [])
+
+        # The collection membership still exists here, the app is not deleted,
+        # just not public.
+        self.assertSetEqual(collection.collectionmembership_set.all(),
+            [CollectionMembership.objects.get(collection=collection, app=app)])
+
     def test_mixed_ordering(self):
         self._generate_apps()
 
