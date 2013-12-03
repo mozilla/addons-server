@@ -60,7 +60,7 @@ class CategorySerializer(ModelSerializer):
 
 
 class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSMixin,
-                      SlugOrIdMixin, GenericViewSet):
+                      SlugOrIdMixin, MarketplaceView, GenericViewSet):
     model = Category
     serializer_class = CategorySerializer
     permission_classes = (AllowAny,)
@@ -103,7 +103,7 @@ def site_config(request):
         })
 
 
-class RegionViewSet(CORSMixin, ReadOnlyModelViewSet):
+class RegionViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
     cors_allowed_methods = ['get']
     authentication_classes = []
     permission_classes = [AllowAny]

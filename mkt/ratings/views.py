@@ -18,7 +18,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import (AnyOf, AllowOwner, AllowRelatedAppOwner,
                                    ByHttpMethod, GroupPermission)
-from mkt.api.base import CORSMixin
+from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.ratings.serializers import RatingFlagSerializer, RatingSerializer
 
 
@@ -37,7 +37,7 @@ class RatingPaginator(Paginator):
         return r.addon.total_reviews
 
 
-class RatingViewSet(CORSMixin, ModelViewSet):
+class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     # Unfortunately, the model class name for ratings is "Review".
     queryset = Review.objects.valid()
     cors_allowed_methods = ('get', 'post', 'put', 'delete')
@@ -68,18 +68,6 @@ class RatingViewSet(CORSMixin, ModelViewSet):
         if not self.request.REGION.adolescent:
             qs = qs.filter(client_data__region=self.request.REGION.id)
         return qs
-
-    def paginate_queryset(self, queryset, page_size=None):
-        page_query_param = self.request.QUERY_PARAMS.get(self.page_kwarg)
-        offset_query_param = self.request.QUERY_PARAMS.get('offset')
-
-        # If 'offset' (tastypie-style pagination) parameter is present and
-        # 'page' isn't, use offset it to find which page to use.
-        if page_query_param is None and offset_query_param is not None:
-            page_number = int(offset_query_param) / self.get_paginate_by() + 1
-            self.kwargs[self.page_kwarg] = page_number
-        return super(RatingViewSet, self).paginate_queryset(queryset,
-            page_size=page_size)
 
     def filter_queryset(self, queryset):
         """

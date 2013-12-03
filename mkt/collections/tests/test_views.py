@@ -2,10 +2,12 @@
 import json
 import os
 from random import shuffle
+from urlparse import urlparse
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
+from django.http import QueryDict
 from django.utils import translation
 
 from nose import SkipTest
@@ -221,6 +223,39 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         data = json.loads(res.content)
         eq_(res.status_code, 200)
         eq_(len(data['objects']), 1)
+
+    def test_listing_pagination(self):
+        self.create_additional_data()
+        self.make_publisher()  # To be able to see non-public collections.
+        res = self.client.get(self.list_url, {'limit': 3})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+
+        eq_(len(data['objects']), 3)
+        eq_(data['objects'][0]['id'], self.collection4.pk)
+        eq_(data['objects'][1]['id'], self.collection3.pk)
+        eq_(data['objects'][2]['id'], self.collection2.pk)
+        eq_(data['meta']['total_count'], 4)
+        eq_(data['meta']['limit'], 3)
+        eq_(data['meta']['previous'], None)
+        eq_(data['meta']['offset'], 0)
+        next = urlparse(data['meta']['next'])
+        eq_(next.path, self.list_url)
+        eq_(QueryDict(next.query).dict(), {u'limit': u'3', u'offset': u'3'})
+
+        res = self.client.get(self.list_url, {'limit': 3, 'offset': 3})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['id'], self.collection.pk)
+        eq_(data['meta']['total_count'], 4)
+        eq_(data['meta']['limit'], 3)
+        prev = urlparse(data['meta']['previous'])
+        eq_(next.path, self.list_url)
+        eq_(QueryDict(prev.query).dict(), {u'limit': u'3', u'offset': u'0'})
+        eq_(data['meta']['offset'], 3)
+        eq_(data['meta']['next'], None)
 
     def test_listing_no_filtering(self):
         self.create_additional_data()

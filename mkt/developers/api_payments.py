@@ -23,7 +23,7 @@ from mkt.api.authorization import (AllowAppOwner, GroupPermission,
                                    switch)
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import AppViewSet
+from mkt.api.base import AppViewSet, MarketplaceView
 from mkt.constants.payments import PAYMENT_STATUSES
 from mkt.developers.forms_payments import (BangoPaymentAccountForm,
                                            PaymentCheckForm)
@@ -51,7 +51,7 @@ class PaymentAccountSerializer(Serializer):
 
 
 class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
-                            GenericViewSet):
+                            MarketplaceView, GenericViewSet):
     queryset = PaymentAccount.objects.all()
     # PaymentAccountSerializer is not a real serializer, it just calls
     # get_details() on the object. It's only used for GET requests, in every
@@ -126,7 +126,7 @@ class PaymentSerializer(HyperlinkedModelSerializer):
         view_name = 'app-payments-detail'
 
 
-class PaymentViewSet(RetrieveModelMixin, GenericViewSet):
+class PaymentViewSet(RetrieveModelMixin, MarketplaceView, GenericViewSet):
     permission_classes = (AllowAppOwner,)
     queryset = Webapp.objects.filter()
     serializer_class = PaymentSerializer
@@ -168,7 +168,7 @@ class UpsellPermission(BasePermission):
 
 
 class UpsellViewSet(CreateModelMixin, DestroyModelMixin, RetrieveModelMixin,
-                    UpdateModelMixin, GenericViewSet):
+                    UpdateModelMixin, MarketplaceView, GenericViewSet):
     permission_classes = (switch('allow-b2g-paid-submission'),
                           UpsellPermission,)
     queryset = AddonUpsell.objects.filter()
@@ -221,7 +221,8 @@ class AddonPaymentAccountSerializer(HyperlinkedModelSerializer):
 
 
 class AddonPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
-                                 UpdateModelMixin, GenericViewSet):
+                                 UpdateModelMixin, MarketplaceView,
+                                 GenericViewSet):
     permission_classes = (AddonPaymentAccountPermission,)
     queryset = AddonPaymentAccount.objects.filter()
     serializer_class = AddonPaymentAccountSerializer

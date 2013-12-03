@@ -2,19 +2,20 @@
 import collections
 import json
 import uuid
+from urlparse import urlparse
 
 from django.conf import settings
 from django.core import mail
 from django.core.urlresolvers import reverse
+from django.http import QueryDict
 from django.utils.http import urlencode
 
 from mock import patch, Mock
 from nose.tools import eq_, ok_
 
-from amo.tests import TestCase
+from amo.tests import TestCase, app_factory
 from mkt.account.views import MineMixin
-from mkt.api.base import list_url
-from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url, RestOAuth
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed
@@ -205,6 +206,39 @@ class TestInstalled(RestOAuth):
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['id'], ins.addon.pk)
+
+    def test_installed_pagination(self):
+        ins1 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins2 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins3 = Installed.objects.create(user=self.user, addon=app_factory())
+        res = self.client.get(self.list_url, {'limit': 2})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+
+        eq_(len(data['objects']), 2)
+        eq_(data['objects'][0]['id'], ins1.addon.id)
+        eq_(data['objects'][1]['id'], ins2.addon.id)
+        eq_(data['meta']['total_count'], 3)
+        eq_(data['meta']['limit'], 2)
+        eq_(data['meta']['previous'], None)
+        eq_(data['meta']['offset'], 0)
+        next = urlparse(data['meta']['next'])
+        eq_(next.path, self.list_url)
+        eq_(QueryDict(next.query).dict(), {u'limit': u'2', u'offset': u'2'})
+
+        res = self.client.get(self.list_url, {'limit': 2, 'offset': 2})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['id'], ins3.addon.id)
+        eq_(data['meta']['total_count'], 3)
+        eq_(data['meta']['limit'], 2)
+        prev = urlparse(data['meta']['previous'])
+        eq_(next.path, self.list_url)
+        eq_(QueryDict(prev.query).dict(), {u'limit': u'2', u'offset': u'0'})
+        eq_(data['meta']['offset'], 2)
+        eq_(data['meta']['next'], None)
 
     def not_there(self):
         res = self.client.get(self.list_url)
