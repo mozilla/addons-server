@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-18 08:42+0000\n"
-"Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
+"PO-Revision-Date: 2013-12-03 19:16+0000\n"
+"Last-Translator: Daniel <danielscott171@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384764149.0\n"
+"X-POOTLE-MTIME: 1386098180.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2098,11 +2098,11 @@ msgstr "Usuario {0.name} {0.id} borrado a través de la herramienta de búsqueda
 
 #: apps/amo/log.py:653
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Calificación del contenido de {addon} cambiada a Adulto."
 
 #: apps/amo/log.py:659
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "{addon} calificación de contenido cambiada."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2196,6 +2196,11 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Escribe <strong>las palabras</strong> que aparecen en la parte inferior, "
+"<strong>separadas por un espacio</strong>. </p> <p> Si te resulta difícil "
+"de leer, puedes <a href=\"#\" id=\"recaptcha_different\">intentar con palabras "
+"diferentes</a> o <a href=\"#\" id=\"recaptcha_audio\">intentar un desafío "
+"diferente</a> en su lugar. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
@@ -10277,7 +10282,7 @@ msgstr[1] "Revisiones moderadas ({num})"
 
 #: apps/editors/templates/editors/leaderboard.html:3 apps/editors/templates/editors/includes/reviewers_score_bar.html:57 mkt/reviewers/templates/reviewers/leaderboard.html:3
 msgid "Reviewer Leaderboard"
-msgstr "Panel de clasificación del revisor"
+msgstr "Panel de calificación del revisor"
 
 #: apps/editors/templates/editors/leaderboard.html:18 apps/editors/templates/editors/performance.html:65 mkt/reviewers/templates/reviewers/leaderboard.html:18
 #: mkt/reviewers/templates/reviewers/performance.html:19
@@ -10894,11 +10899,11 @@ msgstr "Complemento deshabilitado en Firefox Marketplace."
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Acerca de Mozilla Add-ons"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "¿Qué es este sitio web?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
@@ -10923,78 +10928,114 @@ msgstr ""
 #: apps/pages/templates/pages/about.lhtml:27
 msgid "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
+"Hay varias formas de descubrir las últimas noticias del mundo de los "
+"complementos:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
 msgstr ""
+"Nuestro <a href=\"%(url)s\">blog de complementos</a> es actualizado con "
+"frecuencia con información para entusiastas y desarrolladores de "
+"complementos."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
 msgstr ""
+"A menudo publicamos noticias, consejos y trucos en nuestra cuenta de "
+"Twitter, <a href=\"%(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Nuestros <a href=\"%(url)s\">foros</a> son un buen lugar para interactuar con "
+"la comunidad de complementos y discutir futuros cambios en AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "¡Suena estupendo! ¿Cómo puedo participar?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Hay muchas maneras de participar. Si tienes habilidades técnicas:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Crea tu propio complemento</a>. Nosotros brindamos "
+"alojamiento gratis y servicios de actualización, y podemos ayudarte a llegar "
+"a un gran público de usuarios."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
 msgstr ""
+"Si tienes experiencia en el desarrollo de complementos, ¡<a href=\"%"
+"(url)s\">vuélvete un editor</a>! Nuestros editores son fanáticos de los "
+"complementos y poseen experiencia técnica que les permite revisar el código "
+"de los complementos y comprobar su calidad y estabilidad."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
 msgstr ""
+"Ayuda a mejorar este sitio web. Es de código abierto, y puedes reportar "
+"errores y enviar parches. <a href=\"%(url)s\"> Bugzilla</a> contiene todos "
+"nuestros bugs actuales."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr ""
+"Si te interesan los complementos, aunque no tengas muchas habilidades "
+"técnicas, hay formas en que puedes ayudar:"
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! <a href=\"%(url)s\">Spread Firefox</a> and let people know which add-ons you use."
 msgstr ""
+"¡Díselo a tus amigos! <a href=\"%(url)s\">Difunde Firefox</a> y hazles saber "
+"qué complementos utilizas."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Participa en nuestros <a href=\"%(url)s\">foros</a>."
 
 #: apps/pages/templates/pages/about.lhtml:63
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Haz reseñas de complementos en el sitio. Es más probable que los autores "
+"mejoren sus complementos y escriban nuevos si saben que la gente aprecia su "
+"trabajo."
 
 #: apps/pages/templates/pages/about.lhtml:68
 msgid "I have a question"
-msgstr ""
+msgstr "Tengo una pregunta"
 
 #: apps/pages/templates/pages/about.lhtml:69
 msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
 msgstr ""
+"Un buen lugar para empezar son nuestras <a href=\"%(faq_url)s\"><abbr "
+"title=\"Frequently Asked Questions\">preguntas frecuentes</abbr></a>. Si no "
+"consigues una respuesta allí, puedes <a href=\"%(forum_url)s\">preguntar tú "
+"mismo en nuestros foros</a>."
 
 #: apps/pages/templates/pages/about.lhtml:74
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"Si de verdad necesitas contactar a alguien del equipo Mozilla, ve a nuestra "
+"página de <a href=\"%(url)s\"> información de contacto</a>."
 
 #: apps/pages/templates/pages/about.lhtml:78
 msgid "Who works on this website?"
-msgstr ""
+msgstr "¿Quién trabaja en este sitio web?"
 
 #: apps/pages/templates/pages/about.lhtml:79
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"A lo largo de los años, mucha gente, tanto voluntarios de la comunidad como "
+"un equipo dedicado a AMO, ha contribuido en este sitio web. Puedes encontrar "
+"una lista de colaboradores en nuestra página de <a href=\"%(url)s\"> "
+"créditos</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -14184,6 +14225,8 @@ msgstr "Fecha de compra"
 #: mkt/api/fields.py:19
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr ""
+"Selecciona una opción válida. %(value)s no es una de las opciones "
+"disponibles."
 
 #: mkt/api/serializers.py:100 mkt/site/forms.py:50
 msgid "Form could not be submitted."
@@ -15889,7 +15932,7 @@ msgstr "Público general"
 #. L10n: %d is the age in years.
 #: mkt/constants/ratingsbodies.py:7
 msgid "Not recommended for users younger than %d years of age"
-msgstr ""
+msgstr "No recomendado para usuarios menores de %d años."
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rejected for All Audiences"
@@ -15897,16 +15940,16 @@ msgstr "Rechazado para cualquier tipo de público"
 
 #: mkt/constants/ratingsbodies.py:10
 msgid "For all ages"
-msgstr ""
+msgstr "Para todas las edades"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:12
 msgid "For ages %d+"
-msgstr ""
+msgstr "Para edades de %d en adelante"
 
 #: mkt/constants/ratingsbodies.py:13
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Calificación rechazada"
 
 #: mkt/constants/ratingsbodies.py:97
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -15942,7 +15985,7 @@ msgstr "Solamente adultos mayores de 18"
 
 #: mkt/constants/ratingsbodies.py:242
 msgid "Rating Pending"
-msgstr "Clasificación pendiente"
+msgstr "Calificación pendiente"
 
 #: mkt/constants/ratingsbodies.py:254
 msgid "N. America"
@@ -15951,7 +15994,7 @@ msgstr "América del Norte"
 #. L10n: `N.` stands for North.
 #: mkt/constants/ratingsbodies.py:255
 msgid "Entertainment Software Rating Board"
-msgstr "Órgano de clasificación de software de entretenimiento"
+msgstr "Órgano de Calificación de Software de Entretenimiento"
 
 #: mkt/constants/ratingsbodies.py:299
 msgid "Europe"
@@ -16055,11 +16098,11 @@ msgstr "No se puede eliminar la cuenta compartida"
 
 #: mkt/developers/cron.py:132
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Calificación de contenido cambiada a Adulto."
 
 #: mkt/developers/forms.py:58
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "No puedes seleccionar {región}."
 
 #: mkt/developers/forms.py:148
 msgid "All team members must have read and agreed to the developer agreement."
@@ -16151,7 +16194,7 @@ msgstr "Habilitar nuevas regiones"
 
 #: mkt/developers/forms.py:710
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Hacer que mi aplicación esté disponible en la mayoría de las regiones"
 
 #: mkt/developers/forms.py:711
 msgid "Choose where my app is made available"
@@ -16207,11 +16250,11 @@ msgstr "El tipo del archivo no es válido. Solamente los archivos %s son compati
 
 #: mkt/developers/forms.py:1086
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Por favor introduce un ID de envío válido."
 
 #: mkt/developers/forms.py:1113
 msgid "Content rating record not found."
-msgstr "Ficha de clasificación del contenido no encontrada."
+msgstr "Ficha de calificación del contenido no encontrada."
 
 #: mkt/developers/forms_payments.py:56 mkt/submit/forms.py:269
 msgid "App Price"
@@ -16874,6 +16917,8 @@ msgstr "Ver el último plan de pruebas que has enviado"
 #: mkt/developers/templates/developers/apps/status.html:144
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
 msgstr ""
+"Descubre cómo lograr que tu aplicación esté preinstalada en dispositivos "
+"Firefox&nbsp;OS"
 
 #: mkt/developers/templates/developers/apps/status.html:146
 msgid "Update your test plan"
@@ -17235,7 +17280,7 @@ msgstr "Explica brevemente la razón por la que vas a eliminar tu aplicación"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:46
 msgid "Team Members & License"
-msgstr ""
+msgstr "Miembros del equipo y licencia"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:47 mkt/developers/templates/developers/apps/listing/item_actions_app.html:79
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:19 mkt/developers/templates/developers/payments/premium.html:4
@@ -17248,7 +17293,7 @@ msgstr "Proporcionar información de pago para la aplicación."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Get content ratings for the app."
-msgstr ""
+msgstr "Obtener calificaciones de contenido para la aplicación."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -17266,7 +17311,7 @@ msgstr "Agregar nueva versión"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "Estado y versiones"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:86 mkt/developers/templates/developers/includes/addons_edit_nav.html:23
 #: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:166
@@ -17283,15 +17328,15 @@ msgstr "Transacciones"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:14
 msgid "This app's submission process has not been fully completed."
-msgstr ""
+msgstr "El proceso de envío de esta aplicación no se ha completado totalmente."
 
 #: mkt/developers/templates/developers/apps/listing/items.html:19
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "Esta aplicación necesita obtener una calificación de contenido."
 
 #: mkt/developers/templates/developers/apps/listing/items.html:23
 msgid "This app needs a payment account set up."
-msgstr ""
+msgstr "Esta aplicación necesita la configuración de una cuenta de pago."
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:30
@@ -17314,7 +17359,7 @@ msgstr "Precio:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "Configurar cuenta de pago"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:66
 msgid "Change Devices"
@@ -17323,10 +17368,13 @@ msgstr "Cambiar de dispositivos"
 #: mkt/developers/templates/developers/apps/listing/items.html:70
 msgid "<strong class=\"rating-notice\">This app may be disabled in the future if no content ratings are assigned by then:</strong>"
 msgstr ""
+"<strong class=\"rating-notice\">Esta aplicación puede ser desactivada en el "
+"futuro si no se le ha asignado ninguna calificación de contenido para "
+"entonces:</strong>"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:73
 msgid "Set up Content Ratings"
-msgstr ""
+msgstr "Configurar calificación de contenido"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -17403,18 +17451,22 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:98
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
+"Puedes encontrar el ID del envío en el certificado que te hemos enviado. Es "
+"un valor numérico como &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:106
 msgid "Security Code"
-msgstr ""
+msgstr "Código de seguridad"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
+"Puedes encontrar el código de seguridad en el certificado que te hemos "
+"enviado. Es una combinación de letras y números como &quot;AB12CD3&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
 msgid "Rating System"
-msgstr ""
+msgstr "Sistema de calificación"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25 mkt/developers/templates/developers/payments/premium.html:211
 msgid "Region"
@@ -17422,15 +17474,15 @@ msgstr "Región"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Rating Category"
-msgstr ""
+msgstr "Categoría de calificación"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
 msgid "Descriptors"
-msgstr ""
+msgstr "Descriptores"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Interactive Elements"
-msgstr ""
+msgstr "Elementos interactivos"
 
 # 82%
 # 100%
@@ -17554,7 +17606,7 @@ msgstr "Añadir, gestionar o ver las transacciones de tu cuenta de pago"
 
 #: mkt/developers/templates/developers/payments/premium.html:151
 msgid "Prices and Countries"
-msgstr ""
+msgstr "Precios y países"
 
 #: mkt/developers/templates/developers/payments/premium.html:167
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -17570,7 +17622,7 @@ msgstr "No es aplicable"
 
 #: mkt/developers/templates/developers/payments/premium.html:188
 msgid "Regions"
-msgstr ""
+msgstr "Regiones"
 
 #: mkt/developers/templates/developers/payments/premium.html:194
 msgid "Available Regions"
@@ -18371,8 +18423,12 @@ msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
-"El alcance global de Mozilla se extiende a cientos de millones de usuarios de Firefox en todo el mundo. A través de una clasificación, organización y presentación inteligente en Marketplace y un "
-"uso eficaz de los canales de marketing de Mozilla, Mozilla puede ayudar a los desarrolladores a que hagan llegar sus aplicaciones a las manos de los usuarios finales de todo el mundo."
+"El alcance global de Mozilla se extiende a cientos de millones de usuarios "
+"de Firefox en todo el mundo. A través de una calificación, organización y "
+"presentación inteligente en Marketplace y un uso eficaz de los canales de "
+"marketing de Mozilla, Mozilla puede ayudar a los desarrolladores a que hagan "
+"llegar sus aplicaciones a las manos de los usuarios finales de todo el "
+"mundo."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
