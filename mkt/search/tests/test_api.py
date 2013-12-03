@@ -207,13 +207,16 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['id'], str(self.webapp.id))
             eq_(obj['manifest_url'], self.webapp.get_manifest_url())
             eq_(obj['payment_account'], None)
-            eq_(obj['privacy_policy'], '/api/apps/app/337141/privacy/')
+            self.assertApiUrlEqual(obj['privacy_policy'],
+                                   '/apps/app/337141/privacy/')
             eq_(obj['public_stats'], self.webapp.public_stats)
             eq_(obj['ratings'], {'average': 0.0, 'count': 0})
-            eq_(obj['resource_uri'], '/api/apps/app/337141/')
+            self.assertApiUrlEqual(obj['resource_uri'], '/apps/app/337141/')
             eq_(obj['slug'], self.webapp.app_slug)
             eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
-            eq_(obj['versions'], {u'1.0': u'/api/apps/versions/1268829/'})
+            ok_('1.0' in obj['versions'])
+            self.assertApiUrlEqual(obj['versions']['1.0'],
+                                   '/apps/versions/1268829/')
 
             # These only exists if requested by a reviewer.
             ok_('latest_version' not in obj)
@@ -233,7 +236,8 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(obj['upsell']['app_slug'], upsell.app_slug)
         eq_(obj['upsell']['name'], upsell.name)
         eq_(obj['upsell']['icon_url'], upsell.get_icon_url(128))
-        eq_(obj['upsell']['resource_uri'], '/api/apps/app/%s/' % upsell.id)
+        self.assertApiUrlEqual(obj['upsell']['resource_uri'],
+                               '/apps/app/%s/' % upsell.id)
         eq_(obj['upsell']['region_exclusions'], [])
 
         unindex_webapps([upsell.id])
