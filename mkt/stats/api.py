@@ -287,7 +287,7 @@ class GlobalStatsTotal(CORSMixin, APIView, StatsTotalBase):
                 log.info('Received value error from monolith client: %s' % e)
                 continue
 
-            data = self.process_response(resp, data)
+            self.process_response(resp, data)
 
         return Response(data)
 
@@ -318,7 +318,7 @@ class AppStatsTotal(CORSMixin, SlugOrIdMixin, ListAPIView, StatsTotalBase):
                 log.info('Received value error from monolith client: %s' % e)
                 continue
 
-            data = self.process_response(resp, data)
+            self.process_response(resp, data)
 
         return Response(data)
 
