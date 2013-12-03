@@ -235,8 +235,8 @@ class StatsTotalBase(object):
             raise ServiceUnavailable
         return client
 
-    def get_query(self, metric, field):
-        return {
+    def get_query(self, metric, field, app_id=None):
+        query = {
             'query': {
                 'match_all': {}
             },
@@ -249,6 +249,16 @@ class StatsTotalBase(object):
             },
             'size': 0
         }
+
+        # If this is per-app, add the facet_filter.
+        if app_id:
+            query['facets'][metric]['facet_filter'] = {
+                'term': {
+                    'app-id': app_id
+                }
+            }
+
+        return query
 
     def process_response(self, resp, data):
         for metric, facet in resp.get('facets', {}).items():
@@ -310,7 +320,7 @@ class AppStatsTotal(CORSMixin, SlugOrIdMixin, ListAPIView, StatsTotalBase):
         data = {}
         for metric, stat in APP_STATS_TOTAL.items():
             data[metric] = {}
-            query = self.get_query(metric, stat['metric'])
+            query = self.get_query(metric, stat['metric'], app.id)
 
             try:
                 resp = client.raw(query)
