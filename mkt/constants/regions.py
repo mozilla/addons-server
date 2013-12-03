@@ -219,6 +219,16 @@ class CN(REGION):
     special = True
 
 
+class IT(REGION):
+    id = 22
+    name = _lazy(u'Italy')
+    slug = 'it'
+    default_currency = 'EUR'
+    default_language = 'it'
+    mcc = 222
+    special = True
+
+
 # Create a list of tuples like so (in alphabetical order):
 #
 #     [('worldwide', <class 'mkt.constants.regions.WORLDWIDE'>),
