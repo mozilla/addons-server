@@ -45,7 +45,8 @@ class RatingViewSet(CORSMixin, ModelViewSet):
         'options': AllowAny,  # Needed for CORS.
         'get': AllowAny,
         'post': IsAuthenticated,
-        'put': AllowOwner,
+        'put': AnyOf(AllowOwner,
+                     GroupPermission('Addons', 'Edit')),
         'delete': AnyOf(AllowOwner,
                         AllowRelatedAppOwner,
                         GroupPermission('Users', 'Edit'),
