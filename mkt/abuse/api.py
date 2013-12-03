@@ -52,7 +52,7 @@ class AppAbuseSerializer(BaseAbuseSerializer):
 
 
 class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,
-                       viewsets.ModelViewSet):
+                       viewsets.GenericViewSet):
     cors_allowed_methods = ['post']
     throttle_classes = (AbuseThrottle,)
     throttle_scope = 'user'
@@ -61,7 +61,7 @@ class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,
                               RestAnonymousAuthentication]
     permission_classes = (AllowAny,)
 
-    def create(self, request, *a, **kw):
+    def create(self, request, *args, **kwargs):
         fail = check_potatocaptcha(request.DATA)
         if fail:
             return fail
@@ -72,7 +72,7 @@ class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,
         else:
             request.DATA['reporter'] = None
         request.DATA['ip_address'] = request.META.get('REMOTE_ADDR', '')
-        return viewsets.ModelViewSet.create(self, request, *a, **kw)
+        return super(BaseAbuseViewSet, self).create(request, *args, **kwargs)
 
     def post_save(self, obj, created=False):
         obj.send()
