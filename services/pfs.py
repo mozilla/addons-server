@@ -119,7 +119,7 @@ def get_output(data):
           g['clientOS'].startswith('Win')):
         plugin.update(
             name='Adobe Shockwave Player',
-            manualInstallationURL='http://get.adobe.com/shockwave/')
+            manualInstallationURL='http://get.adobe.com/shockwave/otherversions')
 
         # Even though the shockwave installer is not a silent installer, we
         # need to show its EULA here since we've got a slimmed down
@@ -133,8 +133,8 @@ def get_output(data):
         plugin.update(
             guid='{45f2a22c-4029-4209-8b3d-1421b989633f}',
             XPILocation='',
-            version='12.0.5.146',
-            InstallerHash='sha256:eb6e5fb375c7e2f75c14d8678c595569bfc3da5fb5b1a7a0b293197867e42545',
+            version='12.0.6.147',
+            InstallerHash='sha256:a8510662c0f25283661af985d4a20f554bae8c576cc01e511423f6b201becbef',
             InstallerLocation='http://fpdownload.macromedia.com/pub/shockwave/default/english/win95nt/latest/Shockwave_Installer_FF.exe',
             manualInstallationURL='http://get.adobe.com/shockwave/otherversions',
             needsRestart='false',
