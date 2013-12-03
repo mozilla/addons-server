@@ -51,11 +51,9 @@
           <h2>{{ _('App Compatibility') }}</h2>
         {% endif %}
 
-        <div class="island hasappendix{{ ' tabbable ' if is_paid }}">
+        <div class="island hasappendix tabbable">
           <div class="free tab {{ 'active' if not is_paid }}">
-            {% if is_paid %}
-              <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
-            {% endif %}
+            <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
             <div class="error">{{ form.errors.free_platforms }}</div>
             {%- for item in form.fields['free_platforms'].choices -%}
               {{ button(form, item, can_change=not is_paid) }}
@@ -72,43 +70,41 @@
             {% endif %}
           </div>
 
-          {% if is_paid %}
-            {% set paid_platforms = form.fields['paid_platforms'].choices %}
-            {% set has_multiple_paid_platforms = paid_platforms|length > 1 %}
-            <div class="paid tab {{ 'active' if is_paid }}">
-              <h2 id="paid-tab-header">
-                {%- if cannot_be_paid -%}
-                  <a href="#"
-                       class="tooltip disabled"
-                       title="{{ _('Paid mode requires that your app only supports:') }} {{ paid_platform_names|join(', ') }}"
-                    >{{ _('Paid / In-app') }}</a>
-                {%- else -%}
-                  <a href="#">{{ _('Paid / In-app') }}</a>
-                {%- endif -%}
-              </h2>
-              <div class="error">{{ form.errors.paid_platforms }}</div>
-              {%- for item in paid_platforms -%}
-                {{ button(form, item, can_change=has_multiple_paid_platforms and is_paid) }}
-              {%- endfor %}
-              {% if not is_paid and not cannot_be_paid %}
-                <div id="paid-tab-save" class="update-payment-type">
-                  <button data-type="paid">{{ _('Change to Paid') }}</button>
-                  {{ _('Changing to Paid will put your app back into review.') }}
-                </div>
-              {% else %}
-                <div id="compat-save-button" class="hidden update-payment-type">
-                  <button>{{ _('Save Changes') }}</button>
-                </div>
-              {% endif %}
-              <div class="helpful-links">
-                {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
-                         receipts_url='https://developer.mozilla.org/en-US/docs/Apps/Validating_a_receipt' %}
-                 Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.<br />
-                 Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
-                {% endtrans %}
+          {% set paid_platforms = form.fields['paid_platforms'].choices %}
+          {% set has_multiple_paid_platforms = paid_platforms|length > 1 %}
+          <div class="paid tab {{ 'active' if is_paid }}">
+            <h2 id="paid-tab-header">
+              {%- if cannot_be_paid -%}
+                <a href="#"
+                     class="tooltip disabled"
+                     title="{{ _('Paid mode requires that your app only supports:') }} {{ paid_platform_names|join(', ') }}"
+                  >{{ _('Paid / In-app') }}</a>
+              {%- else -%}
+                <a href="#">{{ _('Paid / In-app') }}</a>
+              {%- endif -%}
+            </h2>
+            <div class="error">{{ form.errors.paid_platforms }}</div>
+            {%- for item in paid_platforms -%}
+              {{ button(form, item, can_change=has_multiple_paid_platforms and is_paid) }}
+            {%- endfor %}
+            {% if not is_paid and not cannot_be_paid %}
+              <div id="paid-tab-save" class="update-payment-type">
+                <button data-type="paid">{{ _('Change to Paid') }}</button>
+                {{ _('Changing to Paid will put your app back into review.') }}
               </div>
+            {% else %}
+              <div id="compat-save-button" class="hidden update-payment-type">
+                <button>{{ _('Save Changes') }}</button>
+              </div>
+            {% endif %}
+            <div class="helpful-links">
+              {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
+                       receipts_url='https://developer.mozilla.org/en-US/docs/Apps/Validating_a_receipt' %}
+               Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.<br />
+               Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
+              {% endtrans %}
             </div>
-          {% endif %}
+          </div>
         </div>
       </section>
 
