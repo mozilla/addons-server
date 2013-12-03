@@ -383,6 +383,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         id = self.id
 
+        # Tell IARC this app is delisted from the set_iarc_storefront_datat.
+        if self.type == amo.ADDON_WEBAPP:
+            self.set_iarc_storefront_data(disable=True)
+
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
         if self.highest_status or self.status:
@@ -449,8 +453,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # `mkt.webapps.tasks.unindex_webapps.delay([id])`
         if not self.type == amo.ADDON_WEBAPP:
             tasks.unindex_addons.delay([id])
-        else:
-            self.set_iarc_storefront_data(disable=True)
 
         return True
 

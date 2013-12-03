@@ -750,6 +750,14 @@ class TestWebapp(amo.tests.TestCase):
         am.update(manifest=json.dumps(manifest))
         eq_(app.reload().is_offline, True)
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_delete_with_iarc(self, storefront_mock):
+        self.create_switch('iarc')
+        app = app_factory(rated=True)
+        app.delete()
+        eq_(app.status, amo.STATUS_DELETED)
+        assert storefront_mock.called
+
 
 class DeletedAppTests(amo.tests.ESTestCase):
 
