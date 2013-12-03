@@ -103,7 +103,7 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
 
     def test_create_bango(self):
         # Return a seller object without hitting Bango.
-        self.patched_provider.package.post.return_value = {
+        self.bango_patcher.package.post.return_value = {
             'resource_uri': 'zipzap',
             'package_id': 123,
         }
@@ -116,11 +116,11 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
         eq_(res.account_id, 123)
         eq_(res.uri, 'zipzap')
 
-        self.patched_provider.package.post.assert_called_with(
+        self.bango_patcher.package.post.assert_called_with(
             data={'paypalEmailAddress': 'nobody@example.com',
                   'seller': 'selleruri'})
 
-        self.patched_provider.bank.post.assert_called_with(
+        self.bango_patcher.bank.post.assert_called_with(
             data={'seller_bango': 'zipzap'})
 
     def test_cancel(self):
@@ -154,18 +154,18 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
         package = Mock()
         package.get.return_value = {'full': {'vendorName': 'a',
                                              'some_other_value': 'b'}}
-        self.patched_client.api.bango.package.return_value = package
+        self.bango_patcher.package.return_value = package
 
         res = PaymentAccount.objects.create(
             name='asdf', user=self.user, uri='/foo/bar/123',
             solitude_seller=self.seller)
 
-        deets = res.get_details()
+        deets = res.get_provider().account_retrieve(res)
         eq_(deets['account_name'], res.name)
         eq_(deets['vendorName'], 'a')
         assert 'some_other_value' not in deets
 
-        self.patched_client.api.bango.package.assert_called_with('123')
+        self.bango_patcher.package.assert_called_with('123')
         package.get.assert_called_with(data={'full': True})
 
     def test_update_account_details(self):
@@ -173,13 +173,14 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
             name='asdf', user=self.user, uri='foo',
             solitude_seller=self.seller)
 
-        res.update_account_details(
-            account_name='new name',
-            vendorName='new vendor name',
-            something_other_value='not a package key')
+        res.get_provider().account_update(res, {
+            'account_name': 'new name',
+            'vendorName': 'new vendor name',
+            'something_other_value': 'not a package key'
+        })
         eq_(res.name, 'new name')
 
-        self.patched_client.api.by_url(res.uri).patch.assert_called_with(
+        self.bango_patcher.api.by_url(res.uri).patch.assert_called_with(
             data={'vendorName': 'new vendor name'})
 
 

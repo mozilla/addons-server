@@ -306,7 +306,7 @@ class TestPremiumForm(amo.tests.TestCase):
         eq_(form._initial_price_id(), None)
 
 
-class TestBangoAccountListForm(amo.tests.TestCase):
+class TestAccountListForm(amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'group_admin',
                        'user_admin', 'user_admin_group', 'prices')
 
@@ -352,7 +352,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         self.setup_mock(client)
 
         owner_account = self.create_user_account(self.user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': owner_account.pk}, user=self.user, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
@@ -372,12 +372,12 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         user = self.user
         account = self.create_user_account(user)
         assert self.is_owner(user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         eq_(form.current_payment_account, None)
         assert form.is_valid(), form.errors
         form.save()
-        form = forms_payments.BangoAccountListForm(None, user=user,
+        form = forms_payments.AccountListForm(None, user=user,
                                                   **self.kwargs)
         eq_(form.fields['accounts'].widget.attrs.get('disabled'), None)
         eq_(form.fields['accounts'].empty_label, None)
@@ -389,7 +389,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
 
         account = self.create_user_account(self.user)
         shared = self.create_user_account(self.other, shared=True)
-        form = forms_payments.BangoAccountListForm(user=self.user,
+        form = forms_payments.AccountListForm(user=self.user,
                                                    **self.kwargs)
         self.assertSetEqual(form.fields['accounts'].queryset,
                             (account, shared))
@@ -399,7 +399,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         self.setup_mock(client)
 
         shared = self.create_user_account(self.other, shared=True)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': shared.pk}, user=self.user, **self.kwargs)
         assert form.is_valid()
         form.save()
@@ -412,7 +412,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         user = self.other
         account = self.create_user_account(user)
         assert not self.is_owner(user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         eq_(form.current_payment_account, None)
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
@@ -425,7 +425,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         user = self.admin
         account = self.create_user_account(user)
         assert not self.is_owner(user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         eq_(form.current_payment_account, None)
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
@@ -438,7 +438,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         self.associate_owner_account()
         user = self.admin
         assert not self.is_owner(user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={}, user=user, **self.kwargs)
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
         assert form.is_valid(), form.errors
@@ -450,7 +450,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         self.associate_owner_account()
         user = self.admin
         assert not self.is_owner(user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': ''}, user=user, **self.kwargs)
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
         assert not form.is_valid(), form.errors
@@ -463,13 +463,13 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         account = self.create_user_account(user)
         self.make_owner(user)
         assert self.is_owner(user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         assert form.is_valid(), form.errors
         eq_(form.current_payment_account, None)
         eq_(form.fields['accounts'].widget.attrs.get('disabled'), None)
         form.save()
-        form = forms_payments.BangoAccountListForm(None, user=user,
+        form = forms_payments.AccountListForm(None, user=user,
                                                    **self.kwargs)
         eq_(form.fields['accounts'].empty_label, None)
         eq_(form.initial['accounts'], account)
@@ -482,7 +482,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         user = self.other
         account = self.create_user_account(user)
         assert not self.is_owner(user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
 
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
@@ -497,7 +497,7 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         user = self.admin
         account = self.create_user_account(user)
         assert not self.is_owner(user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
 
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
@@ -513,12 +513,12 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         account = self.create_user_account(user)
         self.make_owner(user)
         assert self.is_owner(user)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         eq_(form.current_payment_account, owner_account)
         assert form.is_valid(), form.errors
         form.save()
-        form = forms_payments.BangoAccountListForm(None, user=user,
+        form = forms_payments.AccountListForm(None, user=user,
                                                    **self.kwargs)
         eq_(form.fields['accounts'].empty_label, None)
         eq_(form.initial['accounts'], account)
@@ -556,14 +556,14 @@ class TestPaidRereview(amo.tests.TestCase):
         client.post_product_bango.return_value = {
             'resource_uri': 'bpruri', 'bango_id': 123}
 
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.addon.status, amo.STATUS_PUBLIC)
         eq_(RereviewQueue.objects.count(), 1)
 
-        form = forms_payments.BangoAccountListForm(None, **self.kwargs)
+        form = forms_payments.AccountListForm(None, **self.kwargs)
         eq_(form.fields['accounts'].empty_label, None)
 
     @mock.patch('mkt.developers.models.client')
@@ -575,7 +575,7 @@ class TestPaidRereview(amo.tests.TestCase):
         client.post_product_bango.return_value = {
             'resource_uri': 'bpruri', 'bango_id': 123}
 
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
         assert not form.is_valid()
         eq_(form.errors['accounts'],
@@ -591,7 +591,7 @@ class TestPaidRereview(amo.tests.TestCase):
             'resource_uri': 'bpruri', 'bango_id': 123}
 
         self.addon.update(highest_status=amo.STATUS_PENDING)
-        form = forms_payments.BangoAccountListForm(
+        form = forms_payments.AccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()

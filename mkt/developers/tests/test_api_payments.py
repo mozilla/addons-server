@@ -11,8 +11,7 @@ from addons.models import AddonUpsell, AddonUser
 from amo.tests import app_factory, TestCase
 from market.models import AddonPremium, Price
 
-from mkt.api.base import get_url
-from mkt.api.tests.test_oauth import get_absolute_url, RestOAuth
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.developers.api_payments import AddonPaymentAccountSerializer
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -282,7 +281,7 @@ class TestPaymentAccount(AccountCase, RestOAuth):
         new_account = PaymentAccount.objects.get(name='new')
         ok_(new_account.pk != self.account.pk)
         eq_(new_account.user, self.user.get_profile())
-        data = self.patched_provider.package.post.call_args[1]['data']
+        data = self.bango_patcher.package.post.call_args[1]['data']
         expected = package_data.copy()
         expected.pop('account_name')
         for key in expected.keys():
@@ -294,7 +293,7 @@ class TestPaymentAccount(AccountCase, RestOAuth):
         eq_(res.status_code, 204, res.content)
         self.account.reload()
         eq_(self.account.name, 'new')
-        data = self.patched_client.api.by_url().patch.call_args[1]['data']
+        data = self.bango_patcher.api.by_url().patch.call_args[1]['data']
         expected = package_data.copy()
         expected.pop('account_name')
         for key in expected.keys():
@@ -337,7 +336,7 @@ class TestPaymentAccount(AccountCase, RestOAuth):
 
     def test_create_fail(self):
         err = {'broken': True}
-        self.patched_provider.package.post.side_effect = HttpClientError(
+        self.bango_patcher.package.post.side_effect = HttpClientError(
             content=err)
         res = self.client.post(self.payment_list,
                                data=json.dumps(payment_data))
@@ -345,7 +344,7 @@ class TestPaymentAccount(AccountCase, RestOAuth):
         eq_(json.loads(res.content), err)
 
     def test_create_fail2(self):
-        self.patched_provider.package.post.side_effect = HttpServerError()
+        self.bango_patcher.package.post.side_effect = HttpServerError()
         res = self.client.post(self.payment_list,
                                data=json.dumps(payment_data))
         eq_(res.status_code, 500)
