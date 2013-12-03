@@ -43,7 +43,7 @@ class TestMetaSerializer(TestCase):
 
         next = urlparse(serialized['next'])
         eq_(next.path, self.url)
-        eq_(QueryDict(next.query).dict(), {'limit': '3', 'offset': '3'})
+        eq_(QueryDict(next.query), QueryDict('limit=3&offset=3'))
 
     def test_third_page_of_four(self):
         data = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
@@ -58,11 +58,11 @@ class TestMetaSerializer(TestCase):
 
         prev = urlparse(serialized['previous'])
         eq_(prev.path, self.url)
-        eq_(QueryDict(prev.query).dict(), {'limit': '2', 'offset': '2'})
+        eq_(QueryDict(prev.query), QueryDict('limit=2&offset=2'))
 
         next = urlparse(serialized['next'])
         eq_(next.path, self.url)
-        eq_(QueryDict(next.query).dict(), {'limit': '2', 'offset': '6'})
+        eq_(QueryDict(next.query), QueryDict('limit=2&offset=6'))
 
     def test_fourth_page_of_four(self):
         data = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
@@ -77,7 +77,7 @@ class TestMetaSerializer(TestCase):
 
         prev = urlparse(serialized['previous'])
         eq_(prev.path, self.url)
-        eq_(QueryDict(prev.query).dict(), {'limit': '2', 'offset': '4'})
+        eq_(QueryDict(prev.query), QueryDict('limit=2&offset=4'))
 
         eq_(serialized['next'], None)
 
@@ -92,13 +92,13 @@ class TestMetaSerializer(TestCase):
 
         prev = urlparse(serialized['previous'])
         eq_(prev.path, '')
-        eq_(QueryDict(prev.query).dict(), {'limit': '2', 'offset': '0'})
+        eq_(QueryDict(prev.query), QueryDict('limit=2&offset=0'))
 
         next = urlparse(serialized['next'])
         eq_(next.path, '')
-        eq_(QueryDict(next.query).dict(), {'limit': '2', 'offset': '4'})
+        eq_(QueryDict(next.query), QueryDict('limit=2&offset=4'))
 
-    def test_wit_request_path_override_existing_params(self):
+    def test_with_request_path_override_existing_params(self):
         self.url = '/api/whatever/?limit=0&offset=xxx&extra&superfluous=yes'
         self.request = RequestFactory().get(self.url)
 
@@ -112,10 +112,10 @@ class TestMetaSerializer(TestCase):
 
         prev = urlparse(serialized['previous'])
         eq_(prev.path, '/api/whatever/')
-        eq_(QueryDict(prev.query).dict(), {'limit': '2', 'offset': '0',
-                                           'extra': '', 'superfluous': 'yes'})
+        eq_(QueryDict(prev.query),
+            QueryDict('limit=2&offset=0&extra=&superfluous=yes'))
 
         next = urlparse(serialized['next'])
         eq_(next.path, '/api/whatever/')
-        eq_(QueryDict(next.query).dict(), {'limit': '2', 'offset': '4',
-                                           'extra': '', 'superfluous': 'yes'})
+        eq_(QueryDict(next.query),
+            QueryDict('limit=2&offset=4&extra=&superfluous=yes'))

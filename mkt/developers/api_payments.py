@@ -40,11 +40,11 @@ log = commonware.log.getLogger('z.api.payments')
 
 class PaymentAccountSerializer(Serializer):
     """
-    Fake serializer that returns <PaymentAccount>.get_details() when
+    Fake serializer that returns PaymentAccount details when
     serializing a PaymentAccount instance. Use only for read operations.
     """
     def to_native(self, obj):
-        data = obj.get_details()
+        data = obj.get_provider().account_retrieve(obj)
         data['resource_uri'] = reverse('payment-account-detail',
                                        kwargs={'pk': obj.pk})
         return data
@@ -53,8 +53,8 @@ class PaymentAccountSerializer(Serializer):
 class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
                             MarketplaceView, GenericViewSet):
     queryset = PaymentAccount.objects.all()
-    # PaymentAccountSerializer is not a real serializer, it just calls
-    # get_details() on the object. It's only used for GET requests, in every
+    # PaymentAccountSerializer is not a real serializer, it just looks up
+    # the details on the object. It's only used for GET requests, in every
     # other case we use BangoPaymentAccountForm directly.
     serializer_class = PaymentAccountSerializer
     authentication_classes = [RestOAuthAuthentication,
@@ -73,7 +73,8 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
         return qs.filter(user=self.request.amo_user, inactive=False)
 
     def create(self, request, *args, **kwargs):
-        form = BangoPaymentAccountForm(request.DATA)
+        provider = get_provider()
+        form = provider.forms['account'](request.DATA)
         if form.is_valid():
             try:
                 provider = get_provider()
@@ -97,7 +98,7 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
         self.object = self.get_object()
         form = BangoPaymentAccountForm(request.DATA, account=True)
         if form.is_valid():
-            self.object.update_account_details(**form.data)
+            self.object.get_provider().account_update(self.object, form.cleaned_data)
             return Response(status=status.HTTP_204_NO_CONTENT)
 
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)

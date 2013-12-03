@@ -1,6 +1,7 @@
 import urlparse
 
 from django.http import QueryDict
+from django.utils.http import urlencode
 
 from rest_framework import serializers
 from rest_framework import pagination
@@ -20,9 +21,9 @@ class MetaSerializer(serializers.Serializer):
 
     def replace_query_params(self, url, params):
         (scheme, netloc, path, query, fragment) = urlparse.urlsplit(url)
-        query_dict = QueryDict(query).copy()
+        query_dict = QueryDict(query).dict()
         query_dict.update(params)
-        query = query_dict.urlencode()
+        query = urlencode(query_dict)
         return urlparse.urlunsplit((scheme, netloc, path, query, fragment))
 
     def get_offset_link_for_page(self, page, number):
