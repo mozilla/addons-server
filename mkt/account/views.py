@@ -11,7 +11,7 @@ from django_statsd.clients import statsd
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import (CreateAPIView, RetrieveAPIView,
-                                     RetrieveUpdateAPIView)
+                                     RetrieveUpdateAPIView, ListAPIView)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
@@ -27,7 +27,10 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowSelf, AllowOwner
-from mkt.api.base import CORSMixin
+from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.constants.apps import INSTALL_TYPE_USER
+from mkt.webapps.api import AppSerializer
+from mkt.webapps.models import Webapp
 
 
 log = commonware.log.getLogger('z.account')
@@ -39,6 +42,18 @@ class MineMixin(object):
         if pk == 'mine':
             self.kwargs['pk'] = self.request.amo_user.pk
         return super(MineMixin, self).get_object(queryset)
+
+
+class InstalledView(MarketplaceView, ListAPIView):
+    serializer_class = AppSerializer
+    permission_classes = [AllowSelf]
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    def get_queryset(self):
+        return Webapp.objects.no_cache().filter(
+            installed__user=self.request.amo_user,
+            installed__install_type=INSTALL_TYPE_USER).order_by(
+            'installed__id')
 
 
 class CreateAPIViewWithoutModel(CreateAPIView):
