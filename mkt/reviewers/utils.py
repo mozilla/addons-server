@@ -101,8 +101,11 @@ class ReviewBase(object):
             return files
 
     def set_addon(self, **kw):
-        """Alters addon and sets reviewed timestamp on version."""
+        """Alters addon using provided kwargs."""
         self.addon.update(_signal=False, **kw)
+
+    def set_reviewed(self):
+        """Sets reviewed timestamp on version."""
         self.version.update(_signal=False, reviewed=datetime.now())
 
     def set_files(self, status, files, copy_to_mirror=False,
@@ -255,6 +258,7 @@ class ReviewApp(ReviewBase):
         if self.addon.status != amo.STATUS_PUBLIC:
             self.set_addon(status=amo.STATUS_PUBLIC_WAITING,
                            highest_status=amo.STATUS_PUBLIC_WAITING)
+        self.set_reviewed()
 
         self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
         self.notify_email('pending_to_public_waiting',
@@ -279,6 +283,7 @@ class ReviewApp(ReviewBase):
         if self.addon.status != amo.STATUS_PUBLIC:
             self.set_addon(status=amo.STATUS_PUBLIC,
                            highest_status=amo.STATUS_PUBLIC)
+        self.set_reviewed()
 
         # Call update_version, so various other bits of data update.
         self.addon.update_version(_signal=False)
