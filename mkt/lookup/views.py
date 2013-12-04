@@ -272,7 +272,7 @@ def app_summary(request, addon_id):
 @login_required
 @permission_required('BangoPortal', 'Redirect')
 def bango_portal_from_package(request, package_id):
-    response = _redirect_to_bango_portal(int(package_id),
+    response = _redirect_to_bango_portal(package_id,
                                          'package_id: %s' % package_id)
     if 'Location' in response:
         return HttpResponseRedirect(response['Location'])

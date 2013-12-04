@@ -237,7 +237,8 @@ class TestBangoRedirect(TestCase):
         }
         res = self.client.get(self.portal_url)
         eq_(res.status_code, 302)
-        eq_(api.bango.login.post.call_args[0][0]['packageId'], TEST_PACKAGE_ID)
+        eq_(api.bango.login.post.call_args[0][0]['packageId'],
+            int(TEST_PACKAGE_ID))
         redirect_url = res['Location']
         assert self.authentication_token in redirect_url, redirect_url
         assert 'emailAddress=admin%40place.com' in redirect_url, redirect_url

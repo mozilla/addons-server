@@ -350,13 +350,14 @@ def bango_portal_from_addon(request, addon_id, addon, webapp=True):
                    'pk=%s') % request.user.pk)
         return http.HttpResponseForbidden()
 
-    return _redirect_to_bango_portal(account.package_id,
+    return _redirect_to_bango_portal(account.account_id,
                                      'addon_id: %s' % addon_id)
 
 
 def _redirect_to_bango_portal(package_id, source):
     try:
-        bango_token = client.api.bango.login.post({'packageId': package_id})
+        bango_token = client.api.bango.login.post({'packageId':
+                                                   int(package_id)})
     except HttpClientError as e:
         log.error('Failed to authenticate against Bango portal; %s' % source,
                   exc_info=True)

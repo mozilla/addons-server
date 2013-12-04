@@ -730,7 +730,8 @@ class TestPayments(amo.tests.TestCase):
         assert self.is_owner(self.user)
         res = self.client.get(self.portal_url)
         eq_(res.status_code, 204)
-        eq_(api.bango.login.post.call_args[0][0]['packageId'], TEST_PACKAGE_ID)
+        eq_(api.bango.login.post.call_args[0][0]['packageId'],
+            int(TEST_PACKAGE_ID))
         redirect_url = res['Location']
         assert authentication_token in redirect_url, redirect_url
         assert 'emailAddress=admin%40place.com' in redirect_url, redirect_url
@@ -1006,8 +1007,8 @@ class TestPaymentPortal(PaymentsBase):
         ok_('portal-url' not in output[0])
 
     def test_not_bango(self):
+        amo.tests.app_factory(app_slug=self.app_slug)
         PaymentAccount.objects.update(provider=PROVIDER_REFERENCE)
-        print self.bango_url
         res = self.client.get(self.bango_url)
         eq_(res.status_code, 403)
 
