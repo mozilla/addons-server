@@ -92,8 +92,7 @@ msgstr "Se ha terminado de validar {0}"
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Tu complemento ha superado la validación sin errores y con {0} mensaje."
-msgstr[1] ""
-"Tu complemento ha superado la validación sin errores y con {0} mensajes."
+msgstr[1] "Tu complemento ha superado la validación sin errores y con {0} mensajes."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."

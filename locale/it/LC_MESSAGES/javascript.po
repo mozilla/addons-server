@@ -1094,14 +1094,11 @@ msgstr "App rifiutata: {app}"
 
 #: media/js/mkt/reviewers.js:266
 msgid "Error approving app: {app}"
-msgstr ""
-"Si è verificato un errore durante il processo di approvazione dell'app: "
-"{app}"
+msgstr "Si è verificato un errore durante il processo di approvazione dell'app: {app}"
 
 #: media/js/mkt/reviewers.js:267
 msgid "Error rejecting app: {app}"
-msgstr ""
-"Si è verificato un errore durante il processo di rifiuto dell'app: {app}"
+msgstr "Si è verificato un errore durante il processo di rifiuto dell'app: {app}"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"

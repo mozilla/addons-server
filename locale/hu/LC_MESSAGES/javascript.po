@@ -22,14 +22,11 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} csillag"
 msgstr[1] "{0} csillag"
 
-#: media/js/common/upload-addon.js:34
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Probléma történt a kiszolgálóhoz történő csatlakozás közben."
 
-#: media/js/common/upload-addon.js:52
-#: media/js/common/upload-packaged-app.js:52
+#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
 msgstr "Fájl kiválasztása…"
 
@@ -38,29 +35,24 @@ msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "A kiegészítőnek .xpi, .jar vagy .xml kiterjesztésűnek kell lennie"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87
-#: media/js/common/upload-packaged-app.js:89
+#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
 msgstr "{0}% kész"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90
-#: media/js/common/upload-packaged-app.js:92
+#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: media/js/common/upload-addon.js:120
-#: media/js/common/upload-packaged-app.js:120
+#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "Mégsem"
 
-#: media/js/common/upload-addon.js:142
-#: media/js/common/upload-packaged-app.js:142
+#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
 msgstr "{0} feltöltése"
 
-#: media/js/common/upload-addon.js:169
-#: media/js/common/upload-packaged-app.js:164
+#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
 msgstr "Hiba ezzel: {0}"
 
@@ -70,40 +62,31 @@ msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "A kiegészítő az ellenőrzése {0} hiba miatt sikertelen."
 msgstr[1] "A kiegészítő az ellenőrzése {0} hiba miatt sikertelen."
 
-#: media/js/common/upload-addon.js:188
-#: media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; és további {0}"
 msgstr[1] "&hellip; és további {0}"
 
-#: media/js/common/upload-addon.js:202
-#: media/js/common/upload-addon.js:329
-#: media/js/common/upload-packaged-app.js:197
-#: media/js/common/upload-packaged-app.js:323
-#: media/js/devreg/devhub.js:143
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
 msgid "See full validation report"
 msgstr "Teljes ellenőrzési jelentés megjelenítése"
 
-#: media/js/common/upload-addon.js:214
-#: media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
 msgstr "{0} ellenőrzése"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252
-#: media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Üres válasz érkezett a kiszolgálótól; állapot: {0}"
 
-#: media/js/common/upload-addon.js:263
-#: media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "Az ellenőrzés közben váratlan hiba történt."
 
-#: media/js/common/upload-addon.js:301
-#: media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "{0} ellenőrzése befejeződött"
 
@@ -129,8 +112,7 @@ msgstr "A feltöltött fájl típusa nem ismerhető fel."
 msgid "You cancelled the upload."
 msgstr "A feltöltés megszakítva."
 
-#: media/js/common/upload-image.js:98
-#: media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
@@ -140,12 +122,9 @@ msgstr "A videónak WebM formátumban kell lennie."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
-"Az összecsomagolt appnak <code>.zip</code> kiterjesztésűnek kell lennie."
+msgstr "Az összecsomagolt appnak <code>.zip</code> kiterjesztésűnek kell lennie."
 
-#: media/js/common/upload-packaged-app.js:169
-#: media/js/devreg/devhub.js:181
-#: media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Az alkalmazás ellenőrzése {0} hiba miatt sikertelen."
@@ -167,20 +146,17 @@ msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/devreg/devhub.js:200
-#: media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Az alkalmazás hiba és {0} üzenettel átment az ellenőrzésen."
 msgstr[1] "Az alkalmazás hiba és {0} üzenettel átment az ellenőrzésen."
 
-#: media/js/devreg/devhub.js:205
-#: media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "Az alkalmazás hiba és üzenetek nélkül átment az ellenőrzésen."
 
-#: media/js/devreg/devhub.js:419
-#: media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
 msgstr "Változások lementve"
 
@@ -192,23 +168,19 @@ msgstr "Adja meg az új csapattag e-mail címét"
 msgid "Refreshed"
 msgstr "Frissítve"
 
-#: media/js/devreg/devhub.js:616
-#: media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "Hiba történt a fájl feltöltésekor."
 
-#: media/js/devreg/devhub.js:886
-#: media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Tudjon meg többet"
 
-#: media/js/devreg/devhub.js:890
-#: media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Példa"
 
-#: media/js/devreg/devhub.js:1192
-#: media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "A kép módosítása folyamatban van"
 
@@ -220,18 +192,11 @@ msgstr "tovább..."
 msgid "less..."
 msgstr "kevesebb..."
 
-#: media/js/devreg/init.js:35
-#: media/js/mkt/init.js:47
-#: media/js/zamboni/init.js:32
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető el. "
-"Kérjük, látogasson vissza kicsit később."
+#: media/js/devreg/init.js:35 media/js/mkt/init.js:47 media/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető el. Kérjük, látogasson vissza kicsit később."
 
-#: media/js/devreg/l10n.js:45
-#: media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Lokalizáció eltávolítása"
 
@@ -306,30 +271,17 @@ msgstr "Észlelt: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:24
-msgid ""
-"Warning: deleting payment account \"{0}\" will move that associated app to an "
-"incomplete status and it will no longer be available for sale:"
-msgid_plural ""
-"Warning: deleting payment account \"{0}\" will move those associated apps to "
-"an incomplete status and they will no longer be available for sale:"
+msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
+msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/devreg/payments-manage.js:58
-#: media/js/devreg/payments-manage.js:107
-#: media/js/devreg/validator.js:193
-#: media/js/devreg/validator.js:438
-#: media/js/devreg/validator.js:457
-#: media/js/mkt/buttons.js:85
-#: media/js/mkt/buttons.js:94
-#: media/js/zamboni/validator.js:194
-#: media/js/zamboni/validator.js:449
-#: media/js/zamboni/validator.js:468
+#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Hiba"
 
-#: media/js/devreg/payments-manage.js:59
-#: media/js/devreg/payments-manage.js:108
+#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
 msgstr "Hiba történt a fizetési kiszolgálóhoz történő csatlakozás közben."
 
@@ -341,71 +293,55 @@ msgstr ""
 msgid "You do not currently have any payment accounts."
 msgstr "Jelenleg nincs egyetlen fizetési fiókja sem."
 
-#: media/js/devreg/validator.js:71
-#: media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
 msgstr "Az összes teszten sikeren átment."
 
-#: media/js/devreg/validator.js:74
-#: media/js/devreg/validator.js:358
-#: media/js/zamboni/validator.js:74
-#: media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr "Ezek a tesztek nem futottak le."
 
-#: media/js/devreg/validator.js:119
-#: media/js/devreg/validator.js:132
-#: media/js/zamboni/validator.js:120
-#: media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "Tesztek"
 
-#: media/js/devreg/validator.js:194
-#: media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:195
 msgid "Warning"
 msgstr "Figyelem"
 
-#: media/js/devreg/validator.js:281
-#: media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
 msgstr "Kompatibilitás tesztek"
 
-#: media/js/devreg/validator.js:329
-#: media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:331
 msgid "App failed validation."
 msgstr "Az app nem ment át a vizsgálaton."
 
-#: media/js/devreg/validator.js:331
-#: media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:333
 msgid "App passed validation."
 msgstr "Az app átment a vizsgálaton."
 
-#: media/js/devreg/validator.js:361
-#: media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} hiba"
 msgstr[1] "{0} hiba"
 
-#: media/js/devreg/validator.js:363
-#: media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
-#: media/js/devreg/validator.js:440
-#: media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
 msgstr "Az ellenőrzés nem fejeződött be vagy hibát okozott"
 
-#: media/js/devreg/validator.js:458
-#: media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "Belső kiszolgálóhiba"
 
-#: media/js/impala/collections.js:10
-#: media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
 msgstr "Gyűjtemény követése"
 
@@ -418,8 +354,7 @@ msgid "Following"
 msgstr "Követés"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:17
-#: media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "A téma nem kompatibilis ezzel a {0} verzióval"
 
@@ -455,18 +390,15 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 msgid "Your Theme's Name"
 msgstr "Téma neve"
 
-#: media/js/impala/reviews.js:23
-#: media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "Vizsgálatra jelölve"
 
-#: media/js/impala/reviews.js:40
-#: media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "Az adatok kitöltése kötelező"
 
-#: media/js/impala/reviews.js:133
-#: media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "Törlésre jelölve"
 
@@ -474,23 +406,19 @@ msgstr "Törlésre jelölve"
 msgid "Updating results&hellip;"
 msgstr "Eredmény frissítése&hellip;"
 
-#: media/js/impala/site_suggestions.js:46
-#: media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
 msgstr "Kategória"
 
-#: media/js/impala/suggestions.js:39
-#: media/js/mkt/suggestions.js:66
+#: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr ""
 
-#: media/js/impala/suggestions.js:41
-#: media/js/mkt/suggestions.js:68
+#: media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "<b>{0}</b> alkalmazás keresése"
 
-#: media/js/impala/suggestions.js:43
-#: media/js/mkt/suggestions.js:70
+#: media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> kiegészítő keresése"
 
@@ -498,8 +426,7 @@ msgstr "<b>{0}</b> kiegészítő keresése"
 msgid "use original"
 msgstr "eredeti használata"
 
-#: media/js/impala/stats/chart.js:267
-#: media/js/mkt/stats/chart.js:320
+#: media/js/impala/stats/chart.js:267 media/js/mkt/stats/chart.js:320
 msgid "Week of {0}"
 msgstr "{0}. hét"
 
@@ -507,8 +434,7 @@ msgstr "{0}. hét"
 msgid "downloads"
 msgstr "letöltések"
 
-#: media/js/impala/stats/chart.js:270
-#: media/js/mkt/stats/chart.js:326
+#: media/js/impala/stats/chart.js:270 media/js/mkt/stats/chart.js:326
 msgid "{0} users"
 msgstr "{0} felhasználó"
 
@@ -520,40 +446,27 @@ msgstr "{0} kiegészítő"
 msgid "{0} collections"
 msgstr "{0} gyűjtemény"
 
-#: media/js/impala/stats/chart.js:273
-#: media/js/mkt/stats/chart.js:328
+#: media/js/impala/stats/chart.js:273 media/js/mkt/stats/chart.js:328
 msgid "{0} reviews"
 msgstr "{0} értékelés"
 
-#: media/js/impala/stats/chart.js:275
-#: media/js/mkt/stats/chart.js:323
-#: media/js/mkt/stats/chart_column.js:125
+#: media/js/impala/stats/chart.js:275 media/js/mkt/stats/chart.js:323 media/js/mkt/stats/chart_column.js:125
 msgid "{0} sales"
 msgstr "{0} eladás"
 
-#: media/js/impala/stats/chart.js:276
-#: media/js/mkt/stats/chart.js:324
-#: media/js/mkt/stats/chart_column.js:126
+#: media/js/impala/stats/chart.js:276 media/js/mkt/stats/chart.js:324 media/js/mkt/stats/chart_column.js:126
 msgid "{0} refunds"
 msgstr "{0} visszatérítés"
 
-#: media/js/impala/stats/chart.js:277
-#: media/js/mkt/stats/chart.js:325
+#: media/js/impala/stats/chart.js:277 media/js/mkt/stats/chart.js:325
 msgid "{0} installs"
 msgstr "{0} telepítés"
 
-#: media/js/impala/stats/chart.js:369
-#: media/js/impala/stats/csv_keys.js:3
-#: media/js/impala/stats/csv_keys.js:102
-#: media/js/mkt/stats/csv_keys.js:128
+#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102 media/js/mkt/stats/csv_keys.js:128
 msgid "Downloads"
 msgstr "Letöltések"
 
-#: media/js/impala/stats/chart.js:379
-#: media/js/impala/stats/csv_keys.js:6
-#: media/js/impala/stats/csv_keys.js:103
-#: media/js/mkt/stats/csv_keys.js:6
-#: media/js/mkt/stats/csv_keys.js:129
+#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:6 media/js/mkt/stats/csv_keys.js:129
 msgid "Daily Users"
 msgstr "Napi felhasználók"
 
@@ -561,20 +474,16 @@ msgstr "Napi felhasználók"
 msgid "Amount, in USD"
 msgstr "Mennyiség, USD-ben"
 
-#: media/js/impala/stats/chart.js:421
-#: media/js/impala/stats/csv_keys.js:97
-#: media/js/mkt/stats/csv_keys.js:123
+#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:123
 msgid "Number of Contributions"
 msgstr "Hozzájárulások száma"
 
-#: media/js/impala/stats/chart.js:447
-#: media/js/mkt/stats/chart.js:395
+#: media/js/impala/stats/chart.js:447 media/js/mkt/stats/chart.js:395
 msgid "More Info..."
 msgstr "Tovább..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: media/js/impala/stats/chart.js:451
-#: media/js/mkt/stats/chart.js:399
+#: media/js/impala/stats/chart.js:451 media/js/mkt/stats/chart.js:399
 msgid "Details for {0}"
 msgstr "{0} részletei"
 
@@ -614,252 +523,165 @@ msgstr "Feliratkozók"
 msgid "Ratings"
 msgstr "Értékelések"
 
-#: media/js/impala/stats/csv_keys.js:36
-#: media/js/impala/stats/csv_keys.js:107
-#: media/js/mkt/stats/chart_column.js:147
+#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107 media/js/mkt/stats/chart_column.js:147
 msgid "Sales"
 msgstr "Eladások"
 
-#: media/js/impala/stats/csv_keys.js:39
-#: media/js/impala/stats/csv_keys.js:106
-#: media/js/mkt/stats/chart.js:364
-#: media/js/mkt/stats/csv_keys.js:3
-#: media/js/mkt/stats/csv_keys.js:132
+#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106 media/js/mkt/stats/chart.js:364 media/js/mkt/stats/csv_keys.js:3 media/js/mkt/stats/csv_keys.js:132
 msgid "Installs"
 msgstr "Telepítések"
 
-#: media/js/impala/stats/csv_keys.js:42
-#: media/js/mkt/stats/csv_keys.js:57
+#: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: media/js/impala/stats/csv_keys.js:43
-#: media/js/mkt/stats/csv_keys.js:58
+#: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58
 msgid "Add-ons Manager"
 msgstr "Kiegészítőkezelő"
 
-#: media/js/impala/stats/csv_keys.js:44
-#: media/js/mkt/stats/csv_keys.js:59
+#: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59
 msgid "Search Results"
 msgstr "Keresési eredmények"
 
-#: media/js/impala/stats/csv_keys.js:45
-#: media/js/impala/stats/csv_keys.js:46
-#: media/js/impala/stats/csv_keys.js:47
-#: media/js/mkt/stats/csv_keys.js:60
-#: media/js/mkt/stats/csv_keys.js:61
+#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
 #: media/js/mkt/stats/csv_keys.js:62
 msgid "Homepage Promo"
 msgstr "Promo kezdőlap"
 
-#: media/js/impala/stats/csv_keys.js:48
-#: media/js/impala/stats/csv_keys.js:49
-#: media/js/mkt/stats/csv_keys.js:63
-#: media/js/mkt/stats/csv_keys.js:64
+#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64
 msgid "Homepage Featured"
 msgstr "Kiemelt kezdőlap"
 
-#: media/js/impala/stats/csv_keys.js:50
-#: media/js/impala/stats/csv_keys.js:51
-#: media/js/mkt/stats/csv_keys.js:65
-#: media/js/mkt/stats/csv_keys.js:66
+#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66
 msgid "Homepage Up and Coming"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:52
-#: media/js/mkt/stats/csv_keys.js:67
+#: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67
 msgid "Homepage Most Popular"
 msgstr "Legnépszerűbb kezdőlap"
 
-#: media/js/impala/stats/csv_keys.js:53
-#: media/js/impala/stats/csv_keys.js:55
-#: media/js/mkt/stats/csv_keys.js:68
-#: media/js/mkt/stats/csv_keys.js:70
+#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70
 msgid "Detail Page"
 msgstr "Részletek oldal"
 
-#: media/js/impala/stats/csv_keys.js:54
-#: media/js/impala/stats/csv_keys.js:56
-#: media/js/mkt/stats/csv_keys.js:69
-#: media/js/mkt/stats/csv_keys.js:71
+#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71
 msgid "Detail Page (bottom)"
 msgstr "Részletek oldal (alul)"
 
-#: media/js/impala/stats/csv_keys.js:57
-#: media/js/mkt/stats/csv_keys.js:72
+#: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72
 msgid "Detail Page (Development Channel)"
 msgstr "Detail Page (Fejlesztői csatorna)"
 
-#: media/js/impala/stats/csv_keys.js:58
-#: media/js/impala/stats/csv_keys.js:59
-#: media/js/impala/stats/csv_keys.js:60
-#: media/js/mkt/stats/csv_keys.js:73
-#: media/js/mkt/stats/csv_keys.js:74
+#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
 #: media/js/mkt/stats/csv_keys.js:75
 msgid "Often Used With"
 msgstr "Gyakran használt ezzel:"
 
-#: media/js/impala/stats/csv_keys.js:61
-#: media/js/impala/stats/csv_keys.js:62
-#: media/js/mkt/stats/csv_keys.js:76
-#: media/js/mkt/stats/csv_keys.js:77
+#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62 media/js/mkt/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:77
 msgid "Others By Author"
 msgstr "A szerző további munkái"
 
-#: media/js/impala/stats/csv_keys.js:63
-#: media/js/impala/stats/csv_keys.js:64
-#: media/js/mkt/stats/csv_keys.js:78
-#: media/js/mkt/stats/csv_keys.js:79
+#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79
 msgid "Dependencies"
 msgstr "Függőségek"
 
-#: media/js/impala/stats/csv_keys.js:65
-#: media/js/impala/stats/csv_keys.js:66
-#: media/js/mkt/stats/csv_keys.js:80
-#: media/js/mkt/stats/csv_keys.js:81
+#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81
 msgid "Upsell"
 msgstr "Bővítés"
 
-#: media/js/impala/stats/csv_keys.js:68
-#: media/js/mkt/stats/csv_keys.js:83
+#: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83
 msgid "Sharing"
 msgstr "Megosztás"
 
-#: media/js/impala/stats/csv_keys.js:69
-#: media/js/mkt/stats/csv_keys.js:84
+#: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84
 msgid "Category Pages"
 msgstr "Kategória oldalak"
 
-#: media/js/impala/stats/csv_keys.js:70
-#: media/js/mkt/stats/csv_keys.js:85
+#: media/js/impala/stats/csv_keys.js:70 media/js/mkt/stats/csv_keys.js:85
 msgid "Collections"
 msgstr "Gyűjtemények"
 
-#: media/js/impala/stats/csv_keys.js:71
-#: media/js/impala/stats/csv_keys.js:72
-#: media/js/mkt/stats/csv_keys.js:86
+#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86
 msgid "Category Landing Featured Carousel"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:73
-#: media/js/impala/stats/csv_keys.js:74
-#: media/js/mkt/stats/csv_keys.js:89
-#: media/js/mkt/stats/csv_keys.js:90
+#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90
 msgid "Category Landing Top Rated"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:75
-#: media/js/impala/stats/csv_keys.js:76
-#: media/js/mkt/stats/csv_keys.js:91
-#: media/js/mkt/stats/csv_keys.js:92
+#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92
 msgid "Category Landing Most Popular"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:77
-#: media/js/impala/stats/csv_keys.js:78
-#: media/js/mkt/stats/csv_keys.js:93
-#: media/js/mkt/stats/csv_keys.js:94
+#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94
 msgid "Category Landing Recently Added"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:79
-#: media/js/impala/stats/csv_keys.js:80
-#: media/js/mkt/stats/csv_keys.js:95
-#: media/js/mkt/stats/csv_keys.js:96
+#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96
 msgid "Browse Listing Featured Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:81
-#: media/js/impala/stats/csv_keys.js:82
-#: media/js/mkt/stats/csv_keys.js:97
-#: media/js/mkt/stats/csv_keys.js:98
+#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98
 msgid "Browse Listing Users Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:83
-#: media/js/impala/stats/csv_keys.js:84
-#: media/js/mkt/stats/csv_keys.js:99
-#: media/js/mkt/stats/csv_keys.js:100
+#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100
 msgid "Browse Listing Rating Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:85
-#: media/js/impala/stats/csv_keys.js:86
-#: media/js/mkt/stats/csv_keys.js:101
-#: media/js/mkt/stats/csv_keys.js:102
+#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102
 msgid "Browse Listing Created Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:87
-#: media/js/impala/stats/csv_keys.js:88
-#: media/js/mkt/stats/csv_keys.js:103
-#: media/js/mkt/stats/csv_keys.js:104
+#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104
 msgid "Browse Listing Name Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:89
-#: media/js/impala/stats/csv_keys.js:90
-#: media/js/mkt/stats/csv_keys.js:105
-#: media/js/mkt/stats/csv_keys.js:106
+#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106
 msgid "Browse Listing Popular Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:91
-#: media/js/impala/stats/csv_keys.js:92
-#: media/js/mkt/stats/csv_keys.js:107
-#: media/js/mkt/stats/csv_keys.js:108
+#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:93
-#: media/js/impala/stats/csv_keys.js:94
-#: media/js/mkt/stats/csv_keys.js:109
-#: media/js/mkt/stats/csv_keys.js:110
+#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:98
-#: media/js/mkt/stats/csv_keys.js:124
+#: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124
 msgid "Total Amount Contributed"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:99
-#: media/js/mkt/stats/csv_keys.js:125
+#: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125
 msgid "Average Contribution"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:108
-#: media/js/mkt/stats/csv_keys.js:133
+#: media/js/impala/stats/csv_keys.js:108 media/js/mkt/stats/csv_keys.js:133
 msgid "Usage"
 msgstr "Használat"
 
-#: media/js/impala/stats/csv_keys.js:111
-#: media/js/mkt/stats/csv_keys.js:137
+#: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137
 msgid "Firefox"
 msgstr "Firefox"
 
-#: media/js/impala/stats/csv_keys.js:112
-#: media/js/mkt/stats/csv_keys.js:138
+#: media/js/impala/stats/csv_keys.js:112 media/js/mkt/stats/csv_keys.js:138
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: media/js/impala/stats/csv_keys.js:113
-#: media/js/mkt/stats/csv_keys.js:139
+#: media/js/impala/stats/csv_keys.js:113 media/js/mkt/stats/csv_keys.js:139
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: media/js/impala/stats/csv_keys.js:114
-#: media/js/mkt/stats/csv_keys.js:140
+#: media/js/impala/stats/csv_keys.js:114 media/js/mkt/stats/csv_keys.js:140
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: media/js/impala/stats/csv_keys.js:115
-#: media/js/mkt/stats/csv_keys.js:141
+#: media/js/impala/stats/csv_keys.js:115 media/js/mkt/stats/csv_keys.js:141
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: media/js/impala/stats/csv_keys.js:116
-#: media/js/mkt/stats/csv_keys.js:142
+#: media/js/impala/stats/csv_keys.js:116 media/js/mkt/stats/csv_keys.js:142
 msgid "Fennec"
 msgstr "Fennec"
 
@@ -894,14 +716,12 @@ msgid "Downloads from {0} to {1}"
 msgstr "Letöltések {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:139
-#: media/js/mkt/stats/csv_keys.js:152
+#: media/js/impala/stats/csv_keys.js:139 media/js/mkt/stats/csv_keys.js:152
 msgid "Daily Users, last {0} days"
 msgstr "Felhasználók az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:141
-#: media/js/mkt/stats/csv_keys.js:153
+#: media/js/impala/stats/csv_keys.js:141 media/js/mkt/stats/csv_keys.js:153
 msgid "Daily Users from {0} to {1}"
 msgstr "Felhasználók {0} és {1} között"
 
@@ -1086,49 +906,39 @@ msgid "Sales from {0} to {1}"
 msgstr "Eladások {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:253
-#: media/js/mkt/stats/csv_keys.js:147
+#: media/js/impala/stats/csv_keys.js:253 media/js/mkt/stats/csv_keys.js:147
 msgid "Installs, last {0} days"
 msgstr "Telepítések az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:255
-#: media/js/mkt/stats/csv_keys.js:149
+#: media/js/impala/stats/csv_keys.js:255 media/js/mkt/stats/csv_keys.js:149
 msgid "Installs from {0} to {1}"
 msgstr "Telepítések száma {0} és {1} között"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:261
-#: media/js/mkt/stats/csv_keys.js:223
+#: media/js/impala/stats/csv_keys.js:261 media/js/mkt/stats/csv_keys.js:223
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> az utolsó {1} napban"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263
-#: media/js/impala/stats/csv_keys.js:269
-#: media/js/mkt/stats/csv_keys.js:225
-#: media/js/mkt/stats/csv_keys.js:231
+#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269 media/js/mkt/stats/csv_keys.js:225 media/js/mkt/stats/csv_keys.js:231
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> {1} és {2} között"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:267
-#: media/js/mkt/stats/csv_keys.js:229
+#: media/js/impala/stats/csv_keys.js:267 media/js/mkt/stats/csv_keys.js:229
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "átlagosan <b>{0}</b> az elmúlt {1} napban"
 
-#: media/js/impala/stats/overview.js:19
-#: media/js/mkt/stats/overview.js:17
+#: media/js/impala/stats/overview.js:19 media/js/mkt/stats/overview.js:17
 msgid "No data available."
 msgstr "Nincs dátum."
 
-#: media/js/impala/stats/table.js:74
-#: media/js/mkt/stats/table.js:88
+#: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88
 msgid "Date"
 msgstr "Dátum"
 
-#: media/js/impala/stats/topchart.js:96
-#: media/js/mkt/stats/topchart.js:96
+#: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96
 msgid "Other"
 msgstr "Egyéb"
 
@@ -1136,18 +946,15 @@ msgstr "Egyéb"
 msgid "The manifest could not be found at the given location."
 msgstr "A manifest nem található a megadott helyen."
 
-#: media/js/mkt/apps.js:87
-#: media/js/zamboni/apps.js:60
+#: media/js/mkt/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr "Az App gép nem érhető el."
 
-#: media/js/mkt/apps.js:90
-#: media/js/zamboni/apps.js:63
+#: media/js/mkt/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr "Az app manifest nem dolgozható fel."
 
-#: media/js/mkt/apps.js:93
-#: media/js/zamboni/apps.js:66
+#: media/js/mkt/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr "Az app manifest hibás."
 
@@ -1163,8 +970,7 @@ msgstr "Belső szerverhiba."
 msgid "Internal server error on app installation."
 msgstr "Belső szerverhiba a telepítéskor."
 
-#: media/js/mkt/apps.js:106
-#: media/js/zamboni/apps.js:69
+#: media/js/mkt/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr "A telepítés sikertelen. Próbálja meg később."
 
@@ -1186,9 +992,7 @@ msgstr "Kattintson ide a mobil Marketplace megtekintéséhez!"
 
 #: media/js/mkt/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
-"Ehhez a videóhoz egy olyan böngészőre van szükség, amely támogatja a nyílt "
-"videoformátumot"
+msgstr "Ehhez a videóhoz egy olyan böngészőre van szükség, amely támogatja a nyílt videoformátumot"
 
 #: media/js/mkt/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -1203,12 +1007,8 @@ msgid "Message must not be empty."
 msgstr "Az üzenet nem lehet üres."
 
 #: media/js/mkt/login.js:73
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Sikertelen Persona bejelentkezés. Lehet, hogy nem rendelkezik felhasználói "
-"fiókkal ezzel az e-mail címmel?"
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Sikertelen Persona bejelentkezés. Lehet, hogy nem rendelkezik felhasználói fiókkal ezzel az e-mail címmel?"
 
 #: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
@@ -1341,25 +1141,15 @@ msgstr "Hónap"
 msgid "Day"
 msgstr "Nap"
 
-#: media/js/mkt/stats/chart.js:352
-#: media/js/mkt/stats/csv_keys.js:9
-#: media/js/mkt/stats/csv_keys.js:18
-#: media/js/mkt/stats/csv_keys.js:27
+#: media/js/mkt/stats/chart.js:352 media/js/mkt/stats/csv_keys.js:9 media/js/mkt/stats/csv_keys.js:18 media/js/mkt/stats/csv_keys.js:27
 msgid "Amount Earned"
 msgstr "Befolyt mennyiség"
 
-#: media/js/mkt/stats/chart.js:356
-#: media/js/mkt/stats/csv_keys.js:12
-#: media/js/mkt/stats/csv_keys.js:21
-#: media/js/mkt/stats/csv_keys.js:30
-#: media/js/mkt/stats/csv_keys.js:134
+#: media/js/mkt/stats/chart.js:356 media/js/mkt/stats/csv_keys.js:12 media/js/mkt/stats/csv_keys.js:21 media/js/mkt/stats/csv_keys.js:30 media/js/mkt/stats/csv_keys.js:134
 msgid "Units Sold"
 msgstr "Eladott egységek"
 
-#: media/js/mkt/stats/chart.js:360
-#: media/js/mkt/stats/csv_keys.js:15
-#: media/js/mkt/stats/csv_keys.js:24
-#: media/js/mkt/stats/csv_keys.js:33
+#: media/js/mkt/stats/chart.js:360 media/js/mkt/stats/csv_keys.js:15 media/js/mkt/stats/csv_keys.js:24 media/js/mkt/stats/csv_keys.js:33
 msgid "Units Refunded"
 msgstr "Visszafizetett egységek"
 
@@ -1379,13 +1169,11 @@ msgstr "{0} pénznem szerint"
 msgid "by source {0}"
 msgstr "{0} forrás szerint"
 
-#: media/js/mkt/stats/chart_column.js:131
-#: media/js/mkt/stats/table.js:95
+#: media/js/mkt/stats/chart_column.js:131 media/js/mkt/stats/table.js:95
 msgid "Currency"
 msgstr "Pénznem"
 
-#: media/js/mkt/stats/chart_column.js:135
-#: media/js/mkt/stats/table.js:98
+#: media/js/mkt/stats/chart_column.js:135 media/js/mkt/stats/table.js:98
 msgid "Source"
 msgstr "Forrás"
 
@@ -1397,39 +1185,27 @@ msgstr "Bevétel"
 msgid "Refunds"
 msgstr "{} visszatérítés"
 
-#: media/js/mkt/stats/csv_keys.js:36
-#: media/js/mkt/stats/csv_keys.js:192
-#: media/js/mkt/stats/csv_keys.js:193
+#: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
 msgid "Apps Added"
 msgstr "Hozzáadott alkalmazások"
 
-#: media/js/mkt/stats/csv_keys.js:39
-#: media/js/mkt/stats/csv_keys.js:196
-#: media/js/mkt/stats/csv_keys.js:197
+#: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
 msgid "Apps Installed"
 msgstr "Telepített alkalmazások"
 
-#: media/js/mkt/stats/csv_keys.js:42
-#: media/js/mkt/stats/csv_keys.js:200
-#: media/js/mkt/stats/csv_keys.js:201
+#: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
 msgid "Reviews"
 msgstr "Értékelések"
 
-#: media/js/mkt/stats/csv_keys.js:45
-#: media/js/mkt/stats/csv_keys.js:208
-#: media/js/mkt/stats/csv_keys.js:209
+#: media/js/mkt/stats/csv_keys.js:45 media/js/mkt/stats/csv_keys.js:208 media/js/mkt/stats/csv_keys.js:209
 msgid "New Users"
 msgstr "Új felhasználók"
 
-#: media/js/mkt/stats/csv_keys.js:48
-#: media/js/mkt/stats/csv_keys.js:204
-#: media/js/mkt/stats/csv_keys.js:205
+#: media/js/mkt/stats/csv_keys.js:48 media/js/mkt/stats/csv_keys.js:204 media/js/mkt/stats/csv_keys.js:205
 msgid "Total Users"
 msgstr "Összes felhasználó"
 
-#: media/js/mkt/stats/csv_keys.js:51
-#: media/js/mkt/stats/csv_keys.js:212
-#: media/js/mkt/stats/csv_keys.js:213
+#: media/js/mkt/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:212 media/js/mkt/stats/csv_keys.js:213
 msgid "Total Visitors"
 msgstr "Összes látogató"
 
@@ -1497,44 +1273,35 @@ msgstr ""
 msgid "Units Refunded from {0} to {1}"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:168
-#: media/js/mkt/stats/csv_keys.js:169
+#: media/js/mkt/stats/csv_keys.js:168 media/js/mkt/stats/csv_keys.js:169
 msgid "Total Units Sold by Currency"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:172
-#: media/js/mkt/stats/csv_keys.js:173
+#: media/js/mkt/stats/csv_keys.js:172 media/js/mkt/stats/csv_keys.js:173
 msgid "Total Amount Earned by Currency"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:176
-#: media/js/mkt/stats/csv_keys.js:177
+#: media/js/mkt/stats/csv_keys.js:176 media/js/mkt/stats/csv_keys.js:177
 msgid "Total Units Refunded by Currency"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:180
-#: media/js/mkt/stats/csv_keys.js:181
+#: media/js/mkt/stats/csv_keys.js:180 media/js/mkt/stats/csv_keys.js:181
 msgid "Total Units Sold by Source"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:184
-#: media/js/mkt/stats/csv_keys.js:185
+#: media/js/mkt/stats/csv_keys.js:184 media/js/mkt/stats/csv_keys.js:185
 msgid "Total Amount Earned by Source"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:188
-#: media/js/mkt/stats/csv_keys.js:189
+#: media/js/mkt/stats/csv_keys.js:188 media/js/mkt/stats/csv_keys.js:189
 msgid "Total Units Refunded by Source"
 msgstr ""
 
-#: media/js/mkt/stats/csv_keys.js:216
-#: media/js/mkt/stats/csv_keys.js:217
+#: media/js/mkt/stats/csv_keys.js:216 media/js/mkt/stats/csv_keys.js:217
 msgid "Total Installs"
 msgstr "Összes telepítés"
 
-#: media/js/zamboni/admin_validation.js:24
-#: media/js/zamboni/devhub.js:1438
-#: media/js/zamboni/editors.js:336
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Először válasszon ki alkalmazást"
 
@@ -1542,12 +1309,8 @@ msgstr "Először válasszon ki alkalmazást"
 #, fuzzy
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"{0} kiterjesztés beállítása a {1} legmagasabb verziójára és levélküldés a "
-"szerzőnek."
-msgstr[1] ""
-"{0} kiterjesztés beállítása a {1} legmagasabb verziójára és levélküldés a "
-"szerzőnek."
+msgstr[0] "{0} kiterjesztés beállítása a {1} legmagasabb verziójára és levélküldés a szerzőnek."
+msgstr[1] "{0} kiterjesztés beállítása a {1} legmagasabb verziójára és levélküldés a szerzőnek."
 
 #: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
@@ -1573,16 +1336,11 @@ msgstr "A rendszer nem támogatja az alkalmazások telepítését."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
-"Az adminisztrátoroknak és a szerkesztőknek jelszóval kell bejelentkezniük."
+msgstr "Az adminisztrátoroknak és a szerkesztőknek jelszóval kell bejelentkezniük."
 
 #: media/js/zamboni/browserid_support.js:42
-msgid ""
-"BrowserID login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Sikertelen BrowserID bejelentkezés. Lehet, hogy nem rendelkezik felhasználói "
-"fiókkal ezzel az e-mail címmel?"
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "Sikertelen BrowserID bejelentkezés. Lehet, hogy nem rendelkezik felhasználói fiókkal ezzel az e-mail címmel?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
@@ -1606,8 +1364,7 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Firefox 10.0 vagy annál frissebb verziót kell használnia."
 
 #: media/js/zamboni/buttons.js:171
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "A Mozilla szerint ez a verzió nem működik a Firefox verziójával."
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -1624,8 +1381,7 @@ msgid "Not available for your platform"
 msgstr "Nem érhető el ezen a platformon"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:317
-#: media/js/zamboni/buttons.js:354
+#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
 msgstr "Nem érhető el a {0} {1} verzióhoz"
 
@@ -1637,14 +1393,9 @@ msgstr "Ezzel működik {app} {min} - {max}"
 msgid "View other versions"
 msgstr "További verziók megtekintése"
 
-#: media/js/zamboni/buttons.js:597
-#: media/js/zamboni/mobile/buttons.js:39
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"A kereső bővítmény telepítéséhez szükség van egy Mozilla-alapú böngészőre "
-"(pl. Firefox)."
+#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "A kereső bővítmény telepítéséhez szükség van egy Mozilla-alapú böngészőre (pl. Firefox)."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1682,8 +1433,7 @@ msgstr "Megjegyzés"
 msgid "Remove this add-on from the collection"
 msgstr "Kiegészítő eltávolítása a gyűjteményből"
 
-#: media/js/zamboni/collections.js:439
-#: media/js/zamboni/collections.js:468
+#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
 msgid "Remove"
 msgstr "Eltávolítás"
 
@@ -1747,8 +1497,7 @@ msgstr "Tesztek indítása…"
 msgid "Waiting for test results..."
 msgstr "Várakozás a teszteredményre…"
 
-#: media/js/zamboni/devhub.js:1475
-#: media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
 msgid "Internal Server Error"
 msgstr "Belső kiszolgálóhiba"
 
@@ -1761,12 +1510,8 @@ msgid "No results found."
 msgstr "Nincs találat."
 
 #: media/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Nem találunk ajánlott kiegészítőt.<br>Látogassa meg a <a "
-"href=\"{0}\">kiegészítők weboldalát</a> és keressen megfelelő kiegészítőket."
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Nem találunk ajánlott kiegészítőt.<br>Látogassa meg a <a href=\"{0}\">kiegészítők weboldalát</a> és keressen megfelelő kiegészítőket."
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1846,8 +1591,7 @@ msgid_plural "At least {0} characters left."
 msgstr[0] "{0} karakter maradt."
 msgstr[1] "{0} karakter maradt."
 
-#: media/js/zamboni/perf.js:29
-#: media/js/zamboni/perf.js:42
+#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
 msgid "All"
 msgstr "Összes"
 
@@ -1881,8 +1625,7 @@ msgstr "Ellenőrizetlen"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Kísérleti <span>(Tudjon meg többet)</span>"
 
-#: media/js/zamboni/mobile/buttons.js:79
-#: media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "Nem érhető el a {0} programhoz"
 
