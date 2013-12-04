@@ -81,6 +81,10 @@ class AbuseResourceTests(object):
         eq_(len(mail.outbox), 1)
         assert self.default_data['text'] in mail.outbox[0].body
 
+    def test_get(self):
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 405)
+
     def test_send(self):
         res, data = self._call()
         self._test_success(res, data)
