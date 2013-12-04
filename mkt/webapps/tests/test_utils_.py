@@ -288,11 +288,12 @@ class TestESAppToDict(amo.tests.ESTestCase):
                 'installed': False,
                 'purchased': False,
             },
-            'versions': {
-                '1.0': '/api/apps/versions/1268829/'
-            },
             'weekly_downloads': None,
         }
+
+        ok_('1.0' in res['versions'])
+        self.assertApiUrlEqual(res['versions']['1.0'],
+                               '/apps/versions/1268829/')
 
         for k, v in res.items():
             if k in expected:

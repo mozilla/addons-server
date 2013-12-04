@@ -30,5 +30,9 @@ from django.conf.urls import include, patterns, url
 urlpatterns = patterns('',
     url('^v2/', include('mkt.api.v2.urls')),
     url('^v1/', include('mkt.api.v1.urls')),
-    url('', include('mkt.api.v1.urls')),
+
+    # Necessary for backwards-compatibility. We assume that this always means
+    # API version 1. The namespace ensures that no URLS are ever reversed to
+    # this pattern. Yummycake because we already ate the tastypie.
+    url('', include('mkt.api.v1.urls', namespace='yummycake')),
 )

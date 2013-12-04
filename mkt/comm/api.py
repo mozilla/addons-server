@@ -31,7 +31,7 @@ from versions.models import Version
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import CORSMixin, SilentListModelMixin
+from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
 from mkt.comm.forms import AppSlugForm
 from mkt.reviewers.utils import send_note_emails
 
@@ -203,7 +203,7 @@ class ReadUnreadFilter(BaseFilterBackend):
                                            show_read)
 
 
-class CommViewSet(CORSMixin, GenericViewSet):
+class CommViewSet(CORSMixin, MarketplaceView, GenericViewSet):
     """Some overriding and mixin stuff to adapt other viewsets."""
     parser_classes = (FormParser, JSONParser)
 

@@ -420,6 +420,10 @@ def copy_over(source, dest):
     if os.path.exists(dest) and os.path.isdir(dest):
         shutil.rmtree(dest)
     shutil.copytree(source, dest)
+    # mkdtemp will set the directory permissions to 700
+    # for the webserver to read them, we need 755
+    os.chmod(dest, stat.S_IRWXU | stat.S_IRGRP |
+             stat.S_IXGRP | stat.S_IROTH | stat.S_IXOTH)
     shutil.rmtree(source)
 
 

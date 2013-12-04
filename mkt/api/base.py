@@ -524,15 +524,32 @@ class MarketplaceView(object):
     Base view for DRF views.
 
     It includes:
-    - An implement of handle_exception() that goes with our custom exception
-      handler. It stores the request and originating class in the exception
-      before it's handed over the the handler, so that the handler can in turn
-      properly propagate the got_request_exception signal if necessary.
+    - An implementation of handle_exception() that goes with our custom
+      exception handler. It stores the request and originating class in the
+      exception before it's handed over the the handler, so that the handler
+      can in turn properly propagate the got_request_exception signal if
+      necessary.
+
+    - A implementation of paginate_queryset() that goes with our custom
+      pagination handler. It does tastypie-like offset pagination instead of
+      the default page mechanism.
     """
     def handle_exception(self, exc):
         exc._request = self.request._request
         exc._klass = self.__class__
         return super(MarketplaceView, self).handle_exception(exc)
+
+    def paginate_queryset(self, queryset, page_size=None):
+        page_query_param = self.request.QUERY_PARAMS.get(self.page_kwarg)
+        offset_query_param = self.request.QUERY_PARAMS.get('offset')
+
+        # If 'offset' (tastypie-style pagination) parameter is present and
+        # 'page' isn't, use offset it to find which page to use.
+        if page_query_param is None and offset_query_param is not None:
+            page_number = int(offset_query_param) / self.get_paginate_by() + 1
+            self.kwargs[self.page_kwarg] = page_number
+        return super(MarketplaceView, self).paginate_queryset(queryset,
+            page_size=page_size)
 
 
 class CORSMixin(object):

@@ -19,7 +19,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 
-from mkt.api.base import CORSMixin, SlugOrIdMixin
+from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.collections.serializers import DataURLImageField
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
@@ -32,7 +32,8 @@ from .serializers import (CollectionMembershipField, CollectionSerializer,
                           CuratorSerializer)
 
 
-class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
+class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+                        viewsets.ModelViewSet):
     serializer_class = CollectionSerializer
     queryset = Collection.objects.all()
     cors_allowed_methods = ('get', 'post', 'delete', 'patch')
@@ -193,18 +194,18 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         """
         Reorder the specified collection.
         """
-        collection = self.get_object()
         def membership(app):
             f = CollectionMembershipField()
             f.context = {'request': request}
             return f.to_native(app)
+
+        collection = self.get_object()
         try:
             collection.reorder(request.DATA)
         except ValueError:
             return Response({
                 'detail': self.exceptions['app_mismatch'],
-                'apps': [membership(a) for a in
-                         collection.collectionmembership_set.all()]
+                'apps': [membership(a) for a in collection.apps()]
             }, status=status.HTTP_400_BAD_REQUEST, exception=True)
         return self.return_updated(status.HTTP_200_OK)
 
@@ -247,9 +248,9 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         return self.serialized_curators(no_cache=True)
 
 
-class CollectionImageViewSet(CORSMixin, viewsets.ViewSet,
+class CollectionImageViewSet(CORSMixin, MarketplaceView, 
                              generics.RetrieveUpdateAPIView,
-                             generics.DestroyAPIView):
+                             generics.DestroyAPIView, viewsets.ViewSet):
     queryset = Collection.objects.all()
     permission_classes = [CuratorAuthorization]
     authentication_classes = [RestOAuthAuthentication,

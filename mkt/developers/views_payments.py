@@ -1,6 +1,5 @@
 import json
 import urllib
-from datetime import datetime
 
 from django import http
 from django.conf import settings
@@ -13,7 +12,6 @@ import jinja2
 import waffle
 
 from curling.lib import HttpClientError
-from jingo import helpers
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
@@ -22,21 +20,18 @@ from access import acl
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
 from amo.urlresolvers import reverse
-from constants.payments import (PAYMENT_METHOD_ALL,
-                                PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_OPERATOR)
+from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
+                                PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO)
 from lib.crypto import generate_key
 from lib.pay_server import client
 
 from market.models import Price
 from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
+from mkt.developers import forms, forms_payments
 from mkt.developers.decorators import dev_required
-from mkt.developers.models import (CantCancel, PaymentAccount, UserInappKey,
-                                   uri_to_pk)
+from mkt.developers.models import (CantCancel, PaymentAccount, UserInappKey)
 from mkt.developers.providers import get_provider
-
-from . import forms, forms_payments
-
+from mkt.developers.utils import uri_to_pk
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -60,14 +55,14 @@ def payments(request, addon_id, addon, webapp=False):
     upsell_form = forms_payments.UpsellForm(
         request.POST or None, addon=addon, user=request.amo_user)
 
-    bango_account_list_form = forms_payments.BangoAccountListForm(
+    account_list_form = forms_payments.AccountListForm(
         request.POST or None, addon=addon, user=request.amo_user)
 
     if request.method == 'POST':
 
         success = all(form.is_valid() for form in
                       [premium_form, region_form, upsell_form,
-                       bango_account_list_form])
+                       account_list_form])
 
         if success:
             region_form.save()
@@ -91,7 +86,7 @@ def payments(request, addon_id, addon, webapp=False):
                 try:
                     if not is_free_inapp:
                         upsell_form.save()
-                    bango_account_list_form.save()
+                    account_list_form.save()
                 except client.Error as err:
                     log.error('Error saving payment information (%s)' % err)
                     messages.error(
@@ -153,7 +148,7 @@ def payments(request, addon_id, addon, webapp=False):
          'is_packaged': addon.is_packaged,
          # Bango values
          'account_form': provider.forms['account'](),
-         'bango_account_list_form': bango_account_list_form,
+         'account_list_form': account_list_form,
          # Waffles
          'api_pricelist_url': reverse('price-list'),
          'payment_methods': {
@@ -176,18 +171,22 @@ def payment_accounts(request):
     def account(acc):
         app_names = (', '.join(unicode(apa.addon.name)
                      for apa in acc.addonpaymentaccount_set.all()))
+        provider = acc.get_provider()
         data = {
-            'id': acc.pk,
-            'name': jinja2.escape(unicode(acc)),
-            'app-names': jinja2.escape(app_names),
             'account-url':
-                reverse('mkt.developers.bango.payment_account', args=[acc.pk]),
-            'delete-url':
-                reverse('mkt.developers.bango.delete_payment_account',
+                reverse('mkt.developers.provider.payment_account',
                         args=[acc.pk]),
             'agreement-url': acc.get_agreement_url(),
             'agreement': 'accepted' if acc.agreed_tos else 'rejected',
-            'shared': acc.shared
+            'app-names': jinja2.escape(app_names),
+            'delete-url':
+                reverse('mkt.developers.provider.delete_payment_account',
+                        args=[acc.pk]),
+            'id': acc.pk,
+            'name': jinja2.escape(unicode(acc)),
+            'provider': provider.name,
+            'provider-full': unicode(provider.full),
+            'shared': acc.shared,
         }
         if waffle.switch_is_active('bango-portal') and app_slug:
             data['portal-url'] = reverse(
@@ -200,11 +199,11 @@ def payment_accounts(request):
 
 @login_required
 def payment_accounts_form(request):
-    bango_account_form = forms_payments.BangoAccountListForm(
+    bango_account_form = forms_payments.AccountListForm(
         user=request.amo_user, addon=None)
     return jingo.render(
         request, 'developers/payments/includes/bango_accounts_form.html',
-        {'bango_account_list_form': bango_account_form})
+        {'account_list_form': bango_account_form})
 
 
 @write
@@ -232,15 +231,15 @@ def payments_accounts_add(request):
 @json_view
 def payments_account(request, id):
     account = get_object_or_404(PaymentAccount, pk=id, user=request.user)
+    provider = account.get_provider()
     if request.POST:
-        form = forms_payments.BangoPaymentAccountForm(
-            request.POST, account=account)
+        form = provider.forms['account'](request.POST, account=account)
         if form.is_valid():
             form.save()
         else:
             return json_view.error(form.errors)
 
-    return account.get_details()
+    return provider.account_retrieve(account)
 
 
 @write
@@ -339,16 +338,20 @@ def in_app_secret(request, addon_id, addon, webapp=True):
 @waffle_switch('bango-portal')
 @dev_required(webapp=True)
 def bango_portal_from_addon(request, addon_id, addon, webapp=True):
+    account = addon.app_payment_account.payment_account
+    if account.provider != PROVIDER_BANGO:
+        log.error('Bango portal not available for account: %s' % account.pk)
+        return http.HttpResponseForbidden()
+
     if not ((addon.authors.filter(user=request.user,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()) and
-            (addon.app_payment_account.payment_account.solitude_seller.user.id
-                == request.user.id)):
+            (account.solitude_seller.user.id == request.user.id)):
         log.error(('User not allowed to reach the Bango portal; '
                    'pk=%s') % request.user.pk)
         return http.HttpResponseForbidden()
 
-    package_id = addon.app_payment_account.payment_account.account_id
-    return _redirect_to_bango_portal(package_id, 'addon_id: %s' % addon_id)
+    return _redirect_to_bango_portal(account.package_id,
+                                     'addon_id: %s' % addon_id)
 
 
 def _redirect_to_bango_portal(package_id, source):
@@ -388,20 +391,13 @@ def get_seller_product(account):
                   .get_object_or_404())
 
 
-# TODO(andym): move these into a tastypie API.
+# TODO(andym): move these into a DRF API.
 @login_required
 @json_view
 def agreement(request, id):
     account = get_object_or_404(PaymentAccount, pk=id, user=request.user)
-    # It's a shame we have to do another get to find this out.
-    package = client.api.bango.package(account.uri).get_object_or_404()
+    provider = get_provider()
     if request.method == 'POST':
-        # Set the agreement.
-        account.update(agreed_tos=True)
-        return (client.api.bango.sbi.post(
-                data={'seller_bango': package['resource_uri']}))
-    res = (client.api.bango.sbi.agreement
-            .get_object(data={'seller_bango': package['resource_uri']}))
-    res['valid'] = helpers.datetime(
-            datetime.strptime(res['valid'], '%Y-%m-%dT%H:%M:%S'))
-    return res
+        return provider.terms_update(account)
+
+    return provider.terms_retrieve(account)
