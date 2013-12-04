@@ -38,6 +38,7 @@ HOME=/tmp
 
 #once per day
 05 8 * * * %(z_cron)s email_daily_ratings --settings=settings_local_mkt
+10 8 * * * %(z_cron)s update_monolith_stats
 15 8 * * * %(z_cron)s process_iarc_changes --settings=settings_local_mkt
 30 8 * * * %(z_cron)s dump_user_installs_cron --settings=settings_local_mkt
 30 9 * * * %(z_cron)s update_user_ratings
@@ -65,7 +66,6 @@ HOME=/tmp
 40 5 * * * %(z_cron)s weekly_downloads
 35 6 * * * %(z_cron)s update_global_totals
 40 6 * * * %(z_cron)s update_addon_average_daily_users
-35 6 * * * %(z_cron)s update_monolith_stats
 30 7 * * * %(z_cron)s index_latest_stats
 35 7 * * * %(z_cron)s index_latest_mkt_stats --settings=settings_local_mkt
 45 7 * * * %(z_cron)s update_addons_collections_downloads
