@@ -1578,26 +1578,46 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
-    def test_multiple_versions_reject_hosted(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    @mock.patch('addons.tasks.index_addons')
+    @mock.patch('lib.crypto.packaged.sign_app')
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_packaged_multiple_versions_approve(self, update_name,
+                                                update_locales, sign_mock,
+                                                index_addons, storefront_mock):
+        self.app.update(status=amo.STATUS_PUBLIC, is_packaged=True)
         self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
         new_version.files.all().update(status=amo.STATUS_PENDING)
-        data = {'action': 'reject', 'device_types': '', 'browsers': '',
+        data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_REJECTED)
-        eq_(new_version.files.all()[0].status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.REJECT_VERSION)
+        new_version.reload()
+        eq_(app.status, amo.STATUS_PUBLIC)
+        self.assertCloseToNow(new_version.reviewed)
+        eq_(new_version.files.all()[0].status, amo.STATUS_PUBLIC)
+        self._check_log(amo.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'Submission Update')
+        self._check_email(msg, 'App Approved')
         self._check_email_body(msg)
+        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
 
-    def test_multiple_versions_reject_packaged(self):
+        assert update_name.called
+        assert update_locales.called
+        assert sign_mock.called
+
+        # It's zero for the view but happens after the transaction commits. If
+        # this increases we could get tasks being called with stale data.
+        eq_(index_addons.delay.call_count, 0)
+
+        assert storefront_mock.called
+
+    def test_packaged_multiple_versions_reject(self):
         self.app.update(status=amo.STATUS_PUBLIC, is_packaged=True)
         self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
@@ -1608,6 +1628,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(new_version.reviewed, None)
         eq_(new_version.files.all()[0].status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.REJECT_VERSION)
 
