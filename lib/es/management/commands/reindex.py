@@ -42,20 +42,11 @@ def index_stats(index=None, aliased=True):
     call_command('index_stats', addons=None)
 
 
-if django_settings.MARKETPLACE:
-    # This imports marketplace stats, which then adds in the marketplace
-    # inapp table. When you do that and delete an addon, the marketplace
-    # then tries to delete from the non-existant table.
-    #
-    # This really only affects tests where the table does not exist.
-    from mkt.stats.cron import index_mkt_stats
-    from mkt.stats.search import setup_mkt_indexes as put_mkt_stats_mapping
-
-    _INDEXES = {'stats': [index_stats, index_mkt_stats],
-                'apps': [reindex_addons,
-                         reindex_collections,
-                         reindex_users,
-                         compatibility_report]}
+_INDEXES = {'stats': [index_stats],
+            'apps': [reindex_addons,
+                     reindex_collections,
+                     reindex_users,
+                     compatibility_report]}
 
 logger = logging.getLogger('z.elasticsearch')
 DEFAULT_NUM_REPLICAS = 0
@@ -96,24 +87,24 @@ def call_es(path, *args, **kw):
     return res
 
 
-def log(msg):
-    print msg
+def log(msg, stdout=sys.stdout):
+    stdout.write(msg + '\n')
 
 
 @task_with_callbacks
-def delete_indexes(indexes):
+def delete_indexes(indexes, stdout=sys.stdout):
     """Removes the indexes.
 
     - indexes: list of indexes names to remove.
     """
     # now call the server - can we do this with a single call?
     for index in indexes:
-        log('Removing index %r' % index)
+        log('Removing index %r' % index, stdout=stdout)
         call_es(index, method='DELETE')
 
 
 @task_with_callbacks
-def run_aliases_actions(actions):
+def run_aliases_actions(actions, stdout=sys.stdout):
     """Run actions on aliases.
 
      - action: list of action/index/alias items
@@ -131,7 +122,7 @@ def run_aliases_actions(actions):
     post_data = json.dumps({'actions': dump})
 
     # now call the server
-    log('Rebuilding aliases')
+    log('Rebuilding aliases', stdout=stdout)
     try:
         call_es('_aliases', post_data, method='POST')
     except CommandError, e:
@@ -142,17 +133,17 @@ def run_aliases_actions(actions):
             raise
 
         index = res.groupdict()['index']
-        log('Removing index %r' % index)
+        log('Removing index %r' % index, stdout=stdout)
         call_es(index, method='DELETE')
 
         # Now trying again
-        log('Trying again to rebuild the aliases')
+        log('Trying again to rebuild the aliases', stdout=stdout)
         call_es('_aliases', post_data, method='POST')
 
 
 @task_with_callbacks
 def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
-                   num_shards=DEFAULT_NUM_SHARDS):
+                   num_shards=DEFAULT_NUM_SHARDS, stdout=sys.stdout):
     """Creates a mapping for the new index.
 
     - new_index: new index name.
@@ -160,7 +151,8 @@ def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
     - num_replicas: number of replicas in ES
     - num_shards: number of shards in ES
     """
-    log('Create the mapping for index %r, alias: %r' % (new_index, alias))
+    log('Create the mapping for index %r, alias: %r' % (new_index, alias),
+        stdout=stdout)
 
     if requests.head(url('/' + alias)).status_code == 200:
         res = call_es('%s/_settings' % (alias)).json()
@@ -175,12 +167,11 @@ def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
                                              num_shards)
     }
 
-    # Create mapping.without aliases since we do it manually
+    # Create mapping without aliases since we do it manually
     if not 'stats' in alias:
         put_amo_mapping(new_index, aliased=False)
     else:
         put_stats_mapping(new_index, aliased=False)
-        put_mkt_stats_mapping(new_index, aliased=False)
 
     # Create new index
     index_url = url('/%s' % new_index)
@@ -194,38 +185,38 @@ def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
 
 
 @task_with_callbacks
-def create_index(index, is_stats):
+def create_index(index, is_stats, stdout=sys.stdout):
     """Create the index.
 
     - index: name of the index
     - is_stats: if True, we're indexing stats
     """
-    log('Running all indexes for %r' % index)
+    log('Running all indexes for %r' % index, stdout=stdout)
     indexers = is_stats and _INDEXES['stats'] or _INDEXES['apps']
 
     for indexer in indexers:
-        log('Indexing %r' % indexer.__name__)
+        log('Indexing %r' % indexer.__name__, stdout=stdout)
         try:
             indexer(index, aliased=False)
         except Exception:
             # We want to log this event but continue
-            log('Indexer %r failed' % indexer.__name__)
+            log('Indexer %r failed' % indexer.__name__, stdout=stdout)
             traceback.print_exc()
 
 
 @task_with_callbacks
-def flag_database(new_index, old_index, alias):
+def flag_database(new_index, old_index, alias, stdout=sys.stdout):
     """Flags the database to indicate that the reindexing has started."""
-    log('Flagging the database to start the reindexation')
+    log('Flagging the database to start the reindexation', stdout=stdout)
     return Reindexing.objects.create(new_index=new_index, old_index=old_index,
                                      alias=alias,
                                      start_date=datetime.datetime.now())
 
 
 @task_with_callbacks
-def unflag_database():
+def unflag_database(stdout=sys.stdout):
     """Unflag the database to indicate that the reindexing is over."""
-    log('Unflagging the database')
+    log('Unflagging the database', stdout=stdout)
     Reindexing.objects.all().delete()
 
 
@@ -264,7 +255,8 @@ class Command(BaseCommand):
 
         Creates a Tasktree that creates new indexes
         over the old ones so the search feature
-        works while the indexation occurs
+        works while the indexation occurs.
+
         """
         if django_settings.MARKETPLACE:
             raise CommandError('This command affects the AMO ES indexes and '
@@ -277,7 +269,7 @@ class Command(BaseCommand):
                                'bypass')
 
         prefix = kwargs.get('prefix', '')
-        log('Starting the reindexation')
+        log('Starting the reindexation', stdout=self.stdout)
 
         if kwargs.get('with_stats', False):
             # Add the stats indexes back.
@@ -291,13 +283,13 @@ class Command(BaseCommand):
                 confirm = raw_input('Please enter either "yes" or "no": ')
 
             if confirm == 'yes':
-                unflag_database()
+                unflag_database(stdout=self.stdout)
                 for index in set(_ALIASES.values()):
                     requests.delete(url('/%s') % index)
             else:
                 raise CommandError("Aborted.")
         elif force:
-            unflag_database()
+            unflag_database(stdout=self.stdout)
 
         # Get list current aliases at /_aliases.
         all_aliases = requests.get(url('/_aliases')).json()
@@ -316,7 +308,7 @@ class Command(BaseCommand):
         all_aliases = all_aliases.items()
 
         # creating a task tree
-        log('Building the task tree')
+        log('Building the task tree', stdout=self.stdout)
         tree = TaskTree()
         last_action = None
 
@@ -346,10 +338,15 @@ class Command(BaseCommand):
                 old_index = alias
 
             # flag the database
-            step1 = tree.add_task(flag_database, args=[new_index, old_index,
-                                                       alias])
-            step2 = step1.add_task(create_mapping, args=[new_index, alias])
-            step3 = step2.add_task(create_index, args=[new_index, is_stats])
+            step1 = tree.add_task(flag_database,
+                                  args=[new_index, old_index, alias],
+                                  kwargs={'stdout': self.stdout})
+            step2 = step1.add_task(create_mapping,
+                                   args=[new_index, alias],
+                                   kwargs={'stdout': self.stdout})
+            step3 = step2.add_task(create_index,
+                                   args=[new_index, is_stats],
+                                   kwargs={'stdout': self.stdout})
             last_action = step3
 
             # adding new index to the alias
@@ -357,17 +354,20 @@ class Command(BaseCommand):
 
         # Alias the new index and remove the old aliases, if any.
         renaming_step = last_action.add_task(run_aliases_actions,
-                                             args=[actions])
+                                             args=[actions],
+                                             kwargs={'stdout': self.stdout})
 
         # unflag the database - there's no need to duplicate the
         # indexing anymore
-        delete = renaming_step.add_task(unflag_database)
+        delete = renaming_step.add_task(unflag_database,
+                                        kwargs={'stdout': self.stdout})
 
         # Delete the old indexes, if any
-        delete.add_task(delete_indexes, args=[to_remove])
+        delete.add_task(delete_indexes,
+                        args=[to_remove], kwargs={'stdout': self.stdout})
 
         # let's do it
-        log('Running all indexation tasks')
+        log('Running all indexation tasks', stdout=self.stdout)
 
         os.environ['FORCE_INDEXING'] = '1'
         try:
@@ -385,4 +385,5 @@ class Command(BaseCommand):
         # let's return the /_aliases values
         aliases = call_es('_aliases').json()
         aliases = json.dumps(aliases, sort_keys=True, indent=4)
-        return _SUMMARY % (len(indexes), aliases)
+        summary = _SUMMARY % (len(indexes), aliases)
+        log(summary, stdout=self.stdout)
