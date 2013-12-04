@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-30 07:26+0000\n"
+"PO-Revision-Date: 2013-12-04 17:23+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385796388.0\n"
+"X-POOTLE-MTIME: 1386177816.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -32,13 +32,13 @@ msgstr "選擇一個檔案..."
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "您的附加元件應該以 .xpi、.jar，或 .xml 為副檔名"
+msgstr "您的附加元件應該以 .xpi、.jar 或 .xml 為副檔名"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-addon.js:87
 #: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr "{0}% 完成"
+msgstr "已完成 {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-addon.js:90
