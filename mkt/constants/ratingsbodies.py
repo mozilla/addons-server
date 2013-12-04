@@ -251,7 +251,8 @@ class ESRB(RATING_BODY):
     ratings = (ESRB_E, ESRB_10, ESRB_T, ESRB_M, ESRB_A)
 
     name = 'ESRB'
-    description = _lazy(u'N. America')  # L10n: `N.` stands for North.
+    # L10n: North and South American, but not Brazil.
+    description = _lazy(u'All Americas except Brazil')
     full_name = _lazy(u'Entertainment Software Rating Board')
     url = 'http://esrb.org'
 

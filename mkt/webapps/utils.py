@@ -183,7 +183,8 @@ def dehydrate_content_rating(rating, region=None):
     {body.id, rating.id} to translated {rating labels, names, descriptions}.
     """
     if (not waffle.switch_is_active('iarc') and
-        region not in ['br', 'de']):
+        region not in [_region.slug for _region in
+                       mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()]):
         # Ratings only enabled for Brazil and Germany before IARC work.
         # When removing this waffle switch, remove the whole `if`
         # clause.

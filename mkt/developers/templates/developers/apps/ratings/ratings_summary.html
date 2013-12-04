@@ -36,7 +36,7 @@
               <td class="content-rating">{{ iarc_rating_icon(cr) }}</td>
               <td class="content-descriptors">
                 {% for descriptor in addon.get_descriptors(body=ratings_body.label) %}
-                  {% if ratings_body.label == 'pegi' %}
+                  {% if ratings_body.label == 'pegi' and descriptor.label != 'pegi-no-descs' %}
                     <img class="icon {{ descriptor.label }}" title="{{ descriptor.name }}">
                   {% else %}
                     <p>{{ descriptor.name }}</p>
@@ -52,7 +52,13 @@
 
       <h3>{{ _('Interactive Elements') }}</h3>
       <div class="interactive-elements c">
-        {% for interactive in addon.get_interactives() %}
+        {% set interactives = addon.get_interactives() %}
+        <div class="names">
+          {% for interactive in interactives %}
+            <span>{{ interactive.name }}</span>
+          {% endfor %}
+        </div>
+        {% for interactive in interactives %}
           <img class="icon {{ interactive.label }}" title="{{ interactive.name }}">
         {% endfor %}
       </div>

@@ -183,18 +183,31 @@ $box-red = #ff2600;
     }
 }
 
-.interactive-elements .icon {
-    height: 60px;
-    width: 60px;
+.interactive-elements {
+    .names {
+        margin-bottom: 5px;
 
-    &.shares-info {
-        background-image: url('../../img/icons/ratings/interactives/ESRB_shares-info_small.png');
+        span:not(:last-child):after {
+            content: '\00B7';  // &middot;
+            display: inline-block;
+            left: 1px;
+            margin: 0 1px;
+            position: relative;
+        }
     }
-    &.shares-location {
-        background-image: url('../../img/icons/ratings/interactives/ESRB_shares-location_small.png');
-    }
-    &.users-interact {
-        background-image: url('../../img/icons/ratings/interactives/ESRB_users-interact_small.png');
+    .icon {
+        height: 60px;
+        width: 60px;
+
+        &.shares-info {
+            background-image: url('../../img/icons/ratings/interactives/ESRB_shares-info_small.png');
+        }
+        &.shares-location {
+            background-image: url('../../img/icons/ratings/interactives/ESRB_shares-location_small.png');
+        }
+        &.users-interact {
+            background-image: url('../../img/icons/ratings/interactives/ESRB_users-interact_small.png');
+        }
     }
 }
 
