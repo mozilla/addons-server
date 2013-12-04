@@ -226,7 +226,7 @@ class IT(REGION):
     default_currency = 'EUR'
     default_language = 'it'
     mcc = 222
-    special = True
+    special = False
 
 
 # Create a list of tuples like so (in alphabetical order):
