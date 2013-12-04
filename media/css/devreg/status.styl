@@ -180,8 +180,10 @@
     // Submit form.
     .agree {
         float: left;
+        max-width: 50%;
     }
     label[for=id_agree] {
+        line-height: 16px;
         margin-right: 10px;
     }
     label[for=id_test_plan] {
@@ -198,5 +200,28 @@
     input[name=test_plan] {
         float: right;
         display: block;
+    }
+
+    // Terms (and conditions) generated from Markdown.
+    .terms {
+        margin-bottom: 26px;
+
+        h2 {
+            margin: 0;
+
+            + table {
+                margin-top: 13px;
+            }
+        }
+        th {
+            font-weight: bold;
+            padding-bottom: 13px;
+        }
+        th:first-child, td:first-child {
+            max-width: 50px;
+        }
+        td {
+            padding-right: 10px;
+        }
     }
 }

@@ -10,6 +10,6 @@
 {{ hub_breadcrumbs(items=[(None, _('Developer Agreement'))]) }}
 <h1>{{ _('Developer Agreement') }}</h1>
 <div class="primary prose" role="main">
-  {{ dev_agreement() }}
+  {{ get_doc_template('dev-agreement') }}
 </div>
 {% endblock %}

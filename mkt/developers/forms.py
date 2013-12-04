@@ -1048,7 +1048,12 @@ class AppVersionForm(VersionForm):
 class PreloadTestPlanForm(happyforms.Form):
     agree = forms.BooleanField(
         widget=forms.CheckboxInput,
-        label=_lazy(u'I agree to the Terms and Conditions'))
+        label=_lazy(
+            u'Please consider my app as a candidate to be pre-loaded on a '
+             'Firefox OS device. I agree to the terms and conditions outlined '
+             'above. I understand that this document is not a commitment to '
+             'pre-load my app.'
+        ))
     test_plan = forms.FileField(
         label=_lazy(u'Upload Your Test Plan (.pdf, .xls under 2.5MB)'),
         widget=forms.FileInput(attrs={'class': 'button'}))
