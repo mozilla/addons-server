@@ -65,10 +65,14 @@ class Command(BaseCommand):
         else:
             for p in data['objects']:
                 pr = Price.objects.create(name=p['name'].split(' ')[-1],
+                                          method=p['method'],
                                           price=p['price'])
                 for pc in p['prices']:
                     pr.pricecurrency_set.create(currency=pc['currency'],
                                                 price=pc['price'],
+                                                paid=pc['paid'],
+                                                tier=pc['tier'],
+                                                dev=pc['dev'],
                                                 provider=pc['provider'],
                                                 method=pc['method'],
                                                 region=pc['region'])
