@@ -117,6 +117,8 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         'privacy_policy': reverse('app-privacy-policy-detail',
                                   kwargs={'pk': obj._id}),
         'public_stats': obj.has_public_stats,
+        'release_notes': get_attr_lang(src, 'release_notes',
+                                       obj.default_locale),
         'supported_locales': src.get('supported_locales', ''),
         'slug': obj.app_slug,
         # TODO: Remove the type check once this code rolls out and our indexes

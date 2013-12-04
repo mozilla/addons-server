@@ -95,7 +95,14 @@ class TranslationSerializerField(fields.WritableField):
             self.return_all_translations = False
 
     def field_to_native(self, obj, field_name):
-        field = getattr(obj, field_name)
+        source = self.source or field_name
+        value = obj
+        for component in source.split('.'):
+            value = fields.get_component(value, component)
+            if value is None:
+                break
+
+        field = value
         if field is None:
             return None
         if not self.return_all_translations:

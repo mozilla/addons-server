@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from mock import Mock
 from nose.tools import eq_
 from rest_framework.request import Request
 from rest_framework.serializers import Serializer
@@ -80,6 +81,19 @@ class TestTranslationSerializerField(TestCase):
     def test_field_to_native(self):
         field = TranslationSerializerField()
         self._test_expected_dict(field)
+
+    def test_field_to_native_source(self):
+        self.app.mymock = Mock()
+        self.app.mymock.mymocked_field = self.app.name
+        field = TranslationSerializerField(source='mymock.mymocked_field')
+        result = field.field_to_native(self.app, 'shouldbeignored')
+        expected = {
+            'en-US': unicode(Translation.objects.get(id=self.app.name.id,
+                                                     locale='en-US')),
+            'es': unicode(Translation.objects.get(id=self.app.name.id,
+                                                  locale='es')),
+        }
+        eq_(result, expected)
 
     def test_field_to_native_empty_context(self):
         mock_serializer = Serializer()
