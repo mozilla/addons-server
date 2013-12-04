@@ -486,7 +486,8 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         self.client.cookies.update(cookie)
 
     def make_price(self, price='1.00'):
-        price_obj, created = Price.objects.get_or_create(price=price)
+        price_obj, created = Price.objects.get_or_create(price=price,
+                                                         name='1')
         for region in [regions.US.id, regions.WORLDWIDE.id]:
             PriceCurrency.objects.create(region=region, currency='USD',
                                          price=price, tier=price_obj,

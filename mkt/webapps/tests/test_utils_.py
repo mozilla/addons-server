@@ -403,6 +403,40 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(res['user'],
             {'developed': False, 'installed': False, 'purchased': False})
 
+    def test_no_price(self):
+        res = es_app_to_dict(self.get_obj())
+        eq_(res['price'], None)
+        eq_(res['price_locale'], None)
+
+    def test_has_price(self):
+        self.make_premium(self.app)
+        self.app.save()
+        self.refresh('webapp')
+
+        res = es_app_to_dict(self.get_obj())
+        eq_(res['price'], Decimal('1.00'))
+        eq_(res['price_locale'], '$1.00')
+
+    def test_not_paid(self):
+        self.make_premium(self.app)
+        PriceCurrency.objects.update(paid=False)
+        self.app.save()
+        self.refresh('webapp')
+
+        res = es_app_to_dict(self.get_obj())
+        eq_(res['price'], None)
+        eq_(res['price_locale'], None)
+
+    def test_no_currency(self):
+        self.make_premium(self.app)
+        PriceCurrency.objects.all().delete()
+        self.app.save()
+        self.refresh('webapp')
+
+        res = es_app_to_dict(self.get_obj())
+        eq_(res['price'], None)
+        eq_(res['price_locale'], None)
+
 
 class TestSupportedLocales(amo.tests.TestCase):
 
