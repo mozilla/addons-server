@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-13 23:59+0400\n"
-"Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2013-12-04 09:23+0000\n"
+"Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1386149026.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1307,7 +1308,7 @@ msgstr "Любая"
 
 #: media/js/mkt/reviewers.js:257
 msgid "Approved app: {app}"
-msgstr ""
+msgstr " "
 
 #: media/js/mkt/reviewers.js:260
 msgid "Rejected app: {app}"
