@@ -1,7 +1,6 @@
 CACHE MANIFEST
 
 # BUILD_ID {{ BUILD_ID }}
-# TIME  {{ timestamp }}
 
 CACHE:
 /
@@ -19,9 +18,6 @@ CACHE:
 # https://login.persona.org/include.js
 # https://ssl.google-analytics.com/ga.js
 # https://www.google-analytics.com/analytics.js
-
-FALLBACK:
-/ /
 
 NETWORK:
 /manifest.appcache?repo={{ repo }}
