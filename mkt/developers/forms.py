@@ -1118,6 +1118,10 @@ class IARCGetAppInfoForm(happyforms.Form):
             app.set_descriptors(row.get('descriptors', []))
             app.set_interactives(row.get('interactives', []))
 
+            # Update status if incomplete status.
+            if app.is_incomplete() and app.is_fully_complete()[0]:
+                app.update(status=amo.STATUS_PENDING)
+
         else:
             msg = _('Content rating record not found.')
             self._errors['submission_id'] = self.error_class([msg])
