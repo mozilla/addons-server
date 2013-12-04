@@ -13,7 +13,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import NoReverseMatch
 from django.db import models
-from django.db.models import signals as dbsignals
+from django.db.models import Min, signals as dbsignals
 from django.dispatch import receiver
 
 import commonware.log
@@ -52,9 +52,9 @@ from mkt.constants import APP_FEATURES, apps
 from mkt.regions.utils import parse_region
 from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
-from mkt.webapps.utils import (
-    dehydrate_content_rating, dehydrate_descriptors, dehydrate_interactives,
-    get_locale_properties, get_supported_locales)
+from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
+                               dehydrate_interactives, get_locale_properties,
+                               get_supported_locales)
 
 
 log = commonware.log.getLogger('z.addons')
@@ -1416,6 +1416,7 @@ class WebappIndexer(MappingType, Indexable):
                         }
                     },
                     'region_exclusions': {'type': 'short'},
+                    'reviewed': {'format': 'dateOptionalTime', 'type': 'date'},
                     'status': {'type': 'byte'},
                     'support_email': {'type': 'string',
                                       'index': 'not_analyzed'},
@@ -1564,6 +1565,8 @@ class WebappIndexer(MappingType, Indexable):
             'count': obj.total_reviews,
         }
         d['region_exclusions'] = obj.get_excluded_region_ids()
+        d['reviewed'] = obj.versions.filter(
+            deleted=False).aggregate(Min('reviewed')).get('reviewed__min')
         d['support_email'] = (unicode(obj.support_email)
                               if obj.support_email else None)
         d['support_url'] = (unicode(obj.support_url)

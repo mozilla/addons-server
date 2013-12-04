@@ -1,19 +1,15 @@
-from decimal import Decimal
+import datetime
 import json
-
-from django.contrib.auth.models import AnonymousUser
+from decimal import Decimal
 
 import mock
-import waffle
 from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo
 import amo.tests
-
-from addons.models import (AddonCategory, AddonDeviceType, Category,
-                           Preview)
+from addons.models import AddonCategory, AddonDeviceType, Category, Preview
 from market.models import PriceCurrency
 from mkt.constants import ratingsbodies, regions
 from mkt.site.fixtures import fixture
@@ -47,8 +43,8 @@ class TestAppSerializer(amo.tests.TestCase):
             'filetype': 'image/png', 'thumbtype': 'image/png',
             'addon': self.app})
         preview = self.serialize(self.app)['previews'][0]
-        self.assertSetEqual(preview,
-            ['filetype', 'id', 'image_url', 'thumbnail_url', 'resource_uri'])
+        self.assertSetEqual(preview, ['filetype', 'id', 'image_url',
+                                      'thumbnail_url', 'resource_uri'])
         eq_(int(preview['id']), obj.pk)
 
     def test_no_rating(self):
@@ -256,21 +252,19 @@ class TestESAppToDict(amo.tests.ESTestCase):
         return S(WebappIndexer).filter(id=self.app.pk).execute().objects[0]
 
     def test_basic(self):
-        res = es_app_to_dict(self.get_obj())
+        res = es_app_to_dict(self.get_obj(), profile=self.profile)
         expected = {
             'absolute_url': 'http://testserver/app/something-something/',
             'app_type': 'hosted',
             'author': 'Mozilla Tester',
             'created': self.app.created,
             'current_version': '1.0',
+            'default_locale': u'en-US',
             'description': u'Something Something Steamcube description!',
             'homepage': '',
             'id': '337141',
+            'is_offline': False,
             'is_packaged': False,
-            'latest_version': {
-                'status': 4,
-                'is_privileged': False
-            },
             'manifest_url': 'http://micropipes.com/temp/steamcube.webapp',
             'name': 'Something Something Steamcube!',
             'premium_type': 'free',
@@ -279,15 +273,19 @@ class TestESAppToDict(amo.tests.ESTestCase):
                 'average': 0.0,
                 'count': 0,
             },
+            'reviewed': self.version.reviewed,
             'slug': 'something-something',
             'status': 4,
             'support_email': None,
             'support_url': None,
+            'supported_locales': [u'en-US', u'es', u'pt-BR'],
+            'upsell': False,
             'user': {
                 'developed': False,
                 'installed': False,
                 'purchased': False,
             },
+            # 'version's handled below to support API URL assertions.
             'weekly_downloads': None,
         }
 
@@ -295,11 +293,10 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.assertApiUrlEqual(res['versions']['1.0'],
                                '/apps/versions/1268829/')
 
-        for k, v in res.items():
-            if k in expected:
-                eq_(expected[k], v,
-                    u'Expected value "%s" for field "%s", got "%s"' %
-                    (expected[k], k, v))
+        for k, v in expected.items():
+            eq_(res[k], v,
+                u'Expected value "%s" for field "%s", got "%s"' %
+                (v, k, res[k]))
 
     def test_content_ratings(self):
         self.create_switch('iarc')

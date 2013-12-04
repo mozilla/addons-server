@@ -85,8 +85,8 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
 
     attrs = ('created', 'current_version', 'default_locale', 'homepage',
-             'is_offline', 'manifest_url', 'previews', 'ratings', 'status',
-             'support_email', 'support_url', 'weekly_downloads')
+             'is_offline', 'manifest_url', 'previews', 'reviewed', 'ratings',
+             'status', 'support_email', 'support_url', 'weekly_downloads')
     data = dict((a, getattr(obj, a, None)) for a in attrs)
 
     if getattr(obj, 'content_ratings', None):
