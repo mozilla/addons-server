@@ -59,8 +59,9 @@ Search
         authentication and one of the 'Regions:BypassFilters' permission or
         curator-level access to a collection are required to do so.
     :type region: string
-    :param optional sort: The fields to sort by. One or more of 'downloads', 'rating',
-        'price', 'created', separated by commas. Sorts by relevance by default.
+    :param optional sort: The fields to sort by. One or more of 'created',
+        'downloads', 'name', 'price', 'rating', or 'reviewed'. Sorts by
+        relevance by default.
     :type sort: string
 
     **Response**

@@ -11,8 +11,8 @@ DEFAULT_SORTING = {
     'downloads': '-weekly_downloads',
     'rating': '-bayesian_rating',
     'created': '-created',
+    'reviewed': '-reviewed',
     'name': 'name_sort',
-    'hotness': '-hotness',
     'price': 'price'
 }
 

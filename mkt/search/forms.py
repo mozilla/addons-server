@@ -17,6 +17,8 @@ SORT_CHOICES = [
     ('rating', _lazy(u'Top Rated')),
     ('price', _lazy(u'Price')),
     ('created', _lazy(u'Newest')),
+    ('reviewed', _lazy(u'Reviewed')),
+    ('name', _lazy(u'Name')),
 ]
 
 FREE_SORT_CHOICES = [(k, v) for k, v in SORT_CHOICES if k != 'price']
@@ -94,17 +96,17 @@ class ApiSearchForm(forms.Form):
         widget=forms.CheckboxSelectMultiple(), required=False,
         label=_lazy(u'Premium types'), choices=PREMIUM_CHOICES)
     # TODO: Make some fancy `MultipleCommaSeperatedChoiceField` field.
-    app_type = forms.MultipleChoiceField(required=False,
-        widget=forms.CheckboxSelectMultiple(),
-        label=_lazy(u'App type'), choices=APP_TYPE_CHOICES)
+    app_type = forms.MultipleChoiceField(
+        required=False, choices=APP_TYPE_CHOICES,
+        widget=forms.CheckboxSelectMultiple(), label=_lazy(u'App type'))
     manifest_url = forms.CharField(required=False, label=_lazy('Manifest URL'))
     offline = forms.NullBooleanField(required=False,
-        label=_lazy('Works offline'))
+                                     label=_lazy('Works offline'))
     languages = forms.CharField(required=False,
-        label=_lazy('Supported languages'))
+                                label=_lazy('Supported languages'))
 
     sort = forms.MultipleChoiceField(required=False,
-        choices=LISTING_SORT_CHOICES)
+                                     choices=LISTING_SORT_CHOICES)
     # TODO: Drop this back to a reasonable value when we do pagination.
     limit = forms.IntegerField(required=False, widget=forms.HiddenInput())
 

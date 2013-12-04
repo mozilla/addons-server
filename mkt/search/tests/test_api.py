@@ -31,6 +31,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.api import SearchResource
 from mkt.search.forms import DEVICE_CHOICES_IDS
+from mkt.search.views import DEFAULT_SORTING
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 from mkt.webapps.tasks import unindex_webapps
@@ -152,11 +153,11 @@ class TestApi(BaseOAuth, ESTestCase):
         with patch('mkt.webapps.models.Webapp.from_search') as mocked_search:
             mocked_qs = MagicMock()
             mocked_search.return_value = mocked_qs
-            res = self.client.get(self.url,
-                                  [('sort', 'downloads'), ('sort', 'rating')])
-            eq_(res.status_code, 200)
-            mocked_qs.order_by.assert_called_with('-weekly_downloads',
-                                                  '-bayesian_rating')
+
+            for api_sort, es_sort in DEFAULT_SORTING.items():
+                res = self.client.get(self.url, [('sort', api_sort)])
+                eq_(res.status_code, 200, res.content)
+                mocked_qs.order_by.assert_called_with(es_sort)
 
     def test_right_category(self):
         res = self.client.get(self.url + ({'cat': self.category.pk},))
