@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-11-28 13:41+0000\n"
-"Last-Translator: Matjaž <m@owca.info>\n"
+"PO-Revision-Date: 2013-12-04 18:56+0000\n"
+"Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1385646095.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1386183372.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1370,7 +1370,7 @@ msgstr "برای {0} {1} موجود نیست"
 
 #: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "با {app} {min} - {max} کار می‌کند"
 
 #: media/js/zamboni/buttons.js:382
 msgid "View other versions"

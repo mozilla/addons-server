@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-04 09:07-0700\n"
-"PO-Revision-Date: 2013-11-28 13:59+0000\n"
-"Last-Translator: Matjaž <m@owca.info>\n"
+"PO-Revision-Date: 2013-12-04 19:04+0000\n"
+"Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385647198.0\n"
+"X-POOTLE-MTIME: 1386183840.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -512,7 +512,7 @@ msgstr "گالری تصاویر"
 #: apps/addons/templates/addons/details_box.html:185
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
-msgstr ""
+msgstr "توضیحات توسعه دهنده"
 
 #: apps/addons/templates/addons/details_box.html:194 apps/addons/templates/addons/impala/details.html:277
 msgid "Development Channel"
@@ -1192,7 +1192,7 @@ msgstr "درباره‌ی این افزودنی"
 
 #: apps/addons/templates/addons/impala/details.html:251
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "توضیحات توسعه دهنده"
 
 #: apps/addons/templates/addons/impala/details.html:261
 msgid "Version Information"
@@ -1200,7 +1200,7 @@ msgstr "اطّلاعات نسخه"
 
 #: apps/addons/templates/addons/impala/details.html:268
 msgid "See complete version history"
-msgstr ""
+msgstr "مشاهده‌ی تاریخچه‌ی کامل نسخه‌ها"
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid ""
@@ -1268,7 +1268,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "مجوّز کد منبع برای {addon}"
 
 #: apps/addons/templates/addons/impala/license.html:21 apps/versions/templates/versions/mobile/version.html:18
 msgid "Source Code License"
@@ -1318,7 +1318,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/includes/collection_add_widget.html:7 apps/addons/templates/addons/includes/collection_add_widget.html:10
 msgid "Add to collection"
-msgstr ""
+msgstr "افزودن به مجموعه"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/nav.html:38
 msgid "My Add-ons"
@@ -2163,7 +2163,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:87
 msgid "Most Followers"
-msgstr ""
+msgstr "بیشترین دنبال کنندگان"
 
 #: apps/amo/templates/amo/site_nav.html:66 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
@@ -2177,7 +2177,7 @@ msgstr "مجموعه‌هایی که من دنبال می‌کنم"
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
 #: apps/users/models.py:446
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "افزودنی‌های مورد علاقه من"
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
@@ -2496,6 +2496,8 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
 msgstr ""
+"برای امتیاز دادن به مجموعه‌ها، شما باید یک حساب کابری افزودنی‌ها داشته "
+"باشید."
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:19 templates/base.html:134 templates/impala/base.html:197
 msgid "Create an Add-ons Account"
@@ -5244,7 +5246,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
-msgstr ""
+msgstr "توضیحات توسعه دهنده"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:24
 msgid ""
@@ -13392,7 +13394,7 @@ msgstr "این چیست؟"
 
 #: apps/versions/templates/versions/version.html:60
 msgid "View the source"
-msgstr "مشاهدهٔ متن برنامه"
+msgstr "مشاهده کد منبع"
 
 # {0} is the add-on name
 #. {0} is an add-on name.
