@@ -60,7 +60,7 @@ Search
         curator-level access to a collection are required to do so.
     :type region: string
     :param optional sort: The fields to sort by. One or more of 'created',
-        'downloads', 'name', 'price', 'rating', or 'reviewed'. Sorts by
+        'downloads', 'name', 'rating', or 'reviewed'. Sorts by
         relevance by default.
     :type sort: string
 

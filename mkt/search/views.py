@@ -13,7 +13,6 @@ DEFAULT_SORTING = {
     'created': '-created',
     'reviewed': '-reviewed',
     'name': 'name_sort',
-    'price': 'price'
 }
 
 
