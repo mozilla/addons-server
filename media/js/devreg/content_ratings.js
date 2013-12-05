@@ -2,16 +2,22 @@
 define('iarc-ratings', [], function() {
 
     // Poll to see if IARC rating process finished.
-    $createRating = $('.create-rating');
-    $('input[type=submit]', $createRating).on('click', function() {
-        var $this = $(this);
-        $createRating.addClass('loading');
-        var apiUrl = $this.data('api-url');
-        var redirectUrl = $this.data('redirect-url');
+    var $createRating = $('.create-rating:not(.loading)');
+    var $createBtn = $('.create-iarc-rating', $createRating);
+    var apiUrl = $createBtn.data('api-url');
+    var redirectUrl = $createBtn.data('redirect-url');
 
-        setInterval(function() {
+    $createBtn.on('click', function() {
+        // Open window.
+        var IARCPopUp = window.open($('form#iarc').attr('action'), 'IARCForm');
+
+        // Spinner.
+        $createRating.addClass('loading');
+        var interval = setInterval(function() {
+            // Poll content ratings API, checking if the IARC form is done.
             $.get(apiUrl, function(data) {
                 if (!('objects' in data)) {
+                    // Error.
                     $('.error').show();
                     $createRating.removeClass('loading');
                 } else if (data.objects.length) {
@@ -21,8 +27,12 @@ define('iarc-ratings', [], function() {
                     $createRating.removeClass('loading');
                 }
             });
+
+            // If IARC form window closed, remove the spinner.
+            if (IARCPopUp === null || IARCPopUp.closed) {
+                $createRating.removeClass('loading');
+                window.clearInterval(interval);
+            }
         }, 2000);
     });
 });
-
-require('iarc-ratings');
