@@ -21,7 +21,7 @@ cron_log = commonware.log.getLogger('z.cron')
 @cronjobs.register
 def update_addons_collections_downloads():
     """Update addons+collections download totals."""
-    raise_if_reindex_in_progress()
+    raise_if_reindex_in_progress('amo')
 
     d = (AddonCollectionCount.objects.values('addon', 'collection')
          .annotate(sum=Sum('count')))
@@ -46,7 +46,7 @@ def update_collections_total():
 @cronjobs.register
 def update_global_totals(date=None):
     """Update global statistics totals."""
-    raise_if_reindex_in_progress()
+    raise_if_reindex_in_progress('amo')
 
     if date:
         date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
@@ -99,7 +99,7 @@ def addon_total_contributions():
 
 @cronjobs.register
 def index_latest_stats(index=None, aliased=True):
-    raise_if_reindex_in_progress()
+    raise_if_reindex_in_progress('amo')
     latest = UpdateCount.search(index).order_by('-date').values_dict()
     if latest:
         latest = latest[0]['date']

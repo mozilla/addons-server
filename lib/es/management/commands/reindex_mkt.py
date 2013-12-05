@@ -6,7 +6,6 @@ reindex command that has args for AMO and MKT.
 
 """
 
-import datetime
 import logging
 import os
 import sys
@@ -21,8 +20,8 @@ from django.core.management.base import BaseCommand, CommandError
 
 from amo.utils import chunked, timestamp_index
 from addons.models import Webapp  # To avoid circular import.
-from lib.es.models import Reindexing
-from lib.es.utils import database_flagged
+from lib.es.utils import (flag_reindexing_mkt, is_reindexing_mkt,
+                          unflag_reindexing_mkt)
 
 from mkt.webapps.models import WebappIndexer
 
@@ -127,8 +126,7 @@ def run_indexing(index):
 def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
     sys.stdout.write('Flagging the database to start the reindexation')
-    Reindexing.objects.create(new_index=new_index, old_index=old_index,
-                              alias=alias, start_date=datetime.datetime.now())
+    flag_reindexing_mkt(new_index=new_index, old_index=old_index, alias=alias)
     time.sleep(5)  # Give celeryd some time to flag the DB.
 
 
@@ -136,7 +134,7 @@ def flag_database(new_index, old_index, alias):
 def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
     sys.stdout.write('Unflagging the database')
-    Reindexing.objects.all().delete()
+    unflag_reindexing_mkt()
 
 
 @task
@@ -202,7 +200,7 @@ class Command(BaseCommand):
         force = kwargs.get('force', False)
         prefix = kwargs.get('prefix', '')
 
-        if database_flagged() and not force:
+        if is_reindexing_mkt() and not force:
             raise CommandError('Indexation already occuring - use --force to '
                                'bypass')
         elif force:
