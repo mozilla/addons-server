@@ -35,6 +35,27 @@ Thread
 
 .. _thread-response-label:
 
+.. http:post:: /api/v1/comm/thread/
+
+    .. note:: Requires authentication.
+
+    Create a thread from a new note for a version of an app.
+
+    **Request**
+
+    :param app: id or slug of the app to filter the threads by.
+    :type app: int|string
+    :param version: version number for the thread's :ref:`version <versions-label>` (e.g. 1.2).
+    :type version: string
+    :param note_type: a :ref:`note type label <note-type-label>`.
+    :type note_type: int
+    :param body: contents of the note.
+    :type body: string
+
+    **Response**
+
+    A :ref:`note <note-response-label>` object.
+
 .. http:get:: /api/v1/comm/thread/(int:id)/
 
     .. note:: Does not require authentication if the thread is public.
@@ -195,13 +216,11 @@ Note
 
     **Response**
 
-    A thread object, see below for example.
+    A note object, see below for example.
 
     :status 200: successfully completed.
     :status 403: not allowed to access this object.
     :status 404: not found.
-
-    Example:
 
     .. code-block:: json
 
@@ -270,11 +289,12 @@ Note
 
 .. http:post:: /api/v1/comm/thread/(int:thread_id)/note/
 
+
     .. note:: Requires authentication.
 
     **Request**
 
-    :param author: the id of the addon.
+    :param author: the id of the author.
     :type author: int
     :param thread: the id of the thread to post to.
     :type thread: int

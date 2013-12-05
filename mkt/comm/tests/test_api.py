@@ -234,13 +234,6 @@ class TestThreadList(RestOAuth, CommTestMixin):
         eq_(res.json['objects'][0]['addon_meta']['app_slug'],
             self.addon.app_slug)
 
-    def test_creation(self):
-        version = self.addon.current_version
-        res = self.client.post(self.list_url, data=json.dumps(
-            {'addon': self.addon.id, 'version': version.id}))
-
-        eq_(res.status_code, 201)
-
     def test_app_threads(self):
         version1 = version_factory(addon=self.addon, version='7.12')
         thread1 = CommunicationThread.objects.create(
@@ -256,6 +249,20 @@ class TestThreadList(RestOAuth, CommTestMixin):
         eq_(res.json['app_threads'],
             [{"id": thread2.id, "version__version": version2.version},
              {"id": thread1.id, "version__version": version1.version}])
+
+    def test_create(self):
+        self.create_switch('comm-dashboard')
+        version_factory(addon=self.addon, version='1.1')
+        data = {
+            'app': self.addon.app_slug,
+            'version': '1.1',
+            'note_type': '0',
+            'body': 'flylikebee'
+        }
+        self.addon.addonuser_set.create(user=self.user.get_profile())
+        res = self.client.post(self.list_url, data=json.dumps(data))
+        eq_(res.status_code, 200)
+        assert self.addon.threads.count()
 
 
 class TestNote(RestOAuth, CommTestMixin):
