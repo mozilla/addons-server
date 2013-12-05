@@ -97,6 +97,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         self.assertSetEqual(obj.keys(), SEARCH_FIELDS)
+        eq_(obj['latest_version']['status'], 4)
 
     def test_anonymous_access(self):
         res = self.anon.get(self.url)

@@ -51,6 +51,9 @@ class ReviewersSearchView(SearchView):
         data = {}
         for k in SEARCH_FIELDS:
             data[k] = full_data.get(k)
+        # Add reviewer-specific stuff that's not in the standard dehydrate.
+        data['latest_version'] = app.latest_version
+        data['is_escalated'] = app.is_escalated
         return data
 
 def apply_reviewer_filters(request, qs, data=None):
