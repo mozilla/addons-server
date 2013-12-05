@@ -332,7 +332,7 @@ class TestReceiptIssue(amo.tests.TestCase):
         """
         Regression test to ensure that the CEF log works. Pass through the
         app.pk instead of the full unicode name, until the CEF library is
-        fixed, or metlog is used.
+        fixed, or heka is used.
         """
         create_receipt.return_value = 'foo'
         self.app.name = u'\u0627\u0644\u062a\u0637\u0628-news'

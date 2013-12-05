@@ -1,10 +1,9 @@
 import logging
-import json
 
 from django.conf import settings
 
 from nose.tools import eq_
-from metlog.config import client_from_dict_config
+from heka.config import client_from_dict_config
 
 import amo.tests
 import commonware.log
@@ -37,17 +36,24 @@ cfg = {
 }
 
 
-class TestMetlogStdLibLogging(amo.tests.TestCase):
+class TestHekaStdLibLogging(amo.tests.TestCase):
+    """
+    The StdLibLoggingStream is only used for *debugging* purposes.
+
+    Some detail is lost when you write out to a StdLibLoggingStream -
+    specifically the logging level.
+    """
 
     def setUp(self):
-        METLOG_CONF = {
-            'sender': {
-                'class': 'metlog.senders.logging.StdLibLoggingSender',
-                'logger_name': 'z.metlog',
+        HEKA_CONF = {
+            'encoder': 'heka.encoders.StdlibPayloadEncoder',
+            'stream': {
+                'class': 'heka.streams.logging.StdLibLoggingStream',
+                'logger_name': 'z.heka',
                 }
             }
-        self.metlog = client_from_dict_config(METLOG_CONF)
-        self.logger = logging.getLogger('z.metlog')
+        self.heka = client_from_dict_config(HEKA_CONF)
+        self.logger = logging.getLogger('z.heka')
 
         """
         When logging.config.dictConfig is used to configure logging
@@ -65,64 +71,62 @@ class TestMetlogStdLibLogging(amo.tests.TestCase):
         self.logger.handlers = self._orig_handlers
 
     def test_oldstyle_sends_msg(self):
-        msg = 'error'
-        self.metlog.error(msg)
+        msg = 'an error'
+        self.heka.error(msg)
         logrecord = self.handler.buffer[-1]
-        self.assertEqual(logrecord.msg, msg)
-        self.assertEqual(logrecord.levelname, 'ERROR')
+        self.assertEqual(logrecord.msg, "oldstyle: %s" % msg)
+
+        eq_(logrecord.levelno, logging.ERROR)
 
         msg = 'info'
-        self.metlog.info(msg)
+        self.heka.info(msg)
         logrecord = self.handler.buffer[-1]
-        self.assertEqual(logrecord.msg, msg)
+
+        self.assertEqual(logrecord.msg, "oldstyle: %s" % msg)
         self.assertEqual(logrecord.levelname, 'INFO')
 
         msg = 'warn'
-        self.metlog.warn(msg)
+        self.heka.warn(msg)
         logrecord = self.handler.buffer[-1]
-        self.assertEqual(logrecord.msg, msg)
-        self.assertEqual(logrecord.levelname, 'WARNING')
+
+        eq_(logrecord.msg, "oldstyle: %s" % msg)
+        eq_(logrecord.levelno, logging.WARN)
 
         # debug shouldn't log
-        msg = 'debug'
-        self.metlog.debug(msg)
-        logrecord = self.handler.buffer[-1]
-        self.assertNotEqual(logrecord.msg, msg)
-        self.assertNotEqual(logrecord.levelname, 'DEBUG')
+        eq_(logrecord, self.handler.buffer[-1])
 
     def test_other_sends_json(self):
         timer = 'footimer'
         elapsed = 4
-        self.metlog.timer_send(timer, elapsed)
+        self.heka.timer_send(timer, elapsed)
         logrecord = self.handler.buffer[-1]
-        self.assertEqual(logrecord.levelname, 'INFO')
-        msg = json.loads(logrecord.msg)
-        self.assertEqual(msg['type'], 'timer')
-        self.assertEqual(msg['payload'], str(elapsed))
-        self.assertEqual(msg['fields']['name'], timer)
+        # Note that the face that this is a timer is lost entirely
+        eq_(logrecord.levelno, logging.INFO)
+        eq_(logrecord.msg, "timer: %s" % str(elapsed))
 
 
 class TestRaven(amo.tests.TestCase):
     def setUp(self):
         """
-        We need to set the settings.METLOG instance to use a
-        DebugCaptureSender so that we can inspect the sent messages.
+        We need to set the settings.HEKA instance to use a
+        DebugCaptureStream so that we can inspect the sent messages.
         """
 
-        metlog = settings.METLOG
-        METLOG_CONF = {
+        heka = settings.HEKA
+        HEKA_CONF = {
             'logger': 'zamboni',
-            'sender': {'class': 'metlog.senders.DebugCaptureSender'},
+            'stream': {'class': 'heka.streams.DebugCaptureStream'},
+            'encoder': 'heka.encoders.NullEncoder'
         }
-        from metlog.config import client_from_dict_config
-        self.metlog = client_from_dict_config(METLOG_CONF, metlog)
+        from heka.config import client_from_dict_config
+        self.heka = client_from_dict_config(HEKA_CONF, heka)
 
     def test_send_raven(self):
         try:
             1 / 0
         except:
-            self.metlog.raven('blah')
+            self.heka.raven('blah')
 
-        eq_(len(self.metlog.sender.msgs), 1)
-        msg = json.loads(self.metlog.sender.msgs[0])
-        eq_(msg['type'], 'sentry')
+        eq_(len(self.heka.stream.msgs), 1)
+        msg = self.heka.stream.msgs[0]
+        eq_(msg.type, 'sentry')

@@ -83,23 +83,23 @@ AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-METLOG_CONF = {
-    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
+HEKA_CONF = {
+    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {}),
                 'raven': (
-                    'metlog_raven.raven_plugin:config_plugin', {'dsn': private_addons.SENTRY_DSN}),
+                    'heka_raven.raven_plugin:config_plugin', {'dsn': private_addons.SENTRY_DSN}),
         },
-    'sender': {
-        'class': 'metlog.senders.UdpSender',
-        'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
-        'port': private.METLOG_CONF_SENDER_PORT,
+    'stream': {
+        'class': 'heka.streams.UdpStream',
+        'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
+        'port': private.HEKA_CONF_SENDER_PORT,
     },
     'logger': 'addons-dev',
 }
 
-METLOG = client_from_dict_config(METLOG_CONF)
+HEKA = client_from_dict_config(HEKA_CONF)
 
-USE_METLOG_FOR_CEF = True
-USE_METLOG_FOR_TASTYPIE = False
+USE_HEKA_FOR_CEF = True
+USE_HEKA_FOR_TASTYPIE = False
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 

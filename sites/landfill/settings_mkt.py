@@ -117,6 +117,6 @@ SIGNING_VALID_ISSUERS = ['marketplace-dev-cdn.allizom.org']
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
 SIGNED_APPS_SERVER_ACTIVE = False
 
-METLOG_CONF['logger'] = 'addons-marketplace-landfill'
-METLOG_CONF['plugins']['raven'] = ('metlog_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
-METLOG = client_from_dict_config(METLOG_CONF)
+HEKA_CONF['logger'] = 'addons-marketplace-landfill'
+HEKA_CONF['plugins']['raven'] = ('heka_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
+HEKA = client_from_dict_config(HEKA_CONF)

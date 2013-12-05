@@ -178,17 +178,17 @@ LESS_PREPROCESS = True
 
 XSENDFILE_HEADER  = 'X-Accel-Redirect'
 
-METLOG_CONF = {
-    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {})},
-    'sender': {
-        'class': 'metlog.senders.UdpSender',
-        'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
-        'port': private.METLOG_CONF_SENDER_PORT,
+HEKA_CONF = {
+    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {})},
+    'stream': {
+        'class': 'heka.streams.UdpStream',
+        'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
+        'port': private.HEKA_CONF_SENDER_PORT,
     },
 }
 
-USE_METLOG_FOR_CEF = True
-USE_METLOG_FOR_TASTYPIE = True
+USE_HEKA_FOR_CEF = True
+USE_HEKA_FOR_TASTYPIE = True
 
 ALLOW_SELF_REVIEWS = True
 
