@@ -267,12 +267,24 @@
           <li id="del-files"></li>
           <li id="del-reviews"></li>
         </ul>
+        <p>
+        {% trans %}
+          <strong>Important:</strong>
+          Once a version has been deleted, you may not upload a new
+          version with the same version number.
+        {% endtrans %}
+        <p>{{ _('Deleting a version which has already been reviewed
+                 may also cause a significant delay in the review of
+                 your next update.') }}</p>
         <p>{{ _('Are you sure you wish to delete this version?') }}</p>
         {{ csrf() }}
         <div class="modal-actions">
           <input type="hidden" name="version_id" class="version_id">
           <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
           <button type="submit" class="delete-button">{{ _('Delete Version') }}</button>
+          <button type="submit" class="disable-button" name="disable_version">
+            {{ _('Disable Version') }}
+          </button>
           {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
         </div>
       </form>
