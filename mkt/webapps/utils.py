@@ -83,8 +83,8 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     from mkt.developers.models import AddonPaymentAccount
     from mkt.webapps.models import Installed, Webapp
 
-    translation_fields = ('description', 'homepage', 'name', 'release_notes',
-                          'support_email', 'support_url')
+    translation_fields = ('banner_message', 'description', 'homepage', 'name',
+                          'release_notes', 'support_email', 'support_url')
     lang = None
     if request and request.method == 'GET' and 'lang' in request.GET:
         lang = request.GET.get('lang', '').lower()
@@ -105,8 +105,9 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     # to {lang: string}.
     for field in translation_fields:
         src_field = '%s_translations' % field
+        value_field = src.get(src_field)
         src[src_field] = dict((v.get('lang', ''), v.get('string', ''))
-                              for v in src.get(src_field))
+                              for v in value_field) if value_field else {}
         data[field] = get_translations(src, src_field, obj.default_locale,
                                        lang)
 
@@ -119,6 +120,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         'absolute_url': absolutify(app.get_detail_url()),
         'app_type': app.app_type,
         'author': src.get('author', ''),
+        'banner_regions': src.get('banner_regions', []),
         'categories': [c for c in obj.category],
         'content_ratings': {
             'ratings': getattr(obj, 'content_ratings', {}),

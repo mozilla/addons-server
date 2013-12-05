@@ -1830,3 +1830,10 @@ class TestGeodata(amo.tests.WebappTestCase):
         self.geo.set_status(mkt.regions.CN, status, save=True)
         eq_(self.geo.region_cn_status, status)
         eq_(self.geo.reload().region_cn_status, status)
+
+    def test_banner_regions_names(self):
+        eq_(self.geo.banner_regions, None)
+        eq_(self.geo.banner_regions_names(), [])
+
+        self.geo.update(banner_regions=[mkt.regions.UK.id, mkt.regions.CN.id])
+        eq_(self.geo.banner_regions_names(), [u'China', u'United Kingdom'])

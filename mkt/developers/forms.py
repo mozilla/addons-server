@@ -291,12 +291,31 @@ class PreviewForm(happyforms.ModelForm):
         fields = ('file_upload', 'upload_hash', 'id', 'position')
 
 
+class JSONField(forms.Field):
+    def to_python(self, value):
+        if value == '':
+            return None
+
+        try:
+            if isinstance(value, basestring):
+                return json.loads(value)
+        except ValueError:
+            pass
+        return value
+
+
+class JSONMultipleChoiceField(forms.MultipleChoiceField, JSONField):
+    widget = forms.CheckboxSelectMultiple
+
+
 class AdminSettingsForm(PreviewForm):
     DELETE = forms.BooleanField(required=False)
     mozilla_contact = SeparatedValuesField(forms.EmailField, separator=',',
                                            required=False)
     tags = forms.CharField(required=False)
     app_ratings = forms.MultipleChoiceField(required=False)
+    banner_regions = JSONMultipleChoiceField(required=False, choices=mkt.regions.REGIONS_CHOICES_NAME)
+    banner_message = TransField(required=False)
 
     class Meta:
         model = Preview
@@ -313,6 +332,8 @@ class AdminSettingsForm(PreviewForm):
 
         self.base_fields['app_ratings'].choices = RATINGS_BY_NAME()
 
+        self.disabled_regions = sorted(addon.get_excluded_region_ids())
+
         # Note: After calling `super`, `self.instance` becomes the `Preview`
         # object.
         super(AdminSettingsForm, self).__init__(*args, **kw)
@@ -321,14 +342,21 @@ class AdminSettingsForm(PreviewForm):
             self.initial['mozilla_contact'] = addon.mozilla_contact
             self.initial['tags'] = ', '.join(self.get_tags(addon))
 
-            rs = []
-            for r in addon.content_ratings.all():
-                rating = RATINGS_BODIES[r.ratings_body].ratings[r.rating]
-                try:
-                    rs.append(ALL_RATINGS().index(rating))
-                except ValueError:
-                    pass  # Due to waffled ratings bodies.
-            self.initial['app_ratings'] = rs
+        app_ratings = []
+        for acr in addon.content_ratings.all():
+            rating = RATINGS_BODIES[acr.ratings_body].ratings[acr.rating]
+            try:
+                app_ratings.append(ALL_RATINGS().index(rating))
+            except ValueError:
+                pass  # Due to waffled ratings bodies.
+        self.initial['app_ratings'] = app_ratings
+
+        self.initial['banner_regions'] = addon.geodata.banner_regions or []
+        self.initial['banner_message'] = addon.geodata.banner_message_id
+
+    @property
+    def regions_by_id(self):
+        return mkt.regions.REGIONS_CHOICES_ID_DICT
 
     def clean_position(self):
         return -1
@@ -341,6 +369,19 @@ class AdminSettingsForm(PreviewForm):
             raise forms.ValidationError(_('Only one rating from each ratings '
                                           'body may be selected.'))
         return ratings_ids
+
+    def clean_banner_regions(self):
+        try:
+            regions = map(int, self.cleaned_data.get('banner_regions'))
+        except (TypeError, ValueError):
+            # input data is not a list or data contains non-integers.
+            raise forms.ValidationError(_('Invalid region(s) selected.'))
+
+        if set(regions).intersection(self.disabled_regions):
+            raise forms.ValidationError(_('Only regions the app is already '
+                                          'available in may be selected.'))
+
+        return list(regions)
 
     def get_tags(self, addon):
         if acl.action_allowed(self.request, 'Apps', 'Edit'):
@@ -394,6 +435,11 @@ class AdminSettingsForm(PreviewForm):
                     ratings_body=rb.ratingsbody.id)
         else:
             addon.content_ratings.all().delete()
+
+        geodata = addon.geodata
+        geodata.banner_regions = self.cleaned_data.get('banner_regions')
+        geodata.banner_message = self.cleaned_data.get('banner_message')
+        geodata.save()
 
         toggle_game(addon)
         uses_flash = self.cleaned_data.get('flash')

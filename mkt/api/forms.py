@@ -1,5 +1,4 @@
 import base64
-import json
 import StringIO
 
 from django import forms
@@ -9,21 +8,8 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 from addons.models import Category
-from mkt.developers.forms import NewPackagedAppForm
+from mkt.developers.forms import JSONField, NewPackagedAppForm
 from mkt.developers.utils import check_upload
-
-
-class JSONField(forms.Field):
-    def to_python(self, value):
-        if value == '':
-            return None
-
-        try:
-            if isinstance(value, basestring):
-                return json.loads(value)
-        except ValueError:
-            pass
-        return value
 
 
 class SluggableModelChoiceField(forms.ModelChoiceField):

@@ -8,24 +8,8 @@
      data-special-region-statuses="{{ region_form.special_region_statuses|json }}"
      {# XXX: We are not using JS gettext because we have had some bugs with JS extraction lately. #}
      data-special-region-l10n="{{ region_form.special_region_messages|json }}">
-  <ul>
-    {% for value, text in region_form.regions.field.choices if value not in region_form.special_region_ids or waffle.flag('special-regions') %}
-      {% set special = value in region_form.special_region_ids %}
-      {% set disabled = value in region_form.disabled_regions %}
-      {% set checked = value in region_form.initial.regions %}
-      <li data-region="{{ value }}">
-        <label class="region-cb{{ ' special' if special }}{{ ' disabled' if disabled }}">
-          <input type="checkbox" class="restricted{{ ' special' if special }}"
-            {% if disabled %}disabled{% elif checked %}checked{% endif %}
-            name="regions" value="{{ value }}">
-          <span class="region region-{{ region_form.regions_by_id[value].slug }}">{{ text }}</span>
-        </label>
-        {% if special %}
-          <span class="status-label"></span>
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
+  {% set regions_field_name = 'regions' %}
+  {% include 'developers/payments/includes/region_form_list.html' %}
 </div>
 {# Show disabled region notice for paid apps or free apps with special regions. #}
 {% if region_form.disabled_regions or
