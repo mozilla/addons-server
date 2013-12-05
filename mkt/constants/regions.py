@@ -102,6 +102,7 @@ class CO(REGION):
     default_currency = 'COP'
     default_language = 'es'
     mcc = 732
+    ratingsbody = ratingsbodies.ESRB
 
 
 class VE(REGION):
@@ -111,6 +112,7 @@ class VE(REGION):
     default_currency = 'USD'
     default_language = 'es'
     mcc = 734
+    ratingsbody = ratingsbodies.ESRB
 
 
 class PL(REGION):
@@ -189,6 +191,7 @@ class PE(REGION):
     default_currency = 'PEN'
     default_language = 'es'
     mcc = 716
+    ratingsbody = ratingsbodies.ESRB
 
 
 class UY(REGION):
@@ -198,6 +201,7 @@ class UY(REGION):
     default_currency = 'UYU'
     default_language = 'es'
     mcc = 748
+    ratingsbody = ratingsbodies.ESRB
 
 
 class AR(REGION):
@@ -207,6 +211,7 @@ class AR(REGION):
     default_currency = 'ARS'
     default_language = 'es'
     mcc = 722
+    ratingsbody = ratingsbodies.ESRB
 
 
 class CN(REGION):
@@ -268,6 +273,7 @@ REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]
 
 GENERIC_RATING_REGION_SLUG = 'generic'
 
+
 def ALL_REGIONS_WITH_CONTENT_RATINGS():
     """Regions that have ratings bodies."""
     import waffle
@@ -278,7 +284,8 @@ def ALL_REGIONS_WITH_CONTENT_RATINGS():
     # Only require content ratings in Brazil/Germany without IARC switch.
     return [BR, DE]
 
-def ALL_REGIONS_WO_CONTENT_RATINGS():
+
+def ALL_REGIONS_WITHOUT_CONTENT_RATINGS():
     """
     Regions without ratings bodies and fallback to the GENERIC rating body.
     """

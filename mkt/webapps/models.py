@@ -1785,7 +1785,7 @@ class ContentRating(amo.models.ModelBase):
         generic_regions = []
         if (waffle.switch_is_active('iarc') and
             self.get_body() == mkt.ratingsbodies.GENERIC):
-            generic_regions = mkt.regions.ALL_REGIONS_WO_CONTENT_RATINGS()
+            generic_regions = mkt.regions.ALL_REGIONS_WITHOUT_CONTENT_RATINGS()
 
         return [x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()
                 if self.get_body() == x.ratingsbody] + list(generic_regions)
