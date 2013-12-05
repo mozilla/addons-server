@@ -55,9 +55,7 @@ should only be installed with caution.{% endtrans %}</p>
 <p>{% trans %}If you're interested in add-ons but not quite as technical, there
 are still ways to help:{% endtrans %}</p>
 <ul>
-    <li>{% trans url='http://spreadfirefox.com/' %}Tell your friends! <a
-    href="{{ url }}">Spread Firefox</a> and let people know which add-ons you
-    use.{% endtrans %}</li>
+    <li>{% trans %}Tell your friends! Let people know which add-ons you use.{% endtrans %}</li>
     <li>{% trans url='https://forums.addons.mozilla.org' %}Participate in our <a
     href="{{ url }}">forums</a>.{% endtrans %}</li>
     <li>{% trans %}Review add-ons on the site. Add-on authors are more likely to
