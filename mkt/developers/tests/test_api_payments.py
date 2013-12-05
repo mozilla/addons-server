@@ -175,6 +175,7 @@ class TestPayment(RestOAuth, UpsellCase):
 
 
 class AccountCase(Patcher, TestCase):
+
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(premium_type=amo.ADDON_PREMIUM)
@@ -362,6 +363,8 @@ class TestAddonPaymentAccount(AccountCase, RestOAuth):
         eq_(res.status_code, 403)
 
     def test_allowed(self):
+        self.bango_patcher.product.get_object.return_value = {
+            'resource_uri': '/f/b'}
         self.create_price()
         self.create_user()
         res = self.client.post(self.app_payment_list,
@@ -392,6 +395,8 @@ class TestAddonPaymentAccount(AccountCase, RestOAuth):
         eq_(res.status_code, 403, res.content)
 
     def test_can_shared(self):
+        self.bango_patcher.product.get_object.return_value = {
+            'resource_uri': '/f/b'}
         data = self.other(shared=True)
         self.create_price()
         self.create_user()
