@@ -15,6 +15,7 @@ lib/product_json/regions/*.json
 lib/product_json/regions/.last_update
 build*.py
 media/manifest.appcache
+media/fireplace
 media/external/*
 .DS_Store
 /media/img/uploads
