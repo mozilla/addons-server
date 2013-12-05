@@ -4,6 +4,7 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
 from test_utils import RequestFactory
@@ -16,14 +17,15 @@ from amo.tests import ESTestCase
 from amo.urlresolvers import reverse
 from users.models import UserProfile
 
+from mkt.api.tests.test_oauth import RestOAuthClient, RestOAuth
 from mkt.api.base import list_url
 from mkt.api.models import Access, generate
-from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth
 from mkt.constants.features import FeatureProfile
-from mkt.reviewers.api import ReviewersSearchResource
+from mkt.reviewers.api import SEARCH_FIELDS
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+
 
 
 class TestReviewing(RestOAuth):
@@ -69,11 +71,11 @@ class TestReviewing(RestOAuth):
             reverse('app-detail', kwargs={'pk': 337141}))
 
 
-class TestApiReviewer(BaseOAuth, ESTestCase):
+class TestApiReviewer(RestOAuth, ESTestCase):
     fixtures = fixture('webapp_337141', 'user_2519')
 
-    def setUp(self, api_name='reviewers'):
-        super(TestApiReviewer, self).setUp(api_name=api_name)
+    def setUp(self):
+        super(TestApiReviewer, self).setUp()
         self.user = User.objects.get(pk=2519)
         self.profile = self.user.get_profile()
         self.profile.update(read_dev_agreement=datetime.now())
@@ -81,8 +83,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
 
         self.access = Access.objects.create(
             key='test_oauth_key', secret=generate(), user=self.user)
-        self.client = OAuthClient(self.access, api_name=api_name)
-        self.url = list_url('search')
+        self.url = reverse('reviewers-search-api')
 
         self.webapp = Webapp.objects.get(pk=337141)
         self.category = Category.objects.create(name='test',
@@ -95,25 +96,25 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
-        self.assertSetEqual(obj.keys(), ReviewersSearchResource._meta.fields)
+        self.assertSetEqual(obj.keys(), SEARCH_FIELDS)
 
     def test_anonymous_access(self):
         res = self.anon.get(self.url)
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
 
     def test_non_reviewer_access(self):
         GroupUser.objects.filter(group__rules='Apps:Review',
                                  user=self.profile).delete()
         res = self.client.get(self.url)
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
 
     def test_owner_still_non_reviewer_access(self):
         user = Webapp.objects.get(pk=337141).authors.all()[0].user
         access = Access.objects.create(
             key='test_oauth_key_owner', secret=generate(), user=user)
-        client = OAuthClient(access, api_name='reviewers')
+        client = RestOAuthClient(access)
         res = client.get(self.url)
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
 
     def test_status(self):
         res = self.client.get(self.url)
@@ -121,12 +122,12 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'status': 'pending'},))
+        res = self.client.get(self.url, {'status': 'pending'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'status': 'rejected'},))
+        res = self.client.get(self.url, {'status': 'rejected'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
@@ -134,7 +135,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.webapp.update(status=amo.STATUS_REJECTED)
         self.refresh('webapp')
 
-        res = self.client.get(self.url + ({'status': 'rejected'},))
+        res = self.client.get(self.url, {'status': 'rejected'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -142,83 +143,83 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.webapp.update(status=amo.STATUS_PUBLIC)
         self.refresh('webapp')
 
-        res = self.client.get(self.url + ({'status': 'public'},))
+        res = self.client.get(self.url, {'status': 'public'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'status': 'any'},))
+        res = self.client.get(self.url, {'status': 'any'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'status': 'vindaloo'},))
+        res = self.client.get(self.url, {'status': 'vindaloo'})
         eq_(res.status_code, 400)
-        error = res.json['error_message']
+        error = res.json['detail']
         eq_(error.keys(), ['status'])
 
     def test_is_escalated(self):
-        res = self.client.get(self.url + ({'is_escalated': True},))
+        res = self.client.get(self.url, {'is_escalated': True})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
 
-        res = self.client.get(self.url + ({'is_escalated': False},))
+        res = self.client.get(self.url, {'is_escalated': False})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'is_escalated': None},))
+        res = self.client.get(self.url, {'is_escalated': None})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_has_editors_comment(self):
-        res = self.client.get(self.url + ({'has_editor_comment': True},))
+        res = self.client.get(self.url, {'has_editor_comment': True})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
 
-        res = self.client.get(self.url + ({'has_editor_comment': False},))
+        res = self.client.get(self.url, {'has_editor_comment': False})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'has_editor_comment': None},))
+        res = self.client.get(self.url, {'has_editor_comment': None})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_has_info_request(self):
-        res = self.client.get(self.url + ({'has_info_request': True},))
+        res = self.client.get(self.url, {'has_info_request': True})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
 
-        res = self.client.get(self.url + ({'has_info_request': False},))
+        res = self.client.get(self.url, {'has_info_request': False})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'has_info_request': None},))
+        res = self.client.get(self.url, {'has_info_request': None})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_addon_type(self):
-        res = self.client.get(self.url + ({'type': 'app'},))
+        res = self.client.get(self.url, {'type': 'app'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'type': 'theme'},))
+        res = self.client.get(self.url, {'type': 'theme'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
 
-        res = self.client.get(self.url + ({'type': 'vindaloo'},))
+        res = self.client.get(self.url, {'type': 'vindaloo'})
         eq_(res.status_code, 400)
-        error = res.json['error_message']
+        error = res.json['detail']
         eq_(error.keys(), ['type'])
 
     def test_no_region_filtering(self):
@@ -226,7 +227,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url + ({'region': 'br'},))
+        res = self.client.get(self.url, {'region': 'br'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -240,7 +241,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url + (qs,))
+        res = self.client.get(self.url, qs)
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
         obj = res.json['objects'][0]
@@ -252,14 +253,14 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         f.save()
         self.webapp.save()
         self.refresh('webapp')
-        res = self.client.get(self.url + ({'dev': 'firefoxos'},))
+        res = self.client.get(self.url, {'dev': 'firefoxos'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
 
     def test_no_premium_filtering(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         self.refresh('webapp')
-        res = self.client.get(self.url + ({'dev': 'android'},))
+        res = self.client.get(self.url, {'dev': 'android'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
 

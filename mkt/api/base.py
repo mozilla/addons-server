@@ -14,11 +14,10 @@ from django.http import HttpResponseNotFound
 
 import commonware.log
 from rest_framework.decorators import api_view
+from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin
 from rest_framework.routers import Route, SimpleRouter
-from rest_framework.relations import HyperlinkedRelatedField
 from rest_framework.response import Response
-from rest_framework.serializers import ValidationError
 from rest_framework.viewsets import GenericViewSet
 from tastypie import fields, http
 from tastypie.bundle import Bundle
@@ -80,6 +79,27 @@ def handle_500(resource, request, exception):
     serialized = resource.serialize(request, data, 'application/json')
     return response_class(content=serialized,
                           content_type='application/json; charset=utf-8')
+
+
+def _collect_form_errors(forms):
+    errors = {}
+    if not isinstance(forms, list):
+        forms = [forms]
+    for f in forms:
+        # If we've got form objects, get the error object off it.
+        # Otherwise assume we've just been passed a form object.
+        form_errors = getattr(f, 'errors', f)
+        if isinstance(form_errors, list):  # Cope with formsets.
+            for e in form_errors:
+                errors.update(e)
+            continue
+        errors.update(dict(form_errors.items()))
+    return errors
+
+
+def form_errors(forms):
+    errors = _collect_form_errors(forms)
+    raise ParseError(errors)
 
 
 class Marketplace(object):
@@ -163,19 +183,7 @@ class Marketplace(object):
         return ImmediateHttpResponse(response=response)
 
     def form_errors(self, forms):
-        errors = {}
-        if not isinstance(forms, list):
-            forms = [forms]
-        for f in forms:
-            # If we've got form objects, get the error object off it.
-            # Otherwise assume we've just been passed a form object.
-            form_errors = getattr(f, 'errors', f)
-            if isinstance(form_errors, list):  # Cope with formsets.
-                for e in form_errors:
-                    errors.update(e)
-                continue
-            errors.update(dict(form_errors.items()))
-
+        errors = _collect_form_errors(forms)
         response = http.HttpBadRequest(json.dumps({'error_message': errors}),
                                        content_type='application/json')
         return ImmediateHttpResponse(response=response)
