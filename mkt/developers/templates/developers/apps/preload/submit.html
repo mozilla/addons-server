@@ -17,7 +17,9 @@
     <h2>{{ _('Preloaded App Terms and Conditions') }}</h2>
 
     <div class="island">
-      {% include "developers/apps/preload/termsandconditions.html" %}
+      <div class="terms">
+        {{ get_doc_template('preloaded-apps-terms') }}
+      </div>
       <form class="submit" method="post" enctype="multipart/form-data">
         {{ csrf() }}
 
