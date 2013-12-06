@@ -979,13 +979,13 @@ def smart_decode(s):
         return unicode(s, errors='replace')
 
 
-def attach_trans_dict(model, addons):
+def attach_trans_dict(model, objs):
     """Put all translations into a translations dict."""
     fields = model._meta.translated_fields
     ids = {}
-    for addon in addons:
-        addon.translations = collections.defaultdict(list)
-        ids.update((getattr(addon, field.attname, None), addon)
+    for obj in objs:
+        obj.translations = collections.defaultdict(list)
+        ids.update((getattr(obj, field.attname, None), obj)
                    for field in fields)
     ids.pop(None, None)
     qs = (Translation.objects

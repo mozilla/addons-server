@@ -120,6 +120,29 @@
             {% endif %}
           </td>
         </tr>
+        {% if not addon.is_packaged %}
+          <tr id="releasenotes">
+            <th>
+              <label data-for="releasenotes">
+                {{ _('Release Notes') }}
+                {{ tip(None, _('Information about changes in the latest release, new features,
+                                known bugs, and other useful information specific to this
+                                release/version.')) }}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ version_form.releasenotes.errors }}
+                {{ version_form.releasenotes }}
+                {{ some_html_tip() }}
+              {% else %}
+                <div id="addon-releasenotes" class="prose">
+                  {{ addon.current_version|all_locales('releasenotes', nl2br=True, prettify_empty=True) }}
+                </div>
+              {% endif %}
+            </td>
+          </tr>
+        {% endif %}
         <tr>
           <th>
             {{ tip(_('Categories'),

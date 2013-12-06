@@ -1,4 +1,4 @@
-import datetime
+# -*- coding: utf-8 -*-
 import json
 from decimal import Decimal
 
@@ -162,6 +162,27 @@ class TestAppSerializer(amo.tests.TestCase):
                          'name': u'0+',
                          'body_slug': u'classind'})])
         eq_(rating, {})
+
+    def test_no_release_notes(self):
+        res = self.serialize(self.app)
+        eq_(res['release_notes'], None)
+
+        self.app.current_version.delete()
+        self.app.update_version()
+        eq_(self.app.current_version, None)
+        res = self.serialize(self.app)
+        eq_(res['release_notes'], None)
+
+    def test_release_notes(self):
+        version = self.app.current_version
+        version.releasenotes = u'These are nötes.'
+        version.save()
+        res = self.serialize(self.app)
+        eq_(res['release_notes'], {u'en-US': unicode(version.releasenotes)})
+
+        self.request = RequestFactory().get('/?lang=whatever')
+        res = self.serialize(self.app)
+        eq_(res['release_notes'], unicode(version.releasenotes))
 
 
 class TestAppSerializerPrices(amo.tests.TestCase):

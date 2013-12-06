@@ -4,6 +4,7 @@ from rest_framework.exceptions import ParseError
 import amo
 from mkt.api.authorization import (AllowAppOwner, AllowReadOnly, AnyOf,
                                    GroupPermission)
+from mkt.api.base import CORSMixin
 from mkt.constants import APP_FEATURES
 from mkt.features.api import AppFeaturesSerializer
 from versions.models import Version
@@ -24,7 +25,7 @@ class VersionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Version
-        fields = ('addon', '_developer_name', 'releasenotes', 'version')
+        fields = ('id', 'addon', '_developer_name', 'releasenotes', 'version')
         depth = 0
         field_rename = {
             '_developer_name': 'developer_name',
@@ -51,8 +52,8 @@ class VersionSerializer(serializers.ModelSerializer):
         return native
 
 
-class VersionViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
-                     viewsets.GenericViewSet):
+class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
+                     mixins.UpdateModelMixin, viewsets.GenericViewSet):
     queryset = Version.objects.filter(
         addon__type=amo.ADDON_WEBAPP).exclude(addon__status=amo.STATUS_DELETED)
     serializer_class = VersionSerializer
@@ -60,6 +61,7 @@ class VersionViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
     permission_classes = [AnyOf(AllowAppOwner,
                                 GroupPermission('Apps', 'Review'),
                                 AllowReadOnly)]
+    cors_allowed_methods = ['get', 'patch', 'put']
 
     def update(self, request, *args, **kwargs):
         """

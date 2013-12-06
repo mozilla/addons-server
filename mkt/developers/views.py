@@ -741,7 +741,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
     version = addon.current_version or addon.latest_version
 
     tags, previews, restricted_tags = [], [], []
-    cat_form = appfeatures = appfeatures_form = None
+    cat_form = appfeatures = appfeatures_form = version_form = None
+    formdata = request.POST if request.method == 'POST' else None
 
     # Permissions checks.
     # Only app owners can edit any of the details of their apps.
@@ -752,8 +753,11 @@ def addons_section(request, addon_id, addon, section, editable=False,
         raise PermissionDenied
 
     if section == 'basic':
-        cat_form = CategoryForm(request.POST or None, product=addon,
-                                request=request)
+        cat_form = CategoryForm(formdata, product=addon, request=request)
+        # Only show/use the release notes form for hosted apps, packaged apps
+        # can do that from the version edit page.
+        if not addon.is_packaged:
+            version_form = AppVersionForm(formdata, instance=version)
 
     elif section == 'media':
         previews = PreviewFormSet(
@@ -761,10 +765,10 @@ def addons_section(request, addon_id, addon, section, editable=False,
             queryset=addon.get_previews())
 
     elif section == 'technical':
-        # Only show the list of features if app isn't packaged.
-        if not addon.is_packaged and section == 'technical':
+        # Only show/use the features form for hosted apps, packaged apps
+        # can do that from the version edit page.
+        if not addon.is_packaged:
             appfeatures = version.features
-            formdata = request.POST if request.method == 'POST' else None
             appfeatures_form = AppFeaturesForm(formdata, instance=appfeatures)
 
     elif section == 'admin':
@@ -780,14 +784,14 @@ def addons_section(request, addon_id, addon, section, editable=False,
                 not acl.action_allowed(request, 'Apps', 'Configure')):
                 raise PermissionDenied
 
-            form = models[section](request.POST, request.FILES,
+            form = models[section](formdata, request.FILES,
                                    instance=addon, request=request)
 
             all_forms = [form, previews]
-            if appfeatures_form:
-                all_forms.append(appfeatures_form)
-            if cat_form:
-                all_forms.append(cat_form)
+            for additional_form in (appfeatures_form, cat_form, version_form):
+                if additional_form:
+                    all_forms.append(additional_form)
+
             if all(not f or f.is_valid() for f in all_forms):
                 if cat_form:
                     cat_form.save()
@@ -796,6 +800,9 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
                 if appfeatures_form:
                     appfeatures_form.save()
+
+                if version_form:
+                    version_form.save()
 
                 if 'manifest_url' in form.changed_data:
                     addon.update(
@@ -826,6 +833,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'tags': tags,
             'restricted_tags': restricted_tags,
             'cat_form': cat_form,
+            'version_form': version_form,
             'preview_form': previews,
             'valid_slug': valid_slug, }
 
