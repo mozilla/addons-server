@@ -242,6 +242,37 @@ All objects in the database will have at least two fields:
 * *id*: the unique id of that object.
 * *resource_uri*: the URL of that object for more detailed information.
 
+.. _overview-translations:
+
+Translations
+++++++++++++
+
+Fields that can be translated by users (typically name, description) have a
+special behaviour. The default is to return them as an object, with languages
+as keys and translations as values:
+
+.. code-block:: json
+
+    "name": {
+        "en-US": "Games",
+        "fr": "Jeux",
+        "kn": "ಆಟಗಳು"
+    }
+
+However, for performance sake, if you pass the `lang` parameter to
+a `GET` request, then only the most relevant translation (the specified
+language or the fallback, depending on whether a translation is available)
+will be returned as a string.
+
+.. code-block:: json
+
+    "name": "Games"
+
+This behaviour also applies to `POST`, `PATCH` and `PUT` requests: you can
+either submit a object containing several translations, or just a string. If
+only a string is supplied, it will only be used to translate the field in the
+current language.
+
 Cross Origin
 ~~~~~~~~~~~~
 
