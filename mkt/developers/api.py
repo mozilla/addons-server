@@ -7,7 +7,9 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
+import amo
 import lib.iarc
+
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.developers.forms import ContentRatingForm
 from mkt.webapps.models import ContentRating, Webapp
@@ -105,5 +107,9 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             app.set_content_ratings(data.get('ratings', {}))
             app.set_descriptors(data.get('descriptors', []))
             app.set_interactives(data.get('interactives', []))
+
+            # Update status if incomplete status.
+            if app.is_incomplete() and app.is_fully_complete()[0]:
+                app.update(status=amo.STATUS_PENDING)
 
         return Response('ok')
