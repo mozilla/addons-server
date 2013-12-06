@@ -34,5 +34,6 @@ tags
 vagrantconfig_local.yaml
 vagrant/manifests/classes/custom.pp
 node_modules
+commonplace_projects
 *.signed.zip
 *.po~
