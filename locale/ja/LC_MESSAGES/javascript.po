@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-10-23 11:10+0000\n"
-"Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2013-12-07 19:48-5000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
+"Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: \n"
 "X-POOTLE-MTIME: 1382526649.0\n"
 
 #: media/js/common/ratingwidget.js:31
@@ -21,7 +21,7 @@ msgstr[0] "{0} つ星"
 
 #: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr "サーバへの接続時に問題が発生しました。"
+msgstr "サーバへの接続中に問題が発生しました。"
 
 #: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
@@ -29,12 +29,12 @@ msgstr "ファイルを選択..."
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "アドオン名の拡張子は .xpi .jar .xml のいずれかでなければなりません"
+msgstr "アドオンのファイル拡張子は xpi、jar、xml のいずれかでなければなりません"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr "{0}% 完了しました"
+msgstr "{0}% 完了"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
@@ -56,12 +56,12 @@ msgstr "{0} にエラーがありました"
 #: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "アドオンの検証に失敗しました。 {0} 個のエラーがあります。"
+msgstr[0] "アドオンは検証に失敗しました。{0} 個のエラーがあります。"
 
 #: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;その他 {0} 個"
+msgstr[0] "... その他 {0} 個"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
@@ -75,7 +75,7 @@ msgstr "{0} を検証しています"
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
-msgstr "サーバから空の応答が返りました。状態: {0}"
+msgstr "サーバから空の応答が返りました。ステータス: {0}"
 
 #: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
@@ -83,68 +83,68 @@ msgstr "検証中に予期せぬサーバエラーが発生しました。"
 
 #: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
-msgstr "{0} の検証完了"
+msgstr "{0} の検証が完了しました"
 
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "アドオンは検証に合格しました。エラーなし、{0} 個のメッセージがあります。"
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr "アドオンの検証が完了しました。エラーや警告はありません。"
+msgstr "アドオンは検証に合格しました。エラーや警告はありません。"
 
 #: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
-msgstr "この種類のアドオンは、プラットフォームによっては利用できないことがあります。"
+msgstr "この種類のアドオンは OS によって対応していないことがあります。"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr "アップロードされたファイルの種類は扱えません。"
+msgstr "アップロードされたファイルの種類を認識できません。"
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr "アップロードをキャンセルしました。"
+msgstr "アップロードはキャンセルされました。"
 
 #: media/js/common/upload-image.js:98 media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
-msgstr "画像の形式は PNG か JPG でなければなりません。"
+msgstr "画像は PNG か JPEG 形式でなければなりません。"
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "動画は WebM 形式でなければなりません。"
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "パッケージ型アプリのファイル拡張子は <code>zip</code> でなければなりません。"
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] "アプリの検証に失敗しました。{0} 個のエラーがあります。"
+msgstr[0] "アプリは検証に失敗しました。{0} 個のエラーがあります。"
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "アプリの検証に合格しました。エラーなし、{0} 個の警告があります。"
+msgstr[0] "アプリは検証に合格しました。エラーなし、{0} 個の警告があります。"
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr "アプリの検証に合格しました。エラーや警告はありません。"
+msgstr "アプリは検証に合格しました。エラーや警告はありません。"
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "アプリの検証に失敗しました。{0} 個のエラーと {1} 個のメッセージがあります。"
+msgstr[0] "アプリは検証に失敗しました。{0} 個のエラーと {1} 個のメッセージがあります。"
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "アプリの検証に合格しました。エラーなし、{0} 個のメッセージがあります。"
+msgstr[0] "アプリは検証に合格しました。エラーなし、{0} 個のメッセージがあります。"
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
-msgstr "アプリの検証に合格しました。エラーやメッセージはありません。"
+msgstr "アプリは検証に合格しました。エラーやメッセージはありません。"
 
 #: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
@@ -156,15 +156,15 @@ msgstr "新しいチームメンバーのメールアドレスを入力してく
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
-msgstr ""
+msgstr "更新されました"
 
 #: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
-msgstr "ファイルのアップロード時にエラーが発生しました。"
+msgstr "ファイルのアップロード中にエラーが発生しました。"
 
 #: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
 msgid "Learn more"
-msgstr "詳細を確認"
+msgstr "詳細"
 
 #: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
 msgid "Example"
@@ -172,98 +172,98 @@ msgstr "例"
 
 #: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
-msgstr "画像変換の処理中です"
+msgstr "画像の変換処理を行っています"
 
 #: media/js/devreg/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "広げる..."
 
 #: media/js/devreg/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "たたむ..."
 
 #: media/js/devreg/init.js:35 media/js/mkt/init.js:47 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Web サイトのメンテナンスのため、この機能は一時的に無効化されています。後で確認してください。"
+msgstr "この機能はサイトメンテナンスのため一時的に無効になっています。また後で試してください。"
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr "このローカライズを削除する"
+msgstr "このローカライズを削除"
 
 #: media/js/devreg/mobile_review_actions.js:6
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "レビューを残し、フラグを削除"
 
 #: media/js/devreg/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "レビューを削除"
 
 #: media/js/devreg/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr ""
+msgstr "今はスキップ"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "スペインの銀行コード"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "アイルランドの Sort Code"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "ベルギーの Sort Code"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "スペイン、フランス、イタリアもしくはオランダの銀行コード"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "オランダもしくはアメリカの Sort Code"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "カナダの Transit Number、もしくはドイツの Routing Code"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "韓国の銀行・支店コード、もしくはインドネシアの銀行コード"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "ギリシャの HEBIC、もしくはインドネシアの銀行コード"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
+msgstr "イギリス、アイルランドの Sort Code、ニュージーランドの Account Prefix、もしくはオーストラリアの BSB Code"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "オーストリアもしくはスイスの銀行コード"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "デンマークもしくはスイスの銀行コード"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "スイスもしくはイラクの銀行コード"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "イラクの銀行コード"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "判別結果: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
+msgstr[0] "警告: 決済用アカウント「{0}」を削除すると、それに関連付けられている次のアプリのステータスが非互換となり、販売が中止されます:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -272,15 +272,15 @@ msgstr "エラー"
 
 #: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "決済サーバへの接続中に問題が発生しました。"
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
-msgstr ""
+msgstr "認証エラー"
 
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "あなたはまだ決済用アカウントを設定していません。"
 
 #: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
@@ -288,7 +288,7 @@ msgstr "すべてのテストに合格しました。"
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
 msgid "These tests were not run."
-msgstr "このテストは実行されませんでした。"
+msgstr "これらのテストは実行されませんでした。"
 
 #: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
 msgid "Tests"
@@ -304,11 +304,11 @@ msgstr "互換性テスト"
 
 #: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:331
 msgid "App failed validation."
-msgstr "アプリが検証に失敗しました。"
+msgstr "アプリは検証に失敗しました。"
 
 #: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:333
 msgid "App passed validation."
-msgstr "アプリが検証に合格しました。"
+msgstr "アプリは検証に合格しました。"
 
 #: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:370
 msgid "{0} error"
@@ -322,7 +322,7 @@ msgstr[0] "{0} 個の警告"
 
 #: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
-msgstr "検証作業が完了できませんでした。またはエラーがあります"
+msgstr "検証作業を完了できなかったか、エラーを出力して完了しました"
 
 #: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
 msgid "Internal server error"
@@ -334,7 +334,7 @@ msgstr "このコレクションをフォロー"
 
 #: media/js/impala/collections.js:19
 msgid "Stop Following"
-msgstr "フォローを中止"
+msgstr "フォローをやめる"
 
 #: media/js/impala/collections.js:20
 msgid "Following"
@@ -343,7 +343,7 @@ msgstr "フォロー中"
 #. L10n: {0} is an app name.
 #: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr "このテーマは {0} のバージョンと互換性がありません"
+msgstr "このテーマはお使いの {0} のバージョンと互換性がありません"
 
 #: media/js/impala/persona_creation.js:102
 msgid "All Rights Reserved"
@@ -351,31 +351,31 @@ msgstr "All Rights Reserved"
 
 #: media/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "Creative Commons 表示 3.0"
 
 #: media/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons 表示-非営利 3.0"
 
 #: media/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons 表示-非営利-改変禁止 3.0"
 
 #: media/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons 表示-非営利-継承 3.0"
 
 #: media/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons 表示-改変禁止 3.0"
 
 #: media/js/impala/persona_creation.js:131
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons 表示-継承 3.0"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "テーマの名前"
 
 #: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
@@ -383,7 +383,7 @@ msgstr "レビューフラグ付き"
 
 #: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
 msgid "Your input is required"
-msgstr "あなたの入力が必要です"
+msgstr "入力が必要です"
 
 #: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
@@ -391,7 +391,7 @@ msgstr "削除マーク付き"
 
 #: media/js/impala/search.js:104
 msgid "Updating results&hellip;"
-msgstr "結果を更新&hellip;"
+msgstr "結果を更新..."
 
 #: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
@@ -399,19 +399,19 @@ msgstr "カテゴリ"
 
 #: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> 用テーマを検索"
 
 #: media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> のアプリを検索"
+msgstr "<b>{0}</b> 用アプリを検索"
 
 #: media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> のアドオンを検索"
+msgstr "<b>{0}</b> 用アドオンを検索"
 
 #: media/js/impala/users.js:33
 msgid "use original"
-msgstr ""
+msgstr "オリジナルを使用"
 
 #: media/js/impala/stats/chart.js:267 media/js/mkt/stats/chart.js:320
 msgid "Week of {0}"
@@ -439,15 +439,15 @@ msgstr "{0} 件のレビュー"
 
 #: media/js/impala/stats/chart.js:275 media/js/mkt/stats/chart.js:323 media/js/mkt/stats/chart_column.js:125
 msgid "{0} sales"
-msgstr "{0} 個販売"
+msgstr "{0} 個の販売"
 
 #: media/js/impala/stats/chart.js:276 media/js/mkt/stats/chart.js:324 media/js/mkt/stats/chart_column.js:126
 msgid "{0} refunds"
-msgstr "{0} 個返金"
+msgstr "{0} 個の返品"
 
 #: media/js/impala/stats/chart.js:277 media/js/mkt/stats/chart.js:325
 msgid "{0} installs"
-msgstr "{0} 件のインストール"
+msgstr "{0} 回のインストール"
 
 #: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102 media/js/mkt/stats/csv_keys.js:128
 msgid "Downloads"
@@ -455,19 +455,19 @@ msgstr "ダウンロード"
 
 #: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:6 media/js/mkt/stats/csv_keys.js:129
 msgid "Daily Users"
-msgstr "日ごとのユーザ数"
+msgstr "日別ユーザ数"
 
 #: media/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
-msgstr ""
+msgstr "金額 (米ドル)"
 
 #: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:123
 msgid "Number of Contributions"
-msgstr "貢献者の数"
+msgstr "寄付回数"
 
 #: media/js/impala/stats/chart.js:447 media/js/mkt/stats/chart.js:395
 msgid "More Info..."
-msgstr "詳細情報..."
+msgstr "詳細..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/impala/stats/chart.js:451 media/js/mkt/stats/chart.js:399
@@ -476,39 +476,39 @@ msgstr "{0} の詳細"
 
 #: media/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
-msgstr "作成されたコレクション"
+msgstr "コレクション作成回数"
 
 #: media/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
-msgstr "使用中のアドオン"
+msgstr "アドオン使用回数"
 
 #: media/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
-msgstr "作成されたアドオン"
+msgstr "アドオン作成回数"
 
 #: media/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
-msgstr "ダウンロードされたアドオン"
+msgstr "アドオンダウンロード回数"
 
 #: media/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
-msgstr "更新されたアドオン"
+msgstr "アドオン更新回数"
 
 #: media/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr "書かれたレビュー"
+msgstr "レビュー投稿数"
 
 #: media/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
-msgstr "ユーザのサインアップ"
+msgstr "ユーザログイン回数"
 
 #: media/js/impala/stats/csv_keys.js:30
 msgid "Subscribers"
-msgstr "購読数"
+msgstr "購読者数"
 
 #: media/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
-msgstr "評価"
+msgstr "評価数"
 
 #: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107 media/js/mkt/stats/chart_column.js:147
 msgid "Sales"
@@ -516,7 +516,7 @@ msgstr "販売数"
 
 #: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106 media/js/mkt/stats/chart.js:364 media/js/mkt/stats/csv_keys.js:3 media/js/mkt/stats/csv_keys.js:132
 msgid "Installs"
-msgstr "インストール数"
+msgstr "インストール回数"
 
 #: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57
 msgid "Unknown"
@@ -524,7 +524,7 @@ msgstr "不明"
 
 #: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58
 msgid "Add-ons Manager"
-msgstr "アドオンの管理者"
+msgstr "アドオンマネージャ"
 
 #: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59
 msgid "Search Results"
@@ -533,19 +533,19 @@ msgstr "検索結果"
 #: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
 #: media/js/mkt/stats/csv_keys.js:62
 msgid "Homepage Promo"
-msgstr "ホームページの宣伝"
+msgstr "ホームページの宣伝枠"
 
 #: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64
 msgid "Homepage Featured"
-msgstr "注目のホームページ"
+msgstr "ホームページのおすすめ枠"
 
 #: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66
 msgid "Homepage Up and Coming"
-msgstr "新進気鋭のホームページ"
+msgstr "ホームページの注目枠"
 
 #: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67
 msgid "Homepage Most Popular"
-msgstr "人気のあるホームページ"
+msgstr "ホームページの人気枠"
 
 #: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70
 msgid "Detail Page"
@@ -562,23 +562,23 @@ msgstr "詳細ページ (開発チャンネル)"
 #: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
 #: media/js/mkt/stats/csv_keys.js:75
 msgid "Often Used With"
-msgstr ""
+msgstr "同時使用アドオン"
 
 #: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62 media/js/mkt/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:77
 msgid "Others By Author"
-msgstr ""
+msgstr "作者の他のアドオン"
 
 #: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79
 msgid "Dependencies"
-msgstr ""
+msgstr "依存関係"
 
 #: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81
 msgid "Upsell"
-msgstr ""
+msgstr "プレミアム版"
 
 #: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83
 msgid "Sharing"
-msgstr ""
+msgstr "共有"
 
 #: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84
 msgid "Category Pages"
@@ -590,63 +590,63 @@ msgstr "コレクション"
 
 #: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "カテゴリトップページのおすすめローテーション"
 
 #: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "カテゴリトップページの高評価枠"
 
 #: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "カテゴリトップページの人気枠"
 
 #: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "カテゴリトップページの新着枠"
 
 #: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "一覧ページのおすすめ順"
 
 #: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "一覧ページのユーザ数順"
 
 #: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "一覧ページの評価順"
 
 #: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "一覧ページの登録日順"
 
 #: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "一覧ページの名前順"
 
 #: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "一覧ページの人気順"
 
 #: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "一覧ページの更新日順"
 
 #: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "一覧ページの注目度順"
 
 #: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "合計寄付金額"
 
 #: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125
 msgid "Average Contribution"
-msgstr ""
+msgstr "平均寄付金額"
 
 #: media/js/impala/stats/csv_keys.js:108 media/js/mkt/stats/csv_keys.js:133
 msgid "Usage"
-msgstr "使用方法"
+msgstr "使用回数"
 
 #: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137
 msgid "Firefox"
@@ -675,32 +675,32 @@ msgstr "Fennec"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:121
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "最近 {0} 日間のダウンロードとユーザ数"
+msgstr "最近 {0} 日間のダウンロード回数とユーザ数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:123
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "{0} から {1} までのダウンロードとユーザ数"
+msgstr "{0} から {1} までのダウンロード回数とユーザ数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:127
 msgid "Installs and Daily Users, last {0} days"
-msgstr "最近 {0} 日間のインストールとユーザ数"
+msgstr "最近 {0} 日間のインストール回数とユーザ数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:129
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "{0} から {1} までのインストールとユーザ数"
+msgstr "{0} から {1} までのインストール回数とユーザ数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:133
 msgid "Downloads, last {0} days"
-msgstr "最近 {0} 日間のダウンロード数"
+msgstr "最近 {0} 日間のダウンロード回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:135
 msgid "Downloads from {0} to {1}"
-msgstr "{0} から {1} までのダウンロード数"
+msgstr "{0} から {1} までのダウンロード回数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:139 media/js/mkt/stats/csv_keys.js:152
@@ -725,12 +725,12 @@ msgstr "{0} から {1} までのアプリケーション"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:151
 msgid "Platforms, last {0} days"
-msgstr "最近 {0} 日間のプラットフォーム"
+msgstr "最近 {0} 日間の OS"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:153
 msgid "Platforms from {0} to {1}"
-msgstr "{0} から {1} までのプラットフォーム"
+msgstr "{0} から {1} までの OS"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:157
@@ -765,102 +765,102 @@ msgstr "{0} から {1} までのアドオンの状態"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:175
 msgid "Download Sources, last {0} days"
-msgstr "最近 {0} 日間のソースのダウンロード数"
+msgstr "最近 {0} 日間のダウンロード参照元"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:177
 msgid "Download Sources from {0} to {1}"
-msgstr "{0} から {1} までのソースのダウンロード数"
+msgstr "{0} から {1} までのダウンロード参照元"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:181
 msgid "Contributions, last {0} days"
-msgstr "最近 {0} 日間の貢献者数"
+msgstr "最近 {0} 日間の寄付"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:183
 msgid "Contributions from {0} to {1}"
-msgstr "{0} から {1} までの貢献者数"
+msgstr "{0} から {1} までの寄付"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:187
 msgid "Site Metrics, last {0} days"
-msgstr "最近 {0} 日間のサイト測定"
+msgstr "最近 {0} 日間のサイト解析"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:189
 msgid "Site Metrics from {0} to {1}"
-msgstr "{0} から {1} までのサイト測定"
+msgstr "{0} から {1} までのサイト解析"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:193
 msgid "Add-ons in Use, last {0} days"
-msgstr "最近 {0} 日間の使用中のアドオン"
+msgstr "最近 {0} 日間のアドオン使用回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:195
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "{0} から {1} までの使用中のアドオン"
+msgstr "{0} から {1} までのアドオン使用回数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:199
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "最近 {0} 日間のダウンロードされたアドオン"
+msgstr "最近 {0} 日間のアドオンダウンロード回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:201
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "{0} から {1} までのダウンロードされたアドオン"
+msgstr "{0} から {1} までのアドオンダウンロード回数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:205
 msgid "Add-ons Created, last {0} days"
-msgstr "最近 {0} 日間に作成されたアドオン"
+msgstr "最近 {0} 日間のアドオン作成回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:207
 msgid "Add-ons Created from {0} to {1}"
-msgstr "{0} から {1} までに作成されたアドオン"
+msgstr "{0} から {1} までのアドオン作成回数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:211
 msgid "Add-ons Updated, last {0} days"
-msgstr "最近 {0} 日間に更新されたアドオン"
+msgstr "最近 {0} 日間のアドオン更新回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:213
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "{0} から {1} までに更新されたアドオン"
+msgstr "{0} から {1} までのアドオン更新回数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:217
 msgid "Reviews Written, last {0} days"
-msgstr "最近 {0} 日間に書かれたレビュー"
+msgstr "最近 {0} 日間のレビュー投稿数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:219
 msgid "Reviews Written from {0} to {1}"
-msgstr "{0} から {1} までに書かれたレビュー"
+msgstr "{0} から {1} までのレビュー投稿数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:223
 msgid "User Signups, last {0} days"
-msgstr "最近 {0} 日間のユーザのサインアップ"
+msgstr "最近 {0} 日間のユーザログイン回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:225
 msgid "User Signups from {0} to {1}"
-msgstr "{0} から {1} までのユーザのサインアップ"
+msgstr "{0} から {1} までのユーザログイン回数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:229
 msgid "Collections Created, last {0} days"
-msgstr "最近 {0} 日間に作成されたコレクション"
+msgstr "最近 {0} 日間のコレクション作成回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:231
 msgid "Collections Created from {0} to {1}"
-msgstr "{0} から {1} までに作成されたコレクション"
+msgstr "{0} から {1} までのコレクション作成回数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:235
@@ -875,12 +875,12 @@ msgstr "{0} から {1} までの購読者数"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:241
 msgid "Ratings, last {0} days"
-msgstr "最近 {0} 日間の評価"
+msgstr "最近 {0} 日間の評価数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:243
 msgid "Ratings from {0} to {1}"
-msgstr "{0} から {1} までの評価"
+msgstr "{0} から {1} までの評価数"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:247
@@ -895,12 +895,12 @@ msgstr "{0} から {1} までの販売数"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:253 media/js/mkt/stats/csv_keys.js:147
 msgid "Installs, last {0} days"
-msgstr "最近 {0} 日間のインストール数"
+msgstr "最近 {0} 日間のインストール回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:255 media/js/mkt/stats/csv_keys.js:149
 msgid "Installs from {0} to {1}"
-msgstr "{0} から {1} までのインストール数"
+msgstr "{0} から {1} までのインストール回数"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:261 media/js/mkt/stats/csv_keys.js:223
@@ -919,7 +919,7 @@ msgstr "最近 {1} 日間の平均 <b>{0}</b>"
 
 #: media/js/impala/stats/overview.js:19 media/js/mkt/stats/overview.js:17
 msgid "No data available."
-msgstr "データが利用できません。"
+msgstr "表示できるデータがありません。"
 
 #: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88
 msgid "Date"
@@ -931,189 +931,189 @@ msgstr "その他"
 
 #: media/js/mkt/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr "指定された場所に manifest が見つかりませんでした。"
+msgstr "指定された場所にマニフェストが見つかりませんでした。"
 
 #: media/js/mkt/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr "アプリのホストに接続できませんでした。"
+msgstr "アプリのサーバへ接続できませんでした。"
 
 #: media/js/mkt/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr "アプリの manifest が読み取れません。"
+msgstr "アプリマニフェストを解析できません。"
 
 #: media/js/mkt/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr "アプリの manifest が不正です。"
+msgstr "アプリマニフェストが不正な形式です。"
 
 #: media/js/mkt/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "アプリはすでにインストールされています。"
 
 #: media/js/mkt/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "内部サーバエラー"
 
 #: media/js/mkt/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "アプリのインストール中に内部サーバエラーが発生しました。"
 
 #: media/js/mkt/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "インストールに失敗しました。また後で試してください。"
 
 #: media/js/mkt/buttons.js:38
 msgid "Purchasing"
-msgstr ""
+msgstr "購入中"
 
 #: media/js/mkt/buttons.js:44
 msgid "Purchased"
-msgstr "支払い済み"
+msgstr "購入済み"
 
 #: media/js/mkt/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "起動"
 
 #: media/js/mkt/consumer_init.js:24
 msgid "Click here to view the mobile Marketplace!"
-msgstr ""
+msgstr "モバイル版 Marketplace を見るにはここをクリック"
 
 #: media/js/mkt/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "この動画を再生するには、オープンな動画形式に対応しているブラウザか "
 
 #: media/js/mkt/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "<a href=\"http://get.adobe.com/jp/flashplayer/\">Adobe "
 
 #: media/js/mkt/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "Flash Player</a> が必要です。"
 
 #: media/js/mkt/feedback.js:38
 msgid "Message must not be empty."
-msgstr ""
+msgstr "メッセージには何か記入してください。"
 
 #: media/js/mkt/login.js:73
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
+msgstr "Persona のログインに失敗しました。このメールアドレスのアカウントをお持ちですか？"
 
 #: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "Persona のログインに失敗しました。サーバエラーが発生しました。"
 
 #: media/js/mkt/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "すべての結果を表示"
 
 #: media/js/mkt/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "{0} 件以上の結果があります。検索条件を見直してみてください。"
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "必要とされる許可設定:"
 
 #: media/js/mkt/manifest.js:54
 msgid "Certified"
-msgstr ""
+msgstr "認定"
 
 #: media/js/mkt/manifest.js:57
 msgid "Privileged"
-msgstr ""
+msgstr "特権"
 
 #: media/js/mkt/manifest.js:60
 msgid "Unprivileged"
-msgstr ""
+msgstr "非特権"
 
 #: media/js/mkt/manifest.js:66
 msgid "No reason given"
-msgstr ""
+msgstr "理由が書かれていません"
 
 #: media/js/mkt/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: media/js/mkt/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr ""
+msgstr "決済に失敗しました。また後で試してください。"
 
 #: media/js/mkt/reviewers.js:100
 msgid "Packaged App"
-msgstr ""
+msgstr "パッケージ型アプリ"
 
 #: media/js/mkt/reviewers.js:104
 msgid "Privileged App"
-msgstr ""
+msgstr "特権アプリ"
 
 #: media/js/mkt/reviewers.js:107
 msgid "More Information Requested"
-msgstr ""
+msgstr "詳しい情報が求められています"
 
 #: media/js/mkt/reviewers.js:110
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "エディタのコメントがあります"
 
 #: media/js/mkt/reviewers.js:114
 msgid "Premium App"
-msgstr ""
+msgstr "プレミアム版アプリ"
 
 #: media/js/mkt/reviewers.js:117
 msgid "Escalated"
-msgstr ""
+msgstr "上級審査依頼中"
 
 #: media/js/mkt/reviewers.js:122
 msgid "Free"
-msgstr ""
+msgstr "無料"
 
 #: media/js/mkt/reviewers.js:230
 msgid "Any"
-msgstr ""
+msgstr "すべて"
 
 #: media/js/mkt/reviewers.js:257
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "アプリを承認しました: {app}"
 
 #: media/js/mkt/reviewers.js:260
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "アプリを却下しました: {app}"
 
 #: media/js/mkt/reviewers.js:266
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "アプリの承認中にエラーが発生しました: {app}"
 
 #: media/js/mkt/reviewers.js:267
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "アプリの却下中にエラーが発生しました: {app}"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
-msgstr ""
+msgstr "求められている情報"
 
 #: media/js/mkt/themes_review.js:175
 msgid "Flagged"
-msgstr ""
+msgstr "フラグ付き"
 
 #: media/js/mkt/themes_review.js:176
 msgid "Duplicate"
-msgstr ""
+msgstr "重複"
 
 #: media/js/mkt/themes_review.js:177
 msgid "Rejected"
-msgstr ""
+msgstr "却下済み"
 
 #: media/js/mkt/themes_review.js:178
 msgid "Approved"
-msgstr ""
+msgstr "承認済み"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/mkt/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
+msgstr[0] "残り {0} 文字です。"
 
 #: media/js/mkt/stats/chart.js:327
 msgid "{0} apps"
-msgstr ""
+msgstr "{0} 個のアプリ"
 
 #: media/js/mkt/stats/chart.js:339
 msgid "Week"
@@ -1129,7 +1129,7 @@ msgstr "日"
 
 #: media/js/mkt/stats/chart.js:352 media/js/mkt/stats/csv_keys.js:9 media/js/mkt/stats/csv_keys.js:18 media/js/mkt/stats/csv_keys.js:27
 msgid "Amount Earned"
-msgstr "売り上げ"
+msgstr "売上金額"
 
 #: media/js/mkt/stats/chart.js:356 media/js/mkt/stats/csv_keys.js:12 media/js/mkt/stats/csv_keys.js:21 media/js/mkt/stats/csv_keys.js:30 media/js/mkt/stats/csv_keys.js:134
 msgid "Units Sold"
@@ -1137,24 +1137,23 @@ msgstr "販売個数"
 
 #: media/js/mkt/stats/chart.js:360 media/js/mkt/stats/csv_keys.js:15 media/js/mkt/stats/csv_keys.js:24 media/js/mkt/stats/csv_keys.js:33
 msgid "Units Refunded"
-msgstr "返金個数"
+msgstr "返品個数"
 
 #: media/js/mkt/stats/chart.js:368
 msgid "Users"
-msgstr "ユーザ"
+msgstr "ユーザ数"
 
 #: media/js/mkt/stats/chart.js:372
 msgid "Apps"
-msgstr ""
+msgstr "アプリ数"
 
 #: media/js/mkt/stats/chart_column.js:122
-#, fuzzy
 msgid "by currency {0}"
-msgstr "{0} 通貨による"
+msgstr "通貨: {0} "
 
 #: media/js/mkt/stats/chart_column.js:123
 msgid "by source {0}"
-msgstr ""
+msgstr "参照元: {0}"
 
 #: media/js/mkt/stats/chart_column.js:131 media/js/mkt/stats/table.js:95
 msgid "Currency"
@@ -1162,7 +1161,7 @@ msgstr "通貨"
 
 #: media/js/mkt/stats/chart_column.js:135 media/js/mkt/stats/table.js:98
 msgid "Source"
-msgstr "ソース"
+msgstr "参照元"
 
 #: media/js/mkt/stats/chart_column.js:143
 msgid "Revenue"
@@ -1170,71 +1169,71 @@ msgstr "収入"
 
 #: media/js/mkt/stats/chart_column.js:151
 msgid "Refunds"
-msgstr "返金"
+msgstr "返品"
 
 #: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
 msgid "Apps Added"
-msgstr ""
+msgstr "アプリの追加回数"
 
 #: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
 msgid "Apps Installed"
-msgstr ""
+msgstr "アプリのインストール回数"
 
 #: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
 msgid "Reviews"
-msgstr ""
+msgstr "レビュー投稿数"
 
 #: media/js/mkt/stats/csv_keys.js:45 media/js/mkt/stats/csv_keys.js:208 media/js/mkt/stats/csv_keys.js:209
 msgid "New Users"
-msgstr ""
+msgstr "新規ユーザ数"
 
 #: media/js/mkt/stats/csv_keys.js:48 media/js/mkt/stats/csv_keys.js:204 media/js/mkt/stats/csv_keys.js:205
 msgid "Total Users"
-msgstr ""
+msgstr "合計ユーザ数"
 
 #: media/js/mkt/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:212 media/js/mkt/stats/csv_keys.js:213
 msgid "Total Visitors"
-msgstr ""
+msgstr "合計閲覧者数"
 
 #: media/js/mkt/stats/csv_keys.js:54
 msgid "App Installs"
-msgstr ""
+msgstr "アプリのインストール"
 
 #: media/js/mkt/stats/csv_keys.js:112
 msgid "Marketplace Browse Page"
-msgstr ""
+msgstr "Marketplace の一覧ページ"
 
 #: media/js/mkt/stats/csv_keys.js:113
 msgid "Marketplace Browse Page, Featured"
-msgstr ""
+msgstr "Marketplace の一覧ページ、おすすめ"
 
 #: media/js/mkt/stats/csv_keys.js:114
 msgid "Marketplace Category Page"
-msgstr ""
+msgstr "Marketplace のカテゴリページ"
 
 #: media/js/mkt/stats/csv_keys.js:115
 msgid "Marketplace Category Page, Featured"
-msgstr ""
+msgstr "Marketplace のカテゴリページ、おすすめ"
 
 #: media/js/mkt/stats/csv_keys.js:116
 msgid "Marketplace Detail Page"
-msgstr ""
+msgstr "Marketplace の詳細ページ"
 
 #: media/js/mkt/stats/csv_keys.js:117
 msgid "Marketplace Detail Page, Upsell"
-msgstr ""
+msgstr "Marketplace の詳細ページ、プレミアム版"
 
 #: media/js/mkt/stats/csv_keys.js:118
 msgid "Marketplace Home Page"
-msgstr ""
+msgstr "Marketplace のホームページ"
 
 #: media/js/mkt/stats/csv_keys.js:119
 msgid "Marketplace Search Results"
-msgstr ""
+msgstr "Marketplace の検索結果"
 
 #: media/js/mkt/stats/csv_keys.js:120
 msgid "Marketplace Search Results, Featured"
-msgstr ""
+msgstr "Marketplace の検索結果、おすすめ"
 
 #: media/js/mkt/stats/csv_keys.js:156
 msgid "Units Sold, last {0} days"
@@ -1246,94 +1245,94 @@ msgstr "{0} から {1} までの販売個数"
 
 #: media/js/mkt/stats/csv_keys.js:160
 msgid "Amount Earned, last {0} days"
-msgstr "最近 {0} 日間の売り上げ"
+msgstr "最近 {0} 日間の売上金額"
 
 #: media/js/mkt/stats/csv_keys.js:161
 msgid "Amount Earned {0} to {1}"
-msgstr "{0} から {1} までの売り上げ"
+msgstr "{0} から {1} までの売上金額"
 
 #: media/js/mkt/stats/csv_keys.js:164
 msgid "Units Refunded, last {0} days"
-msgstr "最近 {0} 日間の返金個数"
+msgstr "最近 {0} 日間の返品個数"
 
 #: media/js/mkt/stats/csv_keys.js:165
 msgid "Units Refunded from {0} to {1}"
-msgstr "{0} から {1} までの返金個数"
+msgstr "{0} から {1} までの返品個数"
 
 #: media/js/mkt/stats/csv_keys.js:168 media/js/mkt/stats/csv_keys.js:169
 msgid "Total Units Sold by Currency"
-msgstr "通貨による販売総数"
+msgstr "通貨ごとの合計販売個数"
 
 #: media/js/mkt/stats/csv_keys.js:172 media/js/mkt/stats/csv_keys.js:173
 msgid "Total Amount Earned by Currency"
-msgstr "通貨による総売り上げ"
+msgstr "通貨ごとの合計売上金額"
 
 #: media/js/mkt/stats/csv_keys.js:176 media/js/mkt/stats/csv_keys.js:177
 msgid "Total Units Refunded by Currency"
-msgstr "通貨による返金総数"
+msgstr "通貨ごとの合計返品個数"
 
 #: media/js/mkt/stats/csv_keys.js:180 media/js/mkt/stats/csv_keys.js:181
 msgid "Total Units Sold by Source"
-msgstr "ソースによる販売総数"
+msgstr "参照元ごとの合計販売個数"
 
 #: media/js/mkt/stats/csv_keys.js:184 media/js/mkt/stats/csv_keys.js:185
 msgid "Total Amount Earned by Source"
-msgstr "ソースによる総売り上げ"
+msgstr "参照元ごとの合計売上金額"
 
 #: media/js/mkt/stats/csv_keys.js:188 media/js/mkt/stats/csv_keys.js:189
 msgid "Total Units Refunded by Source"
-msgstr "ソースによる返金総数"
+msgstr "参照元ごとの合計返品個数"
 
 #: media/js/mkt/stats/csv_keys.js:216 media/js/mkt/stats/csv_keys.js:217
 msgid "Total Installs"
-msgstr ""
+msgstr "合計インストール回数"
 
 #: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
-msgstr "アプリケーションを先に選択してください"
+msgstr "まずアプリケーションを選択してください"
 
 #: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "アドオン {0} の max version を {1} にセットして作者にメールします。"
+msgstr[0] "{0} 個のアドオンの最高対応バージョンを {1} へ更新し、作者へメールします。"
 
 #: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
 msgid_plural "This will send emails to the authors of {0} files."
-msgstr[0] "{0} 個のファイルの作者にメールを送信します。"
+msgstr[0] "{0} 個のファイルの作者へメールを送信します。"
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr ""
+msgstr "アプリのインストールは許可されていません。"
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "アプリマニフェストが不正な形式です。"
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "アプリのインストールに失敗しました。"
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "このシステムはアプリのインストールに対応していません。"
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr "管理者と編集者がログイン用のパスワードを提供します。"
+msgstr "管理者と編集者はパスワードを入力してログインする必要があります。"
 
 #: media/js/zamboni/browserid_support.js:42
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "BrowserID ログインに失敗しました。このメールアドレスのアカウントをお持ちですか？"
+msgstr "BrowserID のログインに失敗しました。このメールアドレスのアカウントをお持ちですか？"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
 msgid "Accept and Install"
-msgstr "許可してインストール"
+msgstr "同意してインストール"
 
 #: media/js/zamboni/buttons.js:108
 msgid "Add to {0}"
-msgstr "{0} に追加"
+msgstr "{0} へ追加"
 
 #: media/js/zamboni/buttons.js:113
 msgid "Download Now"
@@ -1341,37 +1340,37 @@ msgstr "今すぐダウンロード"
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "アドオンがデフォルトで互換性のあるバージョンに更新されていません。"
+msgstr "アドオンが自動的に互換性を保つバージョンへ更新されていません。"
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10.0 以降を使用する必要があります。"
+msgstr "Firefox 10 以上のバージョンを使ってください。"
 
 #: media/js/zamboni/buttons.js:171
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "ご使用の Firefox のバージョンと互換性が無いと思われます。"
+msgstr "このバージョンは、お使いの Firefox のバージョンと互換性がありません。"
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
 msgid "Install for {0} anyway"
-msgstr "{0} に強制インストール"
+msgstr "{0} へ強制インストール"
 
 #: media/js/zamboni/buttons.js:249
 msgid "Download for {0} anyway"
-msgstr "{0} に強制ダウンロード"
+msgstr "{0} へ強制ダウンロード"
 
 #: media/js/zamboni/buttons.js:306
 msgid "Not available for your platform"
-msgstr "ご使用のプラットフォームでは利用不可です"
+msgstr "お使いの OS には対応していません"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
-msgstr "{0} {1} では利用できません"
+msgstr "{0} {1} には対応していません"
 
 #: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
-msgstr "動作対象: {app} {min} - {max}"
+msgstr "動作環境: {app} {min} - {max}"
 
 #: media/js/zamboni/buttons.js:382
 msgid "View other versions"
@@ -1379,23 +1378,23 @@ msgstr "他のバージョンを見る"
 
 #: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "申し訳ありませんが、検索プラグインをインストールするには、(Firefox などの) Mozilla ベースのブラウザが必要です。"
+msgstr "申し訳ありませんが、検索プラグインをインストールするには (Firefox など) Mozilla ベースのブラウザが必要です。"
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
-msgstr "最近の表示を消去"
+msgstr "最近の履歴を消去"
 
 #: media/js/zamboni/collections.js:365
 msgid "Adding to Favorites&hellip;"
-msgstr "お気に入りに追加&hellip;"
+msgstr "お気に入りへ追加..."
 
 #: media/js/zamboni/collections.js:368
 msgid "Removing Favorite&hellip;"
-msgstr "お気に入りから削除&hellip;"
+msgstr "お気に入りから削除..."
 
 #: media/js/zamboni/collections.js:371
 msgid "Add to Favorites"
-msgstr "お気に入りに追加"
+msgstr "お気に入りへ追加"
 
 #: media/js/zamboni/collections.js:374
 msgid "Remove from Favorites"
@@ -1415,7 +1414,7 @@ msgstr "コメント"
 
 #: media/js/zamboni/collections.js:439
 msgid "Remove this add-on from the collection"
-msgstr "コレクションからアドオンを削除"
+msgstr "このアドオンをコレクションから削除"
 
 #: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
 msgid "Remove"
@@ -1423,7 +1422,7 @@ msgstr "削除"
 
 #: media/js/zamboni/collections.js:468
 msgid "Remove this user as a contributor"
-msgstr "この貢献者ユーザを削除"
+msgstr "このユーザを貢献者から削除"
 
 #: media/js/zamboni/collections.js:480
 msgid "An email address is required."
@@ -1431,7 +1430,7 @@ msgstr "メールアドレスを入力してください。"
 
 #: media/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr "自身を貢献者として追加することはできません。"
+msgstr "自分を貢献者として追加することはできません。"
 
 #: media/js/zamboni/collections.js:500
 msgid "You have already added that user."
@@ -1439,7 +1438,7 @@ msgstr "このユーザはすでに追加されています。"
 
 #: media/js/zamboni/collections.js:703
 msgid "Add to favorites"
-msgstr "お気に入りに追加"
+msgstr "お気に入りへ追加"
 
 #: media/js/zamboni/collections.js:707
 msgid "Remove from favorites"
@@ -1447,7 +1446,7 @@ msgstr "お気に入りから削除"
 
 #: media/js/zamboni/collections.js:734
 msgid "Stop following"
-msgstr "フォローを中止"
+msgstr "フォローをやめる"
 
 #: media/js/zamboni/contributions.js:134
 msgid "Install App"
@@ -1455,11 +1454,11 @@ msgstr "アプリをインストール"
 
 #: media/js/zamboni/devhub.js:242
 msgid "Your browser does not support the video tag"
-msgstr "ご使用のブラウザは video タグをサポートしていません"
+msgstr "お使いのブラウザは video タグに対応していません"
 
 #: media/js/zamboni/devhub.js:503
 msgid "Enter a new author's email address"
-msgstr "作者の新しいメールアドレスを入力してください"
+msgstr "新しい作者のメールアドレスを入力してください"
 
 #: media/js/zamboni/devhub.js:793
 msgid "{files} file"
@@ -1469,7 +1468,7 @@ msgstr[0] "{files} 個のファイル"
 #: media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} レビュー"
+msgstr[0] "{reviews} 件のレビュー"
 
 #: media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
@@ -1485,23 +1484,23 @@ msgstr "内部サーバエラー"
 
 #: media/js/zamboni/devhub.js:1515
 msgid "Must be a valid e-mail address."
-msgstr "正しいメールアドレスでなければなりません。"
+msgstr "正しいメールアドレスを入力してください。"
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr "結果はありません。"
+msgstr "結果が見つかりませんでした。"
 
 #: media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "申し訳ありません、おすすめのアドオンが見つかりませんでした。<br> <a href=\"{0}\">アドオンサイト</a> をご覧いただき、お好みのアドオンを見つけてください。"
+msgstr "申し訳ありませんが、あなたにおすすめのアドオンは見つかりませんでした。<br><a href=\"{0}\">アドオンのサイト</a> を訪れて、お好みのアドオンを見つけてください。"
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
-msgstr "おすすめのアドオンを探しています&hellip;"
+msgstr "おすすめのアドオンを探しています..."
 
 #: media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
-msgstr "おすすめのアドオンを更新しています&hellip;"
+msgstr "おすすめのアドオンを更新しています..."
 
 #: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
@@ -1509,11 +1508,11 @@ msgstr "{name} が初めてこのページを見ました。"
 
 #: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "レシートがアプリによって検証されました。"
 
 #: media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "レシートがアプリによって検証されませんでした。"
 
 #: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
@@ -1521,19 +1520,19 @@ msgstr "{name} が初めてこのアドオンを見ました。"
 
 #: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
-msgstr "読み込み中&hellip;"
+msgstr "読み込み中..."
 
 #: media/js/zamboni/editors.js:301
 msgid "Version Notes"
-msgstr "バージョン補足"
+msgstr "リリースノート"
 
 #: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
-msgstr "レビュア向けの補足"
+msgstr "審査担当者へのメモ"
 
 #: media/js/zamboni/editors.js:311
 msgid "No version notes found"
-msgstr "バージョンの補足はありません"
+msgstr "リリースノートはありません"
 
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
@@ -1545,7 +1544,7 @@ msgstr "レビュー数"
 
 #: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "翻訳読み込みエラー"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1555,7 +1554,7 @@ msgstr "読み込み中..."
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "残り <b>{0}</b> 文字。"
+msgstr[0] "残り <b>{0}</b> 文字です。"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
@@ -1577,28 +1576,28 @@ msgstr "すべて"
 
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
-msgstr "アドオンの検証に失敗しました。"
+msgstr "アドオンは検証に失敗しました。"
 
 #: media/js/zamboni/validator.js:339
 msgid "Add-on passed validation."
-msgstr "アドオンの検証に合格しました。"
+msgstr "アドオンは検証に合格しました。"
 
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "{0] 個の通知"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
-msgstr "{0} {1} は最新のバージョンです"
+msgstr "まだ {0} {1} には対応していません"
 
 #: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
-msgstr "{0} の新しいバージョンが必要です"
+msgstr "{0} の新バージョンが必要です"
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
-msgstr "未レビュー"
+msgstr "未審査"
 
 #: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
@@ -1606,41 +1605,40 @@ msgstr "実験的 <span>(詳細)</span>"
 
 #: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
-msgstr "{0} では利用できません"
+msgstr "{0} には対応していません"
 
 #: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
-msgstr "実験的アドオン"
+msgstr "実験的"
 
 #: media/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "このテーマを使うには {0} の新バージョンが必要です"
 
 #: media/js/zamboni/mobile/buttons.js:83
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "このテーマを使うには {0} が必要です"
 
 #: media/js/zamboni/mobile/buttons.js:128
 msgid "Installing..."
-msgstr "インストール中です..."
+msgstr "インストール中..."
 
 #: media/js/zamboni/mobile/buttons.js:136
 msgid "Purchasing..."
-msgstr "支払い中です..."
+msgstr "購入中..."
 
-# preliminarily reviewは事前レビューで大丈夫？
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "このアドオンは Mozilla により事前にレビューされています。"
+msgstr "このアドオンは Mozilla の事前審査を受けています。"
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
-msgstr ""
+msgstr "適用"
 
 #: media/js/zamboni/mobile/general.js:338
 msgid "You're trying it on!"
-msgstr ""
+msgstr "テーマをプレビューしています"
 
 #: media/js/zamboni/mobile/general.js:350
 msgid "Added to Firefox"
-msgstr "Firefox に追加済み"
+msgstr "Firefox へ適用済み"
