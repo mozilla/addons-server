@@ -685,13 +685,13 @@ class TestPersonaLogin(UserViewBase):
     def test_browserid_unverified_login_success(self, http_request):
         """A success response from BrowserID results in a successful login."""
 
-        # Preverified addresses (think: desktop) *should* be able to log in as
-        # unverified (think: b2g).
+        # Preverified accounts should not be accessible to unverified
+        # logins.
         http_request.return_value = FakeResponse(200, json.dumps(
             {'status': 'okay', 'unverified-email': 'jbalogh@mozilla.com'}))
         res = self.client.post(self.url, {'assertion': 'fake-assertion',
                                           'audience': 'fakeamo.org'})
-        eq_(res.status_code, 200)
+        eq_(res.status_code, 401)
         eq_(self.user_profile.reload().is_verified, True)
 
         # A completely unverified address should be able to log in.

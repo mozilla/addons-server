@@ -356,14 +356,10 @@ def browserid_authenticate(request, assertion, is_mobile=False,
                 backend='django_browserid.auth.BrowserIDBackend')
         if profile.is_verified and not verified:
             # An attempt to log in to a verified address with an unverified
-            # assertion is a very bad thing. However, the same email address
-            # can legitimately be used on the site on desktop and be verified
-            # whilst be used on b2g and be unverified. We are forcing the
-            # issuer, so this shouldn't be an issue.
-            #
-            # Blame kumar. Or cvan. Or deal with it.
+            # assertion is a very bad thing. Don't let that happen.
             log.debug('Verified user %s attempted to log in with an '
                       'unverified assertion!' % profile)
+            return None, _('Please use the verified email for this account.')
         else:
             profile.is_verified = verified
             profile.save()
