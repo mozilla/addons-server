@@ -67,6 +67,10 @@ class TestVersionViewSet(RestOAuth):
         self.request = RequestFactory()
         super(TestVersionViewSet, self).setUp()
 
+    def test_has_cors(self):
+        url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
+        self.assertCORS(self.client.get(url), 'get', 'put', 'patch')
+
     def test_get(self, version=None, **kwargs):
 
         if not version:

@@ -1661,6 +1661,19 @@ class TestWebappIndexer(amo.tests.TestCase):
         assert 'rs' not in doc['content_ratings']
         assert 've' not in doc['content_ratings']
 
+    def test_extract_release_notes(self):
+        release_notes = {
+            'fr': u'Dès notes de version.',
+            'en-US': u'Some release nötes.'
+        }
+        version = self.app.current_version
+        version.releasenotes = release_notes
+        version.save()
+        obj, doc = self._get_doc()
+        self.assertSetEqual(doc['release_notes'], release_notes.values())
+        eq_(doc['release_notes_french'], [release_notes['fr']])
+        eq_(doc['release_notes_english'], [release_notes['en-US']])
+
 
 class TestRatingDescriptors(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
 

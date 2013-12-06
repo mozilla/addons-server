@@ -116,6 +116,8 @@ class AppSerializer(serializers.ModelSerializer):
     public_stats = serializers.BooleanField(read_only=True)
     ratings = serializers.SerializerMethodField('get_ratings_aggregates')
     regions = RegionSerializer(read_only=True, source='get_regions')
+    release_notes = TranslationSerializerField(read_only=True,
+        source='current_version.releasenotes')
     resource_uri = serializers.HyperlinkedIdentityField(view_name='app-detail')
     slug = serializers.CharField(source='app_slug', required=False)
     status = serializers.IntegerField(read_only=True)

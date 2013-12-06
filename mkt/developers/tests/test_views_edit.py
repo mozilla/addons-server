@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 import tempfile
@@ -28,6 +29,7 @@ from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
+from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
 
@@ -181,7 +183,7 @@ class TestEditBasic(TestEdit):
     def get_dict(self, **kw):
         result = {'device_types': self.dtype, 'slug': 'NeW_SluG',
                   'description': 'New description with <em>html</em>!',
-                  'manifest_url': self.get_webapp().manifest_url,
+                  'manifest_url': self.webapp.manifest_url,
                   'categories': [self.cat.id]}
         result.update(**kw)
         return result
@@ -431,6 +433,33 @@ class TestEditBasic(TestEdit):
         eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
             'l10n menu not visible for %s' % url)
 
+    def test_edit_l10n(self):
+        data = {
+            'slug': self.webapp.app_slug,
+            'manifest_url': self.webapp.manifest_url,
+            'categories': [self.cat.id],
+            'description_en-us': u'Nêw english description',
+            'description_fr': u'Nëw french description',
+            'releasenotes_en-us': u'Nëw english release notes',
+            'releasenotes_fr': u'Nêw french release notes'
+        }
+        res = self.client.post(self.edit_url, data)
+        eq_(res.status_code, 200)
+        self.webapp = self.get_webapp()
+        version = self.webapp.current_version.reload()
+        desc_id = self.webapp.description_id
+        notes_id = version.releasenotes_id
+        eq_(self.webapp.description, data['description_en-us'])
+        eq_(version.releasenotes, data['releasenotes_en-us'])
+        eq_(unicode(Translation.objects.get(id=desc_id, locale='fr')),
+            data['description_fr'])
+        eq_(unicode(Translation.objects.get(id=desc_id, locale='en-us')),
+            data['description_en-us'])
+        eq_(unicode(Translation.objects.get(id=notes_id, locale='fr')),
+            data['releasenotes_fr'])
+        eq_(unicode(Translation.objects.get(id=notes_id, locale='en-us')),
+            data['releasenotes_en-us'])
+
     @mock.patch('mkt.developers.views._update_manifest')
     def test_refresh(self, fetch):
         self.client.login(username='steamcube@mozilla.com',
@@ -485,6 +514,51 @@ class TestEditBasic(TestEdit):
         # Now try to display edit page.
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
+
+    def test_view_release_notes(self):
+        version = self.webapp.current_version
+        version.releasenotes = u'Chëese !'
+        version.save()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        content = smart_unicode(res.content)
+        eq_(pq(content)('#releasenotes td span[lang]').html().strip(),
+            version.releasenotes)
+
+        self.webapp.update(is_packaged=True)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        content = smart_unicode(res.content)
+        eq_(pq(content)('#releasenotes').length, 0)
+
+    def test_edit_release_notes(self):
+        self.webapp.previews.create()
+        self.webapp.support_email = 'test@example.com'
+        self.webapp.save()
+        data = self.get_dict(releasenotes=u'I can hâz release notes')
+        res = self.client.post(self.edit_url, data)
+        releasenotes = self.webapp.current_version.reload().releasenotes
+        eq_(res.status_code, 200)
+        eq_(releasenotes, data['releasenotes'])
+
+    def test_edit_release_notes_packaged(self):
+        # You are not supposed to edit release notes from the basic edit
+        # page if you app is packaged. Instead this is done from the version
+        # edit page.
+        self.webapp.update(is_packaged=True)
+        data = self.get_dict(releasenotes=u'I can not hâz release notes')
+        res = self.client.post(self.edit_url, data)
+        releasenotes = self.webapp.current_version.reload().releasenotes
+        eq_(res.status_code, 200)
+        eq_(releasenotes, None)
+
+    def test_view_releasenotes_xss(self):
+        version = self.webapp.current_version
+        version.releasenotes = '<script>alert("xss-devname")</script>'
+        version.save()
+        r = self.client.get(self.url)
+        assert '<script>alert' not in r.content
+        assert '&lt;script&gt;alert' in r.content
 
 
 class TestEditCountryLanguage(TestEdit):

@@ -1408,6 +1408,8 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'price_tier': {'type': 'string',
                                    'index': 'not_analyzed'},
+                    'release_notes': {'type': 'string',
+                                      'index': 'not_analyzed'},
                     'ratings': {
                         'type': 'object',
                         'properties': {
@@ -1472,6 +1474,8 @@ class WebappIndexer(MappingType, Indexable):
                 _locale_field_mapping('name', analyzer))
             mapping[doc_type]['properties'].update(
                 _locale_field_mapping('description', analyzer))
+            mapping[doc_type]['properties'].update(
+                _locale_field_mapping('release_notes', analyzer))
 
         # TODO: reviewer flags (bug 848446)
 
@@ -1567,6 +1571,12 @@ class WebappIndexer(MappingType, Indexable):
         d['region_exclusions'] = obj.get_excluded_region_ids()
         d['reviewed'] = obj.versions.filter(
             deleted=False).aggregate(Min('reviewed')).get('reviewed__min')
+        if version:
+            amo.utils.attach_trans_dict(Version, [version])
+            d['release_notes'] = list(set(string for _, string
+                in version.translations[version.releasenotes_id]))
+        else:
+            d['release_notes'] = None
         d['support_email'] = (unicode(obj.support_email)
                               if obj.support_email else None)
         d['support_url'] = (unicode(obj.support_url)
@@ -1625,6 +1635,11 @@ class WebappIndexer(MappingType, Indexable):
                 set(string for locale, string
                     in translations[obj.description_id]
                     if locale.lower() in languages))
+            if version:
+                d['release_notes_' + analyzer] = list(
+                    set(string for locale, string
+                        in version.translations[version.releasenotes_id]
+                        if locale.lower() in languages))
 
         return d
 
