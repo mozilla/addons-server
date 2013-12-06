@@ -60,6 +60,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         self.addon = kw.pop('addon')
         self.user = kw.pop('user')
 
+        is_packaged = self.addon.is_packaged
+
         kw['initial'] = {
             'allow_inapp': self.addon.premium_type in amo.ADDON_INAPPS
         }
@@ -72,7 +74,10 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         super(PremiumForm, self).__init__(*args, **kw)
 
-        self.fields['paid_platforms'].choices = PAID_PLATFORMS(self.request)
+        self.fields['paid_platforms'].choices = PAID_PLATFORMS(self.request,
+                                                               is_packaged)
+        self.fields['free_platforms'].choices = FREE_PLATFORMS(self.request,
+                                                               is_packaged)
 
         if (self.is_paid() and not self.is_toggling()):
             # Require the price field if the app is premium and
@@ -87,7 +92,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         self.initial.setdefault('paid_platforms', [])
 
         for platform in set(x[0].split('-', 1)[1] for x in
-                            FREE_PLATFORMS() + PAID_PLATFORMS(self.request)):
+                            (FREE_PLATFORMS(self.request, is_packaged) +
+                             PAID_PLATFORMS(self.request, is_packaged))):
             supported = platform in supported_devices
             self.device_data['free-%s' % platform] = supported
             self.device_data['paid-%s' % platform] = supported

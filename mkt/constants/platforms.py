@@ -26,25 +26,49 @@ APP_PLATFORMS = [
 ]
 
 
-def FREE_PLATFORMS():
-    return (
+def FREE_PLATFORMS(request=None, is_packaged=False):
+    import waffle
+    platforms = (
         ('free-firefoxos', _('Firefox OS')),
-        ('free-desktop', _('Firefox')),
-        ('free-android-mobile', _('Firefox Mobile')),
-        ('free-android-tablet', _('Firefox Tablet')),
     )
 
+    android_packaged_enabled = (request and
+        waffle.flag_is_active(request, 'android-packaged'))
+    desktop_packaged_enabled = (request and
+        waffle.flag_is_active(request, 'desktop-packaged'))
 
-def PAID_PLATFORMS(request=None):
+    if not is_packaged or (is_packaged and desktop_packaged_enabled):
+        platforms += (
+            ('free-desktop', _('Firefox')),
+        )
+
+    if not is_packaged or (is_packaged and android_packaged_enabled):
+        platforms += (
+            ('free-android-mobile', _('Firefox Mobile')),
+            ('free-android-tablet', _('Firefox Tablet')),
+        )
+
+    return platforms
+
+
+def PAID_PLATFORMS(request=None, is_packaged=False):
     import waffle
     platforms = (
         ('paid-firefoxos', _('Firefox OS')),
     )
-    if request and waffle.flag_is_active(request, 'android-payments'):
-        platforms += (
-            ('paid-android-mobile', _('Firefox Mobile')),
-            ('paid-android-tablet', _('Firefox Tablet')),
-        )
+
+    android_payments_enabled = (request and
+        waffle.flag_is_active(request, 'android-payments'))
+    android_packaged_enabled = (request and
+        waffle.flag_is_active(request, 'android-packaged'))
+
+    if android_payments_enabled :
+        if not is_packaged or (is_packaged and android_packaged_enabled):
+            platforms += (
+                ('paid-android-mobile', _('Firefox Mobile')),
+                ('paid-android-tablet', _('Firefox Tablet')),
+            )
+
     return platforms
 
 
