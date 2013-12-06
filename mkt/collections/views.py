@@ -122,7 +122,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         return Response(serializer.data, status=status)
 
     @action()
-    def duplicate(self, request, pk=None):
+    def duplicate(self, request, *args, **kwargs):
         """
         Duplicate the specified collection, copying over all fields and apps.
         Anything passed in request.DATA will override the corresponding value
@@ -155,7 +155,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                                    collection=self.object)
 
     @action()
-    def add_app(self, request, pk=None):
+    def add_app(self, request, *args, **kwargs):
         """
         Add an app to the specified collection.
         """
@@ -173,7 +173,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         return self.return_updated(status.HTTP_200_OK)
 
     @action()
-    def remove_app(self, request, pk=None):
+    def remove_app(self, request, *args, **kwargs):
         """
         Remove an app from the specified collection.
         """
@@ -190,7 +190,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         return self.return_updated(status.HTTP_200_OK)
 
     @action()
-    def reorder(self, request, pk=None):
+    def reorder(self, request, *args, **kwargs):
         """
         Reorder the specified collection.
         """
@@ -232,16 +232,16 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
             raise ParseError(detail=self.exceptions['wrong_user_format'])
 
     @link(permission_classes=[StrictCuratorAuthorization])
-    def curators(self, request, pk=None):
+    def curators(self, request, *args, **kwargs):
         return self.serialized_curators()
 
     @action(methods=['POST'])
-    def add_curator(self, request, pk=None):
+    def add_curator(self, request, *args, **kwargs):
         self.get_object().add_curator(self.get_curator(request))
         return self.serialized_curators(no_cache=True)
 
     @action(methods=['POST'])
-    def remove_curator(self, request, pk=None):
+    def remove_curator(self, request, *args, **kwargs):
         removed = self.get_object().remove_curator(self.get_curator(request))
         if not removed:
             return Response(status=status.HTTP_205_RESET_CONTENT)
@@ -258,14 +258,14 @@ class CollectionImageViewSet(CORSMixin, MarketplaceView,
                               RestAnonymousAuthentication]
     cors_allowed_methods = ('get', 'put', 'delete')
 
-    def retrieve(self, request, pk=None):
+    def retrieve(self, request, *args, **kwargs):
         obj = self.get_object()
         if not obj.has_image:
             raise Http404
         return HttpResponseSendFile(request, obj.image_path(),
                                     content_type='image/png')
 
-    def update(self, request, *a, **kw):
+    def update(self, request, *args, **kwargs):
         obj = self.get_object()
         try:
             img = DataURLImageField().from_native(request.read())
