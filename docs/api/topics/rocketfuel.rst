@@ -23,21 +23,9 @@ A collection is a group of applications
 
 .. note::
 
-    When dealing with Collections in the API, translatable fields (currently
-    name, description) are returned by default as an object containing all
-    translations, with languages as keys:
-
-    .. code-block:: json
-
-        {
-            "en-US": "Games",
-            "fr": "Jeux",
-            "kn": "ಆಟಗಳು"
-        }
-
-    If you pass the `lang` parameter to a `GET` request, then then only the most
-    relevant translation (the specified language or the fallback, depending on
-    whether a translation is available) will be returned as a string.
+    The `name` and `description` fields are user-translated fields and have
+    a dynamic type depending on the query.
+    See :ref:`translations <overview-translations>`.
 
 
 Listing
@@ -110,17 +98,13 @@ Create
     :type category: int|null
     :param collection_type: the type of collection to create.
     :type collection_type: int
-    :param description: a description of the collection. Can be a dict, in which
-        case keys are languages and values are each a translation for the
-        corresponding language.
-    :type description: string|dict
+    :param description: a description of the collection.
+    :type description: string|object
     :param is_public: an indication of whether the collection should be
         displayed in consumer-facing pages. Defaults to ``false``.
     :type is_public: boolean
-    :param name: the name of the collection. Can be a dict, in which case keys
-        are languages and values are each a translation for the corresponding
-        language.
-    :type name: string|dict
+    :param name: the name of the collection.
+    :type name: string|object
     :param region: the ID of the region to attach this collection to. Defaults
         to ``null``.
     :type region: int|null
@@ -171,14 +155,10 @@ Update
     :type category: int|null
     :param collection_type: the type of the collection.
     :type collection_type: int
-    :param description: a description of the collection. Can be a dict, in which
-        case keys are languages and values are each a translation for the
-        corresponding language.
-    :type description: string|dict
-    :param name: the name of the collection. Can be a dict, in which case keys
-        are languages and values are each a translation for the corresponding
-        language.
-    :type name: string|dict
+    :param description: a description of the collection.
+    :type description: string|object
+    :param name: the name of the collection.
+    :type name: string|object
     :param region: the ID of the region to attach this collection to.
     :type region: int|null
     :param slug: a slug to use in URLs for the collection.
@@ -226,14 +206,10 @@ Duplicate
     :type category: int|null
     :param collection_type: the type of the collection.
     :type collection_type: int
-    :param description: a description of the collection. Can be a dict, in which
-        case keys are languages and values are each a translation for the
-        corresponding language.
-    :type description: string|dict
-    :param name: the name of the collection. Can be a dict, in which case keys
-        are languages and values are each a translation for the corresponding
-        language.
-    :type name: string|dict
+    :param description: a description of the collection.
+    :type description: string|object
+    :param name: the name of the collection.
+    :type name: string|object
     :param region: the ID of the region to attach this collection to.
     :type region: int|null
     :param slug: a slug to use in URLs for the collection.
