@@ -8,7 +8,7 @@ from reviews.models import Review, ReviewFlag
 from mkt.account.serializers import AccountSerializer
 from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
 from mkt.api.exceptions import Conflict
-from mkt.regions import get_region, REGIONS_DICT
+from mkt.regions import REGIONS_DICT, get_region
 from mkt.versions.api import SimpleVersionSerializer
 from mkt.webapps.models import Webapp
 
@@ -60,25 +60,16 @@ class RatingSerializer(serializers.ModelSerializer):
         return (not self.get_is_author(obj) and
                 obj.reviewflag_set.filter(user=self.request.amo_user).exists())
 
-    @classmethod
-    def get_app_from_value(cls, value):
-        try:
-            app = Webapp.objects.valid().get(id=value)
-        except (Webapp.DoesNotExist, ValueError):
-            try:
-                app = Webapp.objects.valid().get(app_slug=value)
-            except Webapp.DoesNotExist:
-                raise serializers.ValidationError('Invalid app')
-        if not app.listed_in(region=REGIONS_DICT[get_region()]):
-            raise serializers.ValidationError(
-                'App not available in this region')
-        return app
-
     def validate(self, attrs):
         attrs['user'] = self.request.amo_user
         attrs['ip_address'] = self.request.META.get('REMOTE_ADDR', '')
 
         if not getattr(self, 'object'):
+            # If we are creating a rating, then we need to do various checks on
+            # the app. Because these checks need the version as well, we have
+            # to do them here and not in validate_app().
+
+            # If the app is packaged, add in the current version.
             if attrs['addon'].is_packaged:
                 attrs['version'] = attrs['addon'].current_version
 
@@ -88,11 +79,14 @@ class RatingSerializer(serializers.ModelSerializer):
             qs = self.context['view'].queryset.filter(addon=app, user=amo_user)
             if app.is_packaged:
                 qs = qs.filter(version=attrs['version'])
-
             if qs.exists():
                 raise Conflict('You have already reviewed this app.')
 
-            # Return 403 if the user is attempting to review their own app:
+            # Return 403 is the app is not public.
+            if not app.is_public():
+                raise PermissionDenied('The app requested is not public.')
+
+            # Return 403 if the user is attempting to review their own app.
             if app.has_author(amo_user):
                 raise PermissionDenied('You may not review your own app.')
 
@@ -100,13 +94,18 @@ class RatingSerializer(serializers.ModelSerializer):
             if app.is_premium() and not app.is_purchased(amo_user):
                 raise PermissionDenied("You may not review paid apps you "
                                        "haven't purchased.")
+
+            # Return 403 if the app is not available in the current region.
+            current_region = get_region()
+            if not app.listed_in(region=REGIONS_DICT[current_region]):
+                raise PermissionDenied('App not available in region "%s".' %
+                                       current_region)
+
         return attrs
 
     def validate_app(self, attrs, source):
-        if not getattr(self, 'object'):
-            app = attrs[source]
-            attrs[source] = RatingSerializer.get_app_from_value(app.pk)
-        else:
+        # Don't allow users to change the app on an existing rating.
+        if getattr(self, 'object'):
             attrs[source] = self.object.addon
         return attrs
 

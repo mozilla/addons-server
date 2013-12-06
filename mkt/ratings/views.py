@@ -1,15 +1,16 @@
 from django.core.paginator import Paginator
+from django.http import Http404
 
 import commonware.log
 from rest_framework.decorators import action
 from rest_framework.exceptions import (MethodNotAllowed, NotAuthenticated,
-                                       ParseError)
+                                       PermissionDenied)
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.serializers import ValidationError
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 import amo
+from access.acl import check_addon_ownership
 from lib.metrics import record_action
 from reviews.models import Review, ReviewFlag
 
@@ -20,6 +21,8 @@ from mkt.api.authorization import (AnyOf, AllowOwner, AllowRelatedAppOwner,
                                    ByHttpMethod, GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.ratings.serializers import RatingFlagSerializer, RatingSerializer
+from mkt.regions import REGIONS_DICT, get_region
+from mkt.webapps.models import Webapp
 
 
 log = commonware.log.getLogger('z.api')
@@ -99,9 +102,19 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
 
     def get_app(self, ident):
         try:
-            return self.serializer_class.get_app_from_value(ident)
-        except ValidationError as e:
-            raise ParseError(detail=e.messages[0])
+            app = Webapp.objects.by_identifier(ident)
+        except Webapp.DoesNotExist:
+            raise Http404
+        current_region = get_region()
+        if ((not app.is_public()
+             or not app.listed_in(region=REGIONS_DICT[current_region]))
+             and not check_addon_ownership(self.request, app)):
+            # App owners and admin can see the app even if it's not public
+            # or not available in the current region. Regular users or
+            # anonymous users can't.
+            raise PermissionDenied('The app requested is not public or not '
+                'available in region "%s".' % current_region)
+        return app
 
     def list(self, request, *args, **kwargs):
         response = super(RatingViewSet, self).list(request, *args, **kwargs)
@@ -132,7 +145,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
                       (obj.pk, self.request.amo_user.id))
 
     def partial_update(self, *args, **kwargs):
-        # We don't need/want PATCH.
+        # We don't need/want PATCH for now.
         raise MethodNotAllowed('PATCH is not supported for this endpoint.')
 
     def get_extra_data(self, app, amo_user):
