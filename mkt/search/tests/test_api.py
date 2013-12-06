@@ -152,14 +152,21 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(res.status_code, 400)
 
     def test_sort(self):
+        # Mocked version, to make sure we are calling ES with the parameters
+        # we want.
         with patch('mkt.webapps.models.Webapp.from_search') as mocked_search:
             mocked_qs = MagicMock()
             mocked_search.return_value = mocked_qs
-
             for api_sort, es_sort in DEFAULT_SORTING.items():
                 res = self.client.get(self.url, [('sort', api_sort)])
                 eq_(res.status_code, 200, res.content)
                 mocked_qs.order_by.assert_called_with(es_sort)
+
+        # Unmocked version, to make sure elasticsearch is actually accepting
+        # the params.
+        for api_sort, es_sort in DEFAULT_SORTING.items():
+            res = self.client.get(self.url, [('sort', api_sort)])
+            eq_(res.status_code, 200)
 
     def test_right_category(self):
         res = self.client.get(self.url, data={'cat': self.category.pk})
