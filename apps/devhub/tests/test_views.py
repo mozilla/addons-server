@@ -2986,7 +2986,7 @@ class TestRequestReview(amo.tests.TestCase):
     fixtures = ['base/users', 'base/platforms']
 
     def setUp(self):
-        self.addon = Addon.objects.create(type=1, name='xxx')
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='xxx')
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,
                                         platform_id=amo.PLATFORM_ALL.id)
@@ -3083,6 +3083,34 @@ class TestRequestReview(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         eq_(self.get_version().nomination.timetuple()[0:5],
             orig_date.timetuple()[0:5])
+
+
+class TestDeleteVersion(amo.tests.TestCase):
+    fixtures = ['base/users', 'base/platforms']
+
+    def setUp(self):
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='xxx')
+        self.version = Version.objects.create(addon=self.addon)
+        self.file = File.objects.create(version=self.version,
+                                        platform_id=amo.PLATFORM_ALL.id,
+                                        status=amo.STATUS_PUBLIC)
+        self.url = reverse('devhub.versions.delete', args=[self.addon.slug])
+        self.login('admin@mozilla.com')
+
+    def test_delete_version(self):
+        self.client.post(self.url, {'version_id': self.version.id,
+                                    'addon_id': self.addon.id})
+
+        assert not Version.objects.filter(id=self.version.id).exists()
+
+    def test_disable_version(self):
+        self.client.post(self.url, {'version_id': self.version.id,
+                                    'addon_id': self.addon.id,
+                                    'disable_version': ''})
+
+        assert Version.objects.filter(id=self.version.id).exists()
+        self.file.reload()
+        eq_(self.file.status, amo.STATUS_DISABLED)
 
 
 class TestRedirects(amo.tests.TestCase):

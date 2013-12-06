@@ -1369,8 +1369,12 @@ def _get_file_history(version):
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    messages.success(request, _('Version %s deleted.') % version.version)
-    version.delete()
+    if 'disable_version' in request.POST:
+        messages.success(request, _('Version %s disabled.') % version.version)
+        version.files.update(status=amo.STATUS_DISABLED)
+    else:
+        messages.success(request, _('Version %s deleted.') % version.version)
+        version.delete()
     return redirect(addon.get_dev_url('versions'))
 
 
