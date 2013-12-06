@@ -504,11 +504,11 @@ class TestCollectionViewSetDetail(BaseCollectionViewSetTest):
     Tests the handling of GET requests to a single collection on
     CollectionViewSet.
     """
-    def detail(self, client, url=None):
+    def detail(self, client, collection_id=None):
         self.create_apps(number=2)
         self.add_apps_to_collection(*self.apps)
-        if not url:
-            url = self.collection_url('detail', self.collection.pk)
+        url = self.collection_url('detail',
+                                  collection_id or self.collection.pk)
         res = client.get(url)
         data = json.loads(res.content)
         eq_(res.status_code, 200)
@@ -545,9 +545,11 @@ class TestCollectionViewSetDetail(BaseCollectionViewSetTest):
         res, data = self.detail(self.anon)
         ok_(data['image'])
 
-    def test_detail_slug_in_url(self):
-        self.detail(self.anon,
-            url=self.collection_url('detail', self.collection.slug))
+    def test_detail_slug(self):
+        self.detail(self.client, collection_id=self.collection.slug)
+
+    def test_detail_slug_anon(self):
+        self.detail(self.anon, collection_id=self.collection.slug)
 
     def test_detail_no_perms(self):
         self.detail(self.client)
@@ -728,6 +730,13 @@ class TestCollectionViewSetDelete(BaseCollectionViewSetTest):
         eq_(res.status_code, 204)
         ok_(not data)
 
+    def test_delete_slug(self):
+        self.make_publisher()
+        res, data = self.delete(self.client,
+                                collection_id=self.collection.slug)
+        eq_(res.status_code, 204)
+        ok_(not data)
+
     def test_delete_nonexistent(self):
         self.make_publisher()
         res, data = self.delete(self.client, collection_id=100000)
@@ -738,10 +747,11 @@ class TestCollectionViewSetDuplicate(BaseCollectionViewSetTest):
     """
     Tests the `duplicate` action on CollectionViewSet.
     """
-    def duplicate(self, client, data=None):
+    def duplicate(self, client, data=None, collection_id=None):
         if not data:
             data = {}
-        url = self.collection_url('duplicate', self.collection.pk)
+        url = self.collection_url('duplicate',
+                                  collection_id or self.collection.pk)
         res = client.post(url, json.dumps(data))
         data = json.loads(res.content)
         return res, data
@@ -792,6 +802,12 @@ class TestCollectionViewSetDuplicate(BaseCollectionViewSetTest):
         eq_(data['description'], self.collection_data['description'])
         eq_(new_collection.description, data['description']['en-US'])
         eq_(new_collection.description, original.description)
+
+    def test_duplicate_slug(self):
+        self.make_publisher()
+        res, data = self.duplicate(self.client,
+                                   collection_id=self.collection.slug)
+        eq_(res.status_code, 201)
 
     def test_duplicate_apps(self):
         self.make_publisher()
@@ -857,31 +873,34 @@ class CollectionViewSetChangeAppsMixin(BaseCollectionViewSetTest):
     Mixin containing common methods to actions that modify the apps belonging
     to a collection.
     """
-    def add_app(self, client, app_id=None):
+    def add_app(self, client, app_id=None, collection_id=None):
         if app_id is None:
             self.create_apps()
             app_id = self.apps[0].pk
         form_data = {'app': app_id} if app_id else {}
-        url = self.collection_url('add-app', self.collection.pk)
+        url = self.collection_url('add-app',
+                                  collection_id or self.collection.pk)
         res = client.post(url, json.dumps(form_data))
         data = json.loads(res.content)
         return res, data
 
-    def remove_app(self, client, app_id=None):
+    def remove_app(self, client, app_id=None, collection_id=None):
         if app_id is None:
             self.create_apps(number=2)
             app_id = self.apps[0].pk
         form_data = {'app': app_id} if app_id else {}
-        url = self.collection_url('remove-app', self.collection.pk)
+        url = self.collection_url('remove-app',
+                                  collection_id or self.collection.pk)
         remove_res = client.post(url, json.dumps(form_data))
         remove_data = (json.loads(remove_res.content)
                        if remove_res.content else None)
         return remove_res, remove_data
 
-    def reorder(self, client, order=None):
+    def reorder(self, client, order=None, collection_id=None):
         if order is None:
             order = {}
-        url = self.collection_url('reorder', self.collection.pk)
+        url = self.collection_url('reorder',
+                                  collection_id or self.collection.pk)
         res = client.post(url, json.dumps(order))
         data = json.loads(res.content)
         return res, data
@@ -902,14 +921,26 @@ class TestCollectionViewSetAddApp(CollectionViewSetChangeAppsMixin):
         eq_(PermissionDenied.default_detail, data['detail'])
 
     def test_add_app_has_perms(self):
+        eq_(list(self.collection.apps()), [])
         self.make_publisher()
         res, data = self.add_app(self.client)
         eq_(res.status_code, 200)
+        eq_(list(self.collection.apps()), [self.apps[0]])
+
+    def test_add_app_slug(self):
+        eq_(list(self.collection.apps()), [])
+        self.make_publisher()
+        res, data = self.add_app(self.client,
+                                 collection_id=self.collection.slug)
+        eq_(res.status_code, 200)
+        eq_(list(self.collection.apps()), [self.apps[0]])
 
     def test_add_app_curator(self):
+        eq_(list(self.collection.apps()), [])
         self.make_curator()
         res, data = self.add_app(self.client)
         eq_(res.status_code, 200)
+        eq_(list(self.collection.apps()), [self.apps[0]])
 
     def test_add_app_nonexistent(self):
         self.make_publisher()
@@ -949,6 +980,14 @@ class TestCollectionViewSetRemoveApp(CollectionViewSetChangeAppsMixin):
         self.make_publisher()
         self.add_app(self.client)
         res, data = self.remove_app(self.client)
+        eq_(res.status_code, 200)
+        eq_(len(data['apps']), 0)
+
+    def test_remove_app_slug(self):
+        self.make_publisher()
+        self.add_app(self.client)
+        res, data = self.remove_app(self.client,
+                                    collection_id=self.collection.slug)
         eq_(res.status_code, 200)
         eq_(len(data['apps']), 0)
 
@@ -1010,6 +1049,18 @@ class TestCollectionViewSetReorderApps(CollectionViewSetChangeAppsMixin):
             app_pk = new_order[order]
             eq_(Webapp.objects.get(pk=app_pk).app_slug, app['slug'])
 
+    def test_reorder_slug(self):
+        self.make_publisher()
+        self.create_apps()
+        self.add_apps_to_collection(*self.apps)
+        new_order = self.random_app_order()
+        res, data = self.reorder(self.client, order=new_order,
+                                 collection_id=self.collection.slug)
+        eq_(res.status_code, 200)
+        for order, app in enumerate(data['apps']):
+            app_pk = new_order[order]
+            eq_(Webapp.objects.get(pk=app_pk).app_slug, app['slug'])
+
     def test_reorder_curator(self):
         self.make_curator()
         self.create_apps()
@@ -1039,8 +1090,9 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
     Tests the handling of PATCH requests to a single collection on
     CollectionViewSet.
     """
-    def edit_collection(self, client, **kwargs):
-        url = self.collection_url('detail', self.collection.pk)
+    def edit_collection(self, client, collection_id=None, **kwargs):
+        url = self.collection_url('detail',
+                                  collection_id or self.collection.pk)
         res = client.patch(url, json.dumps(kwargs))
         data = json.loads(res.content)
         return res, data
@@ -1057,6 +1109,21 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
             'name': u'Allö',
         }
         res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 200)
+        self.collection.reload()
+        for key, value in updates.iteritems():
+            eq_(data[key], {'en-US': value})
+            eq_(getattr(self.collection, key), value)
+
+    def test_edit_collection_name_and_description_slug(self):
+        self.make_publisher()
+        updates = {
+            'description': u'¿Dónde está la biblioteca?',
+            'name': u'Allö',
+        }
+        res, data = self.edit_collection(self.client,
+                                         collection_id=self.collection.slug,
+                                         **updates)
         eq_(res.status_code, 200)
         self.collection.reload()
         for key, value in updates.iteritems():
@@ -1344,9 +1411,10 @@ class TestCollectionViewSetListCurators(BaseCollectionViewSetTest):
     """
     Tests the `curators` action on CollectionViewSet.
     """
-    def list_curators(self, client):
+    def list_curators(self, client, collection_id=None):
         self.collection.add_curator(self.user2)
-        url = self.collection_url('curators', self.collection.pk)
+        url = self.collection_url('curators',
+                                  collection_id or self.collection.pk)
         res = client.get(url)
         data = json.loads(res.content)
         return res, data
@@ -1359,6 +1427,14 @@ class TestCollectionViewSetListCurators(BaseCollectionViewSetTest):
     def test_list_curators_has_perms(self):
         self.make_publisher()
         res, data = self.list_curators(self.client)
+        eq_(res.status_code, 200)
+        eq_(len(data), 1)
+        eq_(data[0]['id'], self.user2.pk)
+
+    def test_list_curators_slug(self):
+        self.make_publisher()
+        res, data = self.list_curators(self.client,
+                                       collection_id=self.collection.slug)
         eq_(res.status_code, 200)
         eq_(len(data), 1)
         eq_(data[0]['id'], self.user2.pk)
@@ -1376,11 +1452,12 @@ class TestCollectionViewSetAddCurator(BaseCollectionViewSetTest):
     """
     Tests the `add-curator` action on CollectionViewSet.
     """
-    def add_curator(self, client, user_id=None):
+    def add_curator(self, client, collection_id=None, user_id=None):
         if user_id is None:
             user_id = self.user.pk
         form_data = {'user': user_id} if user_id else {}
-        url = self.collection_url('add-curator', self.collection.pk)
+        url = self.collection_url('add-curator',
+                                  collection_id or self.collection.pk)
         res = client.post(url, json.dumps(form_data))
         data = json.loads(res.content)
         return res, data
@@ -1398,6 +1475,13 @@ class TestCollectionViewSetAddCurator(BaseCollectionViewSetTest):
     def test_add_curator_has_perms(self):
         self.make_publisher()
         res, data = self.add_curator(self.client)
+        eq_(res.status_code, 200)
+        eq_(data[0]['id'], self.user.pk)
+
+    def test_add_curator_slug(self):
+        self.make_publisher()
+        res, data = self.add_curator(self.client,
+                                     collection_id=self.collection.slug)
         eq_(res.status_code, 200)
         eq_(data[0]['id'], self.user.pk)
 
@@ -1451,7 +1535,7 @@ class TestCollectionViewSetRemoveCurator(BaseCollectionViewSetTest):
     """
     Tests the `remove-curator` action on CollectionViewSet.
     """
-    def remove_curator(self, client, user_id=None):
+    def remove_curator(self, client, collection_id=None, user_id=None):
         if user_id is None:
             user_id = self.user.pk
         form_data = {'user': user_id} if user_id else {}
@@ -1473,6 +1557,12 @@ class TestCollectionViewSetRemoveCurator(BaseCollectionViewSetTest):
     def test_remove_curator_has_perms(self):
         self.make_publisher()
         res, data = self.remove_curator(self.client)
+        eq_(res.status_code, 205)
+
+    def test_remove_curator_slug(self):
+        self.make_publisher()
+        res, data = self.remove_curator(self.client,
+                                        collection_id=self.collection.slug)
         eq_(res.status_code, 205)
 
     def test_remove_curator_as_curator(self):
@@ -1531,7 +1621,9 @@ class TestCollectionImageViewSet(RestOAuth):
         self.collection.update(has_image=True)
         return path
 
-    def test_put(self):
+    def test_put(self, url=None):
+        if url is None:
+            url = self.url
         self.grant_permission(self.profile, 'Collections:Curate')
         res = self.client.put(self.url, 'data:image/gif;base64,' + IMAGE_DATA)
         eq_(res.status_code, 204)
@@ -1540,6 +1632,11 @@ class TestCollectionImageViewSet(RestOAuth):
         im = Image.open(self.collection.image_path())
         im.verify()
         assert im.format == 'PNG'
+
+    def test_put_slug(self):
+        url = reverse('collection-image-detail',
+                      kwargs={'pk': self.collection.slug})
+        self.test_put(url)
 
     def test_put_non_data_uri(self):
         self.grant_permission(self.profile, 'Collections:Curate')
@@ -1568,13 +1665,18 @@ class TestCollectionImageViewSet(RestOAuth):
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
 
-    def test_delete(self):
+    def test_delete(self, url=None):
         self.grant_permission(self.profile, 'Collections:Curate')
         img_path = self.add_img()
         res = self.client.delete(self.url)
         eq_(res.status_code, 204)
         ok_(not self.collection.reload().has_image)
         ok_(not storage.exists(img_path))
+
+    def test_delete_slug(self):
+        url = reverse('collection-image-detail',
+                      kwargs={'pk': self.collection.slug})
+        self.test_delete(url)
 
     def test_delete_unauthorized(self):
         res = self.client.delete(self.url)
