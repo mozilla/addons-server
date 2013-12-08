@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-04 09:07-0700\n"
-"PO-Revision-Date: 2013-12-01 07:37+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2013-12-08 09:11+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385883448.0\n"
+"X-POOTLE-MTIME: 1386493901.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -15594,7 +15594,7 @@ msgstr "您至少应该上传一个截屏或视频。"
 
 #: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr ""
+msgstr "封装应用文件体积过大，必须小于 %s 才能提交。"
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."
@@ -15871,7 +15871,7 @@ msgstr "Bango"
 
 #: mkt/developers/providers.py:142
 msgid "Reference Implementation"
-msgstr ""
+msgstr "引用工具"
 
 #: mkt/developers/tasks.py:347
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -16968,7 +16968,7 @@ msgstr "改为免费时您的应用需要再次审核。"
 
 #: mkt/developers/templates/developers/payments/premium.html:80
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
+msgstr "付费模式的应用仅支持："
 
 #: mkt/developers/templates/developers/payments/premium.html:81 mkt/developers/templates/developers/payments/premium.html:83 mkt/submit/templates/submit/manifest.html:44
 msgid "Paid / In-app"
@@ -17074,7 +17074,7 @@ msgstr "没有免费应用"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
-msgstr ""
+msgstr "协议条款"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
 msgid "Agree to the Terms"
@@ -17082,7 +17082,7 @@ msgstr "同意条款"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
-msgstr ""
+msgstr "提供者"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14 mkt/developers/templates/developers/payments/includes/account_list.html:48
 msgid "Modify"
