@@ -533,13 +533,13 @@ class TestWebapp(amo.tests.TestCase):
 
         # Create.
         app.set_descriptors([
-            'has_classind_drugs', 'has_pegi_scary', 'has_generic_drug_ref'
+            'has_classind_drugs', 'has_pegi_scary', 'has_generic_drugs'
         ])
         eq_(RatingDescriptors.objects.count(), 1)
         descriptors = RatingDescriptors.objects.get(addon=app)
         assert descriptors.has_classind_drugs
         assert descriptors.has_pegi_scary
-        assert descriptors.has_generic_drug_ref
+        assert descriptors.has_generic_drugs
         assert not descriptors.has_esrb_blood
 
         # Update.
@@ -551,7 +551,7 @@ class TestWebapp(amo.tests.TestCase):
         assert descriptors.has_esrb_blood
         assert descriptors.has_classind_drugs
         assert not descriptors.has_pegi_scary
-        assert not descriptors.has_generic_drug_ref
+        assert not descriptors.has_generic_drugs
 
     def test_set_interactives(self):
         app = app_factory()

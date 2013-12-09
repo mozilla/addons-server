@@ -63,7 +63,7 @@ App
                 },
                 "descriptors": [
                     "esrb": [{"label": "esrb-scary", "name": "Scary Themes"}],
-                    "generic": [{"label": "generic-intense-violence", "name": "Intense Violence"}]
+                    "generic": [{"label": "generic-scary", "name": "Fear"}]
                 ],
                 "interactive_elements": [
                     {"label": "users-interact", "name": "Users Interact"},

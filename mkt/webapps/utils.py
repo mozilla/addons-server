@@ -245,9 +245,8 @@ def dehydrate_descriptors(keys):
     for key in keys:
         obj = mkt.ratingdescriptors.RATING_DESCS.get(key)
         if obj:
-            key = key.lower().replace('_', '-')  # Slugify.
-            body = key.split('-')[0]
-            label = key.replace('%s-' % body, '')  # Remove body prefix.
+            # Slugify and remove body prefix.
+            body, label = key.lower().replace('_', '-').split('-', 1)
             results[body].append({
                 'label': label,
                 'name': unicode(obj['name']),
