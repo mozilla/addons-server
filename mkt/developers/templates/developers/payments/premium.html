@@ -55,8 +55,10 @@
           <div class="free tab {{ 'active' if not is_paid }}">
             <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
             <div class="error">{{ form.errors.free_platforms }}</div>
-            {%- for item in form.fields['free_platforms'].choices -%}
-              {{ button(form, item, can_change=not is_paid) }}
+            {% set free_platforms = form.fields['free_platforms'].choices %}
+            {% set has_multiple_free_platforms = free_platforms|length > 1 %}
+            {%- for item in free_platforms -%}
+              {{ button(form, item, can_change=has_multiple_free_platforms and not is_paid) }}
             {%- endfor %}
             {% if is_paid %}
               <div id="free-tab-save" class="update-payment-type">

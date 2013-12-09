@@ -832,6 +832,76 @@ class TestPayments(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], True)
 
+    def test_cannot_be_paid_pkg_with_desktop_pkg(self):
+        self.create_flag('desktop-packaged')
+        self.webapp.update(is_packaged=True)
+        for device_type in (amo.DEVICE_GAIA,
+                            amo.DEVICE_DESKTOP):
+            self.webapp.addondevicetype_set.get_or_create(
+                device_type=device_type.id)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['cannot_be_paid'], True)
+
+    def test_cannot_be_paid_pkg_without_desktop_pkg(self):
+        self.webapp.update(is_packaged=True)
+        self.webapp.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['cannot_be_paid'], False)
+
+    def test_cannot_be_paid_pkg_with_android_pkg_no_android_payments(self):
+        self.create_flag('android-packaged')
+        self.webapp.update(is_packaged=True)
+        for device_type in (amo.DEVICE_GAIA,
+                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+            self.webapp.addondevicetype_set.get_or_create(
+                device_type=device_type.id)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['cannot_be_paid'], True)
+
+    def test_cannot_be_paid_pkg_with_android_pkg_w_android_payments(self):
+        self.create_flag('android-packaged')
+        self.create_flag('android-payments')
+        self.webapp.update(is_packaged=True)
+        for device_type in (amo.DEVICE_GAIA,
+                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+            self.webapp.addondevicetype_set.get_or_create(
+                device_type=device_type.id)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['cannot_be_paid'], False)
+
+    def test_no_desktop_if_no_packaged_desktop_flag(self):
+        self.webapp.update(is_packaged=True)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#free-desktop')), 0)
+
+    def test_no_android_if_no_packaged_android_flag(self):
+        self.webapp.update(is_packaged=True)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#free-android-mobile')), 0)
+        eq_(len(pqr('#free-android-tablet')), 0)
+
+    def test_desktop_if_packaged_desktop_flag_is_set(self):
+        self.create_flag('desktop-packaged')
+        self.webapp.update(is_packaged=True)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#free-desktop')), 1)
+
+    def test_android_if_packaged_android_flag_is_set(self):
+        self.create_flag('android-packaged')
+        self.webapp.update(is_packaged=True)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#free-android-mobile')), 1)
+        eq_(len(pqr('#free-android-tablet')), 1)
+
 
 class TestRegions(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
