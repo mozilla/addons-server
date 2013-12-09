@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
 
-from django.contrib.auth.models import AnonymousUser
-
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -11,8 +9,6 @@ from addons.models import Addon
 from addons.tests.test_views import TestPersonas
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
-from market.models import PreApprovalUser
 from users.helpers import (addon_users_list, emaillink, user_data, user_link,
                            users_list)
 from users.models import UserProfile, RequestUser
@@ -104,32 +100,3 @@ class TestAddonUsersList(TestPersonas, amo.tests.TestCase):
 def test_user_data():
     u = user_data(RequestUser(username='foo', pk=1))
     eq_(u['anonymous'], False)
-    eq_(u['pre_auth'], False)
-
-
-class TestUserData(amo.tests.TestCase):
-
-    def test_user_data_approved(self):
-        up = UserProfile.objects.create(email='aq@a.com', username='foo')
-        PreApprovalUser.objects.create(user=up, paypal_key='asd')
-        eq_(user_data(RequestUser.objects.get(pk=up.pk)),
-            {'anonymous': False, 'pre_auth': True, 'currency': 'USD',
-             'email': 'aq@a.com'})
-
-    def test_no_user_data(self):
-        eq_(user_data(None),
-            {'anonymous': True, 'pre_auth': False, 'currency': 'USD',
-             'email': ''})
-
-    def test_anonymous_user_data(self):
-        eq_(user_data(AnonymousUser()),
-            {'anonymous': True, 'pre_auth': False, 'currency': 'USD',
-             'email': ''})
-
-    def test_preapproval_user_data(self):
-        up = UserProfile.objects.create(email='aq@a.com', username='foo')
-        PreApprovalUser.objects.create(user=up, paypal_key='asd',
-                                       currency='EUR')
-        eq_(user_data(RequestUser.objects.get(pk=up.pk)),
-            {'anonymous': False, 'pre_auth': True, 'currency': 'EUR',
-             'email': 'aq@a.com'})

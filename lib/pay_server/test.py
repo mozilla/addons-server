@@ -164,34 +164,6 @@ class TestPay(test_utils.TestCase):
         assert 'uuid' in kwargs
         assert kwargs['uuid']in kwargs['return_url']
 
-    @patch.object(client, 'post_pay')
-    def test_pay_not_preapproval(self, post_pay):
-        post_pay.side_effect = client.Error('nope', code='0')
-        with self.assertRaises(client.Error):
-            client.pay(self.data)
-        # It did not retry because this is not a pre-approval error.
-        eq_(post_pay.call_count, 1)
-
-    @patch.object(client, 'post_pay')
-    def test_pay_preapproval_no_retry(self, post_pay):
-        post_pay.side_effect = client.Error('nope', code='539012')
-        with self.assertRaises(client.Error):
-            client.pay(self.data, retry=False)
-        eq_(post_pay.call_count, 1)
-        args = post_pay.call_args_list[0][1]
-        eq_(args['data']['use_preapproval'], True)
-
-    @patch.object(client, 'post_pay')
-    def test_pay_preapproval(self, post_pay):
-        post_pay.side_effect = client.Error('nope', code='539012')
-        with self.assertRaises(client.Error):
-            data = self.data
-            data['buyer'] = self.user
-            client.pay(data)
-        eq_(post_pay.call_count, 2)
-        args = post_pay.call_args_list[1][1]
-        eq_(args['data']['use_preapproval'], False)
-
     @patch.object(settings, 'SITE_URL', 'http://foo.com')
     @patch.object(client, 'post_pay')
     def test_pay_non_absolute_url(self, post_pay):

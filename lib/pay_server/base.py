@@ -43,7 +43,6 @@ mapping = {
     # PayPal APIs
     'account_check': ['paypal', 'account-check', ['post']],
     'ipn': ['paypal', 'ipn', ['post']],
-    'preapproval': ['paypal', 'preapproval', ['post', 'put', 'delete']],
     'pay': ['paypal', 'pay', ['post']],
     'pay_check': ['paypal', 'pay-check', ['post']],
     'permission_url': ['paypal', 'permission-url', ['post']],

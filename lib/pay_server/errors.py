@@ -16,9 +16,3 @@ codes = {
 
 def lookup(code, data):
     return codes.get(str(code), codes.get('0')) % data
-
-# See the PayPal docs for information on these codes: http://bit.ly/vWV525
-pre_approval_codes = ['539012', '569013', '569016', '569017', '569018',
-                      '569019', '579010', '579014', '579024', '579025',
-                      '579026', '579027', '579028', '579030', '579031',
-                      '589019']

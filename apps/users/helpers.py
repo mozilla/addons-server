@@ -106,10 +106,5 @@ def user_data(amo_user):
         anonymous = amo_user.is_anonymous()
     if not anonymous:
         email = amo_user.email
-        preapproval = amo_user.get_preapproval()
-        if preapproval:
-            pre_auth = bool(preapproval.paypal_key)
-            currency = preapproval.currency if preapproval.currency else 'USD'
 
-    return {'anonymous': anonymous, 'currency': currency, 'pre_auth': pre_auth,
-            'email': email}
+    return {'anonymous': anonymous, 'currency': currency, 'email': email}
