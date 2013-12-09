@@ -69,3 +69,6 @@ marketplace with the host::
     SOLITUDE_HOSTS = ('http://mock-solitude.paas.allizom.org/',)
 
 You will also want to ensure that the URL ``/mozpay/`` routes to WebPay.
+
+
+.. _PayPal developer site: https://developer.paypal.com/

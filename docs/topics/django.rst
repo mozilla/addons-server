@@ -77,7 +77,12 @@ You can find lots of goodies on http://www.b-list.org/weblog/categories/django/.
 Migrations
 ----------
 
-We're going to use `South <http://south.aeracode.org/>`_.  Here's the
-`Quick Start Guide <http://south.aeracode.org/wiki/QuickStartGuide>`_, the
-`tutorial <http://south.aeracode.org/wiki/Tutorial1>`__, and the rest of the
-`South docs <http://south.aeracode.org/wiki/Documentation>`_.
+We're using Schematic_ which is a really simple migration tool to apply SQL
+migrations to your databases.
+
+Migrations are all stored in the ``migrations/`` folder, and are applied like
+so::
+
+    schematic migrations/
+
+.. _Schematic: https://github.com/mozilla/schematic

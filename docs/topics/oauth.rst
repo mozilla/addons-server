@@ -17,7 +17,7 @@ The OAuth "dance" involves a number of steps:
 2. The app sends the user with the *Request Token* to an authorization page.
 3. The app requests an *Access Token* with the user-authorized *Request Token*.
 
-Each of these reuqests must contain various OAuth headers, request parameters
+Each of these requests must contain various OAuth headers, request parameters
 and be signed in a specific manner.
 
 This is detailed in our api tests in ``_oauth_flow``.

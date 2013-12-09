@@ -46,5 +46,5 @@ snippet:
 
     {% block title %}{{ page_title(_('My Unique Title')) }}{% endblock %}
 
-.. _Jingo: http://jbalogh.me/projects/jingo/
+.. _Jingo: http://jingo.readthedocs.org/en/latest/
 .. _AMO: https://addons.mozilla.org/en-US/firefox/

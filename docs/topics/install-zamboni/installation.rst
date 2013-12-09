@@ -212,6 +212,7 @@ you want it.
 Any file that looks like ``settings_local*`` is for local use only; it will be
 ignored by git.
 
+
 Database
 --------
 
@@ -302,6 +303,7 @@ configured your settings and database, you're good to go.
 To choose which site you want to run, use the `settings` command line
 argument to pass in a local settings file you created above.
 
+
 Run The Add-ons Server
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -344,6 +346,7 @@ example::
     SITE_URL = 'http://localhost:8000'
     STATIC_URL = SITE_URL + '/'  # STATIC_URL must have a trailing slash.
 
+
 Create an Admin User
 --------------------
 
@@ -385,10 +388,31 @@ Or to run AMO's tests::
 
     ./manage.py test --settings=settings_local_amo
 
+There are a few useful makefile targets that you can use, the simplest one
+being::
+
+    make test
+
+Please check the :doc:`../hacking/testing` page for more information on
+the other available targets.
+
 .. _updating:
+
 
 Updating
 --------
+
+To run a full update of zamboni (including source files, pip requirements and
+database migrations)::
+
+    make update
+
+Use the following if you also wish to prefill your database with the data from
+landfill::
+
+    make update_landfill
+
+If you want to do it manually, then check the following steps:
 
 This updates zamboni::
 
