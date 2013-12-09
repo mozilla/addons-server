@@ -2,9 +2,13 @@ import json
 
 from django.core.urlresolvers import reverse
 
+from django import forms
+
 from curling.lib import HttpClientError, HttpServerError
 from mock import Mock, patch
 from nose.tools import eq_, ok_
+
+from test_utils import RequestFactory
 
 import amo
 from addons.models import AddonUpsell, AddonUser
@@ -12,7 +16,8 @@ from amo.tests import app_factory, TestCase
 from market.models import AddonPremium, Price
 
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.developers.api_payments import AddonPaymentAccountSerializer
+from mkt.developers.api_payments import (AddonPaymentAccountSerializer,
+                                         PaymentAppViewSet)
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.developers.tests.test_providers import Patcher
@@ -465,3 +470,28 @@ class TestPaymentDebug(AccountCase, RestOAuth):
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
         eq_(res.json['bango']['environment'], 'dev')
+
+class Form(forms.Form):
+    app = forms.ChoiceField(choices=(('valid', 'valid'),))
+
+class TestPaymentAppViewSet(TestCase):
+
+    def setUp(self):
+        self.request = RequestFactory().get('/')
+        self.viewset = PaymentAppViewSet()
+        self.viewset.action_map = {}
+        self.viewset.form = Form
+
+    def test_ok(self):
+        self.viewset.initialize_request(self.request, pk='valid')
+        ok_(self.viewset.app)
+
+    def test_not_ok(self):
+        self.viewset.initialize_request(self.request, pk='invalid')
+        eq_(self.viewset.app, None)
+
+
+
+
+
+

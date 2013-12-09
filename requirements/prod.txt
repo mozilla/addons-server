@@ -39,7 +39,6 @@ djangorestframework==2.3.9
 #django-session-csrf==0.6
 django-statsd-mozilla==0.3.8.6
 django-storages==1.1.8
-django-tastypie==0.9.11
 django-waffle==0.9.1
 easy-thumbnails==1.3
 elasticutils==0.8.1

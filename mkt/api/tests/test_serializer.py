@@ -9,52 +9,13 @@ from django.utils.http import urlencode
 
 import mock
 from nose.tools import eq_, ok_
-from rest_framework.serializers import ValidationError
+from rest_framework.serializers import Serializer, ValidationError
 from simplejson import JSONDecodeError
-from tastypie.exceptions import UnsupportedFormat
 from test_utils import RequestFactory
 
-from mkt.api.exceptions import DeserializationError
-from mkt.api.serializers import (PotatoCaptchaSerializer, Serializer,
-                                 URLSerializerMixin)
+from mkt.api.serializers import PotatoCaptchaSerializer, URLSerializerMixin
 from mkt.site.fixtures import fixture
 from mkt.site.tests.test_forms import PotatoCaptchaTestCase
-
-
-class TestSerializer(TestCase):
-
-    def setUp(self):
-        self.s = Serializer()
-
-    def test_json(self):
-        eq_(self.s.deserialize(json.dumps({'foo': 'bar'}),
-                               'application/json'),
-            {'foo': 'bar'})
-
-    def test_decimal(self):
-        eq_(self.s.serialize({'foo': Decimal('5.00')}),
-            json.dumps({'foo': '5.00'}))
-
-    def test_url(self):
-        eq_(self.s.deserialize(urlencode({'foo': 'bar'}),
-                               'application/x-www-form-urlencoded'),
-            {'foo': 'bar'})
-
-        eq_(self.s.deserialize(urlencode({'foo': u'baré'}),
-                               'application/x-www-form-urlencoded'),
-            {'foo': u'baré'})
-
-    def test_from_url(self):
-        with self.assertRaises(UnsupportedFormat):
-            self.s.to_urlencode({})
-
-    def test_deserialization_error(self):
-        try:
-            self.s.deserialize('')
-        except DeserializationError, e:
-            self.assertIsInstance(e.original, JSONDecodeError)
-        else:
-            self.fail('DeserializationError not raised')
 
 
 class TestPotatoCaptchaSerializer(PotatoCaptchaTestCase):

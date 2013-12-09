@@ -201,7 +201,7 @@ class TestApi(RestOAuth, ESTestCase):
             req.amo_user = user
             return True
 
-        with patch('mkt.api.authentication.SharedSecretAuthentication'
+        with patch('mkt.api.authentication.RestSharedSecretAuthentication'
                    '.is_authenticated', fakeauth):
             with self.settings(SITE_URL=''):
                 self.create()
@@ -215,7 +215,7 @@ class TestApi(RestOAuth, ESTestCase):
             req.user = AnonymousUser()
             return True
 
-        with patch('mkt.api.authentication.SharedSecretAuthentication'
+        with patch('mkt.api.authentication.RestSharedSecretAuthentication'
                    '.is_authenticated', fakeauth):
             with self.settings(SITE_URL=''):
                 self.create()
