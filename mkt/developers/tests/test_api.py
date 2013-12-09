@@ -4,6 +4,7 @@ import json
 from django.core.urlresolvers import NoReverseMatch
 from django.test.utils import override_settings
 
+import mock
 from nose.tools import eq_
 
 import amo
@@ -71,7 +72,7 @@ class TestContentRatingPingback(RestOAuth):
 
     def setUp(self):
         super(TestContentRatingPingback, self).setUp()
-        self.app = app_factory()
+        self.app = app_factory(status=amo.STATUS_NULL)
         self.url = reverse('content-ratings-pingback', args=[self.app.pk])
         self.data = {
             'ROW': {
@@ -189,7 +190,11 @@ class TestContentRatingPingback(RestOAuth):
                              content_type='application/x-www-form-urlencoded')
         eq_(res.status_code, 415)
 
-    def test_post_content_ratings_pingback(self):
+    @mock.patch('mkt.webapps.models.Webapp.is_complete')
+    def test_post_content_ratings_pingback(self, is_complete_mock):
+        is_complete_mock.return_value = (True, {})
+        eq_(self.app.status, amo.STATUS_NULL)
+
         res = self.anon.post(self.url, data=json.dumps(self.data))
         eq_(res.status_code, 200)
 
@@ -224,6 +229,8 @@ class TestContentRatingPingback(RestOAuth):
         self.assertSetEqual(
             app.rating_interactives.to_keys(),
             ['has_shares_info', 'has_shares_location'])
+
+        eq_(app.status, amo.STATUS_PENDING)
 
     @override_settings(SECRET_KEY='foo')
     def test_token_mismatch(self):
