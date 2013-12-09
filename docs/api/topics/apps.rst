@@ -62,8 +62,8 @@ App
                     "generic": {"body": "Generic", "body_label": "generic", "rating": "For ages 13+", "rating_label": "13", "description": "Not recommended..."}
                 },
                 "descriptors": [
-                    {"label": "esrb-scary", "name": "Scary Themes", "ratings_body": "esrb"},
-                    {"label": "generic-intense-violence", "name": "Intense Violence", "ratings_body": "generic"}
+                    "esrb": [{"label": "esrb-scary", "name": "Scary Themes"}],
+                    "generic": [{"label": "generic-intense-violence", "name": "Intense Violence"}]
                 ],
                 "interactive_elements": [
                     {"label": "users-interact", "name": "Users Interact"},
@@ -177,7 +177,7 @@ App
     :type content_ratings.ratings: object
     :param content_ratings.descriptors: IARC content descriptors, flags about
         the app that might affect its suitability for younger-aged users.
-    :type content_ratings.descriptors: array
+    :type content_ratings.descriptors: object
     :param content_ratings.interactive_elements: IARC interactive elements,
         aspects about the app relating to whether the app shares info or
         interacts with external elements.

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from collections import defaultdict
+
 from django.conf import settings
 
 import commonware.log
@@ -119,9 +121,9 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         'author': src.get('author', ''),
         'categories': [c for c in obj.category],
         'content_ratings': {
-            'ratings': getattr(obj, 'content_ratings', []),
+            'ratings': getattr(obj, 'content_ratings', {}),
             'descriptors': dehydrate_descriptors(
-                getattr(obj, 'content_descriptors', [])),
+                getattr(obj, 'content_descriptors', {})),
             'interactive_elements': dehydrate_interactives(
                 getattr(obj, 'interactive_elements', [])),
         },
@@ -234,19 +236,21 @@ def dehydrate_content_rating(rating, region=None):
 
 def dehydrate_descriptors(keys):
     """
-    List of keys to list of objects (desc label, desc name, body).
+    List of keys to lists of objects (desc label, desc name) by body.
 
     ['ESRB_BLOOD, ...] to
-    [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'}, ...].
+    {'esrb': [{'label': 'blood', 'name': 'Blood'}], ...}.
     """
-    results = []
+    results = defaultdict(list)
     for key in keys:
         obj = mkt.ratingdescriptors.RATING_DESCS.get(key)
         if obj:
-            results.append({
-                'label': key.lower().replace('_', '-'),
+            key = key.lower().replace('_', '-')  # Slugify.
+            body = key.split('-')[0]
+            label = key.replace('%s-' % body, '')  # Remove body prefix.
+            results[body].append({
+                'label': label,
                 'name': unicode(obj['name']),
-                'ratings_body': key.split('_')[0].lower()
             })
     return results
 

@@ -4,6 +4,7 @@ from tower import ugettext_lazy as _lazy
 
 
 # WARNING: When adding a new rating descriptor here also include a migration.
+#          All descriptor keys must be prefixed by the rating body (e.g. USK_).
 #
 # These are used to dynamically generate the field list for the
 # RatingDescriptors django model in mkt.webapps.models.
