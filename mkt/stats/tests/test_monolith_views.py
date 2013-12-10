@@ -1,8 +1,8 @@
 import csv
 import datetime
-from decimal import Decimal
 import json
 import random
+from decimal import Decimal
 
 from django.conf import settings
 
@@ -10,18 +10,18 @@ import mock
 from nose.tools import eq_
 from test_utils import RequestFactory
 
-from access.models import Group, GroupUser
-from addons.models import Addon, AddonUser
 import amo
 import amo.tests
+from access.models import Group, GroupUser
+from addons.models import Addon, AddonUser
 from amo.urlresolvers import reverse
 from apps.stats.models import GlobalStat
 from market.models import Price
-from mkt.webapps.models import Installed
 from mkt.site.fixtures import fixture
 from mkt.stats import search, tasks, views
-from mkt.stats.views import (FINANCE_SERIES, get_series_column,
-                             get_series_line, pad_missing_stats)
+from mkt.stats.views import (FINANCE_SERIES, get_series_column, get_series_line,
+                             pad_missing_stats)
+from mkt.webapps.models import Installed
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -39,7 +39,6 @@ class StatsTest(amo.tests.ESTestCase):
             app_slug='priv', type=1, status=4, public_stats=False)
         self.url_args = {'start': '20090601', 'end': '20090930',
             'app_slug': self.private_app.app_slug}
-
 
     def login_as_visitor(self):
         self.login(self.user)
@@ -174,25 +173,6 @@ class TestStatsPermissions(StatsTest):
             format='json'), 200)
         self._check_it(self.private_views_gen(
             app_slug=self.public_app.app_slug, format='json'), 403)
-
-    @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-    @mock.patch('monolith.client.Client')
-    def test_non_public_app_redirect(self, mocked_client):
-        # Non-public status redirects to detail page.
-        app = amo.tests.app_factory(status=2, public_stats=True)
-        response = self.client.get(app.get_stats_url())
-        eq_(response.status_code, 302)
-
-    @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-    @mock.patch('monolith.client.Client')
-    def test_non_public_app_owner_no_redirect(self, mocked_client):
-        # Non-public status, but owner of app, does not redirect to detail
-        # page.
-        self.login_as_visitor()
-        app = amo.tests.app_factory(status=2, public_stats=True)
-        AddonUser.objects.create(addon_id=app.id, user=self.user)
-        response = self.client.get(app.get_stats_url())
-        eq_(response.status_code, 200)
 
 
 class TestMyApps(StatsTest):

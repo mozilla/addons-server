@@ -3,16 +3,19 @@ import uuid
 from datetime import datetime
 
 from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 
 import commonware
 from tower import ugettext_lazy as _
 
 from constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
+from lib.crypto import generate_key
 from lib.pay_server import client
+from mkt.constants.payments import ACCESS_PURCHASE
 from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.utils import uri_to_pk
+from mkt.purchase import webpay
 
 root = 'developers/payments/includes/'
 
@@ -20,6 +23,7 @@ log = commonware.log.getLogger('z.devhub.providers')
 
 
 class Provider(object):
+    generic = client.api.generic
 
     def account_create(self, user, form_data):
         raise NotImplementedError
@@ -28,6 +32,9 @@ class Provider(object):
         raise NotImplementedError
 
     def account_update(self, account, form_data):
+        raise NotImplementedError
+
+    def apa_update(self, account):
         raise NotImplementedError
 
     def setup_seller(self, user):
@@ -116,6 +123,40 @@ class Bango(Provider):
         self.client.api.by_url(account.uri).patch(
             data=dict((k, v) for k, v in form_data.items() if
                       k in self.package_values))
+
+    def product_create(self, account, app):
+        secret = generate_key(48)
+        external_id = webpay.make_ext_id(app.pk)
+        data = {'seller': uri_to_pk(account.seller_uri),
+                'external_id': external_id}
+
+        # Create the generic product.
+        try:
+            generic_product = self.generic.product.get_object(**data)
+        except ObjectDoesNotExist:
+            generic_product = self.generic.product.post(data={
+                'seller': account.seller_uri, 'secret': secret,
+                'external_id': external_id, 'public_id': str(uuid.uuid4()),
+                'access': ACCESS_PURCHASE,
+            })
+
+        # Create the specific bango product.
+        product_uri = generic_product['resource_uri']
+        data = {'seller_product': uri_to_pk(product_uri)}
+        try:
+            res = self.client.product.get_object(**data)
+        except ObjectDoesNotExist:
+            # The product does not exist in Solitude so create it.
+            res = self.client.product.post(data={
+                'seller_bango': account.uri,
+                'seller_product': product_uri,
+                'name': unicode(app.name),
+                'packageId': account.account_id,
+                'categoryId': 1,
+                'secret': secret
+            })
+
+        return res['resource_uri']
 
     def terms_update(self, account):
         package = self.client.package(account.uri).get_object_or_404()

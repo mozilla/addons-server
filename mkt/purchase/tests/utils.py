@@ -36,5 +36,5 @@ class PurchaseTest(amo.tests.TestCase):
             user=self.user, uri='asdf', name='test', inactive=False,
             solitude_seller=self.seller, account_id=123)
         AddonPaymentAccount.objects.create(
-            addon=self.addon, provider='bango', account_uri='foo',
+            addon=self.addon, account_uri='foo',
             payment_account=self.account, product_uri='bpruri')

@@ -24,9 +24,7 @@ def stats_url(context, action, metric=None):
     call shorter.
     """
     addon = context['addon']
-    if metric:
-        action = '%s_%s' % (metric, action)
-    return addon.get_stats_url(action=action)
+    return addon.get_stats_url()
 
 
 @register.function

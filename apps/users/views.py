@@ -382,7 +382,8 @@ def browserid_authenticate(request, assertion, is_mobile=False,
     log_cef('New Account', 5, request, username=username,
             signature='AUTHNOTICE',
             msg='User created a new account (from Persona)')
-    record_action('new-user', request)
+    if settings.MARKETPLACE:
+        record_action('new-user', request)
     return profile, None
 
 

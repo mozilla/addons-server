@@ -33,7 +33,8 @@ from amo.decorators import skip_cache
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
-from amo.utils import JSONEncoder, memoize, memoize_key, smart_path, urlparams
+from amo.utils import (JSONEncoder, memoize, memoize_key, smart_path,
+                       to_language, urlparams)
 from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
@@ -286,12 +287,8 @@ class Webapp(Addon):
                        args=[self.app_slug] + (args or []),
                        add_prefix=add_prefix)
 
-    def get_stats_url(self, action='overview', args=None):
-        """Reverse URLs for 'stats', 'stats.overview', etc."""
-        # Simplifies the templates to not have to choose whether to call
-        # get_stats_url.
-        return reverse(('mkt.stats.%s' % action),
-                       args=[self.app_slug] + (args or []))
+    def get_stats_url(self):
+        return reverse('commonplace.stats.app_dashboard', args=[self.app_slug])
 
     def get_comm_thread_url(self):
         return reverse('commonplace.commbadge.app_dashboard',
@@ -1396,8 +1393,9 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'manifest_url': {'type': 'string',
                                      'index': 'not_analyzed'},
+                    # Name for searching.
                     'name': {'type': 'string', 'analyzer': 'default_icu'},
-                    # Turn off analysis on name so we can sort by it.
+                    # Name for sorting.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
                     'owners': {'type': 'long'},
                     'popularity': {'type': 'long'},
@@ -1461,6 +1459,21 @@ class WebappIndexer(MappingType, Indexable):
             mapping[doc_type]['properties'].update(
                 {'popularity_%s' % region: {'type': 'long'}})
 
+        # Add fields that we expect to return all translations.
+        for field in ('description', 'homepage', 'name', 'release_notes',
+                      'support_email', 'support_url'):
+            mapping[doc_type]['properties'].update({
+                '%s_translations' % field: {
+                    'type': 'object',
+                    'properties': {
+                        'lang': {'type': 'string',
+                                 'index': 'not_analyzed'},
+                        'string': {'type': 'string',
+                                   'index': 'not_analyzed'},
+                    }
+                }
+            })
+
         # Add room for language-specific indexes.
         for analyzer in amo.SEARCH_ANALYZER_MAP:
 
@@ -1498,7 +1511,6 @@ class WebappIndexer(MappingType, Indexable):
         except IndexError:
             status = None
 
-        translations = obj.translations
         installed_ids = list(Installed.objects.filter(addon=obj)
                              .values_list('id', flat=True))
 
@@ -1521,8 +1533,8 @@ class WebappIndexer(MappingType, Indexable):
         d['content_descriptors'] = obj.get_descriptors(es=True)
         d['current_version'] = version.version if version else None
         d['default_locale'] = obj.default_locale
-        d['description'] = list(set(s for _, s
-                                    in translations[obj.description_id]))
+        d['description'] = list(
+            set(string for _, string in obj.translations[obj.description_id]))
         d['device'] = getattr(obj, 'device_ids', [])
         d['features'] = features
         d['has_public_stats'] = obj.public_stats
@@ -1548,8 +1560,8 @@ class WebappIndexer(MappingType, Indexable):
                 'has_info_request': None,
             }
         d['manifest_url'] = obj.get_manifest_url()
-        d['name'] = list(set(string for _, string
-                             in translations[obj.name_id]))
+        d['name'] = list(
+            set(string for _, string in obj.translations[obj.name_id]))
         d['name_sort'] = unicode(obj.name).lower()
         d['owners'] = [au.user.id for au in
                        obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
@@ -1603,6 +1615,23 @@ class WebappIndexer(MappingType, Indexable):
                               resource_uri=reverse_version(v))
                          for v in obj.versions.all()]
 
+        # Handle our localized fields.
+        for field in ('description', 'homepage', 'name', 'support_email',
+                      'support_url'):
+            d['%s_translations' % field] = [
+                {'lang': to_language(lang), 'string': string}
+                for lang, string
+                in obj.translations[getattr(obj, '%s_id' % field)]
+                if string]
+        if version:
+            amo.utils.attach_trans_dict(Version, [version])
+            d['release_notes_translations'] = [
+                {'lang': to_language(lang), 'string': string}
+                for lang, string
+                in version.translations[version.releasenotes_id]]
+        else:
+            d['release_notes_translations'] = None
+
         # Calculate regional popularity for "mature regions"
         # (installs + reviews/installs from that region).
         installs = dict(ClientData.objects.filter(installed__in=installed_ids)
@@ -1629,11 +1658,11 @@ class WebappIndexer(MappingType, Indexable):
                 continue
 
             d['name_' + analyzer] = list(
-                set(string for locale, string in translations[obj.name_id]
+                set(string for locale, string in obj.translations[obj.name_id]
                     if locale.lower() in languages))
             d['description_' + analyzer] = list(
                 set(string for locale, string
-                    in translations[obj.description_id]
+                    in obj.translations[obj.description_id]
                     if locale.lower() in languages))
             if version:
                 d['release_notes_' + analyzer] = list(

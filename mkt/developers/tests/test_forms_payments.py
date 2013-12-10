@@ -7,14 +7,14 @@ import amo
 import amo.tests
 
 from addons.models import Addon, AddonDeviceType, AddonUser
-from constants.payments import (PAYMENT_METHOD_OPERATOR,
-                                PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_ALL)
+from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
+                                PAYMENT_METHOD_OPERATOR)
 from editors.models import RereviewQueue
 from market.models import AddonPremium, Price
 from users.models import UserProfile
 
 from mkt.developers import forms_payments, models
+from mkt.developers.tests.test_providers import Patcher
 from mkt.site.fixtures import fixture
 
 
@@ -306,11 +306,12 @@ class TestPremiumForm(amo.tests.TestCase):
         eq_(form._initial_price_id(), None)
 
 
-class TestAccountListForm(amo.tests.TestCase):
+class TestAccountListForm(Patcher, amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'group_admin',
                        'user_admin', 'user_admin_group', 'prices')
 
     def setUp(self):
+        super(TestAccountListForm, self).setUp()
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(status=amo.STATUS_NULL,
                           highest_status=amo.STATUS_PUBLIC)
@@ -347,10 +348,7 @@ class TestAccountListForm(amo.tests.TestCase):
         return (self.addon.authors.filter(user=user,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists())
 
-    @mock.patch('mkt.developers.models.client')
-    def associate_owner_account(self, client):
-        self.setup_mock(client)
-
+    def associate_owner_account(self):
         owner_account = self.create_user_account(self.user)
         form = forms_payments.AccountListForm(
             data={'accounts': owner_account.pk}, user=self.user, **self.kwargs)
@@ -358,17 +356,7 @@ class TestAccountListForm(amo.tests.TestCase):
         form.save()
         return owner_account
 
-    def setup_mock(self, client):
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
-
-    @mock.patch('mkt.developers.models.client')
-    def test_with_owner_account(self, client):
-        self.setup_mock(client)
-
+    def test_with_owner_account(self):
         user = self.user
         account = self.create_user_account(user)
         assert self.is_owner(user)
@@ -383,10 +371,7 @@ class TestAccountListForm(amo.tests.TestCase):
         eq_(form.fields['accounts'].empty_label, None)
         eq_(form.initial['accounts'], account)
 
-    @mock.patch('mkt.developers.models.client')
-    def test_with_shared_account(self, client):
-        self.setup_mock(client)
-
+    def test_with_shared_account(self):
         account = self.create_user_account(self.user)
         shared = self.create_user_account(self.other, shared=True)
         form = forms_payments.AccountListForm(user=self.user,
@@ -394,10 +379,7 @@ class TestAccountListForm(amo.tests.TestCase):
         self.assertSetEqual(form.fields['accounts'].queryset,
                             (account, shared))
 
-    @mock.patch('mkt.developers.models.client')
-    def test_set_shared_account(self, client):
-        self.setup_mock(client)
-
+    def test_set_shared_account(self):
         shared = self.create_user_account(self.other, shared=True)
         form = forms_payments.AccountListForm(
             data={'accounts': shared.pk}, user=self.user, **self.kwargs)
@@ -405,10 +387,7 @@ class TestAccountListForm(amo.tests.TestCase):
         form.save()
         eq_(self.addon.app_payment_account.payment_account.pk, shared.pk)
 
-    @mock.patch('mkt.developers.models.client')
-    def test_with_non_owner_account(self, client):
-        self.setup_mock(client)
-
+    def test_with_non_owner_account(self):
         user = self.other
         account = self.create_user_account(user)
         assert not self.is_owner(user)
@@ -418,10 +397,7 @@ class TestAccountListForm(amo.tests.TestCase):
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
         assert not form.is_valid(), form.errors
 
-    @mock.patch('mkt.developers.models.client')
-    def test_with_non_owner_admin_account(self, client):
-        self.setup_mock(client)
-
+    def test_with_non_owner_admin_account(self):
         user = self.admin
         account = self.create_user_account(user)
         assert not self.is_owner(user)
@@ -431,10 +407,7 @@ class TestAccountListForm(amo.tests.TestCase):
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
         assert not form.is_valid(), form.errors
 
-    @mock.patch('mkt.developers.models.client')
-    def test_admin_account_no_data(self, client):
-        self.setup_mock(client)
-
+    def test_admin_account_no_data(self):
         self.associate_owner_account()
         user = self.admin
         assert not self.is_owner(user)
@@ -443,10 +416,7 @@ class TestAccountListForm(amo.tests.TestCase):
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
         assert form.is_valid(), form.errors
 
-    @mock.patch('mkt.developers.models.client')
-    def test_admin_account_empty_string(self, client):
-        self.setup_mock(client)
-
+    def test_admin_account_empty_string(self):
         self.associate_owner_account()
         user = self.admin
         assert not self.is_owner(user)
@@ -455,10 +425,7 @@ class TestAccountListForm(amo.tests.TestCase):
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
         assert not form.is_valid(), form.errors
 
-    @mock.patch('mkt.developers.models.client')
-    def test_with_other_owner_account(self, client):
-        self.setup_mock(client)
-
+    def test_with_other_owner_account(self):
         user = self.other
         account = self.create_user_account(user)
         self.make_owner(user)
@@ -474,10 +441,7 @@ class TestAccountListForm(amo.tests.TestCase):
         eq_(form.fields['accounts'].empty_label, None)
         eq_(form.initial['accounts'], account)
 
-    @mock.patch('mkt.developers.models.client')
-    def test_with_non_owner_account_existing_account(self, client):
-        self.setup_mock(client)
-
+    def test_with_non_owner_account_existing_account(self):
         owner_account = self.associate_owner_account()
         user = self.other
         account = self.create_user_account(user)
@@ -489,10 +453,7 @@ class TestAccountListForm(amo.tests.TestCase):
         eq_(form.current_payment_account, owner_account)
         assert not form.is_valid(), form.errors
 
-    @mock.patch('mkt.developers.models.client')
-    def test_with_non_owner_admin_account_existing_account(self, client):
-        self.setup_mock(client)
-
+    def test_with_non_owner_admin_account_existing_account(self):
         owner_account = self.associate_owner_account()
         user = self.admin
         account = self.create_user_account(user)
@@ -504,10 +465,7 @@ class TestAccountListForm(amo.tests.TestCase):
         eq_(form.current_payment_account, owner_account)
         assert not form.is_valid(), form.errors
 
-    @mock.patch('mkt.developers.models.client')
-    def test_with_other_owner_account_existing_account(self, client):
-        self.setup_mock(client)
-
+    def test_with_other_owner_account_existing_account(self):
         owner_account = self.associate_owner_account()
         user = self.other
         account = self.create_user_account(user)
@@ -525,10 +483,11 @@ class TestAccountListForm(amo.tests.TestCase):
         assert form.current_payment_account is None
 
 
-class TestPaidRereview(amo.tests.TestCase):
+class TestPaidRereview(Patcher, amo.tests.TestCase):
     fixtures = fixture('webapp_337141') + ['market/prices']
 
     def setUp(self):
+        super(TestPaidRereview, self).setUp()
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(status=amo.STATUS_NULL,
                           highest_status=amo.STATUS_PUBLIC)
@@ -548,14 +507,7 @@ class TestPaidRereview(amo.tests.TestCase):
             'user': self.user,
         }
 
-    @mock.patch('mkt.developers.models.client')
-    def test_rereview(self, client):
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
-
+    def test_rereview(self):
         form = forms_payments.AccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
         assert form.is_valid(), form.errors
@@ -566,15 +518,8 @@ class TestPaidRereview(amo.tests.TestCase):
         form = forms_payments.AccountListForm(None, **self.kwargs)
         eq_(form.fields['accounts'].empty_label, None)
 
-    @mock.patch('mkt.developers.models.client')
-    def test_disagreed_tos_rereview(self, client):
+    def test_disagreed_tos_rereview(self):
         self.account.update(agreed_tos=False)
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
-
         form = forms_payments.AccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
         assert not form.is_valid()
@@ -582,14 +527,7 @@ class TestPaidRereview(amo.tests.TestCase):
             ['Select a valid choice. That choice is not one of the available '
              'choices.'])
 
-    @mock.patch('mkt.developers.models.client')
-    def test_norereview(self, client):
-        client.get_product.return_value = {'meta': {'total_count': 0}}
-        client.post_product.return_value = {'resource_uri': 'gpuri'}
-        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
-
+    def test_norereview(self):
         self.addon.update(highest_status=amo.STATUS_PENDING)
         form = forms_payments.AccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)

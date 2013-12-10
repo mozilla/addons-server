@@ -203,8 +203,7 @@ class TestAppDashboard(AppHubTest):
             ('View Listing', app.get_url_path()),
 
             ('Messages', app.get_comm_thread_url()),
-            # TODO: Re-enable once Monolith stats are back.
-            #('Statistics', app.get_stats_url()),
+            ('Statistics', app.get_stats_url()),
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]

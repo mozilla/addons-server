@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
+from urlparse import urlparse
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
+from django.http import QueryDict
 from django.test.client import RequestFactory
 
 from mock import MagicMock, patch
@@ -122,6 +124,11 @@ class TestApi(RestOAuth, ESTestCase):
                                                 type=amo.ADDON_WEBAPP)
         self.webapp.save()
         self.refresh('webapp')
+
+    def tearDown(self):
+        unindex_webapps(list(Webapp.with_deleted.values_list('id', flat=True)))
+        Webapp.objects.all().delete()
+        super(TestApi, self).tearDown()
 
     def test_verbs(self):
         self._allowed_verbs(self.url, ['get'])
@@ -544,6 +551,48 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_pagination(self):
+        Webapp.objects.get(pk=337141).delete()
+        app1 = app_factory(name='test app test1')
+        app2 = app_factory(name='test app test2')
+        app3 = app_factory(name='test app test3')
+        # Setting 'created' app_factory is unreliable and we need a reliable
+        # order.
+        app1.update(created=self.days_ago(1))
+        app2.update(created=self.days_ago(2))
+        app3.update(created=self.days_ago(3))
+        self.refresh('webapp')
+
+        res = self.client.get(self.url, data={'limit': '2', 'sort': 'created'})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 2)
+        eq_(int(data['objects'][0]['id']), app1.id)
+        eq_(int(data['objects'][1]['id']), app2.id)
+        eq_(data['meta']['total_count'], 3)
+        eq_(data['meta']['limit'], 2)
+        eq_(data['meta']['previous'], None)
+        eq_(data['meta']['offset'], 0)
+
+        next = urlparse(data['meta']['next'])
+        eq_(next.path, self.url)
+        eq_(QueryDict(next.query).dict(), {'limit': '2', 'offset': '2',
+                                           'sort': 'created'})
+
+        res = self.client.get(self.url, QueryDict(next.query).dict())
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 1)
+        eq_(int(data['objects'][0]['id']), app3.id)
+        eq_(data['meta']['total_count'], 3)
+        eq_(data['meta']['limit'], 2)
+        prev = urlparse(data['meta']['previous'])
+        eq_(next.path, self.url)
+        eq_(QueryDict(prev.query).dict(), {'limit': '2', 'offset': '0',
+                                           'sort': 'created'})
+        eq_(data['meta']['offset'], 2)
+        eq_(data['meta']['next'], None)
 
 
 class TestApiFeatures(RestOAuth, ESTestCase):

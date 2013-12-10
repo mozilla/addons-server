@@ -96,8 +96,8 @@ def index_webapp(ids, **kw):
     for obj in qs:
         try:
             docs.append(WebappIndexer.extract_document(obj.id, obj=obj))
-        except:
-            sys.stdout.write('Failed to index obj: {0}'.format(obj.id))
+        except Exception as e:
+            sys.stdout.write('Failed to index obj: {0}. {1}'.format(obj.id, e))
 
     WebappIndexer.bulk_index(docs, es=ES, index=index)
 
