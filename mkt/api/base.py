@@ -458,7 +458,7 @@ class AppRouter(SimpleRouter):
     routes = [
         # List route.
         Route(
-            url=r'^{lookup}/{prefix}/$',
+            url=r'^{lookup}/{prefix}{trailing_slash}$',
             mapping={
                 'get': 'list',
                 'post': 'create'
@@ -468,7 +468,7 @@ class AppRouter(SimpleRouter):
         ),
         # Detail route.
         Route(
-            url=r'^{lookup}/{prefix}/$',
+            url=r'^{lookup}/{prefix}{trailing_slash}$',
             mapping={
                 'get': 'retrieve',
                 'put': 'update',

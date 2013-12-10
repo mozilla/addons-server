@@ -25,8 +25,8 @@ rocketfuel = SimpleRouter()
 rocketfuel.register(r'collections', CollectionViewSet,
                     base_name='collections')
 
-subcollections = AppRouter()
-subcollections.register('image', CollectionImageViewSet,
+subcollections = AppRouter(trailing_slash=False)
+subcollections.register('image.png', CollectionImageViewSet,
                         base_name='collection-image')
 
 apps = SimpleRouter()
