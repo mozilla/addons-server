@@ -39,7 +39,7 @@ def FREE_PLATFORMS(request=None, is_packaged=False):
 
     if not is_packaged or (is_packaged and desktop_packaged_enabled):
         platforms += (
-            ('free-desktop', _('Firefox')),
+            ('free-desktop', _('Firefox for Desktop')),
         )
 
     if not is_packaged or (is_packaged and android_packaged_enabled):
