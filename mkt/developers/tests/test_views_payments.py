@@ -23,7 +23,8 @@ from users.models import UserProfile
 
 import mkt
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller, UserInappKey, uri_to_pk)
+                                   SolitudeSeller, UserInappKey)
+from mkt.developers.utils import uri_to_pk
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
 
@@ -235,11 +236,12 @@ class TestInappKeySecret(InappKeysTest):
         eq_(res.content, secret)
 
 
-class TestPayments(amo.tests.TestCase):
+class TestPayments(Patcher, amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'group_admin',
                        'user_admin', 'user_admin_group', 'prices')
 
     def setUp(self):
+        super(TestPayments, self).setUp()
         self.webapp = self.get_webapp()
         AddonDeviceType.objects.create(
             addon=self.webapp, device_type=amo.DEVICE_GAIA.id)
@@ -252,11 +254,6 @@ class TestPayments(amo.tests.TestCase):
         # Default to logging in as the app owner.
         self.login(self.user)
         self.price = Price.objects.filter()[0]
-        self.patch = mock.patch('mkt.developers.models.client')
-        self.sol = self.patch.start()
-
-    def tearDown(self):
-        self.patch.stop()
 
     def get_webapp(self):
         return Addon.objects.get(pk=337141)
@@ -439,11 +436,12 @@ class TestPayments(amo.tests.TestCase):
 
     def setup_payment_acct(self, make_owner, user=None, bango_id=123):
         # Set up Solitude return values.
-        api = self.sol.api  # Set up Solitude return values.
-        api.generic.product.get_object.side_effect = ObjectDoesNotExist
-        api.generic.product.post.return_value = {'resource_uri': 'gpuri'}
-        api.bango.product.get_object.side_effect = ObjectDoesNotExist
-        api.bango.product.post.return_value = {
+        gen = self.generic_patcher
+        prov = self.bango_patcher
+        gen.product.get_object.side_effect = ObjectDoesNotExist
+        gen.product.post.return_value = {'resource_uri': 'gpuri'}
+        prov.product.get_object.side_effect = ObjectDoesNotExist
+        prov.product.post.return_value = {
             'resource_uri': 'bpruri', 'bango_id': 123}
 
         if not user:
@@ -463,14 +461,14 @@ class TestPayments(amo.tests.TestCase):
             user=user, uri='asdf-%s' % user.pk, name='test', inactive=False,
             seller_uri='suri-%s' % user.pk, solitude_seller=seller,
             account_id=123, agreed_tos=True)
-        return acct, api, user
+        return acct, user
 
     def is_owner(self, user):
         return (self.webapp.authors.filter(user=user,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists())
 
     def test_associate_acct_to_app_free_inapp(self):
-        acct, api, user = self.setup_payment_acct(make_owner=True)
+        acct, user = self.setup_payment_acct(make_owner=True)
 
         # Must be an app owner to change this.
         assert self.is_owner(user)
@@ -489,7 +487,7 @@ class TestPayments(amo.tests.TestCase):
 
     def test_associate_acct_to_app(self):
         self.make_premium(self.webapp, price=self.price.price)
-        acct, api, user = self.setup_payment_acct(make_owner=True)
+        acct, user = self.setup_payment_acct(make_owner=True)
         # Must be an app owner to change this.
         assert self.is_owner(user)
         # Associate account with app.
@@ -501,16 +499,15 @@ class TestPayments(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
-        kw = api.provider.bango.product.post.call_args[1]['data']
-        ok_(kw['secret'], kw)
-        kw = api.generic.product.post.call_args[1]['data']
+        kw = self.generic_patcher.product.post.call_args[1]['data']
         eq_(kw['access'], ACCESS_PURCHASE)
+        kw = self.bango_patcher.product.post.call_args[1]['data']
+        ok_(kw['secret'], kw)
 
     def test_associate_acct_to_app_when_not_owner(self):
         self.make_premium(self.webapp, price=self.price.price)
         self.login(self.other)
-        acct, api, user = self.setup_payment_acct(make_owner=False,
-                                                  user=self.other)
+        acct, user = self.setup_payment_acct(make_owner=False, user=self.other)
         # Check we're not an owner before we start.
         assert not self.is_owner(user)
 
@@ -526,8 +523,7 @@ class TestPayments(amo.tests.TestCase):
     def test_associate_acct_to_app_when_not_owner_and_an_admin(self):
         self.make_premium(self.webapp, self.price.price)
         self.login(self.admin)
-        acct, api, user = self.setup_payment_acct(make_owner=False,
-                                                  user=self.admin)
+        acct, user = self.setup_payment_acct(make_owner=False, user=self.admin)
         # Check we're not an owner before we start.
         assert not self.is_owner(user)
         assert not (AddonPaymentAccount.objects
@@ -553,7 +549,7 @@ class TestPayments(amo.tests.TestCase):
 
     def test_associate_acct_to_app_when_admin_and_owner_acct_exists(self):
         self.make_premium(self.webapp, price=self.price.price)
-        owner_acct, api, owner_user = self.setup_payment_acct(make_owner=True)
+        owner_acct, owner_user = self.setup_payment_acct(make_owner=True)
 
         assert self.is_owner(owner_user)
 
@@ -566,8 +562,8 @@ class TestPayments(amo.tests.TestCase):
                                    .filter(addon=self.webapp).exists())
 
         self.login(self.admin)
-        admin_acct, api, admin_user = self.setup_payment_acct(make_owner=False,
-                                                              user=self.admin)
+        admin_acct, admin_user = self.setup_payment_acct(make_owner=False,
+                                                         user=self.admin)
         # Check we're not an owner before we start.
         assert not self.is_owner(admin_user)
 
@@ -583,7 +579,7 @@ class TestPayments(amo.tests.TestCase):
 
     def test_one_owner_and_a_second_one_sees_selected_plus_own_accounts(self):
         self.make_premium(self.webapp, price=self.price.price)
-        owner_acct, api, owner = self.setup_payment_acct(make_owner=True)
+        owner_acct, owner = self.setup_payment_acct(make_owner=True)
         # Should be an owner.
         assert self.is_owner(owner)
 
@@ -597,8 +593,8 @@ class TestPayments(amo.tests.TestCase):
 
         # Login as other user.
         self.login(self.other)
-        owner_acct2, api, owner2 = self.setup_payment_acct(make_owner=True,
-                                                           user=self.other)
+        owner_acct2, owner2 = self.setup_payment_acct(make_owner=True,
+                                                      user=self.other)
         assert self.is_owner(owner2)
         # Should see the saved account plus 2nd owner's own account select
         # and be able to save their own account but not the other owners.
@@ -625,7 +621,7 @@ class TestPayments(amo.tests.TestCase):
 
     def test_existing_account_should_be_disabled_for_non_owner(self):
         self.make_premium(self.webapp, price=self.price.price)
-        acct, api, user = self.setup_payment_acct(make_owner=True)
+        acct, user = self.setup_payment_acct(make_owner=True)
         # Must be an app owner to change this.
         assert self.is_owner(user)
         # Associate account with app.
@@ -653,8 +649,8 @@ class TestPayments(amo.tests.TestCase):
         self.make_premium(self.webapp, price=self.price.price)
         # Login as regular user
         self.login(self.other)
-        owner_acct, api, user = self.setup_payment_acct(make_owner=True,
-                                                        user=self.other)
+        owner_acct, user = self.setup_payment_acct(make_owner=True,
+                                                   user=self.other)
         # Must be an app owner to change this.
         assert self.is_owner(self.other)
         # Associate account with app.
@@ -667,8 +663,8 @@ class TestPayments(amo.tests.TestCase):
         # Login as admin.
         self.login(self.admin)
         # Create an account as an admin.
-        admin_acct, api, admin_user = self.setup_payment_acct(make_owner=False,
-                                                              user=self.admin)
+        admin_acct, admin_user = self.setup_payment_acct(make_owner=False,
+                                                         user=self.admin)
         # Make sure not an owner.
         assert not self.is_owner(self.admin)
         res = self.client.get(self.url)

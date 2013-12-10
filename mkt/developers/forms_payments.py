@@ -499,9 +499,9 @@ class AccountListForm(happyforms.Form):
     def clean_accounts(self):
         accounts = self.cleaned_data.get('accounts')
         # When cleaned if the accounts field wasn't submitted or it's an empty
-        # string the cleaned value will be None for a ModelChoiceField. Therefore
-        # to tell the difference between the non-submission and the empty string
-        # we need to check the raw data.
+        # string the cleaned value will be None for a ModelChoiceField.
+        # Therefore to tell the difference between the non-submission and the
+        # empty string we need to check the raw data.
         accounts_submitted = 'accounts' in self.data
         if (AddonPaymentAccount.objects.filter(addon=self.addon).exists() and
             accounts_submitted and not accounts):
@@ -524,9 +524,15 @@ class AccountListForm(happyforms.Form):
                 pass
 
             log.info('[1@%s] Creating new app payment account' % self.addon.pk)
-            AddonPaymentAccount.create(
-                provider='bango', addon=self.addon,
-                payment_account=self.cleaned_data['accounts'])
+            from mkt.developers.providers import get_provider
+
+            provider = get_provider()
+            account = self.cleaned_data['accounts']
+
+            uri = provider.product_create(account, self.addon)
+            AddonPaymentAccount.objects.create(
+                addon=self.addon, account_uri=account.uri,
+                payment_account=account, product_uri=uri)
 
             # If the app is marked as paid and the information is complete
             # and the app is currently marked as incomplete, put it into the

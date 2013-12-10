@@ -1,14 +1,11 @@
 from datetime import datetime, timedelta
 
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 from mock import Mock, patch
-
-from django.core.exceptions import ObjectDoesNotExist
 
 import amo
 import amo.tests
 from addons.models import Addon
-from market.models import AddonPremium, Price
 from users.models import UserProfile
 
 from devhub.models import ActivityLog
@@ -96,7 +93,6 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
         self.solsel.patcher = solsel_patcher
         super(TestPaymentAccount, self).setUp()
 
-
     def tearDown(self):
         self.solsel.patcher.stop()
         super(TestPaymentAccount, self).tearDown()
@@ -130,7 +126,7 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
 
         addon = Addon.objects.get()
         AddonPaymentAccount.objects.create(
-            addon=addon, provider='bango', account_uri='foo',
+            addon=addon, account_uri='foo',
             payment_account=res, product_uri='bpruri')
 
         res.cancel()
@@ -144,7 +140,7 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
 
         addon = Addon.objects.get()
         AddonPaymentAccount.objects.create(
-            addon=addon, provider='bango', account_uri='foo',
+            addon=addon, account_uri='foo',
             payment_account=res, product_uri='bpruri')
 
         with self.assertRaises(CantCancel):
@@ -182,74 +178,3 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
 
         self.bango_patcher.api.by_url(res.uri).patch.assert_called_with(
             data={'vendorName': 'new vendor name'})
-
-
-class TestAddonPaymentAccount(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141', 'user_999') + ['market/prices']
-
-    def setUp(self):
-        self.user = UserProfile.objects.filter()[0]
-        amo.set_user(self.user)
-        self.app = Addon.objects.get()
-        self.app.premium_type = amo.ADDON_PREMIUM
-        self.price = Price.objects.filter()[0]
-
-        AddonPremium.objects.create(addon=self.app, price=self.price)
-        self.seller = SolitudeSeller.objects.create(
-            resource_uri='sellerres', user=self.user
-        )
-        self.account = PaymentAccount.objects.create(
-            solitude_seller=self.seller,
-            user=self.user, name='paname', uri='acuri',
-            inactive=False, seller_uri='selluri',
-            account_id=123
-        )
-
-    @patch('uuid.uuid4', Mock(return_value='lol'))
-    @patch('mkt.developers.models.generate_key', Mock(return_value='poop'))
-    @patch('mkt.developers.models.client')
-    def test_create(self, client):
-        client.api.generic.product.get_object.return_value = {
-            'resource_uri': 'gpuri'}
-
-        client.api.bango.product.get_object.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 'bango#', 'seller': 'selluri'
-        }
-
-        apa = AddonPaymentAccount.create(
-            'bango', addon=self.app, payment_account=self.account)
-        eq_(apa.addon, self.app)
-        eq_(apa.provider, 'bango')
-        eq_(apa.account_uri, 'acuri')
-        eq_(apa.product_uri, 'bpruri')
-
-    @patch('uuid.uuid4', Mock(return_value='lol'))
-    @patch('mkt.developers.models.generate_key', Mock(return_value='poop'))
-    @patch('mkt.developers.models.client')
-    def test_create_with_free_in_app(self, client):
-        client.api.generic.product.get_object.return_value = {
-            'resource_uri': 'gpuri'}
-
-        client.api.bango.product.get_object.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 'bango#', 'seller': 'selluri'
-        }
-
-        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
-        apa = AddonPaymentAccount.create(
-            'bango', addon=self.app, payment_account=self.account)
-        eq_(apa.addon, self.app)
-        eq_(apa.provider, 'bango')
-        eq_(apa.account_uri, 'acuri')
-        eq_(apa.product_uri, 'bpruri')
-
-        assert not client.api.bango.premium.post.called
-
-    @patch('mkt.developers.models.client')
-    def test_create_new(self, client):
-        client.api.bango.product.get_object.side_effect = ObjectDoesNotExist
-        client.api.provider.bango.product.post.return_value = {
-                'resource_uri': '', 'bango_id': 1}
-        AddonPaymentAccount.create(
-            'bango', addon=self.app, payment_account=self.account)
-        ok_('packageId' in
-            client.api.provider.bango.product.post.call_args[1]['data'])

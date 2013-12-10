@@ -2,20 +2,17 @@ import posixpath
 import uuid
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 import commonware.log
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _
 
 import amo
 from amo.urlresolvers import reverse
 from constants.payments import PROVIDER_BANGO, PROVIDER_CHOICES
 from lib.crypto import generate_key
 from lib.pay_server import client
-from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
-from mkt.developers.utils import uri_to_pk
-from mkt.purchase import webpay
+from mkt.constants.payments import ACCESS_SIMULATE
 from users.models import UserForeignKey
 
 log = commonware.log.getLogger('z.devhub')
@@ -143,70 +140,11 @@ class AddonPaymentAccount(amo.models.ModelBase):
     addon = models.OneToOneField(
         'addons.Addon', related_name='app_payment_account')
     payment_account = models.ForeignKey(PaymentAccount)
-    provider = models.CharField(
-        max_length=8, choices=[('bango', _lazy('Bango'))])
     account_uri = models.CharField(max_length=255)
     product_uri = models.CharField(max_length=255, unique=True)
 
     class Meta:
         db_table = 'addon_payment_account'
-
-    @classmethod
-    def create(cls, provider, addon, payment_account):
-        # TODO: remove once API is the only access point.
-        uri = cls.setup_bango(provider, addon, payment_account)
-        return cls.objects.create(addon=addon, provider=provider,
-                                  payment_account=payment_account,
-                                  account_uri=payment_account.uri,
-                                  product_uri=uri)
-
-    @classmethod
-    def setup_bango(cls, provider, addon, payment_account):
-        secret = generate_key(48)
-        external_id = webpay.make_ext_id(addon.pk)
-        data = {'seller': uri_to_pk(payment_account.seller_uri),
-                'external_id': external_id}
-        try:
-            generic_product = client.api.generic.product.get_object(**data)
-        except ObjectDoesNotExist:
-            generic_product = client.api.generic.product.post(data={
-                'seller': payment_account.seller_uri, 'secret': secret,
-                'external_id': external_id, 'public_id': str(uuid.uuid4()),
-                'access': ACCESS_PURCHASE,
-            })
-
-        product_uri = generic_product['resource_uri']
-        if provider == 'bango':
-            uri = cls._create_bango(
-                product_uri, addon, payment_account, secret)
-        else:
-            uri = ''
-        return uri
-
-    @classmethod
-    def _create_bango(cls, product_uri, addon, payment_account, secret):
-        if not payment_account.account_id:
-            raise NotImplementedError('Currently we only support Bango '
-                                      'so the associated account must '
-                                      'have a account_id')
-
-        res = None
-        if product_uri:
-            data = {'seller_product': uri_to_pk(product_uri)}
-            try:
-                res = client.api.bango.product.get_object(**data)
-            except ObjectDoesNotExist:
-                # The product does not exist in Solitude so create it.
-                res = client.api.provider.bango.product.post(data={
-                    'seller_bango': payment_account.uri,
-                    'seller_product': product_uri,
-                    'name': unicode(addon.name),
-                    'packageId': payment_account.account_id,
-                    'categoryId': 1,
-                    'secret': secret
-                })
-
-        return res['resource_uri']
 
 
 class UserInappKey(amo.models.ModelBase):
