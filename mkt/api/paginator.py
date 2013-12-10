@@ -3,8 +3,7 @@ import urlparse
 from django.http import QueryDict
 from django.utils.http import urlencode
 
-from rest_framework import serializers
-from rest_framework import pagination
+from rest_framework import pagination, serializers
 
 
 class MetaSerializer(serializers.Serializer):
