@@ -26,6 +26,10 @@ class Command(BaseCommand):
 
         apps = Webapp.objects.all()
         for app in apps:
+            # If it's already restricted, don't bother.
+            if app.geodata.restricted:
+                continue
+
             geodata = {}
 
             # If this app was excluded in every region except one,
