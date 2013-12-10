@@ -287,12 +287,8 @@ class Webapp(Addon):
                        args=[self.app_slug] + (args or []),
                        add_prefix=add_prefix)
 
-    def get_stats_url(self, action='overview', args=None):
-        """Reverse URLs for 'stats', 'stats.overview', etc."""
-        # Simplifies the templates to not have to choose whether to call
-        # get_stats_url.
-        return reverse(('mkt.stats.%s' % action),
-                       args=[self.app_slug] + (args or []))
+    def get_stats_url(self):
+        return reverse('commonplace.stats.app_dashboard', args=[self.app_slug])
 
     def get_comm_thread_url(self):
         return reverse('commonplace.commbadge.app_dashboard',

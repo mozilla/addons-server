@@ -142,13 +142,7 @@ class TestWebapp(amo.tests.TestCase):
 
     def test_get_stats_url(self):
         webapp = Webapp(app_slug='woo')
-
-        eq_(webapp.get_stats_url(), '/app/woo/statistics/')
-
-        url = webapp.get_stats_url(action='installs_series',
-                                   args=['day', '20120101', '20120201',
-                                         'json'])
-        eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
+        eq_(webapp.get_stats_url(), '/statistics/app/woo')
 
     def test_get_comm_thread_url(self):
         app = app_factory(app_slug='putain')
