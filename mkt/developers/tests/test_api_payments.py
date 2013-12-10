@@ -370,7 +370,7 @@ class TestAddonPaymentAccount(AccountCase, RestOAuth):
         eq_(res.status_code, 403)
 
     def test_allowed(self):
-        self.bango_patcher.product.get_object.return_value = {
+        self.bango_patcher.product.get_object_or_404.return_value = {
             'resource_uri': '/f/b'}
         self.create_price()
         self.create_user()
@@ -402,7 +402,7 @@ class TestAddonPaymentAccount(AccountCase, RestOAuth):
         eq_(res.status_code, 403, res.content)
 
     def test_can_shared(self):
-        self.bango_patcher.product.get_object.return_value = {
+        self.bango_patcher.product.get_object_or_404.return_value = {
             'resource_uri': '/f/b'}
         data = self.other(shared=True)
         self.create_price()
