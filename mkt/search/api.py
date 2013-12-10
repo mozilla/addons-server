@@ -60,8 +60,8 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
            attempts to do this without authentication and one of the
            'Regions:BypassFilters' permission or curator-level access to a
            collection, return a 403.
-        2. If the GET param `region` is set and not empty, attempt to return the
-           region with the specified slug.
+        2. If the GET param `region` is set and not empty, attempt to return
+           the region with the specified slug.
         3. If request.REGION is set, return it. (If the GET param `region` is
            either not set or set and empty, RegionMiddleware will attempt to
            determine the region via IP address).
@@ -92,7 +92,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         base_filters = {'type': form_data['type']}
 
         qs = self.get_query(request, base_filters=base_filters,
-                       region=self.get_region(request))
+                            region=self.get_region(request))
         profile = get_feature_profile(request)
         qs = self.apply_filters(request, qs, data=form_data,
                                 profile=profile)
@@ -120,7 +120,6 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         return _filter_search(request, qs, data, region=region,
                               profile=profile)
 
-
     def collections(self, request, collection_type=None, limit=1):
         filters = request.GET.dict()
         filters.setdefault('region', self.get_region(request).slug)
@@ -135,12 +134,12 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         return serializer.data, getattr(qs, 'filter_fallback', None)
 
 
-
 class FeaturedSearchView(SearchView):
 
     def get(self, request, *args, **kwargs):
         serializer = self.search(request)
-        data, filter_fallbacks = self.add_featured_etc(request, serializer.data)
+        data, filter_fallbacks = self.add_featured_etc(request,
+                                                       serializer.data)
         response = Response(data)
         for name, value in filter_fallbacks.items():
             response['API-Fallback-%s' % name] = ','.join(value)
@@ -154,7 +153,8 @@ class FeaturedSearchView(SearchView):
         )
         filter_fallbacks = {}
         for name, col_type in types:
-            data[name], fallback = self.collections(request, collection_type=col_type)
+            data[name], fallback = self.collections(request,
+                                                    collection_type=col_type)
             if fallback:
                 filter_fallbacks[name] = fallback
 
@@ -181,7 +181,7 @@ class SuggestionsView(SearchView):
         base_filters = {'type': form_data['type']}
 
         qs = self.get_query(request, base_filters=base_filters,
-                       region=self.get_region(request))
+                            region=self.get_region(request))
         profile = get_feature_profile(request)
         qs = self.apply_filters(request, qs, data=form_data, profile=profile)
 

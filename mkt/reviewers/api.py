@@ -10,9 +10,10 @@ from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import ApiReviewersSearchForm, ApproveRegionForm
 from mkt.reviewers.serializers import ReviewingSerializer
 from mkt.reviewers.utils import AppsReviewing
-from mkt.search.api import SearchResultSerializer, SearchView
+from mkt.search.api import SearchView
 from mkt.search.utils import S
 from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.webapps.utils import get_translations
 
 
 class ReviewingView(ListAPIView):
@@ -25,8 +26,8 @@ class ReviewingView(ListAPIView):
         return [row['app'] for row in AppsReviewing(self.request).get_apps()]
 
 SEARCH_FIELDS = [u'device_types', u'id', u'is_escalated', u'is_packaged',
-                 u'latest_version', u'name', u'premium_type', u'price', u'slug',
-                 u'status']
+                 u'latest_version', u'name', u'premium_type', u'price',
+                 u'slug', u'status']
 
 
 class ReviewersSearchView(SearchView):
@@ -51,10 +52,15 @@ class ReviewersSearchView(SearchView):
         data = {}
         for k in SEARCH_FIELDS:
             data[k] = full_data.get(k)
+        # For translated fields, just return the default locale.
+        data['name'] = get_translations(full_data, 'name',
+                                        full_data['default_locale'],
+                                        full_data['default_locale'])
         # Add reviewer-specific stuff that's not in the standard dehydrate.
         data['latest_version'] = app.latest_version
         data['is_escalated'] = app.is_escalated
         return data
+
 
 def apply_reviewer_filters(request, qs, data=None):
     for k in ('has_info_request', 'has_editor_comment'):

@@ -281,13 +281,15 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'created': self.app.created,
             'current_version': '1.0',
             'default_locale': u'en-US',
-            'description': u'Something Something Steamcube description!',
-            'homepage': '',
+            'description': {
+                u'en-US': u'Something Something Steamcube description!'},
+            'homepage': None,
             'id': '337141',
             'is_offline': False,
             'is_packaged': False,
             'manifest_url': 'http://micropipes.com/temp/steamcube.webapp',
-            'name': 'Something Something Steamcube!',
+            'name': {u'en-US': u'Something Something Steamcube!',
+                     u'es': u'Algo Algo Steamcube!'},
             'premium_type': 'free',
             'public_stats': False,
             'ratings': {
@@ -313,6 +315,26 @@ class TestESAppToDict(amo.tests.ESTestCase):
         ok_('1.0' in res['versions'])
         self.assertApiUrlEqual(res['versions']['1.0'],
                                '/apps/versions/1268829/')
+
+        for k, v in expected.items():
+            eq_(res[k], v,
+                u'Expected value "%s" for field "%s", got "%s"' %
+                (v, k, res[k]))
+
+    def test_basic_with_lang(self):
+        # Check that when ?lang is passed, we get the right language and we get
+        # empty stings instead of None if the strings don't exist.
+        request = RequestFactory().get('/?lang=es')
+        res = es_app_to_dict(self.get_obj(), profile=self.profile,
+                             request=request)
+        expected = {
+            'id': '337141',
+            'description': u'Something Something Steamcube description!',
+            'homepage': u'',
+            'name': u'Algo Algo Steamcube!',
+            'support_email': u'',
+            'support_url': u'',
+        }
 
         for k, v in expected.items():
             eq_(res[k], v,

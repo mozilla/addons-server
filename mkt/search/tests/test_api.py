@@ -13,7 +13,6 @@ from rest_framework.exceptions import ParseError, PermissionDenied
 
 import amo
 import mkt
-import mkt.regions
 from access.middleware import ACLMiddleware
 from addons.models import AddonCategory, AddonDeviceType, AddonUpsell, Category
 from amo.helpers import absolutify
@@ -24,6 +23,7 @@ from tags.models import Tag
 from translations.helpers import truncate
 from users.models import UserProfile
 
+import mkt.regions
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
@@ -150,7 +150,7 @@ class TestApi(RestOAuth, ESTestCase):
 
     def test_wrong_weight(self):
         self.category.update(weight=-1)
-        res = self.client.get(self.url, data={'cat': self.category.slug })
+        res = self.client.get(self.url, data={'cat': self.category.slug})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
 
@@ -228,7 +228,8 @@ class TestApi(RestOAuth, ESTestCase):
                     {'descriptors': [], 'interactive_elements': [],
                      'ratings': None})
                 eq_(obj['current_version'], u'1.0')
-                eq_(obj['description'], unicode(self.webapp.description))
+                eq_(obj['description'],
+                    {'en-US': self.webapp.description.localized_string})
                 eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
                 eq_(obj['id'], str(self.webapp.id))
                 eq_(obj['manifest_url'], self.webapp.get_manifest_url())
@@ -237,7 +238,8 @@ class TestApi(RestOAuth, ESTestCase):
                                        '/apps/app/337141/privacy/')
                 eq_(obj['public_stats'], self.webapp.public_stats)
                 eq_(obj['ratings'], {'average': 0.0, 'count': 0})
-                self.assertApiUrlEqual(obj['resource_uri'], '/apps/app/337141/')
+                self.assertApiUrlEqual(obj['resource_uri'],
+                                       '/apps/app/337141/')
                 eq_(obj['slug'], self.webapp.app_slug)
                 eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
                 ok_('1.0' in obj['versions'])
@@ -382,12 +384,38 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_name_localized(self):
+        # First test no ?lang parameter returns all localizations.
+        res = self.client.get(self.url, data={'q': 'something'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+        eq_(obj['name'], {u'en-US': u'Something Something Steamcube!',
+                          u'es': u'Algo Algo Steamcube!'})
+
+        # Second test that adding ?lang returns only that localization.
         res = self.client.get(self.url,
                               data={'q': 'something', 'lang': 'es'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['name'], u'Algo Algo Steamcube!')
+
+    def test_other_localized(self):
+        # Test fields that should be localized.
+        translations = {'en-US': u'Test in English',
+                        'es': u'Test in Español'}
+        self.webapp.homepage = translations
+        self.webapp.support_email = translations
+        self.webapp.support_url = translations
+        self.webapp.save()
+        self.refresh('webapp')
+
+        res = self.client.get(self.url, data={'q': 'something'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['homepage'], translations)
+        eq_(obj['support_email'], translations)
+        eq_(obj['support_url'], translations)
 
     def test_name_localized_to_default_locale(self):
         self.webapp.update(default_locale='es')
@@ -677,8 +705,8 @@ class BaseFeaturedTests(RestOAuth, ESTestCase):
         super(BaseFeaturedTests, self).setUp()
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
-        AddonDeviceType.objects.create(addon=self.app,
-            device_type=DEVICE_CHOICES_IDS['firefoxos'])
+        AddonDeviceType.objects.create(
+            addon=self.app, device_type=DEVICE_CHOICES_IDS['firefoxos'])
         AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
         self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                       geolocation=True, indexeddb=True,
@@ -696,12 +724,12 @@ class TestFeaturedCollections(BaseFeaturedTests):
 
     def setUp(self):
         super(TestFeaturedCollections, self).setUp()
-        self.col = Collection.objects.create(name='Hi', description='Mom',
-            collection_type=self.col_type, category=self.cat, is_public=True,
-            region=mkt.regions.US.id)
+        self.col = Collection.objects.create(
+            name='Hi', description='Mom', collection_type=self.col_type,
+            category=self.cat, is_public=True, region=mkt.regions.US.id)
         self.qs['region'] = mkt.regions.US.slug
         self.create_switch('collections-use-es-for-apps')
-        # FIXME: mock the search part, we don't care about it
+        # FIXME: mock the search part, we don't care about it.
 
     def make_request(self):
         res = self.client.get(self.list_url, self.qs)
@@ -734,8 +762,9 @@ class TestFeaturedCollections(BaseFeaturedTests):
         eq_(len(json[self.prop_name][0]['apps']), 0)
 
     def test_only_public(self):
-        self.col2 = Collection.objects.create(name='Col', description='Hidden',
-            collection_type=self.col_type, category=self.cat, is_public=False)
+        self.col2 = Collection.objects.create(
+            name='Col', description='Hidden', collection_type=self.col_type,
+            category=self.cat, is_public=False)
         res, json = self.test_added_to_results()
 
         header = 'API-Fallback-%s' % self.prop_name
@@ -748,8 +777,9 @@ class TestFeaturedCollections(BaseFeaturedTests):
         """
         different_type = (COLLECTIONS_TYPE_FEATURED if self.col_type ==
                           COLLECTIONS_TYPE_BASIC else COLLECTIONS_TYPE_BASIC)
-        self.col2 = Collection.objects.create(name='Bye', description='Dad',
-            collection_type=different_type, category=self.cat, is_public=True)
+        self.col2 = Collection.objects.create(
+            name='Bye', description='Dad', collection_type=different_type,
+            category=self.cat, is_public=True)
         res, json = self.test_added_to_results()
 
         header = 'API-Fallback-%s' % self.prop_name
@@ -764,9 +794,9 @@ class TestFeaturedCollections(BaseFeaturedTests):
         """
         mock_field_to_native.return_value = None
         self.col.add_app(self.app)
-        self.col = Collection.objects.create(name='Me', description='Hello',
-            collection_type=self.col_type, category=self.cat, is_public=True,
-            region=mkt.regions.US.id)
+        self.col = Collection.objects.create(
+            name='Me', description='Hello', collection_type=self.col_type,
+            category=self.cat, is_public=True, region=mkt.regions.US.id)
         self.col.add_app(self.app)
         # Call standard test method.
         self.test_added_to_results()
@@ -832,8 +862,9 @@ class TestSuggestionsApi(ESTestCase):
         self.client = RestOAuthClient(None)
         self.app1 = Webapp.objects.get(pk=337141)
         self.app1.save()
-        self.app2 = app_factory(name=u"Second âpp", description=u"Second dèsc" * 25,
-                           created=self.days_ago(3))
+        self.app2 = app_factory(name=u'Second âpp',
+                                description=u'Second dèsc' * 25,
+                                created=self.days_ago(3))
         self.refresh('webapp')
 
     def tearDown(self):
@@ -843,19 +874,26 @@ class TestSuggestionsApi(ESTestCase):
         self.app2.delete()
 
     def test_suggestions(self):
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, data={'lang': 'en-US'})
         parsed = json.loads(response.content)
         eq_(parsed[0], '')
-        self.assertSetEqual(parsed[1], [unicode(self.app1.name),
-                                        unicode(self.app2.name)])
-        self.assertSetEqual(parsed[2], [unicode(self.app1.description),
-                                        unicode(truncate(self.app2.description))])
-        self.assertSetEqual(parsed[3], [absolutify(self.app1.get_detail_url()),
-                                        absolutify(self.app2.get_detail_url())])
-        self.assertSetEqual(parsed[4], [self.app1.get_icon_url(64),
-                                        self.app2.get_icon_url(64)])
+        self.assertSetEqual(
+            parsed[1],
+            [unicode(self.app1.name), unicode(self.app2.name)])
+        self.assertSetEqual(
+            parsed[2],
+            [unicode(self.app1.description),
+             unicode(truncate(self.app2.description))])
+        self.assertSetEqual(
+            parsed[3],
+            [absolutify(self.app1.get_detail_url()),
+             absolutify(self.app2.get_detail_url())])
+        self.assertSetEqual(
+            parsed[4],
+            [self.app1.get_icon_url(64), self.app2.get_icon_url(64)])
 
     def test_suggestions_filtered(self):
-        response = self.client.get(self.url, data={'q': 'Second'})
+        response = self.client.get(self.url, data={'q': 'Second',
+                                                   'lang': 'en-US'})
         parsed = json.loads(response.content)
         eq_(parsed[1], [unicode(self.app2.name)])

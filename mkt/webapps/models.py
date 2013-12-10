@@ -206,7 +206,7 @@ class Webapp(Addon):
 
         ids = set(app.id for app in apps)
         versions = (Version.objects.no_cache().filter(addon__in=ids)
-                                    .select_related('addon'))
+                    .select_related('addon'))
         vids = [v.id for v in versions]
         files = (File.objects.no_cache().filter(version__in=vids)
                              .select_related('version'))
@@ -585,8 +585,8 @@ class Webapp(Addon):
         :param optional provider: an int for the provider. Defaults to bango.
         """
         if self.has_premium() and self.premium.price:
-            return self.premium.price.get_price(carrier=carrier,
-                region=region, provider=provider)
+            return self.premium.price.get_price(carrier=carrier, region=region,
+                                                provider=provider)
 
     def get_price_locale(self, carrier=None, region=None, provider=None):
         """
@@ -598,8 +598,8 @@ class Webapp(Addon):
         :param optional provider: an int for the provider. Defaults to bango.
         """
         if self.has_premium() and self.premium.price:
-            return self.premium.price.get_price_locale(carrier=carrier,
-                region=region, provider=provider)
+            return self.premium.price.get_price_locale(
+                carrier=carrier, region=region, provider=provider)
 
     def get_tier(self):
         """
@@ -748,8 +748,8 @@ class Webapp(Addon):
 
         srch = S(WebappIndexer).filter(**filters)
 
-        if (region and not
-            waffle.flag_is_active(request, 'override-region-exclusion')):
+        if (region and
+            not waffle.flag_is_active(request, 'override-region-exclusion')):
             srch = srch.filter(~F(region_exclusions=region.id))
 
         if mobile or gaia:
@@ -1365,7 +1365,6 @@ class WebappIndexer(MappingType, Indexable):
                             for f in APP_FEATURES)
                     },
                     'has_public_stats': {'type': 'boolean'},
-                    'homepage': {'type': 'string', 'index': 'not_analyzed'},
                     'icons': {
                         'type': 'object',
                         'properties': {
@@ -1406,8 +1405,6 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'price_tier': {'type': 'string',
                                    'index': 'not_analyzed'},
-                    'release_notes': {'type': 'string',
-                                      'index': 'not_analyzed'},
                     'ratings': {
                         'type': 'object',
                         'properties': {
@@ -1418,10 +1415,6 @@ class WebappIndexer(MappingType, Indexable):
                     'region_exclusions': {'type': 'short'},
                     'reviewed': {'format': 'dateOptionalTime', 'type': 'date'},
                     'status': {'type': 'byte'},
-                    'support_email': {'type': 'string',
-                                      'index': 'not_analyzed'},
-                    'support_url': {'type': 'string',
-                                    'index': 'not_analyzed'},
                     'supported_locales': {'type': 'string',
                                           'index': 'not_analyzed'},
                     'tags': {'type': 'string', 'analyzer': 'simple'},
@@ -1487,8 +1480,6 @@ class WebappIndexer(MappingType, Indexable):
                 _locale_field_mapping('name', analyzer))
             mapping[doc_type]['properties'].update(
                 _locale_field_mapping('description', analyzer))
-            mapping[doc_type]['properties'].update(
-                _locale_field_mapping('release_notes', analyzer))
 
         # TODO: reviewer flags (bug 848446)
 
@@ -1538,8 +1529,6 @@ class WebappIndexer(MappingType, Indexable):
         d['device'] = getattr(obj, 'device_ids', [])
         d['features'] = features
         d['has_public_stats'] = obj.public_stats
-        # TODO: Store all localizations of homepage.
-        d['homepage'] = unicode(obj.homepage) if obj.homepage else ''
         d['icons'] = [{'size': icon_size, 'url': obj.get_icon_url(icon_size)}
                       for icon_size in (16, 48, 64, 128)]
         d['interactive_elements'] = obj.get_interactives(es=True)
@@ -1583,16 +1572,6 @@ class WebappIndexer(MappingType, Indexable):
         d['region_exclusions'] = obj.get_excluded_region_ids()
         d['reviewed'] = obj.versions.filter(
             deleted=False).aggregate(Min('reviewed')).get('reviewed__min')
-        if version:
-            amo.utils.attach_trans_dict(Version, [version])
-            d['release_notes'] = list(set(string for _, string
-                in version.translations[version.releasenotes_id]))
-        else:
-            d['release_notes'] = None
-        d['support_email'] = (unicode(obj.support_email)
-                              if obj.support_email else None)
-        d['support_url'] = (unicode(obj.support_url)
-                            if obj.support_url else None)
         if version:
             d['supported_locales'] = filter(
                 None, version.supported_locales.split(','))
@@ -1664,11 +1643,6 @@ class WebappIndexer(MappingType, Indexable):
                 set(string for locale, string
                     in obj.translations[obj.description_id]
                     if locale.lower() in languages))
-            if version:
-                d['release_notes_' + analyzer] = list(
-                    set(string for locale, string
-                        in version.translations[version.releasenotes_id]
-                        if locale.lower() in languages))
 
         return d
 
@@ -2018,8 +1992,8 @@ class Geodata(amo.models.ModelBase):
         db_table = 'webapps_geodata'
 
     def __unicode__(self):
-        return u'%s (%s): <Webapp %s>' % (self.id,
-            'restricted' if self.restricted else 'unrestricted',
+        return u'%s (%s): <Webapp %s>' % (
+            self.id, 'restricted' if self.restricted else 'unrestricted',
             self.addon.id)
 
     def get_status(self, region):
@@ -2102,7 +2076,8 @@ class Geodata(amo.models.ModelBase):
 for region in mkt.regions.SPECIAL_REGIONS:
     help_text = _('{region} approval status').format(region=region.name)
     field = models.PositiveIntegerField(help_text=help_text,
-        choices=amo.STATUS_CHOICES.items(), db_index=True, default=0)
+                                        choices=amo.STATUS_CHOICES.items(),
+                                        db_index=True, default=0)
     field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
 
     help_text = _('{region} nomination date').format(region=region.name)

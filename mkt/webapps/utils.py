@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 from django.conf import settings
-from django.utils import translation
 
 import commonware.log
 import waffle
@@ -7,14 +7,15 @@ import waffle
 import amo
 from addons.models import AddonUser
 from amo.helpers import absolutify
-from amo.utils import find_language
 from amo.urlresolvers import reverse
+from amo.utils import find_language
 from constants.applications import DEVICE_TYPES
 from market.models import Price
 from users.models import UserProfile
 
 import mkt
 from mkt.regions import REGIONS_CHOICES_ID_DICT
+
 
 log = commonware.log.getLogger('z.webapps')
 
@@ -48,24 +49,28 @@ def get_supported_locales(manifest):
         manifest.get('locales', {}).keys()))))
 
 
-def get_attr_lang(src, attr, default_locale):
+def get_translations(src, attr, default_locale, lang):
     """
-    Our index stores localized strings in elasticsearch as, e.g.,
-    "name_spanish": [u'Nombre']. This takes the current language in the
-    threadlocal and gets the localized value, defaulting to
-    settings.LANGUAGE_CODE.
-    """
-    req_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(
-        translation.get_language().lower())
-    def_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(
-        default_locale.lower())
-    svr_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(
-        settings.LANGUAGE_CODE.lower())
+    Return dict of localized strings for attr or string if lang provided.
 
-    value = (src.get('%s_%s' % (attr, req_lang)) or
-             src.get('%s_%s' % (attr, def_lang)) or
-             src.get('%s_%s' % (attr, svr_lang)))
-    return value[0] if value else u''
+    If lang is provided, try to get the attr localized in lang, falling back to
+    the app's default_locale and server language.
+
+    If lang is not provided, we return all localized strings in the form::
+
+        {"en": "English", "es": "Español"}
+
+    """
+    translations = src.get(attr, {})
+    requested_language = find_language(lang)
+
+    # If a language was requested, return only that translation.
+    if requested_language:
+        return (translations.get(requested_language) or
+                translations.get(default_locale) or
+                translations.get(settings.LANGUAGE_CODE) or u'')
+    else:
+        return translations or None
 
 
 def es_app_to_dict(obj, region=None, profile=None, request=None):
@@ -76,6 +81,12 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     from mkt.developers.models import AddonPaymentAccount
     from mkt.webapps.models import Installed, Webapp
 
+    translation_fields = ('description', 'homepage', 'name', 'release_notes',
+                          'support_email', 'support_url')
+    lang = None
+    if request and request.method == 'GET' and 'lang' in request.GET:
+        lang = request.GET.get('lang', '').lower()
+
     src = obj._source
     # The following doesn't perform a database query, but gives us useful
     # methods like `get_detail_url`. If you use `obj` make sure the calls
@@ -83,10 +94,19 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     is_packaged = src.get('app_type') != amo.ADDON_WEBAPP_HOSTED
     app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
 
-    attrs = ('created', 'current_version', 'default_locale', 'homepage',
-             'is_offline', 'manifest_url', 'previews', 'reviewed', 'ratings',
-             'status', 'support_email', 'support_url', 'weekly_downloads')
+    attrs = ('created', 'current_version', 'default_locale', 'is_offline',
+             'manifest_url', 'previews', 'reviewed', 'ratings', 'status',
+             'weekly_downloads')
     data = dict((a, getattr(obj, a, None)) for a in attrs)
+
+    # Flatten the localized fields from {'lang': ..., 'string': ...}
+    # to {lang: string}.
+    for field in translation_fields:
+        src_field = '%s_translations' % field
+        src[src_field] = dict((v.get('lang', ''), v.get('string', ''))
+                              for v in src.get(src_field))
+        data[field] = get_translations(src, src_field, obj.default_locale,
+                                       lang)
 
     if getattr(obj, 'content_ratings', None):
         for region_key in obj.content_ratings:
@@ -105,19 +125,15 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
             'interactive_elements': dehydrate_interactives(
                 getattr(obj, 'interactive_elements', [])),
         },
-        'description': get_attr_lang(src, 'description', obj.default_locale),
         'device_types': [DEVICE_TYPES[d].api_name for d in src.get('device')],
         'icons': dict((i['size'], i['url']) for i in src.get('icons')),
         'id': str(obj._id),
         'is_packaged': is_packaged,
-        'name': get_attr_lang(src, 'name', obj.default_locale),
         'payment_required': False,
         'premium_type': amo.ADDON_PREMIUM_API[src.get('premium_type')],
         'privacy_policy': reverse('app-privacy-policy-detail',
                                   kwargs={'pk': obj._id}),
         'public_stats': obj.has_public_stats,
-        'release_notes': get_attr_lang(src, 'release_notes',
-                                       obj.default_locale),
         'supported_locales': src.get('supported_locales', ''),
         'slug': obj.app_slug,
         # TODO: Remove the type check once this code rolls out and our indexes
@@ -141,7 +157,8 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     if src.get('premium_type') in amo.ADDON_PREMIUMS:
         acct = list(AddonPaymentAccount.objects.filter(addon=app))
         if acct and acct.payment_account:
-            data['payment_account'] = reverse('payment-account-detail',
+            data['payment_account'] = reverse(
+                'payment-account-detail',
                 kwargs={'pk': acct.payment_account.pk})
     else:
         data['payment_account'] = None
@@ -173,8 +190,9 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     # TODO: Let's get rid of these from the API to avoid db hits.
     if profile and isinstance(profile, UserProfile):
         data['user'] = {
-            'developed': AddonUser.objects.filter(addon=obj.id,
-                user=profile, role=amo.AUTHOR_ROLE_OWNER).exists(),
+            'developed': AddonUser.objects.filter(
+                addon=obj.id, user=profile,
+                role=amo.AUTHOR_ROLE_OWNER).exists(),
             'installed': Installed.objects.filter(
                 user=profile, addon_id=obj.id).exists(),
             'purchased': obj.id in profile.purchase_ids(),

@@ -1548,9 +1548,15 @@ class TestWebappIndexer(amo.tests.TestCase):
         eq_(doc['default_locale'], obj.default_locale)
         eq_(doc['description'], list(
             set(s for _, s in obj.translations[obj.description_id])))
+        eq_(doc['description_translations'],
+            [{'lang': l, 'string': s}
+             for l, s in obj.translations[obj.description_id]])
         eq_(doc['device'], [])
         eq_(doc['name'], list(
             set(s for _, s in obj.translations[obj.name_id])))
+        eq_(doc['name_translations'],
+            [{'lang': l, 'string': s}
+             for l, s in obj.translations[obj.name_id]])
         eq_(doc['status'], obj.status)
         eq_(doc['is_escalated'], False)
         eq_(doc['latest_version']['status'], amo.STATUS_PUBLIC)
@@ -1665,9 +1671,10 @@ class TestWebappIndexer(amo.tests.TestCase):
         version.releasenotes = release_notes
         version.save()
         obj, doc = self._get_doc()
-        self.assertSetEqual(doc['release_notes'], release_notes.values())
-        eq_(doc['release_notes_french'], [release_notes['fr']])
-        eq_(doc['release_notes_english'], [release_notes['en-US']])
+        eq_(doc['release_notes'][0],
+            {'lang': 'en-US', 'string': release_notes['en-US']})
+        eq_(doc['release_notes'][1],
+            {'lang': 'fr', 'string': release_notes['fr']})
 
 
 class TestRatingDescriptors(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
