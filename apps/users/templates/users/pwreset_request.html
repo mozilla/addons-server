@@ -4,23 +4,27 @@
 {% block title %}{{ page_title(_('Password Reset')) }}{% endblock %}
 
 {% block content %}
-  <div class="primary full island prettyform">
+<div class="primary">
+  {% include "users/login_help.html" %}
+  <section class="island hero primary grid prettyform">
     <h1>{{ _('Password Reset') }}</h1>
-    <form method="post" action="">
+    <form method="post" action="" class="listing-footer">
       {{ csrf() }}
       <fieldset>
         <p class="instruct">
-          {% trans %} Forgotten your password? Enter your e-mail address below,
+        {% trans %}
+          Forgotten your password? Enter your e-mail address below,
           and we'll e-mail instructions for setting a new one.
-          {% endtrans %}
+        {% endtrans %}
         </p>
         <ul>
           {{ pretty_field(form.email, _('Email Address')) }}
         </ul>
       </fieldset>
-      <p class="footer-submit">
+      <footer class="listing-footer">
         <button type="submit">{{ _('Send password reset link') }}</button>
-      </p>
+      </footer>
     </form>
-  </div>
+  </section>
+</div>
 {% endblock content %}

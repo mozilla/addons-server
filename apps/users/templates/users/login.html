@@ -6,48 +6,22 @@
 
 {% block js %}
   {% if form.recaptcha %}
-    {% include("amo/recaptcha_js.html") %}
+    {% include "amo/recaptcha_js.html" %}
   {% endif %}
 {% endblock %}
 
 {% block content %}
 
 <div class="primary">
-  {% if not settings.APP_PREVIEW: %}
-  <div class="secondary">
-      <div id="login-help" class="article">
-          <h2>{{ _('Login Problems?') }}</h2>
-          <ul>
-            {% if not settings.APP_PREVIEW %}<li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>{% endif %}
-              <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
-          </ul>
-      </div>
-  </div>
-  {% endif %}
+  {% include "users/login_help.html" %}
   <section class="island hero primary grid {{ 'browserid' if waffle.switch('browserid-login') else 'prettyform' }}">
     <h1>{{ _('Log In') }}</h1>
-    {% if settings.APP_PREVIEW %}
-    {# TODO(apps): Finalize copy. #}
-    <strong>Welcome to the Apps Developer Preview!</strong>
-      {% if registration_closed %}
-        <p>This is a demonstration of our app submission process, but <strong>we're currently at our maximum number of testers
-        and are not accepting any new registrations</strong>. To be notified of our progress, including any future tester openings,
-        subscribe to our Apps newsletter in our <a href="https://developer.mozilla.org/en-US/apps">documentation area</a>. Thanks for your interest!</p>
-      {% else %}
-        <p>If you'd like to try a demo of our app submission process, log in or register below with your <a href="https://login.persona.org">Persona</a>
-          account. We're only accepting a limited number of registrations for this preview, but we encourage everyone interested in apps to
-          <a href="https://developer.mozilla.org/en-US/apps">read our documentation</a>.</p>
-      {% endif %}
-
-
-    <p><strong>Important</strong>: All submissions from this preview will be discarded before launch, and we expect final designs and flows to differ
-    significantly. We'd love to hear your <a href="http://groups.google.com/group/mozilla-apps">feedback</a>.</p>
-    {% elif waffle.switch('browserid-login') %}
+    {% if waffle.switch('browserid-login') %}
       <p>
         {# TODO: Localize! #}
         {% with url='https://login.persona.org/' %}
-        The add-ons website is now using <a href="{{ url }}">BrowserID</a> for sign in. If you already have an account here, just use the
-        same email when signing in to BrowserID.
+          The add-ons website is now using <a href="{{ url }}">BrowserID</a> for sign in. If you already have an account here, just use the
+          same email when signing in to BrowserID.
         {% endwith %}
       </p>
     {% endif %}
