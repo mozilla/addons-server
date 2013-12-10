@@ -61,7 +61,8 @@ Search
     :type region: string
     :param optional sort: The fields to sort by. One or more of 'created',
         'downloads', 'name', 'rating', or 'reviewed'. Sorts by
-        relevance by default.
+        relevance by default. In every case except 'name', sorting is done in
+        descending order.
     :type sort: string
 
     **Response**
