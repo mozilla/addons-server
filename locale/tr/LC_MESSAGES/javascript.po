@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-10-24 07:21+0000\n"
-"Last-Translator: cebeci88 <servet.cebeci@hotmail.com>\n"
+"PO-Revision-Date: 2013-12-10 07:52+0000\n"
+"Last-Translator: Menekşe <menekse.celik@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1382599274.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1386661961.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -116,7 +116,7 @@ msgstr "Videolar WebM olmalıdır."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Sıkıştırılmış uygulamanız <code>.zip</code> uzantısı ile bitmeli."
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
@@ -126,21 +126,21 @@ msgstr[0] "Uygulamanız {0} hatayla doğrulamayı geçemedi."
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "Uygulamanız hatasız olarak ve {0} uyarı ile doğrulamayı geçti."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Uygulamanız hatasız ve uyarısız olarak doğrulamayı geçti."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
+msgstr[0] "Uygulamanız {0} hata ve {1} mesaj ile doğrulamayı geçemedi."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Uygulamanız hatasız olarak ve{0} mesajla doğrulamayı geçti."
+msgstr[0] "Uygulamanız hatasız olarak ve {0} mesajla doğrulamayı geçti."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
@@ -156,7 +156,7 @@ msgstr "Yeni ekip üyesinin e-posta adresini girin"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
-msgstr ""
+msgstr "Tazelendi"
 
 #: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
@@ -192,11 +192,11 @@ msgstr "Bu yerelleştirmeyi kaldır"
 
 #: media/js/devreg/mobile_review_actions.js:6
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "İncelemeyi tut; bayrakları kaldır"
 
 #: media/js/devreg/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "İncelemeyi sil"
 
 #: media/js/devreg/mobile_review_actions.js:9
 msgid "Skip for now"
@@ -257,7 +257,7 @@ msgstr ""
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "Algılanan: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:24
@@ -272,7 +272,7 @@ msgstr "Hata"
 
 #: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Ödeme sunucusu ile bağlantıda bir sorun oluştu."
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
@@ -1161,39 +1161,39 @@ msgstr ""
 
 #: media/js/mkt/stats/chart_column.js:135 media/js/mkt/stats/table.js:98
 msgid "Source"
-msgstr ""
+msgstr "Kaynak"
 
 #: media/js/mkt/stats/chart_column.js:143
 msgid "Revenue"
-msgstr ""
+msgstr "Gelir"
 
 #: media/js/mkt/stats/chart_column.js:151
 msgid "Refunds"
-msgstr ""
+msgstr "İadeler"
 
 #: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
 msgid "Apps Added"
-msgstr ""
+msgstr "Eklenen Uygulamalar"
 
 #: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
 msgid "Apps Installed"
-msgstr ""
+msgstr "Yüklü Uygulamalar"
 
 #: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
 msgid "Reviews"
-msgstr ""
+msgstr "Yorumlar"
 
 #: media/js/mkt/stats/csv_keys.js:45 media/js/mkt/stats/csv_keys.js:208 media/js/mkt/stats/csv_keys.js:209
 msgid "New Users"
-msgstr ""
+msgstr "Yeni Kullanıcılar"
 
 #: media/js/mkt/stats/csv_keys.js:48 media/js/mkt/stats/csv_keys.js:204 media/js/mkt/stats/csv_keys.js:205
 msgid "Total Users"
-msgstr ""
+msgstr "Toplam Kullanıcı"
 
 #: media/js/mkt/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:212 media/js/mkt/stats/csv_keys.js:213
 msgid "Total Visitors"
-msgstr ""
+msgstr "Toplam Ziyaretçi"
 
 #: media/js/mkt/stats/csv_keys.js:54
 msgid "App Installs"
@@ -1209,7 +1209,7 @@ msgstr ""
 
 #: media/js/mkt/stats/csv_keys.js:114
 msgid "Marketplace Category Page"
-msgstr ""
+msgstr "Marketplace Kategori Sayfası"
 
 #: media/js/mkt/stats/csv_keys.js:115
 msgid "Marketplace Category Page, Featured"
@@ -1217,7 +1217,7 @@ msgstr ""
 
 #: media/js/mkt/stats/csv_keys.js:116
 msgid "Marketplace Detail Page"
-msgstr ""
+msgstr "Marketplace Detay Sayfası"
 
 #: media/js/mkt/stats/csv_keys.js:117
 msgid "Marketplace Detail Page, Upsell"
@@ -1225,11 +1225,11 @@ msgstr ""
 
 #: media/js/mkt/stats/csv_keys.js:118
 msgid "Marketplace Home Page"
-msgstr ""
+msgstr "Marketplace Ana Sayfası"
 
 #: media/js/mkt/stats/csv_keys.js:119
 msgid "Marketplace Search Results"
-msgstr ""
+msgstr "Marketplace Arama Sonuçları"
 
 #: media/js/mkt/stats/csv_keys.js:120
 msgid "Marketplace Search Results, Featured"
@@ -1237,15 +1237,15 @@ msgstr ""
 
 #: media/js/mkt/stats/csv_keys.js:156
 msgid "Units Sold, last {0} days"
-msgstr ""
+msgstr "Satılan Birimler, son {0} gün"
 
 #: media/js/mkt/stats/csv_keys.js:157
 msgid "Units Sold from {0} to {1}"
-msgstr ""
+msgstr "{0} ile {1} arasında Satılan Birimler"
 
 #: media/js/mkt/stats/csv_keys.js:160
 msgid "Amount Earned, last {0} days"
-msgstr ""
+msgstr "Kazanılan Tutar, son {0} gün"
 
 #: media/js/mkt/stats/csv_keys.js:161
 msgid "Amount Earned {0} to {1}"
@@ -1285,7 +1285,7 @@ msgstr ""
 
 #: media/js/mkt/stats/csv_keys.js:216 media/js/mkt/stats/csv_keys.js:217
 msgid "Total Installs"
-msgstr ""
+msgstr "Toplam Yükleme"
 
 #: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
@@ -1311,11 +1311,11 @@ msgstr ""
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "Uygulama yüklemesi başarısız oldu."
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Bu sistem uygulama yüklemeyi desteklemiyor."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
@@ -1348,7 +1348,7 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:171
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla bu sürümü Firefox sürümünüz ile uyumsuz olarak işaretledi."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
@@ -1374,7 +1374,7 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:382
 msgid "View other versions"
-msgstr ""
+msgstr "Diğer sürümleri görüntüle"
 
 #: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -1422,7 +1422,7 @@ msgstr "Kaldır"
 
 #: media/js/zamboni/collections.js:468
 msgid "Remove this user as a contributor"
-msgstr "Bu kullanıcıyı katkıda bulunanlardan kaldır"
+msgstr "Bu kullanıcıyı katkıda bulunanlardan çıkar"
 
 #: media/js/zamboni/collections.js:480
 msgid "An email address is required."
@@ -1484,11 +1484,11 @@ msgstr "İç sunucu hatası"
 
 #: media/js/zamboni/devhub.js:1515
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Geçerli bir e-posta adresi olmalı."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "Sonuç bulunamadı."
 
 #: media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
@@ -1524,11 +1524,11 @@ msgstr "Yükleniyor&hellip;"
 
 #: media/js/zamboni/editors.js:301
 msgid "Version Notes"
-msgstr ""
+msgstr "Sürüm Notları"
 
 #: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Yorumcular İçin Notlar"
 
 #: media/js/zamboni/editors.js:311
 msgid "No version notes found"
@@ -1621,11 +1621,11 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:128
 msgid "Installing..."
-msgstr ""
+msgstr "Yükleniyor..."
 
 #: media/js/zamboni/mobile/buttons.js:136
 msgid "Purchasing..."
-msgstr ""
+msgstr "Satın alınıyor..."
 
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."

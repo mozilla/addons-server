@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-04 09:07-0700\n"
-"PO-Revision-Date: 2013-10-24 20:16+0000\n"
-"Last-Translator: Selim <selim@sum.lu>\n"
+"PO-Revision-Date: 2013-12-10 07:51+0000\n"
+"Last-Translator: Menekşe <menekse.celik@gmail.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1382645785.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1386661873.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -2100,7 +2100,8 @@ msgstr ""
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>İzin verilmiyor.</h1> <p>İzniizn olmayan bir şey yapmaya çalıştınız.</p>"
+msgstr ""
+"<h1>İzin verilmedi.</h1> <p>İzniniz olmayan bir şey yapmaya çalıştınız.</p>"
 
 #: apps/amo/templates/amo/403.html:12 apps/amo/templates/amo/403_apps.html:17
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
