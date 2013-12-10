@@ -21,9 +21,9 @@ def addon_view(f, qs=Addon.objects.all):
         if addon_id and addon_id.isdigit():
             addon = get(id=addon_id)
             # Don't get in an infinite loop if addon.slug.isdigit().
-            # Magically replace addon.id by its slug directly in the url.
             if addon.slug != addon_id:
-                url = request.path.replace(addon_id, addon.slug)
+                url = request.path.replace(addon_id, addon.slug, 1)
+
                 if request.GET:
                     url += '?' + request.GET.urlencode()
                 return http.HttpResponsePermanentRedirect(url)

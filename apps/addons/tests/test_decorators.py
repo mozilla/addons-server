@@ -27,6 +27,13 @@ class TestAddonView(amo.tests.TestCase):
         res = self.view(self.request, str(self.addon.id))
         self.assert3xx(res, self.slug_path, 301)
 
+    def test_slug_replace_no_conflict(self):
+        self.request.path = '/addon/{id}/reviews/{id}345/path'.format(
+            id=self.addon.id)
+        res = self.view(self.request, str(self.addon.id))
+        self.assert3xx(res, '/addon/{slug}/reviews/{id}345/path'.format(
+            id=self.addon.id, slug=self.addon.slug), 301)
+
     def test_301_with_querystring(self):
         self.request.GET = mock.Mock()
         self.request.GET.urlencode.return_value = 'q=1'
