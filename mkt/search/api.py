@@ -14,7 +14,7 @@ import mkt
 from access import acl
 from mkt.api.authentication import (RestSharedSecretAuthentication,
                                     RestOAuthAuthentication)
-from mkt.api.base import CORSMixin, form_errors
+from mkt.api.base import CORSMixin, form_errors, MarketplaceView
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
                                        COLLECTIONS_TYPE_OPERATOR)
@@ -36,7 +36,7 @@ class SearchResultSerializer(Serializer):
                 for app in obj.object_list]
 
 
-class SearchView(CORSMixin, GenericAPIView):
+class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
     cors_allowed_methods = ['get']
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
