@@ -454,7 +454,7 @@ class Webapp(Addon):
         return is_complete, reasons
 
     def is_rated(self):
-        return self.content_ratings.no_cache().exists()
+        return self.content_ratings.exists()
 
     @property
     def is_offline(self):
