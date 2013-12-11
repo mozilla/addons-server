@@ -17,10 +17,6 @@
                     {{ addon.name }}</a></li>
                 {% endif %}
               {% endfor %}
-              {% if waffle.switch('developer-stats') %}
-                <li><em><a href="{{ url('mkt.stats.my_apps_overview') }}">
-                  {{ _('View Statistics') }}</a></em></li>
-              {% endif %}
               <li><em><a href="{{ url('submit.app') }}">
                 {{ _('Submit a New App') }}</a></em></li>
             </ul>
