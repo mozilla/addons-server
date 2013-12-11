@@ -160,7 +160,7 @@ class TestContentRatingPingback(RestOAuth):
                     {
                         'TYPE': 'string',
                         'NAME': 'descriptors_Generic',
-                        'VALUE': 'Language,Real Gambling'
+                        'VALUE': 'Language,Drugs'
                     },
                     {
                         'TYPE': 'string',
@@ -221,7 +221,7 @@ class TestContentRatingPingback(RestOAuth):
             app.rating_descriptors.to_keys(),
             ['has_classind_lang', 'has_classind_shocking',
              'has_pegi_lang', 'has_pegi_gambling',
-             'has_generic_lang', 'has_generic_real_gambling',
+             'has_generic_lang', 'has_generic_drugs',
              'has_esrb_lang', 'has_esrb_sim_gambling',
              'has_usk_lang', 'has_usk_scary'])
 

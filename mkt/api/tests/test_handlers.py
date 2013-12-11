@@ -290,8 +290,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         data = json.loads(res.content)
 
         eq_(data['content_ratings']['descriptors'],
-            [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
-             {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
+            {'esrb': [{'label': 'blood', 'name': 'Blood'}],
+             'pegi': [{'label': 'scary', 'name': 'Fear'}]})
 
     def test_get_interactive_elements(self):
         app = self.create_app()
