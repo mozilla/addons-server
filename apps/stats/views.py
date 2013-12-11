@@ -1,55 +1,51 @@
-import csv
 import cStringIO
+import csv
 import itertools
 import logging
 import time
-from types import GeneratorType
 from datetime import date, timedelta
+from types import GeneratorType
 
 from django import http
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
+from django.core.serializers.json import DjangoJSONEncoder
 from django.db import connection
-from django.db.models import Avg, Count, Sum, Q
+from django.db.models import Avg, Count, Q, Sum
+from django.shortcuts import get_object_or_404
 from django.utils import simplejson
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
-from django.core.serializers.json import DjangoJSONEncoder
-from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404
 
 import jingo
 from product_details import product_details
-import waffle
 
+import amo
 from access import acl
 from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
-from bandwagon.models import Collection
-from bandwagon.views import get_collection
-from lib.metrics import get_monolith_client
-from zadmin.models import SiteEvent
-
-import amo
 from amo.decorators import allow_cross_site_request, json_view, login_required
 from amo.urlresolvers import reverse
 from amo.utils import memoize
+from bandwagon.models import Collection
+from bandwagon.views import get_collection
+from zadmin.models import SiteEvent
 
 from .models import (CollectionCount, Contribution, DownloadCount,
                      ThemeUserCount, UpdateCount)
 
 
 logger = logging.getLogger('z.apps.stats.views')
+
+
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
-SERIES = ('downloads', 'usage', 'contributions', 'overview',
-          'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
+SERIES = ('downloads', 'usage', 'contributions', 'overview', 'sources', 'os',
+          'locales', 'statuses', 'versions', 'apps')
 COLLECTION_SERIES = ('downloads', 'subscribers', 'ratings')
 GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
-                 'apps_count_installed', 'apps_count_new',
-                 'apps_review_count_new', 'collections_created',
-                 'mmo_user_count_total', 'mmo_user_count_new',
-                 'mmo_total_visitors', 'reviews_created', 'addons_created',
+                 'collections_created', 'reviews_created', 'addons_created',
                  'users_created', 'my_apps')
 
 
@@ -474,12 +470,6 @@ _KEYS = {
     'addon_downloads_new': 'addons_downloaded',
     'addon_total_updatepings': 'addons_in_use',
     'addon_count_new': 'addons_created',
-    'apps_count_new': 'apps_count_new',
-    'apps_count_installed': 'apps_count_installed',
-    'apps_review_count_new': 'apps_review_count_new',
-    'mmo_user_count_new': 'mmo_user_count_new',
-    'mmo_user_count_total': 'mmo_user_count_total',
-    'webtrends_DailyVisitors': 'mmo_total_visitors',
     'version_count_new': 'addons_updated',
     'user_count_new': 'users_created',
     'review_count_new': 'reviews_created',
@@ -489,47 +479,9 @@ _KEYS = {
 _CACHED_KEYS = sorted(_KEYS.values())
 
 
-def _monolith_site_query(period, start, end, field):
-    fields = {'mmo_total_visitors': 'visits',
-              'apps_count_installed': 'app_installs',
-              'apps_review_count_new': 'review_count',
-              'mmo_user_count_new': 'user_count',
-              'apps_count_new': 'app_count',
-              'mmo_user_count_total': 'total_user_count'}
-
-    # Getting data from the monolith server.
-    client = get_monolith_client()
-
-    if period == 'date':
-        period = 'day'
-
-    # The start date is not included in the range.
-    # The end date is included.
-    start = start + timedelta(days=1)
-
-    def _get_data():
-        for result in client(fields[field], start, end, interval=period,
-                             strict_range=False):
-            yield {'date': result['date'].strftime('%Y-%m-%d'),
-                   'data': {field: result['count']}}
-
-    try:
-        return list(_get_data()), _CACHED_KEYS
-    except ValueError, e:
-        if len(e.args) > 0:
-            logger.error(e.args[0])
-        return [], _CACHED_KEYS
-
-
-# XXX deactivated until we're happy with monolith
-#@memoize(prefix='global_stats', time=60 * 60)
-#
+@memoize(prefix='global_stats', time=60 * 60)
 def _site_query(period, start, end, field=None, request=None):
     old_version = request and request.GET.get('old_version', '0') or '0'
-
-    if waffle.switch_is_active('monolith-stats') and old_version == '0':
-        res = _monolith_site_query(period, start, end, field)
-        return res
 
     cursor = connection.cursor()
     # Let MySQL make this fast. Make sure we prevent SQL injection with the

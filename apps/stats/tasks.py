@@ -24,7 +24,7 @@ from versions.models import Version
 
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.monolith.models import MonolithRecord
-from mkt.webapps.models import Installed, Webapp
+from mkt.webapps.models import Webapp
 
 from . import search
 from .models import (AddonCollectionCount, CollectionCount, CollectionStats,
@@ -227,36 +227,6 @@ def _get_daily_jobs(date=None):
         'collection_addon_downloads': (lambda:
             AddonCollectionCount.objects.filter(date__lte=date).aggregate(
                 sum=Sum('count'))['sum']),
-
-        # Marketplace stats
-        # TODO: Remove 'apps_count_new' once we fully migrate to the new
-        # 'apps_added_*' stats.
-        'apps_count_new': (Addon.objects
-                .filter(created__range=(date, next_date),
-                        type=amo.ADDON_WEBAPP).count),
-        # Temporarily pull app install counts from the Monolith tables since
-        # that's where they are stored. This will go away once Monolith takes
-        # over this chart. (See bug 910364)
-        'apps_count_installed': (
-            MonolithRecord.objects.filter(recorded__range=(date, next_date),
-                                          key='install').count),
-
-        # Marketplace reviews
-        'apps_review_count_new': Review.objects
-                .filter(created__range=(date, next_date),
-                        editorreview=0, addon__type=amo.ADDON_WEBAPP).count,
-
-        # New users
-        'mmo_user_count_total': UserProfile.objects.filter(
-                created__lt=next_date,
-                source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
-        'mmo_user_count_new': UserProfile.objects.filter(
-                created__range=(date, next_date),
-                source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
-
-        # New developers
-        'mmo_developer_count_total': AddonUser.objects.filter(
-            addon__type=amo.ADDON_WEBAPP).values('user').distinct().count,
     }
 
     # If we're processing today's stats, we'll do some extras.  We don't do
@@ -483,11 +453,6 @@ def _get_monolith_jobs(date=None):
         'apps_count_new': [{
             'count': Webapp.objects.filter(
                 created__range=(date, next_date)).count,
-        }],
-        'apps_count_installed': [{
-            'count': Installed.objects.filter(
-                created__range=(date, next_date),
-                addon__type=amo.ADDON_WEBAPP).count,
         }],
     }
 

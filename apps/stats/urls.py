@@ -37,16 +37,6 @@ for key in keys:
     urls.append(url('^%s/$' % key, views.site_stats_report,
                 name='stats.%s' % key, kwargs={'report': key}))
 
-# These are the URLs that return JSON back to the front end and actually
-# do the SQL query. These means that Marketplace is using the same backend as
-# AMO to actually produce the statistics.
-keys += ['apps_count_new', 'apps_count_installed', 'apps_review_count_new',
-         'mmo_user_count_new', 'mmo_user_count_total', 'mmo_total_visitors',
-         'my_apps']
-for key in keys:
-    urls.append(url(global_series[key], views.site_series,
-                    kwargs={'field': key}))
-
 urlpatterns += patterns('', *urls)
 
 collection_stats_urls = patterns('',

@@ -8,9 +8,8 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon, AddonUser
-from bandwagon.models import CollectionAddon, Collection
+from bandwagon.models import Collection, CollectionAddon
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
-from mkt.webapps.models import Installed
 from reviews.models import Review
 from stats import cron, tasks
 from stats.models import (AddonCollectionCount, Contribution, DownloadCount,
@@ -298,13 +297,6 @@ class TestMonolithStats(amo.tests.TestCase):
             eq_(count, expected_count,
                 'Incorrect count for region %s, premium type %s. '
                 'Got %d, expected %d.' % (r, p, count, expected_count))
-
-    def test_apps_installed(self):
-        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        user = UserProfile.objects.create(username='foo')
-        Installed.objects.create(addon=addon, user=user)
-        eq_(tasks._get_monolith_jobs()['apps_count_installed'][0]['count'](),
-            1)
 
     def test_app_reviews(self):
         addon = Addon.objects.create(type=amo.ADDON_WEBAPP)

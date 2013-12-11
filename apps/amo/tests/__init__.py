@@ -841,9 +841,7 @@ class ESTestCase(TestCase):
         addons.search.setup_mapping()
         stats.search.setup_indexes()
         if settings.MARKETPLACE:
-            import mkt.stats.search
             WebappIndexer.setup_mapping()
-            mkt.stats.search.setup_mkt_indexes()
 
     @classmethod
     def tearDownClass(cls):

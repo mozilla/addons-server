@@ -91,11 +91,6 @@ maintained incrementally through post_save and post_delete hooks::
 
     ./manage.py index_stats  # Index all the update and download counts.
 
-    ./manage.py index_mkt_stats  # Index contributions/installs/inapp-payments.
-
-    ./manage.py index_stats/index_mkt_stats --addons 12345 1234 # Index
-    specific addons/webapps.
-
     ./manage.py cron reindex_collections  # Index all the collections.
 
     ./manage.py cron reindex_users  # Index all the users.

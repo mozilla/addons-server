@@ -18,7 +18,6 @@ from mkt.developers.views import login
 from mkt.operators.urls import url_patterns as operator_patterns
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.reviewers.urls import url_patterns as reviewer_url_patterns
-from mkt.stats.urls import app_site_patterns
 
 
 admin.autodiscover()
@@ -111,20 +110,6 @@ urlpatterns = patterns('',
     # Misc pages.
     ('', include('mkt.commonplace.urls')),
     ('', include('mkt.site.urls')),
-
-    # Site events data.
-    url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
-        'stats.views.site_events', name='amo.site_events'),
-
-    # Catch marketplace specific statistics urls.
-    url('^statistics/', include(app_site_patterns)),
-
-    # Let the rest of the URLs fall through.
-    url('^statistics/', include('stats.urls')),
-
-    # Disable currently not working statistics.
-    # Fall through for any URLs not matched above stats dashboard.
-    url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Services.
     ('', include('amo.urls')),

@@ -14,7 +14,6 @@ from mkt.developers.api_payments import (
     PaymentDebugViewSet, PaymentViewSet, UpsellViewSet)
 from mkt.developers.decorators import use_apps
 from mkt.receipts.urls import test_patterns
-from mkt.stats.urls import all_apps_stats_patterns
 
 from . import views
 from . import views_payments
@@ -163,7 +162,6 @@ urlpatterns = decorate(write, patterns('',
     url('docs/(?P<doc_name>[-_\w]+)/(?P<doc_page>[-_\w]+)',
         views.docs, name='mkt.developers.docs'),
 
-    url('^statistics/', include(all_apps_stats_patterns)),
     url('^transactions/', views.transactions,
         name='mkt.developers.transactions'),
 
