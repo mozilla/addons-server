@@ -1154,7 +1154,6 @@ class TestContentRatings(amo.tests.TestCase):
         values = dict(form.form_values())
         eq_(values['storefront'], '1')
         eq_(values['company'], 'Mozilla')
-        eq_(values['password'], 's3kr3t')
         eq_(values['email'], self.req.amo_user.email)
         eq_(values['appname'], self.app.name)
         eq_(values['platform'], 'Firefox')
