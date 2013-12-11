@@ -476,8 +476,7 @@ class Webapp(Addon):
         return next_step
 
     def is_rated(self):
-        # Note: We're not using the related name here to avoid ORM model cache.
-        return ContentRating.objects.no_cache().filter(addon=self).exists()
+        return self.content_ratings.exists()
 
     @property
     def is_offline(self):
