@@ -533,13 +533,13 @@ class TestWebapp(amo.tests.TestCase):
 
         # Create.
         app.set_descriptors([
-            'has_classind_drugs', 'has_pegi_scary', 'has_generic_drug_ref'
+            'has_classind_drugs', 'has_pegi_scary', 'has_generic_drugs'
         ])
         eq_(RatingDescriptors.objects.count(), 1)
         descriptors = RatingDescriptors.objects.get(addon=app)
         assert descriptors.has_classind_drugs
         assert descriptors.has_pegi_scary
-        assert descriptors.has_generic_drug_ref
+        assert descriptors.has_generic_drugs
         assert not descriptors.has_esrb_blood
 
         # Update.
@@ -551,7 +551,7 @@ class TestWebapp(amo.tests.TestCase):
         assert descriptors.has_esrb_blood
         assert descriptors.has_classind_drugs
         assert not descriptors.has_pegi_scary
-        assert not descriptors.has_generic_drug_ref
+        assert not descriptors.has_generic_drugs
 
     def test_set_interactives(self):
         app = app_factory()
@@ -649,21 +649,12 @@ class TestWebapp(amo.tests.TestCase):
 
     def test_get_descriptors_dehydrated(self):
         app = app_factory()
-        eq_(app.get_descriptors(), [])
+        eq_(app.get_descriptors(), {})
 
         app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-        eq_(sorted(app.get_descriptors(), key=lambda x: x['name']),
-            [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
-             {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
-
-    def test_get_descriptors_by_body(self):
-        app = app_factory()
-        app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-
-        eq_(app.get_descriptors(body='esrb'),
-            [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'}])
-        eq_(app.get_descriptors(body='pegi'),
-            [{'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
+        eq_(dict(app.get_descriptors()),
+            {'esrb': [{'label': 'blood', 'name': 'Blood'}],
+             'pegi': [{'label': 'scary', 'name': 'Fear'}]})
 
     def test_get_interactives_es(self):
         app = app_factory()

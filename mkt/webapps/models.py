@@ -1031,32 +1031,34 @@ class Webapp(Addon):
                 content_ratings[region] = rating_serialized
         return content_ratings
 
-    def get_descriptors(self, es=False, body=''):
+    def get_descriptors(self, es=False):
         """
-        Return list of serialized content descriptors.
-        (e.g. [{'label': 'esrb-blood', 'name': u'Blood},
-               {'label': 'classind-lang', 'name': u'Language'}])
+        Return lists of serialized content descriptors by body.
+        (e.g. {
+            'esrb': [{'label': 'esrb-blood', 'name': u'Blood}],
+            'pegi': [{'label': 'classind-lang', 'name': u'Language'}]}
+        )
 
         es -- denotes whether to return ES-friendly results (just the keys of
               the descriptors) to fetch and dehydrate later.
               (e.g. ['ESRB_BLOOD', 'CLASSIND_LANG').
-        body -- ratings body label to filter by
-                (e.g. 'pegi', 'esrb', 'generic').
 
         """
         try:
             app_descriptors = self.rating_descriptors
         except RatingDescriptors.DoesNotExist:
-            return []
+            if es:
+                return []  # Serialized for ES.
+            return {}  # Dehydrated.
 
         descriptors = []
         for key in mkt.ratingdescriptors.RATING_DESCS.keys():
-            field = 'has_%s' % key.lower()
+            field = 'has_%s' % key.lower()  # Build the field name.
             if getattr(app_descriptors, field):
-                if key.lower().startswith(body):
-                    descriptors.append(key)
+                descriptors.append(key)
 
-        if not es and descriptors:
+        if not es:
+            # Convert the descriptor names into descriptor objects.
             descriptors = dehydrate_descriptors(descriptors)
         return descriptors
 

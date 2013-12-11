@@ -140,9 +140,9 @@ class TestAppSerializer(amo.tests.TestCase):
     def test_content_descriptors(self):
         self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
         res = self.serialize(self.app)
-        eq_(res['content_ratings']['descriptors'],
-            [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
-             {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
+        eq_(dict(res['content_ratings']['descriptors']),
+            {'esrb': [{'label': 'blood', 'name': 'Blood'}],
+             'pegi': [{'label': 'scary', 'name': 'Fear'}]})
 
     def test_interactive_elements(self):
         self.app.set_interactives(['has_social_networking', 'has_shares_info'])
@@ -366,10 +366,9 @@ class TestESAppToDict(amo.tests.ESTestCase):
              'rating_label': '18',
              'description': unicode(ratingsbodies.GENERIC_18.description)})
 
-        eq_(sorted(res['content_ratings']['descriptors'],
-                   key=lambda x: x['name']),
-            [{'label': 'esrb-blood', 'name': 'Blood', 'ratings_body': 'esrb'},
-             {'label': 'pegi-scary', 'name': 'Fear', 'ratings_body': 'pegi'}])
+        eq_(dict(res['content_ratings']['descriptors']),
+            {'esrb': [{'label': 'blood', 'name': 'Blood'}],
+             'pegi': [{'label': 'scary', 'name': 'Fear'}]})
         eq_(sorted(res['content_ratings']['interactive_elements'],
                    key=lambda x: x['name']),
             [{'label': 'shares-info', 'name': 'Shares Info'},

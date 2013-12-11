@@ -186,14 +186,6 @@ $box-red = #ff2600;
 .interactive-elements {
     .names {
         margin-bottom: 5px;
-
-        span:not(:last-child):after {
-            content: '\00B7';  // &middot;
-            display: inline-block;
-            left: 1px;
-            margin: 0 1px;
-            position: relative;
-        }
     }
     .icon {
         height: 60px;
@@ -207,6 +199,12 @@ $box-red = #ff2600;
         }
         &.users-interact {
             background-image: url('../../img/icons/ratings/interactives/ESRB_users-interact_small.png');
+        }
+        &.digital-purchases {
+            background-image: url('../../img/icons/ratings/descriptors/pegi_inapp_purchase_option.png');
+        }
+        &.social-networking {
+            background-image: url('../../img/icons/ratings/descriptors/pegi_social_interaction_functionality.png');
         }
     }
 }
@@ -242,4 +240,25 @@ $box-red = #ff2600;
     &.pegi-violence {
         background-image: url('../../img/icons/ratings/descriptors/pegi_violence.png');
     }
+
+    &.pegi-digital-purchases {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_inapp_purchase_option.png');
+    }
+    &.pegi-shares-info {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_personal_data_sharing.png');
+    }
+    &.pegi-shares-location {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_location_data_sharing.png');
+    }
+    &.pegi-users-interact {
+        background-image: url('../../img/icons/ratings/descriptors/pegi_social_interaction_functionality.png');
+    }
+}
+
+span.dot-sep:not(:last-child):after {
+    content: '\00B7';  // &middot;
+    display: inline-block;
+    left: 1px;
+    margin: 0 1px;
+    position: relative;
 }
