@@ -1671,9 +1671,9 @@ class TestWebappIndexer(amo.tests.TestCase):
         version.releasenotes = release_notes
         version.save()
         obj, doc = self._get_doc()
-        eq_(doc['release_notes'][0],
+        eq_(doc['release_notes_translations'][0],
             {'lang': 'en-US', 'string': release_notes['en-US']})
-        eq_(doc['release_notes'][1],
+        eq_(doc['release_notes_translations'][1],
             {'lang': 'fr', 'string': release_notes['fr']})
 
 
