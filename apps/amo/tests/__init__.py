@@ -28,7 +28,6 @@ from nose.exc import SkipTest
 from nose.tools import eq_, nottest, ok_
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
-from tastypie.exceptions import ImmediateHttpResponse
 from test_utils import RequestFactory
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch

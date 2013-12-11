@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 
 import amo.models
+import mkt.carriers
 import mkt.regions
 from addons.models import Addon, Category, clean_slug
 from amo.decorators import use_master

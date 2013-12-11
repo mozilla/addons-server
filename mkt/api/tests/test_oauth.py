@@ -19,7 +19,6 @@ from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 
 from mkt.api import authentication
-from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.models import Access, Token, generate, REQUEST_TOKEN, ACCESS_TOKEN
 from mkt.api.tests import BaseAPI
 from mkt.site.fixtures import fixture
@@ -169,23 +168,6 @@ class RestOAuth(BaseOAuth):
         self.anon = RestOAuthClient(None)
 
 
-class Resource(CORSResource, MarketplaceResource):
-
-    class Meta:
-        list_allowed_method = ['get']
-
-
-class TestCORS(BaseOAuth):
-
-    def setUp(self):
-        self.resource = Resource()
-
-    def test_cors(self):
-        req = RequestFactory().get('/')
-        self.resource.method_check(req, allowed=['get'])
-        eq_(req.CORS, ['get'])
-
-
 class Test3LeggedOAuthFlow(TestCase):
     fixtures = fixture('user_2519', 'user_999')
 
@@ -214,7 +196,7 @@ class Test3LeggedOAuthFlow(TestCase):
         url, auth_header = self._oauth_request_info(
             url, client_key=self.access.key, client_secret=self.access.secret,
             resource_owner_key=t.key, resource_owner_secret=t.secret)
-        auth = authentication.OAuthAuthentication()
+        auth = authentication.RestOAuthAuthentication()
         req = RequestFactory().get(
             url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=auth_header)
@@ -228,11 +210,11 @@ class Test3LeggedOAuthFlow(TestCase):
             url, client_key=self.access.key,
             client_secret=self.access.secret, resource_owner_key=generate(),
             resource_owner_secret=generate())
-        auth = authentication.OAuthAuthentication()
+        auth = authentication.RestOAuthAuthentication()
         req = RequestFactory().get(
             url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=auth_header)
-        eq_(auth.is_authenticated(req).status_code, 401)
+        assert not auth.is_authenticated(req)
 
     def test_get_authorize_page(self):
         t = Token.generate_new(REQUEST_TOKEN, self.access)

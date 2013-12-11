@@ -15,7 +15,6 @@ from users.models import UserProfile
 
 import mkt
 from mkt.regions import REGIONS_CHOICES_ID_DICT
-from mkt.regions.api import RegionResource
 
 log = commonware.log.getLogger('z.webapps')
 
@@ -129,11 +128,15 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
 
     if not data['public_stats']:
         data['weekly_downloads'] = None
-
-    data['regions'] = RegionResource().dehydrate_objects(
-        map(REGIONS_CHOICES_ID_DICT.get,
-            app.get_region_ids(worldwide=True,
-                               excluded=obj.region_exclusions)))
+    def serialize_region(o):
+        d = {}
+        for field in ('name', 'slug', 'mcc', 'adolescent'):
+            d[field] = getattr(o, field, None)
+        return d
+    data['regions'] = [serialize_region(REGIONS_CHOICES_ID_DICT.get(k))
+                       for k in app.get_region_ids(
+                               worldwide=True,
+                               excluded=obj.region_exclusions)]
 
     if src.get('premium_type') in amo.ADDON_PREMIUMS:
         acct = list(AddonPaymentAccount.objects.filter(addon=app))

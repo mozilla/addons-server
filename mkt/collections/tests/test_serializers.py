@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_, ok_
 from rest_framework import serializers
-from tastypie.bundle import Bundle
 from test_utils import RequestFactory
 
 import amo

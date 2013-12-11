@@ -678,7 +678,6 @@ def fudge_headers(response, stats):
         patch_cache_control(response, max_age=seven_days)
 
 
-# TODO: Move to utils and implement tastypie serializer.
 class UnicodeCSVDictWriter(csv.DictWriter):
     """A DictWriter that writes a unicode stream."""
 

@@ -8,13 +8,12 @@ from nose.tools import eq_
 
 from abuse.models import AbuseReport
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.api.tests.test_throttle import ThrottleTests
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
 
-class BaseTestAbuseResource(ThrottleTests):
+class BaseTestAbuseResource(object):
     """
     Setup for AbuseResource tests that require inheritance from TestCase.
     """

@@ -23,7 +23,7 @@ from mkt.api.authorization import (AllowAppOwner, GroupPermission,
                                    switch)
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import AppViewSet, MarketplaceView
+from mkt.api.base import MarketplaceView
 from mkt.constants.payments import PAYMENT_STATUSES
 from mkt.developers.forms_payments import (BangoPaymentAccountForm,
                                            PaymentCheckForm)
@@ -36,6 +36,23 @@ from mkt.webapps.models import Webapp
 from lib.pay_server import get_client
 
 log = commonware.log.getLogger('z.api.payments')
+
+class PaymentAppViewSet(GenericViewSet):
+
+    def initialize_request(self, request, *args, **kwargs):
+        """
+        Pass the value in the URL through to the form defined on the
+        ViewSet, which will populate the app property with the app object.
+
+        You must define a form which will take an app object.
+        """
+        request = (super(PaymentAppViewSet, self)
+                   .initialize_request(request, *args, **kwargs))
+        self.app = None
+        form = self.form({'app': kwargs.get('pk')})
+        if form.is_valid():
+            self.app = form.cleaned_data['app']
+        return request
 
 
 class PaymentAccountSerializer(Serializer):
@@ -249,7 +266,7 @@ class AddonPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
             obj.save()
 
 
-class PaymentCheckViewSet(AppViewSet):
+class PaymentCheckViewSet(PaymentAppViewSet):
     permission_classes = (AllowAppOwner,)
     form = PaymentCheckForm
 
@@ -277,7 +294,7 @@ class PaymentCheckViewSet(AppViewSet):
         return Response(filtered, status=200)
 
 
-class PaymentDebugViewSet(AppViewSet):
+class PaymentDebugViewSet(PaymentAppViewSet):
     permission_classes = [GroupPermission('Transaction', 'Debug')]
     form = PaymentCheckForm
 
@@ -293,3 +310,8 @@ class PaymentDebugViewSet(AppViewSet):
             'bango': res['bango'],
         }
         return Response(filtered, status=200)
+
+
+
+
+
