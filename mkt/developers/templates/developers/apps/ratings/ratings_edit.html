@@ -52,6 +52,7 @@
           {% endtrans %}
         </p>
         <form id="iarc" method="post" action="{{ settings.IARC_SUBMISSION_ENDPOINT }}" target="IARCForm">
+          <input type="hidden" name="password" value="{{ settings.IARC_PASSWORD }}">
           <input type="hidden" name="email" value="{{ request.amo_user.email }}">
           <input type="hidden" name="company" value="{{ settings.IARC_COMPANY }}">
           <input type="hidden" name="appname" value="{{ app_name }}">
