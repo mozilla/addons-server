@@ -6,8 +6,7 @@ from django.core.urlresolvers import reverse
 from django.http import Http404
 
 import commonware
-from rest_framework import (exceptions, permissions, response, serializers,
-                            status, viewsets)
+from rest_framework import exceptions, response, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from tower import ungettext as ngettext
@@ -22,7 +21,8 @@ from market.models import AddonPremium, Price
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowAppOwner, AllowReviewerReadOnly, AnyOf
+from mkt.api.authorization import (AllowAppOwner, AllowReadOnlyIfPublic,
+                                   AllowReviewerReadOnly, AnyOf)
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.fields import (LargeTextField, ReverseChoiceField,
@@ -363,24 +363,13 @@ class AppSerializer(serializers.ModelSerializer):
         self.save_categories(obj, cats)
 
 
-class PublicAppReadOnly(permissions.BasePermission):
-    """
-    The request does not modify the webapp, and it's publically available.
-    """
-    def has_permission(self, request, view):
-        return request.method in permissions.SAFE_METHODS
-
-    def has_object_permission(self, request, view, object):
-        return object.is_public() and request.method in permissions.SAFE_METHODS
-
-
 class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                  viewsets.ModelViewSet):
     serializer_class = AppSerializer
     slug_field = 'app_slug'
     cors_allowed_methods = ('get', 'put', 'post', 'delete')
     permission_classes = [AnyOf(AllowAppOwner, AllowReviewerReadOnly,
-                                PublicAppReadOnly)]
+                                AllowReadOnlyIfPublic)]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -506,7 +495,7 @@ class PrivacyPolicyViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                            viewsets.GenericViewSet):
     queryset = Webapp.objects.all()
     cors_allowed_methods = ('get',)
-    permission_classes = [AnyOf(AllowAppOwner, PublicAppReadOnly)]
+    permission_classes = [AnyOf(AllowAppOwner, AllowReadOnlyIfPublic)]
     slug_field = 'app_slug'
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,

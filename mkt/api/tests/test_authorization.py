@@ -9,9 +9,9 @@ from amo.tests import TestCase
 from users.models import UserProfile
 
 from mkt.api.authorization import (AllowAppOwner, AllowNone, AllowOwner,
-                                   AllowRelatedAppOwner, AllowSelf,
-                                   AnyOf,
-                                   ByHttpMethod, flag, GroupPermission, switch)
+                                   AllowRelatedAppOwner, AllowReadOnlyIfPublic,
+                                   AllowSelf, AnyOf, ByHttpMethod, flag,
+                                   GroupPermission, switch)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -257,6 +257,53 @@ class TestAllowRelatedAppOwner(TestCase):
         obj.addon = self.app
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             False)
+
+
+class TestAllowReadOnlyIfPublic(TestCase):
+    def setUp(self):
+        self.permission = AllowReadOnlyIfPublic()
+        self.anonymous = AnonymousUser()
+        self.request_factory = RequestFactory()
+
+        # 'patch' is missing because it's absent from RequestFactory in
+        # django < 1.5. Usually we don't special case 'put' vs 'patch' in
+        # permissions code though, so it's fine.
+        self.unsafe_methods = ('post', 'put', 'delete')
+        self.safe_methods = ('get', 'options', 'head')
+
+    def _request(self, verb):
+        request = getattr(self.request_factory, verb)('/')
+        request.user = self.anonymous
+        request.amo_user = None
+        return request
+
+    def test_has_permission(self):
+        for verb in self.safe_methods:
+            eq_(self.permission.has_permission(self._request(verb), 'myview'),
+                True)
+        for verb in self.unsafe_methods:
+            eq_(self.permission.has_permission(self._request(verb), 'myview'),
+                False)
+
+    def test_has_object_permission_public(self):
+        obj = Mock()
+        obj.is_public.return_value = True
+
+        for verb in self.safe_methods:
+            eq_(self.permission.has_object_permission(self._request(verb),
+                'myview', obj), True)
+
+        for verb in self.unsafe_methods:
+            eq_(self.permission.has_object_permission(self._request(verb),
+                'myview', obj), False)
+
+    def test_has_object_permission_not_public(self):
+        obj = Mock()
+        obj.is_public.return_value = False
+
+        for verb in (self.unsafe_methods + self.safe_methods):
+            eq_(self.permission.has_object_permission(self._request(verb),
+                'myview', obj), False)
 
 
 class TestGroupPermission(TestCase):
