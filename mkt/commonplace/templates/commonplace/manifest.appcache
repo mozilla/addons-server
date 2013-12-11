@@ -3,7 +3,6 @@ CACHE MANIFEST
 # BUILD_ID {{ BUILD_ID }}
 
 CACHE:
-/
 /media/fireplace/img/logos/128.png?b={{ BUILD_ID }}
 /media/fireplace/img/logos/64.png?b={{ BUILD_ID }}
 /media/fireplace/img/logos/32.png?b={{ BUILD_ID }}

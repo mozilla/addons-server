@@ -34,7 +34,7 @@ from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.urlresolvers import reverse
 from amo.utils import escape_all
-from comm.utils import create_comm_thread
+from comm.utils import create_comm_note
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -44,6 +44,7 @@ from users.views import _login
 from versions.models import Version
 
 from mkt.api.models import Access, generate
+from mkt.constants import comm
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
                                   AppFormMedia, AppFormSupport,
@@ -212,10 +213,9 @@ def status(request, addon_id, addon, webapp=False):
     if request.method == 'POST':
         if 'resubmit-app' in request.POST and form.is_valid():
             form.save()
-            perms = ('reviewer', 'senior_reviewer', 'staff')
-            create_comm_thread(action='resubmit', addon=addon,
-                comments=form.data['notes'], profile=request.amo_user,
-                version=addon.current_version, perms=perms)
+            create_comm_note(addon, addon.current_version,
+                             request.amo_user, form.data['notes'],
+                             note_type=comm.RESUBMISSION)
 
             messages.success(request, _('App successfully resubmitted.'))
             return redirect(addon.get_dev_url('versions'))
@@ -402,11 +402,9 @@ def version_edit(request, addon_id, addon, version_id):
     if request.method == 'POST' and all(f.is_valid() for f in all_forms):
         [f.save() for f in all_forms]
 
-        # Make note visible to reviewers, senior reviewers and staff.
-        comm_perms = ('reviewer', 'senior_reviewer', 'staff')
-        create_comm_thread(addon=addon, version=version, action='comment',
-            perms=comm_perms, comments=f.data['approvalnotes'],
-            profile=request.amo_user)
+        create_comm_note(addon, addon.current_version,
+                         request.amo_user, f.data['approvalnotes'],
+                         note_type=comm.REVIEWER_COMMENT)
 
         messages.success(request, _('Version successfully edited.'))
         return redirect(addon.get_dev_url('versions'))

@@ -145,6 +145,7 @@ class TestWebapp(amo.tests.TestCase):
         eq_(webapp.get_stats_url(), '/statistics/app/woo')
 
     def test_get_comm_thread_url(self):
+        self.create_switch('comm-dashboard')
         app = app_factory(app_slug='putain')
         eq_(app.get_comm_thread_url(), '/comm/app/putain')
 

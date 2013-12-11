@@ -5,6 +5,7 @@ import random
 from decimal import Decimal
 
 import mock
+from nose import SkipTest
 from nose.tools import eq_
 from test_utils import RequestFactory
 
@@ -419,6 +420,7 @@ class TestOverall(amo.tests.TestCase):
                      'apps_review_count_new']
 
     def test_url(self):
+        raise SkipTest('Disabling for new stats, later to be removed.')
         self.assert3xx(self.client.get(reverse('mkt.stats.overall')),
                        reverse('mkt.stats.apps_count_new'))
 
@@ -427,6 +429,7 @@ class TestOverall(amo.tests.TestCase):
                 '/%s-day-20090601-20090630.json' % name)
 
     def test_stats(self):
+        raise SkipTest('Disabling for new stats, later to be removed.')
         for stat in self.keys:
             GlobalStat.objects.create(name=stat, count=1,
                                       date=datetime.date(2009, 06, 12))
@@ -438,6 +441,7 @@ class TestOverall(amo.tests.TestCase):
             eq_(content[0]['count'], 1)
 
     def test_stats_view_perm(self):
+        raise SkipTest('Disabling for new stats, later to be removed.')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         res = self.client.get(reverse('mkt.stats.apps_count_new'))

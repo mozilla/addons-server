@@ -36,10 +36,6 @@ log = logging.getLogger('z.mkt.site')
 # {% csrf_token %}.
 @requires_csrf_token
 def handler403(request):
-    # NOTE: The mkt.api uses Tastypie which has its own mechanism for
-    # triggering 403s. If we ever end up calling PermissionDenied there, we'll
-    # need something here similar to the 404s and 500s.
-    #
     # TODO: Bug 793241 for different 403 templates at different URL paths.
     return jingo.render(request, 'site/403.html', status=403)
 

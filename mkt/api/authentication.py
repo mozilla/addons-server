@@ -4,11 +4,10 @@ import json
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
+from django import http
 
 import commonware.log
 from rest_framework.authentication import BaseAuthentication
-from tastypie import http
-from tastypie.authentication import Authentication
 import waffle
 
 from access.middleware import ACLMiddleware
@@ -26,13 +25,7 @@ class OAuthError(RuntimeError):
         self.message = message
 
 
-errors = {
-    'headers': 'Error with OAuth headers',
-    'roles': 'Cannot be a user with roles.',
-}
-
-
-class OAuthAuthentication(Authentication):
+class RestOAuthAuthentication(BaseAuthentication):
     """
     This is based on https://github.com/amrox/django-tastypie-two-legged-oauth
     with permission.
@@ -40,10 +33,6 @@ class OAuthAuthentication(Authentication):
 
     def __init__(self, realm='API'):
         self.realm = realm
-
-    def _error(self, reason):
-        return http.HttpUnauthorized(content=json.dumps({'reason':
-                                                         errors[reason]}))
 
     def is_authenticated(self, request, **kwargs):
         if not settings.SITE_URL:
@@ -54,7 +43,7 @@ class OAuthAuthentication(Authentication):
             'oauth_token' not in request.META['QUERY_STRING']):
             self.user = AnonymousUser()
             log.error('No header')
-            return self._error('headers')
+            return None
 
         auth_header = {'Authorization': auth_header_value}
         method = getattr(request, 'signed_method', request.method)
@@ -74,7 +63,7 @@ class OAuthAuthentication(Authentication):
             if not valid:
                 log.error(u'Cannot find APIAccess token with that key: %s'
                           % oauth.attempted_key)
-                return self._error('headers')
+                return None
             uid = Token.objects.filter(
                 token_type=ACCESS_TOKEN,
                 key=oauth_request.resource_owner_key).values_list(
@@ -96,7 +85,7 @@ class OAuthAuthentication(Authentication):
             if not valid:
                 log.error(u'Cannot find APIAccess token with that key: %s'
                           % oauth.attempted_key)
-                return self._error('headers')
+                return None
             uid = Access.objects.filter(
                 key=oauth_request.client_key).values_list(
                     'user_id', flat=True)[0]
@@ -124,32 +113,28 @@ class OAuthAuthentication(Authentication):
         if roles and roles.intersection(denied_groups):
             log.info(u'Attempt to use API with denied role, user: %s'
                      % request.amo_user.pk)
-            return self._error('roles')
+            return None
 
         log.info('Successful OAuth with user: %s' % request.user)
         return True
 
-
-class OptionalOAuthAuthentication(OAuthAuthentication):
-    """
-    Like OAuthAuthentication, but doesn't require there to be
-    authentication headers. If no headers are provided, just continue
-    as an anonymous user.
-    """
-
-    def is_authenticated(self, request, **kw):
-        auth_header_value = request.META.get('HTTP_AUTHORIZATION', None)
-        if (not auth_header_value and
-            'oauth_token' not in request.META['QUERY_STRING']):
-            request.user = AnonymousUser()
-            log.info('Successful OptionalOAuth as anonymous user')
-            return True
-
-        return (super(OptionalOAuthAuthentication, self)
-                .is_authenticated(request, **kw))
+    def authenticate(self, request):
+        # The DRF Request object wraps the actual WSGIRequest. Its
+        # 'method' attribute is a property. when using
+        # X-HTTP-Method-Override, request.method will return the
+        # overriding method instead of POST. OAuth signatures include
+        # the actual HTTP method, so we pass the unwrapped WSGIRequest
+        # for authentication.
+        result = self.is_authenticated(request._request)
+        user = getattr(request._request, 'user', None)
+        if user:
+            request._user = user
+        if (not result or not request.user):
+            return None
+        return (request.user, None)
 
 
-class SharedSecretAuthentication(Authentication):
+class RestSharedSecretAuthentication(BaseAuthentication):
 
     def is_authenticated(self, request, **kwargs):
         header = request.META.get('HTTP_AUTHORIZATION', '').split(None, 1)
@@ -194,31 +179,6 @@ class SharedSecretAuthentication(Authentication):
         except Exception, e:
             log.info('Bad shared-secret auth data: %s (%s)', auth, e)
             return False
-
-
-class RestOAuthAuthentication(BaseAuthentication, OAuthAuthentication):
-    """OAuthAuthentication suitable for DRF, wraps around tastypie ones."""
-
-    def authenticate(self, request):
-        # The DRF Request object wraps the actual WSGIRequest. Its
-        # 'method' attribute is a property. when using
-        # X-HTTP-Method-Override, request.method will return the
-        # overriding method instead of POST. OAuth signatures include
-        # the actual HTTP method, so we pass the unwrapped WSGIRequest
-        # for authentication.
-        result = self.is_authenticated(request._request)
-        user = getattr(request._request, 'user', None)
-        if user:
-            request._user = user
-        if (not result or isinstance(result, http.HttpUnauthorized)
-            or not request.user):
-            return None
-        return (request.user, None)
-
-
-class RestSharedSecretAuthentication(BaseAuthentication,
-                                     SharedSecretAuthentication):
-    """SharedSecretAuthentication suitable for DRF."""
 
     def authenticate(self, request):
         result = self.is_authenticated(request._request)

@@ -474,12 +474,15 @@ def mobile_sort_by(base_url, options=None, selected=None, extra_sort_opts=None,
 @jinja2.contextfunction
 def media(context, url, key='MEDIA_URL'):
     """Get a MEDIA_URL link with a cache buster querystring."""
-    if url.endswith('.js'):
-        build = context['BUILD_ID_JS']
-    elif url.endswith('.css'):
-        build = context['BUILD_ID_CSS']
+    if 'BUILD_ID' in context:
+        build = context['BUILD_ID']
     else:
-        build = context['BUILD_ID_IMG']
+        if url.endswith('.js'):
+            build = context['BUILD_ID_JS']
+        elif url.endswith('.css'):
+            build = context['BUILD_ID_CSS']
+        else:
+            build = context['BUILD_ID_IMG']
     return urljoin(context[key], utils.urlparams(url, b=build))
 
 

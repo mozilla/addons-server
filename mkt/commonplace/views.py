@@ -23,14 +23,19 @@ def get_build_id(repo):
         module = 'build_%s' % repo
         return importlib.import_module(module).BUILD_ID
     except (ImportError, AttributeError):
-        # Either `build_{repo}.py` does not exist or `build_{repo}.py`
-        # exists but does not contain `BUILD_ID`. Fall back to
-        # `BUILD_ID_JS` which is written to `build.py` by jingo-minify.
         try:
-            from build import BUILD_ID_CSS
-            return BUILD_ID_CSS
-        except ImportError:
-            return 'dev'
+            build_id_fn = os.path.join(settings.MEDIA_ROOT, repo, 'build_id.txt')
+            with storage.open(build_id_fn) as fh:
+                return fh.read()
+        except:
+            # Either `build_{repo}.py` does not exist or `build_{repo}.py`
+            # exists but does not contain `BUILD_ID`. Fall back to
+            # `BUILD_ID_JS` which is written to `build.py` by jingo-minify.
+            try:
+                from build import BUILD_ID_CSS
+                return BUILD_ID_CSS
+            except ImportError:
+                return 'dev'
 
 
 def get_imgurls(repo):

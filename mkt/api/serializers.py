@@ -4,35 +4,10 @@ from django.utils.simplejson import JSONDecodeError
 import commonware.log
 from rest_framework import serializers
 from rest_framework.reverse import reverse
-from tastypie.serializers import Serializer
-from tastypie.exceptions import UnsupportedFormat
 from tower import ugettext as _
-
-from mkt.api.exceptions import DeserializationError
 
 
 log = commonware.log.getLogger('z.mkt.api.forms')
-
-
-class Serializer(Serializer):
-
-    formats = ['json', 'urlencode']
-    content_types = {
-        'json': 'application/json',
-        'urlencode': 'application/x-www-form-urlencoded',
-    }
-
-    def from_urlencode(self, data):
-        return QueryDict(data).dict()
-
-    def to_urlencode(self, data, options=None):
-        raise UnsupportedFormat
-
-    def deserialize(self, content, format='application/json'):
-        try:
-            return super(Serializer, self).deserialize(content, format)
-        except JSONDecodeError, exc:
-            raise DeserializationError(original=exc)
 
 
 class PotatoCaptchaSerializer(serializers.Serializer):

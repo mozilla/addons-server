@@ -858,7 +858,6 @@ class TestPersonaLogin(UserViewBase):
     def test_amo_source(self, record_action):
         profile = self.create_profile()
         eq_(profile.source, amo.LOGIN_SOURCE_AMO_BROWSERID)
-        assert record_action.called
 
     @patch.object(settings, 'MARKETPLACE', True)
     @patch('users.views.record_action')
