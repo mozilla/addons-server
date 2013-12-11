@@ -25,7 +25,7 @@ import amo.tests
 import reviews
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
-from addons.models import AddonDeviceType
+from addons.models import Addon, AddonDeviceType
 from amo.helpers import absolutify
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
                        req_factory_factory, version_factory)
@@ -2964,3 +2964,43 @@ class TestReviewPage(amo.tests.TestCase):
         res = app_review(req, app_slug=self.app.app_slug)
         doc = pq(res.content)
         eq_(doc('.content-rating').length, 2)
+
+
+class TestReviewTranslate(AppReviewerTest):
+
+    def setUp(self):
+        self.login_as_editor()
+        self.create_switch('reviews-translate')
+        user = UserProfile.objects.create(username='diego')
+        app = amo.tests.app_factory(slug='myapp')
+        self.review = app.reviews.create(title=u'yes', body=u'oui',
+                                         addon=app, user=user,
+                                         editorreview=True, rating=4)
+
+    def test_regular_call(self):
+        res = self.client.get(reverse('reviewers.review_translate',
+                                      args=[self.review.addon.slug,
+                                            self.review.id, 'fr']))
+        self.assert3xx(res, 'https://translate.google.com/#auto/fr/oui', 302)
+
+    @mock.patch('reviews.views.requests')
+    def test_ajax_call(self, requests):
+        # Mock requests.
+        response = mock.Mock(status_code=200)
+        response.json.return_value = {
+            u'data': {
+                u'translations': [{
+                    u'translatedText': u'oui',
+                    u'detectedSourceLanguage': u'fr'
+                }]
+            }
+        }
+        requests.get.return_value = response
+
+        # Call translation.
+        review = self.review
+        res = self.client.get_ajax(reverse('reviewers.review_translate',
+                                           args=[review.addon.slug, review.id,
+                                                 'fr']),)
+        eq_(res.status_code, 200)
+        eq_(res.content, '{"body": "oui", "title": "oui"}')
