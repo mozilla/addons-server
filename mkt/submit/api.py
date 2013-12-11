@@ -8,6 +8,7 @@ from rest_framework.status import (HTTP_201_CREATED, HTTP_202_ACCEPTED,
 from rest_framework.viewsets import GenericViewSet
 
 from addons.models import Preview
+from amo.decorators import write
 from files.models import FileUpload
 
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -36,6 +37,7 @@ class ValidationViewSet(CORSMixin, mixins.CreateModelMixin,
     model = FileUpload
     serializer_class = FileUploadSerializer
 
+    @write
     def create(self, request, *args, **kwargs):
         """
         Custom create method allowing us to re-use form logic and distinguish
