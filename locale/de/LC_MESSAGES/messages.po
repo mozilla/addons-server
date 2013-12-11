@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-04 09:07-0700\n"
-"PO-Revision-Date: 2013-12-04 17:16+0000\n"
+"PO-Revision-Date: 2013-12-11 09:48+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386177378.0\n"
+"X-POOTLE-MTIME: 1386755321.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -20846,7 +20846,7 @@ msgstr "Add-ons für andere Anwendungen finden"
 
 #: templates/base.html:81 templates/impala/base.html:75
 msgid "Other Applications"
-msgstr "Andere Apps"
+msgstr "Andere Anwendungen"
 
 #: templates/base.html:130 templates/impala/base.html:193
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
