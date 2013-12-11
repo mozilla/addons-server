@@ -1425,7 +1425,7 @@ msgstr "Дозволи / одби"
 
 #: apps/addons/templates/addons/includes/persona.html:25 mkt/lookup/templates/lookup/helpers/app_header.html:46 mkt/reviewers/templates/reviewers/themes/single.html:43
 msgid "Review History"
-msgstr "Историја прецензија"
+msgstr "Историја рецензија"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
@@ -1474,7 +1474,7 @@ msgstr "Седмична преузимања"
 
 #: apps/addons/templates/addons/mobile/details.html:101 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:944 apps/devhub/templates/devhub/versions/list.html:174
 msgid "Version"
-msgstr "Version"
+msgstr "Верзија"
 
 #. {0} is a version number.
 #: apps/addons/templates/addons/mobile/details.html:107
@@ -1507,20 +1507,20 @@ msgstr "Уговор о лиценци"
 
 #: apps/addons/templates/addons/mobile/eula.html:5
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(name)s захтева да одобрите следећи Уговор о лиценци софтвера за крајњег корисника пре него што се инсталација може наставити:"
 
 #: apps/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
-msgstr ""
+msgstr "Прихвати"
 
 #: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:60
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr ""
+msgstr "Потребан Вам је Firefox како бисте инсталирали додатке. <a href=\"http://mozilla.com/mobile\">Сазнајте вишеe&nbsp;&raquo;</a>"
 
 # {0} is the application name.  Example:  Firefox
 #: apps/addons/templates/addons/mobile/home.html:17 templates/header_title.html:4 templates/impala/header_title.html:3
 msgid "Return to the {0} Add-ons homepage"
-msgstr "Return to the {0} Add-ons homepage"
+msgstr "Вратите се на почетну страницу {0} додатка"
 
 #: apps/addons/templates/addons/mobile/home.html:19 apps/amo/helpers.py:251 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/performance.html:72 mkt/reviewers/templates/reviewers/base.html:30 mkt/reviewers/templates/reviewers/performance.html:26 templates/menu_links.html:4
@@ -1530,26 +1530,28 @@ msgstr "Додаци"
 
 #: apps/addons/templates/addons/mobile/home.html:21
 msgid "Easy ways to personalize."
-msgstr ""
+msgstr "Лаки начини за прилагођавање."
 
 #: apps/addons/templates/addons/mobile/home.html:22 apps/devhub/templates/devhub/addons/submit/done.html:61 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:29 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
-msgstr "Learn More"
+msgstr "Сазнајте више"
 
 #: apps/addons/templates/addons/mobile/home.html:24
 msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
+"Додаци су апликације које Вам пружају прилагођавање Firefox-а са додатним опцијама и стилом. Било да погрешно укуцате назив веб сајта или не можете да очитате заузету страницу, постоји додатак који може да побољша Ваше"
+"прегледање."
 
 #: apps/addons/templates/addons/mobile/home.html:49
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "Погледајте све истакнуте додатке"
 
 #: apps/addons/templates/addons/mobile/home.html:55
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "Погледајте све популарне додатке"
 
 #: apps/addons/templates/addons/mobile/home.html:67
 msgid "More Add-ons"
@@ -1557,30 +1559,30 @@ msgstr "Још додатака"
 
 #: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:13 apps/browse/templates/browse/personas/mobile/category_landing.html:64 apps/search/forms.py:15
 msgid "Highest Rated"
-msgstr ""
+msgstr "Најбоље оцењене"
 
 #: apps/addons/templates/addons/mobile/home.html:72 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:88
 #: apps/browse/views.py:57 apps/browse/views.py:67 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:16 apps/search/forms.py:90 apps/search/forms.py:106
 #: mkt/search/forms.py:19
 msgid "Newest"
-msgstr ""
+msgstr "Најновије"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
-msgstr ""
+msgstr "Испробајте је!"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Информације о теми &raquo;"
 
 #: apps/amo/context_processors.py:55 apps/devhub/templates/devhub/nav.html:82 mkt/ecosystem/templates/ecosystem/build_dev_tools.html:58 mkt/ecosystem/templates/ecosystem/build_tools.html:5
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:13 mkt/ecosystem/templates/ecosystem/macros.html:150 mkt/site/context_processors.py:22
 msgid "Tools"
-msgstr "Tools"
+msgstr "Алати"
 
 #: apps/amo/context_processors.py:63 apps/discovery/templates/discovery/pane_account.html:8 apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "Мој профил"
 
 #: apps/amo/context_processors.py:69 apps/users/templates/users/edit.html:5 apps/users/templates/users/includes/navigation.html:3 mkt/site/context_processors.py:31
 msgid "Account Settings"
@@ -1588,11 +1590,11 @@ msgstr "Подешавања налога"
 
 #: apps/amo/context_processors.py:73 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:86 apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
-msgstr "My Collections"
+msgstr "Моје колекције"
 
 #: apps/amo/context_processors.py:78 apps/discovery/templates/discovery/pane_account.html:10 apps/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
-msgstr "My Favorites"
+msgstr "Mоји омиљени"
 
 #: apps/amo/context_processors.py:83 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
@@ -1600,29 +1602,29 @@ msgstr "Одјави се"
 
 #: apps/amo/context_processors.py:88 apps/devhub/templates/devhub/addons/dashboard.html:6 mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Управљај мојим доставама"
 
 #: apps/amo/context_processors.py:90 apps/devhub/templates/devhub/nav.html:51 apps/devhub/templates/devhub/addons/dashboard.html:58 apps/devhub/templates/devhub/addons/submit/base.html:6
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Поднеси нови додатак"
 
 #: apps/amo/context_processors.py:95 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:32 apps/devhub/templates/devhub/index.html:39
 #: apps/devhub/templates/devhub/addons/dashboard.html:63
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Поднеси нову тему"
 
 #: apps/amo/context_processors.py:98 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:71 apps/devhub/helpers.py:105 mkt/site/context_processors.py:37
 #: templates/footer.html:6 templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr ""
+msgstr "Центар за програмера"
 
 #: apps/amo/context_processors.py:102 apps/editors/helpers.py:73 apps/editors/helpers.py:92 apps/editors/templates/editors/base.html:13
 msgid "Editor Tools"
-msgstr ""
+msgstr "Алати уредника"
 
 #: apps/amo/context_processors.py:105 mkt/site/context_processors.py:49
 msgid "Localizer Tools"
-msgstr ""
+msgstr "Алати локализатора"
 
 #: apps/amo/context_processors.py:109 mkt/site/context_processors.py:55
 msgid "Admin Tools"
@@ -1630,11 +1632,11 @@ msgstr "Алати администратора"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Морате унети исправну хексадецималну шифру боје, као што је #000000."
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Унесите бар једну вредност."
 
 #: apps/amo/helpers.py:176 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
@@ -1644,508 +1646,508 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2 apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3 apps/stats/templates/stats/stats.html:77
 #: templates/menu_links.html:12
 msgid "Collections"
-msgstr "Збирке"
+msgstr "Колекције"
 
 #: apps/amo/helpers.py:185 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Речници и језички пакети"
 
 #: apps/amo/helpers.py:273 apps/amo/helpers.py:275 apps/devhub/templates/devhub/payments/payments.html:101 mkt/developers/helpers.py:45 mkt/developers/templates/developers/login.html:3
 #: mkt/developers/templates/developers/skeleton_impala.html:12 mkt/ecosystem/templates/ecosystem/landing.html:171 mkt/ecosystem/templates/ecosystem/partners.html:12
 #: mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 templates/base.html:9 templates/impala/base.html:9
 msgid "Firefox Marketplace"
-msgstr ""
+msgstr "Firefox Marketplace"
 
 #: apps/amo/helpers.py:316
 msgid "Apps Marketplace"
-msgstr ""
+msgstr "Marketplace за апликације"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:435
 msgid "{0} ago"
-msgstr ""
+msgstr "пре {0}"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} је креиран."
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Својства су измењена за {addon}."
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Опис је измењен за {addon}."
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Категорије су измењене за {addon}."
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) додат у {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: apps/amo/log.py:53
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) уклоњено из {addon}."
 
 #: apps/amo/log.py:60
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Прилози за {addon}."
 
 #: apps/amo/log.py:65 apps/amo/log.py:455
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} онемогућен."
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} омогућен."
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Статистика подешена на јавно за {addon}."
 
 #: apps/amo/log.py:85
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "Статистика подешена на приватно за {addon}."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "Статус измењен на {0} за {addon}."
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "Преглед додат за {addon}."
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Преглед измењен за {addon}."
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Преглед измењен за {addon}."
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} додата у {addon}."
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} измењен за {addon}."
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Верзија {0} избрисана из {addon}."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Датотека {0.name} додата у {version} додатка {addon}."
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Датотека {0} избрисана из {version} додатка {addon}."
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} одобрен."
 
 #: apps/amo/log.py:166
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "Дата је прелиминарна рецензија за {addon} {version}."
 
 #: apps/amo/log.py:167
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Премилиминарно одобрено"
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} је одбијен."
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} је задржан."
 
 #: apps/amo/log.py:188
 msgid "Retained"
-msgstr ""
+msgstr "Задржано"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} се ескалирао."
 
 #: apps/amo/log.py:198 mkt/reviewers/forms.py:297
 msgid "Escalated"
-msgstr ""
+msgstr "Ескалирано"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Захтевана рецензија за {addon} {version}."
 
 #: apps/amo/log.py:208
 msgid "Review requested"
-msgstr ""
+msgstr "Захтевана рецензија"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "Захтеване додатне информације за {addon} {version}."
 
 #: apps/amo/log.py:217
 msgid "More information requested"
-msgstr ""
+msgstr "Захтеване додатне информације"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Захтевана супер рецензија за {addon} {version}."
 
 #: apps/amo/log.py:226
 msgid "Super review requested"
-msgstr ""
+msgstr "Захтевана супер рецензија"
 
 #: apps/amo/log.py:233
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Коментар на {addon} {version}."
 
 #: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:453
 #: mkt/reviewers/utils.py:438 mkt/reviewers/templates/reviewers/themes/history_table.html:11
 msgid "Comment"
-msgstr ""
+msgstr "Коментариши"
 
 #: apps/amo/log.py:243
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} додато у {addon}."
 
 #: apps/amo/log.py:249
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} уклоњено из {addon}."
 
 #: apps/amo/log.py:255
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} додат у {collection}."
 
 #: apps/amo/log.py:261
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} уклоњено из {collection}."
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} за {addon} је написана."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} је истакнут у {0}."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} више није истакнут у {0}."
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} је сада истакнут."
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} више није истакнут."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} је додат."
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "Улога корисника {0.name} је промењена у {1} за {addon}."
 
 #: apps/amo/log.py:316
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} је сада лиценциран под {0.name}."
 
 #: apps/amo/log.py:322
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Полиса измењена за {addon}."
 
 #: apps/amo/log.py:328
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "Иконица је промењена за {addon}."
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} за {addon} је одобрен."
 
 #: apps/amo/log.py:335
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "Корисник {user} је одобрио {review} за {addon}."
 
 #: apps/amo/log.py:344
 msgid "Review {0} for {addon} deleted."
-msgstr ""
+msgstr "Рецензија {0} за {addon} је избрисана."
 
 #: apps/amo/log.py:345
 msgid "{user} deleted {0} for {addon}."
-msgstr ""
+msgstr "Корисник {user} је избрисано {0} за {addon}."
 
 #: apps/amo/log.py:352
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Максимална верзија апликације за {version} је ажурирана."
 
 #: apps/amo/log.py:357
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Аутори послали е-пошту о компатибилности верзије {version}."
 
 #: apps/amo/log.py:362
 msgid "Password changed."
-msgstr ""
+msgstr "Лозинка је измењена."
 
 #: apps/amo/log.py:367
 msgid "{addon} changed to premium."
-msgstr ""
+msgstr "{addon} је измењен у премијум."
 
 #: apps/amo/log.py:372
 msgid "{addon} failed checks with PayPal."
-msgstr ""
+msgstr "{addon} није прошао провере са PayPal."
 
 #: apps/amo/log.py:377
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "Манифест додатка {addon} је ажуриран."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} је одобрен али чека да постане јаван."
 
 #: apps/amo/log.py:384 apps/constants/base.py:41
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Одобрен али на чекању"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} је купљен."
 
 #: apps/amo/log.py:397
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} је инсталиран."
 
 #: apps/amo/log.py:402
 msgid "Refund requested for {addon}"
-msgstr ""
+msgstr "Рефундација је захтевана за {addon}"
 
 #: apps/amo/log.py:407
 msgid "Refund declined for {addon} for {0}."
-msgstr ""
+msgstr "Рефундације је одбијена за {addon} за {0}."
 
 #: apps/amo/log.py:412
 msgid "Refund granted for {addon} for {0}."
-msgstr ""
+msgstr "Рефундација је одобрена за {addon} за {0}."
 
 #: apps/amo/log.py:417
 msgid "Instant refund granted for {addon}."
-msgstr ""
+msgstr "Инстант рефундација је одобрена за {addon}."
 
 #: apps/amo/log.py:422
 msgid "Account updated."
-msgstr ""
+msgstr "Налог ажуриран."
 
 #: apps/amo/log.py:427
 msgid "Pre approval added."
-msgstr ""
+msgstr "Претходно одобрење додато."
 
 #: apps/amo/log.py:432
 msgid "Pre-approval removed."
-msgstr ""
+msgstr "Претходно одобрење уклоњено."
 
 #: apps/amo/log.py:437
 msgid "Account currency changed"
-msgstr ""
+msgstr "Валута налога измењена"
 
 #: apps/amo/log.py:442
 msgid "Valid receipt was checked for {addon}."
-msgstr ""
+msgstr "Исправност рачуна проверена за {addon}."
 
 #: apps/amo/log.py:447
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Ескалација је очишћена за {addon}."
 
 #: apps/amo/log.py:448
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Ескалација очишћена"
 
 #: apps/amo/log.py:456
 msgid "App disabled"
-msgstr ""
+msgstr "Апликација је онемогућена"
 
 #: apps/amo/log.py:463
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
+msgstr "{addon} је ескалирао због високог броја пријава о злоупотреби."
 
 #: apps/amo/log.py:464
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Превише пријава о злоупотреби"
 
 #: apps/amo/log.py:471
 msgid "{addon} escalated because of high number of refund requests."
-msgstr ""
+msgstr "{addon} је ескалирао због високог броја захтева о рефундацији."
 
 #: apps/amo/log.py:472
 msgid "High Refund Requests"
-msgstr ""
+msgstr "Превише захтева о рефундацији"
 
 #: apps/amo/log.py:479
 msgid "{addon} re-reviewed because of manifest change."
-msgstr ""
+msgstr "{addon} је поново рецензиран због промене у манифесту."
 
 #: apps/amo/log.py:480
 msgid "Manifest Change"
-msgstr ""
+msgstr "Промена у манифесту"
 
 #: apps/amo/log.py:487
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr ""
+msgstr "{addon} је поново рецензиран због надоградње премијум типа апликације."
 
 #: apps/amo/log.py:488
 msgid "Premium Type Upgrade"
-msgstr ""
+msgstr "Надоградња премијум типа"
 
 #: apps/amo/log.py:495
 msgid "Re-review cleared for {addon}."
-msgstr ""
+msgstr "Поновна рецензија уклоњена за {addon}."
 
 #: apps/amo/log.py:496
 msgid "Re-review cleared"
-msgstr ""
+msgstr "Понавна рецензија уклоњена"
 
 #: apps/amo/log.py:503
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "{addon} је ескалирао од стране рецезента."
 
 #: apps/amo/log.py:504
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Ескалација рецезента"
 
 #: apps/amo/log.py:512
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "Видео је уклољен из {addon} због проблема са снимком."
 
 #: apps/amo/log.py:514
 msgid "Video removed"
-msgstr ""
+msgstr "Видео уклоњен"
 
 #: apps/amo/log.py:519
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "Поновна рецензија додатка {addon} због додавања новог/нових уређаја."
 
 #: apps/amo/log.py:520
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Уређај/уређаји додати"
 
 #: apps/amo/log.py:527
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "Подршка уређаја за додатак {addon} је ручно промењен од стране рецезента."
 
 #: apps/amo/log.py:528
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Уређај/уређаји промењени од стране рецезента"
 
 #: apps/amo/log.py:535
 msgid "{addon} resubmitted for review."
-msgstr ""
+msgstr "Додатак {addon} је поново послат на рецензију."
 
 #: apps/amo/log.py:536
 msgid "App Resubmission"
-msgstr ""
+msgstr "Поновно слање апликације"
 
 #: apps/amo/log.py:553
 msgid "Created: {0}."
-msgstr ""
+msgstr "Креирано: {0}."
 
 #: apps/amo/log.py:559
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Измењено поље: 2} подешено на: {0}."
 
 #: apps/amo/log.py:565
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Избрисано: {1}."
 
 #: apps/amo/log.py:571
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Корисник {user} измењен, разлог: {1}"
 
 #: apps/amo/log.py:577
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Корисник {user} промењен у анонимног."
 
 #: apps/amo/log.py:583
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Корисник {user} је ограничен."
 
 #: apps/amo/log.py:589
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Администратор {0} је прегледао дневник активности за {user}."
 
 #: apps/amo/log.py:596
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} за {addon} је ажуриран."
 
 #: apps/amo/log.py:602
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} је прегледан."
 
 #: apps/amo/log.py:608
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Корисник {0.name} је додат у {group}."
 
 #: apps/amo/log.py:616
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Корисник {0.name} је уклоњен из {group}."
 
 #: apps/amo/log.py:623
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "Минимални захтеви за {addon} су ручно измењени од стране рецезента."
 
 #: apps/amo/log.py:624
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Захтеви измењени од стране рецезента"
 
 #: apps/amo/log.py:631
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "Минимални захтеви за {addon} су ручно измењени."
 
 #: apps/amo/log.py:632
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Захтеви измењени"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "Статус верзије {version} промењен на {0}."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:647
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Корисник {0.name} {0.id} је избрисан преко алата за проналажење."
 
 #: apps/amo/log.py:653
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Оцена садржаја за {addon} је промењена на Одрасли."
 
 #: apps/amo/log.py:659
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Оцена садржаја за {addon} промењена"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Није допуштено"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr ""
+msgstr "<h1>Упс! Није допуштено.</h1> <p>Покушали сте да урадите нешто за шта нисте допуштени.</p>"
 
 #: apps/amo/templates/amo/403.html:12 apps/amo/templates/amo/403_apps.html:17
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr ""
+msgstr "<p>Покушајте се вратити на претходну страницу, освежите је и покушајте поново.</p>"
 
 #: apps/amo/templates/amo/403_apps.html:4 apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -2166,22 +2168,22 @@ msgid ""
 msgstr ""
 "<h1>Жао нам је, али не можемо наћи оно што сте тражили.</h1> <p> Страница коју сте захтевали не постоји на овом веб сајту. Могуће је да сте пратили застарелу везу, или сте погрешно укуцали адресу. "
 "</p> <ul> <li>Ако сте укуцали адресу у свој веб прегледач, молимо проверите да ли сте је правилно унели.</li> <li> Ако сте до овог сајта дошли пратећи везу са неког другог сајта, молимо да нас о "
-"томе обавестите тако што ћете послати поруку на <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Реците нам одакле сте и шта сте тражили, а ми ћемо урадити све што је у нашој "
+"томе обавестите тако што ћете послати поруку на <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Реците нам одакле сте дошли и шта сте тражили, а ми ћемо урадити све што је у нашој "
 "могућности да Вам помогнемо. </li> </ul> <p>А можете и скочити на неку од наших популарних веб страна.</p> <ul> <li>Да ли Вас интересује <a href=\"%(rec)s\">листа препоручених додатака</a>?</li> "
 "<li> Да ли желите да <a href=\"%(search)s\">претражите додатке</a>? Можете отворити <a href=\"%(search)s\">страну за претраживање</a> а можете и користити поље за претрагу изнад овог текста. </li> "
 "<li> Ако бисте ипак желели да почнете поново, само отворите <a href=\"%(home)s\">почетну страну додатака</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Упс! Дошло је до грешке.</h1> <p>Ускоро ћемо то исправити.</p> <p> Можете пробати да поново учитате страну, или се вратити на <a href=\"%(home)s\">почетну страну за додатке</a>. </p>"
+msgstr "<h1>Упс! Дошло је до грешке.</h1> <p>Ускоро ћемо то исправити.</p> <p> Можете пробати да поново учитате страну, или се вратите на <a href=\"%(home)s\">почетну страну за додатке</a>. </p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
-msgstr ""
+msgstr "marketplace-staff@mozilla.org"
 
 #: apps/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Нека права су задржана"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
@@ -2200,23 +2202,23 @@ msgstr "Претходно"
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:29 mkt/developers/templates/developers/apps/includes/validation_test_results.html:43
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:56 mkt/stats/templates/sitestats/stats.html:76
 msgid "Next"
-msgstr "След"
+msgstr "Следеће"
 
 #: apps/amo/templates/amo/paginator.html:32 apps/editors/templates/editors/includes/paginator_history.html:11
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "Резултати <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> од <strong>%(count)s</strong>"
 
 #: apps/amo/templates/amo/read-only.html:3 apps/amo/templates/amo/read-only.html:7
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Одржавање сајта у току"
 
 #: apps/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Ова могућност је на одређено време онемогућена док вршимо одржавање веб сајта. Молимо Вас, вратите се на претходну страну и покушајте касније."
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Неке могућности на овој страни су на одређено време онемогућене док вршимо одржавање веб сајта. Молимо Бас, покушајте касније."
 
 #: apps/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
@@ -2227,15 +2229,17 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Молимо Вас унесите испод <strong>обе речи</strong>, <strong>одвојене размаком</strong>. </p> <p> Ако Вам је тешко да прочитате, можете <a href=\"#\" id=\"recaptcha_different\">пробати са другим речима</a> "
+"или да <a href=\"#\" id=\"recaptcha_audio\">испробате другачији изазов</a> од овог. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
 msgid "Top Rated"
-msgstr "Најбоље оцене"
+msgstr "Најбоље оценено"
 
 #: apps/amo/templates/amo/side_nav.html:23
 msgid "Explore"
-msgstr ""
+msgstr "Истражи"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
@@ -2245,65 +2249,64 @@ msgstr "Проширења"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Желите још прилагођавања? Испробајте <b>Потпуне теме</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:87
 msgid "Most Followers"
-msgstr ""
+msgstr "Највише пратиоца"
 
 #: apps/amo/templates/amo/site_nav.html:66 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Моје колекције"
 
 #: apps/amo/templates/amo/site_nav.html:68 apps/bandwagon/templates/bandwagon/user_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Колекције које пратим"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
 #: apps/users/models.py:446
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Моји омиљени додаци"
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Додаци за мобилни"
 
 #: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:189 templates/menu_links.html:10
 msgid "Search Tools"
-msgstr ""
+msgstr "Алати за претрагу"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: apps/amo/templates/amo/impala/paginator.html:5 apps/amo/templates/amo/mobile/impala_paginator.html:26
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Страна <a href=\"%(current_pg_url)s\">%(current_pg)s</a> од <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #: apps/amo/templates/amo/impala/paginator.html:16 apps/amo/templates/amo/mobile/impala_paginator.html:6
 msgid "Jump to first page"
-msgstr ""
+msgstr "Пребаците се на прву страну"
 
 #: apps/amo/templates/amo/impala/paginator.html:22 apps/amo/templates/amo/mobile/impala_paginator.html:12 apps/discovery/templates/discovery/pane.html:45
 #: apps/discovery/templates/discovery/pane.html:71 apps/discovery/templates/discovery/addons/detail.html:53 apps/stats/templates/stats/stats.html:156 mkt/stats/templates/sitestats/stats.html:73
 msgid "Previous"
-msgstr ""
+msgstr "Претходно"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#.                third argument is the number of total results (e.g., 1,000).
-#.              third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Приказано <b>%(begin)s</b>&ndash;<b>%(end)s</b> од <b>%(count)s</b>"
 
 #: apps/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
 msgid_plural "Page {n}"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Страна {n}"
+msgstr[1] "Страна {n}"
+msgstr[2] "Страна {n}"
 
 #: apps/amo/templates/services/install.html:38
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
-msgstr ""
+msgstr "Ако за пар момената не будете тражени да инсталирате %(addon_name)s, молимо Вас <a href=\"%(addon_xpi)s\">кликните овде</a>."
 
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53 apps/reviews/templates/reviews/add.html:84 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
