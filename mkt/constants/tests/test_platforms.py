@@ -1,6 +1,6 @@
 from django.test.client import RequestFactory
 from nose.tools import eq_
-from tower import ugettext_lazy as _
+from tower import ugettext as _
 
 import amo.tests
 from mkt.constants.platforms import FREE_PLATFORMS, PAID_PLATFORMS
@@ -12,7 +12,7 @@ class TestPlatforms(amo.tests.TestCase):
         platforms = FREE_PLATFORMS()
         expected = (
             ('free-firefoxos', _('Firefox OS')),
-            ('free-desktop', _('Firefox')),
+            ('free-desktop', _('Firefox for Desktop')),
             ('free-android-mobile', _('Firefox Mobile')),
             ('free-android-tablet', _('Firefox Tablet')),
         )
@@ -32,7 +32,7 @@ class TestPlatforms(amo.tests.TestCase):
                                    is_packaged=True)
         expected = (
             ('free-firefoxos', _('Firefox OS')),
-            ('free-desktop', _('Firefox')),
+            ('free-desktop', _('Firefox for Desktop')),
         )
         eq_(platforms, expected)
 
@@ -54,7 +54,7 @@ class TestPlatforms(amo.tests.TestCase):
                                    is_packaged=True)
         expected = (
             ('free-firefoxos', _('Firefox OS')),
-            ('free-desktop', _('Firefox')),
+            ('free-desktop', _('Firefox for Desktop')),
             ('free-android-mobile', _('Firefox Mobile')),
             ('free-android-tablet', _('Firefox Tablet')),
         )
