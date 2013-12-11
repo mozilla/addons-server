@@ -237,7 +237,7 @@ class Webapp(Addon):
     def geodata(self):
         if hasattr(self, '_geodata'):
             return self._geodata
-        return Geodata.objects.get_or_create(addon=self)
+        return Geodata.objects.get_or_create(addon=self)[0]
 
     def get_api_url(self, action=None, api=None, resource=None, pk=False):
         """Reverse a URL for the API."""
