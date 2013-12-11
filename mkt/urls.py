@@ -3,7 +3,6 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
-from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
@@ -27,20 +26,8 @@ handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
 
-home = lambda request: HttpResponse('''<a
-href="https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni">
-<marquee style="font-size:400px">☠ RIP ☠</marquee></a>
-''' if settings.DEBUG else '')
-
 urlpatterns = patterns('',
-    # Home (now served by Fireplace).
-    url('^$', home, name='home'),
-
-    # App Detail pages.
-    # XXX: Temporary workaround for accessing overridden Fireplace URLs.
-    # Must come first so that url() isn't broken.
-    ('^details/%s/' % amo.APP_SLUG, include('mkt.detail.urls')),
-    # TODO: Remove the app/.../ patterns after the consumer pages are removed
+    # Non-commonplace app pages
     ('^app/%s/' % amo.APP_SLUG, include('mkt.detail.urls')),
     url('^app/%s/manifest.webapp$' % amo.ADDON_UUID, mini_manifest,
         name='detail.manifest'),
