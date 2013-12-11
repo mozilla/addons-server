@@ -429,22 +429,26 @@ class Webapp(Addon):
 
         return not bool(reasons), reasons
 
-    def is_fully_complete(self):
+    def is_fully_complete(self, ignore_ratings=False):
         """
         Central method to determine if app is fully complete. That is,
         like `is_complete`, but considers payments-related and IARC
         information.
+
+        ignore_ratings -- doesn't check for content_ratings for cases where
+                          content ratings were just created.
         """
         is_complete = True
         reasons = {
-            'details': True,  # True == complete.
+            'details': True,  # False == required, True == okay.
             'content_ratings': True,
             'payments': True
         }
         if not self.is_complete()[0]:
             is_complete = False
             reasons['details'] = False
-        if waffle.switch_is_active('iarc') and not self.is_rated():
+        if (waffle.switch_is_active('iarc') and not ignore_ratings and
+            not self.is_rated()):
             is_complete = False
             reasons['content_ratings'] = False
         if self.needs_payment() and not self.has_payment_account():
