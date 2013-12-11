@@ -4,7 +4,8 @@ from django.core.management.base import BaseCommand
 
 import amo
 from mkt.constants.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS,
-                                   REGIONS_CHOICES_ID_DICT)
+                                   REGIONS_CHOICES_ID_DICT,
+                                   SPECIAL_REGION_IDS)
 
 log = logging.getLogger('z.task')
 
@@ -43,7 +44,9 @@ class Command(BaseCommand):
             if app.premium_type in paid_types:
                 geodata['restricted'] = True
             else:
-                for exclusion in app.addonexcludedregion.all():
+                exclusions = app.addonexcludedregion.exclude(
+                    region__in=SPECIAL_REGION_IDS)
+                for exclusion in exclusions:
                     # Do not delete region exclusions meant for unrated games.
                     region = REGIONS_CHOICES_ID_DICT[exclusion.region]
                     if (games_cat and region.id in content_region_ids and
