@@ -176,7 +176,7 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
 
     # Dict of {'read_permission_GROUP_TYPE': boolean}.
     # Perm for dev, reviewer, senior_reviewer, moz_contact all True by default.
-    create_perms = dict(('read_permission_%s' % key, True) for key in perms)
+    create_perms = dict(('read_permission_%s' % key, True) for key in perms or {})
 
     # Create thread + note.
     thread, created = app.threads.safer_get_or_create(
