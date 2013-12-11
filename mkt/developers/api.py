@@ -111,7 +111,7 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             # Update status if incomplete status.
             log.debug('Checking app:%s completeness after IARC pingback.'
                       % app.id)
-            is_fully_complete, reasons = app.is_fully_complete()[0]
+            is_fully_complete, reasons = app.is_fully_complete()
             if app.is_incomplete() and is_fully_complete:
                 log.debug('Updating app status from IARC pingback for app:%s' %
                           app.id)
