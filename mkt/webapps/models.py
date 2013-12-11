@@ -440,7 +440,7 @@ class Webapp(Addon):
         """
         is_complete = True
         reasons = {
-            'details': True,
+            'details': True,  # True == complete.
             'content_ratings': True,
             'payments': True
         }
@@ -455,6 +455,28 @@ class Webapp(Addon):
             reasons['payments'] = False
 
         return is_complete, reasons
+
+    def next_step(self):
+        """
+        Gets the next step to fully complete app submission.
+        Similar to AppSubmissionChecklist, but don't need to keep state.
+        """
+        is_complete, reasons = self.is_fully_complete()
+        next_step = {}
+
+        if not reasons['details']:
+            next_step['name'] = _('Details')
+            next_step['url'] = self.get_dev_url()
+
+        elif not reasons['content_ratings']:
+            next_step['name'] = _('Content Ratings')
+            next_step['url'] = self.get_dev_url('ratings')
+
+        elif not reasons['payments']:
+            next_step['name'] = _('Payments')
+            next_step['url'] = self.get_dev_url('payments')
+
+        return next_step
 
     def is_rated(self):
         return self.content_ratings.exists()

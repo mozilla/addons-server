@@ -6,12 +6,7 @@
 
 {% set payments = waffle.flag('allow-b2g-paid-submission') and addon.is_premium() %}
 {% set public = addon.is_public() %}
-
-{% set fully_complete = addon.is_fully_complete() %}
-{% set is_complete = fully_complete[0] %}
-
-{# Dict of booleans indicating why app may not be complete. #}
-{% set completeness = fully_complete[1] %}
+{% set done = addon.is_fully_complete()[1] %}
 
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
@@ -33,34 +28,21 @@
         </h2>
         <li class="done"><span>{{ _('Submit App Manifest') }}</span></li>
         <li class="done"><span>{{ _('Enter App Details') }}</span></li>
-        <li{% if completeness['content_ratings'] %} class="done"{% endif %}>
-          {%- trans url=addon.get_dev_url('ratings') %}
-            <span>Set up <a href="{{ url }}">Content Ratings</a></span>
+        <li{% if done['content_ratings'] %} class="done"{% endif %}>
+          {%- trans rating_url=addon.get_dev_url('ratings') %}
+            <span>Set up <a href="{{ rating_url }}">Content Ratings</a></span>
           {% endtrans -%}
         </li>
         {% if addon.is_premium() %}
-          <li{% if completeness['payments'] %} class="done"{% endif %}>
-            {%- trans url=addon.get_dev_url('payments') %}
-              <span>Set up <a href="{{ url }}">Payments & Countries</a></span>
+          <li{% if done['payments'] %} class="done"{% endif %}>
+            {%- trans pay_url=addon.get_dev_url('payments') %}
+              <span>Set up <a href="{{ pay_url }}">Payments</a></span>
             {% endtrans %}
           </li>
         {% endif %}
         <li{% if public or addon.is_public_waiting() %} class="done"{% endif %}><span>{{ _('Wait for Review') }}</span></li>
         <li{% if public %} class="done"{% endif %}><span>{{ _('Publish') }}</span></li>
       </ol>
-
-     {# Tell the developer what's next to do (in same order as checklist). #}
-      <p>
-        {% if not completeness['content_ratings'] %}
-          {% trans url=addon.get_dev_url('ratings') %}
-            You must set up <a href="{{ url }}">Content Ratings</a> before we can review your app.
-          {% endtrans %}
-        {% elif not completeness['payments'] %}
-          {% trans payment_url=addon.get_dev_url('payments') %}
-            You must set up <a href="{{ payment_url }}">Payments & Countries</a> before we can review your app.
-          {% endtrans %}
-        {% endif %}
-      </p>
 
       <h2>{{ _('At any point, you can') }}</h2>
       <ul class="other-options">
@@ -100,18 +82,12 @@
 
       <footer class="listing-footer">
         {% set continue_url = addon.get_dev_url('versions') %}
-        {% if not completeness['content_ratings'] %}
-          {% set continue_url = addon.get_dev_url('ratings') %}
+        {% if next_step %}
+          {% set continue_url = next_step['url'] %}
           <span>
-            {% trans %}
-              <strong>What's next:</strong> Set up Content Ratings
-            {% endtrans %}
-          </span>
-        {% elif not completeness['payments'] %}
-          {% set continue_url = addon.get_dev_url('payments') %}
-          <span>
-            {% trans %}
-              <strong>What's next:</strong> Set up Payments & Countries
+            {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
+            {%- trans next_step_name=next_step['name'] %}
+              <strong>What's next:</strong> Set up {{ next_step_name }}
             {% endtrans %}
           </span>
         {% elif addon.is_public_waiting() %}
@@ -123,6 +99,7 @@
         {% endif %}
         <a href="{{ continue_url }}" class="button prominent">{{- _('Continue') }}</a>
       </footer>
+
     </div>
   </section>
 {% endblock %}
