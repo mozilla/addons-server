@@ -55,7 +55,6 @@ CACHES = {
                 'MAX_POOL_SIZE': 100,
                 'BLACKLIST_TIME': 60,
                 'SOCKET_TIMEOUT': 4,
-                'MAX_ITEM_SIZE': 1000*100,
             }
     }
 }
