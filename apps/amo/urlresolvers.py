@@ -1,7 +1,9 @@
 #-*- coding: utf-8 -*-
+import bleach
 import hashlib
 import hmac
 import urllib
+import sys
 from threading import local
 from urlparse import urlparse, urlsplit, urlunsplit
 
@@ -13,6 +15,8 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 import jinja2
 
 import amo
+
+from . import logger_log as log
 
 # Get a pointer to Django's reverse because we're going to hijack it after we
 # define our own.
@@ -184,6 +188,24 @@ def get_outgoing_url(url):
     # bother to quote the query part at all.
     return '/'.join([settings.REDIRECT_URL.rstrip('/'), sig,
                      urllib.quote(url, safe='/&=')])
+
+
+def linkify_bounce_url_callback(attrs, new=False):
+    """Linkify callback that uses get_outgoing_url."""
+    attrs['href'] = get_outgoing_url(attrs['href'])
+    return attrs
+
+
+def linkify_with_outgoing(text, nofollow=True):
+    """Wrapper around bleach.linkify: uses get_outgoing_url."""
+    callbacks = [linkify_bounce_url_callback]
+    if nofollow:
+        callbacks.append(bleach.callbacks.nofollow)
+    try:
+        return bleach.linkify(text, callbacks=callbacks)
+    except Exception as e:
+        log.warning('Failed to linkify: %r' % e, exc_info=sys.exc_info())
+    return text
 
 
 def url_fix(s, charset='utf-8'):
