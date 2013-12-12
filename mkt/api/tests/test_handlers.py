@@ -18,6 +18,7 @@ from market.models import Price, PriceCurrency
 from tags.models import AddonTag, Tag
 from users.models import UserProfile
 
+import mkt
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import RestOAuthClient, RestOAuth
 from mkt.constants import ratingsbodies, regions
@@ -685,6 +686,17 @@ class TestAppDetail(RestOAuth):
         res = self.client.get(self.get_url, pk=self.app.app_slug)
         data = json.loads(res.content)
         eq_(data['tags'], ['example1', 'example2'])
+
+    def test_banner_message(self):
+        geodata = self.app.geodata
+        geodata.banner_regions = [mkt.regions.BR.id, mkt.regions.AR.id]
+        geodata.banner_message = u'Hello!'
+        geodata.save()
+        res = self.client.get(self.get_url + '?lang=en')
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['banner_message'], unicode(geodata.banner_message))
+        eq_(data['banner_regions'], [mkt.regions.AR.slug, mkt.regions.BR.slug])
 
 
 class TestCategoryHandler(RestOAuth):

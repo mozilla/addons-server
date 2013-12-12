@@ -83,6 +83,9 @@ class AppSerializer(serializers.ModelSerializer):
     app_type = serializers.ChoiceField(
         choices=amo.ADDON_WEBAPP_TYPES_LOOKUP.items(), read_only=True)
     author = serializers.CharField(source='developer_name', read_only=True)
+    banner_message = TranslationSerializerField(read_only=True,
+        source='geodata.banner_message')
+    banner_regions = serializers.Field(source='geodata.banner_regions_slugs')
     categories = serializers.SlugRelatedField(
         many=True, slug_field='slug', required=True,
         queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))

@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import json
 import os
 import shutil
@@ -18,13 +19,14 @@ from amo.tests.test_helpers import get_image_path
 from addons.models import Addon, AddonCategory, Category
 from files.helpers import copyfileobj
 from tags.models import Tag
+from translations.models import Translation
 from users.models import UserProfile
 
 import mkt
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import IARCInfo, Webapp
+from mkt.webapps.models import AddonExcludedRegion, IARCInfo, Webapp
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -732,6 +734,64 @@ class TestAdminSettingsForm(TestAdmin):
         self.assertSetEqual(
             self.webapp.tags.values_list('tag_text', flat=True),
             ['tag two', 'tag three'])
+
+    def test_banner_message(self):
+        self.data.update({
+            'banner_message_en-us': u'Oh Hai.',
+            'banner_message_es': u'¿Dónde está la biblioteca?',
+        })
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        geodata = self.webapp.geodata.reload()
+        trans_id = geodata.banner_message_id
+        eq_(geodata.banner_message, self.data['banner_message_en-us'])
+        eq_(unicode(Translation.objects.get(id=trans_id, locale='es')),
+            self.data['banner_message_es'])
+        eq_(unicode(Translation.objects.get(id=trans_id, locale='en-us')),
+           self.data['banner_message_en-us'])
+
+    def test_banner_regions_garbage(self):
+        self.data.update({
+            'banner_regions': ['LOL']
+        })
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert not form.is_valid(), form.errors
+
+    def test_banner_regions_valid(self):  # Use strings
+        self.data.update({
+            'banner_regions': [unicode(mkt.regions.BR.id),
+                               mkt.regions.SPAIN.id]
+        })
+        self.webapp.geodata.update(banner_regions=[mkt.regions.RS.id])
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        eq_(form.initial['banner_regions'], [mkt.regions.RS.id])
+        assert form.is_valid(), form.errors
+        eq_(form.cleaned_data['banner_regions'], [mkt.regions.BR.id,
+                                                  mkt.regions.SPAIN.id])
+        form.save(self.webapp)
+        geodata = self.webapp.geodata.reload()
+        eq_(geodata.banner_regions, [mkt.regions.BR.id, mkt.regions.SPAIN.id])
+
+    def test_banner_regions_initial(self):
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        eq_(self.webapp.geodata.banner_regions, None)
+        eq_(form.initial['banner_regions'], [])
+
+        self.webapp.geodata.update(banner_regions=[])
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        eq_(form.initial['banner_regions'], [])
+
+    def test_banner_regions_disabled(self):
+        self.data.update({
+            'banner_regions': [mkt.regions.BR.id]
+        })
+        AddonExcludedRegion.objects.create(addon=self.webapp,
+                                           region=mkt.regions.BR.id)
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert not form.is_valid(), form.errors
+        assert 'banner_regions' in form.errors
 
 
 class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):

@@ -1259,6 +1259,7 @@ class TestAdmin(TestEdit):
         super(TestAdmin, self).setUp()
         self.url = self.get_url('admin')
         self.edit_url = self.get_url('admin', edit=True)
+        self.webapp = self.get_webapp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
 
@@ -1412,6 +1413,62 @@ class TestAdminSettings(TestAdmin):
         eq_(txt,
             '%s - %s' % (RATINGS_BODIES[0].name,
                          RATINGS_BODIES[0].ratings[2].name))
+
+    def test_banner_region_view(self):
+        self.log_in_with('Apps:ViewConfiguration')
+        geodata = self.get_webapp().geodata
+        geodata.banner_message = u'Exclusive message ! Only for AR/BR !'
+        geodata.banner_regions = [mkt.regions.BR.id, mkt.regions.AR.id]
+        geodata.save()
+        res = self.client.get(self.url)
+
+        eq_(pq(res.content)('#id_banner_message').text(),
+            unicode(geodata.banner_message))
+        eq_(pq(res.content)('#id_banner_regions').text(), u'Argentina, Brazil')
+
+    def test_banner_region_edit(self):
+        self.log_in_with('Apps:ViewConfiguration')
+        geodata = self.webapp.geodata
+        geodata.banner_message = u'Exclusive message ! Only for AR/BR !'
+        geodata.banner_regions = [mkt.regions.BR.id, mkt.regions.AR.id]
+        geodata.save()
+        AER.objects.create(addon=self.webapp, region=mkt.regions.US.id)
+
+        res = self.client.get(self.edit_url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        inputs = doc.find('input[type=checkbox][name=banner_regions]')
+        eq_(inputs.length, len(mkt.regions.REGIONS_CHOICES_ID))
+
+        checked = doc.find('#id_banner_regions input[type=checkbox]:checked')
+        eq_(checked.length, 2)
+        eq_(checked[0].name, 'banner_regions')
+        eq_(checked[0].value, unicode(mkt.regions.AR.id))
+        eq_(pq(checked[0]).parents('li').attr('data-region'),
+            unicode(mkt.regions.AR.id))
+        eq_(checked[1].name, 'banner_regions')
+        eq_(checked[1].value, unicode(mkt.regions.BR.id))
+        eq_(pq(checked[1]).parents('li').attr('data-region'),
+            unicode(mkt.regions.BR.id))
+
+        disabled = doc.find('#id_banner_regions input[type=checkbox]:disabled')
+        eq_(disabled.length, 1)
+        eq_(disabled[0].value, None)
+        eq_(disabled.parents('li').attr('data-region'),
+            unicode(mkt.regions.US.id))
+
+    def test_banner_region_edit_post(self):
+        data = {
+            'position': 1,  # Required, useless in this test.
+            'banner_regions': [unicode(mkt.regions.BR.id),
+                               unicode(mkt.regions.SPAIN.id)],
+            'banner_message_en-us': u'Oh Hai.',
+        }
+        res = self.client.post(self.edit_url, data)
+        eq_(res.status_code, 200)
+        geodata = self.webapp.geodata.reload()
+        eq_(geodata.banner_message, data['banner_message_en-us'])
+        eq_(geodata.banner_regions, [mkt.regions.BR.id, mkt.regions.SPAIN.id])
 
 
 class TestPromoUpload(TestAdmin):

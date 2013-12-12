@@ -17,6 +17,7 @@ from django.db.models import Min, signals as dbsignals
 from django.dispatch import receiver
 
 import commonware.log
+import json_field
 import waffle
 from elasticutils.contrib.django import F, Indexable, MappingType
 from tower import ugettext as _
@@ -40,7 +41,7 @@ from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
 from market.models import AddonPremium
 from stats.models import ClientData
-from translations.fields import save_signal
+from translations.fields import PurifiedField, save_signal
 from versions.models import Version
 
 from lib.crypto import packaged
@@ -1358,6 +1359,10 @@ class WebappIndexer(MappingType, Indexable):
                     'app_type': {'type': 'byte'},
                     'author': {'type': 'string'},
                     'average_daily_users': {'type': 'long'},
+                    'banner_regions': {
+                        'type': 'string',
+                        'index': 'not_analyzed'
+                    },
                     'bayesian_rating': {'type': 'float'},
                     'category': {
                         'type': 'string',
@@ -1481,8 +1486,8 @@ class WebappIndexer(MappingType, Indexable):
                 {'popularity_%s' % region: {'type': 'long'}})
 
         # Add fields that we expect to return all translations.
-        for field in ('description', 'homepage', 'name', 'release_notes',
-                      'support_email', 'support_url'):
+        for field in ('banner_message', 'description', 'homepage', 'name',
+                      'release_notes', 'support_email', 'support_url'):
             mapping[doc_type]['properties'].update({
                 '%s_translations' % field: {
                     'type': 'object',
@@ -1521,6 +1526,7 @@ class WebappIndexer(MappingType, Indexable):
 
         latest_version = obj.latest_version
         version = obj.current_version
+        geodata = obj.geodata
         features = (version.features.to_dict()
                     if version else AppFeatures().to_dict())
         is_escalated = obj.escalationqueue_set.exists()
@@ -1541,6 +1547,7 @@ class WebappIndexer(MappingType, Indexable):
 
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
+        d['banner_regions'] = geodata.banner_regions_slugs()
         d['category'] = list(obj.categories.values_list('slug', flat=True))
         if obj.is_public:
             d['collection'] = [{'id': cms.collection_id, 'order': cms.order}
@@ -1638,6 +1645,11 @@ class WebappIndexer(MappingType, Indexable):
                 in version.translations[version.releasenotes_id]]
         else:
             d['release_notes_translations'] = None
+        amo.utils.attach_trans_dict(Geodata, [geodata])
+        d['banner_message_translations'] = [
+            {'lang': to_language(lang), 'string': string}
+            for lang, string
+            in geodata.translations[geodata.banner_message_id]]
 
         # Calculate regional popularity for "mature regions"
         # (installs + reviews/installs from that region).
@@ -2010,11 +2022,21 @@ class AppManifest(amo.models.ModelBase):
         db_table = 'app_manifest'
 
 
+class RegionListField(json_field.JSONField):
+    def to_python(self, value):
+        value = super(RegionListField, self).to_python(value)
+        if value:
+            value = [int(v) for v in value]
+        return value
+
+
 class Geodata(amo.models.ModelBase):
     """TODO: Forgo AER and use bool columns for every region and carrier."""
     addon = models.OneToOneField('addons.Addon', related_name='_geodata')
     restricted = models.BooleanField(default=False)
     popular_region = models.CharField(max_length=10, null=True)
+    banner_regions = RegionListField(default=None, null=True)
+    banner_message = PurifiedField()
 
     class Meta:
         db_table = 'webapps_geodata'
@@ -2066,6 +2088,18 @@ class Geodata(amo.models.ModelBase):
             'unavailable': _('requires additional review')
         }
 
+    def banner_regions_names(self):
+        if self.banner_regions is None:
+            return []
+        return sorted(unicode(mkt.regions.REGIONS_CHOICES_ID_DICT.get(k).name)
+                      for k in self.banner_regions)
+
+    def banner_regions_slugs(self):
+        if self.banner_regions is None:
+            return []
+        return sorted(unicode(mkt.regions.REGIONS_CHOICES_ID_DICT.get(k).slug)
+                      for k in self.banner_regions)
+
     def get_nominated_date(self, region):
         """
         Return the timestamp of when the app was approved in a region.
@@ -2111,3 +2145,8 @@ for region in mkt.regions.SPECIAL_REGIONS:
     help_text = _('{region} nomination date').format(region=region.name)
     field = models.DateTimeField(help_text=help_text, null=True)
     field.contribute_to_class(Geodata, 'region_%s_nominated' % region.slug)
+
+
+# Save geodata translations when a Geodata instance is saved.
+models.signals.pre_save.connect(save_signal, sender=Geodata,
+                                dispatch_uid='geodata_translations')
