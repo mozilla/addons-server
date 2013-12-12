@@ -19,6 +19,7 @@ Requirements
 ------------
 To get started, you'll need:
  * Python 2.6 (greater than 2.6.1)
+ * Node 0.10.x or higher
  * MySQL
  * libxml2 (for building lxml, used in tests)
 
@@ -374,6 +375,23 @@ Additionally, add yourself to the admin group::
 Next, you'll need to set a password. Do that by clicking "I forgot my password"
 on the login screen then go back to the shell you started your dev server in.
 You'll see the email message with the password reset link in stdout.
+
+
+Setting Up the Front End
+------------------------
+
+To add the code from all front-end dependencies, you can simply run::
+
+    commonplace fiddle
+
+Commonplace is a set of CLI tools that will handle cloning and updating front-
+end dependencies. This is done automatically if you use the ``make update_mkt``
+command. More information on how this command works is available in the
+`Commonplace wiki <https://github.com/mozilla/commonplace/wiki/CLI-Tools#fiddle>`_
+
+Each of our front-end projects live in their own repositories. These are
+single-page apps that talk to the APIs in Zamboni. Commonplace serves as the
+glue which brings theem together and keeps them running in sync.
 
 
 Testing

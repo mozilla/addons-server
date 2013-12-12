@@ -12,10 +12,6 @@ DummyResponse = lambda *args, **kw: HttpResponse()
 
 
 urlpatterns = patterns('',
-    url('^$', DummyResponse, name='detail'),
-    url('^abuse$', DummyResponse, name='detail.abuse'),
-    url('^privacy$', DummyResponse, name='detail.privacy'),
-
     # Merge app purchase / receipt patterns.
     ('^purchase/', include(app_purchase_patterns)),
     ('^purchase/', include(app_receipt_patterns)),

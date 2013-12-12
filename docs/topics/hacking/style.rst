@@ -51,4 +51,4 @@ JavaScript
       }
   });
 
-- Write :ref:`JavaScript tests <javascript-testing>` whenever possible
+- Write :ref:`JavaScript tests <javascript-testing>` whenever possible.

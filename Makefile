@@ -12,6 +12,7 @@ help:
 	@echo "  tdd              to run all the test suite, but stop on the first error"
 	@echo "  test_failed      to rerun the failed tests from the previous run"
 	@echo "  update           to run a full update (git, pip, schematic, landfill)"
+	@echo "  update_mkt       to run a full update of zamboni, plus any Commonplace projects"
 	@echo "  reindex          to reindex everything in elasticsearch, for AMO"
 	@echo "  reindex_mkt      to reindex everything in elasticsearch, for marketplace"
 	@echo "Check the Makefile to know exactly what each target is doing. If you see a "
@@ -38,6 +39,10 @@ update:
 	pushd vendor && git pull && git submodule update --init && popd
 	pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt
 	schematic migrations
+	npm install
+
+update_mkt: update
+	commonplace fiddle
 
 update_landfill: update
 	$(DJANGO) install_landfill --settings=$(SETTINGS) $(ARGS)
