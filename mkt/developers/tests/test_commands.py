@@ -97,7 +97,7 @@ class TestMigrateGeodata(amo.tests.TestCase):
         eq_(self.webapp.geodata.reload().restricted, False)
 
     def test_migration_of_regional_content(self):
-        # Exclude in every where except Brazil.
+        # Exclude in everywhere except Brazil.
         regions = list(mkt.regions.REGIONS_CHOICES_ID_DICT)
         regions.remove(mkt.regions.BR.id)
         for region in regions:
@@ -107,7 +107,9 @@ class TestMigrateGeodata(amo.tests.TestCase):
 
         migrate_geodata.Command().handle()
 
-        eq_(self.webapp.reload().addonexcludedregion.count(), 0)
+        self.assertSetEqual(self.webapp.reload().addonexcludedregion
+                                .values_list('region', flat=True),
+                            [mkt.regions.CN.id])
         eq_(self.webapp.geodata.reload().popular_region, mkt.regions.BR.slug)
 
     def test_migration_of_rated_games(self):

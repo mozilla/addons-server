@@ -92,9 +92,14 @@ class TestMonolithResource(RestOAuth):
         data = json.loads(res.content)
 
         eq_(len(data['objects']), 1)
+        obj = data['objects'][0]
 
-        # we also want to test that the data is correct JSON
-        eq_(data['objects'][0]['value'], json.dumps({"value": 2}))
+        eq_(obj['key'], 'app.install')
+        eq_(obj['value'], {'value': 2})
+
+        # Check other fields we want to exist but ignore their value here.
+        for field in ('id', 'recorded', 'user_hash'):
+            assert field in obj
 
     def test_filter_by_date(self):
         for id_, date in enumerate((self.last_week, self.yesterday, self.now)):
