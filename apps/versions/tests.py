@@ -337,6 +337,33 @@ class TestVersion(amo.tests.TestCase):
                       args=(self.version.addon.slug, self.version.version))
         self.assertRedirects(r, url, 301)
 
+    def _reset_version(self, version):
+        version.all_files[0].status = amo.STATUS_PUBLIC
+        version.deleted = False
+
+    def test_version_is_public(self):
+        addon = Addon.objects.get(id=3615)
+        version = amo.tests.version_factory(addon=addon)
+
+        # Base test. Everything is in order, the version should be public.
+        eq_(version.is_public(), True)
+
+        # Non-public file.
+        self._reset_version(version)
+        version.all_files[0].status = amo.STATUS_DISABLED
+        eq_(version.is_public(), False)
+
+        # Deleted version.
+        self._reset_version(version)
+        version.deleted = True
+        eq_(version.is_public(), False)
+
+        # Non-public addon.
+        self._reset_version(version)
+        with mock.patch('addons.models.Addon.is_public') as is_addon_public:
+            is_addon_public.return_value = False
+            eq_(version.is_public(), False)
+
     def test_is_compatible(self):
         # Base test for fixture before the rest.
         addon = Addon.objects.get(id=3615)

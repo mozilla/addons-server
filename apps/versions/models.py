@@ -377,6 +377,15 @@ class Version(amo.models.ModelBase):
                                        amo.PLATFORM_ALL_MOBILE.id))
             return bool(set(compatible) - set(self.supported_platforms))
 
+    def is_public(self):
+        # To be public, a version must not be deleted, must belong to a public
+        # addon, and all its attached files must have public status.
+        try:
+            return (not self.deleted and self.addon.is_public() and
+                    all(f.status == amo.STATUS_PUBLIC for f in self.all_files))
+        except ObjectDoesNotExist:
+            return False
+
     @property
     def has_files(self):
         return bool(self.all_files)

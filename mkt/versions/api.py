@@ -2,8 +2,8 @@ from rest_framework import mixins, serializers, viewsets
 from rest_framework.exceptions import ParseError
 
 import amo
-from mkt.api.authorization import (AllowAppOwner, AllowReadOnly, AnyOf,
-                                   GroupPermission)
+from mkt.api.authorization import (AllowReadOnlyIfPublic, AllowRelatedAppOwner,
+                                   AnyOf, GroupPermission)
 from mkt.api.base import CORSMixin
 from mkt.constants import APP_FEATURES
 from mkt.features.api import AppFeaturesSerializer
@@ -58,9 +58,9 @@ class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
         addon__type=amo.ADDON_WEBAPP).exclude(addon__status=amo.STATUS_DELETED)
     serializer_class = VersionSerializer
     authorization_classes = []
-    permission_classes = [AnyOf(AllowAppOwner,
+    permission_classes = [AnyOf(AllowRelatedAppOwner,
                                 GroupPermission('Apps', 'Review'),
-                                AllowReadOnly)]
+                                AllowReadOnlyIfPublic)]
     cors_allowed_methods = ['get', 'patch', 'put']
 
     def update(self, request, *args, **kwargs):

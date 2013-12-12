@@ -72,7 +72,6 @@ class TestVersionViewSet(RestOAuth):
         self.assertCORS(self.client.get(url), 'get', 'put', 'patch')
 
     def test_get(self, version=None, **kwargs):
-
         if not version:
             version = self.version
 
@@ -94,6 +93,29 @@ class TestVersionViewSet(RestOAuth):
         for key in features:
             ok_(getattr(version.features, 'has_' + key))
 
+    def test_get_non_public(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
+        res = self.client.get(url)
+        eq_(res.status_code, 403)
+
+        res = self.anon.get(url)
+        eq_(res.status_code, 403)
+
+    def test_get_reviewer_non_public(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        self.grant_permission(self.profile, 'Apps:Review')
+        url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
+        res = self.client.get(url)
+        eq_(res.status_code, 200)
+
+    def test_get_owner_non_public(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        self.app.addonuser_set.create(user=self.user.get_profile())
+        url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
+        res = self.client.get(url)
+        eq_(res.status_code, 200)
+
     def test_get_updated_data(self):
         version = Version.objects.create(addon=self.app, version='1.2')
         version.features.update(has_mp3=True, has_fm=True)
@@ -102,10 +124,7 @@ class TestVersionViewSet(RestOAuth):
         self.test_get()  # Test old version
         self.test_get(version=version)  # Test new version
 
-    @mock.patch('mkt.versions.api.AllowAppOwner.has_object_permission')
-    def patch(self, mock_has_permission, features=None,
-              auth=True):
-        mock_has_permission.return_value = auth
+    def patch(self, features=None):
         data = {
             'features': features or ['fm', 'mp3'],
             'developer_name': "Cee's Vans"
@@ -119,37 +138,39 @@ class TestVersionViewSet(RestOAuth):
         return data, res
 
     def test_patch(self):
+        self.app.addonuser_set.create(user=self.user.get_profile())
         data, res = self.patch()
         eq_(res.status_code, 200)
         self.assertSetEqual(self.version.features.to_keys(),
                             ['has_' + f for f in data['features']])
 
     def test_patch_bad_features(self):
+        self.app.addonuser_set.create(user=self.user.get_profile())
         data, res = self.patch(features=['bad'])
         eq_(res.status_code, 400)
 
     def test_patch_no_permission(self):
-        data, res = self.patch(auth=False)
+        data, res = self.patch()
         eq_(res.status_code, 403)
 
     def test_patch_reviewer_permission(self):
         self.grant_permission(self.profile, 'Apps:Review')
-        data, res = self.patch(auth=False)
+        data, res = self.patch()
         eq_(res.status_code, 200)
 
-    def test_app_delete(self):
-        """Deleted apps should result in a 404 for the version API."""
+    def test_get_deleted_app(self):
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
-        res = self.client.get(url)
-        eq_(res.status_code, 200)
-
         self.app.delete()
-
         res = self.client.get(url)
         eq_(res.status_code, 404)
 
-    def test_non_app(self):
+    def test_get_non_app(self):
         self.app.update(type=amo.ADDON_PERSONA)
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
         res = self.client.get(url)
         eq_(res.status_code, 404)
+
+    def test_delete(self):
+        url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
+        res = self.client.delete(url)
+        eq_(res.status_code, 405)

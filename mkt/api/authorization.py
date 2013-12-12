@@ -122,6 +122,18 @@ class AllowReadOnly(BasePermission):
         return request.method in SAFE_METHODS
 
 
+class AllowReadOnlyIfPublic(BasePermission):
+    """
+    The request does not modify the resource, and it's explicitly marked as
+    public, by answering True to obj.is_public().
+    """
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS
+
+    def has_object_permission(self, request, view, object):
+        return object.is_public() and self.has_permission(request, view)
+
+
 def flag(name):
     return type('FlagPermission', (WafflePermission,),
                 {'type': 'flag', 'name': name})
