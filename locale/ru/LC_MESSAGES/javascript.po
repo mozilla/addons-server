@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-12-04 09:24+0000\n"
+"PO-Revision-Date: 2013-12-10 22:11+0400\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -1671,11 +1671,11 @@ msgstr "Это дополнение было предварительно про
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
-msgstr "Сохранить это"
+msgstr "Оставить её"
 
 #: media/js/zamboni/mobile/general.js:338
 msgid "You're trying it on!"
-msgstr "Вы их пробуете!"
+msgstr "Сейчас вы её пробуете!"
 
 #: media/js/zamboni/mobile/general.js:350
 msgid "Added to Firefox"
