@@ -28,8 +28,8 @@
 
           {% elif addon.status == amo.STATUS_NULL %}
             {# Links to complete app submission. #}
+            {{ status(_('This app is <b>incomplete</b>.')|safe) }}
             {% if next_step %}
-              {{ status(_('This app is <b>incomplete</b>.')|safe) }}
               {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
               {%- trans next_url=next_step['url'], next_step_name=next_step['name'] %}
                 You must set up <a href="{{ next_url }}">{{ next_step_name }}</a> before your app can be reviewed or published.

@@ -701,20 +701,36 @@ class TestWebapp(amo.tests.TestCase):
             assert not reasons[reason]
 
     @mock.patch('mkt.webapps.models.Webapp.is_complete')
-    @mock.patch('mkt.webapps.models.Webapp.is_rated')
     @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
-    def test_is_fully_complete_done(self, mock1, mock2, complete_mock):
+    def test_is_fully_complete_done(self, mock1, complete_mock):
         self.create_switch('iarc')
         mock1.return_value = True
-        mock2.return_value = True
         complete_mock.return_value = (True, [])
 
-        app = app_factory()
+        # Test ignore_rating flag.
+        app = app_factory(rated=True)
         is_complete, reasons = app.is_fully_complete()
         assert is_complete
         assert reasons['details']
         assert reasons['content_ratings']
         assert reasons['payments']
+
+    @mock.patch('mkt.webapps.models.Webapp.is_complete')
+    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
+    def test_is_fully_complete_ignore_ratings(self, mock1, complete_mock):
+        self.create_switch('iarc')
+        mock1.return_value = True
+        complete_mock.return_value = (True, [])
+
+        # Test ignore_rating flag.
+        app = app_factory()
+        is_complete, reasons = app.is_fully_complete()
+        assert not is_complete
+        assert not reasons['content_ratings']
+
+        is_complete, reasons = app.is_fully_complete(ignore_ratings=True)
+        assert is_complete
+        assert reasons['content_ratings']
 
     @mock.patch('mkt.webapps.models.cache.get')
     def test_is_offline_when_packaged(self, mock_get):
