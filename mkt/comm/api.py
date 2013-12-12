@@ -93,7 +93,7 @@ class ThreadSerializer(ModelSerializer):
         NoteSerializer.get_request = self.get_request
         notes = (obj.notes.with_perms(self.get_request().amo_user, obj)
                           .order_by('-created')[:5])
-        return NoteSerializer(notes).data
+        return NoteSerializer(notes, many=True).data
 
     def get_notes_count(self, obj):
         return obj.notes.count()

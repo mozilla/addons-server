@@ -7,6 +7,8 @@ import tempfile
 from django.core.urlresolvers import reverse
 from mock import patch
 from nose.tools import eq_
+from rest_framework.request import Request
+from test_utils import RequestFactory
 
 import amo
 from access.models import Group, GroupUser
@@ -1018,10 +1020,14 @@ class TestPriceCurrency(RestOAuth):
 class TestLargeTextField(TestCase):
     fixtures = fixture('webapp_337141')
 
+    def setUp(self):
+        self.request = Request(RequestFactory().get('/'))
+
     def test_receive(self):
         data = 'privacy policy text'
         into = {}
         field = LargeTextField(view_name='app-privacy-policy-detail')
+        field.context = {'request': self.request}
         field.field_from_native({'field_name': data}, None, 'field_name', into)
         eq_(into['field_name'], data)
 
@@ -1029,6 +1035,6 @@ class TestLargeTextField(TestCase):
         app = Webapp.objects.get(pk=337141)
         app.privacy_policy = 'privacy policy text'
         field = LargeTextField(view_name='app-privacy-policy-detail')
-        field.context = {'request': None}
+        field.context = {'request': self.request}
         url = field.field_to_native(app, None)
         self.assertApiUrlEqual(url, '/apps/app/337141/privacy/')

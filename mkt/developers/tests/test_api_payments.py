@@ -7,7 +7,7 @@ from django import forms
 from curling.lib import HttpClientError, HttpServerError
 from mock import Mock, patch
 from nose.tools import eq_, ok_
-
+from rest_framework.request import Request
 from test_utils import RequestFactory
 
 import amo
@@ -238,7 +238,9 @@ class TestSerializer(AccountCase):
     def test_serialize(self):
         # Just a smoke test that we can serialize this correctly.
         self.create()
-        res = AddonPaymentAccountSerializer(self.payment).data
+        request = Request(RequestFactory().get('/'))
+        res = AddonPaymentAccountSerializer(self.payment,
+                                            context={'request': request}).data
         eq_(res['url'], self.app_payment_detail)
 
     def test_free(self):

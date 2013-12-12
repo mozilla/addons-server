@@ -128,7 +128,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         else:
             qs = Collection.public.all()
         qs = CollectionFilterSetWithFallback(filters, queryset=qs).qs
-        serializer = CollectionSerializer(qs[:limit],
+        serializer = CollectionSerializer(qs[:limit], many=True,
                                           context={'request': request,
                                                    'view': self})
         return serializer.data, getattr(qs, 'filter_fallback', None)
