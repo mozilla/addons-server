@@ -290,11 +290,48 @@ def status(request, addon_id, addon, webapp=False):
     return jingo.render(request, 'developers/apps/status.html', ctx)
 
 
+def _submission_msgs():
+    return {
+        'complete': _('Congratulations, your app submission is now complete '
+                      'and will be reviewed shortly!'),
+        'content_ratings_saved': _('Content ratings successfully saved.'),
+    }
+
+
 @waffle_switch('iarc')
 @dev_required
 def content_ratings(request, addon_id, addon):
     if not addon.is_rated():
         return redirect(addon.get_dev_url('ratings_edit'))
+
+    # Logic for success msg since content ratings may have been created
+    # asynchronously through the IARC tool.
+    if 'ratings_last_modified' in request.session:
+        app_complete = addon.is_fully_complete()[0]
+        last_modified = request.session['ratings_last_modified']
+        updated_last_modified = (
+            addon.content_ratings.order_by('-modified')[0].modified)
+
+        # `not last_modified` means the app previously wasn't rated.
+        # Now we see that it is rated, the app must have been just rated
+        # since the session key hasn't been cleared.
+        # If `last_modified value` is outdated and the session key hasn't
+        # been cleared, the app must have just updated its content ratings.
+        # In both cases, we know to display a success message.
+        if (not last_modified or
+            updated_last_modified > last_modified):
+
+            msgs = _submission_msgs()
+            if not last_modified and app_complete:
+                # Display success message if entire submission complete.
+                messages.success(request, msgs['complete'])
+            else:
+                # Display different success message if just updating.
+                messages.success(request, msgs['content_ratings_saved'])
+
+            # Clear the key so message doesn't get displayed again.
+            del request.session['ratings_last_modified']
+
 
     return jingo.render(
         request, 'developers/apps/ratings/ratings_summary.html', {
@@ -318,13 +355,20 @@ def content_ratings_edit(request, addon_id, addon):
     if request.method == 'POST' and form.is_valid():
         try:
             form.save(addon)
-            messages.success(request, _('Content ratings successfully saved.'))
             return redirect(addon.get_dev_url('ratings'))
         except django_forms.ValidationError:
             pass  # Fall through to show the form error.
 
     with amo.utils.no_translation(addon.default_locale):
         addon_delocalized = Addon.objects.get(pk=addon.pk)
+
+    # If dev gets rating thru IARC tool, JS will redirect. Use session to know
+    # whether to display a success message when hitting the summary page.
+    request.session['ratings_last_modified'] = None
+    if addon.is_rated():
+        request.session['ratings_last_modified'] = (
+            addon.content_ratings.order_by('-modified')[0].modified
+        )
 
     return jingo.render(
         request, 'developers/apps/ratings/ratings_edit.html', {
