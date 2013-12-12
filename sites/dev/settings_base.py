@@ -47,15 +47,10 @@ SLAVE_DATABASES = ['slave']
 
 CACHES = {
     'default': {
-        'BACKEND': 'memcachepool.cache.UMemcacheCache',
+        'BACKEND': 'caching.backends.memcached.MemcachedCache',
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
-        'OPTIONS': {
-                'MAX_POOL_SIZE': 100,
-                'BLACKLIST_TIME': 60,
-                'SOCKET_TIMEOUT': 4,
-            }
     }
 }
 
