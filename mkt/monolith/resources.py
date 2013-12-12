@@ -1,3 +1,4 @@
+import json
 import logging
 
 from django.db import transaction
@@ -17,6 +18,9 @@ logger = logging.getLogger('z.monolith')
 class MonolithSerializer(serializers.ModelSerializer):
     class Meta:
         model = MonolithRecord
+
+    def transform_value(self, obj, value):
+        return json.loads(value)
 
 
 class MonolithViewSet(CORSMixin, mixins.DestroyModelMixin,
