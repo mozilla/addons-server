@@ -34,11 +34,13 @@
             <tr>
               <td class="name">{{ ratings_body.name }}</td>
               <td class="regions">{{ ratings_body.description or '&mdash;'|safe }}</td>
-              <td class="content-rating">{{ iarc_rating_icon(cr) }}</td>
+              <td class="content-rating">{% include "developers/includes/content_rating_icon.html" %}</td>
               <td class="content-descriptors">
+                {% set desc_icons = mkt.ratingsbodies.IARC_ICONS.descriptors %}
                 {% for descriptor in descriptors[ratings_body.label] %}
-                  {% if ratings_body.label == 'pegi' and descriptor.label != 'pegi-no-descs' %}
-                    <img class="icon {{ descriptor.label }}" title="{{ descriptor.name }}">
+                  {% set desc_icon = ratings_body.label in desc_icons and desc_icons[ratings_body.label][descriptor.label] %}
+                  {% if desc_icon %}
+                    <img src="{{ media(desc_icon) }}" class="icon" title="{{ descriptor.name }}">
                   {% else %}
                     <span class="dot-sep">{{ descriptor.name }}</span>
                   {% endif %}
@@ -59,8 +61,13 @@
             <span class="dot-sep">{{ interactive.name }}</span>
           {% endfor %}
         </div>
+        {% set inter_icons = mkt.ratingsbodies.IARC_ICONS.interactive_elements %}
         {% for interactive in interactives %}
-          <img class="icon {{ interactive.label }}" title="{{ interactive.name }}">
+          {% set inter_icon = inter_icons[interactive.label] %}
+          {% if inter_icon %}
+            <img src="{{ media(inter_icon) }}"
+                 class="icon {{ interactive.label }}" title="{{ interactive.name }}">
+          {% endif %}
         {% endfor %}
       </div>
     </div>

@@ -147,14 +147,3 @@
     {% endfor %}
   </ul>
 {% endmacro %}
-
-{% macro iarc_rating_icon(rating) %}
-   <div class="content-rating c">
-     {% set body = rating.get_body() %}
-     {% set rating = rating.get_rating() %}
-     <div class="icon icon-body-{{ body.label }} icon-age-{{ rating.label }}"
-          title="{{ rating.description }}">
-       <span class="icon-content hidden">{{ rating.label }}&plus;</span>
-     </div>
-   </div>
-{% endmacro %}

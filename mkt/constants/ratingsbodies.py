@@ -383,3 +383,77 @@ def dehydrate_ratings_body(body):
     body.name = unicode(body.name)
     body.description = unicode(body.description)
     return body
+
+
+def pth(path):
+    """Prepends root icon path to path."""
+    return 'img/icons/ratings/' + path
+
+
+IARC_ICONS = {
+    'ratings': {
+        'classind': {
+            0: pth('CLASSIND_L.png'),
+            10: pth('CLASSIND_10.png'),
+            12: pth('CLASSIND_12.png'),
+            14: pth('CLASSIND_14.png'),
+            16: pth('CLASSIND_16.png'),
+            18: pth('CLASSIND_18.png'),
+        },
+        'esrb': {
+            0: pth('ESRB_e.png'),
+            10: pth('ESRB_e10.png'),
+            13: pth('ESRB_t.png'),
+            17: pth('ESRB_m.png'),
+            18: pth('ESRB_ao.png'),
+        },
+        'generic': {
+            3: pth('generic_3.png'),
+            7: pth('generic_7.png'),
+            12: pth('generic_12.png'),
+            16: pth('generic_16.png'),
+            18: pth('generic_18.png'),
+        },
+        'pegi': {
+            3: pth('pegi_3.png'),
+            7: pth('pegi_7.png'),
+            12: pth('pegi_12.png'),
+            16: pth('pegi_16.png'),
+            18: pth('pegi_18.png'),
+        },
+        'usk': {
+            0: pth('USK_0.png'),
+            6: pth('USK_6.png'),
+            12: pth('USK_12.png'),
+            16: pth('USK_16.png'),
+            18: pth('USK_18.png'),
+        }
+    },
+    'descriptors': {
+        'pegi': {
+            'discrimination': pth('descriptors/pegi_discrimination.png'),
+            'drugs': pth('descriptors/pegi_drugs.png'),
+            'gambling': pth('descriptors/pegi_gambling.png'),
+            'lang': pth('descriptors/pegi_language.png'),
+            'nudity': pth('descriptors/pegi_nudity.png'),
+            'online': pth('descriptors/pegi_online.png'),
+            'scary': pth('descriptors/pegi_fear.png'),
+            'sex': pth('descriptors/pegi_sex.png'),
+            'violence': pth('descriptors/pegi_violence.png'),
+
+            'digital-purchases': pth(
+                'descriptors/pegi_inapp_purchase_option.png'),
+            'shares-info': pth(
+                'descriptors/pegi_personal_data_sharing.png'),
+            'shares-location': pth(
+                'descriptors/pegi_location_data_sharing.png'),
+            'users-interact': pth(
+                'descriptors/pegi_social_interaction_functionality.png'),
+        }
+    },
+    'interactive_elements': {
+        'shares-info': pth('interactives/ESRB_shares-info_small.png'),
+        'shares-location': pth('interactives/ESRB_shares-location_small.png'),
+        'users-interact': pth('interactives/ESRB_users-interact_small.png'),
+    }
+}
