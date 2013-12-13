@@ -149,9 +149,10 @@ class AppSerializer(serializers.ModelSerializer):
             'icons', 'id', 'is_packaged', 'manifest_url', 'name',
             'payment_account', 'payment_required', 'premium_type', 'previews',
             'price', 'price_locale', 'privacy_policy', 'public_stats',
-            'ratings', 'regions', 'resource_uri', 'slug', 'status', 'summary',
-            'support_email', 'support_url', 'supported_locales', 'tags',
-            'upsell', 'upsold', 'user', 'versions', 'weekly_downloads']
+            'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
+            'status', 'summary', 'support_email', 'support_url',
+            'supported_locales', 'tags', 'upsell', 'upsold', 'user',
+            'versions', 'weekly_downloads']
 
     def _get_region_id(self):
         request = self.context.get('request')
