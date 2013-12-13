@@ -1,12 +1,12 @@
 import codecs
-from contextlib import contextmanager
-from cStringIO import StringIO
 import json
 import os
 import shutil
 import socket
 import tempfile
 import urllib2
+from contextlib import contextmanager
+from cStringIO import StringIO
 
 from django.conf import settings
 from django.core import mail
@@ -15,6 +15,7 @@ from django.core.files.storage import default_storage as storage
 import mock
 from nose.tools import eq_
 from PIL import Image
+from requests import RequestException
 
 import amo
 import amo.tests
@@ -168,6 +169,8 @@ class TestValidator(amo.tests.TestCase):
 
 
 storage_open = storage.open
+
+
 def _mock_hide_64px_icon(path, *args, **kwargs):
     """
     A function that mocks `storage.open` and throws an IOError if you try to
@@ -214,8 +217,8 @@ class TestFetchManifest(amo.tests.TestCase):
         self.upload = FileUpload.objects.create()
         self.content_type = 'application/x-web-app-manifest+json'
 
-        patcher = mock.patch('mkt.developers.tasks.urllib2.urlopen')
-        self.urlopen_mock = patcher.start()
+        patcher = mock.patch('mkt.developers.tasks.requests.get')
+        self.requests_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
     def get_upload(self):
@@ -225,19 +228,18 @@ class TestFetchManifest(amo.tests.TestCase):
         return os.path.join(os.path.dirname(__file__), 'addons', name)
 
     @contextmanager
-    def patch_urlopen(self):
-        response_mock = mock.Mock()
-        response_mock.getcode.return_value = 200
-        response_mock.read.return_value = '<default>'
-        response_mock.headers = {'Content-Type': self.content_type}
+    def patch_requests(self):
+        response_mock = mock.Mock(status_code=200)
+        response_mock.iter_content.return_value = mock.Mock(
+            next=lambda: '<default>')
+        response_mock.headers = {'content-type': self.content_type}
         yield response_mock
-        self.urlopen_mock.return_value = response_mock
+        self.requests_mock.return_value = response_mock
 
     @mock.patch('mkt.developers.tasks.validator')
     def test_success_add_file(self, validator_mock):
-        with self.patch_urlopen() as ur:
-            ur.read.return_value = 'woo'
-            ur.headers = {'Content-Type': self.content_type}
+        with self.patch_requests() as ur:
+            ur.iter_content.return_value = mock.Mock(next=lambda: 'woo')
 
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         upload = FileUpload.objects.get(pk=self.upload.pk)
@@ -247,9 +249,9 @@ class TestFetchManifest(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.tasks.validator')
     def test_success_call_validator(self, validator_mock):
-        with self.patch_urlopen() as ur:
+        with self.patch_requests() as ur:
             ct = self.content_type + '; charset=utf-8'
-            ur.headers = {'Content-Type': ct}
+            ur.headers = {'content-type': ct}
 
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         assert validator_mock.called
@@ -273,7 +275,7 @@ class TestFetchManifest(amo.tests.TestCase):
 
     def test_connection_error(self):
         reason = socket.gaierror(8, 'nodename nor servname provided')
-        self.urlopen_mock.side_effect = urllib2.URLError(reason)
+        self.requests_mock.side_effect = RequestException(reason)
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
             'No manifest was found at that URL. Check the address and try '
@@ -281,7 +283,7 @@ class TestFetchManifest(amo.tests.TestCase):
 
     def test_url_timeout(self):
         reason = socket.timeout('too slow')
-        self.urlopen_mock.side_effect = urllib2.URLError(reason)
+        self.requests_mock.side_effect = RequestException(reason)
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
             'No manifest was found at that URL. Check the address and try '
@@ -289,7 +291,7 @@ class TestFetchManifest(amo.tests.TestCase):
 
     def test_other_url_error(self):
         reason = Exception('Some other failure.')
-        self.urlopen_mock.side_effect = urllib2.URLError(reason)
+        self.requests_mock.side_effect = RequestException(reason)
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
             'No manifest was found at that URL. Check the address and try '
@@ -297,7 +299,7 @@ class TestFetchManifest(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.tasks.validator', lambda uid, **kw: None)
     def test_no_content_type(self):
-        with self.patch_urlopen() as ur:
+        with self.patch_requests() as ur:
             ur.headers = {}
 
         tasks.fetch_manifest('url', self.upload.pk)
@@ -307,7 +309,7 @@ class TestFetchManifest(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.tasks.validator', lambda uid, **kw: None)
     def test_bad_content_type(self):
-        with self.patch_urlopen() as ur:
+        with self.patch_requests() as ur:
             ur.headers = {'Content-Type': 'x'}
 
         tasks.fetch_manifest('url', self.upload.pk)
@@ -318,29 +320,31 @@ class TestFetchManifest(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.tasks.validator', lambda uid, **kw: None)
     def test_good_charset(self):
-        with self.patch_urlopen() as ur:
+        with self.patch_requests() as ur:
             ur.headers = {
-                'Content-Type': 'application/x-web-app-manifest+json;'
-                                'charset=utf-8'}
+                'content-type': 'application/x-web-app-manifest+json;'
+                                'charset=utf-8'
+            }
 
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation()
 
     @mock.patch('mkt.developers.tasks.validator', lambda uid, **kw: None)
     def test_bad_charset(self):
-        with self.patch_urlopen() as ur:
+        with self.patch_requests() as ur:
             ur.headers = {
-                'Content-Type': 'application/x-web-app-manifest+json;'
-                                'charset=ISO-1234567890-LOL'}
+                'content-type': 'application/x-web-app-manifest+json;'
+                                'charset=ISO-1234567890-LOL'
+            }
 
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation("The manifest's encoding does not match the "
                               'charset provided in the HTTP Content-Type.')
 
     def test_response_too_large(self):
-        with self.patch_urlopen() as ur:
+        with self.patch_requests() as ur:
             content = 'x' * (settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
-            ur.read.return_value = content
+            ur.iter_content.return_value = mock.Mock(next=lambda: content)
 
         tasks.fetch_manifest('url', self.upload.pk)
         max_webapp_size = settings.MAX_WEBAPP_UPLOAD_SIZE
@@ -348,7 +352,7 @@ class TestFetchManifest(amo.tests.TestCase):
                               max_webapp_size)
 
     def test_http_error(self):
-        self.urlopen_mock.side_effect = urllib2.HTTPError(
+        self.requests_mock.side_effect = urllib2.HTTPError(
             'url', 404, 'Not Found', [], None)
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
@@ -356,25 +360,27 @@ class TestFetchManifest(amo.tests.TestCase):
             'again.')
 
     def test_strip_utf8_bom(self):
-        with self.patch_urlopen() as ur:
+        with self.patch_requests() as ur:
             with open(self.file('utf8bom.webapp')) as fp:
-                ur.read.return_value = fp.read()
+                content = fp.read()
+                ur.iter_content.return_value = mock.Mock(next=lambda: content)
 
         tasks.fetch_manifest('url', self.upload.pk)
         upload = self.get_upload()
         with storage.open(upload.path, 'rb') as fp:
             manifest = fp.read()
-            json.loads(manifest)  # no parse error
+            json.loads(manifest)  # No parse error.
             assert not manifest.startswith(codecs.BOM_UTF8)
 
     def test_non_utf8_encoding(self):
-        with self.patch_urlopen() as ur:
+        with self.patch_requests() as ur:
             with open(self.file('utf8bom.webapp')) as fp:
-                # Set encoding to utf16 which will be invalid
-                ur.read.return_value = fp.read().decode('utf8').encode('utf16')
+                # Set encoding to utf16 which will be invalid.
+                content = fp.read().decode('utf8').encode('utf16')
+                ur.iter_content.return_value = mock.Mock(next=lambda: content)
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
-                    'Your manifest file was not encoded as valid UTF-8.')
+            'Your manifest file was not encoded as valid UTF-8.')
 
 
 class TestFetchIcon(BaseWebAppTest):
@@ -384,9 +390,9 @@ class TestFetchIcon(BaseWebAppTest):
         self.content_type = 'image/png'
         self.apps_path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
                                       'addons')
-        patcher = mock.patch('mkt.developers.tasks.urllib2.urlopen')
-        self.urlopen_mock = patcher.start()
-        self.urlopen_mock.return_value = StringIO('mozballin')
+        patcher = mock.patch('mkt.developers.tasks.requests.get')
+        self.requests_mock = patcher.start()
+        self.requests_mock.return_value = StringIO('mozballin')
         self.addCleanup(patcher.stop)
 
     def webapp_from_path(self, path):
@@ -404,13 +410,13 @@ class TestFetchIcon(BaseWebAppTest):
         path = os.path.join(self.apps_path, 'noicon.webapp')
         iconless_app = self.webapp_from_path(path)
         tasks.fetch_icon(iconless_app)
-        assert not self.urlopen_mock.called
+        assert not self.requests_mock.called
 
     def test_bad_icons(self):
         path = os.path.join(self.apps_path, 'badicon.webapp')
         iconless_app = self.webapp_from_path(path)
         tasks.fetch_icon(iconless_app)
-        assert not self.urlopen_mock.called
+        assert not self.requests_mock.called
 
     def check_icons(self, webapp):
         manifest = webapp.get_manifest_json()
