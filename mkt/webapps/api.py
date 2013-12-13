@@ -146,6 +146,12 @@ class AppSerializer(serializers.ModelSerializer):
                    'last_updated', 'nomination_message', '_current_version',
                    'make_public', 'charity', 'modified']
 
+
+    def _get_region_id(self):
+        request = self.context.get('request')
+        REGION = getattr(request, 'REGION', None)
+        return REGION.id if REGION else None
+
     def get_content_ratings(self, app):
         return {
             'ratings': app.get_content_ratings_by_region() or None,
@@ -164,12 +170,12 @@ class AppSerializer(serializers.ModelSerializer):
         return False
 
     def get_price(self, app):
-        region = self.context.get('region')
+        region = self._get_region_id()
         if region in app.get_price_region_ids():
             return app.get_price(region=region)
 
     def get_price_locale(self, app):
-        region = self.context.get('region')
+        region = self._get_region_id()
         if region in app.get_price_region_ids():
             return app.get_price_locale(region=region)
 
@@ -188,7 +194,7 @@ class AppSerializer(serializers.ModelSerializer):
         return [t.tag_text for t in app.tags.all()]
 
     def get_upsell(self, app):
-        if (app.upsell and self.context.get('region') in
+        if (app.upsell and self._get_region_id() in
                 app.upsell.premium.get_price_region_ids()):
             upsell = app.upsell.premium
             return {
@@ -202,7 +208,7 @@ class AppSerializer(serializers.ModelSerializer):
             return False
 
     def get_user_info(self, app):
-        user = self.context.get('profile')
+        user = getattr(self.context.get('request'), 'amo_user', None)
         if user:
             return {
                 'developed': app.addonuser_set.filter(
@@ -376,14 +382,6 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
-
-    def get_serializer_context(self):
-        ctx = super(AppViewSet, self).get_serializer_context()
-        ctx['profile'] = getattr(self.request, 'amo_user', None)
-        ctx['region'] = (self.request.REGION.id
-                         if hasattr(self.request, 'REGION')
-                         else None)
-        return ctx
 
     def get_queryset(self):
         return Webapp.objects.all().exclude(
