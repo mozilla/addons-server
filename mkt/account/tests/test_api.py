@@ -206,6 +206,8 @@ class TestInstalled(RestOAuth):
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['id'], ins.addon.pk)
+        eq_(data['objects'][0]['user'],
+            {'developed': False, 'purchased': False, 'installed': True})
 
     def test_installed_pagination(self):
         ins1 = Installed.objects.create(user=self.user, addon=app_factory())

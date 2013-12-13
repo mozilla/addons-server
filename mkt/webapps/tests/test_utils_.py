@@ -30,9 +30,8 @@ class TestAppSerializer(amo.tests.TestCase):
         self.request = RequestFactory().get('/')
 
     def serialize(self, app, profile=None):
-        a = AppSerializer(instance=app,
-                          context={'request': self.request,
-                                   'profile': profile})
+        self.request.amo_user = profile
+        a = AppSerializer(instance=app, context={'request': self.request})
         return a.data
 
     def test_no_previews(self):
@@ -188,36 +187,37 @@ class TestAppSerializer(amo.tests.TestCase):
 class TestAppSerializerPrices(amo.tests.TestCase):
     fixtures = fixture('user_2519')
 
-    def serialize(self, app, profile=None, region=None, request=None):
-        a = AppSerializer(instance=app,
-                          context={'request': request or self.request,
-                                   'profile': profile,
-                                   'region': region})
-        return a.data
-
     def setUp(self):
         self.app = amo.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
         self.profile = UserProfile.objects.get(pk=2519)
         self.create_flag('override-app-purchase', everyone=True)
         self.request = RequestFactory().get('/')
 
+    def serialize(self, app, profile=None, region=None, request=None):
+        if request is None:
+            request = self.request
+        request.amo_user = self.profile
+        request.REGION = region
+        a = AppSerializer(instance=app, context={'request': request})
+        return a.data
+
     def test_some_price(self):
         self.make_premium(self.app, price='0.99')
-        res = self.serialize(self.app, region=regions.US.id)
+        res = self.serialize(self.app, region=regions.US)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)
 
     def test_no_charge(self):
         self.make_premium(self.app, price='0.00')
-        res = self.serialize(self.app, region=regions.US.id)
+        res = self.serialize(self.app, region=regions.US)
         eq_(res['price'], Decimal('0.00'))
         eq_(res['price_locale'], '$0.00')
         eq_(res['payment_required'], False)
 
     def test_wrong_region(self):
         self.make_premium(self.app, price='0.99')
-        res = self.serialize(self.app, region=regions.PL.id)
+        res = self.serialize(self.app, region=regions.PL)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], True)
@@ -229,7 +229,7 @@ class TestAppSerializerPrices(amo.tests.TestCase):
                                      provider=1)
 
         with self.activate(locale='fr'):
-            res = self.serialize(self.app, region=regions.PL.id)
+            res = self.serialize(self.app, region=regions.PL)
             eq_(res['price'], Decimal('5.01'))
             eq_(res['price_locale'], u'5,01\xa0PLN')
 
@@ -244,15 +244,14 @@ class TestAppSerializerPrices(amo.tests.TestCase):
 
     def test_cannot_purchase(self):
         self.make_premium(self.app, price='0.99')
-        res = self.serialize(self.app, region=regions.UK.id)
+        res = self.serialize(self.app, region=regions.UK)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], True)
 
     def test_can_purchase(self):
         self.make_premium(self.app, price='0.99')
-        res = self.serialize(self.app, region=regions.UK.id)
-        res = self.serialize(self.app, region=regions.UK.id)
+        res = self.serialize(self.app, region=regions.UK)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], True)
