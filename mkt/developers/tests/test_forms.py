@@ -830,8 +830,9 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
 
     @mock.patch('lib.iarc.utils.IARC_XML_Parser.parse_string')
     def test_rating_not_found(self, _mock):
-        _mock.return_value = {
-            'ActionStatus': 'No records found. Please try another criteria.'}
+        _mock.return_value = {'rows': [
+            {'ActionStatus': 'No records found. Please try another criteria.'}
+        ]}
         form = forms.IARCGetAppInfoForm({'submission_id': 1,
                                          'security_code': 'a'})
         assert form.is_valid(), form.errors
