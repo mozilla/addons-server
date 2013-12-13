@@ -710,6 +710,32 @@ class TestAdminSettingsForm(TestAdmin):
         assert mkt.regions.BR.id not in regions
         assert mkt.regions.DE.id in regions
 
+    def test_update_content_rating(self):
+        """
+        Test changing the content rating of a rating body to a different
+        rating.
+        """
+        self.create_switch('iarc')
+        self.log_in_with('Apps:Configure')
+
+        self.webapp.set_content_ratings({
+            mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_L
+        })
+
+        # Change CLASSIND rating from L to 18.
+        classind_18_idx = mkt.ratingsbodies.ALL_RATINGS().index(
+            mkt.ratingsbodies.CLASSIND_18)
+        self.data['app_ratings'] = [classind_18_idx]
+
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        eq_(
+            self.webapp.content_ratings.get(
+                ratings_body=mkt.ratingsbodies.CLASSIND.id).rating,
+            mkt.ratingsbodies.CLASSIND_18.id)
+
     def test_adding_tags(self):
         self.data.update({'tags': 'tag one, tag two'})
         form = forms.AdminSettingsForm(self.data, **self.kwargs)

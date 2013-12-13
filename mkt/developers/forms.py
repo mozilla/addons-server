@@ -422,17 +422,18 @@ class AdminSettingsForm(PreviewForm):
             for t in del_tags:
                 Tag(tag_text=t).remove_tag(addon)
 
+        # Content ratings.
         ratings = self.cleaned_data.get('app_ratings')
         if ratings:
-            before = set(addon.content_ratings.filter(rating__in=ratings)
-                         .values_list('rating', flat=True))
-            after = set(int(r) for r in ratings)
-            addon.content_ratings.exclude(rating__in=after).delete()
-            new_ratings = after - before
-            for i in new_ratings:
-                rb = ALL_RATINGS()[i]
-                addon.content_ratings.create(rating=rb.id,
-                    ratings_body=rb.ratingsbody.id)
+            ratings = [ALL_RATINGS()[int(i)] for i in ratings]
+
+            # Delete content ratings with ratings body not in new set.
+            r_bodies = set([rating.ratingsbody.id for rating in ratings])
+            addon.content_ratings.exclude(ratings_body__in=r_bodies).delete()
+
+            # Set content ratings, takes {<ratingsbody class>: <rating class>}.
+            addon.set_content_ratings(
+                dict((rating.ratingsbody, rating) for rating in ratings))
         else:
             addon.content_ratings.all().delete()
 
