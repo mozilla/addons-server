@@ -491,6 +491,10 @@ class TestPayments(Patcher, amo.tests.TestCase):
         # Must be an app owner to change this.
         assert self.is_owner(user)
         # Associate account with app.
+        for k in [self.generic_patcher.product.get_object_or_404,
+                  self.bango_patcher.product.get_object_or_404]:
+            k.side_effect = ObjectDoesNotExist
+
         res = self.client.post(
             self.url, self.get_postdata({'price': self.price.pk,
                                          'accounts': acct.pk,

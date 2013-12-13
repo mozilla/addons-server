@@ -83,9 +83,9 @@ class TestBango(Patcher, TestCase):
         self.bango = Bango()
 
     def test_create(self):
-        self.generic_patcher.product.get_object.return_value = {
+        self.generic_patcher.product.get_object_or_404.return_value = {
             'resource_uri': 'gpuri'}
-        self.bango_patcher.product.get_object.return_value = {
+        self.bango_patcher.product.get_object_or_404.return_value = {
             'resource_uri': 'bpruri', 'bango_id': 'bango#', 'seller': 'selluri'
         }
 
@@ -93,7 +93,7 @@ class TestBango(Patcher, TestCase):
         eq_(uri, 'bpruri')
 
     def test_create_new(self):
-        self.bango_patcher.product.get_object.side_effect = (
+        self.bango_patcher.product.get_object_or_404.side_effect = (
             ObjectDoesNotExist)
         self.bango_patcher.product.post.return_value = {
             'resource_uri': '', 'bango_id': 1
@@ -125,7 +125,8 @@ class TestReference(Patcher, TestCase):
     def make_account(self):
         seller = SolitudeSeller.objects.create(user=self.user)
         return PaymentAccount.objects.create(user=self.user,
-                                             solitude_seller=seller)
+                                             solitude_seller=seller,
+                                             uri='/f/b/1')
 
     def test_terms_retrieve(self):
         account = self.make_account()
@@ -148,3 +149,31 @@ class TestReference(Patcher, TestCase):
         self.ref.account_update(account, {'account_name': 'foo'})
         eq_(account.reload().name, 'foo')
         assert self.ref_patcher.sellers.called
+
+    def test_product_create_exists(self):
+        self.ref_patcher.products.get.return_value = [{'resource_uri': '/f'}]
+        account = self.make_account()
+        app = app_factory()
+        self.ref.product_create(account, app)
+        # Product should have been got from zippy, but not created by a post.
+        assert self.ref_patcher.products.get.called
+
+    @raises(ValueError)
+    def test_product_mulitple(self):
+        self.ref_patcher.products.get.return_value = [{}, {}]
+        account = self.make_account()
+        app = app_factory()
+        self.ref.product_create(account, app)
+
+    def test_product_create_not(self):
+        self.generic_patcher.product.get_object_or_404.return_value = {
+            'external_id': 'ext'}
+        self.ref_patcher.products.get.return_value = []
+        self.ref_patcher.products.post.return_value = {'resource_uri': '/f'}
+        account = self.make_account()
+        app = app_factory()
+        self.ref.product_create(account, app)
+        self.ref_patcher.products.get.assert_called_with(
+            seller_id='1', external_id='ext')
+        self.ref_patcher.products.post.assert_called_with(data={
+            'seller_id': '1', 'external_id': 'ext', 'name': unicode(app.name)})
