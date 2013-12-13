@@ -142,10 +142,16 @@ class AppSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Webapp
-        exclude = ['_latest_version', 'ts_slowness', '_backup_version',
-                   'last_updated', 'nomination_message', '_current_version',
-                   'make_public', 'charity', 'modified']
-
+        fields = [
+            'app_type', 'author', 'banner_message', 'banner_regions',
+            'categories', 'content_ratings', 'created', 'current_version',
+            'default_locale', 'description', 'device_types', 'homepage',
+            'icons', 'id', 'is_packaged', 'manifest_url', 'name',
+            'payment_account', 'payment_required', 'premium_type', 'previews',
+            'price', 'price_locale', 'privacy_policy', 'public_stats',
+            'ratings', 'regions', 'resource_uri', 'slug', 'status', 'summary',
+            'support_email', 'support_url', 'supported_locales', 'tags',
+            'upsell', 'upsold', 'user', 'versions', 'weekly_downloads']
 
     def _get_region_id(self):
         request = self.context.get('request')
