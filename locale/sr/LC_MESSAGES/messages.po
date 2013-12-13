@@ -146,11 +146,11 @@ msgstr "Опишите Вашу тему."
 
 #: apps/addons/forms.py:712
 msgid "Enter a new author's email address"
-msgstr "Додајте адресу е-поште новог аутора."
+msgstr "Додајте адресу е-поште новог аутора"
 
 #: apps/addons/helpers.py:35
 msgid "Not Reviewed"
-msgstr "Није прегледано."
+msgstr "Није прегледано"
 
 #: apps/addons/helpers.py:35 apps/addons/views.py:329 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:17 apps/amo/templates/amo/site_nav.html:2
@@ -438,7 +438,7 @@ msgstr "Не, хвала"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr "Донација је успешна, хвала Бам."
+msgstr "Донација је успешна, хвала Вам."
 
 #: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:32
 msgid "No restart required"
@@ -835,7 +835,7 @@ msgstr[2] "<strong>{0}</strong> корисника"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr "Превуци за преглед "
+msgstr "Превуци за преглед"
 
 #: apps/addons/templates/addons/persona_preview.html:46 apps/addons/templates/addons/persona_preview.html:48 apps/reviews/templates/reviews/add.html:15
 msgid "Add"
@@ -1252,11 +1252,11 @@ msgstr "Објављен под <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:232
 msgid "About this App"
-msgstr "О овој апликацији"
+msgstr "О апликацији"
 
 #: apps/addons/templates/addons/impala/details.html:234
 msgid "About this Add-on"
-msgstr "О овом додатку"
+msgstr "О додатку"
 
 #: apps/addons/templates/addons/impala/details.html:251
 msgid "Developer’s Comments"
@@ -2311,92 +2311,94 @@ msgstr "Ако за пар момената не будете тражени д�
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53 apps/reviews/templates/reviews/add.html:84 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
 msgid "Title"
-msgstr ""
+msgstr "Наслов"
 
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53
 msgid "Body"
-msgstr ""
+msgstr "Садржај"
 
 #: apps/amo/tests/test_messages.py:54
 msgid "Another Title"
-msgstr ""
+msgstr "Други наслов"
 
 #: apps/amo/tests/test_messages.py:54
 msgid "Another Body"
-msgstr ""
+msgstr "Други садржај"
 
 #. L10n: {0} is comma separated data errors.
 #: apps/api/handlers.py:62
 msgid "Invalid data provided: {0}"
-msgstr ""
+msgstr "Дати подаци су неисправни: {0}"
 
 #: apps/api/handlers.py:70
 msgid "Add-on did not validate: %s"
-msgstr ""
+msgstr "Додатак није валидан: %s"
 
 #: apps/api/views.py:246
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Није још имплементиран."
 
 #: apps/api/templates/piston/request_token_ready.html:3 apps/api/templates/piston/oauth/authorize.html:6
 msgid "Anonymous Party"
-msgstr ""
+msgstr "Анонимна странка"
 
 #: apps/api/templates/piston/request_token_ready.html:8 apps/api/templates/piston/request_token_ready.html:18
 msgid "Access Granted"
-msgstr ""
+msgstr "Приступ дозвоњен"
 
 #: apps/api/templates/piston/request_token_ready.html:10 apps/api/templates/piston/request_token_ready.html:29
 msgid "Access Not Granted"
-msgstr ""
+msgstr "Приступ није дозвољен"
 
 #: apps/api/templates/piston/request_token_ready.html:21
 msgid "You have chosen to give access to %(consumer)s. They will be able to act on your behalf or retrieve information about you."
-msgstr ""
+msgstr "Дозволили сте приступ %(consumer)s. Моћиће да делују у Ваше име или да прикупљају Ваше информације."
 
 #: apps/api/templates/piston/request_token_ready.html:32
 msgid "You have chosen to not give access to %(consumer)s. They will not be able to act on your behalf or retrieve information about you."
-msgstr ""
+msgstr "Нисте дозволили приступ %(consumer)s. Неће моћи да делују у Ваше име или да прикупљају Ваше информације."
 
 #: apps/api/templates/piston/oauth/authorize.html:3
 msgid "Authorize access to your data"
-msgstr ""
+msgstr "Дозволите приступ Вашим подацима"
 
 #. consumer is the Oauth Consumer, e.g. FlightDeck
 #: apps/api/templates/piston/oauth/authorize.html:9
 msgid "Authorize Token for {0}"
-msgstr ""
+msgstr "Дозволите токен за {0}"
 
 #: apps/api/templates/piston/oauth/authorize.html:11
 msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
+"<p> %(consumer)s жели дозволу да делује у Ваше име. Ово може да подразумева: </p> <ul> <li>Отпремање, мењање или уклањање додатака у Ваше име.</li> <li>Отпремање, мењање или уклањање "
+"верзија додатака у Ваше име.</li> <li> Сакупљање Ваших личних података, као што су корисничко име и адреса е-поште (али не и Вашу лозинку). </li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29 mkt/developers/templates/developers/payments/includes/account_list.html:62
 msgid "Confirm"
-msgstr ""
+msgstr "Одобри"
 
 #: apps/api/templates/piston/oauth/challenge.html:3 apps/api/templates/piston/oauth/challenge.html:6
 msgid "OAuth required"
-msgstr ""
+msgstr "OAuth је неопходан"
 
 #: apps/applications/views.py:36 apps/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
-msgstr "Верзије апликација"
+msgstr "Верзије апликације"
 
 #: apps/applications/views.py:42
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Прихватљиве верзије за све апликације на AMO."
 
 #: apps/applications/templates/applications/appversions.html:11
 msgid "Valid Application Versions"
-msgstr "Valid Application Versions"
+msgstr "Исправне верзије апликације"
 
 #: apps/applications/templates/applications/appversions.html:12
 msgid "Add-ons submitted to Mozilla Add-ons must have an install.rdf file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
-"Додаци које шаљете на Мозилин сајт за додатке морају садржати install.rdf датотеку са минимално једном од наведених апликација подржаном. Само верзије које су наведене испод су валидне за ове "
+"Додаци које шаљете на сајт Mozilla фондације за додатке морају садржати install.rdf датотеку са минимално једном од наведених подржаних апликација. Само доле наведене верзије су дозвољене за ове "
 "апликације."
 
 #: apps/applications/templates/applications/appversions.html:25
@@ -2406,7 +2408,7 @@ msgstr "GUID"
 #. {0} is an add-on name.
 #: apps/applications/templates/applications/appversions.html:26 apps/versions/templates/versions/version_list.html:18
 msgid "Versions"
-msgstr "Versions"
+msgstr "Верзије"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
@@ -2414,45 +2416,45 @@ msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "If your supported application does not require an install.rdf file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Ако Ваша подржана апликације не захтева датотеку install.rdf, још увек морате да увезете једну са захтеваним својствима наведеним <a href=\"%(url)s\">овде</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Колекције :: %s"
 
 #: apps/bandwagon/feeds.py:50 apps/bandwagon/templates/bandwagon/collection_detail.html:145
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
+msgstr "Колекције су групе сродних додатака које свако може да креира и дели."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:70
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Колекције :: {1}"
 
 #: apps/bandwagon/forms.py:19
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Само ја могу да видим ову колекцију."
 
 #: apps/bandwagon/forms.py:20
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Свако може да види ову колекцију."
 
 #: apps/bandwagon/forms.py:121
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Дајте Вашој колекцији име."
 
 #: apps/bandwagon/forms.py:124
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection."
-msgstr ""
+msgstr "Опишите Вашу колекцију."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
-msgstr ""
+msgstr "Приватност:"
 
 #: apps/bandwagon/forms.py:137
 msgid "Icon"
@@ -2460,15 +2462,15 @@ msgstr "Икона"
 
 #: apps/bandwagon/forms.py:160
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Овај url је у употреби од стране друге колекције"
 
 #: apps/bandwagon/forms.py:170 apps/devhub/views.py:1244 mkt/developers/utils.py:54
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Иконе морају бити или PNG или JPG формата."
 
 #: apps/bandwagon/forms.py:175 apps/devhub/views.py:1262 apps/users/forms.py:327
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Молимо Вас користите слике мање од %dMB."
 
 #: apps/bandwagon/helpers.py:49
 msgid "Remove from Favorites"
@@ -2480,31 +2482,31 @@ msgstr "Додај у омиљено"
 
 #: apps/bandwagon/helpers.py:74
 msgid "Add a positive vote for this collection"
-msgstr "Додај позитиван глас овој збирци"
+msgstr "Додај позитиван глас овој колекцији"
 
 #: apps/bandwagon/helpers.py:75
 msgid "Add a negative vote for this collection"
-msgstr "Додај негативан глас овој збирци"
+msgstr "Додај негативан глас овој колекцији"
 
 #: apps/bandwagon/helpers.py:76
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Уклони мој глас за ову колекцију"
 
 #: apps/bandwagon/helpers.py:87
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "Пријавите се да бисте могли да гласате за ову колекцију"
 
 #: apps/bandwagon/helpers.py:146 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
-msgstr ""
+msgstr "Додај у омиљене"
 
 #: apps/bandwagon/helpers.py:147
 msgid "Favorite"
-msgstr ""
+msgstr "Омиљено"
 
 #: apps/bandwagon/helpers.py:147 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Уклони из омиљених"
 
 #: apps/bandwagon/views.py:89 apps/bandwagon/views.py:174 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:81
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/search/forms.py:18 apps/search/forms.py:92 apps/search/forms.py:105
@@ -2512,210 +2514,214 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:44
 #: mkt/submit/templates/submit/details.html:55
 msgid "Name"
-msgstr ""
+msgstr "Име"
 
 #: apps/bandwagon/views.py:91
 msgid "Recently Popular"
-msgstr ""
+msgstr "Скорије популарно"
 
 #: apps/bandwagon/views.py:172 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
-msgstr ""
+msgstr "Додато"
 
 #: apps/bandwagon/views.py:173 mkt/search/forms.py:15
 msgid "Popularity"
-msgstr ""
+msgstr "Популарност"
 
 #: apps/bandwagon/views.py:295
 msgid "Collection created!"
-msgstr ""
+msgstr "Колекција је креирана!"
 
 #: apps/bandwagon/views.py:296
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Ваша нова колекција је приказана исподд. Можете да <a href=\"%(url)s\">измените додатне поставке</a> ако желите."
 
 #: apps/bandwagon/views.py:300
 msgid "Collection updated!"
-msgstr ""
+msgstr "Колекција је ажурирана!"
 
 #: apps/bandwagon/views.py:301
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Погледајте Вашу колекцију</a> како бисте видели промене."
 
 #: apps/bandwagon/views.py:555
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Икона избрисана"
 
 #: apps/bandwagon/templates/bandwagon/add.html:3 apps/bandwagon/templates/bandwagon/add.html:11 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Креирајте нову колекцију"
 
 #: apps/bandwagon/templates/bandwagon/add.html:9 apps/devhub/templates/devhub/personas/submit.html:14 mkt/developers/templates/developers/api.html:43
 msgid "Create"
-msgstr ""
+msgstr "Креирај"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24 apps/bandwagon/templates/bandwagon/ajax_new.html:28
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "Као што је наведено у нашим <a href=\"%(legal)s\">Правним обавештењима</a>, поједични аранжмани колекције су регулисани од стране Creative Commons Attribution Share-Alike лиценце"
 
 #: apps/bandwagon/templates/bandwagon/add.html:33 apps/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
-msgstr "Направите збирку"
+msgstr "Креирајте колекцију"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
-msgstr "Погледај ову збирку"
+msgstr "Погледај ову колекцију"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Започни нову колекцију..."
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:2
 msgid "Start a New Collection"
-msgstr "Започните нову збирку"
+msgstr "Започните нову колекцију"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:6 apps/bandwagon/templates/bandwagon/includes/addedit.html:4
 msgid "Name:"
-msgstr ""
+msgstr "Назив:"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:39
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "или <a id=\"collections-new-cancel\" href=\"#\">Откажи</a>"
 
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "Како бисте оцењивали колекције, морате имати налог за додатке."
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:19 templates/base.html:134 templates/impala/base.html:197
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Направите налог за додатке"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:23 templates/base.html:137 templates/impala/base.html:200
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "или се <a href=\"%(login)s\">пријавите на Ваш тренутни налог</a>"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Колекције"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:26
 msgid "private"
-msgstr ""
+msgstr "приватно"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:45 apps/bandwagon/templates/bandwagon/mobile/listing_items.html:9
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Број пратиоца: <span>%(num)s</span>"
+msgstr[1] "Број пратиоца: <span>%(num)s</span>"
+msgstr[2] "Број пратиоца: <span>%(num)s</span>"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:62
 msgid "About this Collection"
-msgstr "О овој збирци"
+msgstr "О овој колекцији"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:68
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Додаци су синхронизовани на мој мобилни Firefox"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:77
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Направи ову колекцију приватном"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:79
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Направи ову колекцију јавном"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Learn about collections"
-msgstr ""
+msgstr "Сазнајте о колекцијама"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:93
 msgid "More Options:"
-msgstr ""
+msgstr "Још опција:"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:94
 msgid "Edit Collection"
-msgstr "Измени збирку"
+msgstr "Измени колекцију"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:96 apps/bandwagon/templates/bandwagon/includes/delete.html:3
 msgid "Delete Collection"
-msgstr "Обриши збирку"
+msgstr "Обриши колекцију"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Тема у овој колекцији: %(num)s"
+msgstr[1] "Тема у овој колекцији: %(num)s"
+msgstr[2] "Тема у овој колекцији: %(num)s"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Додатака у овој колекцији: %(num)s"
+msgstr[1] "Додатака у овој колекцији: %(num)s"
+msgstr[2] "Додатака у овој колекцији: %(num)s"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
 #: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:22
 #: templates/includes/lang_switcher.html:10
 msgid "Go"
-msgstr ""
+msgstr "Крени"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:144
 msgid "What are Collections?"
-msgstr "Шта су збирке?"
+msgstr "Шта су колекције?"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:149
 msgid "Explore Collections"
-msgstr ""
+msgstr "Истражи колекције"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:154
 msgid "Common Tags"
-msgstr ""
+msgstr "Честе ознаке"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "More by this User"
-msgstr ""
+msgstr "Више од овог корисника"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:176
 msgid "See all collections by this user"
-msgstr ""
+msgstr "Погледајте све колекције овог корисника"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:182 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
 msgid "Recently Viewed"
-msgstr ""
+msgstr "Недавно прегледане"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
+"Додатке које означите као омиљене користећи опцију <b>Додај у омиљене</b>, приказују се испод. Ова колекција је тренутно <b>јавна</b>, што значи да је свако може видети. Ако је желите сакрити "
+"од јавности, кликните на дугме испод како би је направили приватном."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:203
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Додатке које означите као омиљене користећи опцију <b>Додај у омиљене</b>, приказују се испод. Ова колекција је тренутно <b>приватна</b>, што значи да је само Ви можете видети. Ако желите да свако "
+"има могућност да види Ваше омиљене, кликните на дугме испод како би је направили јавном."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Моји омиљени додаци"
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:24
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<span>%(addons)s</span> додатак"
+msgstr[1] "<span>%(addons)s</span> додатака"
+msgstr[2] "<span>%(addons)s</span> додатака"
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:31
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<span>%(followers)s</span> пратиоц"
+msgstr[1] "<span>%(followers)s</span> пратиоца"
+msgstr[2] "<span>%(followers)s</span> пратиоца"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:5
 msgid "Popular Collections"
@@ -2723,15 +2729,15 @@ msgstr "Популарне колекције"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:6
 msgid "Highest Rated Collections"
-msgstr ""
+msgstr "Колекције са највећом оценом"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:7
 msgid "Recently Added Collections"
-msgstr ""
+msgstr "Недавно додате колекције"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:32 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "Колекције су групе сродних додатака које свако може да креира и дели. Истражите колекције направљене од стране других корисника или <a href=\"%(url)s\">направите властиту</a>."
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2739,18 +2745,18 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Број седмичних пратиоца: %(num)s"
+msgstr[1] "Број седмичних пратиоца: %(num)s"
+msgstr[2] "Број седмичних пратиоца: %(num)s"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Број месечних пратиоца: %(num)s"
+msgstr[1] "Број месечних пратиоца: %(num)s"
+msgstr[2] "Број месечних пратиоца: %(num)s"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2758,25 +2764,25 @@ msgstr[2] ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Број пратиоца: %(num)s"
+msgstr[1] "Број пратиоца: %(num)s"
+msgstr[2] "Број пратиоца: %(num)s"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:56 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9 apps/devhub/templates/devhub/personas/edit.html:27
 msgid "by {0}"
-msgstr ""
+msgstr "од {0}"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:5 apps/bandwagon/templates/bandwagon/collection_widgets.html:7 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Stop Following"
-msgstr ""
+msgstr "Заустави праћење"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:6 apps/bandwagon/templates/bandwagon/collection_widgets.html:7 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Прати ову колекцију"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:17
 msgid "Edit this Collection"
-msgstr "Измени ову збирку"
+msgstr "Измени ову колекцију"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:21 apps/bandwagon/templates/bandwagon/collection_widgets.html:23 apps/devhub/templates/devhub/addons/listing/item_actions.html:45
 #: apps/stats/templates/stats/stats.html:75 apps/stats/templates/stats/stats.html:79 apps/stats/templates/stats/stats.html:81 mkt/lookup/templates/lookup/helpers/app_header.html:33
@@ -2786,7 +2792,7 @@ msgstr "Статистика"
 #. %s is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/delete.html:4 apps/bandwagon/templates/bandwagon/delete.html:15
 msgid "Delete {0}"
-msgstr ""
+msgstr "Избриши {0}"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35 apps/devhub/templates/devhub/versions/list.html:181 mkt/developers/templates/developers/api.html:70
@@ -2794,7 +2800,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:14
 #: mkt/developers/templates/developers/payments/includes/account_list.html:45 mkt/ratings/templates/ratings/rating.html:47
 msgid "Delete"
-msgstr "Бриши"
+msgstr "Избриши"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:20
 msgid "Are you sure?"
@@ -2803,7 +2809,7 @@ msgstr "Да ли сте сигурни?"
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5 apps/bandwagon/templates/bandwagon/edit.html:21
 msgid "Edit {0}"
-msgstr ""
+msgstr "Измени {0}"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:27
 #: mkt/developers/templates/developers/apps/edit/basic.html:103 mkt/ecosystem/templates/ecosystem/reference_apps/app.html:23 mkt/reviewers/templates/reviewers/includes/details.html:154
@@ -2813,7 +2819,7 @@ msgstr "Опис"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:39
 msgid "Contributors & More"
-msgstr ""
+msgstr "Сарадници и још"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:54 apps/bandwagon/templates/bandwagon/edit.html:67 apps/bandwagon/templates/bandwagon/edit.html:82
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:35 apps/devhub/templates/devhub/addons/owner.html:65 apps/devhub/templates/devhub/addons/profile.html:42
@@ -2828,63 +2834,65 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/premium.html:144 mkt/developers/templates/developers/payments/premium.html:243 mkt/developers/templates/developers/payments/premium.html:257
 #: mkt/developers/templates/developers/payments/premium.html:297
 msgid "Save Changes"
-msgstr ""
+msgstr "Сачувај измене"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:145 mkt/developers/templates/developers/apps/owner.html:82
 msgid "Owner"
-msgstr "Owner"
+msgstr "Власник"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:14
 msgid "Make Owner"
-msgstr ""
+msgstr "Учини власником"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Уклони овог корисника као сарадника"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18 apps/bandwagon/templates/bandwagon/edit_contributors.html:43 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:20
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48 apps/devhub/templates/devhub/addons/ajax_compat_update.html:19
 msgid "Remove"
-msgstr ""
+msgstr "Уклони"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:24
 msgid "Collection Contributors"
-msgstr ""
+msgstr "Сарадници колекције"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Можете додати више сарадника овој колекцији. Сарадник може да дода или уклони додатке из ове колекције, али не може да измени његов назив или опис. Да бисте додали сарадника, унесите њихову "
+"адресу е-поште у поље испод. Сарадници морају да имају Mozilla Add-ons налог."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40 apps/devhub/templates/devhub/payments/refunds.html:13 mkt/constants/apps.py:8
 msgid "User"
-msgstr ""
+msgstr "Корисник"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:41 apps/devhub/templates/devhub/addons/edit/support.html:20 mkt/developers/forms_payments.py:548
 #: mkt/developers/templates/developers/apps/edit/support.html:18 mkt/ecosystem/templates/ecosystem/partners.html:126 mkt/ecosystem/templates/ecosystem/partners.html:127
 #: mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
-msgstr ""
+msgstr "Е-пошта"
 
 # Column name in a table.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:42
 msgid "Role"
-msgstr "Role"
+msgstr "Улога"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:51
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "Унесите адресу е-поште сарадника којег желите да додате"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:53
 msgid "Add Contributor"
-msgstr ""
+msgstr "Додај сарадника"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:60
 msgid "Contributor"
-msgstr "Приложник"
+msgstr "Сарадник"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
@@ -2892,7 +2900,7 @@ msgstr "Подешавања администратора"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:76
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
+msgstr "<b>Упозорење:</b> Променом власника ове колекције, више нећете имати могућност њене измене. Моћи ћете само да јој додајете или уклањате додатке."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:188 apps/devhub/templates/devhub/addons/submit/describe.html:90
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:52 apps/devhub/templates/devhub/addons/submit/upload_webapp.html:42
@@ -2906,78 +2914,79 @@ msgstr "Настави"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:84
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "или <a id=\"change-owner-cancel\" href=\"#\">Откажи</a>"
 
 #. {0} is a username.
 #: apps/bandwagon/templates/bandwagon/user_listing.html:7
 msgid "Collections by {0}"
-msgstr ""
+msgstr "Колекције од {0}"
 
 #: apps/bandwagon/templates/bandwagon/user_listing.html:31
 msgid "No collections found."
-msgstr ""
+msgstr "Нема нађених колекција."
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:6
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Највише праћене колекције"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:7
 msgid "Newest Collections"
-msgstr ""
+msgstr "Најновије колекције"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:8
 msgid "Collections by Name"
-msgstr ""
+msgstr "Колекције по називу"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:9
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Недавно ажуриране колекције"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:10
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Недавно популарне колекције"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
-msgstr ""
+msgstr "Претплати се"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:50
 msgid "Following"
-msgstr ""
+msgstr "Пратим"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
 msgid "Create a Collection"
-msgstr ""
+msgstr "Креирајте колекцију"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Колекције олакшавају праћење омиљених додатака и дељење Вашег савршено прилагођеног прегледача са осталима."
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:39
 msgid "Collection Icon"
-msgstr ""
+msgstr "Икона колекције"
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:41
 msgid "Reset"
-msgstr ""
+msgstr "Ресетуј"
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:50
 msgid "PNG and JPG supported. Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG и JPG су подржани. Резолуција слике ће бити намештена на 32x32."
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit_errors.html:3 apps/localizers/templates/localizers/categories.html:19
 msgid "There are errors in this form. Please correct them below."
-msgstr ""
+msgstr "Постоје грешке у овој форми. Молимо Вас да их исправите."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Додаци у Вашој колекцији"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr ""
+"Да бисте ставили додатак у ову колекцију, унесите његов назив у пољу испод и притисните Еnter. Можете користити и везе <strong>Додај у колекцију</strong> на читавом сајту како бисте додали додатке касније."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:420 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
@@ -2985,82 +2994,83 @@ msgstr "Додатак"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:26
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Унесите назив додатка да бисте да додали"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:28
 msgid "Add to Collection"
-msgstr "Додај у збирку"
+msgstr "Додај у колекцију"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:116 mkt/constants/payments.py:7 mkt/reviewers/helpers.py:164 mkt/reviewers/helpers.py:184
 msgid "Pending"
-msgstr ""
+msgstr "У току"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47
 msgid "Add a comment"
-msgstr ""
+msgstr "Додај коментар"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Уклони овај додатак из колекције"
 
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:7
 msgid "COLLECTIONS"
-msgstr ""
+msgstr "КОЛЕКЦИЈЕ"
 
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:8
 msgid "Groups of related add-ons that anyone can create."
-msgstr ""
+msgstr "Групе сродних додатака које свако може да направи."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:3 apps/blocklist/templates/blocklist/blocked_list.html:3 apps/blocklist/templates/blocklist/blocked_list.html:10
 msgid "Blocked Add-ons"
-msgstr ""
+msgstr "Блокирани додаци"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6 mkt/developers/templates/developers/apps/status.html:303
 msgid "Blocklist"
-msgstr ""
+msgstr "Листа блокираних апл."
 
 #. {0} is an add-on name.
 #: apps/blocklist/templates/blocklist/blocked_detail.html:13
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
+msgstr "<b>{0}</b> је блокиран због Ваше безбедности."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:15
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "Зашто је злокиран?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:17
 msgid "Who is affected?"
-msgstr ""
+msgstr "Ко је погођен?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:19
 msgid "What does this mean?"
-msgstr ""
+msgstr "Шта ово значи?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:22
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr ""
+msgstr "Корисници се строго охрабрују да онемогуће проблематичан додатак или прикључак, али могу да наставе са њиховом употребом ако прихватају описане ризике."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:27
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr ""
+msgstr "Проблематичан додатак или прикључак ће бити аутоматски онемогућен и неупотребљив."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:33
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr ""
+msgstr "Када Mozilla постане свесна о додацима, прикључцима, или другим независним софтверима који озбиљно нарушавају безбедност, стабилност, или перформансе %(app)s-а, и испуњава <a href=\"%(criteria)s\">одређене "
+"критеријуме</a>, софтвер може бити блокиран за коришћење. За више информације, молимо Вас прочитајте <a href=\"%(support)s\">овај чланак подршке</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr ""
+msgstr "Блокиран дана %(date)s. <a href=\"%(link)s\">Погледајте захтев за блокирањем</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Блокиран дана %(date)s."
 
 #: apps/blocklist/templates/blocklist/blocked_list.html:11
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr ""
+msgstr "Следећи софтвер је познат да прави озбиљне проблеме у безбедности, стабилности, или перформансама са {app}."
 
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:76 apps/browse/feeds.py:98
@@ -3070,53 +3080,53 @@ msgstr "%s додаци"
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:113
 msgid "%s Themes"
-msgstr ""
+msgstr "%s теме"
 
 #: apps/browse/feeds.py:129
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Истакнути додаци :: %s"
 
 #. L10n: %s is an app name.
 #: apps/browse/feeds.py:138
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете персоналзицију %s-а."
 
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:157
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Алати за претрагу сродни за %s"
 
 #: apps/browse/feeds.py:159
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Алати за претрагу и њима сродна проширења"
 
 #: apps/browse/feeds.py:161
 msgid "Search tools"
-msgstr ""
+msgstr "Алати за претрагу"
 
 #: apps/browse/views.py:55 apps/browse/views.py:65 apps/search/forms.py:88
 msgid "Most Users"
-msgstr ""
+msgstr "Већина корисника"
 
 #: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:291 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:96
 msgid "Up & Coming"
-msgstr ""
+msgstr "Надолазеће"
 
 #: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 mkt/developers/views.py:75 mkt/developers/views.py:82
 msgid "Created"
-msgstr "Created"
+msgstr "Креирано"
 
 #: apps/browse/views.py:452 apps/devhub/views.py:76 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:76
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Downloads"
-msgstr ""
+msgstr "Преузимања"
 
 #: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/discovery/templates/discovery/addons/detail.html:72 apps/reviews/templates/reviews/add.html:85
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:77 mkt/reviewers/templates/reviewers/includes/details.html:92
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:114
 msgid "Rating"
-msgstr ""
+msgstr "Оцене"
 
 #. {0} is the category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:5 apps/browse/templates/browse/creatured.html:13
@@ -3133,19 +3143,19 @@ msgstr "Истакнути додаци"
 #. {0} is a category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:21
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Нема истакнутих додатака у категорији {0}."
 
 #: apps/browse/templates/browse/featured.html:15
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете персоналзицију %s-а."
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
-msgstr "Install Dictionary"
+msgstr "Инсталирај речник"
 
 #: apps/browse/templates/browse/language_tools.html:10
 msgid "Install Language Pack"
-msgstr "Install Language Pack"
+msgstr "Инсталирај језички пакет"
 
 #: apps/browse/templates/browse/language_tools.html:12
 msgid "Download Dictionary"
@@ -3157,17 +3167,17 @@ msgstr "Преузми језички пакет"
 
 #: apps/browse/templates/browse/language_tools.html:36
 msgid "Available in your locale"
-msgstr ""
+msgstr "Доступно у Вашој локалу"
 
 #: apps/browse/templates/browse/language_tools.html:38
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Списак језичких пакета и речника је доступна у Вашом локалу."
 
 #. L10n: `Language` as in foul language.
 #: apps/browse/templates/browse/language_tools.html:41 apps/browse/templates/browse/language_tools.html:63 mkt/constants/ratingdescriptors.py:39 mkt/constants/ratingdescriptors.py:73
 #: mkt/constants/ratingdescriptors.py:179 mkt/constants/ratingdescriptors.py:227 mkt/constants/ratingdescriptors.py:279 mkt/developers/templates/developers/apps/edit/language.html:24
 msgid "Language"
-msgstr "Language"
+msgstr "Језик"
 
 #: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:175
 msgid "Dictionary"
@@ -3175,11 +3185,11 @@ msgstr "Речник"
 
 #: apps/browse/templates/browse/language_tools.html:43 apps/browse/templates/browse/language_tools.html:65
 msgid "Language Pack"
-msgstr "Language Pack"
+msgstr "Језички пакет"
 
 #: apps/browse/templates/browse/language_tools.html:58
 msgid "All locales"
-msgstr ""
+msgstr "Сви локали"
 
 #: apps/browse/templates/browse/language_tools.html:60
 msgid "List of language packs and dictionaries."
@@ -3188,31 +3198,31 @@ msgstr "Списак језичких пакета и речника."
 #. {0} is a category name, like "Music".
 #: apps/browse/templates/browse/search_tools.html:8
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Алати за претрагу"
 
 #. {0} is an integer.
 #: apps/browse/templates/browse/search_tools.html:39 apps/devhub/templates/devhub/addons/dashboard.html:24
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> додатак"
+msgstr[1] "<b>{0}</b> додатака"
+msgstr[2] "<b>{0}</b> додатака"
 
 #: apps/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
-msgstr ""
+msgstr "Претражи проширења"
 
 #: apps/browse/templates/browse/search_tools.html:62
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Додајте функционалности претраживања у Firefox"
 
 #: apps/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
-msgstr ""
+msgstr "Претраживачи"
 
 #: apps/browse/templates/browse/search_tools.html:75
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Пронађите нове претраживаче за Вашу траку за претрагу"
 
 #: apps/browse/templates/browse/search_tools.html:90
 msgid "Additional Resources"
@@ -3221,201 +3231,201 @@ msgstr "Додатни извори"
 #. {0} is an app name, like Firefox.
 #: apps/browse/templates/browse/search_tools.html:93
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr ""
+msgstr "Сазнајте више о <a href=\"http://support.mozilla.com/kb/Search+bar\">траци за претрагу</a> за {0}"
 
 #: apps/browse/templates/browse/search_tools.html:94
 msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
-msgstr ""
+msgstr "Прегледајте још више претраживача на <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Направите властити</a> на <a href=\"https://developer.mozilla.org/\">Mozilla центру за програмере</a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:187
 msgid "Complete Themes"
-msgstr ""
+msgstr "Комплетне теме"
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Најпопуларнија проширења"
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Проширења са највећом оценом"
 
 #: apps/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Најновија проширења"
 
 #: apps/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Проширења по називу"
 
 #: apps/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Проширења по седмичним преузимањима"
 
 #: apps/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Недавно ажурирана проширења"
 
 #: apps/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Надолазећа проширења"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Истакнуте комплетне теме"
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Најпопуларније комплетне теме"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Најјаче оцењене комплетне теме"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Најновије комплетне теме"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Комплетне теме по називу"
 
 #: apps/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Комплетне теме по седничним презимањима"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Недавно ажуриране комплетне теме"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Надолазеће комплетне теме"
 
 #: apps/browse/templates/browse/impala/base_listing.html:30
 msgid "Featured Apps"
-msgstr ""
+msgstr "Истакнуте апликације"
 
 #: apps/browse/templates/browse/impala/base_listing.html:31
 msgid "Apps by Weekly Downloads"
-msgstr ""
+msgstr "Апликације по седмичним преузимањима"
 
 #: apps/browse/templates/browse/impala/base_listing.html:34
 msgid "Top-Rated Apps"
-msgstr ""
+msgstr "Најјаче оцењене апликације"
 
 #: apps/browse/templates/browse/impala/base_listing.html:35
 msgid "Newest Apps"
-msgstr ""
+msgstr "Најновије апликације"
 
 #: apps/browse/templates/browse/impala/base_listing.html:36
 msgid "Apps by Name"
-msgstr ""
+msgstr "Апликације по називу"
 
 #: apps/browse/templates/browse/impala/base_listing.html:37
 msgid "Recently Updated Apps"
-msgstr ""
+msgstr "Недавно ажуране апликације"
 
 #: apps/browse/templates/browse/impala/base_listing.html:38
 msgid "Up & Coming Apps"
-msgstr ""
+msgstr "Надолазеће апликације"
 
 #: apps/browse/templates/browse/impala/category_landing.html:46
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Погледајте свакo %(cnt)s проширење у %(name)s &raquo;"
+msgstr[1] "Погледајте свака %(cnt)s проширења у %(name)s &raquo;"
+msgstr[2] "Погледајте свих %(cnt)s проширења у %(name)s &raquo;"
 
 #: apps/browse/templates/browse/impala/category_landing.html:52
 msgid "See the %(cnt)s app in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s apps in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Погледајте сваку %(cnt)s апликацију у %(name)s &raquo;"
+msgstr[1] "Погледајте сваке %(cnt)s апликације у %(name)s &raquo;"
+msgstr[2] "Погледајте свих %(cnt)s апликација у %(name)s &raquo;"
 
 #: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47 apps/perf/templates/perf/index.html:109 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
-msgstr "No results found."
+msgstr "Нема пронађених резултата."
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} теме"
 
 #. {0} is a user's name.
 #: apps/browse/templates/browse/personas/base.html:15 apps/browse/templates/browse/personas/base.html:40 apps/browse/templates/browse/personas/grid.html:8
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Теме корисника {0}"
 
 #: apps/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
-msgstr ""
+msgstr "Погледај профил"
 
 #: apps/browse/templates/browse/personas/base.html:44 apps/devhub/templates/devhub/docs/themes.html:9
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Направите властиту тему"
 
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Ваш прегледач, Ваш стил! Обуците га властитим дизајном!"
 
 #: apps/browse/templates/browse/personas/base.html:51 apps/devhub/templates/devhub/versions/list.html:107 mkt/developers/templates/developers/apps/status.html:71
 msgid "Learn more"
-msgstr "Learn more"
+msgstr "Сазнајте више"
 
 #: apps/browse/templates/browse/personas/category_landing.html:6 apps/browse/templates/browse/personas/mobile/category_landing.html:5
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Погледајте све недавно додате"
 
 #: apps/browse/templates/browse/personas/category_landing.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:6
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Погледајте све најпопуларније"
 
 #: apps/browse/templates/browse/personas/category_landing.html:8 apps/browse/templates/browse/personas/mobile/category_landing.html:7
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Погледајте све најјаче оцењене"
 
 #: apps/browse/templates/browse/personas/category_landing.html:40
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Преко 300,000 дизајна за персонализацију Вашег прегледача! Ставите курсор преко позадинске теме да бисте је испробали. <a href=\"%(url)s\" class=\"more-info\">Почните истраживати</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Желите више персонализације?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/personas/category_landing.html:50
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Комплетне теме трансформишу изглед Вашег прегледача са стиловима за оквир прозора, адресне страке, дугмиће, језичке и меније. <a href=\"%(url)s\" class=\"more-info\">Почните истраживати</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Надолазеће теме"
 
 #: apps/browse/templates/browse/personas/category_landing.html:87
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Погледајте све надолазеће теме"
 
 #: apps/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
-msgstr ""
+msgstr "Нема нађених тема"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "Теме лаке за употребу за Firefox"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
-msgstr ""
+msgstr "Још тема"
 
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Све теме"
 
 #: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:151 mkt/search/forms.py:25
 msgid "All"
@@ -3423,66 +3433,66 @@ msgstr "Све"
 
 #: apps/compat/forms.py:23 apps/search/views.py:514
 msgid "All Add-ons"
-msgstr ""
+msgstr "Сви додаци"
 
 #: apps/compat/forms.py:24
 msgid "Binary"
-msgstr ""
+msgstr "Бинарно"
 
 #: apps/compat/forms.py:25
 msgid "Non-binary"
-msgstr ""
+msgstr "Не-бинарно"
 
 #: apps/compat/views.py:88 apps/constants/base.py:408 apps/constants/payments.py:76 apps/devhub/forms.py:160
 msgid "Other"
-msgstr "Other"
+msgstr "Друго"
 
 #: apps/compat/templates/compat/index.html:4
 msgid "Add-on Compatibility Report for {app} {version}"
-msgstr ""
+msgstr "Извештај о компатибилности додатка за {app} {version}"
 
 #: apps/compat/templates/compat/index.html:11
 msgid "{app} {version} Compatibility"
-msgstr ""
+msgstr "{app} {version} компатибилност"
 
 #: apps/compat/templates/compat/index.html:17
 msgid "Top 95% compatible with previous version"
-msgstr ""
+msgstr "Врх 95% компативилно са претходном верзијом"
 
 #: apps/compat/templates/compat/index.html:18
 msgid "Top 95% of all add-ons"
-msgstr ""
+msgstr "Врх 95% од свих додатака"
 
 #: apps/compat/templates/compat/index.html:19
 msgid "All active add-ons"
-msgstr ""
+msgstr "Сви активни додаци"
 
 #: apps/compat/templates/compat/index.html:23 apps/constants/base.py:180 apps/constants/base.py:421 mkt/developers/forms.py:986 mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:22
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/queue_region.html:24
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr ""
+msgstr "Апликација"
 
 #: apps/compat/templates/compat/index.html:55
 msgid "Details for add-ons compatible with previous version:"
-msgstr ""
+msgstr "Детаљи за додатке компатибилне са претходном верзијом:"
 
 #: apps/compat/templates/compat/index.html:57
 msgid "Show all versions"
-msgstr ""
+msgstr "Прикажи све верзије"
 
 #: apps/compat/templates/compat/index.html:59
 msgid "Details for add-ons compatible with all versions:"
-msgstr ""
+msgstr "Детаљи за додатке компатибилне са свим верзијама:"
 
 #: apps/compat/templates/compat/index.html:61
 msgid "Show previous version only"
-msgstr ""
+msgstr "Прикажи само претходну верзију"
 
 #: apps/compat/templates/compat/reporter.html:3
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Извештаји компатибилности додатка"
 
 #: apps/compat/templates/compat/reporter.html:11 apps/compat/templates/compat/reporter_detail.html:35
 msgid ""
