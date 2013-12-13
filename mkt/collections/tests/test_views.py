@@ -1621,6 +1621,9 @@ class TestCollectionImageViewSet(RestOAuth):
         self.collection.update(has_image=True)
         return path
 
+    def test_image_url(self):
+        ok_(self.url.endswith('.png'))
+
     def test_put(self, url=None):
         if url is None:
             url = self.url

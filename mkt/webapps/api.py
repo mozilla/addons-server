@@ -142,9 +142,22 @@ class AppSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Webapp
-        exclude = ['_latest_version', 'ts_slowness', '_backup_version',
-                   'last_updated', 'nomination_message', '_current_version',
-                   'make_public', 'charity', 'modified']
+        fields = [
+            'app_type', 'author', 'banner_message', 'banner_regions',
+            'categories', 'content_ratings', 'created', 'current_version',
+            'default_locale', 'description', 'device_types', 'homepage',
+            'icons', 'id', 'is_packaged', 'manifest_url', 'name',
+            'payment_account', 'payment_required', 'premium_type', 'previews',
+            'price', 'price_locale', 'privacy_policy', 'public_stats',
+            'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
+            'status', 'summary', 'support_email', 'support_url',
+            'supported_locales', 'tags', 'upsell', 'upsold', 'user',
+            'versions', 'weekly_downloads']
+
+    def _get_region_id(self):
+        request = self.context.get('request')
+        REGION = getattr(request, 'REGION', None)
+        return REGION.id if REGION else None
 
     def get_content_ratings(self, app):
         return {
@@ -164,12 +177,12 @@ class AppSerializer(serializers.ModelSerializer):
         return False
 
     def get_price(self, app):
-        region = self.context.get('region')
+        region = self._get_region_id()
         if region in app.get_price_region_ids():
             return app.get_price(region=region)
 
     def get_price_locale(self, app):
-        region = self.context.get('region')
+        region = self._get_region_id()
         if region in app.get_price_region_ids():
             return app.get_price_locale(region=region)
 
@@ -188,7 +201,7 @@ class AppSerializer(serializers.ModelSerializer):
         return [t.tag_text for t in app.tags.all()]
 
     def get_upsell(self, app):
-        if (app.upsell and self.context.get('region') in
+        if (app.upsell and self._get_region_id() in
                 app.upsell.premium.get_price_region_ids()):
             upsell = app.upsell.premium
             return {
@@ -202,7 +215,7 @@ class AppSerializer(serializers.ModelSerializer):
             return False
 
     def get_user_info(self, app):
-        user = self.context.get('profile')
+        user = getattr(self.context.get('request'), 'amo_user', None)
         if user:
             return {
                 'developed': app.addonuser_set.filter(
@@ -376,14 +389,6 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
-
-    def get_serializer_context(self):
-        ctx = super(AppViewSet, self).get_serializer_context()
-        ctx['profile'] = getattr(self.request, 'amo_user', None)
-        ctx['region'] = (self.request.REGION.id
-                         if hasattr(self.request, 'REGION')
-                         else None)
-        return ctx
 
     def get_queryset(self):
         return Webapp.objects.all().exclude(

@@ -95,6 +95,9 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
         if query.get('premium_types'):
             qs = qs.filter(premium_type__in=query['premium_types'])
     if query.get('app_type'):
+        # Also include `privileged` apps even when we search for `packaged`.
+        if 'packaged' in query['app_type']:
+            query['app_type'].push('privileged')
         qs = qs.filter(app_type__in=query['app_type'])
     if query.get('manifest_url'):
         qs = qs.filter(manifest_url=query['manifest_url'])

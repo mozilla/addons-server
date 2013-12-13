@@ -5,7 +5,7 @@ class FireplaceAppSerializer(AppSerializer):
     upsold = None
     tags = None
     class Meta(AppSerializer.Meta):
-        exclude = AppSerializer.Meta.exclude + [
+        exclude = [
             'absolute_url', 'app_type', 'categories', 'created',
             'default_locale', 'payment_account' 'regions',
             'supported_locales', 'weekly_downloads', 'upsold', 'tags',]
