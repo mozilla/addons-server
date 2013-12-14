@@ -441,6 +441,18 @@ li.payments, li.ratings {
 .rating-notice {
     display: inline-block;
     margin-top: 5px;
+
+    &:before {
+        background: url('../../img/zamboni/icons/alert-32x32.png');
+        background-size: 16px 16px;
+        content: '';
+        display: inline-block;
+        height: 16px;
+        margin-right: 3px;
+        position: relative;
+        top: 2px;
+        width: 16px;
+    }
 }
 .item:hover .rating-notice {
     color: $text;

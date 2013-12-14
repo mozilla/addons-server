@@ -1,4 +1,5 @@
 from collections import defaultdict
+import datetime
 import urllib
 
 from django.conf import settings
@@ -224,3 +225,9 @@ def dev_agreement_ok(user):
         return False
 
     return True
+
+
+@register.function
+def passed_iarc_app_disable_date():
+    if datetime.datetime.now() > settings.IARC_APP_DISABLE_DATE:
+        return True

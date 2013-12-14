@@ -311,3 +311,6 @@ COMMONPLACE_REPOS_APPCACHED = ['fireplace']
 # A list of the payment providers supported by the marketplace. Currently there
 # can be only one value, however we expect this to change in the future.
 PAYMENT_PROVIDERS = ['bango']
+
+# Grace period for apps to attain a content rating before they get disabled.
+IARC_APP_DISABLE_DATE = datetime.datetime(2014, 4, 15)
