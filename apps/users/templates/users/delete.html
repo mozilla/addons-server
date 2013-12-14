@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="primary" role="main">
-  <div class="primary island">
+  <section class="primary island hero grid prettyform">
     <h1>{{ _('Delete User Account') }}</h1>
 
     {% if amouser.is_developer %}
@@ -23,27 +23,34 @@
     {% else %}
 
       {% if form %}
-        <div class="notification-box error prose">
-          <p>
-            {% trans site=settings.DOMAIN %}By clicking "delete" your account is going
-             to be <strong>permanently removed</strong>. That means:
+        <form method="post" class="object-lead listing-footer">
+          <div class="notification-box error prose">
+            <p>
+            {% trans %}
+              By clicking "delete" your account is going to be <strong>permanently removed</strong>. That means:
+            {% endtrans %}
+            </p>
             <ul>
-              <li>You will not be able to log into {{ site }} anymore.</li>
-              <li>Your reviews and ratings will not be deleted, but they will no longer be associated with you.</li>
+              <li>
+                {% trans site=settings.DOMAIN %}
+                  You will not be able to log into {{ site }} anymore.
+                {% endtrans %}
+              </li>
+              <li>
+                {{ _('Your reviews and ratings will not be deleted, but they will no longer be associated with you.') }}
+              </li>
             </ul>
-             {% endtrans %}
-          </p>
-        </div>
-        <form method="post" action="" class="prettyform object-lead user-input">
+          </div>
           {{ csrf() }}
           <fieldset>
             <legend>{{ _('Confirm account deletion') }}</legend>
             <ul>
+              <li{% if form.password.errors %} class="error"{% endif %}>
                 <label for="id_password">{{ _('Password') }} {{ required() }}</label>
                 {{ form.password }}
                 {{ form.password.errors }}
               </li>
-              <li>
+              <li{% if form.confirm.errors %} class="error"{% endif %}>
                 <label for="id_confirm" class="check">
                   {{ form.confirm }}
                   {{ _('I understand this step cannot be undone.') }}
@@ -53,13 +60,13 @@
               </li>
             </ul>
           </fieldset>
-          <div class="fm-control">
+          <footer class="listing-footer">
             <button type="submit">{{ _('Delete my user account now') }}</button>
-          </div>
+          </footer>
         </form>
       {% endif %}
     {% endif %}{# /amouser.is_developer #}
-  </div>
+  </section>
 
 </div>{# .primary #}
 

@@ -392,12 +392,12 @@ def update_monolith_stats(metric, date, **kw):
                 MonolithRecord.objects.create(recorded=date, key=metric,
                                               value=json.dumps(value))
 
+                log.debug('Monolith stats details: (%s) has (%s) for (%s). '
+                          'Value: %s' % (metric, count, date, value))
+
         except Exception as e:
             log.critical('Update of monolith table failed: (%s): %s'
                          % ([metric, date], e))
-
-        log.debug('Committed monolith stats details: (%s) has (%s) for (%s)'
-                  % (metric, count, date))
 
 
 def _get_monolith_jobs(date=None):

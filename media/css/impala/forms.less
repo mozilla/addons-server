@@ -140,13 +140,17 @@ textarea {
     .html-support {
         margin: 0;
         padding: 0;
-        float: right;
 
         span {
             border-bottom: 1px dotted #bbb;
             cursor: help;
         }
     }
+
+    li {
+        margin-bottom: 15px;
+    }
+
     ul {
         font-size: 13px;
 
@@ -232,8 +236,8 @@ textarea {
         display: inline-block;
         vertical-align: middle;
     }
-    input[type=text] {
-        width: 200px;
+    input[type=text], input[type=password] {
+        width: 430px;
     }
     input[type=color] {
         width: 80px;
@@ -276,11 +280,9 @@ textarea {
         }
         li label {
             color: #555;
-            display: inline-block;
+            display: block;
             font-weight: normal;
-            padding: 0 1em 1em 0;
-            width: 120px;
-            text-align: right;
+            padding: 0 0 5px;
 
             &.check {
                 width: auto;
@@ -295,12 +297,11 @@ textarea {
         .errorlist {
             color: #C63717;
             margin-bottom: 13px;
-            margin-left: 137px;
             margin-top: 5px;
         }
         .formfields {
             float: left;
-            max-width: 430px;
+            width: 430px;
 
             p:first-child {
                 margin-top: 0;
@@ -424,4 +425,18 @@ button.loading-submit:after {
     margin-bottom: 10px;
     position: relative;
     top: 1px;
+}
+
+.is-impala .island.hero {
+    margin-right: 0;
+    width: 510px;
+
+    input[type=text], input[type=password] {
+        width: 471px;
+    }
+
+    fieldset {
+        margin: 1em 0 0;
+        padding: 0;
+    }
 }

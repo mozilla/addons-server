@@ -2,92 +2,99 @@
 {% from 'includes/forms.html' import required %}
 
 {% block title %}{{ page_title(_('New User Registration')) }}{% endblock %}
-{% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
-{% block bodyclass %}gutter register{% endblock %}
+{% block js %}{% include "amo/recaptcha_js.html" %}{% endblock %}
+{% block bodyclass %}register{% endblock %}
 {% block content %}
 
-<div class="secondary" id="register-help">
-  <div class="article prose">
-    <h2>{{ _('Why register?') }}</h2>
-    {% trans legal="http://www.mozilla.com/about/legal.html",
-             privacy="http://www.mozilla.com/privacy-policy.html" %}
-        <p>Registration on AMO is <strong>not required</strong> if you
-        simply want to download and install public add-ons.</p>
-        <p>You only need to register if:</p>
-          <ul>
-            <li>You want to submit reviews for add-ons</li>
-            <li>You want to keep track of your favorite add-on collections or create one yourself</li>
-            <li>You are an add-on developer and want to upload your add-on for hosting on AMO</li>
-          </ul>
-        <p>Upon successful registration, you will be sent a confirmation
-        email to the address you provided. Please follow the instructions
-        there to confirm your account.</p><p>If you like, you can read our
-        <a href="{{ legal }}" title="Legal Notices">Legal Notices</a> and
-        <a href="{{ privacy }}" title="Privacy Policy">Privacy Policy</a>.</p>
-    {% endtrans %}
-  </div>
-</div>{# .secondary #}
 <div class="primary c">
+  <div class="secondary" id="register-help">
+    {% include "users/login_help.html" %}
+    <div class="article prose">
+      <h2>{{ _('Why register?') }}</h2>
+      <p>
+        {{ _('Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons.') }}
+      </p>
+      <p>{{ _('You only need to register if:') }}</p>
+      <ul>
+        <li>{{ _('You want to submit reviews for add-ons') }}</li>
+        <li>{{ _('You want to keep track of your favorite add-on collections or create one yourself') }}</li>
+        <li>{{ _('You are an add-on developer and want to upload your add-on for hosting on AMO') }}</li>
+      </ul>
+      <p>
+        {% trans %}
+          Upon successful registration, you will be sent a confirmation
+          email to the address you provided. Please follow the instructions
+          there to confirm your account.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans legal="http://www.mozilla.com/about/legal.html",
+                 privacy="http://www.mozilla.com/privacy-policy.html" %}
+          If you like, you can read our
+          <a href="{{ legal }}" title="Legal Notices">Legal Notices</a> and
+          <a href="{{ privacy }}" title="Privacy Policy">Privacy Policy</a>.
+        {% endtrans %}
+      </p>
+    </div>
+  </div>{# .secondary #}
   {% if form %}
-    <section class="island">
+    <section class="island hero primary grid prettyform">
       <h1>{{ _('Register') }}</h1>
-      <form method="post" action="{{ register_action }}" class="prettyform grid user-input">
+      <form method="post" action="{{ register_action }}" class="listing-footer">
         {{ csrf() }}
         <fieldset>
           <ul>
-            <li>
+            <li{% if form.username.errors %} class="error"{% endif %}>
               <label for="id_username">{{ _('Username') }} {{ required() }}</label>
               {{ form.username }}
               {{ form.username.errors }}
             </li>
-            <li>
+            <li{% if form.display_name.errors %} class="error"{% endif %}>
               <label for="id_display_name">{{ _('Display name') }}</label>
               {{ form.display_name }}
               {{ form.display_name.errors }}
             </li>
-            <li>
+            <li{% if form.homepage.errors %} class="error"{% endif %}>
               <label for="id_homepage">{{ _('Homepage') }}</label>
               {{ form.homepage }}
               {{ form.homepage.errors }}
             </li>
-            <li>
+            <li{% if form.email.errors %} class="error"{% endif %}>
               <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
               {{ form.email }}
               {{ form.email.errors }}
             </li>
             <li class="check">
-              <label>&nbsp;</label>
               <label for="id_emailhidden" class="check">
                 {{ form.emailhidden }}
                 {{ _('Hide email address from other users') }}
               </label>
               {{ form.emailhidden.errors }}
             </li>
-            <li>
+            <li{% if form.password.errors %} class="error"{% endif %}>
               <label for="id_password">{{ _('Password') }} {{ required() }}</label>
               {{ form.password }}
               {{ form.password.errors }}
             </li>
-            <li>
+            <li{% if form.password2.errors %} class="error"{% endif %}>
               <label for="id_password2">{{ _('Confirm password') }} {{ required() }}</label>
               {{ form.password2 }}
               {{ form.password2.errors }}
             </li>
             <li>
-            {% if settings.RECAPTCHA_PRIVATE_KEY %}
-            {{ recaptcha(form) }}
-            {% else %}
-            <p>
-              Welcome Robots, ReCaptcha has been disabled for your convenience.
-              Spam at Wil.
-            </p>
-            {% endif %}
+              {% if settings.RECAPTCHA_PRIVATE_KEY %}
+                {{ recaptcha(form) }}
+              {% else %}
+                <p>
+                Welcome Robots, ReCaptcha has been disabled for your convenience. Spam at Wil.
+                </p>
+              {% endif %}
             </li>
           </ul>
         </fieldset>
-        <p class="footer-submit">
+        <footer class="listing-footer">
           <button type="submit">{{ _('Register') }}</button>
-        </p>
+        </footer>
       </form>
     </section>
   {% endif %}

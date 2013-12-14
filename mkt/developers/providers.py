@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 
 import commonware
+from curling.lib import HttpClientError
 from tower import ugettext_lazy as _
 
 from constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
@@ -34,7 +35,25 @@ class Provider(object):
     def account_update(self, account, form_data):
         raise NotImplementedError
 
-    def apa_update(self, account):
+    def generic_create(self, account, app, secret):
+        # This sets the product up in solitude.
+        external_id = webpay.make_ext_id(app.pk)
+        data = {'seller': uri_to_pk(account.seller_uri),
+                'external_id': external_id}
+
+        # Create the generic product.
+        try:
+            generic = self.generic.product.get_object_or_404(**data)
+        except ObjectDoesNotExist:
+            generic = self.generic.product.post(data={
+                'seller': account.seller_uri, 'secret': secret,
+                'external_id': external_id, 'public_id': str(uuid.uuid4()),
+                'access': ACCESS_PURCHASE,
+            })
+
+        return generic
+
+    def product_create(self, account, app, secret):
         raise NotImplementedError
 
     def setup_seller(self, user):
@@ -126,25 +145,17 @@ class Bango(Provider):
 
     def product_create(self, account, app):
         secret = generate_key(48)
-        external_id = webpay.make_ext_id(app.pk)
-        data = {'seller': uri_to_pk(account.seller_uri),
-                'external_id': external_id}
-
-        # Create the generic product.
-        try:
-            generic_product = self.generic.product.get_object(**data)
-        except ObjectDoesNotExist:
-            generic_product = self.generic.product.post(data={
-                'seller': account.seller_uri, 'secret': secret,
-                'external_id': external_id, 'public_id': str(uuid.uuid4()),
-                'access': ACCESS_PURCHASE,
-            })
-
-        # Create the specific bango product.
-        product_uri = generic_product['resource_uri']
+        generic = self.generic_create(account, app, secret)
+        product_uri = generic['resource_uri']
         data = {'seller_product': uri_to_pk(product_uri)}
+
+        # There are specific models in solitude for Bango details.
+        # These are SellerBango and SellerProductBango that store Bango
+        # details such as the Bango Number.
+        #
+        # Solitude calls Bango to set up whatever it needs.
         try:
-            res = self.client.product.get_object(**data)
+            res = self.client.product.get_object_or_404(**data)
         except ObjectDoesNotExist:
             # The product does not exist in Solitude so create it.
             res = self.client.product.post(data={
@@ -207,6 +218,36 @@ class Reference(Provider):
     def account_update(self, account, form_data):
         account.update(name=form_data.pop('account_name'))
         self.client.sellers(account.account_id).put(form_data)
+
+    def product_create(self, account, app):
+        secret = generate_key(48)
+        generic = self.generic_create(account, app, secret)
+
+        # These just pass straight through to zippy to create the product
+        # and don't create any intermediate objects in solitude.
+        #
+        # Until bug 948240 is fixed, we have to do this, again.
+        try:
+            created = self.client.products.get(
+                external_id=generic['external_id'],
+                seller_id=uri_to_pk(account.uri))
+        except HttpClientError:
+            created = []
+
+        if len(created) > 1:
+            raise ValueError('Zippy returned more than one resource.')
+
+        elif len(created) == 1:
+            return created[0]['resource_uri']
+
+        # Note that until zippy get some persistence, this will just
+        # throw a 409 if the seller doesn't exist.
+        created = self.client.products.post(data={
+            'external_id': generic['external_id'],
+            'seller_id': uri_to_pk(account.uri),
+            'name': unicode(app.name),
+        })
+        return created['resource_uri']
 
     def terms_retrieve(self, account):
         return self.client.terms(account.account_id).get()

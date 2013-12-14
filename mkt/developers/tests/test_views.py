@@ -803,15 +803,18 @@ class TestUploadDetail(BaseUploadTest):
         msg = data['validation']['messages'][0]
         eq_(msg['tier'], 1)
 
-    @mock.patch('mkt.developers.tasks.urllib2.urlopen')
+    @mock.patch('mkt.developers.tasks.requests.get')
     @mock.patch('mkt.developers.tasks.run_validator')
     def test_detail_for_free_extension_webapp(self, validator_mock,
-                                              urlopen_mock):
-        rs = mock.Mock()
-        rs.read.return_value = self.file_content('mozball.owa')
-        rs.getcode.return_value = 200
-        rs.headers = {'Content-Type': 'application/x-web-app-manifest+json'}
-        urlopen_mock.return_value = rs
+                                              requests_mock):
+        content = self.file_content('mozball.owa')
+        response_mock = mock.Mock(status_code=200)
+        response_mock.iter_content.return_value = mock.Mock(
+            next=lambda: content)
+        response_mock.headers = {'content-type': self.content_type}
+        yield response_mock
+        requests_mock.return_value = response_mock
+
         validator_mock.return_value = json.dumps(self.validation_ok())
         self.upload_file('mozball.owa')
         upload = FileUpload.objects.get()
