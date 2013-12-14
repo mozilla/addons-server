@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-27 07:58-0700\n"
-"PO-Revision-Date: 2013-12-04 17:22+0000\n"
+"PO-Revision-Date: 2013-12-14 06:02+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386177736.0\n"
+"X-POOTLE-MTIME: 1387000958.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -21614,6 +21614,8 @@ msgid ""
 "efficient. Below are a few of the tools you'll find useful as you develop "
 "apps for mobile versions of the Firefox browser and Firefox OS."
 msgstr ""
+"Firefox 現在會發行一組內建的開發者工具，以確保您能有一個快速且有效率的開發體驗。以下列一些在您開發在 Firefox 行動瀏覽器與 "
+"Firefox OS 上的行動應用程式時會覺得有用的工具。"
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:23
 msgid "Page Inspector"
@@ -21634,7 +21636,7 @@ msgid ""
 "View your web app in different screen dimensions commonly found on devices "
 "today, or enter your own user-defined dimensions to test. You can also "
 "change screen orientation to better understand how your device will respond."
-msgstr ""
+msgstr "用不同裝置的常見螢幕大小來檢視您的 web app，或直接輸入您自訂的大小來進行測試。您也可以修改螢幕方向，以了解您的裝置會如何回應。"
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:39
 msgid "Style Editor"
@@ -21647,6 +21649,8 @@ msgid ""
 "new style sheets that are applied instantly to the page you're editing, and "
 "the ability to save any of your CSS style changes to a local file."
 msgstr ""
+"在獨立的 CSS 樣式編輯器中即時的編輯您的樣式。此功能包含: 切換樣式開關、規則與 pseudo "
+"selectors、建立能夠即時套用至您正在編輯的頁面中的樣式表、以及能夠將您的樣式變更儲存為本機上的檔案。"
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:50
 msgid ""
@@ -21666,6 +21670,8 @@ msgid ""
 "be easily integrated into your existing web development workflow, if you "
 "have one, or you can build a new workflow around them."
 msgstr ""
+"您得用什麼來打造 Open Web Apps？答案是「什麼都可以，只要是您日常生活中會拿來開發網頁內容的工具就行」以下是一些能夠開始打造 Open "
+"Web Apps 的工具與資源的清單，它們可以簡單地整合至您現有的開發流程中，或您也可以透過這些工具建立新的工作流程。"
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:37
 #: mkt/ecosystem/templates/ecosystem/macros.html:162
@@ -21678,6 +21684,8 @@ msgid ""
 "your manifest and show you any errors it may have, or warnings you should "
 "consider."
 msgstr ""
+"您的應用程式已經準備好上架到 Firefox Marketplace "
+"了嗎？應用程式驗證器將能夠檢查您的安裝資訊檔，在找到錯誤時提醒您，或警告您應該做哪些調整。"
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:51
 msgid ""
