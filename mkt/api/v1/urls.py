@@ -5,7 +5,7 @@ from rest_framework.routers import SimpleRouter
 
 from mkt.abuse.urls import api_patterns as abuse_api_patterns
 from mkt.account.urls import api_patterns as account_api_patterns
-from mkt.api.base import AppRouter
+from mkt.api.base import SubRouter, SubRouterWithFormat
 from mkt.api.resources import (CarrierViewSet, CategoryViewSet,
                                error_reporter, ErrorViewSet, PriceTierViewSet,
                                PriceCurrencyViewSet, RefreshManifestViewSet,
@@ -25,8 +25,8 @@ rocketfuel = SimpleRouter()
 rocketfuel.register(r'collections', CollectionViewSet,
                     base_name='collections')
 
-subcollections = AppRouter(trailing_slash=False)
-subcollections.register('image.png', CollectionImageViewSet,
+subcollections = SubRouterWithFormat()
+subcollections.register('image', CollectionImageViewSet,
                         base_name='collection-image')
 
 apps = SimpleRouter()
@@ -36,7 +36,7 @@ apps.register(r'category', CategoryViewSet, base_name='app-category')
 apps.register(r'status', StatusViewSet, base_name='app-status')
 apps.register(r'app', AppViewSet, base_name='app')
 
-subapps = AppRouter()
+subapps = SubRouter()
 subapps.register('refresh-manifest', RefreshManifestViewSet,
                  base_name='app-refresh-manifest')
 subapps.register('privacy', PrivacyPolicyViewSet,

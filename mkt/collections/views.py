@@ -248,15 +248,23 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         return self.serialized_curators(no_cache=True)
 
 
-class CollectionImageViewSet(CORSMixin, MarketplaceView, 
-                             generics.RetrieveUpdateAPIView,
-                             generics.DestroyAPIView, viewsets.ViewSet):
+class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+                             generics.GenericAPIView, viewsets.ViewSet):
     queryset = Collection.objects.all()
     permission_classes = [CuratorAuthorization]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
     cors_allowed_methods = ('get', 'put', 'delete')
+
+    def perform_content_negotiation(self, request, force=False):
+        """
+        Force DRF's content negociation to not raise an error - It wants to use
+        the format passed to the URL, but we don't care since we only deal with
+        "raw" content: we don't even use the renderers.
+        """
+        return super(CollectionImageViewSet, self).perform_content_negotiation(
+            request, force=True)
 
     def retrieve(self, request, *args, **kwargs):
         obj = self.get_object()
