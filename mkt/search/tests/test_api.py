@@ -785,8 +785,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         header = 'API-Fallback-%s' % self.prop_name
         ok_(not header in res)
 
-    @patch('mkt.collections.serializers.CollectionMembershipField.'
-           'field_to_native')
+    @patch('mkt.collections.serializers.CollectionMembershipField.to_native_es')
     def test_limit(self, mock_field_to_native):
         """
         Add a second collection, then ensure than the old one is not present
@@ -797,11 +796,13 @@ class TestFeaturedCollections(BaseFeaturedTests):
         self.col = Collection.objects.create(
             name='Me', description='Hello', collection_type=self.col_type,
             category=self.cat, is_public=True, region=mkt.regions.US.id)
-        self.col.add_app(self.app)
-        # Call standard test method.
-        self.test_added_to_results()
-        # Make sure we don't try to serialize data from collections we are
-        # not returning.
+
+        # Call standard test method that adds the app and refreshes ES.
+        self.test_apps_included()
+
+        # We are only dealing with one collection with only one app inside,
+        # our mock of the method that serializes app data from ES should only
+        # have been called once.
         eq_(mock_field_to_native.call_count, 1)
 
     @patch('mkt.search.api.SearchView.get_region')
