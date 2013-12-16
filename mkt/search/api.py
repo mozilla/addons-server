@@ -120,6 +120,9 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         return _filter_search(request, qs, data, region=region,
                               profile=profile)
 
+
+class FeaturedSearchView(SearchView):
+
     def collections(self, request, collection_type=None, limit=1):
         filters = request.GET.dict()
         filters.setdefault('region', self.get_region(request).slug)
@@ -129,12 +132,8 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
             qs = Collection.public.all()
         qs = CollectionFilterSetWithFallback(filters, queryset=qs).qs
         serializer = CollectionSerializer(qs[:limit], many=True,
-                                          context={'request': request,
-                                                   'view': self})
+            context={'request': request, 'view': self, 'use-es-for-apps': True})
         return serializer.data, getattr(qs, 'filter_fallback', None)
-
-
-class FeaturedSearchView(SearchView):
 
     def get(self, request, *args, **kwargs):
         serializer = self.search(request)

@@ -44,6 +44,9 @@ class CollectionMembershipField(serializers.RelatedField):
     def to_native(self, value):
         return AppSerializer(value, context=self.context).data
 
+    def to_native_es(self, value):
+        return self.context['view'].serialize(self.context['request'], value)
+
     def field_to_native(self, obj, field_name):
         if not hasattr(self, 'context') or not 'request' in self.context:
             raise ImproperlyConfigured('Pass request in self.context when'
@@ -51,9 +54,12 @@ class CollectionMembershipField(serializers.RelatedField):
 
         request = self.context['request']
 
-        # If we have a search resource in the context, we should try to use ES
-        # to fetch the apps, if the waffle flag is active.
-        if ('search_resource' in self.context
+        # Having 'use-es-for-apps' in the context means the parent view wants us
+        # to use ES to fetch the apps. If that key is present, check that we
+        # have a view in the context and that the waffle flag is active. If
+        # everything checks out, bypass the db and use ES to fetch apps for a
+        # nice performance boost.
+        if ('use-es-for-apps' in self.context and 'view' in self.context
             and waffle.switch_is_active('collections-use-es-for-apps')):
             return self.field_to_native_es(obj, request)
 
@@ -72,7 +78,7 @@ class CollectionMembershipField(serializers.RelatedField):
         A version of field_to_native that uses ElasticSearch to fetch the apps
         belonging to the collection instead of SQL.
 
-        Relies on a SearchResource instance in self.context['search_resource']
+        Relies on a FeaturedSearchView instance in self.context['view']
         to properly rehydrate results returned by ES.
         """
         profile = get_feature_profile(request)
@@ -84,7 +90,7 @@ class CollectionMembershipField(serializers.RelatedField):
             filters.update(**profile.to_kwargs(prefix='features.has_'))
         qs = qs.filter(**filters).order_by('collection.order')
 
-        return [self.context['view'].serialize(request, app) for app in qs]
+        return [self.to_native_es(app) for app in qs]
 
 
 class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):
