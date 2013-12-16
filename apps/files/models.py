@@ -135,11 +135,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return posixpath.join(*map(smart_str, [host, addon.id, self.filename]))
 
-    def get_url_path(self, src, addon=None):
+    def get_url_path(self, src):
         from amo.helpers import urlparams, absolutify
-        # In most cases we have an addon in the calling context.
-        if not addon:
-            addon = self.version.addon
         url = os.path.join(reverse('downloads.file', args=[self.id]),
                            self.filename)
         # Firefox's Add-on Manager needs absolute urls.
