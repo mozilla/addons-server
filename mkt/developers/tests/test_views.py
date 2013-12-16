@@ -1249,6 +1249,7 @@ class TestContentRatings(amo.tests.TestCase):
         self._make_complete_except_payments(complete_mock)
         self.req.session = {'ratings_last_modified': None}
 
+        self.app.update(status=amo.STATUS_NULL)
         self.app.content_ratings.create(ratings_body=0, rating=0)
         r = content_ratings(self.req, app_slug=self.app.app_slug)
 

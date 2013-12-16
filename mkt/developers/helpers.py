@@ -1,6 +1,6 @@
-from collections import defaultdict
 import datetime
 import urllib
+from collections import defaultdict
 
 from django.conf import settings
 from django.utils.encoding import smart_unicode
@@ -229,5 +229,4 @@ def dev_agreement_ok(user):
 
 @register.function
 def passed_iarc_app_disable_date():
-    if datetime.datetime.now() > settings.IARC_APP_DISABLE_DATE:
-        return True
+    return datetime.datetime.now() > settings.IARC_APP_DISABLE_DATE

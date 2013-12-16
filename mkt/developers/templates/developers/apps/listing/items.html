@@ -69,8 +69,8 @@
           {# Content ratings disable message. #}
           {% if not addon.is_fully_complete()[1]['content_ratings'] and addon.is_public() and not passed_iarc_app_disable_date() %}
             <li class="ratings">
-              {% trans rating_url=addon.get_dev_url('ratings') %}
-                <strong class="rating-notice">This app will be disabled if no content ratings are assigned by April 15th:</strong>
+              {% trans rating_url=addon.get_dev_url('ratings'), pretty_date=settings.IARC_APP_DISABLE_DATE|datetime %}
+                <strong class="rating-notice alert-notice">This app will be disabled if no content ratings are assigned by {{ pretty_date }}:</strong>
                 <a href="{{ rating_url }}">Set up Content Ratings</a>
               {% endtrans %}
             </li>
