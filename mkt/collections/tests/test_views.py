@@ -543,7 +543,8 @@ class TestCollectionViewSetDetail(BaseCollectionViewSetTest):
         storage.open(self.collection.image_path(), 'w').write(IMAGE_DATA)
         self.collection.update(has_image=True)
         res, data = self.detail(self.anon)
-        ok_(data['image'])
+        self.assertApiUrlEqual(data['image'],
+            '/rocketfuel/collections/%s/image.png' % self.collection.pk)
 
     def test_detail_slug(self):
         self.detail(self.client, collection_id=self.collection.slug)
@@ -1621,12 +1622,12 @@ class TestCollectionImageViewSet(RestOAuth):
         self.collection.update(has_image=True)
         return path
 
-    def test_image_url(self):
-        ok_(self.url.endswith('.png'))
-
-    def test_put(self, url=None):
-        if url is None:
-            url = self.url
+    def test_put(self, pk_or_slug=None):
+        if pk_or_slug is None:
+            pk_or_slug = self.collection.pk
+        self.url = reverse('collection-image-detail', kwargs={'pk': pk_or_slug})
+        self.assertApiUrlEqual(self.url,
+                               '/rocketfuel/collections/%s/image/' % pk_or_slug)
         self.grant_permission(self.profile, 'Collections:Curate')
         res = self.client.put(self.url, 'data:image/gif;base64,' + IMAGE_DATA)
         eq_(res.status_code, 204)
@@ -1637,9 +1638,7 @@ class TestCollectionImageViewSet(RestOAuth):
         assert im.format == 'PNG'
 
     def test_put_slug(self):
-        url = reverse('collection-image-detail',
-                      kwargs={'pk': self.collection.slug})
-        self.test_put(url)
+        self.test_put(pk_or_slug=self.collection.slug)
 
     def test_put_non_data_uri(self):
         self.grant_permission(self.profile, 'Collections:Curate')
@@ -1657,12 +1656,41 @@ class TestCollectionImageViewSet(RestOAuth):
         res = self.client.put(self.url, 'some junk')
         eq_(res.status_code, 403)
 
-    def test_get(self):
+    def _test_get(self):
         if not settings.XSENDFILE:
             raise SkipTest
         img_path = self.add_img()
         res = self.client.get(self.url)
+        eq_(res.status_code, 200)
         eq_(res[settings.XSENDFILE_HEADER], img_path)
+
+    def test_get(self):
+        self.assertApiUrlEqual(self.url,
+            '/rocketfuel/collections/%s/image/' % self.collection.pk)
+        self._test_get()
+
+    def test_get_slug(self):
+        slug = self.collection.slug
+        self.url = reverse('collection-image-detail', kwargs={'pk': slug})
+        self.assertApiUrlEqual(self.url,
+                               '/rocketfuel/collections/%s/image/' % slug)
+        self._test_get()
+
+    def test_get_png(self):
+        pk = self.collection.pk
+        self.url = reverse('collection-image-detail',
+                           kwargs={'pk': pk, 'format': 'png'})
+        self.assertApiUrlEqual(self.url,
+                               '/rocketfuel/collections/%s/image.png' % pk)
+        self._test_get()
+
+    def test_get_png_slug(self):
+        slug = self.collection.slug
+        self.url = reverse('collection-image-detail',
+                           kwargs={'pk': slug, 'format': 'png'})
+        self.assertApiUrlEqual(self.url,
+                               '/rocketfuel/collections/%s/image.png' % slug)
+        self._test_get()
 
     def test_get_no_image(self):
         res = self.client.get(self.url)

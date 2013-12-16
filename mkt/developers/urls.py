@@ -7,7 +7,7 @@ from lib.misc.urlconf_decorator import decorate
 
 import amo
 from amo.decorators import write
-from mkt.api.base import AppRouter
+from mkt.api.base import SubRouter
 from mkt.developers.api import ContentRatingList, ContentRatingsPingback
 from mkt.developers.api_payments import (
     AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
@@ -179,7 +179,7 @@ api_payments.register(r'upsell', UpsellViewSet, base_name='app-upsell')
 api_payments.register(r'app', AddonPaymentAccountViewSet,
                       base_name='app-payment-account')
 
-app_payments = AppRouter()
+app_payments = SubRouter()
 app_payments.register(r'payments', PaymentViewSet, base_name='app-payments')
 app_payments.register(r'payments/status', PaymentCheckViewSet,
                       base_name='app-payments-status')

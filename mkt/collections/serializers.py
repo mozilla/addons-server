@@ -117,6 +117,7 @@ class CollectionSerializer(serializers.ModelSerializer):
     image = HyperlinkedRelatedOrNullField(
         source='*',
         view_name='collection-image-detail',
+        format='png',
         predicate=lambda o: o.has_image)
     carrier = SlugChoiceField(required=False, empty=None,
         choices_dict=mkt.carriers.CARRIER_MAP)

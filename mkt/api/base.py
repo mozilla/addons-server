@@ -1,7 +1,6 @@
 import functools
 import json
 
-from django.conf.urls.defaults import url
 from django.db.models.sql import EmptyResultSet
 
 import commonware.log
@@ -10,7 +9,8 @@ from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin
 from rest_framework.routers import Route, SimpleRouter
 from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 log = commonware.log.getLogger('z.api')
 
@@ -51,7 +51,14 @@ def check_potatocaptcha(data):
             return Response(json.dumps({'sprout': 'Invalid value'}), 400)
 
 
-class AppRouter(SimpleRouter):
+class SubRouter(SimpleRouter):
+    """
+    Like SimpleRouter, but with the lookup before the prefix, so that it can be
+    easily used for sub-actions that are children of a main router.
+
+    This is a convenient way of linking one or more viewsets to a parent one
+    without having to set multiple @action and @link manually.
+    """
     routes = [
         # List route.
         Route(
@@ -79,49 +86,31 @@ class AppRouter(SimpleRouter):
     ]
 
 
-class SlugRouter(SimpleRouter):
+class SubRouterWithFormat(SubRouter):
+    """
+    SubRouter that also adds the optional format to generated URL patterns.
 
+    This is similar to DRF's DefaultRouter, except it's a SubRouter and we don't
+    respect the trailing_slash parameter with the URLs containing the format
+    parameter, because that'd make ugly, weird URLs.
+    """
     def get_urls(self):
-        """
-        Use the registered viewsets to generate a list of URL patterns.
+        # Keep trailing slash value...
+        trailing_slash = self.trailing_slash
 
-        We can't use the superclass' implementation of get_urls since
-        we want slug and pk urls for some resources, and it assumes
-        one url per resource.
-        """
-        ret = []
+        # Generate base URLs without format.
+        base_urls = super(SubRouterWithFormat, self).get_urls()
 
-        for prefix, viewset, basename in self.registry:
-            routes = self.get_routes(viewset)
+        # Generate the same URLs, but forcing to omit the trailing_slash.
+        self.trailing_slash = ''
+        extra_urls = super(SubRouterWithFormat, self).get_urls()
 
-            for route in routes:
-                # Only actions which actually exist on the viewset will be
-                # bound.
-                mapping = self.get_method_map(viewset, route.mapping)
-                if not mapping:
-                    continue
+        # Reset trailing slash and add format to our extra URLs.
+        self.trailing_slash = trailing_slash
+        extra_urls = format_suffix_patterns(extra_urls, suffix_required=True)
 
-                # Build the url pattern
-                if route.name.endswith('detail'):
-                    slug_field = getattr(viewset, 'slug_lookup', None)
-                    ret.append(self.create_url(prefix, viewset, basename,
-                                               route, mapping, '(?P<pk>\d+)'))
-                    if slug_field:
-                        ret.append(self.create_url(
-                            prefix, viewset, basename, route, mapping,
-                            '(?P<%s>[^/<>"\']+)' % (slug_field,)))
-
-                else:
-                    ret.append(self.create_url(prefix, viewset, basename,
-                                               route, mapping))
-        return ret
-
-    def create_url(self, prefix, viewset, basename, route, mapping, lookup=''):
-        regex = route.url.format(prefix=prefix, lookup=lookup,
-                                 trailing_slash=self.trailing_slash)
-        view = viewset.as_view(mapping, **route.initkwargs)
-        name = route.name.format(basename=basename)
-        return url(regex, view, name=name)
+        # Return the addition of both lists of URLs.
+        return base_urls + extra_urls
 
 
 class MarketplaceView(object):
@@ -181,8 +170,12 @@ def cors_api_view(methods):
 
 class SlugOrIdMixin(object):
     """
-    Because the `SlugRouter` is overkill. If the name of your
-    `slug` is called something else, override `self.slug_field`.
+    Mixin that allows you to pass slugs instead of pk in your URLs. Use with any
+    router or urlpattern that relies on a relaxed regexp for pks, like
+    (?P<pk>[^/]+) (DRF does this by default).
+
+    If the name of your `slug` is called something else, override
+    `self.slug_field`.
     """
 
     def get_object(self, queryset=None):

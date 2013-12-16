@@ -206,8 +206,8 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         eq_(data['image'], None)
         self.collection.update(has_image=True)
         data = self.serializer.to_native(self.collection)
-        ok_(data['image'].startswith(reverse(
-            'collection-image-detail', kwargs={'pk': self.collection.id})))
+        self.assertApiUrlEqual(data['image'],
+            '/rocketfuel/collections/%s/image.png' % self.collection.pk)
 
     def test_wrong_default_language_serialization(self):
         # The following is wrong because we only accept the 'en-us' form.

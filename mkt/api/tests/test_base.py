@@ -8,13 +8,14 @@ from nose.tools import eq_
 from rest_framework.decorators import (authentication_classes,
                                        permission_classes)
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
 from test_utils import RequestFactory
 
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
 
-from mkt.api.base import cors_api_view
+from mkt.api.base import cors_api_view, SubRouterWithFormat
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.webapps.api import AppViewSet
 
@@ -72,3 +73,40 @@ class TestCORSWrapper(TestCase):
 
 class Form(forms.Form):
     app = forms.ChoiceField(choices=(('valid', 'valid'),))
+
+
+class TestSubRouterWithFormat(TestCase):
+
+    def test_format_is_included(self):
+        router = SubRouterWithFormat()
+        router.register('foo', ModelViewSet, base_name='bar')
+        expected = [
+            {'name': 'bar-list', 'pattern': '^(?P<pk>[^/]+)/foo/$' },
+            {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/]+)/foo/$' },
+            {'name': 'bar-list',
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z]+)$' },
+            {'name': 'bar-detail',
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z]+)$'},
+        ]
+        actual = [{
+            'name': url.name, 'pattern': url.regex.pattern
+        } for url in router.urls]
+        for i, _ in enumerate(expected):
+            eq_(actual[i], expected[i])
+
+    def test_format_is_included_no_trailing_slashes(self):
+        router = SubRouterWithFormat(trailing_slash=False)
+        router.register('foo', ModelViewSet, base_name='bar')
+        expected = [
+            {'name': 'bar-list', 'pattern': '^(?P<pk>[^/.]+)/foo$' },
+            {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/.]+)/foo$' },
+            {'name': 'bar-list',
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z]+)$' },
+            {'name': 'bar-detail',
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z]+)$'},
+        ]
+        actual = [{
+            'name': url.name, 'pattern': url.regex.pattern
+        } for url in router.urls]
+        for i, _ in enumerate(expected):
+            eq_(actual[i], expected[i])
