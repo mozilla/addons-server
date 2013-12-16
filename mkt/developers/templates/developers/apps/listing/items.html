@@ -65,12 +65,14 @@
             {{ device_list(addon) }}
             <a href="{{ addon.get_dev_url('payments') }}#edit-app-basic">{{ _('Change Devices') }}</a>
           </li>
-          {% if waffle.switch('iarc') and not addon.is_rated() and addon.is_public() %}
+
+          {# Content ratings disable message. #}
+          {% if not addon.is_fully_complete()[1]['content_ratings'] and addon.is_public() and not passed_iarc_app_disable_date() %}
             <li class="ratings">
-              {% trans %}
-                <strong class="rating-notice">This app may be disabled in the future if no content ratings are assigned by then:</strong>
+              {% trans rating_url=addon.get_dev_url('ratings') %}
+                <strong class="rating-notice">This app will be disabled if no content ratings are assigned by April 15th:</strong>
+                <a href="{{ rating_url }}">Set up Content Ratings</a>
               {% endtrans %}
-              <a href="{{ addon.get_dev_url('ratings') }}">{{ _('Set up Content Ratings') }}</a>
             </li>
           {% endif %}
       {% endif %}
