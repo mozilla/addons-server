@@ -801,6 +801,28 @@ class TestFeaturedCollections(BaseFeaturedTests):
         self.test_apps_included()
 
         # We are only dealing with one collection with only one app inside,
+        # our mock of the method that serializes app data from the db should
+        # only have been called once.
+        eq_(mock_field_to_native.call_count, 1)
+
+    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
+    def test_limit_preview(self, mock_field_to_native):
+        """
+        Like test_limit, except we are in preview mode, so we shouldn't be using
+        ES for apps. The mock is adjusted accordingly.
+        """
+        mock_field_to_native.return_value = None
+        self.col.add_app(self.app)
+        self.col = Collection.objects.create(
+            name='Me', description='Hello', collection_type=self.col_type,
+            category=self.cat, is_public=True, region=mkt.regions.US.id)
+
+        # Call standard test method that adds the app and tests the result, but
+        # make sure we're in preview mode.
+        self.qs['preview'] = True
+        self.test_apps_included()
+
+        # We are only dealing with one collection with only one app inside,
         # our mock of the method that serializes app data from ES should only
         # have been called once.
         eq_(mock_field_to_native.call_count, 1)

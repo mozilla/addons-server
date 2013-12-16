@@ -131,8 +131,12 @@ class FeaturedSearchView(SearchView):
         else:
             qs = Collection.public.all()
         qs = CollectionFilterSetWithFallback(filters, queryset=qs).qs
-        serializer = CollectionSerializer(qs[:limit], many=True,
-            context={'request': request, 'view': self, 'use-es-for-apps': True})
+        preview_mode = filters.get('preview', False)
+        serializer = CollectionSerializer(qs[:limit], many=True, context={
+            'request': request,
+            'view': self,
+            'use-es-for-apps': not preview_mode
+        })
         return serializer.data, getattr(qs, 'filter_fallback', None)
 
     def get(self, request, *args, **kwargs):
