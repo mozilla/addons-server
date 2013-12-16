@@ -1,3 +1,4 @@
+from mock import patch
 from nose.tools import eq_
 
 import amo.tests
@@ -22,9 +23,11 @@ class TestCollection(amo.tests.TestCase):
         self.collection = Collection.objects.all()[0]
         self.collection.save()
 
-    def _add_apps(self):
+    @patch('mkt.collections.models.index_webapps.delay')
+    def _add_apps(self, mocked_index_webapps):
         for app in self.apps:
             self.collection.add_app(app)
+            mocked_index_webapps.assert_called_with([app.pk])
 
     def _generate_apps(self):
         self.apps = [amo.tests.app_factory() for n in xrange(1, 5)]
@@ -40,15 +43,18 @@ class TestCollection(amo.tests.TestCase):
         self.collection = Collection.objects.create(**self.collection_data)
         self.test_collection()
 
-    def test_add_app_order_override(self):
+    @patch('mkt.collections.models.index_webapps.delay')
+    def test_add_app_order_override(self, mocked_index_webapps):
         self._generate_apps()
 
         added = self.collection.add_app(self.apps[1], order=3)
+        mocked_index_webapps.assert_called_with([self.apps[1].pk])
         eq_(added.order, 3)
         eq_(added.app, self.apps[1])
         eq_(added.collection, self.collection)
 
         added = self.collection.add_app(self.apps[2], order=1)
+        mocked_index_webapps.assert_called_with([self.apps[2].pk])
         eq_(added.order, 1)
         eq_(added.app, self.apps[2])
         eq_(added.collection, self.collection)
@@ -102,6 +108,17 @@ class TestCollection(amo.tests.TestCase):
                             [self.apps[1], self.apps[3]])
         eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
             [1, 3])
+
+    @patch('mkt.collections.models.index_webapps.delay')
+    def test_apps_reorder(self, mocked_index_webapps):
+        self._generate_apps()
+        self._add_apps()
+        reordered_pks = [self.apps[3].pk, self.apps[2].pk,
+                         self.apps[0].pk, self.apps[1].pk]
+        self.collection.reorder(reordered_pks)
+        self.assertSetEqual(self.collection.apps().values_list('pk', flat=True),
+            reordered_pks)
+        mocked_index_webapps.assert_called_with(reordered_pks)
 
     def test_app_deleted(self):
         collection = self.collection
