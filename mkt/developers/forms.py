@@ -1133,7 +1133,7 @@ class PreloadTestPlanForm(happyforms.Form):
 
 class IARCGetAppInfoForm(happyforms.Form):
     submission_id = forms.CharField()
-    security_code = forms.CharField()
+    security_code = forms.CharField(max_length=10)
 
     def clean_submission_id(self):
         submission_id = (
@@ -1163,6 +1163,14 @@ class IARCGetAppInfoForm(happyforms.Form):
 
         if data.get('rows'):
             row = data['rows'][0]
+
+            if 'submission_id' not in row:
+                # [{'ActionStatus': 'No records found. Please try another
+                #                   'criteria.', 'rowId: 1}].
+                msg = _('Invalid submission ID or security code.')
+                self._errors['submission_id'] = self.error_class([msg])
+                raise forms.ValidationError(msg)
+
             # We found a rating, so store the id and code for future use.
             app.set_iarc_info(iarc_id, iarc_code)
             app.set_content_ratings(row.get('ratings', {}))
@@ -1170,7 +1178,7 @@ class IARCGetAppInfoForm(happyforms.Form):
             app.set_interactives(row.get('interactives', []))
 
         else:
-            msg = _('Content rating record not found.')
+            msg = _('Invalid submission ID or security code.')
             self._errors['submission_id'] = self.error_class([msg])
             raise forms.ValidationError(msg)
 
