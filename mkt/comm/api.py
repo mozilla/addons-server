@@ -14,7 +14,7 @@ from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.parsers import FormParser, JSONParser
 from rest_framework.permissions import BasePermission
-from rest_framework.relations import PrimaryKeyRelatedField, RelatedField
+from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.viewsets import GenericViewSet
@@ -62,7 +62,7 @@ class NoteSerializer(ModelSerializer):
 
 class AddonSerializer(ModelSerializer):
     name = CharField()
-    thumbnail_url = RelatedField('thumbnail_url')
+    thumbnail_url = SerializerMethodField('get_icon')
     url = CharField(source='get_absolute_url')
     review_url = SerializerMethodField('get_review_url')
 
@@ -70,6 +70,9 @@ class AddonSerializer(ModelSerializer):
         model = Addon
         fields = ('name', 'url', 'thumbnail_url', 'app_slug', 'slug',
                   'review_url')
+
+    def get_icon(self, app):
+        return app.get_icon_url(64)
 
     def get_review_url(self, obj):
         return reverse('reviewers.apps.review', args=[obj.app_slug])
