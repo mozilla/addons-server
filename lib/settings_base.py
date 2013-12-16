@@ -1081,6 +1081,7 @@ CELERY_ROUTES = {
     'mkt.inapp_pay.tasks.fetch_product_image': {'queue': 'priority'},
     'mkt.webapps.tasks.index_webapps': {'queue': 'priority'},
     'mkt.webapps.tasks.unindex_webapps': {'queue': 'priority'},
+    'stats.tasks.update_monolith_stats': {'queue': 'priority'},
     'users.tasks.index_users': {'queue': 'priority'},
     'users.tasks.unindex_users': {'queue': 'priority'},
     'versions.tasks.update_supported_locales_single': {'queue': 'priority'},
