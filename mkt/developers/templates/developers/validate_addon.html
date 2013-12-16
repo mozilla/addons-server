@@ -63,4 +63,16 @@
   </p>
 
   {% include 'developers/includes/testing_nav.html' %}
+
+  <section class="island primary manage">
+    <p>
+      {% trans repo='https://github.com/mozilla/app-validator' %}
+        The validator is a tool which can help test your app for errors, best
+        practices, and compliance with Marketplace guidelines before actually
+        submitting your app for review. If you're interested in how it works or
+        would like to run a copy of your own, the source code is available
+        <a href="{{ repo }}">on Github</a>.
+      {% endtrans %}
+    </p>
+  </section>
 {% endblock %}
