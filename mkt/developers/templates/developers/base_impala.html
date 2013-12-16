@@ -19,16 +19,33 @@
 {% block title %}{{ hub_page_title() }}{% endblock %}
 
 {% block outer_content %}
-  {% if addon and next_step %}
-    <div class="notification-box">
-      <p>
-        {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
-        {% trans next_url=next_step['url'], next_step_name=next_step['name'] %}
-          You must set up <a href="{{ next_url }}">{{ next_step_name }}</a> before your app can be reviewed or published.
-        {% endtrans %}
-      </p>
-    </div>
-  {% endif %}
+  {% block submit_next_step %}
+    {% if addon and next_step %}
+      <div class="notification-box">
+        <p>
+          {% if addon.is_incomplete() %}
+            {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
+            {% trans next_url=next_step['url'], next_step_name=next_step['name'] %}
+              You must set up <a href="{{ next_url }}">{{ next_step_name }}</a> before your app can be reviewed or published.
+            {% endtrans %}
+          {% elif next_step['url'] == addon.get_dev_url('ratings') %}
+            {# Pre-IARC apps. #}
+            {% if passed_iarc_app_disable_date() %}
+              {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
+              {% trans next_url=next_step['url'], next_step_name=next_step['name'] %}
+                You must set up <a href="{{ next_url }}">{{ next_step_name }}</a>.
+              {% endtrans %}
+            {% else %}
+              {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
+              {% trans next_url=next_step['url'], next_step_name=next_step['name'] %}
+                You must set up <a href="{{ next_url }}">{{ next_step_name }}</a> or else your app will be disabled on April 15th.
+              {% endtrans %}
+            {% endif %}
+          {% endif %}
+        </p>
+      </div>
+    {% endif %}
+  {% endblock %}
 
   {{ super() }}
 {% endblock %}

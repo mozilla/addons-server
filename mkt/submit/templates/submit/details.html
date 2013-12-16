@@ -6,6 +6,8 @@
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
+{% block submit_next_step %}{% endblock %}
+
 {% set icon_status_url = addon.get_dev_url('ajax.image.status') %}
 {% set icon_upload_url = addon.get_dev_url('upload_icon') %}
 {% set screenshot_upload_url = addon.get_dev_url('upload_preview') %}
