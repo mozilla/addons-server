@@ -59,7 +59,7 @@ class CollectionMembershipField(serializers.RelatedField):
         # have a view in the context and that the waffle flag is active. If
         # everything checks out, bypass the db and use ES to fetch apps for a
         # nice performance boost.
-        if ('use-es-for-apps' in self.context and 'view' in self.context
+        if (self.context.get('use-es-for-apps') and self.context.get('view')
             and waffle.switch_is_active('collections-use-es-for-apps')):
             return self.field_to_native_es(obj, request)
 

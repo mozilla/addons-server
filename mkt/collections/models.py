@@ -102,7 +102,7 @@ class Collection(amo.models.ModelBase):
         # Help django-cache-machine: it doesn't like many 2 many relations,
         # the cache is never invalidated properly when adding a new object.
         CollectionMembership.objects.invalidate(*qs)
-        index_webapps([app.pk])
+        index_webapps.delay([app.pk])
         return rval
 
     def remove_app(self, app):
@@ -116,7 +116,7 @@ class Collection(amo.models.ModelBase):
             return False
         else:
             membership.delete()
-            index_webapps([app.pk])
+            index_webapps.delay([app.pk])
             return True
 
     def reorder(self, new_order):
@@ -134,7 +134,7 @@ class Collection(amo.models.ModelBase):
         for order, pk in enumerate(new_order):
             CollectionMembership.objects.get(collection=self,
                                              app_id=pk).update(order=order)
-        index_webapps(new_order)
+        index_webapps.delay(new_order)
 
     def has_curator(self, userprofile):
         """
