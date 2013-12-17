@@ -11,7 +11,9 @@
     <link rel="icon" href="{{ media('fireplace/img/logos/128.png') }}" sizes="128x128">
     <link rel="icon" href="{{ media('fireplace/img/logos/64.png') }}" sizes="64x64">
     <link rel="icon" href="{{ media('fireplace/img/logos/32.png') }}" sizes="32x32">
-    <link rel="stylesheet" href="{{ media(repo + '/css/splash.styl.css') }}">
+    {% if repo == 'fireplace' -%}
+      <link rel="stylesheet" href="{{ media(repo + '/css/splash.styl.css') }}">
+    {%- endif %}
     <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
     <link title="Firefox Marketplace"
           rel="search" type="application/opensearchdescription+xml"
