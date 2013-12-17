@@ -148,10 +148,6 @@ header + .island {
         .secondary {
             float: left;
         }
-        &.island.hero, .island.hero {
-            width: 720px;
-            position: relative;
-        }
     }
     .secondary {
         float: right;
@@ -164,8 +160,17 @@ header + .island {
     }
 }
 
-.gutter .island {
-    float: none;
+.gutter {
+    .primary, .listing {
+        &.island.hero {
+            width: 720px;
+            position: relative;
+        }
+    }
+
+    .island {
+        float: none;
+    }
 }
 
 .secondary {
