@@ -44,8 +44,8 @@ class TestCSS(amo.tests.TestCase):
         context = {'request': request}
 
         # Should be called with `debug=True`.
-        fake_css.expects('css').with_args('mkt/consumer', False, True)
-        css(context, 'mkt/consumer')
+        fake_css.expects('css').with_args('mkt/devreg', False, True)
+        css(context, 'mkt/devreg')
 
     @mock.patch.object(settings, 'TEMPLATE_DEBUG', False)
     @fudge.patch('mkt.site.helpers.jingo_minify_helpers')
@@ -55,8 +55,8 @@ class TestCSS(amo.tests.TestCase):
         context = {'request': request}
 
         # Should be called with `debug=False`.
-        fake_css.expects('css').with_args('mkt/consumer', False, False)
-        css(context, 'mkt/consumer')
+        fake_css.expects('css').with_args('mkt/devreg', False, False)
+        css(context, 'mkt/devreg')
 
     @mock.patch.object(settings, 'TEMPLATE_DEBUG', True)
     @fudge.patch('mkt.site.helpers.jingo_minify_helpers')
@@ -66,8 +66,8 @@ class TestCSS(amo.tests.TestCase):
         context = {'request': request}
 
         # Should be called with `debug=True`.
-        fake_css.expects('css').with_args('mkt/consumer', False, True)
-        css(context, 'mkt/consumer')
+        fake_css.expects('css').with_args('mkt/devreg', False, True)
+        css(context, 'mkt/devreg')
 
     @mock.patch.object(settings, 'TEMPLATE_DEBUG', False)
     @fudge.patch('mkt.site.helpers.jingo_minify_helpers')
@@ -77,8 +77,8 @@ class TestCSS(amo.tests.TestCase):
         context = {'request': request}
 
         # Should be called with `debug=True`.
-        fake_css.expects('css').with_args('mkt/consumer', False, True)
-        css(context, 'mkt/consumer')
+        fake_css.expects('css').with_args('mkt/devreg', False, True)
+        css(context, 'mkt/devreg')
 
 
 class TestJS(amo.tests.TestCase):
@@ -91,8 +91,8 @@ class TestJS(amo.tests.TestCase):
         context = {'request': request}
 
         # Should be called with `debug=True`.
-        fake_js.expects('js').with_args('mkt/consumer', True, False, False)
-        js(context, 'mkt/consumer')
+        fake_js.expects('js').with_args('mkt/devreg', True, False, False)
+        js(context, 'mkt/devreg')
 
     @mock.patch.object(settings, 'TEMPLATE_DEBUG', False)
     @fudge.patch('mkt.site.helpers.jingo_minify_helpers')
@@ -102,8 +102,8 @@ class TestJS(amo.tests.TestCase):
         context = {'request': request}
 
         # Should be called with `debug=False`.
-        fake_js.expects('js').with_args('mkt/consumer', False, False, False)
-        js(context, 'mkt/consumer')
+        fake_js.expects('js').with_args('mkt/devreg', False, False, False)
+        js(context, 'mkt/devreg')
 
     @mock.patch.object(settings, 'TEMPLATE_DEBUG', True)
     @fudge.patch('mkt.site.helpers.jingo_minify_helpers')
@@ -113,8 +113,8 @@ class TestJS(amo.tests.TestCase):
         context = {'request': request}
 
         # Should be called with `debug=True`.
-        fake_js.expects('js').with_args('mkt/consumer', True, False, False)
-        js(context, 'mkt/consumer')
+        fake_js.expects('js').with_args('mkt/devreg', True, False, False)
+        js(context, 'mkt/devreg')
 
     @mock.patch.object(settings, 'TEMPLATE_DEBUG', False)
     @fudge.patch('mkt.site.helpers.jingo_minify_helpers')
@@ -124,5 +124,5 @@ class TestJS(amo.tests.TestCase):
         context = {'request': request}
 
         # Should be called with `debug=True`.
-        fake_js.expects('js').with_args('mkt/consumer', True, False, False)
-        js(context, 'mkt/consumer')
+        fake_js.expects('js').with_args('mkt/devreg', True, False, False)
+        js(context, 'mkt/devreg')
