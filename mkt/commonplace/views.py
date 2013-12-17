@@ -11,8 +11,6 @@ import jinja2
 
 from amo.utils import memoize
 
-from mkt.api.resources import waffles
-
 
 def get_build_id(repo):
     try:
@@ -54,7 +52,6 @@ def commonplace(request, repo, **kwargs):
     ctx = {
         'BUILD_ID': BUILD_ID,
         'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,
-        'flags': waffles(request),
         'repo': repo,
         'site_settings': site_settings,
     }

@@ -12,9 +12,11 @@ from django.test.utils import override_settings
 import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.api.resources import ErrorViewSet
+from mkt.site.fixtures import fixture
 
 
 class TestErrorService(RestOAuth):
+
     def setUp(self):
         if not settings.ENABLE_API_ERROR_SERVICE:
             # Because this service is activated in urls, you can't reliably
@@ -51,24 +53,29 @@ class TestErrorService(RestOAuth):
 
 
 class TestConfig(RestOAuth):
+    fixtures = fixture('user_2519')
 
     def setUp(self):
         super(TestConfig, self).setUp()
         self.url = reverse('site-config')
 
     def testConfig(self):
-        self.create_switch('allow-refund')
+        self.create_switch('allow-refund', db=True)
         res = self.anon.get(self.url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['settings']['SITE_URL'], 'http://testserver')
-        eq_(data['flags']['allow-refund'], True)
+
+        switch = data['waffle']['switches']['allow-refund']
+        eq_(switch['name'], 'allow-refund')
+        eq_(switch['active'], True)
 
     def test_cors(self):
         self.assertCORS(self.anon.get(self.url), 'get')
 
 
 class TestRegion(RestOAuth):
+
     def test_list(self):
         res = self.anon.get(reverse('regions-list'))
         eq_(res.status_code, 200)
@@ -101,6 +108,7 @@ class TestRegion(RestOAuth):
 
 
 class TestCarrier(RestOAuth):
+
     def test_list(self):
         res = self.anon.get(reverse('carriers-list'))
         eq_(res.status_code, 200)

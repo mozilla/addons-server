@@ -73,12 +73,16 @@ class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSMixin,
         return qs.order_by('-weight')
 
 
-def waffles(request):
-    switches = ['in-app-sandbox', 'allow-refund', 'rocketfuel']
-    flags = ['allow-b2g-paid-submission', 'override-region-exclusion']
-    res = dict([s, waffle.switch_is_active(s)] for s in switches)
-    res.update(dict([f, waffle.flag_is_active(request, f)] for f in flags))
-    return res
+class FlagSerializer(ModelSerializer):
+
+    class Meta:
+        model = waffle.models.Flag
+
+
+class SwitchSerializer(ModelSerializer):
+
+    class Meta:
+        model = waffle.models.Switch
 
 
 @memoize(prefix='config-settings')
@@ -95,10 +99,17 @@ def site_config(request):
     A resource that is designed to be exposed externally and contains
     settings or waffle flags that might be relevant to the client app.
     """
+    def data(cls):
+        as_list = cls(cls.Meta.model.objects.all().order_by('name')).data
+        return dict((d['name'], d) for d in as_list)
+
     return Response({
             # This is the git commit on IT servers.
             'version': getattr(settings, 'BUILD_ID_JS', ''),
-            'flags': waffles(request),
+            'waffle': {
+                'flags': data(FlagSerializer),
+                'switches': data(SwitchSerializer)
+            },
             'settings': get_settings(),
         })
 
