@@ -1,5 +1,3 @@
-import json
-
 from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import ImproperlyConfigured
 
@@ -85,9 +83,7 @@ class CanBeHeroAuthorization(BasePermission):
         if request.method == 'POST' and 'can_be_hero' in request.POST:
             return True
         elif request.method in ('PATCH', 'POST', 'PUT'):
-            request_json = json.loads(request.body) if request.body else {}
-            return (isinstance(request_json, dict) and 'can_be_hero' in
-                request_json.keys())
+            return 'can_be_hero' in request.DATA.keys()
         return False
 
     def has_object_permission(self, request, view, obj):
