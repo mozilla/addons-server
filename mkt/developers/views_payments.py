@@ -160,7 +160,7 @@ def payments(request, addon_id, addon, webapp=False):
                      or addon.premium_type == amo.ADDON_FREE_INAPP),
          'cannot_be_paid': cannot_be_paid,
          'paid_platform_names': paid_platform_names,
-         'is_incomplete': addon.status == amo.STATUS_NULL,
+         'has_incomplete_status': addon.status == amo.STATUS_NULL,
          'is_packaged': addon.is_packaged,
          # Bango values
          'account_form': provider.forms['account'](),

@@ -7,20 +7,14 @@
     <div class="info">
       {{ dev_heading(addon, amo) }}
 
-      {% if addon.is_incomplete() %}
-        <p class="incomplete">
-          {% set complete = addon.is_fully_complete() %}
-          {% if not complete[1].details %}
-            {{ _("This app's submission process has not been fully completed.") }}
-
-          {% elif not complete[1].content_ratings %}
-            {# Don't worry, the waffle is handled in is_fully_complete(). #}
-            {{ _('This app needs to get a content rating.') }}
-
-          {% elif not complete[1].payments %}
-            {{ _('This app needs a payment account set up.') }}
-          {% endif %}
-        </p>
+      {% if addon.has_incomplete_status() %}
+        {% set next_step = addon.next_step() %}
+        <p class="incomplete">{{ next_step['description'] }}</p>
+        <a href="next_step['url']">
+          {% trans step_name=next_step['name'] %}
+            Set up {{ step_name }}
+          {% endtrans %}
+        </a>
       {% else %}
         <ul class="item-details">
           {# L10n: {0} is a date. #}
@@ -65,7 +59,7 @@
           </li>
 
           {# Content ratings disable message. #}
-          {% if not addon.is_fully_complete()[1]['content_ratings'] and addon.is_public() and not passed_iarc_app_disable_date() %}
+          {% if not addon.content_ratings_complete() and addon.is_public() and not passed_iarc_app_disable_date() %}
             <li class="ratings">
               {% trans rating_url=addon.get_dev_url('ratings'), pretty_date=settings.IARC_APP_DISABLE_DATE|datetime %}
                 <strong class="rating-notice alert-notice">This app will be disabled if no content ratings are assigned by {{ pretty_date }}:</strong>

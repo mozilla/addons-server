@@ -19,11 +19,13 @@
 {% block title %}{{ hub_page_title() }}{% endblock %}
 
 {% block outer_content %}
+
+  {# Notification box for next step of app submission. #}
   {% block submit_next_step %}
-    {% if waffle.switch('iarc') and addon and next_step %}
+    {% if waffle.switch('iarc') and next_step %}
       <div class="notification-box">
         <p>
-          {% if addon.is_incomplete() %}
+          {% if addon.has_incomplete_status() %}
             {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
             {% trans next_url=next_step['url'], next_step_name=next_step['name'] %}
               You must set up <a href="{{ next_url }}">{{ next_step_name }}</a> before your app can be reviewed or published.

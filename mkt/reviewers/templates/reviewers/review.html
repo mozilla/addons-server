@@ -190,7 +190,7 @@
   <div id="review-actions" class="review-actions">
     <div class="action_nav">
       <ul>
-        {% set incomplete = product.is_incomplete() %}
+        {% set incomplete = product.has_incomplete_status() %}
         {% for (setting, action) in form.fields.action.choices %}
           <li{% if setting == 'public' and incomplete %} class="disabled"{% endif %}>
             <label for>

@@ -1,6 +1,6 @@
 <h5>{{ _('Actions') }}</h5>
 <ul>
-{% if addon.is_incomplete() %}
+{% if addon.has_incomplete_status() %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
       <a href="{{ url('submit.app.resume', addon.app_slug) }}" class="tooltip"

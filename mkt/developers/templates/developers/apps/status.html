@@ -60,7 +60,7 @@
             {{ status(_('Your app has been <b>approved but not yet published</b>.')|safe) }}
             {{ _('This app is waiting for your approval to be published.') }}
           {% endif %}
-          {% if not (addon.is_disabled or addon.is_incomplete()) %}
+          {% if not (addon.is_disabled or addon.has_incomplete_status()) %}
             <p><a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review"
                target="_blank">{{ _('Learn more') }}</a></p>
           {% endif %}

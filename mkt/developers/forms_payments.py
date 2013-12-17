@@ -270,7 +270,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             except AddonPremium.DoesNotExist:
                 pass
 
-            if (self.addon.status == amo.STATUS_NULL and
+            if (self.addon.has_incomplete_status() and
                 self.addon.is_fully_complete()):
                 _restore_app_status(self.addon, save=False)
 
@@ -549,7 +549,7 @@ class AccountListForm(happyforms.Form):
                 RereviewQueue.flag(
                     self.addon, amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
 
-            if self.addon.is_fully_complete():
+            if self.addon.has_incomplete_status() and self.addon.is_fully_complete():
                 _restore_app_status(self.addon)
 
 

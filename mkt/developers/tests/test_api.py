@@ -190,9 +190,9 @@ class TestContentRatingPingback(RestOAuth):
                              content_type='application/x-www-form-urlencoded')
         eq_(res.status_code, 415)
 
-    @mock.patch('mkt.webapps.models.Webapp.is_complete')
-    def test_post_content_ratings_pingback(self, is_complete_mock):
-        is_complete_mock.return_value = (True, {})
+    @mock.patch('mkt.webapps.models.Webapp.details_complete')
+    def test_post_content_ratings_pingback(self, details_mock):
+        details_mock.return_value = True
         eq_(self.app.status, amo.STATUS_NULL)
 
         res = self.anon.post(self.url, data=json.dumps(self.data))

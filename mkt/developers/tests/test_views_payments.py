@@ -353,7 +353,9 @@ class TestPayments(Patcher, amo.tests.TestCase):
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
 
-    def test_later_then_free(self):
+    @mock.patch('mkt.webapps.models.Webapp.is_fully_complete')
+    def test_later_then_free(self, complete_mock):
+        complete_mock.return_value = True
         self.webapp.update(premium_type=amo.ADDON_PREMIUM,
                            status=amo.STATUS_NULL,
                            highest_status=amo.STATUS_PENDING)
@@ -409,7 +411,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
                                          'regions': ALL_REGION_IDS}))
         eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
 
-    def test_free_with_inapp_without_account_is_incomplete(self):
+    def test_free_with_inapp_without_account_has_incomplete_status(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         # Toggle to paid
         self.client.post(
@@ -422,7 +424,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(self.get_webapp().status, amo.STATUS_NULL)
         eq_(AddonPremium.objects.all().count(), 0)
 
-    def test_paid_app_without_account_is_incomplete(self):
+    def test_paid_app_without_account_has_incomplete_status(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         # Toggle to paid
         self.client.post(

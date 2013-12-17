@@ -225,7 +225,7 @@ class ReviewApp(ReviewBase):
             perms=self.data['action_visibility'])
 
     def process_public(self):
-        if self.addon.is_incomplete():
+        if self.addon.has_incomplete_status():
             # Failsafe.
             return
 
@@ -248,7 +248,7 @@ class ReviewApp(ReviewBase):
 
     def process_public_waiting(self):
         """Make an app pending."""
-        if self.addon.is_incomplete():
+        if self.addon.has_incomplete_status():
             # Failsafe.
             return
 
@@ -268,7 +268,7 @@ class ReviewApp(ReviewBase):
 
     def process_public_immediately(self):
         """Approve an app."""
-        if self.addon.is_incomplete():
+        if self.addon.has_incomplete_status():
             # Failsafe.
             return
 

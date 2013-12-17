@@ -163,7 +163,6 @@ class TestPremiumForm(amo.tests.TestCase):
         marked as paid during submission) that this is handled gracefully.
 
         """
-
         # Don't give the app an initial price.
         AddonPremium.objects.create(addon=self.addon)
         self.addon.premium_type = amo.ADDON_PREMIUM
@@ -507,6 +506,8 @@ class TestPaidRereview(Patcher, amo.tests.TestCase):
             'user': self.user,
         }
 
+    @mock.patch('mkt.webapps.models.Webapp.is_fully_complete',
+                new=mock.MagicMock())
     def test_rereview(self):
         form = forms_payments.AccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
@@ -527,6 +528,8 @@ class TestPaidRereview(Patcher, amo.tests.TestCase):
             ['Select a valid choice. That choice is not one of the available '
              'choices.'])
 
+    @mock.patch('mkt.webapps.models.Webapp.is_fully_complete',
+                new=mock.MagicMock())
     def test_norereview(self):
         self.addon.update(highest_status=amo.STATUS_PENDING)
         form = forms_payments.AccountListForm(

@@ -408,10 +408,13 @@ class Webapp(Addon):
 
         amo.log(amo.LOG.MANIFEST_UPDATED, self)
 
-    def is_complete(self):
-        """See if the app is complete. If not, return why. This function does
-        not consider or include payments-related or IARC information.
+    def has_incomplete_status(self):
+        return self.is_incomplete()
 
+    def details_errors(self):
+        """
+        See if initial app submission is complete (details).
+        Returns list of reasons app may not be complete.
         """
         reasons = []
 
@@ -427,61 +430,87 @@ class Webapp(Addon):
         if not self.previews.count():
             reasons.append(_('You must upload at least one screenshot or '
                              'video.'))
+        return reasons
 
-        return not bool(reasons), reasons
+    def details_complete(self):
+        """
+        Checks if app detail submission is complete (first step of submit).
+        """
+        return not self.details_errors()
+
+    def is_rated(self):
+        return self.content_ratings.exists()
+
+    def content_ratings_complete(self):
+        """Checks for waffle."""
+        return not waffle.switch_is_active('iarc') or self.is_rated()
+
+    def has_payment_account(self):
+        """App doesn't have a payment account set up yet."""
+        try:
+            self.app_payment_account
+        except ObjectDoesNotExist:
+            return False
+        return True
+
+    def payments_complete(self):
+        """Also returns True if the app doesn't needs payments."""
+        return not self.needs_payment() or self.has_payment_account()
+
+    def completion_errors(self, ignore_ratings=False):
+        """
+        Compiles all submission steps into a single error report.
+
+        ignore_ratings -- doesn't check for content_ratings for cases in which
+                          content ratings were just created.
+        """
+        errors = {}
+
+        if not self.details_complete():
+            errors['details'] = self.details_errors()
+        if not ignore_ratings and not self.content_ratings_complete():
+            errors['content_ratings'] = _('You must set up content ratings.')
+        if not self.payments_complete():
+            errors['payments'] = _('You must set up a payment account.')
+
+        return errors
+
+    def completion_error_msgs(self):
+        """Returns submission error messages as a flat list."""
+        errors = self.completion_errors()
+        # details is a list of msgs instead of a string like others.
+        detail_errors = errors.pop('details', []) or []
+        return detail_errors + errors.values()
 
     def is_fully_complete(self, ignore_ratings=False):
         """
-        Central method to determine if app is fully complete. That is,
-        like `is_complete`, but considers payments-related and IARC
-        information.
-
-        ignore_ratings -- doesn't check for content_ratings for cases where
-                          content ratings were just created.
+        Wrapper to submission errors for readability and testability (mocking).
         """
-        is_complete = True
-        reasons = {
-            'details': True,  # False == required, True == okay.
-            'content_ratings': True,
-            'payments': True
-        }
-        if not self.is_complete()[0]:
-            is_complete = False
-            reasons['details'] = False
-        if (waffle.switch_is_active('iarc') and not ignore_ratings and
-            not self.is_rated()):
-            is_complete = False
-            reasons['content_ratings'] = False
-        if self.needs_payment() and not self.has_payment_account():
-            is_complete = False
-            reasons['payments'] = False
-
-        return is_complete, reasons
+        return not self.completion_errors(ignore_ratings)
 
     def next_step(self):
         """
         Gets the next step to fully complete app submission.
-        Similar to AppSubmissionChecklist, but don't need to keep state.
         """
-        is_complete, reasons = self.is_fully_complete()
-        next_step = {}
-
-        if not reasons['details']:
-            next_step['name'] = _('Details')
-            next_step['url'] = self.get_dev_url()
-
-        elif not reasons['content_ratings']:
-            next_step['name'] = _('Content Ratings')
-            next_step['url'] = self.get_dev_url('ratings')
-
-        elif not reasons['payments']:
-            next_step['name'] = _('Payments')
-            next_step['url'] = self.get_dev_url('payments')
-
-        return next_step
-
-    def is_rated(self):
-        return self.content_ratings.exists()
+        if not self.details_complete():
+            return {
+                'name': _('Details'),
+                'description': _('This app\'s submission process has not been '
+                                 'fully completed.'),
+                'url': self.get_dev_url(),
+            }
+        elif not self.content_ratings_complete():
+            return {
+                'name': _('Content Ratings'),
+                'description': _('This app needs to get a content rating.'),
+                'url': self.get_dev_url('ratings'),
+            }
+        elif not self.payments_complete():
+            return {
+                'name': _('Payments'),
+                'description': _('This app needs a payment account set up.'),
+                'url': self.get_dev_url('payments'),
+            }
 
     @property
     def is_offline(self):
@@ -495,14 +524,6 @@ class Webapp(Addon):
             return True
         manifest = self.get_manifest_json()
         return bool(manifest and 'appcache_path' in manifest)
-
-    def has_payment_account(self):
-        """App doesn't have a payment account set up yet."""
-        try:
-            self.app_payment_account
-        except ObjectDoesNotExist:
-            return False
-        return True
 
     def mark_done(self):
         """When the submission process is done, update status accordingly."""
@@ -1877,8 +1898,7 @@ class ContentRating(amo.models.ModelBase):
 
 def update_status_content_ratings(sender, instance, **kw):
     # Flips the app's status from NULL if it has everything else together.
-    if (instance.addon.is_incomplete() and
-        instance.addon.is_fully_complete()[0]):
+    if (instance.addon.has_incomplete_status() and instance.addon.is_fully_complete()):
         instance.addon.update(status=amo.STATUS_PENDING)
 
 

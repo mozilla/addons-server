@@ -35,9 +35,9 @@ class AppStatusSerializer(serializers.ModelSerializer):
             return attrs
 
         # An incomplete app's status can not be changed.
-        valid, reasons = self.object.is_fully_complete()
-        if not valid:
-            raise serializers.ValidationError(reasons)
+        if not self.object.is_fully_complete():
+            raise serializers.ValidationError(
+                self.object.completion_error_msgs())
 
         # Only some specific changes are possible depending on the app current
         # status.

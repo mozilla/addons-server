@@ -307,7 +307,7 @@ def content_ratings(request, addon_id, addon):
     # Logic for success msg since content ratings may have been created
     # asynchronously through the IARC tool.
     if 'ratings_last_modified' in request.session:
-        app_complete = addon.is_fully_complete()[0]
+        app_complete = addon.is_fully_complete()
         last_modified = request.session['ratings_last_modified']
         updated_last_modified = (
             addon.content_ratings.order_by('-modified')[0].modified)
