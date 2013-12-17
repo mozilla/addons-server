@@ -1,5 +1,5 @@
 /*
- * WARNING: THIS FILE IS MOST LIKELY OBSOLETE. SEE media/js/mkt/login.js
+ * WARNING: THIS FILE IS MOST LIKELY OBSOLETE. SEE media/js/devreg/login.js
  */
 
 

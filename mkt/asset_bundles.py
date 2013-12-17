@@ -85,30 +85,6 @@ CSS = {
         'css/devreg/legacy-paginator.styl',
         'css/devreg/files.styl',
     ),
-    'mkt/splash': (
-        'css/mkt/splash.styl',
-    ),
-    'mkt/consumer': (
-        'css/mkt/reset.styl',
-        'css/mkt/typography.styl',
-        'css/mkt/site.styl',
-        'css/mkt/forms.styl',
-        'css/mkt/header.styl',
-        'css/mkt/account-links.styl',
-        'css/mkt/buttons.styl',
-        'css/mkt/notification.styl',
-        'css/mkt/ratings.styl',
-        'css/mkt/menu.styl',
-        'css/mkt/infobox.styl',
-        'css/mkt/promo-grid.styl',
-        'css/mkt/overlay.styl',
-        'css/mkt/search.styl',
-        'css/mkt/paginator.styl',
-        'css/mkt/suggestions.styl',
-        'css/mkt/login.styl',
-        'css/mkt/purchase.styl',
-        'css/mkt/lightbox.styl',
-    ),
     'mkt/ecosystem': (
         'css/devreg/reset.styl',
         'css/devreg/consumer-typography.styl',
@@ -141,19 +117,6 @@ CSS = {
     ),
 }
 
-# Bundle extensions (e.g., desktop).
-CSS.update({
-    'mkt/consumer-desktop': CSS['mkt/consumer'] + (
-        # TODO: Split components into individual, appropriate stylesheets.
-        'css/mkt/desktop.styl',
-        'css/mkt/desktop-filters.styl',
-        'css/mkt/desktop-forms.styl',
-        'css/mkt/desktop-listing.styl',
-        'css/mkt/desktop-details.styl',
-        'css/mkt/desktop-ratings.styl',
-    ),
-})
-
 JS = {
     'mkt/devreg': (
         # tiny module loader
@@ -166,20 +129,20 @@ JS = {
         'js/lib/stick.js',
         'js/lib/csrf.js',
         'js/common/fakefilefield.js',
-        'js/mkt/gettext.js',
-        'js/mkt/tracking.js',
+        'js/devreg/gettext.js',
+        'js/devreg/tracking.js',
         'js/devreg/init.js',  # This one excludes buttons initialization, etc.
-        'js/mkt/modal.js',
-        'js/mkt/overlay.js',
-        'js/mkt/capabilities.js',
+        'js/devreg/modal.js',
+        'js/devreg/overlay.js',
+        'js/devreg/capabilities.js',
         'js/devreg/slugify.js',
         'js/devreg/formdata.js',
         'js/devreg/tooltip.js',
         'js/devreg/popup.js',
-        'js/mkt/login.js',
-        'js/mkt/notification.js',
-        'js/mkt/outgoing_links.js',
-        'js/mkt/utils.js',
+        'js/devreg/login.js',
+        'js/devreg/notification.js',
+        'js/devreg/outgoing_links.js',
+        'js/devreg/utils.js',
 
         'js/impala/serializers.js',
         'js/common/keys.js',
@@ -205,7 +168,7 @@ JS = {
         'js/devreg/payments.js',
 
         # For testing installs.
-        'js/mkt/apps.js',
+        'js/devreg/apps.js',
         'js/devreg/test-install.js',
 
         # IARC.
@@ -213,62 +176,6 @@ JS = {
 
         # Module initialization.
         'js/devreg/devreg_init.js',
-    ),
-    'mkt/consumer': (
-        # tiny module loader
-        'js/lib/amd.js',
-
-        'js/lib/jquery-1.9.1.js',
-        'js/lib/jquery.cookie.js',
-        'js/lib/underscore.js',
-        'js/lib/format.js',
-
-        # slider lib
-        'js/lib/flipsnap.js',
-
-        'js/mkt/tracking.js',
-        'js/mkt/utils.js',
-        'js/lib/csrf.js',
-        'js/mkt/gettext.js',
-        'js/zamboni/browser.js',
-        'js/mkt/init.js',
-        'js/lib/truncate.js',
-        'js/zamboni/truncation.js',
-        'js/common/keys.js',
-        'js/mkt/capabilities.js',
-        'js/impala/serializers.js',
-        'js/mkt/potatocaptcha.js',
-        'js/mkt/overlay.js',
-        'js/mkt/login.js',
-        'js/mkt/install.js',
-        'js/mkt/payments.js',
-        'js/mkt/buttons.js',
-        'js/mkt/search.js',
-        'js/mkt/apps.js',
-        'js/mkt/header.js',
-
-        # ui
-        'js/mkt/notification.js',
-
-        # Search suggestions.
-        'js/impala/ajaxcache.js',
-        'js/mkt/suggestions.js',
-        'js/mkt/mkt_suggestions.js',
-
-        # Account settings.
-        'js/mkt/account.js',
-        'js/mkt/feedback.js',
-
-        # Fix-up outgoing links.
-        'js/mkt/outgoing_links.js',
-
-        # Stick.
-        'js/lib/stick.js',
-
-        'js/mkt/prefetch.js',
-
-        # Module initialization.
-        'js/mkt/consumer_init.js',
     ),
     'mkt/reviewers': (
         'js/lib/highcharts.src.js',
@@ -278,13 +185,13 @@ JS = {
         'js/impala/formset.js',
         'js/lib/jquery.hoverIntent.js',
         'js/lib/jquery.zoomBox.js',
-        'js/mkt/themes_review.js',
-        'js/mkt/apps.js',
-        'js/mkt/payments.js',
-        'js/mkt/install.js',
-        'js/mkt/buttons.js',
-        'js/mkt/manifest.js',
-        'js/mkt/reviewers.js',
+        'js/devreg/themes_review.js',
+        'js/devreg/apps.js',
+        'js/devreg/payments.js',
+        'js/devreg/install.js',
+        'js/devreg/buttons.js',
+        'js/devreg/manifest.js',
+        'js/devreg/reviewers.js',
         'js/devreg/expandable.js',
         'js/devreg/mobile_review_actions.js',
         'js/common/fakefilefield.js',
@@ -293,37 +200,25 @@ JS = {
     ),
     'mkt/in-app-payments': (
         'js/lib/jquery-1.9.1.js',
-        'js/mkt/inapp_payments.js',
+        'js/devreg/inapp_payments.js',
         'js/lib/csrf.js',
         'js/impala/serializers.js',
-        'js/mkt/login.js',
+        'js/devreg/login.js',
     ),
     'mkt/lookup': (
         'js/common/keys.js',
         'js/impala/ajaxcache.js',
-        'js/mkt/suggestions.js',
-        'js/mkt/manifest.js',
-        'js/mkt/lookup-tool.js',
+        'js/devreg/suggestions.js',
+        'js/devreg/manifest.js',
+        'js/devreg/lookup-tool.js',
     ),
     'mkt/ecosystem': (
-        'js/mkt/ecosystem.js',
+        'js/devreg/ecosystem.js',
     ),
     'mkt/debug': (
         'js/debug/tinytools.js',
     ),
 }
-
-JS_desktop = list(JS['mkt/consumer'])
-if 'js/mkt/consumer_init.js' in JS_desktop:
-    JS_desktop.remove('js/mkt/consumer_init.js')
-JS_desktop = tuple(JS_desktop)
-
-JS.update({
-    'mkt/consumer-desktop': JS_desktop + (
-        # This must be the last JS file defined!
-        'js/mkt/consumer_init.js',
-    ),
-})
 
 
 def jquery_migrated():

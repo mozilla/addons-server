@@ -484,7 +484,6 @@ DOMAIN_METHODS = {
         ('media/js/common/**.js', 'javascript'),
         ('media/js/impala/**.js', 'javascript'),
         ('media/js/zamboni/**.js', 'javascript'),
-        ('media/js/mkt/**.js', 'javascript'),
         ('media/js/devreg/**.js', 'javascript'),
     ],
 }
@@ -837,7 +836,7 @@ MINIFY_BUNDLES = {
             'js/impala/formset.js',
             'js/lib/jquery.hoverIntent.js',
             'js/lib/jquery.zoomBox.js',
-            'js/mkt/themes_review.js',
+            'js/devreg/themes_review.js',
         ),
         'zamboni/files': (
             'js/lib/diff_match_patch_uncompressed.js',
