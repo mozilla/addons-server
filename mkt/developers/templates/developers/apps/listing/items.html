@@ -12,14 +12,12 @@
           {% set complete = addon.is_fully_complete() %}
           {% if not complete[1].details %}
             {{ _("This app's submission process has not been fully completed.") }}
-          {% endif %}
 
-          {% if not complete[1].content_ratings %}
+          {% elif not complete[1].content_ratings %}
             {# Don't worry, the waffle is handled in is_fully_complete(). #}
             {{ _('This app needs to get a content rating.') }}
-          {% endif %}
 
-          {% if not complete[1].payments %}
+          {% elif not complete[1].payments %}
             {{ _('This app needs a payment account set up.') }}
           {% endif %}
         </p>
