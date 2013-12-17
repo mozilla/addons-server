@@ -20,7 +20,7 @@
 
 {% block outer_content %}
   {% block submit_next_step %}
-    {% if addon and next_step %}
+    {% if waffle.switch('iarc') and addon and next_step %}
       <div class="notification-box">
         <p>
           {% if addon.is_incomplete() %}
