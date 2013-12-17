@@ -93,12 +93,15 @@ class Collection(amo.models.ModelBase):
         with the specified `order`. If not, it will be added to the end of the
         collection.
         """
+        qs = CollectionMembership.objects.filter(collection=self)
         if order is None:
-            qs = CollectionMembership.objects.filter(collection=self)
             aggregate = qs.aggregate(models.Max('order'))['order__max']
             order = aggregate + 1 if aggregate is not None else 0
         rval = CollectionMembership.objects.create(collection=self, app=app,
                                                    order=order)
+        # Help django-cache-machine: it doesn't like many 2 many relations,
+        # the cache is never invalidated properly when adding a new object.
+        CollectionMembership.objects.invalidate(*qs)
         index_webapps([app.pk])
         return rval
 

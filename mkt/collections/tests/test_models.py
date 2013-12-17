@@ -58,11 +58,50 @@ class TestCollection(amo.tests.TestCase):
     def test_apps(self):
         self._generate_apps()
 
+        # First fetch the apps. Depending CACHE_EMPTY_QUERYSETS an empty list
+        # will be cached, or not.
         self.assertSetEqual(self.collection.apps(), [])
-        self._add_apps()
+        eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
+            [])
+
+        # Add an app and re-check the apps list. Regardless of whether caching
+        # took place in the previous step, we should get a new, up to date apps
+        # list.
+        self.collection.add_app(self.apps[0])
+        self.assertSetEqual(self.collection.apps(), [self.apps[0]])
+        eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
+            [0])
+
+        # Add an app again. This time we know for sure caching took place in
+        # the previous step, and we still want to get the new, up to date apps
+        # list.
+        self.collection.add_app(self.apps[1])
+        self.assertSetEqual(self.collection.apps(),
+                            [self.apps[0], self.apps[1]])
+        eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
+            [0, 1])
+
+        # Add and test the rest of the apps in one go.
+        self.collection.add_app(self.apps[2])
+        self.collection.add_app(self.apps[3])
         self.assertSetEqual(self.collection.apps(), self.apps)
         eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
             [0, 1, 2, 3])
+
+    def test_remove_apps(self):
+        self._generate_apps()
+        self._add_apps()
+        self.assertSetEqual(self.collection.apps(), self.apps)
+        self.collection.remove_app(self.apps[0])
+        self.assertSetEqual(self.collection.apps(),
+                            [self.apps[1], self.apps[2], self.apps[3]])
+        eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
+            [1, 2, 3])
+        self.collection.remove_app(self.apps[2])
+        self.assertSetEqual(self.collection.apps(),
+                            [self.apps[1], self.apps[3]])
+        eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
+            [1, 3])
 
     def test_app_deleted(self):
         collection = self.collection
