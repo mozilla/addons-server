@@ -83,7 +83,8 @@ class CanBeHeroAuthorization(BasePermission):
         if request.method == 'POST' and 'can_be_hero' in request.POST:
             return True
         elif request.method in ('PATCH', 'POST', 'PUT'):
-            return 'can_be_hero' in request.DATA.keys()
+            return (isinstance(request.DATA, dict) and 'can_be_hero' in
+                    request.DATA.keys())
         return False
 
     def has_object_permission(self, request, view, obj):
