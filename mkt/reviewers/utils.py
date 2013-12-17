@@ -143,7 +143,7 @@ class ReviewBase(object):
         elif not dt and br:
             data['tested'] = 'Tested with %s' % br
 
-        if self.comm_thread and waffle.switch_is_active('comm-dashboard'):
+        if waffle.switch_is_active('comm-dashboard'):
             # Send via Commbadge.
             recipients = get_recipients(self.comm_note)
 
@@ -229,6 +229,9 @@ class ReviewApp(ReviewBase):
             # Failsafe.
             return
 
+        # Create thread.
+        self._create_comm_note(comm.APPROVAL)
+
         # Hold onto the status before we change it.
         status = self.addon.status
         if self.addon.make_public == amo.PUBLIC_IMMEDIATELY:
@@ -239,11 +242,9 @@ class ReviewApp(ReviewBase):
         if self.in_escalate:
             EscalationQueue.objects.filter(addon=self.addon).delete()
 
-        # Create thread.
-        self._create_comm_note(comm.APPROVAL)
-
         # Assign reviewer incentive scores.
-        return ReviewerScore.award_points(self.request.amo_user, self.addon, status)
+        return ReviewerScore.award_points(self.request.amo_user, self.addon,
+                                          status)
 
     def process_public_waiting(self):
         """Make an app pending."""
@@ -326,8 +327,8 @@ class ReviewApp(ReviewBase):
         log.info(u'Sending email for %s' % self.addon)
 
         # Assign reviewer incentive scores.
-        return ReviewerScore.award_points(self.request.amo_user, self.addon, status,
-                                          in_rereview=self.in_rereview)
+        return ReviewerScore.award_points(self.request.amo_user, self.addon,
+                                          status, in_rereview=self.in_rereview)
 
     def process_escalate(self):
         """Ask for escalation for an app."""
