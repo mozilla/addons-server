@@ -178,25 +178,24 @@ JS = {
         'js/devreg/devreg_init.js',
     ),
     'mkt/reviewers': (
-        'js/lib/highcharts.src.js',
-        'js/zamboni/storage.js',
+        'js/lib/highcharts.src.js',  # Used by editors.js
+        'js/zamboni/storage.js',  # Used by editors.js
         'js/common/buckets.js',
-        'js/zamboni/editors.js',
-        'js/impala/formset.js',
-        'js/lib/jquery.hoverIntent.js',
-        'js/lib/jquery.zoomBox.js',
-        'js/devreg/themes_review.js',
-        'js/devreg/apps.js',
-        'js/devreg/payments.js',
-        'js/devreg/install.js',
-        'js/devreg/buttons.js',
-        'js/devreg/manifest.js',
-        'js/devreg/reviewers.js',
-        'js/devreg/expandable.js',
-        'js/devreg/mobile_review_actions.js',
+        'js/devreg/reviewers/editors.js',
+        'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox
+        'js/lib/jquery.zoomBox.js',  # Used by themes_review
+        'js/devreg/reviewers/themes_review.js',
+        'js/devreg/apps.js',  # Used by install.js
+        'js/devreg/reviewers/payments.js',
+        'js/devreg/reviewers/install.js',
+        'js/devreg/reviewers/buttons.js',
+        'js/devreg/manifest.js',  # Used by reviewers.js
+        'js/devreg/reviewers/reviewers.js',
+        'js/devreg/reviewers/expandable.js',
+        'js/devreg/reviewers/mobile_review_actions.js',
         'js/common/fakefilefield.js',
-        'js/common/formsets.js',
-        'js/devreg/reviewers_init.js',
+        'js/common/formsets.js',  # TODO: Not used? Only seen in devreg/init.js
+        'js/devreg/reviewers/reviewers_init.js',
     ),
     'mkt/in-app-payments': (
         'js/lib/jquery-1.9.1.js',
