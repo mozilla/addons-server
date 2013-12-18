@@ -16123,9 +16123,7 @@ msgstr "È necessario caricare almeno uno screenshot o un video."
 
 #: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr ""
-"Le dimensioni di quest'app pacchettizzata sono eccessive. La dimensione del "
-"file non può superare %s."
+msgstr "Le dimensioni di quest'app pacchettizzata sono eccessive. La dimensione del file non può superare %s."
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."

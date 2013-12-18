@@ -6479,9 +6479,7 @@ msgstr "Indice de la documentación de los complementos"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:244
 msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Extensions landing page."
-msgstr ""
-"Si no puedes encontrar lo que buscas en los artículos de la parte superior, "
-"prueba en la página principal de extensiones de Mozilla Developer Center."
+msgstr "Si no puedes encontrar lo que buscas en los artículos de la parte superior, prueba en la página principal de extensiones de Mozilla Developer Center."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:12
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner's guides."
@@ -6783,9 +6781,7 @@ msgstr "Índice de documentación sobre extensiones de Thunderbird"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:68
 msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Thunderbird extensions landing page."
-msgstr ""
-"Si no encuentras lo que buscas en los artículos anteriores, prueba la página "
-"principal de extensiones de Thunderbird de Mozilla Developer Center."
+msgstr "Si no encuentras lo que buscas en los artículos anteriores, prueba la página principal de extensiones de Thunderbird de Mozilla Developer Center."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:75
 msgid "Developing Add-ons for Mobile"
@@ -9077,9 +9073,7 @@ msgstr "Tu tema se ha enviado a la Cola de revisión. Recibirás un correo una v
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:19
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
-"Proporciona más detalles sobre tu tema <a href=\"%(edit_url)s\">editando la "
-"lista</a>."
+msgstr "Proporciona más detalles sobre tu tema <a href=\"%(edit_url)s\">editando la lista</a>."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -10911,11 +10905,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, más conocido como \"AMO\", es el sitio oficial de Mozilla "
-"para los complementos de software de Mozilla, como Firefox, Thunderbird y "
-"SeaMonkey. Los complementos te permiten añadir nuevas características y "
-"cambiar el funcionamiento de tu navegador o aplicación. Echa un vistazo y "
-"explora las miles de maneras de personalizar tu experiencia en la Web."
+"addons.mozilla.org, más conocido como \"AMO\", es el sitio oficial de Mozilla para los complementos de software de Mozilla, como Firefox, Thunderbird y SeaMonkey. Los complementos te permiten "
+"añadir nuevas características y cambiar el funcionamiento de tu navegador o aplicación. Echa un vistazo y explora las miles de maneras de personalizar tu experiencia en la Web."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -10926,12 +10917,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"Los complementos listados aquí han sido creados por miles de desarrolladores "
-"de nuestra comunidad, desde aficionados particulares hasta grandes "
-"corporaciones. Todos los complementos listados públicamente son revisados "
-"por un equipo de editores antes de ser publicados. Los complementos marcados "
-"como experimentales no han sido comprobados y debes tener cuidado si "
-"decides instalarlos."
+"Los complementos listados aquí han sido creados por miles de desarrolladores de nuestra comunidad, desde aficionados particulares hasta grandes corporaciones. Todos los complementos listados "
+"públicamente son revisados por un equipo de editores antes de ser publicados. Los complementos marcados como experimentales no han sido comprobados y debes tener cuidado si decides instalarlos."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
@@ -16134,9 +16121,7 @@ msgstr "Debes subir al menos una captura de pantalla o video."
 
 #: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr ""
-"La aplicación empaquetada es demasiado grande para su envío. Los paquetes "
-"deben ser menores de %s."
+msgstr "La aplicación empaquetada es demasiado grande para su envío. Los paquetes deben ser menores de %s."
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."
@@ -16810,9 +16795,7 @@ msgstr "Configurar pagos"
 
 #: mkt/developers/templates/developers/apps/status.html:35
 msgid "This app is <b>incomplete</b> because it is missing content ratings."
-msgstr ""
-"Esta aplicación está <b>incompleta</b> porque le falta la calificación del "
-"contenido."
+msgstr "Esta aplicación está <b>incompleta</b> porque le falta la calificación del contenido."
 
 #: mkt/developers/templates/developers/apps/status.html:37 mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
 msgid "Set Up Content Ratings"
@@ -17051,10 +17034,7 @@ msgstr "Escribe direcciones de correo electrónico separadas por comas"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-"Las etiquetas ayudan a los usuarios a encontrar tu aplicación y deben tener "
-"descriptores cortos como pestañas, barra de herramientas, o Twitter. Puedes "
-"tener un máximo de {0} etiquetas."
+msgstr "Las etiquetas ayudan a los usuarios a encontrar tu aplicación y deben tener descriptores cortos como pestañas, barra de herramientas, o Twitter. Puedes tener un máximo de {0} etiquetas."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:123 mkt/developers/templates/developers/apps/listing/item_actions_app.html:69
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11
@@ -17405,32 +17385,23 @@ msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
-"Para que tu aplicación aparezca en Marketplace, debes conseguir un "
-"certificado de la Coalición Internacional de Clasificación por Edades (IARC, "
-"por sus siglas en inglés) . Al hacer clic en el botón de abajo se abrirá "
-"una nueva ventana donde podrás rellenar un breve cuestionario tipo sí/no "
-"sobre el contenido de tu aplicación. Una vez finalizado, la ventana se "
-"cerrará y tu aplicación tendrá entonces su clasificación por edades."
+"Para que tu aplicación aparezca en Marketplace, debes conseguir un certificado de la Coalición Internacional de Clasificación por Edades (IARC, por sus siglas en inglés) . Al hacer clic en el botón "
+"de abajo se abrirá una nueva ventana donde podrás rellenar un breve cuestionario tipo sí/no sobre el contenido de tu aplicación. Una vez finalizado, la ventana se cerrará y tu aplicación tendrá "
+"entonces su clasificación por edades."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
-"Al utilizar la herramienta de certificación de contenido IARC, te "
-"comprometes a cumplir con la <a href=\"%(privacy_url)s\">Política de "
-"privacidad</a> y los <a href=\"%(tos_url)s\">Términos del servicio</a>."
+"Al utilizar la herramienta de certificación de contenido IARC, te comprometes a cumplir con la <a href=\"%(privacy_url)s\">Política de privacidad</a> y los <a href=\"%(tos_url)s\">Términos del "
+"servicio</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr ""
-"Terminado el proceso de la clasificación de contenido con IARC, serás "
-"redireccionado a la <a href=\"%(ratings_url)s\">página de clasificación de "
-"contenido</a> de tu aplicación."
+msgstr "Terminado el proceso de la clasificación de contenido con IARC, serás redireccionado a la <a href=\"%(ratings_url)s\">página de clasificación de contenido</a> de tu aplicación."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
-msgstr ""
-"Lo sentimos, se ha producido un error en nuestro proceso de clasificación de "
-"contenido. Sigue intentándolo o prueba pasados unos minutos."
+msgstr "Lo sentimos, se ha producido un error en nuestro proceso de clasificación de contenido. Sigue intentándolo o prueba pasados unos minutos."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:64
 msgid "Create an IARC Ratings Certificate"
@@ -17442,10 +17413,7 @@ msgstr "¿Tu aplicación ya ha sido clasificada?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:78
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
-msgstr ""
-"Si ya has recibido la clasificación de tu aplicación a través de la "
-"herramienta de la IARC y tienes también un código de seguridad de ella, "
-"puedes escribirlo aquí."
+msgstr "Si ya has recibido la clasificación de tu aplicación a través de la herramienta de la IARC y tienes también un código de seguridad de ella, puedes escribirlo aquí."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:91
 msgid "Submission ID"
@@ -17656,10 +17624,8 @@ msgid ""
 "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck "
 "that region before saving."
 msgstr ""
-"Una vez que se disponga de los pagos en función del rango de precio que "
-"hayas elegido, tu aplicación estará disponible en las siguientes regiones "
-"seleccionadas. Si quieres excluir tu aplicación de una región, desmárcala "
-"antes de guardar."
+"Una vez que se disponga de los pagos en función del rango de precio que hayas elegido, tu aplicación estará disponible en las siguientes regiones seleccionadas. Si quieres excluir tu aplicación de "
+"una región, desmárcala antes de guardar."
 
 #: mkt/developers/templates/developers/payments/premium.html:247
 msgid "Regions and Listings"
@@ -17788,9 +17754,7 @@ msgstr "Tu aplicación se mostrará en cualquier Marketplace regional que se añ
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
-msgstr ""
-"(Sujeto a que los pagos estén disponibles en esa región para el rango de "
-"precio seleccionado)."
+msgstr "(Sujeto a que los pagos estén disponibles en esa región para el rango de precio seleccionado)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -18437,9 +18401,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
-msgstr ""
-"Actualmente Firefox Marketplace está abierto y acepta aplicaciones. Envía tu "
-"aplicación a:"
+msgstr "Actualmente Firefox Marketplace está abierto y acepta aplicaciones. Envía tu aplicación a:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
@@ -19385,9 +19347,7 @@ msgstr "No solicitado"
 #: mkt/lookup/templates/lookup/transaction_summary.html:60
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
 msgstr ""
-"Activa esta casilla si se ha procesado un reembolso manual por parte del "
-"proveedor de pagos. Al hacerlo, se reembolsará en los servidores de Mozilla, "
-"pero no se contactará con el proveedor de pagos."
+"Activa esta casilla si se ha procesado un reembolso manual por parte del proveedor de pagos. Al hacerlo, se reembolsará en los servidores de Mozilla, pero no se contactará con el proveedor de pagos."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:66
 msgid "Refund this transaction"
@@ -19904,10 +19864,8 @@ msgstr "\"{0}\" se han procesado correctamente (+ {1} puntos, {2} total)."
 #: mkt/reviewers/views_themes.py:300
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-"{0} valoración de tema procesada correctamente (+{1} puntos, {2} total)."
-msgstr[1] ""
-"{0} valoraciones de tema procesadas correctamente (+{1} puntos, {2} total)."
+msgstr[0] "{0} valoración de tema procesada correctamente (+{1} puntos, {2} total)."
+msgstr[1] "{0} valoraciones de tema procesadas correctamente (+{1} puntos, {2} total)."
 
 #: mkt/reviewers/views_themes.py:315
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
@@ -20610,10 +20568,8 @@ msgstr "Si tu aplicación cuenta con un sitio web de asistencia o un foro, ingre
 #: mkt/submit/forms.py:364
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
-"Esta dirección de correo se publicará en Marketplace y podrán usarla otros "
-"usuarios para contactarte en caso de necesitar asistencia. Esta dirección de "
-"correo electrónico se mostrará públicamente en la página de detalles de tu "
-"aplicación."
+"Esta dirección de correo se publicará en Marketplace y podrán usarla otros usuarios para contactarte en caso de necesitar asistencia. Esta dirección de correo electrónico se mostrará públicamente "
+"en la página de detalles de tu aplicación."
 
 #: mkt/submit/forms.py:371
 msgid "Does your app require Flash support?"
@@ -20737,8 +20693,7 @@ msgstr "Incluir detalles de la ap."
 
 #: mkt/submit/templates/submit/next_steps.html:32
 msgid "<span>Set up <a href=\"%(url)s\">Content Ratings</a></span>"
-msgstr ""
-"<span>Configurar <a href=\"%(url)s\">la clasificación de contenido</a></span>"
+msgstr "<span>Configurar <a href=\"%(url)s\">la clasificación de contenido</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:38
 msgid "Set up <a href=\"%(url)s\">Payments & Countries</a>"
@@ -20750,16 +20705,11 @@ msgstr "Esperar revisión"
 
 #: mkt/submit/templates/submit/next_steps.html:50
 msgid "You must now set up <a href=\"%(url)s\">Content Ratings</a> and <a href=\"%(payment_url)s\">Payments & Countries</a> before we can review your app."
-msgstr ""
-"Ahora debes configurar la <a href=\"%(url)s\">clasificación de contenido</a> y "
-"los <a href=\"%(payment_url)s\">pagos y países</a> antes de que podamos "
-"revisar tu aplicación."
+msgstr "Ahora debes configurar la <a href=\"%(url)s\">clasificación de contenido</a> y los <a href=\"%(payment_url)s\">pagos y países</a> antes de que podamos revisar tu aplicación."
 
 #: mkt/submit/templates/submit/next_steps.html:55
 msgid "You must now set up <a href=\"%(url)s\">Content Ratings</a> before we can review your app."
-msgstr ""
-"Ahora debes configurar la <a href=\"%(url)s\">clasificación de contenido</a> "
-"antes de que podamos revisar tu aplicación."
+msgstr "Ahora debes configurar la <a href=\"%(url)s\">clasificación de contenido</a> antes de que podamos revisar tu aplicación."
 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "At any point, you can"
@@ -20767,8 +20717,7 @@ msgstr "En cualquier momento, puedes"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr ""
-"Revisa los detalles de tu aplicación en <a href=\"%(url)s\">Editar lista</a>"
+msgstr "Revisa los detalles de tu aplicación en <a href=\"%(url)s\">Editar lista</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:69
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
@@ -20777,27 +20726,20 @@ msgstr "Mira la lista de todos tus envíos en <a href=\"%(url)s\">Mis envíos</a
 #: mkt/submit/templates/submit/next_steps.html:78
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
 msgstr ""
-"Una vez que tu aplicación sea revisada, tendrás que publicarla manualmente "
-"desde <a href=\"%(url)s\">Administrar estado</a>. Posteriormente se mostrará "
-"en páginas de listados y búsquedas para que otros la disfruten."
+"Una vez que tu aplicación sea revisada, tendrás que publicarla manualmente desde <a href=\"%(url)s\">Administrar estado</a>. Posteriormente se mostrará en páginas de listados y búsquedas para que "
+"otros la disfruten."
 
 #: mkt/submit/templates/submit/next_steps.html:85
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
-msgstr ""
-"¡Tu aplicación ha sido aprobada! Ahora aparece en páginas de listados y "
-"búsquedas para que otros la disfruten."
+msgstr "¡Tu aplicación ha sido aprobada! Ahora aparece en páginas de listados y búsquedas para que otros la disfruten."
 
 #: mkt/submit/templates/submit/next_steps.html:90
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
-msgstr ""
-"Una vez que revisen tu aplicación, se mostrará en páginas de listado y "
-"búsquedas para que otros la disfruten."
+msgstr "Una vez que revisen tu aplicación, se mostrará en páginas de listado y búsquedas para que otros la disfruten."
 
 #: mkt/submit/templates/submit/next_steps.html:100
 msgid "<strong>What's next:</strong> Set up Content Ratings"
-msgstr ""
-"<strong>Qué hay que hacer ahora:</strong> configurar clasificación de "
-"contenido"
+msgstr "<strong>Qué hay que hacer ahora:</strong> configurar clasificación de contenido"
 
 #: mkt/submit/templates/submit/next_steps.html:106
 msgid "<strong>What's next:</strong> Set up Payments & Countries"

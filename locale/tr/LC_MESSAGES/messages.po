@@ -2100,8 +2100,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr ""
-"<h1>İzin verilmedi.</h1> <p>İzniniz olmayan bir şey yapmaya çalıştınız.</p>"
+msgstr "<h1>İzin verilmedi.</h1> <p>İzniniz olmayan bir şey yapmaya çalıştınız.</p>"
 
 #: apps/amo/templates/amo/403.html:12 apps/amo/templates/amo/403_apps.html:17
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"

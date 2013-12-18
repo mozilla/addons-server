@@ -2495,9 +2495,7 @@ msgstr ""
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
-"برای امتیاز دادن به مجموعه‌ها، شما باید یک حساب کابری افزودنی‌ها داشته "
-"باشید."
+msgstr "برای امتیاز دادن به مجموعه‌ها، شما باید یک حساب کابری افزودنی‌ها داشته باشید."
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:19 templates/base.html:134 templates/impala/base.html:197
 msgid "Create an Add-ons Account"

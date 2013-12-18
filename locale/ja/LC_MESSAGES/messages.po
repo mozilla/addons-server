@@ -367,16 +367,16 @@ msgstr "<a href=\"%(paypal_url)s\">PayPal</a> を通して少額の寄付をす�
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"このアドオンの作者は、<a href=\"%(paypal_url)s\">PayPal</a> を通じて <a href=\"%(charity_url)s\">%(charity_name)s</a> へ寄付を行い、<b>%(addon_name)s</b> に対する支援の気持ちを表してもらえるよう、あなたにお"
-"願いしています。"
+"このアドオンの作者は、<a href=\"%(paypal_url)s\">PayPal</a> を通じて <a href=\"%(charity_url)s\">%(charity_name)s</a> へ寄付を行い、<b>%(addon_name)s</b> に対する支援の気持ちを表してもらえるよう、あ"
+"なたにお願いしています。"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
-"このアドオンの作者は、<a href=\"%(paypal_url)s\">PayPal</a> を通じて <a href=\"%(charity_url)s\">%(charity_name)s</a> へ少額の寄付を行い、<b>%(addon_name)s</b> に対する支援の気持ちを表してもらえるよう、あな"
-"たにお願いしています。"
+"このアドオンの作者は、<a href=\"%(paypal_url)s\">PayPal</a> を通じて <a href=\"%(charity_url)s\">%(charity_name)s</a> へ少額の寄付を行い、<b>%(addon_name)s</b> に対する支援の気持ちを表してもらえるよ"
+"う、あなたにお願いしています。"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -544,8 +544,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>注意:</strong> このアドオンの開発版は Mozilla の審査を受けていません。一度開発版をインストールすると、この作者から最新の開発版が継続的に提供されます。開発版の更新を中止するには、上のリンクから通常版を再イン"
-"ストールしてください。"
+"<strong>注意:</strong> このアドオンの開発版は Mozilla の審査を受けていません。一度開発版をインストールすると、この作者から最新の開発版が継続的に提供されます。開発版の更新を中止するには、上のリンクか"
+"ら通常版を再インストールしてください。"
 
 #: apps/addons/templates/addons/details_box.html:215 apps/addons/templates/addons/impala/details.html:296
 msgid "Version {0}:"
@@ -865,8 +865,8 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Thunderbird へのインストール方法</strong> <ol> <li>まず、ファイルをダウンロードして保存してください。</li> <li>Mozilla Thunderbird の [ツール] メニューから [アドオン] を選択してアドオンタブを開きます。"
-"</li> <li>アドオン検索バーの隣にあるオプションボタン (歯車アイコン) をクリックして [ファイルからアドオンをインストール...] を選択し、先ほど保存したファイルを開いてください。</li> </ol>"
+"<strong>Thunderbird へのインストール方法</strong> <ol> <li>まず、ファイルをダウンロードして保存してください。</li> <li>Mozilla Thunderbird の [ツール] メニューから [アドオン] を選択してアドオンタブ"
+"を開きます。</li> <li>アドオン検索バーの隣にあるオプションボタン (歯車アイコン) をクリックして [ファイルからアドオンをインストール...] を選択し、先ほど保存したファイルを開いてください。</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -945,7 +945,8 @@ msgstr "アドオンページの QR コード"
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
-"{0} をモバイル版 Firefox で使いたい？ この QR コードを携帯で読み取れば、アドオンを直接インストールできます。(読み取りには QR リーダーが必要です。アプリが搭載されていない場合は端末のアプリストアで検索してください。)"
+"{0} をモバイル版 Firefox で使いたい？ この QR コードを携帯で読み取れば、アドオンを直接インストールできます。(読み取りには QR リーダーが必要です。アプリが搭載されていない場合は端末のアプリストアで検"
+"索してください。)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:332
@@ -957,8 +958,8 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
-"このアドオンが <a href=\"%(url)s\">ポリシー</a> に違反していたり、セキュリティやプライバシーの問題があると疑われる場合は、以下のフォームに懸念事項を記入し、送信してください。その他の理由でこのフォームを使用しないで"
-"ください。"
+"このアドオンが <a href=\"%(url)s\">ポリシー</a> に違反していたり、セキュリティやプライバシーの問題があると疑われる場合は、以下のフォームに懸念事項を記入し、送信してください。その他の理由でこのフォー"
+"ムを使用しないでください。"
 
 #: apps/addons/templates/addons/report_abuse.html:33 apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
@@ -1224,8 +1225,8 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"開発チャンネルでは、このアドオンの実験的な新バージョンを一般公開前に試すことができます。一度開発版をインストールすれば、このチャンネルから常に最新版を入手できます。開発版の更新を中止するには、上のリンクから通常版を再"
-"インストールしてください。"
+"開発チャンネルでは、このアドオンの実験的な新バージョンを一般公開前に試すことができます。一度開発版をインストールすれば、このチャンネルから常に最新版を入手できます。開発版の更新を中止するには、上のリ"
+"ンクから通常版を再インストールしてください。"
 
 #: apps/addons/templates/addons/impala/details.html:291
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
@@ -1482,8 +1483,8 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
-"アドオンとは、Firefox をカスタマイズするために追加の機能やデザインを提供する小さなアプリケーションのことです。例えば、Web サイトの名前を入力ミスしたり、ページがビジー状態で読み込めなかったり、そういったときのために"
-"モバイルブラウジングをより快適にするアドオンがあります。"
+"アドオンとは、Firefox をカスタマイズするために追加の機能やデザインを提供する小さなアプリケーションのことです。例えば、Web サイトの名前を入力ミスしたり、ページがビジー状態で読み込めなかったり、そう"
+"いったときのためにモバイルブラウジングをより快適にするアドオンがあります。"
 
 #: apps/addons/templates/addons/mobile/home.html:49
 msgid "View all Featured add-ons"
@@ -2106,15 +2107,16 @@ msgid ""
 "may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
 "ul>"
 msgstr ""
-"<h1>申し訳ありませんが、お探しのものを見つけることができませんでした。</h1> <p>あなたがお探しのページまたはファイルは当サイト内で見つかりませんでした。古いリンクがクリックされたか間違ったアドレスが入力された可能性が"
-"あります。</p> <ul> <li>アドレスを直接入力した場合は、スペルに誤りがないか確認してください。</li> <li>別の場所のリンクから移動してきた場合は、<a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</"
-"a> へメールを送り、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。</li> </ul> <p>あるいは、当サイト内の、いくつかの人気のあるページに移動してください。</p> <ul> <li>"
-"<a href=\"%(rec)s\">おすすめのアドオンのリスト</a> に興味ありますか？</li> <li><a href=\"%(search)s\">アドオンを検索</a> したいですか？ <a href=\"%(search)s\">検索ページ</a> へ移動するか、このページの上にある"
-"検索バーを使ってください。</li> <li>最初からやり直す場合は、<a href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</li> </ul>"
+"<h1>申し訳ありませんが、お探しのものを見つけることができませんでした。</h1> <p>あなたがお探しのページまたはファイルは当サイト内で見つかりませんでした。古いリンクがクリックされたか間違ったアドレスが"
+"入力された可能性があります。</p> <ul> <li>アドレスを直接入力した場合は、スペルに誤りがないか確認してください。</li> <li>別の場所のリンクから移動してきた場合は、<a href=\"mailto:webmaster@mozilla.com"
+"\">webmaster@mozilla.com</a> へメールを送り、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。</li> </ul> <p>あるいは、当サイト内の、いくつかの人気のあ"
+"るページに移動してください。</p> <ul> <li><a href=\"%(rec)s\">おすすめのアドオンのリスト</a> に興味ありますか？</li> <li><a href=\"%(search)s\">アドオンを検索</a> したいですか？ <a href=\"%(search)s"
+"\">検索ページ</a> へ移動するか、このページの上にある検索バーを使ってください。</li> <li>最初からやり直す場合は、<a href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>申し訳ありません。エラーが発生しました。</h1> <p>すぐに問題の修正に取り掛かります。</p> <p>ページを再読み込みするか、<a href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</p>"
+msgstr ""
+"<h1>申し訳ありません。エラーが発生しました。</h1> <p>すぐに問題の修正に取り掛かります。</p> <p>ページを再読み込みするか、<a href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
@@ -2168,8 +2170,8 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> 以下に <strong>2 つの単語</strong> を <strong>間に空白を入れて</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">別の単語を試す</a> か、代わりに <a "
-"href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
+"<p> 以下に <strong>2 つの単語</strong> を <strong>間に空白を入れて</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">別の単語を試す</a> か、代わ"
+"りに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
@@ -2310,8 +2312,8 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
-"<p> %(consumer)s が、あなたに代わって作業を行うために承認を必要としています。これには以下の作業が含まれます。 </p> <ul> <li>あなたに代わってアドオンをアップロード、変更、削除すること。</li> <li>あなたに代わって"
-"アドオンのバージョンをアップロード、変更、削除すること。</li> <li> あなたのユーザ名、メールアドレスといった、あなたに関する個人情報を参照すること (パスワードは含まれません)。 </li> </ul>"
+"<p> %(consumer)s が、あなたに代わって作業を行うために承認を必要としています。これには以下の作業が含まれます。 </p> <ul> <li>あなたに代わってアドオンをアップロード、変更、削除すること。</li> <li>あな"
+"たに代わってアドオンのバージョンをアップロード、変更、削除すること。</li> <li> あなたのユーザ名、メールアドレスといった、あなたに関する個人情報を参照すること (パスワードは含まれません)。 </li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29 mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Confirm"
@@ -2336,7 +2338,8 @@ msgstr "アプリケーションの有効バージョン"
 #: apps/applications/templates/applications/appversions.html:12
 msgid "Add-ons submitted to Mozilla Add-ons must have an install.rdf file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
-"Mozilla Add-ons へ登録するアドオンには、以下のアプリケーションのうち少なくともひとつに対応させた install.rdf ファイルを同梱する必要があります。各アプリケーションとも、以下に記載されたバージョンのみ指定可能です。"
+"Mozilla Add-ons へ登録するアドオンには、以下のアプリケーションのうち少なくともひとつに対応させた install.rdf ファイルを同梱する必要があります。各アプリケーションとも、以下に記載されたバージョンのみ"
+"指定可能です。"
 
 #: apps/applications/templates/applications/appversions.html:25
 msgid "GUID"
@@ -2625,16 +2628,16 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>公開</b> で、誰でも見ることができます。コレクションの公開を取りやめたい場合は、下のボタンをクリックして非公開"
-"に変更してください。"
+"<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>公開</b> で、誰でも見ることができます。コレクションの公開を取りやめたい場合は、下のボタンを"
+"クリックして非公開に変更してください。"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:203
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
-"<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>非公開</b> で、あなただけが見ることができます。誰でも見られるようにしたい場合は、下のボタンをクリックして公開"
-"してください。"
+"<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>非公開</b> で、あなただけが見ることができます。誰でも見られるようにしたい場合は、下のボタン"
+"をクリックして公開してください。"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
@@ -2664,7 +2667,8 @@ msgstr "最近作成されたコレクション"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:32 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "コレクションとは、誰もが作成し共有することができる、関連するアドオンのグループのことです。他のユーザが作成したコレクションを探すか、<a href=\"%(url)s\">自分のコレクションを作成</a> してください。"
+msgstr ""
+"コレクションとは、誰もが作成し共有することができる、関連するアドオンのグループのことです。他のユーザが作成したコレクションを探すか、<a href=\"%(url)s\">自分のコレクションを作成</a> してください。"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2785,8 +2789,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"このコレクションに複数の協力者を追加できます。協力者は、このコレクションにアドオンを追加したり削除したりできますが、コレクションの名前と説明を変更することはできません。協力者を追加するには、そのユーザのメールアドレス"
-"を下のテキストボックスに入力してください。協力者は Mozilla Add-ons サイトのアカウントを持っていなければなりません。"
+"このコレクションに複数の協力者を追加できます。協力者は、このコレクションにアドオンを追加したり削除したりできますが、コレクションの名前と説明を変更することはできません。協力者を追加するには、そのユー"
+"ザのメールアドレスを下のテキストボックスに入力してください。協力者は Mozilla Add-ons サイトのアカウントを持っていなければなりません。"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40 apps/devhub/templates/devhub/payments/refunds.html:13 mkt/constants/apps.py:8
 msgid "User"
@@ -2907,8 +2911,8 @@ msgstr "コレクションに入っているアドオン"
 msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr ""
-"このコレクションにアドオンを追加するには、下のボックスにその名前を入力して Enter キーを押してください。また、サイトのあちこちにある <strong>コレクションへ追加</strong> リンクをクリックして、後からでもアドオンを追加"
-"できます。"
+"このコレクションにアドオンを追加するには、下のボックスにその名前を入力して Enter キーを押してください。また、サイトのあちこちにある <strong>コレクションへ追加</strong> リンクをクリックして、後からで"
+"もアドオンを追加できます。"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:420 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
@@ -2980,8 +2984,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"アドオンやプラグイン、その他のサードパーティ製ソフトウェアが、%(app)s の安全性、安定性、あるいはパフォーマンスに深刻な影響を与えることを Mozilla が認識し、それが <a href=\"%(criteria)s\">特定の基準</a> を満たした"
-"場合、そのソフトウェアはブロックされ、一般的に使用できなくなる可能性があります。詳しくは、<a href=\"%(support)s\">このサポート記事</a> をご覧ください。"
+"アドオンやプラグイン、その他のサードパーティ製ソフトウェアが、%(app)s の安全性、安定性、あるいはパフォーマンスに深刻な影響を与えることを Mozilla が認識し、それが <a href=\"%(criteria)s\">特定の基準"
+"</a> を満たした場合、そのソフトウェアはブロックされ、一般的に使用できなくなる可能性があります。詳しくは、<a href=\"%(support)s\">このサポート記事</a> をご覧ください。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -3160,7 +3164,8 @@ msgstr "<a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> でさら�
 
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
-msgstr "<a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a> で <a href=\"https://developer.mozilla.org/ja/Creating_OpenSearch_plugins_for_Firefox\">検索プラグインの作り方</a> を学ぶ"
+msgstr ""
+"<a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a> で <a href=\"https://developer.mozilla.org/ja/Creating_OpenSearch_plugins_for_Firefox\">検索プラグインの作り方</a> を学ぶ"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:187
 msgid "Complete Themes"
@@ -3320,7 +3325,9 @@ msgstr "もっとカスタマイズしたい？"
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/personas/category_landing.html:50
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "完全テーマを使えば、ウィンドウの枠からアドレスバー、ボタン、タブ、メニューに至るまで、ブラウザの見た目を完全に変えることができます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</a>"
+msgstr ""
+"完全テーマを使えば、ウィンドウの枠からアドレスバー、ボタン、タブ、メニューに至るまで、ブラウザの見た目を完全に変えることができます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</"
+"a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
@@ -3418,8 +3425,8 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
 "help supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p> <a href=\"%(url_)s\">アドオン互換性レポーター</a> を通じて Mozilla へ送信されたレポートは、ここで収集され、開発者が参照します。これらのレポートは、どのアドオンが Firefox 次期バージョン対応のためにサポートを必"
-"要としているか Mozilla が判断するのに役立ちます。</p>"
+"<p> <a href=\"%(url_)s\">アドオン互換性レポーター</a> を通じて Mozilla へ送信されたレポートは、ここで収集され、開発者が参照します。これらのレポートは、どのアドオンが Firefox 次期バージョン対応のため"
+"にサポートを必要としているか Mozilla が判断するのに役立ちます。</p>"
 
 #: apps/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
@@ -5221,8 +5228,8 @@ msgstr "カテゴリは、ユーザがアドオンを探すための主な手段
 msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"アドオンのカテゴリは、このアプリケーションのおすすめのアドオンのリストに掲載されている間は変更できません。カテゴリを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛てに"
-"メールでお知らせください。"
+"アドオンのカテゴリは、このアプリケーションのおすすめのアドオンのリストに掲載されている間は変更できません。カテゴリを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛"
+"てにメールでお知らせください。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:160 mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Tags"
@@ -5836,8 +5843,8 @@ msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
-"私たちのギャラリーにホストされたすべてのアドオンは、カテゴリや検索結果に表示される前に、エディタによる審査が必要です。審査待ちの間、あなたのアドオンページは URL を直接入力することでアクセス"
-"できます。以下からあなたのアドオンに最も適した審査方法を選んでください。"
+"私たちのギャラリーにホストされたすべてのアドオンは、カテゴリや検索結果に表示される前に、エディタによる審査が必要です。審査待ちの間、あなたのアドオンページは URL を直接入力することでアクセスできま"
+"す。以下からあなたのアドオンに最も適した審査方法を選んでください。"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"

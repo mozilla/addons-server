@@ -16053,9 +16053,7 @@ msgstr "U dient ten minste één schermafdruk of video te uploaden."
 
 #: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr ""
-"Verpakte app is te groot om in te dienen. Pakketten moeten kleiner zijn dan "
-"%s."
+msgstr "Verpakte app is te groot om in te dienen. Pakketten moeten kleiner zijn dan %s."
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."

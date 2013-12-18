@@ -16023,9 +16023,7 @@ msgstr "Musíte nahrát alespoň jeden náhled či video."
 
 #: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr ""
-"Zabalená aplikace je příliš velká pro odeslání. Balíčky musí být menší než %"
-"s."
+msgstr "Zabalená aplikace je příliš velká pro odeslání. Balíčky musí být menší než %s."
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."

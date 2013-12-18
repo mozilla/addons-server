@@ -16116,8 +16116,7 @@ msgstr "Sie müssen mindestens einen Screeenshot oder ein Video hochladen."
 
 #: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr ""
-"Gepackte App ist zu groß zum Übermitteln. Pakete müssen kleiner als %s sein."
+msgstr "Gepackte App ist zu groß zum Übermitteln. Pakete müssen kleiner als %s sein."
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."
@@ -17517,8 +17516,7 @@ msgstr "Bei einer Änderung auf „Kostenlos“ wird Ihre App wieder zur Überpr
 
 #: mkt/developers/templates/developers/payments/premium.html:80
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
-"Für den kostenpflichtigen Modus darf Ihre App nur Folgendes unterstützen:"
+msgstr "Für den kostenpflichtigen Modus darf Ihre App nur Folgendes unterstützen:"
 
 #: mkt/developers/templates/developers/payments/premium.html:81 mkt/developers/templates/developers/payments/premium.html:83 mkt/submit/templates/submit/manifest.html:44
 msgid "Paid / In-app"
