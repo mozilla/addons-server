@@ -492,7 +492,8 @@ class Webapp(Addon):
         """
         Gets the next step to fully complete app submission.
         """
-        if not self.details_complete():
+        if self.has_incomplete_status() and not self.details_complete():
+            # Some old public apps may have some missing detail fields.
             return {
                 'name': _('Details'),
                 'description': _('This app\'s submission process has not been '
