@@ -418,7 +418,8 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         return res, res_data
 
     def test_update(self):
-        self._create_default_review()
+        rev = Review.objects.create(addon=self.app, user=self.user,
+                                    body='abcd', ip_address='1.2.3.4')
         new_data = {
             'body': 'Totally rocking the free web.',
             'rating': 4,
@@ -429,12 +430,17 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         eq_(res.status_code, 200)
         eq_(data['body'], new_data['body'])
         eq_(data['rating'], new_data['rating'])
+        rev.reload()
+        eq_(rev.body, new_data['body'])
+        eq_(rev.rating, new_data['rating'])
+        eq_(rev.user, self.user)
+        eq_(rev.ip_address, '1.2.3.4')
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
 
     def test_update_admin(self):
         self.grant_permission(self.user, 'Addons:Edit')
         rev = Review.objects.create(addon=self.app, user=self.user2,
-                                    body='abcd')
+                                    body='abcd', ip_address='1.2.3.4')
         new_data = {
             'body': 'Edited by admin',
             'rating': 1,
@@ -446,6 +452,11 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         data = json.loads(res.content)
         eq_(data['body'], new_data['body'])
         eq_(data['rating'], new_data['rating'])
+        rev.reload()
+        eq_(rev.body, new_data['body'])
+        eq_(rev.rating, new_data['rating'])
+        eq_(rev.user, self.user2)
+        eq_(rev.ip_address, '1.2.3.4')
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
 
     def test_update_bad_data(self):
