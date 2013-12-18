@@ -24,6 +24,7 @@
         }
         thead th {
             background: $bg-gray;
+            text-align: center;
         }
         tbody td {
             background: #fff;
@@ -54,12 +55,6 @@
     }
 }
 
-/* Copied and modified from Fireplace detail styles. */
-$box-green = #00b963;
-$box-blue = #00d5ff;
-$box-yellow = #ffd300;
-$box-orange = #ff7c00;
-$box-red = #ff2600;
 .content-rating, .interactive-elements, .content-descriptors {
     .icon {
         background: #000;
@@ -67,114 +62,15 @@ $box-red = #ff2600;
         color: #fff;
         float: left;
         font: 600 32px/64px $open-stack;
-        height: 64px;
+        max-width: 64px;
         text-align: center;
         vertical-align: middle;
-        width: 64px;
     }
 }
 
 .content-rating {
-    color: $text;
     margin-bottom: 12px;
 
-    .icon-body-esrb {
-        height: 90px;
-        width: 58px;
-
-        &.icon-age-0 {
-            background-image: url('../../img/icons/ratings/ESRB_e.png');
-        }
-        &.icon-age-10 {
-            background-image: url('../../img/icons/ratings/ESRB_e10.png');
-        }
-        &.icon-age-13 {
-            background-image: url('../../img/icons/ratings/ESRB_t.png');
-        }
-        &.icon-age-17 {
-            background-image: url('../../img/icons/ratings/ESRB_m.png');
-        }
-        &.icon-age-18 {
-            background-image: url('../../img/icons/ratings/ESRB_ao.png');
-        }
-    }
-    .icon-body-generic, .icon-body-classind {
-        background: $black;
-        color: $white;
-        float: left;
-        font: 600 32px/64px $open-stack;
-
-        .icon-content {
-            display: inline;
-            left: 3px;
-            position: relative;
-            top: 2px;
-        }
-        &.icon-age-L,
-        &.icon-age-0,
-        &.icon-age-3 {
-            background: $box-green;
-        }
-        &.icon-age-7,
-        &.icon-age-10 {
-            background: $box-blue;
-        }
-        &.icon-age-12,
-        &.icon-age-13 {
-            background: $box-yellow;
-        }
-        &.icon-age-14 {
-            background: $box-orange;
-        }
-        &.icon-age-16 {
-            background: $box-red;
-        }
-        &.icon-age-18 {
-            background: #000;
-        }
-    }
-    .icon-body-pegi {
-        border-radius: 1px;
-        height: 73px;
-        width: 60px;
-
-        &.icon-age-3 {
-            background-image: url('../../img/icons/ratings/pegi_3.png');
-        }
-        &.icon-age-7 {
-            background-image: url('../../img/icons/ratings/pegi_7.png');
-        }
-        &.icon-age-12 {
-            background-image: url('../../img/icons/ratings/pegi_12.png');
-        }
-        &.icon-age-16 {
-            background-image: url('../../img/icons/ratings/pegi_16.png');
-        }
-        &.icon-age-18 {
-            background-image: url('../../img/icons/ratings/pegi_18.png');
-        }
-    }
-    .icon-body-usk {
-        border-radius: 8px;
-        height: 68px;
-        width: 68px;
-
-        &.icon-age-0 {
-            background-image: url('../../img/icons/ratings/USK_0.png');
-        }
-        &.icon-age-6 {
-            background-image: url('../../img/icons/ratings/USK_6.png');
-        }
-        &.icon-age-12 {
-            background-image: url('../../img/icons/ratings/USK_12.png');
-        }
-        &.icon-age-16 {
-            background-image: url('../../img/icons/ratings/USK_16.png');
-        }
-        &.icon-age-18 {
-            background-image: url('../../img/icons/ratings/USK_18.png');
-        }
-    }
     .description {
         font-weight: 400;
         margin: 0;
@@ -183,76 +79,12 @@ $box-red = #ff2600;
     }
 }
 
-.interactive-elements {
-    .names {
-        margin-bottom: 5px;
-    }
-    .icon {
-        height: 60px;
-        width: 60px;
-
-        &.shares-info {
-            background-image: url('../../img/icons/ratings/interactives/ESRB_shares-info_small.png');
-        }
-        &.shares-location {
-            background-image: url('../../img/icons/ratings/interactives/ESRB_shares-location_small.png');
-        }
-        &.users-interact {
-            background-image: url('../../img/icons/ratings/interactives/ESRB_users-interact_small.png');
-        }
-        &.digital-purchases {
-            background-image: url('../../img/icons/ratings/descriptors/pegi_inapp_purchase_option.png');
-        }
-        &.social-networking {
-            background-image: url('../../img/icons/ratings/descriptors/pegi_social_interaction_functionality.png');
-        }
-    }
+.content-descriptors .icon {
+    margin: 1px;
 }
 
-.content-descriptors .icon {
-    height: 60px;
-    width: 60px;
-
-    &.pegi-discrimination {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_discrimination.png');
-    }
-    &.pegi-drugs {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_drugs.png');
-    }
-    &.pegi-scary {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_fear.png');
-    }
-    &.pegi-gambling {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_gambling.png');
-    }
-    &.pegi-lang {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_language.png');
-    }
-    &.pegi-nudity {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_nudity.png');
-    }
-    &.pegi-online {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_online.png');
-    }
-    &.pegi-sex {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_sex.png');
-    }
-    &.pegi-violence {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_violence.png');
-    }
-
-    &.pegi-digital-purchases {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_inapp_purchase_option.png');
-    }
-    &.pegi-shares-info {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_personal_data_sharing.png');
-    }
-    &.pegi-shares-location {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_location_data_sharing.png');
-    }
-    &.pegi-users-interact {
-        background-image: url('../../img/icons/ratings/descriptors/pegi_social_interaction_functionality.png');
-    }
+.interactive-elements .names {
+    margin-bottom: 5px;
 }
 
 span.dot-sep:not(:last-child):after {
