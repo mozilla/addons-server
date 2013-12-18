@@ -836,7 +836,6 @@ MINIFY_BUNDLES = {
             'js/impala/formset.js',
             'js/lib/jquery.hoverIntent.js',
             'js/lib/jquery.zoomBox.js',
-            'js/devreg/themes_review.js',
         ),
         'zamboni/files': (
             'js/lib/diff_match_patch_uncompressed.js',
