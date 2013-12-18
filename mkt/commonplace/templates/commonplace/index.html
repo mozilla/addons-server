@@ -22,7 +22,9 @@
   </head>
   <body class="home" data-languages="{{ settings.AMO_LANGUAGES|json }}" data-settings="{{ site_settings|json }}" data-build-id-js="{{ BUILD_ID_JS }}" data-media="{{ MEDIA_URL }}" data-repo="{{ repo }}">
 
-    <noscript><p>Sorry, you need JavaScript to access the Marketplace.</p></noscript>
+    {% if not robots -%}
+      <noscript><p>Sorry, you need JavaScript to access the Marketplace.</p></noscript>
+    {% endif -%}
     <div id="splash-overlay"><div class="throbber"></div></div>
 
     <header id="site-header" class="header site-header"></header>
