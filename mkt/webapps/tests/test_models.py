@@ -95,6 +95,28 @@ class TestWebapp(amo.tests.TestCase):
         eq_(list(Webapp.objects.valid()), [w])
         eq_(sorted(Webapp.with_deleted.valid()), [w])
 
+    def test_delete_incomplete_with_deleted_version(self):
+        """Test deleting incomplete add-ons with no public version attached."""
+        app = app_factory()
+        app.current_version.delete()
+        eq_(Version.objects.count(), 0)
+        eq_(Version.with_deleted.count(), 1)
+        app.update(status=0, highest_status=0)
+
+        # We want to be in the worst possible situation, no direct foreign key
+        # to the deleted versions, do we call update_version() now that we have
+        # an incomplete app.
+        app.update_version()
+        eq_(app.latest_version, None)
+        eq_(app.current_version, None)
+
+        app.delete()
+
+        # The app should have been soft-deleted.
+        eq_(len(mail.outbox), 1)
+        eq_(Webapp.objects.count(), 0)
+        eq_(Webapp.with_deleted.count(), 1)
+
     def test_webapp_type(self):
         webapp = Webapp()
         webapp.save()
