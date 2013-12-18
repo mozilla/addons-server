@@ -71,10 +71,13 @@ class BaseTestCollectionMembershipField(object):
     def test_ordering(self):
         self.app2 = amo.tests.app_factory()
         self.collection.add_app(self.app2, order=0)
+        self.app3 = amo.tests.app_factory()
+        self.collection.add_app(self.app3)
         result = self._field_to_native_profile()
-        eq_(len(result), 2)
+        eq_(len(result), 3)
         eq_(int(result[0]['id']), self.app2.id)
         eq_(int(result[1]['id']), self.app.id)
+        eq_(int(result[2]['id']), self.app3.id)
 
     def test_app_delete(self):
         self.app.delete()
@@ -130,6 +133,13 @@ class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
         AddonUser.objects.create(addon=self.app, user=self.user)
         self.refresh('webapp')
 
+    def _field_to_native_profile(self, profile='0.0'):
+        """ Like _field_to_native_profile in BaseTestCollectionMembershipField,
+        but calling field_to_native_es directly. """
+        request = self.get_request({'pro': profile, 'dev': 'firefoxos'})
+        self.field.context['request'] = request
+        return self.field.field_to_native_es(self.collection, request)
+
     def test_field_to_native_profile_mismatch(self):
         self.app.current_version.features.update(has_geolocation=True)
         # FIXME: a simple refresh() wasn't enough, don't we reindex apps when
@@ -140,13 +150,16 @@ class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
 
     def test_ordering(self):
         self.app2 = amo.tests.app_factory()
-        amo.tests.app_factory()  # Extra app not belonging to a collection.
         self.collection.add_app(self.app2, order=0)
+        self.app3 = amo.tests.app_factory()
+        self.collection.add_app(self.app3)
+        amo.tests.app_factory()  # Extra app not belonging to a collection.
         self.refresh('webapp')
         result = self._field_to_native_profile()
-        eq_(len(result), 2)
+        eq_(len(result), 3)
         eq_(int(result[0]['id']), self.app2.id)
         eq_(int(result[1]['id']), self.app.id)
+        eq_(int(result[2]['id']), self.app3.id)
 
     def test_app_delete(self):
         self.app.delete()
