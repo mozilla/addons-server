@@ -61,13 +61,15 @@ class RatingSerializer(serializers.ModelSerializer):
                 obj.reviewflag_set.filter(user=self.request.amo_user).exists())
 
     def validate(self, attrs):
-        attrs['user'] = self.request.amo_user
-        attrs['ip_address'] = self.request.META.get('REMOTE_ADDR', '')
-
         if not getattr(self, 'object'):
             # If we are creating a rating, then we need to do various checks on
             # the app. Because these checks need the version as well, we have
             # to do them here and not in validate_app().
+
+            # Assign user and ip_address. It won't change once the review is
+            # created.
+            attrs['user'] = self.request.amo_user
+            attrs['ip_address'] = self.request.META.get('REMOTE_ADDR', '')
 
             # If the app is packaged, add in the current version.
             if attrs['addon'].is_packaged:
