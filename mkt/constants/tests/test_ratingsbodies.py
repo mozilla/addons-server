@@ -54,7 +54,7 @@ class TestRatingsBodies(amo.tests.TestCase):
         for rating in ratingsbodies.ALL_RATINGS():
             rating = ratingsbodies.dehydrate_rating(rating)
             assert isinstance(rating.name, unicode)
-            assert rating.label
+            assert rating.label and rating.label != str(None)
             assert isinstance(rating.description, unicode)
 
     def test_dehydrate_ratings_body(self):
@@ -63,5 +63,5 @@ class TestRatingsBodies(amo.tests.TestCase):
         for k, body in ratingsbodies.RATINGS_BODIES.iteritems():
             body = ratingsbodies.dehydrate_ratings_body(body)
             assert isinstance(body.name, unicode)
-            assert body.label
+            assert body.label and body.label != str(None)
             assert isinstance(body.description, unicode)

@@ -177,7 +177,7 @@ class USK_18(RATING):
 
 class USK_REJECTED(RATING):
     id = 5
-    iarc_name = 'Rating Rejected'
+    iarc_name = 'Rating Refused'
     name = NAME_REJECTED
     description = DESC_REJECTED
 
@@ -358,7 +358,8 @@ def dehydrate_rating(rating):
     easily created dynamically.
     """
     if rating.label is None:
-        rating.label = str(rating.age)
+        rating.label = (str(rating.age) or
+                        rating.iarc_name.lower().replace(' ', '-'))
     if rating.name is None:
         if rating.age == 0:
             rating.name = unicode(NAME_GENERAL)
@@ -392,44 +393,47 @@ def pth(path):
 
 IARC_ICONS = {
     'ratings': {
+        # The keys are ratings' `iarc_name`s.
         'classind': {
-            0: pth('CLASSIND_L.png'),
-            10: pth('CLASSIND_10.png'),
-            12: pth('CLASSIND_12.png'),
-            14: pth('CLASSIND_14.png'),
-            16: pth('CLASSIND_16.png'),
-            18: pth('CLASSIND_18.png'),
+            '0': pth('CLASSIND_L.png'),
+            '10': pth('CLASSIND_10.png'),
+            '12': pth('CLASSIND_12.png'),
+            '14': pth('CLASSIND_14.png'),
+            '16': pth('CLASSIND_16.png'),
+            '18': pth('CLASSIND_18.png'),
         },
         'esrb': {
-            0: pth('ESRB_e.png'),
-            10: pth('ESRB_e10.png'),
-            13: pth('ESRB_t.png'),
-            17: pth('ESRB_m.png'),
-            18: pth('ESRB_ao.png'),
+            '0': pth('ESRB_e.png'),
+            '10': pth('ESRB_e10.png'),
+            '13': pth('ESRB_t.png'),
+            '17': pth('ESRB_m.png'),
+            '18': pth('ESRB_ao.png'),
         },
         'generic': {
-            3: pth('generic_3.png'),
-            7: pth('generic_7.png'),
-            12: pth('generic_12.png'),
-            16: pth('generic_16.png'),
-            18: pth('generic_18.png'),
+            '3': pth('generic_3.png'),
+            '7': pth('generic_7.png'),
+            '12': pth('generic_12.png'),
+            '16': pth('generic_16.png'),
+            '18': pth('generic_18.png'),
         },
         'pegi': {
-            3: pth('pegi_3.png'),
-            7: pth('pegi_7.png'),
-            12: pth('pegi_12.png'),
-            16: pth('pegi_16.png'),
-            18: pth('pegi_18.png'),
+            '3': pth('pegi_3.png'),
+            '7': pth('pegi_7.png'),
+            '12': pth('pegi_12.png'),
+            '16': pth('pegi_16.png'),
+            '18': pth('pegi_18.png'),
         },
         'usk': {
-            0: pth('USK_0.png'),
-            6: pth('USK_6.png'),
-            12: pth('USK_12.png'),
-            16: pth('USK_16.png'),
-            18: pth('USK_18.png'),
+            '0': pth('USK_0.png'),
+            '6': pth('USK_6.png'),
+            '12': pth('USK_12.png'),
+            '16': pth('USK_16.png'),
+            '18': pth('USK_18.png'),
+            'rating-refused': pth('USK_RR.png')
         }
     },
     'descriptors': {
+        # The keys are descriptors' keys lower-cased and 's/_/-/g'.
         'pegi': {
             'discrimination': pth('descriptors/pegi_discrimination.png'),
             'drugs': pth('descriptors/pegi_drugs.png'),
@@ -438,7 +442,7 @@ IARC_ICONS = {
             'nudity': pth('descriptors/pegi_nudity.png'),
             'online': pth('descriptors/pegi_online.png'),
             'scary': pth('descriptors/pegi_fear.png'),
-            'sex': pth('descriptors/pegi_sex.png'),
+            'sex-content': pth('descriptors/pegi_sex.png'),
             'violence': pth('descriptors/pegi_violence.png'),
 
             'digital-purchases': pth(
@@ -452,6 +456,7 @@ IARC_ICONS = {
         }
     },
     'interactive_elements': {
+        # The keys are interactives' keys lower-cased and 's/_/-/g'.
         'shares-info': pth('interactives/ESRB_shares-info_small.png'),
         'shares-location': pth('interactives/ESRB_shares-location_small.png'),
         'users-interact': pth('interactives/ESRB_users-interact_small.png'),
