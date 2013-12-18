@@ -1213,24 +1213,20 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(doc('#id_submission_id').attr('value'), '1234')
         eq_(doc('#id_security_code').attr('value'), 'abcd')
 
-    def _make_fully_complete(self, c_mock):
-        reasons_mock = mock.MagicMock()
-        reasons_mock.__getitem__.return_value = True
-        c_mock.return_value = (True, reasons_mock)
+    def _make_complete(self, complete_mock):
+        complete_mock.return_value = {}
 
-    def _make_complete_except_payments(self, c_mock):
-        reasons_mock = defaultdict(lambda: True)
-        reasons_mock['payments'] = False
-        c_mock.return_value = (False, reasons_mock)
+    def _make_complete_except_payments(self, complete_mock):
+        complete_mock.return_value = {'payments': 'Payments'}
 
     @mock.patch('amo.messages.success')
-    @mock.patch('mkt.webapps.models.Webapp.is_fully_complete')
+    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
     def test_success_msg_new_rating_complete(self, complete_mock, msg_mock):
         """
         Did not have a rating before, has a rating now, and is fully complete.
         Should give a "Congratulations, your app is complete!".
         """
-        self._make_fully_complete(complete_mock)
+        self._make_complete(complete_mock)
         self.req.session = {'ratings_last_modified': None}
 
         self.app.content_ratings.create(ratings_body=0, rating=0)
@@ -1239,14 +1235,16 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(msg_mock.call_args[0][1], _submission_msgs()['complete'])
 
     @mock.patch('amo.messages.success')
-    @mock.patch('mkt.webapps.models.Webapp.is_fully_complete')
-    def test_success_msg_new_rating_not_complete(self, complete_mock,
+    @mock.patch('mkt.webapps.models.Webapp.next_step')
+    def test_success_msg_new_rating_not_complete(self, next_step_mock,
                                                  msg_mock):
         """
         Did not have a rating before, has a rating now, but not fully complete.
         Should say "Rating saved." and display the "You need payments." msg.
         """
-        self._make_complete_except_payments(complete_mock)
+        next_step_mock.return_value = {
+            'name': 'Payments'
+        }
         self.req.session = {'ratings_last_modified': None}
 
         self.app.update(status=amo.STATUS_NULL)
@@ -1273,13 +1271,13 @@ class TestContentRatings(amo.tests.TestCase):
             _submission_msgs()['content_ratings_saved'])
 
     @mock.patch('amo.messages.success')
-    @mock.patch('mkt.webapps.models.Webapp.is_fully_complete')
+    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
     def test_success_msg_update_rating_complete(self, complete_mock, msg_mock):
-        self._make_fully_complete(complete_mock)
+        self._make_complete(complete_mock)
         self._check_update_rating_msg(msg_mock)
 
     @mock.patch('amo.messages.success')
-    @mock.patch('mkt.webapps.models.Webapp.is_fully_complete')
+    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
     def test_success_msg_update_rating_not_complete(self, complete_mock,
                                                     msg_mock):
         self._make_complete_except_payments(complete_mock)

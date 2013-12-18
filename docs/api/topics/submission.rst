@@ -336,7 +336,9 @@ Valid transitions that users can initiate are:
                     "You must provide a support email.",
                     "You must provide at least one device type.",
                     "You must provide at least one category.",
-                    "You must upload at least one screenshot or video."
+                    "You must upload at least one screenshot or video.",
+                    "You must set up content ratings.",
+                    "You must set up a payment account."
                 ]
             }
         }

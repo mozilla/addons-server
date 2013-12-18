@@ -277,7 +277,7 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
     def test_change_status_to_pending(self, is_fully_complete):
-        is_fully_complete.return_value = True, []
+        is_fully_complete.return_value = True
         self.app.update(status=amo.STATUS_NULL)
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'status': 'pending'}))
@@ -297,18 +297,17 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
     def test_incomplete_app(self, is_fully_complete):
-        is_fully_complete.return_value = False, ['Stop !', 'Hammer Time !']
+        is_fully_complete.return_value = False
         self.app.update(status=amo.STATUS_NULL)
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'status': 'pending'}))
         eq_(res.status_code, 400)
         data = json.loads(res.content)
-        eq_(data['status'][0], 'Stop !')
-        eq_(data['status'][1], 'Hammer Time !')
+        self.assertSetEqual(data['status'], self.app.completion_error_msgs())
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
     def test_public_waiting(self, is_fully_complete):
-        is_fully_complete.return_value = True, []
+        is_fully_complete.return_value = True
         self.app.update(status=amo.STATUS_PUBLIC_WAITING)
         res = self.client.patch(self.get_url,
                         data=json.dumps({'status': 'public'}))

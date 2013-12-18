@@ -7,6 +7,7 @@ import shutil
 import unittest
 import uuid
 import zipfile
+from collections import defaultdict
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -479,12 +480,12 @@ class TestWebapp(amo.tests.TestCase):
         assert app_factory(rated=True).is_rated()
         assert not app_factory().is_rated()
 
-    @mock.patch('mkt.webapps.models.Webapp.is_complete')
-    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
-    def test_set_content_ratings(self, pay_mock, complete_mock):
+    @mock.patch('mkt.webapps.models.Webapp.details_complete')
+    @mock.patch('mkt.webapps.models.Webapp.payments_complete')
+    def test_set_content_ratings(self, pay_mock, detail_mock):
         self.create_switch('iarc')
+        detail_mock.return_value = True
         pay_mock.return_value = True
-        complete_mock.return_value = (True, [])
 
         rb = mkt.ratingsbodies
 
@@ -673,17 +674,6 @@ class TestWebapp(amo.tests.TestCase):
             [{'label': 'shares-info', 'name': 'Shares Info'},
              {'label': 'social-networking', 'name': 'Social Networking'}])
 
-    def test_has_payment_account(self):
-        app = app_factory()
-        assert not app.has_payment_account()
-
-        user = UserProfile.objects.create(email='a', username='b')
-        payment = PaymentAccount.objects.create(
-            solitude_seller=SolitudeSeller.objects.create(user=user),
-            user=user)
-        AddonPaymentAccount.objects.create(addon=app, payment_account=payment)
-        assert app.has_payment_account()
-
     @override_settings(SECRET_KEY='test')
     def test_iarc_token(self):
         app = Webapp()
@@ -691,46 +681,13 @@ class TestWebapp(amo.tests.TestCase):
         eq_(app.iarc_token(),
             hashlib.sha512(settings.SECRET_KEY + str(app.id)).hexdigest())
 
-    def test_is_fully_complete_not_done(self):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_delete_with_iarc(self, storefront_mock):
         self.create_switch('iarc')
-        app = app_factory(premium_type=amo.ADDON_PREMIUM)
-
-        is_complete, reasons = app.is_fully_complete()
-        assert not is_complete
-        for reason in ('details', 'content_ratings', 'payments'):
-            assert not reasons[reason]
-
-    @mock.patch('mkt.webapps.models.Webapp.is_complete')
-    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
-    def test_is_fully_complete_done(self, mock1, complete_mock):
-        self.create_switch('iarc')
-        mock1.return_value = True
-        complete_mock.return_value = (True, [])
-
-        # Test ignore_rating flag.
         app = app_factory(rated=True)
-        is_complete, reasons = app.is_fully_complete()
-        assert is_complete
-        assert reasons['details']
-        assert reasons['content_ratings']
-        assert reasons['payments']
-
-    @mock.patch('mkt.webapps.models.Webapp.is_complete')
-    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
-    def test_is_fully_complete_ignore_ratings(self, mock1, complete_mock):
-        self.create_switch('iarc')
-        mock1.return_value = True
-        complete_mock.return_value = (True, [])
-
-        # Test ignore_rating flag.
-        app = app_factory()
-        is_complete, reasons = app.is_fully_complete()
-        assert not is_complete
-        assert not reasons['content_ratings']
-
-        is_complete, reasons = app.is_fully_complete(ignore_ratings=True)
-        assert is_complete
-        assert reasons['content_ratings']
+        app.delete()
+        eq_(app.status, amo.STATUS_DELETED)
+        assert storefront_mock.called
 
     @mock.patch('mkt.webapps.models.cache.get')
     def test_is_offline_when_packaged(self, mock_get):
@@ -752,14 +709,91 @@ class TestWebapp(amo.tests.TestCase):
         am.update(manifest=json.dumps(manifest))
         eq_(app.reload().is_offline, True)
 
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    def test_delete_with_iarc(self, storefront_mock):
-        self.create_switch('iarc')
-        app = app_factory(rated=True)
-        app.delete()
-        eq_(app.status, amo.STATUS_DELETED)
-        assert storefront_mock.called
+    @mock.patch('mkt.webapps.models.Webapp.is_rated')
+    def test_content_ratings_complete(self, is_rated_mock):
+        # Default to complete if it's not needed.
+        is_rated_mock.return_value = False
+        app = app_factory()
+        assert app.content_ratings_complete()
 
+        self.create_switch('iarc', db=True)
+        assert not app.content_ratings_complete()
+
+        is_rated_mock.return_value = True
+        assert app.content_ratings_complete()
+
+    def test_has_payment_account(self):
+        app = app_factory()
+        assert not app.has_payment_account()
+
+        user = UserProfile.objects.create(email='a', username='b')
+        payment = PaymentAccount.objects.create(
+            solitude_seller=SolitudeSeller.objects.create(user=user),
+            user=user)
+        AddonPaymentAccount.objects.create(addon=app, payment_account=payment)
+        assert app.has_payment_account()
+
+    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
+    def test_payments_complete(self, pay_mock):
+        # Default to complete if it's not needed.
+        pay_mock.return_value = False
+        app = app_factory()
+        assert app.payments_complete()
+
+        self.make_premium(app)
+        assert not app.payments_complete()
+
+        pay_mock.return_value = True
+        assert app.payments_complete()
+
+    @mock.patch('mkt.webapps.models.Webapp.details_complete')
+    @mock.patch('mkt.webapps.models.Webapp.payments_complete')
+    def test_completion_errors_ignore_ratings(self, mock1, mock2):
+        self.create_switch('iarc')
+        app = app_factory()
+        for mock in (mock1, mock2):
+            mock.return_value = True
+
+        assert app.completion_errors()
+        assert not app.is_fully_complete()
+
+        assert 'content_ratings' not in (
+            app.completion_errors(ignore_ratings=True))
+        assert app.is_fully_complete(ignore_ratings=True)
+
+    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
+    def test_completion_errors(self, complete_mock):
+        app = app_factory()
+        complete_mock.return_value = {
+            'details': ['1', '2'],
+            'payments': 'pc load letter'
+        }
+        eq_(app.completion_error_msgs(), ['1', '2', 'pc load letter'])
+        assert not app.is_fully_complete()
+
+        complete_mock.return_value = {}
+        eq_(app.completion_error_msgs(), [])
+        assert app.is_fully_complete()
+
+    @mock.patch('mkt.webapps.models.Webapp.payments_complete')
+    @mock.patch('mkt.webapps.models.Webapp.content_ratings_complete')
+    @mock.patch('mkt.webapps.models.Webapp.details_complete')
+    def test_next_step(self, detail_step, rating_step, pay_step):
+        self.create_switch('iarc')
+        for step in (detail_step, rating_step, pay_step):
+            step.return_value = False
+        app = app_factory()
+        self.make_premium(app)
+        eq_(app.next_step()['url'], app.get_dev_url())
+
+        detail_step.return_value = True
+        eq_(app.next_step()['url'], app.get_dev_url('ratings'))
+
+        rating_step.return_value = True
+        eq_(app.next_step()['url'], app.get_dev_url('payments'))
+
+        pay_step.return_value = True
+        assert not app.next_step()
 
 class DeletedAppTests(amo.tests.ESTestCase):
 
@@ -1168,7 +1202,7 @@ class TestTransformer(amo.tests.TestCase):
             eq_(webapp.device_types, [])
 
 
-class TestIsComplete(amo.tests.TestCase):
+class TestDetailsComplete(amo.tests.TestCase):
 
     def setUp(self):
         self.device = DEVICE_TYPES.keys()[0]
@@ -1177,8 +1211,8 @@ class TestIsComplete(amo.tests.TestCase):
                                             status=amo.STATUS_NULL)
 
     def fail(self, value):
-        can, reasons = self.webapp.is_complete()
-        eq_(can, False)
+        assert not self.webapp.details_complete(), value
+        reasons = self.webapp.details_errors()
         assert value in reasons[0], reasons
 
     def test_fail(self):
@@ -1200,7 +1234,7 @@ class TestIsComplete(amo.tests.TestCase):
         self.fail('screenshot')
 
         self.webapp.previews.create()
-        eq_(self.webapp.is_complete()[0], True)
+        eq_(self.webapp.details_complete(), True)
 
 
 class TestAddonExcludedRegion(amo.tests.WebappTestCase):
