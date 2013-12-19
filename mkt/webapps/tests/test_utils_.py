@@ -283,7 +283,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'description': {
                 u'en-US': u'Something Something Steamcube description!'},
             'homepage': None,
-            'id': '337141',
+            'id': 337141,
             'is_offline': False,
             'is_packaged': False,
             'manifest_url': 'http://micropipes.com/temp/steamcube.webapp',
@@ -327,7 +327,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         res = es_app_to_dict(self.get_obj(), profile=self.profile,
                              request=request)
         expected = {
-            'id': '337141',
+            'id': 337141,
             'description': u'Something Something Steamcube description!',
             'homepage': u'',
             'name': u'Algo Algo Steamcube!',
