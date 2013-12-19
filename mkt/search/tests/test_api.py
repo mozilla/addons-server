@@ -888,6 +888,7 @@ class TestSuggestionsApi(ESTestCase):
         self.app1.save()
         self.app2 = app_factory(name=u'Second âpp',
                                 description=u'Second dèsc' * 25,
+                                icon_type='image/png',
                                 created=self.days_ago(3))
         self.refresh('webapp')
 

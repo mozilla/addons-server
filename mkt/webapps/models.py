@@ -1424,7 +1424,6 @@ class WebappIndexer(MappingType, Indexable):
                         'type': 'object',
                         'properties': {
                             'size': {'type': 'short'},
-                            'url': {'type': 'string', 'index': 'not_analyzed'},
                         }
                     },
                     'interactive_elements': {
@@ -1447,6 +1446,9 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'manifest_url': {'type': 'string',
                                      'index': 'not_analyzed'},
+                    'modified': {'format': 'dateOptionalTime',
+                                 'type': 'date',
+                                 'index': 'not_analyzed'},
                     # Name for searching.
                     'name': {'type': 'string', 'analyzer': 'default_icu'},
                     # Name for sorting.
@@ -1562,7 +1564,7 @@ class WebappIndexer(MappingType, Indexable):
                              .values_list('id', flat=True))
 
         attrs = ('app_slug', 'average_daily_users', 'bayesian_rating',
-                 'created', 'id', 'is_disabled', 'last_updated',
+                 'created', 'id', 'is_disabled', 'last_updated', 'modified',
                  'premium_type', 'status', 'type', 'uses_flash',
                  'weekly_downloads')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
@@ -1586,8 +1588,7 @@ class WebappIndexer(MappingType, Indexable):
         d['device'] = getattr(obj, 'device_ids', [])
         d['features'] = features
         d['has_public_stats'] = obj.public_stats
-        d['icons'] = [{'size': icon_size, 'url': obj.get_icon_url(icon_size)}
-                      for icon_size in (16, 48, 64, 128)]
+        d['icons'] = [{'size': icon_size} for icon_size in (16, 48, 64, 128)]
         d['interactive_elements'] = obj.get_interactives(es=True)
         d['is_escalated'] = is_escalated
         d['is_offline'] = getattr(obj, 'is_offline', False)
@@ -1612,10 +1613,8 @@ class WebappIndexer(MappingType, Indexable):
         d['owners'] = [au.user.id for au in
                        obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
         d['popularity'] = d['_boost'] = len(installed_ids)
-        d['previews'] = [{'filetype': p.filetype,
-                          'image_url': p.image_url,
-                          'thumbnail_url': p.thumbnail_url}
-                         for p in obj.previews.all()]
+        d['previews'] = [{'filetype': p.filetype, 'modified': p.modified,
+                          'id': p.id} for p in obj.previews.all()]
         try:
             p = obj.addonpremium.price
             d['price_tier'] = p.name

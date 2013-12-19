@@ -192,6 +192,9 @@ class SuggestionsView(SearchView):
         icons = []
 
         for obj in qs:
+            # FIXME: this does a lot of stuff we don't need. When es_app_to_dict
+            # is replaced by a Serializer, then we should replace this with a
+            # custom, lean serializer.
             base_data = self.serialize(request, obj)
             names.append(base_data['name'])
             descriptions.append(truncate(base_data['description']))

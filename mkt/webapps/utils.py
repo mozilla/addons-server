@@ -6,7 +6,7 @@ from django.conf import settings
 import commonware.log
 
 import amo
-from addons.models import AddonUser
+from addons.models import AddonUser, Preview
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import find_language
@@ -97,14 +97,16 @@ def es_app_to_dict(obj, profile=None, request=None):
     region_id = REGIONS_DICT[region_slug].id
 
     src = obj._source
-    # The following doesn't perform a database query, but gives us useful
-    # methods like `get_detail_url`. If you use `obj` make sure the calls
-    # don't query the database.
     is_packaged = src.get('app_type') != amo.ADDON_WEBAPP_HOSTED
-    app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
+    # The following doesn't perform a database query, but gives us useful
+    # methods like `get_detail_url` and `get_icon_url`. If you use `app` make
+    # sure the calls don't query the database.
+    app = Webapp(id=obj._id, app_slug=obj.app_slug, is_packaged=is_packaged,
+                 type=amo.ADDON_WEBAPP, icon_type='image/png',
+                 modified=getattr(obj, 'modified', None))
 
     attrs = ('created', 'current_version', 'default_locale', 'is_offline',
-             'manifest_url', 'previews', 'reviewed', 'ratings', 'status',
+             'manifest_url', 'reviewed', 'ratings', 'status',
              'weekly_downloads')
     data = dict((a, getattr(obj, a, None)) for a in attrs)
 
@@ -118,9 +120,33 @@ def es_app_to_dict(obj, profile=None, request=None):
         data[field] = get_translations(src, src_field, obj.default_locale,
                                        lang)
 
+    # Generate urls for previews and icons before the data.update() call below
+    # adds them to the result.
+    previews = getattr(obj, 'previews', [])
+    for preview in previews:
+        if 'image_url' and 'thumbnail_url' in preview:
+            # Old-style index, the full URL is already present, nothing to do.
+            # TODO: remove this check once we have re-indexed everything.
+            continue
+        else:
+            # New-style index, we need to build the URLs from the data we have.
+            p = Preview(id=preview.pop('id'), modified=preview.pop('modified'),
+                        filetype=preview['filetype'])
+            preview['image_url'] = p.image_url
+            preview['thumbnail_url'] = p.thumbnail_url
+    icons = getattr(obj, 'icons', [])
+    for icon in icons:
+        if 'url' in icon:
+            # Old-style index, the full URL is already present, nothing to do.
+            # TODO: remove this check once we have re-indexed everything.
+            continue
+        else:
+            # New-style index, we need to build the URLs from the data we have.
+            icon['url'] = app.get_icon_url(icon['size'])
+
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
-        'app_type': app.app_type,
+        'app_type': 'packaged' if is_packaged else 'hosted',
         'author': src.get('author', ''),
         'banner_regions': src.get('banner_regions', []),
         'categories': [c for c in obj.category],
@@ -139,15 +165,14 @@ def es_app_to_dict(obj, profile=None, request=None):
         'is_packaged': is_packaged,
         'payment_required': False,
         'premium_type': amo.ADDON_PREMIUM_API[src.get('premium_type')],
+        'previews': previews,
         'privacy_policy': reverse('app-privacy-policy-detail',
                                   kwargs={'pk': obj._id}),
         'public_stats': obj.has_public_stats,
         'supported_locales': src.get('supported_locales', ''),
         'slug': obj.app_slug,
-        # TODO: Remove the type check once this code rolls out and our indexes
-        # aren't between mapping changes.
         'versions': dict((v.get('version'), v.get('resource_uri')) for v in
-                         src.get('versions') if type(v) == dict),
+                         src.get('versions')),
     })
 
     if not data['public_stats']:
