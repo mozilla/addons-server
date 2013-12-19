@@ -20,6 +20,7 @@ from celeryutils import task
 import waffle
 
 import amo
+from amo.decorators import write
 from amo.utils import chunked
 from addons import search
 from addons.models import Addon, AppSupport, FrozenAddon, Persona
@@ -223,6 +224,7 @@ def _change_last_updated(next):
 
 
 @cronjobs.register
+@write
 def addon_last_updated():
     next = {}
     for q in Addon._last_updated_queries().values():
