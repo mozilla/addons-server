@@ -145,26 +145,53 @@ Configuration
     :type version: string|null
     :param settings: a subset of useful site settings.
     :type settings: object
-    :param flags: a subset of useful runtime configuration settings.
-    :type flags: object
+    :param waffle: an object containing a list waffle flags and switches.
+    :type waffle: object
 
     Example:
 
     .. code-block:: json
 
         {
-            "flags": {
-                "allow-b2g-paid-submission": true,
-                "allow-refund": true,
-                "in-app-sandbox": false
-            },
-            "resource_uri": "",
+            "waffle": {
+                "switches": {
+                    "some-switch": {
+                        "name": "some-switch",
+                        "created": "2013-12-17T15:38:10",
+                        "modified": "2013-12-17T15:38:10",
+                        "note": "",
+                        "active": true,
+                        "id": 17
+                    }
+                },
+                "flags": {
+                    "some-flag": {
+                        "note": "",
+                        "users": [],
+                        "testing": false,
+                        "everyone": true,
+                        "groups": [],
+                        "rollout": false,
+                        "id": 1,
+                        "staff": false,
+                        "superusers": true,
+                        "authenticated": false,
+                        "name": "a-flag",
+                        "created": "2013-12-19T10:21:56",
+                        "percent": null,
+                        "modified": "2013-12-19T10:21:56",
+                        "languages": ""
+                   }
+                }
+            }
             "settings": {
                 "SITE_URL": "http://z.mozilla.dev"
             },
             "version": null
         }
 
+    For full information about waffle flags and switches, please see the waffle
+    documentation: http://waffle.readthedocs.org/en/latest/types.html
 
 Price tiers
 ===========
