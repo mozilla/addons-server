@@ -1,6 +1,6 @@
+# -*- coding: utf8 -*-
 from tower import ugettext_lazy as _
-from mkt.constants.bango import BANGO_CURRENCIES_KEYS
-
+from lib.constants import ALL_CURRENCIES
 
 # Paypal is an awful place that doesn't understand locales.  Instead they have
 # country codes.  This maps our locales to their codes.
@@ -14,34 +14,10 @@ PAYPAL_COUNTRYMAP = {
 }
 
 # Source, PayPal docs, PP_AdaptivePayments.PDF
-PAYPAL_CURRENCIES = {
-    'AUD': _('Australian Dollar'),
-    'BRL': _('Brazilian Real'),
-    'CAD': _('Canadian Dollar'),
-    'CZK': _('Czech Koruna'),
-    'DKK': _('Danish Krone'),
-    'EUR': _('Euro'),
-    'HKD': _('Hong Kong Dollar'),
-    'HUF': _('Hungarian Forint'),
-    'ILS': _('Israeli New Sheqel'),
-    'JPY': _('Japanese Yen'),
-    'MYR': _('Malaysian Ringgit'),
-    'MXN': _('Mexican Peso'),
-    'NOK': _('Norwegian Krone'),
-    'NZD': _('New Zealand Dollar'),
-    'PHP': _('Philippine Peso'),
-    'PLN': _('Polish Zloty'),
-    'GBP': _('Pound Sterling'),
-    'SGD': _('Singapore Dollar'),
-    'SEK': _('Swedish Krona'),
-    'CHF': _('Swiss Franc'),
-    'TWD': _('Taiwan New Dollar'),
-    'THB': _('Thai Baht'),
-    'USD': _('U.S. Dollar'),
-}
-
-OTHER_CURRENCIES = PAYPAL_CURRENCIES.copy()
-del OTHER_CURRENCIES['USD']
+PAYPAL_CURRENCIES = ['AUD', 'BRL', 'CAD', 'CHF', 'CZK', 'DKK', 'EUR', 'GBP',
+                     'HKD', 'HUF', 'ILS', 'JPY', 'MXN', 'MYR', 'NOK', 'NZD',
+                     'PHP', 'PLN', 'SEK', 'SGD', 'THB', 'TWD', 'USD']
+PAYPAL_CURRENCIES = dict((k, ALL_CURRENCIES[k]) for k in PAYPAL_CURRENCIES)
 
 # TODO(Kumar) bug 768223. Need to find a more complete list for this.
 # This is just a sample.

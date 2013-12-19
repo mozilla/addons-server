@@ -19,6 +19,7 @@ from amo.utils import get_locale_from_lang, memoize_key
 from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
                                 PROVIDER_CHOICES)
+from lib.constants import ALL_CURRENCIES
 from mkt.constants import apps
 from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from stats.models import Contribution
@@ -162,7 +163,7 @@ class PriceCurrency(amo.models.ModelBase):
     carrier = models.IntegerField(choices=CARRIER_CHOICES, blank=True,
                                   null=True)
     currency = models.CharField(max_length=10,
-                                choices=do_dictsort(amo.OTHER_CURRENCIES))
+                                choices=do_dictsort(ALL_CURRENCIES))
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     # The payments provider for this tier.

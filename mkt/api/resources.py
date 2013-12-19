@@ -21,16 +21,18 @@ import amo
 from addons.models import Category, Webapp
 from amo.utils import memoize
 from constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
+from lib.constants import ALL_CURRENCIES
 from market.models import Price, PriceCurrency
 
 from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import AllowAppOwner, GroupPermission
 from mkt.api.base import (cors_api_view, CORSMixin, MarketplaceView,
                           SlugOrIdMixin)
+from mkt.api.fields import SlugChoiceField
 from mkt.api.serializers import CarrierSerializer, RegionSerializer
 from mkt.carriers import CARRIER_MAP, CARRIERS
-from mkt.regions import REGIONS_DICT
 from mkt.regions.utils import parse_region
+from mkt.constants.regions import REGIONS_CHOICES_SLUG, REGIONS_DICT
 from mkt.webapps.tasks import _update_manifest
 
 
@@ -206,16 +208,19 @@ class PriceTierViewSet(generics.CreateAPIView,
 class PriceCurrencySerializer(ModelSerializer):
     resource_uri = HyperlinkedIdentityField(view_name='price-currency-detail')
     tier = HyperlinkedRelatedField(view_name='price-tier-detail')
-    currency = CharField()
+    currency = ChoiceField(choices=ALL_CURRENCIES.items())
     carrier = CharField(required=False)
     price = DecimalField()
     provider = EnumeratedField(PROVIDER_CHOICES)
     method = EnumeratedField(PAYMENT_METHOD_CHOICES)
+    region = SlugChoiceField(choices_dict=dict(REGIONS_CHOICES_SLUG))
+    paid = BooleanField()
+    dev = BooleanField()
 
     class Meta:
         model = PriceCurrency
-        fields = ['resource_uri', 'tier', 'currency', 'carrier',
-                  'price', 'provider', 'method']
+        fields = ['carrier', 'currency', 'dev', 'method', 'paid', 'price',
+                  'provider', 'region', 'resource_uri', 'tier']
 
 
 class PriceCurrencyViewSet(ModelViewSet):
