@@ -283,8 +283,15 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                             self.filename)
 
     @property
+    def addon(self):
+        from addons.models import Addon
+        from versions.models import Version
+        version = Version.with_deleted.get(pk=self.version_id)
+        return Addon.with_deleted.get(pk=version.addon_id)
+
+    @property
     def mirror_file_path(self):
-        if self.version.addon.is_premium():
+        if self.addon.is_premium():
             return
         return os.path.join(settings.MIRROR_STAGE_PATH,
                             str(self.version.addon_id), self.filename)

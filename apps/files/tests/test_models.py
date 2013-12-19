@@ -347,6 +347,13 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.version.addon.update(type=amo.ADDON_WEBAPP)
         eq_(f.is_mirrorable(), False)
 
+    def test_addon(self):
+        f = File.objects.get(pk=67442)
+        addon_id = f.version.addon_id
+        addon = Addon.objects.no_cache().get(pk=addon_id)
+        addon.update(status=amo.STATUS_DELETED)
+        eq_(f.addon.id, addon_id)
+
 
 class TestParseXpi(amo.tests.TestCase):
     fixtures = ['base/apps']
