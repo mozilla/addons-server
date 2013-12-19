@@ -231,7 +231,7 @@ class TestApi(RestOAuth, ESTestCase):
                 eq_(obj['description'],
                     {'en-US': self.webapp.description.localized_string})
                 eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
-                eq_(obj['id'], str(self.webapp.id))
+                eq_(obj['id'], long(self.webapp.id))
                 eq_(obj['manifest_url'], self.webapp.get_manifest_url())
                 eq_(obj['payment_account'], None)
                 self.assertApiUrlEqual(obj['privacy_policy'],

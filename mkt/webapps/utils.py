@@ -131,7 +131,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         },
         'device_types': [DEVICE_TYPES[d].api_name for d in src.get('device')],
         'icons': dict((i['size'], i['url']) for i in src.get('icons')),
-        'id': str(obj._id),
+        'id': long(obj._id),
         'is_packaged': is_packaged,
         'payment_required': False,
         'premium_type': amo.ADDON_PREMIUM_API[src.get('premium_type')],
