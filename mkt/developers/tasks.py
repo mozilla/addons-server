@@ -231,8 +231,7 @@ class ResponseTooLargeException(Exception):
 def get_content_and_check_size(response, max_size):
     # Read one extra byte. Reject if it's too big so we don't have issues
     # downloading huge files.
-    content = response.iter_content(chunk_size=max_size + 1,
-                                    decode_unicode=True).next()
+    content = response.iter_content(chunk_size=max_size + 1).next()
     if len(content) > max_size:
         raise ResponseTooLargeException('Too much data.')
     return content

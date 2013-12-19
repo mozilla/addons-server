@@ -366,6 +366,11 @@ class TestFetchManifest(amo.tests.TestCase):
                 ur.iter_content.return_value = mock.Mock(next=lambda: content)
 
         tasks.fetch_manifest('url', self.upload.pk)
+
+        # Should not be called with anything else (e.g., `decode_unicode`).
+        ur.iter_content.assert_called_with(
+            chunk_size=settings.settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
+
         upload = self.get_upload()
         with storage.open(upload.path, 'rb') as fp:
             manifest = fp.read()
