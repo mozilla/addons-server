@@ -46,8 +46,8 @@ from versions.models import Version
 from mkt.api.models import Access, generate
 from mkt.constants import comm
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
-                                  AppFormMedia, AppFormSupport,
+from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
+                                  AppFormDetails, AppFormMedia, AppFormSupport,
                                   AppFormTechnical, AppVersionForm,
                                   CategoryForm, IARCGetAppInfoForm,
                                   NewPackagedAppForm, PreloadTestPlanForm,
@@ -298,40 +298,39 @@ def _submission_msgs():
     }
 
 
+def _ratings_success_msg(app, old_status, old_modified):
+    """
+    Ratings can be created via IARC pinging our API.
+    Thus we can't display a success message via the standard POST/req/res.
+    To workaround, we stored app's rating's `modified` from edit page.
+    When hitting back to the ratings summary page, calc what msg to show.
+
+    old_status -- app status during ratings edit page.
+    old_modified -- rating modified datetime during ratings edit page.
+    """
+    if old_status != app.status:
+        # App just created a rating to go pending, show 'app now pending'.
+        return _submission_msgs()['complete']
+
+    elif old_modified != app.last_rated_time():
+        # App create/update rating, but was already pending/public, show 'ok'.
+        return _submission_msgs()['content_ratings_saved']
+
+
 @waffle_switch('iarc')
 @dev_required
 def content_ratings(request, addon_id, addon):
     if not addon.is_rated():
         return redirect(addon.get_dev_url('ratings_edit'))
 
-    # Logic for success msg since content ratings may have been created
-    # asynchronously through the IARC tool.
-    if 'ratings_last_modified' in request.session:
-        app_complete = addon.is_fully_complete()
-        last_modified = request.session['ratings_last_modified']
-        updated_last_modified = (
-            addon.content_ratings.order_by('-modified')[0].modified)
-
-        # `not last_modified` means the app previously wasn't rated.
-        # Now we see that it is rated, the app must have been just rated
-        # since the session key hasn't been cleared.
-        # If `last_modified value` is outdated and the session key hasn't
-        # been cleared, the app must have just updated its content ratings.
-        # In both cases, we know to display a success message.
-        if (not last_modified or
-            updated_last_modified > last_modified):
-
-            msgs = _submission_msgs()
-            if not last_modified and app_complete:
-                # Display success message if entire submission complete.
-                messages.success(request, msgs['complete'])
-            else:
-                # Display different success message if just updating.
-                messages.success(request, msgs['content_ratings_saved'])
-
-            # Clear the key so message doesn't get displayed again.
-            del request.session['ratings_last_modified']
-
+    # Use _ratings_success_msg to display success message.
+    session = request.session
+    if 'ratings_edit' in session and addon.id in session['ratings_edit']:
+        prev_state = session['ratings_edit'][addon.id]
+        msg = _ratings_success_msg(addon, prev_state['app_status'],
+                                   prev_state['rating_modified'])
+        messages.success(request, msg) if msg else None
+        del session['ratings_edit'][addon.id]  # Clear msg so not shown again.
 
     return jingo.render(
         request, 'developers/apps/ratings/ratings_summary.html', {
@@ -362,13 +361,14 @@ def content_ratings_edit(request, addon_id, addon):
     with amo.utils.no_translation(addon.default_locale):
         addon_delocalized = Addon.objects.get(pk=addon.pk)
 
-    # If dev gets rating thru IARC tool, JS will redirect. Use session to know
-    # whether to display a success message when hitting the summary page.
-    request.session['ratings_last_modified'] = None
-    if addon.is_rated():
-        request.session['ratings_last_modified'] = (
-            addon.content_ratings.order_by('-modified')[0].modified
-        )
+    # Save some information for _ratings_success_msg.
+    if not 'ratings_edit' in request.session:
+        request.session['ratings_edit'] = {}
+    request.session['ratings_edit'][addon.id] = {
+        'app_status': addon.status,
+        'rating_modified': addon.last_rated_time()
+    }
+    request.session.save()
 
     return jingo.render(
         request, 'developers/apps/ratings/ratings_edit.html', {
