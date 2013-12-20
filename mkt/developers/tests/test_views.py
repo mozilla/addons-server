@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from collections import defaultdict
 import datetime
 import json
 import os
@@ -40,8 +39,8 @@ import mkt
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
 from mkt.developers.views import (_filter_transactions, _get_transactions,
-                                  _submission_msgs, content_ratings,
-                                  content_ratings_edit)
+                                  _ratings_success_msg, _submission_msgs,
+                                  content_ratings, content_ratings_edit)
 from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import ContentRating, Webapp
@@ -1213,72 +1212,41 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(doc('#id_submission_id').attr('value'), '1234')
         eq_(doc('#id_security_code').attr('value'), 'abcd')
 
-    def _make_complete(self, complete_mock):
-        complete_mock.return_value = {}
 
-    def _make_complete_except_payments(self, complete_mock):
-        complete_mock.return_value = {'payments': 'Payments'}
+class TestContentRatingsSuccessMsg(amo.tests.TestCase):
 
-    @mock.patch('amo.messages.success')
-    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
-    def test_success_msg_new_rating_complete(self, complete_mock, msg_mock):
-        """
-        Did not have a rating before, has a rating now, and is fully complete.
-        Should give a "Congratulations, your app is complete!".
-        """
-        self._make_complete(complete_mock)
-        self.req.session = {'ratings_last_modified': None}
+    def setUp(self):
+        self.app = app_factory(status=amo.STATUS_NULL)
 
+    def _make_complete(self, complete_errs):
+        complete_errs.return_value = {}
+
+    def _rate_app(self):
         self.app.content_ratings.create(ratings_body=0, rating=0)
-        content_ratings(self.req, app_slug=self.app.app_slug)
 
-        eq_(msg_mock.call_args[0][1], _submission_msgs()['complete'])
-
-    @mock.patch('amo.messages.success')
-    @mock.patch('mkt.webapps.models.Webapp.next_step')
-    def test_success_msg_new_rating_not_complete(self, next_step_mock,
-                                                 msg_mock):
-        """
-        Did not have a rating before, has a rating now, but not fully complete.
-        Should say "Rating saved." and display the "You need payments." msg.
-        """
-        next_step_mock.return_value = {
-            'name': 'Payments'
-        }
-        self.req.session = {'ratings_last_modified': None}
-
-        self.app.update(status=amo.STATUS_NULL)
-        self.app.content_ratings.create(ratings_body=0, rating=0)
-        r = content_ratings(self.req, app_slug=self.app.app_slug)
-
-        eq_(msg_mock.call_args[0][1],
+    def test_create_rating_still_incomplete(self):
+        self._rate_app()
+        eq_(_ratings_success_msg(self.app, amo.STATUS_NULL, None),
             _submission_msgs()['content_ratings_saved'])
 
-        # Need Payments message.
-        msg = pq(r.content)('.notification-box').text()
-        assert 'Payments' in msg
+    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
+    def test_create_rating_now_complete(self, complete_errs):
+        self._rate_app()
+        self.app.update(status=amo.STATUS_PENDING)
+        eq_(_ratings_success_msg(self.app, amo.STATUS_NULL, None),
+            _submission_msgs()['complete'])
 
-    def _check_update_rating_msg(self, msg_mock):
-        """
-        Had a rating before, updated the rating.
-        In any case, should just say "Rating saved." msg.
-        """
-        self.req.session = {'ratings_last_modified': self.days_ago(5)}
-        self.app.content_ratings.create(ratings_body=0, rating=1)
-        content_ratings(self.req, app_slug=self.app.app_slug)
-
-        eq_(msg_mock.call_args[0][1],
+    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
+    def test_create_rating_public_app(self, complete_errs):
+        self._rate_app()
+        self.app.update(status=amo.STATUS_PUBLIC)
+        eq_(_ratings_success_msg(self.app, amo.STATUS_PUBLIC, None),
             _submission_msgs()['content_ratings_saved'])
 
-    @mock.patch('amo.messages.success')
     @mock.patch('mkt.webapps.models.Webapp.completion_errors')
-    def test_success_msg_update_rating_complete(self, complete_mock, msg_mock):
-        self._make_complete(complete_mock)
-        self._check_update_rating_msg(msg_mock)
-
-    @mock.patch('amo.messages.success')
-    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
-    def test_success_msg_update_rating_not_complete(self, complete_mock,
-                                                    msg_mock):
-        self._make_complete_except_payments(complete_mock)
-        self._check_update_rating_msg(msg_mock)
+    def test_update_rating_still_complete(self, complete_errs):
+        self._rate_app()
+        self.app.update(status=amo.STATUS_PENDING)
+        eq_(_ratings_success_msg(self.app, amo.STATUS_PENDING,
+                                 self.days_ago(5)),
+            _submission_msgs()['content_ratings_saved'])

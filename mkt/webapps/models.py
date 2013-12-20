@@ -1237,6 +1237,11 @@ class Webapp(Addon):
         for xml in xmls:
             get_iarc_client('services').Set_Storefront_Data(XMLString=xml)
 
+    def last_rated_time(self):
+        """Most recent content rating modified time or None if not rated."""
+        if self.is_rated():
+            return self.content_ratings.order_by('-modified')[0].modified
+
 
 class Trending(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='trending')
