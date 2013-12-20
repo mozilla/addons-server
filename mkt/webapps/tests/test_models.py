@@ -782,7 +782,7 @@ class TestWebapp(amo.tests.TestCase):
         self.create_switch('iarc')
         for step in (detail_step, rating_step, pay_step):
             step.return_value = False
-        app = app_factory()
+        app = app_factory(status=amo.STATUS_NULL)
         self.make_premium(app)
         eq_(app.next_step()['url'], app.get_dev_url())
 
