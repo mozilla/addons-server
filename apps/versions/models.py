@@ -348,10 +348,14 @@ class Version(amo.models.ModelBase):
 
     @property
     def status(self):
+        status_choices = amo.STATUS_CHOICES
+        if settings.MARKETPLACE:
+            status_choices = amo.MKT_STATUS_FILE_CHOICES
+
         if settings.MARKETPLACE and self.deleted:
-            return [amo.STATUS_CHOICES[amo.STATUS_DELETED]]
+            return [status_choices[amo.STATUS_DELETED]]
         else:
-            return [amo.STATUS_CHOICES[f.status] for f in self.all_files]
+            return [status_choices[f.status] for f in self.all_files]
 
     @property
     def statuses(self):

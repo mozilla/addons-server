@@ -63,7 +63,7 @@
         <dt>{{ _('Submitted') }}</dt>
         <dd>{{ app.created|babel_datetime }}</dd>
         <dt>{{ _('Status') }}</dt>
-        <dd>{{ amo.STATUS_CHOICES[app.status] }}</dd>
+        <dd>{{ amo.MKT_STATUS_CHOICES[app.status] }}</dd>
         <dt>{{ _('Abuse Reports') }}</dt>
         <dd>{{ abuse_reports }}</dd>
         <dt>{{ _('Permissions') }}</dt>
@@ -129,7 +129,7 @@
               {% with file = v.files.latest() %}
                 <td><a href="{{ v.all_files[0].get_url_path('') }}" class="download">
                   {{ file.filename }} ({{ file.id }}, {{ file.size|filesizeformat }})</a></td>
-                <td>{{ amo.STATUS_CHOICES[file.status] }}</td>
+                <td>{{ amo.MKT_STATUS_CHOICES[file.status] }}</td>
               {% endwith %}
             </tr>
           {% endfor %}

@@ -396,7 +396,7 @@ def _review(request, addon, version):
                   num_pages=num_pages, count=count,
                   flags=Review.objects.filter(addon=addon, flag=True),
                   form=form, canned=canned, is_admin=is_admin,
-                  status_types=amo.STATUS_CHOICES, show_diff=show_diff,
+                  status_types=amo.MKT_STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   tab=queue_type, product_attrs=product_attrs,

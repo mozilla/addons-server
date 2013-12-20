@@ -2159,8 +2159,7 @@ class Geodata(amo.models.ModelBase):
 for region in mkt.regions.SPECIAL_REGIONS:
     help_text = _('{region} approval status').format(region=region.name)
     field = models.PositiveIntegerField(help_text=help_text,
-                                        choices=amo.STATUS_CHOICES.items(),
-                                        db_index=True, default=0)
+        choices=amo.MKT_STATUS_CHOICES.items(), db_index=True, default=0)
     field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
 
     help_text = _('{region} nomination date').format(region=region.name)

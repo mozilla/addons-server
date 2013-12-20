@@ -1,5 +1,6 @@
 from tower import ugettext_lazy as _
 
+
 INSTALL_TYPE_USER = 0
 INSTALL_TYPE_REVIEWER = 1
 INSTALL_TYPE_DEVELOPER = 2

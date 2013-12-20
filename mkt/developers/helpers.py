@@ -108,7 +108,7 @@ def add_version_modal(context, title, action, upload_url, action_label):
 def status_choices(addon):
     """Return a dict like STATUS_CHOICES customized for the addon status."""
     # Show "awaiting full review" for unreviewed files on that track.
-    choices = dict(amo.STATUS_CHOICES)
+    choices = dict(amo.MKT_STATUS_CHOICES)
     if addon.status in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                         amo.STATUS_PUBLIC):
         choices[amo.STATUS_UNREVIEWED] = choices[amo.STATUS_NOMINATED]

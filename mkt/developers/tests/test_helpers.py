@@ -13,10 +13,11 @@ import amo.tests
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import render
 from addons.models import Addon
-from mkt.developers import helpers
 from files.models import File, Platform
 from users.models import UserProfile
 from versions.models import Version
+
+from mkt.developers import helpers
 
 
 def test_hub_page_title():
@@ -172,37 +173,37 @@ class TestDevFilesStatus(amo.tests.TestCase):
     def test_unreviewed_lite(self):
         self.addon.status = amo.STATUS_LITE
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
+        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_UNREVIEWED])
 
     def test_unreviewed_public(self):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_NOMINATED])
+        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_NOMINATED])
 
     def test_unreviewed_nominated(self):
         self.addon.status = amo.STATUS_NOMINATED
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_NOMINATED])
+        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_NOMINATED])
 
     def test_unreviewed_lite_and_nominated(self):
         self.addon.status = amo.STATUS_LITE_AND_NOMINATED
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_NOMINATED])
+        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_NOMINATED])
 
     def test_reviewed_lite(self):
         self.addon.status = amo.STATUS_LITE
         self.file.status = amo.STATUS_LITE
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_LITE])
+        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_LITE])
 
     def test_reviewed_public(self):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_PUBLIC
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_PUBLIC])
+        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_PUBLIC])
 
     def test_disabled(self):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_DISABLED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_DISABLED])
+        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_DISABLED])
 
 
 class TestDevAgreement(amo.tests.TestCase):

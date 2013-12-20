@@ -70,7 +70,7 @@ def themes_list(request, flagged=False, rereview=False):
         'flagged': flagged,
         'pager': pager,
         'rereview': rereview,
-        'STATUS_CHOICES': amo.STATUS_CHOICES,
+        'STATUS_CHOICES': amo.MKT_STATUS_CHOICES,
         'search_form': search_form,
         'tab': ('rereview_themes' if rereview else
                 'flagged_themes' if flagged else 'pending_themes'),

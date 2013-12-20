@@ -10,15 +10,15 @@ from jinja2.filters import do_filesizeformat
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-import mkt.constants.reviewers as rvw
 from addons.models import AddonDeviceType, Persona
 from amo.utils import raise_required
 from editors.forms import NonValidatingChoiceField, ReviewLogForm
 from editors.models import CannedResponse, ReviewerScore
+
+import mkt.constants.reviewers as rvw
 from mkt.api.forms import CustomNullBooleanSelect
 from mkt.reviewers.utils import ReviewHelper
 from mkt.search.forms import ApiSearchForm
-
 
 from .models import ThemeLock
 from .tasks import approve_rereview, reject_rereview, send_mail
@@ -31,7 +31,7 @@ log = logging.getLogger('z.reviewers.forms')
 STATUS_CHOICES = [('any', _lazy(u'Any Status'))]
 for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
     STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
-                           amo.STATUS_CHOICES[status]))
+                           amo.MKT_STATUS_CHOICES[status]))
 
 
 class ReviewAppAttachmentForm(happyforms.Form):
