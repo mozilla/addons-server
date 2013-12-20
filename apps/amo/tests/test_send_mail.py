@@ -5,6 +5,7 @@ from django import test
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.core.mail import EmailMessage
 from django.template import Context as TemplateContext
 from django.utils import translation
 
@@ -12,7 +13,8 @@ import mock
 from nose.tools import eq_
 
 from amo.models import FakeEmail
-from amo.utils import send_mail, send_html_mail_jinja
+from amo.tasks import send_email
+from amo.utils import send_mail, send_html_mail_jinja, get_email_backend
 from devhub.tests.test_models import ATTACHMENTS_DIR
 from users.models import UserProfile, UserNotification
 import users.notifications
@@ -205,3 +207,44 @@ class TestSendMail(test.TestCase):
         send_mail('test subject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'], attachments=attachments)
         eq_(attachments, mail.outbox[0].attachments, 'Attachments not included')
+
+    def make_backend_class(self, error_order):
+        throw_error = iter(error_order)
+        def make_backend(*args, **kwargs):
+            if next(throw_error):
+                class BrokenMessage(object):
+                    def __init__(*args, **kwargs):
+                        pass
+
+                    def send(*args, **kwargs):
+                        raise RuntimeError('uh oh')
+
+                    def attach_alternative(*args, **kwargs):
+                        pass
+                backend = BrokenMessage()
+            else:
+                backend = EmailMessage(*args, **kwargs)
+            return backend
+        return make_backend
+
+    @mock.patch('amo.tasks.EmailMessage')
+    def test_async_will_retry(self, backend):
+        backend.side_effect = self.make_backend_class([True, True, False])
+        with self.assertRaises(RuntimeError):
+            send_mail('test subject',
+                      'test body',
+                      recipient_list=['somebody@mozilla.org'])
+        assert send_mail('test subject',
+                          'test body',
+                          async=True,
+                          recipient_list=['somebody@mozilla.org'])
+
+    @mock.patch('amo.tasks.EmailMessage')
+    def test_async_will_stop_retrying(self, backend):
+        backend.side_effect = self.make_backend_class([True, True])
+        with self.assertRaises(RuntimeError):
+            send_mail('test subject',
+                      'test body',
+                      async=True,
+                      max_retries=1,
+                      recipient_list=['somebody@mozilla.org'])

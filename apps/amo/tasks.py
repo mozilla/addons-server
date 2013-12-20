@@ -1,6 +1,7 @@
 import datetime
 
 from django.conf import settings
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 import commonware.log
 import phpserialize
@@ -11,6 +12,7 @@ import amo
 from abuse.models import AbuseReport
 from addons.models import Addon
 from amo.decorators import set_task_user
+from amo.utils import get_email_backend
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from devhub.models import ActivityLog, AppLog, LegacyAddonLog
@@ -22,6 +24,30 @@ from stats.models import Contribution
 
 log = commonware.log.getLogger('z.task')
 
+
+@task
+def send_email(recipient, subject, message, from_email=None,
+               html_message=None, attachments=None, real_email=False,
+               cc=None, headers=None, fail_silently=False, async=False,
+               max_retries=None, **kwargs):
+    backend = EmailMultiAlternatives if html_message else EmailMessage
+    connection = get_email_backend(real_email)
+    result = backend(subject, message,
+                     from_email, recipient, cc=cc, connection=connection,
+                     headers=headers, attachments=attachments)
+    if html_message:
+        result.attach_alternative(html_message, 'text/html')
+    try:
+        result.send(fail_silently=False)
+        return True
+    except Exception as e:
+        log.error('send_mail failed with error: %s' % e)
+        if async:
+            return send_email.retry(exc=e, max_retries=max_retries)
+        elif not fail_silently:
+            raise
+        else:
+            return False
 
 @task
 def flush_front_end_cache_urls(urls, **kw):
