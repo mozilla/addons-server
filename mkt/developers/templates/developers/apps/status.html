@@ -224,7 +224,7 @@
                         <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ version.status|join(', ') }}</b></span>
                       {% endif %}
                     </td>
-                    <td class="date" title="{{ version.created|isotime }}">{{ version.created|datetime }}</td>
+                    <td class="date" title="{{ version.created|isotime }}">{{ version.created|babel_date('long') }}</td>
                     <td>
                       {% if version.all_files[0].status != amo.STATUS_BLOCKED %}
                         <div class="buttons">
