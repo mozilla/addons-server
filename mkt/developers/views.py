@@ -331,6 +331,7 @@ def content_ratings(request, addon_id, addon):
                                    prev_state['rating_modified'])
         messages.success(request, msg) if msg else None
         del session['ratings_edit'][addon.id]  # Clear msg so not shown again.
+        request.session.modified = True
 
     return jingo.render(
         request, 'developers/apps/ratings/ratings_summary.html', {
@@ -368,7 +369,7 @@ def content_ratings_edit(request, addon_id, addon):
         'app_status': addon.status,
         'rating_modified': addon.last_rated_time()
     }
-    request.session.save()
+    request.session.modified = True
 
     return jingo.render(
         request, 'developers/apps/ratings/ratings_edit.html', {

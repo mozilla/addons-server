@@ -1142,7 +1142,7 @@ class TestContentRatings(amo.tests.TestCase):
         self.url = reverse('mkt.developers.apps.ratings',
                            args=[self.app.app_slug])
         self.req = amo.tests.req_factory_factory(self.url, user=self.user)
-        self.req.session = {}
+        self.req.session = mock.MagicMock()
 
     @override_settings(IARC_SUBMISSION_ENDPOINT='https://yo.lo',
                        IARC_STOREFRONT_ID=1, IARC_COMPANY='Mozilla',
