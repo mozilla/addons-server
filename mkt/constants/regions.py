@@ -132,6 +132,7 @@ class MX(REGION):
     default_currency = 'MXN'
     default_language = 'es'
     mcc = 334
+    ratingsbody = ratingsbodies.ESRB
 
 
 class HU(REGION):
