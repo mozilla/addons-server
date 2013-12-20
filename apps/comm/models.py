@@ -8,7 +8,7 @@ from access import acl
 import amo.models
 from translations.fields import save_signal
 
-from mkt.constants import comm as const
+from mkt.constants import comm
 
 
 class CommunicationPermissionModel(amo.models.ModelBase):
@@ -134,6 +134,17 @@ class CommunicationThreadCC(amo.models.ModelBase):
         unique_together = ('user', 'thread',)
 
 
+def cc_auto_mark_all_read(sender, instance, **kw):
+    """When someone joins thread, mark all old messages read."""
+    from comm.tasks import mark_thread_read
+    mark_thread_read.delay(instance.thread, instance.user)
+
+
+models.signals.post_save.connect(
+    cc_auto_mark_all_read, sender=CommunicationThreadCC,
+    dispatch_uid='cc_auto_mark_read')
+
+
 class CommunicationNoteManager(models.Manager):
 
     def with_perms(self, profile, thread):
@@ -145,12 +156,12 @@ class CommunicationNoteManager(models.Manager):
 class CommunicationNote(CommunicationPermissionModel):
     thread = models.ForeignKey(CommunicationThread, related_name='notes')
     author = models.ForeignKey('users.UserProfile', related_name='comm_notes')
-    note_type = models.IntegerField()
+    note_type = models.IntegerField(default=comm.NO_ACTION)
     body = models.TextField(null=True)
-    reply_to = models.ForeignKey('self', related_name='replies', null=True,
-                                 blank=True)
-    read_by_users = models.ManyToManyField('users.UserProfile',
-        through='CommunicationNoteRead')
+    reply_to = models.ForeignKey(
+        'self', related_name='replies', null=True, blank=True)
+    read_by_users = models.ManyToManyField(
+        'users.UserProfile', through='CommunicationNoteRead')
 
     objects = CommunicationNoteManager()
 
@@ -162,10 +173,13 @@ class CommunicationNote(CommunicationPermissionModel):
         self.thread.modified = self.created
         self.thread.save()
 
+    def mark_read(self, user):
+        self.reads_set.create(user=user)
+
 
 class CommunicationNoteRead(models.Model):
     user = models.ForeignKey('users.UserProfile')
-    note = models.ForeignKey(CommunicationNote)
+    note = models.ForeignKey(CommunicationNote, related_name='reads_set')
 
     class Meta:
         db_table = 'comm_notes_read'
@@ -186,8 +200,8 @@ class CommunicationThreadToken(amo.models.ModelBase):
     def is_valid(self):
         # TODO: Confirm the expiration and max use count values.
         timedelta = datetime.now() - self.modified
-        return (timedelta.days <= const.THREAD_TOKEN_EXPIRY and
-                self.use_count < const.MAX_TOKEN_USE_COUNT)
+        return (timedelta.days <= comm.THREAD_TOKEN_EXPIRY and
+                self.use_count < comm.MAX_TOKEN_USE_COUNT)
 
     def reset_uuid(self):
         # Generate a new UUID.

@@ -7,11 +7,10 @@ import waffle
 
 from access.models import Group
 from comm.models import (CommunicationNote, CommunicationNoteRead,
-                         CommunicationThreadCC, CommunicationThreadToken,
-                         user_has_perm_thread)
+                         CommunicationThreadToken, user_has_perm_thread)
+from users.models import UserProfile
 
 from mkt.constants import comm
-from users.models import UserProfile
 
 
 log = commonware.log.getLogger('comm')
@@ -167,8 +166,8 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
     body -- string/text for note comment.
     note_type -- integer for note_type (mkt constant), defaults to 0/NO_ACTION
                  (e.g. comm.APPROVAL, comm.REJECTION, comm.NO_ACTION).
-    perms -- list of groups to grant permission to, will set flags on Thread.
-             (e.g. ['developer', 'reviewer', 'public']).
+    perms -- object of groups to grant permission to, will set flags on Thread.
+             (e.g. {'developer': False, 'staff': True}).
 
     """
     if not waffle.switch_is_active('comm-dashboard'):
@@ -176,7 +175,9 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
 
     # Dict of {'read_permission_GROUP_TYPE': boolean}.
     # Perm for dev, reviewer, senior_reviewer, moz_contact all True by default.
-    create_perms = dict(('read_permission_%s' % key, True) for key in perms or {})
+    perms = perms or {}
+    create_perms = dict(('read_permission_%s' % key, has_perm)
+                        for key, has_perm in perms.iteritems())
 
     # Create thread + note.
     thread, created = app.threads.safer_get_or_create(
@@ -184,13 +185,31 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
     note = thread.notes.create(note_type=note_type, body=body, author=author,
                                **create_perms)
 
-    # CC mozilla contacts for them to join thread.
+    post_create_comm_note(note)
+
+    return thread, note
+
+
+def post_create_comm_note(note):
+    """Stuff to do after creating note, also used in comm api's post_save."""
+    from mkt.reviewers.utils import send_note_emails
+
+    thread = note.thread
+    app = thread.addon
+
+    # CC mozilla contact.
     for email in app.get_mozilla_contacts():
         try:
             moz_contact = UserProfile.objects.get(email=email)
-            CommunicationThreadCC.objects.get_or_create(
-                thread=thread, user=moz_contact)
+            thread.thread_cc.get_or_create(user=moz_contact)
         except UserProfile.DoesNotExist:
             pass
 
-    return thread, note
+    # CC note author, mark their own note as read.
+    author = note.author
+    cc, created_cc = thread.thread_cc.get_or_create(user=author)
+    if not created_cc:
+        note.mark_read(note.author)
+
+    # Email.
+    send_note_emails(note)
