@@ -18,6 +18,7 @@ from nose.tools import eq_, ok_
 from slumber import exceptions
 
 import amo
+import amo.tests
 from abuse.models import AbuseReport
 from addons.cron import reindex_addons
 from addons.models import Addon, AddonUser
@@ -727,6 +728,13 @@ class TestAppSummary(AppSummaryTest):
         self._setUp()
 
     def test_app_deleted(self):
+        self.app.delete()
+        self.summary()
+
+    def test_packaged_app_deleted(self):
+        self.app.update(is_packaged=True)
+        ver = amo.tests.version_factory(addon=self.app)
+        amo.tests.file_factory(version=ver)
         self.app.delete()
         self.summary()
 
