@@ -208,7 +208,6 @@ def unconfirmed():
         AND addons_users.user_id IS NULL
         AND addons_collections.user_id IS NULL
         AND collections_users.user_id IS NULL
-        AND api_auth_tokens.user_id IS NULL
     """)
     transaction.commit_unless_managed()
 
