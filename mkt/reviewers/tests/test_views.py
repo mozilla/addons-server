@@ -1283,8 +1283,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(scores[0].note_key, reviewed_type)
 
     def test_comm_emails(self):
-        data = {'action': 'reject', 'comments': 'suxor',
-                'action_visibility': ('developer', 'reviewer', 'staff')}
+        data = {'action': 'reject', 'comments': 'suxor'}
         data.update(self._attachment_management_form(num=0))
         self.create_switch(name='comm-dashboard')
         self.post(data)
