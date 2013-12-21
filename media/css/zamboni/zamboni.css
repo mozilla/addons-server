@@ -809,6 +809,11 @@ div.popup-shim {
     box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     z-index: 2001; /* because of devhub title */
 }
+
+.popup:empty{
+    display: none;
+}
+
 .modal form {
     margin: 0;
 }
