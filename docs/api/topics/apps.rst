@@ -344,6 +344,7 @@ App
 
    See :ref:`Creating an app <app-put-label>`
 
+.. _versions-label:
 
 Versions
 ========

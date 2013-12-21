@@ -1,13 +1,16 @@
 from email import message_from_string
 from email.utils import parseaddr
 
+from django.core.exceptions import PermissionDenied
+
 import commonware.log
 from email_reply_parser import EmailReplyParser
 import waffle
 
 from access.models import Group
 from comm.models import (CommunicationNote, CommunicationNoteRead,
-                         CommunicationThreadToken, user_has_perm_thread)
+                         CommunicationThread, CommunicationThreadToken,
+                         user_has_perm_thread)
 from users.models import UserProfile
 
 from mkt.constants import comm
@@ -179,9 +182,21 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
     create_perms = dict(('read_permission_%s' % key, has_perm)
                         for key, has_perm in perms.iteritems())
 
-    # Create thread + note.
-    thread, created = app.threads.safer_get_or_create(
-        version=version, defaults=create_perms)
+    # Get or create thread w/ custom permissions.
+    thread = None
+    threads = app.threads.filter(version=version)
+    if threads.exists():
+        thread = threads[0]
+    else:
+        # See if user has perms to create thread for this app.
+        thread = CommunicationThread(addon=app, version=version,
+                                     **create_perms)
+        if user_has_perm_thread(thread, author):
+            thread.save()
+        else:
+            raise PermissionDenied
+
+    # Create note.
     note = thread.notes.create(note_type=note_type, body=body, author=author,
                                **create_perms)
 

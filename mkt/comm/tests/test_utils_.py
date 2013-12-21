@@ -76,6 +76,7 @@ class TestCreateCommNote(TestCase):
         self.create_switch('comm-dashboard')
         self.contact = user_factory(username='contact')
         self.user = user_factory()
+        self.grant_permission(self.user, '*:*')
         self.app = app_factory(mozilla_contact=self.contact.email)
 
     def test_create_thread(self):

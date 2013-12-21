@@ -73,7 +73,7 @@ def user_has_perm_thread(thread, profile):
     Developers of the add-on used in the thread, users in the CC list,
     and users who post to the thread are allowed to access the object.
 
-    Moreover, other object permissions are also checked agaisnt the ACLs
+    Moreover, other object permissions are also checked against the ACLs
     of the user.
     """
     user_post = CommunicationNote.objects.filter(
