@@ -223,7 +223,7 @@ class ReviewApp(ReviewBase):
         # For escalation/comment, exclude the developer from the conversation.
         perm_overrides = {
             comm.ESCALATION: {'developer': False},
-            comm.COMMENT: {'developer': False},
+            comm.REVIEWER_COMMENT: {'developer': False},
         }
 
         self.comm_thread, self.comm_note = create_comm_note(

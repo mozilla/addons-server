@@ -1282,25 +1282,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(scores[0].score, amo.REVIEWED_SCORES[reviewed_type])
         eq_(scores[0].note_key, reviewed_type)
 
-    def test_comm_emails(self):
-        data = {'action': 'reject', 'comments': 'suxor'}
-        data.update(self._attachment_management_form(num=0))
-        self.create_switch(name='comm-dashboard')
-        self.post(data)
-        self._check_thread()
-
-        recipients = set(self.app.authors.values_list('email', flat=True))
-        recipients.update(Group.objects.get(
-            name='App Reviewers').users.values_list('email', flat=True))
-        recipients.update(Group.objects.get(
-            name='Admins').users.values_list('email', flat=True))
-
-        recipients.remove('editor@mozilla.com')
-
-        eq_(len(mail.outbox), len(recipients))
-        eq_(mail.outbox[0].subject, '%s has been reviewed.' %
-            self.get_app().name)
-
     def test_xss(self):
         data = {'action': 'comment',
                 'comments': '<script>alert("xss")</script>'}
