@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-04 09:07-0700\n"
-"PO-Revision-Date: 2013-12-12 16:46+0000\n"
-"Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2013-12-22 20:01+0000\n"
+"Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386866776.0\n"
+"X-POOTLE-MTIME: 1387742467.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -15818,7 +15818,7 @@ msgstr "Uso de alcohol y tabaco"
 
 #: mkt/constants/ratingdescriptors.py:148
 msgid "Use of Drug and Alcohol"
-msgstr "Uso de drogas y alcohol "
+msgstr "Uso de drogas y alcohol"
 
 #: mkt/constants/ratingdescriptors.py:151
 msgid "Drug and Tobacco Reference"
@@ -15899,7 +15899,7 @@ msgstr "Público general"
 #. L10n: %d is the age in years.
 #: mkt/constants/ratingsbodies.py:7
 msgid "Not recommended for users younger than %d years of age"
-msgstr "No recomendado para usuarios menores de %d años."
+msgstr "No recomendado para usuarios menores de %d años"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rejected for All Audiences"
