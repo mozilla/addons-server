@@ -369,7 +369,7 @@ class TestFetchManifest(amo.tests.TestCase):
 
         # Should not be called with anything else (e.g., `decode_unicode`).
         ur.iter_content.assert_called_with(
-            chunk_size=settings.settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
+            chunk_size=settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
 
         upload = self.get_upload()
         with storage.open(upload.path, 'rb') as fp:
