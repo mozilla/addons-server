@@ -36,6 +36,8 @@ urls = []
 for key in keys:
     urls.append(url('^%s/$' % key, views.site_stats_report,
                 name='stats.%s' % key, kwargs={'report': key}))
+    urls.append(url(global_series[key], views.site_series,
+                    kwargs={'field': key}))
 
 urlpatterns += patterns('', *urls)
 
