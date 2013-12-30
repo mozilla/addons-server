@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-04 09:07-0700\n"
-"PO-Revision-Date: 2013-12-14 06:08+0000\n"
+"PO-Revision-Date: 2013-12-30 06:42+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1387001308.0\n"
+"X-POOTLE-MTIME: 1388385755.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -6049,8 +6049,11 @@ msgid ""
 "Library</a> that jump straight into code. And if you have some time to spare, you may prefer a video walkthrough of extension basics: <a href=\"http://design-challenge.mozilla.com/resources/"
 "#extension_bootcamp\">Extension Bootcamp: Zero to Hello World! in 45 Minutes</a>."
 msgstr ""
-"如果您準備好要深入了解，<a href=\"%(base_docs)show-to\">「如何…」圖書館</a> 裡的 <a href=\"%(base_docs)show-to/getting-started\">「快速入門」段落</a> 有些教學文件可以讓您直接進入編寫程式的部份。如果"
-"您有些閒暇時間，您可以觀看關於套件基礎的教學影片： <a href=\"http://design-challenge.mozilla.com/resources/#extension_bootcamp\">套件訓練營：四十五分鐘，從零到 Hello World！</a>。"
+"如果您準備好要深入了解，<a href=\"%(base_docs)show-to\">「如何…」圖書館</a> 裡的 <a href=\"%"
+"(base_docs)show-to/getting-started\">「快速入門」段落</a> "
+"有些教學文件可以讓您直接進入編寫程式的部份。如果您有些閒暇時間，您可以觀看關於套件基礎的教學影片：<a href=\"http://design-"
+"challenge.mozilla.com/resources/#extension_bootcamp\">套件訓練營：四十五分鐘，從零到 Hello "
+"World！</a>。"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:47
 msgid "Build your add-on"
@@ -6251,7 +6254,7 @@ msgstr "建立置於沙盒內的 HTTP 連線"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
-msgstr "這篇文章將解釋如何建立不影響使用者 cookies 的沙盒 HTTP 連線。                "
+msgstr "這篇文章將解釋如何建立不影響使用者 cookies 的沙盒 HTTP 連線。"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -10269,7 +10272,7 @@ msgstr "此檔案是一個目錄。"
 
 #: apps/files/tasks.py:49
 msgid "There was an error accessing file %s. %s."
-msgstr "在存取檔案 %s. %s 時發生錯誤。"
+msgstr "在存取檔案 %s 時發生錯誤。%s。"
 
 #: apps/files/tasks.py:52
 msgid "There was an error accessing file %s."
@@ -10578,8 +10581,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org，俗稱為「AMO」，這是 Mozilla 軟體附加元件的官方網站，像是 Firefox、Thunderbird 和 SeaMonkey 的附加元件。附加元件讓您在瀏覽器或應用程式執行時增加新的功能。四處晃晃並探索成千上萬的"
-"方式來制定專屬於您的網路經驗。                "
+"addons.mozilla.org，俗稱為「AMO」，這是 Mozilla 軟體附加元件的官方網站，像是 Firefox、Thunderbird 和 "
+"SeaMonkey 的附加元件。附加元件讓您在瀏覽器或應用程式執行時增加新的功能。四處晃晃並探索成千上萬的方式來制定專屬於您的網路經驗。"
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -10621,11 +10624,13 @@ msgstr "這裡有很多方式可以一起參與。如果您在技術方面感興
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr "<a href=\"%(url)s\">製作您自己的附加元件</ A>。我們提供免費託管和更新的服務，可以幫助你接觸到大量的使用者大眾。"
+msgstr "<a href=\"%(url)s\">製作您自己的附加元件</a>。我們提供免費託管和更新的服務，可以幫助你接觸到大量的使用者大眾。"
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
-msgstr "如果你有附加的開發經驗，<a href=\"%(url)s\">成為一個編輯</ a>！我們的編輯是具有技術背景的附加元件愛好者，負責審核附加元件原始碼的質量和穩定性。"
+msgstr ""
+"如果你有附加的開發經驗，<a href=\"%"
+"(url)s\">快來成為編輯</a>！我們的編輯是具有技術背景的附加元件愛好者，負責審核附加元件原始碼的質量和穩定性。"
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
@@ -10637,7 +10642,7 @@ msgstr "如果您對附加元件有興趣，但不是技術性的，您仍然有
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! <a href=\"%(url)s\">Spread Firefox</a> and let people know which add-ons you use."
-msgstr "告訴你的朋友！ <a href=\"%(url)s\">推廣 Firefox</ a>並讓人們知道您使用了哪些附加元件。"
+msgstr "告訴你的朋友！ <a href=\"%(url)s\">推廣 Firefox</a>並讓人們知道您使用了哪些附加元件。"
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -10669,7 +10674,9 @@ msgstr "在這個網站是誰的作品？"
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
-msgstr "多年來，很多人都對這個網站做出貢獻，包括社群志工以及一支專門的AMO 團隊。您可以在<a href=\"%(url)s\">網站貢獻</ a>頁面找到顯著貢獻者的名單。"
+msgstr ""
+"多年來，很多人都對這個網站做出貢獻，包括社群志工以及一支專門的 AMO 團隊。您可以在<a href=\"%"
+"(url)s\">網站貢獻</a>頁面找到顯著貢獻者的名單。"
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -15632,7 +15639,7 @@ msgstr "您必須至少上傳一個螢幕截圖或影片。"
 
 #: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr ""
+msgstr "封裝應用程式過大，安裝需小於 %s。"
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."
@@ -15912,7 +15919,7 @@ msgstr "Bango"
 
 #: mkt/developers/providers.py:142
 msgid "Reference Implementation"
-msgstr ""
+msgstr "參照工具"
 
 #: mkt/developers/tasks.py:347
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -16387,7 +16394,7 @@ msgstr "預先安裝應用程式狀態"
 
 #: mkt/developers/templates/developers/apps/status.html:128
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
-msgstr "已於 %(last_submission)s<strong class=\"submitted\">提交應用程式</strong> "
+msgstr "已於 %(last_submission)s<strong class=\"submitted\">提交應用程式</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:132
 msgid "Not Submitted"
@@ -16925,7 +16932,7 @@ msgstr "安全碼"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
-msgstr "您可以在認證書中找到該識別碼。識別碼由數字和英文字母組成，例如  &quot;AB12CD3&quot;。"
+msgstr "您可以在憑證中找到該識別碼。識別碼由數字和英文字母組成，例如 &quot;AB12CD3&quot;。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
 msgid "Rating System"
@@ -17024,7 +17031,7 @@ msgstr "改為免費版時您的應用程式需要再次審核。"
 
 #: mkt/developers/templates/developers/payments/premium.html:80
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
+msgstr "您應用程式的付費版本需要支援："
 
 #: mkt/developers/templates/developers/payments/premium.html:81 mkt/developers/templates/developers/payments/premium.html:83 mkt/submit/templates/submit/manifest.html:44
 msgid "Paid / In-app"
@@ -17130,7 +17137,7 @@ msgstr "沒有免費版應用程式"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
-msgstr ""
+msgstr "使用條款"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
 msgid "Agree to the Terms"
@@ -17138,7 +17145,7 @@ msgstr "同意條款"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
-msgstr ""
+msgstr "提供者"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14 mkt/developers/templates/developers/payments/includes/account_list.html:48
 msgid "Modify"
@@ -17623,6 +17630,8 @@ msgid ""
 "There's no &quot;right way&quot; to design a user interface, but there are plenty of ways to make your app less fun and easy to use. With this in mind, the following sections can help avoid making "
 "some of the most common UI mistakes, setting you on the path to making an app that is a joy to use no matter what platform it's running on."
 msgstr ""
+"不存在「絕對正確」的使用者界面，但是我們提供一些不同的方式來協助您輕鬆設計應用程式界面；請依循下列指示，幫助您避免觸犯常見的 UI "
+"設計錯誤，為您的應用程式建立無論在什麼平台都能讓所有人自在使用的應用程式。"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:27 mkt/ecosystem/templates/ecosystem/macros.html:24
 msgid "Intro to Responsive Design"
@@ -17631,11 +17640,11 @@ msgstr "適應性設計簡介"
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:31 mkt/ecosystem/templates/ecosystem/design_ui.html:43
 msgid ""
 "One app, multiple screens. How do you make a UI that looks and works as great on a smartphone as it does on the desktop? Learn how to design and build UIs that change to fit your user's screen."
-msgstr ""
+msgstr "一個應用程式需要支援多種不同螢幕，如何設計一個運作在智慧型手機跟桌面版一樣流暢的使用者界面？學習如何設計一個在不同螢幕間都適合的使用者界面。"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:39 mkt/ecosystem/templates/ecosystem/macros.html:28
 msgid "Responsive Navigation Patterns"
-msgstr ""
+msgstr "探索適應性模型"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:52 mkt/ecosystem/templates/ecosystem/macros.html:32
 msgid "UI Guidelines for Firefox OS"
@@ -17658,12 +17667,16 @@ msgid ""
 "Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the "
 "phone vibrate, placing phone calls, and sending text messages."
 msgstr ""
+"Firefox OS 是一個全新的行動作業系統，完全依循開放網頁標準進行開發；HTML5 "
+"的應用程式可以直接控制手機的硬體及其他功能—振動、撥出電話及傳送簡訊。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
 msgid ""
 "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
 "and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
 msgstr ""
+"我們深信開發者將網路力量帶向行動平台有巨大的幫助，因此我們尋找多元的合作夥伴，使得更多設備得以支援開發、測試應用程式並學習使 Firefox OS "
+"更加具有自己的特色，這頁提供一些有用的訊息給開發者，例如開發者文件、目前可用的裝置和從哪裡可以獲取裝置的連結。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
@@ -17678,12 +17691,18 @@ msgid ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</"
 "a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">從美國商店購買</a> <a href=\"%"
+"(uk_ebay_url)s\" class=\"button\">從英國商店購買</a> <a href=\"%(hk_ebay_url)s\" "
+"class=\"button\">從香港商店購買</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid ""
 "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"跟 ZTE 一起歷經很多努力後，我們非常開心的宣佈針對全球開發者與嘗鮮者的強大裝置 ZTE OPEN Firefox OS 手機即將發售，目前將於 "
+"ZTE 的美國、英國及香港 eBay 商店販售，定價為 79.99 美元 / 59.99 英鎊，這將會是已解鎖版本，開放進行實驗與測試。<a "
+"href=\"%(zte_url)s\">閱讀更多細節</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
@@ -17730,7 +17749,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:122
 msgid "Sharing with the community"
-msgstr ""
+msgstr "與社群分享"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:124
 msgid ""
@@ -17749,11 +17768,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr ""
+msgstr "為開放的商城開發 HTML5 網頁應用程式。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr ""
+msgstr "了解如何設計能夠帶來為 Firefox OS 與行動裝置最佳化體驗的應用程式"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
@@ -18336,7 +18355,7 @@ msgstr "在用戶端上儲存本地與遠端筆記。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:61
 msgid "Enables the page and functionality to work offline."
-msgstr ""
+msgstr "讓您能夠離線使用。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:77 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:54
 msgid "Both server and client code are written in JavaScript."
@@ -18435,7 +18454,7 @@ msgstr "撰寫狀態更新"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:28
 msgid "Liking a Post"
-msgstr ""
+msgstr "喜歡這篇文章"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:35
 msgid ""
@@ -18592,7 +18611,7 @@ msgstr "請輸入退款詳細資訊以便進行退款交易"
 
 #: mkt/lookup/forms.py:33
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "刪除原因"
 
 #: mkt/lookup/views.py:151
 msgid "Currently unable to retrieve refund status."
@@ -18637,7 +18656,7 @@ msgstr "安裝資訊"
 
 #: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
 msgid "View"
-msgstr ""
+msgstr "檢視"
 
 #: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Privileged Packaged app"
@@ -18688,7 +18707,7 @@ msgstr "乙拒絕{0}個退費申請"
 
 #: mkt/lookup/templates/lookup/app_summary.html:106 mkt/lookup/templates/lookup/user_summary.html:54
 msgid "Bango portal"
-msgstr ""
+msgstr "Bango portal"
 
 #: mkt/lookup/templates/lookup/app_summary.html:119
 msgid "Version (ID)"
@@ -18708,7 +18727,7 @@ msgstr "<small>Marketplace</small> 尋找工具"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup results for <a href=\"%(tx_url)s\">Transaction %(uuid)s</a>"
-msgstr ""
+msgstr "交易<a href=\"%(tx_url)s\">%(uuid)s</a> 的查詢結果"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:22
 msgid "Buyer"
@@ -18793,7 +18812,7 @@ msgstr "自動核准"
 #. The account is the name of the payment account.
 #: mkt/lookup/templates/lookup/user_summary.html:57
 msgid "View transactions for: {account}"
-msgstr ""
+msgstr "檢視 {account} 的交易"
 
 #: mkt/lookup/templates/lookup/user_summary.html:64
 msgid "Developer Program"
@@ -18823,15 +18842,15 @@ msgstr "刪除使用者"
 
 #: mkt/lookup/templates/lookup/user_summary.html:114
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr ""
+msgstr "刪除此使用者將會 <strong>永久</strong> 刪除此使用者帳號。"
 
 #: mkt/lookup/templates/lookup/user_summary.html:124
 msgid "Are you sure you wish to delete this user?"
-msgstr ""
+msgstr "您確定要刪除此使用者？"
 
 #: mkt/lookup/templates/lookup/user_summary.html:134
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "此使用者已被刪除。"
 
 #: mkt/lookup/templates/lookup/user_summary.html:136
 msgid "Deleted by"
@@ -18876,11 +18895,11 @@ msgstr "帳號查閱"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
-msgstr ""
+msgstr "電信業者主控台"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr ""
+msgstr "<small>電信業者</small>主控台"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
@@ -18900,7 +18919,7 @@ msgstr ""
 
 #: mkt/operators/templates/operators/preloads.html:55
 msgid "No preload candidates found"
-msgstr ""
+msgstr "找不到預載選項"
 
 #. L10n: {0} is the addon name.
 #: mkt/purchase/webpay.py:42
@@ -19507,7 +19526,7 @@ msgstr[0] "{num} 個更新{num} 個更新"
 #: mkt/reviewers/templates/reviewers/themes/home.html:47
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
-msgstr[0] "本週已提交 {num} 個佈景主題，且尚未審核。本週已提交 {num} 個佈景主題，且尚未審核。                "
+msgstr[0] "本週已提交 {num} 個佈景主題，且尚未審核。"
 
 #: mkt/reviewers/templates/reviewers/themes/logs.html:4
 msgid "Theme Review Log"
