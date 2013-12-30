@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-04 09:07-0700\n"
-"PO-Revision-Date: 2013-12-11 09:48+0000\n"
+"PO-Revision-Date: 2013-12-30 22:39+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386755321.0\n"
+"X-POOTLE-MTIME: 1388443175.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -43,7 +43,7 @@ msgstr "App installieren"
 #: apps/addons/buttons.py:236
 msgctxt "install_button"
 msgid "Featured"
-msgstr "Empfohlen"
+msgstr "Vorgestellt"
 
 #: apps/addons/buttons.py:241
 msgctxt "install_button"
@@ -149,7 +149,7 @@ msgstr "Noch nicht freigegeben"
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:86 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231 apps/browse/views.py:448
 #: apps/browse/templates/browse/impala/category_landing.html:24 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
-msgstr "Empfohlen"
+msgstr "Vorgestellt"
 
 #: apps/addons/models.py:291
 msgid "Users have the option of contributing more or less than this amount."
@@ -1505,7 +1505,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/home.html:49
 msgid "View all Featured add-ons"
-msgstr "Alle empfohlenen Add-ons ansehen"
+msgstr "Alle vorgestellten Add-ons ansehen"
 
 #: apps/addons/templates/addons/mobile/home.html:55
 msgid "View all Popular add-ons"
@@ -1796,20 +1796,20 @@ msgstr "{review} für {addon} geschrieben."
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr "{addon} in {0} empfohlen."
+msgstr "{addon} in {0} vorgestellt."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
 msgid "{addon} no longer featured in {0}."
-msgstr "{addon} in {0} nicht mehr empfohlen."
+msgstr "{addon} in {0} nicht mehr vorgestellt."
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr "{addon} wird jetzt empfohlen."
+msgstr "{addon} wird jetzt vorgestellt."
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr "{addon} wird nicht mehr empfohlen."
+msgstr "{addon} wird nicht mehr vorgestellt."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
@@ -2124,19 +2124,32 @@ msgid ""
 "may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
 "ul>"
 msgstr ""
-"<h1>Diese Seite wurde leider nicht gefunden.</h1> <p>Die Webseite oder Datei, die Sie angefordert haben, wurde auf unserem Server nicht gefunden. Es ist möglich, dass Sie auf einen Link geklickt "
-"haben, der nicht mehr aktuell ist, oder vielleicht haben Sie sich bei der Eingabe der Adresse vertippt.</p> <ul> <li>Falls Sie die Adresse von Hand eingegeben haben, überprüfen Sie bitte noch "
-"einmal, ob Sie sie richtig geschrieben haben.</li> <li>Wenn Sie einem \"toten\" Link gefolgt sind, lassen Sie uns das bitte wissen, indem Sie uns eine E-Mail an <a href=\"mailto:webmaster@mozilla."
-"com\" title=\"Page Not Found on Mozilla.com\">webmaster@mozilla.com</a> schreiben. Teilen Sie uns mit, woher Sie gekommen sind und wohin Sie gelangen wollten, und wir werden uns bemühen, das "
-"Problem zu beheben.</li> </ul> <p>Stattdessen möchten Sie aber vielleicht auch einfach zu einer der beliebten Seiten auf unserem Angebot surfen.</p> <ul> <li>Möchten Sie eine Liste von <a href="
-"\"%(rec)s\">empfohlenen Add-ons</a> sehen?</li> <li>Möchten Sie <a href=\"%(search)s\">nach Add-ons suchen</a>? Dazu können sie die <a href=\"%(search)s\">Suche aufrufen</a> oder einfach etwas in "
-"das oben stehende Suchfeld eingeben.</li> <li>Wenn Sie lieber von vorne beginnen wollen, gehen Sie einfach <a href=\"%(home)s\">zurück zur Hauptseite</a>. </li> </ul>"
+"<h1>Diese Seite wurde leider nicht gefunden.</h1> <p>Die Webseite oder "
+"Datei, die Sie angefordert haben, wurde auf unserem Server nicht gefunden. "
+"Es ist möglich, dass Sie auf einen Link geklickt haben, der nicht mehr "
+"aktuell ist, oder vielleicht haben Sie sich bei der Eingabe der Adresse "
+"vertippt.</p> <ul> <li>Falls Sie die Adresse von Hand eingegeben haben, "
+"überprüfen Sie bitte noch einmal, ob Sie sie richtig geschrieben haben.</li> "
+"<li>Wenn Sie einem \"toten\" Link gefolgt sind, lassen Sie uns das bitte "
+"wissen, indem Sie uns eine E-Mail an <a href=\"mailto:webmaster@mozilla.com\" "
+"title=\"Page Not Found on Mozilla.com\">webmaster@mozilla.com</a> schreiben. "
+"Teilen Sie uns mit, woher Sie gekommen sind und wohin Sie gelangen wollten, "
+"und wir werden uns bemühen, das Problem zu beheben.</li> </ul> "
+"<p>Stattdessen möchten Sie aber vielleicht auch einfach zu einer der "
+"beliebten Seiten auf unserem Angebot surfen.</p> <ul> <li>Möchten Sie eine "
+"Liste von <a href=\"%(rec)s\">vorgestellten Add-ons</a> sehen?</li> "
+"<li>Möchten Sie <a href=\"%(search)s\">nach Add-ons suchen</a>? Dazu können "
+"sie die <a href=\"%(search)s\">Suche aufrufen</a> oder einfach etwas in das "
+"oben stehende Suchfeld eingeben.</li> <li>Wenn Sie lieber von vorne beginnen "
+"wollen, gehen Sie einfach <a href=\"%(home)s\">zurück zur Hauptseite</a>. "
+"</li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-"<h1>Oops! Ein Fehler ist aufgetreten.</h1> <p>Wir werden ihn alsbald beheben.</p> <p> Sie können versuchen, die Seite neu zu laden, oder zurück zur <a href=\"%(home)s\">Add-ons Homepage</a>gehen.</"
-"p>"
+"<h1>Hoppla! Ein Fehler ist aufgetreten.</h1> <p>Wir werden ihn alsbald "
+"beheben.</p> <p> Sie können versuchen, die Seite neu zu laden, oder zurück "
+"zur <a href=\"%(home)s\">Add-ons Homepage</a>gehen.</p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
@@ -3042,7 +3055,7 @@ msgstr "%s Themes"
 
 #: apps/browse/feeds.py:129
 msgid "Featured Add-ons :: %s"
-msgstr "Empfohlene Add-ons :: %s"
+msgstr "Vorgestellte Add-ons :: %s"
 
 #. L10n: %s is an app name.
 #: apps/browse/feeds.py:138
@@ -3089,19 +3102,19 @@ msgstr "Bewertung"
 #. {0} is the category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:5 apps/browse/templates/browse/creatured.html:13
 msgid "{0}: Featured Add-ons"
-msgstr "{0}: Empfohlene Add-ons"
+msgstr "{0}: Vorgestellte Add-ons"
 
 #: apps/browse/templates/browse/creatured.html:12 apps/browse/templates/browse/featured.html:4 apps/browse/templates/browse/featured.html:12 apps/browse/templates/browse/featured.html:13
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:3 apps/devhub/templates/devhub/docs/policies-recommended.html:7 apps/devhub/templates/devhub/docs/policies-recommended.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:338 apps/discovery/templates/discovery/pane.html:53
 #: templates/menu_links.html:7
 msgid "Featured Add-ons"
-msgstr "Empfohlene Add-ons"
+msgstr "Vorgestellte Add-ons"
 
 #. {0} is a category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:21
 msgid "No featured add-ons in {0}."
-msgstr "Keine empfohlenen Add-ons in {0}."
+msgstr "Keine vorgestellten Add-ons in {0}."
 
 #: apps/browse/templates/browse/featured.html:15
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
@@ -5491,7 +5504,9 @@ msgstr "32x32px"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:59
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr "Wird in Add-on-Auflistungen verwendet, wie Suchergebnissen und empfohlene Add-ons."
+msgstr ""
+"Wird in Add-on-Auflistungen verwendet, wie Suchergebnissen und vorgestellten "
+"Add-ons."
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:69 mkt/developers/templates/developers/apps/forms_shared/media.html:44
@@ -7152,8 +7167,11 @@ msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
 msgstr ""
-"<strong>Am wichtigsten</strong> ist, dass das Add-on eine große Zahl von FIrefox-Nutzern anspricht und in fast jeder Hinsicht hervorsticht: Benutzererlebnis, Leistung, Sicherheit und Nützlichkeit "
-"oder Unterhaltungswert. Vorgestellte vollständige Themes müssen auch optisch ansprechend sein."
+"<strong>Am wichtigsten</strong> ist, dass das Add-on eine große Zahl von "
+"Firefox-Nutzern anspricht und in fast jeder Hinsicht hervorsticht: "
+"Benutzererlebnis, Leistung, Sicherheit und Nützlichkeit oder "
+"Unterhaltungswert. Vorgestellte vollständige Themes müssen auch optisch "
+"ansprechend sein."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:53
 msgid "Nominating an Add-on"
