@@ -383,13 +383,20 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         id = self.id
 
-        # Tell IARC this app is delisted from the set_iarc_storefront_datat.
+        # Tell IARC this app is delisted from the set_iarc_storefront_data.
         if self.type == amo.ADDON_WEBAPP:
             self.set_iarc_storefront_data(disable=True)
 
+        # Fetch previews before deleting the addon instance, so that we can
+        # pass the list of files to delete to the delete_preview_files task
+        # after the addon is deleted.
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
-        if self.highest_status or self.status:
+
+        if self.highest_status or self.status or settings.MARKETPLACE:
+            # Soft deletion path. Happens only if the addon status isn't 0
+            # (STATUS_INCOMPLETE), or when we are in Marketplace.
+
             if self.guid:
                 log.debug('Adding guid to blacklist: %s' % self.guid)
                 BlacklistedGuid(guid=self.guid, comments=msg).save()
@@ -441,6 +448,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
             send_mail(subject, email_msg, recipient_list=to)
         else:
+            # Real deletion path.
             super(Addon, self).delete()
 
         for preview in previews:
