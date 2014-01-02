@@ -170,6 +170,8 @@ class RestSharedSecretAuthentication(BaseAuthentication):
                     request.amo_user.save()
 
                 ACLMiddleware().process_request(request)
+                request.API = True  # We can be pretty sure we are in the API.
+                APIPinningMiddleware().process_request(request)
             else:
                 log.info('Shared-secret auth token does not match')
                 return False

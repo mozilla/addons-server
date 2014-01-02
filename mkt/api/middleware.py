@@ -50,6 +50,10 @@ class APIPinningMiddleware(PinningRouterMiddleware):
     recently.
 
     If not in the API, will fall back to the cookie pinning middleware.
+
+    Note: because the authentication process happens late when we are in the
+    API, process_request() will be manually called from authentication classes
+    when a user is successfully authenticated by one of those classes.
     """
 
     def cache_key(self, request):
