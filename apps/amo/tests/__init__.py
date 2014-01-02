@@ -26,7 +26,7 @@ import pyes.exceptions as pyes
 import test_utils
 from dateutil.parser import parse as dateutil_parser
 from nose.exc import SkipTest
-from nose.tools import eq_, nottest, ok_
+from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from test_utils import RequestFactory
@@ -434,15 +434,6 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         """
         return self.assertSetEqual(qs1.values_list('id', flat=True),
                                    qs2.values_list('id', flat=True))
-
-    @contextmanager
-    def assertImmediate(self, response):
-        try:
-            yield
-            raise AssertionError('ImmediateHttpResponse not raised.')
-        except ImmediateHttpResponse, exc:
-            ok_(isinstance(exc.response, response),
-                'Expected %s, got %s' % (response, exc.response.__class__))
 
     def assertCORS(self, res, *verbs):
         """
