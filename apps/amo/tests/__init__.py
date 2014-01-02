@@ -24,6 +24,7 @@ import mock
 import pyelasticsearch.exceptions as pyelasticsearch
 import pyes.exceptions as pyes
 import test_utils
+from dateutil.parser import parse as dateutil_parser
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest, ok_
 from pyquery import PyQuery as pq
@@ -405,8 +406,18 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         """
         Make sure the datetime is within a minute from `now`.
         """
+
+        # Try parsing the string if it's not a datetime.
+        if isinstance(dt, basestring):
+            try:
+                dt = dateutil_parser(dt)
+            except ValueError, e:
+                raise AssertionError(
+                    'Expected valid date; got %s\n%s' % (dt, e))
+
         if not dt:
-            raise AssertionError('Expected datetime, got: %s' % dt)
+            raise AssertionError('Expected datetime; got %s' % dt)
+
         dt_later_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
         dt_earlier_ts = time.mktime((dt - timedelta(minutes=1)).timetuple())
         if not now:

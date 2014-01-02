@@ -84,7 +84,9 @@ INSTALLED_APPS += (
 # TODO: I want to get rid of these eventually but it breaks some junk now.
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.DetectMobileMiddleware')
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.XMobileMiddleware')
-MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
+MIDDLEWARE_CLASSES = [
+    'mkt.site.middleware.CacheHeadersMiddleware'
+] + list(MIDDLEWARE_CLASSES)
 MIDDLEWARE_CLASSES.append('mkt.site.middleware.RequestCookiesMiddleware')
 MIDDLEWARE_CLASSES.append('mkt.carriers.middleware.CarrierURLMiddleware')
 MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
@@ -316,3 +318,9 @@ PAYMENT_PROVIDERS = ['bango']
 
 # Grace period for apps to attain a content rating before they get disabled.
 IARC_APP_DISABLE_DATE = datetime.datetime(2014, 4, 15)
+
+# Cache responses for 3 minutes (Expires headers).
+CACHE_MIDDLEWARE_SECONDS = 60 * 3
+
+# Set Etag headers.
+USE_ETAGS = True
