@@ -42,6 +42,8 @@ from users.models import UserProfile
 from users.views import _login
 from versions.models import Version
 
+from lib.iarc.utils import get_iarc_app_title
+
 from mkt.api.models import Access, generate
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
@@ -359,9 +361,6 @@ def content_ratings_edit(request, addon_id, addon):
         except django_forms.ValidationError:
             pass  # Fall through to show the form error.
 
-    with amo.utils.no_translation(addon.default_locale):
-        addon_delocalized = Addon.objects.get(pk=addon.pk)
-
     # Save some information for _ratings_success_msg.
     if not 'ratings_edit' in request.session:
         request.session['ratings_edit'] = {}
@@ -374,7 +373,7 @@ def content_ratings_edit(request, addon_id, addon):
     return jingo.render(
         request, 'developers/apps/ratings/ratings_edit.html', {
             'addon': addon,
-            'app_name': addon_delocalized.name,
+            'app_name': get_iarc_app_title(addon),
             'form': form,
             'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         })

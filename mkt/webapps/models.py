@@ -46,8 +46,8 @@ from versions.models import Version
 
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
-from lib.iarc.utils import (render_xml, REVERSE_DESC_MAPPING,
-                            REVERSE_INTERACTIVES_MAPPING)
+from lib.iarc.utils import (get_iarc_app_title, render_xml,
+                            REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
 
 import mkt
 from mkt.constants import APP_FEATURES, apps
@@ -1216,9 +1216,6 @@ class Webapp(Addon):
             # App wasn't rated by IARC, return.
             return
 
-        with amo.utils.no_translation(self.default_locale):
-            delocalized_self = Addon.objects.get(pk=self.pk)
-
         xmls = []
         for cr in self.content_ratings.all():
             xmls.append(render_xml('set_storefront_data.xml', {
@@ -1226,7 +1223,7 @@ class Webapp(Addon):
                 'security_code': iarc_info.security_code,
                 'rating_system': cr.get_body().iarc_name,
                 'release_date': datetime.date.today() if not disable else '',
-                'title': unicode(delocalized_self.name),
+                'title': get_iarc_app_title(self),
                 'rating': cr.get_rating().iarc_name,
                 'descriptors': self.rating_descriptors.iarc_deserialize(
                     body=cr.get_body()),
@@ -1904,7 +1901,8 @@ class ContentRating(amo.models.ModelBase):
 
 def update_status_content_ratings(sender, instance, **kw):
     # Flips the app's status from NULL if it has everything else together.
-    if (instance.addon.has_incomplete_status() and instance.addon.is_fully_complete()):
+    if (instance.addon.has_incomplete_status() and
+        instance.addon.is_fully_complete()):
         instance.addon.update(status=amo.STATUS_PENDING)
 
 

@@ -7,7 +7,6 @@ import shutil
 import unittest
 import uuid
 import zipfile
-from collections import defaultdict
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -610,7 +609,7 @@ class TestWebapp(amo.tests.TestCase):
     def test_set_iarc_storefront_data(self, render_mock, storefront_mock):
         # Set up ratings/descriptors/interactives.
         self.create_switch('iarc')
-        app = app_factory(name='LOL')
+        app = app_factory(name='LOL', app_slug='ha')
         app.set_iarc_info(submission_id='1234', security_code='sektor')
         app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
         app.set_interactives(['has_users_interact', 'has_shares_info'])
@@ -632,7 +631,7 @@ class TestWebapp(amo.tests.TestCase):
         eq_(data['submission_id'], 1234)
         eq_(data['security_code'], 'sektor')
         eq_(data['rating'], 'Adults Only')
-        eq_(data['title'], 'LOL')
+        eq_(data['title'], 'LOL (ha)')
         eq_(data['rating_system'], 'ESRB')
         eq_(data['descriptors'], 'Blood')
         self.assertSetEqual(data['interactive_elements'].split(', '),
@@ -643,7 +642,7 @@ class TestWebapp(amo.tests.TestCase):
         eq_(data['submission_id'], 1234)
         eq_(data['security_code'], 'sektor')
         eq_(data['rating'], '3+')
-        eq_(data['title'], 'LOL')
+        eq_(data['title'], 'LOL (ha)')
         eq_(data['rating_system'], 'PEGI')
         eq_(data['descriptors'], 'Fear')
 
@@ -816,6 +815,7 @@ class TestWebapp(amo.tests.TestCase):
 
         pay_step.return_value = True
         assert not app.next_step()
+
 
 class DeletedAppTests(amo.tests.ESTestCase):
 

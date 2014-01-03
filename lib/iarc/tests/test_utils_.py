@@ -9,7 +9,7 @@ from nose.tools import eq_
 import amo.tests
 
 from lib.iarc.client import get_iarc_client
-from lib.iarc.utils import IARC_XML_Parser, render_xml
+from lib.iarc.utils import get_iarc_app_title, IARC_XML_Parser, render_xml
 
 from mkt.constants import ratingsbodies
 
@@ -70,6 +70,10 @@ class TestRenderSetStorefrontData(amo.tests.TestCase):
         # The client base64 encodes these. Mimic what the client does here to
         # ensure no unicode problems.
         base64.b64encode(xml.encode('utf-8'))
+
+    def test_get_iarc_app_title(self):
+        app = amo.tests.app_factory(name='fu', app_slug='bah')
+        eq_(get_iarc_app_title(app), 'fu (bah)')
 
 
 class TestRenderRatingChanges(amo.tests.TestCase):
