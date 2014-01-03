@@ -7,7 +7,7 @@
 {% block content %}
 {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addon.name)]) }}
 
-{% set is_artist = waffle.flag('submit-personas') and request.check_ownership(addon, require_owner=False) %}
+{% set is_artist = request.check_ownership(addon, require_owner=False) %}
 
 <hgroup>
   <h2 class="addon"{{ addon.name|locale_html }}>
@@ -22,7 +22,7 @@
 {% include "addons/includes/persona_pending_notice.html" %}
 
 <div id="persona" class="primary" role="main" data-id="{{ addon.id }}">
-  {% if not persona.addon.is_pending() or waffle.flag('submit-personas') and request.check_ownership(addon, require_owner=False) %}
+  {% if not persona.addon.is_pending() or request.check_ownership(addon, require_owner=False) %}
     {# If theme is pending, only artist should see theme listing. #}
     {% include "addons/includes/persona.html" %}
   {% endif %}

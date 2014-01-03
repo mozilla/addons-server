@@ -3,8 +3,9 @@ from django.contrib.auth.models import AnonymousUser
 from django.utils import translation
 from django.utils.http import urlquote
 
-from tower import ugettext as _
 import waffle
+from tower import ugettext as _
+
 
 import amo
 from amo.urlresolvers import remora_url, reverse
@@ -87,16 +88,14 @@ def global_settings(request):
         if request.amo_user.is_developer:
             tools_links.append({'text': _('Manage My Submissions'),
                                 'href': reverse('devhub.addons')})
-        tools_links.append({'text': _('Submit a New Add-on'),
-                            'href': reverse('devhub.submit.1')})
-
-        if waffle.flag_is_active(request, 'submit-personas'):
-            # TODO(cvan)(fligtar): Do we want this here?
-            tools_links.append({'text': _('Submit a New Theme'),
-                                'href': reverse('devhub.themes.submit')})
-
-        tools_links.append({'text': _('Developer Hub'),
-                            'href': reverse('devhub.index')})
+        tools_links += [
+            {'text': _('Submit a New Add-on'),
+             'href': reverse('devhub.submit.1')},
+            {'text': _('Submit a New Theme'),
+             'href': reverse('devhub.themes.submit')},
+            {'text': _('Developer Hub'),
+             'href': reverse('devhub.index')},
+        ]
 
         if is_reviewer:
             tools_links.append({'text': _('Editor Tools'),

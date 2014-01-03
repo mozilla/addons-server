@@ -19,8 +19,7 @@ from amo.tests import addon_factory, formset, initial, req_factory_factory
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
-from addons.models import (Addon, AddonCategory, AddonDependency, AddonUser,
-                           Category)
+from addons.models import Addon, AddonCategory, AddonDependency, Category
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from devhub.models import ActivityLog
 from devhub.views import edit_theme
@@ -147,15 +146,15 @@ class TestEditBasic(TestEdit):
             '<b>oh my</b>')
 
     def test_edit_as_developer(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
         # Make sure we get errors when they are just regular users.
         eq_(r.status_code, 403)
 
         devuser = UserProfile.objects.get(pk=999)
-        AddonUser.objects.create(addon=self.get_addon(), user=devuser,
-                                 role=amo.AUTHOR_ROLE_DEV)
+        self.get_addon().addonuser_set.create(user=devuser,
+            role=amo.AUTHOR_ROLE_DEV)
         r = self.client.post(self.basic_edit_url, data)
 
         eq_(r.status_code, 200)
@@ -1284,10 +1283,9 @@ class TestThemeEdit(amo.tests.TestCase):
     fixtures = ['base/user_999']
 
     def setUp(self):
-        self.create_flag('submit-personas')
         self.addon = addon_factory(type=amo.ADDON_PERSONA)
         self.user = UserProfile.objects.get()
-        AddonUser.objects.create(addon=self.addon, user=self.user)
+        self.addon.addonuser_set.create(user=self.user)
 
     @mock.patch('amo.messages.error')
     def test_desc_too_long_error(self, message_mock):
