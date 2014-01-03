@@ -248,7 +248,8 @@ class CacheHeadersMiddleware(object):
 
     def process_response(self, request, response):
         if (request.method in self.allowed_methods and
-                response.status_code in self.allowed_statuses):
+                response.status_code in self.allowed_statuses and
+                'cache' in request.REQUEST):
             timeout = get_max_age(response)
             if timeout is None:
                 timeout = settings.CACHE_MIDDLEWARE_SECONDS or 0

@@ -376,8 +376,12 @@ class TestCacheHeadersMiddleware(amo.tests.TestCase):
     def test_no_headers_no_max_age(self):
         self._test_headers_missing(self.client.get('/robots.txt'))
 
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=0, USE_ETAGS=True)
+    def test_no_headers_no_querystring(self):
+        self._test_headers_missing(self.client.get('/robots.txt'))
+
     @override_settings(CACHE_MIDDLEWARE_SECONDS=seconds, USE_ETAGS=True)
     def test_headers_set(self):
         for method in ('get', 'head', 'options'):
-            res = getattr(self.client, method)('/robots.txt')
+            res = getattr(self.client, method)('/robots.txt?cache')
             self._test_headers_set(res)
