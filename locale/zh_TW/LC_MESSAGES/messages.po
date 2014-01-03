@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-04 09:07-0700\n"
-"PO-Revision-Date: 2013-12-30 06:42+0000\n"
+"PO-Revision-Date: 2014-01-03 12:16+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1388385755.0\n"
+"X-POOTLE-MTIME: 1388751386.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -17722,6 +17722,9 @@ msgid ""
 "Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these "
 "devices are still very valid for developer testing, having full updates available to them."
 msgstr ""
+"Mozilla、Geeksphone 與 Telefónica 一同合作，打造了 Geeksphone Keon（低階）與 "
+"Peak（較高階）的開發者預覽手機，提供開發者一隻真實的 Firefox OS "
+"開發用裝置。目前暫時不會有其他的新機，我們正計畫在未來開發新的裝置。雖然目前只有少數的裝置在市場中銷售，但我們將會持續提供完整的軟體更新。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:92
 msgid ""
@@ -17740,12 +17743,17 @@ msgid ""
 "If you already have a Firefox OS device and want some guidance and direction, you can <a href=\"%(devhub_url)s\">get started at the Firefox Marketplace Developer Hub</a>. The <a href=\"%(mdn_url)s"
 "\">Mozilla Developer Network</a> also provides a wealth of useful resources such as API documentation and further information on Open Web App development."
 msgstr ""
+"若您已經擁有 Firefox OS 裝置，需要一些指南與建議的話，您可以前往 <a href=\"%(devhub_url)s\">Firefox "
+"Marketplace 開發者中心的新手入門頁面</a>。<a href=\"%(mdn_url)s\">Mozilla Developer "
+"Network</a> 也提供 API 文件與開發 Open Web App 的相關資訊等豐富資源。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
 msgid ""
 "If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using "
 "the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
 msgstr ""
+"若您還沒有 Firefox OS 裝置，請到其他分頁中尋找如何取得的方式。但就算您沒有，還是可以使用 <a href=\"%"
+"(simulator_url)s\">Firefox OS 模擬器</a> 立刻開始開發與測試 Firefox OS 應用程式。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:122
 msgid "Sharing with the community"
@@ -17765,6 +17773,12 @@ msgid ""
 "In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
 "mail</a>."
 msgstr ""
+"我們特別希望您能幫忙 <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">新增關於修改 Firefox "
+"OS 的祕訣</a>、<a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">新增開發 Firefox OS "
+"應用程式的秘訣</a>、並新增 <a href=\"%(mdn_devphone_url)s\" target=\"_blank\">您讓軟體在不同 "
+"Firefox OS 裝置中執行的經驗</a>。此外，非常歡迎您到 <a href=\"%(b2g_irc_url)s\" "
+"target=\"_blank\">IRC</a>或<a href=\"%(b2g_mail_url)s\" target=\"_blank\">寄信</a> "
+"給我們問問題。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -17817,6 +17831,7 @@ msgid ""
 "Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native "
 "apps for the first time."
 msgstr ""
+"使用開放的網頁標準與 Mozilla 設計的 API，能夠將最棒的應用程式體驗帶到不同的平台、裝置與作業系統，第一次降低網頁與原生應用程式的隔閡。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid ""
@@ -18153,7 +18168,7 @@ msgstr "堆疊溢位"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
-msgstr ""
+msgstr "若您想要認識其他的開發者，請加入我們歡樂的社群與郵件群組:"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:78
 msgid "Mozilla Web apps (English)"
@@ -18180,6 +18195,8 @@ msgid ""
 "Chrono is a simple chronometer with lap counter, built to highlight various aspects of the Firefox OS development process. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full "
 "developer walkthrough </a>"
 msgstr ""
+"Chrono 是一個簡單的節拍器，包含每圈的計數器，用來強調 Firefox OS 開發過程中的不同觀點。<a href=\"%"
+"(walkthrough_link)s\" class=\"walkthrough\">閱讀完整的開發過程</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:47 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:71
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:48 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:73
@@ -18193,7 +18210,7 @@ msgstr "Chrono 無須網路連線即可運作。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:60
 msgid "Uses the Open Web Apps installation API to allow installation on the device independently on Marketplace."
-msgstr ""
+msgstr "使用 Open Web App 的安裝 API 以不使用 Marketplace 在裝置中獨立安裝應用程式。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:72 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:181
 msgid "Custom Elements"
@@ -18201,7 +18218,7 @@ msgstr "自訂元素"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:77
 msgid "Chrono uses the same UI components as the built-in apps."
-msgstr ""
+msgstr "Chrono 使用與內建應用程式相同的使用者介面元件。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:88 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:97
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:72 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:107
@@ -18211,7 +18228,7 @@ msgstr "第三方程式庫"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:93
 msgid "Uses a volo.js script to optimize app before release, i.e. by auto-generating an appcache manifest."
-msgstr ""
+msgstr "使用 volo.js 在發行前最佳化應用程式，也就是自動產生 appcache 資訊檔。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:102 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:93
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:70
@@ -18221,7 +18238,7 @@ msgstr "使用 JQuery 簡化 DOM 操作之類的一般工作。"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:101
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:78 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:84
 msgid "Uses RequireJS to split JavaScript code into more easily maintainable modules."
-msgstr ""
+msgstr "使用 RequireJS 來將 JavaScript 分割為不同的能更好維護的模組。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:122 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:124
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:113 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:133
@@ -18603,7 +18620,7 @@ msgstr "交易查閱"
 
 #: mkt/lookup/forms.py:17
 msgid "Process a manual refund"
-msgstr ""
+msgstr "處理手動退款"
 
 #: mkt/lookup/forms.py:20
 msgid "Enter refund details to refund transaction"
@@ -18903,7 +18920,7 @@ msgstr "<small>電信業者</small>主控台"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
-msgstr ""
+msgstr "預載候選"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
@@ -19061,7 +19078,7 @@ msgstr "員工"
 
 #: mkt/reviewers/forms.py:92
 msgid "Action Visibility to Users:"
-msgstr ""
+msgstr "顯示給使用者的操作:"
 
 #: mkt/reviewers/forms.py:96
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
@@ -19083,7 +19100,7 @@ msgstr "他人正在審核此佈景主題。"
 
 #: mkt/reviewers/forms.py:289
 msgid "Has Editor Comment"
-msgstr ""
+msgstr "包含編輯註解"
 
 #: mkt/reviewers/forms.py:293
 msgid "More Info Requested"
@@ -19116,7 +19133,7 @@ msgstr "審核中"
 
 #: mkt/reviewers/helpers.py:43 mkt/reviewers/templates/reviewers/queue_region.html:6
 msgid "Regional Queues"
-msgstr ""
+msgstr "地區佇列"
 
 #: mkt/reviewers/helpers.py:45
 msgid "Pending Themes"
@@ -19409,7 +19426,7 @@ msgstr "強制更改最低需求:"
 
 #: mkt/reviewers/templates/reviewers/review.html:290
 msgid "Make this action visible to"
-msgstr ""
+msgstr "將此行為顯示給"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
