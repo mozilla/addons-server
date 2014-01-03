@@ -1,4 +1,7 @@
+import datetime
+
 from django.conf import settings
+from django.test.utils import override_settings
 
 import mock
 from nose.tools import eq_, ok_
@@ -336,3 +339,44 @@ class TestDeviceMiddleware(amo.tests.TestCase):
             rf.MOBILE = state
             DeviceDetectionMiddleware().process_request(rf)
             eq_(rf.MOBILE, state)
+
+
+class TestCacheHeadersMiddleware(amo.tests.TestCase):
+    seconds = 60 * 2
+
+    def _test_headers_set(self, res):
+        eq_(res['Cache-Control'], 'max-age=%s' % self.seconds)
+        assert res.has_header('ETag'), 'Missing ETag header'
+
+        now = datetime.datetime.utcnow()
+
+        self.assertCloseToNow(res['Expires'],
+            now=now + datetime.timedelta(seconds=self.seconds))
+        self.assertCloseToNow(res['Last-Modified'], now=now)
+
+    def _test_headers_missing(self, res):
+        assert res.has_header('ETag'), 'Missing ETag header'
+        for header in ['Cache-Control', 'Expires', 'Last-Modified']:
+            assert not res.has_header(header), (
+                'Should not have header: %s' % header)
+
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=seconds, USE_ETAGS=True)
+    def test_no_headers_on_disallowed_statuses(self):
+        res = self.client.get('/404')  # 404
+        self._test_headers_missing(res)
+
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=seconds, USE_ETAGS=True)
+    def test_no_headers_on_disallowed_methods(self):
+        for method in ('delete', 'post', 'put'):
+            res = getattr(self.client, method)('/robots.txt')
+            self._test_headers_missing(res)
+
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=0, USE_ETAGS=True)
+    def test_no_headers_no_max_age(self):
+        self._test_headers_missing(self.client.get('/robots.txt'))
+
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=seconds, USE_ETAGS=True)
+    def test_headers_set(self):
+        for method in ('get', 'head', 'options'):
+            res = getattr(self.client, method)('/robots.txt')
+            self._test_headers_set(res)

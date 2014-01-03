@@ -194,18 +194,13 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         """
         Reorder the specified collection.
         """
-        def membership(app):
-            f = CollectionMembershipField()
-            f.context = {'request': request}
-            return f.to_native(app)
-
         collection = self.get_object()
         try:
             collection.reorder(request.DATA)
         except ValueError:
             return Response({
                 'detail': self.exceptions['app_mismatch'],
-                'apps': [membership(a) for a in collection.apps()]
+                'apps': [a.pk for a in collection.apps()]
             }, status=status.HTTP_400_BAD_REQUEST, exception=True)
         return self.return_updated(status.HTTP_200_OK)
 

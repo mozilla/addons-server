@@ -1,10 +1,10 @@
-import json
 from types import MethodType
 
 from django import http
 from django.conf import settings
 from django.http import HttpRequest, SimpleCookie
-from django.utils.cache import patch_vary_headers
+from django.utils.cache import (get_max_age, patch_response_headers,
+                                patch_vary_headers)
 
 import tower
 from django_statsd.clients import statsd
@@ -234,3 +234,26 @@ class DoNotTrackTrackingMiddleware(object):
             statsd.incr('z.mkt.dnt.on')
         else:
             statsd.incr('z.mkt.dnt.off')
+
+
+class CacheHeadersMiddleware(object):
+    """
+    Unlike the `django.middleware.cache` middlewares, this middleware
+    simply sets the `Cache-Control`, `ETag`, `Expires`, and `Last-Modified`
+    headers and doesn't do any caching of the response object.
+
+    """
+    allowed_methods = ('GET', 'HEAD', 'OPTIONS')
+    allowed_statuses = (200,)
+
+    def process_response(self, request, response):
+        if (request.method in self.allowed_methods and
+                response.status_code in self.allowed_statuses):
+            timeout = get_max_age(response)
+            if timeout is None:
+                timeout = settings.CACHE_MIDDLEWARE_SECONDS or 0
+            if timeout != 0:
+                # Only if max-age is 0 should we bother with caching.
+                patch_response_headers(response, timeout)
+
+        return response

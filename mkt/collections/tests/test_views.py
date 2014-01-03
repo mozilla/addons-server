@@ -41,7 +41,6 @@ class BaseCollectionViewSetTest(RestOAuth):
     fixtures = fixture('user_2519', 'user_999')
 
     def setUp(self):
-        self.create_switch('rocketfuel')
         super(BaseCollectionViewSetTest, self).setUp()
         self.collection_data = {
             'author': u'My Àuthør',
@@ -1082,8 +1081,8 @@ class TestCollectionViewSetReorderApps(CollectionViewSetChangeAppsMixin):
         res, data = self.reorder(self.client, order=new_order)
         eq_(res.status_code, 400)
         eq_(data['detail'], CollectionViewSet.exceptions['app_mismatch'])
-        self.assertSetEqual([a['slug'] for a in data['apps']],
-                            [a.app_slug for a in self.collection.apps()])
+        self.assertSetEqual(data['apps'],
+                            [a.pk for a in self.collection.apps()])
 
 
 class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
@@ -1604,8 +1603,8 @@ class TestCollectionViewSetRemoveCurator(BaseCollectionViewSetTest):
 
 
 class TestCollectionImageViewSet(RestOAuth):
+
     def setUp(self):
-        self.create_switch('rocketfuel')
         super(TestCollectionImageViewSet, self).setUp()
         self.collection = Collection.objects.create(
             **CollectionDataMixin.collection_data)

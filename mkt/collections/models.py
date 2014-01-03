@@ -129,7 +129,8 @@ class Collection(amo.models.ModelBase):
         passed order. A ValueError will be raised if each app in the
         collection is not included in the ditionary.
         """
-        if set(a.pk for a in self.apps()) != set(new_order):
+        existing_pks = self.apps().no_cache().values_list('pk', flat=True)
+        if set(existing_pks) != set(new_order):
             raise ValueError('Not all apps included')
         for order, pk in enumerate(new_order):
             CollectionMembership.objects.get(collection=self,
