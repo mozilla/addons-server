@@ -3,8 +3,8 @@ from types import MethodType
 from django import http
 from django.conf import settings
 from django.http import HttpRequest, SimpleCookie
-from django.utils.cache import (get_max_age, patch_response_headers,
-                                patch_vary_headers)
+from django.utils.cache import (get_max_age, patch_cache_control,
+                                patch_response_headers, patch_vary_headers)
 
 import tower
 from django_statsd.clients import statsd
@@ -255,5 +255,6 @@ class CacheHeadersMiddleware(object):
             if timeout != 0:
                 # Only if max-age is 0 should we bother with caching.
                 patch_response_headers(response, timeout)
+                patch_cache_control(response, must_revalidate=True)
 
         return response

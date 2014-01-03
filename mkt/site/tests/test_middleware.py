@@ -345,7 +345,8 @@ class TestCacheHeadersMiddleware(amo.tests.TestCase):
     seconds = 60 * 2
 
     def _test_headers_set(self, res):
-        eq_(res['Cache-Control'], 'max-age=%s' % self.seconds)
+        eq_(res['Cache-Control'],
+            'must-revalidate, max-age=%s' % self.seconds)
         assert res.has_header('ETag'), 'Missing ETag header'
 
         now = datetime.datetime.utcnow()
