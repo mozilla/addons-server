@@ -3,10 +3,10 @@ from django.shortcuts import redirect
 
 from lib.misc.urlconf_decorator import decorate
 
-from addons.urls import ADDON_ID
 import amo
+from addons.urls import ADDON_ID
 from amo.decorators import write
-from devhub.decorators import use_apps
+
 from . import views
 
 PACKAGE_NAME = '(?P<package_name>[_\w]+)'
@@ -24,10 +24,10 @@ submit_patterns = patterns('',
 )
 
 submit_apps_patterns = patterns('',
-    url('^3$', use_apps(views.submit_describe), name='devhub.submit_apps.3'),
-    url('^4$', use_apps(views.submit_media), name='devhub.submit_apps.4'),
-    url('^5$', use_apps(views.submit_done), name='devhub.submit_apps.5'),
-    url('^bump$', use_apps(views.submit_bump), name='devhub.submit_apps.bump'),
+    url('^3$', views.submit_describe, name='devhub.submit_apps.3'),
+    url('^4$', views.submit_media, name='devhub.submit_apps.4'),
+    url('^5$', views.submit_done, name='devhub.submit_apps.5'),
+    url('^bump$', views.submit_bump, name='devhub.submit_apps.bump'),
 )
 
 
@@ -183,10 +183,8 @@ urlpatterns = decorate(write, patterns('',
     # Web App submission
     url('^app/submit/$',
         lambda r: redirect('devhub.submit_apps.1', permanent=True)),
-    url('^app/submit/1$', use_apps(views.submit),
-        name='devhub.submit_apps.1'),
-    url('^app/submit/2$', use_apps(views.submit_addon),
-        name='devhub.submit_apps.2'),
+    url('^app/submit/1$', views.submit, name='devhub.submit_apps.1'),
+    url('^app/submit/2$', views.submit_addon, name='devhub.submit_apps.2'),
 
     # Standalone validator:
     url('^addon/validate/?$', views.validate_addon,
@@ -207,7 +205,7 @@ urlpatterns = decorate(write, patterns('',
     url('^addons$', views.dashboard, name='devhub.addons'),
     url('^themes$', views.dashboard, name='devhub.themes',
         kwargs={'theme': True}),
-    url('^apps$', use_apps(views.dashboard), name='devhub.apps'),
+    url('^apps$', views.dashboard, name='devhub.apps'),
     url('^feed$', views.feed, name='devhub.feed_all'),
     # TODO: not necessary when devhub homepage is moved out of remora
     url('^feed/all$', lambda r: redirect('devhub.feed_all', permanent=True)),
