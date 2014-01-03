@@ -254,13 +254,20 @@ class TestLocaleMiddlewarePersistence(amo.tests.TestCase):
 
 class TestVaryMiddleware(amo.tests.TestCase):
 
-    def test_no_vary_cookie(self):
+    def test_vary_headers(self):
         # What is expected to `Vary`.
-        r = self.client.get('/privacy-policy')
-        eq_(r['Vary'], 'Accept-Language, Cookie, X-Mobile, User-Agent')
+        res = self.client.get('/privacy-policy')
+        eq_(res['Vary'], 'Accept-Language, Cookie')
 
-        r = self.client.get('/privacy-policy', follow=True)
-        eq_(r['Vary'], 'Accept-Language, Cookie, X-Mobile, User-Agent')
+        res = self.client.get('/privacy-policy', follow=True)
+        eq_(res['Vary'], 'Accept-Language, Cookie')
+
+        res = self.client.get('/api/v1/services/config/site/?vary=1')
+        eq_(res['Vary'], 'Accept-Language, Cookie')
+
+        res = self.client.get('/api/v1/services/config/site/?vary=0')
+        assert not res.has_header('Vary'), (
+            'Response should not have a "Vary" header')
 
     # Patching MIDDLEWARE_CLASSES because other middleware tweaks vary headers.
     @mock.patch.object(settings, 'MIDDLEWARE_CLASSES', [
@@ -383,5 +390,5 @@ class TestCacheHeadersMiddleware(amo.tests.TestCase):
     @override_settings(CACHE_MIDDLEWARE_SECONDS=seconds, USE_ETAGS=True)
     def test_headers_set(self):
         for method in ('get', 'head', 'options'):
-            res = getattr(self.client, method)('/robots.txt?cache')
+            res = getattr(self.client, method)('/robots.txt?cache=1')
             self._test_headers_set(res)

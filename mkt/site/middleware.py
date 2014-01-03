@@ -175,7 +175,12 @@ class LocaleMiddleware(object):
         if (hasattr(request, 'LANG_COOKIE') and
             not getattr(request, 'API', False)):
             response.set_cookie('lang', request.LANG_COOKIE)
-        patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+
+        # Reset `Vary` header to remove junk set by AMO middleware.
+        del response['Vary']
+        if request.REQUEST.get('vary') != '0':
+            patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+
         return response
 
 
@@ -249,7 +254,7 @@ class CacheHeadersMiddleware(object):
     def process_response(self, request, response):
         if (request.method in self.allowed_methods and
                 response.status_code in self.allowed_statuses and
-                'cache' in request.REQUEST):
+                request.REQUEST.get('cache') == '1'):
             timeout = get_max_age(response)
             if timeout is None:
                 timeout = settings.CACHE_MIDDLEWARE_SECONDS or 0

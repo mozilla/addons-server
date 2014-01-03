@@ -45,5 +45,6 @@ class CarrierURLMiddleware(object):
         set_carrier(carrier)
 
     def process_response(self, request, response):
-        patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+        if request.REQUEST.get('vary') != '0':
+            patch_vary_headers(response, ['Accept-Language', 'Cookie'])
         return response
