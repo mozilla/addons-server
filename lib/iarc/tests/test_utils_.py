@@ -118,7 +118,7 @@ class TestXMLParser(amo.tests.TestCase):
 
         # Test ratings get mapped to their appropriate rating classes.
         eq_(data['ratings'][ratingsbodies.ESRB], ratingsbodies.ESRB_M)
-        eq_(data['ratings'][ratingsbodies.USK], ratingsbodies.USK_12)
+        eq_(data['ratings'][ratingsbodies.USK], ratingsbodies.USK_REJECTED)
         eq_(data['ratings'][ratingsbodies.CLASSIND], ratingsbodies.CLASSIND_14)
         eq_(data['ratings'][ratingsbodies.PEGI], ratingsbodies.PEGI_3)
         eq_(data['ratings'][ratingsbodies.GENERIC], ratingsbodies.GENERIC_16)

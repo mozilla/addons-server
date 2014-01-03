@@ -245,6 +245,7 @@ RATINGS_MAPPING = {
         '12+': ratingsbodies.USK_12,
         '16+': ratingsbodies.USK_16,
         '18+': ratingsbodies.USK_18,
+        'Rating Refused': ratingsbodies.USK_REJECTED,
         'default': ratingsbodies.USK_0,
     },
 }
