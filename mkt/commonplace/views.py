@@ -1,6 +1,7 @@
 import datetime
 import importlib
 import os
+from urlparse import urlparse
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -61,6 +62,10 @@ def commonplace(request, repo, **kwargs):
         'site_settings': site_settings,
         'robots': 'googlebot' in ua
     }
+
+    media_url = urlparse(settings.MEDIA_URL)
+    if media_url.netloc:
+        ctx['media_origin'] = media_url.scheme + '://' + media_url.netloc
 
     return jingo.render(request, 'commonplace/index.html', ctx)
 
