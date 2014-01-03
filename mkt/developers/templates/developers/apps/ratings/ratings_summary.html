@@ -53,23 +53,25 @@
         </tbody>
       </table>
 
-      <h3>{{ _('Interactive Elements') }}</h3>
-      <div class="interactive-elements c">
-        {% set interactives = addon.get_interactives() %}
-        <div class="names">
+      {% set interactives = addon.get_interactives() %}
+      {% if interactives %}
+        <h3>{{ _('Interactive Elements') }}</h3>
+        <div class="interactive-elements c">
+          <div class="names">
+            {% for interactive in interactives %}
+              <span class="dot-sep">{{ interactive.name }}</span>
+            {% endfor %}
+          </div>
+          {% set inter_icons = mkt.ratingsbodies.IARC_ICONS.interactive_elements %}
           {% for interactive in interactives %}
-            <span class="dot-sep">{{ interactive.name }}</span>
+            {% set inter_icon = inter_icons[interactive.label] %}
+            {% if inter_icon %}
+              <img src="{{ media(inter_icon) }}"
+                   class="icon {{ interactive.label }}" title="{{ interactive.name }}">
+            {% endif %}
           {% endfor %}
         </div>
-        {% set inter_icons = mkt.ratingsbodies.IARC_ICONS.interactive_elements %}
-        {% for interactive in interactives %}
-          {% set inter_icon = inter_icons[interactive.label] %}
-          {% if inter_icon %}
-            <img src="{{ media(inter_icon) }}"
-                 class="icon {{ interactive.label }}" title="{{ interactive.name }}">
-          {% endif %}
-        {% endfor %}
-      </div>
+      {% endif %}
     </div>
   </section>
 
