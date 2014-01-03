@@ -178,6 +178,7 @@ class USK_18(RATING):
 class USK_REJECTED(RATING):
     id = 5
     iarc_name = 'Rating Refused'
+    label = 'rejected'
     name = NAME_REJECTED
     description = DESC_REJECTED
 
