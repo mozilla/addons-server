@@ -390,12 +390,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
              'rating': 'For ages 18+',
              'rating_label': '18',
              'description': unicode(ratingsbodies.CLASSIND_18.description)})
-        eq_(res['content_ratings']['ratings']['de'],
-            {'body': 'Generic',
-             'body_label': 'generic',
-             'rating': 'For ages 18+',
-             'rating_label': '18',
-             'description': unicode(ratingsbodies.GENERIC_18.description)})
 
     def test_show_downloads_count(self):
         """Show weekly_downloads in results if app stats are public."""
