@@ -1162,7 +1162,7 @@ class Webapp(Addon):
             cr, created = self.content_ratings.safer_get_or_create(
                 ratings_body=ratings_body.id, defaults={'rating': rating.id})
             if not created:
-                cr.update(rating=rating.id)
+                cr.update(rating=rating.id, modified=datetime.datetime.now())
 
     def set_descriptors(self, data):
         """
