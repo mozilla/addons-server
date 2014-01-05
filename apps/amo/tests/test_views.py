@@ -66,14 +66,10 @@ class TestCommon(amo.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('home')
-        # TODO: Remove when `submit-personas` flag is gone.
-        self.patcher = mock.patch('waffle.flag_is_active')
-        self.patcher.start().return_value = True
-        self.addCleanup(self.patcher.stop)
 
     def login(self, user=None, get=False):
         email = '%s@mozilla.com' % user
-        self.client.login(username=email, password='password')
+        self.login(email)
         if get:
             return UserProfile.objects.get(email=email)
 

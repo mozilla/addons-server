@@ -7,7 +7,6 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 
@@ -27,7 +26,6 @@ class TestSubmitPersona(amo.tests.TestCase):
         )
 
     def test_img_urls(self):
-        self.create_flag('submit-personas')
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)

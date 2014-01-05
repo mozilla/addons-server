@@ -19,6 +19,9 @@
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('opensearch') }}">
     <meta name="fragment" content="!">
+    {% if media_origin -%}
+      <meta name="dns-prefetch" href="{{ media_origin }}">
+    {%- endif %}
   </head>
   <body class="home" data-languages="{{ settings.AMO_LANGUAGES|json }}" data-settings="{{ site_settings|json }}" data-build-id-js="{{ BUILD_ID_JS }}" data-media="{{ MEDIA_URL }}" data-repo="{{ repo }}">
 

@@ -177,9 +177,6 @@ class AppsHandler(AddonsHandler):
 
     @transaction.commit_on_success
     def create(self, request):
-        if not waffle.flag_is_active(request, 'accept-webapps'):
-            return rc.BAD_REQUEST
-
         form = NewManifestForm(request.POST)
         if form.is_valid():
             # This feels like an awful lot of work.

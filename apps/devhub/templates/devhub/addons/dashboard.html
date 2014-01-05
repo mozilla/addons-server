@@ -57,12 +57,10 @@
       <a href="{{ url('devhub.submit.1') }}"
          class="button prominent">{{ _('Submit a New Add-on') }}</a>
     </p>
-    {% if waffle.flag('submit-personas') %}
-      <p class="submit-theme submit-cta">
-        <a href="{{ url('devhub.themes.submit') }}"
-           class="button prominent">{{ _('Submit a New Theme') }}</a>
-      </p>
-    {% endif %}
+    <p class="submit-theme submit-cta">
+      <a href="{{ url('devhub.themes.submit') }}"
+         class="button prominent">{{ _('Submit a New Theme') }}</a>
+    </p>
     <div class="item recent-activity">
       <h3>
         {{ _('Recent Activity') }}
@@ -110,7 +108,7 @@
     </section>
   {% endif %}
 
-  {% if waffle.flag('submit-personas') and theme %}
+  {% if theme %}
     {# L10n: {0} is an integer. #}
     <section class="dashboard primary theme-dashboard">
       {% set cnt = themes.paginator.count %}

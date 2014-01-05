@@ -27,17 +27,13 @@
         {% endtrans %}
       </p>
       <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
-      {% if waffle.flag('submit-personas') %}
-        <p><a href="{{ url('devhub.themes.submit') }}" class="button">
-          {{ _('Submit a New Theme') }}</a></p>
-      {% endif %}
+      <p><a href="{{ url('devhub.themes.submit') }}" class="button">
+        {{ _('Submit a New Theme') }}</a></p>
     </div>
   {% else %}
     <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
-    {% if waffle.flag('submit-personas') %}
-      <p><a href="{{ url('devhub.themes.submit') }}" class="button">
-        {{ _('Submit a New Theme') }}</a></p>
-    {% endif %}
+    <p><a href="{{ url('devhub.themes.submit') }}" class="button">
+      {{ _('Submit a New Theme') }}</a></p>
     <div id="my-addons" class="item">
       <h3>{{ _('My Addons') }}</h3>
       {% for item in recent_addons %}

@@ -3,8 +3,8 @@ from types import MethodType
 from django import http
 from django.conf import settings
 from django.http import HttpRequest, SimpleCookie
-from django.utils.cache import (get_max_age, patch_response_headers,
-                                patch_vary_headers)
+from django.utils.cache import (get_max_age, patch_cache_control,
+                                patch_response_headers, patch_vary_headers)
 
 import tower
 from django_statsd.clients import statsd
@@ -175,7 +175,12 @@ class LocaleMiddleware(object):
         if (hasattr(request, 'LANG_COOKIE') and
             not getattr(request, 'API', False)):
             response.set_cookie('lang', request.LANG_COOKIE)
-        patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+
+        # Reset `Vary` header to remove junk set by AMO middleware.
+        del response['Vary']
+        if request.REQUEST.get('vary') != '0':
+            patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+
         return response
 
 
@@ -248,12 +253,14 @@ class CacheHeadersMiddleware(object):
 
     def process_response(self, request, response):
         if (request.method in self.allowed_methods and
-                response.status_code in self.allowed_statuses):
+                response.status_code in self.allowed_statuses and
+                request.REQUEST.get('cache') == '1'):
             timeout = get_max_age(response)
             if timeout is None:
                 timeout = settings.CACHE_MIDDLEWARE_SECONDS or 0
             if timeout != 0:
                 # Only if max-age is 0 should we bother with caching.
                 patch_response_headers(response, timeout)
+                patch_cache_control(response, must_revalidate=True)
 
         return response

@@ -321,7 +321,6 @@ def edit(request, addon_id, addon, webapp=False):
 
 
 @dev_required(theme=True)
-@waffle_flag('submit-personas')
 def edit_theme(request, addon_id, addon, theme=False):
     form = addon_forms.EditThemeForm(data=request.POST or None,
                                      request=request, instance=addon)
@@ -1717,7 +1716,6 @@ def submit_bump(request, addon_id, addon, webapp=False):
 
 
 @login_required
-@waffle_flag('submit-personas')
 def submit_theme(request):
     data = {}
     if request.method == 'POST':
@@ -1745,7 +1743,6 @@ def submit_theme(request):
 
 
 @dev_required(theme=True)
-@waffle_flag('submit-personas')
 def submit_theme_done(request, addon_id, addon, theme):
     if addon.is_public():
         return redirect(addon.get_url_path())

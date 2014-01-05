@@ -8,7 +8,9 @@ from rest_framework.compat import etree, six
 from rest_framework.exceptions import ParseError
 from rest_framework.parsers import JSONParser, XMLParser
 
+import amo.utils
 from amo.helpers import strip_controls
+
 from mkt.constants import ratingsbodies
 
 
@@ -31,6 +33,19 @@ def render_xml(template, context):
 
     template = env.get_template(template)
     return template.render(**context)
+
+
+def get_iarc_app_title(app):
+    """
+    Unique identifier for app to hand to IARC (e.g. 'Test App (test-app)').
+    """
+    from mkt.webapps.models import Webapp
+
+    with amo.utils.no_translation(app.default_locale):
+        delocalized_app = Webapp.objects.get(pk=app.pk)
+
+    return u'{0} ({1})'.format(unicode(delocalized_app.name),
+                               app.app_slug)
 
 
 class IARC_Parser(object):

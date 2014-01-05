@@ -35,6 +35,8 @@ from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
 
+from lib.iarc.utils import get_iarc_app_title
+
 import mkt
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
@@ -1160,7 +1162,7 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(values['storefront'], '1')
         eq_(values['company'], 'Mozilla')
         eq_(values['email'], self.req.amo_user.email)
-        eq_(values['appname'], self.app.name)
+        eq_(values['appname'], get_iarc_app_title(self.app))
         eq_(values['platform'], 'Firefox')
         eq_(values['token'], self.app.iarc_token())
         eq_(values['pingbackurl'],
@@ -1175,14 +1177,16 @@ class TestContentRatings(amo.tests.TestCase):
 
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content.decode('utf-8'))
-        eq_(dict(doc('#ratings-edit form')[0].form_values())['appname'],
-            u'Español')
+        eq_(u'Español' in
+            dict(doc('#ratings-edit form')[0].form_values())['appname'],
+            True)
 
         self.app.update(default_locale='en-US')
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content.decode('utf-8'))
-        eq_(dict(doc('#ratings-edit form')[0].form_values())['appname'],
-            u'English')
+        eq_(u'English' in
+            dict(doc('#ratings-edit form')[0].form_values())['appname'],
+            True)
 
     def test_summary(self):
         rbs = mkt.ratingsbodies

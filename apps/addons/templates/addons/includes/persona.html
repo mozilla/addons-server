@@ -19,7 +19,7 @@
           <p><a href="{{ addon.get_dev_url() }}" class="button developer prominent">{{ _('Edit Theme') }}</a></p>
         {% endif %}
 
-        {% if waffle.flag('submit-personas') and is_reviewer %}
+        {% if is_reviewer %}
           {# TODO: Move Reviewer Tools to AMO so we don't need to hack. #}
           <p><a href="{{ settings.SITE_URL|replace('//addons', '//marketplace') }}/reviewers/themes/queue/single/{{ addon.slug }}" class="button prominent">
             {{ _('Approve / Reject') if addon.is_pending() else _('Review History') }}</a>

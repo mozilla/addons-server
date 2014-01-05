@@ -26,8 +26,7 @@ import amo
 import amo.tests
 import files
 import paypal
-from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
-                           Category, Charity)
+from addons.models import Addon, AddonCategory, AddonUpsell, Category, Charity
 from amo.helpers import (absolutify, babel_datetime, url as url_reverse,
                          timesince)
 from amo.tests import (addon_factory, assert_no_validation_errors, formset,
@@ -65,7 +64,7 @@ class HubTest(amo.tests.TestCase):
             data = dict(type=addon.type, status=addon.status,
                         name='cloned-addon-%s-%s' % (addon_id, i))
             new_addon = Addon.objects.create(**data)
-            AddonUser.objects.create(user=self.user_profile, addon=new_addon)
+            new_addon.addonuser_set.create(user=self.user_profile)
             ids.append(new_addon.id)
         return ids
 
@@ -92,7 +91,7 @@ class TestNav(HubTest):
         addon = Addon.objects.get(id=57132)
         addon.name = 'Test'
         addon.save()
-        AddonUser.objects.create(user=self.user_profile, addon=addon)
+        addon.addonuser_set.create(user=self.user_profile)
 
         r = self.client.get(self.url)
         doc = pq(r.content)
@@ -188,10 +187,9 @@ class TestDashboard(HubTest):
     def test_themes(self):
         """Check themes show on dashboard."""
         # Create 2 themes.
-        self.create_flag(name='submit-personas')
         for x in range(2):
             addon = addon_factory(type=amo.ADDON_PERSONA)
-            AddonUser.objects.create(user=self.user_profile, addon=addon)
+            addon.addonuser_set.create(user=self.user_profile)
         r = self.client.get(self.themes_url)
         doc = pq(r.content)
         eq_(len(doc('.item .item-info')), 2)
@@ -347,8 +345,7 @@ class TestDevRequired(amo.tests.TestCase):
         self.get_url = self.addon.get_dev_url('payments')
         self.post_url = self.addon.get_dev_url('payments.disable')
         assert self.client.login(username='del@icio.us', password='password')
-        self.au = AddonUser.objects.get(user__email='del@icio.us',
-                                        addon=self.addon)
+        self.au = self.addon.addonuser_set.get(user__email='del@icio.us')
         eq_(self.au.role, amo.AUTHOR_ROLE_OWNER)
 
     def test_anon(self):
@@ -857,8 +854,8 @@ class MarketplaceMixin(object):
         self.price_two = Price.objects.create(price='1.99')
         self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                                 premium_type=amo.ADDON_FREE)
-        AddonUser.objects.create(addon=self.other_addon,
-                                 user=self.addon.authors.all()[0])
+        self.other_addon.addonuser_set.create(
+            user=self.addon.authors.all()[0])
         AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
         self.addon.update(premium_type=amo.ADDON_PREMIUM,
                           paypal_id='a@a.com')
@@ -1993,8 +1990,7 @@ class TestSubmitStep7(TestSubmitBase):
     def test_finish_submitting_platform_specific_addon(self):
         # mac-only Add-on:
         addon = Addon.objects.get(name__localized_string='Cooliris')
-        AddonUser.objects.create(user=UserProfile.objects.get(pk=55021),
-                                 addon=addon)
+        addon.addonuser_set.create(user_id=55021)
         r = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
         eq_(r.status_code, 200)
         next_steps = pq(r.content)('.done-next-steps li a')

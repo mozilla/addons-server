@@ -152,9 +152,7 @@ class DE(REGION):
     default_currency = 'EUR'
     default_language = 'de'
     mcc = 262
-    # TODO: change to GENERIC on IARC deploy (switch_is_active('iarc')).
-    # ratingsbody = ratingsbodies.USK
-    ratingsbody = ratingsbodies.GENERIC
+    ratingsbody = ratingsbodies.USK
 
 
 class ME(REGION):
