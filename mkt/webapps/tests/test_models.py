@@ -1676,54 +1676,30 @@ class TestWebappIndexer(amo.tests.TestCase):
         obj, doc = self._get_doc()
         eq_(doc['is_escalated'], True)
 
-    @mock.patch.object(mkt.regions.BR, 'ratingsbody',
-                       mkt.ratingsbodies.PEGI)
     def test_extract_content_ratings(self):
-        # These ones shouldn't appear, outside region.
         ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
             rating=0)
         ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
             rating=0)
-
-        # This one should appear in `gr` since we set Greece to use PEGI.
         ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
             rating=mkt.ratingsbodies.PEGI_12.id)
+
         obj, doc = self._get_doc()
-        eq_(doc['content_ratings']['br'],
-            {'body': mkt.ratingsbodies.PEGI.id,
-             'rating': mkt.ratingsbodies.PEGI_12.id})
+        content_ratings = doc['content_ratings']
 
-    @mock.patch.object(mkt.regions.VE, 'ratingsbody', None)
-    @mock.patch.object(mkt.regions.RS, 'ratingsbody', None)
-    def test_extract_content_ratings_generic_fallback(self):
-        self.create_switch('iarc')
-
-        # These ones shouldn't appear, they are associated w/ region.
-        ContentRating.objects.create(
-            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
-            rating=0)
-        ContentRating.objects.create(
-            addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
-            rating=0)
-
-        # This one should appear in `generic` since we set Venezuela to not
-        # have a specified rating body so it falls back to a manually
-        # attached magical generic region.
-        ContentRating.objects.create(
-            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
-            rating=mkt.ratingsbodies.GENERIC_12.id)
-        obj, doc = self._get_doc()
+        eq_(len(content_ratings), 3)
+        eq_(doc['content_ratings']['classind'],
+            {'body': mkt.ratingsbodies.CLASSIND.id,
+             'rating': mkt.ratingsbodies.CLASSIND_L.id})
         eq_(doc['content_ratings']['generic'],
             {'body': mkt.ratingsbodies.GENERIC.id,
-             'rating': mkt.ratingsbodies.GENERIC_12.id})
-
-        # Make sure the content rating is shoved in the generic region,
-        # not the actual regions (it'd be redundant).
-        assert 'rs' not in doc['content_ratings']
-        assert 've' not in doc['content_ratings']
+             'rating': mkt.ratingsbodies.GENERIC_3.id})
+        eq_(doc['content_ratings']['pegi'],
+            {'body': mkt.ratingsbodies.PEGI.id,
+             'rating': mkt.ratingsbodies.PEGI_12.id})
 
     def test_extract_release_notes(self):
         release_notes = {

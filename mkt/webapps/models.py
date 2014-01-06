@@ -1054,30 +1054,26 @@ class Webapp(Addon):
         """
         return hashlib.sha512(settings.SECRET_KEY + str(self.id)).hexdigest()
 
-    def get_content_ratings_by_region(self, es=False):
+    def get_content_ratings_by_body(self, es=False):
         """
-        Gets content ratings on this app keyed by regions that specify a
-        non-generic ratings body. If a region doesn't specify a non-generic
-        body, it will use the generic ratings body.
+        Gets content ratings on this app keyed by bodies.
 
         es -- denotes whether to return ES-friendly results (just the IDs of
               rating classes) to fetch and translate later.
-
+        region -- region slug in case we know the region when serializing and
+                  want to limit the response size.
         """
         content_ratings = {}
         for cr in self.content_ratings.all():
             body = cr.get_body()
-            rating_class = cr.get_rating()
-            for region in cr.get_region_slugs():
-                rating_serialized = {
-                    'body': body.id,
-                    'rating': rating_class.id
-                }
-                if not es:
-                    rating_serialized = dehydrate_content_rating(
-                        rating_serialized, region)
+            rating_serialized = {
+                'body': body.id,
+                'rating': cr.get_rating().id
+            }
+            if not es:
+                rating_serialized = dehydrate_content_rating(rating_serialized)
+            content_ratings[body.label] = rating_serialized
 
-                content_ratings[region] = rating_serialized
         return content_ratings
 
     def get_descriptors(self, es=False):
@@ -1578,7 +1574,7 @@ class WebappIndexer(MappingType, Indexable):
                                for cms in obj.collectionmembership_set.all()]
         else:
             d['collection'] = []
-        d['content_ratings'] = (obj.get_content_ratings_by_region(es=True) or
+        d['content_ratings'] = (obj.get_content_ratings_by_body(es=True) or
                                 None)
         d['content_descriptors'] = obj.get_descriptors(es=True)
         d['current_version'] = version.version if version else None
