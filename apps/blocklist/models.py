@@ -145,3 +145,13 @@ class BlocklistGfx(BlocklistBase, amo.models.ModelBase):
 
     def flush_urls(self):
         return ['/blocklist*']  # no lang/app
+
+
+class BlocklistPref(amo.models.ModelBase):
+    """Preferences which should be reset when a blocked item is detected."""
+
+    blitem = models.ForeignKey('BlocklistItem', related_name='prefs')
+    pref = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'blitemprefs'

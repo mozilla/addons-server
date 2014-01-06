@@ -12,7 +12,8 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from blocklist.models import (BlocklistApp, BlocklistCA, BlocklistDetail,
-                              BlocklistGfx, BlocklistItem, BlocklistPlugin)
+                              BlocklistGfx, BlocklistItem, BlocklistPlugin,
+                              BlocklistPref)
 
 base_xml = """
 <?xml version="1.0"?>
@@ -57,6 +58,8 @@ class BlocklistItemTest(BlocklistViewTest):
         super(BlocklistItemTest, self).setUp()
         self.item = BlocklistItem.objects.create(guid='guid@addon.com',
                                                  details=self.details)
+        self.pref = BlocklistPref.objects.create(blitem=self.item,
+                                                 pref='foo.bar')
         self.app = BlocklistApp.objects.create(blitem=self.item,
                                                guid=amo.FIREFOX.guid)
 
@@ -155,6 +158,14 @@ class BlocklistItemTest(BlocklistViewTest):
         self.item.update(os='win,mac')
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
         eq_(item.getAttribute('os'), 'win,mac')
+
+    def test_item_pref(self):
+        self.item.update(severity=2)
+        eq_(len(self.vr()), 1)
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
+        prefs = item.getElementsByTagName('prefs')
+        pref = prefs[0].getElementsByTagName('pref')
+        eq_(pref[0].firstChild.nodeValue, self.pref.pref)
 
     def test_item_severity(self):
         self.item.update(severity=2)
