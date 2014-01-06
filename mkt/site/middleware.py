@@ -176,8 +176,6 @@ class LocaleMiddleware(object):
             not getattr(request, 'API', False)):
             response.set_cookie('lang', request.LANG_COOKIE)
 
-        # Reset `Vary` header to remove junk set by AMO middleware.
-        del response['Vary']
         if request.REQUEST.get('vary') != '0':
             patch_vary_headers(response, ['Accept-Language', 'Cookie'])
 
