@@ -2,9 +2,9 @@
 <blocklist xmlns="http://www.mozilla.org/2006/addons-blocklist" lastupdate="{{ last_update }}">
 {% if items %}
   <emItems>
-  {% for guid, rows in items.items() %}
-    <emItem {{ attrs(id=guid, os=rows.os, blockID=rows.block_id) }}>
-      {% for row in rows.rows %}
+  {% for guid, details in items.items() %}
+    <emItem {{ attrs(id=guid, os=details.os, blockID=details.block_id) }}>
+      {% for row in details.rows %}
         {% if row.min or row.max or row.severity or row.apps %}
           <versionRange {{ attrs(minVersion=row.min, maxVersion=row.max,
                                  severity=row.severity or None) }}>
@@ -18,6 +18,11 @@
           </versionRange>
         {% endif %}
       {% endfor %}
+      <prefs>
+        {% for pref in details.prefs %}
+          <pref>{{pref}}</pref>
+        {% endfor %}
+      </prefs>
     </emItem>
   {% endfor %}
   </emItems>
