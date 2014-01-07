@@ -19980,169 +19980,172 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "At any point, you can"
-msgstr ""
+msgstr "У било ком тренутку, Ви можете"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr ""
+msgstr "Измените детаље Ваше апликације на <a href=\"%(url)s\">Измени Листе</a> "
 
 #: mkt/submit/templates/submit/next_steps.html:69
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
-msgstr ""
+msgstr "Погледајте листу свих Ваших пријава на <a href=\"%(url)s\">Моје Пријаве</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:78
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
-msgstr ""
+msgstr "Након што је Ваша апликација прегледана, Ви ћете морати ручно да објавите Вашу апликацију преко <a href=\"%(url)s\">Управљања статусима</a>. Након тога ће се појавити на листи апликација и у претрази да би други уживали у њој."
 
 #: mkt/submit/templates/submit/next_steps.html:85
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
-msgstr ""
+msgstr "Ваша апликација је одобрена! Она се сада приказује на листи апликација и у претрази да би други уживали у њој."
 
 #: mkt/submit/templates/submit/next_steps.html:90
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
-msgstr ""
+msgstr "Након што је Ваша апликација прегледана, појавиће се на листи апликација и у претрази да би други уживали у њој."
 
 #: mkt/submit/templates/submit/next_steps.html:100
 msgid "<strong>What's next:</strong> Set up Content Ratings"
-msgstr ""
+msgstr "<strong>Шта је следеће:</strong> Подесите оцењивање садржаја "
 
 #: mkt/submit/templates/submit/next_steps.html:106
 msgid "<strong>What's next:</strong> Set up Payments & Countries"
-msgstr ""
+msgstr "<strong>Шта је следеће:</strong> Подесите плаћање и уплате"
 
 #: mkt/submit/templates/submit/next_steps.html:112
-msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgid "<strong>What's next:</strong> Објавите Вашу апликацију"
+msgstr "<strong>Шта је следеће:</strong> "
 
 #: mkt/submit/templates/submit/payments-upsell.html:4 mkt/submit/templates/submit/payments.html:3
 msgid "App Payments"
-msgstr ""
+msgstr "Наплате апликација"
 
 #: mkt/submit/templates/submit/payments-upsell.html:18
 msgid "To sell your app in the Marketplace, you'll first need to set its price tier below. Price tiers are based on US Dollars and are fixed for all supported currencies."
-msgstr ""
+msgstr "Селективне цене су базиране на америчким доларима и фиксне су за све подржане валуте."
 
 #: mkt/submit/templates/submit/payments-upsell.html:24
 msgid "Learn more about price tiers"
-msgstr ""
+msgstr "Сазнајте више о селективним ценама"
 
 #: mkt/submit/templates/submit/payments-upsell.html:28
 msgid "Linking this app with its free counterpart allows you to promote your premium app next to the free version. Would you like to link the apps? You can always change your mind later."
-msgstr ""
+msgstr "Повезивањем ове апликације са њеном бесплатном верзијом омогућава Вам да промовишете Вашу премијум апликацију поред бесплатне верзије. Да ли бисте желели да их повежете? Уколико промените мишљење, можете ово променити када год желите."
 
 #: mkt/submit/templates/submit/payments.html:23
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>. Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts in your app</a>."
-msgstr ""
+msgstr "Сазнајте о <a href=\"%(payments_url)s\" target=\"_blank\">различитим начинима плаћања</a>. Научите о <a href=\"%(receipts_url)s\" target=\"_blank\">валидацији потврда куповине у Вашој апликацији</a>."
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
-msgstr ""
+msgstr "Marketplace програм за програмере"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
+"Узбућени смо што сте направили апликацију користећи веб технологије, постављањем на Firefox Marketplace је најбољи начин за кориснике да је открију и уживају у истој међу својим уређајима."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr ""
+msgstr "Да бисте започели, молимо Вас да прочитате и прихватите наш <strong>уговор за програмере</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
-msgstr ""
+msgstr "Mozilla може да ми шаље е-пошту са релевантним новостима о програмирању апликација и анкетама"
 
-#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1680
+#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1669
 msgid "Héllo"
-msgstr ""
+msgstr "Поздрав"
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr ""
+msgstr "Измените поставке налога"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Return to the Marketplace"
-msgstr ""
+msgstr "Повратак на Marketplace "
 
 #: mkt/templates/mkt/account-links.html:15
 msgid "Sign Out"
-msgstr ""
+msgstr "Одјави се"
 
 #: mkt/templates/mkt/footer.html:5
 msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
 "version."
 msgstr ""
+"Осим где је другачије <a href=\"%(legal_url)s\">назначено</a>, садржај на овом сајту је под <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike v3.0</a> лиценцом или неком новијом."
+"version."
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
-msgstr ""
+msgstr "Услови коришћења"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Пријавите злоупотребу робне марке"
 
 #: mkt/templates/mkt/header.html:5
 msgid "Back"
-msgstr ""
+msgstr "Повратак"
 
 #: mkt/templates/mkt/header.html:14
 msgid "Clear"
-msgstr ""
+msgstr "Очисти"
 
 #: mkt/templates/mkt/header.html:17
 msgid "Expand"
-msgstr ""
+msgstr "Прошири"
 
 #: mkt/webapps/models.py:421
 msgid "You must provide a support email."
-msgstr ""
+msgstr "Морате да напишете е-пошту за подршку."
 
 #: mkt/webapps/models.py:423
 msgid "You must provide an app name."
-msgstr ""
+msgstr "Морате да напишете име апликације."
 
 #: mkt/webapps/models.py:425
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "Морате да изаберете барем један тип уређаја."
 
 #: mkt/webapps/models.py:428
 msgid "You must provide at least one category."
-msgstr ""
+msgstr "Морате да изаберете барем једну категорију."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2013
+#: mkt/webapps/models.py:2004
 msgid "awaiting approval"
-msgstr ""
+msgstr "чекање на одобрење"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2017
+#: mkt/webapps/models.py:2008
 msgid "requires additional review"
-msgstr ""
+msgstr "захтева додатан преглед"
 
-#: mkt/webapps/models.py:2056
+#: mkt/webapps/models.py:2047
 msgid "{region} approval status"
-msgstr ""
+msgstr "{region} статус одобрења"
 
-#: mkt/webapps/models.py:2061
+#: mkt/webapps/models.py:2052
 msgid "{region} nomination date"
-msgstr ""
+msgstr "{region} датум номинације"
 
 #: mkt/webapps/tasks.py:116
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "Грешка са Вашом апликацијом \"{app}\" на Firefox Marketplace-у"
 
 #: templates/amo_footer.html:11 templates/includes/lang_switcher.html:2
 msgid "Other languages"
-msgstr ""
+msgstr "Други језици"
 
 #: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:12
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla екстензије"
 
 #: templates/base.html:80 templates/impala/base.html:75
 msgid "Find add-ons for other applications"
-msgstr "Find add-ons for other applications"
+msgstr "Пронађите екстензије за остале апликације"
 
 #: templates/base.html:81 templates/impala/base.html:75
 msgid "Other Applications"
@@ -20150,7 +20153,7 @@ msgstr "Остале апликације"
 
 #: templates/base.html:130 templates/impala/base.html:193
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "Да бисте направили своју колекцију, морате да имате налог на Mozilla екстензије сајту."
 
 #: templates/categories.html:2
 msgid "Choose a category"
@@ -20158,15 +20161,15 @@ msgstr "Изаберите категорију"
 
 #: templates/categories.html:5
 msgid "Mobile Categories"
-msgstr ""
+msgstr "Категорије за мобилне"
 
 #: templates/copyright.html:5
 msgid "View Mobile Site"
-msgstr ""
+msgstr "Сајт за мобилне уређаје"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "сазнајте више о <b>екстензијама</b>""
 
 #: templates/footer.html:4 templates/menu_links.html:20
 msgid "About"
@@ -20184,75 +20187,75 @@ msgstr "ЧПП"
 
 #: templates/footer.html:8
 msgid "Forum"
-msgstr ""
+msgstr "Форум"
 
 #: templates/header_title.html:8
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> екстензије"
 
 #: templates/header_title.html:10
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> екстензије"
 
 #: templates/header_title.html:12
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> екстензије за мобилни"
 
 #: templates/header_title.html:14
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr ""<img alt=\"SeaMonkey\" src=\"{0}\"> екстензије"
 
 #: templates/header_title.html:16
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> екстензије"
 
 #: templates/menu_links.html:6
 msgid "Firefox Add-ons"
-msgstr ""
+msgstr "Firefox екстензије"
 
 #: templates/menu_links.html:11
 msgid "Language Support"
-msgstr ""
+msgstr "Језичка подршка"
 
 #: templates/menu_links.html:22
 msgid "About Firefox"
-msgstr ""
+msgstr "О Firefox-у"
 
 #: templates/menu_links.html:23
 msgid "Join Mozilla"
-msgstr ""
+msgstr "Придружите се Mozilla-и"
 
 #: templates/menu_links.html:24
 msgid "Participate"
-msgstr ""
+msgstr "Учествујте"
 
 #: templates/menu_links.html:26
 msgid "Press Center"
-msgstr ""
+msgstr "Центар за медије"
 
 #: templates/menu_links.html:27
 msgid "Brand Toolkit"
-msgstr ""
+msgstr "Упутства за брендирање"
 
 #: templates/menu_links.html:28
 msgid "Careers"
-msgstr ""
+msgstr "Запослење"
 
 #: templates/menu_links.html:29
 msgid "Partnerships"
-msgstr ""
+msgstr "Партнерства"
 
 #: templates/menu_links.html:30
 msgid "Legal"
-msgstr ""
+msgstr "Правни"
 
 #: templates/menu_links.html:31
 msgid "Contact Us"
-msgstr ""
+msgstr "Контактирајте нас"
 
 #: templates/user_login.html:37
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Добродошли, {0}"
 
 #: templates/user_login.html:41 templates/impala/user_login.html:26
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -20260,36 +20263,36 @@ msgstr "<a href=\"%(reg)s\">Региструјте налог</a> или се <a
 
 #: templates/impala/base.html:135
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Да бисте испробали хиљаде екстензија доступних овде, преузмите <a href=\"%(url)s\">Mozilla Firefox</a>, брз и бесплатан начин да сурфујете вебом!"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:146
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Добродошли на {0} екстензија."
 
 #: templates/impala/base.html:149
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Изаберите из хиљаде додатних могућности и стилова како би Firefox учинили својим."
 
 #: templates/impala/base.html:154
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Додајте додатне могућности и стилове како би направили %(app)s на свој начин."
 
 #: templates/impala/base.html:162
 msgid "On the go?"
-msgstr ""
+msgstr "У покрету сте?"
 
 #: templates/impala/base.html:164
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr"Проверите наш <a class=\"mobile-link\" href=\"#\">сајт за мобилне екстензије</a>"
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Екстензије за Android"
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
-msgstr ""
+msgstr "Пријавите се / Региструјте се"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
@@ -20297,37 +20300,38 @@ msgstr "потребан"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "Потребна поља"
 
 #: templates/mobile/base_addons.html:69
 msgid "Mobile Home"
-msgstr ""
+msgstr "Почетна страница за мобилне"
 
 #: templates/mobile/base_addons.html:88 templates/mobile/base_apps.html:72
 msgid "View full site"
-msgstr ""
+msgstr "Сајт у пуној величини"
 
 #: templates/mobile/base_addons.html:91 templates/mobile/base_apps.html:75
 msgid "Legal Notices"
-msgstr "Legal Notices"
+msgstr "Правна обавештења"
 
 #: templates/mobile/base_apps.html:40
 msgid "Return to the Apps homepage"
-msgstr ""
+msgstr "Повратак на почетну страницу апликација"
 
 #: templates/mobile/header.html:3
 msgid "Mozilla Firefox"
-msgstr ""
+msgstr "Mozilla Firefox"
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
-msgstr ""
+msgstr "Екстензије"
 
 #: templates/mobile/header.html:8
 msgid "Visit Mozilla"
-msgstr ""
+msgstr "Посетите Mozilla сајт"
 
 #. a link
 #: templates/mobile/header.html:10
 msgid "menu"
-msgstr ""
+msgstr "Мени"
+
