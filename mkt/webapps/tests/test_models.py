@@ -595,13 +595,11 @@ class TestWebapp(amo.tests.TestCase):
 
         # Update.
         app.set_interactives([
-            'has_digital_content_portaL', 'has_digital_purchases',
-            'has_shares_ur_mum'
+            'has_digital_purchases', 'has_shares_ur_mum'
         ])
         eq_(RatingInteractives.objects.count(), 1)
         app_interactives = RatingInteractives.objects.get(addon=app)
         assert not app_interactives.has_shares_info
-        assert app_interactives.has_digital_content_portal
         assert app_interactives.has_digital_purchases
 
     @mock.patch('lib.iarc.client.MockClient.call')
@@ -682,18 +680,18 @@ class TestWebapp(amo.tests.TestCase):
         app = app_factory()
         eq_(app.get_interactives(es=True), [])
 
-        app.set_interactives(['has_social_networking', 'has_shares_info'])
+        app.set_interactives(['has_digital_purchases', 'has_shares_info'])
         self.assertSetEqual(app.get_interactives(es=True),
-                            ['SOCIAL_NETWORKING', 'SHARES_INFO'])
+                            ['DIGITAL_PURCHASES', 'SHARES_INFO'])
 
     def test_get_interactives_dehydrated(self):
         app = app_factory()
         eq_(app.get_interactives(), [])
 
-        app.set_interactives(['has_social_networking', 'has_shares_info'])
+        app.set_interactives(['has_digital_purchases', 'has_shares_info'])
         eq_(app.get_interactives(),
             [{'label': 'shares-info', 'name': 'Shares Info'},
-             {'label': 'social-networking', 'name': 'Social Networking'}])
+             {'label': 'digital-purchases', 'name': 'Digital Purchases'}])
 
     @override_settings(SECRET_KEY='test')
     def test_iarc_token(self):
@@ -1765,9 +1763,9 @@ class TestRatingInteractives(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
         self.related_name = 'rating_interactives'
 
         self.BOOL_DICT = mkt.ratinginteractives.RATING_INTERACTIVES
-        self.flags = ('SHARES_INFO', 'DIGITAL_PURCHASES', 'SOCIAL_NETWORKING')
+        self.flags = ('SHARES_INFO', 'DIGITAL_PURCHASES', 'USERS_INTERACT')
         self.expected = [u'Shares Info', u'Digital Purchases',
-                         u'Social Networking']
+                         u'Users Interact']
 
         RatingInteractives.objects.create(addon=self.app)
 

@@ -137,7 +137,7 @@ class TestXMLParser(amo.tests.TestCase):
         # Test interactives.
         self.assertSetEqual(data['interactives'],
                             ['has_shares_info', 'has_shares_location',
-                             'has_social_networking', 'has_users_interact'])
+                             'has_digital_purchases', 'has_users_interact'])
 
     def test_rating_changes(self):
         xml = self.client.Get_Rating_Changes(XMLString='foo')
