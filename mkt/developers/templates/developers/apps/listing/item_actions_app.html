@@ -10,20 +10,20 @@
         {{ _('Resume') }}</a>
       </li>
     {% else %}
-      {% if addon.needs_payment() and not addon.has_payment_account() %}
-        {# The app needs payments information. #}
-        <li>
-          <a href="{{ addon.get_dev_url('payments') }}" class="tooltip"
-             title="{{ _('Provide payment information for the app.') }}">
-          {{ _('Set Up Payments') }}</a>
-        </li>
-      {% endif %}
       {% if waffle.switch('iarc') and not addon.is_rated() %}
         {# The app needs content ratings. #}
         <li>
           <a href="{{ addon.get_dev_url('ratings_edit') }}" class="tooltip"
              title="{{ _('Get content ratings for the app.') }}">
           {{ _('Set Up Content Ratings') }}</a>
+        </li>
+      {% endif %}
+      {% if addon.needs_payment() and not addon.has_payment_account() %}
+        {# The app needs payments information. #}
+        <li>
+          <a href="{{ addon.get_dev_url('payments') }}" class="tooltip"
+             title="{{ _('Provide payment information for the app.') }}">
+          {{ _('Set Up Payments') }}</a>
         </li>
       {% endif %}
     {% endif %}
