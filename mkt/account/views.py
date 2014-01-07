@@ -29,7 +29,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import AllowSelf, AllowOwner
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.constants.apps import INSTALL_TYPE_USER
-from mkt.webapps.api import AppSerializer
+from mkt.webapps.api import SimpleAppSerializer
 from mkt.webapps.models import Webapp
 
 
@@ -45,7 +45,7 @@ class MineMixin(object):
 
 
 class InstalledView(MarketplaceView, ListAPIView):
-    serializer_class = AppSerializer
+    serializer_class = SimpleAppSerializer
     permission_classes = [AllowSelf]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]

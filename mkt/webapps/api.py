@@ -12,7 +12,7 @@ from rest_framework.response import Response
 from tower import ungettext as ngettext
 
 import amo
-from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
+from addons.models import AddonCategory, AddonUpsell, AddonUser
 from amo.utils import no_translation
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
@@ -37,7 +37,7 @@ from mkt.submit.api import PreviewViewSet
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures,
-                                get_excluded_in, reverse_version, Webapp)
+                                get_excluded_in, Webapp)
 from mkt.webapps.utils import filter_content_ratings_by_region
 
 
@@ -88,9 +88,8 @@ class AppSerializer(serializers.ModelSerializer):
     banner_message = TranslationSerializerField(read_only=True,
         source='geodata.banner_message')
     banner_regions = serializers.Field(source='geodata.banner_regions_slugs')
-    categories = serializers.SlugRelatedField(
-        many=True, slug_field='slug', required=True,
-        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
+    categories = serializers.SlugRelatedField(source='categories',
+        many=True, slug_field='slug', required=True)
     content_ratings = serializers.SerializerMethodField('get_content_ratings')
     created = serializers.DateField(read_only=True)
     current_version = serializers.CharField(
@@ -113,7 +112,8 @@ class AppSerializer(serializers.ModelSerializer):
         'get_payment_required')
     premium_type = ReverseChoiceField(
         choices_dict=amo.ADDON_PREMIUM_API, required=False)
-    previews = PreviewSerializer(many=True, required=False)
+    previews = PreviewSerializer(many=True, required=False,
+                                 source='all_previews')
     price = SemiSerializerMethodField('get_price')
     price_locale = serializers.SerializerMethodField('get_price_locale')
     privacy_policy = LargeTextField(view_name='app-privacy-policy-detail',
@@ -185,14 +185,18 @@ class AppSerializer(serializers.ModelSerializer):
         return False
 
     def get_price(self, app):
-        region = self._get_region_id()
-        if region in app.get_price_region_ids():
-            return app.get_price(region=region)
+        if app.premium:
+            region = self._get_region_id()
+            if region in app.get_price_region_ids():
+                return app.get_price(region=region)
+        return None
 
     def get_price_locale(self, app):
-        region = self._get_region_id()
-        if region in app.get_price_region_ids():
-            return app.get_price_locale(region=region)
+        if app.premium:
+            region = self._get_region_id()
+            if region in app.get_price_region_ids():
+                return app.get_price_locale(region=region)
+        return None
 
     def get_ratings_aggregates(self, app):
         return {'average': app.average_rating,
@@ -233,8 +237,12 @@ class AppSerializer(serializers.ModelSerializer):
             }
 
     def get_versions(self, app):
-        return dict((v.version, reverse_version(v)) for
-                    v in app.versions.all())
+        # Disable transforms, we only need two fields: version and pk.
+        # Unfortunately, cache-machine gets in the way so we can't use .only()
+        # (.no_transforms() is ignored, defeating the purpose), and we can't use
+        # .values() / .values_list() because those aren't cached :(
+        return dict((v.version, reverse('version-detail', kwargs={'pk': v.pk}))
+                    for v in app.versions.all().no_transforms())
 
     def get_weekly_downloads(self, app):
         if app.public_stats:
@@ -385,6 +393,18 @@ class AppSerializer(serializers.ModelSerializer):
         # Categories are handled here because we can't look up
         # existing ones until the initial save is done.
         self.save_categories(obj, cats)
+
+
+class SimpleAppSerializer(AppSerializer):
+    """
+    App serializer with fewer fields (and fewer db queries as a result).
+    Used as a base for FireplaceAppSerializer and CollectionAppSerializer.
+    """
+
+    class Meta(AppSerializer.Meta):
+        exclude = ['absolute_url', 'app_type', 'categories', 'created',
+                   'default_locale', 'payment_account', 'regions',
+                   'supported_locales', 'weekly_downloads', 'upsold', 'tags',]
 
 
 class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,

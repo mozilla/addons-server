@@ -10,7 +10,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import check_potatocaptcha, CORSMixin
 from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
-from mkt.webapps.api import AppSerializer
+from mkt.webapps.api import SimpleAppSerializer
 from mkt.webapps.models import Webapp
 
 
@@ -44,7 +44,7 @@ class AppAbuseSerializer(BaseAbuseSerializer):
     app = SplitField(
         SlugOrPrimaryKeyRelatedField(source='addon', slug_field='app_slug',
                                      queryset=Webapp.objects.all()),
-        AppSerializer(source='addon'))
+        SimpleAppSerializer(source='addon'))
 
     class Meta:
         model = AbuseReport
