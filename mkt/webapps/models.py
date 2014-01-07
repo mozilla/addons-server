@@ -187,17 +187,34 @@ class Webapp(Addon):
 
     @staticmethod
     def transformer(apps):
-        # I think we can do less than the Addon transformer, so at some point
-        # we'll want to copy that over.
-        apps_dict = Addon.transformer(apps)
-        if not apps_dict:
+        if not apps:
             return
+        apps_dict = dict((a.id, a) for a in apps)
 
+        # Only the parts relevant for Webapps are copied over from Addon. In
+        # particular this avoids fetching categories and listed_authors, which
+        # isn't useful in most parts of the Marketplace.
+
+        # Set _latest_version, _current_version
+        Addon.attach_related_versions(apps, apps_dict)
+
+        # Attach previews. Don't use transforms, the only one present is for
+        # translations and Previews don't have captions in the Marketplace, and
+        # therefore don't have translations.
+        Addon.attach_previews(apps, apps_dict, no_transforms=True)
+
+        # Attach prices.
+        Addon.attach_prices(apps, apps_dict)
+
+        # FIXME: re-use attach_devices instead ?
         for adt in AddonDeviceType.objects.filter(addon__in=apps_dict):
             if not getattr(apps_dict[adt.addon_id], '_device_types', None):
                 apps_dict[adt.addon_id]._device_types = []
             apps_dict[adt.addon_id]._device_types.append(
                 DEVICE_TYPES[adt.device_type])
+
+        # FIXME: attach geodata and content ratings. Maybe in a different
+        # transformer that would then be called automatically for the API ?
 
     @staticmethod
     def version_and_file_transformer(apps):

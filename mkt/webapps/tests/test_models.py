@@ -1252,10 +1252,44 @@ class TestTransformer(amo.tests.TestCase):
         self.device = DEVICE_TYPES.keys()[0]
 
     @mock.patch('mkt.webapps.models.Addon.transformer')
-    def test_addon_transformer_called(self, transformer):
+    def test_addon_transformer_not_called(self, transformer):
         transformer.return_value = {}
         list(Webapp.objects.all())
-        assert transformer.called
+        assert not transformer.called
+
+    def test_versions(self):
+        webapps = list(Webapp.objects.all())
+        with self.assertNumQueries(0):
+            for webapp in webapps:
+                ok_(isinstance(webapp.latest_version, Version))
+                ok_(isinstance(webapp.current_version, Version))
+
+    def test_previews(self):
+        p1 = Preview.objects.create(filetype='image/png', addon_id=337141,
+                                    position=0)
+        p2 = Preview.objects.create(filetype='image/png', addon_id=337141,
+                                    position=1)
+
+        webapps = list(Webapp.objects.all())
+        with self.assertNumQueries(0):
+            for webapp in webapps:
+                eq_(webapp.all_previews, [p1, p2])
+
+    def test_prices(self):
+        self.make_premium(Webapp.objects.get(pk=337141))
+        webapps = list(Webapp.objects.all())
+        with self.assertNumQueries(0):
+            for webapp in webapps:
+                ok_(unicode(webapp.premium))
+                eq_(str(webapp.get_tier().price), '1.00')
+                ok_(webapp.get_tier_name())
+
+    def test_prices_free(self):
+        webapps = list(Webapp.objects.all())
+        with self.assertNumQueries(0):
+            for webapp in webapps:
+                eq_(webapp.premium, None)
+                eq_(webapp.get_tier(), None)
 
     def test_device_types(self):
         AddonDeviceType.objects.create(addon_id=337141,

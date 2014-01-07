@@ -972,21 +972,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 logit('no reviewed files')
 
     @staticmethod
-    @timer
-    def transformer(addons):
-        if not addons:
-            return
+    def attach_related_versions(addons, addon_dict=None):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
 
-        addon_dict = dict((a.id, a) for a in addons)
-        personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
-        addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
-
-        version_ids = filter(None, (a._current_version_id for a in addons))
+        current_ids = filter(None, (a._current_version_id for a in addons))
         latest_ids = filter(None, (a._latest_version_id for a in addons))
         backup_ids = filter(None, (a._backup_version_id for a in addons))
-        all_ids = set(version_ids) | set(backup_ids) | set(latest_ids)
-        versions = list(Version.objects.filter(id__in=all_ids).order_by()
-                        .transform(Version.transformer))
+        all_ids = set(current_ids) | set(backup_ids) | set(latest_ids)
+
+        versions = list(Version.objects.filter(id__in=all_ids).order_by())
         for version in versions:
             try:
                 addon = addon_dict[version.addon_id]
@@ -1002,7 +997,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
             version.addon = addon
 
-        # Attach listed authors.
+    @staticmethod
+    def attach_listed_authors(addons, addon_dict=None):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
+
         q = (UserProfile.objects.no_cache()
              .filter(addons__in=addons, addonuser__listed=True)
              .extra(select={'addon_id': 'addons_users.addon_id',
@@ -1010,6 +1009,65 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         q = sorted(q, key=lambda u: (u.addon_id, u.position))
         for addon_id, users in itertools.groupby(q, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
+        # FIXME: set listed_authors to empty list on addons without listed 
+        # authors.
+
+    @staticmethod
+    def attach_previews(addons, addon_dict=None, no_transforms=False):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
+
+        qs = Preview.objects.filter(addon__in=addons,
+                                    position__gte=0).order_by()
+        if no_transforms:
+            qs = qs.no_transforms()
+        qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
+        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
+            addon_dict[addon].all_previews = list(previews)
+        # FIXME: set all_previews to empty list on addons without previews.
+
+    @staticmethod
+    def attach_prices(addons, addon_dict=None):
+        # FIXME: merge with attach_prices transformer below.
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
+
+        # There's a constrained amount of price tiers, may as well load
+        # them all and let cache machine keep them cached.
+        prices = dict((p.id, p) for p in Price.objects.all())
+        # Attach premium addons.
+        qs = AddonPremium.objects.filter(addon__in=addons)
+        premium_dict = dict((ap.addon_id, ap) for ap in qs)
+
+        # Attach premiums to addons, making sure to attach None to free addons
+        # or addons where the corresponding AddonPremium is missing.
+        for addon in addons:
+            if addon.is_premium():
+                addon_p = premium_dict.get(addon.id)
+                if addon_p:
+                    price = prices.get(addon_p.price_id)
+                    if price:
+                        addon_p.price = price
+                    addon_p.addon = addon
+                addon._premium = addon_p
+            else:
+                addon._premium = None
+
+    @staticmethod
+    @timer
+    def transformer(addons):
+        if not addons:
+            return
+
+        addon_dict = dict((a.id, a) for a in addons)
+        personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
+        addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
+
+        # Set _backup_version, _latest_version, _current_version
+        Addon.attach_related_versions(addons, addon_dict=addon_dict)
+
+        # Attach listed authors.
+        Addon.attach_listed_authors(addons, addon_dict=addon_dict)
 
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
@@ -1023,11 +1081,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
 
         # Attach previews.
-        qs = Preview.objects.filter(addon__in=addons,
-                                    position__gte=0).order_by()
-        qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
-        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
-            addon_dict[addon].all_previews = list(previews)
+        Addon.attach_previews(addons, addon_dict=addon_dict)
 
         # Attach _first_category for Firefox.
         cats = dict(AddonCategory.objects.values_list('addon', 'category')
@@ -1039,17 +1093,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             category = categories[cats[addon.id]] if addon.id in cats else None
             addon._first_category[amo.FIREFOX.id] = category
 
-        # There's a constrained amount of price tiers, may as well load
-        # them all and let cache machine keep them cached.
-        prices = dict((p.id, p) for p in Price.objects.all())
-        # Attach premium addons.
-        qs = AddonPremium.objects.filter(addon__in=addons)
-        for addon_p in qs:
-            if addon_dict[addon_p.addon_id].is_premium():
-                price = prices.get(addon_p.price_id)
-                if price:
-                    addon_p.price = price
-                    addon_dict[addon_p.addon_id]._premium = addon_p
+        # Attach prices.
+        Addon.attach_prices(addons, addon_dict=addon_dict)
 
         return addon_dict
 
