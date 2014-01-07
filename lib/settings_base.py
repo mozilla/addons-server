@@ -1603,7 +1603,6 @@ AES_KEYS = {
 }
 
 # IARC content ratings.
-IARC_COMPANY = 'Mozilla'
 IARC_ENV = 'test'
 IARC_MOCK = False
 IARC_PASSWORD = ''

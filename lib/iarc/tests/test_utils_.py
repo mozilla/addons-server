@@ -9,7 +9,7 @@ from nose.tools import eq_
 import amo.tests
 
 from lib.iarc.client import get_iarc_client
-from lib.iarc.utils import get_iarc_app_title, IARC_XML_Parser, render_xml
+from lib.iarc.utils import IARC_XML_Parser, render_xml
 
 from mkt.constants import ratingsbodies
 
@@ -27,7 +27,6 @@ class TestRenderAppInfo(amo.tests.TestCase):
         assert '<FIELD NAME="password" VALUE="s3kr3t"' in xml
         assert '<FIELD NAME="submission_id" VALUE="100"' in xml
         assert '<FIELD NAME="security_code" VALUE="AB12CD3"' in xml
-        assert '<FIELD NAME="company" VALUE="Mozilla"' in xml
         assert '<FIELD NAME="platform" VALUE="Firefox"' in xml
         # If these aren't specified in the context they aren't included.
         assert not '<FIELD NAME="title"' in xml
@@ -39,7 +38,6 @@ class TestRenderSetStorefrontData(amo.tests.TestCase):
         self.template = 'set_storefront_data.xml'
 
     @override_settings(IARC_PASSWORD='s3kr3t',
-                       IARC_COMPANY='Mozilla',
                        IARC_PLATFORM='Firefox')
     def test_render(self):
         xml = render_xml(self.template, {
@@ -48,12 +46,13 @@ class TestRenderSetStorefrontData(amo.tests.TestCase):
             'rating_system': 'PEGI',
             'release_date': datetime.date(2013, 11, 1),
             'title': 'Twitter',
+            'company': 'Test User',
             'rating': '16+',
             'descriptors': u'N\xc3\xa3o h\xc3\xa1 inadequa\xc3\xa7\xc3\xb5es',
             'interactive_elements': 'users interact'})
         assert xml.startswith('<?xml version="1.0" encoding="utf-8"?>')
         assert '<FIELD NAME="password" VALUE="s3kr3t"' in xml
-        assert '<FIELD NAME="storefront_company" VALUE="Mozilla"' in xml
+        assert '<FIELD NAME="storefront_company" VALUE="Test User"' in xml
         assert '<FIELD NAME="platform" VALUE="Firefox"' in xml
         assert '<FIELD NAME="submission_id" VALUE="100"' in xml
         assert '<FIELD NAME="security_code" VALUE="AB12CD3"' in xml
@@ -70,10 +69,6 @@ class TestRenderSetStorefrontData(amo.tests.TestCase):
         # The client base64 encodes these. Mimic what the client does here to
         # ensure no unicode problems.
         base64.b64encode(xml.encode('utf-8'))
-
-    def test_get_iarc_app_title(self):
-        app = amo.tests.app_factory(name='fu', app_slug='bah')
-        eq_(get_iarc_app_title(app), 'fu (bah)')
 
 
 class TestRenderRatingChanges(amo.tests.TestCase):
