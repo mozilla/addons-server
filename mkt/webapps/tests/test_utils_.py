@@ -11,6 +11,8 @@ import amo
 import amo.tests
 from addons.models import AddonCategory, AddonDeviceType, Category, Preview
 from market.models import PriceCurrency
+
+import mkt
 from mkt.constants import ratingsbodies, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.api import AppSerializer
@@ -123,7 +125,7 @@ class TestAppSerializer(amo.tests.TestCase):
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
         })
         res = self.serialize(self.app)
-        eq_(res['content_ratings']['ratings']['br'],
+        eq_(res['content_ratings']['ratings']['classind'],
             {'body': 'CLASSIND',
              'body_label': 'classind',
              'rating': 'For ages 18+',
@@ -135,6 +137,32 @@ class TestAppSerializer(amo.tests.TestCase):
              'rating': 'For ages 18+',
              'rating_label': '18',
              'description': unicode(ratingsbodies.GENERIC_18.description)})
+
+    def test_content_ratings_by_region(self):
+        self.create_switch('iarc')
+        self.app.set_content_ratings({
+            ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
+            ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
+        })
+        self.app.set_descriptors(['has_classind_lang', 'has_generic_lang'])
+
+        self.request.REGION = mkt.regions.BR
+        res = self.serialize(self.app)['content_ratings']
+
+        for iarc_obj in ('ratings', 'descriptors', 'regions'):
+            eq_(len(res[iarc_obj]), 1)
+        for iarc_obj in ('ratings', 'descriptors'):
+            assert 'classind' in res[iarc_obj], iarc_obj
+        assert 'br' in res['regions']
+
+    def test_content_ratings_regions(self):
+        self.create_switch('iarc')
+        res = self.serialize(self.app)
+        region_rating_bodies = res['content_ratings']['regions']
+        eq_(region_rating_bodies['br'], 'classind')
+        eq_(region_rating_bodies['de'], 'usk')
+        eq_(region_rating_bodies['es'], 'pegi')
+        eq_(region_rating_bodies['us'], 'esrb')
 
     def test_content_descriptors(self):
         self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
@@ -352,7 +380,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.refresh('webapp')
 
         res = es_app_to_dict(self.get_obj())
-        eq_(res['content_ratings']['ratings']['br'],
+        eq_(res['content_ratings']['ratings']['classind'],
             {'body': 'CLASSIND',
              'body_label': 'classind',
              'rating': 'For ages 18+',
@@ -373,7 +401,35 @@ class TestESAppToDict(amo.tests.ESTestCase):
             [{'label': 'shares-info', 'name': 'Shares Info'},
              {'label': 'social-networking', 'name': 'Social Networking'}])
 
-    def test_content_ratings_no_switch(self):
+    def test_content_ratings_by_region(self):
+        self.create_switch('iarc')
+        self.app.set_content_ratings({
+            ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
+            ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
+        })
+        self.app.set_descriptors(['has_classind_lang', 'has_generic_lang'])
+        self.app.save()
+        self.refresh('webapp')
+
+        req = amo.tests.req_factory_factory('/', data={'region': 'br'})
+        res = es_app_to_dict(self.get_obj(), request=req)['content_ratings']
+
+        for iarc_obj in ('ratings', 'descriptors', 'regions'):
+            eq_(len(res[iarc_obj]), 1)
+        for iarc_obj in ('ratings', 'descriptors'):
+            assert 'classind' in res[iarc_obj], iarc_obj
+        assert 'br' in res['regions']
+
+    def test_content_ratings_regions(self):
+        self.create_switch('iarc')
+        res = es_app_to_dict(self.get_obj())
+        region_rating_bodies = res['content_ratings']['regions']
+        eq_(region_rating_bodies['br'], 'classind')
+        eq_(region_rating_bodies['de'], 'usk')
+        eq_(region_rating_bodies['es'], 'pegi')
+        eq_(region_rating_bodies['us'], 'esrb')
+
+    def test_content_ratings_regions_no_switch(self):
         self.app.set_content_ratings({
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
@@ -382,14 +438,8 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.refresh('webapp')
 
         res = es_app_to_dict(self.get_obj())
-        assert 'us' not in res['content_ratings']['ratings']
-        assert 'generic' not in res['content_ratings']['ratings']
-        eq_(res['content_ratings']['ratings']['br'],
-            {'body': 'CLASSIND',
-             'body_label': 'classind',
-             'rating': 'For ages 18+',
-             'rating_label': '18',
-             'description': unicode(ratingsbodies.CLASSIND_18.description)})
+        assert 'us' not in res['content_ratings']['regions']
+        eq_(res['content_ratings']['regions']['br'], 'classind')
 
     def test_show_downloads_count(self):
         """Show weekly_downloads in results if app stats are public."""

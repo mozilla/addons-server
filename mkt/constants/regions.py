@@ -4,6 +4,7 @@ import sys
 from tower import ugettext_lazy as _lazy
 
 from mkt.constants import ratingsbodies
+from mkt.constants.ratingsbodies import slugify_iarc_name
 
 
 class REGION(object):
@@ -297,3 +298,29 @@ def ALL_REGIONS_WITHOUT_CONTENT_RATINGS():
     Regions without ratings bodies and fallback to the GENERIC rating body.
     """
     return set(ALL_REGIONS) - set(ALL_REGIONS_WITH_CONTENT_RATINGS())
+
+
+def REGION_TO_RATINGS_BODY():
+    """
+    Return a map of region slugs to ratings body labels for use in
+    serializers and to send to Fireplace.
+
+    e.g. {'us': 'esrb', 'mx': 'esrb', 'es': 'pegi', 'br': 'classind'}.
+    """
+    import waffle
+
+    # Create the mapping.
+    region_to_bodies = {}
+    for region in ALL_REGIONS_WITH_CONTENT_RATINGS():
+        ratings_body_label = GENERIC_RATING_REGION_SLUG
+        if region.ratingsbody:
+            ratings_body_label = slugify_iarc_name(region.ratingsbody)
+        region_to_bodies[region.slug] = ratings_body_label
+
+    # Resolve edge cases related to switches.
+    if not waffle.switch_is_active('iarc'):
+        region_to_bodies.update({
+            'de': GENERIC_RATING_REGION_SLUG
+        })
+
+    return region_to_bodies

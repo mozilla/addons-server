@@ -18,6 +18,7 @@ from files.models import FileUpload, Platform
 from lib.metrics import record_action
 from market.models import AddonPremium, Price
 
+import mkt
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -37,6 +38,7 @@ from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures,
                                 get_excluded_in, reverse_version, Webapp)
+from mkt.webapps.utils import filter_content_ratings_by_region
 
 
 log = commonware.log.getLogger('z.api')
@@ -159,12 +161,18 @@ class AppSerializer(serializers.ModelSerializer):
         REGION = getattr(request, 'REGION', None)
         return REGION.id if REGION else None
 
+    def _get_region_slug(self):
+        request = self.context.get('request')
+        REGION = getattr(request, 'REGION', None)
+        return REGION.slug if REGION else None
+
     def get_content_ratings(self, app):
-        return {
-            'ratings': app.get_content_ratings_by_region() or None,
+        return filter_content_ratings_by_region({
+            'ratings': app.get_content_ratings_by_body() or None,
             'descriptors': app.get_descriptors() or None,
             'interactive_elements': app.get_interactives() or None,
-        }
+            'regions': mkt.regions.REGION_TO_RATINGS_BODY()
+        }, region=self._get_region_slug())
 
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
@@ -404,7 +412,8 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
             app = super(AppViewSet, self).get_object(self.get_base_queryset())
             # Owners and reviewers can see apps regardless of region.
             owner_or_reviewer = AnyOf(AllowAppOwner, AllowReviewerReadOnly)
-            if owner_or_reviewer.has_object_permission(self.request, self, app):
+            if owner_or_reviewer.has_object_permission(self.request, self,
+                                                       app):
                 return app
             data = {}
             for key in ('name', 'support_email', 'support_url'):
@@ -423,7 +432,8 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
             uuid = request.DATA.get('manifest', '')
             is_packaged = False
         if not uuid:
-            raise serializers.ValidationError('No upload or manifest specified.')
+            raise serializers.ValidationError(
+                'No upload or manifest specified.')
 
         try:
             upload = FileUpload.objects.get(uuid=uuid)
@@ -511,5 +521,6 @@ class PrivacyPolicyViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
     def retrieve(self, request, *args, **kwargs):
         app = self.get_object()
-        return response.Response({'privacy_policy': unicode(app.privacy_policy)},
-                                 content_type='application/json')
+        return response.Response(
+            {'privacy_policy': unicode(app.privacy_policy)},
+            content_type='application/json')

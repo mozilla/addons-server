@@ -353,14 +353,21 @@ def RATINGS_BY_NAME():
     return ratings_choices
 
 
+def slugify_iarc_name(obj):
+    """
+    Converts ratings body's or rating's iarc_name to a slug-like label
+    (e.g. "USK" to "usk").
+    """
+    return obj.iarc_name.lower().replace(' ', '-')
+
+
 def dehydrate_rating(rating):
     """
     Returns a rating with translated fields attached and with fields that are
     easily created dynamically.
     """
     if rating.label is None:
-        rating.label = (str(rating.age) or
-                        rating.iarc_name.lower().replace(' ', '-'))
+        rating.label = str(rating.age) or slugify_iarc_name(rating)
     if rating.name is None:
         if rating.age == 0:
             rating.name = unicode(NAME_GENERAL)
@@ -380,7 +387,7 @@ def dehydrate_rating(rating):
 def dehydrate_ratings_body(body):
     """Returns a rating body with translated fields attached."""
     if body.label is None:
-        body.label = body.iarc_name.lower().replace(' ', '-')
+        body.label = slugify_iarc_name(body)
 
     body.name = unicode(body.name)
     body.description = unicode(body.description)

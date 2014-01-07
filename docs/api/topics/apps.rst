@@ -58,17 +58,28 @@ App
             ],
             "content_ratings": {
                 "ratings": {
-                    "en": {"body": "ESRB", "body_label": "esrb", "rating": "Teen", "rating_label": "13", "description": "Not recommended..."},
-                    "generic": {"body": "Generic", "body_label": "generic", "rating": "For ages 13+", "rating_label": "13", "description": "Not recommended..."}
+                    "esrb": {"body": "ESRB", "body_label": "esrb", "rating": "Teen", "rating_label": "13", "description": "Not recommended for users younger than 13."},
+                    "classind": {"body": "CLASSIND", "body_label": "classind", "rating": "For ages 14+", "rating_label": "14", "description": "Not recommended for users younger than 14."},
+                    "pegi": {"body": "PEGI", "body_label": "pegi", "rating": "For ages 12+", "rating_label": "12", "description": "Not recommended for users younger than 12."},
+                    "usk": {"body": "USK", "body_label": "usk", "rating": "For ages 16+", "rating_label": "16", "description": "Not recommended for users younger than 16."},
+                    "generic": {"body": "Generic", "body_label": "generic", "rating": "For ages 13+", "rating_label": "13", "description": "Not recommended for users younger than 13."}
                 },
-                "descriptors": [
+                "descriptors": {
                     "esrb": [{"label": "esrb-scary", "name": "Scary Themes"}],
                     "generic": [{"label": "generic-scary", "name": "Fear"}]
-                ],
+                },
                 "interactive_elements": [
                     {"label": "users-interact", "name": "Users Interact"},
                     {"label": "shares-location", "name": "Shares Location"},
                 ]
+                "regions": {
+                    "us": "esrb",
+                    "mx": "esrb",
+                    "br": "classind",
+                    "es": "pegi",
+                    "it": "pegi",
+                    "de": "usk"
+                }
             },
             "created": "2013-09-17T13:19:16",
             "current_version": "1.1",
@@ -169,11 +180,10 @@ App
     :type categories: array
     :param content_ratings: International Age Rating Coalition (IARC) content
         ratings data. It has three parts, ``ratings``, ``descriptors``, and
-        ``interactive_elements``
+        ``interactive_elements``. If a region is detected, only a subset
+        of data will be returned.
     :type content_ratings: object
-    :param content_ratings.ratings: Content ratings associated with the app by
-        region. Apps that do not fall into all of the specific regions uses the
-        rating keyed under "generic".
+    :param content_ratings.ratings: Content ratings associated with the app.
     :type content_ratings.ratings: object
     :param content_ratings.descriptors: IARC content descriptors, flags about
         the app that might affect its suitability for younger-aged users.
@@ -181,7 +191,12 @@ App
     :param content_ratings.interactive_elements: IARC interactive elements,
         aspects about the app relating to whether the app shares info or
         interacts with external elements.
-    :type content_ratings: array
+    :type content_ratings.interactive_elements: array
+    :param content_ratings.regions: The mapping of region slugs to their
+        respective and assigned IARC ratings bodies. Regions that do not fall
+        under any of the listed regions uses the "generic" content rating in
+        content_ratings.ratings.
+    :type content_ratings.interactive_elements: array
     :param created: The date the app was added to the Marketplace, in ISO 8601
         format.
     :type created: string
