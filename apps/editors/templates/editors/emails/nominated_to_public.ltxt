@@ -7,6 +7,7 @@ Reviewer:
 Comments:
 {{ comments }}
 
+{{ tested }}
 
 Your add-on will no longer display warnings and can make full use of features such as contributions and beta channels.  To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews#selection
 {% endblock %}
