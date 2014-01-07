@@ -20,7 +20,7 @@
       <thead>
         <tr>
           <th>Date</th>
-          <th>Version ID</th>
+          <th>Version</th>
           <th>File ID</th>
           <th>Platform</th>
           <th>Status</th>
@@ -32,7 +32,7 @@
       {% for v in versions %}
         <tr>
           <td>{{ v.created|datetime }}</td>
-          <td><a href="{{ url('editors.review', addon.slug) }}" title="{{ v.version }}">{{ v.id }}</a></td>
+          <td><a href="{{ url('editors.review', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a></td>
           {% with files = file_map.get(v.id, []) %}
             {% if files %}
               {% for file in files %}
