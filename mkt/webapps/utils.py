@@ -4,7 +4,6 @@ from collections import defaultdict
 from django.conf import settings
 
 import commonware.log
-import waffle
 
 import amo
 from addons.models import AddonUser
@@ -88,6 +87,9 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     lang = None
     if request and request.method == 'GET' and 'lang' in request.GET:
         lang = request.GET.get('lang', '').lower()
+    region = None
+    if request and request.method == 'GET' and 'region' in request.GET:
+        region = request.GET.get('region', '').lower()
 
     src = obj._source
     # The following doesn't perform a database query, but gives us useful
@@ -111,24 +113,21 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         data[field] = get_translations(src, src_field, obj.default_locale,
                                        lang)
 
-    if getattr(obj, 'content_ratings', None):
-        for region_key in obj.content_ratings:
-            obj.content_ratings[region_key] = dehydrate_content_rating(
-                obj.content_ratings[region_key], region_key)
-
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
         'app_type': app.app_type,
         'author': src.get('author', ''),
         'banner_regions': src.get('banner_regions', []),
         'categories': [c for c in obj.category],
-        'content_ratings': {
-            'ratings': getattr(obj, 'content_ratings', {}),
+        'content_ratings': filter_content_ratings_by_region({
+            'ratings': dehydrate_content_ratings(
+                getattr(obj, 'content_ratings', {})),
             'descriptors': dehydrate_descriptors(
                 getattr(obj, 'content_descriptors', {})),
             'interactive_elements': dehydrate_interactives(
                 getattr(obj, 'interactive_elements', [])),
-        },
+            'regions': mkt.regions.REGION_TO_RATINGS_BODY()
+        }, region=region),
         'device_types': [DEVICE_TYPES[d].api_name for d in src.get('device')],
         'icons': dict((i['size'], i['url']) for i in src.get('icons')),
         'id': long(obj._id),
@@ -148,11 +147,13 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
 
     if not data['public_stats']:
         data['weekly_downloads'] = None
+
     def serialize_region(o):
         d = {}
         for field in ('name', 'slug', 'mcc', 'adolescent'):
             d[field] = getattr(o, field, None)
         return d
+
     data['regions'] = [serialize_region(REGIONS_CHOICES_ID_DICT.get(k))
                        for k in app.get_region_ids(
                                worldwide=True,
@@ -205,18 +206,10 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     return data
 
 
-def dehydrate_content_rating(rating, region=None):
+def dehydrate_content_rating(rating):
     """
     {body.id, rating.id} to translated {rating labels, names, descriptions}.
     """
-    if (not waffle.switch_is_active('iarc') and
-        region not in [_region.slug for _region in
-                       mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()]):
-        # Ratings only enabled for Brazil and Germany before IARC work.
-        # When removing this waffle switch, remove the whole `if`
-        # clause.
-        return
-
     try:
         body = mkt.ratingsbodies.dehydrate_ratings_body(
             mkt.ratingsbodies.RATINGS_BODIES[int(rating['body'])])
@@ -236,6 +229,14 @@ def dehydrate_content_rating(rating, region=None):
     }
 
 
+def dehydrate_content_ratings(content_ratings):
+    """Dehydrate an object of content ratings from rating IDs to dict."""
+    for body in content_ratings or {}:
+        # Dehydrate all content ratings.
+        content_ratings[body] = dehydrate_content_rating(content_ratings[body])
+    return content_ratings
+
+
 def dehydrate_descriptors(keys):
     """
     List of keys to lists of objects (desc label, desc name) by body.
@@ -253,7 +254,7 @@ def dehydrate_descriptors(keys):
                 'label': label,
                 'name': unicode(obj['name']),
             })
-    return results
+    return dict(results)
 
 
 def dehydrate_interactives(keys):
@@ -272,3 +273,35 @@ def dehydrate_interactives(keys):
                 'name': unicode(obj['name']),
             })
     return results
+
+
+def _filter_iarc_obj_by_region(obj, region=None, lookup_body=False):
+    """
+    Given an object keyed by ratings bodies, filter out ratings bodies that
+    aren't used by the passed in region slug.
+    """
+    regions_to_ratings = mkt.regions.REGION_TO_RATINGS_BODY()
+    generic = mkt.regions.GENERIC_RATING_REGION_SLUG  # 'generic'.
+
+    if obj and region and region in regions_to_ratings:
+        key = region  # Filter by region slug.
+        if lookup_body:  # Or filter by rating body slug.
+            key = regions_to_ratings.get(region, generic)
+        return dict([(key, obj.get(key, generic))])
+
+    return obj
+
+
+def filter_content_ratings_by_region(content_ratings, region=None):
+    """
+    Given a region, remove irrelevant stuff from the content_ratings obj.
+    e.g. if given 'us' region, only filter for ESRB stuff. Slims down response.
+    """
+    if region:
+        content_ratings['ratings'] = _filter_iarc_obj_by_region(
+            content_ratings['ratings'], region=region, lookup_body=True)
+        content_ratings['descriptors'] = _filter_iarc_obj_by_region(
+            content_ratings['descriptors'], region=region, lookup_body=True)
+        content_ratings['regions'] = _filter_iarc_obj_by_region(
+            content_ratings['regions'], region=region)
+    return content_ratings

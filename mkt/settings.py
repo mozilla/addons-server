@@ -84,12 +84,12 @@ INSTALLED_APPS += (
 MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
 MIDDLEWARE_CLASSES.remove('mobility.middleware.DetectMobileMiddleware')
 MIDDLEWARE_CLASSES.remove('mobility.middleware.XMobileMiddleware')
+MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
 MIDDLEWARE_CLASSES = [
     'mkt.site.middleware.CacheHeadersMiddleware'
 ] + MIDDLEWARE_CLASSES
 MIDDLEWARE_CLASSES.append('mkt.site.middleware.RequestCookiesMiddleware')
 MIDDLEWARE_CLASSES.append('mkt.carriers.middleware.CarrierURLMiddleware')
-MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
 MIDDLEWARE_CLASSES.remove('commonware.middleware.FrameOptionsHeader')
 MIDDLEWARE_CLASSES.remove(
     'django_statsd.middleware.GraphiteRequestTimingMiddleware')

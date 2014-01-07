@@ -279,10 +279,9 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         data = json.loads(res.content)
         cr = data.get('content_ratings')['ratings']
 
-        self.assertIn('br', cr.keys())
-        eq_(cr['br']['body'], 'CLASSIND')
-        eq_(cr['br']['rating'], rating.name)
-        eq_(cr['br']['description'], unicode(rating.description))
+        eq_(cr['classind']['body'], 'CLASSIND')
+        eq_(cr['classind']['rating'], rating.name)
+        eq_(cr['classind']['description'], unicode(rating.description))
 
     def test_get_content_descriptors(self):
         app = self.create_app()
