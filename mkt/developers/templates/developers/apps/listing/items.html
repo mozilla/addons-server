@@ -10,11 +10,6 @@
       {% if addon.has_incomplete_status() %}
         {% set next_step = addon.next_step() %}
         <p class="incomplete">{{ next_step['description'] }}</p>
-        <a href="next_step['url']">
-          {% trans step_name=next_step['name'] %}
-            Set up {{ step_name }}
-          {% endtrans %}
-        </a>
       {% else %}
         <ul class="item-details">
           {# L10n: {0} is a date. #}
