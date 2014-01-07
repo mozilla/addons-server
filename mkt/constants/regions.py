@@ -230,7 +230,15 @@ class IT(REGION):
     default_currency = 'EUR'
     default_language = 'it'
     mcc = 222
-    special = False
+
+
+class CL(REGION):
+    id = 23
+    name = _lazy(u'Chile')
+    slug = 'cl'
+    default_currency = 'CLP'
+    default_language = 'es'
+    mcc = 730
 
 
 # Create a list of tuples like so (in alphabetical order):
