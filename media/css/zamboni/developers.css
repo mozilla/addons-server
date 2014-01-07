@@ -1008,6 +1008,10 @@ form.select-review .errorlist {
     margin-bottom: 1em;
 }
 
+#upload-file select {
+    margin: 1em 0;
+}
+
 #file-list select {
     margin-right: 1em;
 }

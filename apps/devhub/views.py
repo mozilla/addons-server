@@ -1400,6 +1400,9 @@ def version_add(request, addon_id, addon):
         log.info('Version created: %s for: %s' %
                  (v.pk, form.cleaned_data['upload']))
         check_validation_override(request, form, addon, v)
+        if (addon.status == amo.STATUS_NULL and
+            form.cleaned_data['nomination_type']):
+            addon.update(status=form.cleaned_data['nomination_type'])
         url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
         return dict(url=url)
     else:
