@@ -423,7 +423,14 @@ def search(request, tag_name=None, template=None):
         return http.HttpResponsePermanentRedirect(urlparams(request.path,
                                                             **fixed))
 
-    form = ESSearchForm(request.GET or {})
+    facets = request.GET.copy()
+
+    # In order to differentiate between "all versions" and an undefined value,
+    # we use "any" instead of "" in the frontend.
+    if 'appver' in facets and facets['appver'] == 'any':
+        facets['appver'] = ''
+
+    form = ESSearchForm(facets or {})
     form.is_valid()  # Let the form try to clean data.
 
     form_data = form.cleaned_data
@@ -550,19 +557,16 @@ def category_sidebar(request, form_data, facets):
 
 
 def version_sidebar(request, form_data, facets):
-    # If no appver is in the request we read it from the session.
+    appver = ''
     # If appver is in the request, we read it cleaned via form_data.
     if 'appver' in request.GET or form_data.get('appver'):
         appver = form_data.get('appver')
-        request.session['search.appver'] = appver
-    else:
-        appver = request.session.get('search.appver')
 
     app = unicode(request.APP.pretty)
     exclude_versions = getattr(request.APP, 'exclude_versions', [])
     # L10n: {0} is an application, such as Firefox. This means "any version of
     # Firefox."
-    rv = [FacetLink(_(u'Any {0}').format(app), dict(appver=''), not appver)]
+    rv = [FacetLink(_(u'Any {0}').format(app), dict(appver='any'), not appver)]
     vs = [dict_from_int(f['term']) for f in facets['appversions']]
 
     # Insert the filtered app version even if it's not a facet.

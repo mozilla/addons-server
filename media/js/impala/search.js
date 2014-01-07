@@ -1,35 +1,45 @@
+(function () {
+var storage = z.Storage('search');
+var appver_input = $('#id_appver');
+var platform_input = $('#id_platform');
+
 function autofillPlatform(context) {
     var $context = $(context || document.body);
+
     $('#search', $context).bind('autofill', function(e) {
         var $this = $(this);
 
         // Bail if we're searching within apps.
-        if (!$this.find('#id_appver').length) {
+        if (!appver_input.length) {
             return;
         }
 
         // Populate search form with browser version and OS.
-        var gv = z.getVars(),
-            appver = '',
-            platform = '',
-            appver_defined = typeof gv.appver !== 'undefined',
-            platform_defined = typeof gv.platform !== 'undefined';
-        if (appver_defined) {
-            appver = gv.appver;
+        var gv = z.getVars();
+        var appver_saved = storage.get('appver');
+        var platform_saved = storage.get('platform');
+
+        // Facets are either the ones defined in the URL, or the ones
+        // stored in the local storage.
+        // If none of them is defined, default to detected browser version
+        // and platform.
+        if (!!(gv.appver)) {  // Defined in URL parameter?
+            storage.set('appver', gv.appver);
+            appver_input.val(gv.appver);
+        } else if (appver_saved !== null) {  // Stored in SessionStorage?
+            appver_input.val(appver_saved);
+        } else if (z.appMatchesUserAgent) {  // Fallback to detected?
+            appver_input.val(z.browserVersion);
         }
-        if (platform_defined) {
-            platform = gv.platform;
+
+        if (!!(gv.platform)) {  // Defined in URL parameter?
+            storage.set('platform', gv.platform);
+            platform_input.val(gv.platform);
+        } else if (platform_saved !== null) {  // Stored in SessionStorage?
+            platform_input.val(platform_saved);
+        } else if (z.appMatchesUserAgent) {  // Fallback to detected?
+            platform_input.val(z.platform);
         }
-        if (z.appMatchesUserAgent) {
-            if (!appver_defined) {
-                appver = z.browserVersion;
-            }
-            if (!platform_defined) {
-                platform = z.platform;
-            }
-        }
-        $this.find('#id_appver').val(appver);
-        $this.find('#id_platform').val(platform);
     }).trigger('autofill');
 }
 
@@ -170,3 +180,5 @@ $.fn.initSearchPjax = function($filters) {
     $container.bind('start.pjax', loading).bind('end.pjax', finished);
     $(document).keyup(_.throttle(turnPages, 300));
 };
+
+})();
