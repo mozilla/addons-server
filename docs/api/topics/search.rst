@@ -143,57 +143,58 @@ features table.
 Each bit in the features bitfield represents the presence or absence
 of a feature.
 
-Feature table version 2:
+Feature table version 4:
 
 =====  ============================
   bit   feature
 =====  ============================
-    0   Third-Party Keyboard Support
-    1   TCP Sockets
-    2   SystemXHR
-    3   Alarms
-    4   Notifications
-    5   Pointer Lock
-    6   Web Speech Recognition
-    7   Web Speech Synthesis
-    8   WebRTC PeerConnection
-    9   WebRTC DataChannel
-   10   WebRTC MediaStream
-   11   Screen Capture
-   12   Microphone
-   13   Camera
-   14   Quota Management
-   15   Gamepad
-   16   Full Screen
-   17   WebM
-   18   H.264
-   19   Web Audio
-   20   Audio
-   21   MP3
-   22   Smartphone-Sized Displays
-   23   Touch
-   24   WebSMS
-   25   WebFM
-   26   Vibration
-   27   Time/Clock
-   28   Screen Orientation
-   29   Simple Push
-   30   Proximity
-   31   Network Stats
-   32   Network Information
-   33   Idle
-   34   Geolocation
-   35   IndexedDB
-   36   Device Storage
-   37   Contacts
-   38   Bluetooth
-   39   Battery
-   40   Archive
-   41   Ambient Light Sensor
-   42   Web Activities
-   43   Web Payment
-   44   Packaged Apps Install API
-   45   App Management API
+    0   Multiple Network Information
+    1   Third-Party Keyboard Support
+    2   TCP Sockets
+    3   SystemXHR
+    4   Alarms
+    5   Notifications
+    6   Pointer Lock
+    7   Web Speech Recognition
+    8   Web Speech Synthesis
+    9   WebRTC PeerConnection
+   10   WebRTC DataChannel
+   11   WebRTC MediaStream
+   12   Screen Capture
+   13   Microphone
+   14   Camera
+   15   Quota Management
+   16   Gamepad
+   17   Full Screen
+   18   WebM
+   19   H.264
+   20   Web Audio
+   21   Audio
+   22   MP3
+   23   Smartphone-Sized Displays
+   24   Touch
+   25   WebSMS
+   26   WebFM
+   27   Vibration
+   28   Time/Clock
+   29   Screen Orientation
+   30   Simple Push
+   31   Proximity
+   32   Network Stats
+   33   Network Information
+   34   Idle
+   35   Geolocation
+   36   IndexedDB
+   37   Device Storage
+   38   Contacts
+   39   Bluetooth
+   40   Battery
+   41   Archive
+   42   Ambient Light Sensor
+   43   Web Activities
+   44   Web Payment
+   45   Packaged Apps Install API
+   46   App Management API
 =====  ============================
 
 
@@ -201,5 +202,5 @@ For example, a device with the 'App Management API', 'Proximity',
 'Ambient Light Sensor', and 'Vibration' features would send this
 feature profile signature::
 
-    220044000000.46.2
+    440088000000.47.4
 

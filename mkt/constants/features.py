@@ -304,6 +304,13 @@ APP_FEATURES = OrderedDict([
                              u'third-party keyboards.'),
         'apis': ('navigator.mozInputMethod',),
     }),
+    ('NETWORK_INFO_MULTIPLE', {
+        'name': _lazy(u'Multiple Network Information'),
+        'description': _lazy(u'The app requires the ability to get '
+                             u'information about multiple network '
+                             u'connections.'),
+        'apis': ('navigator.mozMobileConnections',),
+    }),
 ])
 
 

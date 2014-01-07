@@ -1575,7 +1575,7 @@ ENABLE_API_ERROR_SERVICE = False
 
 # The version we append to the app feature profile. Bump when we add new app
 # features to the `AppFeatures` model.
-APP_FEATURES_VERSION = 3
+APP_FEATURES_VERSION = 4
 
 # Whether to throttle API requests. Default is True. Disable where appropriate.
 API_THROTTLE = True
