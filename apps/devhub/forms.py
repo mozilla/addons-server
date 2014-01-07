@@ -531,10 +531,22 @@ class NewAddonForm(AddonUploadForm):
 
 
 class NewVersionForm(NewAddonForm):
+    nomination_type = forms.TypedChoiceField(
+        choices=(
+            ('', ''),
+            (amo.STATUS_NOMINATED, _lazy('Full Review')),
+            (amo.STATUS_UNREVIEWED, _lazy('Preliminary Review')),
+        ),
+        coerce=int, empty_value=None, required=False,
+        error_messages={
+            'required': _lazy(u'Please choose a review nomination type')
+        })
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
         super(NewVersionForm, self).__init__(*args, **kw)
+        if self.addon.status == amo.STATUS_NULL:
+            self.fields['nomination_type'].required = True
 
     def clean(self):
         if not self.errors:
