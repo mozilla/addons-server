@@ -209,7 +209,7 @@ MONOLITH_INDEX = 'mktdev-time_*'
 
 # IARC content ratings.
 IARC_COMPANY = 'Mozilla'
-IARC_ENV = 'test'
+IARC_ENV = 'prod'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD
 IARC_PLATFORM = 'Firefox'

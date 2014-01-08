@@ -163,3 +163,13 @@ if NEWRELIC_ENABLE:
 ES_USE_PLUGINS = True
 
 BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'
+
+# IARC content ratings.
+IARC_COMPANY = 'Mozilla'
+IARC_ENV = 'prod'
+IARC_MOCK = False
+IARC_PASSWORD = private_mkt.IARC_PASSWORD
+IARC_PLATFORM = 'Firefox'
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCProdService/IARCServices.svc'
+IARC_STOREFRONT_ID = 4
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCProdRating/Submission.aspx'
