@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-04 09:06-0700\n"
+"POT-Creation-Date: 2014-01-08 09:42-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,6 +155,42 @@ msgstr[1] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ǿř ẇȧřƞīƞɠş."
 
+#: media/js/devreg/apps.js:84
+msgid "The manifest could not be found at the given location."
+msgstr "Ŧħḗ ḿȧƞīƒḗşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ ƒǿŭƞḓ ȧŧ ŧħḗ ɠīṽḗƞ ŀǿƈȧŧīǿƞ."
+
+#: media/js/devreg/apps.js:87
+#: media/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "Ȧƥƥ ħǿşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ řḗȧƈħḗḓ."
+
+#: media/js/devreg/apps.js:90
+#: media/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş ŭƞƥȧřşȧƀŀḗ."
+
+#: media/js/devreg/apps.js:93
+#: media/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş īƞṽȧŀīḓ."
+
+#: media/js/devreg/apps.js:96
+msgid "App is already installed."
+msgstr "Ȧƥƥ īş ȧŀřḗȧḓẏ īƞşŧȧŀŀḗḓ."
+
+#: media/js/devreg/apps.js:100
+msgid "Internal server error."
+msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř."
+
+#: media/js/devreg/apps.js:103
+msgid "Internal server error on app installation."
+msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř ǿƞ ȧƥƥ īƞşŧȧŀŀȧŧīǿƞ."
+
+#: media/js/devreg/apps.js:106
+#: media/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Īƞşŧȧŀŀ ƒȧīŀḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
+
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
@@ -206,16 +242,19 @@ msgstr "Ḗẋȧḿƥŀḗ"
 msgid "Image changes being processed"
 msgstr "Īḿȧɠḗ ƈħȧƞɠḗş ƀḗīƞɠ ƥřǿƈḗşşḗḓ"
 
-#: media/js/devreg/expandable.js:15
-msgid "more..."
-msgstr "ḿǿřḗ..."
+#: media/js/devreg/ecosystem.js:26
+msgid "This video requires a browser with support for open video "
+msgstr "Ŧħīş ṽīḓḗǿ řḗɋŭīřḗş ȧ ƀřǿẇşḗř ẇīŧħ şŭƥƥǿřŧ ƒǿř ǿƥḗƞ ṽīḓḗǿ "
 
-#: media/js/devreg/expandable.js:18
-msgid "less..."
-msgstr "ŀḗşş..."
+#: media/js/devreg/ecosystem.js:27
+msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
+msgstr "ǿř ŧħḗ <a href=\"http://www.adobe.com/go/getflashplayer\">Ȧḓǿƀḗ "
+
+#: media/js/devreg/ecosystem.js:28
+msgid "Flash Player</a>."
+msgstr "Ƒŀȧşħ Ƥŀȧẏḗř</a>."
 
 #: media/js/devreg/init.js:35
-#: media/js/mkt/init.js:47
 #: media/js/zamboni/init.js:32
 msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
@@ -229,17 +268,49 @@ msgstr ""
 msgid "Remove this localization"
 msgstr "Řḗḿǿṽḗ ŧħīş ŀǿƈȧŀīzȧŧīǿƞ"
 
-#: media/js/devreg/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
+#: media/js/devreg/login.js:73
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ "
+"ȧḓḓřḗşş?"
 
-#: media/js/devreg/mobile_review_actions.js:8
-msgid "Delete review"
-msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
+#: media/js/devreg/login.js:78
+msgid "Persona login failed. A server error was encountered."
+msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ȧ şḗřṽḗř ḗřřǿř ẇȧş ḗƞƈǿŭƞŧḗřḗḓ."
 
-#: media/js/devreg/mobile_review_actions.js:9
-msgid "Skip for now"
-msgstr "Şķīƥ ƒǿř ƞǿẇ"
+#: media/js/devreg/lookup-tool.js:65
+msgid "Show All Results"
+msgstr "Şħǿẇ Ȧŀŀ Řḗşŭŀŧş"
+
+#: media/js/devreg/lookup-tool.js:68
+msgid "Over {0} results found, consider refining your search."
+msgstr "Ǿṽḗř {0} řḗşŭŀŧş ƒǿŭƞḓ, ƈǿƞşīḓḗř řḗƒīƞīƞɠ ẏǿŭř şḗȧřƈħ."
+
+#: media/js/devreg/manifest.js:46
+msgid "Requested Permissions:"
+msgstr "Řḗɋŭḗşŧḗḓ Ƥḗřḿīşşīǿƞş:"
+
+#: media/js/devreg/manifest.js:54
+msgid "Certified"
+msgstr "Ƈḗřŧīƒīḗḓ"
+
+#: media/js/devreg/manifest.js:57
+msgid "Privileged"
+msgstr "Ƥřīṽīŀḗɠḗḓ"
+
+#: media/js/devreg/manifest.js:60
+msgid "Unprivileged"
+msgstr "Ŭƞƥřīṽīŀḗɠḗḓ"
+
+#: media/js/devreg/manifest.js:66
+msgid "No reason given"
+msgstr "Ƞǿ řḗȧşǿƞ ɠīṽḗƞ"
+
+#: media/js/devreg/overlay.js:41
+msgid "OK"
+msgstr "ǾĶ"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
@@ -318,8 +389,8 @@ msgstr[1] ""
 #: media/js/devreg/validator.js:193
 #: media/js/devreg/validator.js:438
 #: media/js/devreg/validator.js:457
-#: media/js/mkt/buttons.js:85
-#: media/js/mkt/buttons.js:94
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 #: media/js/zamboni/validator.js:194
 #: media/js/zamboni/validator.js:449
 #: media/js/zamboni/validator.js:468
@@ -338,6 +409,28 @@ msgstr "Ȧŭŧħḗƞŧīƈȧŧīǿƞ ḗřřǿř"
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
 msgstr "Ẏǿŭ ḓǿ ƞǿŧ ƈŭřřḗƞŧŀẏ ħȧṽḗ ȧƞẏ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş."
+
+#: media/js/devreg/suggestions.js:66
+#: media/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Şḗȧřƈħ ŧħḗḿḗş ƒǿř <b>{0}</b>"
+
+#: media/js/devreg/suggestions.js:68
+#: media/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Şḗȧřƈħ ȧƥƥş ƒǿř <b>{0}</b>"
+
+#: media/js/devreg/suggestions.js:70
+#: media/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Şḗȧřƈħ ȧḓḓ-ǿƞş ƒǿř <b>{0}</b>"
+
+#. L10n: {0} is the number of characters left.
+#: media/js/devreg/utils.js:89
+msgid "{0} character left."
+msgid_plural "{0} characters left."
+msgstr[0] "{0} ƈħȧřȧƈŧḗř ŀḗƒŧ."
+msgstr[1] "{0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
 
 #: media/js/devreg/validator.js:71
 #: media/js/zamboni/validator.js:71
@@ -401,6 +494,162 @@ msgstr "Ṽȧŀīḓȧŧīǿƞ ŧȧşķ ƈǿŭŀḓ ƞǿŧ ƈǿḿƥŀḗŧḗ �
 #: media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř"
+
+#: media/js/devreg/reviewers/buttons.js:38
+msgid "Purchasing"
+msgstr "Ƥŭřƈħȧşīƞɠ"
+
+#: media/js/devreg/reviewers/buttons.js:44
+msgid "Purchased"
+msgstr "Ƥŭřƈħȧşḗḓ"
+
+#: media/js/devreg/reviewers/buttons.js:70
+msgid "Launch"
+msgstr "Ŀȧŭƞƈħ"
+
+#: media/js/devreg/reviewers/editors.js:158
+#: media/js/zamboni/editors.js:162
+msgid "{name} was viewing this page first."
+msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
+
+#: media/js/devreg/reviewers/editors.js:208
+#: media/js/zamboni/editors.js:212
+msgid "Receipt checked by app."
+msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
+
+#: media/js/devreg/reviewers/editors.js:210
+#: media/js/zamboni/editors.js:214
+msgid "Receipt was not checked by app."
+msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
+
+#: media/js/devreg/reviewers/editors.js:281
+#: media/js/zamboni/editors.js:285
+msgid "{name} was viewing this add-on first."
+msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
+
+#: media/js/devreg/reviewers/editors.js:292
+#: media/js/zamboni/editors.js:296
+msgid "Loading&hellip;"
+msgstr "Ŀǿȧḓīƞɠ&hellip;"
+
+#: media/js/devreg/reviewers/editors.js:297
+#: media/js/zamboni/editors.js:301
+msgid "Version Notes"
+msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
+
+#: media/js/devreg/reviewers/editors.js:302
+#: media/js/zamboni/editors.js:306
+msgid "Notes for Reviewers"
+msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
+
+#: media/js/devreg/reviewers/editors.js:307
+#: media/js/zamboni/editors.js:311
+msgid "No version notes found"
+msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
+
+#: media/js/devreg/reviewers/editors.js:332
+#: media/js/zamboni/admin_validation.js:24
+#: media/js/zamboni/devhub.js:1438
+#: media/js/zamboni/editors.js:336
+msgid "Select an application first"
+msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
+
+#: media/js/devreg/reviewers/editors.js:396
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ŧřȧƞşŀȧŧīǿƞ"
+
+#: media/js/devreg/reviewers/expandable.js:15
+msgid "more..."
+msgstr "ḿǿřḗ..."
+
+#: media/js/devreg/reviewers/expandable.js:18
+msgid "less..."
+msgstr "ŀḗşş..."
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:6
+msgid "Keep review; remove flags"
+msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:8
+msgid "Delete review"
+msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:9
+msgid "Skip for now"
+msgstr "Şķīƥ ƒǿř ƞǿẇ"
+
+#: media/js/devreg/reviewers/payments.js:69
+msgid "Payment failed. Try again later."
+msgstr "Ƥȧẏḿḗƞŧ ƒȧīŀḗḓ. Ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
+
+#: media/js/devreg/reviewers/reviewers.js:100
+msgid "Packaged App"
+msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥ"
+
+#: media/js/devreg/reviewers/reviewers.js:104
+msgid "Privileged App"
+msgstr "Ƥřīṽīŀḗɠḗḓ Ȧƥƥ"
+
+#: media/js/devreg/reviewers/reviewers.js:107
+msgid "More Information Requested"
+msgstr "Ḿǿřḗ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧḗḓ"
+
+#: media/js/devreg/reviewers/reviewers.js:110
+msgid "Contains Editor Comment"
+msgstr "Ƈǿƞŧȧīƞş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
+
+#: media/js/devreg/reviewers/reviewers.js:114
+msgid "Premium App"
+msgstr "Ƥřḗḿīŭḿ Ȧƥƥ"
+
+#: media/js/devreg/reviewers/reviewers.js:117
+msgid "Escalated"
+msgstr "Ḗşƈȧŀȧŧḗḓ"
+
+#: media/js/devreg/reviewers/reviewers.js:122
+msgid "Free"
+msgstr "Ƒřḗḗ"
+
+#: media/js/devreg/reviewers/reviewers.js:230
+msgid "Any"
+msgstr "Ȧƞẏ"
+
+#: media/js/devreg/reviewers/reviewers.js:257
+msgid "Approved app: {app}"
+msgstr "Ȧƥƥřǿṽḗḓ ȧƥƥ: {ȧƥƥ}"
+
+#: media/js/devreg/reviewers/reviewers.js:260
+msgid "Rejected app: {app}"
+msgstr "Řḗĵḗƈŧḗḓ ȧƥƥ: {ȧƥƥ}"
+
+#: media/js/devreg/reviewers/reviewers.js:266
+msgid "Error approving app: {app}"
+msgstr "Ḗřřǿř ȧƥƥřǿṽīƞɠ ȧƥƥ: {ȧƥƥ}"
+
+#: media/js/devreg/reviewers/reviewers.js:267
+msgid "Error rejecting app: {app}"
+msgstr "Ḗřřǿř řḗĵḗƈŧīƞɠ ȧƥƥ: {ȧƥƥ}"
+
+#: media/js/devreg/reviewers/themes_review.js:174
+msgid "Requested Info"
+msgstr "Řḗɋŭḗşŧḗḓ Īƞƒǿ"
+
+#: media/js/devreg/reviewers/themes_review.js:175
+msgid "Flagged"
+msgstr "Ƒŀȧɠɠḗḓ"
+
+#: media/js/devreg/reviewers/themes_review.js:176
+msgid "Duplicate"
+msgstr "Ḓŭƥŀīƈȧŧḗ"
+
+#: media/js/devreg/reviewers/themes_review.js:177
+msgid "Rejected"
+msgstr "Řḗĵḗƈŧḗḓ"
+
+#: media/js/devreg/reviewers/themes_review.js:178
+msgid "Approved"
+msgstr "Ȧƥƥřǿṽḗḓ"
 
 #: media/js/impala/collections.js:10
 #: media/js/zamboni/collections.js:725
@@ -477,27 +726,11 @@ msgstr "Ŭƥḓȧŧīƞɠ řḗşŭŀŧş&hellip;"
 msgid "Category"
 msgstr "Ƈȧŧḗɠǿřẏ"
 
-#: media/js/impala/suggestions.js:39
-#: media/js/mkt/suggestions.js:66
-msgid "Search themes for <b>{0}</b>"
-msgstr "Şḗȧřƈħ ŧħḗḿḗş ƒǿř <b>{0}</b>"
-
-#: media/js/impala/suggestions.js:41
-#: media/js/mkt/suggestions.js:68
-msgid "Search apps for <b>{0}</b>"
-msgstr "Şḗȧřƈħ ȧƥƥş ƒǿř <b>{0}</b>"
-
-#: media/js/impala/suggestions.js:43
-#: media/js/mkt/suggestions.js:70
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Şḗȧřƈħ ȧḓḓ-ǿƞş ƒǿř <b>{0}</b>"
-
 #: media/js/impala/users.js:33
 msgid "use original"
 msgstr "ŭşḗ ǿřīɠīƞȧŀ"
 
 #: media/js/impala/stats/chart.js:267
-#: media/js/mkt/stats/chart.js:320
 msgid "Week of {0}"
 msgstr "Ẇḗḗķ ǿƒ {0}"
 
@@ -506,7 +739,6 @@ msgid "downloads"
 msgstr "ḓǿẇƞŀǿȧḓş"
 
 #: media/js/impala/stats/chart.js:270
-#: media/js/mkt/stats/chart.js:326
 msgid "{0} users"
 msgstr "{0} ŭşḗřş"
 
@@ -519,39 +751,30 @@ msgid "{0} collections"
 msgstr "{0} ƈǿŀŀḗƈŧīǿƞş"
 
 #: media/js/impala/stats/chart.js:273
-#: media/js/mkt/stats/chart.js:328
 msgid "{0} reviews"
 msgstr "{0} řḗṽīḗẇş"
 
 #: media/js/impala/stats/chart.js:275
-#: media/js/mkt/stats/chart.js:323
-#: media/js/mkt/stats/chart_column.js:125
 msgid "{0} sales"
 msgstr "{0} şȧŀḗş"
 
 #: media/js/impala/stats/chart.js:276
-#: media/js/mkt/stats/chart.js:324
-#: media/js/mkt/stats/chart_column.js:126
 msgid "{0} refunds"
 msgstr "{0} řḗƒŭƞḓş"
 
 #: media/js/impala/stats/chart.js:277
-#: media/js/mkt/stats/chart.js:325
 msgid "{0} installs"
 msgstr "{0} īƞşŧȧŀŀş"
 
 #: media/js/impala/stats/chart.js:369
 #: media/js/impala/stats/csv_keys.js:3
 #: media/js/impala/stats/csv_keys.js:102
-#: media/js/mkt/stats/csv_keys.js:128
 msgid "Downloads"
 msgstr "Ḓǿẇƞŀǿȧḓş"
 
 #: media/js/impala/stats/chart.js:379
 #: media/js/impala/stats/csv_keys.js:6
 #: media/js/impala/stats/csv_keys.js:103
-#: media/js/mkt/stats/csv_keys.js:6
-#: media/js/mkt/stats/csv_keys.js:129
 msgid "Daily Users"
 msgstr "Ḓȧīŀẏ Ŭşḗřş"
 
@@ -561,18 +784,15 @@ msgstr "Ȧḿǿŭƞŧ, īƞ ŬŞḒ"
 
 #: media/js/impala/stats/chart.js:421
 #: media/js/impala/stats/csv_keys.js:97
-#: media/js/mkt/stats/csv_keys.js:123
 msgid "Number of Contributions"
 msgstr "Ƞŭḿƀḗř ǿƒ Ƈǿƞŧřīƀŭŧīǿƞş"
 
 #: media/js/impala/stats/chart.js:447
-#: media/js/mkt/stats/chart.js:395
 msgid "More Info..."
 msgstr "Ḿǿřḗ Īƞƒǿ..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/impala/stats/chart.js:451
-#: media/js/mkt/stats/chart.js:399
 msgid "Details for {0}"
 msgstr "Ḓḗŧȧīŀş ƒǿř {0}"
 
@@ -614,250 +834,186 @@ msgstr "Řȧŧīƞɠş"
 
 #: media/js/impala/stats/csv_keys.js:36
 #: media/js/impala/stats/csv_keys.js:107
-#: media/js/mkt/stats/chart_column.js:147
 msgid "Sales"
 msgstr "Şȧŀḗş"
 
 #: media/js/impala/stats/csv_keys.js:39
 #: media/js/impala/stats/csv_keys.js:106
-#: media/js/mkt/stats/chart.js:364
-#: media/js/mkt/stats/csv_keys.js:3
-#: media/js/mkt/stats/csv_keys.js:132
 msgid "Installs"
 msgstr "Īƞşŧȧŀŀş"
 
 #: media/js/impala/stats/csv_keys.js:42
-#: media/js/mkt/stats/csv_keys.js:57
 msgid "Unknown"
 msgstr "Ŭƞķƞǿẇƞ"
 
 #: media/js/impala/stats/csv_keys.js:43
-#: media/js/mkt/stats/csv_keys.js:58
 msgid "Add-ons Manager"
 msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř"
 
 #: media/js/impala/stats/csv_keys.js:44
-#: media/js/mkt/stats/csv_keys.js:59
 msgid "Search Results"
 msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
 
 #: media/js/impala/stats/csv_keys.js:45
 #: media/js/impala/stats/csv_keys.js:46
 #: media/js/impala/stats/csv_keys.js:47
-#: media/js/mkt/stats/csv_keys.js:60
-#: media/js/mkt/stats/csv_keys.js:61
-#: media/js/mkt/stats/csv_keys.js:62
 msgid "Homepage Promo"
 msgstr "Ħǿḿḗƥȧɠḗ Ƥřǿḿǿ"
 
 #: media/js/impala/stats/csv_keys.js:48
 #: media/js/impala/stats/csv_keys.js:49
-#: media/js/mkt/stats/csv_keys.js:63
-#: media/js/mkt/stats/csv_keys.js:64
 msgid "Homepage Featured"
 msgstr "Ħǿḿḗƥȧɠḗ Ƒḗȧŧŭřḗḓ"
 
 #: media/js/impala/stats/csv_keys.js:50
 #: media/js/impala/stats/csv_keys.js:51
-#: media/js/mkt/stats/csv_keys.js:65
-#: media/js/mkt/stats/csv_keys.js:66
 msgid "Homepage Up and Coming"
 msgstr "Ħǿḿḗƥȧɠḗ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ"
 
 #: media/js/impala/stats/csv_keys.js:52
-#: media/js/mkt/stats/csv_keys.js:67
 msgid "Homepage Most Popular"
 msgstr "Ħǿḿḗƥȧɠḗ Ḿǿşŧ Ƥǿƥŭŀȧř"
 
 #: media/js/impala/stats/csv_keys.js:53
 #: media/js/impala/stats/csv_keys.js:55
-#: media/js/mkt/stats/csv_keys.js:68
-#: media/js/mkt/stats/csv_keys.js:70
 msgid "Detail Page"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ"
 
 #: media/js/impala/stats/csv_keys.js:54
 #: media/js/impala/stats/csv_keys.js:56
-#: media/js/mkt/stats/csv_keys.js:69
-#: media/js/mkt/stats/csv_keys.js:71
 msgid "Detail Page (bottom)"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (ƀǿŧŧǿḿ)"
 
 #: media/js/impala/stats/csv_keys.js:57
-#: media/js/mkt/stats/csv_keys.js:72
 msgid "Detail Page (Development Channel)"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ)"
 
 #: media/js/impala/stats/csv_keys.js:58
 #: media/js/impala/stats/csv_keys.js:59
 #: media/js/impala/stats/csv_keys.js:60
-#: media/js/mkt/stats/csv_keys.js:73
-#: media/js/mkt/stats/csv_keys.js:74
-#: media/js/mkt/stats/csv_keys.js:75
 msgid "Often Used With"
 msgstr "Ǿƒŧḗƞ Ŭşḗḓ Ẇīŧħ"
 
 #: media/js/impala/stats/csv_keys.js:61
 #: media/js/impala/stats/csv_keys.js:62
-#: media/js/mkt/stats/csv_keys.js:76
-#: media/js/mkt/stats/csv_keys.js:77
 msgid "Others By Author"
 msgstr "Ǿŧħḗřş Ɓẏ Ȧŭŧħǿř"
 
 #: media/js/impala/stats/csv_keys.js:63
 #: media/js/impala/stats/csv_keys.js:64
-#: media/js/mkt/stats/csv_keys.js:78
-#: media/js/mkt/stats/csv_keys.js:79
 msgid "Dependencies"
 msgstr "Ḓḗƥḗƞḓḗƞƈīḗş"
 
 #: media/js/impala/stats/csv_keys.js:65
 #: media/js/impala/stats/csv_keys.js:66
-#: media/js/mkt/stats/csv_keys.js:80
-#: media/js/mkt/stats/csv_keys.js:81
 msgid "Upsell"
 msgstr "Ŭƥşḗŀŀ"
 
 #: media/js/impala/stats/csv_keys.js:68
-#: media/js/mkt/stats/csv_keys.js:83
 msgid "Sharing"
 msgstr "Şħȧřīƞɠ"
 
 #: media/js/impala/stats/csv_keys.js:69
-#: media/js/mkt/stats/csv_keys.js:84
 msgid "Category Pages"
 msgstr "Ƈȧŧḗɠǿřẏ Ƥȧɠḗş"
 
 #: media/js/impala/stats/csv_keys.js:70
-#: media/js/mkt/stats/csv_keys.js:85
 msgid "Collections"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
 #: media/js/impala/stats/csv_keys.js:71
 #: media/js/impala/stats/csv_keys.js:72
-#: media/js/mkt/stats/csv_keys.js:86
 msgid "Category Landing Featured Carousel"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ƒḗȧŧŭřḗḓ Ƈȧřǿŭşḗŀ"
 
 #: media/js/impala/stats/csv_keys.js:73
 #: media/js/impala/stats/csv_keys.js:74
-#: media/js/mkt/stats/csv_keys.js:89
-#: media/js/mkt/stats/csv_keys.js:90
 msgid "Category Landing Top Rated"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ŧǿƥ Řȧŧḗḓ"
 
 #: media/js/impala/stats/csv_keys.js:75
 #: media/js/impala/stats/csv_keys.js:76
-#: media/js/mkt/stats/csv_keys.js:91
-#: media/js/mkt/stats/csv_keys.js:92
 msgid "Category Landing Most Popular"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ḿǿşŧ Ƥǿƥŭŀȧř"
 
 #: media/js/impala/stats/csv_keys.js:77
 #: media/js/impala/stats/csv_keys.js:78
-#: media/js/mkt/stats/csv_keys.js:93
-#: media/js/mkt/stats/csv_keys.js:94
 msgid "Category Landing Recently Added"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 
 #: media/js/impala/stats/csv_keys.js:79
 #: media/js/impala/stats/csv_keys.js:80
-#: media/js/mkt/stats/csv_keys.js:95
-#: media/js/mkt/stats/csv_keys.js:96
 msgid "Browse Listing Featured Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƒḗȧŧŭřḗḓ Şǿřŧ"
 
 #: media/js/impala/stats/csv_keys.js:81
 #: media/js/impala/stats/csv_keys.js:82
-#: media/js/mkt/stats/csv_keys.js:97
-#: media/js/mkt/stats/csv_keys.js:98
 msgid "Browse Listing Users Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭşḗřş Şǿřŧ"
 
 #: media/js/impala/stats/csv_keys.js:83
 #: media/js/impala/stats/csv_keys.js:84
-#: media/js/mkt/stats/csv_keys.js:99
-#: media/js/mkt/stats/csv_keys.js:100
 msgid "Browse Listing Rating Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Řȧŧīƞɠ Şǿřŧ"
 
 #: media/js/impala/stats/csv_keys.js:85
 #: media/js/impala/stats/csv_keys.js:86
-#: media/js/mkt/stats/csv_keys.js:101
-#: media/js/mkt/stats/csv_keys.js:102
 msgid "Browse Listing Created Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƈřḗȧŧḗḓ Şǿřŧ"
 
 #: media/js/impala/stats/csv_keys.js:87
 #: media/js/impala/stats/csv_keys.js:88
-#: media/js/mkt/stats/csv_keys.js:103
-#: media/js/mkt/stats/csv_keys.js:104
 msgid "Browse Listing Name Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƞȧḿḗ Şǿřŧ"
 
 #: media/js/impala/stats/csv_keys.js:89
 #: media/js/impala/stats/csv_keys.js:90
-#: media/js/mkt/stats/csv_keys.js:105
-#: media/js/mkt/stats/csv_keys.js:106
 msgid "Browse Listing Popular Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƥǿƥŭŀȧř Şǿřŧ"
 
 #: media/js/impala/stats/csv_keys.js:91
 #: media/js/impala/stats/csv_keys.js:92
-#: media/js/mkt/stats/csv_keys.js:107
-#: media/js/mkt/stats/csv_keys.js:108
 msgid "Browse Listing Updated Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭƥḓȧŧḗḓ Şǿřŧ"
 
 #: media/js/impala/stats/csv_keys.js:93
 #: media/js/impala/stats/csv_keys.js:94
-#: media/js/mkt/stats/csv_keys.js:109
-#: media/js/mkt/stats/csv_keys.js:110
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ Şǿřŧ"
 
 #: media/js/impala/stats/csv_keys.js:98
-#: media/js/mkt/stats/csv_keys.js:124
 msgid "Total Amount Contributed"
 msgstr "Ŧǿŧȧŀ Ȧḿǿŭƞŧ Ƈǿƞŧřīƀŭŧḗḓ"
 
 #: media/js/impala/stats/csv_keys.js:99
-#: media/js/mkt/stats/csv_keys.js:125
 msgid "Average Contribution"
 msgstr "Ȧṽḗřȧɠḗ Ƈǿƞŧřīƀŭŧīǿƞ"
 
 #: media/js/impala/stats/csv_keys.js:108
-#: media/js/mkt/stats/csv_keys.js:133
 msgid "Usage"
 msgstr "Ŭşȧɠḗ"
 
 #: media/js/impala/stats/csv_keys.js:111
-#: media/js/mkt/stats/csv_keys.js:137
 msgid "Firefox"
 msgstr "Ƒīřḗƒǿẋ"
 
 #: media/js/impala/stats/csv_keys.js:112
-#: media/js/mkt/stats/csv_keys.js:138
 msgid "Mozilla"
 msgstr "Ḿǿzīŀŀȧ"
 
 #: media/js/impala/stats/csv_keys.js:113
-#: media/js/mkt/stats/csv_keys.js:139
 msgid "Thunderbird"
 msgstr "Ŧħŭƞḓḗřƀīřḓ"
 
 #: media/js/impala/stats/csv_keys.js:114
-#: media/js/mkt/stats/csv_keys.js:140
 msgid "Sunbird"
 msgstr "Şŭƞƀīřḓ"
 
 #: media/js/impala/stats/csv_keys.js:115
-#: media/js/mkt/stats/csv_keys.js:141
 msgid "SeaMonkey"
 msgstr "ŞḗȧḾǿƞķḗẏ"
 
 #: media/js/impala/stats/csv_keys.js:116
-#: media/js/mkt/stats/csv_keys.js:142
 msgid "Fennec"
 msgstr "Ƒḗƞƞḗƈ"
 
@@ -893,13 +1049,11 @@ msgstr "Ḓǿẇƞŀǿȧḓş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:139
-#: media/js/mkt/stats/csv_keys.js:152
 msgid "Daily Users, last {0} days"
 msgstr "Ḓȧīŀẏ Ŭşḗřş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:141
-#: media/js/mkt/stats/csv_keys.js:153
 msgid "Daily Users from {0} to {1}"
 msgstr "Ḓȧīŀẏ Ŭşḗřş ƒřǿḿ {0} ŧǿ {1}"
 
@@ -1085,454 +1239,41 @@ msgstr "Şȧŀḗş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:253
-#: media/js/mkt/stats/csv_keys.js:147
 msgid "Installs, last {0} days"
 msgstr "Īƞşŧȧŀŀş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:255
-#: media/js/mkt/stats/csv_keys.js:149
 msgid "Installs from {0} to {1}"
 msgstr "Īƞşŧȧŀŀş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:261
-#: media/js/mkt/stats/csv_keys.js:223
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> īƞ ŀȧşŧ {1} ḓȧẏş"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:263
 #: media/js/impala/stats/csv_keys.js:269
-#: media/js/mkt/stats/csv_keys.js:225
-#: media/js/mkt/stats/csv_keys.js:231
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ƒřǿḿ {1} ŧǿ {2}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:267
-#: media/js/mkt/stats/csv_keys.js:229
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> ȧṽḗřȧɠḗ īƞ ŀȧşŧ {1} ḓȧẏş"
 
 #: media/js/impala/stats/overview.js:19
-#: media/js/mkt/stats/overview.js:17
 msgid "No data available."
 msgstr "Ƞǿ ḓȧŧȧ ȧṽȧīŀȧƀŀḗ."
 
 #: media/js/impala/stats/table.js:74
-#: media/js/mkt/stats/table.js:88
 msgid "Date"
 msgstr "Ḓȧŧḗ"
 
 #: media/js/impala/stats/topchart.js:96
-#: media/js/mkt/stats/topchart.js:96
 msgid "Other"
 msgstr "Ǿŧħḗř"
-
-#: media/js/mkt/apps.js:84
-msgid "The manifest could not be found at the given location."
-msgstr "Ŧħḗ ḿȧƞīƒḗşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ ƒǿŭƞḓ ȧŧ ŧħḗ ɠīṽḗƞ ŀǿƈȧŧīǿƞ."
-
-#: media/js/mkt/apps.js:87
-#: media/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Ȧƥƥ ħǿşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ řḗȧƈħḗḓ."
-
-#: media/js/mkt/apps.js:90
-#: media/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş ŭƞƥȧřşȧƀŀḗ."
-
-#: media/js/mkt/apps.js:93
-#: media/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş īƞṽȧŀīḓ."
-
-#: media/js/mkt/apps.js:96
-msgid "App is already installed."
-msgstr "Ȧƥƥ īş ȧŀřḗȧḓẏ īƞşŧȧŀŀḗḓ."
-
-#: media/js/mkt/apps.js:100
-msgid "Internal server error."
-msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř."
-
-#: media/js/mkt/apps.js:103
-msgid "Internal server error on app installation."
-msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř ǿƞ ȧƥƥ īƞşŧȧŀŀȧŧīǿƞ."
-
-#: media/js/mkt/apps.js:106
-#: media/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Īƞşŧȧŀŀ ƒȧīŀḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
-
-#: media/js/mkt/buttons.js:38
-msgid "Purchasing"
-msgstr "Ƥŭřƈħȧşīƞɠ"
-
-#: media/js/mkt/buttons.js:44
-msgid "Purchased"
-msgstr "Ƥŭřƈħȧşḗḓ"
-
-#: media/js/mkt/buttons.js:70
-msgid "Launch"
-msgstr "Ŀȧŭƞƈħ"
-
-#: media/js/mkt/consumer_init.js:24
-msgid "Click here to view the mobile Marketplace!"
-msgstr "Ƈŀīƈķ ħḗřḗ ŧǿ ṽīḗẇ ŧħḗ ḿǿƀīŀḗ Ḿȧřķḗŧƥŀȧƈḗ!"
-
-#: media/js/mkt/ecosystem.js:26
-msgid "This video requires a browser with support for open video "
-msgstr "Ŧħīş ṽīḓḗǿ řḗɋŭīřḗş ȧ ƀřǿẇşḗř ẇīŧħ şŭƥƥǿřŧ ƒǿř ǿƥḗƞ ṽīḓḗǿ "
-
-#: media/js/mkt/ecosystem.js:27
-msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "ǿř ŧħḗ <a href=\"http://www.adobe.com/go/getflashplayer\">Ȧḓǿƀḗ "
-
-#: media/js/mkt/ecosystem.js:28
-msgid "Flash Player</a>."
-msgstr "Ƒŀȧşħ Ƥŀȧẏḗř</a>."
-
-#: media/js/mkt/feedback.js:38
-msgid "Message must not be empty."
-msgstr "Ḿḗşşȧɠḗ ḿŭşŧ ƞǿŧ ƀḗ ḗḿƥŧẏ."
-
-#: media/js/mkt/login.js:73
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ "
-"ȧḓḓřḗşş?"
-
-#: media/js/mkt/login.js:78
-msgid "Persona login failed. A server error was encountered."
-msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ȧ şḗřṽḗř ḗřřǿř ẇȧş ḗƞƈǿŭƞŧḗřḗḓ."
-
-#: media/js/mkt/lookup-tool.js:65
-msgid "Show All Results"
-msgstr "Şħǿẇ Ȧŀŀ Řḗşŭŀŧş"
-
-#: media/js/mkt/lookup-tool.js:68
-msgid "Over {0} results found, consider refining your search."
-msgstr "Ǿṽḗř {0} řḗşŭŀŧş ƒǿŭƞḓ, ƈǿƞşīḓḗř řḗƒīƞīƞɠ ẏǿŭř şḗȧřƈħ."
-
-#: media/js/mkt/manifest.js:46
-msgid "Requested Permissions:"
-msgstr "Řḗɋŭḗşŧḗḓ Ƥḗřḿīşşīǿƞş:"
-
-#: media/js/mkt/manifest.js:54
-msgid "Certified"
-msgstr "Ƈḗřŧīƒīḗḓ"
-
-#: media/js/mkt/manifest.js:57
-msgid "Privileged"
-msgstr "Ƥřīṽīŀḗɠḗḓ"
-
-#: media/js/mkt/manifest.js:60
-msgid "Unprivileged"
-msgstr "Ŭƞƥřīṽīŀḗɠḗḓ"
-
-#: media/js/mkt/manifest.js:66
-msgid "No reason given"
-msgstr "Ƞǿ řḗȧşǿƞ ɠīṽḗƞ"
-
-#: media/js/mkt/overlay.js:41
-msgid "OK"
-msgstr "ǾĶ"
-
-#: media/js/mkt/payments.js:69
-msgid "Payment failed. Try again later."
-msgstr "Ƥȧẏḿḗƞŧ ƒȧīŀḗḓ. Ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
-
-#: media/js/mkt/reviewers.js:100
-msgid "Packaged App"
-msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥ"
-
-#: media/js/mkt/reviewers.js:104
-msgid "Privileged App"
-msgstr "Ƥřīṽīŀḗɠḗḓ Ȧƥƥ"
-
-#: media/js/mkt/reviewers.js:107
-msgid "More Information Requested"
-msgstr "Ḿǿřḗ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧḗḓ"
-
-#: media/js/mkt/reviewers.js:110
-msgid "Contains Editor Comment"
-msgstr "Ƈǿƞŧȧīƞş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
-
-#: media/js/mkt/reviewers.js:114
-msgid "Premium App"
-msgstr "Ƥřḗḿīŭḿ Ȧƥƥ"
-
-#: media/js/mkt/reviewers.js:117
-msgid "Escalated"
-msgstr "Ḗşƈȧŀȧŧḗḓ"
-
-#: media/js/mkt/reviewers.js:122
-msgid "Free"
-msgstr "Ƒřḗḗ"
-
-#: media/js/mkt/reviewers.js:230
-msgid "Any"
-msgstr "Ȧƞẏ"
-
-#: media/js/mkt/reviewers.js:257
-msgid "Approved app: {app}"
-msgstr "Ȧƥƥřǿṽḗḓ ȧƥƥ: {ȧƥƥ}"
-
-#: media/js/mkt/reviewers.js:260
-msgid "Rejected app: {app}"
-msgstr "Řḗĵḗƈŧḗḓ ȧƥƥ: {ȧƥƥ}"
-
-#: media/js/mkt/reviewers.js:266
-msgid "Error approving app: {app}"
-msgstr "Ḗřřǿř ȧƥƥřǿṽīƞɠ ȧƥƥ: {ȧƥƥ}"
-
-#: media/js/mkt/reviewers.js:267
-msgid "Error rejecting app: {app}"
-msgstr "Ḗřřǿř řḗĵḗƈŧīƞɠ ȧƥƥ: {ȧƥƥ}"
-
-#: media/js/mkt/themes_review.js:174
-msgid "Requested Info"
-msgstr "Řḗɋŭḗşŧḗḓ Īƞƒǿ"
-
-#: media/js/mkt/themes_review.js:175
-msgid "Flagged"
-msgstr "Ƒŀȧɠɠḗḓ"
-
-#: media/js/mkt/themes_review.js:176
-msgid "Duplicate"
-msgstr "Ḓŭƥŀīƈȧŧḗ"
-
-#: media/js/mkt/themes_review.js:177
-msgid "Rejected"
-msgstr "Řḗĵḗƈŧḗḓ"
-
-#: media/js/mkt/themes_review.js:178
-msgid "Approved"
-msgstr "Ȧƥƥřǿṽḗḓ"
-
-#. L10n: {0} is the number of characters left.
-#: media/js/mkt/utils.js:89
-msgid "{0} character left."
-msgid_plural "{0} characters left."
-msgstr[0] "{0} ƈħȧřȧƈŧḗř ŀḗƒŧ."
-msgstr[1] "{0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
-
-#: media/js/mkt/stats/chart.js:327
-msgid "{0} apps"
-msgstr "{0} ȧƥƥş"
-
-#: media/js/mkt/stats/chart.js:339
-msgid "Week"
-msgstr "Ẇḗḗķ"
-
-#: media/js/mkt/stats/chart.js:342
-msgid "Month"
-msgstr "Ḿǿƞŧħ"
-
-#: media/js/mkt/stats/chart.js:345
-msgid "Day"
-msgstr "Ḓȧẏ"
-
-#: media/js/mkt/stats/chart.js:352
-#: media/js/mkt/stats/csv_keys.js:9
-#: media/js/mkt/stats/csv_keys.js:18
-#: media/js/mkt/stats/csv_keys.js:27
-msgid "Amount Earned"
-msgstr "Ȧḿǿŭƞŧ Ḗȧřƞḗḓ"
-
-#: media/js/mkt/stats/chart.js:356
-#: media/js/mkt/stats/csv_keys.js:12
-#: media/js/mkt/stats/csv_keys.js:21
-#: media/js/mkt/stats/csv_keys.js:30
-#: media/js/mkt/stats/csv_keys.js:134
-msgid "Units Sold"
-msgstr "Ŭƞīŧş Şǿŀḓ"
-
-#: media/js/mkt/stats/chart.js:360
-#: media/js/mkt/stats/csv_keys.js:15
-#: media/js/mkt/stats/csv_keys.js:24
-#: media/js/mkt/stats/csv_keys.js:33
-msgid "Units Refunded"
-msgstr "Ŭƞīŧş Řḗƒŭƞḓḗḓ"
-
-#: media/js/mkt/stats/chart.js:368
-msgid "Users"
-msgstr "Ŭşḗřş"
-
-#: media/js/mkt/stats/chart.js:372
-msgid "Apps"
-msgstr "Ȧƥƥş"
-
-#: media/js/mkt/stats/chart_column.js:122
-msgid "by currency {0}"
-msgstr "ƀẏ ƈŭřřḗƞƈẏ {0}"
-
-#: media/js/mkt/stats/chart_column.js:123
-msgid "by source {0}"
-msgstr "ƀẏ şǿŭřƈḗ {0}"
-
-#: media/js/mkt/stats/chart_column.js:131
-#: media/js/mkt/stats/table.js:95
-msgid "Currency"
-msgstr "Ƈŭřřḗƞƈẏ"
-
-#: media/js/mkt/stats/chart_column.js:135
-#: media/js/mkt/stats/table.js:98
-msgid "Source"
-msgstr "Şǿŭřƈḗ"
-
-#: media/js/mkt/stats/chart_column.js:143
-msgid "Revenue"
-msgstr "Řḗṽḗƞŭḗ"
-
-#: media/js/mkt/stats/chart_column.js:151
-msgid "Refunds"
-msgstr "Řḗƒŭƞḓş"
-
-#: media/js/mkt/stats/csv_keys.js:36
-#: media/js/mkt/stats/csv_keys.js:192
-#: media/js/mkt/stats/csv_keys.js:193
-msgid "Apps Added"
-msgstr "Ȧƥƥş Ȧḓḓḗḓ"
-
-#: media/js/mkt/stats/csv_keys.js:39
-#: media/js/mkt/stats/csv_keys.js:196
-#: media/js/mkt/stats/csv_keys.js:197
-msgid "Apps Installed"
-msgstr "Ȧƥƥş Īƞşŧȧŀŀḗḓ"
-
-#: media/js/mkt/stats/csv_keys.js:42
-#: media/js/mkt/stats/csv_keys.js:200
-#: media/js/mkt/stats/csv_keys.js:201
-msgid "Reviews"
-msgstr "Řḗṽīḗẇş"
-
-#: media/js/mkt/stats/csv_keys.js:45
-#: media/js/mkt/stats/csv_keys.js:208
-#: media/js/mkt/stats/csv_keys.js:209
-msgid "New Users"
-msgstr "Ƞḗẇ Ŭşḗřş"
-
-#: media/js/mkt/stats/csv_keys.js:48
-#: media/js/mkt/stats/csv_keys.js:204
-#: media/js/mkt/stats/csv_keys.js:205
-msgid "Total Users"
-msgstr "Ŧǿŧȧŀ Ŭşḗřş"
-
-#: media/js/mkt/stats/csv_keys.js:51
-#: media/js/mkt/stats/csv_keys.js:212
-#: media/js/mkt/stats/csv_keys.js:213
-msgid "Total Visitors"
-msgstr "Ŧǿŧȧŀ Ṽīşīŧǿřş"
-
-#: media/js/mkt/stats/csv_keys.js:54
-msgid "App Installs"
-msgstr "Ȧƥƥ Īƞşŧȧŀŀş"
-
-#: media/js/mkt/stats/csv_keys.js:112
-msgid "Marketplace Browse Page"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ Ɓřǿẇşḗ Ƥȧɠḗ"
-
-#: media/js/mkt/stats/csv_keys.js:113
-msgid "Marketplace Browse Page, Featured"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ Ɓřǿẇşḗ Ƥȧɠḗ, Ƒḗȧŧŭřḗḓ"
-
-#: media/js/mkt/stats/csv_keys.js:114
-msgid "Marketplace Category Page"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ Ƈȧŧḗɠǿřẏ Ƥȧɠḗ"
-
-#: media/js/mkt/stats/csv_keys.js:115
-msgid "Marketplace Category Page, Featured"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ Ƈȧŧḗɠǿřẏ Ƥȧɠḗ, Ƒḗȧŧŭřḗḓ"
-
-#: media/js/mkt/stats/csv_keys.js:116
-msgid "Marketplace Detail Page"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ Ḓḗŧȧīŀ Ƥȧɠḗ"
-
-#: media/js/mkt/stats/csv_keys.js:117
-msgid "Marketplace Detail Page, Upsell"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ Ḓḗŧȧīŀ Ƥȧɠḗ, Ŭƥşḗŀŀ"
-
-#: media/js/mkt/stats/csv_keys.js:118
-msgid "Marketplace Home Page"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ Ħǿḿḗ Ƥȧɠḗ"
-
-#: media/js/mkt/stats/csv_keys.js:119
-msgid "Marketplace Search Results"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ Şḗȧřƈħ Řḗşŭŀŧş"
-
-#: media/js/mkt/stats/csv_keys.js:120
-msgid "Marketplace Search Results, Featured"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ Şḗȧřƈħ Řḗşŭŀŧş, Ƒḗȧŧŭřḗḓ"
-
-#: media/js/mkt/stats/csv_keys.js:156
-msgid "Units Sold, last {0} days"
-msgstr "Ŭƞīŧş Şǿŀḓ, ŀȧşŧ {0} ḓȧẏş"
-
-#: media/js/mkt/stats/csv_keys.js:157
-msgid "Units Sold from {0} to {1}"
-msgstr "Ŭƞīŧş Şǿŀḓ ƒřǿḿ {0} ŧǿ {1}"
-
-#: media/js/mkt/stats/csv_keys.js:160
-msgid "Amount Earned, last {0} days"
-msgstr "Ȧḿǿŭƞŧ Ḗȧřƞḗḓ, ŀȧşŧ {0} ḓȧẏş"
-
-#: media/js/mkt/stats/csv_keys.js:161
-msgid "Amount Earned {0} to {1}"
-msgstr "Ȧḿǿŭƞŧ Ḗȧřƞḗḓ {0} ŧǿ {1}"
-
-#: media/js/mkt/stats/csv_keys.js:164
-msgid "Units Refunded, last {0} days"
-msgstr "Ŭƞīŧş Řḗƒŭƞḓḗḓ, ŀȧşŧ {0} ḓȧẏş"
-
-#: media/js/mkt/stats/csv_keys.js:165
-msgid "Units Refunded from {0} to {1}"
-msgstr "Ŭƞīŧş Řḗƒŭƞḓḗḓ ƒřǿḿ {0} ŧǿ {1}"
-
-#: media/js/mkt/stats/csv_keys.js:168
-#: media/js/mkt/stats/csv_keys.js:169
-msgid "Total Units Sold by Currency"
-msgstr "Ŧǿŧȧŀ Ŭƞīŧş Şǿŀḓ ƀẏ Ƈŭřřḗƞƈẏ"
-
-#: media/js/mkt/stats/csv_keys.js:172
-#: media/js/mkt/stats/csv_keys.js:173
-msgid "Total Amount Earned by Currency"
-msgstr "Ŧǿŧȧŀ Ȧḿǿŭƞŧ Ḗȧřƞḗḓ ƀẏ Ƈŭřřḗƞƈẏ"
-
-#: media/js/mkt/stats/csv_keys.js:176
-#: media/js/mkt/stats/csv_keys.js:177
-msgid "Total Units Refunded by Currency"
-msgstr "Ŧǿŧȧŀ Ŭƞīŧş Řḗƒŭƞḓḗḓ ƀẏ Ƈŭřřḗƞƈẏ"
-
-#: media/js/mkt/stats/csv_keys.js:180
-#: media/js/mkt/stats/csv_keys.js:181
-msgid "Total Units Sold by Source"
-msgstr "Ŧǿŧȧŀ Ŭƞīŧş Şǿŀḓ ƀẏ Şǿŭřƈḗ"
-
-#: media/js/mkt/stats/csv_keys.js:184
-#: media/js/mkt/stats/csv_keys.js:185
-msgid "Total Amount Earned by Source"
-msgstr "Ŧǿŧȧŀ Ȧḿǿŭƞŧ Ḗȧřƞḗḓ ƀẏ Şǿŭřƈḗ"
-
-#: media/js/mkt/stats/csv_keys.js:188
-#: media/js/mkt/stats/csv_keys.js:189
-msgid "Total Units Refunded by Source"
-msgstr "Ŧǿŧȧŀ Ŭƞīŧş Řḗƒŭƞḓḗḓ ƀẏ Şǿŭřƈḗ"
-
-#: media/js/mkt/stats/csv_keys.js:216
-#: media/js/mkt/stats/csv_keys.js:217
-msgid "Total Installs"
-msgstr "Ŧǿŧȧŀ Īƞşŧȧŀŀş"
-
-#: media/js/zamboni/admin_validation.js:24
-#: media/js/zamboni/devhub.js:1438
-#: media/js/zamboni/editors.js:336
-msgid "Select an application first"
-msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
 #: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -1767,38 +1508,6 @@ msgstr "Ƒīƞḓīƞɠ řḗƈǿḿḿḗƞḓȧŧīǿƞş&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Ŭƥḓȧŧīƞɠ řḗƈǿḿḿḗƞḓȧŧīǿƞş&hellip;"
 
-#: media/js/zamboni/editors.js:162
-msgid "{name} was viewing this page first."
-msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
-
-#: media/js/zamboni/editors.js:212
-msgid "Receipt checked by app."
-msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
-
-#: media/js/zamboni/editors.js:214
-msgid "Receipt was not checked by app."
-msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
-
-#: media/js/zamboni/editors.js:285
-msgid "{name} was viewing this add-on first."
-msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
-
-#: media/js/zamboni/editors.js:296
-msgid "Loading&hellip;"
-msgstr "Ŀǿȧḓīƞɠ&hellip;"
-
-#: media/js/zamboni/editors.js:301
-msgid "Version Notes"
-msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
-
-#: media/js/zamboni/editors.js:306
-msgid "Notes for Reviewers"
-msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
-
-#: media/js/zamboni/editors.js:311
-msgid "No version notes found"
-msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
-
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
@@ -1806,10 +1515,6 @@ msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
-
-#: media/js/zamboni/editors.js:486
-msgid "Error loading translation"
-msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ŧřȧƞşŀȧŧīǿƞ"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."

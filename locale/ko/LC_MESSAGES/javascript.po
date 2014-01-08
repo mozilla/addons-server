@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27 07:58-0700\n"
+"POT-Creation-Date: 2014-01-08 09:42-0700\n"
 "PO-Revision-Date: 2013-12-01 22:48+0000\n"
 "Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,6 +132,38 @@ msgstr[0] "앱이 오류 없이 경고 {0}개와 함께 유효성 검사를 통�
 msgid "Your app passed validation with no errors or warnings."
 msgstr "앱이 아무런 오류나 경고 없이 유효성 검사를 통과했습니다."
 
+#: media/js/devreg/apps.js:84
+msgid "The manifest could not be found at the given location."
+msgstr "앱 정보 설정 파일을 주어진 위치에서 찾을 수 없습니다."
+
+#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "앱 호스트에 연결할 수 없습니다."
+
+#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "앱 정보 설정 파일을 분석할 수 없습니다."
+
+#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "앱 정보 설정 파일이 잘못되었습니다."
+
+#: media/js/devreg/apps.js:96
+msgid "App is already installed."
+msgstr "이미 설치된 앱입니다."
+
+#: media/js/devreg/apps.js:100
+msgid "Internal server error."
+msgstr "내부 서버 오류가 발생했습니다."
+
+#: media/js/devreg/apps.js:103
+msgid "Internal server error on app installation."
+msgstr "앱 설치중 내부 서버 오류가 발생했습니다."
+
+#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "설치를 할 수 없습니다. 나중에 다시 시도해 주세요."
+
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
@@ -174,15 +206,19 @@ msgstr "예"
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
-#: media/js/devreg/expandable.js:15
-msgid "more..."
-msgstr "자세히..."
+#: media/js/devreg/ecosystem.js:26
+msgid "This video requires a browser with support for open video "
+msgstr "이 동영상을 재생하려면 오픈 비디오나 "
 
-#: media/js/devreg/expandable.js:18
-msgid "less..."
-msgstr "간략하게..."
+#: media/js/devreg/ecosystem.js:27
+msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
+msgstr "<a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
-#: media/js/devreg/init.js:35 media/js/mkt/init.js:47 media/js/zamboni/init.js:32
+#: media/js/devreg/ecosystem.js:28
+msgid "Flash Player</a>."
+msgstr "Flash Player</a>를 지원하는 브라우저가 필요합니다."
+
+#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "이 기능은 웹사이트 점검으로 인해 잠시 사용할 수 없습니다. 잠시 후 다시 사용해 주세요."
 
@@ -190,17 +226,45 @@ msgstr "이 기능은 웹사이트 점검으로 인해 잠시 사용할 수 없�
 msgid "Remove this localization"
 msgstr "이 번역 삭제"
 
-#: media/js/devreg/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "심사 지속; 표시 삭제하기"
+#: media/js/devreg/login.js:73
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Persona 로그인 실패입니다. 아마도 이메일 주소에 대한 계정이 없지 않나요?"
 
-#: media/js/devreg/mobile_review_actions.js:8
-msgid "Delete review"
-msgstr "심사 삭제하기"
+#: media/js/devreg/login.js:78
+msgid "Persona login failed. A server error was encountered."
+msgstr "페르소나 로그인이 실패했습니다. 서버에 오류가 발생했습니다."
 
-#: media/js/devreg/mobile_review_actions.js:9
-msgid "Skip for now"
-msgstr "넘어가기"
+#: media/js/devreg/lookup-tool.js:65
+msgid "Show All Results"
+msgstr "모든 결과 표시"
+
+#: media/js/devreg/lookup-tool.js:68
+msgid "Over {0} results found, consider refining your search."
+msgstr "{0}개 이상의 결과가 발견되어 검색 결과를 간추렸습니다."
+
+#: media/js/devreg/manifest.js:46
+msgid "Requested Permissions:"
+msgstr "요청된 권한:"
+
+#: media/js/devreg/manifest.js:54
+msgid "Certified"
+msgstr "인증됨"
+
+#: media/js/devreg/manifest.js:57
+msgid "Privileged"
+msgstr "권한 있음"
+
+#: media/js/devreg/manifest.js:60
+msgid "Unprivileged"
+msgstr "권한 없음"
+
+#: media/js/devreg/manifest.js:66
+msgid "No reason given"
+msgstr "사유 없음"
+
+#: media/js/devreg/overlay.js:41
+msgid "OK"
+msgstr "확인"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
@@ -266,7 +330,7 @@ msgid_plural "Warning: deleting payment account \"{0}\" will move those associat
 msgstr[0] "경고: 지불 계좌 \"{0}\"을(를) 삭제하면 해당 계좌와 연동된 앱들이 미완료 상태로 옮겨져서 판매할 수 없게 됩니다:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
-#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "오류"
 
@@ -281,6 +345,24 @@ msgstr "인증 오류"
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
 msgstr "현재 결제 가능 계좌를 가지고 있지 않습니다."
+
+#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "<b>{0}</b>의 테마 검색"
+
+#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "<b>{0}</b> 앱 검색"
+
+#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "<b>{0}</b> 부가 기능 검색"
+
+#. L10n: {0} is the number of characters left.
+#: media/js/devreg/utils.js:89
+msgid "{0} character left."
+msgid_plural "{0} characters left."
+msgstr[0] "{0}자 남았습니다."
 
 #: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
@@ -327,6 +409,150 @@ msgstr "검사 작업이 오류로 인해 완료되지 못했습니다"
 #: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "내부 서버 오류"
+
+#: media/js/devreg/reviewers/buttons.js:38
+msgid "Purchasing"
+msgstr "구입하는 중"
+
+#: media/js/devreg/reviewers/buttons.js:44
+msgid "Purchased"
+msgstr "구입했습니다"
+
+#: media/js/devreg/reviewers/buttons.js:70
+msgid "Launch"
+msgstr "실행하기"
+
+#: media/js/devreg/reviewers/editors.js:158 media/js/zamboni/editors.js:162
+msgid "{name} was viewing this page first."
+msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
+
+#: media/js/devreg/reviewers/editors.js:208 media/js/zamboni/editors.js:212
+msgid "Receipt checked by app."
+msgstr "앱이 영수증을 확인했습니다."
+
+#: media/js/devreg/reviewers/editors.js:210 media/js/zamboni/editors.js:214
+msgid "Receipt was not checked by app."
+msgstr "앱이 영수증을 확인하지 못했습니다."
+
+#: media/js/devreg/reviewers/editors.js:281 media/js/zamboni/editors.js:285
+msgid "{name} was viewing this add-on first."
+msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
+
+#: media/js/devreg/reviewers/editors.js:292 media/js/zamboni/editors.js:296
+msgid "Loading&hellip;"
+msgstr "불러오는 중&hellip;"
+
+#: media/js/devreg/reviewers/editors.js:297 media/js/zamboni/editors.js:301
+msgid "Version Notes"
+msgstr "버전 기록서"
+
+#: media/js/devreg/reviewers/editors.js:302 media/js/zamboni/editors.js:306
+msgid "Notes for Reviewers"
+msgstr "심사자의 메모"
+
+#: media/js/devreg/reviewers/editors.js:307 media/js/zamboni/editors.js:311
+msgid "No version notes found"
+msgstr "버전 기록서가 없습니다"
+
+#: media/js/devreg/reviewers/editors.js:332 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+msgid "Select an application first"
+msgstr "먼저 애플리케이션을 선택하세요"
+
+#: media/js/devreg/reviewers/editors.js:396 media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr "번역 결과를 불러오는 과정에서 오류 발생"
+
+#: media/js/devreg/reviewers/expandable.js:15
+msgid "more..."
+msgstr "자세히..."
+
+#: media/js/devreg/reviewers/expandable.js:18
+msgid "less..."
+msgstr "간략하게..."
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:6
+msgid "Keep review; remove flags"
+msgstr "심사 지속; 표시 삭제하기"
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:8
+msgid "Delete review"
+msgstr "심사 삭제하기"
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:9
+msgid "Skip for now"
+msgstr "넘어가기"
+
+#: media/js/devreg/reviewers/payments.js:69
+msgid "Payment failed. Try again later."
+msgstr "지불에 실패했습니다. 잠시 후 다시 시도해보세요."
+
+#: media/js/devreg/reviewers/reviewers.js:100
+msgid "Packaged App"
+msgstr "패키지형 앱"
+
+#: media/js/devreg/reviewers/reviewers.js:104
+msgid "Privileged App"
+msgstr "특별권한 앱"
+
+#: media/js/devreg/reviewers/reviewers.js:107
+msgid "More Information Requested"
+msgstr "추가 정보 입력 필요"
+
+#: media/js/devreg/reviewers/reviewers.js:110
+msgid "Contains Editor Comment"
+msgstr "편집자 코멘트 있음"
+
+#: media/js/devreg/reviewers/reviewers.js:114
+msgid "Premium App"
+msgstr "유료 앱"
+
+#: media/js/devreg/reviewers/reviewers.js:117
+msgid "Escalated"
+msgstr "승급됨"
+
+#: media/js/devreg/reviewers/reviewers.js:122
+msgid "Free"
+msgstr "무료"
+
+#: media/js/devreg/reviewers/reviewers.js:230
+msgid "Any"
+msgstr "모두"
+
+#: media/js/devreg/reviewers/reviewers.js:257
+msgid "Approved app: {app}"
+msgstr "승인된 앱: {app}"
+
+#: media/js/devreg/reviewers/reviewers.js:260
+msgid "Rejected app: {app}"
+msgstr "승인 거부된 앱: {app}"
+
+#: media/js/devreg/reviewers/reviewers.js:266
+msgid "Error approving app: {app}"
+msgstr "승인 도중 오류가 발생한 앱: {app}"
+
+#: media/js/devreg/reviewers/reviewers.js:267
+msgid "Error rejecting app: {app}"
+msgstr "승인 거부 도중 오류가 발생한 앱: {app}"
+
+#: media/js/devreg/reviewers/themes_review.js:174
+msgid "Requested Info"
+msgstr "요청된 정보"
+
+#: media/js/devreg/reviewers/themes_review.js:175
+msgid "Flagged"
+msgstr "표시됨"
+
+#: media/js/devreg/reviewers/themes_review.js:176
+msgid "Duplicate"
+msgstr "복사하기"
+
+#: media/js/devreg/reviewers/themes_review.js:177
+msgid "Rejected"
+msgstr "거부됨"
+
+#: media/js/devreg/reviewers/themes_review.js:178
+msgid "Approved"
+msgstr "승인됨"
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
@@ -397,23 +623,11 @@ msgstr "결과 갱신중&hellip;"
 msgid "Category"
 msgstr "분류"
 
-#: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b>의 테마 검색"
-
-#: media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> 앱 검색"
-
-#: media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> 부가 기능 검색"
-
 #: media/js/impala/users.js:33
 msgid "use original"
 msgstr "오리지널 사용"
 
-#: media/js/impala/stats/chart.js:267 media/js/mkt/stats/chart.js:320
+#: media/js/impala/stats/chart.js:267
 msgid "Week of {0}"
 msgstr "{0}번째 주"
 
@@ -421,7 +635,7 @@ msgstr "{0}번째 주"
 msgid "downloads"
 msgstr "다운로드 횟수"
 
-#: media/js/impala/stats/chart.js:270 media/js/mkt/stats/chart.js:326
+#: media/js/impala/stats/chart.js:270
 msgid "{0} users"
 msgstr "사용자 {0}명"
 
@@ -433,27 +647,27 @@ msgstr "부가 기능 {0}개"
 msgid "{0} collections"
 msgstr "모음집 {0}개"
 
-#: media/js/impala/stats/chart.js:273 media/js/mkt/stats/chart.js:328
+#: media/js/impala/stats/chart.js:273
 msgid "{0} reviews"
 msgstr "평가 {0}개"
 
-#: media/js/impala/stats/chart.js:275 media/js/mkt/stats/chart.js:323 media/js/mkt/stats/chart_column.js:125
+#: media/js/impala/stats/chart.js:275
 msgid "{0} sales"
 msgstr "판매 {0}회"
 
-#: media/js/impala/stats/chart.js:276 media/js/mkt/stats/chart.js:324 media/js/mkt/stats/chart_column.js:126
+#: media/js/impala/stats/chart.js:276
 msgid "{0} refunds"
 msgstr "환불 {0}회"
 
-#: media/js/impala/stats/chart.js:277 media/js/mkt/stats/chart.js:325
+#: media/js/impala/stats/chart.js:277
 msgid "{0} installs"
 msgstr "설치 {0}회"
 
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102 media/js/mkt/stats/csv_keys.js:128
+#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
 msgstr "다운로드 횟수"
 
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:6 media/js/mkt/stats/csv_keys.js:129
+#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
 msgstr "일일 사용자 수"
 
@@ -461,16 +675,16 @@ msgstr "일일 사용자 수"
 msgid "Amount, in USD"
 msgstr "금액 (미국 달러화)"
 
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:123
+#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97
 msgid "Number of Contributions"
 msgstr "기부 횟수"
 
-#: media/js/impala/stats/chart.js:447 media/js/mkt/stats/chart.js:395
+#: media/js/impala/stats/chart.js:447
 msgid "More Info..."
 msgstr "자세히 알아보기..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: media/js/impala/stats/chart.js:451 media/js/mkt/stats/chart.js:399
+#: media/js/impala/stats/chart.js:451
 msgid "Details for {0}"
 msgstr "{0}에 대한 상세 정보"
 
@@ -510,165 +724,163 @@ msgstr "구독자"
 msgid "Ratings"
 msgstr "평가"
 
-#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107 media/js/mkt/stats/chart_column.js:147
+#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107
 msgid "Sales"
 msgstr "판매중"
 
-#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106 media/js/mkt/stats/chart.js:364 media/js/mkt/stats/csv_keys.js:3 media/js/mkt/stats/csv_keys.js:132
+#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106
 msgid "Installs"
 msgstr "설치"
 
-#: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57
+#: media/js/impala/stats/csv_keys.js:42
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58
+#: media/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
 msgstr "부가 기능 관리자"
 
-#: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59
+#: media/js/impala/stats/csv_keys.js:44
 msgid "Search Results"
 msgstr "검색 결과"
 
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
-#: media/js/mkt/stats/csv_keys.js:62
+#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
 msgstr "홈페이지 홍보"
 
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64
+#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49
 msgid "Homepage Featured"
 msgstr "추천 홈페이지"
 
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66
+#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
 msgstr "인기 급상승 홈페이지"
 
-#: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67
+#: media/js/impala/stats/csv_keys.js:52
 msgid "Homepage Most Popular"
 msgstr "인기 홈페이지"
 
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70
+#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55
 msgid "Detail Page"
 msgstr "상세 정보 페이지"
 
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71
+#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56
 msgid "Detail Page (bottom)"
 msgstr "상세 정보 페이지 (하단)"
 
-#: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72
+#: media/js/impala/stats/csv_keys.js:57
 msgid "Detail Page (Development Channel)"
 msgstr "상세 정보 페이지 (개발 채널)"
 
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
-#: media/js/mkt/stats/csv_keys.js:75
+#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
 msgstr "이것과 자주 쓰입니다"
 
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62 media/js/mkt/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:77
+#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62
 msgid "Others By Author"
 msgstr "제작자의 다른 저작물"
 
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79
+#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64
 msgid "Dependencies"
 msgstr "의존성"
 
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81
+#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
 msgstr "판촉행위"
 
-#: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83
+#: media/js/impala/stats/csv_keys.js:68
 msgid "Sharing"
 msgstr "공유"
 
-#: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84
+#: media/js/impala/stats/csv_keys.js:69
 msgid "Category Pages"
 msgstr "분류 페이지"
 
-#: media/js/impala/stats/csv_keys.js:70 media/js/mkt/stats/csv_keys.js:85
+#: media/js/impala/stats/csv_keys.js:70
 msgid "Collections"
 msgstr "모음집"
 
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86
+#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
 msgstr "분류별 추천 부가 기능"
 
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90
+#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
 msgstr "분류별 최다 별점 부가 기능"
 
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92
+#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
 msgstr "분류별 인기 부가 기능"
 
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94
+#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
 msgstr "분류별 신규 등록 부가 기능"
 
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96
+#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
 msgstr "추천 순으로 둘러보기"
 
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98
+#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
 msgstr "사용자 순으로 둘러보기"
 
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100
+#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
 msgstr "별점 순으로 둘러보기"
 
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102
+#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
 msgstr "등록일 순으로 둘러보기"
 
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104
+#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
 msgstr "이름 순으로 둘러보기"
 
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106
+#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
 msgstr "인기도 순으로 둘러보기"
 
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108
+#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
 msgstr "업데이트 날짜 순으로 둘러보기"
 
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110
+#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
 msgstr "최근 급상승 순으로 둘러보기"
 
-#: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124
+#: media/js/impala/stats/csv_keys.js:98
 msgid "Total Amount Contributed"
 msgstr "총 기부금액"
 
-#: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125
+#: media/js/impala/stats/csv_keys.js:99
 msgid "Average Contribution"
 msgstr "평균 기부금"
 
-#: media/js/impala/stats/csv_keys.js:108 media/js/mkt/stats/csv_keys.js:133
+#: media/js/impala/stats/csv_keys.js:108
 msgid "Usage"
 msgstr "사용처"
 
-#: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137
+#: media/js/impala/stats/csv_keys.js:111
 msgid "Firefox"
 msgstr "Firefox"
 
-#: media/js/impala/stats/csv_keys.js:112 media/js/mkt/stats/csv_keys.js:138
+#: media/js/impala/stats/csv_keys.js:112
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: media/js/impala/stats/csv_keys.js:113 media/js/mkt/stats/csv_keys.js:139
+#: media/js/impala/stats/csv_keys.js:113
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: media/js/impala/stats/csv_keys.js:114 media/js/mkt/stats/csv_keys.js:140
+#: media/js/impala/stats/csv_keys.js:114
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: media/js/impala/stats/csv_keys.js:115 media/js/mkt/stats/csv_keys.js:141
+#: media/js/impala/stats/csv_keys.js:115
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: media/js/impala/stats/csv_keys.js:116 media/js/mkt/stats/csv_keys.js:142
+#: media/js/impala/stats/csv_keys.js:116
 msgid "Fennec"
 msgstr "Fennec"
 
@@ -703,12 +915,12 @@ msgid "Downloads from {0} to {1}"
 msgstr "{0}부터 {1} 까지 다운로드 횟수"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:139 media/js/mkt/stats/csv_keys.js:152
+#: media/js/impala/stats/csv_keys.js:139
 msgid "Daily Users, last {0} days"
 msgstr "최근 {0}일간 일일 사용자 수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:141 media/js/mkt/stats/csv_keys.js:153
+#: media/js/impala/stats/csv_keys.js:141
 msgid "Daily Users from {0} to {1}"
 msgstr "{0}부터 {1} 까지 일일 사용자 수"
 
@@ -893,403 +1105,41 @@ msgid "Sales from {0} to {1}"
 msgstr "{0}부터 {1}까지 매상"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:253 media/js/mkt/stats/csv_keys.js:147
+#: media/js/impala/stats/csv_keys.js:253
 msgid "Installs, last {0} days"
 msgstr "최근 {0}일간 설치"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:255 media/js/mkt/stats/csv_keys.js:149
+#: media/js/impala/stats/csv_keys.js:255
 msgid "Installs from {0} to {1}"
 msgstr "{0}부터 {1}까지 설치"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:261 media/js/mkt/stats/csv_keys.js:223
+#: media/js/impala/stats/csv_keys.js:261
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> (최근 {1}일간)"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269 media/js/mkt/stats/csv_keys.js:225 media/js/mkt/stats/csv_keys.js:231
+#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ({1}부터 {2}까지)"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:267 media/js/mkt/stats/csv_keys.js:229
+#: media/js/impala/stats/csv_keys.js:267
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> (최근 {1}일간 평균)"
 
-#: media/js/impala/stats/overview.js:19 media/js/mkt/stats/overview.js:17
+#: media/js/impala/stats/overview.js:19
 msgid "No data available."
 msgstr "데이터가 없습니다."
 
-#: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88
+#: media/js/impala/stats/table.js:74
 msgid "Date"
 msgstr "날짜"
 
-#: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96
+#: media/js/impala/stats/topchart.js:96
 msgid "Other"
 msgstr "기타"
-
-#: media/js/mkt/apps.js:84
-msgid "The manifest could not be found at the given location."
-msgstr "앱 정보 설정 파일을 주어진 위치에서 찾을 수 없습니다."
-
-#: media/js/mkt/apps.js:87 media/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "앱 호스트에 연결할 수 없습니다."
-
-#: media/js/mkt/apps.js:90 media/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "앱 정보 설정 파일을 분석할 수 없습니다."
-
-#: media/js/mkt/apps.js:93 media/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "앱 정보 설정 파일이 잘못되었습니다."
-
-#: media/js/mkt/apps.js:96
-msgid "App is already installed."
-msgstr "이미 설치된 앱입니다."
-
-#: media/js/mkt/apps.js:100
-msgid "Internal server error."
-msgstr "내부 서버 오류가 발생했습니다."
-
-#: media/js/mkt/apps.js:103
-msgid "Internal server error on app installation."
-msgstr "앱 설치중 내부 서버 오류가 발생했습니다."
-
-#: media/js/mkt/apps.js:106 media/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "설치를 할 수 없습니다. 나중에 다시 시도해 주세요."
-
-#: media/js/mkt/buttons.js:38
-msgid "Purchasing"
-msgstr "구입하는 중"
-
-#: media/js/mkt/buttons.js:44
-msgid "Purchased"
-msgstr "구입했습니다"
-
-#: media/js/mkt/buttons.js:70
-msgid "Launch"
-msgstr "실행하기"
-
-#: media/js/mkt/consumer_init.js:24
-msgid "Click here to view the mobile Marketplace!"
-msgstr "여기를 클릭하면 모바일 마켓플레이스로 갑니다!"
-
-#: media/js/mkt/ecosystem.js:26
-msgid "This video requires a browser with support for open video "
-msgstr "이 동영상을 재생하려면 오픈 비디오나 "
-
-#: media/js/mkt/ecosystem.js:27
-msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "<a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-
-#: media/js/mkt/ecosystem.js:28
-msgid "Flash Player</a>."
-msgstr "Flash Player</a>를 지원하는 브라우저가 필요합니다."
-
-#: media/js/mkt/feedback.js:38
-msgid "Message must not be empty."
-msgstr "메세지엔 내용이 반드시 있어야 합니다."
-
-#: media/js/mkt/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Persona 로그인 실패입니다. 아마도 이메일 주소에 대한 계정이 없지 않나요?"
-
-#: media/js/mkt/login.js:78
-msgid "Persona login failed. A server error was encountered."
-msgstr "페르소나 로그인이 실패했습니다. 서버에 오류가 발생했습니다."
-
-#: media/js/mkt/lookup-tool.js:65
-msgid "Show All Results"
-msgstr "모든 결과 표시"
-
-#: media/js/mkt/lookup-tool.js:68
-msgid "Over {0} results found, consider refining your search."
-msgstr "{0}개 이상의 결과가 발견되어 검색 결과를 간추렸습니다."
-
-#: media/js/mkt/manifest.js:46
-msgid "Requested Permissions:"
-msgstr "요청된 권한:"
-
-#: media/js/mkt/manifest.js:54
-msgid "Certified"
-msgstr "인증됨"
-
-#: media/js/mkt/manifest.js:57
-msgid "Privileged"
-msgstr "권한 있음"
-
-#: media/js/mkt/manifest.js:60
-msgid "Unprivileged"
-msgstr "권한 없음"
-
-#: media/js/mkt/manifest.js:66
-msgid "No reason given"
-msgstr "사유 없음"
-
-#: media/js/mkt/overlay.js:41
-msgid "OK"
-msgstr "확인"
-
-#: media/js/mkt/payments.js:69
-msgid "Payment failed. Try again later."
-msgstr "지불에 실패했습니다. 잠시 후 다시 시도해보세요."
-
-#: media/js/mkt/reviewers.js:100
-msgid "Packaged App"
-msgstr "패키지형 앱"
-
-#: media/js/mkt/reviewers.js:104
-msgid "Privileged App"
-msgstr "특별권한 앱"
-
-#: media/js/mkt/reviewers.js:107
-msgid "More Information Requested"
-msgstr "추가 정보 입력 필요"
-
-#: media/js/mkt/reviewers.js:110
-msgid "Contains Editor Comment"
-msgstr "편집자 코멘트 있음"
-
-#: media/js/mkt/reviewers.js:114
-msgid "Premium App"
-msgstr "유료 앱"
-
-#: media/js/mkt/reviewers.js:117
-msgid "Escalated"
-msgstr "승급됨"
-
-#: media/js/mkt/reviewers.js:122
-msgid "Free"
-msgstr "무료"
-
-#: media/js/mkt/reviewers.js:230
-msgid "Any"
-msgstr "모두"
-
-#: media/js/mkt/reviewers.js:257
-msgid "Approved app: {app}"
-msgstr "승인된 앱: {app}"
-
-#: media/js/mkt/reviewers.js:260
-msgid "Rejected app: {app}"
-msgstr "승인 거부된 앱: {app}"
-
-#: media/js/mkt/reviewers.js:266
-msgid "Error approving app: {app}"
-msgstr "승인 도중 오류가 발생한 앱: {app}"
-
-#: media/js/mkt/reviewers.js:267
-msgid "Error rejecting app: {app}"
-msgstr "승인 거부 도중 오류가 발생한 앱: {app}"
-
-#: media/js/mkt/themes_review.js:174
-msgid "Requested Info"
-msgstr "요청된 정보"
-
-#: media/js/mkt/themes_review.js:175
-msgid "Flagged"
-msgstr "표시됨"
-
-#: media/js/mkt/themes_review.js:176
-msgid "Duplicate"
-msgstr "복사하기"
-
-#: media/js/mkt/themes_review.js:177
-msgid "Rejected"
-msgstr "거부됨"
-
-#: media/js/mkt/themes_review.js:178
-msgid "Approved"
-msgstr "승인됨"
-
-#. L10n: {0} is the number of characters left.
-#: media/js/mkt/utils.js:89
-msgid "{0} character left."
-msgid_plural "{0} characters left."
-msgstr[0] "{0}자 남았습니다."
-
-#: media/js/mkt/stats/chart.js:327
-msgid "{0} apps"
-msgstr "앱 {0}개"
-
-#: media/js/mkt/stats/chart.js:339
-msgid "Week"
-msgstr "주"
-
-#: media/js/mkt/stats/chart.js:342
-msgid "Month"
-msgstr "달"
-
-#: media/js/mkt/stats/chart.js:345
-msgid "Day"
-msgstr "일"
-
-#: media/js/mkt/stats/chart.js:352 media/js/mkt/stats/csv_keys.js:9 media/js/mkt/stats/csv_keys.js:18 media/js/mkt/stats/csv_keys.js:27
-msgid "Amount Earned"
-msgstr "매출액"
-
-#: media/js/mkt/stats/chart.js:356 media/js/mkt/stats/csv_keys.js:12 media/js/mkt/stats/csv_keys.js:21 media/js/mkt/stats/csv_keys.js:30 media/js/mkt/stats/csv_keys.js:134
-msgid "Units Sold"
-msgstr "판매량"
-
-#: media/js/mkt/stats/chart.js:360 media/js/mkt/stats/csv_keys.js:15 media/js/mkt/stats/csv_keys.js:24 media/js/mkt/stats/csv_keys.js:33
-msgid "Units Refunded"
-msgstr "환불수"
-
-#: media/js/mkt/stats/chart.js:368
-msgid "Users"
-msgstr "사용자 수"
-
-#: media/js/mkt/stats/chart.js:372
-msgid "Apps"
-msgstr "앱"
-
-#: media/js/mkt/stats/chart_column.js:122
-msgid "by currency {0}"
-msgstr "{0} 화폐순"
-
-#: media/js/mkt/stats/chart_column.js:123
-msgid "by source {0}"
-msgstr "{0} 판매처 순"
-
-#: media/js/mkt/stats/chart_column.js:131 media/js/mkt/stats/table.js:95
-msgid "Currency"
-msgstr "통화"
-
-#: media/js/mkt/stats/chart_column.js:135 media/js/mkt/stats/table.js:98
-msgid "Source"
-msgstr "판매처"
-
-#: media/js/mkt/stats/chart_column.js:143
-msgid "Revenue"
-msgstr "수익"
-
-#: media/js/mkt/stats/chart_column.js:151
-msgid "Refunds"
-msgstr "환불액"
-
-#: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
-msgid "Apps Added"
-msgstr "구매한 앱"
-
-#: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
-msgid "Apps Installed"
-msgstr "설치한 앱"
-
-#: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
-msgid "Reviews"
-msgstr "평가"
-
-#: media/js/mkt/stats/csv_keys.js:45 media/js/mkt/stats/csv_keys.js:208 media/js/mkt/stats/csv_keys.js:209
-msgid "New Users"
-msgstr "신규 사용자"
-
-#: media/js/mkt/stats/csv_keys.js:48 media/js/mkt/stats/csv_keys.js:204 media/js/mkt/stats/csv_keys.js:205
-msgid "Total Users"
-msgstr "총 사용자"
-
-#: media/js/mkt/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:212 media/js/mkt/stats/csv_keys.js:213
-msgid "Total Visitors"
-msgstr "총 방문자"
-
-#: media/js/mkt/stats/csv_keys.js:54
-msgid "App Installs"
-msgstr "앱 설치 횟수"
-
-#: media/js/mkt/stats/csv_keys.js:112
-msgid "Marketplace Browse Page"
-msgstr "마켓플레이스 탐색 페이지"
-
-#: media/js/mkt/stats/csv_keys.js:113
-msgid "Marketplace Browse Page, Featured"
-msgstr "마켓플레이스 탐색 페이지, 추천"
-
-#: media/js/mkt/stats/csv_keys.js:114
-msgid "Marketplace Category Page"
-msgstr "마켓플레이스 카테고리 페이지"
-
-#: media/js/mkt/stats/csv_keys.js:115
-msgid "Marketplace Category Page, Featured"
-msgstr "마켓플레이스 카테고리 페이지, 추천"
-
-#: media/js/mkt/stats/csv_keys.js:116
-msgid "Marketplace Detail Page"
-msgstr "마켓플레이스 상세 페이지"
-
-#: media/js/mkt/stats/csv_keys.js:117
-msgid "Marketplace Detail Page, Upsell"
-msgstr "마켓플레이스 상세페이지, 설득판매"
-
-#: media/js/mkt/stats/csv_keys.js:118
-msgid "Marketplace Home Page"
-msgstr "마켓플레이스 홈페이지"
-
-#: media/js/mkt/stats/csv_keys.js:119
-msgid "Marketplace Search Results"
-msgstr "마켓플레이스 검색 결과"
-
-#: media/js/mkt/stats/csv_keys.js:120
-msgid "Marketplace Search Results, Featured"
-msgstr "마켓플레이스 검색 결과, 추천"
-
-#: media/js/mkt/stats/csv_keys.js:156
-msgid "Units Sold, last {0} days"
-msgstr "최근 {0}일간 판매량"
-
-#: media/js/mkt/stats/csv_keys.js:157
-msgid "Units Sold from {0} to {1}"
-msgstr "{0}부터 {1}까지의 판매량"
-
-#: media/js/mkt/stats/csv_keys.js:160
-msgid "Amount Earned, last {0} days"
-msgstr "최근 {0}일간 매출액"
-
-#: media/js/mkt/stats/csv_keys.js:161
-msgid "Amount Earned {0} to {1}"
-msgstr "{0}부터 {1}까지의 매출액"
-
-#: media/js/mkt/stats/csv_keys.js:164
-msgid "Units Refunded, last {0} days"
-msgstr "최근 {0}일간 환불"
-
-#: media/js/mkt/stats/csv_keys.js:165
-msgid "Units Refunded from {0} to {1}"
-msgstr "{0}부터 {1}까지의 환불"
-
-#: media/js/mkt/stats/csv_keys.js:168 media/js/mkt/stats/csv_keys.js:169
-msgid "Total Units Sold by Currency"
-msgstr "화폐별 총 판매량"
-
-#: media/js/mkt/stats/csv_keys.js:172 media/js/mkt/stats/csv_keys.js:173
-msgid "Total Amount Earned by Currency"
-msgstr "화폐별 총 매출액"
-
-#: media/js/mkt/stats/csv_keys.js:176 media/js/mkt/stats/csv_keys.js:177
-msgid "Total Units Refunded by Currency"
-msgstr "화폐별 총 환불"
-
-#: media/js/mkt/stats/csv_keys.js:180 media/js/mkt/stats/csv_keys.js:181
-msgid "Total Units Sold by Source"
-msgstr "판매처별 총 판매량"
-
-#: media/js/mkt/stats/csv_keys.js:184 media/js/mkt/stats/csv_keys.js:185
-msgid "Total Amount Earned by Source"
-msgstr "판매처별 총 매출액"
-
-#: media/js/mkt/stats/csv_keys.js:188 media/js/mkt/stats/csv_keys.js:189
-msgid "Total Units Refunded by Source"
-msgstr "판매처별 총 환불"
-
-#: media/js/mkt/stats/csv_keys.js:216 media/js/mkt/stats/csv_keys.js:217
-msgid "Total Installs"
-msgstr "총 설치 횟수"
-
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
-msgid "Select an application first"
-msgstr "먼저 애플리케이션을 선택하세요"
 
 #: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -1502,38 +1352,6 @@ msgstr "추천 부가 기능 검색중&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "추천 부가 기능 업데이트중&hellip;"
 
-#: media/js/zamboni/editors.js:162
-msgid "{name} was viewing this page first."
-msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
-
-#: media/js/zamboni/editors.js:212
-msgid "Receipt checked by app."
-msgstr "앱이 영수증을 확인했습니다."
-
-#: media/js/zamboni/editors.js:214
-msgid "Receipt was not checked by app."
-msgstr "앱이 영수증을 확인하지 못했습니다."
-
-#: media/js/zamboni/editors.js:285
-msgid "{name} was viewing this add-on first."
-msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
-
-#: media/js/zamboni/editors.js:296
-msgid "Loading&hellip;"
-msgstr "불러오는 중&hellip;"
-
-#: media/js/zamboni/editors.js:301
-msgid "Version Notes"
-msgstr "버전 기록서"
-
-#: media/js/zamboni/editors.js:306
-msgid "Notes for Reviewers"
-msgstr "심사자의 메모"
-
-#: media/js/zamboni/editors.js:311
-msgid "No version notes found"
-msgstr "버전 기록서가 없습니다"
-
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "평균 심사 횟수"
@@ -1541,10 +1359,6 @@ msgstr "평균 심사 횟수"
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "심사 횟수"
-
-#: media/js/zamboni/editors.js:486
-msgid "Error loading translation"
-msgstr "번역 결과를 불러오는 과정에서 오류 발생"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."

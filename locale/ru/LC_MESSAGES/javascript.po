@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27 07:58-0700\n"
+"POT-Creation-Date: 2014-01-08 09:42-0700\n"
 "PO-Revision-Date: 2013-12-10 22:11+0400\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -144,6 +144,38 @@ msgstr[2] "Ваше приложение прошло валидацию без 
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Ваше приложение прошло валидацию без ошибок или предупреждений."
 
+#: media/js/devreg/apps.js:84
+msgid "The manifest could not be found at the given location."
+msgstr "Манифест в данном месте обнаружить не удалось."
+
+#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "Не удалось связаться с хостом приложения."
+
+#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Не удалось распарсить манифест приложения."
+
+#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Некорректный манифест приложения."
+
+#: media/js/devreg/apps.js:96
+msgid "App is already installed."
+msgstr "Приложение уже установлено."
+
+#: media/js/devreg/apps.js:100
+msgid "Internal server error."
+msgstr "Внутренняя ошибка сервера."
+
+#: media/js/devreg/apps.js:103
+msgid "Internal server error on app installation."
+msgstr "Внутренняя ошибка сервера при установке приложения."
+
+#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Установка не удалась. Пожалуйста, повторите попытку позже."
+
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
@@ -190,15 +222,19 @@ msgstr "Пример"
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
 
-#: media/js/devreg/expandable.js:15
-msgid "more..."
-msgstr "больше..."
+#: media/js/devreg/ecosystem.js:26
+msgid "This video requires a browser with support for open video "
+msgstr "Для этого видео необходим браузер с поддержкой открытого видео "
 
-#: media/js/devreg/expandable.js:18
-msgid "less..."
-msgstr "меньше..."
+#: media/js/devreg/ecosystem.js:27
+msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
+msgstr "или <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
-#: media/js/devreg/init.js:35 media/js/mkt/init.js:47 media/js/zamboni/init.js:32
+#: media/js/devreg/ecosystem.js:28
+msgid "Flash Player</a>."
+msgstr "Flash-плейер</a>."
+
+#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Пока мы производим техническое обслуживание веб-сайта, эта возможность временно отключена. Пожалуйста, зайдите попозже."
 
@@ -206,17 +242,45 @@ msgstr "Пока мы производим техническое обслужи
 msgid "Remove this localization"
 msgstr "Удалить эту локализацию"
 
-#: media/js/devreg/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "Оставить отзыв; удалить флаги"
+#: media/js/devreg/login.js:73
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Вход через Persona не удался. Может быть у вас нет учётной записи для этого адреса эл. почты?"
 
-#: media/js/devreg/mobile_review_actions.js:8
-msgid "Delete review"
-msgstr "Удалить отзыв"
+#: media/js/devreg/login.js:78
+msgid "Persona login failed. A server error was encountered."
+msgstr "Ошибка входа через Persona. Произошла ошибка сервера."
 
-#: media/js/devreg/mobile_review_actions.js:9
-msgid "Skip for now"
-msgstr "Пока пропустить"
+#: media/js/devreg/lookup-tool.js:65
+msgid "Show All Results"
+msgstr "Показать все результаты"
+
+#: media/js/devreg/lookup-tool.js:68
+msgid "Over {0} results found, consider refining your search."
+msgstr "Найдено более {0} результатов, попробуйте уточнить параметры поиска."
+
+#: media/js/devreg/manifest.js:46
+msgid "Requested Permissions:"
+msgstr "Запрошенные разрешения:"
+
+#: media/js/devreg/manifest.js:54
+msgid "Certified"
+msgstr "Сертифицированный"
+
+#: media/js/devreg/manifest.js:57
+msgid "Privileged"
+msgstr "Привилегированный"
+
+#: media/js/devreg/manifest.js:60
+msgid "Unprivileged"
+msgstr "Непривилегированный"
+
+#: media/js/devreg/manifest.js:66
+msgid "No reason given"
+msgstr "Причина не указана"
+
+#: media/js/devreg/overlay.js:41
+msgid "OK"
+msgstr "OK"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
@@ -284,7 +348,7 @@ msgstr[1] "Внимание: удаление расчетного счета \"
 msgstr[2] "Внимание: удаление расчетного счета \"{0}\" переместит связанные с ним приложения в статус незавершенных, и они больше не будут доступны для продажи:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
-#: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Ошибка"
 
@@ -299,6 +363,26 @@ msgstr "Ошибка аутентификации"
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
 msgstr "Сейчас у вас нет ни одного счёта для платежей."
+
+#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Поиск <b>{0}</b>  в темах"
+
+#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Искать в приложениях <b>{0}</b>"
+
+#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Искать в дополнениях <b>{0}</b>"
+
+#. L10n: {0} is the number of characters left.
+#: media/js/devreg/utils.js:89
+msgid "{0} character left."
+msgid_plural "{0} characters left."
+msgstr[0] "остался {0} символ."
+msgstr[1] "осталось {0} символа."
+msgstr[2] "осталось {0} символов."
 
 #: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
@@ -349,6 +433,150 @@ msgstr "Валидация не смогла завершиться или за�
 #: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "Внутренняя ошибка сервера"
+
+#: media/js/devreg/reviewers/buttons.js:38
+msgid "Purchasing"
+msgstr "Покупка"
+
+#: media/js/devreg/reviewers/buttons.js:44
+msgid "Purchased"
+msgstr "Куплено"
+
+#: media/js/devreg/reviewers/buttons.js:70
+msgid "Launch"
+msgstr "Запуск"
+
+#: media/js/devreg/reviewers/editors.js:158 media/js/zamboni/editors.js:162
+msgid "{name} was viewing this page first."
+msgstr "{name} просматривал эту страницу первым."
+
+#: media/js/devreg/reviewers/editors.js:208 media/js/zamboni/editors.js:212
+msgid "Receipt checked by app."
+msgstr "Квитанция была проверена приложением."
+
+#: media/js/devreg/reviewers/editors.js:210 media/js/zamboni/editors.js:214
+msgid "Receipt was not checked by app."
+msgstr "Квитанция не была проверена приложением."
+
+#: media/js/devreg/reviewers/editors.js:281 media/js/zamboni/editors.js:285
+msgid "{name} was viewing this add-on first."
+msgstr "{name} просматривал это дополнение первым."
+
+#: media/js/devreg/reviewers/editors.js:292 media/js/zamboni/editors.js:296
+msgid "Loading&hellip;"
+msgstr "Загрузка&hellip;"
+
+#: media/js/devreg/reviewers/editors.js:297 media/js/zamboni/editors.js:301
+msgid "Version Notes"
+msgstr "Примечания к версии"
+
+#: media/js/devreg/reviewers/editors.js:302 media/js/zamboni/editors.js:306
+msgid "Notes for Reviewers"
+msgstr "Примечания для проверяющих"
+
+#: media/js/devreg/reviewers/editors.js:307 media/js/zamboni/editors.js:311
+msgid "No version notes found"
+msgstr "Примечаний к версии не найдено"
+
+#: media/js/devreg/reviewers/editors.js:332 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+msgid "Select an application first"
+msgstr "Сначала выберите приложение"
+
+#: media/js/devreg/reviewers/editors.js:396 media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr ""
+
+#: media/js/devreg/reviewers/expandable.js:15
+msgid "more..."
+msgstr "больше..."
+
+#: media/js/devreg/reviewers/expandable.js:18
+msgid "less..."
+msgstr "меньше..."
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:6
+msgid "Keep review; remove flags"
+msgstr "Оставить отзыв; удалить флаги"
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:8
+msgid "Delete review"
+msgstr "Удалить отзыв"
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:9
+msgid "Skip for now"
+msgstr "Пока пропустить"
+
+#: media/js/devreg/reviewers/payments.js:69
+msgid "Payment failed. Try again later."
+msgstr "Платеж не прошел. Пожалуйста, попробуйте позже."
+
+#: media/js/devreg/reviewers/reviewers.js:100
+msgid "Packaged App"
+msgstr "Упакованное приложение"
+
+#: media/js/devreg/reviewers/reviewers.js:104
+msgid "Privileged App"
+msgstr "Привилегированное приложение"
+
+#: media/js/devreg/reviewers/reviewers.js:107
+msgid "More Information Requested"
+msgstr "Запрошено больше информации"
+
+#: media/js/devreg/reviewers/reviewers.js:110
+msgid "Contains Editor Comment"
+msgstr "Содержит комментарий редактора"
+
+#: media/js/devreg/reviewers/reviewers.js:114
+msgid "Premium App"
+msgstr "Премиум приложение"
+
+#: media/js/devreg/reviewers/reviewers.js:117
+msgid "Escalated"
+msgstr "Отправлено наверх"
+
+#: media/js/devreg/reviewers/reviewers.js:122
+msgid "Free"
+msgstr "Бесплатно"
+
+#: media/js/devreg/reviewers/reviewers.js:230
+msgid "Any"
+msgstr "Любая"
+
+#: media/js/devreg/reviewers/reviewers.js:257
+msgid "Approved app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:260
+msgid "Rejected app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:266
+msgid "Error approving app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:267
+msgid "Error rejecting app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/themes_review.js:174
+msgid "Requested Info"
+msgstr "Требуемая информация"
+
+#: media/js/devreg/reviewers/themes_review.js:175
+msgid "Flagged"
+msgstr "Отмечено"
+
+#: media/js/devreg/reviewers/themes_review.js:176
+msgid "Duplicate"
+msgstr "Дубликат"
+
+#: media/js/devreg/reviewers/themes_review.js:177
+msgid "Rejected"
+msgstr "Отклонено"
+
+#: media/js/devreg/reviewers/themes_review.js:178
+msgid "Approved"
+msgstr "Одобрено"
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
@@ -419,23 +647,11 @@ msgstr "Обновление результатов по&hellip;"
 msgid "Category"
 msgstr "Категория"
 
-#: media/js/impala/suggestions.js:39 media/js/mkt/suggestions.js:66
-msgid "Search themes for <b>{0}</b>"
-msgstr "Поиск <b>{0}</b>  в темах"
-
-#: media/js/impala/suggestions.js:41 media/js/mkt/suggestions.js:68
-msgid "Search apps for <b>{0}</b>"
-msgstr "Искать в приложениях <b>{0}</b>"
-
-#: media/js/impala/suggestions.js:43 media/js/mkt/suggestions.js:70
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Искать в дополнениях <b>{0}</b>"
-
 #: media/js/impala/users.js:33
 msgid "use original"
 msgstr "использовать оригинал"
 
-#: media/js/impala/stats/chart.js:267 media/js/mkt/stats/chart.js:320
+#: media/js/impala/stats/chart.js:267
 msgid "Week of {0}"
 msgstr "{0} неделя"
 
@@ -443,7 +659,7 @@ msgstr "{0} неделя"
 msgid "downloads"
 msgstr "загрузки"
 
-#: media/js/impala/stats/chart.js:270 media/js/mkt/stats/chart.js:326
+#: media/js/impala/stats/chart.js:270
 msgid "{0} users"
 msgstr "{0} пользователей"
 
@@ -455,27 +671,27 @@ msgstr "{0} дополнений"
 msgid "{0} collections"
 msgstr "{0} подборок"
 
-#: media/js/impala/stats/chart.js:273 media/js/mkt/stats/chart.js:328
+#: media/js/impala/stats/chart.js:273
 msgid "{0} reviews"
 msgstr "{0} отзывов"
 
-#: media/js/impala/stats/chart.js:275 media/js/mkt/stats/chart.js:323 media/js/mkt/stats/chart_column.js:125
+#: media/js/impala/stats/chart.js:275
 msgid "{0} sales"
 msgstr "{0} продаж"
 
-#: media/js/impala/stats/chart.js:276 media/js/mkt/stats/chart.js:324 media/js/mkt/stats/chart_column.js:126
+#: media/js/impala/stats/chart.js:276
 msgid "{0} refunds"
 msgstr "{0} возмещений"
 
-#: media/js/impala/stats/chart.js:277 media/js/mkt/stats/chart.js:325
+#: media/js/impala/stats/chart.js:277
 msgid "{0} installs"
 msgstr "{0} установок"
 
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102 media/js/mkt/stats/csv_keys.js:128
+#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
 msgstr "Загрузки"
 
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:6 media/js/mkt/stats/csv_keys.js:129
+#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
 msgstr "Ежедневных пользователей"
 
@@ -483,16 +699,16 @@ msgstr "Ежедневных пользователей"
 msgid "Amount, in USD"
 msgstr "Сумма, в долларах США"
 
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:123
+#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97
 msgid "Number of Contributions"
 msgstr "Число взносов"
 
-#: media/js/impala/stats/chart.js:447 media/js/mkt/stats/chart.js:395
+#: media/js/impala/stats/chart.js:447
 msgid "More Info..."
 msgstr "Подробнее..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: media/js/impala/stats/chart.js:451 media/js/mkt/stats/chart.js:399
+#: media/js/impala/stats/chart.js:451
 msgid "Details for {0}"
 msgstr "Подробности для {0}"
 
@@ -532,165 +748,163 @@ msgstr "Подписчики"
 msgid "Ratings"
 msgstr "Рейтинги"
 
-#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107 media/js/mkt/stats/chart_column.js:147
+#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107
 msgid "Sales"
 msgstr "Продажи"
 
-#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106 media/js/mkt/stats/chart.js:364 media/js/mkt/stats/csv_keys.js:3 media/js/mkt/stats/csv_keys.js:132
+#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106
 msgid "Installs"
 msgstr "Установки"
 
-#: media/js/impala/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:57
+#: media/js/impala/stats/csv_keys.js:42
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58
+#: media/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
 msgstr "Управление дополнениями"
 
-#: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59
+#: media/js/impala/stats/csv_keys.js:44
 msgid "Search Results"
 msgstr "Результаты поиска"
 
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
-#: media/js/mkt/stats/csv_keys.js:62
+#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
 msgstr "Промо домашней страницы"
 
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64
+#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49
 msgid "Homepage Featured"
 msgstr "Избранные домашней страницы"
 
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66
+#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
 msgstr "Набирающие популярность домашней страницы"
 
-#: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67
+#: media/js/impala/stats/csv_keys.js:52
 msgid "Homepage Most Popular"
 msgstr "Самые популярные домашней страницы"
 
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70
+#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55
 msgid "Detail Page"
 msgstr "Страница информации"
 
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71
+#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56
 msgid "Detail Page (bottom)"
 msgstr "Страница информации (внизу)"
 
-#: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72
+#: media/js/impala/stats/csv_keys.js:57
 msgid "Detail Page (Development Channel)"
 msgstr "Страница информации (канал разработки)"
 
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
-#: media/js/mkt/stats/csv_keys.js:75
+#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
 msgstr "Часто используется с"
 
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62 media/js/mkt/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:77
+#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62
 msgid "Others By Author"
 msgstr "Другие от автора"
 
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64 media/js/mkt/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:79
+#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64
 msgid "Dependencies"
 msgstr "Зависимости"
 
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81
+#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
 msgstr "Upsell"
 
-#: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83
+#: media/js/impala/stats/csv_keys.js:68
 msgid "Sharing"
 msgstr "Разделение"
 
-#: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84
+#: media/js/impala/stats/csv_keys.js:69
 msgid "Category Pages"
 msgstr "Страницы категорий"
 
-#: media/js/impala/stats/csv_keys.js:70 media/js/mkt/stats/csv_keys.js:85
+#: media/js/impala/stats/csv_keys.js:70
 msgid "Collections"
 msgstr "Подборки"
 
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86
+#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
 msgstr "Размещение в категории Карусель избранных"
 
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90
+#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
 msgstr "Размещение в категории Самая рейтинговая"
 
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92
+#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
 msgstr "Размещение в категории Наиболее популярная"
 
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94
+#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
 msgstr "Размещение в категории Недавно добавленная"
 
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96
+#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
 msgstr "Обзор дополнений Сортировка по избранным"
 
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98
+#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
 msgstr "Обзор дополнений Сортировка по пользователям"
 
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100
+#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
 msgstr "Обзор дополнений Сортировка по рейтингу"
 
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102
+#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
 msgstr "Обзор дополнений Сортировка по дате создания"
 
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104
+#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
 msgstr "Обзор дополнений Сортировка по имени"
 
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106
+#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
 msgstr "Обзор дополнений Сортировка по популярности"
 
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108
+#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
 msgstr "Обзор дополнений Сортировка по дате обновления"
 
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110
+#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Обзор дополнений Сортировка по набору популярности"
 
-#: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124
+#: media/js/impala/stats/csv_keys.js:98
 msgid "Total Amount Contributed"
 msgstr "Общая сумма взносов"
 
-#: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125
+#: media/js/impala/stats/csv_keys.js:99
 msgid "Average Contribution"
 msgstr "Средний взнос"
 
-#: media/js/impala/stats/csv_keys.js:108 media/js/mkt/stats/csv_keys.js:133
+#: media/js/impala/stats/csv_keys.js:108
 msgid "Usage"
 msgstr "Использование"
 
-#: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137
+#: media/js/impala/stats/csv_keys.js:111
 msgid "Firefox"
 msgstr "Firefox"
 
-#: media/js/impala/stats/csv_keys.js:112 media/js/mkt/stats/csv_keys.js:138
+#: media/js/impala/stats/csv_keys.js:112
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: media/js/impala/stats/csv_keys.js:113 media/js/mkt/stats/csv_keys.js:139
+#: media/js/impala/stats/csv_keys.js:113
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: media/js/impala/stats/csv_keys.js:114 media/js/mkt/stats/csv_keys.js:140
+#: media/js/impala/stats/csv_keys.js:114
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: media/js/impala/stats/csv_keys.js:115 media/js/mkt/stats/csv_keys.js:141
+#: media/js/impala/stats/csv_keys.js:115
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: media/js/impala/stats/csv_keys.js:116 media/js/mkt/stats/csv_keys.js:142
+#: media/js/impala/stats/csv_keys.js:116
 msgid "Fennec"
 msgstr "Fennec"
 
@@ -725,12 +939,12 @@ msgid "Downloads from {0} to {1}"
 msgstr "Загрузки, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:139 media/js/mkt/stats/csv_keys.js:152
+#: media/js/impala/stats/csv_keys.js:139
 msgid "Daily Users, last {0} days"
 msgstr "Ежедневные пользователи, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:141 media/js/mkt/stats/csv_keys.js:153
+#: media/js/impala/stats/csv_keys.js:141
 msgid "Daily Users from {0} to {1}"
 msgstr "Ежедневные пользователи, с {0} по {1}"
 
@@ -915,405 +1129,41 @@ msgid "Sales from {0} to {1}"
 msgstr "Продажи, с {0} по {1}"
 
 #. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:253 media/js/mkt/stats/csv_keys.js:147
+#: media/js/impala/stats/csv_keys.js:253
 msgid "Installs, last {0} days"
 msgstr "Установки, последние {0} дней"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:255 media/js/mkt/stats/csv_keys.js:149
+#: media/js/impala/stats/csv_keys.js:255
 msgid "Installs from {0} to {1}"
 msgstr "Установки, с {0} по {1}"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:261 media/js/mkt/stats/csv_keys.js:223
+#: media/js/impala/stats/csv_keys.js:261
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> за последние {1} дней"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269 media/js/mkt/stats/csv_keys.js:225 media/js/mkt/stats/csv_keys.js:231
+#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b>, с {1} по {2}"
 
 #. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:267 media/js/mkt/stats/csv_keys.js:229
+#: media/js/impala/stats/csv_keys.js:267
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "в среднем <b>{0}</b> за последние {1} дней"
 
-#: media/js/impala/stats/overview.js:19 media/js/mkt/stats/overview.js:17
+#: media/js/impala/stats/overview.js:19
 msgid "No data available."
 msgstr "Данные недоступны."
 
-#: media/js/impala/stats/table.js:74 media/js/mkt/stats/table.js:88
+#: media/js/impala/stats/table.js:74
 msgid "Date"
 msgstr "Дата"
 
-#: media/js/impala/stats/topchart.js:96 media/js/mkt/stats/topchart.js:96
+#: media/js/impala/stats/topchart.js:96
 msgid "Other"
 msgstr "Другое"
-
-#: media/js/mkt/apps.js:84
-msgid "The manifest could not be found at the given location."
-msgstr "Манифест в данном месте обнаружить не удалось."
-
-#: media/js/mkt/apps.js:87 media/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Не удалось связаться с хостом приложения."
-
-#: media/js/mkt/apps.js:90 media/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Не удалось распарсить манифест приложения."
-
-#: media/js/mkt/apps.js:93 media/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Некорректный манифест приложения."
-
-#: media/js/mkt/apps.js:96
-msgid "App is already installed."
-msgstr "Приложение уже установлено."
-
-#: media/js/mkt/apps.js:100
-msgid "Internal server error."
-msgstr "Внутренняя ошибка сервера."
-
-#: media/js/mkt/apps.js:103
-msgid "Internal server error on app installation."
-msgstr "Внутренняя ошибка сервера при установке приложения."
-
-#: media/js/mkt/apps.js:106 media/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Установка не удалась. Пожалуйста, повторите попытку позже."
-
-#: media/js/mkt/buttons.js:38
-msgid "Purchasing"
-msgstr "Покупка"
-
-#: media/js/mkt/buttons.js:44
-msgid "Purchased"
-msgstr "Куплено"
-
-#: media/js/mkt/buttons.js:70
-msgid "Launch"
-msgstr "Запуск"
-
-#: media/js/mkt/consumer_init.js:24
-msgid "Click here to view the mobile Marketplace!"
-msgstr "Нажмите здесь, чтобы открыть мобильный Магазин!"
-
-#: media/js/mkt/ecosystem.js:26
-msgid "This video requires a browser with support for open video "
-msgstr "Для этого видео необходим браузер с поддержкой открытого видео "
-
-#: media/js/mkt/ecosystem.js:27
-msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "или <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-
-#: media/js/mkt/ecosystem.js:28
-msgid "Flash Player</a>."
-msgstr "Flash-плейер</a>."
-
-#: media/js/mkt/feedback.js:38
-msgid "Message must not be empty."
-msgstr "Сообщение не должно быть пустым."
-
-#: media/js/mkt/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Вход через Persona не удался. Может быть у вас нет учётной записи для этого адреса эл. почты?"
-
-#: media/js/mkt/login.js:78
-msgid "Persona login failed. A server error was encountered."
-msgstr "Ошибка входа через Persona. Произошла ошибка сервера."
-
-#: media/js/mkt/lookup-tool.js:65
-msgid "Show All Results"
-msgstr "Показать все результаты"
-
-#: media/js/mkt/lookup-tool.js:68
-msgid "Over {0} results found, consider refining your search."
-msgstr "Найдено более {0} результатов, попробуйте уточнить параметры поиска."
-
-#: media/js/mkt/manifest.js:46
-msgid "Requested Permissions:"
-msgstr "Запрошенные разрешения:"
-
-#: media/js/mkt/manifest.js:54
-msgid "Certified"
-msgstr "Сертифицированный"
-
-#: media/js/mkt/manifest.js:57
-msgid "Privileged"
-msgstr "Привилегированный"
-
-#: media/js/mkt/manifest.js:60
-msgid "Unprivileged"
-msgstr "Непривилегированный"
-
-#: media/js/mkt/manifest.js:66
-msgid "No reason given"
-msgstr "Причина не указана"
-
-#: media/js/mkt/overlay.js:41
-msgid "OK"
-msgstr "OK"
-
-#: media/js/mkt/payments.js:69
-msgid "Payment failed. Try again later."
-msgstr "Платеж не прошел. Пожалуйста, попробуйте позже."
-
-#: media/js/mkt/reviewers.js:100
-msgid "Packaged App"
-msgstr "Упакованное приложение"
-
-#: media/js/mkt/reviewers.js:104
-msgid "Privileged App"
-msgstr "Привилегированное приложение"
-
-#: media/js/mkt/reviewers.js:107
-msgid "More Information Requested"
-msgstr "Запрошено больше информации"
-
-#: media/js/mkt/reviewers.js:110
-msgid "Contains Editor Comment"
-msgstr "Содержит комментарий редактора"
-
-#: media/js/mkt/reviewers.js:114
-msgid "Premium App"
-msgstr "Премиум приложение"
-
-#: media/js/mkt/reviewers.js:117
-msgid "Escalated"
-msgstr "Отправлено наверх"
-
-#: media/js/mkt/reviewers.js:122
-msgid "Free"
-msgstr "Бесплатно"
-
-#: media/js/mkt/reviewers.js:230
-msgid "Any"
-msgstr "Любая"
-
-#: media/js/mkt/reviewers.js:257
-msgid "Approved app: {app}"
-msgstr ""
-
-#: media/js/mkt/reviewers.js:260
-msgid "Rejected app: {app}"
-msgstr ""
-
-#: media/js/mkt/reviewers.js:266
-msgid "Error approving app: {app}"
-msgstr ""
-
-#: media/js/mkt/reviewers.js:267
-msgid "Error rejecting app: {app}"
-msgstr ""
-
-#: media/js/mkt/themes_review.js:174
-msgid "Requested Info"
-msgstr "Требуемая информация"
-
-#: media/js/mkt/themes_review.js:175
-msgid "Flagged"
-msgstr "Отмечено"
-
-#: media/js/mkt/themes_review.js:176
-msgid "Duplicate"
-msgstr "Дубликат"
-
-#: media/js/mkt/themes_review.js:177
-msgid "Rejected"
-msgstr "Отклонено"
-
-#: media/js/mkt/themes_review.js:178
-msgid "Approved"
-msgstr "Одобрено"
-
-#. L10n: {0} is the number of characters left.
-#: media/js/mkt/utils.js:89
-msgid "{0} character left."
-msgid_plural "{0} characters left."
-msgstr[0] "остался {0} символ."
-msgstr[1] "осталось {0} символа."
-msgstr[2] "осталось {0} символов."
-
-#: media/js/mkt/stats/chart.js:327
-msgid "{0} apps"
-msgstr "{0} приложений"
-
-#: media/js/mkt/stats/chart.js:339
-msgid "Week"
-msgstr "Неделя"
-
-#: media/js/mkt/stats/chart.js:342
-msgid "Month"
-msgstr "Месяц"
-
-#: media/js/mkt/stats/chart.js:345
-msgid "Day"
-msgstr "День"
-
-#: media/js/mkt/stats/chart.js:352 media/js/mkt/stats/csv_keys.js:9 media/js/mkt/stats/csv_keys.js:18 media/js/mkt/stats/csv_keys.js:27
-msgid "Amount Earned"
-msgstr "Заработанная сумма"
-
-#: media/js/mkt/stats/chart.js:356 media/js/mkt/stats/csv_keys.js:12 media/js/mkt/stats/csv_keys.js:21 media/js/mkt/stats/csv_keys.js:30 media/js/mkt/stats/csv_keys.js:134
-msgid "Units Sold"
-msgstr "Продано копий"
-
-#: media/js/mkt/stats/chart.js:360 media/js/mkt/stats/csv_keys.js:15 media/js/mkt/stats/csv_keys.js:24 media/js/mkt/stats/csv_keys.js:33
-msgid "Units Refunded"
-msgstr "Копий за которые возвращены деньги"
-
-#: media/js/mkt/stats/chart.js:368
-msgid "Users"
-msgstr "Пользователи"
-
-#: media/js/mkt/stats/chart.js:372
-msgid "Apps"
-msgstr "Приложения"
-
-#: media/js/mkt/stats/chart_column.js:122
-msgid "by currency {0}"
-msgstr "по валюте {0}"
-
-#: media/js/mkt/stats/chart_column.js:123
-msgid "by source {0}"
-msgstr "по источнику {0}"
-
-#: media/js/mkt/stats/chart_column.js:131 media/js/mkt/stats/table.js:95
-msgid "Currency"
-msgstr "Валюта"
-
-#: media/js/mkt/stats/chart_column.js:135 media/js/mkt/stats/table.js:98
-msgid "Source"
-msgstr "Источник"
-
-#: media/js/mkt/stats/chart_column.js:143
-msgid "Revenue"
-msgstr "Доход"
-
-#: media/js/mkt/stats/chart_column.js:151
-msgid "Refunds"
-msgstr "Возмещения"
-
-#: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
-msgid "Apps Added"
-msgstr "Добавленные приложения"
-
-#: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
-msgid "Apps Installed"
-msgstr "Установленные приложения"
-
-#: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
-msgid "Reviews"
-msgstr "Отзывы"
-
-#: media/js/mkt/stats/csv_keys.js:45 media/js/mkt/stats/csv_keys.js:208 media/js/mkt/stats/csv_keys.js:209
-msgid "New Users"
-msgstr "Новые пользователи"
-
-#: media/js/mkt/stats/csv_keys.js:48 media/js/mkt/stats/csv_keys.js:204 media/js/mkt/stats/csv_keys.js:205
-msgid "Total Users"
-msgstr "Всего пользователей"
-
-#: media/js/mkt/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:212 media/js/mkt/stats/csv_keys.js:213
-msgid "Total Visitors"
-msgstr "Всего посетителей"
-
-#: media/js/mkt/stats/csv_keys.js:54
-msgid "App Installs"
-msgstr "Установки приложения"
-
-#: media/js/mkt/stats/csv_keys.js:112
-msgid "Marketplace Browse Page"
-msgstr "Страница обзора Магазина"
-
-#: media/js/mkt/stats/csv_keys.js:113
-msgid "Marketplace Browse Page, Featured"
-msgstr "Страница обзора Магазина, Избранные"
-
-#: media/js/mkt/stats/csv_keys.js:114
-msgid "Marketplace Category Page"
-msgstr "Страница категорий Магазина"
-
-#: media/js/mkt/stats/csv_keys.js:115
-msgid "Marketplace Category Page, Featured"
-msgstr "Страница категорий Магазина, Избранные"
-
-#: media/js/mkt/stats/csv_keys.js:116
-msgid "Marketplace Detail Page"
-msgstr "Страница информации Магазина"
-
-#: media/js/mkt/stats/csv_keys.js:117
-msgid "Marketplace Detail Page, Upsell"
-msgstr "Страница информации Магазина, Upsell"
-
-#: media/js/mkt/stats/csv_keys.js:118
-msgid "Marketplace Home Page"
-msgstr "Домашняя страница Магазина"
-
-#: media/js/mkt/stats/csv_keys.js:119
-msgid "Marketplace Search Results"
-msgstr "Результаты поиска в Магазине"
-
-#: media/js/mkt/stats/csv_keys.js:120
-msgid "Marketplace Search Results, Featured"
-msgstr "Результаты поиска в Магазине, Избранные"
-
-#: media/js/mkt/stats/csv_keys.js:156
-msgid "Units Sold, last {0} days"
-msgstr "Продано копий, последние {0} дней"
-
-#: media/js/mkt/stats/csv_keys.js:157
-msgid "Units Sold from {0} to {1}"
-msgstr "Продано копий, с {0} по {1}"
-
-#: media/js/mkt/stats/csv_keys.js:160
-msgid "Amount Earned, last {0} days"
-msgstr "Заработанная сумма, последние {0} дней"
-
-#: media/js/mkt/stats/csv_keys.js:161
-msgid "Amount Earned {0} to {1}"
-msgstr "Заработанная сумма, с {0} по {1}"
-
-#: media/js/mkt/stats/csv_keys.js:164
-msgid "Units Refunded, last {0} days"
-msgstr "Копий за которые возвращены деньги, последние {0} дней"
-
-#: media/js/mkt/stats/csv_keys.js:165
-msgid "Units Refunded from {0} to {1}"
-msgstr "Копий за которые возвращены деньги, с {0} по {1}"
-
-#: media/js/mkt/stats/csv_keys.js:168 media/js/mkt/stats/csv_keys.js:169
-msgid "Total Units Sold by Currency"
-msgstr "Всего продано копий, по валюте"
-
-#: media/js/mkt/stats/csv_keys.js:172 media/js/mkt/stats/csv_keys.js:173
-msgid "Total Amount Earned by Currency"
-msgstr "Вся заработанная сумма, по валюте"
-
-#: media/js/mkt/stats/csv_keys.js:176 media/js/mkt/stats/csv_keys.js:177
-msgid "Total Units Refunded by Currency"
-msgstr "Всего копий за которые возвращены деньги, по валюте"
-
-#: media/js/mkt/stats/csv_keys.js:180 media/js/mkt/stats/csv_keys.js:181
-msgid "Total Units Sold by Source"
-msgstr "Всего продано копий, по источнику"
-
-#: media/js/mkt/stats/csv_keys.js:184 media/js/mkt/stats/csv_keys.js:185
-msgid "Total Amount Earned by Source"
-msgstr "Вся заработанная сумма, по источнику"
-
-#: media/js/mkt/stats/csv_keys.js:188 media/js/mkt/stats/csv_keys.js:189
-msgid "Total Units Refunded by Source"
-msgstr "Всего копий за которые возвращены деньги, по источнику"
-
-#: media/js/mkt/stats/csv_keys.js:216 media/js/mkt/stats/csv_keys.js:217
-msgid "Total Installs"
-msgstr "Всего установок"
-
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
-msgid "Select an application first"
-msgstr "Сначала выберите приложение"
 
 #: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -1534,38 +1384,6 @@ msgstr "Поиск рекомендаций&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Обновление рекомендаций&hellip;"
 
-#: media/js/zamboni/editors.js:162
-msgid "{name} was viewing this page first."
-msgstr "{name} просматривал эту страницу первым."
-
-#: media/js/zamboni/editors.js:212
-msgid "Receipt checked by app."
-msgstr "Квитанция была проверена приложением."
-
-#: media/js/zamboni/editors.js:214
-msgid "Receipt was not checked by app."
-msgstr "Квитанция не была проверена приложением."
-
-#: media/js/zamboni/editors.js:285
-msgid "{name} was viewing this add-on first."
-msgstr "{name} просматривал это дополнение первым."
-
-#: media/js/zamboni/editors.js:296
-msgid "Loading&hellip;"
-msgstr "Загрузка&hellip;"
-
-#: media/js/zamboni/editors.js:301
-msgid "Version Notes"
-msgstr "Примечания к версии"
-
-#: media/js/zamboni/editors.js:306
-msgid "Notes for Reviewers"
-msgstr "Примечания для проверяющих"
-
-#: media/js/zamboni/editors.js:311
-msgid "No version notes found"
-msgstr "Примечаний к версии не найдено"
-
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Средние отзывы"
@@ -1573,10 +1391,6 @@ msgstr "Средние отзывы"
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Число отзывов"
-
-#: media/js/zamboni/editors.js:486
-msgid "Error loading translation"
-msgstr ""
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
