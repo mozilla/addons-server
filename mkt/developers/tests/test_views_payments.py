@@ -691,6 +691,19 @@ class TestPayments(Patcher, amo.tests.TestCase):
             args=[addon_account.payment_account.pk]))
         eq_(self.webapp.reload().status, amo.STATUS_NULL)
 
+    def test_addon_payment_accounts_with_or_without_addons(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        self.login(self.user)
+        addon_account = setup_payment_account(self.webapp, self.user)
+        payment_accounts = reverse('mkt.developers.provider.payment_accounts')
+        res = self.client.get(payment_accounts)
+        eq_(json.loads(res.content)[0]['app-names'],
+            u'Something Something Steamcube!')
+        for apa in addon_account.payment_account.addonpaymentaccount_set.all():
+            apa.addon.delete()
+        res = self.client.get(payment_accounts)
+        eq_(json.loads(res.content)[0]['app-names'], u'')
+
     def setup_bango_portal(self):
         self.create_switch('bango-portal')
         self.user = UserProfile.objects.get(pk=31337)
