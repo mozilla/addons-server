@@ -20169,7 +20169,7 @@ msgstr "Сајт за мобилне уређаје"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
-msgstr "сазнајте више о <b>екстензијама</b>""
+msgstr "сазнајте више о <b>екстензијама</b>"
 
 #: templates/footer.html:4 templates/menu_links.html:20
 msgid "About"
@@ -20203,7 +20203,7 @@ msgstr "<img alt=\"Firefox\" src=\"{0}\"> екстензије за мобилн
 
 #: templates/header_title.html:14
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""<img alt=\"SeaMonkey\" src=\"{0}\"> екстензије"
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> екстензије"
 
 #: templates/header_title.html:16
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
