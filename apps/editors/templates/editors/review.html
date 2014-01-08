@@ -1,5 +1,9 @@
 {% extends "editors/base.html" %}
 
+{% block js %}
+    <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+{% endblock %}
+
 {% block title %}
   {{ editor_page_title(title=addon.name) }}
 {% endblock %}
