@@ -177,7 +177,8 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
         return None, None
 
     # Dict of {'read_permission_GROUP_TYPE': boolean}.
-    # Perm for dev, reviewer, senior_reviewer, moz_contact all True by default.
+    # Perm for dev, reviewer, senior_reviewer, moz_contact, staff all True by
+    # default.
     perms = perms or {}
     create_perms = dict(('read_permission_%s' % key, has_perm)
                         for key, has_perm in perms.iteritems())
