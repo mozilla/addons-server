@@ -231,6 +231,7 @@ class IT(REGION):
     default_currency = 'EUR'
     default_language = 'it'
     mcc = 222
+    ratingsbody = ratingsbodies.PEGI
 
 
 class CL(REGION):
@@ -240,6 +241,7 @@ class CL(REGION):
     default_currency = 'CLP'
     default_language = 'es'
     mcc = 730
+    ratingsbody = ratingsbodies.ESRB
 
 
 # Create a list of tuples like so (in alphabetical order):
