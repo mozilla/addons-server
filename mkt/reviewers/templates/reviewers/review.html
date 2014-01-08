@@ -133,7 +133,7 @@
               <th>{{ _('Notes for Reviewers') }}</th>
               <td class="activity_approval">
                 <div class="history-notes">
-                  {{ version.approvalnotes|nl2br|urlize(100) }}
+                  {{ version.approvalnotes|urlize(100)|nl2br }}
                 </div>
               </td>
             </tr>

@@ -243,6 +243,7 @@ RATINGS_MAPPING = {
         '12+': ratingsbodies.GENERIC_12,
         '16+': ratingsbodies.GENERIC_16,
         '18+': ratingsbodies.GENERIC_18,
+        'RP': ratingsbodies.GENERIC_RP,
         'default': ratingsbodies.GENERIC_3,
     },
     # TODO: Fix these to match?
@@ -388,8 +389,6 @@ INTERACTIVES_MAPPING = {
     'Shares Info': 'has_shares_info',
     'Shares Location': 'has_shares_location',
     'Digital Purchases': 'has_digital_purchases',
-    'Social Networking': 'has_social_networking',
-    'Digital Content Portal': 'has_digital_content_portal',
 }
 
 REVERSE_INTERACTIVES_MAPPING = dict(

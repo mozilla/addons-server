@@ -108,7 +108,7 @@ MOCK_GET_APP_INFO = '''<?xml version="1.0" encoding="utf-16"?>
         <FIELD NAME="rating_Generic" TYPE="string" VALUE="16+" />
         <FIELD NAME="descriptors_Generic" TYPE="string" VALUE="Language" />
         <FIELD NAME="storefront" TYPE="string" VALUE="Mozilla" />
-        <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Social Networking, Users Interact, " />
+        <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Digital Purchases, Users Interact, " />
     </ROW>
 </WEBSERVICE>
 '''
@@ -124,7 +124,7 @@ MOCK_SET_STOREFRONT_DATA = '''<?xml version="1.0" encoding="utf-16"?>
     <FIELD NAME="company" TYPE="string" VALUE="Mozilla" />
     <FIELD NAME="rating" TYPE="string" VALUE="16+" />
     <FIELD NAME="descriptors" TYPE="string" VALUE="Language, Online" />
-    <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Social Networking, Users Interact, " />
+    <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Digital Purchases, Users Interact, " />
   </ROW>
 </WEBSERVICE>
 '''

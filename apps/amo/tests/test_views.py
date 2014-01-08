@@ -69,7 +69,7 @@ class TestCommon(amo.tests.TestCase):
 
     def login(self, user=None, get=False):
         email = '%s@mozilla.com' % user
-        self.login(email)
+        super(TestCommon, self).login(email)
         if get:
             return UserProfile.objects.get(email=email)
 

@@ -297,7 +297,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
     def test_get_interactive_elements(self):
         app = self.create_app()
-        app.set_interactives(['has_social_networking', 'has_shares_info'])
+        app.set_interactives(['has_digital_purchases', 'has_shares_info'])
 
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
@@ -305,7 +305,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
         eq_(data['content_ratings']['interactive_elements'],
             [{'label': 'shares-info', 'name': 'Shares Info'},
-             {'label': 'social-networking', 'name': 'Social Networking'}])
+             {'label': 'digital-purchases', 'name': 'Digital Purchases'}])
 
     def test_post_content_ratings(self):
         """Test the @action on AppViewSet to attach the content ratings."""

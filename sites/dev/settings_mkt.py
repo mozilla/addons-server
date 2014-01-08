@@ -209,10 +209,10 @@ MONOLITH_INDEX = 'mktdev-time_*'
 
 # IARC content ratings.
 IARC_COMPANY = 'Mozilla'
-IARC_ENV = 'test'
+IARC_ENV = 'prod'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD
 IARC_PLATFORM = 'Firefox'
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCPRODService/IARCServices.svc'
 IARC_STOREFRONT_ID = 4
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCPRODRating/Submission.aspx'

@@ -26,7 +26,6 @@ from django.core import paginator
 from django.core.cache import cache
 from django.core.files.storage import (FileSystemStorage,
                                        default_storage as storage)
-from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.core.serializers import json
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
@@ -147,25 +146,25 @@ def paginate(request, queryset, per_page=20, count=None):
     paginated.url = u'%s?%s' % (request.path, request.GET.urlencode())
     return paginated
 
-
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
               manage_url=None, headers=None, cc=None, real_email=False,
-              html_message=None, attachments=None):
+              html_message=None, attachments=None, async=False,
+              max_retries=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
     Adds blacklist checking and error logging.
     """
     from amo.helpers import absolutify
+    from amo.tasks import send_email
     import users.notifications as notifications
+
     if not recipient_list:
         return True
 
     if isinstance(recipient_list, basestring):
         raise ValueError('recipient_list should be a list, not a string.')
-
-    connection = get_email_backend(real_email)
 
     # Check against user notification settings
     if perm_setting:
@@ -202,24 +201,24 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if not headers:
         headers = {}
 
-    def send(recipient, message, html_message=None, attachments=None):
-        backend = EmailMultiAlternatives if html_message else EmailMessage
-
-        result = backend(subject, message,
-                         from_email, recipient, cc=cc, connection=connection,
-                         headers=headers, attachments=attachments)
-
-        if html_message:
-            result.attach_alternative(html_message, 'text/html')
-
-        try:
-            result.send(fail_silently=False)
-            return result
-        except Exception as e:
-            log.error('send_mail failed with error: %s' % e)
-            if not fail_silently:
-                raise
-            return False
+    def send(recipient, message, **options):
+        kwargs = {
+            'async': async,
+            'attachments': attachments,
+            'cc': cc,
+            'fail_silently': fail_silently,
+            'from_email': from_email,
+            'headers': headers,
+            'html_message': html_message,
+            'max_retries': max_retries,
+            'real_email': real_email,
+        }
+        kwargs.update(options)
+        args = (recipient, subject, message)
+        if async:
+            return send_email.delay(*args, **kwargs)
+        else:
+            return send_email(*args, **kwargs)
 
     if white_list:
         if perm_setting:
@@ -236,7 +235,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     args=[token, hash, perm_setting.short],
                     add_prefix=False))
 
-                context = {
+                context_options = {
                     'message': message,
                     'manage_url': manage_url,
                     'unsubscribe_url': unsubscribe_url,
@@ -250,16 +249,16 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                 # Render this template in the default locale until
                 # bug 635840 is fixed.
                 with no_translation():
-                    message_with_unsubscribe = text_template.render(
-                        Context(context, autoescape=False))
+                    context = Context(context_options, autoescape=False)
+                    message_with_unsubscribe = text_template.render(context)
 
                 if html_message:
-                    context['message'] = html_message
+                    context_options['message'] = html_message
                     with no_translation():
-                        html_message_with_unsubscribe = html_template.render(
-                            Context(context, autoescape=False))
+                        context = Context(context_options, autoescape=False)
+                        html_with_unsubscribe = html_template.render(context)
                         result = send([recipient], message_with_unsubscribe,
-                                      html_message_with_unsubscribe,
+                                      html_message=html_with_unsubscribe,
                                       attachments=attachments)
                 else:
                     result = send([recipient], message_with_unsubscribe,

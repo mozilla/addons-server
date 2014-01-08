@@ -105,6 +105,7 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
                 app.set_iarc_info(data['submission_id'], data['security_code'])
 
             app.set_content_ratings(data.get('ratings', {}))
+            log.info(u'Content descriptors %s' % data.get('descriptors', []))
             app.set_descriptors(data.get('descriptors', []))
             app.set_interactives(data.get('interactives', []))
 

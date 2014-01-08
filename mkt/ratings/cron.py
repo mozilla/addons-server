@@ -42,4 +42,4 @@ def email_daily_ratings():
 
         send_mail_jinja(subject, 'ratings/emails/daily_digest.html',
                         context, recipient_list=author_emails,
-                        perm_setting='app_new_review')
+                        perm_setting='app_new_review', async=True)
