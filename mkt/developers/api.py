@@ -104,10 +104,9 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             if 'submission_id' in data and 'security_code' in data:
                 app.set_iarc_info(data['submission_id'], data['security_code'])
 
-            app.set_content_ratings(data.get('ratings', {}))
-            log.info(u'Content descriptors %s' % data.get('descriptors', []))
             app.set_descriptors(data.get('descriptors', []))
             app.set_interactives(data.get('interactives', []))
+            app.set_content_ratings(data.get('ratings', {}))
 
             # Update status if incomplete status.
             log.info('Checking app:%s completeness after IARC pingback.'
