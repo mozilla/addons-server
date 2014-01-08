@@ -6,11 +6,13 @@ DESC_GENERAL = _lazy(u'General Audiences')
 # L10n: %d is the age in years.
 DESC_LAZY = _lazy(u'Not recommended for users younger than %d years of age')
 DESC_REJECTED = _lazy(u'Rejected for All Audiences')
+DESC_PENDING = _lazy(u'Rating Pending')
 
 NAME_GENERAL = _lazy('For all ages')
 # L10n: %d is the age in years. For ages %d and higher.
 NAME_LAZY = _lazy('For ages %d+')  # Fill this in after accessing.
 NAME_REJECTED = _lazy(u'Rating Rejected')
+NAME_PENDING = _lazy(u'Rating Pending')
 
 
 class RATING(object):
@@ -131,13 +133,22 @@ class GENERIC_18(RATING):
     adult = True
 
 
+class GENERIC_RP(RATING):
+    id = 5
+    iarc_name = 'RP'
+    label = 'pending'
+    name = NAME_PENDING
+    description = DESC_PENDING
+
+
 class GENERIC(RATING_BODY):
     """
     The generic game ratings body (used in Germany, for example).
     """
     id = 1
     iarc_name = 'Generic'
-    ratings = (GENERIC_3, GENERIC_7, GENERIC_12, GENERIC_16, GENERIC_18)
+    ratings = (GENERIC_3, GENERIC_7, GENERIC_12, GENERIC_16, GENERIC_18,
+               GENERIC_RP)
 
     name = _lazy('Generic')
     description = ''  # No comment.
@@ -234,13 +245,6 @@ class ESRB_A(RATING):
     iarc_name = 'Adults Only'
     name = _lazy('Adults Only 18+')  # L10n: `18+` is age eighteen and over.
     adult = True
-
-
-class ESRB_RP(RATING):
-    id = 4
-    iarc_name = 'Rating Pending'
-    label = 'pending'
-    name = _lazy('Rating Pending')
 
 
 class ESRB(RATING_BODY):
@@ -401,7 +405,7 @@ def pth(path):
 
 IARC_ICONS = {
     'ratings': {
-        # The keys are ratings' `iarc_name`s.
+        # The keys are ratings' labels.
         'classind': {
             '0': pth('CLASSIND_L.png'),
             '10': pth('CLASSIND_10.png'),
@@ -423,6 +427,7 @@ IARC_ICONS = {
             '12': pth('generic_12.png'),
             '16': pth('generic_16.png'),
             '18': pth('generic_18.png'),
+            'pending': pth('generic_rp.png'),
         },
         'pegi': {
             '3': pth('pegi_3.png'),
@@ -468,5 +473,7 @@ IARC_ICONS = {
         'shares-info': pth('interactives/ESRB_shares-info_small.png'),
         'shares-location': pth('interactives/ESRB_shares-location_small.png'),
         'users-interact': pth('interactives/ESRB_users-interact_small.png'),
+        'digital-purchases': pth(
+            'interactives/ESRB_digital-purchases_small.png'),
     }
 }

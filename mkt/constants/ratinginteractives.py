@@ -20,10 +20,4 @@ RATING_INTERACTIVES = OrderedDict([
     ('DIGITAL_PURCHASES', {
         'name': _lazy('Digital Purchases'),
     }),
-    ('SOCIAL_NETWORKING', {
-        'name': _lazy('Social Networking'),
-    }),
-    ('DIGITAL_CONTENT_PORTAL', {
-        'name': _lazy('Digital Content Portal'),
-    }),
 ])

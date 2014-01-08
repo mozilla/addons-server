@@ -172,11 +172,11 @@ class TestAppSerializer(amo.tests.TestCase):
              'pegi': [{'label': 'scary', 'name': 'Fear'}]})
 
     def test_interactive_elements(self):
-        self.app.set_interactives(['has_social_networking', 'has_shares_info'])
+        self.app.set_interactives(['has_digital_purchases', 'has_shares_info'])
         res = self.serialize(self.app)
         eq_(res['content_ratings']['interactive_elements'],
             [{'label': 'shares-info', 'name': 'Shares Info'},
-             {'label': 'social-networking', 'name': 'Social Networking'}])
+             {'label': 'digital-purchases', 'name': 'Digital Purchases'}])
 
     def test_dehydrate_content_rating_old_es(self):
         """Test dehydrate works with old ES mapping."""
@@ -375,7 +375,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
         })
         self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-        self.app.set_interactives(['has_social_networking', 'has_shares_info'])
+        self.app.set_interactives(['has_digital_purchases', 'has_shares_info'])
         self.app.save()
         self.refresh('webapp')
 
@@ -398,8 +398,8 @@ class TestESAppToDict(amo.tests.ESTestCase):
              'pegi': [{'label': 'scary', 'name': 'Fear'}]})
         eq_(sorted(res['content_ratings']['interactive_elements'],
                    key=lambda x: x['name']),
-            [{'label': 'shares-info', 'name': 'Shares Info'},
-             {'label': 'social-networking', 'name': 'Social Networking'}])
+            [{'label': 'digital-purchases', 'name': 'Digital Purchases'},
+             {'label': 'shares-info', 'name': 'Shares Info'}])
 
     def test_content_ratings_by_region(self):
         self.create_switch('iarc')
