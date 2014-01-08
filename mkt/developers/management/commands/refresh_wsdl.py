@@ -9,7 +9,8 @@ import requests
 root = os.path.join(settings.ROOT, 'lib', 'iarc', 'wsdl')
 sources = {
     'prod': [
-        # TODO: Add production WSDL url.
+        ('https://www.globalratings.com/iarcprodservice/iarcservices.svc?wsdl',
+         'iarc_services.wsdl'),
     ],
     'test': [
         ('https://www.globalratings.com/iarcdemoservice/iarcservices.svc?wsdl',
