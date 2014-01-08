@@ -29,7 +29,7 @@ from market.models import Price
 from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
 from mkt.developers import forms, forms_payments
 from mkt.developers.decorators import dev_required
-from mkt.developers.models import (CantCancel, PaymentAccount, UserInappKey)
+from mkt.developers.models import CantCancel, PaymentAccount, UserInappKey
 from mkt.developers.providers import get_provider
 from mkt.developers.utils import uri_to_pk
 
@@ -186,7 +186,8 @@ def payment_accounts(request):
 
     def account(acc):
         app_names = (', '.join(unicode(apa.addon.name)
-                     for apa in acc.addonpaymentaccount_set.all()))
+                     for apa in acc.addonpaymentaccount_set.all()
+                        if hasattr(apa, 'addon')))
         provider = acc.get_provider()
         data = {
             'account-url':
