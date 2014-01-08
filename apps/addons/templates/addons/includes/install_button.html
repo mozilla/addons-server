@@ -5,9 +5,6 @@
   {% if b.show_warning and not addon.is_webapp() %}
     href="{{ b.addon.get_url_path() }}"
     data-realurl="{{ link.url }}"
-  {% elif b.show_eula and not addon.is_webapp() and request.MOBILE %}
-    href="{{ link.url|absolutify }}"
-    data-realurl="{{ b.xpiurl }}"
   {% else %}
     href="{{ link.url }}"
   {% endif %}>
@@ -27,7 +24,7 @@
       {{ link.text }}
       {% if link.os %}
         <span class="os" data-os="{{ link.os.name }}">
-          {% if not (b.show_eula or b.show_contrib) %}
+          {% if not b.show_contrib %}
             {# L10n: {0} is a platform name like Windows or Mac OS X. #}
             {{ _('for {0}')|f(link.os.name) }}
           {% endif %}
