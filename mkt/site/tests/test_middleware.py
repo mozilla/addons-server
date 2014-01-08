@@ -255,6 +255,8 @@ class TestLocaleMiddlewarePersistence(amo.tests.TestCase):
 class TestVaryMiddleware(amo.tests.TestCase):
 
     def test_vary_headers(self):
+        vary = lambda res: [x.strip() for x in res['Vary'].split(',')]
+
         # What is expected to `Vary`.
         res = self.client.get('/privacy-policy')
         eq_(res['Vary'], 'Accept-Language, Cookie')
@@ -263,11 +265,15 @@ class TestVaryMiddleware(amo.tests.TestCase):
         eq_(res['Vary'], 'Accept-Language, Cookie')
 
         res = self.client.get('/api/v1/services/config/site/?vary=1')
-        eq_(res['Vary'], 'Accept-Language, Cookie')
+        # DRF adds `Vary: Accept` by default, so let's not check that.
+        assert 'Accept-Language' in vary(res), (
+            'Expected "Vary: Accept-Language"')
+        assert 'Cookie' in vary(res), 'Expected "Vary: Cookie"'
 
         res = self.client.get('/api/v1/services/config/site/?vary=0')
-        assert not res.has_header('Vary'), (
-            'Response should not have a "Vary" header')
+        assert 'Accept-Language' not in vary(res), (
+            'Should not contain "Vary: Accept-Language"')
+        assert 'Cookie' not in vary(res), 'Should not contain "Vary: Cookie"'
 
     # Patching MIDDLEWARE_CLASSES because other middleware tweaks vary headers.
     @mock.patch.object(settings, 'MIDDLEWARE_CLASSES', [
