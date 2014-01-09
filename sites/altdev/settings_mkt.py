@@ -191,9 +191,6 @@ ENABLE_API_ERROR_SERVICE = True
 # Until Bango can properly do refunds.
 BANGO_FAKE_REFUNDS = True
 
-if NEWRELIC_ENABLE:
-    NEWRELIC_INI = '/etc/newrelic.d/marketplace-dev.allizom.org.ini'
-
 ES_USE_PLUGINS = True
 
 # Cache timeout on the /search/featured API.

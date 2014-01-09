@@ -102,6 +102,3 @@ USE_HEKA_FOR_CEF = True
 USE_HEKA_FOR_TASTYPIE = False
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
-
-if NEWRELIC_ENABLE:
-    NEWRELIC_INI = '/etc/newrelic.d/addons-dev.allizom.org.ini'
