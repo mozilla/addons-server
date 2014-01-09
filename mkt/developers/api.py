@@ -106,6 +106,9 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
 
             app.set_descriptors(data.get('descriptors', []))
             app.set_interactives(data.get('interactives', []))
+            # Set content ratings last since it triggers a refresh on Content
+            # Ratings page. We want descriptors and interactives visible by
+            # the time it's refreshed.
             app.set_content_ratings(data.get('ratings', {}))
 
             # Update status if incomplete status.

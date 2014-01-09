@@ -30,6 +30,10 @@ $(function() {
         $("#learnmore").blur();
     }));
 
+    $(document).delegate('.moz-menu', 'click', function() {
+        $("#learnmore-msg").hide();
+    });
+
     $(".carousel").each(function() {
         var $self = $(this),
             $strip = $("ul", $self),

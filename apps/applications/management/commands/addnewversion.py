@@ -18,7 +18,7 @@ class Command(BaseCommand):
         except IndexError:
             raise CommandError(self.help)
 
-        msg = 'Adding version %r to application %r' % (args[1], args[0])
+        msg = 'Adding version %r to application %r\n' % (args[1], args[0])
         self.log.info(msg)
         self.stdout.write(msg)
 

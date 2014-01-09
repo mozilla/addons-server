@@ -26,7 +26,6 @@ ADMINS = ()
 DATABASES = {}
 DATABASES['default'] = dj_database_url.parse(private.DATABASES_DEFAULT_URL)
 DATABASES['default']['ENGINE'] = 'mysql_pool'
-DATABASES['default']['sa_pool_key'] = 'master'
 DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 
 DATABASES['slave'] = dj_database_url.parse(private.DATABASES_SLAVE_URL)
@@ -34,25 +33,23 @@ DATABASES['slave']['ENGINE'] = 'mysql_pool'
 DATABASES['slave']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 DATABASES['slave']['sa_pool_key'] = 'slave'
 
-SERVICES_DATABASE = dj_database_url.parse(private.SERVICES_DATABASE_URL)
-
 DATABASE_POOL_ARGS = {
     'max_overflow': 10,
     'pool_size': 5,
     'recycle': 30
 }
 
+SERVICES_DATABASE = dj_database_url.parse(private.SERVICES_DATABASE_URL)
+
 SLAVE_DATABASES = ['slave']
 
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.memcached.MemcachedCache',
-#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#        'BACKEND': 'memcachepool.cache.UMemcacheCache',
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
-    },
+    }
 }
 
 SECRET_KEY = private.SECRET_KEY
@@ -67,10 +64,6 @@ CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_ACCESS_KEY_ID = private.AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY = private.AWS_SECRET_ACCESS_KEY
-AWS_STORAGE_BUCKET_NAME = private.AWS_STORAGE_BUCKET_NAME
-
 NETAPP_STORAGE = private.NETAPP_STORAGE_ROOT + '/shared_storage'
 MIRROR_STAGE_PATH = private.NETAPP_STORAGE_ROOT + '/public-staging'
 GUARDED_ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/guarded-addons'
@@ -88,6 +81,10 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
 HERA = []
 LOGGING['loggers'].update({
+    'amqp': {'level': logging.WARNING},
+    'raven': {'level': logging.WARNING},
+    'requests': {'level': logging.WARNING},
+    'z.addons': {'level': logging.INFO},
     'z.task': { 'level': logging.DEBUG },
     'z.hera': { 'level': logging.INFO },
     'z.redis': { 'level': logging.DEBUG },
@@ -105,7 +102,8 @@ CACHE_MACHINE_USE_REDIS = True
 
 RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
 RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
+RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
+                 RECAPTCHA_PUBLIC_KEY)
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
@@ -181,9 +179,22 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 240
 
 LESS_PREPROCESS = True
 
-XSENDFILE_HEADER  = 'X-Accel-Redirect'
+XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 ALLOW_SELF_REVIEWS = True
+
+GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
+GOOGLE_API_CREDENTIALS = private.GOOGLE_API_CREDENTIALS
+
+MONOLITH_SERVER = 'https://monolith-dev.allizom.org'
+
+GEOIP_URL = 'http://geo-dev.marketplace.allizom.org'
+
+AWS_ACCESS_KEY_ID = private.AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = private.AWS_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = private.AWS_STORAGE_BUCKET_NAME
+
+RAISE_ON_SIGNAL_ERROR = True
 
 API_THROTTLE = False
 
