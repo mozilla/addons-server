@@ -6,9 +6,9 @@ from settings_base import *
 
 import private_mkt
 
+DOMAIN = "marketplace-altdev.allizom.org"
 SERVER_EMAIL = 'zmarketplacedev@addons.mozilla.org'
 
-DOMAIN = "marketplace-altdev.allizom.org"
 SITE_URL = 'https://marketplace-altdev.allizom.org'
 SERVICES_URL = SITE_URL
 STATIC_URL = 'https://marketplace-dev-shared-data.s3.amazonaws.com/'
@@ -20,6 +20,7 @@ CSP_STATIC_URL = STATIC_URL[:-1]
 CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
 CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
+CSP_FONT_SRC = CSP_FONT_SRC + (CSP_STATIC_URL,)
 
 STATIC_URL_PREFIX = 'shared_storage/'
 
@@ -51,14 +52,10 @@ SYSLOG_TAG = "http_app_addons_marketplacealtdev"
 SYSLOG_TAG2 = "http_app_addons_marketplacealtdev_timer"
 SYSLOG_CSP = "http_app_addons_marketplacealtdev_csp"
 
-# The django statsd client to use, see django-statsd for more.
-STATSD_CLIENT = 'django_statsd.clients.moz_heka'
-
 STATSD_PREFIX = 'marketplace-altdev'
 
 ## Celery
 BROKER_URL = private_mkt.BROKER_URL
-
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
@@ -77,9 +74,10 @@ PAYPAL_EMBEDDED_AUTH = {
     'SIGNATURE': private_mkt.PAYPAL_EMBEDDED_AUTH_SIGNATURE,
 }
 
-PAYPAL_CGI_AUTH = { 'USER': private_mkt.PAYPAL_CGI_AUTH_USER,
-                    'PASSWORD': private_mkt.PAYPAL_CGI_AUTH_PASSWORD,
-                    'SIGNATURE': private_mkt.PAYPAL_CGI_AUTH_SIGNATURE,
+PAYPAL_CGI_AUTH = {
+    'USER': private_mkt.PAYPAL_CGI_AUTH_USER,
+    'PASSWORD': private_mkt.PAYPAL_CGI_AUTH_PASSWORD,
+    'SIGNATURE': private_mkt.PAYPAL_CGI_AUTH_SIGNATURE,
 }
 
 PAYPAL_CHAINS = (
@@ -97,8 +95,12 @@ SENTRY_DSN = private_mkt.SENTRY_DSN
 
 WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
+DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
+DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 
 SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
+SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
+                  'secret': private_mkt.SOLITUDE_OAUTH_SECRET}
 
 PAYPAL_LIMIT_PREAPPROVAL = False
 
@@ -107,9 +109,20 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace-dev.allizom.org',
                       'https://marketplace-altdev.allizom.org']
 
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
+# Override the limited marketplace ones with these ones from AMO. Because
+# the base gets overridden in the mkt.settings file, we'll set them back again.
+# Note the addition of dbg here.
+AMO_LANGUAGES = (
+    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa',
+    'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
+    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sr-Latn', 'sv-SE',
+    'tr', 'uk', 'vi', 'zh-CN', 'zh-TW', 'dbg'
+)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
+HIDDEN_LANGUAGES = (
+    'cy',
+)
 
 BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 
@@ -117,6 +130,13 @@ BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
 SIGNING_VALID_ISSUERS = ['marketplace-dev-cdn.allizom.org']
+
+#Bug 793876
+SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
+SIGNED_APPS_SERVER_ACTIVE = True
+SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
+SIGNED_APPS_REVIEWER_SERVER_ACTIVE = True
+SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
 HEKA_CONF = {
     'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {
@@ -128,7 +148,7 @@ HEKA_CONF = {
                 'raven': (
                     'heka_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
         },
-    'sender': {
+    'stream': {
         'class': 'heka.streams.UdpStream',
         'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
         'port': private.HEKA_CONF_SENDER_PORT,
@@ -137,13 +157,61 @@ HEKA_CONF = {
 }
 HEKA = client_from_dict_config(HEKA_CONF)
 USE_HEKA_FOR_CEF = True
-SENTRY_CLIENT = 'djangoraven.heka.HekaDjangoClient'
+
+GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
+
+
+# Pass through the DSN to the Raven client and force signal
+# registration so that exceptions are passed through to sentry
+#RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 
 # See mkt/settings.py for more info.
-# This configures altdev to talk to the dev version of webpay/solitude.
-APP_PURCHASE_KEY = 'marketplace-dev.allizom.org'
-APP_PURCHASE_AUD = 'marketplace-dev.allizom.org'
+APP_PURCHASE_KEY = DOMAIN
+APP_PURCHASE_AUD = DOMAIN
 APP_PURCHASE_TYP = 'mozilla-dev/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 
+# We upgraded to jQuery 1.9.1. Run this command to include jquery-migrate in the JS
+# bundle to see which APIs and features were removed from jQuery core.
+MINIFY_BUNDLES['js'].update(asset_bundles.jquery_migrated())
+
+MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
+
+# This is mainly for Marionette tests.
+WEBAPP_MANIFEST_NAME = 'Marketplace Dev'
+
+# Replace LESS with Stylus.
+try:
+    MINIFY_BUNDLES['css'].update(asset_bundles.less2stylus())
+except AttributeError:
+    pass
+
+ENABLE_API_ERROR_SERVICE = True
+
+# Until Bango can properly do refunds.
+BANGO_FAKE_REFUNDS = True
+
+if NEWRELIC_ENABLE:
+    NEWRELIC_INI = '/etc/newrelic.d/marketplace-dev.allizom.org.ini'
+
 ES_USE_PLUGINS = True
+
+# Cache timeout on the /search/featured API.
+CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 5  # 5 min.
+
+WHITELISTED_CLIENTS_EMAIL_API = private_mkt.WHITELISTED_CLIENTS_EMAIL_API
+
+POSTFIX_AUTH_TOKEN = private_mkt.POSTFIX_AUTH_TOKEN
+
+POSTFIX_DOMAIN = 'marketplace-dev.allizom.org'
+
+MONOLITH_INDEX = 'mktdev-time_*'
+
+# IARC content ratings.
+IARC_ENV = 'prod'
+IARC_MOCK = False
+IARC_PASSWORD = private_mkt.IARC_PASSWORD
+IARC_PLATFORM = 'Firefox'
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCPRODService/IARCServices.svc'
+IARC_STOREFRONT_ID = 4
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCPRODRating/Submission.aspx'
