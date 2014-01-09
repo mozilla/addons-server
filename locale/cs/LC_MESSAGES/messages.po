@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-08 09:42-0700\n"
-"PO-Revision-Date: 2013-12-05 09:19+0000\n"
+"PO-Revision-Date: 2014-01-09 16:58+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386235146.0\n"
+"X-POOTLE-MTIME: 1389286695.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -3658,15 +3658,15 @@ msgstr "Zablokováno"
 
 #: apps/constants/base.py:49
 msgid "Published"
-msgstr ""
+msgstr "Publikováno"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr ""
+msgstr "Schváleno, ale nepublikováno"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
-msgstr ""
+msgstr "Zavrženo"
 
 #: apps/constants/base.py:144
 msgid "Full"
@@ -4590,7 +4590,7 @@ msgstr "Při nahrávání obrázku se vyskytla chyba."
 
 #: apps/devhub/views.py:1372
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Verze %s je zakázána."
 
 #: apps/devhub/views.py:1375
 msgid "Version %s deleted."
@@ -9357,10 +9357,14 @@ msgstr "Smazáním této verze trvale smažete:"
 #: apps/devhub/templates/devhub/versions/list.html:271
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
+"<strong>Důležité:</strong> Jakmile je verze smazána, nemůžete nahrát novou "
+"verzi se stejným číslem verze."
 
 #: apps/devhub/templates/devhub/versions/list.html:276
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 msgstr ""
+"Smazání verze, která již byla zkontrolována, může způsobit zdržení při "
+"kontrole vaší příští aktualizace."
 
 #: apps/devhub/templates/devhub/versions/list.html:279 mkt/developers/templates/developers/apps/status.html:343
 msgid "Are you sure you wish to delete this version?"
@@ -9372,7 +9376,7 @@ msgstr "Smazat verzi"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Disable Version"
-msgstr ""
+msgstr "Zakázat verzi"
 
 #: apps/devhub/templates/devhub/versions/list.html:293
 msgid "Add a new Version"
@@ -10320,7 +10324,7 @@ msgstr "Tento měsíc"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "Tento rok"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -10948,7 +10952,7 @@ msgstr "Pokud máte zájem o doplňky, ale nejste technicky založený(á), stá
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Řekněte svým přátelům, které doplňky používáte."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -13562,7 +13566,7 @@ msgstr "Autentizace Persona selhala."
 
 #: apps/users/views.py:362
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Pro tento účet použijte svůj ověřený e-mail."
 
 #: apps/users/views.py:486
 msgid "Wrong email address or password!"
@@ -13631,14 +13635,17 @@ msgstr ""
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr ""
+"Po klepnutí na \"smazat\" bude váš účet <strong>trvale odstraněn</strong>. To "
+"prakticky znamená:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Již se nebudete moci k %(site)s přihlásit."
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr ""
+"Vaše recenze a hodnocení nebudou smazána, ale již s vámi nebudou asociovány."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13931,30 +13938,38 @@ msgstr "Proč registrace?"
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
 msgstr ""
+"Pro stahování a instalaci veřejných doplňků <strong>není</strong> registrace "
+"na AMO vyžadována."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Registrace je vyžadována pouze tehdy, když:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Chcete psát recenze k doplňkům."
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
+msgstr "Chcete si evidovat své oblíbené doplňky do sbírek."
 
 #: apps/users/templates/users/register.html:21
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
+msgstr "Jste vývojář doplňku a chcete jej nahrát na AMO."
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
 msgstr ""
+"Pro úspěšné dokončení registrace vám bude odeslán potvrzující e-mail na "
+"adresu, kterou jste zadali. Pro potvrzení účtu postupujte dle instrukcí, "
+"které jsou v něm uvedeny."
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
 msgstr ""
+"Pokud chcete, můžete si přečíst <a href=\"%(legal)s\" title=\"Právní "
+"informace\">právní informace</a> a <a href=\"%(privacy)s\" title=\"Zásady "
+"ochrany soukromí\">zásady ochrany soukromí</a>."
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
 msgid "Register"
@@ -14192,15 +14207,15 @@ msgstr "Nemůžete mít více než jednu sbírku doporučených aplikací či ap
 
 #: mkt/comm/forms.py:20 mkt/comm/forms.py:30
 msgid "Invalid note type."
-msgstr ""
+msgstr "Neplatný typ poznámky."
 
 #: mkt/comm/forms.py:32
 msgid "Note body is empty."
-msgstr ""
+msgstr "Obsah poznámky je prázdný."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "Verze %s neexistuje"
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -15622,7 +15637,7 @@ msgstr "Dokončeno"
 
 #: mkt/constants/platforms.py:42 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox pro desktop"
 
 #: mkt/constants/platforms.py:77 mkt/constants/platforms.py:81
 msgid "Fully open mobile ecosystem"
@@ -15847,19 +15862,19 @@ msgstr "Strach"
 
 #: mkt/constants/ratingdescriptors.py:93
 msgid "Social Interaction Functionality"
-msgstr ""
+msgstr "Funkce pro interakci se sociálními sítěmi"
 
 #: mkt/constants/ratingdescriptors.py:94
 msgid "Personal Data Sharing"
-msgstr ""
+msgstr "Sdílení osobních dat"
 
 #: mkt/constants/ratingdescriptors.py:95
 msgid "In-app Purchase Option"
-msgstr ""
+msgstr "Možnost plateb v aplikaci"
 
 #: mkt/constants/ratingdescriptors.py:96
 msgid "Location Data Sharing"
-msgstr ""
+msgstr "Sdílení dat o umístění"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Frightening Content"
@@ -15947,7 +15962,7 @@ msgstr "Pouze pro osoby starší 18 let"
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:260
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "Všechny státy Ameriky s výjimkou Brazílie"
 
 #: mkt/constants/ratingsbodies.py:261
 msgid "Entertainment Software Rating Board"
@@ -16107,11 +16122,11 @@ msgstr "Může být zvoleno pouze jedno z nabízených hodnocení."
 
 #: mkt/developers/forms.py:378
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Zvolen neplatný region."
 
 #: mkt/developers/forms.py:381
 msgid "Only regions the app is already available in may be selected."
-msgstr ""
+msgstr "Mohou být zvoleny pouze ty regiony, pro které je aplikace již dostupná."
 
 #: mkt/developers/forms.py:468 mkt/webapps/models.py:431
 msgid "You must upload at least one screenshot or video."
@@ -16221,7 +16236,7 @@ msgstr "Vložte prosím platné ID odeslání."
 
 #: mkt/developers/forms.py:1171 mkt/developers/forms.py:1182
 msgid "Invalid submission ID or security code."
-msgstr ""
+msgstr "Neplatné ID odeslání nebo neplatný bezpečnostní kód."
 
 #: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:269
 msgid "App Price"
@@ -16473,6 +16488,8 @@ msgstr "Nová verze byla úspěšně přidána."
 #: mkt/developers/views.py:297
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr ""
+"Gratulujeme. Odeslání vaší aplikace bylo dokončeno a brzy bude "
+"zkontrolována!"
 
 #: mkt/developers/views.py:299
 msgid "Content ratings successfully saved."
@@ -16594,16 +16611,20 @@ msgstr "Aktuálně nemáte klíč pro API."
 #: mkt/developers/templates/developers/base_impala.html:30 mkt/developers/templates/developers/apps/status.html:34
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
 msgstr ""
+"Předtím, než bude vaše aplikace zkontrolována či publikována, musíte "
+"nastavit <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:37
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> or else your app will be disabled on %(pretty_date)s."
 msgstr ""
+"Musíte nastavit <a href=\"%(next_url)s\">%(next_step_name)s</a> nebo bude vaše "
+"aplikace dne %(pretty_date)s zakázána."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "Musíte nastavit <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
@@ -19900,7 +19921,7 @@ msgstr "Aktuálně nečekají na kontrolu žádné položky."
 
 #: mkt/reviewers/templates/reviewers/queue.html:95 mkt/reviewers/templates/reviewers/themes/queue_list.html:88
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Příručka redaktora"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:10
 msgid "{region} Review Queue"
@@ -20185,7 +20206,7 @@ msgstr "Popište váš důvod pro označení"
 
 #: mkt/search/forms.py:20
 msgid "Reviewed"
-msgstr ""
+msgstr "Zkontrolováno"
 
 #: mkt/search/forms.py:29
 msgid "Paid"
@@ -20512,11 +20533,11 @@ msgstr "Vložte detaily k aplikaci"
 
 #: mkt/submit/templates/submit/next_steps.html:31
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr ""
+msgstr "<span>Nastavení <a href=\"%(rating_url)s\">Hodnocení obsahu</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:37
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
-msgstr ""
+msgstr "<span>Nastavení <a href=\"%(pay_url)s\">Plateb</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:42
 msgid "Wait for Review"
@@ -20549,7 +20570,7 @@ msgstr "Jakmile bude vaše aplikace zkontrolována, zobrazí se na stránkách s
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:88
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
-msgstr ""
+msgstr "<strong>Další krok:</strong> Nastavení %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:94
 msgid "<strong>What's next:</strong> Publish Your App"
@@ -20659,11 +20680,11 @@ msgstr "Musíte zvolit alespoň jednu kategorii."
 
 #: mkt/webapps/models.py:472
 msgid "You must set up content ratings."
-msgstr ""
+msgstr "Musíte nastavit hodnocení obsahu."
 
 #: mkt/webapps/models.py:474
 msgid "You must set up a payment account."
-msgstr ""
+msgstr "Musíte nastavit účet pro platby."
 
 #: mkt/webapps/models.py:499
 msgid "This app's submission process has not been fully completed."
