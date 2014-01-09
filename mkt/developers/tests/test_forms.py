@@ -134,7 +134,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
         # Everything except Brazil.
         regions = set(mkt.regions.ALL_REGION_IDS)
         regions.remove(mkt.regions.BR.id)
-        self.assertSetEqual(self.get_app().get_region_ids(worldwide=True),
+        self.assertSetEqual(self.get_app().get_region_ids(restofworld=True),
             regions)
 
         form = forms.RegionForm(data=None, **self.kwargs)
@@ -145,14 +145,14 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.initial['enable_new_regions'], False)
 
     def test_initial_excluded_in_regions_and_future_regions(self):
-        regions = [mkt.regions.BR, mkt.regions.UK, mkt.regions.WORLDWIDE]
+        regions = [mkt.regions.BR, mkt.regions.UK, mkt.regions.RESTOFWORLD]
         for region in regions:
             self.app.addonexcludedregion.create(region=region.id)
 
         regions = set(mkt.regions.ALL_REGION_IDS)
         regions.remove(mkt.regions.BR.id)
         regions.remove(mkt.regions.UK.id)
-        regions.remove(mkt.regions.WORLDWIDE.id)
+        regions.remove(mkt.regions.RESTOFWORLD.id)
 
         self.assertSetEqual(self.get_app().get_region_ids(),
             regions)
@@ -162,8 +162,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
             regions - set(mkt.regions.SPECIAL_REGION_IDS))
         eq_(form.initial['enable_new_regions'], False)
 
-    def test_worldwide_only(self):
-        form = forms.RegionForm({'regions': [mkt.regions.WORLDWIDE.id]},
+    def test_restofworld_only(self):
+        form = forms.RegionForm({'regions': [mkt.regions.RESTOFWORLD.id]},
                                 **self.kwargs)
         assert form.is_valid(), form.errors
 
@@ -233,7 +233,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
         self.assertSetEqual(form.initial['regions'],
             set(mkt.regions.REGION_IDS) -
             set(mkt.regions.SPECIAL_REGION_IDS) -
-            set(regions + [mkt.regions.WORLDWIDE.id]))
+            set(regions + [mkt.regions.RESTOFWORLD.id]))
         eq_(form.initial['enable_new_regions'], True)
 
     def test_rated_games_with_content_rating(self):
@@ -252,7 +252,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
-    def test_exclude_worldwide(self):
+    def test_exclude_restofworld(self):
         form = forms.RegionForm({'regions': mkt.regions.REGION_IDS,
                                  'restricted': '1',
                                  'enable_new_regions': False}, **self.kwargs)
@@ -269,8 +269,9 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
-    def test_reinclude_worldwide(self):
-        self.app.addonexcludedregion.create(region=mkt.regions.WORLDWIDE.id)
+    def test_reinclude_restofworld(self):
+        self.app.addonexcludedregion.create(
+                region=mkt.regions.RESTOFWORLD.id)
 
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS},
                                 **self.kwargs)
@@ -278,15 +279,15 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
-    def test_worldwide_valid_choice_paid(self):
+    def test_restofworld_valid_choice_paid(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         form = forms.RegionForm(
-            {'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
+            {'regions': [mkt.regions.RESTOFWORLD.id]}, **self.kwargs)
         assert form.is_valid(), form.errors
 
-    def test_worldwide_valid_choice_free(self):
+    def test_restofworld_valid_choice_free(self):
         form = forms.RegionForm(
-            {'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
+            {'regions': [mkt.regions.RESTOFWORLD.id]}, **self.kwargs)
         assert form.is_valid(), form.errors
 
     def test_china_initially_excluded_if_null(self):

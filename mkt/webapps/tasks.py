@@ -35,7 +35,7 @@ from users.models import UserProfile
 from users.utils import get_task_user
 
 import mkt
-from mkt.constants.regions import WORLDWIDE
+from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.tasks import _fetch_manifest, fetch_icon, validator
 from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
@@ -354,7 +354,7 @@ def dump_app(id, **kw):
 
     req = RequestFactory().get('/')
     req.user = AnonymousUser()
-    req.REGION = WORLDWIDE
+    req.REGION = RESTOFWORLD
 
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)

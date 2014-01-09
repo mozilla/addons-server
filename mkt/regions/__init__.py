@@ -7,7 +7,7 @@ _local = local()
 
 
 def get_region():
-    return getattr(_local, 'region', WORLDWIDE.slug)
+    return getattr(_local, 'region', RESTOFWORLD.slug)
 
 
 def get_region_id():

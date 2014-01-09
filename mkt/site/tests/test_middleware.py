@@ -60,7 +60,7 @@ class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
 
     def test_redirect_for_good_region(self):
         redirects = [
-            ('/worldwide/', '/?region=worldwide'),
+            ('/restofworld/', '/?region=restofworld'),
             ('/br/', '/?region=br'),
             ('/us/', '/?region=us'),
             ('/BR/', '/?region=br'),
@@ -81,8 +81,8 @@ class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
         self.assert3xx(r, '/developers/support?region=br&omg=yes', 302)
 
     def test_switch_region(self):
-        r = self.client.get('/worldwide/?region=brazil')
-        self.assert3xx(r, '/?region=worldwide', 302)
+        r = self.client.get('/restofworld/?region=brazil')
+        self.assert3xx(r, '/?region=restofworld', 302)
 
     def test_404_for_bad_prefix(self):
         for url in ['/xxx', '/xxx/search/',
@@ -181,7 +181,7 @@ class TestLocaleMiddleware(amo.tests.TestCase):
         eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
     def test_no_api_cookie(self):
-        res = self.client.get('/api/v1/apps/schema/?region=worldwide',
+        res = self.client.get('/api/v1/apps/schema/?region=restofworld',
                               HTTP_ACCEPT_LANGUAGE='de')
         ok_(not res.cookies)
 

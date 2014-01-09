@@ -209,7 +209,7 @@ MINIFY_MOZMARKET = True
 # This flag overrides the GeoIP server functions and will force the
 # return of the GEOIP_DEFAULT_VAL
 GEOIP_URL = ''
-GEOIP_DEFAULT_VAL = 'worldwide'
+GEOIP_DEFAULT_VAL = 'restofworld'
 GEOIP_DEFAULT_TIMEOUT = .2
 
 SENTRY_DSN = None

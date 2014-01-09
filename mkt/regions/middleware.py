@@ -18,17 +18,17 @@ class RegionMiddleware(object):
         for name, region in mkt.regions.REGIONS_CHOICES:
             if ip_reg == name:
                 return region.slug
-        return mkt.regions.WORLDWIDE.slug
+        return mkt.regions.RESTOFWORLD.slug
 
     def process_request(self, request):
         regions = mkt.regions.REGIONS_DICT
 
-        reg = worldwide = mkt.regions.WORLDWIDE.slug
+        reg = restofworld = mkt.regions.RESTOFWORLD.slug
         stored_reg = ''
 
         if not getattr(request, 'API', False):
-            request.REGION = regions[worldwide]
-            mkt.regions.set_region(worldwide)
+            request.REGION = regions[restofworld]
+            mkt.regions.set_region(restofworld)
             return
 
         # ?region= -> geoip -> lang
@@ -39,7 +39,7 @@ class RegionMiddleware(object):
         else:
             reg = self.region_from_request(request)
             # If the above fails, let's try `Accept-Language`.
-            if reg == worldwide:
+            if reg == restofworld:
                 statsd.incr('z.regions.middleware.source.accept-lang')
                 if request.LANG == settings.LANGUAGE_CODE:
                     choices = mkt.regions.REGIONS_CHOICES[1:]
@@ -51,7 +51,7 @@ class RegionMiddleware(object):
                             reg = region.slug
                             break
                 # All else failed, try to match against our forced Language.
-                if reg == mkt.regions.WORLDWIDE.slug:
+                if reg == mkt.regions.RESTOFWORLD.slug:
                     # Try to find a suitable region.
                     for name, region in choices:
                         if region.default_language == request.LANG:
@@ -61,8 +61,8 @@ class RegionMiddleware(object):
                 a_l = request.META.get('HTTP_ACCEPT_LANGUAGE')
                 if (reg == 'us' and a_l is not None
                     and not a_l.startswith('en')):
-                    # Let us default to worldwide if it's not English.
-                    reg = mkt.regions.WORLDWIDE.slug
+                    # Let us default to restofworld if it's not English.
+                    reg = mkt.regions.RESTOFWORLD.slug
             else:
                 statsd.incr('z.regions.middleware.source.geoip')
 

@@ -71,14 +71,14 @@ class TestGetRegion(TestCase):
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_get_region_all(self, mock_request_region):
         self.give_permission()
-        geoip_fallback = regions.PE  # Different than the default (worldwide).
+        geoip_fallback = regions.PE  # Different than the default (restofworld).
         mock_request_region.return_value = geoip_fallback.slug
 
         # Test none-ish values (should return None, i.e. no region).
         eq_(self.region_for('None'), None)
 
         # Test string values (should return region with that slug).
-        eq_(self.region_for('worldwide'), regions.WORLDWIDE)
+        eq_(self.region_for('restofworld'), regions.RESTOFWORLD)
         eq_(self.region_for('us'), regions.US)
 
         # Test fallback to request.REGION (should return GeoIP region if region
@@ -86,10 +86,10 @@ class TestGetRegion(TestCase):
         eq_(self.region_for(None), geoip_fallback)
         eq_(self.region_for(''), geoip_fallback)
 
-        # Test fallback to worldwide (e.g. if GeoIP fails).
+        # Test fallback to restofworld (e.g. if GeoIP fails).
         with patch('mkt.regions.middleware.RegionMiddleware.'
                    'process_request') as mock_process_request:
-            eq_(self.region_for(None), regions.WORLDWIDE)
+            eq_(self.region_for(None), regions.RESTOFWORLD)
             ok_(mock_process_request.called)
 
         # Test invalid value (should raise exception).

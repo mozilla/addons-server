@@ -63,7 +63,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         3. If request.REGION is set, return it. (If the GET param `region` is
            either not set or set and empty, RegionMiddleware will attempt to
            determine the region via IP address).
-        4. Return the worldwide region.
+        4. Return the restofworld region.
         """
         region = request.GET.get('region')
         if region and region == 'None':
@@ -82,7 +82,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
                 raise ParseError(json.dumps({'error_message':
                                              {'region': ['Invalid region.']}}))
 
-        return getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+        return getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
 
     def search(self, request):
         form_data = self.get_search_data(request, ApiSearchForm)

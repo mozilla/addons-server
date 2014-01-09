@@ -776,7 +776,7 @@ class RegionForm(forms.Form):
 
         # If we have excluded regions, uncheck those.
         # Otherwise, default to everything checked.
-        self.regions_before = self.product.get_region_ids(worldwide=True)
+        self.regions_before = self.product.get_region_ids(restofworld=True)
 
         self.initial = {
             'regions': sorted(self.regions_before),

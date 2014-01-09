@@ -186,7 +186,7 @@ def es_app_to_dict(obj, profile=None, request=None):
 
     data['regions'] = [serialize_region(REGIONS_CHOICES_ID_DICT.get(k))
                        for k in app.get_region_ids(
-                           worldwide=True, excluded=obj.region_exclusions)]
+                           restofworld=True, excluded=obj.region_exclusions)]
 
     data['payment_account'] = None
     if src.get('premium_type') in amo.ADDON_PREMIUMS:

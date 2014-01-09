@@ -7,8 +7,8 @@ from mkt.regions import get_region, get_region_id, set_region
 
 @mock.patch('mkt.regions._local', None)
 def test_get_region_empty():
-    eq_(get_region(), regions.WORLDWIDE.slug)
-    eq_(get_region_id(), regions.WORLDWIDE.id)
+    eq_(get_region(), regions.RESTOFWORLD.slug)
+    eq_(get_region_id(), regions.RESTOFWORLD.id)
 
 
 @mock.patch('mkt.regions._local')

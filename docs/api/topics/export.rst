@@ -29,4 +29,4 @@ Caveats:
   present.
 
 * The export has no locale, region or carrier specified. It defaults to the
-  region ``worldwide`` and locale ``en-US``.
+  region ``restofworld`` and locale ``en-US``.

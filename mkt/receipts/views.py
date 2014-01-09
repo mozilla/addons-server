@@ -80,7 +80,7 @@ def _record(request, addon):
         try:
             region = request.REGION.id
         except AttributeError:
-            region = mkt.regions.WORLDWIDE.id
+            region = mkt.regions.RESTOFWORLD.id
         client_data, c = ClientData.objects.get_or_create(
             download_source=download_source,
             device_type=request.POST.get('device_type', ''),

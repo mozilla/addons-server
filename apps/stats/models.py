@@ -426,7 +426,7 @@ class ClientData(models.Model):
             if hasattr(request, 'REGION') and request.REGION:
                 region = request.REGION.id
             else:
-                region = mkt.regions.WORLDWIDE.id
+                region = mkt.regions.RESTOFWORLD.id
         if hasattr(request, 'LANG'):
             lang = request.LANG
         else:

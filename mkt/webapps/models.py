@@ -590,7 +590,7 @@ class Webapp(Addon):
         by the developer.
         """
 
-        user_region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+        user_region = getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
 
         # See if it's a game without a content rating.
         for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
@@ -630,7 +630,7 @@ class Webapp(Addon):
         price for the app.
 
         :param optional carrier: an int for the carrier.
-        :param optional region: an int for the region. Defaults to worldwide.
+        :param optional region: an int for the region. Defaults to restofworld.
         :param optional provider: an int for the provider. Defaults to bango.
         """
         if self.has_premium() and self.premium.price:
@@ -643,7 +643,7 @@ class Webapp(Addon):
         their is no price for the app.
 
         :param optional carrier: an int for the carrier.
-        :param optional region: an int for the region. Defaults to worldwide.
+        :param optional region: an int for the region. Defaults to restofworld.
         :param optional provider: an int for the provider. Defaults to bango.
         """
         if self.has_premium() and self.premium.price:
@@ -676,14 +676,14 @@ class Webapp(Addon):
         except IndexError:
             pass
 
-    def get_region_ids(self, worldwide=False, excluded=None):
+    def get_region_ids(self, restofworld=False, excluded=None):
         """
         Return IDs of regions in which this app is listed.
 
         If `excluded` is provided we'll use that instead of doing our own
         excluded lookup.
         """
-        if worldwide:
+        if restofworld:
             all_ids = mkt.regions.ALL_REGION_IDS
         else:
             all_ids = mkt.regions.REGION_IDS
@@ -730,16 +730,16 @@ class Webapp(Addon):
              <class 'mkt.constants.regions.CA'>,
              <class 'mkt.constants.regions.UK'>,
              <class 'mkt.constants.regions.US'>,
-             <class 'mkt.constants.regions.WORLDWIDE'>]
+             <class 'mkt.constants.regions.RESTOFWORLD'>]
         """
         _regions = map(mkt.regions.REGIONS_CHOICES_ID_DICT.get,
-                       self.get_region_ids(worldwide=True))
+                       self.get_region_ids(restofworld=True))
         return sorted(_regions, key=lambda x: x.slug)
 
     def listed_in(self, region=None, category=None):
         listed = []
         if region:
-            listed.append(region.id in self.get_region_ids(worldwide=True))
+            listed.append(region.id in self.get_region_ids(restofworld=True))
         if category:
             if isinstance(category, basestring):
                 filters = {'slug': category}

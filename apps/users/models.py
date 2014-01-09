@@ -135,7 +135,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                                          editable=False, db_index=True)
     user = models.ForeignKey(DjangoUser, null=True, editable=False, blank=True)
     is_verified = models.BooleanField(default=True)
-    region = models.CharField(max_length=9, null=True, blank=True,
+    region = models.CharField(max_length=11, null=True, blank=True,
                               editable=False)
     lang = models.CharField(max_length=5, null=True, blank=True,
                             editable=False)

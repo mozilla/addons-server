@@ -9,7 +9,7 @@ import amo.tests
 from lib.geoip import GeoIP
 
 
-def generate_settings(url='', default='worldwide', timeout=0.2):
+def generate_settings(url='', default='restofworld', timeout=0.2):
     return mock.Mock(GEOIP_URL=url, GEOIP_DEFAULT_VAL=default,
                      GEOIP_DEFAULT_TIMEOUT=timeout)
 
@@ -38,7 +38,7 @@ class GeoIPTest(amo.tests.TestCase):
         geoip = GeoIP(generate_settings())
         result = geoip.lookup('2.2.2.2')
         assert not mock_post.called
-        eq_(result, 'worldwide')
+        eq_(result, 'restofworld')
 
     @mock.patch('requests.post')
     def test_bad_request(self, mock_post):
@@ -49,7 +49,7 @@ class GeoIPTest(amo.tests.TestCase):
         result = geoip.lookup(ip)
         mock_post.assert_called_with('{0}/country.json'.format(url),
                                      timeout=0.2, data={'ip': ip})
-        eq_(result, 'worldwide')
+        eq_(result, 'restofworld')
 
     @mock.patch('requests.post')
     def test_timeout(self, mock_post):
@@ -60,7 +60,7 @@ class GeoIPTest(amo.tests.TestCase):
         result = geoip.lookup(ip)
         mock_post.assert_called_with('{0}/country.json'.format(url),
                                      timeout=0.2, data={'ip': ip})
-        eq_(result, 'worldwide')
+        eq_(result, 'restofworld')
 
     @mock.patch('requests.post')
     def test_connection_error(self, mock_post):
@@ -71,7 +71,7 @@ class GeoIPTest(amo.tests.TestCase):
         result = geoip.lookup(ip)
         mock_post.assert_called_with('{0}/country.json'.format(url),
                                      timeout=0.2, data={'ip': ip})
-        eq_(result, 'worldwide')
+        eq_(result, 'restofworld')
 
     @mock.patch('requests.post')
     def test_private_ip(self, mock_post):
@@ -88,4 +88,4 @@ class GeoIPTest(amo.tests.TestCase):
         for ip in addrs:
             result = geoip.lookup(ip)
             assert not mock_post.called
-            eq_(result, 'worldwide')
+            eq_(result, 'restofworld')

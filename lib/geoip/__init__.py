@@ -33,13 +33,13 @@ class GeoIP:
         self.timeout = float(getattr(settings, 'GEOIP_DEFAULT_TIMEOUT', .2))
         self.url = getattr(settings, 'GEOIP_URL', '')
         self.default_val = getattr(settings, 'GEOIP_DEFAULT_VAL',
-                                   regions.WORLDWIDE.slug).lower()
+                                   regions.RESTOFWORLD.slug).lower()
 
     def lookup(self, address):
         """Resolve an IP address to a block of geo information.
 
         If a given address is unresolvable or the geoip server is not defined,
-        return the default as defined by the settings, or "worldwide".
+        return the default as defined by the settings, or "restofworld".
 
         """
         if (self.url and waffle.switch_is_active('geoip-geodude') and

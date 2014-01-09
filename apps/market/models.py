@@ -20,7 +20,7 @@ from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
                                 PROVIDER_CHOICES)
 from mkt.constants import apps
-from mkt.constants.regions import WORLDWIDE, REGIONS_CHOICES_ID_DICT as RID
+from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -95,10 +95,10 @@ class Price(amo.models.ModelBase):
         Returns the PriceCurrency object or none.
 
         :param optional carrier: an int for the carrier.
-        :param optional region: an int for the region. Defaults to worldwide.
+        :param optional region: an int for the region. Defaults to restofworld.
         :param optional provider: an int for the provider. Defaults to bango.
         """
-        region = region or WORLDWIDE.id
+        region = region or RESTOFWORLD.id
         provider = provider or PROVIDER_BANGO
         if not hasattr(self, '_currencies'):
             Price.transformer([])
@@ -120,7 +120,7 @@ class Price(amo.models.ModelBase):
         Returns a tuple of Decimal(price), currency, locale.
 
         :param optional carrier: an int for the carrier.
-        :param optional region: an int for the region. Defaults to worldwide.
+        :param optional region: an int for the region. Defaults to restofworld.
         :param optional provider: an int for the provider. Defaults to bango.
         """
         price_currency = self.get_price_currency(carrier=carrier,
@@ -174,7 +174,7 @@ class PriceCurrency(amo.models.ModelBase):
                                  default=PAYMENT_METHOD_ALL)
 
     # These are the regions as defined in mkt/constants/regions.
-    region = models.IntegerField(default=1)  # Default to worldwide.
+    region = models.IntegerField(default=1)  # Default to restofworld.
     tier = models.ForeignKey(Price)
 
     # If this should show up in the developer hub.

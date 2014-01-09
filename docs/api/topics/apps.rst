@@ -136,8 +136,8 @@ App
                 {
                     "adolescent": true,
                     "mcc": null,
-                    "name": "Worldwide",
-                    "slug": "worldwide"
+                    "name": "Rest of World",
+                    "slug": "restofworld"
                 }
             ],
             "release_notes": null,

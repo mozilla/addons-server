@@ -13,7 +13,7 @@ from constants.payments import PROVIDER_BANGO
 from market.models import AddonPremium, PreApprovalUser, Price, Refund
 from mkt.constants import apps
 from mkt.constants.regions import (ALL_REGION_IDS, BR, HU,
-                                   SPAIN, US, WORLDWIDE)
+                                   SPAIN, US, RESTOFWORLD)
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -122,7 +122,7 @@ class TestPrice(amo.tests.TestCase):
 
     def test_region_ids_by_slug(self):
         eq_(Price.objects.get(pk=2).region_ids_by_slug(),
-            (BR.id, SPAIN.id, WORLDWIDE.id))
+            (BR.id, SPAIN.id, RESTOFWORLD.id))
 
 
 class TestPriceCurrencyChanges(amo.tests.TestCase):

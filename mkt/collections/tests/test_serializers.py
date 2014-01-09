@@ -46,7 +46,7 @@ class BaseTestCollectionMembershipField(object):
         if data is None:
             data = {}
         request = RequestFactory().get('/', data)
-        request.REGION = mkt.regions.WORLDWIDE
+        request.REGION = mkt.regions.RESTOFWORLD
         request.API = True
         return request
 

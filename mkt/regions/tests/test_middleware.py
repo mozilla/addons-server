@@ -20,9 +20,9 @@ _langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pl', 'pt-BR', 'pt-PT']
 class TestRegionMiddleware(amo.tests.TestCase):
 
     def test_lang_set_with_region(self):
-        for region in ('worldwide', 'us', 'br'):
+        for region in ('restofworld', 'us', 'br'):
             r = self.client.get('/robots.txt?region=%s' % region)
-            if region == 'worldwide':
+            if region == 'restofworld':
                 # Set cookie for first time only.
                 eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
             else:
@@ -30,7 +30,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
             eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
     def test_no_api_cookie(self):
-        res = self.client.get('/api/v1/apps/schema/?region=worldwide')
+        res = self.client.get('/api/v1/apps/schema/?region=restofworld')
         ok_(not res.cookies)
 
     @mock.patch('mkt.regions.set_region')
@@ -46,26 +46,26 @@ class TestRegionMiddleware(amo.tests.TestCase):
         for region in ('', 'BR', '<script>alert("ballin")</script>'):
             self.client.get('/api/v1/apps/?region=%s' % region,
                             HTTP_ACCEPT_LANGUAGE='fr')
-            set_region.assert_called_with(mkt.regions.WORLDWIDE.slug)
+            set_region.assert_called_with(mkt.regions.RESTOFWORLD.slug)
 
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     @mock.patch('mkt.regions.set_region')
     def test_accept_language(self, set_region, mock_rfr):
-        mock_rfr.return_value = mkt.regions.WORLDWIDE.slug
+        mock_rfr.return_value = mkt.regions.RESTOFWORLD.slug
         locales = [
-            ('', 'worldwide'),
+            ('', 'restofworld'),
             ('de', 'de'),
             ('en-us, de', 'us'),
             ('en-US', 'us'),
-            ('fr, en', 'worldwide'),
-            ('pt-XX, xx, yy', 'worldwide'),
-            ('pt', 'worldwide'),
-            ('pt, de', 'worldwide'),
-            ('pt-XX, xx, de', 'worldwide'),
+            ('fr, en', 'restofworld'),
+            ('pt-XX, xx, yy', 'restofworld'),
+            ('pt', 'restofworld'),
+            ('pt, de', 'restofworld'),
+            ('pt-XX, xx, de', 'restofworld'),
             ('pt-br', 'br'),
             ('pt-BR', 'br'),
-            ('xx, yy, zz', 'worldwide'),
-            ('<script>alert("ballin")</script>', 'worldwide'),
+            ('xx, yy, zz', 'restofworld'),
+            ('<script>alert("ballin")</script>', 'restofworld'),
             ('en-us;q=0.5, de', 'de'),
             ('es-PE', 'es'),
         ]
@@ -81,19 +81,19 @@ class TestRegionMiddleware(amo.tests.TestCase):
         assert not mock_rfr.called
 
     @mock.patch('mkt.regions.set_region')
-    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
-    def test_geoip_missing_worldwide(self, set_region):
-        """ Test for worldwide region """
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'restofworld')
+    def test_geoip_missing_restofworld(self, set_region):
+        """ Test for restofworld region """
         # The remote address by default is 127.0.0.1
         # Use 'sa-US' as the language to defeat the lanugage sniffer
         # Note: This may be problematic should we ever offer
         # apps in US specific derivation of SanskritRight.
         self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
-        set_region.assert_called_with('worldwide')
+        set_region.assert_called_with('restofworld')
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch('mkt.regions.set_region')
-    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'restofworld')
     def test_geoip_lookup_available(self, set_region, mock_lookup):
         lang = 'br'
         mock_lookup.return_value = lang
@@ -102,21 +102,21 @@ class TestRegionMiddleware(amo.tests.TestCase):
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch('mkt.regions.set_region')
-    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'restofworld')
     def test_geoip_lookup_unavailable_fall_to_accept_lang(self, set_region,
                                                           mock_lookup):
-        mock_lookup.return_value = 'worldwide'
+        mock_lookup.return_value = 'restofworld'
         self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='pt-BR')
         set_region.assert_called_with('br')
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch('mkt.regions.set_region')
-    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'restofworld')
     def test_geoip_lookup_unavailable(self, set_region, mock_lookup):
         lang = 'zz'
         mock_lookup.return_value = lang
         self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
-        set_region.assert_called_with('worldwide')
+        set_region.assert_called_with('restofworld')
 
     @mock.patch('mkt.regions.set_region')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')

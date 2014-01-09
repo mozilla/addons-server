@@ -51,10 +51,10 @@ class REGION(object):
     special = False
 
 
-class WORLDWIDE(REGION):
+class RESTOFWORLD(REGION):
     id = 1
-    name = _lazy(u'Worldwide')
-    slug = 'worldwide'
+    name = _lazy(u'Rest of World')
+    slug = 'restofworld'
     weight = -1
 
 
@@ -246,7 +246,7 @@ class CL(REGION):
 
 # Create a list of tuples like so (in alphabetical order):
 #
-#     [('worldwide', <class 'mkt.constants.regions.WORLDWIDE'>),
+#     [('restofworld', <class 'mkt.constants.regions.RESTOFWORLD'>),
 #      ('brazil', <class 'mkt.constants.regions.BR'>),
 #      ('usa', <class 'mkt.constants.regions.US'>)]
 #
@@ -254,7 +254,7 @@ class CL(REGION):
 DEFINED = sorted(inspect.getmembers(sys.modules[__name__], inspect.isclass),
                  key=lambda x: getattr(x, 'slug', None))
 REGIONS_CHOICES = (
-    [('worldwide', WORLDWIDE)] +
+    [('restofworld', RESTOFWORLD)] +
     sorted([(v.slug, v) for k, v in DEFINED if v.id and v.weight > -1],
            key=lambda x: x[1].weight, reverse=True)
 )
@@ -262,13 +262,13 @@ REGIONS_CHOICES = (
 BY_SLUG = sorted([v for k, v in DEFINED if v.id and v.weight > -1],
                  key=lambda v: v.slug)
 
-REGIONS_CHOICES_SLUG = ([('worldwide', WORLDWIDE)] +
+REGIONS_CHOICES_SLUG = ([('restofworld', RESTOFWORLD)] +
                         [(v.slug, v) for v in BY_SLUG])
-REGIONS_CHOICES_ID = ([(WORLDWIDE.id, WORLDWIDE)] +
+REGIONS_CHOICES_ID = ([(RESTOFWORLD.id, RESTOFWORLD)] +
                       [(v.id, v) for v in BY_SLUG])
-# Worldwide last here so we can display it after all the other regions.
+# Rest of World last here so we can display it after all the other regions.
 REGIONS_CHOICES_NAME = ([(v.id, v.name) for v in BY_SLUG] +
-                        [(WORLDWIDE.id, WORLDWIDE.name)])
+                        [(RESTOFWORLD.id, RESTOFWORLD.name)])
 
 REGIONS_DICT = dict(REGIONS_CHOICES)
 REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
@@ -278,7 +278,7 @@ ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
 SPECIAL_REGIONS = [x for x in BY_SLUG if x.special]
 SPECIAL_REGION_IDS = sorted(x.id for x in SPECIAL_REGIONS)
 
-# Regions not including worldwide.
+# Regions not including restofworld.
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]
 
 GENERIC_RATING_REGION_SLUG = 'generic'

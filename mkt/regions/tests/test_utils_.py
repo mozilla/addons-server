@@ -5,7 +5,7 @@ from mkt.regions.utils import parse_region
 
 
 def test_parse_region():
-    eq_(parse_region('worldwide'), regions.WORLDWIDE)
+    eq_(parse_region('restofworld'), regions.RESTOFWORLD)
     eq_(parse_region('br'), regions.BR)
     eq_(parse_region('brazil'), regions.BR)
     eq_(parse_region('bRaZiL'), regions.BR)

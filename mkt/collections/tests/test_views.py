@@ -526,7 +526,7 @@ class TestCollectionViewSetDetail(BaseCollectionViewSetTest):
         self.collection.update(region=mkt.regions.SPAIN.id)
         url = self.collection_url('detail', self.collection.pk)
         res = self.client.get(url, {
-            'region': mkt.regions.WORLDWIDE.slug
+            'region': mkt.regions.RESTOFWORLD.slug
         })
         # Filtering should not be applied.
         eq_(res.status_code, 200)
