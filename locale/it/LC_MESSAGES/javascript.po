@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-08 09:42-0700\n"
-"PO-Revision-Date: 2013-12-03 11:17+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-01-08 21:11+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386069430.0\n"
+"X-POOTLE-MTIME: 1389215479.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -31,7 +31,7 @@ msgstr "Selezionare un file…"
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "L'estensione del componente aggiuntivo deve essere .xpi, .jar o .xml"
+msgstr "L’estensione del componente aggiuntivo deve essere .xpi, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
@@ -121,23 +121,25 @@ msgstr "I video devono essere in formato WebM."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr "Il file dell'app pacchettizata deve avere estensione <code>.zip</code>."
+msgstr "Il file dell’app pacchettizata deve avere estensione <code>.zip</code>."
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] "L'app non ha superato i controlli con {0} errore."
-msgstr[1] "L'app non ha superato i controlli con {0} errori."
+msgstr[0] "L’app non ha superato i controlli con {0} errore."
+msgstr[1] "L’app non ha superato i controlli con {0} errori."
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "L'app ha superato il processo di validazione senza errori e con {0} avviso."
-msgstr[1] "L'app ha superato il processo di validazione senza errori e con {0} avvisi."
+msgstr[0] ""
+"L’app ha superato il processo di validazione senza errori e con {0} avviso."
+msgstr[1] ""
+"L’app ha superato il processo di validazione senza errori e con {0} avvisi."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr "L'app ha superato il processo di validazione senza errori né avvisi."
+msgstr "L’app ha superato il processo di validazione senza errori né avvisi."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -145,11 +147,11 @@ msgstr "Non è possibile trovare il manifesto a questo indirizzo."
 
 #: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr "L'host dell'App non può essere raggiunto."
+msgstr "L’host dell'App non può essere raggiunto."
 
 #: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr "Il manifesto dell'app non è analizzabile."
+msgstr "Il manifesto dell’app non è analizzabile."
 
 #: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
