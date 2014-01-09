@@ -629,7 +629,7 @@ class TestWebapp(amo.tests.TestCase):
         eq_(data['submission_id'], 1234)
         eq_(data['security_code'], 'sektor')
         eq_(data['rating'], 'Adults Only')
-        eq_(data['title'], 'LOL (ha)')
+        eq_(data['title'], 'LOL')
         eq_(data['rating_system'], 'ESRB')
         eq_(data['descriptors'], 'Blood')
         self.assertSetEqual(data['interactive_elements'].split(', '),
@@ -640,7 +640,7 @@ class TestWebapp(amo.tests.TestCase):
         eq_(data['submission_id'], 1234)
         eq_(data['security_code'], 'sektor')
         eq_(data['rating'], '3+')
-        eq_(data['title'], 'LOL (ha)')
+        eq_(data['title'], 'LOL')
         eq_(data['rating_system'], 'PEGI')
         eq_(data['descriptors'], 'Fear')
 

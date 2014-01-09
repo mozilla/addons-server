@@ -185,7 +185,6 @@ BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'
 MONOLITH_INDEX = 'mktstage-time_*'
 
 # IARC content ratings.
-IARC_COMPANY = 'Mozilla'
 IARC_ENV = 'prod'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD

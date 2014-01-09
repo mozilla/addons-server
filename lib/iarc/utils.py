@@ -28,7 +28,6 @@ def render_xml(template, context):
     """
     # All XML passed requires a password. Let's add it to the context.
     context['password'] = settings.IARC_PASSWORD
-    context['company'] = settings.IARC_COMPANY
     context['platform'] = settings.IARC_PLATFORM
 
     template = env.get_template(template)
@@ -36,16 +35,13 @@ def render_xml(template, context):
 
 
 def get_iarc_app_title(app):
-    """
-    Unique identifier for app to hand to IARC (e.g. 'Test App (test-app)').
-    """
+    """Delocalized app name."""
     from mkt.webapps.models import Webapp
 
     with amo.utils.no_translation(app.default_locale):
         delocalized_app = Webapp.objects.get(pk=app.pk)
 
-    return u'{0} ({1})'.format(unicode(delocalized_app.name),
-                               app.app_slug)
+    return unicode(delocalized_app.name)
 
 
 class IARC_Parser(object):

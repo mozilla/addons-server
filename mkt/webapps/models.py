@@ -1212,6 +1212,7 @@ class Webapp(Addon):
             # App wasn't rated by IARC, return.
             return
 
+        authors = self.authors.all()
         xmls = []
         for cr in self.content_ratings.all():
             xmls.append(render_xml('set_storefront_data.xml', {
@@ -1220,6 +1221,7 @@ class Webapp(Addon):
                 'rating_system': cr.get_body().iarc_name,
                 'release_date': datetime.date.today() if not disable else '',
                 'title': get_iarc_app_title(self),
+                'company': authors[0].display_name if authors.exists() else '',
                 'rating': cr.get_rating().iarc_name,
                 'descriptors': self.rating_descriptors.iarc_deserialize(
                     body=cr.get_body()),
