@@ -600,6 +600,7 @@ def profile(request, user):
 
     # Don't show marketplace reviews for AMO (since that would break).
     reviews = list(user.reviews.exclude(addon__type=amo.ADDON_WEBAPP))
+    reviews = amo.utils.paginate(request, reviews)
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,

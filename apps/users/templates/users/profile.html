@@ -110,6 +110,7 @@
       <p class="no-reviews no-results">{{ _('No add-on reviews yet.') }}</p>
     {% endif %}
   </div>
+  {{ reviews|impala_paginator }}
 </div>
 
 {% endblock %}
