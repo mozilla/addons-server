@@ -1147,9 +1147,13 @@ class TestContentRatings(amo.tests.TestCase):
         self.req.session = mock.MagicMock()
 
     @override_settings(IARC_SUBMISSION_ENDPOINT='https://yo.lo',
-                       IARC_STOREFRONT_ID=1, IARC_COMPANY='Mozilla',
-                       IARC_PLATFORM='Firefox', IARC_PASSWORD='s3kr3t')
+                       IARC_STOREFRONT_ID=1, IARC_PLATFORM='Firefox',
+                       IARC_PASSWORD='s3kr3t')
     def test_edit(self):
+        author = self.app.authors.all()[0]
+        # Update to get rid of weird unicode display_name.
+        author.update(display_name='luthor', email='lex@lexcorp.com')
+
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)
 
@@ -1160,8 +1164,8 @@ class TestContentRatings(amo.tests.TestCase):
         # Check the hidden form values.
         values = dict(form.form_values())
         eq_(values['storefront'], '1')
-        eq_(values['company'], 'Mozilla')
-        eq_(values['email'], self.req.amo_user.email)
+        eq_(values['company'], author.display_name)
+        eq_(values['email'], author.email)
         eq_(values['appname'], get_iarc_app_title(self.app))
         eq_(values['platform'], 'Firefox')
         eq_(values['token'], self.app.iarc_token())
