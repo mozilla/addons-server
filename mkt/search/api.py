@@ -45,9 +45,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
 
     def serialize(self, req, app):
         amo_user = getattr(req, 'amo_user', None)
-        data = es_app_to_dict(app, region=req.REGION.id,
-                              profile=amo_user,
-                              request=req)
+        data = es_app_to_dict(app, profile=amo_user, request=req)
         data['resource_uri'] = reverse('app-detail',
                                        kwargs={'pk': data['id']})
         return data

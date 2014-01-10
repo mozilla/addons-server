@@ -498,9 +498,19 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj())
+        req = amo.tests.req_factory_factory('/', data={'region': 'us'})
+        res = es_app_to_dict(self.get_obj(), request=req)
         eq_(res['price'], Decimal('1.00'))
         eq_(res['price_locale'], '$1.00')
+        eq_(res['payment_required'], True)
+
+        # Test invalid region. This falls back to the region set by the region
+        # middleware.
+        req = amo.tests.req_factory_factory('/', data={'region': 'xx'})
+        res = es_app_to_dict(self.get_obj(), request=req)
+        eq_(res['price'], Decimal('1.00'))
+        eq_(res['price_locale'], '$1.00')
+        eq_(res['payment_required'], True)
 
     def test_not_paid(self):
         self.make_premium(self.app)

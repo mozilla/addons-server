@@ -15,7 +15,7 @@ from market.models import Price
 from users.models import UserProfile
 
 import mkt
-from mkt.regions import REGIONS_CHOICES_ID_DICT
+from mkt.regions import get_region, REGIONS_CHOICES_ID_DICT, REGIONS_DICT
 
 
 log = commonware.log.getLogger('z.webapps')
@@ -74,7 +74,7 @@ def get_translations(src, attr, default_locale, lang):
         return translations or None
 
 
-def es_app_to_dict(obj, region=None, profile=None, request=None):
+def es_app_to_dict(obj, profile=None, request=None):
     """
     Return app data as dict for API where `app` is the elasticsearch result.
     """
@@ -87,9 +87,14 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     lang = None
     if request and request.method == 'GET' and 'lang' in request.GET:
         lang = request.GET.get('lang', '').lower()
-    region = None
+
+    region_slug = None
+    region_id = None
     if request and request.method == 'GET' and 'region' in request.GET:
-        region = request.GET.get('region', '').lower()
+        region_slug = request.GET.get('region', '').lower()
+    if region_slug not in REGIONS_DICT:
+        region_slug = get_region()
+    region_id = REGIONS_DICT[region_slug].id
 
     src = obj._source
     # The following doesn't perform a database query, but gives us useful
@@ -127,7 +132,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
             'interactive_elements': dehydrate_interactives(
                 getattr(obj, 'interactive_elements', [])),
             'regions': mkt.regions.REGION_TO_RATINGS_BODY()
-        }, region=region),
+        }, region=region_slug),
         'device_types': [DEVICE_TYPES[d].api_name for d in src.get('device')],
         'icons': dict((i['size'], i['url']) for i in src.get('icons')),
         'id': long(obj._id),
@@ -171,7 +176,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     data['upsell'] = False
     if hasattr(obj, 'upsell'):
         exclusions = obj.upsell.get('region_exclusions')
-        if exclusions is not None and region not in exclusions:
+        if exclusions is not None and region_slug not in exclusions:
             data['upsell'] = obj.upsell
             data['upsell']['resource_uri'] = reverse(
                 'app-detail',
@@ -182,11 +187,11 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         price_tier = src.get('price_tier')
         if price_tier:
             price = Price.objects.get(name=price_tier)
-            price_currency = price.get_price_currency(region=region)
+            price_currency = price.get_price_currency(region=region_id)
             if price_currency and price_currency.paid:
-                data['price'] = price.get_price(region=region)
+                data['price'] = price.get_price(region=region_id)
                 data['price_locale'] = price.get_price_locale(
-                    region=region)
+                    region=region_id)
             data['payment_required'] = bool(price.price)
     except Price.DoesNotExist:
         log.warning('Issue with price tier on app: {0}'.format(obj._id))
