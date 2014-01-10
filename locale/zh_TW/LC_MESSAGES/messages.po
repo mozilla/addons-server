@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-08 09:42-0700\n"
-"PO-Revision-Date: 2014-01-03 12:21+0000\n"
+"PO-Revision-Date: 2014-01-10 15:27+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1388751695.0\n"
+"X-POOTLE-MTIME: 1389367653.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -3570,15 +3570,15 @@ msgstr "已封鎖"
 
 #: apps/constants/base.py:49
 msgid "Published"
-msgstr ""
+msgstr "已發布"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr ""
+msgstr "已審核，尚未發布"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
-msgstr ""
+msgstr "已過時"
 
 #: apps/constants/base.py:144
 msgid "Full"
@@ -4162,7 +4162,7 @@ msgstr "初步審核"
 
 #: apps/devhub/forms.py:542
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "請選擇送交審核的類型"
 
 #: apps/devhub/forms.py:557 mkt/submit/forms.py:204
 msgid "Version %s already exists"
@@ -4506,7 +4506,7 @@ msgstr "上傳截圖的過程中發生錯誤。"
 
 #: apps/devhub/views.py:1372
 msgid "Version %s disabled."
-msgstr ""
+msgstr "已停用 %s 版本。"
 
 #: apps/devhub/views.py:1375
 msgid "Version %s deleted."
@@ -8849,7 +8849,7 @@ msgstr "選擇這個檔案的目標平台。"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "您想要送交哪種類型的審核？"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9104,11 +9104,11 @@ msgstr "刪除這個版本會永久刪除:"
 
 #: apps/devhub/templates/devhub/versions/list.html:271
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>重要:</strong> 黨您刪除某版本後，您將無法上傳同為該版本號的新版本。"
 
 #: apps/devhub/templates/devhub/versions/list.html:276
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
-msgstr ""
+msgstr "刪除已審核的版本可能會造成您下次更新的版本的審核時間變長。"
 
 #: apps/devhub/templates/devhub/versions/list.html:279 mkt/developers/templates/developers/apps/status.html:343
 msgid "Are you sure you wish to delete this version?"
@@ -9120,7 +9120,7 @@ msgstr "刪除版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Disable Version"
-msgstr ""
+msgstr "停用版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:293
 msgid "Add a new Version"
@@ -10050,7 +10050,7 @@ msgstr "這個月"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "今年"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -10679,7 +10679,7 @@ msgstr "如果您對附加元件有興趣，但不是技術性的，您仍然有
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "告訴您的朋友！讓朋友知道您使用那些附加元件。"
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -13183,7 +13183,7 @@ msgstr "Persona 驗證失敗。"
 
 #: apps/users/views.py:362
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "請使用已確認的電子郵件信箱。"
 
 #: apps/users/views.py:486
 msgid "Wrong email address or password!"
@@ -13247,15 +13247,15 @@ msgstr "您不能刪除您的帳號，因為您目前的角色是<a href=\"%(lin
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "您點選「刪除」後，您的帳號將會被<strong>永久刪除</strong>。這代表:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "您將無法再登入 %(site)s。"
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "您的評論與評分將不會被刪除，但將無法與您關聯。"
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13547,23 +13547,23 @@ msgstr "為什麼要註冊？"
 
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
-msgstr ""
+msgstr "如果您只想下載安裝公開的附加元件，您<strong>不必</strong>註冊 AMO 帳號。"
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "僅在下列情況時必須註冊:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "您想要發表對附加元件的評論"
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
+msgstr "您想要追蹤喜愛的附加元件收藏集，或自己建立一組"
 
 #: apps/users/templates/users/register.html:21
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
+msgstr "您是附加元件的開發者，並且想要將您的附加原件上架至 AMO"
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
@@ -15719,11 +15719,11 @@ msgstr "每個評分內容只能選取一個評分。"
 
 #: mkt/developers/forms.py:378
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "選擇了無效的區域。"
 
 #: mkt/developers/forms.py:381
 msgid "Only regions the app is already available in may be selected."
-msgstr ""
+msgstr "您只能選擇該應用程式已經可用的區域。"
 
 #: mkt/developers/forms.py:468 mkt/webapps/models.py:431
 msgid "You must upload at least one screenshot or video."
@@ -15811,7 +15811,7 @@ msgstr "交易類型"
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
-msgstr ""
+msgstr "請考慮將我的應用程式加入為 Firefox OS 裝置的預載軟體。我同意上述的條款。我理解同意此文件並不一定代表我的應用程式將會被預載。"
 
 #: mkt/developers/forms.py:1105
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -15835,7 +15835,7 @@ msgstr "請輸入一個有效的識別碼。"
 
 #: mkt/developers/forms.py:1171 mkt/developers/forms.py:1182
 msgid "Invalid submission ID or security code."
-msgstr ""
+msgstr "無效的提交 ID 或安全代碼。"
 
 #: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:269
 msgid "App Price"
@@ -16089,7 +16089,7 @@ msgstr "成功新增新版本。"
 
 #: mkt/developers/views.py:297
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr ""
+msgstr "恭喜，您的應用程式已經送出，很會就會審核完成！"
 
 #: mkt/developers/views.py:299
 msgid "Content ratings successfully saved."
@@ -16211,17 +16211,19 @@ msgstr "您目前沒有 API 金鑰。"
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:30 mkt/developers/templates/developers/apps/status.html:34
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr ""
+msgstr "您必須先設定 <a href=\"%(next_url)s\">%(next_step_name)s</a> 才能將您的應用程式送交審核或發布。"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:37
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> or else your app will be disabled on %(pretty_date)s."
 msgstr ""
+"您必須先設定 <a href=\"%(next_url)s\">%(next_step_name)s</a>，否則您的應用程式將會在 %"
+"(pretty_date)s 後被停用。"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "您必須先設定 <a href=\"%(next_url)s\">%(next_step_name)s</a>。"
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
@@ -16648,7 +16650,7 @@ msgstr "請輸入電子郵件信箱地址，如有額外地址請以逗號分隔
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Banner message"
-msgstr ""
+msgstr "橫幅訊息"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Exclusive message shown on the listing page, only in the selected regions."
