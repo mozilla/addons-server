@@ -32,18 +32,42 @@ def _migrate_activity_log(logs, **kwargs):
     for log in logs:
         action = _action_map(log.action)
 
-        # Filter or create_comm_note.
-        thread, tc = CommunicationThread.objects.get_or_create(
+        # Create thread.
+        thread, tc = CommunicationThread.objects.safer_get_or_create(
             addon=log.arguments[0], version=log.arguments[1])
 
-        note, nc = CommunicationNote.objects.get_or_create(
-            thread=thread, note_type=action, author=log.user,
-            body=log.details.get('comments', ''),
+        # Filter notes.
+        note_params = {
+            'thread': thread,
+            'note_type': action,
+            'author': log.user,
+            'body': log.details.get('comments', ''),
+        }
+        notes = CommunicationNote.objects.filter(created=log.created,
+                                                 **note_params)
+        if notes.exists():
+            # Note already exists, move on.
+            continue
+
+        # Create note.
+        note = CommunicationNote.objects.create(
             # Developers should not see escalate/reviewer comments.
             read_permission_developer=action not in (cmb.ESCALATION,
-                                                     cmb.REVIEWER_COMMENT))
-        if nc:
-            note.update(created=log.created)
+                                                     cmb.REVIEWER_COMMENT),
+            **note_params)
+        note.update(created=log.created)
+
+        # Attachments.
+        if note.attachments.exists():
+            # Already migrated. Continue.
+            continue
+
+        # Create attachments.
+        for attachment in log.activitylogattachment_set.all():
+            note_attachment = note.attachments.create(
+                filepath=attachment.filepath, mimetype=attachment.mimetype,
+                description=attachment.description)
+            note_attachment.update(created=attachment.created)
 
 
 def _action_map(activity_action):

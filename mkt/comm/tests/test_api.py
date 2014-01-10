@@ -1,21 +1,26 @@
 import json
+from os import path
 
 from django.conf import settings
 from django.core import mail
 from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from amo.tests import addon_factory, req_factory_factory, version_factory
-from comm.models import (CommunicationNote, CommunicationNoteRead,
-                         CommunicationThread, CommunicationThreadCC)
+from comm.models import (CommunicationNote, CommunicationThread,
+                         CommunicationThreadCC)
 from users.models import UserProfile
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.api import EmailCreationPermission, post_email, ThreadPermission
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+
+
+TESTS_DIR = path.dirname(path.abspath(__file__))
 
 
 class CommTestMixin(object):
@@ -281,8 +286,11 @@ class TestNote(RestOAuth, CommTestMixin):
 
         self.profile.addonuser_set.create(addon=self.addon)
 
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=TESTS_DIR)
     def test_response(self):
         note = self._note_factory(self.thread)
+        attach = note.attachments.create(filepath='test_api.py',
+                                         description='desc')
 
         res = self.client.get(reverse(
             'comm-note-detail',
@@ -292,11 +300,20 @@ class TestNote(RestOAuth, CommTestMixin):
         eq_(res.json['reply_to'], None)
         eq_(res.json['is_read'], False)
 
+        # Read.
         note.mark_read(self.profile)
         res = self.client.get(reverse('comm-note-detail',
                                       kwargs={'thread_id': self.thread.id,
                                               'pk': note.id}))
         eq_(res.json['is_read'], True)
+
+        # Attachments.
+        eq_(len(res.json['attachments']), 1)
+        eq_(res.json['attachments'][0]['url'],
+            settings.SITE_URL +
+            reverse('reviewers.apps.review.attachment', args=[attach.id]))
+        eq_(res.json['attachments'][0]['display_name'], 'desc')
+        ok_(not res.json['attachments'][0]['is_image'])
 
     def test_show_read_filter(self):
         """Test `is_read` filter."""
