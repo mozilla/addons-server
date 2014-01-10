@@ -27,7 +27,7 @@ from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonDeviceType, AddonRecommendation, AddonType,
                            AddonUpsell, AddonUser, AppSupport, BlacklistedGuid,
-                           Category, Charity, CompatOverride,
+                           BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
 from addons.search import setup_mapping
@@ -44,6 +44,133 @@ from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
 from mkt.webapps.models import Webapp
+
+
+class TestCleanSlug(amo.tests.TestCase):
+
+    def test_clean_slug_new_object(self):
+        # Make sure there's at least an addon with the "addon" slug, subsequent
+        # ones should be "addon-1", "addon-2" ...
+        a = Addon.objects.create()
+        eq_(a.slug, "addon")
+
+        # Start with a first clash. This should give us "addon-1".
+        # We're not saving yet, we're testing the slug creation without an id.
+        b = Addon()
+        b.clean_slug()
+        eq_(b.slug, 'addon-1')
+        # Now save the instance to the database for future clashes.
+        b.save()
+
+        # Test on another object without an id.
+        c = Addon()
+        c.clean_slug()
+        eq_(c.slug, 'addon-2')
+
+        # Even if an addon is deleted, don't clash with its slug.
+        c.status = amo.STATUS_DELETED
+        # Now save the instance to the database for future clashes.
+        c.save()
+
+        # And yet another object without an id. Make sure we're not trying to
+        # assign the 'addon-2' slug from the deleted addon.
+        d = Addon()
+        d.clean_slug()
+        eq_(d.slug, 'addon-3')
+
+    def test_clean_slug_with_id(self):
+        # Create an addon and save it to have an id.
+        a = Addon.objects.create()
+        # Start over: don't use the name nor the id to generate the slug.
+        a.slug = a.name = ""
+        a.clean_slug()
+        # Slugs created from an id are of the form "id~", eg "123~" to avoid
+        # clashing with URLs.
+        eq_(a.slug, "%s~" % a.id)
+
+        # And again, this time make it clash.
+        b = Addon.objects.create()
+        # Set a's slug to be what should be created for b from its id.
+        a.slug = "%s~" % b.id
+        a.save()
+
+        # Now start over for b.
+        b.slug = b.name = ""
+        b.clean_slug()
+        eq_(b.slug, "%s~-1" % b.id)
+
+    def test_clean_slug_with_name(self):
+        # Make sure there's at least an addon with the "fooname" slug,
+        # subsequent ones should be "fooname-1", "fooname-2" ...
+        a = Addon.objects.create(name="fooname")
+        eq_(a.slug, "fooname")
+
+        b = Addon(name="fooname")
+        b.clean_slug()
+        eq_(b.slug, "fooname-1")
+
+    def test_clean_slug_with_slug(self):
+        # Make sure there's at least an addon with the "fooslug" slug,
+        # subsequent ones should be "fooslug-1", "fooslug-2" ...
+        a = Addon.objects.create(name="fooslug")
+        eq_(a.slug, "fooslug")
+
+        b = Addon(name="fooslug")
+        b.clean_slug()
+        eq_(b.slug, "fooslug-1")
+
+    def test_clean_slug_blacklisted_slug(self):
+        blacklisted_slug = 'fooblacklisted'
+        BlacklistedSlug.objects.create(name=blacklisted_slug)
+
+        a = Addon(slug=blacklisted_slug)
+        a.clean_slug()
+        # Blacklisted slugs (like "activate" or IDs) have a "~" appended to
+        # avoid clashing with URLs.
+        eq_(a.slug, "%s~" % blacklisted_slug)
+        # Now save the instance to the database for future clashes.
+        a.save()
+
+        b = Addon(slug=blacklisted_slug)
+        b.clean_slug()
+        eq_(b.slug, "%s~-1" % blacklisted_slug)
+
+    def test_clean_slug_long_slug(self):
+        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+        shortened_long_slug = long_slug[:27]
+
+        # Make sure there's at least an addon with the very long slug
+        a = Addon.objects.create(slug=long_slug)
+        eq_(a.slug, shortened_long_slug)
+
+        b = Addon(slug=long_slug)
+        b.clean_slug()
+        eq_(b.slug, "%s-1" % shortened_long_slug)
+
+    def test_clean_slug_always_slugify(self):
+        illegal_chars = "some spaces and !?@"
+
+        # Slugify if there's a slug provided.
+        a = Addon(slug=illegal_chars)
+        a.clean_slug()
+        assert a.slug.startswith("some-spaces-and"), a.slug
+
+        # Also slugify if there's no slug provided.
+        b = Addon(name=illegal_chars)
+        b.clean_slug()
+        assert b.slug.startswith("some-spaces-and"), b.slug
+
+    def test_clean_slug_worst_case_scenario(self):
+        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+
+        # Generate 100 addons with this very long slug. We should encounter the
+        # worst case scenario where all the available clashes have been
+        # avoided. Check the comment in addons.models.clean_slug, in the "else"
+        # part of the "for" loop checking for available slugs not yet assigned.
+        for i in range(100):
+            Addon.objects.create(slug=long_slug)
+        with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
+            Addon.objects.create(slug=long_slug)
 
 
 class TestAddonManager(amo.tests.TestCase):
