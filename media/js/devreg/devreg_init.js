@@ -4,3 +4,4 @@ define('developers', ['login', 'notification', 'tracking'], function() {});
 require('developers');
 require('test-install');
 require('iarc-ratings');
+require('tracking_app_submit');

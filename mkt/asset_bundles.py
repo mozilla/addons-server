@@ -171,6 +171,8 @@ JS = {
         'js/devreg/apps.js',
         'js/devreg/test-install.js',
 
+        'js/devreg/tracking_app_submit.js',
+
         # IARC.
         'js/devreg/content_ratings.js',
 
