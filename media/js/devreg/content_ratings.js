@@ -10,6 +10,7 @@ define('iarc-ratings', [], function() {
     $createBtn.on('click', function() {
         // Open window.
         var IARCPopUp = window.open($('form#iarc').attr('action'), 'IARCForm');
+        _gaq.push(['_trackEvent', 'Content Rating Interactions', 'Exit to IARC site', 'Create an IARC Ratings Certificate']);
 
         // Spinner.
         $createRating.addClass('loading');
@@ -22,6 +23,7 @@ define('iarc-ratings', [], function() {
                     $createRating.removeClass('loading');
                 } else if (data.objects.length) {
                     // Redirect to summary page.
+                    _gaq.push(['_trackEvent', 'Content Rating Interactions', 'Successful Refresh of the Content Ratings Module', 'Successfully Added IARC Ratings Certificate']);
                     window.location = redirectUrl;
                     $('.done').show();
                     $createRating.removeClass('loading');
