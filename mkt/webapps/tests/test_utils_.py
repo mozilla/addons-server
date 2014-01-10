@@ -13,10 +13,13 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 from addons.models import AddonCategory, AddonDeviceType, Category, Preview
+from amo.urlresolvers import reverse
 from market.models import PriceCurrency
 
 import mkt
 from mkt.constants import ratingsbodies, regions
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.site.fixtures import fixture
 from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
@@ -552,6 +555,23 @@ class TestESAppToDict(amo.tests.ESTestCase):
         res = es_app_to_dict(self.get_obj())
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
+
+    def test_payment_account(self):
+        self.make_premium(self.app)
+        seller = SolitudeSeller.objects.create(
+            resource_uri='/path/to/sel', uuid='seller-id', user=self.profile)
+        account = PaymentAccount.objects.create(
+            user=self.profile, uri='asdf', name='test', inactive=False,
+            solitude_seller=seller, account_id=123)
+        AddonPaymentAccount.objects.create(
+            addon=self.app, account_uri='foo', payment_account=account,
+            product_uri='bpruri')
+        self.app.save()
+        self.refresh('webapp')
+
+        res = es_app_to_dict(self.get_obj())
+        eq_(res['payment_account'], reverse('payment-account-detail',
+                                            kwargs={'pk': account.pk}))
 
 
 class TestSupportedLocales(amo.tests.TestCase):

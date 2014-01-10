@@ -186,17 +186,18 @@ def es_app_to_dict(obj, profile=None, request=None):
 
     data['regions'] = [serialize_region(REGIONS_CHOICES_ID_DICT.get(k))
                        for k in app.get_region_ids(
-                               worldwide=True,
-                               excluded=obj.region_exclusions)]
+                           worldwide=True, excluded=obj.region_exclusions)]
 
+    data['payment_account'] = None
     if src.get('premium_type') in amo.ADDON_PREMIUMS:
-        acct = list(AddonPaymentAccount.objects.filter(addon=app))
-        if acct and acct.payment_account:
-            data['payment_account'] = reverse(
-                'payment-account-detail',
-                kwargs={'pk': acct.payment_account.pk})
-    else:
-        data['payment_account'] = None
+        try:
+            acct = AddonPaymentAccount.objects.get(addon_id=src.get('id'))
+            if acct.payment_account:
+                data['payment_account'] = reverse(
+                    'payment-account-detail',
+                    kwargs={'pk': acct.payment_account.pk})
+        except AddonPaymentAccount.DoesNotExist:
+            pass  # Developer hasn't set up a payment account yet.
 
     data['upsell'] = False
     if hasattr(obj, 'upsell'):
