@@ -6,7 +6,7 @@ from django.conf import settings
 import commonware.log
 
 import amo
-from addons.models import AddonUser
+from addons.models import AddonUser, Preview
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import find_language
@@ -15,7 +15,7 @@ from market.models import Price
 from users.models import UserProfile
 
 import mkt
-from mkt.regions import REGIONS_CHOICES_ID_DICT
+from mkt.regions import get_region, REGIONS_CHOICES_ID_DICT, REGIONS_DICT
 
 
 log = commonware.log.getLogger('z.webapps')
@@ -74,7 +74,7 @@ def get_translations(src, attr, default_locale, lang):
         return translations or None
 
 
-def es_app_to_dict(obj, region=None, profile=None, request=None):
+def es_app_to_dict(obj, profile=None, request=None):
     """
     Return app data as dict for API where `app` is the elasticsearch result.
     """
@@ -87,19 +87,26 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     lang = None
     if request and request.method == 'GET' and 'lang' in request.GET:
         lang = request.GET.get('lang', '').lower()
-    region = None
+
+    region_slug = None
+    region_id = None
     if request and request.method == 'GET' and 'region' in request.GET:
-        region = request.GET.get('region', '').lower()
+        region_slug = request.GET.get('region', '').lower()
+    if region_slug not in REGIONS_DICT:
+        region_slug = get_region()
+    region_id = REGIONS_DICT[region_slug].id
 
     src = obj._source
-    # The following doesn't perform a database query, but gives us useful
-    # methods like `get_detail_url`. If you use `obj` make sure the calls
-    # don't query the database.
     is_packaged = src.get('app_type') != amo.ADDON_WEBAPP_HOSTED
-    app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
+    # The following doesn't perform a database query, but gives us useful
+    # methods like `get_detail_url` and `get_icon_url`. If you use `app` make
+    # sure the calls don't query the database.
+    app = Webapp(id=obj._id, app_slug=obj.app_slug, is_packaged=is_packaged,
+                 type=amo.ADDON_WEBAPP, icon_type='image/png',
+                 modified=getattr(obj, 'modified', None))
 
     attrs = ('created', 'current_version', 'default_locale', 'is_offline',
-             'manifest_url', 'previews', 'reviewed', 'ratings', 'status',
+             'manifest_url', 'reviewed', 'ratings', 'status',
              'weekly_downloads')
     data = dict((a, getattr(obj, a, None)) for a in attrs)
 
@@ -113,9 +120,33 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         data[field] = get_translations(src, src_field, obj.default_locale,
                                        lang)
 
+    # Generate urls for previews and icons before the data.update() call below
+    # adds them to the result.
+    previews = getattr(obj, 'previews', [])
+    for preview in previews:
+        if 'image_url' and 'thumbnail_url' in preview:
+            # Old-style index, the full URL is already present, nothing to do.
+            # TODO: remove this check once we have re-indexed everything.
+            continue
+        else:
+            # New-style index, we need to build the URLs from the data we have.
+            p = Preview(id=preview.pop('id'), modified=preview.pop('modified'),
+                        filetype=preview['filetype'])
+            preview['image_url'] = p.image_url
+            preview['thumbnail_url'] = p.thumbnail_url
+    icons = getattr(obj, 'icons', [])
+    for icon in icons:
+        if 'url' in icon:
+            # Old-style index, the full URL is already present, nothing to do.
+            # TODO: remove this check once we have re-indexed everything.
+            continue
+        else:
+            # New-style index, we need to build the URLs from the data we have.
+            icon['url'] = app.get_icon_url(icon['size'])
+
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
-        'app_type': app.app_type,
+        'app_type': 'packaged' if is_packaged else 'hosted',
         'author': src.get('author', ''),
         'banner_regions': src.get('banner_regions', []),
         'categories': [c for c in obj.category],
@@ -127,22 +158,21 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
             'interactive_elements': dehydrate_interactives(
                 getattr(obj, 'interactive_elements', [])),
             'regions': mkt.regions.REGION_TO_RATINGS_BODY()
-        }, region=region),
+        }, region=region_slug),
         'device_types': [DEVICE_TYPES[d].api_name for d in src.get('device')],
         'icons': dict((i['size'], i['url']) for i in src.get('icons')),
         'id': long(obj._id),
         'is_packaged': is_packaged,
         'payment_required': False,
         'premium_type': amo.ADDON_PREMIUM_API[src.get('premium_type')],
+        'previews': previews,
         'privacy_policy': reverse('app-privacy-policy-detail',
                                   kwargs={'pk': obj._id}),
         'public_stats': obj.has_public_stats,
         'supported_locales': src.get('supported_locales', ''),
         'slug': obj.app_slug,
-        # TODO: Remove the type check once this code rolls out and our indexes
-        # aren't between mapping changes.
         'versions': dict((v.get('version'), v.get('resource_uri')) for v in
-                         src.get('versions') if type(v) == dict),
+                         src.get('versions')),
     })
 
     if not data['public_stats']:
@@ -156,22 +186,23 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
 
     data['regions'] = [serialize_region(REGIONS_CHOICES_ID_DICT.get(k))
                        for k in app.get_region_ids(
-                               worldwide=True,
-                               excluded=obj.region_exclusions)]
+                           worldwide=True, excluded=obj.region_exclusions)]
 
+    data['payment_account'] = None
     if src.get('premium_type') in amo.ADDON_PREMIUMS:
-        acct = list(AddonPaymentAccount.objects.filter(addon=app))
-        if acct and acct.payment_account:
-            data['payment_account'] = reverse(
-                'payment-account-detail',
-                kwargs={'pk': acct.payment_account.pk})
-    else:
-        data['payment_account'] = None
+        try:
+            acct = AddonPaymentAccount.objects.get(addon_id=src.get('id'))
+            if acct.payment_account:
+                data['payment_account'] = reverse(
+                    'payment-account-detail',
+                    kwargs={'pk': acct.payment_account.pk})
+        except AddonPaymentAccount.DoesNotExist:
+            pass  # Developer hasn't set up a payment account yet.
 
     data['upsell'] = False
     if hasattr(obj, 'upsell'):
         exclusions = obj.upsell.get('region_exclusions')
-        if exclusions is not None and region not in exclusions:
+        if exclusions is not None and region_slug not in exclusions:
             data['upsell'] = obj.upsell
             data['upsell']['resource_uri'] = reverse(
                 'app-detail',
@@ -182,11 +213,11 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         price_tier = src.get('price_tier')
         if price_tier:
             price = Price.objects.get(name=price_tier)
-            price_currency = price.get_price_currency(region=region)
+            price_currency = price.get_price_currency(region=region_id)
             if price_currency and price_currency.paid:
-                data['price'] = price.get_price(region=region)
+                data['price'] = price.get_price(region=region_id)
                 data['price_locale'] = price.get_price_locale(
-                    region=region)
+                    region=region_id)
             data['payment_required'] = bool(price.price)
     except Price.DoesNotExist:
         log.warning('Issue with price tier on app: {0}'.format(obj._id))

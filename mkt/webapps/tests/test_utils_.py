@@ -2,7 +2,10 @@
 import json
 from decimal import Decimal
 
+from django.core.urlresolvers import reverse
+
 import mock
+import waffle
 from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
@@ -10,10 +13,13 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 from addons.models import AddonCategory, AddonDeviceType, Category, Preview
+from amo.urlresolvers import reverse
 from market.models import PriceCurrency
 
 import mkt
 from mkt.constants import ratingsbodies, regions
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.site.fixtures import fixture
 from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
@@ -293,6 +299,11 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.current_version
         self.profile = UserProfile.objects.get(pk=2519)
+        self.category = Category.objects.create(name='cattest', slug='testcat',
+                                                 type=amo.ADDON_WEBAPP)
+        AddonCategory.objects.create(addon=self.app, category=self.category)
+        self.preview = Preview.objects.create(filetype='image/png',
+                                              addon=self.app, position=0)
         self.app.save()
         self.refresh('webapp')
 
@@ -305,19 +316,30 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'absolute_url': 'http://testserver/app/something-something/',
             'app_type': 'hosted',
             'author': 'Mozilla Tester',
+            'banner_regions': [],
+            'categories': [self.category.slug],
             'created': self.app.created,
             'current_version': '1.0',
             'default_locale': u'en-US',
             'description': {
                 u'en-US': u'Something Something Steamcube description!'},
+            'device_types': [],
             'homepage': None,
+            'icons': dict((size, self.app.get_icon_url(size))
+                          for size in (16, 48, 64, 128)),
             'id': 337141,
             'is_offline': False,
             'is_packaged': False,
             'manifest_url': 'http://micropipes.com/temp/steamcube.webapp',
             'name': {u'en-US': u'Something Something Steamcube!',
                      u'es': u'Algo Algo Steamcube!'},
+            'payment_required': False,
             'premium_type': 'free',
+            'previews': [{'filetype': self.preview.filetype,
+                          'thumbnail_url': self.preview.thumbnail_url,
+                          'image_url': self.preview.image_url}],
+            'privacy_policy': reverse('app-privacy-policy-detail',
+                                      kwargs={'pk': self.app.id}),
             'public_stats': False,
             'ratings': {
                 'average': 0.0,
@@ -330,14 +352,16 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'support_url': None,
             'supported_locales': [u'en-US', u'es', u'pt-BR'],
             'upsell': False,
-            'user': {
-                'developed': False,
-                'installed': False,
-                'purchased': False,
-            },
             # 'version's handled below to support API URL assertions.
             'weekly_downloads': None,
         }
+
+        if self.profile:
+            expected['user'] = {
+                'developed': False,
+                'installed': False,
+                'purchased': False,
+            }
 
         ok_('1.0' in res['versions'])
         self.assertApiUrlEqual(res['versions']['1.0'],
@@ -347,6 +371,15 @@ class TestESAppToDict(amo.tests.ESTestCase):
             eq_(res[k], v,
                 u'Expected value "%s" for field "%s", got "%s"' %
                 (v, k, res[k]))
+
+    def test_basic_no_queries(self):
+        self.profile = None
+        # If we don't pass a UserProfile, a free app shouldn't have to make any
+        # db queries at all. To prevent a potential query because of iarc check,
+        # we create the iarc waffle switch, it should be cached immediately.
+        self.create_switch('iarc')
+        with self.assertNumQueries(0):
+            self.test_basic()
 
     def test_basic_with_lang(self):
         # Check that when ?lang is passed, we get the right language and we get
@@ -448,15 +481,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
         res = es_app_to_dict(self.get_obj())
         eq_(res['weekly_downloads'], 9999)
 
-    def test_icons(self):
-        """
-        Tested separately b/c they have timestamps.
-        """
-        res = es_app_to_dict(self.get_obj())
-        self.assertSetEqual(set([16, 48, 64, 128]), set(res['icons'].keys()))
-        ok_(res['icons'][128].startswith(
-            'http://testserver/img/uploads/addon_icons/337/337141-128.png'))
-
     def test_devices(self):
         AddonDeviceType.objects.create(addon=self.app,
                                        device_type=amo.DEVICE_GAIA.id)
@@ -498,9 +522,19 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj())
+        req = amo.tests.req_factory_factory('/', data={'region': 'us'})
+        res = es_app_to_dict(self.get_obj(), request=req)
         eq_(res['price'], Decimal('1.00'))
         eq_(res['price_locale'], '$1.00')
+        eq_(res['payment_required'], True)
+
+        # Test invalid region. This falls back to the region set by the region
+        # middleware.
+        req = amo.tests.req_factory_factory('/', data={'region': 'xx'})
+        res = es_app_to_dict(self.get_obj(), request=req)
+        eq_(res['price'], Decimal('1.00'))
+        eq_(res['price_locale'], '$1.00')
+        eq_(res['payment_required'], True)
 
     def test_not_paid(self):
         self.make_premium(self.app)
@@ -521,6 +555,23 @@ class TestESAppToDict(amo.tests.ESTestCase):
         res = es_app_to_dict(self.get_obj())
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
+
+    def test_payment_account(self):
+        self.make_premium(self.app)
+        seller = SolitudeSeller.objects.create(
+            resource_uri='/path/to/sel', uuid='seller-id', user=self.profile)
+        account = PaymentAccount.objects.create(
+            user=self.profile, uri='asdf', name='test', inactive=False,
+            solitude_seller=seller, account_id=123)
+        AddonPaymentAccount.objects.create(
+            addon=self.app, account_uri='foo', payment_account=account,
+            product_uri='bpruri')
+        self.app.save()
+        self.refresh('webapp')
+
+        res = es_app_to_dict(self.get_obj())
+        eq_(res['payment_account'], reverse('payment-account-detail',
+                                            kwargs={'pk': account.pk}))
 
 
 class TestSupportedLocales(amo.tests.TestCase):

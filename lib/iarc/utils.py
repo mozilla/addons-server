@@ -242,12 +242,11 @@ RATINGS_MAPPING = {
         'RP': ratingsbodies.GENERIC_RP,
         'default': ratingsbodies.GENERIC_3,
     },
-    # TODO: Fix these to match?
     ratingsbodies.PEGI: {
         '3+': ratingsbodies.PEGI_3,
-        '10+': ratingsbodies.PEGI_7,
-        '13+': ratingsbodies.PEGI_12,
-        '17+': ratingsbodies.PEGI_16,
+        '7+': ratingsbodies.PEGI_7,
+        '12+': ratingsbodies.PEGI_12,
+        '16+': ratingsbodies.PEGI_16,
         '18+': ratingsbodies.PEGI_18,
         'default': ratingsbodies.PEGI_3,
     },

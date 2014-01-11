@@ -80,7 +80,7 @@ class TestPermission(RestOAuth):
         eq_(res.status_code, 200, res.content)
         self.assertSetEqual(
             ['admin', 'developer', 'localizer', 'lookup', 'curator',
-             'reviewer', 'webpay'],
+             'reviewer', 'webpay', 'stats', 'revenue_stats'],
             res.json['permissions'].keys()
         )
         ok_(not all(res.json['permissions'].values()))
@@ -122,6 +122,28 @@ class TestPermission(RestOAuth):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         ok_(res.json['permissions']['webpay'])
+
+    def test_stats(self):
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        ok_(not res.json['permissions']['stats'])
+
+    def test_stats_ok(self):
+        self.grant_permission(self.user, 'Stats:View')
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        ok_(res.json['permissions']['stats'])
+
+    def test_revenue_stats(self):
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        ok_(not res.json['permissions']['revenue_stats'])
+
+    def test_revenue_stats_ok(self):
+        self.grant_permission(self.user, 'RevenueStats:View')
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        ok_(res.json['permissions']['revenue_stats'])
 
 
 class TestAccount(RestOAuth):
@@ -279,8 +301,7 @@ class TestLoginHandler(TestCase):
         FakeResponse = collections.namedtuple('FakeResponse',
                                               'status_code content')
         http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'cvan@mozilla.com'}))
+            {'status': 'okay', 'email': 'cvan@mozilla.com'}))
         res = self.post({'assertion': 'fake-assertion',
                          'audience': 'fakeamo.org'})
         eq_(res.status_code, 201)
@@ -310,14 +331,16 @@ class TestLoginHandler(TestCase):
              'lookup': False,
              'curator': False,
              'reviewer': True,
-             'webpay': False})
+             'webpay': False,
+             'stats': False,
+             'revenue_stats': False})
 
     @patch('requests.post')
     def test_login_failure(self, http_request):
         FakeResponse = collections.namedtuple('FakeResponse',
                                               'status_code content')
         http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'busted'}))
+            {'status': 'busted'}))
         res = self.post({'assertion': 'fake-assertion',
                          'audience': 'fakeamo.org'})
         eq_(res.status_code, 403)
@@ -476,9 +499,10 @@ class TestNewsletter(RestOAuth):
 
     @patch('basket.subscribe')
     def test_signup_plus(self, subscribe):
-        res = self.client.post(self.url,
-                               data=json.dumps({'email': 'bob+totally+real@example.com'}))
+        res = self.client.post(
+            self.url,
+            data=json.dumps({'email': 'bob+totally+real@example.com'}))
         subscribe.assert_called_with(
-            'bob+totally+real@example.com', 'marketplace', lang='en-US', country='us',
-            trigger_welcome='Y', optin='Y', format='H')
+            'bob+totally+real@example.com', 'marketplace', lang='en-US',
+            country='us', trigger_welcome='Y', optin='Y', format='H')
         eq_(res.status_code, 204)

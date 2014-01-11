@@ -45,9 +45,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
 
     def serialize(self, req, app):
         amo_user = getattr(req, 'amo_user', None)
-        data = es_app_to_dict(app, region=req.REGION.id,
-                              profile=amo_user,
-                              request=req)
+        data = es_app_to_dict(app, profile=amo_user, request=req)
         data['resource_uri'] = reverse('app-detail',
                                        kwargs={'pk': data['id']})
         return data
@@ -161,9 +159,6 @@ class FeaturedSearchView(SearchView):
             if fallback:
                 filter_fallbacks[name] = fallback
 
-        # Alter the _view_name so that statsd logs seperately from search.
-        request._request._view_name = 'featured'
-
         return data, filter_fallbacks
 
 
@@ -194,6 +189,9 @@ class SuggestionsView(SearchView):
         icons = []
 
         for obj in qs:
+            # FIXME: this does a lot of stuff we don't need. When es_app_to_dict
+            # is replaced by a Serializer, then we should replace this with a
+            # custom, lean serializer.
             base_data = self.serialize(request, obj)
             names.append(base_data['name'])
             descriptions.append(truncate(base_data['description']))

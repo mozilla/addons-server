@@ -56,6 +56,8 @@ class PermissionsSerializer(serializers.Serializer):
             'reviewer': acl.action_allowed(request, 'Apps', 'Review'),
             'webpay': (allowed('Transaction', 'NotifyFailure')
                        and allowed('ProductIcon', 'Create')),
+            'stats': allowed('Stats', 'View'),
+            'revenue_stats': allowed('RevenueStats', 'View'),
         }
         return permissions
 
