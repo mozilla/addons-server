@@ -159,9 +159,6 @@ class FeaturedSearchView(SearchView):
             if fallback:
                 filter_fallbacks[name] = fallback
 
-        # Alter the _view_name so that statsd logs seperately from search.
-        request._request._view_name = 'featured'
-
         return data, filter_fallbacks
 
 
