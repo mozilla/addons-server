@@ -3477,23 +3477,23 @@ msgstr "Извештаји компатибилности додатка"
 msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
 "help supporting an upcoming Firefox version. </p>"
-msgstr ""
+msgstr "<p> Извештаји који су нам доставњени кроз <a href="%(url_)s">Add-on Compatibility Reporter</a> су овде прикупљени за програмере да виде. Ови извештаји нам помажу да одредимо додатке којима треба помоћ за подржавање наредне верзије Firefox-а. </p>"
 
 #: apps/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Извештаји за Ваше додатке"
 
 #: apps/compat/templates/compat/reporter.html:30 apps/compat/templates/compat/reporter_detail.html:9
 msgid "Add-on Compatibility Center"
-msgstr ""
+msgstr "Центар за компатибилност додатка"
 
 #: apps/compat/templates/compat/reporter.html:34
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Унесите испод GUID додатка да бисте прегледали било које извештаје које сте примили."
 
 #: apps/compat/templates/compat/reporter_detail.html:3 apps/compat/templates/compat/reporter_detail.html:10 apps/compat/templates/compat/reporter_detail.html:25
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "{addon} извештаји компатибилности"
 
 #: apps/compat/templates/compat/reporter_detail.html:14
 msgid "{0} success report"
@@ -20004,15 +20004,15 @@ msgstr "Након што је Ваша апликација прегледан�
 
 #: mkt/submit/templates/submit/next_steps.html:100
 msgid "<strong>What's next:</strong> Set up Content Ratings"
-msgstr "<strong>Шта је следеће:</strong> Подесите оцењивање садржаја "
+msgstr "<strong>Шта је следеће:</strong> Подесите оцењивање садржаја"
 
 #: mkt/submit/templates/submit/next_steps.html:106
 msgid "<strong>What's next:</strong> Set up Payments & Countries"
 msgstr "<strong>Шта је следеће:</strong> Подесите плаћање и уплате"
 
 #: mkt/submit/templates/submit/next_steps.html:112
-msgid "<strong>What's next:</strong> Објавите Вашу апликацију"
-msgstr "<strong>Шта је следеће:</strong> "
+msgid "<strong>What's next:</strong>"
+msgstr "<strong>Шта је следеће:</strong"
 
 #: mkt/submit/templates/submit/payments-upsell.html:4 mkt/submit/templates/submit/payments.html:3
 msgid "App Payments"
@@ -20020,7 +20020,7 @@ msgstr "Наплате апликација"
 
 #: mkt/submit/templates/submit/payments-upsell.html:18
 msgid "To sell your app in the Marketplace, you'll first need to set its price tier below. Price tiers are based on US Dollars and are fixed for all supported currencies."
-msgstr "Селективне цене су базиране на америчким доларима и фиксне су за све подржане валуте."
+msgstr "Да бисте продали Вашу апликацију у Marketplace-у, мораћете прво испод да одредите његову селективну цену. Селективне цене су базиране на америчким доларима и фиксне су за све подржане валуте."
 
 #: mkt/submit/templates/submit/payments-upsell.html:24
 msgid "Learn more about price tiers"
@@ -20043,7 +20043,8 @@ msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
-"Узбућени смо што сте направили апликацију користећи веб технологије, постављањем на Firefox Marketplace је најбољи начин за кориснике да је открију и уживају у истој међу својим уређајима."
+"Узбуђени смо што сте направили апликацију користећи веб технологије, постављањем на Firefox Marketplace је најбољи начин за кориснике да је открију и уживају у истој међу својим уређајима. Као прво, требаћете"
+"се придружити испод програму за Marketplace програмере."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -20063,7 +20064,7 @@ msgstr "Измените поставке налога"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Return to the Marketplace"
-msgstr "Повратак на Marketplace "
+msgstr "Повратак на Marketplace"
 
 #: mkt/templates/mkt/account-links.html:15
 msgid "Sign Out"
@@ -20074,8 +20075,8 @@ msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
 "version."
 msgstr ""
-"Осим где је другачије <a href=\"%(legal_url)s\">назначено</a>, садржај на овом сајту је под <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike v3.0</a> лиценцом или неком новијом."
-"version."
+"Осим где је другачије <a href=\"%(legal_url)s\">назначено</a>, садржај на овом сајту је под <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike v3.0</a> лиценцом или неком новијом"
+"верзијом."
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
@@ -20141,11 +20142,11 @@ msgstr "Други језици"
 
 #: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:12
 msgid "Mozilla Add-ons"
-msgstr "Mozilla екстензије"
+msgstr "Mozilla додаци"
 
 #: templates/base.html:80 templates/impala/base.html:75
 msgid "Find add-ons for other applications"
-msgstr "Пронађите екстензије за остале апликације"
+msgstr "Пронађите додатке за остале апликације"
 
 #: templates/base.html:81 templates/impala/base.html:75
 msgid "Other Applications"
@@ -20153,7 +20154,7 @@ msgstr "Остале апликације"
 
 #: templates/base.html:130 templates/impala/base.html:193
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Да бисте направили своју колекцију, морате да имате налог на Mozilla екстензије сајту."
+msgstr "Да бисте направили своју колекцију, морате да имате налог на сајту за Mozilla додатке."
 
 #: templates/categories.html:2
 msgid "Choose a category"
@@ -20169,7 +20170,7 @@ msgstr "Сајт за мобилне уређаје"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
-msgstr "сазнајте више о <b>екстензијама</b>"
+msgstr "сазнајте више о <b>додацима</b>"
 
 #: templates/footer.html:4 templates/menu_links.html:20
 msgid "About"
@@ -20191,23 +20192,23 @@ msgstr "Форум"
 
 #: templates/header_title.html:8
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> екстензије"
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> додаци"
 
 #: templates/header_title.html:10
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> екстензије"
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> додаци"
 
 #: templates/header_title.html:12
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> екстензије за мобилни"
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> додаци за мобилни"
 
 #: templates/header_title.html:14
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> екстензије"
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> додаци"
 
 #: templates/header_title.html:16
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> екстензије"
+msgstr "<img alt=\"\" src=\"{0}\"> додаци"
 
 #: templates/menu_links.html:6
 msgid "Firefox Add-ons"
@@ -20263,12 +20264,12 @@ msgstr "<a href=\"%(reg)s\">Региструјте налог</a> или се <a
 
 #: templates/impala/base.html:135
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Да бисте испробали хиљаде екстензија доступних овде, преузмите <a href=\"%(url)s\">Mozilla Firefox</a>, брз и бесплатан начин да сурфујете вебом!"
+msgstr "Да бисте испробали хиљаде додатака доступних овде, преузмите <a href=\"%(url)s\">Mozilla Firefox</a>, брз и бесплатан начин да сурфујете вебом!"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:146
 msgid "Welcome to {0} Add-ons."
-msgstr "Добродошли на {0} екстензија."
+msgstr "Добродошли на {0} додатке."
 
 #: templates/impala/base.html:149
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
@@ -20288,7 +20289,7 @@ msgstr"Проверите наш <a class=\"mobile-link\" href=\"#\">сајт з
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
-msgstr "Екстензије за Android"
+msgstr "Додаци за Android"
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
@@ -20324,7 +20325,7 @@ msgstr "Mozilla Firefox"
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
-msgstr "Екстензије"
+msgstr "Додаци"
 
 #: templates/mobile/header.html:8
 msgid "Visit Mozilla"
