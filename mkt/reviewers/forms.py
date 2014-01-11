@@ -2,11 +2,8 @@ import datetime
 import logging
 
 from django import forms
-from django.conf import settings
-from django.forms import ValidationError
 
 import happyforms
-from jinja2.filters import do_filesizeformat
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
@@ -26,34 +23,13 @@ from .tasks import approve_rereview, reject_rereview, send_mail
 
 log = logging.getLogger('z.reviewers.forms')
 
+
 # We set 'any' here since we need to default this field
 # to PUBLIC if not specified for consumer pages.
 STATUS_CHOICES = [('any', _lazy(u'Any Status'))]
 for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
     STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
                            amo.MKT_STATUS_CHOICES[status]))
-
-
-class ReviewAppAttachmentForm(happyforms.Form):
-    attachment = forms.FileField(label=_lazy(u'Attachment:'))
-    description = forms.CharField(required=False, label=_lazy(u'Description:'))
-
-    max_upload_size = settings.MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE
-
-    def clean(self, *args, **kwargs):
-        data = super(ReviewAppAttachmentForm, self).clean(*args, **kwargs)
-        attachment = data.get('attachment')
-        max_size = self.max_upload_size
-        if attachment and attachment.size > max_size:
-            # Translators: Error raised when review attachment is too large.
-            exc = _('Attachment exceeds maximum size of %s.' %
-                    do_filesizeformat(self.max_upload_size))
-            raise ValidationError(exc)
-        return data
-
-
-AttachmentFormSet = forms.formsets.formset_factory(ReviewAppAttachmentForm,
-                                                   extra=1)
 
 
 class ReviewAppForm(happyforms.Form):
