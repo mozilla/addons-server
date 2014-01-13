@@ -201,7 +201,7 @@ def es_app_to_dict(obj, profile=None, request=None):
     data['upsell'] = False
     if hasattr(obj, 'upsell'):
         exclusions = obj.upsell.get('region_exclusions')
-        if exclusions is not None and region_slug not in exclusions:
+        if exclusions is not None and region_id not in exclusions:
             data['upsell'] = obj.upsell
             data['upsell']['resource_uri'] = reverse(
                 'app-detail',

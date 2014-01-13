@@ -709,12 +709,10 @@ class Webapp(Addon):
 
         if self.is_premium():
             all_regions = set(mkt.regions.ALL_REGION_IDS)
-            tier = self.get_tier()
-            if tier:
-                # Find every region that does not have payments supported
-                # and add that into the exclusions.
-                return excluded.union(
-                    all_regions.difference(self.get_price_region_ids()))
+            # Find every region that does not have payments supported
+            # and add that into the exclusions.
+            return excluded.union(
+                all_regions.difference(self.get_price_region_ids()))
 
         return sorted(list(excluded))
 
@@ -1659,7 +1657,7 @@ class WebappIndexer(MappingType, Indexable):
             d['supported_locales'] = []
 
         d['tags'] = getattr(obj, 'tag_list', [])
-        if obj.upsell:
+        if obj.upsell and obj.upsell.premium.is_public():
             upsell_obj = obj.upsell.premium
             d['upsell'] = {
                 'id': upsell_obj.id,

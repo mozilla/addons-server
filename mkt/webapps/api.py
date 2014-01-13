@@ -213,9 +213,13 @@ class AppSerializer(serializers.ModelSerializer):
         return [t.tag_text for t in app.tags.all()]
 
     def get_upsell(self, app):
-        if (app.upsell and self._get_region_id() in
-                app.upsell.premium.get_price_region_ids()):
+        upsell = False
+        if app.upsell:
             upsell = app.upsell.premium
+        # Only return the upsell app if it's public and we are not in an
+        # excluded region.
+        if (upsell and upsell.is_public() and self._get_region_id()
+                not in upsell.get_excluded_region_ids()):
             return {
                 'id': upsell.id,
                 'app_slug': upsell.app_slug,

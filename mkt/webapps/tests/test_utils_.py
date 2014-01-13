@@ -267,6 +267,50 @@ class TestAppSerializer(amo.tests.TestCase):
         res = self.serialize(self.app)
         eq_(res['release_notes'], unicode(version.releasenotes))
 
+    def test_upsell(self):
+        self.request.REGION = mkt.regions.US
+        upsell = amo.tests.app_factory()
+        self.make_premium(upsell)
+        self.app._upsell_from.create(premium=upsell)
+
+        res = self.serialize(self.app)
+        eq_(res['upsell']['id'], upsell.id)
+        eq_(res['upsell']['app_slug'], upsell.app_slug)
+        eq_(res['upsell']['name'], upsell.name)
+        eq_(res['upsell']['icon_url'], upsell.get_icon_url(128))
+        self.assertApiUrlEqual(res['upsell']['resource_uri'],
+                               '/apps/app/%s/' % upsell.id)
+
+    def test_upsell_not_public(self):
+        self.request.REGION = mkt.regions.US
+        upsell = amo.tests.app_factory(disabled_by_user=True)
+        self.make_premium(upsell)
+        self.app._upsell_from.create(premium=upsell)
+
+        res = self.serialize(self.app)
+        eq_(res['upsell'], False)
+
+    def test_upsell_excluded_from_region(self):
+        self.request.REGION = mkt.regions.US
+        upsell = amo.tests.app_factory()
+        self.make_premium(upsell)
+        self.app._upsell_from.create(premium=upsell)
+        upsell.addonexcludedregion.create(region=mkt.regions.US.id)
+
+        res = self.serialize(self.app)
+        eq_(res['upsell'], False)
+
+    def test_upsell_region_without_payments(self):
+        upsell = amo.tests.app_factory()
+        self.make_premium(upsell)
+        self.app._upsell_from.create(premium=upsell)
+
+        region_id = list(upsell.get_excluded_region_ids())[0]
+        self.request.REGION = mkt.regions.REGIONS_CHOICES_ID[region_id][1]
+
+        res = self.serialize(self.app)
+        eq_(res['upsell'], False)
+
 
 class TestAppSerializerPrices(amo.tests.TestCase):
     fixtures = fixture('user_2519')
@@ -346,6 +390,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
+        self.request = RequestFactory().get('/')
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.current_version
         self.profile = UserProfile.objects.get(pk=2519)
@@ -364,8 +409,12 @@ class TestESAppToDict(amo.tests.ESTestCase):
     def get_obj(self):
         return S(WebappIndexer).filter(id=self.app.pk).execute().objects[0]
 
+    def serialize(self):
+        return es_app_to_dict(self.get_obj(), profile=self.profile,
+                              request=self.request)
+
     def test_basic(self):
-        res = es_app_to_dict(self.get_obj(), profile=self.profile)
+        res = self.serialize()
         expected = {
             'absolute_url': 'http://testserver/app/something-something/',
             'app_type': 'hosted',
@@ -440,9 +489,8 @@ class TestESAppToDict(amo.tests.ESTestCase):
     def test_basic_with_lang(self):
         # Check that when ?lang is passed, we get the right language and we get
         # empty strings instead of None if the strings don't exist.
-        request = RequestFactory().get('/?lang=es')
-        res = es_app_to_dict(self.get_obj(), profile=self.profile,
-                             request=request)
+        self.request = RequestFactory().get('/?lang=es')
+        res = self.serialize()
         expected = {
             'id': 337141,
             'description': u'XSS attempt &lt;script&gt;alert(1)&lt;/script&gt;',
@@ -468,7 +516,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj())
+        res = self.serialize()
         eq_(res['content_ratings']['ratings']['classind'],
             {'body': 'CLASSIND',
              'body_label': 'classind',
@@ -500,9 +548,9 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        req = amo.tests.req_factory_factory('/')
-        req.REGION = regions.BR  # Normally set by regions middleware
-        res = es_app_to_dict(self.get_obj(), request=req)['content_ratings']
+        self.request = amo.tests.req_factory_factory('/')
+        self.request.REGION = mkt.regions.BR
+        res = self.serialize()['content_ratings']
 
         for iarc_obj in ('ratings', 'descriptors', 'regions'):
             eq_(len(res[iarc_obj]), 1)
@@ -512,7 +560,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
 
     def test_content_ratings_regions(self):
         self.create_switch('iarc')
-        res = es_app_to_dict(self.get_obj())
+        res = self.serialize()
         region_rating_bodies = res['content_ratings']['regions']
         eq_(region_rating_bodies['br'], 'classind')
         eq_(region_rating_bodies['de'], 'usk')
@@ -527,7 +575,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj())
+        res = self.serialize()
         assert 'us' not in res['content_ratings']['regions']
         eq_(res['content_ratings']['regions']['br'], 'classind')
 
@@ -535,7 +583,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         """Show weekly_downloads in results if app stats are public."""
         self.app.update(public_stats=True)
         self.refresh('webapp')
-        res = es_app_to_dict(self.get_obj())
+        res = self.serialize()
         eq_(res['weekly_downloads'], 9999)
 
     def test_devices(self):
@@ -544,7 +592,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj())
+        res = self.serialize()
         eq_(res['device_types'], ['firefoxos'])
 
     def test_user(self):
@@ -554,7 +602,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj(), profile=self.profile)
+        res = self.serialize()
         eq_(res['user'],
             {'developed': True, 'installed': True, 'purchased': True})
 
@@ -565,12 +613,12 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj(), profile=self.profile)
+        res = self.serialize()
         eq_(res['user'],
             {'developed': False, 'installed': False, 'purchased': False})
 
     def test_no_price(self):
-        res = es_app_to_dict(self.get_obj())
+        res = self.serialize()
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
 
@@ -579,16 +627,18 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        req = amo.tests.req_factory_factory('/', data={'region': 'us'})
-        res = es_app_to_dict(self.get_obj(), request=req)
+        self.request = amo.tests.req_factory_factory(
+            '/', data={'region': 'us'})
+        res = self.serialize()
         eq_(res['price'], Decimal('1.00'))
         eq_(res['price_locale'], '$1.00')
         eq_(res['payment_required'], True)
 
         # Test invalid region. This falls back to the region set by the region
         # middleware.
-        req = amo.tests.req_factory_factory('/', data={'region': 'xx'})
-        res = es_app_to_dict(self.get_obj(), request=req)
+        self.request = amo.tests.req_factory_factory(
+            '/', data={'region': 'xx'})
+        res = self.serialize()
         eq_(res['price'], Decimal('1.00'))
         eq_(res['price_locale'], '$1.00')
         eq_(res['payment_required'], True)
@@ -599,7 +649,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj())
+        res = self.serialize()
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
 
@@ -609,7 +659,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj())
+        res = self.serialize()
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
 
@@ -626,9 +676,66 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        res = es_app_to_dict(self.get_obj())
+        res = self.serialize()
         eq_(res['payment_account'], reverse('payment-account-detail',
                                             kwargs={'pk': account.pk}))
+
+    def test_upsell(self):
+        self.request = amo.tests.req_factory_factory(
+            '/', data={'region': 'us'})
+        upsell = amo.tests.app_factory()
+        self.make_premium(upsell)
+        self.app._upsell_from.create(premium=upsell)
+        self.app.save()
+        self.refresh('webapp')
+
+        res = self.serialize()
+        eq_(res['upsell']['id'], upsell.id)
+        eq_(res['upsell']['app_slug'], upsell.app_slug)
+        eq_(res['upsell']['name'], upsell.name)
+        eq_(res['upsell']['icon_url'], upsell.get_icon_url(128))
+        self.assertApiUrlEqual(res['upsell']['resource_uri'],
+                               '/apps/app/%s/' % upsell.id)
+
+    def test_upsell_not_public(self):
+        self.request = amo.tests.req_factory_factory(
+            '/', data={'region': 'us'})
+        upsell = amo.tests.app_factory(disabled_by_user=True)
+        self.make_premium(upsell)
+        self.app._upsell_from.create(premium=upsell)
+        self.app.save()
+        self.refresh('webapp')
+
+        res = self.serialize()
+        eq_(res['upsell'], False)
+
+    def test_upsell_excluded_from_region(self):
+        self.request = amo.tests.req_factory_factory('/')
+        self.request.REGION = mkt.regions.US
+        upsell = amo.tests.app_factory()
+        self.make_premium(upsell)
+        self.app._upsell_from.create(premium=upsell)
+        upsell.addonexcludedregion.create(region=mkt.regions.US.id)
+        self.app.save()
+        self.refresh('webapp')
+
+        res = self.serialize()
+        eq_(res['upsell'], False)
+
+    def test_upsell_region_without_payments(self):
+        upsell = amo.tests.app_factory()
+        self.make_premium(upsell)
+        self.app._upsell_from.create(premium=upsell)
+        self.app.save()
+        self.refresh('webapp')
+
+        region_id = list(upsell.get_excluded_region_ids())[0]
+        region = mkt.regions.REGIONS_CHOICES_ID[region_id][1]
+        self.request = amo.tests.req_factory_factory('/')
+        self.request.REGION = region
+
+        res = self.serialize()
+        eq_(res['upsell'], False)
 
 
 class TestSupportedLocales(amo.tests.TestCase):
