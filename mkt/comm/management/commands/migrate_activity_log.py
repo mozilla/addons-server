@@ -5,9 +5,9 @@ from celeryutils import task
 import amo
 from amo.decorators import write
 from amo.utils import chunked
-from comm.models import CommunicationNote, CommunicationThread
 from devhub.models import ActivityLog, AppLog
 
+from mkt.comm.models import CommunicationNote, CommunicationThread
 import mkt.constants.comm as cmb
 
 

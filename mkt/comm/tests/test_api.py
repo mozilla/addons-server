@@ -10,12 +10,12 @@ import mock
 from nose.tools import eq_, ok_
 
 from amo.tests import addon_factory, req_factory_factory, version_factory
-from comm.models import (CommunicationNote, CommunicationThread,
-                         CommunicationThreadCC)
 from users.models import UserProfile
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.api import EmailCreationPermission, post_email, ThreadPermission
+from mkt.comm.models import (CommunicationNote, CommunicationThread,
+                             CommunicationThreadCC)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -440,7 +440,7 @@ class TestEmailApi(RestOAuth):
         req.META['HTTP_POSTFIX_AUTH_TOKEN'] = 'somethingwrong'
         assert not EmailCreationPermission().has_permission(req, None)
 
-    @mock.patch('comm.tasks.consume_email.apply_async')
+    @mock.patch('mkt.comm.tasks.consume_email.apply_async')
     def test_successful(self, _mock):
         req = self.get_request({'body': 'something'})
         res = post_email(req)

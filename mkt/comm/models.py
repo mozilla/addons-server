@@ -142,7 +142,7 @@ class CommunicationThreadCC(amo.models.ModelBase):
 
 def cc_auto_mark_all_read(sender, instance, **kw):
     """When someone joins thread, mark all old messages read."""
-    from comm.tasks import mark_thread_read
+    from mkt.comm.tasks import mark_thread_read
     mark_thread_read.delay(instance.thread, instance.user)
 
 
@@ -202,9 +202,7 @@ class CommAttachment(amo.models.ModelBase):
         return 'Note %s - %s' % (self.note.id, self.filepath)
 
     def get_absolute_url(self):
-        # TODO: move comm to mkt (ngoke).
-        if settings.MARKETPLACE:
-            return reverse('reviewers.apps.review.attachment', args=[self.pk])
+        return reverse('reviewers.apps.review.attachment', args=[self.pk])
 
     def filename(self):
         """Returns the attachment's file name."""

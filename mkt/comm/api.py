@@ -23,18 +23,18 @@ from addons.models import Addon
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from users.models import UserProfile
-from comm.models import (CommAttachment, CommunicationNote,
-                         CommunicationNoteRead, CommunicationThread,
-                         user_has_perm_note, user_has_perm_thread)
-from comm.tasks import consume_email, mark_thread_read
 from versions.models import Version
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
 from mkt.comm.forms import AppSlugForm, CreateCommThreadForm
+from mkt.comm.models import (CommAttachment, CommunicationNote,
+                             CommunicationNoteRead, CommunicationThread,
+                             user_has_perm_note, user_has_perm_thread)
 from mkt.comm.utils import (create_comm_note, filter_notes_by_read_status,
                             post_create_comm_note)
+from mkt.comm.tasks import consume_email, mark_thread_read
 
 
 class AuthorSerializer(ModelSerializer):

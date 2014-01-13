@@ -8,12 +8,13 @@ from nose.tools import eq_, ok_
 
 from addons.models import Addon
 import amo.tests
-from comm.models import (CommAttachment, CommunicationNote,
-                         CommunicationThread, CommunicationThreadCC,
-                         CommunicationThreadToken, user_has_perm_note,
-                         user_has_perm_thread)
+
 from users.models import UserProfile
 
+from mkt.comm.models import (CommAttachment, CommunicationNote,
+                             CommunicationThread, CommunicationThreadCC,
+                             CommunicationThreadToken, user_has_perm_note,
+                             user_has_perm_thread)
 from mkt.comm.tests.test_api import CommTestMixin
 from mkt.constants import comm as const
 

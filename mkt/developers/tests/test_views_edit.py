@@ -24,7 +24,6 @@ from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from comm.models import CommunicationNote
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
@@ -34,6 +33,7 @@ from users.models import UserProfile
 from versions.models import Version
 
 import mkt
+from mkt.comm.models import CommunicationNote
 from mkt.constants import regions
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.site.fixtures import fixture

@@ -1,8 +1,7 @@
 import logging
 from celeryutils import task
 
-from comm.models import CommunicationNoteRead
-
+from mkt.comm.models import CommunicationNoteRead
 from mkt.comm.utils import filter_notes_by_read_status, save_from_email_reply
 
 

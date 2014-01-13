@@ -6,15 +6,16 @@ from nose.tools import eq_
 
 import amo
 from amo.tests import app_factory, TestCase, user_factory
-from comm.models import CommunicationThread, CommunicationThreadToken
 from users.models import UserProfile
 
-from mkt.comm.utils import CommEmailParser, create_comm_note, save_from_email_reply
+from mkt.comm.models import CommunicationThread, CommunicationThreadToken
+from mkt.comm.utils import (CommEmailParser, create_comm_note,
+                            save_from_email_reply)
 from mkt.constants import comm
 from mkt.site.fixtures import fixture
 
 
-sample_email = os.path.join(settings.ROOT, 'apps', 'comm', 'tests',
+sample_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
                             'email.txt')
 
 
