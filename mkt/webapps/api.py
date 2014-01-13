@@ -12,7 +12,7 @@ from rest_framework.response import Response
 from tower import ungettext as ngettext
 
 import amo
-from addons.models import AddonCategory, AddonUpsell, AddonUser
+from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from amo.utils import no_translation
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
@@ -261,6 +261,12 @@ class AppSerializer(serializers.ModelSerializer):
                 'You can have only {0} category.',
                 'You can have only {0} categories.',
                 max_cat).format(max_cat))
+
+        for cat in set_categories:
+            if cat.type != amo.ADDON_WEBAPP:
+                raise serializers.ValidationError(
+                    'Invalid category (not a Webapp category).')
+
         return attrs
 
     def get_device_types(self, app):
