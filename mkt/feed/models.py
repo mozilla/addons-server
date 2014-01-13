@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 import amo.models
@@ -5,8 +6,8 @@ import mkt.carriers
 import mkt.regions
 from addons.models import Category, Preview
 from mkt.collections.models import Collection
+from mkt.ratings.validators import validate_rating
 from mkt.webapps.models import Webapp
-from reviews.models import Review
 from translations.fields import PurifiedField, save_signal
 
 
@@ -17,11 +18,29 @@ class FeedApp(amo.models.ModelBase):
     """
     app = models.ForeignKey(Webapp)
     description = PurifiedField()
-    rating = models.ForeignKey(Review, null=True, blank=True)
+
+    # Optionally linked to a Preview (screenshot or video).
     preview = models.ForeignKey(Preview, null=True, blank=True)
+
+    # Optionally linked to a pull quote.
+    pullquote_rating = models.PositiveSmallIntegerField(null=True, blank=True,
+        validators=[validate_rating])
+    pullquote_text = PurifiedField(null=True)
+    pullquote_attribution = PurifiedField(null=True)
 
     class Meta:
         db_table = 'mkt_feed_app'
+
+    def clean(self):
+        """
+        Require `pullquote_text` if `pullquote_rating` or
+        `pullquote_attribution` are set.
+        """
+        if not self.pullquote_text and (self.pullquote_rating or
+                                        self.pullquote_attribution):
+            raise ValidationError('Pullquote text required if rating or '
+                                  'attribution is defined.')
+        super(FeedApp, self).clean()
 
 
 class FeedItem(amo.models.ModelBase):
