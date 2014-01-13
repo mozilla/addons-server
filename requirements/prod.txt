@@ -55,7 +55,7 @@ httplib2==0.8.0
 importlib-no-failure==1.0.2
 kombu==2.5.16
 heka-py==0.30.3
-heka-py-cef==0.3
+heka-py-cef==0.3.1
 heka-py-raven==0.6
 python-mimeparse==0.1.4
 mock==1.0.1
