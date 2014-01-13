@@ -251,7 +251,7 @@ class TestSplitField(TestCase):
         self.serializer = PotatoSerializer(self.potato,
                                            context={'request': self.request})
 
-    def test_initialize(self, _initialize):
+    def test_initialize(self):
         """
         Test that the request context is passed from PotatoSerializer's context
         to the context of `PotatoSerializer.spud.output`.
