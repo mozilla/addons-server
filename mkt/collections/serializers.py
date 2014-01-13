@@ -24,12 +24,20 @@ from addons.models import Category
 from mkt.api.fields import (SlugChoiceField, SlugModelChoiceField,
                             TranslationSerializerField)
 from mkt.features.utils import get_feature_profile
-from mkt.webapps.api import AppSerializer
+from mkt.webapps.api import SimpleAppSerializer
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
 from .models import Collection
 from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
+
+
+class CollectionAppSerializer(SimpleAppSerializer):
+    """
+    Serializer to use when serializing apps belonging to a collection. Used
+    by CollectionMembershipField when fetcihng apps from the db instead of ES.
+    """
+    pass
 
 
 class CollectionMembershipField(serializers.RelatedField):
@@ -42,7 +50,7 @@ class CollectionMembershipField(serializers.RelatedField):
     want to use this elsewhere.
     """
     def to_native(self, value):
-        return AppSerializer(value, context=self.context).data
+        return CollectionAppSerializer(value, context=self.context).data
 
     def to_native_es(self, value):
         return self.context['view'].serialize(self.context['request'], value)
@@ -71,7 +79,7 @@ class CollectionMembershipField(serializers.RelatedField):
             qs = qs.filter(**profile.to_kwargs(
                 prefix='_current_version__features__has_'))
 
-        return [self.to_native(app) for app in qs]
+        return self.to_native(qs)
 
     def field_to_native_es(self, obj, request):
         """

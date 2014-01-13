@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from mock import patch
 from nose.tools import eq_, ok_
 from rest_framework import serializers
 from test_utils import RequestFactory
@@ -6,7 +7,6 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 from addons.models import AddonUser, Category
-from amo.urlresolvers import reverse
 from users.models import UserProfile
 
 import mkt
@@ -19,7 +19,7 @@ from mkt.collections.serializers import (CollectionMembershipField,
 from mkt.constants.features import FeatureProfile
 from mkt.search.api import FeaturedSearchView
 from mkt.site.fixtures import fixture
-from mkt.webapps.api import AppSerializer
+from mkt.webapps.api import SimpleAppSerializer
 
 
 class CollectionDataMixin(object):
@@ -49,16 +49,19 @@ class BaseTestCollectionMembershipField(object):
         return request
 
     def test_to_native(self):
+        self.app2 = amo.tests.app_factory()
+        self.collection.add_app(self.app2)
+        apps = [self.app, self.app2]
         request = self.get_request({})
-        resource = AppSerializer(self.app)
+        resource = SimpleAppSerializer(apps)
         resource.context = {'request': request}
         self.field.context['request'] = request
-        native = self.field.to_native(self.collection.apps()[0])
-        for key, value in native.iteritems():
-            if key == 'resource_uri':
-                eq_(value, self.app.get_api_url(pk=self.app.pk))
-            else:
-                eq_(value, resource.data[key])
+        data = self.field.to_native(self.collection.apps())
+        eq_(len(data), 2)
+        eq_(data[0]['id'], int(self.app.pk))
+        eq_(data[0]['resource_uri'], self.app.get_api_url(pk=self.app.pk))
+        eq_(data[1]['id'], int(self.app2.id))
+        eq_(data[1]['resource_uri'], self.app2.get_api_url(pk=self.app2.pk))
 
     def _field_to_native_profile(self, profile='0.0'):
         request = self.get_request({'pro': profile, 'dev': 'firefoxos'})
@@ -214,13 +217,14 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         data = self.serializer.to_native(self.collection)
         ok_('can_be_hero' in data.keys())
 
+    @patch('mkt.collections.serializers.build_id', 'bbbbbb')
     def test_image(self):
         data = self.serializer.to_native(self.collection)
         eq_(data['image'], None)
         self.collection.update(has_image=True)
         data = self.serializer.to_native(self.collection)
         self.assertApiUrlEqual(data['image'],
-            '/rocketfuel/collections/%s/image.png' % self.collection.pk)
+            '/rocketfuel/collections/%s/image.png?bbbbbb' % self.collection.pk)
 
     def test_wrong_default_language_serialization(self):
         # The following is wrong because we only accept the 'en-us' form.
