@@ -7,7 +7,7 @@ class FireplaceAppSerializer(AppSerializer):
     class Meta(AppSerializer.Meta):
         exclude = [
             'absolute_url', 'app_type', 'categories', 'created',
-            'default_locale', 'payment_account' 'regions',
+            'default_locale', 'payment_account', 'regions',
             'supported_locales', 'weekly_downloads', 'upsold', 'tags',]
 
 class AppViewSet(BaseAppViewset):
