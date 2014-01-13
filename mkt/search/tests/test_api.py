@@ -750,6 +750,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
 
         res, json = self.test_added_to_results()
         eq_(len(json[self.prop_name][0]['apps']), 1)
+        return res, json
 
     def test_features_filtered(self):
         """
@@ -806,11 +807,11 @@ class TestFeaturedCollections(BaseFeaturedTests):
         # only have been called once.
         eq_(mock_field_to_native.call_count, 1)
 
-    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
+    @patch('mkt.collections.serializers.CollectionMembershipField.to_native_es')
     def test_limit_preview(self, mock_field_to_native):
         """
-        Like test_limit, except we are in preview mode, so we shouldn't be using
-        ES for apps. The mock is adjusted accordingly.
+        Like test_limit, except we are in preview mode, so we shouldn't be
+        using ES for apps. The mock is adjusted accordingly.
         """
         mock_field_to_native.return_value = None
         self.col.add_app(self.app)
@@ -821,12 +822,13 @@ class TestFeaturedCollections(BaseFeaturedTests):
         # Call standard test method that adds the app and tests the result, but
         # make sure we're in preview mode.
         self.qs['preview'] = True
-        self.test_apps_included()
+        res, json = self.test_apps_included()
+        eq_(json[self.prop_name][0]['apps'][0]['id'], self.app.id)
 
         # We are only dealing with one collection with only one app inside,
-        # our mock of the method that serializes app data from ES should only
-        # have been called once.
-        eq_(mock_field_to_native.call_count, 1)
+        # our mock of the method that serializes app data from ES should not
+        # have been called at all.
+        eq_(mock_field_to_native.call_count, 0)
 
     @patch('mkt.search.api.SearchView.get_region')
     @patch('mkt.search.api.CollectionFilterSetWithFallback')
