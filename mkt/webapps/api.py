@@ -179,20 +179,20 @@ class AppSerializer(serializers.ModelSerializer):
                      for icon_size in (16, 48, 64, 128)])
 
     def get_payment_required(self, app):
-        if app.premium:
+        if app.has_premium():
             tier = app.get_tier()
             return bool(tier and tier.price)
         return False
 
     def get_price(self, app):
-        if app.premium:
+        if app.has_premium():
             region = self._get_region_id()
             if region in app.get_price_region_ids():
                 return app.get_price(region=region)
         return None
 
     def get_price_locale(self, app):
-        if app.premium:
+        if app.has_premium():
             region = self._get_region_id()
             if region in app.get_price_region_ids():
                 return app.get_price_locale(region=region)
