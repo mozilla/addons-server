@@ -1,11 +1,17 @@
+import os
 from datetime import datetime
+import imghdr
 
+from django.conf import settings
 from django.db import models
+from django.utils.safestring import mark_safe
 
+import bleach
 from uuidfield.fields import UUIDField
 
-from access import acl
 import amo.models
+from access import acl
+from amo.utils import reverse
 from translations.fields import save_signal
 
 from mkt.constants import comm
@@ -175,6 +181,53 @@ class CommunicationNote(CommunicationPermissionModel):
 
     def mark_read(self, user):
         self.reads_set.create(user=user)
+
+
+class CommAttachment(amo.models.ModelBase):
+    """
+    Model for an attachment to an CommNote instance. Used by the Marketplace
+    reviewer tools, where reviewers can attach files to comments made during
+    the review process.
+    """
+    note = models.ForeignKey('CommunicationNote', related_name='attachments')
+    filepath = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, blank=True)
+    mimetype = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        db_table = 'comm_attachments'
+        ordering = ('id',)
+
+    def __unicode__(self):
+        return 'Note %s - %s' % (self.note.id, self.filepath)
+
+    def get_absolute_url(self):
+        # TODO: move comm to mkt (ngoke).
+        if settings.MARKETPLACE:
+            return reverse('reviewers.apps.review.attachment', args=[self.pk])
+
+    def filename(self):
+        """Returns the attachment's file name."""
+        return os.path.basename(self.filepath)
+
+    def full_path(self):
+        """Returns the full filesystem path of the attachment."""
+        return os.path.join(settings.REVIEWER_ATTACHMENTS_PATH, self.filepath)
+
+    def display_name(self):
+        """
+        Returns a string describing the attachment suitable for front-end
+        display.
+        """
+        display = self.description if self.description else self.filename()
+        return mark_safe(bleach.clean(display))
+
+    def is_image(self):
+        """
+        Returns a boolean indicating whether the attached file is an image of a
+        format recognizable by the stdlib imghdr module.
+        """
+        return imghdr.what(self.full_path()) is not None
 
 
 class CommunicationNoteRead(models.Model):

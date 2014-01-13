@@ -5,6 +5,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from comm.models import CommunicationNote, CommunicationThread
+from devhub.models import ActivityLog, ActivityLogAttachment
 from users.models import UserProfile
 
 import mkt.constants.comm as cmb
@@ -80,10 +81,7 @@ class TestMigrateActivityLog(amo.tests.TestCase):
         amo.log(amo.LOG.REQUEST_VERSION, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
         self._assert(cmb.NO_ACTION)
-        eq_(CommunicationNote.objects.count(), 1)
-
-        amo.log(amo.LOG.REQUEST_VERSION, self.app, self.version,
-                user=self.user, details={'comments': 'something'})
+        call_command('migrate_activity_log')
         call_command('migrate_activity_log')
         eq_(CommunicationNote.objects.count(), 1)
 
@@ -98,3 +96,24 @@ class TestMigrateActivityLog(amo.tests.TestCase):
         call_command('migrate_activity_log')
         assert not CommunicationThread.objects.exists()
         assert not CommunicationNote.objects.exists()
+
+    def test_migrate_attachments(self):
+        amo.log(amo.LOG.APPROVE_VERSION, self.app, self.version,
+                user=self.user, details={'comments': 'something'})
+        ActivityLogAttachment.objects.create(
+            activity_log=ActivityLog.objects.get(), filepath='lol',
+            description='desc1', mimetype='img')
+        ActivityLogAttachment.objects.create(
+            activity_log=ActivityLog.objects.get(), filepath='rofl',
+            description='desc2', mimetype='txt')
+        call_command('migrate_activity_log')
+
+        note = CommunicationNote.objects.get()
+        eq_(note.attachments.count(), 2)
+
+        note_attach1 = note.attachments.get(filepath='lol')
+        eq_(note_attach1.description, 'desc1')
+        eq_(note_attach1.mimetype, 'img')
+        note_attach2 = note.attachments.get(filepath='rofl')
+        eq_(note_attach2.description, 'desc2')
+        eq_(note_attach2.mimetype, 'txt')
