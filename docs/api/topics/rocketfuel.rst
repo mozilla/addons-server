@@ -15,6 +15,8 @@ under active development.
     change over time.
 
 
+.. _collections:
+
 Collections
 ===========
 

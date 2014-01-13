@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 from mock import Mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from rest_framework.request import Request
-from rest_framework.serializers import Serializer
+from rest_framework.serializers import CharField, Serializer
 from rest_framework.test import APIRequestFactory
+from test_utils import RequestFactory
 
 import amo
 from amo.tests import TestCase
 from addons.models import AddonCategory, Category
-from mkt.api.fields import (SlugOrPrimaryKeyRelatedField,
+from mkt.api.fields import (SlugOrPrimaryKeyRelatedField, SplitField,
                             TranslationSerializerField)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
@@ -223,3 +224,39 @@ class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
                                              slug_field='app_slug')
         field.field_from_native({'addon': app.app_slug}, None, 'addon', into)
         eq_(into, {'addon': app})
+
+
+class Spud(object):
+    pass
+
+
+class Potato(object):
+    def __init__(self, spud):
+        self.spud = spud
+
+
+class SpudSerializer(Serializer):
+    pass
+
+
+class PotatoSerializer(Serializer):
+    spud = SplitField(CharField(), SpudSerializer())
+
+
+class TestSplitField(TestCase):
+    def setUp(self):
+        self.request = RequestFactory().get('/')
+        self.spud = Spud()
+        self.potato = Potato(self.spud)
+        self.serializer = PotatoSerializer(self.potato,
+                                           context={'request': self.request})
+
+    def test_initialize(self, _initialize):
+        """
+        Test that the request context is passed from PotatoSerializer's context
+        to the context of `PotatoSerializer.spud.output`.
+        """
+        field = self.serializer.fields['spud']
+        eq_(self.request, field.output.context['request'],
+            self.serializer.context['request'])
+        ok_(not hasattr(field.input, 'context'))
