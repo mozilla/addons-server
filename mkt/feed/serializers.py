@@ -4,12 +4,30 @@ import amo
 import mkt.carriers
 import mkt.regions
 from addons.models import Category
-from mkt.api.fields import SplitField
+from mkt.api.fields import SplitField, TranslationSerializerField
 from mkt.api.serializers import URLSerializerMixin
 from mkt.collections.serializers import (CollectionSerializer, SlugChoiceField,
                                          SlugModelChoiceField)
+from mkt.ratings.serializers import RatingSerializer
+from mkt.submit.serializers import PreviewSerializer
+from mkt.webapps.api import AppSerializer
 
-from .models import FeedItem
+from .models import FeedApp, FeedItem
+
+
+class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
+    app = SplitField(relations.PrimaryKeyRelatedField(required=True),
+                     AppSerializer())
+    description = TranslationSerializerField(required=False)
+    preview = SplitField(relations.PrimaryKeyRelatedField(required=False),
+                         PreviewSerializer())
+    rating = SplitField(relations.PrimaryKeyRelatedField(required=False),
+                        RatingSerializer())
+
+    class Meta:
+        fields = ('app', 'description', 'id', 'preview', 'rating', 'url')
+        model = FeedApp
+        url_basename = 'feedapp'
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):

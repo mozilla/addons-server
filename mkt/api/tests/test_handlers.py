@@ -370,7 +370,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         data['categories'] = [wrong.slug]
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
-        assert 'does not exist' in res.json['categories'][0]
+        eq_(res.json['categories'][0],
+            'Invalid category (not a Webapp category).')
 
     def test_put_no_categories(self):
         self.create_app()

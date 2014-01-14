@@ -914,8 +914,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             icon_type_split = self.icon_type.split('/')
 
         # Get the closest allowed size without going over
-        if (size not in amo.ADDON_ICON_SIZES and
-            size >= amo.ADDON_ICON_SIZES[0]):
+        if (size not in amo.ADDON_ICON_SIZES
+                and size >= amo.ADDON_ICON_SIZES[0]):
             size = [s for s in amo.ADDON_ICON_SIZES if s < size][-1]
         elif size < amo.ADDON_ICON_SIZES[0]:
             size = amo.ADDON_ICON_SIZES[0]

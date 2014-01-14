@@ -1,15 +1,26 @@
 from datetime import datetime
+from os import path
 
-from nose.tools import eq_
+from django.core.urlresolvers import NoReverseMatch
+from django.test.utils import override_settings
+
+from nose.tools import eq_, ok_
 
 from addons.models import Addon
 import amo.tests
-from comm.models import (CommunicationNote, CommunicationThread,
-                         CommunicationThreadCC, CommunicationThreadToken,
-                         user_has_perm_note, user_has_perm_thread)
+
 from users.models import UserProfile
 
+from mkt.comm.models import (CommAttachment, CommunicationNote,
+                             CommunicationThread, CommunicationThreadCC,
+                             CommunicationThreadToken, user_has_perm_note,
+                             user_has_perm_thread)
+from mkt.comm.tests.test_api import CommTestMixin
 from mkt.constants import comm as const
+
+
+TESTS_DIR = path.dirname(path.abspath(__file__))
+ATTACHMENTS_DIR = path.join(TESTS_DIR, 'attachments')
 
 
 class PermissionTestMixin(object):
@@ -24,7 +35,6 @@ class PermissionTestMixin(object):
         self.note = CommunicationNote.objects.create(
             thread=self.thread, author=self.author, note_type=0, body='xyz')
         self.obj = None
-
 
     def _eq_obj_perm(self, val):
         if self.type == 'note':
@@ -154,3 +164,64 @@ class TestThreadTokenModel(amo.tests.TestCase):
         self.token.reset_uuid()
         assert self.token.uuid
         assert uuid != self.token.uuid
+
+
+@override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
+class TestCommAttachment(amo.tests.TestCase, CommTestMixin):
+    fixtures = ['base/addon_3615']
+    XSS_STRING = 'MMM <script>alert(bacon);</script>'
+
+    def setUp(self):
+        self.user = amo.tests.user_factory(username='porkbelly')
+        amo.set_user(self.user)
+        self.profile = self.user
+        self.addon = Addon.objects.get()
+        self.version = self.addon.latest_version
+        self.thread = self._thread_factory()
+        self.note = self._note_factory(self.thread)
+        self.attachment1, self.attachment2 = self._attachments(self.note)
+
+    def _attachments(self, note):
+        """
+        Create and return a tuple of CommAttachment instances.
+        """
+        ala1 = CommAttachment.objects.create(note=note,
+                                             filepath='bacon.txt',
+                                             mimetype='text/plain')
+        ala2 = CommAttachment.objects.create(note=note,
+                                             filepath='bacon.jpg',
+                                             description=self.XSS_STRING,
+                                             mimetype='image/jpeg')
+        return ala1, ala2
+
+    def test_filename(self):
+        msg = 'CommAttachment().filename() returning incorrect filename.'
+        eq_(self.attachment1.filename(), 'bacon.txt', msg)
+        eq_(self.attachment2.filename(), 'bacon.jpg', msg)
+
+    def test_full_path_dirname(self):
+        msg = 'CommAttachment().full_path() returning incorrect path.'
+        FAKE_PATH = '/tmp/attachments/'
+        with self.settings(REVIEWER_ATTACHMENTS_PATH=FAKE_PATH):
+            eq_(self.attachment1.full_path(), FAKE_PATH + 'bacon.txt', msg)
+            eq_(self.attachment2.full_path(), FAKE_PATH + 'bacon.jpg', msg)
+
+    def test_display_name(self):
+        msg = ('CommAttachment().display_name() returning '
+               'incorrect display name.')
+        eq_(self.attachment1.display_name(), 'bacon.txt', msg)
+
+    def test_display_name_xss(self):
+        ok_('<script>' not in self.attachment2.display_name())
+
+    def test_is_image(self):
+        msg = 'CommAttachment().is_image() not correctly detecting images.'
+        eq_(self.attachment1.is_image(), False, msg)
+        eq_(self.attachment2.is_image(), True, msg)
+
+    def test_get_absolute_url(self):
+        try:
+            self.attachment1.get_absolute_url()
+            self.attachment2.get_absolute_url()
+        except NoReverseMatch:
+            assert False, 'CommAttachment.get_absolute_url NoReverseMatch'

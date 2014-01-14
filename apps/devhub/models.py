@@ -430,6 +430,7 @@ class ActivityLog(amo.models.ModelBase):
         return self
 
 
+# TODO: remove once we migrate to CommAtttachment (ngoke).
 class ActivityLogAttachment(amo.models.ModelBase):
     """
     Model for an attachment to an ActivityLog instance. Used by the Marketplace

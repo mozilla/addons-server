@@ -28,10 +28,15 @@ def memcache():
     status = ''
     if memcache and 'memcache' in memcache['BACKEND']:
         hosts = memcache['LOCATION']
+        using_twemproxy = False
         if not isinstance(hosts, (tuple, list)):
             hosts = [hosts]
         for host in hosts:
             ip, port = host.split(':')
+
+            if ip == '127.0.0.1':
+                using_twemproxy = True
+
             try:
                 s = socket.socket()
                 s.connect((ip, int(port)))
@@ -45,7 +50,7 @@ def memcache():
                 s.close()
 
             memcache_results.append((ip, port, result))
-        if len(memcache_results) < 2:
+        if not using_twemproxy and len(memcache_results) < 2:
             status = ('2+ memcache servers are required.'
                       '%s available') % len(memcache_results)
             monitor_log.warning(status)

@@ -1061,7 +1061,8 @@ class TestAjaxSearch(amo.tests.ESTestCase):
             if src:
                 expected_url += '?src=ss'
             eq_(got['url'], expected_url)
-            eq_(got['icon'], expected.icon_url)
+            eq_(got['icons'], {'32': expected.get_icon_url(32),
+                               '64': expected.get_icon_url(64)})
 
             assert expected.status in amo.REVIEWED_STATUSES, (
                 'Unreviewed add-ons should not appear in search results.')

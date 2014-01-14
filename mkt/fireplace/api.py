@@ -1,15 +1,9 @@
-from mkt.webapps.api import AppSerializer, AppViewSet as BaseAppViewset
+from mkt.webapps.api import SimpleAppSerializer, AppViewSet as BaseAppViewset
 
 
-class FireplaceAppSerializer(AppSerializer):
-    upsold = None
-    tags = None
-    class Meta(AppSerializer.Meta):
-        exclude = [
-            'absolute_url', 'app_type', 'categories', 'created',
-            'default_locale', 'payment_account' 'regions',
-            'supported_locales', 'weekly_downloads', 'upsold', 'tags',]
+class FireplaceAppSerializer(SimpleAppSerializer):
+    pass
+
 
 class AppViewSet(BaseAppViewset):
-
     serializer_class = FireplaceAppSerializer

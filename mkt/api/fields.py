@@ -126,16 +126,30 @@ class TranslationSerializerField(fields.WritableField):
 
 class SplitField(fields.Field):
     """
-    A field that accepts a primary key as input but serializes a
-    nested representation of the object represented by that key as
-    output.
+    A field composed of two separate fields: one used for input, and another
+    used for output. Most commonly used to accept a primary key for input and
+    use a full serializer for output.
+
+    Example usage:
+    app = SplitField(PrimaryKeyRelatedField(), AppSerializer())
     """
     label = None
+
     def __init__(self, input, output, **kwargs):
         self.input = input
         self.output = output
         self.source = input.source
         self._read_only = False
+
+    def initialize(self, parent, field_name):
+        """
+        Update the context of the input and output fields to match the context
+        of this field.
+        """
+        super(SplitField, self).initialize(parent, field_name)
+        for field in [self.input, self.output]:
+            if hasattr(field, 'context'):
+                field.context.update(self.context)
 
     def get_read_only(self):
         return self._read_only

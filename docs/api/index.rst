@@ -10,6 +10,7 @@
    topics/accounts.rst
    topics/apps.rst
    topics/comm.rst
+   topics/content_ratings.rst
    topics/export.rst
    topics/features.rst
    topics/feed.rst

@@ -120,7 +120,10 @@ class BaseAjaxSearch(object):
             "id": 1865,
             "name": "Adblock Plus",
             "url": "http://path/to/details/page",
-            "icon": "http://path/to/icon",
+            "icons": {
+                "32": "http://path/to/icon-32",
+                "64": "http://path/to/icon-64"
+            }
         },
         ...
     ]
@@ -141,7 +144,10 @@ class BaseAjaxSearch(object):
             'id': 'id',
             'name': 'name',
             'url': 'get_url_path',
-            'icon': 'icon_url'
+            'icons': {
+                '32': ('get_icon_url', 32),
+                '64': ('get_icon_url', 64)
+            }
         }
         self.fields = getattr(self, 'fields', default_fields)
         if self.ratings:
@@ -171,18 +177,29 @@ class BaseAjaxSearch(object):
                                     status__in=amo.REVIEWED_STATUSES)
         return results
 
+    def _build_fields(self, item, fields):
+        data = {}
+        for key, prop in fields.iteritems():
+            if isinstance(prop, dict):
+                data[key] = self._build_fields(item, prop)
+            else:
+                # prop is a tuple like: ('method', 'arg1, 'argN').
+                if isinstance(prop, tuple):
+                    val = getattr(item, prop[0])(*prop[1:])
+                else:
+                    val = getattr(item, prop, '')
+                    if callable(val):
+                        val = val()
+                data[key] = unicode(val)
+        return data
+
     def build_list(self):
         """Populate a list of dictionaries based on label => property."""
         results = []
         for item in self.queryset()[:self.limit]:
             if item.id in self.excluded_ids:
                 continue
-            d = {}
-            for key, prop in self.fields.iteritems():
-                val = getattr(item, prop, '')
-                if callable(val):
-                    val = val()
-                d[key] = unicode(val)
+            d = self._build_fields(item, self.fields)
             if self.src and 'url' in d:
                 d['url'] = urlparams(d['url'], src=self.src)
             results.append(d)

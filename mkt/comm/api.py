@@ -20,20 +20,21 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.viewsets import GenericViewSet
 
 from addons.models import Addon
+from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from users.models import UserProfile
-from comm.models import (CommunicationNote, CommunicationNoteRead,
-                         CommunicationThread, user_has_perm_note,
-                         user_has_perm_thread)
-from comm.tasks import consume_email, mark_thread_read
 from versions.models import Version
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
 from mkt.comm.forms import AppSlugForm, CreateCommThreadForm
+from mkt.comm.models import (CommAttachment, CommunicationNote,
+                             CommunicationNoteRead, CommunicationThread,
+                             user_has_perm_note, user_has_perm_thread)
 from mkt.comm.utils import (create_comm_note, filter_notes_by_read_status,
                             post_create_comm_note)
+from mkt.comm.tasks import consume_email, mark_thread_read
 
 
 class AuthorSerializer(ModelSerializer):
@@ -44,11 +45,25 @@ class AuthorSerializer(ModelSerializer):
         fields = ('name',)
 
 
+class AttachmentSerializer(ModelSerializer):
+    url = SerializerMethodField('get_absolute_url')
+    display_name = CharField(source='display_name')
+    is_image = BooleanField(source='is_image')
+
+    def get_absolute_url(self, obj):
+        return absolutify(obj.get_absolute_url())
+
+    class Meta:
+        model = CommAttachment
+        fields = ('id', 'created', 'url', 'display_name', 'is_image')
+
+
 class NoteSerializer(ModelSerializer):
     body = CharField()
     author_meta = AuthorSerializer(source='author', read_only=True)
     reply_to = PrimaryKeyRelatedField(required=False)
     is_read = SerializerMethodField('is_read_by_user')
+    attachments = AttachmentSerializer(source='attachments', read_only=True)
 
     def is_read_by_user(self, obj):
         return obj.read_by_users.filter(
@@ -56,8 +71,8 @@ class NoteSerializer(ModelSerializer):
 
     class Meta:
         model = CommunicationNote
-        fields = ('id', 'author', 'author_meta', 'note_type', 'body',
-                  'created', 'thread', 'reply_to', 'is_read')
+        fields = ('id', 'created', 'attachments', 'author', 'author_meta',
+                  'body', 'is_read', 'note_type', 'reply_to', 'thread')
 
 
 class AddonSerializer(ModelSerializer):

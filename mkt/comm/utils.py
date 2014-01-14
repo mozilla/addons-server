@@ -8,11 +8,11 @@ from email_reply_parser import EmailReplyParser
 import waffle
 
 from access.models import Group
-from comm.models import (CommunicationNote, CommunicationNoteRead,
-                         CommunicationThread, CommunicationThreadToken,
-                         user_has_perm_thread)
 from users.models import UserProfile
 
+from mkt.comm.models import (CommunicationNote, CommunicationNoteRead,
+                             CommunicationThread, CommunicationThreadToken,
+                             user_has_perm_thread)
 from mkt.constants import comm
 
 
