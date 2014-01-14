@@ -42,8 +42,10 @@ class BaseTestCollectionMembershipField(object):
         self.membership = CollectionMembership.objects.all()[0]
         self.profile = FeatureProfile(apps=True).to_signature()
 
-    def get_request(self, query_string):
-        request = RequestFactory().get('/', query_string)
+    def get_request(self, data=None):
+        if data is None:
+            data = {}
+        request = RequestFactory().get('/', data)
         request.REGION = mkt.regions.WORLDWIDE
         request.API = True
         return request
@@ -156,9 +158,23 @@ class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
         self.collection.add_app(self.app2, order=0)
         self.app3 = amo.tests.app_factory()
         self.collection.add_app(self.app3)
-        amo.tests.app_factory()  # Extra app not belonging to a collection.
+
+        # Extra app not belonging to a collection.
+        amo.tests.app_factory()
+
+        # Extra collection that has the apps in different positions.
+        extra_collection = Collection.objects.create(**self.collection_data)
+        extra_collection.add_app(self.app3)
+        extra_collection.add_app(self.app2)
+        extra_collection.add_app(self.app)
+
+        # Force refresh in ES.
         self.refresh('webapp')
-        result = self._field_to_native_profile()
+
+        request = self.get_request()
+        self.field.context['request'] = request
+        result = self.field.field_to_native_es(self.collection, request)
+
         eq_(len(result), 3)
         eq_(int(result[0]['id']), self.app2.id)
         eq_(int(result[1]['id']), self.app.id)

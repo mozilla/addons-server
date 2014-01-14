@@ -1391,7 +1391,8 @@ class WebappIndexer(MappingType, Indexable):
                         'index': 'not_analyzed'
                     },
                     'collection': {
-                        'type': 'object',
+                        'type': 'nested',
+                        'include_in_parent': True,
                         'properties': {
                             'id': {'type': 'long'},
                             'order': {'type': 'short'}

@@ -226,7 +226,9 @@ Feed apps are represented thusly:
         },
         "id": 1
         "preview": null,
-        "rating": null,
+        "pullquote_attribute": null,
+        "pullquote_rating": null,
+        "pullquote_text": null,
         "url": "/api/v2/feed/apps/1/"
     }
 
@@ -240,8 +242,15 @@ Feed apps are represented thusly:
 ``preview``
     *object|null* - a featured :ref:`preview <screenshot-response-label>`
     (screenshot or video) of the app.
-``rating``
-    *object|null* - a featured :ref:`rating <ratings>` of the app.
+``pullquote_attribute``
+    *object|null* - a :ref:`translated <overview-translations>` attribute of the
+    pull quote.
+``pullquote_rating``
+    *integer|null* - a numeric rating of the pull quote between 1 and 5
+    (inclusive).
+``pullquote_text``
+    *object|null* - the :ref:`translated <overview-translations>` text of a pull
+    quote to feature with the app
 ``url``
     *string|null* - the permanent URL for this feed app.
 
@@ -296,8 +305,16 @@ Create
     :param preview: the ID of a :ref:`preview <screenshot-response-label>` to
         feature with the app.
     :type preview: int|null
-    :param rating: the ID of a :ref:`rating <ratings>` to feature with the app.
-    :type rating: int|null
+    :param pullquote_attribute: a :ref:`translated <overview-translations>`
+        attribution of the pull quote.
+    :type pullquote_attribute: object|null
+    :param pullquote_rating: a numeric rating of the pull quote between 1 and 5
+        (inclusive).
+    :type pullquote_rating: int|null
+    :param pullquote_text: the :ref:`translated <overview-translations>` text of
+        a pull quote to feature with the app. Required if
+        ``pullquote_attribute`` or ``pullquote_rating`` are defined.
+    :type pullquote_text: object|null
 
     .. code-block:: json
 
@@ -307,7 +324,11 @@ Create
                 "en-US": "A featured app",
                 "fr": "Une application sélectionnée"
             },
-            "rating": 13401
+            "pullquote_rating": 4,
+            "pullquote_text": {
+                "en-US": "This featured app is excellent.",
+                "fr": "Pommes frites"
+            }
         }
 
     **Response**
@@ -336,8 +357,16 @@ Update
     :param preview: the ID of a :ref:`preview <screenshot-response-label>` to
         feature with the app.
     :type preview: int|null
-    :param rating: the ID of a :ref:`rating <ratings>` to feature with the app.
-    :type rating: int|null
+    :param pullquote_attribute: a :ref:`translated <overview-translations>`
+        attribution of the pull quote.
+    :type pullquote_attribute: object|null
+    :param pullquote_rating: a numeric rating of the pull quote between 1 and 5
+        (inclusive).
+    :type pullquote_rating: int|null
+    :param pullquote_text: the :ref:`translated <overview-translations>` text of
+        a pull quote to feature with the app. Required if
+        ``pullquote_attribute`` or ``pullquote_rating`` are defined.
+    :type pullquote_text: object|null
 
     **Response**
 

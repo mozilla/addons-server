@@ -15,7 +15,6 @@ from mkt.collections.models import Collection
 from mkt.feed.models import FeedApp, FeedItem
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from reviews.models import Review
 
 
 class CollectionMixin(object):
@@ -39,9 +38,13 @@ class FeedAppMixin(object):
         self.feedapp_data = {
             'app': 337141,
             'description': {
-                'en-US': u'pan-fried potatoes',
-                'fr': u'pommes de terre sautées'
+                'en-US': u'pan-fried potatoes'
             },
+        }
+        self.pullquote_data = {
+            'pullquote_text': {'en-US': u'The bést!'},
+            'pullquote_rating': 4,
+            'pullquote_attribution': {'en-US': u'Jamés Bond'}
         }
         self.feedapps = []
         super(FeedAppMixin, self).setUp()
@@ -320,19 +323,47 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         res, data = self.test_create_with_permission()
         eq_(data['preview']['id'], preview.id)
 
-    def test_create_with_rating(self):
-        rating = Review.objects.create(**{
-            'addon': self.app,
-            'user': self.user.get_profile(),
-            'version': self.app._latest_version,
-            'body': u'I lôve this app',
-            'rating': 5
-        })
-        self.feedapp_data.update(rating=rating.pk)
+    def test_create_with_pullquote(self):
+        self.feedapp_data.update(**self.pullquote_data)
         res, data = self.test_create_with_permission()
-        eq_(data['rating']['user']['display_name'], rating.user.display_name)
-        eq_(data['rating']['app'],
-            reverse('app-detail', kwargs={'pk': self.app.pk}))
+        for field, value in self.pullquote_data.iteritems():
+            eq_(data[field], value)
+
+    def test_create_with_pullquote_no_rating(self):
+        del self.pullquote_data['pullquote_rating']
+        self.test_create_with_pullquote()
+
+    def test_create_with_pullquote_no_text(self):
+        self.feed_permission()
+        del self.pullquote_data['pullquote_text']
+        self.feedapp_data.update(**self.pullquote_data)
+        res, data = self.create(self.client, **self.feedapp_data)
+        eq_(res.status_code, 400)
+        ok_('__all__' in data)
+
+    def test_create_with_pullquote_bad_rating_fractional(self):
+        self.feed_permission()
+        self.pullquote_data['pullquote_rating'] = 4.5
+        self.feedapp_data.update(**self.pullquote_data)
+        res, data = self.create(self.client, **self.feedapp_data)
+        eq_(res.status_code, 400)
+        ok_('pullquote_rating' in data)
+
+    def test_create_with_pullquote_bad_rating_high(self):
+        self.feed_permission()
+        self.pullquote_data['pullquote_rating'] = 6
+        self.feedapp_data.update(**self.pullquote_data)
+        res, data = self.create(self.client, **self.feedapp_data)
+        eq_(res.status_code, 400)
+        ok_('pullquote_rating' in data)
+
+    def test_create_with_pullquote_bad_rating_low(self):
+        self.feed_permission()
+        self.pullquote_data['pullquote_rating'] = -1
+        self.feedapp_data.update(**self.pullquote_data)
+        res, data = self.create(self.client, **self.feedapp_data)
+        eq_(res.status_code, 400)
+        ok_('pullquote_rating' in data)
 
     def test_create_no_data(self):
         self.feed_permission()
@@ -361,7 +392,7 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
         eq_(data['url'], self.url)
         eq_(data['app']['id'], self.feedapp.app.id)
         ok_(not data['preview'])
-        ok_(not data['rating'])
+        ok_(not data['pullquote_text'])
 
     def test_detail_anonymous(self):
         self._test_detail(self.anon)
