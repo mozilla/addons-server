@@ -38,8 +38,7 @@ class FeedAppMixin(object):
         self.feedapp_data = {
             'app': 337141,
             'description': {
-                'en-US': u'pan-fried potatoes',
-                'fr': u'pommes de terre sautées'
+                'en-US': u'pan-fried potatoes'
             },
         }
         self.pullquote_data = {
