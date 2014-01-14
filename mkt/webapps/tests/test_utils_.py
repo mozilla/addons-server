@@ -304,6 +304,10 @@ class TestESAppToDict(amo.tests.ESTestCase):
         AddonCategory.objects.create(addon=self.app, category=self.category)
         self.preview = Preview.objects.create(filetype='image/png',
                                               addon=self.app, position=0)
+        self.app.description = {
+            'en-US': u'XSS attempt <script>alert(1)</script>',
+            'fr': u'Déscriptîon in frènch'
+        }
         self.app.save()
         self.refresh('webapp')
 
@@ -322,7 +326,9 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'current_version': '1.0',
             'default_locale': u'en-US',
             'description': {
-                u'en-US': u'Something Something Steamcube description!'},
+                'en-US': u'XSS attempt &lt;script&gt;alert(1)&lt;/script&gt;',
+                'fr': u'Déscriptîon in frènch'
+            },
             'device_types': [],
             'homepage': None,
             'icons': dict((size, self.app.get_icon_url(size))
@@ -383,13 +389,13 @@ class TestESAppToDict(amo.tests.ESTestCase):
 
     def test_basic_with_lang(self):
         # Check that when ?lang is passed, we get the right language and we get
-        # empty stings instead of None if the strings don't exist.
+        # empty strings instead of None if the strings don't exist.
         request = RequestFactory().get('/?lang=es')
         res = es_app_to_dict(self.get_obj(), profile=self.profile,
                              request=request)
         expected = {
             'id': 337141,
-            'description': u'Something Something Steamcube description!',
+            'description': u'XSS attempt &lt;script&gt;alert(1)&lt;/script&gt;',
             'homepage': u'',
             'name': u'Algo Algo Steamcube!',
             'support_email': u'',

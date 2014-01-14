@@ -84,6 +84,18 @@ class TranslationTestCase(TestCase):
         settings.REDIRECT_URL = self.redirect_url
         settings.REDIRECT_SECRET_KEY = self.redirect_secret_key
 
+    def test_meta_translated_fields(self):
+        assert not hasattr(UntranslatedModel._meta, 'translated_fields')
+
+        eq_(set(TranslatedModel._meta.translated_fields),
+            set([TranslatedModel._meta.get_field('no_locale'),
+                 TranslatedModel._meta.get_field('name'),
+                 TranslatedModel._meta.get_field('description')]))
+
+        eq_(set(FancyModel._meta.translated_fields),
+            set([FancyModel._meta.get_field('purified'),
+                 FancyModel._meta.get_field('linkified')]))
+
     def test_fetch_translations(self):
         """Basic check of fetching translations in the current locale."""
         o = TranslatedModel.objects.get(id=1)

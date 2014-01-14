@@ -980,19 +980,36 @@ def smart_decode(s):
 
 def attach_trans_dict(model, objs):
     """Put all translations into a translations dict."""
+    # Get the ids of all the translations we need to fetch.
     fields = model._meta.translated_fields
-    ids = {}
+    ids = [getattr(obj, f.attname) for f in fields
+           for obj in objs if getattr(obj, f.attname, None) is not None]
+
+    # Get translations in a dict, ids will be the keys. It's important to
+    # consume the result of sorted_groupby, which is an iterator.
+    qs = Translation.objects.filter(id__in=ids, localized_string__isnull=False)
+    all_translations = dict((k, list(v)) for k, v in
+                            sorted_groupby(qs, lambda trans: trans.id))
+
+    def get_locale_and_string(translation, new_class):
+        """Convert the translation to new_class (making PurifiedTranslations
+           and LinkifiedTranslations work) and return locale / string tuple."""
+        converted_translation = new_class()
+        converted_translation.__dict__ = translation.__dict__
+        return (converted_translation.locale.lower(),
+                unicode(converted_translation))
+
+    # Build and attach translations for each field on each object.
     for obj in objs:
         obj.translations = collections.defaultdict(list)
-        ids.update((getattr(obj, field.attname, None), obj)
-                   for field in fields)
-    ids.pop(None, None)
-    qs = (Translation.objects
-          .filter(id__in=ids, localized_string__isnull=False)
-          .values_list('id', 'locale', 'localized_string'))
-    for id, translations in sorted_groupby(qs, lambda x: x[0]):
-        ids[id].translations[id] = [(locale, string)
-                                    for id, locale, string in translations]
+        for field in fields:
+            t_id = getattr(obj, field.attname, None)
+            field_translations = all_translations.get(t_id, None)
+            if not t_id or field_translations is None:
+                continue
+
+            obj.translations[t_id] = [get_locale_and_string(t, field.rel.to)
+                                      for t in field_translations]
 
 
 def rm_local_tmp_dir(path):
