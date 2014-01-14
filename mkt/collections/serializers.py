@@ -96,7 +96,14 @@ class CollectionMembershipField(serializers.RelatedField):
         filters = {'collection.id': obj.pk}
         if profile:
             filters.update(**profile.to_kwargs(prefix='features.has_'))
-        qs = qs.filter(**filters).order_by('collection.order')
+        qs = qs.filter(**filters).order_by({
+            'collection.order': {
+                'order': 'asc',
+                'nested_filter': {
+                    'term': {'collection.id': obj.pk}
+                }
+            }
+        })
 
         return [self.to_native_es(app) for app in qs]
 
