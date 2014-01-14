@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-08 09:42-0700\n"
-"PO-Revision-Date: 2014-01-10 15:27+0000\n"
+"PO-Revision-Date: 2014-01-14 19:17+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1389367653.0\n"
+"X-POOTLE-MTIME: 1389727059.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -13567,11 +13567,13 @@ msgstr "您是附加元件的開發者，並且想要將您的附加原件上架
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr ""
+msgstr "註冊完成後，您將會收到一封確認郵件。請依照當中的指示確認您的帳號。"
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
 msgstr ""
+"您有興趣的話，也可閱讀我們的 <a href=\"%(legal)s\" title=\"Legal Notices\">法律條款</a> 與 <a "
+"href=\"%(privacy)s\" title=\"Privacy Policy\">隱私權保護政策</a>。"
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
 msgid "Register"
@@ -15233,7 +15235,7 @@ msgstr "完成"
 
 #: mkt/constants/platforms.py:42 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox 桌面版"
 
 #: mkt/constants/platforms.py:77 mkt/constants/platforms.py:81
 msgid "Fully open mobile ecosystem"
@@ -15458,19 +15460,19 @@ msgstr "恐懼"
 
 #: mkt/constants/ratingdescriptors.py:93
 msgid "Social Interaction Functionality"
-msgstr ""
+msgstr "社群互動功能"
 
 #: mkt/constants/ratingdescriptors.py:94
 msgid "Personal Data Sharing"
-msgstr ""
+msgstr "個人資料分享"
 
 #: mkt/constants/ratingdescriptors.py:95
 msgid "In-app Purchase Option"
-msgstr ""
+msgstr "應用程式內購買選項"
 
 #: mkt/constants/ratingdescriptors.py:96
 msgid "Location Data Sharing"
-msgstr ""
+msgstr "位置資訊共享"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Frightening Content"
@@ -15558,7 +15560,7 @@ msgstr "成人—僅限十八歲以上"
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:260
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "北美洲與南美洲，巴西除外"
 
 #: mkt/constants/ratingsbodies.py:261
 msgid "Entertainment Software Rating Board"
@@ -16658,11 +16660,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Regions to show banner in"
-msgstr ""
+msgstr "要顯示橫幅的區域"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:112
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "要在哪些區域顯示橫幅訊息。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:135
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
@@ -16727,11 +16729,11 @@ msgstr "解釋其特色、功能以及其他相關資訊。此欄位會在應用
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:127
 msgid "Release Notes"
-msgstr ""
+msgstr "新鮮事"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:128
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
-msgstr ""
+msgstr "您的最新發行版本中有什麼新鮮事、已知問題、或其他與此次發行有關的資訊。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:149
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
@@ -16966,6 +16968,8 @@ msgstr "更改裝置"
 #: mkt/developers/templates/developers/apps/listing/items.html:59
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr ""
+"<strong class=\"rating-notice alert-notice\">若在 %(pretty_date)s "
+"前未為此應用程式設定內容分級，將被停用:</strong> <a href=\"%(rating_url)s\">設立內容分級</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
