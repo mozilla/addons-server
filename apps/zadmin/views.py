@@ -715,7 +715,7 @@ def general_search(request, app_id, model_id):
 
     model = app_cache.get_model(app_id, model_id)
     if not model:
-        return http.Http404()
+        raise http.Http404
 
     limit = 10
     obj = admin.site._registry[model]

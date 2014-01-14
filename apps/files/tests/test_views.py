@@ -263,6 +263,10 @@ class FilesBase:
         res = self.client.post(self.file_url(), {'left': ids[0]})
         self.assert3xx(res, reverse('files.list', args=ids))
 
+    def test_browse_404(self):
+        res = self.client.get('/files/browse/file/dont/exist.png', follow=True)
+        eq_(res.status_code, 404)
+
     def test_invalid_redirect(self):
         res = self.client.post(self.file_url(), {})
         self.assert3xx(res, self.file_url())

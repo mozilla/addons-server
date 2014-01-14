@@ -1397,6 +1397,11 @@ class TestLookup(amo.tests.TestCase):
             assert email in emails, (
                 'Expected username "%s" not found' % email)
 
+    def test_lookup_wrong_model(self):
+        self.url = reverse('zadmin.search', args=['doesnt', 'exist'])
+        res = self.client.get(urlparams(self.url, q=''))
+        eq_(res.status_code, 404)
+
     def test_lookup_empty(self):
         users = UserProfile.objects.values('id', 'email')
         self.check_results('', [dict(

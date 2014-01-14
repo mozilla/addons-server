@@ -190,6 +190,6 @@ def serve(request, viewer, key):
     if not obj:
         log.error(u'Couldn\'t find %s in %s (%d entries) for file %s' %
                   (key, files.keys()[:10], len(files.keys()), viewer.file.id))
-        raise http.Http404()
+        raise http.Http404
     return HttpResponseSendFile(request, obj['full'],
                                 content_type=obj['mimetype'])
