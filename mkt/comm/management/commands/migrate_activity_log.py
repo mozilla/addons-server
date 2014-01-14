@@ -34,7 +34,7 @@ class Command(BaseCommand):
 def _migrate_activity_log(logs, **kwargs):
     """For migrate_activity_log.py script."""
     for log in logs:
-        action = _action_map(log.action)
+        action = cmb.ACTION_MAP(log.action)
 
         # Create thread.
         thread, tc = CommunicationThread.objects.safer_get_or_create(
@@ -72,20 +72,3 @@ def _migrate_activity_log(logs, **kwargs):
                 filepath=attachment.filepath, mimetype=attachment.mimetype,
                 description=attachment.description)
             note_attachment.update(created=attachment.created)
-
-
-def _action_map(activity_action):
-    """Maps ActivityLog action ids to Commbadge note types."""
-    return {
-        amo.LOG.APPROVE_VERSION.id: cmb.APPROVAL,
-        amo.LOG.APPROVE_VERSION_WAITING.id: cmb.APPROVAL,
-        amo.LOG.REJECT_VERSION.id: cmb.REJECTION,
-        amo.LOG.APP_DISABLED.id: cmb.DISABLED,
-        amo.LOG.REQUEST_INFORMATION.id: cmb.MORE_INFO_REQUIRED,
-        amo.LOG.ESCALATE_VERSION.id: cmb.ESCALATION,
-        amo.LOG.ESCALATION_CLEARED.id: cmb.ESCALATION,
-        amo.LOG.ESCALATED_HIGH_ABUSE.id: cmb.ESCALATION,
-        amo.LOG.ESCALATED_HIGH_REFUNDS.id: cmb.ESCALATION,
-        amo.LOG.COMMENT_VERSION.id: cmb.REVIEWER_COMMENT,
-        amo.LOG.WEBAPP_RESUBMIT.id: cmb.RESUBMISSION,
-    }.get(activity_action, cmb.NO_ACTION)

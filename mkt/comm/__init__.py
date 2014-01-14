@@ -1,1 +1,1 @@
-from mkt.constants.comm import NOTE_TYPES_JSON
+from mkt.constants.comm import U_NOTE_TYPES

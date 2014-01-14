@@ -198,7 +198,7 @@ def send_mail_comm(note):
 
 
 def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
-                     perms=None):
+                     perms=None, no_switch=False):
     """
     Creates a note on an app version's thread.
     Creates a thread if a thread doesn't already exist.
@@ -214,7 +214,7 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
              (e.g. {'developer': False, 'staff': True}).
 
     """
-    if not waffle.switch_is_active('comm-dashboard'):
+    if not no_switch and not waffle.switch_is_active('comm-dashboard'):
         return None, None
 
     # Dict of {'read_permission_GROUP_TYPE': boolean}.
