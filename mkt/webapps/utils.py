@@ -310,15 +310,25 @@ def _filter_iarc_obj_by_region(obj, region=None, lookup_body=False):
     """
     Given an object keyed by ratings bodies, filter out ratings bodies that
     aren't used by the passed in region slug.
+
+    (e.g. _filter_iarc({'esrb': ESRB_RATING, 'classind': CLASSIND_RATING},
+                       region='br', lookup_body=True)
+          returns just {'esrb': ESRB_RATING}.
+
+    region -- region slug to filter by.
+    lookup_body -- whether we want to fetch the ratings body slug associated w/
+                   the region.
     """
     regions_to_ratings = mkt.regions.REGION_TO_RATINGS_BODY()
     generic = mkt.regions.GENERIC_RATING_REGION_SLUG  # 'generic'.
 
     if obj and region and region in regions_to_ratings:
-        key = region  # Filter by region slug.
         if lookup_body:  # Or filter by rating body slug.
-            key = regions_to_ratings.get(region, generic)
-        return dict([(key, obj.get(key, generic))])
+            body_slug = regions_to_ratings.get(region, generic)
+            if body_slug in obj:
+                return {body_slug: obj[body_slug]}
+            return obj
+        return {region: obj.get(region, generic)}
 
     return obj
 

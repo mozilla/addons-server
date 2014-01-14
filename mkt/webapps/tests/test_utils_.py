@@ -24,6 +24,7 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.utils import (dehydrate_content_rating, es_app_to_dict,
+                               _filter_iarc_obj_by_region,
                                get_supported_locales)
 from users.models import UserProfile
 from versions.models import Version
@@ -195,6 +196,55 @@ class TestAppSerializer(amo.tests.TestCase):
                          'name': u'0+',
                          'body_slug': u'classind'})])
         eq_(rating, {})
+
+    def test_filter_iarc_obj_by_region_only(self):
+        self.create_switch('iarc')
+
+        region_map = {
+            'us': 'esrb',
+            'mx': 'esrb',
+            'es': 'pegi',
+            'br': 'classind',
+        }
+
+        for region in region_map:
+            eq_(_filter_iarc_obj_by_region(region_map, region=region),
+                {region: region_map[region]})
+        eq_(_filter_iarc_obj_by_region(region_map, region='DNE'), region_map)
+
+    def test_filter_iarc_obj_by_region_and_body(self):
+        self.create_switch('iarc')
+
+        classind_rating = {
+            'body': u'CLASSIND',
+            'slug': u'0',
+            'description': u'General Audiences',
+            'name': u'0+',
+            'body_slug': u'classind'
+        }
+        esrb_rating = {
+            'body': u'ESRB',
+            'slug': u'18',
+            'description': u'Adults Only 18+',
+            'name': u'18+',
+            'body_slug': u'esrb'
+        }
+        content_ratings = {
+            'classind': classind_rating,
+            'esrb': esrb_rating
+        }
+
+        esrb_only = _filter_iarc_obj_by_region(
+            content_ratings, region='us', lookup_body=True)
+        eq_(esrb_only, {'esrb': esrb_rating})
+
+        classind_only = _filter_iarc_obj_by_region(
+            content_ratings, region='br', lookup_body=True)
+        eq_(classind_only, {'classind': classind_rating})
+
+        no_rating_for_region = _filter_iarc_obj_by_region(
+            content_ratings, region='es', lookup_body=True)
+        eq_(no_rating_for_region, content_ratings)
 
     def test_no_release_notes(self):
         res = self.serialize(self.app)
