@@ -103,7 +103,7 @@ suds==0.3.9
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 
 # Temporary fork.
--e git+https://github.com/jsocol/jingo-minify.git@cb911038e20a399aeff871e199c8bc2be12b5cee#egg=jingo-minify
+-e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify
 -e git+https://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
 -e git+https://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
 -e git+https://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
