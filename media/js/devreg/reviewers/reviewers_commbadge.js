@@ -45,6 +45,7 @@ define('reviewersCommbadge', [], function() {
 
                     // Append notes to table.
                     $table.append(noteTemplate({
+                        attachments: note.attachments,
                         body: note.body,
                         metadata: format(gettext('By {0} on {1}'),
                                          [author, created]),
