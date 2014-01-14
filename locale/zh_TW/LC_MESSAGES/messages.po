@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-08 09:42-0700\n"
-"PO-Revision-Date: 2014-01-14 19:17+0000\n"
+"PO-Revision-Date: 2014-01-14 19:23+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1389727059.0\n"
+"X-POOTLE-MTIME: 1389727438.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -13806,15 +13806,15 @@ msgstr "您不能在同一區域、業者、分類的組合中有超過一個上
 
 #: mkt/comm/forms.py:20 mkt/comm/forms.py:30
 msgid "Invalid note type."
-msgstr ""
+msgstr "無效新鮮事類型。"
 
 #: mkt/comm/forms.py:32
 msgid "Note body is empty."
-msgstr ""
+msgstr "新鮮事內容空白。"
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "版本 %s 不存在"
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -19472,7 +19472,7 @@ msgstr "目前這個分類沒有需要審核的項目。"
 
 #: mkt/reviewers/templates/reviewers/queue.html:95 mkt/reviewers/templates/reviewers/themes/queue_list.html:88
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "審核者指南"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:10
 msgid "{region} Review Queue"
@@ -19749,7 +19749,7 @@ msgstr "敘述您標記的理由"
 
 #: mkt/search/forms.py:20
 msgid "Reviewed"
-msgstr ""
+msgstr "已審核"
 
 #: mkt/search/forms.py:29
 msgid "Paid"
@@ -20068,11 +20068,11 @@ msgstr "輸入應用程式詳細資訊"
 
 #: mkt/submit/templates/submit/next_steps.html:31
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr ""
+msgstr "<span>設定 <a href=\"%(rating_url)s\">內容分級</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:37
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
-msgstr ""
+msgstr "<span>設定 <a href=\"%(pay_url)s\">付款方式</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:42
 msgid "Wait for Review"
@@ -20105,7 +20105,7 @@ msgstr "您的應用程式將會顯示在程式列表中，其他使用者也能
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:88
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
-msgstr ""
+msgstr "<strong>下一步:</strong> 設定 %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:94
 msgid "<strong>What's next:</strong> Publish Your App"
@@ -20209,11 +20209,11 @@ msgstr "您必須至少提供一種類別。"
 
 #: mkt/webapps/models.py:472
 msgid "You must set up content ratings."
-msgstr ""
+msgstr "您必須設定內容分級。"
 
 #: mkt/webapps/models.py:474
 msgid "You must set up a payment account."
-msgstr ""
+msgstr "您必須設定付款帳號。"
 
 #: mkt/webapps/models.py:499
 msgid "This app's submission process has not been fully completed."
