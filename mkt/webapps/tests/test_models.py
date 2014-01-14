@@ -26,6 +26,7 @@ from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from amo.urlresolvers import reverse
+from amo.utils import to_language
 from constants.applications import DEVICE_TYPES
 from editors.models import EscalationQueue, RereviewQueue
 from files.models import File
@@ -1610,13 +1611,13 @@ class TestWebappIndexer(amo.tests.TestCase):
         eq_(doc['description'], list(
             set(s for _, s in obj.translations[obj.description_id])))
         eq_(doc['description_translations'],
-            [{'lang': l, 'string': s}
+            [{'lang': to_language(l), 'string': s}
              for l, s in obj.translations[obj.description_id]])
         eq_(doc['device'], [])
         eq_(doc['name'], list(
             set(s for _, s in obj.translations[obj.name_id])))
         eq_(doc['name_translations'],
-            [{'lang': l, 'string': s}
+            [{'lang': to_language(l), 'string': s}
              for l, s in obj.translations[obj.name_id]])
         eq_(doc['status'], obj.status)
         eq_(doc['is_escalated'], False)
