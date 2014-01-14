@@ -58,7 +58,7 @@
       {% block site_header %}
         <div class="pad upper-header">
           {% block masthead %}
-            <h1 class="logo"><a href="{{ url('ecosystem.landing') }}">
+            <h1 class="logo"><a href="{{ url('ecosystem.landing')|urlparams(src='nav_logo') }}">
               {{ _('Firefox Marketplace Developers') }}</a></h1>
           {% endblock %}
           {% if in_devhub %}
