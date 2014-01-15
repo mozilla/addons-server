@@ -13,9 +13,8 @@ from abuse.models import AbuseReport
 from addons.models import Addon
 from amo.decorators import set_task_user
 from amo.utils import get_email_backend
-from applications.models import Application, AppVersion
 from bandwagon.models import Collection
-from devhub.models import ActivityLog, AppLog, LegacyAddonLog
+from devhub.models import ActivityLog, AppLog
 from editors.models import EscalationQueue, EventLog
 from market.models import Refund
 from reviews.models import Review
@@ -48,6 +47,7 @@ def send_email(recipient, subject, message, from_email=None,
             raise
         else:
             return False
+
 
 @task
 def flush_front_end_cache_urls(urls, **kw):
@@ -118,15 +118,6 @@ def delete_incomplete_addons(items, **kw):
             addon.delete('Deleted for incompleteness')
         except Exception as e:
             log.error("Couldn't delete add-on %s: %s" % (addon.id, e))
-
-
-@task
-def migrate_admin_logs(items, **kw):
-    print 'Processing: %d..%d' % (items[0], items[-1])
-    for item in LegacyAddonLog.objects.filter(pk__in=items):
-        kw = dict(user=item.user, created=item.created)
-        amo.log(amo.LOG.ADD_APPVERSION, (Application, item.object1_id),
-                (AppVersion, item.object2_id), **kw)
 
 
 @task
