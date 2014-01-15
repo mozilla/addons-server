@@ -106,14 +106,9 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             if 'submission_id' in data and 'security_code' in data:
                 app.set_iarc_info(data['submission_id'], data['security_code'])
 
-            app.set_descriptors(data.get('descriptors', []))
-            app.set_interactives(data.get('interactives', []))
-            # Set content ratings last since it triggers a refresh on Content
-            # Ratings page. We want descriptors and interactives visible by
-            # the time it's refreshed.
-            app.set_content_ratings(data.get('ratings', {}))
-
             # Update status if incomplete status.
+            # Do this before set_content_ratings to not prematurely trigger
+            # a refresh.
             log.info('Checking app:%s completeness after IARC pingback.'
                      % app.id)
             if (app.has_incomplete_status() and
@@ -124,5 +119,12 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             elif app.has_incomplete_status():
                 log.info('Reasons for app:%s incompleteness after IARC '
                          'pingback: %s' % (app.id, app.completion_errors()))
+
+            app.set_descriptors(data.get('descriptors', []))
+            app.set_interactives(data.get('interactives', []))
+            # Set content ratings last since it triggers a refresh on Content
+            # Ratings page. We want descriptors and interactives visible by
+            # the time it's refreshed.
+            app.set_content_ratings(data.get('ratings', {}))
 
         return Response('ok')
