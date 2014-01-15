@@ -873,18 +873,12 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_newlines_malformed_faketag_surrounded(self):
         before = "This is a <test of bleach"
-        after = 'This is a &lt;test of="" bleach=""&gt;'
-
-        # Output is ugly, but not much we can do.  Bleach+html5lib is adamant
-        # this is a tag.
+        after = 'This is a'
         eq_(self.newlines_helper(before), after)
 
     def test_newlines_malformed_tag_surrounded(self):
         before = "This is a <strong of bleach"
-        after = "This is a <strong></strong>"
-
-        # Bleach interprets 'of' and 'bleach' as attributes, and strips them.
-        # Good? No.  Any way around it?  Not really.
+        after = "This is a"
         eq_(self.newlines_helper(before), after)
 
     def test_newlines_less_than(self):

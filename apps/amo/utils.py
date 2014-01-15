@@ -36,7 +36,6 @@ from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
 from django.utils.http import urlquote
 
-import bleach
 import elasticutils.contrib.django as elasticutils
 import html5lib
 import jinja2
@@ -52,7 +51,7 @@ from PIL import Image, ImageFile, PngImagePlugin
 
 import amo.search
 from amo import ADDON_ICON_SIZES
-from amo.urlresolvers import get_outgoing_url, reverse
+from amo.urlresolvers import linkify_with_outgoing, reverse
 from translations.models import Translation
 from users.models import UserNotification
 from users.utils import UnsubscribeCode
@@ -882,7 +881,7 @@ def escape_all(v):
     """Escape html in JSON value, including nested items."""
     if isinstance(v, basestring):
         v = jinja2.escape(smart_unicode(v))
-        v = bleach.linkify(v, nofollow=True, filter_url=get_outgoing_url)
+        v = linkify_with_outgoing(v)
         return v
     elif isinstance(v, list):
         for i, lv in enumerate(v):

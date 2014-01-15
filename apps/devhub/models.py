@@ -479,25 +479,6 @@ class ActivityLogAttachment(amo.models.ModelBase):
         return imghdr.what(self.full_path()) is not None
 
 
-# TODO(davedash): Remove after we finish the import.
-class LegacyAddonLog(models.Model):
-    TYPES = [(value, key) for key, value in amo.LOG.items()]
-
-    addon = models.ForeignKey('addons.Addon', null=True, blank=True)
-    user = models.ForeignKey('users.UserProfile', null=True)
-    type = models.SmallIntegerField(choices=TYPES)
-    object1_id = models.IntegerField(null=True, blank=True)
-    object2_id = models.IntegerField(null=True, blank=True)
-    name1 = models.CharField(max_length=255, default='', blank=True)
-    name2 = models.CharField(max_length=255, default='', blank=True)
-    notes = models.TextField(blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = 'addonlogs'
-        ordering = ('id',)
-
-
 class SubmitStep(models.Model):
     addon = models.ForeignKey(Addon)
     step = models.IntegerField()

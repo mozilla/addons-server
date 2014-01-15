@@ -566,13 +566,6 @@ class TestLogin(UserViewBase):
         res = self.client.post(self.url, data=self.data)
         eq_(res.status_code, 302)
 
-    @patch('ratelimit.backends.cachebe.CacheBackend.limit')
-    def test_login_recaptcha(self, limit):
-        raise SkipTest
-        limit.return_value = True
-        res = self.client.post(self.url, data=self.data)
-        eq_(res.status_code, 403)
-
     @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
     @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
     def test_login_attempts_recaptcha(self):
