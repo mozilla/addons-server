@@ -504,7 +504,7 @@ msgstr "エディタのコメントがあります"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Premium App"
-msgstr "プレミアム版アプリ"
+msgstr "有料アプリ"
 
 #: media/js/devreg/reviewers/reviewers.js:117
 msgid "Escalated"
@@ -786,7 +786,7 @@ msgstr "依存関係"
 
 #: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
-msgstr "プレミアム版"
+msgstr "有料版"
 
 #: media/js/impala/stats/csv_keys.js:68
 msgid "Sharing"
