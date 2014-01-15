@@ -827,6 +827,8 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         with self.assertRaises(IARCInfo.DoesNotExist):
             self.app.iarc_info
 
+        self.app.addonexcludedregion.create(region=mkt.regions.BR.id)
+
         form = forms.IARCGetAppInfoForm({'submission_id': 1,
                                          'security_code': 'a'})
         assert form.is_valid(), form.errors
@@ -835,6 +837,8 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         iarc_info = self.app.iarc_info
         eq_(iarc_info.submission_id, 1)
         eq_(iarc_info.security_code, 'a')
+
+        assert not self.app.addonexcludedregion.exists()
 
     def test_allow_subm(self):
         form = forms.IARCGetAppInfoForm({'submission_id': 'subm-1231',
