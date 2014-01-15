@@ -423,9 +423,11 @@ class TestPublicise(amo.tests.TestCase):
         eq_(self.client.get(self.publicise_url).status_code, 405)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise(self, update_name, update_locales, storefront_mock):
+    def test_publicise(self, update_name, update_locales,
+                       update_cached_manifests, storefront_mock):
         self.create_switch('iarc')
         res = self.client.post(self.publicise_url)
         eq_(res.status_code, 302)
@@ -435,6 +437,7 @@ class TestPublicise(amo.tests.TestCase):
         assert update_name.called
         assert update_locales.called
         assert storefront_mock.called
+        assert update_cached_manifests.delay.called
 
     def test_status(self):
         res = self.client.get(self.status_url)
@@ -497,11 +500,14 @@ class TestPubliciseVersion(amo.tests.TestCase):
         eq_(self.get_webapp().current_version, ver)
         assert update_name.called
         assert update_locales.called
+        assert update_cached_manifests.delay.called
 
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_publicise_version_cur_waiting_app_public(self, update_name,
-                                                      update_locales):
+                                                      update_locales,
+                                                      update_cached_manifests):
         eq_(self.app.status, amo.STATUS_PUBLIC)
         File.objects.filter(version__addon=self.app).update(
             status=amo.STATUS_PUBLIC_WAITING)
@@ -513,10 +519,13 @@ class TestPubliciseVersion(amo.tests.TestCase):
         eq_(self.app.reload().status, amo.STATUS_PUBLIC)
         assert update_name.called
         assert update_locales.called
+        assert update_cached_manifests.delay.called
 
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise_version_cur_waiting(self, update_name, update_locales):
+    def test_publicise_version_cur_waiting(self, update_name, update_locales,
+                                           update_cached_manifests):
         self.app.update(status=amo.STATUS_PUBLIC_WAITING)
         File.objects.filter(version__addon=self.app).update(
             status=amo.STATUS_PUBLIC_WAITING)
@@ -528,10 +537,13 @@ class TestPubliciseVersion(amo.tests.TestCase):
         eq_(self.app.reload().status, amo.STATUS_PUBLIC)
         assert update_name.called
         assert update_locales.called
+        assert update_cached_manifests.delay.called
 
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise_version_pending(self, update_name, update_locales):
+    def test_publicise_version_pending(self, update_name, update_locales,
+                                       update_cached_manifests):
         version_factory(addon=self.app, version='2.0',
                         file_kw=dict(status=amo.STATUS_PENDING))
         self.app.reload()
@@ -540,6 +552,7 @@ class TestPubliciseVersion(amo.tests.TestCase):
         eq_(self.get_version_status(), amo.STATUS_PENDING)
         assert not update_name.called
         assert not update_locales.called
+        assert not update_cached_manifests.delay.called
 
     def test_status(self):
         File.objects.filter(version__addon=self.app).update(

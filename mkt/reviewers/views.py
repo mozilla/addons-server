@@ -24,6 +24,7 @@ from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
 from addons.models import AddonDeviceType, Persona, Version
+from addons.signals import version_changed
 from amo.decorators import (any_permission_required, json_view,
                             permission_required)
 from amo.helpers import absolutify
@@ -427,11 +428,27 @@ def app_review(request, addon):
         raise
     else:
         transaction.commit()
-        # Temp. reindex the addon now it's been committed.
-        if not settings.IN_TEST_SUITE and request.method == 'POST':
-            post_save.send(sender=Webapp, instance=addon, created=False)
-            post_save.send(sender=Version, instance=version, created=False)
-            transaction.commit()
+        # We (hopefully) have been avoiding sending send post_save and
+        # version_changed signals in the review process till now (_review()
+        # uses ReviewHelper which should have done all of its update() calls
+        # with _signal=False).
+        #
+        # Now is a good time to send them: the transaction we were in has been
+        # committed, so we know everything is ok. This is important: we need
+        # them to index the app or call update_version() if that wasn't done
+        # before already.
+        if request.method == 'POST':
+            try:
+                post_save.send(sender=Webapp, instance=addon, created=False)
+                post_save.send(sender=Version, instance=version, created=False)
+                if getattr(addon, 'resend_version_changed_signal', False):
+                    version_changed.send(sender=addon)
+                    del addon.resend_version_changed_signal
+            except Exception:
+                transaction.rollback()
+                raise
+            else:
+                transaction.commit()
         if resp:
             return resp
         raise

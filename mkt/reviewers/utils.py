@@ -254,7 +254,7 @@ class ReviewApp(ReviewBase):
                                           status)
 
     def process_public_waiting(self):
-        """Make an app pending."""
+        """Make an app public waiting."""
         if self.addon.has_incomplete_status():
             # Failsafe.
             return
@@ -288,17 +288,23 @@ class ReviewApp(ReviewBase):
                            highest_status=amo.STATUS_PUBLIC)
         self.set_reviewed()
 
-        # Call update_version, so various other bits of data update.
+        # Note: Post save signals shouldn't happen here. All the set_*()
+        # methods pass _signal=False to prevent them from being sent. They are
+        # manually triggered in the view after the transaction is committed to
+        # avoid multiple indexing tasks getting fired with stale data.
+        #
+        # This does mean that we need to call update_version() manually to get
+        # the addon in the correct state before updating names. We do that,
+        # passing _signal=False again to prevent it from sending
+        # 'version_changed'. The post_save() that happen in the view will
+        # call it without that parameter, sending 'version_changed' normally.
         self.addon.update_version(_signal=False)
         self.addon.update_name_from_package_manifest()
         self.addon.update_supported_locales()
+        self.addon.resend_version_changed_signal = True
 
         if waffle.switch_is_active('iarc'):
             self.addon.set_iarc_storefront_data()
-
-        # Note: Post save signal happens in the view after the transaction is
-        # committed to avoid multiple indexing tasks getting fired with stale
-        # data.
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('pending_to_public', u'App Approved: %s')

@@ -702,6 +702,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             updated.update({'_latest_version': latest})
 
         if updated:
+            # Pass along _signal to the .update() to prevent it from firing
+            # signals if we don't want them.
+            updated['_signal'] = _signal
             try:
                 self.update(**updated)
                 if send_signal and _signal:
