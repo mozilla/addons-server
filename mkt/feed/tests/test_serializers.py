@@ -7,6 +7,7 @@ import amo.tests
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
 from mkt.feed.serializers import FeedItemSerializer
+from mkt.regions import RESTOFWORLD
 
 
 class CollectionFeedMixin(object):
@@ -38,3 +39,13 @@ class TestFeedItemSerializer(CollectionFeedMixin, amo.tests.TestCase):
     def test_validate_fails_no_items(self):
         with self.assertRaises(serializers.ValidationError):
             self.validate(collection=None)
+
+    def test_region_handles_worldwide(self):
+        data = {
+            'region': 'worldwide',
+            'item_type': 'collection',
+            'collection': self.collection.id,
+        }
+        serializer = FeedItemSerializer(data=data)
+        assert serializer.is_valid()
+        assert serializer.object.region == RESTOFWORLD.id

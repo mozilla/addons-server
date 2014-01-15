@@ -101,6 +101,10 @@ class TestGetRegion(TestCase):
         eq_(self.region_for('None'), None)
         eq_(self.region_for('us'), regions.US)
 
+    def test_get_region_worldwide(self):
+        self.give_permission()
+        eq_(self.region_for('worldwide'), regions.RESTOFWORLD)
+
     def test_collection_curator(self):
         self.make_curator()
         eq_(self.region_for('None'), None)

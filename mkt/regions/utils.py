@@ -13,6 +13,11 @@ def parse_region(region):
         # Look up the region by ID.
         return regions.REGIONS_CHOICES_ID_DICT[int(region)]
     else:
+        # Convert the old "worldwide" slug to the new "restofworld" slug. See
+        # https://bugzilla.mozilla.org/show_bug.cgi?id=940561 for more info.
+        if region == 'worldwide':
+            region = 'restofworld'
+
         # Look up the region by slug.
         region_by_slug = regions.REGIONS_DICT.get(region)
         if region_by_slug is not None:

@@ -500,7 +500,8 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        req = amo.tests.req_factory_factory('/', data={'region': 'br'})
+        req = amo.tests.req_factory_factory('/')
+        req.REGION = regions.BR  # Normally set by regions middleware
         res = es_app_to_dict(self.get_obj(), request=req)['content_ratings']
 
         for iarc_obj in ('ratings', 'descriptors', 'regions'):

@@ -278,6 +278,20 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         errors = data['filter_errors']
         ok_(errors['region'][0].startswith('Select a valid choice.'))
 
+    def test_listing_filtering_worldwide(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        row_res = self.client.get(self.list_url, {'region': 'restofworld'})
+        row_data = json.loads(row_res.content)
+        ww_res = self.client.get(self.list_url, {'region': 'worldwide'})
+        ww_data = json.loads(ww_res.content)
+
+        eq_(row_res.status_code, 200)
+        eq_(ww_res.status_code, 200)
+        eq_(len(row_data['objects']), 2)
+        eq_(row_data, ww_data)
+
     def test_listing_filtering_region(self):
         self.create_additional_data()
         self.make_publisher()

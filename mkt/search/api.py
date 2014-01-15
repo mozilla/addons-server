@@ -21,7 +21,7 @@ from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
 from mkt.collections.filters import CollectionFilterSetWithFallback
 from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
-from mkt.constants.regions import REGIONS_DICT
+from mkt.constants.regions import REGION_LOOKUP
 from mkt.features.utils import get_feature_profile
 from mkt.search.views import _filter_search
 from mkt.search.forms import ApiSearchForm
@@ -77,7 +77,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
 
         elif region:
             try:
-                return REGIONS_DICT[region]
+                return REGION_LOOKUP[region]
             except KeyError:
                 raise ParseError(json.dumps({'error_message':
                                              {'region': ['Invalid region.']}}))

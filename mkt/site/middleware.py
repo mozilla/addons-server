@@ -109,11 +109,11 @@ class RedirectPrefixedURIMiddleware(object):
             # API isn't a region, its a sign that you are using the api.
             request.API = True
 
-        if region in mkt.regions.REGIONS_DICT:
+        if region in mkt.regions.REGION_LOOKUP:
             # Strip /<region> from URL.
             if not new_path:
                 new_path = rest
-            new_qs['region'] = region
+            new_qs['region'] = mkt.regions.REGION_LOOKUP[region].slug
 
         if new_path is not None:
             if not new_path or new_path[0] != '/':

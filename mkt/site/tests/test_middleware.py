@@ -61,6 +61,7 @@ class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
     def test_redirect_for_good_region(self):
         redirects = [
             ('/restofworld/', '/?region=restofworld'),
+            ('/worldwide/', '/?region=restofworld'),
             ('/br/', '/?region=br'),
             ('/us/', '/?region=us'),
             ('/BR/', '/?region=br'),

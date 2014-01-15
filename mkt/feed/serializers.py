@@ -36,7 +36,7 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
     carrier = SlugChoiceField(required=False,
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False,
-        choices_dict=mkt.regions.REGIONS_DICT)
+        choices_dict=mkt.regions.REGION_LOOKUP)
     category = SlugModelChoiceField(required=False,
         queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
     item_type = serializers.SerializerMethodField('get_item_type')

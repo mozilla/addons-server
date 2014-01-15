@@ -76,7 +76,7 @@ class RegionSerializer(CarrierSerializer):
     ratingsbody = serializers.CharField()
 
     def transform_ratingsbody(self, obj, value):
-        return obj.ratingsbody.name if obj.ratingsbody else None
+        return getattr(obj.ratingsbody, 'name', None)
 
 
 class URLSerializerMixin(serializers.ModelSerializer):

@@ -15,7 +15,7 @@ from market.models import Price
 from users.models import UserProfile
 
 import mkt
-from mkt.regions import get_region, REGIONS_CHOICES_ID_DICT, REGIONS_DICT
+from mkt.regions import get_region, REGIONS_CHOICES_ID_DICT, REGION_LOOKUP
 
 
 log = commonware.log.getLogger('z.webapps')
@@ -88,13 +88,12 @@ def es_app_to_dict(obj, profile=None, request=None):
     if request and request.method == 'GET' and 'lang' in request.GET:
         lang = request.GET.get('lang', '').lower()
 
-    region_slug = None
-    region_id = None
-    if request and request.method == 'GET' and 'region' in request.GET:
-        region_slug = request.GET.get('region', '').lower()
-    if region_slug not in REGIONS_DICT:
-        region_slug = get_region()
-    region_id = REGIONS_DICT[region_slug].id
+    if hasattr(request, 'REGION'):
+        region_slug = request.REGION.slug
+        region_id = request.REGION.slug
+    else:
+        region_slug = None
+        region_id = None
 
     src = obj._source
     is_packaged = src.get('app_type') != amo.ADDON_WEBAPP_HOSTED

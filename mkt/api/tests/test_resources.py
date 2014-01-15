@@ -95,16 +95,33 @@ class TestRegion(RestOAuth):
         eq_(data['meta']['total_count'], len(mkt.regions.REGIONS_DICT))
 
     def test_detail(self):
-        res = self.anon.get(reverse('regions-detail', kwargs={'pk': 'br'}))
+        res = self.get_region('br')
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         region = mkt.regions.REGIONS_DICT['br']
+        self.assert_matches_region(data, region)
+
+    def test_detail_worldwide(self):
+        res = self.get_region('worldwide')
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        region = mkt.regions.REGIONS_DICT['restofworld']
+        self.assert_matches_region(data, region)
+
+    def test_detail_bad_region(self):
+        res = self.get_region('foo')
+        eq_(res.status_code, 404)
+
+    def assert_matches_region(self, data, region):
         eq_(data['name'], region.name)
         eq_(data['slug'], region.slug)
         eq_(data['id'], region.id)
         eq_(data['default_currency'], region.default_currency)
         eq_(data['default_language'], region.default_language)
-        eq_(data['ratingsbody'], region.ratingsbody.name)
+        eq_(data['ratingsbody'], getattr(region.ratingsbody, 'name', None))
+
+    def get_region(self, slug):
+        return self.anon.get(reverse('regions-detail', kwargs={'pk': slug}))
 
 
 class TestCarrier(RestOAuth):

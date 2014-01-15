@@ -13,3 +13,6 @@ def test_parse_region():
     eq_(parse_region(7), regions.BR)
     eq_(parse_region(regions.BR), regions.BR)
     eq_(parse_region(''), None)
+
+def test_parse_worldwide_region_as_restofworld():
+    eq_(parse_region('worldwide'), regions.RESTOFWORLD)

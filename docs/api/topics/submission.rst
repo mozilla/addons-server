@@ -190,9 +190,6 @@ Creating an App
         `desktop`, `mobile`, `tablet`, `firefoxos`. `mobile` and `tablet` both
         refer to Android mobile and tablet. As opposed to Firefox OS.
     :type device_types: array
-    :param required regions: a list of regions this app should be
-        listed in, expressed as country codes or 'restofworld'.
-    :type regions: array
     :param required premium_type: One of `free`, `premium`,
         `free-inapp`, `premium-inapp`, or `other`.
     :type premium_type: string

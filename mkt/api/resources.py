@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import Http404
 from django.views import debug
 
 import commonware.log
@@ -29,6 +30,7 @@ from mkt.api.base import (cors_api_view, CORSMixin, MarketplaceView,
 from mkt.api.serializers import CarrierSerializer, RegionSerializer
 from mkt.carriers import CARRIER_MAP, CARRIERS
 from mkt.regions import REGIONS_DICT
+from mkt.regions.utils import parse_region
 from mkt.webapps.tasks import _update_manifest
 
 
@@ -124,7 +126,11 @@ class RegionViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
         return REGIONS_DICT.values()
 
     def get_object(self, *args, **kwargs):
-        return REGIONS_DICT.get(self.kwargs['pk'], None)
+        region = parse_region(self.kwargs['pk'])
+        if region is None:
+            raise Http404
+        else:
+            return region
 
 
 class CarrierViewSet(RegionViewSet):

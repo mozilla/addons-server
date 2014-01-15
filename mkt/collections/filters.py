@@ -46,7 +46,7 @@ class CollectionFilterSet(FilterSet):
     carrier = SlugChoiceFilter(name='carrier',
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceFilter(name='region',
-        choices_dict=mkt.regions.REGIONS_DICT)
+        choices_dict=mkt.regions.REGION_LOOKUP)
     cat = SlugModelChoiceFilter(name='category',
         queryset=Category.objects.filter(type=amo.ADDON_WEBAPP),
         sluggable_to_field_name='slug',)

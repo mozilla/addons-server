@@ -15,13 +15,13 @@ class RegionMiddleware(object):
 
     def region_from_request(self, request):
         ip_reg = self.geoip.lookup(request.META.get('REMOTE_ADDR'))
-        for name, region in mkt.regions.REGIONS_CHOICES:
-            if ip_reg == name:
-                return region.slug
-        return mkt.regions.RESTOFWORLD.slug
+        if ip_reg in mkt.regions.REGIONS_DICT:
+            return ip_reg
+        else:
+            return mkt.regions.RESTOFWORLD.slug
 
     def process_request(self, request):
-        regions = mkt.regions.REGIONS_DICT
+        regions = mkt.regions.REGION_LOOKUP
 
         reg = restofworld = mkt.regions.RESTOFWORLD.slug
         stored_reg = ''
