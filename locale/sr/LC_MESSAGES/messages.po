@@ -3477,7 +3477,7 @@ msgstr "Извештаји компатибилности додатка"
 msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
 "help supporting an upcoming Firefox version. </p>"
-msgstr "<p> Извештаји који су нам доставњени кроз <a href="%(url_)s">Add-on Compatibility Reporter</a> су овде прикупљени за програмере да виде. Ови извештаји нам помажу да одредимо додатке којима треба помоћ за подржавање наредне верзије Firefox-а. </p>"
+msgstr "<p> Извештаји који су нам доставњени кроз <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> су овде прикупљени за програмере да виде. Ови извештаји нам помажу да одредимо додатке којима треба помоћ за подржавање наредне верзије Firefox-а. </p>"
 
 #: apps/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
