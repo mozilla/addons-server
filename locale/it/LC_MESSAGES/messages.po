@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-15 09:07-0700\n"
-"PO-Revision-Date: 2014-01-15 20:01+0000\n"
+"PO-Revision-Date: 2014-01-15 22:05+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1389816094.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1389823530.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -6138,7 +6138,7 @@ msgid ""
 "find out how to help <a href='%(url_wiki)s'>here</a>."
 msgstr ""
 "Vuoi contribuire al miglioramento di Add-on SDK? Scarica il codice sorgente "
-"e <a href=’%(url_wiki)s’>scopri</a> come aiutarci."
+"e <a href='%(url_wiki)s'>scopri</a> come aiutarci."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -17494,8 +17494,8 @@ msgstr "Ulteriori informazioni&nbsp;&raquo;"
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "Visualizza tutte le recensioni"
-msgstr[1] "Visualizza tutte le %(cnt)s recensioni"
+msgstr[0] "Visualizza tutti i commenti"
+msgstr[1] "Visualizza tutti i %(cnt)s commenti"
 
 #: apps/search/forms.py:12
 msgid "Most popular this week"
