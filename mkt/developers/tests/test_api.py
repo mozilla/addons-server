@@ -194,6 +194,8 @@ class TestContentRatingPingback(RestOAuth):
     def test_post_content_ratings_pingback(self, details_mock):
         details_mock.return_value = True
         eq_(self.app.status, amo.STATUS_NULL)
+        self.app.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.CN.id)
 
         res = self.anon.post(self.url, data=json.dumps(self.data))
         eq_(res.status_code, 200)
@@ -231,6 +233,10 @@ class TestContentRatingPingback(RestOAuth):
             ['has_shares_info', 'has_shares_location'])
 
         eq_(app.status, amo.STATUS_PENDING)
+        assert not app.addonexcludedregion.filter(
+            region=mkt.regions.BR.id).exists()
+        assert app.addonexcludedregion.filter(
+            region=mkt.regions.CN.id).exists()
 
     @override_settings(SECRET_KEY='foo')
     def test_token_mismatch(self):
