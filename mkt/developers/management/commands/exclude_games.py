@@ -4,6 +4,8 @@ from django.core.management.base import BaseCommand, CommandError
 
 import amo
 
+import mkt
+
 log = logging.getLogger('z.task')
 
 
@@ -14,20 +16,27 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # Avoid import error.
         from mkt.webapps.models import Webapp
-        from mkt.webapps.utils import get_region
 
         try:
             region_slug = args[0]
         except IndexError:
             raise CommandError(self.help)
 
-        region = get_region(region_slug)
+        region = mkt.regions.REGIONS_DICT[region_slug]
 
         games = Webapp.objects.filter(category__type=amo.ADDON_WEBAPP,
             category__slug='games')
 
+        german_bodies = (mkt.ratingsbodies.USK.id,
+                         mkt.ratingsbodies.GENERIC.id)
         for app in games:
-            if region.ratingsbodies and not app.content_ratings_in(region):
+            if (region == mkt.regions.DE and app.content_ratings.filter(
+                ratings_body__in=german_bodies).exists()):
+                # Special case for Germany, allow to be listed if have USK or
+                # Generic.
+                continue
+
+            elif region.ratingsbody and not app.content_ratings_in(region):
                 aer, created = app.addonexcludedregion.get_or_create(
                     region=region.id)
                 if created:
