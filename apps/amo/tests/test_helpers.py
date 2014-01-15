@@ -271,6 +271,48 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
+@patch('amo.helpers.urlresolvers.get_outgoing_url')
+def test_linkify_bounce_url_callback(mock_get_outgoing_url):
+    mock_get_outgoing_url.return_value = 'bar'
+
+    res = urlresolvers.linkify_bounce_url_callback({'href': 'foo'})
+
+    # Make sure get_outgoing_url was called.
+    eq_(res, {'href': 'bar'})
+    mock_get_outgoing_url.assert_called_with('foo')
+
+
+@patch('amo.helpers.urlresolvers.linkify_bounce_url_callback')
+def test_linkify_with_outgoing(mock_linkify_bounce_url_callback):
+    def side_effect(attrs, new=False):
+        attrs['href'] = 'bar'
+        return attrs
+
+    mock_linkify_bounce_url_callback.side_effect = side_effect
+
+    # Without nofollow.
+    res = urlresolvers.linkify_with_outgoing('http://example.com',
+                                             nofollow=False)
+    eq_(res, '<a href="bar">http://example.com</a>')
+
+    # With nofollow (default).
+    res = urlresolvers.linkify_with_outgoing('http://example.com')
+    eq_(res, '<a href="bar" rel="nofollow">http://example.com</a>')
+
+    res = urlresolvers.linkify_with_outgoing('http://example.com',
+                                             nofollow=True)
+    eq_(res, '<a href="bar" rel="nofollow">http://example.com</a>')
+
+
+@patch('bleach.linkify')
+def test_linkify_with_outgoing_raises(mock_linkify):
+    mock_linkify.side_effect = Exception('crash test')
+
+    res = urlresolvers.linkify_with_outgoing('http://example.com')
+
+    eq_(res, 'http://example.com')
+
+
 class TestLicenseLink(amo.tests.TestCase):
 
     def test_license_link(self):
