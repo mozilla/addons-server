@@ -75,6 +75,7 @@ class TestMonolithResource(RestOAuth):
         self.last_month = self.now - datetime.timedelta(days=30)
         self.last_week = self.now - datetime.timedelta(days=7)
         self.yesterday = self.now - datetime.timedelta(days=1)
+        self.date_format = '%Y-%m-%d'
         self.request = RequestFactory()
 
     def test_normal_call_with_no_records(self):
@@ -106,18 +107,17 @@ class TestMonolithResource(RestOAuth):
             record_stat('app.install', self.request, __recorded=date,
                         value=id_)
 
-        res = self.client.get(self.list_url,
-                              data={'recorded__lte': self.now.isoformat()})
+        res = self.client.get(self.list_url, data={
+            'end': self.now.strftime(self.date_format)})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
-        eq_(len(data['objects']), 3)
-
-        res = self.client.get(
-                self.list_url,
-                data={'recorded__gte': self.yesterday.isoformat(),
-                      'recorded__lte': self.now.isoformat()})
-        data = json.loads(res.content)
         eq_(len(data['objects']), 2)
+
+        res = self.client.get(self.list_url, data={
+            'start': self.yesterday.strftime(self.date_format),
+            'end': self.now.strftime(self.date_format)})
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 1)
 
     def test_filter_by_key(self):
         record_stat('apps_added_us_free', self.request, value=3)
@@ -139,28 +139,27 @@ class TestMonolithResource(RestOAuth):
 
         eq_(MonolithRecord.objects.count(), 4)
 
-        res = self.client.delete(self.list_url,
-                                 data={'start': self.last_week,
-                                       'end': self.now})
+        res = self.client.delete(self.list_url, data={
+            'start': self.last_week.strftime(self.date_format),
+            'end': self.now.strftime(self.date_format)})
         eq_(res.status_code, 204)
         eq_(list(MonolithRecord.objects.values_list('recorded', flat=True)),
             [self.last_month, self.now])
 
     def test_deletion_by_filtering_old(self):
-        for id_, date in enumerate((self.last_month, self.last_week
-                                    , self.yesterday, self.now)):
+        for id_, date in enumerate((self.last_month, self.last_week,
+                                    self.yesterday, self.now)):
             record_stat('app.install', self.request, __recorded=date,
                         value=id_)
 
         eq_(MonolithRecord.objects.count(), 4)
 
-        res = self.client.delete(self.list_url,
-                                 data={'recorded__gte': self.last_week,
-                                       'recorded__lt': self.now})
+        res = self.client.delete(self.list_url, data={
+            'start': self.last_week.strftime(self.date_format),
+            'end': self.now.strftime(self.date_format)})
         eq_(res.status_code, 204)
         eq_(list(MonolithRecord.objects.values_list('recorded', flat=True)),
             [self.last_month, self.now])
-
 
     def test_deletion_by_id(self):
         record_stat('app.install', self.request, __recorded=self.now, value=1)
@@ -179,16 +178,16 @@ class TestMonolithResource(RestOAuth):
             record_stat('app.install', self.request, __recorded=date, value=1)
             record_stat('foo.bar', self.request, __recorded=date, value=1)
         res = self.client.delete(self.list_url, data={
-            'recorded__gte': self.last_week.isoformat(),
-            'recorded__lt': self.now.isoformat(),
+            'start': self.last_week.strftime(self.date_format),
+            'end': self.now.strftime(self.date_format),
             'key': 'app.install'})
 
         eq_(res.status_code, 204)
         eq_(MonolithRecord.objects.count(), 6)
 
         res = self.client.delete(self.list_url, data={
-            'recorded__gte': self.last_week.isoformat(),
-            'recorded__lt': self.now.isoformat(),
+            'start': self.last_week.strftime(self.date_format),
+            'end': self.now.strftime(self.date_format),
             'key': 'foo.bar'})
 
         eq_(res.status_code, 204)

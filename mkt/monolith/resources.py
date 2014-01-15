@@ -9,6 +9,7 @@ from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import GroupPermission
 from mkt.api.base import CORSMixin
 
+from .forms import MonolithForm
 from .models import MonolithRecord
 
 
@@ -32,16 +33,16 @@ class MonolithViewSet(CORSMixin, mixins.DestroyModelMixin,
     serializer_class = MonolithSerializer
 
     def get_queryset(self):
-        qs = MonolithRecord.objects.all()
-        key = self.request.QUERY_PARAMS.get('key', None)
-        start = self.request.QUERY_PARAMS.get(
-            'start',
-            self.request.QUERY_PARAMS.get('recorded__gte', None))
-        end = self.request.QUERY_PARAMS.get(
-            'end',
-            self.request.QUERY_PARAMS.get('recorded__lt', None))
+        form = MonolithForm(self.request.QUERY_PARAMS)
+        if not form.is_valid():
+            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        if key is not None:
+        key = form.cleaned_data['key']
+        start = form.cleaned_data['start']
+        end = form.cleaned_data['end']
+
+        qs = MonolithRecord.objects.all()
+        if key:
             qs = qs.filter(key=key)
         if start is not None:
             qs = qs.filter(recorded__gte=start)
