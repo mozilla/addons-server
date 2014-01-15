@@ -1,12 +1,18 @@
+import sys
+
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
 from django.utils import encoding
 
 import bleach
+import commonware.log
 
 import amo.models
 from amo import urlresolvers
 from . import utils
+
+
+log = commonware.log.getLogger('z.translations')
 
 
 class Translation(amo.models.ModelBase):
@@ -157,7 +163,7 @@ class PurifiedTranslation(Translation):
         except Exception as e:
             log.error('Failed to clean %s: %r' % (self.localized_string, e),
                       exc_info=sys.exc_info())
-            cleaned = ""
+            cleaned = ''
         linkified = urlresolvers.linkify_with_outgoing(cleaned)
         self.localized_string_clean = clean_nl(linkified).strip()
 
@@ -179,7 +185,7 @@ class LinkifiedTranslation(PurifiedTranslation):
         except Exception as e:
             log.error('Failed to clean %s: %r' % (linkified, e),
                       exc_info=sys.exc_info())
-            clean = ""
+            clean = ''
         self.localized_string_clean = clean
 
 
