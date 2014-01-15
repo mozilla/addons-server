@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08 09:42-0700\n"
+"POT-Creation-Date: 2014-01-15 09:07-0700\n"
 "PO-Revision-Date: 2014-01-09 16:58+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -120,7 +120,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "V době, kdy je váš doplněk pro tuto aplikaci veden jako doporučený, nemůžete změnit jeho umístění v kategoriích."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:951 mkt/webapps/api.py:252
+#: apps/addons/forms.py:256 mkt/developers/forms.py:951 mkt/webapps/api.py:260
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Smíte být pouze v {0} kategorii."
@@ -505,7 +505,7 @@ msgstr "Hlášená zneužití"
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:45
 #: apps/addons/templates/addons/impala/details.html:320 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:90
+#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:87
 #: templates/mobile/base_apps.html:74
 msgid "Privacy Policy"
 msgstr "Zásady ochrany soukromí"
@@ -1263,7 +1263,7 @@ msgid "<strong>Caution:</strong> Development versions of this add-on have not be
 msgstr "<strong>Upozornění:</strong> Vývojové verze tohoto doplňku dosud nebyly Mozillou zkontrolovány."
 
 #: apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331 apps/addons/templates/addons/impala/review_add_box.html:5
-#: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:121
+#: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:122
 #: mkt/developers/templates/developers/apps/owner.html:77 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
@@ -1490,7 +1490,7 @@ msgstr "%(name)s vyžaduje, abyste před zahájením instalace odsouhlasil(a) n�
 msgid "Accept"
 msgstr "Souhlasím"
 
-#: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:60
+#: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:57
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr "Pro instalaci doplňku potřebujete Firefox. <a href=\"http://mozilla.com/mobile\">Dozvědět se více&nbsp;&raquo;</a>"
 
@@ -1501,7 +1501,7 @@ msgstr "Návrat na titulní stránku doplňků aplikace {0}"
 
 #: apps/addons/templates/addons/mobile/home.html:19 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/performance.html:72 mkt/reviewers/templates/reviewers/base.html:30 mkt/reviewers/templates/reviewers/performance.html:26 templates/menu_links.html:4
-#: templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:53
+#: templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:50
 msgid "Add-ons"
 msgstr "Doplňky"
 
@@ -2634,7 +2634,7 @@ msgstr[1] "V této sbírce jsou %(num)s doplňky."
 msgstr[2] "V této sbírce je %(num)s doplňků."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
-#: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:22
+#: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:17
 #: templates/includes/lang_switcher.html:10
 msgid "Go"
 msgstr "Přejít"
@@ -3409,7 +3409,7 @@ msgstr "&laquo; Všechny motivy"
 msgid "All"
 msgstr "Vše"
 
-#: apps/compat/forms.py:23 apps/search/views.py:514
+#: apps/compat/forms.py:23 apps/search/views.py:531
 msgid "All Add-ons"
 msgstr "Všechny doplňky"
 
@@ -4495,7 +4495,7 @@ msgid "User Reviews"
 msgstr "Recenze uživatelů"
 
 #: apps/devhub/views.py:334 apps/devhub/views.py:338 apps/devhub/views.py:457 apps/devhub/views.py:480 apps/devhub/views.py:527 apps/devhub/views.py:650 apps/devhub/views.py:1333
-#: mkt/developers/views.py:543 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:337 mkt/reviewers/views.py:694
+#: mkt/developers/views.py:543 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:338 mkt/reviewers/views.py:694
 msgid "Changes successfully saved."
 msgstr "Změny byly úspěšně uloženy."
 
@@ -9356,15 +9356,11 @@ msgstr "Smazáním této verze trvale smažete:"
 
 #: apps/devhub/templates/devhub/versions/list.html:271
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
-"<strong>Důležité:</strong> Jakmile je verze smazána, nemůžete nahrát novou "
-"verzi se stejným číslem verze."
+msgstr "<strong>Důležité:</strong> Jakmile je verze smazána, nemůžete nahrát novou verzi se stejným číslem verze."
 
 #: apps/devhub/templates/devhub/versions/list.html:276
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
-msgstr ""
-"Smazání verze, která již byla zkontrolována, může způsobit zdržení při "
-"kontrole vaší příští aktualizace."
+msgstr "Smazání verze, která již byla zkontrolována, může způsobit zdržení při kontrole vaší příští aktualizace."
 
 #: apps/devhub/templates/devhub/versions/list.html:279 mkt/developers/templates/developers/apps/status.html:343
 msgid "Are you sure you wish to delete this version?"
@@ -10104,7 +10100,7 @@ msgid "given preliminary review"
 msgstr "byl předběžně zkontrolován"
 
 #. L10n: An app is rejected for a particular region.
-#: apps/editors/views.py:707 mkt/webapps/models.py:2106
+#: apps/editors/views.py:707 mkt/webapps/models.py:2108
 msgid "rejected"
 msgstr "zamítnuto"
 
@@ -10828,7 +10824,7 @@ msgid "E-Mail Your Team:"
 msgstr "E-mail na tým: "
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8 apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12 mkt/constants/submit.py:6
-#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
+#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:128
 msgid "Submit"
 msgstr "Odeslat"
 
@@ -12708,26 +12704,26 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "Zobrazeno {0} - {1} z {2} výsledků"
 
 #. {0} is an application, like Firefox.
-#: apps/search/views.py:253 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:20
+#: apps/search/views.py:270 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:17
 msgid "{0} Add-ons"
 msgstr "Doplňky pro {0}"
 
-#: apps/search/views.py:514
+#: apps/search/views.py:531
 msgid "All Apps"
 msgstr "Všechny aplikace"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
-#: apps/search/views.py:548
+#: apps/search/views.py:565
 msgid "Any {0}"
 msgstr "Libovolný {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
-#: apps/search/views.py:583
+#: apps/search/views.py:600
 msgid "All Systems"
 msgstr "Všechny systémy"
 
-#: apps/search/views.py:594
+#: apps/search/views.py:611
 msgid "All Tags"
 msgstr "Všechny štítky"
 
@@ -13508,11 +13504,11 @@ msgid "Successfully verified!"
 msgstr "Úspěšně ověřeno!"
 
 # %1 is the user's email address
-#: apps/users/views.py:143 apps/users/views.py:688
+#: apps/users/views.py:143 apps/users/views.py:689
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Na vaši adresu {0} byl odeslán e-mail obsahující odkaz k aktivaci účtu. Před tím než se budete moci přihlásit, si musíte svůj účet aktivovat klepnutím na tento odkaz."
 
-#: apps/users/views.py:147 apps/users/views.py:692
+#: apps/users/views.py:147 apps/users/views.py:693
 msgid "Confirmation Email Sent"
 msgstr "Zaslání potvrzujícího e-mailu"
 
@@ -13592,27 +13588,27 @@ msgstr "Aktivační e-mail byl odeslán."
 msgid "Having Trouble?"
 msgstr "Máte problémy?"
 
-#: apps/users/views.py:662
+#: apps/users/views.py:663
 msgid "You are already logged in to an account."
 msgstr "Již jste se ke svému účtu přihlásil(a)."
 
-#: apps/users/views.py:684
+#: apps/users/views.py:685
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Gratulujeme! Váš účet byl úspěšně vytvořen."
 
-#: apps/users/views.py:708
+#: apps/users/views.py:709
 msgid "You already have an account."
 msgstr "Již máte účet."
 
-#: apps/users/views.py:718
+#: apps/users/views.py:719
 msgid "There are errors in this form"
 msgstr "V tomto formuláři jsou chyby"
 
-#: apps/users/views.py:719
+#: apps/users/views.py:720
 msgid "Please correct them and resubmit."
 msgstr "Opravte je prosím a znovu jej odešlete."
 
-#: apps/users/views.py:734
+#: apps/users/views.py:735
 msgid "User reported."
 msgstr "Reportováno uživatelem."
 
@@ -13634,9 +13630,7 @@ msgstr ""
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
-"Po klepnutí na \"smazat\" bude váš účet <strong>trvale odstraněn</strong>. To "
-"prakticky znamená:"
+msgstr "Po klepnutí na \"smazat\" bude váš účet <strong>trvale odstraněn</strong>. To prakticky znamená:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
@@ -13644,8 +13638,7 @@ msgstr "Již se nebudete moci k %(site)s přihlásit."
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
-"Vaše recenze a hodnocení nebudou smazána, ale již s vámi nebudou asociovány."
+msgstr "Vaše recenze a hodnocení nebudou smazána, ale již s vámi nebudou asociovány."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13891,7 +13884,7 @@ msgstr "Mé recenze"
 msgid "No add-on reviews yet."
 msgstr "Dosud zde nejsou žádné recenze."
 
-#: apps/users/templates/users/profile.html:122
+#: apps/users/templates/users/profile.html:123
 msgid "Report User"
 msgstr "Nahlášení uživatele"
 
@@ -13937,9 +13930,7 @@ msgstr "Proč registrace?"
 
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
-msgstr ""
-"Pro stahování a instalaci veřejných doplňků <strong>není</strong> registrace "
-"na AMO vyžadována."
+msgstr "Pro stahování a instalaci veřejných doplňků <strong>není</strong> registrace na AMO vyžadována."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
@@ -13959,17 +13950,11 @@ msgstr "Jste vývojář doplňku a chcete jej nahrát na AMO."
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr ""
-"Pro úspěšné dokončení registrace vám bude odeslán potvrzující e-mail na "
-"adresu, kterou jste zadali. Pro potvrzení účtu postupujte dle instrukcí, "
-"které jsou v něm uvedeny."
+msgstr "Pro úspěšné dokončení registrace vám bude odeslán potvrzující e-mail na adresu, kterou jste zadali. Pro potvrzení účtu postupujte dle instrukcí, které jsou v něm uvedeny."
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
-msgstr ""
-"Pokud chcete, můžete si přečíst <a href=\"%(legal)s\" title=\"Právní "
-"informace\">právní informace</a> a <a href=\"%(privacy)s\" title=\"Zásady "
-"ochrany soukromí\">zásady ochrany soukromí</a>."
+msgstr "Pokud chcete, můžete si přečíst <a href=\"%(legal)s\" title=\"Právní informace\">právní informace</a> a <a href=\"%(privacy)s\" title=\"Zásady ochrany soukromí\">zásady ochrany soukromí</a>."
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
 msgid "Register"
@@ -14201,7 +14186,7 @@ msgstr "Barva v hexadecimálním formátu"
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr "Musí se jednat o barvu v hexa kódu. Např. #FF0035."
 
-#: mkt/collections/serializers.py:197
+#: mkt/collections/serializers.py:212
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr "Nemůžete mít více než jednu sbírku doporučených aplikací či aplikací operátorů pro stejnou kombinaci kategorii/operátora/region."
 
@@ -14471,7 +14456,7 @@ msgstr "Středoafrická republika"
 msgid "Chad"
 msgstr "Čad"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:238
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:239
 msgid "Chile"
 msgstr "Chile"
 
@@ -15977,8 +15962,8 @@ msgid "Pan European Game Information"
 msgstr "Pan European Game Information"
 
 #: mkt/constants/regions.py:56
-msgid "Worldwide"
-msgstr "Celosvětově"
+msgid "Rest of World"
+msgstr ""
 
 #: mkt/constants/regions.py:111 mkt/ecosystem/templates/ecosystem/publish_payments.html:106
 msgid "Venezuela"
@@ -16487,9 +16472,7 @@ msgstr "Nová verze byla úspěšně přidána."
 
 #: mkt/developers/views.py:297
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr ""
-"Gratulujeme. Odeslání vaší aplikace bylo dokončeno a brzy bude "
-"zkontrolována!"
+msgstr "Gratulujeme. Odeslání vaší aplikace bylo dokončeno a brzy bude zkontrolována!"
 
 #: mkt/developers/views.py:299
 msgid "Content ratings successfully saved."
@@ -16551,19 +16534,19 @@ msgstr "Kreditní karta"
 msgid "Carrier"
 msgstr "Operátor"
 
-#: mkt/developers/views_payments.py:289
+#: mkt/developers/views_payments.py:290
 msgid "Secret was reset successfully."
 msgstr "Tajný klíč byl úspěšně obnoven."
 
-#: mkt/developers/views_payments.py:293
+#: mkt/developers/views_payments.py:294
 msgid "Key and secret were created successfully."
 msgstr "Klíč a tajný klíč byly úspěšně vytvořeny."
 
-#: mkt/developers/views_payments.py:319
+#: mkt/developers/views_payments.py:320
 msgid "Your app is not configured for in-app payments."
 msgstr "Vaše aplikace nemá nastaveny platby uvnitř aplikace."
 
-#: mkt/developers/views_payments.py:325
+#: mkt/developers/views_payments.py:326
 msgid "No payment account for this app."
 msgstr "Pro tuto aplikaci není k dispozici žádný účet pro platby."
 
@@ -16610,16 +16593,12 @@ msgstr "Aktuálně nemáte klíč pro API."
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:30 mkt/developers/templates/developers/apps/status.html:34
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr ""
-"Předtím, než bude vaše aplikace zkontrolována či publikována, musíte "
-"nastavit <a href=\"%(next_url)s\">%(next_step_name)s</a>."
+msgstr "Předtím, než bude vaše aplikace zkontrolována či publikována, musíte nastavit <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:37
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> or else your app will be disabled on %(pretty_date)s."
-msgstr ""
-"Musíte nastavit <a href=\"%(next_url)s\">%(next_step_name)s</a> nebo bude vaše "
-"aplikace dne %(pretty_date)s zakázána."
+msgstr "Musíte nastavit <a href=\"%(next_url)s\">%(next_step_name)s</a> nebo bude vaše aplikace dne %(pretty_date)s zakázána."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
@@ -17426,31 +17405,31 @@ msgstr "Proces hodnoceni dle IARC je dokončen. Budete přesměrován(a) na vaš
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr "Omlouváme se, ale na naší straně nastala chyba se zpracováním hodnocení obsahu. Můžete to zkusit znovu nebo někdy později."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:74
 msgid "Create an IARC Ratings Certificate"
 msgstr "Vytvoření certifikátu hodnocení dle IARC"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:81
 msgid "Already Have Your App Rated?"
 msgstr "Máte již svou aplikaci ohodnocenu?"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:85
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr "Pokud jste již provedli hodnocení aplikace pomocí IARC Global Ratings Tool výše a máte bezpečnostní kód IARC, můžete jej ručně vložit zde."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:98
 msgid "Submission ID"
 msgstr "ID odeslání"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr "ID odeslání je nalezitelné na certifikátu, který vám byl odeslán. Jedná se o číselnou hodnotu jako &quot;14&quot;."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
 msgid "Security Code"
 msgstr "Bezpečnostní kód"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr "Bezpečnostní kód je nalezitelný na certifikátu, který vám byl odeslán. Jedná se o mix znaků a čísel jako &quot;AB12CD3&quot;."
 
@@ -20618,7 +20597,7 @@ msgstr "Na začátek si prosím přečtěte a odsouhlaste <strong>ujednání pro
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla mě může e-mailem kontaktovat v souvislosti s novinkami a průzkumy týkajících se vývojářů aplikací"
 
-#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1732
+#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1733
 msgid "Héllo"
 msgstr "Hezký den"
 
@@ -20699,32 +20678,32 @@ msgid "This app needs a payment account set up."
 msgstr "Tato aplikace potřebuje nastavení účtu pro platby."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2104
+#: mkt/webapps/models.py:2106
 msgid "awaiting approval"
 msgstr "čeká na schválení"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2108
+#: mkt/webapps/models.py:2110
 msgid "requires additional review"
 msgstr "vyžaduje další kontrolu"
 
-#: mkt/webapps/models.py:2159
+#: mkt/webapps/models.py:2161
 msgid "{region} approval status"
 msgstr "Stav schválení regionu {region} "
 
-#: mkt/webapps/models.py:2164
+#: mkt/webapps/models.py:2166
 msgid "{region} nomination date"
 msgstr "Datum nominace regionu {region}"
 
-#: mkt/webapps/tasks.py:116
+#: mkt/webapps/tasks.py:117
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Problém s vaší aplikací \"{app}\" na Firefox Marketplace"
 
-#: templates/amo_footer.html:11 templates/includes/lang_switcher.html:2
+#: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
 msgstr "Ostatní jazyky"
 
-#: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:12
+#: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:9
 msgid "Mozilla Add-ons"
 msgstr "Doplňky Mozilly"
 
@@ -20887,15 +20866,15 @@ msgstr "vyžadováno"
 msgid "Required fields"
 msgstr "Vyžadovaná pole"
 
-#: templates/mobile/base_addons.html:69
+#: templates/mobile/base_addons.html:66
 msgid "Mobile Home"
 msgstr "Pro mobily"
 
-#: templates/mobile/base_addons.html:88 templates/mobile/base_apps.html:72
+#: templates/mobile/base_addons.html:85 templates/mobile/base_apps.html:72
 msgid "View full site"
 msgstr "Přepnout na plnou verzi"
 
-#: templates/mobile/base_addons.html:91 templates/mobile/base_apps.html:75
+#: templates/mobile/base_addons.html:88 templates/mobile/base_apps.html:75
 msgid "Legal Notices"
 msgstr "Právní omezení"
 

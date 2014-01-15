@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08 09:42-0700\n"
+"POT-Creation-Date: 2014-01-15 09:07-0700\n"
 "PO-Revision-Date: 2013-10-21 12:44+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1487,10 +1487,10 @@ msgstr "Tento doplnok bol predbežne skontrolovaný Mozillou."
 msgid "Keep it"
 msgstr "Ponechať"
 
-#: media/js/zamboni/mobile/general.js:338
+#: media/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
 msgstr "Skúšate ho"
 
-#: media/js/zamboni/mobile/general.js:350
+#: media/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Pridané do Firefoxu"

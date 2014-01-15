@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08 09:42-0700\n"
+"POT-Creation-Date: 2014-01-15 09:07-0700\n"
 "PO-Revision-Date: 2014-01-09 07:44+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "Categorieën kunnen niet worden gewijzigd als uw add-on voor deze toepassing wordt aanbevolen."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:951 mkt/webapps/api.py:252
+#: apps/addons/forms.py:256 mkt/developers/forms.py:951 mkt/webapps/api.py:260
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "U kunt slechts {0} categorie gebruiken."
@@ -493,7 +493,7 @@ msgstr "Misbruikrapporten"
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:45
 #: apps/addons/templates/addons/impala/details.html:320 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:90
+#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:87
 #: templates/mobile/base_apps.html:74
 msgid "Privacy Policy"
 msgstr "Privacybeleid"
@@ -1242,7 +1242,7 @@ msgid "<strong>Caution:</strong> Development versions of this add-on have not be
 msgstr "<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn niet door Mozilla beoordeeld."
 
 #: apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331 apps/addons/templates/addons/impala/review_add_box.html:5
-#: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:121
+#: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:122
 #: mkt/developers/templates/developers/apps/owner.html:77 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
@@ -1466,7 +1466,7 @@ msgstr "%(name)s vereist dat u de volgende gebruiksrechtovereenkomst accepteert 
 msgid "Accept"
 msgstr "Accepteren"
 
-#: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:60
+#: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:57
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr "U hebt Firefox nodig om add-ons te kunnen installeren. <a href=\"http://mozilla.com/mobile\">Meer hierover&nbsp;&raquo;</a>"
 
@@ -1477,7 +1477,7 @@ msgstr "Terug naar de {0}-add-ons-startpagina"
 
 #: apps/addons/templates/addons/mobile/home.html:19 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/performance.html:72 mkt/reviewers/templates/reviewers/base.html:30 mkt/reviewers/templates/reviewers/performance.html:26 templates/menu_links.html:4
-#: templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:53
+#: templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:50
 msgid "Add-ons"
 msgstr "Add-ons"
 
@@ -2612,7 +2612,7 @@ msgstr[0] "%(num)s add-on in deze collectie"
 msgstr[1] "%(num)s add-ons in deze collectie"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
-#: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:22
+#: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:17
 #: templates/includes/lang_switcher.html:10
 msgid "Go"
 msgstr "Start"
@@ -3385,7 +3385,7 @@ msgstr "&laquo; Alle thema’s"
 msgid "All"
 msgstr "Alles"
 
-#: apps/compat/forms.py:23 apps/search/views.py:514
+#: apps/compat/forms.py:23 apps/search/views.py:531
 msgid "All Add-ons"
 msgstr "Alle add-ons"
 
@@ -4468,7 +4468,7 @@ msgid "User Reviews"
 msgstr "Gebruikersbeoordelingen"
 
 #: apps/devhub/views.py:334 apps/devhub/views.py:338 apps/devhub/views.py:457 apps/devhub/views.py:480 apps/devhub/views.py:527 apps/devhub/views.py:650 apps/devhub/views.py:1333
-#: mkt/developers/views.py:543 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:337 mkt/reviewers/views.py:694
+#: mkt/developers/views.py:543 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:338 mkt/reviewers/views.py:694
 msgid "Changes successfully saved."
 msgstr "Wijzigingen met succes opgeslagen."
 
@@ -9381,15 +9381,11 @@ msgstr "Door verwijdering van deze versie wordt verwijderd:"
 
 #: apps/devhub/templates/devhub/versions/list.html:271
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
-"<strong>Belangrijk:</strong> Als een versie eenmaal is verwijderd, kunt u "
-"geen nieuwe versie met hetzelfde versienummer uploaden."
+msgstr "<strong>Belangrijk:</strong> Als een versie eenmaal is verwijderd, kunt u geen nieuwe versie met hetzelfde versienummer uploaden."
 
 #: apps/devhub/templates/devhub/versions/list.html:276
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
-msgstr ""
-"Verwijdering van een versie die al is beoordeeld kan ook voor een "
-"significante vertraging van de beoordeling van uw volgende update zorgen."
+msgstr "Verwijdering van een versie die al is beoordeeld kan ook voor een significante vertraging van de beoordeling van uw volgende update zorgen."
 
 #: apps/devhub/templates/devhub/versions/list.html:279 mkt/developers/templates/developers/apps/status.html:343
 msgid "Are you sure you wish to delete this version?"
@@ -10125,7 +10121,7 @@ msgid "given preliminary review"
 msgstr "is voorlopig beoordeeld"
 
 #. L10n: An app is rejected for a particular region.
-#: apps/editors/views.py:707 mkt/webapps/models.py:2106
+#: apps/editors/views.py:707 mkt/webapps/models.py:2108
 msgid "rejected"
 msgstr "is afgewezen"
 
@@ -10842,7 +10838,7 @@ msgid "E-Mail Your Team:"
 msgstr "Stuur een e-mailbericht naar uw team:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8 apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12 mkt/constants/submit.py:6
-#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
+#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:128
 msgid "Submit"
 msgstr "Indienen"
 
@@ -12739,26 +12735,26 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "Weergegeven: {0} - {1} van {2} resultaten"
 
 #. {0} is an application, like Firefox.
-#: apps/search/views.py:253 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:20
+#: apps/search/views.py:270 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:17
 msgid "{0} Add-ons"
 msgstr "{0}-add-ons"
 
-#: apps/search/views.py:514
+#: apps/search/views.py:531
 msgid "All Apps"
 msgstr "Alle apps"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
-#: apps/search/views.py:548
+#: apps/search/views.py:565
 msgid "Any {0}"
 msgstr "Alle {0}-versies"
 
 #. L10n: "All Systems" means show everything regardless of platform.
-#: apps/search/views.py:583
+#: apps/search/views.py:600
 msgid "All Systems"
 msgstr "Alle systemen"
 
-#: apps/search/views.py:594
+#: apps/search/views.py:611
 msgid "All Tags"
 msgstr "Alle labels"
 
@@ -13540,11 +13536,11 @@ msgid "Successfully verified!"
 msgstr "Met succes geverifieerd!"
 
 # %1 is the user's email address
-#: apps/users/views.py:143 apps/users/views.py:688
+#: apps/users/views.py:143 apps/users/views.py:689
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Er is een e-mail verzonden naar uw adres {0} om uw account te bevestigen. Voordat u zich kunt aanmelden dient u uw account te activeren door op de koppeling in dit e-mailbericht te klikken."
 
-#: apps/users/views.py:147 apps/users/views.py:692
+#: apps/users/views.py:147 apps/users/views.py:693
 msgid "Confirmation Email Sent"
 msgstr "Bevestigingsbericht verzonden"
 
@@ -13624,27 +13620,27 @@ msgstr "Activeringsbericht verzonden"
 msgid "Having Trouble?"
 msgstr "Hebt u problemen?"
 
-#: apps/users/views.py:662
+#: apps/users/views.py:663
 msgid "You are already logged in to an account."
 msgstr "U bent al bij een account aangemeld."
 
-#: apps/users/views.py:684
+#: apps/users/views.py:685
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Gefeliciteerd! Uw gebruikersaccount is met succes aangemaakt."
 
-#: apps/users/views.py:708
+#: apps/users/views.py:709
 msgid "You already have an account."
 msgstr "U hebt al een account."
 
-#: apps/users/views.py:718
+#: apps/users/views.py:719
 msgid "There are errors in this form"
 msgstr "Er staan fouten in dit formulier"
 
-#: apps/users/views.py:719
+#: apps/users/views.py:720
 msgid "Please correct them and resubmit."
 msgstr "Corrigeer deze en dien opnieuw in."
 
-#: apps/users/views.py:734
+#: apps/users/views.py:735
 msgid "User reported."
 msgstr "Gebruiker gerapporteerd."
 
@@ -13666,9 +13662,7 @@ msgstr ""
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
-"Door op “verwijderen” te klikken wordt uw account <strong>permanent "
-"verwijderd</strong>. Dat betekent:"
+msgstr "Door op “verwijderen” te klikken wordt uw account <strong>permanent verwijderd</strong>. Dat betekent:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
@@ -13676,9 +13670,7 @@ msgstr "U kunt zich niet meer aanmelden bij %(site)s."
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
-"Uw beoordelingen en waarderingen worden niet verwijderd, maar ze zijn niet "
-"meer met u geassocieerd."
+msgstr "Uw beoordelingen en waarderingen worden niet verwijderd, maar ze zijn niet meer met u geassocieerd."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13924,7 +13916,7 @@ msgstr "Mijn beoordelingen"
 msgid "No add-on reviews yet."
 msgstr "Nog geen add-on-beoordelingen."
 
-#: apps/users/templates/users/profile.html:122
+#: apps/users/templates/users/profile.html:123
 msgid "Report User"
 msgstr "Gebruiker rapporteren"
 
@@ -13970,9 +13962,7 @@ msgstr "Waarom registreren?"
 
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
-msgstr ""
-"Registratie op is AMO is <strong>niet verplicht</strong> als u slechts "
-"publieke add-ons wilt downloaden en installeren."
+msgstr "Registratie op is AMO is <strong>niet verplicht</strong> als u slechts publieke add-ons wilt downloaden en installeren."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
@@ -13988,23 +13978,15 @@ msgstr "U uw favoriete add-oncollecties wilt volgen of er zelf één wilt maken"
 
 #: apps/users/templates/users/register.html:21
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
-"U een add-onontwikkelaar bent en u uw add-on voor hosting op AMO wilt "
-"uploaden"
+msgstr "U een add-onontwikkelaar bent en u uw add-on voor hosting op AMO wilt uploaden"
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr ""
-"Na succesvolle registratie ontvangt u een bevestigingsbericht op het "
-"opgegeven e-mailadres. Volg de instructies in dat bericht om uw account te "
-"bevestigen."
+msgstr "Na succesvolle registratie ontvangt u een bevestigingsbericht op het opgegeven e-mailadres. Volg de instructies in dat bericht om uw account te bevestigen."
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
-msgstr ""
-"Indien gewenst kunt u onze <a href=\"%(legal)s\" title=\"Legal "
-"Notices\">juridische opmerkingen</a> en <a href=\"%(privacy)s\" title=\"Privacy "
-"Policy\">privacybeleid</a> lezen."
+msgstr "Indien gewenst kunt u onze <a href=\"%(legal)s\" title=\"Legal Notices\">juridische opmerkingen</a> en <a href=\"%(privacy)s\" title=\"Privacy Policy\">privacybeleid</a> lezen."
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
 msgid "Register"
@@ -14234,7 +14216,7 @@ msgstr "Hexadecimale kleur"
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr "Dient een geldige hex-kleurcode te zijn, bijv. #FF0035."
 
-#: mkt/collections/serializers.py:197
+#: mkt/collections/serializers.py:212
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr "U kunt niet meer dan één collectie Aanbevolen apps/Operatorplank hebben voor dezelfde categorie/provider/regio-combinatie."
 
@@ -14504,7 +14486,7 @@ msgstr "Centraal-Afrikaanse republiek"
 msgid "Chad"
 msgstr "Tsjaad"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:238
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:239
 msgid "Chile"
 msgstr "Chili"
 
@@ -16010,8 +15992,8 @@ msgid "Pan European Game Information"
 msgstr "Pan-Europese spelinformatie"
 
 #: mkt/constants/regions.py:56
-msgid "Worldwide"
-msgstr "Wereldwijd"
+msgid "Rest of World"
+msgstr ""
 
 #: mkt/constants/regions.py:111 mkt/ecosystem/templates/ecosystem/publish_payments.html:106
 msgid "Venezuela"
@@ -16159,8 +16141,7 @@ msgstr "Ongeldige regio(’s) geselecteerd."
 
 #: mkt/developers/forms.py:381
 msgid "Only regions the app is already available in may be selected."
-msgstr ""
-"Alleen regio’s waarin de app al beschikbaar is mogen worden geselecteerd."
+msgstr "Alleen regio’s waarin de app al beschikbaar is mogen worden geselecteerd."
 
 #: mkt/developers/forms.py:468 mkt/webapps/models.py:431
 msgid "You must upload at least one screenshot or video."
@@ -16247,10 +16228,8 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
-"Ik verzoek u mijn app als kandidaat voor vooruitladen op een Firefox OS-"
-"apparaat te overwegen. Ik stem in met de hierboven gestelde voorwaarden. Ik "
-"begrijp dat dit document geen verplichting om mijn app vooruit te laden "
-"inhoudt."
+"Ik verzoek u mijn app als kandidaat voor vooruitladen op een Firefox OS-apparaat te overwegen. Ik stem in met de hierboven gestelde voorwaarden. Ik begrijp dat dit document geen verplichting om "
+"mijn app vooruit te laden inhoudt."
 
 #: mkt/developers/forms.py:1105
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -16525,8 +16504,7 @@ msgstr "Nieuwe versie met succes toegevoegd."
 
 #: mkt/developers/views.py:297
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr ""
-"Gefeliciteerd, uw app is nu ingediend en zal binnenkort worden beoordeeld!"
+msgstr "Gefeliciteerd, uw app is nu ingediend en zal binnenkort worden beoordeeld!"
 
 #: mkt/developers/views.py:299
 msgid "Content ratings successfully saved."
@@ -16588,19 +16566,19 @@ msgstr "Creditcard"
 msgid "Carrier"
 msgstr "Provider"
 
-#: mkt/developers/views_payments.py:289
+#: mkt/developers/views_payments.py:290
 msgid "Secret was reset successfully."
 msgstr "Geheim met succes geherinitialiseerd."
 
-#: mkt/developers/views_payments.py:293
+#: mkt/developers/views_payments.py:294
 msgid "Key and secret were created successfully."
 msgstr "Sleutel en geheim met succes geherinitialiseerd."
 
-#: mkt/developers/views_payments.py:319
+#: mkt/developers/views_payments.py:320
 msgid "Your app is not configured for in-app payments."
 msgstr "Uw app is niet ingesteld voor in-app-betalingen."
 
-#: mkt/developers/views_payments.py:325
+#: mkt/developers/views_payments.py:326
 msgid "No payment account for this app."
 msgstr "Er is geen betalingsaccount voor deze app."
 
@@ -16647,16 +16625,12 @@ msgstr "U hebt nog geen API-sleutel."
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:30 mkt/developers/templates/developers/apps/status.html:34
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr ""
-"U dient <a href=\"%(next_url)s\">%(next_step_name)s</a> in te stellen voordat "
-"uw app kan worden beoordeeld of gepubliceerd."
+msgstr "U dient <a href=\"%(next_url)s\">%(next_step_name)s</a> in te stellen voordat uw app kan worden beoordeeld of gepubliceerd."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:37
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> or else your app will be disabled on %(pretty_date)s."
-msgstr ""
-"U dient <a href=\"%(next_url)s\">%(next_step_name)s</a> in te stellen, anders "
-"wordt uw app op %(pretty_date)s uitgeschakeld."
+msgstr "U dient <a href=\"%(next_url)s\">%(next_step_name)s</a> in te stellen, anders wordt uw app op %(pretty_date)s uitgeschakeld."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
@@ -16803,11 +16777,8 @@ msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
-"De validator is een hulpmiddel dat u kan helpen uw app te testen op fouten, "
-"goede praktijken en overeenkomst met de Marketplace-richtlijnen voordat u uw "
-"app daadwerkelijk indient voor beoordeling. Als u interesse hebt in hoe dit "
-"werkt of graag een eigen exemplaar zou willen hebben is de broncode "
-"beschikbaar <a href=\"%(repo)s\">op GitHub</a>."
+"De validator is een hulpmiddel dat u kan helpen uw app te testen op fouten, goede praktijken en overeenkomst met de Marketplace-richtlijnen voordat u uw app daadwerkelijk indient voor beoordeling. "
+"Als u interesse hebt in hoe dit werkt of graag een eigen exemplaar zou willen hebben is de broncode beschikbaar <a href=\"%(repo)s\">op GitHub</a>."
 
 # Submit YOUR App or Submit AN App?! See next string…
 #: mkt/developers/templates/developers/apps/dashboard.html:16
@@ -17104,8 +17075,7 @@ msgstr "Advertentietekst"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Exclusive message shown on the listing page, only in the selected regions."
-msgstr ""
-"Exclusief bericht op de lijstpagina, alleen in de geselecteerde regio’s."
+msgstr "Exclusief bericht op de lijstpagina, alleen in de geselecteerde regio’s."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Regions to show banner in"
@@ -17184,9 +17154,7 @@ msgstr "Uitgaveopmerkingen"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:128
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
-msgstr ""
-"Informatie over wijzigingen in de laatste uitgave, nieuwe functies, bekende "
-"bugs en overige nuttige informatie specifiek voor deze uitgave/versie."
+msgstr "Informatie over wijzigingen in de laatste uitgave, nieuwe functies, bekende bugs en overige nuttige informatie specifiek voor deze uitgave/versie."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:149
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
@@ -17414,9 +17382,8 @@ msgstr "Apparaten wijzigen"
 #: mkt/developers/templates/developers/apps/listing/items.html:59
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr ""
-"<strong class=\"rating-notice alert-notice\">Deze app wordt uitgeschakeld als "
-"er voor %(pretty_date)s geen inhoudswaardering wordt toegewezen:</strong> <a "
-"href=\"%(rating_url)s\">Inhoudswaardering instellen</a>"
+"<strong class=\"rating-notice alert-notice\">Deze app wordt uitgeschakeld als er voor %(pretty_date)s geen inhoudswaardering wordt toegewezen:</strong> <a href=\"%(rating_url)s\">Inhoudswaardering "
+"instellen</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -17476,31 +17443,31 @@ msgstr "IARC-inhoudswaarderingsproces afgerond, u wordt doorgeleid naar de <a hr
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr "Sorry, er is een fout aan onze kant opgetreden tijdens het verwerken van de inhoudswaardering. U kunt het blijven proberen of het later nog eens proberen."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:74
 msgid "Create an IARC Ratings Certificate"
 msgstr "IARC-waarderingscertificaat aanmaken"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:81
 msgid "Already Have Your App Rated?"
 msgstr "Hebt u uw app al gewaardeerd?"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:85
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr "Als u uw app al hebt gewaardeerd met behulp van het bovenstaande algemene IARC-waarderingshulpmiddel en al een IARC-beveiligingscode hebt, dan kunt u deze hier handmatig ingeven."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:98
 msgid "Submission ID"
 msgstr "Indieningskenmerk"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr "Het indieningskenmerk kan op het naar u verzonden certificaat worden teruggevonden. Het is een numerieke waarde zoals “14”."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
 msgid "Security Code"
 msgstr "Beveiligingscode"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr "De beveiligingscode kan op het naar u verzonden certificaat worden teruggevonden. Het is een mengeling van letters en cijfers zoals “AB12CD3”."
 
@@ -20671,7 +20638,7 @@ msgstr "Lees en accepteer om te beginnen onze <strong>Ontwikkelaarsovereenkomst<
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla mag me relevant app-ontwikkelaarsnieuws en enquêtes sturen"
 
-#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1732
+#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1733
 msgid "Héllo"
 msgstr "Hállo"
 
@@ -20752,32 +20719,32 @@ msgid "This app needs a payment account set up."
 msgstr "Voor deze app dient een betalingsaccount ingesteld te worden."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2104
+#: mkt/webapps/models.py:2106
 msgid "awaiting approval"
 msgstr "wacht op goedkeuring"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2108
+#: mkt/webapps/models.py:2110
 msgid "requires additional review"
 msgstr "vereist aanvullende beoordeling"
 
-#: mkt/webapps/models.py:2159
+#: mkt/webapps/models.py:2161
 msgid "{region} approval status"
 msgstr "goedkeuringsstatus {region}"
 
-#: mkt/webapps/models.py:2164
+#: mkt/webapps/models.py:2166
 msgid "{region} nomination date"
 msgstr "nominatiedatum {region}"
 
-#: mkt/webapps/tasks.py:116
+#: mkt/webapps/tasks.py:117
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Probleem met uw app “{app}” op de Firefox Marketplace"
 
-#: templates/amo_footer.html:11 templates/includes/lang_switcher.html:2
+#: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
 msgstr "Andere talen"
 
-#: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:12
+#: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:9
 msgid "Mozilla Add-ons"
 msgstr "Mozilla-add-ons"
 
@@ -20940,15 +20907,15 @@ msgstr "vereist"
 msgid "Required fields"
 msgstr "Verplichte velden"
 
-#: templates/mobile/base_addons.html:69
+#: templates/mobile/base_addons.html:66
 msgid "Mobile Home"
 msgstr "Mobiel-startpagina"
 
-#: templates/mobile/base_addons.html:88 templates/mobile/base_apps.html:72
+#: templates/mobile/base_addons.html:85 templates/mobile/base_apps.html:72
 msgid "View full site"
 msgstr "Volledige website bekijken"
 
-#: templates/mobile/base_addons.html:91 templates/mobile/base_apps.html:75
+#: templates/mobile/base_addons.html:88 templates/mobile/base_apps.html:75
 msgid "Legal Notices"
 msgstr "Juridische kennisgevingen"
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08 09:42-0700\n"
+"POT-Creation-Date: 2014-01-15 09:07-0700\n"
 "PO-Revision-Date: 2013-11-06 12:13+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
@@ -119,7 +119,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "Če se vaš izdelek nahaja med izbranimi dodatki za to aplikacijo, mu kategorij ni mogoče spreminjati."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:951 mkt/webapps/api.py:252
+#: apps/addons/forms.py:256 mkt/developers/forms.py:951 mkt/webapps/api.py:260
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Imate lahko samo {0} kategorijo."
@@ -506,7 +506,7 @@ msgstr "Abuse Reports"
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:45
 #: apps/addons/templates/addons/impala/details.html:320 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:90
+#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:87
 #: templates/mobile/base_apps.html:74
 msgid "Privacy Policy"
 msgstr "Izjava o zasebnosti"
@@ -1271,7 +1271,7 @@ msgid "<strong>Caution:</strong> Development versions of this add-on have not be
 msgstr "<strong>Pozor:</strong> Beta različic te razširitve Mozilla ni pregledala."
 
 #: apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331 apps/addons/templates/addons/impala/review_add_box.html:5
-#: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:121
+#: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:122
 #: mkt/developers/templates/developers/apps/owner.html:77 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
@@ -1501,7 +1501,7 @@ msgstr "%(name)s zahteva, da se pred nadaljnjo namestitvijo strinjate z naslednj
 msgid "Accept"
 msgstr "Sprejmi"
 
-#: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:60
+#: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:57
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr "Da namestite dodatke, potrebujete Firefox. <a href=\"http://mozilla.com/mobile\"> Več o tem&nbsp;&raquo;</a>"
 
@@ -1512,7 +1512,7 @@ msgstr "Vrni se na domačo stran za {0} dodatki"
 
 #: apps/addons/templates/addons/mobile/home.html:19 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/performance.html:72 mkt/reviewers/templates/reviewers/base.html:30 mkt/reviewers/templates/reviewers/performance.html:26 templates/menu_links.html:4
-#: templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:53
+#: templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:50
 msgid "Add-ons"
 msgstr "Dodatki"
 
@@ -2651,7 +2651,7 @@ msgstr[2] "Dodatkov v tej zbirki %(num)s"
 msgstr[3] "Dodatkov v tej zbirki %(num)s"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
-#: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:22
+#: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:17
 #: templates/includes/lang_switcher.html:10
 msgid "Go"
 msgstr "Pojdi"
@@ -3436,7 +3436,7 @@ msgstr "&laquo; Vse teme"
 msgid "All"
 msgstr "Vsi"
 
-#: apps/compat/forms.py:23 apps/search/views.py:514
+#: apps/compat/forms.py:23 apps/search/views.py:531
 msgid "All Add-ons"
 msgstr "Vse razširitve"
 
@@ -4527,7 +4527,7 @@ msgid "User Reviews"
 msgstr "Pregledi uporabnikov"
 
 #: apps/devhub/views.py:334 apps/devhub/views.py:338 apps/devhub/views.py:457 apps/devhub/views.py:480 apps/devhub/views.py:527 apps/devhub/views.py:650 apps/devhub/views.py:1333
-#: mkt/developers/views.py:543 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:337 mkt/reviewers/views.py:694
+#: mkt/developers/views.py:543 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:338 mkt/reviewers/views.py:694
 msgid "Changes successfully saved."
 msgstr "Spremembe uspešno shranjene."
 
@@ -10168,7 +10168,7 @@ msgid "given preliminary review"
 msgstr "je bil predhodno pregledan"
 
 #. L10n: An app is rejected for a particular region.
-#: apps/editors/views.py:707 mkt/webapps/models.py:2106
+#: apps/editors/views.py:707 mkt/webapps/models.py:2108
 msgid "rejected"
 msgstr "zavrnjen"
 
@@ -10915,7 +10915,7 @@ msgid "E-Mail Your Team:"
 msgstr "Pošljite E-pošto svoji ekipi:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8 apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12 mkt/constants/submit.py:6
-#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
+#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:128
 msgid "Submit"
 msgstr "Predloži"
 
@@ -12755,26 +12755,26 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "Prikaz {0} - {1} od {2} rezultatov"
 
 #. {0} is an application, like Firefox.
-#: apps/search/views.py:253 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:20
+#: apps/search/views.py:270 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:17
 msgid "{0} Add-ons"
 msgstr "{0} dodatkov"
 
-#: apps/search/views.py:514
+#: apps/search/views.py:531
 msgid "All Apps"
 msgstr "Vse aplikacije"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
-#: apps/search/views.py:548
+#: apps/search/views.py:565
 msgid "Any {0}"
 msgstr "Katerikoli {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
-#: apps/search/views.py:583
+#: apps/search/views.py:600
 msgid "All Systems"
 msgstr "Vsi sistemi"
 
-#: apps/search/views.py:594
+#: apps/search/views.py:611
 msgid "All Tags"
 msgstr "All Tags"
 
@@ -13577,11 +13577,11 @@ msgid "Successfully verified!"
 msgstr "Uspešno preverjeno!"
 
 # %1 is the user's email address
-#: apps/users/views.py:143 apps/users/views.py:688
+#: apps/users/views.py:143 apps/users/views.py:689
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Poslali smo vam e-pošto na {0}, da potrdite svoj novi račun. Preden se lahko prijavite, morate aktivirati svoj račun s klikom na povezavo v tej e-pošti."
 
-#: apps/users/views.py:147 apps/users/views.py:692
+#: apps/users/views.py:147 apps/users/views.py:693
 msgid "Confirmation Email Sent"
 msgstr "E-pošta za potrdilo poslana"
 
@@ -13661,27 +13661,27 @@ msgstr "E-pošta za aktivacijo poslana"
 msgid "Having Trouble?"
 msgstr "Imate težave?"
 
-#: apps/users/views.py:662
+#: apps/users/views.py:663
 msgid "You are already logged in to an account."
 msgstr "Ste že prijavljeni na račun."
 
-#: apps/users/views.py:684
+#: apps/users/views.py:685
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Čestitamo! Vaš uporabniški račun je bil uspešno ustvarjen."
 
-#: apps/users/views.py:708
+#: apps/users/views.py:709
 msgid "You already have an account."
 msgstr ""
 
-#: apps/users/views.py:718
+#: apps/users/views.py:719
 msgid "There are errors in this form"
 msgstr "Ta obrazec vsebuje napake."
 
-#: apps/users/views.py:719
+#: apps/users/views.py:720
 msgid "Please correct them and resubmit."
 msgstr "Prosimo, da jih popravite in ponovno pošljete."
 
-#: apps/users/views.py:734
+#: apps/users/views.py:735
 msgid "User reported."
 msgstr "Uporabnik sporočen."
 
@@ -13956,7 +13956,7 @@ msgstr "Moji pregledi"
 msgid "No add-on reviews yet."
 msgstr "Pregledov dodatkov še ni"
 
-#: apps/users/templates/users/profile.html:122
+#: apps/users/templates/users/profile.html:123
 msgid "Report User"
 msgstr "Prijavi uporabnika"
 
@@ -14261,7 +14261,7 @@ msgstr ""
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr ""
 
-#: mkt/collections/serializers.py:197
+#: mkt/collections/serializers.py:212
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
 
@@ -14532,7 +14532,7 @@ msgstr "Centralnoafriška republika"
 msgid "Chad"
 msgstr "Čad"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:238
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:239
 msgid "Chile"
 msgstr "Čile"
 
@@ -16036,8 +16036,8 @@ msgid "Pan European Game Information"
 msgstr ""
 
 #: mkt/constants/regions.py:56
-msgid "Worldwide"
-msgstr "Po celem svetu"
+msgid "Rest of World"
+msgstr ""
 
 #: mkt/constants/regions.py:111 mkt/ecosystem/templates/ecosystem/publish_payments.html:106
 msgid "Venezuela"
@@ -16619,19 +16619,19 @@ msgstr ""
 msgid "Carrier"
 msgstr ""
 
-#: mkt/developers/views_payments.py:289
+#: mkt/developers/views_payments.py:290
 msgid "Secret was reset successfully."
 msgstr "Skrivnost uspešno ponastavljena."
 
-#: mkt/developers/views_payments.py:293
+#: mkt/developers/views_payments.py:294
 msgid "Key and secret were created successfully."
 msgstr "Ključ in skrivnost uspešno ustvarjena."
 
-#: mkt/developers/views_payments.py:319
+#: mkt/developers/views_payments.py:320
 msgid "Your app is not configured for in-app payments."
 msgstr "Vaša aplikacija ni konfigurirana za in-app plačila."
 
-#: mkt/developers/views_payments.py:325
+#: mkt/developers/views_payments.py:326
 msgid "No payment account for this app."
 msgstr "Ta aplikacija brez računa za plačila."
 
@@ -17481,31 +17481,31 @@ msgstr ""
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:74
 msgid "Create an IARC Ratings Certificate"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:81
 msgid "Already Have Your App Rated?"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:85
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:98
 msgid "Submission ID"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
 msgid "Security Code"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
 
@@ -20596,7 +20596,7 @@ msgstr ""
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr ""
 
-#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1732
+#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1733
 msgid "Héllo"
 msgstr ""
 
@@ -20675,32 +20675,32 @@ msgid "This app needs a payment account set up."
 msgstr ""
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2104
+#: mkt/webapps/models.py:2106
 msgid "awaiting approval"
 msgstr ""
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2108
+#: mkt/webapps/models.py:2110
 msgid "requires additional review"
 msgstr ""
 
-#: mkt/webapps/models.py:2159
+#: mkt/webapps/models.py:2161
 msgid "{region} approval status"
 msgstr ""
 
-#: mkt/webapps/models.py:2164
+#: mkt/webapps/models.py:2166
 msgid "{region} nomination date"
 msgstr ""
 
-#: mkt/webapps/tasks.py:116
+#: mkt/webapps/tasks.py:117
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr ""
 
-#: templates/amo_footer.html:11 templates/includes/lang_switcher.html:2
+#: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
 msgstr "Drugi jeziki"
 
-#: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:12
+#: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:9
 msgid "Mozilla Add-ons"
 msgstr "Dodatki Mozilla"
 
@@ -20861,15 +20861,15 @@ msgstr "potrebno"
 msgid "Required fields"
 msgstr "Zahtevana polja"
 
-#: templates/mobile/base_addons.html:69
+#: templates/mobile/base_addons.html:66
 msgid "Mobile Home"
 msgstr "Mobile Home"
 
-#: templates/mobile/base_addons.html:88 templates/mobile/base_apps.html:72
+#: templates/mobile/base_addons.html:85 templates/mobile/base_apps.html:72
 msgid "View full site"
 msgstr "Prikaži celo spletišče"
 
-#: templates/mobile/base_addons.html:91 templates/mobile/base_apps.html:75
+#: templates/mobile/base_addons.html:88 templates/mobile/base_apps.html:75
 msgid "Legal Notices"
 msgstr "Pravna obvestila"
 

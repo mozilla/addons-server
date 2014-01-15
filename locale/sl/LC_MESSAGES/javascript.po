@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08 09:42-0700\n"
+"POT-Creation-Date: 2014-01-15 09:07-0700\n"
 "PO-Revision-Date: 2013-11-06 12:52+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
@@ -1507,10 +1507,10 @@ msgstr ""
 msgid "Keep it"
 msgstr ""
 
-#: media/js/zamboni/mobile/general.js:338
+#: media/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
 msgstr ""
 
-#: media/js/zamboni/mobile/general.js:350
+#: media/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr ""

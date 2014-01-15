@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08 09:42-0700\n"
+"POT-Creation-Date: 2014-01-15 09:07-0700\n"
 "PO-Revision-Date: 2013-12-03 19:13+0000\n"
 "Last-Translator: Daniel <danielscott171@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1468,10 +1468,10 @@ msgstr "Este complemento ha sido revisado preliminarmente por Mozilla."
 msgid "Keep it"
 msgstr "Conservarlo"
 
-#: media/js/zamboni/mobile/general.js:338
+#: media/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
 msgstr "¡Lo estás probando!"
 
-#: media/js/zamboni/mobile/general.js:350
+#: media/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Agregado a Firefox"

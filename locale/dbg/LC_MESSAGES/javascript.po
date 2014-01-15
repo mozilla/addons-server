@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08 09:42-0700\n"
+"POT-Creation-Date: 2014-01-15 09:07-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1610,10 +1610,10 @@ msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ ƥřḗŀīḿīƞȧřīŀẏ �
 msgid "Keep it"
 msgstr "Ķḗḗƥ īŧ"
 
-#: media/js/zamboni/mobile/general.js:338
+#: media/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
 msgstr "Ẏǿŭ'řḗ ŧřẏīƞɠ īŧ ǿƞ!"
 
-#: media/js/zamboni/mobile/general.js:350
+#: media/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Ȧḓḓḗḓ ŧǿ Ƒīřḗƒǿẋ"
