@@ -67,7 +67,7 @@ class TestCORSWrapper(TestCase):
         def foo(request):
             return Response()
         request = RequestFactory().get('/')
-        r = foo(request)
+        foo(request)
         eq_(request.CORS, ['GET', 'PATCH'])
 
 
@@ -84,9 +84,9 @@ class TestSubRouterWithFormat(TestCase):
             {'name': 'bar-list', 'pattern': '^(?P<pk>[^/]+)/foo/$' },
             {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/]+)/foo/$' },
             {'name': 'bar-list',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z]+)$' },
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$' },
             {'name': 'bar-detail',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z]+)$'},
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
         ]
         actual = [{
             'name': url.name, 'pattern': url.regex.pattern
@@ -101,9 +101,9 @@ class TestSubRouterWithFormat(TestCase):
             {'name': 'bar-list', 'pattern': '^(?P<pk>[^/.]+)/foo$' },
             {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/.]+)/foo$' },
             {'name': 'bar-list',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z]+)$' },
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$' },
             {'name': 'bar-detail',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z]+)$'},
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
         ]
         actual = [{
             'name': url.name, 'pattern': url.regex.pattern
