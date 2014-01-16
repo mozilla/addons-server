@@ -12,13 +12,14 @@ RATING_DESCS = {
     'CLASSIND_DRUGS_ILLEGAL': {'name': _lazy('Illegal Drugs')},
     'CLASSIND_DRUGS_LEGAL': {'name': _lazy('Legal Drugs')},
     # L10n: `Language` as in foul language.
-    'CLASSIND_LANG': {'name': _lazy('Language')},
+    'CLASSIND_LANG': {'name': _lazy('Inappropriate Language')},
     'CLASSIND_NO_DESCS': {'name': _lazy('No Descriptors')},
     'CLASSIND_NUDITY': {'name': _lazy('Nudity')},
     # L10n: `Sex` as in sexual, not as in gender.
-    'CLASSIND_SEX_CONTENT': {'name': _lazy('Sex')},
+    'CLASSIND_SEX': {'name': _lazy('Sex')},
+    'CLASSIND_SEX_CONTENT': {'name': _lazy('Sexual Content')},
     'CLASSIND_SEX_EXPLICIT': {'name': _lazy('Explicit Sex')},
-    'CLASSIND_SHOCKING': {'name': _lazy('Shocking Content')},
+    'CLASSIND_SHOCKING': {'name': _lazy('Impacting Content')},
     'CLASSIND_VIOLENCE': {'name': _lazy('Violence')},
     'CLASSIND_VIOLENCE_EXTREME': {'name': _lazy('Extreme Violence')},
 
@@ -52,7 +53,7 @@ RATING_DESCS = {
     'ESRB_NO_DESCS': {'name': _lazy('No Descriptors')},
     'ESRB_NUDITY': {'name': _lazy('Nudity')},
     'ESRB_PARTIAL_NUDITY': {'name': _lazy('Partial Nudity')},
-    'ESRB_REAL_GAMBLING': {'name': _lazy('Gambling')},
+    'ESRB_REAL_GAMBLING': {'name': _lazy('Real Gambling')},
     'ESRB_SCARY': {'name': _lazy('Scary Themes')},
     'ESRB_SEX_CONTENT': {'name': _lazy('Sexual Content')},
     'ESRB_SEX_THEMES': {'name': _lazy('Sexual Themes')},
@@ -98,7 +99,7 @@ RATING_DESCS = {
     'USK_DISCRIMINATION': {'name': _lazy('Discrimination')},
     'USK_DRUGS': {'name': _lazy('Drugs')},
     # L10n: `Language` as in foul language.
-    'USK_LANG': {'name': _lazy('Language')},
+    'USK_LANG': {'name': _lazy('Explicit Language')},
     'USK_NO_DESCS': {'name': _lazy('No Descriptors')},
     'USK_SCARY': {'name': _lazy('Frightening Content')},
     'USK_SEX_CONTENT': {'name': _lazy('Sexual Content')},
