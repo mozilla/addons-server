@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-15 09:07-0700\n"
-"PO-Revision-Date: 2014-01-09 07:44+0000\n"
+"PO-Revision-Date: 2014-01-16 07:18+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1389253475.0\n"
+"X-POOTLE-MTIME: 1389856714.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -15993,7 +15993,7 @@ msgstr "Pan-Europese spelinformatie"
 
 #: mkt/constants/regions.py:56
 msgid "Rest of World"
-msgstr ""
+msgstr "Rest van de wereld"
 
 #: mkt/constants/regions.py:111 mkt/ecosystem/templates/ecosystem/publish_payments.html:106
 msgid "Venezuela"
