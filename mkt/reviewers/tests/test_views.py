@@ -907,7 +907,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (3)')
 
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
-    def test_deleted_version_not_in_queue(self, _mock):
+    def test_deleted_version_not_in_queue(self, update_cached_manifests):
         """
         This tests that an app with a prior pending version that got
         deleted doesn't trigger the app to remain in the review queue.
@@ -923,6 +923,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
+
+        eq_(update_cached_manifests.delay.call_count, 1)
 
         # Verify that our app has 2 versions.
         eq_(Version.with_deleted.filter(addon=app).count(), 2)
@@ -1107,9 +1109,10 @@ class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
     def get_app(self):
         return Webapp.objects.no_cache().get(id=337141)
 
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('lib.crypto.packaged.sign_app')
-    def test_public_sign(self, sign_mock, json_mock):
+    def test_public_sign(self, sign_mock, json_mock, update_cached_manifests):
         self.app = self.get_app()
         self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
         self.version = self.app.current_version
@@ -1129,6 +1132,7 @@ class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
         eq_(resp.status_code, 302)
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(update_cached_manifests.delay.call_count, 1)
 
     @mock.patch('lib.crypto.packaged.sign_app')
     def test_public_sign_failure(self, sign_mock):
@@ -1362,22 +1366,22 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         data = {'action': 'reject', 'comments': 'something',
                 'has_sms': True}
         data.update(self._attachment_management_form(num=0))
-        assert not self.app.current_version.features.has_sms
+        assert not self.app.latest_version.features.has_sms
         self.post(data)
         app = self.get_app()
         eq_(app.make_public, amo.PUBLIC_IMMEDIATELY)
         eq_(app.status, amo.STATUS_REJECTED)
-        assert not app.current_version.features.has_sms
+        assert not app.latest_version.features.has_sms
 
     def test_pending_to_reject_w_requirements_overrides_nothing_changed(self):
         self.version.features.update(has_sms=True)
         data = {'action': 'public', 'comments': 'something',
                 'has_sms': True}
         data.update(self._attachment_management_form(num=0))
-        assert self.app.current_version.features.has_sms
+        assert self.app.latest_version.features.has_sms
         self.post(data)
         app = self.get_app()
-        assert app.current_version.features.has_sms
+        assert app.latest_version.features.has_sms
         eq_(app.make_public, None)
         eq_(app.status, amo.STATUS_PUBLIC)
         action_id = amo.LOG.REVIEW_FEATURES_OVERRIDE.id
@@ -1386,11 +1390,19 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.reviewers.views.messages.success')
-    @mock.patch('addons.tasks.index_addons')
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_pending_to_public(self, update_name, update_locales,
-                               index_addons, messages, storefront_mock):
+                               update_cached_manifests,
+                               index_webapps, messages, storefront_mock):
+        index_webapps.delay.reset_mock()
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(update_cached_manifests.delay.call_count, 0)
+        eq_(storefront_mock.call_count, 0)
+
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1406,21 +1418,18 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
-        assert update_name.called
-        assert update_locales.called
-
-        # It's zero for the view but happens after the transaction commits. If
-        # this increases we could get tasks being called with stale data.
-        eq_(index_addons.delay.call_count, 0)
-
         eq_(messages.call_args_list[0][0][1],
             '"Web App Review" successfully processed (+60 points, 60 total).')
-
-        assert storefront_mock.called
+        eq_(update_name.call_count, 1)
+        eq_(update_locales.call_count, 1)
+        eq_(index_webapps.delay.call_count, 1)
+        eq_(update_cached_manifests.delay.call_count, 1)
+        eq_(storefront_mock.call_count, 1)
 
     @mock.patch('mkt.reviewers.views.messages.success', new=mock.Mock)
     def test_incomplete_cant_approve(self):
         self.app.update(status=amo.STATUS_NULL)
+        self.app.latest_version.files.update(status=amo.STATUS_NULL)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
@@ -1457,17 +1466,34 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert fr_translation in msg.body
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     @mock.patch('lib.crypto.packaged.sign')
-    def test_public_signs(self, sign, storefront_mock):
+    def test_approve_packaged_app(self, sign_mock, update_name,
+            update_locales, update_cached_manifests, index_webapps,
+            storefront_mock):
         self.get_app().update(is_packaged=True)
+
+        index_webapps.delay.reset_mock()
+        eq_(sign_mock.call_count, 0)
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(update_cached_manifests.delay.call_count, 0)
+        eq_(storefront_mock.call_count, 0)
+
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
-        eq_(sign.call_args[0][0], self.get_app().current_version.pk)
-
-        assert storefront_mock.called
+        eq_(sign_mock.call_count, 1)
+        eq_(update_name.call_count, 1)
+        eq_(update_locales.call_count, 1)
+        eq_(update_cached_manifests.delay.call_count, 1)
+        eq_(storefront_mock.call_count, 1)
+        eq_(sign_mock.call_args[0][0], self.get_app().current_version.pk)
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_require_sig_for_public(self, sign):
@@ -1499,13 +1525,19 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert storefront_mock.called
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    @mock.patch('addons.tasks.index_addons')
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_pending_to_public_waiting(self, update_name, update_locales,
-                                       index_addons, storefront_mock):
+                                       update_cached_manifests, index_webapps,
+                                       storefront_mock):
         self.get_app().update(_signal=False, make_public=amo.PUBLIC_WAIT)
-        index_addons.delay.reset_mock()
+
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(index_webapps.delay.call_count, 0)
+        eq_(update_cached_manifests.delay.call_count, 0)
 
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
@@ -1523,14 +1555,14 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
-        assert not update_name.called
-        assert not update_locales.called
+        # The app is not public yet, so we shouldn't call those:
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(update_cached_manifests.delay.call_count, 0)
+        eq_(storefront_mock.call_count, 0)
 
-        # It's zero for the view but happens after the transaction commits. If
-        # this increases we could get tasks being called with stale data.
-        eq_(index_addons.delay.call_count, 0)
-
-        assert not storefront_mock.called
+        # Indexing should still happen:
+        eq_(index_webapps.delay.call_count, 1)
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_waiting_signs(self, sign):
@@ -1559,17 +1591,26 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    @mock.patch('addons.tasks.index_addons')
-    @mock.patch('lib.crypto.packaged.sign_app')
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_packaged_multiple_versions_approve(self, update_name,
-                                                update_locales, sign_mock,
-                                                index_addons, storefront_mock):
+    @mock.patch('lib.crypto.packaged.sign_app')
+    def test_packaged_multiple_versions_approve(self, sign_app_mock,
+            update_name, update_locales, update_cached_manifests,
+            index_webapps, storefront_mock):
         self.app.update(status=amo.STATUS_PUBLIC, is_packaged=True)
-        self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
         new_version.files.all().update(status=amo.STATUS_PENDING)
+
+        index_webapps.delay.reset_mock()
+        eq_(sign_app_mock.call_count, 0)
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(update_cached_manifests.delay.call_count, 0)
+        eq_(storefront_mock.call_count, 0)
+
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1587,15 +1628,12 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
 
-        assert update_name.called
-        assert update_locales.called
-        assert sign_mock.called
-
-        # It's zero for the view but happens after the transaction commits. If
-        # this increases we could get tasks being called with stale data.
-        eq_(index_addons.delay.call_count, 0)
-
-        assert storefront_mock.called
+        eq_(sign_app_mock.call_count, 1)
+        eq_(update_name.call_count, 1)
+        eq_(update_locales.call_count, 1)
+        eq_(index_webapps.delay.call_count, 1)
+        eq_(update_cached_manifests.delay.call_count, 1)
+        eq_(storefront_mock.call_count, 1)
 
     def test_packaged_multiple_versions_reject(self):
         self.app.update(status=amo.STATUS_PUBLIC, is_packaged=True)
@@ -1638,18 +1676,20 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.login_as_senior_reviewer()
 
         self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'disabled ur app'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_DISABLED)
-        eq_(app.current_version.files.all()[0].status, amo.STATUS_DISABLED)
+        eq_(app.latest_version.files.all()[0].status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App disabled by reviewer')
 
     def test_pending_to_disable(self):
         self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'disabled ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data)
@@ -1701,15 +1741,15 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def test_escalation_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
-
         EscalationQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'disabled ur app'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, amo.STATUS_DISABLED)
-        eq_(app.current_version.files.all()[0].status, amo.STATUS_DISABLED)
+        eq_(app.latest_version.files.all()[0].status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(EscalationQueue.objects.count(), 0)
         eq_(len(mail.outbox), 1)
@@ -1718,6 +1758,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_escalation_to_disable(self):
         EscalationQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'disabled ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data, queue='escalated')
@@ -1729,6 +1770,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def test_clear_escalation(self):
         self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         EscalationQueue.objects.create(addon=self.app)
         data = {'action': 'clear_escalation', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
@@ -1741,6 +1783,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_rereview_to_reject(self):
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'reject', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1760,6 +1803,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'disable', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1773,6 +1817,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_rereview_to_disable(self):
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'disabled ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data, queue='rereview')
@@ -1784,6 +1829,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def test_clear_rereview(self):
         self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'clear_rereview', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
