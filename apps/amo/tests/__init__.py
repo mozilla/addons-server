@@ -525,16 +525,10 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         kw.setdefault('everyone', True)
         return Flag.objects.create(**kw)
 
-    def grant_permission(self, user, rules, name='Test Group'):
-        """
-        Creates group with rule, and adds user to group.
-
-        :param user: can be a UserProfile object, or just the id.
-        """
-        if isinstance(user, UserProfile):
-            user = user.id
+    def grant_permission(self, user_obj, rules, name='Test Group'):
+        """Creates group with rule, and adds user to group."""
         group = Group.objects.create(name=name, rules=rules)
-        GroupUser.objects.create(group=group, user_id=user)
+        GroupUser.objects.create(group=group, user=user_obj)
 
     def days_ago(self, days):
         return days_ago(days)

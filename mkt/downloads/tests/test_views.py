@@ -9,18 +9,16 @@ from amo.urlresolvers import reverse
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.submit.tests.test_views import BasePackagedAppTest
-from users.models import UserProfile
 
 
-class Download(BasePackagedAppTest):
+class TestDownload(BasePackagedAppTest):
+    fixtures = ['base/apps', 'base/users', 'base/platforms',
+                'webapps/337141-steamcube']
 
     def setUp(self):
-        super(Download, self).setUp()
-        super(Download, self).setup_files()
+        super(TestDownload, self).setUp()
+        super(TestDownload, self).setup_files()
         self.url = reverse('downloads.file', args=[self.file.pk])
-
-
-class TestDownload(Download):
 
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_download(self):
@@ -77,33 +75,3 @@ class TestDownload(Download):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert settings.XSENDFILE_HEADER in res
-
-
-class TestDownloadPremium(Download):
-
-    def setUp(self):
-        super(TestDownloadPremium, self).setUp()
-        self.make_premium(self.app)
-
-    def test_anon(self):
-        self.client.logout()
-        eq_(self.client.get(self.url).status_code, 403)
-
-    def test_not_purchased(self):
-        eq_(self.client.get(self.url).status_code, 402)
-
-    def test_purchased(self):
-        self.app.addonpurchase_set.create(user_id=999)
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_developer(self):
-        self.app.addonuser_set.create(user_id=999, role=amo.AUTHOR_ROLE_VIEWER)
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_reviewer(self):
-        self.grant_permission(999, 'Apps:Review')
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_other_reviewer(self):
-        self.grant_permission(999, 'Themes:Review')
-        eq_(self.client.get(self.url).status_code, 402)
