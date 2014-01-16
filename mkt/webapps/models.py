@@ -1212,16 +1212,18 @@ class Webapp(Addon):
             # App wasn't rated by IARC, return.
             return
 
-        authors = self.authors.all()
         release_date = datetime.date.today()
 
         if self.status in amo.WEBAPPS_APPROVED_STATUSES:
+            version = self.current_version
             reviewed = self.current_version.reviewed
             if reviewed:
                 release_date = reviewed
         elif self.status in amo.WEBAPPS_EXCLUDED_STATUSES:
-            # Send IARC an empty string to signify the app was removed from our
-            # listings.
+            # Using `_latest_version` since the property returns None when
+            # deleted.
+            version = self._latest_version
+            # Send an empty string to signify the app was removed.
             release_date = ''
         else:
             # If not approved or one of the disabled statuses, we shouldn't be
@@ -1236,7 +1238,7 @@ class Webapp(Addon):
                 'rating_system': cr.get_body().iarc_name,
                 'release_date': '' if disable else release_date,
                 'title': get_iarc_app_title(self),
-                'company': authors[0].display_name if authors.exists() else '',
+                'company': version.developer_name,
                 'rating': cr.get_rating().iarc_name,
                 'descriptors': self.rating_descriptors.iarc_deserialize(
                     body=cr.get_body()),

@@ -1146,9 +1146,8 @@ class TestContentRatings(amo.tests.TestCase):
     def setUp(self):
         self.create_switch('iarc')
         self.app = app_factory()
+        self.app.latest_version.update(_developer_name='Lex Luthor')
         self.user = UserProfile.objects.get()
-        AddonUser.objects.create(addon=self.app, user=self.user)
-
         self.url = reverse('mkt.developers.apps.ratings',
                            args=[self.app.app_slug])
         self.req = amo.tests.req_factory_factory(self.url, user=self.user)
@@ -1158,10 +1157,6 @@ class TestContentRatings(amo.tests.TestCase):
                        IARC_STOREFRONT_ID=1, IARC_PLATFORM='Firefox',
                        IARC_PASSWORD='s3kr3t')
     def test_edit(self):
-        author = self.app.authors.all()[0]
-        # Update to get rid of weird unicode display_name.
-        author.update(display_name='luthor', email='lex@lexcorp.com')
-
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)
 
@@ -1172,8 +1167,8 @@ class TestContentRatings(amo.tests.TestCase):
         # Check the hidden form values.
         values = dict(form.form_values())
         eq_(values['storefront'], '1')
-        eq_(values['company'], author.display_name)
-        eq_(values['email'], author.email)
+        eq_(values['company'], 'Lex Luthor')
+        eq_(values['email'], self.user.email)
         eq_(values['appname'], get_iarc_app_title(self.app))
         eq_(values['platform'], 'Firefox')
         eq_(values['token'], self.app.iarc_token())

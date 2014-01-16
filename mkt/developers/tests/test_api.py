@@ -105,7 +105,7 @@ class TestContentRatingPingback(RestOAuth):
                     {
                         'TYPE': 'string',
                         'NAME': 'company',
-                        'VALUE': 'Mozilla'
+                        'VALUE': 'Developer Name'
                     },
                     {
                         'TYPE': 'string',

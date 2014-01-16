@@ -609,10 +609,8 @@ class TestWebapp(amo.tests.TestCase):
         # Set up ratings/descriptors/interactives.
         self.create_switch('iarc')
         app = app_factory(name='LOL', app_slug='ha')
-        user = UserProfile.objects.create(email='a', username='b',
-                                          display_name='Hektor')
-        app.addonuser_set.create(user=user)
         app.current_version.reviewed = datetime(2013, 1, 1, 12, 34, 56)
+        app.current_version._developer_name = 'Lex Luthor'
 
         app.set_iarc_info(submission_id='1234', security_code='sektor')
         app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
@@ -637,7 +635,7 @@ class TestWebapp(amo.tests.TestCase):
         eq_(data['rating_system'], 'ESRB')
         eq_(data['release_date'], app.current_version.reviewed)
         eq_(data['title'], 'LOL')
-        eq_(data['company'], app.authors.all()[0].display_name)
+        eq_(data['company'], 'Lex Luthor')
         eq_(data['rating'], 'Adults Only')
         eq_(data['descriptors'], 'Blood')
         self.assertSetEqual(data['interactive_elements'].split(', '),
@@ -650,7 +648,7 @@ class TestWebapp(amo.tests.TestCase):
         eq_(data['rating_system'], 'PEGI')
         eq_(data['release_date'], app.current_version.reviewed)
         eq_(data['title'], 'LOL')
-        eq_(data['company'], app.authors.all()[0].display_name)
+        eq_(data['company'], 'Lex Luthor')
         eq_(data['rating'], '3+')
         eq_(data['descriptors'], 'Fear')
         self.assertSetEqual(data['interactive_elements'].split(', '),
@@ -677,6 +675,7 @@ class TestWebapp(amo.tests.TestCase):
                                               render_mock):
         self.create_switch('iarc')
         app = app_factory(name='LOL', rated=True)
+        app.current_version.update(_developer_name='Lex Luthor')
         app.set_iarc_info(123, 'abc')
         app.set_iarc_storefront_data(disable=True)
         data = render_mock.call_args_list[0][0][1]
