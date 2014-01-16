@@ -1,6 +1,17 @@
 Settings Changelog
 ==================
 
+2014-01-22
+----------
+
+* Changed ``CACHES['default']['BACKEND']`` from
+  ``django.core.cache.backends.locmem.LocMemCache`` to 
+  ``caching.backends.locmem.LocMemCache``.
+  We use the LocMemCache backend from cache-machine, as it interprets the
+  "0" timeout parameter of ``cache`` in the same way as the Memcached backend:
+  as infinity. Django's LocMemCache backend interprets it as a "0 seconds"
+  timeout (and thus doesn't cache at all).
+
 2013-08-09
 ----------
 * Added ``AES_KEYS`` as a settings for encrypting OAuth secrets. Uses a sample

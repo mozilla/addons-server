@@ -21,9 +21,13 @@ INSTALLED_APPS += (
 #        'LOCATION': 'localhost:11211',
 #    }
 #}
+# Here we use the LocMemCache backend from cache-machine, as it interprets the
+# "0" timeout parameter of ``cache``  in the same way as the Memcached backend:
+# as infinity. Django's LocMemCache backend interprets it as a "0 seconds"
+# timeout (and thus doesn't cache at all).
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'BACKEND': 'caching.backends.locmem.LocMemCache',
         'LOCATION': 'zamboni',
     }
 }

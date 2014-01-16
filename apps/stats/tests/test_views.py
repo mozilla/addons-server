@@ -346,7 +346,7 @@ class TestLayout(StatsTest):
         eq_(r.status_code, 404)
 
     def get_public_url(self):
-        addon = amo.tests.addon_factory(public_status=True)
+        addon = amo.tests.addon_factory(public_stats=True)
         return reverse('stats.downloads', args=[addon.slug])
 
     def test_public_stats_page_loads(self):
