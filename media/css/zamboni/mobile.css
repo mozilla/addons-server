@@ -969,7 +969,8 @@ button:active,
 #content .badges .warning span {
     cursor: pointer;
 }
-.install .privacy-policy {
+.install .privacy-policy,
+.install .eula {
     display: block;
     margin-top: 12px;
     -moz-border-radius: 4px;

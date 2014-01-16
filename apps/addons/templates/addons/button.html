@@ -63,7 +63,7 @@
           {{ link.text }}
           {% if link.os %}
             <span class="os" data-os="{{ link.os.name }}">
-              {% if not (b.show_eula or b.show_contrib) %}
+              {% if not b.show_contrib %}
                 {# L10n: {0} is a platform name like Windows or Mac OS X. #}
                 {{ _('for {0}')|f(link.os.name) }}
               {% endif %}
@@ -82,6 +82,12 @@
   {% if addon.privacy_policy %}
     <a class="privacy-policy" href="{{ url('addons.privacy', addon.slug) }}">
       <strong>{{ _('View privacy policy') }}</strong>
+    </a>
+  {% endif %}
+  {% if addon.eula %}
+    <a class="eula" href="{{ url('addons.eula', addon.slug) }}">
+      {# L10n: EULA stands for End-User License Agreement. #}
+      <strong>{{ _('View EULA') }}</strong>
     </a>
   {% endif %}
 

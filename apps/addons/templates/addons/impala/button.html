@@ -45,6 +45,11 @@
       {{ _('Privacy Policy') }}
     </a>
   {% endif %}
+  {% if addon.eula %}
+    <a class="eula badge" href="{{ url('addons.eula', addon.slug) }}">
+      {{ _('EULA') }}
+    </a>
+  {% endif %}
 
   {% if addon.is_unreviewed() %}
     <p class="warning">

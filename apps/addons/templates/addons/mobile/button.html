@@ -28,5 +28,11 @@
       {{ _('View privacy policy') }}
     </a>
   {% endif %}
+  {% if addon.eula %}
+    <a class="eula" href="{{ url('addons.eula', addon.slug) }}">
+      {# L10n: EULA stands for End-User License Agreement. #}
+      {{ _('View EULA') }}
+    </a>
+  {% endif %}
 </div> {# install #}
 

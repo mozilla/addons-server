@@ -412,9 +412,10 @@ class TestDetails(amo.tests.TestCase):
 
     def test_install_button_eula(self):
         doc = pq(self.client.get(self.detail_url).content)
-        assert doc('#install .eula').text().startswith('Continue to Download')
+        eq_(doc('#install .install-button').text(), 'Download Now')
+        eq_(doc('#install .eula').text(), 'View EULA')
         doc = pq(self.client.get(self.eula_url).content)
-        eq_(doc('#install .install-button').text(), 'Accept and Download')
+        eq_(doc('#install .install-button').text(), 'Download Now')
 
     def test_install_button_no_eula(self):
         self.addon.update(eula=None)
@@ -488,7 +489,7 @@ class TestDownloadSources(amo.tests.TestCase):
         url = reverse('discovery.addons.detail', args=['a3615'])
         r = self.client.get(url)
         doc = pq(r.content)
-        assert doc('#install a.go').attr('href').endswith(
+        assert doc('#install a.download').attr('href').endswith(
             '?src=discovery-details')
         assert doc('#install li:eq(1)').find('a').attr('href').endswith(
             '?src=discovery-learnmore')
@@ -500,7 +501,7 @@ class TestDownloadSources(amo.tests.TestCase):
                '?src=discovery-featured')
         r = self.client.get(url)
         doc = pq(r.content)
-        assert doc('#install a.go').attr('href').endswith(
+        assert doc('#install a.download').attr('href').endswith(
             '?src=discovery-featured')
 
     def test_eula(self):

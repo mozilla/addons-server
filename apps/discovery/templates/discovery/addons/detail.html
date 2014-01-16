@@ -15,15 +15,8 @@
 
 <ul id="install">
   <li class="install-action">
-    {% if addon.has_eula %}
-      <a href="{{ services_url('discovery.addons.eula', addon.slug, src=src) }}"
-         class="button eula go">
-         {# L10n: please keep &nbsp; in the string so the &rarr; does not wrap #}
-         {{ _('Continue to Download&nbsp;&rarr;')|safe }}</a>
-    {% else %}
-      {{ install_button(addon, show_contrib=False, show_warning=True,
-                        detailed=True) }}
-    {% endif %}
+    {{ install_button(addon, show_contrib=False, show_warning=True,
+                      detailed=False) }}
   </li>
   <li><a href="{{ url('addons.detail', addon.slug, src='discovery-learnmore') }}"
          id="learn-more" class="button">{{ _('Learn More') }}</a></li>
@@ -35,6 +28,10 @@
   {% if addon.privacy_policy %}
     <li class="privacy"><a href="{{ url('addons.privacy', addon.slug, src='discovery-learnmore') }}">
       {{ _('View Privacy Policy') }}</a></li>
+  {% endif %}
+  {% if addon.eula %}
+    <li class="eula"><a href="{{ url('addons.eula', addon.slug, src='discovery-learnmore') }}">
+      {{ _('View EULA') }}</a></li>
   {% endif %}
 </ul>
 

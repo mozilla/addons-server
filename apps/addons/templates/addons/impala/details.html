@@ -323,6 +323,15 @@
       </div>
     </div>
   {% endif %}
+  {% if addon.eula %}
+    <div class="modal" id="eula">
+      <a href="#" class="close">{{ _('close') }}</a>
+      <h2>{{ _('End-User License Agreement') }}</h2>
+      <div class="prose">
+        {{ addon.eula|nl2br }}
+      </div>
+    </div>
+  {% endif %}
   {% if review_form and request.user.is_authenticated() %}
       {{ impala_review_add_box(addon=addon) }}
   {% endif %}

@@ -13,14 +13,12 @@ from addons.models import Addon
 from translations.models import Translation
 
 
-def _install_button(context, addon, version=None, show_eula=True,
-                   show_contrib=True, show_warning=True, src='',
-                   collection=None, size='', detailed=False,
-                   mobile=False, impala=False):
+def _install_button(context, addon, version=None, show_contrib=True,
+                    show_warning=True, src='', collection=None, size='',
+                    detailed=False, mobile=False, impala=False):
     """If version isn't given, we use the latest version."""
     request = context['request']
     app, lang = context['APP'], context['LANG']
-    show_eula = bool(request.GET.get('eula', show_eula))
     src = src or context.get('src') or request.GET.get('src', '')
     collection = ((collection.uuid if hasattr(collection, 'uuid') else None)
                    or collection
@@ -28,9 +26,9 @@ def _install_button(context, addon, version=None, show_eula=True,
                    or request.GET.get('collection')
                    or request.GET.get('collection_id')
                    or request.GET.get('collection_uuid'))
-    button = install_button_factory(addon, app, lang, version,
-                                    show_eula, show_contrib, show_warning,
-                                    src, collection, size, detailed, impala)
+    button = install_button_factory(addon, app, lang, version, show_contrib,
+                                    show_warning, src, collection, size,
+                                    detailed, impala)
     installed = (request.user.is_authenticated() and
                  addon.id in request.amo_user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
@@ -107,9 +105,9 @@ class InstallButton(object):
     install_class = []
     install_text = ''
 
-    def __init__(self, addon, app, lang, version=None, show_eula=True,
-                 show_contrib=True, show_warning=True, src='', collection=None,
-                 size='', detailed=False, impala=False):
+    def __init__(self, addon, app, lang, version=None, show_contrib=True,
+                 show_warning=True, src='', collection=None, size='',
+                 detailed=False, impala=False):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version or addon.current_version
@@ -133,31 +131,24 @@ class InstallButton(object):
         self.can_be_purchased = addon.can_be_purchased()
         self.is_premium = addon.is_premium()
         self.is_webapp = addon.is_webapp()
-        self.accept_eula = addon.has_eula and not show_eula
         self._show_contrib = show_contrib
         self.show_contrib = (show_contrib and addon.takes_contributions
                              and addon.annoying == amo.CONTRIB_ROADBLOCK)
-        self.show_eula = not self.show_contrib and show_eula and addon.has_eula
         self.show_warning = show_warning and self.unreviewed
 
     def prepare(self):
-        """Called after the class is set to manage eulas, contributions."""
+        """Called after the class is set to manage contributions."""
         # Get a copy for this instance.
         self.button_class = list(self.__class__.button_class)
         self.install_class = list(self.__class__.install_class)
-        tests = (self.show_eula, 'eula'), (self.show_contrib, 'contrib')
-        for pred, cls in tests:
-            if bool(pred):
-                try:
-                    self.button_class.remove('download')
-                except ValueError:
-                    pass
-                self.button_class.append(cls)
-                self.button_class.append('go')
-                self.install_class.append(cls)
+        if self.show_contrib:
+            try:
+                self.button_class.remove('download')
+            except ValueError:
+                pass
+            self.button_class += ['contrib', 'go']
+            self.install_class.append('contrib')
 
-        if self.accept_eula:
-            self.install_class.append('accept')
         if self.size:
             self.button_class.append(self.size)
         if self.can_be_purchased:
@@ -204,19 +195,11 @@ class InstallButton(object):
         else:
             text, os = _('Download'), amo.PLATFORMS[platform]
 
-        if self.show_eula:
-            # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-            text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
-            self.xpiurl = url
-            url = file.eula_url()
-        elif self.accept_eula:
-            text = _('Accept and Download')
-        elif self.show_contrib:
-            # The eula doesn't exist or has been hit already.
+        if self.show_contrib:
             # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
             text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
-            url = urlparams(roadblock, eula='', version=self.version.version)
+            url = urlparams(roadblock, version=self.version.version)
 
         if self.addon.is_webapp():
             text = _(u'Install App')

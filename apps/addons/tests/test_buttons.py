@@ -95,36 +95,6 @@ class ButtonTest(amo.tests.TestCase):
 class TestButtonSetup(ButtonTest):
     """Tests for setup code inside install_button."""
 
-    def test_eula(self):
-        """show_eula defaults to true, can be overridden in request.GET."""
-        self.addon.has_eula = True
-        b = self.get_button()
-        assert b.show_eula
-
-        b = self.get_button(show_eula=False)
-        assert not b.show_eula
-
-        self.request.GET['eula'] = ''
-        b = self.get_button()
-        assert not b.show_eula
-
-        self.request.GET['eula'] = 'xx'
-        b = self.get_button(show_eula=False)
-        assert b.show_eula
-
-        self.setUp()
-        self.addon.has_eula = False
-        b = self.get_button()
-        assert not b.show_eula
-
-    def test_eula_and_contrib(self):
-        """If show_eula is True, show_contrib should be off."""
-        self.addon.has_eula = True
-        self.addon.annoying = amo.CONTRIB_ROADBLOCK
-        b = self.get_button(show_eula=False)
-        assert not b.show_eula
-        assert b.show_contrib
-
     def test_src(self):
         """src defaults to '', and can be in the context or request.GET."""
         b = self.get_button()
@@ -183,7 +153,6 @@ class TestButton(ButtonTest):
         assert b.latest
         assert not b.featured
         assert not b.unreviewed
-        assert not b.show_eula
         assert not b.show_contrib
         assert not b.show_warning
 
@@ -210,21 +179,6 @@ class TestButton(ButtonTest):
         assert b.show_warning
         b = self.get_button(show_warning=False)
         assert not b.show_warning
-
-    def test_eula(self):
-        self.addon.has_eula = True
-        b = self.get_button()
-        eq_(b.button_class, ['eula', 'go'])
-        eq_(b.install_class, ['eula'])
-
-    def test_accept_eula(self):
-        self.addon.has_eula = True
-        b = self.get_button(show_eula=False)
-        assert 'accept' in b.install_class
-
-        file = self.get_file(amo.PLATFORM_ALL)
-        text, _, _ = b.file_details(file)
-        eq_(text, 'Accept and Download')
 
     def test_featured(self):
         self.addon.is_featured.return_value = True
@@ -347,19 +301,12 @@ class TestButton(ButtonTest):
         _, url, _ = b.file_details(file)
         eq_(url, 'xpi.url')
 
-        # EULA roadblock.
-        b.show_eula = True
-        text, url, _ = b.file_details(file)
-        eq_(text, 'Continue to Download&nbsp;&rarr;')
-        eq_(url, 'eula.url')
-
         # Contribution roadblock.
-        b.show_eula = False
         b.show_contrib = True
         text, url, _ = b.file_details(file)
         eq_(text, 'Continue to Download&nbsp;&rarr;')
         eq_(url,
-            '/en-US/firefox/addon/2/contribute/roadblock/?eula=&version=v1')
+            '/en-US/firefox/addon/2/contribute/roadblock/?version=v1')
 
     def test_file_details_unreviewed(self):
         file = self.get_file(amo.PLATFORM_ALL)
@@ -519,22 +466,6 @@ class TestButtonHtml(ButtonTest):
         eq_('min version', install.attr('data-min'))
         eq_('max version', install.attr('data-max'))
 
-    def test_caching(self):
-        """Make sure we don't cache too hard and ignore flags."""
-        self.addon.has_eula = True
-        doc = self.render()
-        assert doc('.button').hasClass('eula')
-
-        doc = self.render(show_eula=False)
-        assert not doc('.button').hasClass('eula')
-
-    def test_platformer_with_eula(self):
-        """Don't show platform text for eula buttons."""
-        self.version.all_files = self.platform_files
-        self.addon.has_eula = True
-        doc = self.render()
-        eq_(doc('.eula .os').text(), '')
-
     def test_contrib_text_with_platform(self):
         self.version.all_files = self.platform_files
         self.addon.takes_contributions = True
@@ -651,7 +582,7 @@ class TestBackup(ButtonTest):
 
     def test_big_install_button_backup_version(self):
         doc = PyQuery(big_install_button(self.context, self.addon))
-        eq_(doc('a')[1].get('href'), 'xpi.backup.url')
+        eq_(doc('.backup-button a.download')[0].get('href'), 'xpi.backup.url')
 
 
 class TestViews(amo.tests.TestCase):
@@ -661,7 +592,7 @@ class TestViews(amo.tests.TestCase):
         url = reverse('addons.eula', args=[11730, 53612])
         response = self.client.get(url, follow=True)
         doc = PyQuery(response.content)
-        eq_(doc('[data-search]').attr('class'), 'install accept')
+        eq_(doc('[data-search]').attr('class'), 'install ')
 
     def test_versions_no_backup(self):
         url = reverse('addons.versions', args=['a11730'])
