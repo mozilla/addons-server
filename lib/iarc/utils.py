@@ -285,7 +285,7 @@ DESC_MAPPING = {
         u'Alcohol Reference': 'alcohol_ref',
         u'Blood and Gore': 'blood_gore',
         u'Blood': 'blood',
-        u'Comic Mischief ': 'comic_mischief',
+        u'Comic Mischief': 'comic_mischief',
         u'Crime': 'crime',
         u'Criminal Instruction': 'crime_instruct',
         u'Crude Humor': 'crude_humor',
