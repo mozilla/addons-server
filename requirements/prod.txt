@@ -33,7 +33,7 @@ django-nose==1.2
 django-quieter-formset==0.3
 django-raven-heka==0.3
 django-recaptcha-mozilla==0.0.1
-djangorestframework==2.3.10
+djangorestframework==2.3.12
 #django-session-csrf==0.6
 django-statsd-mozilla==0.3.10
 django-storages==1.1.8

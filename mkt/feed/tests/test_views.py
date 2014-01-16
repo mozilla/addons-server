@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from nose.exc import SkipTest
 from nose.tools import eq_, ok_
 
 from django.core.urlresolvers import reverse
@@ -446,14 +445,6 @@ class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):
         ok_('app' in data)
 
     def test_update_no_app(self):
-        """
-        Skip may be removed when we upgrade to a release that incorporates the
-        fix to django-rest-framework issue #1158:
-
-        https://github.com/tomchristie/django-rest-framework/issues/1158
-        https://github.com/tomchristie/django-rest-framework/pull/1272
-        """
-        raise SkipTest('Fails due to bug in django-rest-framework 2.3.9.')
         self.feed_permission()
         res, data = self.update(self.client, app=None)
         eq_(res.status_code, 400)
