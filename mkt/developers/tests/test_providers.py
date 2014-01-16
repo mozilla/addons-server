@@ -30,28 +30,32 @@ class Patcher(object):
                                name='test_providers.Patcher.client_patcher')
         self.patched_client = client_patcher.start()
         self.patched_client.patcher = client_patcher
+        self.addCleanup(client_patcher.stop)
 
         bango_patcher = patch('mkt.developers.providers.Bango.client',
                               name='test_providers.Patcher.bango_patcher')
         self.bango_patcher = bango_patcher.start()
         self.bango_patcher.patcher = bango_patcher
+        self.addCleanup(bango_patcher.stop)
+
+        bango_p_patcher = patch(
+                'mkt.developers.providers.Bango.client_provider',
+                name='test_providers.Patcher.bango_p_patcher')
+        self.bango_p_patcher = bango_p_patcher.start()
+        self.bango_p_patcher.patcher = bango_p_patcher
+        self.addCleanup(bango_p_patcher.stop)
 
         ref_patcher = patch('mkt.developers.providers.Reference.client',
                             name='test_providers.Patcher.ref_patcher')
         self.ref_patcher = ref_patcher.start()
         self.ref_patcher.patcher = ref_patcher
+        self.addCleanup(ref_patcher.stop)
 
         generic_patcher = patch('mkt.developers.providers.Provider.generic',
                                 name='test_provider.Patcher.generic_patcher')
         self.generic_patcher = generic_patcher.start()
         self.generic_patcher.patcher = generic_patcher
-
-    def tearDown(self, *args, **kw):
-        super(Patcher, self).tearDown(*args, **kw)
-        self.patched_client.patcher.stop()
-        self.bango_patcher.patcher.stop()
-        self.ref_patcher.patcher.stop()
-        self.generic_patcher.patcher.stop()
+        self.addCleanup(generic_patcher.stop)
 
 
 class TestSetup(TestCase):
@@ -95,12 +99,12 @@ class TestBango(Patcher, TestCase):
     def test_create_new(self):
         self.bango_patcher.product.get_object_or_404.side_effect = (
             ObjectDoesNotExist)
-        self.bango_patcher.product.post.return_value = {
+        self.bango_p_patcher.product.post.return_value = {
             'resource_uri': '', 'bango_id': 1
         }
         self.bango.product_create(self.account, self.app)
         ok_('packageId' in
-            self.bango_patcher.product.post.call_args[1]['data'])
+            self.bango_p_patcher.product.post.call_args[1]['data'])
 
 
 class TestReference(Patcher, TestCase):
