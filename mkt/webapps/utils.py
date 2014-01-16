@@ -347,12 +347,16 @@ def filter_content_ratings_by_region(content_ratings, region=None):
     return content_ratings
 
 
-def remove_region_exclusions(app):
+def remove_iarc_exclusions(app):
     """
-    Remove AddonRegionExclusions based on attained content ratings.
+    Remove Germany/Brazil exclusions based on attained content ratings.
     """
-    exclusions = app.addonexcludedregion.exclude(
-        region__in=mkt.regions.SPECIAL_REGION_IDS)
-    log.info('Un-excluding app:%s in regions %s' %
-             (app.id, exclusions.values_list('region', flat=True)))
-    exclusions.delete()
+    from mkt.webapps.models import Geodata
+    if not Geodata.objects.filter(addon=app).exists():
+        return
+
+    geodata = app._geodata
+    if geodata.region_br_iarc_exclude or geodata.region_de_iarc_exclude:
+        geodata.update(region_br_iarc_exclude=False,
+                       region_de_iarc_exclude=False)
+        log.info('Un-excluding IARC-excluded app:%s from br/de')

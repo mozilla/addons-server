@@ -106,33 +106,31 @@ class TestExcludeUnratedGames(amo.tests.TestCase):
 
     def setUp(self):
         self.webapp = Webapp.objects.get(pk=337141)
-        self.br = mkt.regions.BR.id
-        self.de = mkt.regions.DE.id
 
-    def _assert_listed(self, region):
-        assert not self.webapp.addonexcludedregion.filter(
-            region=region).exists()
+    def _germany_listed(self):
+        return not self.webapp.geodata.region_de_iarc_exclude
 
-    def _assert_excluded(self, region):
-        assert self.webapp.addonexcludedregion.filter(region=region).exists()
+    def _brazil_listed(self):
+        return not self.webapp.geodata.region_br_iarc_exclude
 
     def test_exclude_unrated(self):
         amo.tests.make_game(self.webapp, rated=False)
 
-        exclude_games.Command().handle('br')
-        self._assert_excluded(self.br)
-        self._assert_listed(self.de)
+        exclude_games.Command().handle()
+        assert not self._brazil_listed()
+        assert not self._germany_listed()
 
     def test_dont_exclude_non_game(self):
-        exclude_games.Command().handle('br')
-        self._assert_listed(self.br)
-        self._assert_listed(self.de)
+        exclude_games.Command().handle()
+        assert self._brazil_listed()
+        assert self._germany_listed()
 
     def test_dont_exclude_rated(self):
         amo.tests.make_game(self.webapp, rated=True)
 
-        exclude_games.Command().handle('br')
-        self._assert_listed(self.br)
+        exclude_games.Command().handle()
+        assert self._brazil_listed()
+        assert self._germany_listed()
 
     def test_germany_case_generic(self):
         amo.tests.make_game(self.webapp, rated=False)
@@ -140,8 +138,9 @@ class TestExcludeUnratedGames(amo.tests.TestCase):
             mkt.ratingsbodies.GENERIC: mkt.ratingsbodies.GENERIC_18
         })
 
-        exclude_games.Command().handle('de')
-        self._assert_listed(self.de)
+        exclude_games.Command().handle()
+        assert self._germany_listed()
+        assert not self._brazil_listed()
 
     def test_germany_case_usk(self):
         amo.tests.make_game(self.webapp, rated=False)
@@ -149,5 +148,16 @@ class TestExcludeUnratedGames(amo.tests.TestCase):
             mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_18
         })
 
-        exclude_games.Command().handle('de')
-        self._assert_listed(self.de)
+        exclude_games.Command().handle()
+        assert self._germany_listed()
+        assert not self._brazil_listed()
+
+    def test_brazil_case_classind(self):
+        amo.tests.make_game(self.webapp, rated=False)
+        self.webapp.set_content_ratings({
+            mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_L
+        })
+
+        exclude_games.Command().handle()
+        assert self._brazil_listed()
+        assert not self._germany_listed()

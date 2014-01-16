@@ -446,7 +446,23 @@ class TestWebapp(amo.tests.TestCase):
         app1 = app_factory()
         region = mkt.regions.BR
         AddonExcludedRegion.objects.create(addon=app1, region=region.id)
-        eq_(get_excluded_in(region.id), [app1.id])
+        self.assertSetEqual(get_excluded_in(region.id), [app1.id])
+
+    def test_excluded_in_iarc(self):
+        app = app_factory()
+        geodata = app._geodata
+        geodata.update(region_br_iarc_exclude=True,
+                       region_de_iarc_exclude=True)
+        self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [app.id])
+        self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
+
+    def test_excluded_in_iarc_br(self):
+        app = app_factory()
+        geodata = app._geodata
+        geodata.update(region_br_iarc_exclude=False,
+                       region_de_iarc_exclude=True)
+        self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [])
+        self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
 
     def test_supported_locale_property(self):
         app = app_factory()
