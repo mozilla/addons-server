@@ -560,7 +560,8 @@ class Webapp(Addon):
         )
         has_pending = (
             self.versions.filter(files__status=amo.STATUS_PENDING).exists())
-        if not has_public and has_pending:
+        # Check for self.is_pending() first to prevent possible recursion.
+        if not has_public and has_pending and not self.is_pending():
             self.update(status=amo.STATUS_PENDING)
             _log('has pending but no public files')
             return
