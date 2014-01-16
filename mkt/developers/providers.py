@@ -11,7 +11,8 @@ from tower import ugettext_lazy as _
 
 from constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from lib.crypto import generate_key
-from lib.pay_server import client
+# Because client is used in the classes, renaming here for clarity.
+from lib.pay_server import client as pay_client
 from mkt.constants.payments import ACCESS_PURCHASE
 from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
@@ -24,7 +25,7 @@ log = commonware.log.getLogger('z.devhub.providers')
 
 
 class Provider(object):
-    generic = client.api.generic
+    generic = pay_client.api.generic
 
     def account_create(self, user, form_data):
         raise NotImplementedError
@@ -83,7 +84,9 @@ class Bango(Provider):
         'bankAccountCode', 'bankName', 'bankAddress1', 'bankAddress2',
         'bankAddressZipCode', 'bankAddressIso'
     )
-    client = client.api.bango
+    client = pay_client.api.bango
+    # This is at the new provider API.
+    client_provider = pay_client.api.provider.bango
     forms = {
         'account': forms_payments.BangoPaymentAccountForm,
     }
@@ -158,7 +161,7 @@ class Bango(Provider):
             res = self.client.product.get_object_or_404(**data)
         except ObjectDoesNotExist:
             # The product does not exist in Solitude so create it.
-            res = self.client.product.post(data={
+            res = self.client_provider.product.post(data={
                 'seller_bango': account.uri,
                 'seller_product': product_uri,
                 'name': unicode(app.name),
@@ -187,7 +190,7 @@ class Reference(Provider):
     implements to the reference specification, then it should be able to
     just inherit from this with minor changes.
     """
-    client = client.api.provider.reference
+    client = pay_client.api.provider.reference
     forms = {
         'account': forms_payments.ReferenceAccountForm,
     }
