@@ -437,7 +437,6 @@ class TestPublicise(amo.tests.TestCase):
         assert update_name.called
         assert update_locales.called
         assert storefront_mock.called
-        assert update_cached_manifests.delay.called
 
     def test_status(self):
         res = self.client.get(self.status_url)
@@ -500,7 +499,6 @@ class TestPubliciseVersion(amo.tests.TestCase):
         eq_(self.get_webapp().current_version, ver)
         assert update_name.called
         assert update_locales.called
-        assert update_cached_manifests.delay.called
 
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
@@ -519,7 +517,6 @@ class TestPubliciseVersion(amo.tests.TestCase):
         eq_(self.app.reload().status, amo.STATUS_PUBLIC)
         assert update_name.called
         assert update_locales.called
-        assert update_cached_manifests.delay.called
 
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
@@ -537,7 +534,6 @@ class TestPubliciseVersion(amo.tests.TestCase):
         eq_(self.app.reload().status, amo.STATUS_PUBLIC)
         assert update_name.called
         assert update_locales.called
-        assert update_cached_manifests.delay.called
 
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
@@ -552,7 +548,6 @@ class TestPubliciseVersion(amo.tests.TestCase):
         eq_(self.get_version_status(), amo.STATUS_PENDING)
         assert not update_name.called
         assert not update_locales.called
-        assert not update_cached_manifests.delay.called
 
     def test_status(self):
         File.objects.filter(version__addon=self.app).update(
