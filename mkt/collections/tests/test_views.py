@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from django.http import QueryDict
 from django.utils import translation
 
+from mock import patch
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from PIL import Image
@@ -538,12 +539,13 @@ class TestCollectionViewSetDetail(BaseCollectionViewSetTest):
         res, data = self.detail(self.anon)
         ok_(not data['image'])
 
+    @patch('mkt.collections.serializers.build_id', 'bbbbbb')
     def test_detail_image(self):
         storage.open(self.collection.image_path(), 'w').write(IMAGE_DATA)
         self.collection.update(has_image=True)
         res, data = self.detail(self.anon)
         self.assertApiUrlEqual(data['image'],
-            '/rocketfuel/collections/%s/image.png' % self.collection.pk)
+            '/rocketfuel/collections/%s/image.png?bbbbbb' % self.collection.pk)
 
     def test_detail_slug(self):
         self.detail(self.client, collection_id=self.collection.slug)

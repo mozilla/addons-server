@@ -276,7 +276,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
                 addon=form.cleaned_data['app'])
 
             # Thread IDs and version numbers from same app.
-            data['app_threads'] = (queryset.order_by('version__version')
+            data['app_threads'] = list(queryset.order_by('version__version')
                 .values('id', 'version__version'))
         else:
             # We list all the threads which uses an add-on authored by the
@@ -291,13 +291,14 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         res = SilentListModelMixin.list(self, request)
         if res.data:
             res.data.update(data)
+
         return res
 
     def retrieve(self, *args, **kwargs):
         res = super(ThreadViewSet, self).retrieve(*args, **kwargs)
 
         # Thread IDs and version numbers from same app.
-        res.data['app_threads'] = (
+        res.data['app_threads'] = list(
             CommunicationThread.objects.filter(addon_id=res.data['addon'])
             .order_by('version__version').values('id', 'version__version'))
         return res
