@@ -1213,13 +1213,28 @@ class Webapp(Addon):
             return
 
         authors = self.authors.all()
+        release_date = datetime.date.today()
+
+        if self.status in amo.WEBAPPS_APPROVED_STATUSES:
+            reviewed = self.current_version.reviewed
+            if reviewed:
+                release_date = reviewed
+        elif self.status in amo.WEBAPPS_EXCLUDED_STATUSES:
+            # Send IARC an empty string to signify the app was removed from our
+            # listings.
+            release_date = ''
+        else:
+            # If not approved or one of the disabled statuses, we shouldn't be
+            # calling SET_STOREFRONT_DATA. Ignore this call.
+            return
+
         xmls = []
         for cr in self.content_ratings.all():
             xmls.append(render_xml('set_storefront_data.xml', {
                 'submission_id': iarc_info.submission_id,
                 'security_code': iarc_info.security_code,
                 'rating_system': cr.get_body().iarc_name,
-                'release_date': datetime.date.today() if not disable else '',
+                'release_date': '' if disable else release_date,
                 'title': get_iarc_app_title(self),
                 'company': authors[0].display_name if authors.exists() else '',
                 'rating': cr.get_rating().iarc_name,

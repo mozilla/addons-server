@@ -39,7 +39,7 @@ def get_iarc_app_title(app):
     from mkt.webapps.models import Webapp
 
     with amo.utils.no_translation(app.default_locale):
-        delocalized_app = Webapp.objects.get(pk=app.pk)
+        delocalized_app = Webapp.with_deleted.get(pk=app.pk)
 
     return unicode(delocalized_app.name)
 

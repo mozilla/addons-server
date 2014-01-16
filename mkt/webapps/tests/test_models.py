@@ -609,6 +609,11 @@ class TestWebapp(amo.tests.TestCase):
         # Set up ratings/descriptors/interactives.
         self.create_switch('iarc')
         app = app_factory(name='LOL', app_slug='ha')
+        user = UserProfile.objects.create(email='a', username='b',
+                                          display_name='Hektor')
+        app.addonuser_set.create(user=user)
+        app.current_version.reviewed = datetime(2013, 1, 1, 12, 34, 56)
+
         app.set_iarc_info(submission_id='1234', security_code='sektor')
         app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
         app.set_interactives(['has_users_interact', 'has_shares_info'])
@@ -629,9 +634,11 @@ class TestWebapp(amo.tests.TestCase):
         eq_(type(data['title']), unicode)
         eq_(data['submission_id'], 1234)
         eq_(data['security_code'], 'sektor')
-        eq_(data['rating'], 'Adults Only')
-        eq_(data['title'], 'LOL')
         eq_(data['rating_system'], 'ESRB')
+        eq_(data['release_date'], app.current_version.reviewed)
+        eq_(data['title'], 'LOL')
+        eq_(data['company'], app.authors.all()[0].display_name)
+        eq_(data['rating'], 'Adults Only')
         eq_(data['descriptors'], 'Blood')
         self.assertSetEqual(data['interactive_elements'].split(', '),
                             ['Shares Info', 'Users Interact'])
@@ -640,24 +647,51 @@ class TestWebapp(amo.tests.TestCase):
         eq_(type(data['title']), unicode)
         eq_(data['submission_id'], 1234)
         eq_(data['security_code'], 'sektor')
-        eq_(data['rating'], '3+')
-        eq_(data['title'], 'LOL')
         eq_(data['rating_system'], 'PEGI')
+        eq_(data['release_date'], app.current_version.reviewed)
+        eq_(data['title'], 'LOL')
+        eq_(data['company'], app.authors.all()[0].display_name)
+        eq_(data['rating'], '3+')
         eq_(data['descriptors'], 'Fear')
+        self.assertSetEqual(data['interactive_elements'].split(', '),
+                            ['Shares Info', 'Users Interact'])
 
-    def test_set_iarc_storefront_data_not_rated_by_iarc(self):
+    @mock.patch('lib.iarc.client.MockClient.call')
+    def test_set_iarc_storefront_data_not_rated_by_iarc(self, storefront_mock):
         self.create_switch('iarc')
-        assert not app_factory().set_iarc_storefront_data()
+        app_factory().set_iarc_storefront_data()
+        assert not storefront_mock.called
+
+    @mock.patch('lib.iarc.client.MockClient.call')
+    def test_set_iarc_storefront_data_invalid_status(self, storefront_mock):
+        self.create_switch('iarc')
+        app = app_factory()
+        for status in (amo.STATUS_NULL, amo.STATUS_PENDING):
+            app.update(status=status)
+            app.set_iarc_storefront_data()
+            assert not storefront_mock.called
 
     @mock.patch('mkt.webapps.models.render_xml')
     @mock.patch('lib.iarc.client.MockClient.call')
     def test_set_iarc_storefront_data_disable(self, storefront_mock,
                                               render_mock):
         self.create_switch('iarc')
-        app = app_factory(rated=True)
+        app = app_factory(name='LOL', rated=True)
         app.set_iarc_info(123, 'abc')
         app.set_iarc_storefront_data(disable=True)
         data = render_mock.call_args_list[0][0][1]
+        eq_(data['submission_id'], 123)
+        eq_(data['security_code'], 'abc')
+        eq_(data['title'], 'LOL')
+        eq_(data['release_date'], '')
+
+        # Also test that a deleted app has the correct release_date.
+        app.delete()
+        app.set_iarc_storefront_data()
+        data = render_mock.call_args_list[0][0][1]
+        eq_(data['submission_id'], 123)
+        eq_(data['security_code'], 'abc')
+        eq_(data['title'], 'LOL')
         eq_(data['release_date'], '')
 
     def test_get_descriptors_es(self):

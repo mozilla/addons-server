@@ -131,4 +131,8 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             # Remove region exclusons.
             remove_region_exclusions(app)
 
+            # Call SET_STOREFRONT_DATA. If the app is approved already we'll
+            # need to let IARC know.
+            app.set_iarc_storefront_data()
+
         return Response('ok')
