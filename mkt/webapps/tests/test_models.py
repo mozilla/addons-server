@@ -631,10 +631,12 @@ class TestWebapp(amo.tests.TestCase):
         app.set_iarc_info(submission_id='1234', security_code='sektor')
         app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
         app.set_interactives(['has_users_interact', 'has_shares_info'])
-        app.set_content_ratings({
-            mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_A,
-            mkt.ratingsbodies.PEGI: mkt.ratingsbodies.PEGI_3,
-        })
+        app.content_ratings.create(
+            ratings_body=mkt.ratingsbodies.ESRB.id,
+            rating=mkt.ratingsbodies.ESRB_A.id)
+        app.content_ratings.create(
+            ratings_body=mkt.ratingsbodies.PEGI.id,
+            rating=mkt.ratingsbodies.PEGI_3.id)
 
         # Check the client was called.
         app.set_iarc_storefront_data()
