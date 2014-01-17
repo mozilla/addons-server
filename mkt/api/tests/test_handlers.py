@@ -940,9 +940,12 @@ class TestPriceCurrency(RestOAuth):
         eq_(j['objects'][0], {
             'carrier': None,
             'currency': 'PLN',
+            'dev': True,
             'method': 'operator+card',
+            'paid': True,
             'price': '5.01',
             'provider': 'bango',
+            'region': 'pl',
             'resource_uri': self.detail_url,
             'tier': self.tier_url})
 
@@ -953,9 +956,12 @@ class TestPriceCurrency(RestOAuth):
         eq_(j, {
             'carrier': None,
             'currency': 'PLN',
+            'dev': True,
             'method': 'operator+card',
+            'paid': True,
             'price': '5.01',
             'provider': 'bango',
+            'region': 'pl',
             'resource_uri': self.detail_url,
             'tier': self.tier_url
         })
@@ -974,7 +980,10 @@ class TestPriceCurrency(RestOAuth):
                 'currency': 'PHP',
                 'method': 'operator',
                 'price': '10.05',
-                'provider': 'bango'}))
+                'provider': 'bango',
+                'region': 'pl',
+                'paid': True,
+                'dev': True}))
         eq_(res.status_code, 201)
         # Get the pk from the response.
         pk = res.json['resource_uri'].split('/')[-2]
@@ -995,16 +1004,22 @@ class TestPriceCurrency(RestOAuth):
             json.dumps({
                 'tier': self.tier_url,
                 'carrier': None,
-                'currency': 'PHP',
+                'currency': 'USD',
                 'method': 'operator',
                 'price': '10.05',
-                'provider': 'bango'}))
-        eq_(res.status_code, 200)
+                'provider': 'bango',
+                'region': 'pl',
+                'paid': True,
+                'dev': False}))
+        eq_(res.status_code, 200, res.content)
         p = PriceCurrency.objects.get(pk=1)
         eq_(p.tier_id, 1)
         eq_(p.price, Decimal('10.05'))
         eq_(p.method, amo.PAYMENT_METHOD_OPERATOR)
-        eq_(p.currency, 'PHP')
+        eq_(p.currency, 'USD')
+        eq_(p.region, 11)
+        eq_(p.paid, True)
+        eq_(p.dev, False)
 
     def test_delete_unauthorized(self):
         res = self.client.delete(self.detail_url)

@@ -212,6 +212,7 @@ Price tiers
     Returns a price tier.
 
     **Response**
+
     :param resource_uri: The URI for this tier.
     :type resource_uri: string
     :param active: Whether the price tier is active.
@@ -229,6 +230,7 @@ Price tiers
     .. note:: Requires admin account.
 
     **Request**
+
     :param active: Whether the price tier is active.
     :type active: boolean
     :param name: The price tier name.
@@ -246,6 +248,7 @@ Price tiers
     .. note:: Requires admin account.
 
     **Request**
+
     :param active: Whether the price tier is active.
     :type active: boolean
     :param name: The price tier name.
@@ -268,10 +271,12 @@ Price tiers
    Lists prices in various currencies.
 
    **Request**
+
    :param tier: Price tier ID to select currencies for.
    :type tier: number
 
    **Response**
+
    :param objects: A listing of :ref:`prices <price-response-label>`.
 
 
@@ -282,6 +287,7 @@ Price tiers
     Fetch a single price.
 
     **Response**
+
     :param id: Identifier for this price.
     :type id: number
     :param tier: ID of tier this price belongs to.
@@ -305,6 +311,7 @@ Price tiers
     .. note:: Requires admin account.
 
     **Request**
+
     :param tier: ID of tier this price belongs to.
     :type tier: number
     :param currency: Code for this price's currency.
@@ -326,6 +333,7 @@ Price tiers
     .. note:: requires an admin account.
 
     **Request**
+
     :param tier: ID of tier this price belongs to.
     :type tier: number
     :param currency: Code for this price's currency.
