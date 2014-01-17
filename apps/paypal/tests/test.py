@@ -87,7 +87,7 @@ class TestPayKey(amo.tests.TestCase):
             paypal.get_paykey(data)
         except paypal.PaypalError as error:
             eq_(error.id, '559044')
-            assert 'Brazilian Real' in str(error)
+            assert 'Real' in str(error), str(error)
         else:
             raise ValueError('No PaypalError was raised')
 
