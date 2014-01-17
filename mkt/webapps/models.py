@@ -1232,6 +1232,8 @@ class Webapp(Addon):
             # calling SET_STOREFRONT_DATA. Ignore this call.
             return
 
+        log.debug('Calling SET_STOREFRONT_DATA for app:%s' % self.id)
+
         xmls = []
         for cr in self.content_ratings.all():
             xmls.append(render_xml('set_storefront_data.xml', {
@@ -1249,7 +1251,9 @@ class Webapp(Addon):
             }))
 
         for xml in xmls:
-            get_iarc_client('services').Set_Storefront_Data(XMLString=xml)
+            r = get_iarc_client('services').Set_Storefront_Data(XMLString=xml)
+            log.debug('IARC result app:%s, rating_body:%s: %s' % (
+                self.id, cr.get_body().iarc_name, r))
 
     def last_rated_time(self):
         """Most recent content rating modified time or None if not rated."""
