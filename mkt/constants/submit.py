@@ -17,4 +17,4 @@ APP_PREVIEW_SIZES = [
     (700, 1050, 'full'),  # Because it's proportional, that's why.
 ]
 
-MAX_PACKAGED_APP_SIZE = 50 * 1024 * 1024  # 50MB
+MAX_PACKAGED_APP_SIZE = 100 * 1024 * 1024  # 100MB
