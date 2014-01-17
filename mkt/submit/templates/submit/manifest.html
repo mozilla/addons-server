@@ -1,7 +1,7 @@
 {% extends 'developers/base_impala.html' %}
 {% from 'developers/includes/macros.html' import upload_webapp_features with context %}
 
-{% set manifest_doc_url = 'https://developer.mozilla.org/en-US/docs/Apps/Manifest' %}
+{% set app_submission_doc_url = 'https://developer.mozilla.org/Marketplace/Submission/Pre-submission_checklist' %}
 {% set packaged_doc_url = 'https://developer.mozilla.org/en-US/docs/Apps/Packaged_apps' %}
 
 {% set title = _('Submit an App') %}
@@ -120,8 +120,8 @@
     </form>
   </section>
 
-  <p class="hosted learn-mdn active"><a href="{{ manifest_doc_url }}" target="_blank">
-    {% trans %}Learn more about <b>app manifests</b> on MDN.{% endtrans -%}
+  <p class="hosted learn-mdn active"><a href="{{ app_submission_doc_url }}" target="_blank">
+    {% trans %}Learn more about submitting an app.{% endtrans -%}
   </a></p>
   <p class="packaged learn-mdn"><a href="{{ packaged_doc_url }}" target="_blank">
     {% trans %}Learn more about <b>packaged apps</b> on MDN.{% endtrans -%}
