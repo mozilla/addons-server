@@ -13,7 +13,7 @@ import lib.iarc
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.developers.forms import ContentRatingForm
 from mkt.webapps.models import ContentRating, Webapp
-from mkt.webapps.utils import remove_region_exclusions
+from mkt.webapps.utils import remove_iarc_exclusions
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -128,8 +128,7 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             # the time it's refreshed.
             app.set_content_ratings(data.get('ratings', {}))
 
-            # Remove region exclusons.
-            remove_region_exclusions(app)
+            remove_iarc_exclusions(app)
 
             # Call SET_STOREFRONT_DATA. If the app is approved already we'll
             # need to let IARC know.

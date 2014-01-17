@@ -1830,8 +1830,18 @@ class AddonExcludedRegion(amo.models.ModelBase):
 @memoize(prefix='get_excluded_in')
 def get_excluded_in(region_id):
     """Return IDs of Webapp objects excluded from a particular region."""
-    return list(AddonExcludedRegion.objects.filter(region=region_id)
+    aers = list(AddonExcludedRegion.objects.filter(region=region_id)
                 .values_list('addon', flat=True))
+
+    iarc_exclusions = []
+    region = parse_region(region_id)
+    if region in (mkt.regions.BR, mkt.regions.DE):
+        # IARC exclusions are Brazil/Germany-specific flags in the Geodata.
+        iarc_exclusions = list(Geodata.objects.filter(
+            **{'region_%s_iarc_exclude' % region.slug: True})
+            .values_list('addon', flat=True))
+
+    return set(aers + iarc_exclusions)
 
 
 @receiver(models.signals.post_save, sender=AddonExcludedRegion,
@@ -2185,6 +2195,11 @@ for region in mkt.regions.SPECIAL_REGIONS:
     field = models.DateTimeField(help_text=help_text, null=True)
     field.contribute_to_class(Geodata, 'region_%s_nominated' % region.slug)
 
+# Add a dynamic field to `Geodata` model to exclude pre-IARC public unrated
+# Brazil and Germany games.
+for region in (mkt.regions.BR, mkt.regions.DE):
+    field = models.BooleanField(default=False)
+    field.contribute_to_class(Geodata, 'region_%s_iarc_exclude' % region.slug)
 
 # Save geodata translations when a Geodata instance is saved.
 models.signals.pre_save.connect(save_signal, sender=Geodata,

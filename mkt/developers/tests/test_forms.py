@@ -26,7 +26,7 @@ import mkt
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonExcludedRegion, IARCInfo, Webapp
+from mkt.webapps.models import AddonExcludedRegion, Geodata, IARCInfo, Webapp
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -827,8 +827,6 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         with self.assertRaises(IARCInfo.DoesNotExist):
             self.app.iarc_info
 
-        self.app.addonexcludedregion.create(region=mkt.regions.BR.id)
-
         form = forms.IARCGetAppInfoForm({'submission_id': 1,
                                          'security_code': 'a'})
         assert form.is_valid(), form.errors
@@ -838,7 +836,20 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         eq_(iarc_info.submission_id, 1)
         eq_(iarc_info.security_code, 'a')
 
-        assert not self.app.addonexcludedregion.exists()
+    def test_iarc_unexclude(self ):
+        geodata = Geodata.objects.create(addon=self.app)
+        geodata.update(region_br_iarc_exclude=True,
+                       region_de_iarc_exclude=True)
+
+        form = forms.IARCGetAppInfoForm({'submission_id': 1,
+                                         'security_code': 'a'})
+        form.is_valid()
+        form.save(self.app)
+
+        # Verify things were saved to the database.
+        geodata = Geodata.objects.get(addon=self.app)
+        assert not geodata.region_br_iarc_exclude
+        assert not geodata.region_de_iarc_exclude
 
     def test_allow_subm(self):
         form = forms.IARCGetAppInfoForm({'submission_id': 'subm-1231',
