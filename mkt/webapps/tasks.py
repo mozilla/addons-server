@@ -204,9 +204,12 @@ def _update_manifest(id, check_hash, failed_fetches):
     # updated, send to re-review queue.
     msg = []
     rereview = False
+    # Some changes require a new call to IARC's SET_STOREFRONT_DATA.
+    iarc_storefront = False
 
     if old and old.get('name') != new.get('name'):
         rereview = True
+        iarc_storefront = True
         msg.append(u'Manifest name changed from "%s" to "%s".' % (
             old.get('name'), new.get('name')))
 
@@ -218,6 +221,7 @@ def _update_manifest(id, check_hash, failed_fetches):
     # does, providing that it matches the original author name.
     if version.developer_name != new_version.developer_name:
         rereview = True
+        iarc_storefront = True
         msg.append(u'Developer name changed from "%s" to "%s".'
             % (version.developer_name, new_version.developer_name))
 
@@ -250,6 +254,9 @@ def _update_manifest(id, check_hash, failed_fetches):
         _log(webapp, msg, rereview=True)
         if webapp.status in amo.WEBAPPS_APPROVED_STATUSES:
             RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
+
+    if iarc_storefront:
+        webapp.set_iarc_storefront_data()
 
 
 @task

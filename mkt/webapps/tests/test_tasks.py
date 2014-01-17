@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 import stat
+from copy import deepcopy
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -122,7 +123,8 @@ class TestUpdateManifest(amo.tests.TestCase):
         # This is the hash to set the get_content_hash to, for showing
         # that the webapp has been updated.
         self._hash = nhash
-        self.new = new.copy()
+        # Let's use deepcopy so nested dicts are copied as new objects.
+        self.new = deepcopy(new)
 
         self.content_type = 'application/x-web-app-manifest+json'
 
@@ -308,7 +310,8 @@ class TestUpdateManifest(amo.tests.TestCase):
         assert not retry.called
         assert RereviewQueue.objects.filter(addon=self.addon).exists()
 
-    def test_manifest_validation_failure(self):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_manifest_validation_failure(self, _iarc):
         # We are already mocking validator, but this test needs to make sure
         # it actually saves our custom validation result, so add that.
         def side_effect(upload_id, **kwargs):
@@ -347,9 +350,11 @@ class TestUpdateManifest(amo.tests.TestCase):
         ok_(msg.subject.startswith('Issue with your app'))
         ok_(validation_results['messages'][0]['message'] in msg.body)
         ok_(validation_url in msg.body)
+        ok_(not _iarc.called)
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_manifest_name_change_rereview(self, _manifest):
+    def test_manifest_name_change_rereview(self, _manifest, _iarc):
         # Mock original manifest file lookup.
         _manifest.return_value = original
         # Mock new manifest with name change.
@@ -360,9 +365,11 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        ok_(_iarc.called)
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_manifest_locale_name_add_rereview(self, _manifest):
+    def test_manifest_locale_name_add_rereview(self, _manifest, _iarc):
         # Mock original manifest file lookup.
         _manifest.return_value = original
         # Mock new manifest with name change.
@@ -377,9 +384,11 @@ class TestUpdateManifest(amo.tests.TestCase):
             action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
             u'Locales added: "eso" (es).')
+        ok_(not _iarc.called)
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_manifest_locale_name_change_rereview(self, _manifest):
+    def test_manifest_locale_name_change_rereview(self, _manifest, _iarc):
         # Mock original manifest file lookup.
         _manifest.return_value = original
         # Mock new manifest with name change.
@@ -394,9 +403,11 @@ class TestUpdateManifest(amo.tests.TestCase):
             action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
             u'Locales updated: "Mozilla Kugel" -> "Bippity Bop" (de).')
+        ok_(not _iarc.called)
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_manifest_default_locale_change(self, _manifest):
+    def test_manifest_default_locale_change(self, _manifest, _iarc):
         # Mock original manifest file lookup.
         _manifest.return_value = original
         # Mock new manifest with name change.
@@ -416,9 +427,11 @@ class TestUpdateManifest(amo.tests.TestCase):
             u'Manifest name changed from "MozillaBall" to "Mozilla Balón". '
             u'Default locale changed from "en-US" to "es". '
             u'Locales added: "Mozilla Balón" (es).')
+        ok_(_iarc.called)
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_manifest_locale_name_removal_no_rereview(self, _manifest):
+    def test_manifest_locale_name_removal_no_rereview(self, _manifest, _iarc):
         # Mock original manifest file lookup.
         _manifest.return_value = original
         # Mock new manifest with name change.
@@ -432,9 +445,11 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
         # Log for manifest update.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
+        ok_(not _iarc.called)
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_force_rereview(self, _manifest):
+    def test_force_rereview(self, _manifest, _iarc):
         # Mock original manifest file lookup.
         _manifest.return_value = original
         # Mock new manifest with name change.
@@ -452,8 +467,11 @@ class TestUpdateManifest(amo.tests.TestCase):
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
 
+        ok_(_iarc.called)
+
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_manifest_support_locales_change(self, _manifest):
+    def test_manifest_support_locales_change(self, _manifest, _iarc):
         # Mock original manifest file lookup.
         _manifest.return_value = original
         # Mock new manifest with name change.
@@ -462,9 +480,11 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._run()
         ver = self.version.reload()
         eq_(ver.supported_locales, 'de,es,fr')
+        ok_(not _iarc.called)
 
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_manifest_support_developer_change(self, _manifest):
+    def test_manifest_support_developer_change(self, _manifest, _iarc):
         # Mock original manifest file lookup.
         _manifest.return_value = original
         # Mock new manifest with developer name change.
@@ -478,6 +498,8 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+
+        ok_(_iarc.called)
 
 
 class TestDumpApps(amo.tests.TestCase):
@@ -562,6 +584,7 @@ class TestDumpUserInstalls(amo.tests.TestCase):
         eq_(len(data['installed_apps']), 1)
         installed = data['installed_apps'][0]
         eq_(installed['id'], self.app.id)
+
 
 class TestUpdateDeveloperName(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
