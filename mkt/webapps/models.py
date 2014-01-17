@@ -1751,7 +1751,7 @@ models.signals.pre_save.connect(save_signal, sender=Webapp,
 
 @receiver(version_changed, dispatch_uid='update_cached_manifests')
 def update_cached_manifests(sender, **kw):
-    if not kw.get('raw'):
+    if not kw.get('raw') and sender.is_packaged:
         from mkt.webapps.tasks import update_cached_manifests
         update_cached_manifests.delay(sender.id)
 
