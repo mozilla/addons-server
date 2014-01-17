@@ -507,7 +507,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
         kw = self.generic_patcher.product.post.call_args[1]['data']
         eq_(kw['access'], ACCESS_PURCHASE)
-        kw = self.bango_patcher.product.post.call_args[1]['data']
+        kw = self.bango_p_patcher.product.post.call_args[1]['data']
         ok_(kw['secret'], kw)
 
     def test_associate_acct_to_app_when_not_owner(self):
