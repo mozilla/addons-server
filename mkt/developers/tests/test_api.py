@@ -191,7 +191,9 @@ class TestContentRatingPingback(RestOAuth):
         eq_(res.status_code, 415)
 
     @mock.patch('mkt.webapps.models.Webapp.details_complete')
-    def test_post_content_ratings_pingback(self, details_mock):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_post_content_ratings_pingback(self, details_mock,
+                                           storefront_mock):
         details_mock.return_value = True
         eq_(self.app.status, amo.STATUS_NULL)
 
@@ -204,6 +206,7 @@ class TestContentRatingPingback(RestOAuth):
         # IARC info.
         eq_(app.iarc_info.submission_id, 321)
         eq_(app.iarc_info.security_code, 'AB12CD3')
+        assert storefront_mock.called
 
         # Ratings.
         eq_(app.content_ratings.count(), 5)

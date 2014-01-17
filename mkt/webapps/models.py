@@ -1160,6 +1160,7 @@ class Webapp(Addon):
                 ratings_body=ratings_body.id, defaults={'rating': rating.id})
             if not created:
                 cr.update(rating=rating.id, modified=datetime.datetime.now())
+        self.set_iarc_storefront_data()  # Ratings updated, sync with IARC.
 
     def set_descriptors(self, data):
         """

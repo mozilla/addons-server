@@ -823,7 +823,8 @@ class TestAdminSettingsForm(TestAdmin):
 
 class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
 
-    def test_good(self):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_good(self, storefront_mock):
         with self.assertRaises(IARCInfo.DoesNotExist):
             self.app.iarc_info
 
@@ -835,8 +836,9 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         iarc_info = self.app.iarc_info
         eq_(iarc_info.submission_id, 1)
         eq_(iarc_info.security_code, 'a')
+        assert storefront_mock.called
 
-    def test_iarc_unexclude(self ):
+    def test_iarc_unexclude(self):
         geodata = Geodata.objects.create(addon=self.app)
         geodata.update(region_br_iarc_exclude=True,
                        region_de_iarc_exclude=True)
@@ -846,7 +848,6 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         form.is_valid()
         form.save(self.app)
 
-        # Verify things were saved to the database.
         geodata = Geodata.objects.get(addon=self.app)
         assert not geodata.region_br_iarc_exclude
         assert not geodata.region_de_iarc_exclude
@@ -861,14 +862,18 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         eq_(iarc_info.submission_id, 1231)
         eq_(iarc_info.security_code, 'a')
 
-    def test_bad_submission_id(self):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_bad_submission_id(self, storefront_mock):
         form = forms.IARCGetAppInfoForm({'submission_id': 'subwayeatfresh-133',
                                          'security_code': 'jksubwaysux'})
         assert not form.is_valid()
+        assert not storefront_mock.called
 
-    def test_incomplete(self):
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_incomplete(self, storefront_mock):
         form = forms.IARCGetAppInfoForm({'submission_id': 1})
         assert not form.is_valid(), 'Form was expected to be invalid.'
+        assert not storefront_mock.called
 
     @mock.patch('lib.iarc.utils.IARC_XML_Parser.parse_string')
     def test_rating_not_found(self, _mock):
