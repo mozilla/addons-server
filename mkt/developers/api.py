@@ -130,8 +130,4 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
 
             remove_iarc_exclusions(app)
 
-            # Call SET_STOREFRONT_DATA. If the app is approved already we'll
-            # need to let IARC know.
-            app.set_iarc_storefront_data()
-
         return Response('ok')
