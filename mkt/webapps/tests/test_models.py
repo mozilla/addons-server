@@ -456,11 +456,18 @@ class TestWebapp(amo.tests.TestCase):
         self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [app.id])
         self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
 
-    def test_excluded_in_iarc_br(self):
+    def test_excluded_in_iarc_de(self):
         app = app_factory()
         geodata = app._geodata
         geodata.update(region_br_iarc_exclude=False,
                        region_de_iarc_exclude=True)
+        self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [])
+        self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
+
+    def test_excluded_in_usk_exclude(self):
+        app = app_factory()
+        geodata = app._geodata
+        geodata.update(region_de_usk_exclude=True)
         self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [])
         self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
 
@@ -559,6 +566,18 @@ class TestWebapp(amo.tests.TestCase):
                 addon=app, ratings_body=expected[0],
                 rating=expected[1]).exists()
         eq_(app.reload().status, amo.STATUS_PENDING)
+
+    def test_set_content_ratings_usk_refused(self):
+        app = app_factory()
+        app.set_content_ratings({
+            mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_REJECTED
+        })
+        ok_(Geodata.objects.get(addon=app).region_de_usk_exclude)
+
+        app.set_content_ratings({
+            mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_12
+        })
+        ok_(not Geodata.objects.get(addon=app).region_de_usk_exclude)
 
     def test_set_descriptors(self):
         app = app_factory()
