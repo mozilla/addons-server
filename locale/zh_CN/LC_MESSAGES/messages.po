@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-15 09:07-0700\n"
-"PO-Revision-Date: 2013-12-08 09:11+0000\n"
+"PO-Revision-Date: 2014-01-18 08:11+0000\n"
 "Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386493901.0\n"
+"X-POOTLE-MTIME: 1390032702.0\n"
 
 #: apps/addons/buttons.py:203
 msgid "Download Now"
@@ -3563,15 +3563,15 @@ msgstr "已阻止"
 
 #: apps/constants/base.py:49
 msgid "Published"
-msgstr ""
+msgstr "已发布"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr ""
+msgstr "已审核但未发布"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
-msgstr ""
+msgstr "已废弃"
 
 #: apps/constants/base.py:144
 msgid "Full"
@@ -4147,7 +4147,7 @@ msgstr "初步审核"
 
 #: apps/devhub/forms.py:542
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "请选择提交审核的类型"
 
 #: apps/devhub/forms.py:557 mkt/submit/forms.py:204
 msgid "Version %s already exists"
@@ -4491,7 +4491,7 @@ msgstr "上传预览图的过程中发生错误。"
 
 #: apps/devhub/views.py:1372
 msgid "Version %s disabled."
-msgstr ""
+msgstr "已停用版本 %s。"
 
 #: apps/devhub/views.py:1375
 msgid "Version %s deleted."
@@ -8827,7 +8827,7 @@ msgstr "为此文件选择目标平台。"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "您希望提交哪个类型的审核？"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9082,11 +9082,11 @@ msgstr "删除此版本将永久地删除："
 
 #: apps/devhub/templates/devhub/versions/list.html:271
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>重要：</strong>一个版本一旦被删除，就不能再上传有相同版本号的新版本。"
 
 #: apps/devhub/templates/devhub/versions/list.html:276
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
-msgstr ""
+msgstr "删除已审核的版本会导致下次更新时的审核时间显著延长。"
 
 #: apps/devhub/templates/devhub/versions/list.html:279 mkt/developers/templates/developers/apps/status.html:343
 msgid "Are you sure you wish to delete this version?"
@@ -9098,7 +9098,7 @@ msgstr "删除版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Disable Version"
-msgstr ""
+msgstr "停用版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:293
 msgid "Add a new Version"
@@ -10011,7 +10011,7 @@ msgstr "本月"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "今年"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -10636,7 +10636,7 @@ msgstr "如果你对附加组件感兴趣，但没有太多技术知识，还是
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "告诉您的朋友！让大家知道您用了哪些附加组件。"
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -13148,7 +13148,7 @@ msgstr "Persona 验证失败。"
 
 #: apps/users/views.py:362
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "请使用这个账户经过验证的电子邮件地址。"
 
 #: apps/users/views.py:486
 msgid "Wrong email address or password!"
@@ -13212,15 +13212,15 @@ msgstr "如果您是<a href=\"%(link)s\">任何附加组件的作者</a>，那�
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "一旦点击“删除”，您的账户就会被<strong>永久移除</strong>。那意味着："
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "您将不能登录到 %(site)s 。"
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "您的评论和评分不会被删除，但不再与您有关联。"
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13512,31 +13512,33 @@ msgstr "为什么要注册？"
 
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
-msgstr ""
+msgstr "如果您只是简单地需要下载安装公开发布的附加组件，则 AMO <strong>并不</strong>强制用户注册。"
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "只有下列情况需要注册："
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "您想提交附加组件的评论"
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
+msgstr "您想追踪喜爱的附加组件收藏集或者创建自己的收藏集"
 
 #: apps/users/templates/users/register.html:21
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
+msgstr "您是附加组件开发者并想要将自己的附加组件上传托管在 AMO"
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr ""
+msgstr "注册成功后，会有一封确认邮件发送到您提供的邮件地址，请按照其中的说明确认您的账户。"
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
 msgstr ""
+"如果有兴趣，可以阅读我们的 <a href=\"%(legal)s\" title=\"Legal Notices\">法律声明</a>和<a href=\"%"
+"(privacy)s\" title=\"Privacy Policy\">隐私政策</a>。"
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
 msgid "Register"
@@ -13768,15 +13770,15 @@ msgstr "在相同分类、运营商、地区下，你最多只能有一个精选
 
 #: mkt/comm/forms.py:20 mkt/comm/forms.py:30
 msgid "Invalid note type."
-msgstr ""
+msgstr "无效的备注类型。"
 
 #: mkt/comm/forms.py:32
 msgid "Note body is empty."
-msgstr ""
+msgstr "备注类型为空。"
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "不存在版本 %s"
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -15196,7 +15198,7 @@ msgstr "已完成"
 
 #: mkt/constants/platforms.py:42 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox 桌面版"
 
 #: mkt/constants/platforms.py:77 mkt/constants/platforms.py:81
 msgid "Fully open mobile ecosystem"
@@ -15421,19 +15423,19 @@ msgstr "恐怖"
 
 #: mkt/constants/ratingdescriptors.py:93
 msgid "Social Interaction Functionality"
-msgstr ""
+msgstr "社交互动功能"
 
 #: mkt/constants/ratingdescriptors.py:94
 msgid "Personal Data Sharing"
-msgstr ""
+msgstr "个人资料分享"
 
 #: mkt/constants/ratingdescriptors.py:95
 msgid "In-app Purchase Option"
-msgstr ""
+msgstr "应用内购买选项"
 
 #: mkt/constants/ratingdescriptors.py:96
 msgid "Location Data Sharing"
-msgstr ""
+msgstr "位置信息共享"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Frightening Content"
@@ -15521,7 +15523,7 @@ msgstr "仅限成年人（18岁以上）"
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:260
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "除巴西以外的美洲"
 
 #: mkt/constants/ratingsbodies.py:261
 msgid "Entertainment Software Rating Board"
@@ -15537,7 +15539,7 @@ msgstr "泛欧洲游戏信息组织"
 
 #: mkt/constants/regions.py:56
 msgid "Rest of World"
-msgstr ""
+msgstr "其他地区"
 
 #: mkt/constants/regions.py:111 mkt/ecosystem/templates/ecosystem/publish_payments.html:106
 msgid "Venezuela"
@@ -15681,11 +15683,11 @@ msgstr "每个评分者只能打一个分。"
 
 #: mkt/developers/forms.py:378
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "选择了无效的区域。"
 
 #: mkt/developers/forms.py:381
 msgid "Only regions the app is already available in may be selected."
-msgstr ""
+msgstr "只有这个应用已经可以发布的区域会显示出来共选择。"
 
 #: mkt/developers/forms.py:468 mkt/webapps/models.py:431
 msgid "You must upload at least one screenshot or video."
@@ -15771,7 +15773,7 @@ msgstr "交易类型"
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
-msgstr ""
+msgstr "请考虑将我的应用作为预装到 Firefox OS 设备中的候选品种。我同意上述条款和条件说明。我理解这份文件并不意味着我的应用获得了预装。"
 
 #: mkt/developers/forms.py:1105
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -15795,7 +15797,7 @@ msgstr "请输入一个有效的提交ID。"
 
 #: mkt/developers/forms.py:1171 mkt/developers/forms.py:1182
 msgid "Invalid submission ID or security code."
-msgstr ""
+msgstr "无效的提交 ID 或安全码。"
 
 #: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:269
 msgid "App Price"
@@ -16046,7 +16048,7 @@ msgstr "新版本添加成功。"
 
 #: mkt/developers/views.py:297
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr ""
+msgstr "恭喜，您的应用已经提交，很快就会完成审核！"
 
 #: mkt/developers/views.py:299
 msgid "Content ratings successfully saved."
@@ -16167,17 +16169,19 @@ msgstr "您目前没有 API 密钥。"
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:30 mkt/developers/templates/developers/apps/status.html:34
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr ""
+msgstr "您必须先设置 <a href=\"%(next_url)s\">%(next_step_name)s</a> 后您的应用才能被审核或者发布。"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:37
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> or else your app will be disabled on %(pretty_date)s."
 msgstr ""
+"您必须先设置 <a href=\"%(next_url)s\">%(next_step_name)s</a> 否则您的应用将会于 %"
+"(pretty_date)s 被停用。"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "您必须设置 <a href=\"%(next_url)s\">%(next_step_name)s</a>。"
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
@@ -16318,6 +16322,8 @@ msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
+"验证器是一套工具，用于在正式提交审核之前，测试您的应用是否有错误、编写规范以及遵循应用市场准则。如果您对这个工具如何工作感兴趣，或者希望运行一个自己的验"
+"证工具，可以 <a href=\"%(repo)s\">在 Github</a> 上获得源代码。"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:16
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
@@ -16602,19 +16608,19 @@ msgstr "请输入电子邮件地址（如输入多个则请以英文逗号分隔
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Banner message"
-msgstr ""
+msgstr "横幅信息"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Exclusive message shown on the listing page, only in the selected regions."
-msgstr ""
+msgstr "显示在列表页面的独占信息，仅会显示在选定的区域。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Regions to show banner in"
-msgstr ""
+msgstr "要显示横幅的区域是"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:112
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "要显示横幅信息的区域。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:135
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
@@ -16679,11 +16685,11 @@ msgstr "性能、功能和其他相关信息的说明。这个字段会显示在
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:127
 msgid "Release Notes"
-msgstr ""
+msgstr "发行说明"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:128
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
-msgstr ""
+msgstr "最新发布版本中的变更信息，新特性，已知缺陷，以及其他关于这个发布/版本的有用信息。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:149
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
@@ -16909,6 +16915,8 @@ msgstr "更改设备"
 #: mkt/developers/templates/developers/apps/listing/items.html:59
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr ""
+"<strong class=\"rating-notice alert-notice\">如果在 %(pretty_date)s "
+"之前这个应用依然没有内容评级，则会被停用：</strong><a href=\"%(rating_url)s\">设置内容评级</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -19394,7 +19402,7 @@ msgstr "当前类别没有待审核的项目。"
 
 #: mkt/reviewers/templates/reviewers/queue.html:95 mkt/reviewers/templates/reviewers/themes/queue_list.html:88
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "审核者指南"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:10
 msgid "{region} Review Queue"
@@ -19671,7 +19679,7 @@ msgstr "描述您标注的理由"
 
 #: mkt/search/forms.py:20
 msgid "Reviewed"
-msgstr ""
+msgstr "已审核"
 
 #: mkt/search/forms.py:29
 msgid "Paid"
@@ -19990,11 +19998,11 @@ msgstr "输入应用详情"
 
 #: mkt/submit/templates/submit/next_steps.html:31
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr ""
+msgstr "<span>设置<a href=\"%(rating_url)s\">内容评级</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:37
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
-msgstr ""
+msgstr "<span>设置<a href=\"%(pay_url)s\">支付信息</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:42
 msgid "Wait for Review"
@@ -20027,7 +20035,7 @@ msgstr "一旦应用完成审核，就可以显示在列表页面并且被其他
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:88
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
-msgstr ""
+msgstr "<strong>下一步：</strong>设置 %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:94
 msgid "<strong>What's next:</strong> Publish Your App"
@@ -20131,11 +20139,11 @@ msgstr "您必须提供至少一个种类。"
 
 #: mkt/webapps/models.py:472
 msgid "You must set up content ratings."
-msgstr ""
+msgstr "必须设置内容评级。"
 
 #: mkt/webapps/models.py:474
 msgid "You must set up a payment account."
-msgstr ""
+msgstr "必须设置支付账号。"
 
 #: mkt/webapps/models.py:499
 msgid "This app's submission process has not been fully completed."
