@@ -90,7 +90,7 @@ def es_app_to_dict(obj, profile=None, request=None):
 
     if hasattr(request, 'REGION'):
         region_slug = request.REGION.slug
-        region_id = request.REGION.slug
+        region_id = request.REGION.id
     else:
         region_slug = None
         region_id = None
