@@ -85,7 +85,7 @@ LOGGING['loggers'].update({
     'amqp': {'level': logging.WARNING},
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.INFO},
+    'z.addons': {'level': logging.DEBUG},
     'z.task': {'level': logging.DEBUG},
     'z.hera': {'level': logging.INFO},
     'z.redis': {'level': logging.DEBUG},
