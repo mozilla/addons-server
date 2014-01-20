@@ -201,11 +201,7 @@ def linkify_with_outgoing(text, nofollow=True):
     callbacks = [linkify_bounce_url_callback]
     if nofollow:
         callbacks.append(bleach.callbacks.nofollow)
-    try:
-        return bleach.linkify(text, callbacks=callbacks)
-    except Exception as e:
-        log.warning('Failed to linkify: %r' % e, exc_info=sys.exc_info())
-    return text
+    return bleach.linkify(unicode(text), callbacks=callbacks)
 
 
 def url_fix(s, charset='utf-8'):

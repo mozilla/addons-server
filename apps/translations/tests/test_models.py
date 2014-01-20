@@ -18,8 +18,10 @@ from test_utils import trans_eq, TestCase
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
 from translations import widgets
 from translations.query import order_by_translation
-from translations.models import (LinkifiedTranslation, PurifiedTranslation,
-                                 Translation, TranslationSequence)
+from translations.models import (LinkifiedTranslation,
+                                 NoLinksNoMarkupTranslation,
+                                 PurifiedTranslation, Translation,
+                                 TranslationSequence)
 
 
 def ids(qs):
@@ -475,6 +477,85 @@ class TranslationMultiDbTests(TestCase):
                 eq_(len(connections['slave-2'].queries), 0)
 
 
+class PurifiedTranslationTest(TestCase):
+
+    def test_output(self):
+        assert isinstance(PurifiedTranslation().__html__(), unicode)
+
+    def test_raw_text(self):
+        s = u'   This is some text   '
+        x = PurifiedTranslation(localized_string=s)
+        eq_(x.__html__(), 'This is some text')
+
+    def test_allowed_tags(self):
+        s = u'<b>bold text</b> or <code>code</code>'
+        x = PurifiedTranslation(localized_string=s)
+        eq_(x.__html__(),  u'<b>bold text</b> or <code>code</code>')
+
+    def test_forbidden_tags(self):
+        s = u'<script>some naughty xss</script>'
+        x = PurifiedTranslation(localized_string=s)
+        eq_(x.__html__(), '&lt;script&gt;some naughty xss&lt;/script&gt;')
+
+    def test_internal_link(self):
+        s = u'<b>markup</b> <a href="http://addons.mozilla.org/foo">bar</a>'
+        x = PurifiedTranslation(localized_string=s)
+        eq_(x.__html__(),
+            u'<b>markup</b> <a href="http://addons.mozilla.org/foo" '
+            u'rel="nofollow">bar</a>')
+
+    @patch('amo.urlresolvers.get_outgoing_url')
+    def test_external_link(self, get_outgoing_url_mock):
+        get_outgoing_url_mock.return_value = 'http://external.url'
+        s = u'<b>markup</b> <a href="http://example.com">bar</a>'
+        x = PurifiedTranslation(localized_string=s)
+        eq_(x.__html__(),
+            u'<b>markup</b> <a href="http://external.url" '
+            u'rel="nofollow">bar</a>')
+
+    @patch('amo.urlresolvers.get_outgoing_url')
+    def test_external_text_link(self, get_outgoing_url_mock):
+        get_outgoing_url_mock.return_value = 'http://external.url'
+        s = u'<b>markup</b> http://example.com'
+        x = PurifiedTranslation(localized_string=s)
+        eq_(x.__html__(),
+            u'<b>markup</b> <a href="http://external.url" '
+            u'rel="nofollow">http://example.com</a>')
+
+
+class LinkifiedTranslationTest(TestCase):
+
+    @patch('amo.urlresolvers.get_outgoing_url')
+    def test_allowed_tags(self, get_outgoing_url_mock):
+        get_outgoing_url_mock.return_value = 'http://external.url'
+        s = u'<a href="http://example.com">bar</a>'
+        x = LinkifiedTranslation(localized_string=s)
+        eq_(x.__html__(),
+            u'<a href="http://external.url" rel="nofollow">bar</a>')
+
+    def test_forbidden_tags(self):
+        s = u'<script>some naughty xss</script> <b>bold</b>'
+        x = LinkifiedTranslation(localized_string=s)
+        eq_(x.__html__(),
+            '&lt;script&gt;some naughty xss&lt;/script&gt; '
+            '&lt;b&gt;bold&lt;/b&gt;')
+
+
+class NoLinksNoMarkupTranslationTest(TestCase):
+
+    def test_no_allowed_tags(self):
+        s = u'<script>some naughty xss</script> <b>bold</b>'
+        x = NoLinksNoMarkupTranslation(localized_string=s)
+        eq_(x.__html__(),
+            '&lt;script&gt;some naughty xss&lt;/script&gt; '
+            '&lt;b&gt;bold&lt;/b&gt;')
+
+    def test_links_stripped(self):
+        s = u'<a href="http://example.com">bar</a> foo bar'
+        x = NoLinksNoMarkupTranslation(localized_string=s)
+        eq_(x.__html__(), u'foo bar')
+
+
 def test_translation_bool():
     t = lambda s: Translation(localized_string=s)
 
@@ -496,14 +577,6 @@ def test_widget_value_from_datadict():
     actual = widgets.TransMulti().value_from_datadict(data, [], 'f')
     expected = {'en-US': 'woo', 'de': 'herr', 'fr': None}
     eq_(actual, expected)
-
-
-def test_purified_translation_html():
-    """__html__() should return a string."""
-    s = u'<b>heyhey</b>'
-    x = PurifiedTranslation(localized_string=s)
-    assert isinstance(x.__html__(), unicode)
-    eq_(x.__html__(), s)
 
 
 def test_comparison_with_lazy():

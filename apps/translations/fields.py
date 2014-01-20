@@ -6,7 +6,8 @@ from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .hold import add_translation, make_key, save_translations
-from .models import Translation, PurifiedTranslation, LinkifiedTranslation
+from .models import (Translation, PurifiedTranslation, LinkifiedTranslation,
+                     NoLinksNoMarkupTranslation)
 from .widgets import TransInput, TransTextarea
 
 
@@ -77,6 +78,10 @@ class PurifiedField(TranslatedField):
 
 class LinkifiedField(TranslatedField):
     to = LinkifiedTranslation
+
+
+class NoLinksNoMarkupField(TranslatedField):
+    to = NoLinksNoMarkupTranslation
 
 
 def switch(obj, new_model):

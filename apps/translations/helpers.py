@@ -1,3 +1,5 @@
+import re
+
 from django.conf import settings
 from django.utils import translation
 from django.utils.translation.trans_real import to_language
@@ -6,6 +8,8 @@ from django.utils.encoding import smart_unicode
 import bleach
 import jinja2
 import jingo
+
+from amo.utils import clean_nl
 
 jingo.register.filter(to_language)
 
@@ -70,5 +74,37 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
 
 @jingo.register.filter
 def clean(string):
-    from amo.utils import clean_nl
     return jinja2.Markup(clean_nl(bleach.clean(unicode(string))).strip())
+
+
+# TODO (magopian): remove this and use Django1.6 django.utils.html.remove_tags
+def remove_tags(html, tags):
+    """Returns the given HTML with given tags removed.
+
+    ``remove_tags`` is different from ``django.utils.html.strip_tags`` which
+    removes each and every html tags found.
+
+    ``tags`` is a space separated string of (case sensitive) tags to remove.
+
+    This is backported from Django1.6:
+    https://docs.djangoproject.com/en/1.6/ref/utils/
+
+    """
+    tags = [re.escape(tag) for tag in tags.split()]
+    tags_re = '(%s)' % '|'.join(tags)
+    starttag_re = re.compile(r'<%s(/?>|(\s+[^>]*>))' % tags_re, re.U)
+    endtag_re = re.compile('</%s>' % tags_re)
+    html = starttag_re.sub('', html)
+    html = endtag_re.sub('', html)
+    return html
+
+
+@jingo.register.filter
+def no_links(string):
+    """Leave text links untouched, keep only inner text on URLs."""
+    if not string:
+        return string
+    if hasattr(string, '__html__'):
+        string = string.__html__()
+    no_links = remove_tags(string, 'a A')
+    return jinja2.Markup(clean_nl(no_links).strip())

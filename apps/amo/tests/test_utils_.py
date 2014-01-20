@@ -80,3 +80,18 @@ class TestAttachTransDict(amo.tests.TestCase):
                  ('es', 'Spanish 2 Name'),
                  ('fr', 'French 2 Name')]))
 
+
+class TestRemoveLinks(amo.tests.TestCase):
+
+    def test_remove_links(self):
+        html = '<a href="http://example.com">some link with markup</a> foobar'
+        eq_(amo.utils.remove_links(html), ' foobar')
+
+        html = 'http://example.com foobar'
+        eq_(amo.utils.remove_links(html), ' foobar')
+
+        html = ('<a href="http://example.com" title="title" class="class" '
+                'ref="ref">some link with markup</a> '
+                'another link without markup: http://other.com, other stuff')
+        eq_(amo.utils.remove_links(html),
+            ' another link without markup: , other stuff')

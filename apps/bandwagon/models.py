@@ -22,7 +22,8 @@ from amo.urlresolvers import reverse
 from amo.utils import sorted_groupby
 from applications.models import Application
 from stats.models import CollectionShareCountTotal
-from translations.fields import LinkifiedField, save_signal, TranslatedField
+from translations.fields import (LinkifiedField, save_signal,
+                                 NoLinksNoMarkupField, TranslatedField)
 from users.models import UserProfile
 from versions import compare
 
@@ -105,7 +106,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
                                 null=True)
     slug = models.CharField(max_length=30, blank=True, null=True)
 
-    description = LinkifiedField(require_locale=False)
+    description = NoLinksNoMarkupField(require_locale=False)
     default_locale = models.CharField(max_length=10, default='en-US',
                                       db_column='defaultlocale')
     type = models.PositiveIntegerField(db_column='collection_type',

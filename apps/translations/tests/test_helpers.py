@@ -85,6 +85,12 @@ def test_clean_in_template():
     eq_(jingo.env.from_string('{{ s|clean }}').render(s=s), s)
 
 
+def test_no_links():
+    s = 'a <a href="http://url.link">http://example.com</a>, http://text.link'
+    eq_(jingo.env.from_string('{{ s|no_links }}').render(s=s),
+        'a http://example.com, http://text.link')
+
+
 @patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))
 class TestAllLocales(amo.tests.TestCase):
     def test_all_locales_none(self):

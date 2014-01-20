@@ -3,6 +3,8 @@ import json
 import urlparse
 
 from django.core.cache import cache
+from django.forms import ValidationError
+from django.shortcuts import render
 import django.test
 from django.utils.datastructures import MultiValueDict
 from django.utils import encoding
@@ -189,6 +191,18 @@ class TestViews(amo.tests.TestCase):
         eq_(r.context['page'], 'user')
         assert '#p-mine' not in pq(r.content)('style').text(), (
             "'Collections I've Made' sidebar link shouldn't be highlighted.")
+
+    def test_description_no_link_no_markup(self):
+        c = Collection.objects.get(slug='wut-slug')
+        c.description = ('<a href="http://example.com">example.com</a> '
+                         'http://example.com <b>foo</b> some text')
+        c.save()
+
+        assert self.client.login(username='jbalogh@mozilla.com',
+                                 password='foo')
+        response = self.client.get('/en-US/firefox/collections/mine/')
+        # All markup is escaped, all links are stripped.
+        self.assertContains(response, '&lt;b&gt;foo&lt;/b&gt; some text')
 
 
 class TestPrivacy(amo.tests.TestCase):
@@ -1136,3 +1150,20 @@ class TestCollectionForm(amo.tests.TestCase):
         assert form.is_valid()
         form.save()
         assert update_mock.called
+
+    def test_clean_description(self):
+        # No links, no problems.
+        form = forms.CollectionForm()
+        form.cleaned_data = {'description': 'some description, no links!'}
+        eq_(form.clean_description(), 'some description, no links!')
+
+        # No links allowed: raise on text links.
+        form.cleaned_data = {'description': 'http://example.com'}
+        with self.assertRaisesRegexp(ValidationError, 'No links are allowed'):
+            form.clean_description()
+
+        # No links allowed: raise on URLs.
+        form.cleaned_data = {
+            'description': '<a href="http://example.com">example.com</a>'}
+        with self.assertRaisesRegexp(ValidationError, 'No links are allowed'):
+            form.clean_description()
