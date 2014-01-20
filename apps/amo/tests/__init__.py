@@ -5,6 +5,7 @@ import shutil
 import time
 from contextlib import contextmanager
 from datetime import datetime, timedelta
+from decimal import Decimal
 from functools import partial, wraps
 from urlparse import SplitResult, urlsplit, urlunsplit
 
@@ -496,12 +497,13 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         return price_obj
 
     def make_premium(self, addon, price='1.00'):
-        price_obj = self.make_price(price=price)
+        price_obj = self.make_price(price=Decimal(price))
         addon.update(premium_type=amo.ADDON_PREMIUM)
-        premium = AddonPremium.objects.create(addon=addon, price=price_obj)
+        addon._premium = AddonPremium.objects.create(addon=addon,
+                                                     price=price_obj)
         if hasattr(Price, '_currencies'):
             del Price._currencies
-        return premium
+        return addon._premium
 
     def create_sample(self, name=None, db=False, **kw):
         if name is not None:

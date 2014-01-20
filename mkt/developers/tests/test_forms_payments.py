@@ -164,7 +164,7 @@ class TestPremiumForm(amo.tests.TestCase):
 
         """
         # Don't give the app an initial price.
-        AddonPremium.objects.create(addon=self.addon)
+        self.addon._premium = AddonPremium.objects.create(addon=self.addon)
         self.addon.premium_type = amo.ADDON_PREMIUM
 
         price = Price.objects.create(price='9.99')

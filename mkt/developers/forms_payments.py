@@ -159,8 +159,9 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             return self.addon.premium
 
         log.info('New AddonPremium object for addon %s' % self.addon.pk)
-        return AddonPremium(addon=self.addon,
-                            price_id=self._initial_price_id())
+        self.addon._premium = AddonPremium(addon=self.addon,
+                                           price_id=self._initial_price_id())
+        return self.addon._premium
 
     def is_paid(self):
         is_paid = (self.addon.premium_type in amo.ADDON_PREMIUMS
