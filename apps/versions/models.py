@@ -432,10 +432,10 @@ class Version(amo.models.ModelBase):
         if not versions:
             return
 
+        # FIXME: find out why we have no_cache() here and try to remove it.
         avs = (ApplicationsVersions.objects.filter(version__in=ids)
                .select_related(depth=1).no_cache())
-        files = (File.objects.filter(version__in=ids)
-                 .select_related('version').no_cache())
+        files = File.objects.filter(version__in=ids).no_cache()
 
         def rollup(xs):
             groups = amo.utils.sorted_groupby(xs, 'version_id')
@@ -447,6 +447,8 @@ class Version(amo.models.ModelBase):
             v_id = version.id
             version.compatible_apps = cls._compat_map(av_dict.get(v_id, []))
             version.all_files = file_dict.get(v_id, [])
+            for f in version.all_files:
+                f.version = version
 
     @classmethod
     def transformer_activity(cls, versions):
@@ -483,12 +485,7 @@ class Version(amo.models.ModelBase):
 
     @property
     def developer_name(self):
-        if self._developer_name:
-            return self._developer_name
-        elif self.addon.listed_authors:
-            return self.addon.listed_authors[0].name
-        else:
-            return ''
+        return self._developer_name
 
     @amo.cached_property
     def is_privileged(self):
