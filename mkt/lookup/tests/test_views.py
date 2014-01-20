@@ -775,11 +775,9 @@ class TestAppSummary(AppSummaryTest):
         eq_(res.context['price'], None)
 
     def test_price(self):
-        price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=self.app,
-                                    price=price)
+        self.make_premium(self.app)
         res = self.summary()
-        eq_(res.context['price'], price)
+        eq_(res.context['price'], self.app.premium.price)
 
     def test_abuse_reports(self):
         for i in range(2):
