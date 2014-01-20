@@ -23,7 +23,7 @@ def allowed(request, file):
         try:
             addon = file.version.addon
         except ObjectDoesNotExist:
-            return http.Http404()
+            raise http.Http404
 
         if addon.view_source and addon.status in amo.REVIEWED_STATUSES:
             allowed = True
