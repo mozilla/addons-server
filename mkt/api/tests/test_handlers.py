@@ -421,7 +421,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         data['price'] = '1.07'
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
-        eq_(str(app.reload().get_price(region=regions.US.id)), '1.07')
+        app = Webapp.objects.get(pk=app.pk)
+        eq_(str(app.get_price(region=regions.US.id)), '1.07')
 
     def test_put_premium_inapp(self):
         app = self.create_app()
@@ -431,7 +432,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         data['price'] = '1.07'
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
-        app = app.reload()
+        app = Webapp.objects.get(pk=app.pk)
         eq_(str(app.get_price(region=regions.US.id)), '1.07')
         eq_(app.premium_type, amo.ADDON_PREMIUM_INAPP)
 
