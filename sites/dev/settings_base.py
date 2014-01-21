@@ -51,6 +51,9 @@ CACHES = {
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
+        'OPTIONS': {
+            'remove_failed': 0,
+        }
     }
 }
 
