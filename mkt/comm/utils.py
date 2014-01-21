@@ -1,11 +1,11 @@
 from email import message_from_string
 from email.utils import parseaddr
 
-from django.core.exceptions import PermissionDenied
+from django.conf import settings
 
 import commonware.log
-from email_reply_parser import EmailReplyParser
 import waffle
+from email_reply_parser import EmailReplyParser
 
 from access.models import Group
 from users.models import UserProfile
@@ -100,60 +100,77 @@ def get_reply_token(thread, user_id):
     return tok
 
 
-def get_recipients(note, fresh_thread=False):
+def get_recipients(note):
     """
-    Create/refresh tokens for users based on the thread permissions.
+    Determine email recipients based on a new note based on those who are on
+    the thread_cc list and note permissions.
+    Returns reply-to-tokenized emails.
     """
     thread = note.thread
+    recipients = []
 
-    # TODO: Possible optimization.
-    # Fetch tokens from the database if `fresh_thread=False` and use them to
-    # derive the list of recipients instead of doing a couple of multi-table
-    # DB queries.
-    recipients = set(thread.thread_cc.values_list('user__id', 'user__email'))
+    # Whitelist: include recipients.
+    if note.note_type == comm.ESCALATION:
+        # Email only senior reviewers on escalations.
+        seniors = Group.objects.get(name='Senior App Reviewers')
+        recipients = seniors.users.values_list('id', 'email')
+    else:
+        # Get recipients via the CommunicationThreadCC table, which is usually
+        # populated with the developer, the Mozilla contact, and anyone that
+        # posts to and reviews the app.
+        recipients = set(thread.thread_cc.values_list(
+            'user__id', 'user__email'))
 
-    # Include devs.
-    if note.read_permission_developer:
-        recipients.update(thread.addon.authors.values_list('id', 'email'))
+    # Blacklist: exclude certain people from receiving the email based on
+    # permission.
+    excludes = []
+    if not note.read_permission_developer:
+        # Exclude developer.
+        excludes += thread.addon.authors.values_list('id', 'email')
+    # Exclude note author.
+    excludes.append((note.author.id, note.author.email))
+    # Remove excluded people from the recipients.
+    recipients = [r for r in recipients if r not in excludes]
 
-    groups_list = []
-    # Include app reviewers.
-    if note.read_permission_reviewer:
-        groups_list.append('App Reviewers')
-
-    # Include senior app reviewers.
-    if note.read_permission_senior_reviewer:
-        groups_list.append('Senior App Reviewers')
-
-    # Include admins.
-    if note.read_permission_staff:
-        groups_list.append('Admins')
-
-    if len(groups_list) > 0:
-        groups = Group.objects.filter(name__in=groups_list)
-        for group in groups:
-            recipients.update(group.users.values_list('id', 'email'))
-
-    # Include Mozilla contact.
-    if (note.read_permission_mozilla_contact and
-        thread.addon.mozilla_contact):
-        for moz_contact in thread.addon.get_mozilla_contacts():
-            try:
-                user = UserProfile.objects.get(email=moz_contact)
-            except UserProfile.DoesNotExist:
-                pass
-            else:
-                recipients.add((user.id, moz_contact))
-
-    if (note.author.id, note.author.email) in recipients:
-        recipients.remove((note.author.id, note.author.email))
-
+    # Build reply-to-tokenized email addresses.
     new_recipients_list = []
     for user_id, user_email in recipients:
         tok = get_reply_token(note.thread, user_id)
         new_recipients_list.append((user_email, tok.uuid))
 
     return new_recipients_list
+
+
+def send_mail_comm(note):
+    """
+    Email utility used globally by the Communication Dashboard to send emails.
+    Given a note (its actions and permissions), recipients are determined and
+    emails are sent to appropriate people.
+    """
+    from mkt.reviewers.utils import send_mail
+
+    if not waffle.switch_is_active('comm-dashboard'):
+        return
+
+    recipients = get_recipients(note)
+    name = note.thread.addon.name
+    data = {
+        'name': name,
+        'sender': note.author.name,
+        'comments': note.body,
+        'thread_id': str(note.thread.id)
+    }
+
+    subject = {
+        comm.ESCALATION: u'Escalated Review Requested: %s' % name,
+    }.get(note.note_type, u'Submission Update: %s' % name)
+
+    log.info(u'Sending emails for %s' % note.thread.addon)
+    for email, tok in recipients:
+        reply_to = '{0}{1}@{2}'.format(comm.REPLY_TO_PREFIX, tok,
+                                       settings.POSTFIX_DOMAIN)
+        send_mail(subject, 'reviewers/emails/decisions/post.txt', data,
+                  [email], perm_setting='app_reviewed', reply_to=reply_to)
 
 
 def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
@@ -183,23 +200,11 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
     create_perms = dict(('read_permission_%s' % key, has_perm)
                         for key, has_perm in perms.iteritems())
 
-    # Get or create thread w/ custom permissions.
-    thread = None
-    threads = app.threads.filter(version=version)
-    if threads.exists():
-        thread = threads[0]
-    else:
-        # See if user has perms to create thread for this app.
-        thread = CommunicationThread(addon=app, version=version,
-                                     **create_perms)
-        if user_has_perm_thread(thread, author):
-            thread.save()
-        else:
-            raise PermissionDenied
-
-    # Create note.
-    note = thread.notes.create(note_type=note_type, body=body, author=author,
-                               **create_perms)
+    # Create thread + note.
+    thread, created_thread = app.threads.get_or_create(
+        version=version, defaults=create_perms)
+    note = thread.notes.create(
+        note_type=note_type, body=body, author=author, **create_perms)
 
     post_create_comm_note(note)
 
@@ -208,24 +213,27 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
 
 def post_create_comm_note(note):
     """Stuff to do after creating note, also used in comm api's post_save."""
-    from mkt.reviewers.utils import send_note_emails
-
     thread = note.thread
     app = thread.addon
 
-    # CC mozilla contact.
+    # Add developer to thread.
+    for developer in app.authors.all():
+        thread.join_thread(developer)
+
+    # Add Mozilla contact to thread.
     for email in app.get_mozilla_contacts():
         try:
             moz_contact = UserProfile.objects.get(email=email)
-            thread.thread_cc.get_or_create(user=moz_contact)
+            thread.join_thread(moz_contact)
         except UserProfile.DoesNotExist:
             pass
 
-    # CC note author, mark their own note as read.
+    # Add note author to thread.
     author = note.author
-    cc, created_cc = thread.thread_cc.get_or_create(user=author)
+    cc, created_cc = thread.join_thread(author)
     if not created_cc:
+        # Mark their own note as read.
         note.mark_read(note.author)
 
-    # Email.
-    send_note_emails(note)
+    # Send out emails.
+    send_mail_comm(note)

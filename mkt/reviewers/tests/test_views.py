@@ -28,7 +28,7 @@ from access.models import Group, GroupUser
 from addons.models import Addon, AddonDeviceType
 from amo.helpers import absolutify
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
-                       req_factory_factory, version_factory)
+                       req_factory_factory, user_factory, version_factory)
 from amo.urlresolvers import reverse
 from amo.utils import isotime
 from devhub.models import ActivityLog, ActivityLogAttachment, AppLog
@@ -44,6 +44,8 @@ from versions.models import Version
 from zadmin.models import get_config, set_config
 
 import mkt
+from mkt.comm.utils import create_comm_note
+from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
@@ -1167,6 +1169,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def setUp(self):
         super(TestReviewApp, self).setUp()
         self.create_switch('iarc', db=True)
+
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
         self.app = amo.tests.make_game(self.app, True)
@@ -1663,6 +1666,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         eq_(EscalationQueue.objects.count(), 1)
         self._check_log(amo.LOG.ESCALATE_MANUAL)
+
         # Test 2 emails: 1 to dev, 1 to admin.
         eq_(len(mail.outbox), 2)
         dev_msg = mail.outbox[0]
@@ -2410,6 +2414,183 @@ class TestMotd(AppReviewerTest, AccessMixin):
         req = self.client.post(self.url, dict(motd='new motd'))
         self.assert3xx(req, self.url)
         eq_(get_config(self.key), u'new motd')
+
+
+class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
+    """
+    Test communication threads + notes are created and that emails are
+    sent to the right groups of people.
+    """
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestReviewAppComm, self).setUp()
+        self.create_switch('comm-dashboard', db=True)
+        self.app = app_factory(rated=True, status=amo.STATUS_PENDING,
+                               mozilla_contact='contact@mozilla.com')
+        self.app.addonuser_set.create(user=user_factory(username='dev'))
+        self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
+
+        self.contact = user_factory(username='contact')
+
+    def _post(self, data, queue='pending'):
+        res = self.client.post(self.url, data)
+        self.assert3xx(res, reverse('reviewers.apps.queue_%s' % queue))
+
+    def _get_note(self):
+        eq_(self.app.threads.count(), 1)
+        thread = self.app.threads.all()[0]
+        eq_(thread.notes.count(), 1)
+        return thread.notes.all()[0]
+
+    def _check_email(self, msg, subject, to=None):
+        if to:
+            eq_(msg.to, to)
+        else:
+            eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))
+
+        eq_(msg.cc, [])
+        eq_(msg.subject, '%s: %s' % (subject, self.app.name))
+        eq_(msg.from_email, settings.MKT_REVIEWERS_EMAIL)
+
+    def _get_mail(self, username):
+        return filter(lambda x: x.to[0].startswith(username),
+                      mail.outbox)[0]
+
+    def _check_email_dev_and_contact(self, outbox_len=2):
+        """
+        Helper for checking developer and Mozilla contact get emailed with
+        'Submission Update' email.
+        """
+        eq_(len(mail.outbox), outbox_len)
+        self._check_email(  # Developer.
+            self._get_mail('dev'), 'Submission Update')
+        self._check_email(  # Mozilla contact.
+            self._get_mail('contact'), 'Submission Update',
+            to=[self.contact.email])
+
+    def test_email_cc(self):
+        """
+        Emailed cc'ed people (those who have posted on the thread).
+        """
+        poster = user_factory()
+        thread, note = create_comm_note(
+            self.app, self.app.current_version, poster, 'lgtm')
+
+        data = {'action': 'public', 'comments': 'gud jerb'}
+        data.update(self._attachment_management_form(num=0))
+        self._post(data)
+
+        # Test emails.
+        self._check_email_dev_and_contact(outbox_len=5)
+        self._check_email(  # Some person who joined the thread.
+            self._get_mail(poster.username), 'Submission Update',
+            to=[poster.email])
+
+    def test_approve(self):
+        """
+        On approval, send an email to [developer, mozilla contact].
+        """
+        data = {'action': 'public', 'comments': 'gud jerb'}
+        data.update(self._attachment_management_form(num=0))
+        self._post(data)
+
+        # Test notes.
+        note = self._get_note()
+        eq_(note.note_type, comm.APPROVAL)
+        eq_(note.body, 'gud jerb')
+
+        # Test emails.
+        self._check_email_dev_and_contact()
+
+    def test_reject(self):
+        """
+        On rejection, send an email to [developer, mozilla contact].
+        """
+        data = {'action': 'reject', 'comments': 'rubesh'}
+        data.update(self._attachment_management_form(num=0))
+        self._post(data)
+
+        # Test notes.
+        note = self._get_note()
+        eq_(note.note_type, comm.REJECTION)
+        eq_(note.body, 'rubesh')
+
+        # Test emails.
+        self._check_email_dev_and_contact()
+
+    def test_info(self):
+        """
+        On info request, send an email to [developer, mozilla contact].
+        """
+        data = {'action': 'info', 'comments': 'huh'}
+        data.update(self._attachment_management_form(num=0))
+        self._post(data)
+
+        # Test notes.
+        note = self._get_note()
+        eq_(note.note_type, comm.MORE_INFO_REQUIRED)
+        eq_(note.body, 'huh')
+
+        # Test emails.
+        self._check_email_dev_and_contact()
+
+    def test_escalate(self):
+        """
+        On escalation, send an email to [senior reviewers].
+        """
+        admin = user_factory()
+        group = Group.objects.create(name='Senior App Reviewers')
+        group.groupuser_set.create(user=admin)
+
+        data = {'action': 'escalate', 'comments': 'soup her man'}
+        data.update(self._attachment_management_form(num=0))
+        self._post(data)
+
+        # Test notes.
+        note = self._get_note()
+        eq_(note.note_type, comm.ESCALATION)
+        eq_(note.body, 'soup her man')
+
+        # Test emails.
+        eq_(len(mail.outbox), 1)
+        self._check_email(  # Senior reviewer.
+            mail.outbox[0], 'Escalated Review Requested', to=[admin.email])
+
+    def test_comment(self):
+        """
+        On reviewer comment, send an email to those but developers.
+        """
+        data = {'action': 'comment', 'comments': 'huh'}
+        data.update(self._attachment_management_form(num=0))
+        self._post(data)
+
+        # Test notes.
+        note = self._get_note()
+        eq_(note.note_type, comm.REVIEWER_COMMENT)
+        eq_(note.body, 'huh')
+
+        # Test emails.
+        eq_(len(mail.outbox), 1)
+        self._check_email(  # Mozilla contact.
+            mail.outbox[0], 'Submission Update', to=[self.contact.email])
+
+    def test_disable(self):
+        """
+        On disable, send an email to [developer, mozilla contact].
+        """
+        self.login_as_admin()
+        data = {'action': 'disable', 'comments': 'u dun it'}
+        data.update(self._attachment_management_form(num=0))
+        self._post(data)
+
+        # Test notes.
+        note = self._get_note()
+        eq_(note.note_type, comm.DISABLED)
+        eq_(note.body, 'u dun it')
+
+        # Test emails.
+        self._check_email_dev_and_contact()
 
 
 class TestAbuseReports(amo.tests.TestCase):

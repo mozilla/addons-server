@@ -128,8 +128,14 @@ class CommunicationThread(CommunicationPermissionModel):
     class Meta:
         db_table = 'comm_threads'
 
+    def join_thread(self, user):
+        return self.thread_cc.get_or_create(user=user)
+
 
 class CommunicationThreadCC(amo.models.ModelBase):
+    """
+    Determines recipients of emails. Akin being joined on a thread.
+    """
     thread = models.ForeignKey(CommunicationThread,
                                related_name='thread_cc')
     user = models.ForeignKey('users.UserProfile',
