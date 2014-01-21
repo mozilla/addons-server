@@ -1609,6 +1609,8 @@ IARC_PLATFORM = 'Firefox'
 IARC_SERVICE_ENDPOINT = ''
 IARC_STOREFRONT_ID = 4
 IARC_SUBMISSION_ENDPOINT = ''
+IARC_PRIVACY_URL = 'https://www.globalratings.com/IARCPRODClient/privacypolicy.aspx'
+IARC_TOS_URL = 'https://www.globalratings.com/IARCPRODClient/termsofuse.aspx'
 
 # The payment providers supported.
 PAYMENT_PROVIDERS = []

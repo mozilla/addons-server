@@ -33,8 +33,8 @@
           {% endtrans %}
         </p>
         <p>
-          {% trans privacy_url=privacy_url, tos_url=tos_url %}
-            By using IARC ratings certificate tool, you agree to abide by their
+          {% trans privacy_url=settings.IARC_PRIVACY_URL, tos_url=settings.IARC_TOS_URL %}
+            By using the IARC ratings certificate tool, you agree to abide by their
             <a href="{{ privacy_url }}">Privacy Policy</a> and
             <a href="{{ tos_url }}">Terms of Service agreement</a>.
           {% endtrans %}
