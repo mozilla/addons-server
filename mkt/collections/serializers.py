@@ -24,6 +24,7 @@ from addons.models import Category
 from mkt.api.fields import (SlugChoiceField, SlugModelChoiceField,
                             TranslationSerializerField)
 from mkt.features.utils import get_feature_profile
+from mkt.search.serializers import SimpleESAppSerializer
 from mkt.webapps.api import SimpleAppSerializer
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
@@ -35,7 +36,15 @@ from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
 class CollectionAppSerializer(SimpleAppSerializer):
     """
     Serializer to use when serializing apps belonging to a collection. Used
-    by CollectionMembershipField when fetcihng apps from the db instead of ES.
+    by CollectionMembershipField when fetching apps from the db instead of ES.
+    """
+    pass
+
+
+class CollectionESAppSerializer(SimpleESAppSerializer):
+    """
+    Like CollectionAppSerializer, but used when fetching apps from ES instead of
+    the database.
     """
     pass
 
@@ -50,10 +59,12 @@ class CollectionMembershipField(serializers.RelatedField):
     want to use this elsewhere.
     """
     def to_native(self, value):
-        return CollectionAppSerializer(value, context=self.context).data
+        ser = CollectionAppSerializer(value, context=self.context, many=True)
+        return ser.data
 
     def to_native_es(self, value):
-        return self.context['view'].serialize(self.context['request'], value)
+        ser = CollectionESAppSerializer(value, context=self.context, many=True)
+        return ser.data
 
     def field_to_native(self, obj, field_name):
         if not hasattr(self, 'context') or not 'request' in self.context:
@@ -105,7 +116,7 @@ class CollectionMembershipField(serializers.RelatedField):
             }
         })
 
-        return [self.to_native_es(app) for app in qs]
+        return self.to_native_es(qs)
 
 
 class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):

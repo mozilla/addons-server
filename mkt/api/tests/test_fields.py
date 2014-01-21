@@ -9,7 +9,8 @@ from test_utils import RequestFactory
 import amo
 from amo.tests import TestCase
 from addons.models import AddonCategory, Category
-from mkt.api.fields import (SlugOrPrimaryKeyRelatedField, SplitField,
+from mkt.api.fields import (ESTranslationSerializerField, 
+                            SlugOrPrimaryKeyRelatedField, SplitField,
                             TranslationSerializerField)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
@@ -19,6 +20,7 @@ from translations.models import Translation
 
 class TestTranslationSerializerField(TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
+    field_class = TranslationSerializerField
 
     def setUp(self):
         super(TestTranslationSerializerField, self).setUp()
@@ -53,7 +55,7 @@ class TestTranslationSerializerField(TestCase):
 
     def test_from_native(self):
         data = u'Translatiön'
-        field = TranslationSerializerField()
+        field = self.field_class()
         result = field.from_native(data)
         eq_(result, data)
 
@@ -61,12 +63,12 @@ class TestTranslationSerializerField(TestCase):
             'fr': u'Non mais Allô quoi !',
             'en-US': u'No But Hello what!'
         }
-        field = TranslationSerializerField()
+        field = self.field_class()
         result = field.from_native(data)
         eq_(result, data)
 
         data = ['Bad Data']
-        field = TranslationSerializerField()
+        field = self.field_class()
         result = field.from_native(data)
         eq_(result, unicode(data))
 
@@ -75,18 +77,18 @@ class TestTranslationSerializerField(TestCase):
             'fr': u'  Non mais Allô quoi ! ',
             'en-US': u''
         }
-        field = TranslationSerializerField()
+        field = self.field_class()
         result = field.from_native(data)
         eq_(result, {'fr': u'Non mais Allô quoi !', 'en-US': u''})
 
     def test_field_to_native(self):
-        field = TranslationSerializerField()
+        field = self.field_class()
         self._test_expected_dict(field)
 
     def test_field_to_native_source(self):
         self.app.mymock = Mock()
         self.app.mymock.mymocked_field = self.app.name
-        field = TranslationSerializerField(source='mymock.mymocked_field')
+        field = self.field_class(source='mymock.mymocked_field')
         result = field.field_to_native(self.app, 'shouldbeignored')
         expected = {
             'en-US': unicode(Translation.objects.get(id=self.app.name.id,
@@ -99,7 +101,7 @@ class TestTranslationSerializerField(TestCase):
     def test_field_to_native_empty_context(self):
         mock_serializer = Serializer()
         mock_serializer.context = {}
-        field = TranslationSerializerField()
+        field = self.field_class()
         field.initialize(mock_serializer, 'name')
         self._test_expected_dict(field)
 
@@ -107,7 +109,7 @@ class TestTranslationSerializerField(TestCase):
         request = Request(self.factory.post('/'))
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
-        field = TranslationSerializerField()
+        field = self.field_class()
         field.initialize(mock_serializer, 'name')
         self._test_expected_dict(field)
 
@@ -115,7 +117,7 @@ class TestTranslationSerializerField(TestCase):
         request = Request(self.factory.get('/'))
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
-        field = TranslationSerializerField()
+        field = self.field_class()
         field.initialize(mock_serializer, 'name')
         self._test_expected_dict(field)
 
@@ -132,16 +134,85 @@ class TestTranslationSerializerField(TestCase):
         eq_(request.GET['lang'], 'lol')
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
-        field = TranslationSerializerField()
+        field = self.field_class()
         field.initialize(mock_serializer, 'name')
         self._test_expected_single_string(field)
 
     def test_field_null(self):
-        field = TranslationSerializerField()
-        app = Webapp()
-        result = field.field_to_native(app, 'name')
+        field = self.field_class()
+        self.app = Webapp()
+        result = field.field_to_native(self.app, 'name')
         eq_(result, None)
-        result = field.field_to_native(app, 'description')
+        result = field.field_to_native(self.app, 'description')
+        eq_(result, None)
+
+
+class TestESTranslationSerializerField(TestTranslationSerializerField):
+    field_class = ESTranslationSerializerField
+    fixtures = ()
+
+    def setUp(self):
+        self.factory = APIRequestFactory()
+        self.app = Webapp()
+        self.app.default_locale = 'en-US'
+        self.app.name_translations = {
+            'en-US': u'English Name',
+            'es': u'Spànish Name'
+        }
+        self.app.description_translations = {
+            'en-US': u'English Description',
+            'fr': u'Frençh Description'
+        }
+
+    def test_attach_translations(self):
+        data = {
+            'foo_translations' : [{
+                'lang': 'testlang',
+                'string': 'teststring'
+            }, {
+                'lang': 'testlang2',
+                'string': 'teststring2'
+            }]
+        }
+        self.app = Webapp()
+        self.field_class().attach_translations(self.app, 'foo', data)
+        eq_(self.app.foo_translations, {'testlang': 'teststring', 
+                                        'testlang2': 'teststring2'})
+
+    def _test_expected_dict(self, field):
+        result = field.field_to_native(self.app, 'name')
+        expected = self.app.name_translations
+        eq_(result, expected)
+
+        result = field.field_to_native(self.app, 'description')
+        expected = self.app.description_translations
+        eq_(result, expected)
+
+    def _test_expected_single_string(self, field):
+        result = field.field_to_native(self.app, 'name')
+        expected = unicode(self.app.name_translations['en-US'])
+        eq_(result, expected)
+
+        result = field.field_to_native(self.app, 'description')
+        expected = unicode(self.app.description_translations['en-US'])
+        eq_(result, expected)
+
+    def test_field_to_native_source(self):
+        self.app.mymock = Mock()
+        self.app.mymock.mymockedfield_translations = self.app.name_translations
+        field = self.field_class(source='mymock.mymockedfield')
+        result = field.field_to_native(self.app, 'shouldbeignored')
+        expected = self.app.name_translations
+        eq_(result, expected)
+
+    def test_field_null(self):
+        field = self.field_class()
+        self.app.name_translations = {}
+        result = field.field_to_native(self.app, 'name')
+        eq_(result, None)
+
+        self.app.description_translations = None
+        result = field.field_to_native(self.app, 'description')
         eq_(result, None)
 
 

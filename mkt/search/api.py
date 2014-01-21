@@ -5,9 +5,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.exceptions import ParseError, PermissionDenied
 from rest_framework.generics import GenericAPIView
-from rest_framework.serializers import Serializer
 
-from amo.urlresolvers import reverse
 from translations.helpers import truncate
 
 import mkt
@@ -25,15 +23,8 @@ from mkt.constants.regions import REGION_LOOKUP
 from mkt.features.utils import get_feature_profile
 from mkt.search.views import _filter_search
 from mkt.search.forms import ApiSearchForm
+from mkt.search.serializers import ESAppSerializer, SuggestionsESAppSerializer
 from mkt.webapps.models import Webapp
-from mkt.webapps.utils import es_app_to_dict
-
-
-class SearchResultSerializer(Serializer):
-    def field_to_native(self, obj, field_name):
-        req = self.context['request']
-        return [self.context['view'].serialize(req, app)
-                for app in obj.object_list]
 
 
 class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
@@ -41,14 +32,8 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    serializer_class = SearchResultSerializer
-
-    def serialize(self, req, app):
-        amo_user = getattr(req, 'amo_user', None)
-        data = es_app_to_dict(app, profile=amo_user, request=req)
-        data['resource_uri'] = reverse('app-detail',
-                                       kwargs={'pk': data['id']})
-        return data
+    serializer_class = ESAppSerializer
+    form_class = ApiSearchForm
 
     def get_region(self, request):
         """
@@ -85,8 +70,8 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         return getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
 
     def search(self, request):
-        form_data = self.get_search_data(request, ApiSearchForm)
-
+        form_data = self.get_search_data(request)
+        query = form_data.get('q', '')
         base_filters = {'type': form_data['type']}
 
         qs = self.get_query(request, base_filters=base_filters,
@@ -95,14 +80,14 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         qs = self.apply_filters(request, qs, data=form_data,
                                 profile=profile)
         page = self.paginate_queryset(qs)
-        return self.get_pagination_serializer(page)
+        return self.get_pagination_serializer(page), query
 
     def get(self, request, *args, **kwargs):
-        serializer = self.search(request)
+        serializer, _ = self.search(request)
         return Response(serializer.data)
 
-    def get_search_data(self, request, formclass):
-        form = formclass(request.GET if request else None)
+    def get_search_data(self, request):
+        form = self.form_class(request.GET if request else None)
         if not form.is_valid():
             raise form_errors(form)
         return form.cleaned_data
@@ -138,7 +123,7 @@ class FeaturedSearchView(SearchView):
         return serializer.data, getattr(qs, 'filter_fallback', None)
 
     def get(self, request, *args, **kwargs):
-        serializer = self.search(request)
+        serializer, _ = self.search(request)
         data, filter_fallbacks = self.add_featured_etc(request,
                                                        serializer.data)
         response = Response(data)
@@ -172,27 +157,17 @@ class SuggestionsView(SearchView):
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
     renderer_classes = [JSONSuggestionsRenderer, JSONRenderer]
+    serializer_class = SuggestionsESAppSerializer
 
     def get(self, request, *args, **kwargs):
-        form_data = self.get_search_data(request, ApiSearchForm)
-        query = form_data.get('q', '')
-        base_filters = {'type': form_data['type']}
-
-        qs = self.get_query(request, base_filters=base_filters,
-                            region=self.get_region(request))
-        profile = get_feature_profile(request)
-        qs = self.apply_filters(request, qs, data=form_data, profile=profile)
+        results, query = self.search(request)
 
         names = []
         descriptions = []
         urls = []
         icons = []
 
-        for obj in qs:
-            # FIXME: this does a lot of stuff we don't need. When es_app_to_dict
-            # is replaced by a Serializer, then we should replace this with a
-            # custom, lean serializer.
-            base_data = self.serialize(request, obj)
+        for base_data in results.data['objects']:
             names.append(base_data['name'])
             descriptions.append(truncate(base_data['description']))
             urls.append(base_data['absolute_url'])
