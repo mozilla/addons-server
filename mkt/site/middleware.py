@@ -176,7 +176,9 @@ class LocaleMiddleware(object):
             not getattr(request, 'API', False)):
             response.set_cookie('lang', request.LANG_COOKIE)
 
-        if request.REQUEST.get('vary') != '0':
+        if request.REQUEST.get('vary') == '0':
+            del response['Vary']
+        else:
             patch_vary_headers(response, ['Accept-Language', 'Cookie'])
 
         return response

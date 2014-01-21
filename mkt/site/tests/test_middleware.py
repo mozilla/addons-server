@@ -256,7 +256,7 @@ class TestLocaleMiddlewarePersistence(amo.tests.TestCase):
 class TestVaryMiddleware(amo.tests.TestCase):
 
     def test_vary_headers(self):
-        vary = lambda res: [x.strip() for x in res['Vary'].split(',')]
+        vary = lambda res: [x.strip() for x in res.get('Vary', '').split(',')]
 
         # What is expected to `Vary`.
         res = self.client.get('/privacy-policy')
