@@ -40,7 +40,7 @@ def name_only_query(q):
     analyzer = _get_locale_analyzer()
     if analyzer:
         d['name_%s__text' % analyzer] = {'query': q, 'boost': 2.5,
-                                         'analyzer': analyzer}
+                                         'analyzer': '%s_analyzer' % analyzer}
     return d
 
 
@@ -58,7 +58,8 @@ def name_query(q):
     analyzer = _get_locale_analyzer()
     if analyzer:
         more['description_%s__text' % analyzer] = {
-            'query': q, 'boost': 0.6, 'type': 'phrase', 'analyzer': analyzer}
+            'query': q, 'boost': 0.6, 'type': 'phrase',
+            'analyzer': '%s_analyzer' % analyzer}
 
     more['tags__text'] = {'query': q}
 
