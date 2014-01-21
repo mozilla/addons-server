@@ -210,7 +210,7 @@ class Reference(Provider):
         return self.setup_account(user=user,
                                   uri=res['resource_uri'],
                                   solitude_seller=user_seller,
-                                  account_id=res['resource_pk'],
+                                  account_id=res['id'],
                                   name=name)
 
     def account_retrieve(self, account):
