@@ -19,6 +19,7 @@ REDIRECT_PAGES = (
     'design_fundamentals', 'design_patterns', 'ffos_guideline',
     'publish_hosted', 'publish_packaged', 'publish_review', 'publish_submit',
     'responsive_design', 'firefox_os_simulator', 'build_payments',
+    'publish_payments',
 )
 
 
