@@ -78,6 +78,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.post(self.list_url,
                                data=json.dumps({'manifest': obj.uuid}))
         eq_(res.status_code, 403)
+        eq_(res.json, {'detail':'Terms of Service not accepted.'})
 
     def test_not_valid(self):
         obj = self.create()
