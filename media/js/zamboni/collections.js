@@ -395,7 +395,7 @@ if (addon_ac.length) {
         },
         select: function(event, ui) {
             $('#addon-ac').val(ui.item.name).attr('data-id', ui.item.id)
-            .attr('data-icon', ui.item.icon);
+            .attr('data-icon', ui.item.icons[32]);
             return false;
         }
     }).data('autocomplete')._renderItem = function(ul, item) {
