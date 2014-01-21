@@ -255,7 +255,9 @@ class TestApi(RestOAuth, ESTestCase):
         ok_('latest_version' not in obj)
         ok_('reviewer_flags' not in obj)
 
-    def test_upsell(self):
+    @patch('mkt.webapps.models.Webapp.get_excluded_region_ids')
+    def test_upsell(self, get_excluded_region_ids):
+        get_excluded_region_ids.return_value = []
         upsell = app_factory(premium_type=amo.ADDON_PREMIUM)
         AddonUpsell.objects.create(free=self.webapp, premium=upsell)
         self.webapp.save()
