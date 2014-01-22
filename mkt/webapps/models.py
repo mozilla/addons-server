@@ -1753,8 +1753,16 @@ class WebappIndexer(MappingType, Indexable):
                 .order_by('-id').values_list('id', flat=True))
 
 
-# Pull all translated_fields from Addon over to Webapp.
-Webapp._meta.translated_fields = Addon._meta.translated_fields
+# Set translated_fields manually to avoid querying translations for addon
+# fields we don't use.
+Webapp._meta.translated_fields = [
+    Webapp._meta.get_field('homepage'),
+    Webapp._meta.get_field('privacy_policy'),
+    Webapp._meta.get_field('name'),
+    Webapp._meta.get_field('description'),
+    Webapp._meta.get_field('support_email'),
+    Webapp._meta.get_field('support_url'),
+]
 
 
 @receiver(dbsignals.post_save, sender=Webapp,
