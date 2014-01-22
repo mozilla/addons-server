@@ -280,6 +280,9 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'mkt.api.renderers.SuccinctJSONRenderer',
     ),
+    'DEFAULT_CONTENT_NEGOTIATION_CLASS': (
+        'mkt.api.renderers.FirstAvailableRenderer'
+    ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
