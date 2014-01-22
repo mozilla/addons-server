@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 09:07-0700\n"
+"POT-Creation-Date: 2014-01-22 09:17-0700\n"
 "PO-Revision-Date: 2013-11-27 19:28+0100\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Translate Toolkit 1.9.0\n"
 "X-POOTLE-MTIME: 1384329329.0\n"
 
 #: media/js/common/ratingwidget.js:31
@@ -20,11 +20,14 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} Stern"
 msgstr[1] "{0} Sterne"
 
-#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-addon.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Beim Kontaktieren des Servers ist ein Fehler aufgetreten."
 
-#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
+#: media/js/common/upload-addon.js:52
+#: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
 msgstr "Wählen Sie eine Datei aus…"
 
@@ -33,24 +36,29 @@ msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Ihr Add-on sollte auf .xpi, .jar oder .xml enden"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
+#: media/js/common/upload-addon.js:87
+#: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
 msgstr "{0}% abgeschlossen"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
+#: media/js/common/upload-addon.js:90
+#: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
 msgstr "{0} von {1}"
 
-#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
+#: media/js/common/upload-addon.js:120
+#: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
+#: media/js/common/upload-addon.js:142
+#: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
 msgstr "{0} wird hochgeladen"
 
-#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
+#: media/js/common/upload-addon.js:169
+#: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
 msgstr "Fehler bei {0}"
 
@@ -60,39 +68,51 @@ msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ihr Add-on ist bei der Überprüfung mit {0} Fehler durchgefallen."
 msgstr[1] "Ihr Add-on ist bei der Überprüfung mit {0} Fehlern durchgefallen."
 
-#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-addon.js:188
+#: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; und {0} weiterer"
 msgstr[1] "&hellip; und {0} weitere"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-addon.js:202
+#: media/js/common/upload-addon.js:329
+#: media/js/common/upload-packaged-app.js:197
+#: media/js/common/upload-packaged-app.js:323
+#: media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
 msgid "See full validation report"
 msgstr "Vollständigen Überprüfungsbericht lesen"
 
-#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-addon.js:214
+#: media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
 msgstr "Überprüfung von {0}"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252
+#: media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Leere Antwort vom Server erhalten; Status: {0}"
 
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263
+#: media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "Unerwarteter Server-Fehler bei der Überprüfung."
 
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301
+#: media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "Überprüfung abgeschlossen {0}"
 
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] "Ihr Add-on hat die Überprüfung mit null Fehlern und {0} Nachricht bestanden."
-msgstr[1] "Ihr Add-on hat die Überprüfung mit null Fehlern und {0} Nachrichten bestanden."
+msgstr[0] ""
+"Ihr Add-on hat die Überprüfung mit null Fehlern und {0} Nachricht bestanden."
+msgstr[1] ""
+"Ihr Add-on hat die Überprüfung mit null Fehlern und {0} Nachrichten "
+"bestanden."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -110,7 +130,8 @@ msgstr "Der Dateityp, den Sie hochgeladen haben, wird nicht erkannt."
 msgid "You cancelled the upload."
 msgstr "Sie haben das Hochladen abgebrochen."
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
+#: media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "Grafiken müssen entweder PNG oder JPG sein."
 
@@ -122,7 +143,9 @@ msgstr "Videos müssen im WebM-Format sein."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Ihre gepackte App sollte auf <code>.zip</code> enden."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:181
+#: media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ihre App ist bei der Überprüfung mit {0} Fehler durchgefallen."
@@ -132,7 +155,8 @@ msgstr[1] "Ihre App ist bei der Überprüfung mit {0} Fehlern durchgefallen."
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Warnung bestanden."
-msgstr[1] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Warnungen bestanden."
+msgstr[1] ""
+"Ihre App hat die Überprüfung ohne Fehler und mit {0} Warnungen bestanden."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
@@ -142,15 +166,18 @@ msgstr "Ihre App hat die Überprüfung mit null Fehlern und Warnungen bestanden.
 msgid "The manifest could not be found at the given location."
 msgstr "Das Manifest konnte am angegebenen Ort nicht gefunden werden."
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
+#: media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr "App-Host konnte nicht erreicht werden."
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
+#: media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr "App-Manifest kann nicht geparst werden."
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
+#: media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr "App-Manifest ist ungültig."
 
@@ -166,27 +193,36 @@ msgstr "Interner Server-Fehler."
 msgid "Internal server error on app installation."
 msgstr "Interner Server-Fehler bei der App-Installation."
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
+#: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr "Installation fehlgeschlagen. Bitte versuchen Sie es später erneut."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Ihre App ist mit {0} Fehler und {1} Nachricht(en) durch die Überprüfung gefallen."
-msgstr[1] "Ihre App ist mit {0} Fehlern und {1} Nachricht(en) durch die Überprüfung gefallen."
+msgstr[0] ""
+"Ihre App ist mit {0} Fehler und {1} Nachricht(en) durch die Überprüfung "
+"gefallen."
+msgstr[1] ""
+"Ihre App ist mit {0} Fehlern und {1} Nachricht(en) durch die Überprüfung "
+"gefallen."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200
+#: media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Hinweis bestanden."
-msgstr[1] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Hinweisen bestanden."
+msgstr[1] ""
+"Ihre App hat die Überprüfung ohne Fehler und mit {0} Hinweisen bestanden."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205
+#: media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ihre App hat die Überprüfung mit null Fehlern und Hinweisen bestanden."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419
+#: media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
 msgstr "Änderungen gespeichert"
 
@@ -198,19 +234,23 @@ msgstr "Geben Sie die E-Mail-Adresse eines neuen Team-Mitglieds ein"
 msgid "Refreshed"
 msgstr "Aktualisiert"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616
+#: media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "Beim Hochladen Ihrer Datei ist ein Fehler aufgetreten."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886
+#: media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Erfahren Sie mehr"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890
+#: media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Beispiel"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192
+#: media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "Grafikänderungen werden angewendet"
 
@@ -226,17 +266,27 @@ msgstr "oder den <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash-Player</a>."
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Diese Funktion wurde zeitweilig deaktiviert, während wir Wartungsarbeiten an der Website durchführen. Bitte versuchen Sie es später erneut."
+#: media/js/devreg/init.js:35
+#: media/js/zamboni/init.js:32
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Diese Funktion wurde zeitweilig deaktiviert, während wir Wartungsarbeiten an "
+"der Website durchführen. Bitte versuchen Sie es später erneut."
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
+#: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Diese Übersetzung entfernen"
 
 #: media/js/devreg/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Persona-Anmeldung fehlgeschlagen. Vielleicht haben Sie kein Benutzerkonto unter dieser E-Mail-Adresse?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Persona-Anmeldung fehlgeschlagen. Vielleicht haben Sie kein Benutzerkonto "
+"unter dieser E-Mail-Adresse?"
 
 #: media/js/devreg/login.js:78
 msgid "Persona login failed. A server error was encountered."
@@ -333,17 +383,36 @@ msgstr "Erkannt: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:24
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] "Warnung: Löschung des Zahlungskontos „{0}“ ändert den Status dieser verknüpften App auf „unvollständig“. Sie steht dann nicht mehr zum Verkauf zur Verfügung:"
-msgstr[1] "Warnung: Löschung des Zahlungskontos „{0}“ ändert den Status dieser verknüpften Apps auf „unvollständig“. Sie stehen dann nicht mehr zum Verkauf zur Verfügung:"
+msgid ""
+"Warning: deleting payment account \"{0}\" will move that associated app to an "
+"incomplete status and it will no longer be available for sale:"
+msgid_plural ""
+"Warning: deleting payment account \"{0}\" will move those associated apps to "
+"an incomplete status and they will no longer be available for sale:"
+msgstr[0] ""
+"Warnung: Löschung des Zahlungskontos „{0}“ ändert den Status dieser "
+"verknüpften App auf „unvollständig“. Sie steht dann nicht mehr zum Verkauf "
+"zur Verfügung:"
+msgstr[1] ""
+"Warnung: Löschung des Zahlungskontos „{0}“ ändert den Status dieser "
+"verknüpften Apps auf „unvollständig“. Sie stehen dann nicht mehr zum Verkauf "
+"zur Verfügung:"
 
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/payments-manage.js:58
+#: media/js/devreg/payments-manage.js:107
+#: media/js/devreg/validator.js:193
+#: media/js/devreg/validator.js:438
+#: media/js/devreg/validator.js:457
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/zamboni/validator.js:194
+#: media/js/zamboni/validator.js:449
+#: media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Fehler"
 
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
+#: media/js/devreg/payments-manage.js:59
+#: media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
 msgstr "Beim Kontaktieren des Zahlungs-Servers ist ein Fehler aufgetreten."
 
@@ -355,15 +424,18 @@ msgstr "Fehler bei der Authentifizierung"
 msgid "You do not currently have any payment accounts."
 msgstr "Sie haben derzeit keine Zahlungskonten."
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
+#: media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr "Suche nach Themes für <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
+#: media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr "Apps suchen für <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
+#: media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Add-ons suchen für <b>{0}</b>"
 
@@ -374,51 +446,68 @@ msgid_plural "{0} characters left."
 msgstr[0] "Noch {0} Zeichen übrig."
 msgstr[1] "Noch {0} Zeichen übrig."
 
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71
+#: media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
 msgstr "Alle Tests wurden erfolgreich durchgeführt."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:358
+#: media/js/zamboni/validator.js:74
+#: media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr "Diese Tests wurden nicht durchgeführt."
 
-#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:119
+#: media/js/devreg/validator.js:132
+#: media/js/zamboni/validator.js:120
+#: media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "Tests"
 
-#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:194
+#: media/js/zamboni/validator.js:195
 msgid "Warning"
 msgstr "Warnung"
 
-#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:281
+#: media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
 msgstr "Kompatibilitätstests"
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:329
+#: media/js/zamboni/validator.js:331
 msgid "App failed validation."
 msgstr "App ist bei Überprüfung durchgefallen."
 
-#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:331
+#: media/js/zamboni/validator.js:333
 msgid "App passed validation."
 msgstr "App hat Überprüfung bestanden."
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:361
+#: media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} Fehler"
 msgstr[1] "{0} Fehler"
 
-#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:363
+#: media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} Warnung"
 msgstr[1] "{0} Warnungen"
 
-#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:440
+#: media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
-msgstr "Überprüfung konnte nicht abgeschlossen werden oder wurde mit Fehlern abgeschlossen"
+msgstr ""
+"Überprüfung konnte nicht abgeschlossen werden oder wurde mit Fehlern "
+"abgeschlossen"
 
-#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:458
+#: media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "Interner Serverfehler"
 
@@ -434,43 +523,55 @@ msgstr "Gekauft"
 msgid "Launch"
 msgstr "Starten"
 
-#: media/js/devreg/reviewers/editors.js:158 media/js/zamboni/editors.js:162
+#: media/js/devreg/reviewers/editors.js:158
+#: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
 msgstr "{name} hat diese Seite zuerst angesehen."
 
-#: media/js/devreg/reviewers/editors.js:208 media/js/zamboni/editors.js:212
+#: media/js/devreg/reviewers/editors.js:208
+#: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
 msgstr "Quittung wurde von App überprüft."
 
-#: media/js/devreg/reviewers/editors.js:210 media/js/zamboni/editors.js:214
+#: media/js/devreg/reviewers/editors.js:210
+#: media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
 msgstr "Quittung wurde nicht von App überprüft."
 
-#: media/js/devreg/reviewers/editors.js:281 media/js/zamboni/editors.js:285
+#: media/js/devreg/reviewers/editors.js:281
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{name} hat sich dieses Add-on zuerst angesehen."
 
-#: media/js/devreg/reviewers/editors.js:292 media/js/zamboni/editors.js:296
+#: media/js/devreg/reviewers/editors.js:292
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "Wird geladen &hellip;"
 
-#: media/js/devreg/reviewers/editors.js:297 media/js/zamboni/editors.js:301
+#: media/js/devreg/reviewers/editors.js:297
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Versionshinweise"
 
-#: media/js/devreg/reviewers/editors.js:302 media/js/zamboni/editors.js:306
+#: media/js/devreg/reviewers/editors.js:302
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "Hinweise für Überprüfer"
 
-#: media/js/devreg/reviewers/editors.js:307 media/js/zamboni/editors.js:311
+#: media/js/devreg/reviewers/editors.js:307
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "Keine Kommentare zur Version gefunden"
 
-#: media/js/devreg/reviewers/editors.js:332 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:332
+#: media/js/zamboni/admin_validation.js:24
+#: media/js/zamboni/devhub.js:1438
+#: media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Wählen Sie zuerst eine Anwendung aus"
 
-#: media/js/devreg/reviewers/editors.js:396 media/js/zamboni/editors.js:486
+#: media/js/devreg/reviewers/editors.js:396
+#: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
 msgstr "Fehler beim Laden der Übersetzung"
 
@@ -566,7 +667,8 @@ msgstr "Abgelehnt"
 msgid "Approved"
 msgstr "Freigeschaltet"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10
+#: media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
 msgstr "Dieser Sammlung folgen"
 
@@ -579,7 +681,8 @@ msgid "Following"
 msgstr "Folgen"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:17
+#: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Dieses Theme ist mit Ihrer Version von {0} nicht kompatibel"
 
@@ -615,15 +718,18 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 msgid "Your Theme's Name"
 msgstr "Name Ihres Themes"
 
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23
+#: media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "Zur Überprüfung markiert"
 
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40
+#: media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "Ihre Eingabe wird benötigt"
 
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133
+#: media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "Zum Löschen markiert"
 
@@ -631,7 +737,8 @@ msgstr "Zum Löschen markiert"
 msgid "Updating results&hellip;"
 msgstr "Ergebnisse werden aktualisiert …"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
+#: media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
 msgstr "Kategorie"
 
@@ -675,11 +782,15 @@ msgstr "{0} Erstattungen"
 msgid "{0} installs"
 msgstr "{0} Installationen"
 
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
+#: media/js/impala/stats/chart.js:369
+#: media/js/impala/stats/csv_keys.js:3
+#: media/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
 msgstr "Downloads"
 
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
+#: media/js/impala/stats/chart.js:379
+#: media/js/impala/stats/csv_keys.js:6
+#: media/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
 msgstr "Tägliche Benutzer"
 
@@ -687,7 +798,8 @@ msgstr "Tägliche Benutzer"
 msgid "Amount, in USD"
 msgstr "Betrag in US$"
 
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97
+#: media/js/impala/stats/chart.js:421
+#: media/js/impala/stats/csv_keys.js:97
 msgid "Number of Contributions"
 msgstr "Zahl der Beiträge"
 
@@ -736,11 +848,13 @@ msgstr "Abonnenten"
 msgid "Ratings"
 msgstr "Bewertungen"
 
-#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107
+#: media/js/impala/stats/csv_keys.js:36
+#: media/js/impala/stats/csv_keys.js:107
 msgid "Sales"
 msgstr "Verkäufe"
 
-#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106
+#: media/js/impala/stats/csv_keys.js:39
+#: media/js/impala/stats/csv_keys.js:106
 msgid "Installs"
 msgstr "Installationen"
 
@@ -756,15 +870,19 @@ msgstr "Add-ons-Manager"
 msgid "Search Results"
 msgstr "Suchergebnisse"
 
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47
+#: media/js/impala/stats/csv_keys.js:45
+#: media/js/impala/stats/csv_keys.js:46
+#: media/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
 msgstr "Startseite „Promo“"
 
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49
+#: media/js/impala/stats/csv_keys.js:48
+#: media/js/impala/stats/csv_keys.js:49
 msgid "Homepage Featured"
 msgstr "Startseite „Vorgestellt“"
 
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
+#: media/js/impala/stats/csv_keys.js:50
+#: media/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
 msgstr "Startseite „Aufstrebend“"
 
@@ -772,11 +890,13 @@ msgstr "Startseite „Aufstrebend“"
 msgid "Homepage Most Popular"
 msgstr "Startseite „Beliebteste“"
 
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55
+#: media/js/impala/stats/csv_keys.js:53
+#: media/js/impala/stats/csv_keys.js:55
 msgid "Detail Page"
 msgstr "Detailseite"
 
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56
+#: media/js/impala/stats/csv_keys.js:54
+#: media/js/impala/stats/csv_keys.js:56
 msgid "Detail Page (bottom)"
 msgstr "Detailseite (Ende)"
 
@@ -784,19 +904,24 @@ msgstr "Detailseite (Ende)"
 msgid "Detail Page (Development Channel)"
 msgstr "Detailseite (Entwicklerkanal)"
 
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
+#: media/js/impala/stats/csv_keys.js:58
+#: media/js/impala/stats/csv_keys.js:59
+#: media/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
 msgstr "Oft verwendet mit"
 
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62
+#: media/js/impala/stats/csv_keys.js:61
+#: media/js/impala/stats/csv_keys.js:62
 msgid "Others By Author"
 msgstr "Andere von diesem Autor"
 
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64
+#: media/js/impala/stats/csv_keys.js:63
+#: media/js/impala/stats/csv_keys.js:64
 msgid "Dependencies"
 msgstr "Abhängigkeiten"
 
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66
+#: media/js/impala/stats/csv_keys.js:65
+#: media/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
 msgstr "Zusatzverkäufe"
 
@@ -812,51 +937,63 @@ msgstr "Kategorieseiten"
 msgid "Collections"
 msgstr "Sammlungen"
 
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72
+#: media/js/impala/stats/csv_keys.js:71
+#: media/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
 msgstr "Kategorie-Übersicht „Karussell der Vorgestellten“"
 
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74
+#: media/js/impala/stats/csv_keys.js:73
+#: media/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
 msgstr "Kategorie-Übersicht „Höchste Bewertung“"
 
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76
+#: media/js/impala/stats/csv_keys.js:75
+#: media/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
 msgstr "Kategorie-Übersicht „Beliebteste“"
 
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78
+#: media/js/impala/stats/csv_keys.js:77
+#: media/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
 msgstr "Kategorie-Übersicht „Zuletzt hinzugefügt“"
 
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80
+#: media/js/impala/stats/csv_keys.js:79
+#: media/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Vorgestellt“"
 
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82
+#: media/js/impala/stats/csv_keys.js:81
+#: media/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Benutzern“"
 
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84
+#: media/js/impala/stats/csv_keys.js:83
+#: media/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Bewertung“"
 
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86
+#: media/js/impala/stats/csv_keys.js:85
+#: media/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Erstellt“"
 
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88
+#: media/js/impala/stats/csv_keys.js:87
+#: media/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Name“"
 
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90
+#: media/js/impala/stats/csv_keys.js:89
+#: media/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Beliebtheit“"
 
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92
+#: media/js/impala/stats/csv_keys.js:91
+#: media/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Aktualisiert“"
 
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94
+#: media/js/impala/stats/csv_keys.js:93
+#: media/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Aufstrebende“"
 
@@ -1132,7 +1269,8 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> in den letzten {1} Tagen"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269
+#: media/js/impala/stats/csv_keys.js:263
+#: media/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> von {1} bis {2}"
 
@@ -1156,8 +1294,12 @@ msgstr "Andere"
 #: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} Add-on auf eine Max-Version von {1} setzen und Autor per E-Mail benachrichtigen."
-msgstr[1] "{0} Add-ons auf eine Max-Version von {1} setzen und Autoren per E-Mail benachrichtigen."
+msgstr[0] ""
+"{0} Add-on auf eine Max-Version von {1} setzen und Autor per E-Mail "
+"benachrichtigen."
+msgstr[1] ""
+"{0} Add-ons auf eine Max-Version von {1} setzen und Autoren per E-Mail "
+"benachrichtigen."
 
 #: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
@@ -1183,11 +1325,16 @@ msgstr "Dieses System unterstützt die Installation von Apps nicht."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr "Administratoren und Redakteure müssen zum Anmelden ein Passwort angeben."
+msgstr ""
+"Administratoren und Redakteure müssen zum Anmelden ein Passwort angeben."
 
 #: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Login mit BrowserID fehlgeschlagen. Vielleicht haben Sie kein Benutzerkonto unter dieser E-Mail-Adresse?"
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Login mit BrowserID fehlgeschlagen. Vielleicht haben Sie kein Benutzerkonto "
+"unter dieser E-Mail-Adresse?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
@@ -1204,15 +1351,20 @@ msgstr "Jetzt herunterladen"
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Add-on wurde nicht aktualisiert, um standardmäßige Kompatibilität zu unterstützen."
+msgstr ""
+"Add-on wurde nicht aktualisiert, um standardmäßige Kompatibilität zu "
+"unterstützen."
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Sie müssen Firefox 10.0 oder höher verwenden."
 
 #: media/js/zamboni/buttons.js:171
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla hat diese Version als mit Ihrer Firefox-Version inkompatibel markiert."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"Mozilla hat diese Version als mit Ihrer Firefox-Version inkompatibel "
+"markiert."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
@@ -1228,7 +1380,8 @@ msgid "Not available for your platform"
 msgstr "Nicht verfügbar für Ihre Plattform"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+#: media/js/zamboni/buttons.js:317
+#: media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
 msgstr "Nicht verfügbar für {0} {1}"
 
@@ -1240,9 +1393,14 @@ msgstr "Kompatibel mit {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Andere Versionen ansehen"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Es tut uns Leid, Sie benötigen einen Mozilla-basierten Browser (wie Firefox), um ein Such-Plugin zu installieren."
+#: media/js/zamboni/buttons.js:597
+#: media/js/zamboni/mobile/buttons.js:39
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"Es tut uns Leid, Sie benötigen einen Mozilla-basierten Browser (wie "
+"Firefox), um ein Such-Plugin zu installieren."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1280,7 +1438,8 @@ msgstr "Kommentar"
 msgid "Remove this add-on from the collection"
 msgstr "Dieses Add-on aus der Sammlung entfernen"
 
-#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
+#: media/js/zamboni/collections.js:439
+#: media/js/zamboni/collections.js:468
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -1344,7 +1503,8 @@ msgstr "Tests werden gestartet …"
 msgid "Waiting for test results..."
 msgstr "Warten auf Testergebnisse …"
 
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1475
+#: media/js/zamboni/devhub.js:1480
 msgid "Internal Server Error"
 msgstr "Interner Server-Fehler"
 
@@ -1357,8 +1517,13 @@ msgid "No results found."
 msgstr "Keine Ergebnisse gefunden."
 
 #: media/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Es tut uns Leid, wir konnten keine Empfehlungen für Sie finden.<br>Bitte besuchen Sie die <a href=\"{0}\">Add-ons-Website</a>, um ein Add-on zu finden, das zu Ihnen passt."
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr ""
+"Es tut uns Leid, wir konnten keine Empfehlungen für Sie finden.<br>Bitte "
+"besuchen Sie die <a href=\"{0}\">Add-ons-Website</a>, um ein Add-on zu finden, "
+"das zu Ihnen passt."
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1402,7 +1567,8 @@ msgid_plural "At least {0} characters left."
 msgstr[0] "Mindestens {0} Zeichen übrig."
 msgstr[1] "Mindestens {0} Zeichen übrig."
 
-#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
+#: media/js/zamboni/perf.js:29
+#: media/js/zamboni/perf.js:42
 msgid "All"
 msgstr "Alle"
 
@@ -1436,7 +1602,8 @@ msgstr "Nicht bewertet"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimentell <span>(Erfahren Sie mehr)</span>"
 
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79
+#: media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "Nicht verfügbar für {0}"
 
