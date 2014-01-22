@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-15 17:23+0000\n"
+"PO-Revision-Date: 2014-01-22 18:56+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1389806627.0\n"
+"X-POOTLE-MTIME: 1390416974.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -15171,7 +15171,7 @@ msgstr "Venezuela, Bolivarische Republik"
 
 #: mkt/constants/bango.py:260
 msgid "Viet Nam"
-msgstr ""
+msgstr "Vietnam"
 
 #: mkt/constants/bango.py:261
 msgid "Virgin Islands, British"
@@ -15536,11 +15536,13 @@ msgstr "Diese App erfordert, dass die Plattform Tastaturen von Drittanbietern un
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "Informationen über mehrere Netzwerke"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr ""
+"Dieser App erfordert die Möglichkeit, Informationen über mehrere "
+"Netzwerkverbindungen zu erhalten."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15585,7 +15587,7 @@ msgstr "Legale Drogen"
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:15
 msgid "Inappropriate Language"
-msgstr ""
+msgstr "Unpassende Sprache"
 
 #: mkt/constants/ratingdescriptors.py:16 mkt/constants/ratingdescriptors.py:53 mkt/constants/ratingdescriptors.py:74 mkt/constants/ratingdescriptors.py:86 mkt/constants/ratingdescriptors.py:103
 msgid "No Descriptors"
@@ -15610,7 +15612,7 @@ msgstr "Expliziter Sex"
 
 #: mkt/constants/ratingdescriptors.py:22
 msgid "Impacting Content"
-msgstr ""
+msgstr "Inhalt mit Auswirkungen"
 
 #: mkt/constants/ratingdescriptors.py:23 mkt/constants/ratingdescriptors.py:66 mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:91 mkt/constants/ratingdescriptors.py:106
 msgid "Violence"
@@ -15726,7 +15728,7 @@ msgstr "Teilweise Nacktheit"
 
 #: mkt/constants/ratingdescriptors.py:56
 msgid "Real Gambling"
-msgstr ""
+msgstr "Echtes Glücksspiel"
 
 #: mkt/constants/ratingdescriptors.py:57
 msgid "Scary Themes"
@@ -15799,7 +15801,7 @@ msgstr "Weitergabe von Standortdaten"
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:102
 msgid "Explicit Language"
-msgstr ""
+msgstr "Schimpfwörter"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Frightening Content"
@@ -16680,7 +16682,7 @@ msgstr "Manifest-URLs müssen mit einem Protokoll beginnen (zum Beispiel <code>h
 
 #: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:124
 msgid "Learn more about submitting an app."
-msgstr ""
+msgstr "Erfahren Sie mehr über das Einreichen einer App."
 
 #: mkt/developers/templates/developers/validate_addon.html:69
 msgid ""
@@ -17347,6 +17349,9 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
+"Indem Sie das Werkzeug für Bewertungszertifikate der IARC verwenden, stimmen "
+"Sie deren <a href=\"%(privacy_url)s\">Datenschutzerklärung</a> und <a href=\"%"
+"(tos_url)s\">Nutzungsbedingungen</a> zu."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
@@ -17545,6 +17550,8 @@ msgstr "Verfügbare Regionen"
 #: mkt/developers/templates/developers/payments/premium.html:199
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
 msgstr ""
+"Sehen Sie sich die <a href=\"%(status_url)s\" target=\"_blank\">Statusseite</a> "
+"an, um zu sehen, welche Länder derzeit für den Verkauf verfügbar sind."
 
 #: mkt/developers/templates/developers/payments/premium.html:206
 msgid "Your app will be available in the following selected regions:"
