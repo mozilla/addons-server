@@ -170,7 +170,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
     def test_filter_by_nonpublic_app(self, get_region_mock):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         self.app.update(status=amo.STATUS_PENDING)
-        get_region_mock.return_value = 'us'
+        get_region_mock.return_value = mkt.regions.US
         res, data = self._get_filter(app=self.app.app_slug, expected_status=403)
         eq_(data['detail'], 'The app requested is not public or not available '
                             'in region "us".')
@@ -192,7 +192,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
-        get_region_mock.return_value = 'br'
+        get_region_mock.return_value = mkt.regions.BR
         res, data = self._get_filter(app=self.app.app_slug, expected_status=403)
         eq_(data['detail'], 'The app requested is not public or not available '
                             'in region "br".')
@@ -203,7 +203,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         self.grant_permission(self.user, 'Addons:Edit')
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
-        get_region_mock.return_value = 'br'
+        get_region_mock.return_value = mkt.regions.BR
         self._get_filter(app=self.app.app_slug)
 
     @patch('mkt.ratings.views.get_region')
@@ -212,7 +212,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         AddonUser.objects.create(user=self.user, addon=self.app)
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
-        get_region_mock.return_value = 'br'
+        get_region_mock.return_value = mkt.regions.BR
         self._get_filter(app=self.app.app_slug)
 
     def test_anonymous_get_list_without_app(self):
@@ -338,7 +338,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
     def test_create_for_nonregion(self, get_region_mock):
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
-        get_region_mock.return_value = 'br'
+        get_region_mock.return_value = mkt.regions.BR
         res, data = self._create()
         eq_(403, res.status_code)
 

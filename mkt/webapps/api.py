@@ -430,7 +430,7 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
     def get_queryset(self):
         return Webapp.objects.all().exclude(
-            id__in=get_excluded_in(REGIONS_DICT[get_region()].id))
+            id__in=get_excluded_in(get_region().id))
 
     def get_base_queryset(self):
         return Webapp.objects.all()

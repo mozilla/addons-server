@@ -15,7 +15,7 @@ from market.models import Price
 from users.models import UserProfile
 
 import mkt
-from mkt.regions import get_region, REGIONS_CHOICES_ID_DICT, REGION_LOOKUP
+from mkt.regions import REGIONS_CHOICES_ID_DICT
 
 
 log = commonware.log.getLogger('z.webapps')

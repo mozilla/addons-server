@@ -107,13 +107,13 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
             raise Http404
         current_region = get_region()
         if ((not app.is_public()
-             or not app.listed_in(region=REGIONS_DICT[current_region]))
+             or not app.listed_in(region=current_region))
              and not check_addon_ownership(self.request, app)):
             # App owners and admin can see the app even if it's not public
             # or not available in the current region. Regular users or
             # anonymous users can't.
             raise PermissionDenied('The app requested is not public or not '
-                'available in region "%s".' % current_region)
+                'available in region "%s".' % current_region.slug)
         return app
 
     def list(self, request, *args, **kwargs):
