@@ -647,8 +647,8 @@ def update_trending(ids, **kw):
 
         times.append(time.time() - t_start)
 
-    task_log.debug('Trending calculated for %s apps. Avg time overall: '
-                   '%0.2fs' % (count, sum(times) / count))
+    task_log.info('Trending calculated for %s apps. Avg time overall: '
+                  '%0.2fs' % (count, sum(times) / count))
 
 
 @task
@@ -711,5 +711,5 @@ def update_downloads(ids, **kw):
             app.update(weekly_downloads=weekly, total_downloads=total,
                        _signal=signal)
 
-    task_log.debug('App downloads updated for %s out of %s apps.'
-                   % (count, len(ids)))
+    task_log.info('App downloads updated for %s out of %s apps.'
+                  % (count, len(ids)))
