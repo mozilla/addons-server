@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 09:07-0700\n"
+"POT-Creation-Date: 2014-01-22 09:17-0700\n"
 "PO-Revision-Date: 2013-07-29 15:06+0400\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Translate Toolkit 1.9.0\n"
 
-#: apps/addons/buttons.py:203
+#: apps/addons/buttons.py:194
 msgid "Download Now"
 msgstr "Загрузить сейчас"
 
-#: apps/addons/buttons.py:205 apps/addons/templates/addons/impala/details.html:88 mkt/developers/templates/developers/apps/status.html:231 mkt/ecosystem/templates/ecosystem/publish_badges.html:45
+#: apps/addons/buttons.py:196 apps/addons/templates/addons/impala/details.html:90 mkt/developers/templates/developers/apps/status.html:231 mkt/ecosystem/templates/ecosystem/publish_badges.html:45
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:126
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:115 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:92 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:199
@@ -33,35 +33,30 @@ msgid "Download"
 msgstr "Загрузить"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-#. please keep &nbsp; in the string so the &rarr; does not wrap
-#: apps/addons/buttons.py:209 apps/addons/buttons.py:217 apps/discovery/templates/discovery/addons/detail.html:22
+#: apps/addons/buttons.py:200
 msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Перейти к загрузке&nbsp;&rarr;"
 
-#: apps/addons/buttons.py:213
-msgid "Accept and Download"
-msgstr "Принять и загрузить"
-
-#: apps/addons/buttons.py:222
+#: apps/addons/buttons.py:205
 msgid "Install App"
 msgstr "Установить приложение"
 
-#: apps/addons/buttons.py:236
+#: apps/addons/buttons.py:219
 msgctxt "install_button"
 msgid "Featured"
 msgstr "Избранное"
 
-#: apps/addons/buttons.py:241
+#: apps/addons/buttons.py:224
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "Не проверено"
 
-#: apps/addons/buttons.py:248
+#: apps/addons/buttons.py:231
 msgctxt "install_button"
 msgid "Experimental"
 msgstr "Экспериментальное"
 
-#: apps/addons/buttons.py:255
+#: apps/addons/buttons.py:238
 msgid "Add to {0}"
 msgstr "Добавить в {0}"
 
@@ -69,11 +64,11 @@ msgstr "Добавить в {0}"
 msgid "This name is already in use. Please choose another."
 msgstr "Это имя уже используется. Пожалуйста, выберите другое."
 
-#: apps/addons/forms.py:62 mkt/developers/forms.py:624 mkt/submit/forms.py:403
+#: apps/addons/forms.py:62 mkt/developers/forms.py:625 mkt/submit/forms.py:403
 msgid "This slug is already in use. Please choose another."
 msgstr "Это окончание уже используется. Пожалуйста, выберите другое."
 
-#: apps/addons/forms.py:65 mkt/developers/forms.py:627 mkt/submit/forms.py:407
+#: apps/addons/forms.py:65 mkt/developers/forms.py:628 mkt/submit/forms.py:407
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr ""
 
@@ -120,7 +115,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "Категории не могут быть изменены, пока ваше дополнение избрано для этого приложения."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:951 mkt/webapps/api.py:260
+#: apps/addons/forms.py:256 mkt/developers/forms.py:952 mkt/webapps/api.py:264
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "У вас может быть только {0} категория."
@@ -155,7 +150,7 @@ msgstr "Введите новый адрес эл. почты автора"
 msgid "Not Reviewed"
 msgstr "Не проверено"
 
-#: apps/addons/helpers.py:35 apps/addons/views.py:329 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:35 apps/addons/views.py:329 apps/addons/templates/addons/impala/details.html:120 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:17 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:86 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231 apps/browse/views.py:448
 #: apps/browse/templates/browse/impala/category_landing.html:24 apps/browse/templates/browse/personas/mobile/category_landing.html:26
@@ -171,7 +166,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Пользователей всегда будут просить в менеджере дополнений (Firefox 4 и выше)"
 
 # Column name in a table.
-#: apps/addons/models.py:2000
+#: apps/addons/models.py:2048
 msgid "Listed"
 msgstr "В списке"
 
@@ -225,7 +220,7 @@ msgid "Add to Mobile"
 msgstr "Добавить в Mobile"
 
 #. {0} is a platform name like Windows or Mac OS X.
-#: apps/addons/templates/addons/button.html:68 apps/addons/templates/addons/includes/install_button.html:32
+#: apps/addons/templates/addons/button.html:68 apps/addons/templates/addons/includes/install_button.html:29
 msgid "for {0}"
 msgstr "для {0}"
 
@@ -233,11 +228,17 @@ msgstr "для {0}"
 msgid "View privacy policy"
 msgstr "Просмотреть политику приватности"
 
-#: apps/addons/templates/addons/button.html:89 apps/addons/templates/addons/impala/button.html:57
+#. EULA stands for End-User License Agreement.
+#: apps/addons/templates/addons/button.html:90 apps/addons/templates/addons/details_box.html:128 apps/addons/templates/addons/mobile/button.html:34
+#: apps/discovery/templates/discovery/addons/detail.html:34
+msgid "View EULA"
+msgstr "Просмотр EULA"
+
+#: apps/addons/templates/addons/button.html:95 apps/addons/templates/addons/impala/button.html:62
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Это дополнение не был проверено Mozilla. <a href=\"%(url)s\">Узнайте больше</a>"
 
-#: apps/addons/templates/addons/button.html:94 apps/addons/templates/addons/impala/button.html:64
+#: apps/addons/templates/addons/button.html:100 apps/addons/templates/addons/impala/button.html:69
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Это дополнение прошло предварительную проверку Mozilla. <a href=\"%(url)s\">Узнайте больше</a>"
 
@@ -296,7 +297,7 @@ msgstr "Темы"
 msgid "Toolbars, themes and search providers that <strong>help you perform common tasks.</strong>"
 msgstr "Панели инструментов, темы и плагины для поисковых движков <strong>помогут вам выполнять повседневные задачи.</strong>"
 
-#: apps/addons/templates/addons/collections_teaser.html:41 apps/addons/templates/addons/includes/install_button.html:17 mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:92
+#: apps/addons/templates/addons/collections_teaser.html:41 apps/addons/templates/addons/includes/install_button.html:14 mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:92
 msgid "Install"
 msgstr "Установить"
 
@@ -313,7 +314,7 @@ msgstr "Подробнее об этом дополнении"
 msgid "Like these? Find more add-ons in the {0} collection."
 msgstr "Понравились? Найдите ещё больше дополнений в подборке {0}."
 
-#: apps/addons/templates/addons/contribution.html:11 apps/addons/templates/addons/impala/developers.html:40
+#: apps/addons/templates/addons/contribution.html:11 apps/addons/templates/addons/impala/developers.html:44
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr "Разработчик этого дополнения просит вас помочь поддержать его дальнейшее развитие, сделав небольшой взнос."
 
@@ -444,7 +445,7 @@ msgstr "Нет, спасибо"
 msgid "Contribution made, thank you."
 msgstr "Спасибо, взнос сделан."
 
-#: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:32
+#: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
 msgstr "Не требует перезапуска"
 
@@ -460,7 +461,7 @@ msgid "Updated"
 msgstr "Обновлено"
 
 #: apps/addons/templates/addons/details_box.html:42 apps/addons/templates/addons/mobile/details.html:71 apps/devhub/templates/devhub/addons/edit/support.html:42
-#: apps/discovery/templates/discovery/addons/detail.html:86 mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:81
+#: apps/discovery/templates/discovery/addons/detail.html:83 mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:81
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:101
 msgid "Website"
 msgstr "Веб-сайт"
@@ -505,25 +506,22 @@ msgstr "Отчёты о нарушениях"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:45
-#: apps/addons/templates/addons/impala/details.html:320 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
+#: apps/addons/templates/addons/impala/details.html:322 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
 #: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:87
 #: templates/mobile/base_apps.html:74
 msgid "Privacy Policy"
 msgstr "Политика приватности"
 
-#: apps/addons/templates/addons/details_box.html:119 apps/discovery/templates/discovery/addons/detail.html:37 mkt/reviewers/templates/reviewers/includes/details.html:127
+#: apps/addons/templates/addons/details_box.html:119 apps/discovery/templates/discovery/addons/detail.html:30 mkt/reviewers/templates/reviewers/includes/details.html:127
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:147
 msgid "View Privacy Policy"
 msgstr "Просмотреть политику приватности"
 
 #. EULA stand for End User License Agreement
-#: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/eula.html:18 apps/devhub/templates/devhub/includes/policy_form.html:3
+#: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/eula.html:18 apps/addons/templates/addons/impala/button.html:50
+#: apps/devhub/templates/devhub/includes/policy_form.html:3
 msgid "EULA"
 msgstr "Лицензионное соглашение с конечным пользователем (EULA)"
-
-#: apps/addons/templates/addons/details_box.html:128
-msgid "View EULA"
-msgstr "Просмотр EULA"
 
 #: apps/addons/templates/addons/details_box.html:166 apps/addons/templates/addons/details_box.html:226
 msgid "More about this add-on"
@@ -538,7 +536,7 @@ msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "Комментарии разработчика"
 
-#: apps/addons/templates/addons/details_box.html:194 apps/addons/templates/addons/impala/details.html:277
+#: apps/addons/templates/addons/details_box.html:194 apps/addons/templates/addons/impala/details.html:279
 msgid "Development Channel"
 msgstr "Канал разработки"
 
@@ -550,7 +548,7 @@ msgstr ""
 "Канал разработки позволяет вам тестировать экспериментальную новую версию этого дополнения перед его выпуском для всех пользователей. Как только вы установите разрабатываемую версию, вы будете "
 "получать обновления по этому каналу."
 
-#: apps/addons/templates/addons/details_box.html:202 apps/addons/templates/addons/impala/details.html:287
+#: apps/addons/templates/addons/details_box.html:202 apps/addons/templates/addons/impala/details.html:289
 msgid "Install development version"
 msgstr "Установить разрабатываемую версию"
 
@@ -562,7 +560,7 @@ msgstr ""
 "<strong>Осторожно:</strong> Разрабатываемые версии этого дополнения не были проверены Mozilla. Как только вы установите разрабатываемую версию, вы будете получать обновления разрабатываемой версии "
 "от этого разработчика. Чтобы перестать получать обновления разрабатываемой версии, переустановите версию по умолчанию с расположенной выше ссылки."
 
-#: apps/addons/templates/addons/details_box.html:215 apps/addons/templates/addons/impala/details.html:296
+#: apps/addons/templates/addons/details_box.html:215 apps/addons/templates/addons/impala/details.html:298
 msgid "Version {0}:"
 msgstr "Версия {0}:"
 
@@ -575,9 +573,9 @@ msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr "Примечания к версии"
 
-#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:110
+#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:112
 #: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
-#: apps/editors/templates/editors/review.html:26 apps/perf/templates/perf/index.html:78 mkt/reviewers/templates/reviewers/review.html:20
+#: apps/editors/templates/editors/review.html:31 apps/perf/templates/perf/index.html:78 mkt/reviewers/templates/reviewers/review.html:20
 msgid "by"
 msgstr "автор"
 
@@ -599,7 +597,7 @@ msgstr "Это дополнения ещё не готово для продаж
 msgid "End-User License Agreement for {0}"
 msgstr "Лицензионное соглашение с конечным пользователем для {0}"
 
-#: apps/addons/templates/addons/eula.html:22 apps/discovery/templates/discovery/addons/eula.html:11
+#: apps/addons/templates/addons/eula.html:22 apps/addons/templates/addons/impala/details.html:331 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "Лицензионное соглашение с конечным пользователем"
 
@@ -667,7 +665,7 @@ msgstr "Обновлено {0}"
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
 #: apps/addons/templates/addons/listing/items_mobile.html:49 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
-#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:303 mkt/reviewers/views.py:324 mkt/submit/forms.py:34 mkt/submit/forms.py:44
+#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:304 mkt/reviewers/views.py:325 mkt/submit/forms.py:34 mkt/submit/forms.py:44
 msgid "Added {0}"
 msgstr "Добавлено {0}"
 
@@ -686,7 +684,7 @@ msgstr[1] "%(num)s пользователя"
 msgstr[2] "%(num)s пользователей"
 
 #. {0} is the number of downloads.
-#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:61 mkt/detail/helpers.py:22
+#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:63 mkt/detail/helpers.py:22
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} загрузка за неделю"
@@ -694,7 +692,7 @@ msgstr[1] "{0} загрузки за неделю"
 msgstr[2] "{0} загрузок за неделю"
 
 #. {0} is the number of users.
-#: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:54 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
+#: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:56 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} пользователь"
@@ -794,7 +792,7 @@ msgid "See all Themes by this Artist"
 msgstr "Просмотреть все темы от этого художника"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:40 apps/amo/templates/amo/side_nav.html:29
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:94 apps/editors/templates/editors/review.html:265
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:94 apps/editors/templates/editors/review.html:270
 #: apps/localizers/templates/localizers/sidebar.html:24 mkt/developers/templates/developers/apps/edit/basic.html:148 mkt/reviewers/templates/reviewers/includes/details.html:137
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:157 mkt/reviewers/templates/reviewers/themes/themes.html:35 templates/categories.html:7
 msgid "Categories"
@@ -823,7 +821,7 @@ msgstr "Ожидает проверки"
 msgid "Rejected"
 msgstr "Отклонено"
 
-#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157 apps/constants/payments.py:119 apps/devhub/templates/devhub/payments/refunds.html:139
+#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157 apps/constants/payments.py:95 apps/devhub/templates/devhub/payments/refunds.html:139
 #: apps/devhub/templates/devhub/payments/refunds.html:166
 msgid "Approved"
 msgstr "Одобрено"
@@ -847,11 +845,11 @@ msgstr "Добавить"
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:13 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:38 apps/editors/templates/editors/review.html:245
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:38 apps/editors/templates/editors/review.html:250
 #: mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10 mkt/developers/templates/developers/apps/edit/details.html:8
 #: mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7 mkt/developers/templates/developers/apps/edit/technical.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17 mkt/ratings/templates/ratings/rating.html:43
-#: mkt/submit/templates/submit/details.html:83 templates/qunit/qunit.html:783
+#: mkt/submit/templates/submit/details.html:83 templates/qunit/qunit.html:769
 msgid "Edit"
 msgstr "Правка"
 
@@ -946,7 +944,7 @@ msgstr "<strong>Осторожно:</strong> Это дополнение не б
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr "<strong>Обратите внимание:</strong> Это дополнение несовместимо с вашей операционной системой."
 
-#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:74
+#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:79
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr ""
 
@@ -974,7 +972,7 @@ msgstr ""
 "нет)."
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:332
+#: apps/addons/templates/addons/impala/details.html:343
 msgid "Report Abuse"
 msgstr "Сообщить о злоупотреблении"
 
@@ -1081,7 +1079,7 @@ msgstr "Метки"
 msgid "Not ready for purchase."
 msgstr "Не готово для покупки."
 
-#: apps/addons/templates/addons/impala/button.html:52
+#: apps/addons/templates/addons/impala/button.html:57
 msgid "This app has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Это приложение не было проверено Mozilla. <a href=\"%(url)s\">Узнайте больше</a>"
 
@@ -1160,99 +1158,99 @@ msgstr[0] "Другие приложения от %(author)s"
 msgstr[1] "Другие приложения от этих авторов"
 msgstr[2] "Другие приложения от этих авторов"
 
-#: apps/addons/templates/addons/impala/details.html:41
+#: apps/addons/templates/addons/impala/details.html:43
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> отзыв пользователя"
 msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> отзыва пользователей"
 msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> отзывов пользователей"
 
-#: apps/addons/templates/addons/impala/details.html:69
+#: apps/addons/templates/addons/impala/details.html:71
 msgid "View statistics"
 msgstr "Просмотреть статистику"
 
-#: apps/addons/templates/addons/impala/details.html:86
+#: apps/addons/templates/addons/impala/details.html:88
 msgid "Manage"
 msgstr "Управлять"
 
-#: apps/addons/templates/addons/impala/details.html:107 apps/addons/templates/addons/impala/listing/items.html:14
+#: apps/addons/templates/addons/impala/details.html:109 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
 msgstr "Без перезапуска"
 
-#: apps/addons/templates/addons/impala/details.html:137
+#: apps/addons/templates/addons/impala/details.html:139
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Познакомьтесь с разработчиком: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Познакомьтесь с разработчиками</a>"
 msgstr[2] "<a href=\"%(url)s\">Познакомьтесь с разработчиками</a>"
 
-#: apps/addons/templates/addons/impala/details.html:148
+#: apps/addons/templates/addons/impala/details.html:150
 msgid "Learn why {0} was created and find out what's next for this app."
 msgstr "Узнайте, почему был создан {0}, и выясните планы развития этого приложения."
 
 # {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:151
+#: apps/addons/templates/addons/impala/details.html:153
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "Узнайте, почему был создан {0}, и выясните планы развития этого дополнения."
 
-#: apps/addons/templates/addons/impala/details.html:196
+#: apps/addons/templates/addons/impala/details.html:198
 msgid "App home page"
 msgstr "Домашняя страница приложения"
 
-#: apps/addons/templates/addons/impala/details.html:196
+#: apps/addons/templates/addons/impala/details.html:198
 msgid "Add-on home page"
 msgstr "Домашняя страница дополнения"
 
-#: apps/addons/templates/addons/impala/details.html:199
+#: apps/addons/templates/addons/impala/details.html:201
 msgid "Support site"
 msgstr "Сайт поддержки"
 
-#: apps/addons/templates/addons/impala/details.html:203
+#: apps/addons/templates/addons/impala/details.html:205
 msgid "Support E-mail"
 msgstr "Адрес эл. почты поддержки"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/devhub/models.py:395 mkt/developers/templates/developers/apps/version_edit.html:4
+#: apps/addons/templates/addons/impala/details.html:210 apps/devhub/models.py:395 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "Версия {0}"
 
-#: apps/addons/templates/addons/impala/details.html:208
+#: apps/addons/templates/addons/impala/details.html:210
 msgid "Info"
 msgstr "Информация"
 
-#: apps/addons/templates/addons/impala/details.html:214
+#: apps/addons/templates/addons/impala/details.html:216
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Выпущено на условиях <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:215 apps/addons/templates/addons/impala/details.html:220 apps/amo/helpers.py:410 apps/devhub/forms.py:139 apps/devhub/forms.py:169
+#: apps/addons/templates/addons/impala/details.html:217 apps/addons/templates/addons/impala/details.html:222 apps/amo/helpers.py:410 apps/devhub/forms.py:139 apps/devhub/forms.py:169
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Своя лицензия"
 
-#: apps/addons/templates/addons/impala/details.html:219
+#: apps/addons/templates/addons/impala/details.html:221
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Выпущено под <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:232
+#: apps/addons/templates/addons/impala/details.html:234
 msgid "About this App"
 msgstr "Об этом приложении"
 
-#: apps/addons/templates/addons/impala/details.html:234
+#: apps/addons/templates/addons/impala/details.html:236
 msgid "About this Add-on"
 msgstr "Об этом дополнении"
 
-#: apps/addons/templates/addons/impala/details.html:251
+#: apps/addons/templates/addons/impala/details.html:253
 msgid "Developer’s Comments"
 msgstr "Комментарии разработчика"
 
-#: apps/addons/templates/addons/impala/details.html:261
+#: apps/addons/templates/addons/impala/details.html:263
 msgid "Version Information"
 msgstr "Информация о версии "
 
-#: apps/addons/templates/addons/impala/details.html:268
+#: apps/addons/templates/addons/impala/details.html:270
 msgid "See complete version history"
 msgstr "Показать всю историю версий"
 
-#: apps/addons/templates/addons/impala/details.html:280
+#: apps/addons/templates/addons/impala/details.html:282
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
@@ -1260,13 +1258,13 @@ msgstr ""
 "Канал разработки позволяет вам тестировать экспериментальную новую версию этого дополнения перед его релизом для широкой публики. После установки вами разрабатываемой версии, вы будете продолжать "
 "получать обновления по этому каналу. Чтобы перестать получать обновления разрабатываемой версии, переустановите версию по умолчанию по ссылке выше."
 
-#: apps/addons/templates/addons/impala/details.html:291
+#: apps/addons/templates/addons/impala/details.html:293
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>Внимание:</strong>Разрабатываемые версии этого дополнения не были проверены Mozilla."
 
-#: apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331 apps/addons/templates/addons/impala/review_add_box.html:5
-#: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:122
-#: mkt/developers/templates/developers/apps/owner.html:77 mkt/developers/templates/developers/payments/includes/account_list.html:5
+#: apps/addons/templates/addons/impala/details.html:321 apps/addons/templates/addons/impala/details.html:330 apps/addons/templates/addons/impala/details.html:342
+#: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
+#: apps/users/templates/users/profile.html:122 mkt/developers/templates/developers/apps/owner.html:77 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
@@ -1274,42 +1272,42 @@ msgid "close"
 msgstr "закрыть"
 
 #. {0} is an add-on name.
-#: apps/addons/templates/addons/impala/developers.html:5
+#: apps/addons/templates/addons/impala/developers.html:9
 msgid "Thank you for installing {0}"
 msgstr "Благодарим вас за установку {0}"
 
 # %1 is an add-on name.
 #. {0} is an add-on name.
-#: apps/addons/templates/addons/impala/developers.html:8
+#: apps/addons/templates/addons/impala/developers.html:12
 msgid "Meet the {0} Developer"
 msgstr "Познакомьтесь с разработчиком {0}"
 
-#: apps/addons/templates/addons/impala/developers.html:37
+#: apps/addons/templates/addons/impala/developers.html:41
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
 msgstr "Перед загрузкой этого дополнения, пожалуйста, по возможности поддержите развитие этого дополнения, сделав небольшой взнос."
 
 # %1 is an add-on name.
-#: apps/addons/templates/addons/impala/developers.html:76
+#: apps/addons/templates/addons/impala/developers.html:80
 msgid "Why was {0} created?"
 msgstr "Почему был создан {0}?"
 
 # %1 is an add-on name.
-#: apps/addons/templates/addons/impala/developers.html:80
+#: apps/addons/templates/addons/impala/developers.html:84
 msgid "What's next for {0}"
 msgstr "Что запланировано для {0}"
 
-#: apps/addons/templates/addons/impala/developers.html:85
+#: apps/addons/templates/addons/impala/developers.html:89
 msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] "О разработчике"
 msgstr[1] "О разработчиках"
 msgstr[2] "О разработчиках"
 
-#: apps/addons/templates/addons/impala/developers.html:92 apps/users/templates/users/edit.html:111 apps/users/templates/users/profile.html:29
+#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:111 apps/users/templates/users/profile.html:29
 msgid "No Photo"
 msgstr "Нет фото"
 
-#: apps/addons/templates/addons/impala/developers.html:100
+#: apps/addons/templates/addons/impala/developers.html:104
 msgid "Who is {0}?"
 msgstr "Кто такой {0}?"
 
@@ -1386,11 +1384,11 @@ msgstr "Мои дополнения"
 msgid "My Themes"
 msgstr "Мои темы"
 
-#: apps/addons/templates/addons/includes/install_button.html:19
+#: apps/addons/templates/addons/includes/install_button.html:16
 msgid "Purchase for {0}"
 msgstr "Купить за {0}"
 
-#: apps/addons/templates/addons/includes/install_button.html:22
+#: apps/addons/templates/addons/includes/install_button.html:19
 msgid "Add to Firefox"
 msgstr "Добавить в Firefox"
 
@@ -1512,7 +1510,7 @@ msgid "Easy ways to personalize."
 msgstr "Легкие способы персонализации."
 
 #: apps/addons/templates/addons/mobile/home.html:22 apps/devhub/templates/devhub/addons/submit/done.html:61 apps/discovery/templates/discovery/pane.html:35
-#: apps/discovery/templates/discovery/addons/detail.html:29 apps/discovery/templates/discovery/modules/monthly.html:22
+#: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "Подробнее"
 
@@ -1790,7 +1788,7 @@ msgid "Comment on {addon} {version}."
 msgstr "Коментарий о {addon} {version}."
 
 #: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:453
-#: mkt/reviewers/utils.py:447 mkt/reviewers/templates/reviewers/themes/history_table.html:11
+#: mkt/reviewers/utils.py:450 mkt/reviewers/templates/reviewers/themes/history_table.html:11
 msgid "Comment"
 msgstr "Комментарий"
 
@@ -2178,7 +2176,7 @@ msgstr "Предыдущее"
 #: apps/amo/templates/amo/mobile/paginator.html:16 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:37
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:51 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
-#: apps/discovery/templates/discovery/pane.html:46 apps/discovery/templates/discovery/pane.html:72 apps/discovery/templates/discovery/addons/detail.html:54 apps/stats/templates/stats/stats.html:159
+#: apps/discovery/templates/discovery/pane.html:46 apps/discovery/templates/discovery/pane.html:72 apps/discovery/templates/discovery/addons/detail.html:51 apps/stats/templates/stats/stats.html:159
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:29 mkt/developers/templates/developers/apps/includes/validation_test_results.html:43
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:56
 msgid "Next"
@@ -2265,7 +2263,7 @@ msgid "Jump to first page"
 msgstr "Перейти на первую страницу"
 
 #: apps/amo/templates/amo/impala/paginator.html:22 apps/amo/templates/amo/mobile/impala_paginator.html:12 apps/discovery/templates/discovery/pane.html:45
-#: apps/discovery/templates/discovery/pane.html:71 apps/discovery/templates/discovery/addons/detail.html:53 apps/stats/templates/stats/stats.html:156
+#: apps/discovery/templates/discovery/pane.html:71 apps/discovery/templates/discovery/addons/detail.html:50 apps/stats/templates/stats/stats.html:156
 msgid "Previous"
 msgstr "Предыдущее"
 
@@ -2487,7 +2485,7 @@ msgstr "Удалить из избранного"
 
 #: apps/bandwagon/views.py:89 apps/bandwagon/views.py:174 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:81
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/search/forms.py:18 apps/search/forms.py:92 apps/search/forms.py:105
-#: apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/forms_payments.py:558 mkt/developers/views.py:76 mkt/developers/views.py:84
+#: apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/forms_payments.py:559 mkt/developers/views.py:76 mkt/developers/views.py:84
 #: mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:44 mkt/search/forms.py:21
 #: mkt/submit/templates/submit/details.html:57
 msgid "Name"
@@ -2853,7 +2851,7 @@ msgstr ""
 msgid "User"
 msgstr "Пользователь"
 
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:41 apps/devhub/templates/devhub/addons/edit/support.html:20 mkt/developers/forms_payments.py:559
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:41 apps/devhub/templates/devhub/addons/edit/support.html:20 mkt/developers/forms_payments.py:560
 #: mkt/developers/templates/developers/apps/edit/support.html:18 mkt/ecosystem/templates/ecosystem/partners.html:126 mkt/ecosystem/templates/ecosystem/partners.html:127
 #: mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
@@ -2983,7 +2981,7 @@ msgstr "Введите имя включаемого дополнения"
 msgid "Add to Collection"
 msgstr "Добавить в подборку"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:116 mkt/constants/payments.py:7 mkt/reviewers/helpers.py:164 mkt/reviewers/helpers.py:184
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:92 mkt/constants/payments.py:7 mkt/reviewers/helpers.py:164 mkt/reviewers/helpers.py:184
 msgid "Pending"
 msgstr "В ожидании"
 
@@ -3107,7 +3105,7 @@ msgstr "Создано"
 msgid "Downloads"
 msgstr "Загрузки"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/discovery/templates/discovery/addons/detail.html:72 apps/reviews/templates/reviews/add.html:85
+#: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/discovery/templates/discovery/addons/detail.html:69 apps/reviews/templates/reviews/add.html:85
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:80 mkt/reviewers/templates/reviewers/includes/details.html:94
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:114
 msgid "Rating"
@@ -3159,8 +3157,8 @@ msgid "List of language packs and dictionaries available in your locale."
 msgstr "Список локализаций и словарей, доступных для вашего языка."
 
 #. L10n: `Language` as in foul language.
-#: apps/browse/templates/browse/language_tools.html:41 apps/browse/templates/browse/language_tools.html:63 mkt/constants/ratingdescriptors.py:15 mkt/constants/ratingdescriptors.py:47
-#: mkt/constants/ratingdescriptors.py:72 mkt/constants/ratingdescriptors.py:84 mkt/constants/ratingdescriptors.py:101 mkt/developers/templates/developers/apps/edit/language.html:24
+#: apps/browse/templates/browse/language_tools.html:41 apps/browse/templates/browse/language_tools.html:63 mkt/constants/ratingdescriptors.py:48 mkt/constants/ratingdescriptors.py:73
+#: mkt/constants/ratingdescriptors.py:85 mkt/developers/templates/developers/apps/edit/language.html:24
 msgid "Language"
 msgstr "Язык"
 
@@ -3428,7 +3426,7 @@ msgstr "Бинарные"
 msgid "Non-binary"
 msgstr "Не бинарные"
 
-#: apps/compat/views.py:88 apps/constants/base.py:418 apps/constants/payments.py:76 apps/devhub/forms.py:160
+#: apps/compat/views.py:88 apps/constants/base.py:418 apps/constants/payments.py:52 apps/devhub/forms.py:160
 msgid "Other"
 msgstr "Другое"
 
@@ -3452,7 +3450,7 @@ msgstr "Основные 95% всех дополнений"
 msgid "All active add-ons"
 msgstr "Все активные дополнения"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:190 apps/constants/base.py:431 mkt/developers/forms.py:1042 mkt/developers/templates/developers/transactions.html:41
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:190 apps/constants/base.py:431 mkt/developers/forms.py:1043 mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:22
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/queue_region.html:24
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
@@ -3940,139 +3938,47 @@ msgstr "Creative Commons Атрибуция — Без производных п
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Атрибуция — С сохранением условий 3.0"
 
-#: apps/constants/payments.py:18
-msgid "Australian Dollar"
-msgstr "Австралийский доллар"
-
-#: apps/constants/payments.py:19
-msgid "Brazilian Real"
-msgstr "Бразильский реал"
-
-#: apps/constants/payments.py:20
-msgid "Canadian Dollar"
-msgstr "Канадский доллар"
-
-#: apps/constants/payments.py:21
-msgid "Czech Koruna"
-msgstr "Чешская крона"
-
-#: apps/constants/payments.py:22 mkt/constants/bango.py:17
-msgid "Danish Krone"
-msgstr "Датская крона"
-
-#: apps/constants/payments.py:23
-msgid "Euro"
-msgstr "Евро"
-
-#: apps/constants/payments.py:24
-msgid "Hong Kong Dollar"
-msgstr "Гонконгский доллар"
-
-#: apps/constants/payments.py:25
-msgid "Hungarian Forint"
-msgstr "Венгерский форинт"
-
-#: apps/constants/payments.py:26
-msgid "Israeli New Sheqel"
-msgstr "Израильский новый шекель"
-
-#: apps/constants/payments.py:27
-msgid "Japanese Yen"
-msgstr "Японская йена"
-
-#: apps/constants/payments.py:28
-msgid "Malaysian Ringgit"
-msgstr "Малазийский ринггит"
-
-#: apps/constants/payments.py:29
-msgid "Mexican Peso"
-msgstr "Мексиканский песо"
-
-#: apps/constants/payments.py:30 mkt/constants/bango.py:24
-msgid "Norwegian Krone"
-msgstr "Норвежская крона"
-
-#: apps/constants/payments.py:31
-msgid "New Zealand Dollar"
-msgstr "Новозеландский доллар"
-
-#: apps/constants/payments.py:32 mkt/constants/bango.py:26
-msgid "Philippine Peso"
-msgstr "Филиппинский песо"
-
-#: apps/constants/payments.py:33
-msgid "Polish Zloty"
-msgstr "Польский злотый"
-
-#: apps/constants/payments.py:34
-msgid "Pound Sterling"
-msgstr "Фунт стерлингов"
-
-#: apps/constants/payments.py:35
-msgid "Singapore Dollar"
-msgstr "Сингапурский доллар"
-
-#: apps/constants/payments.py:36
-msgid "Swedish Krona"
-msgstr "Шведская крона"
-
-#: apps/constants/payments.py:37
-msgid "Swiss Franc"
-msgstr "Швейцарский франк"
-
-#: apps/constants/payments.py:38
-msgid "Taiwan New Dollar"
-msgstr "Тайваньский новый доллар"
-
-#: apps/constants/payments.py:39 mkt/constants/bango.py:31
-msgid "Thai Baht"
-msgstr "Тайский бат"
-
-#: apps/constants/payments.py:40
-msgid "U.S. Dollar"
-msgstr "Доллар США"
-
-#: apps/constants/payments.py:75 apps/constants/payments.py:83
+#: apps/constants/payments.py:51 apps/constants/payments.py:59
 msgid "Chargeback"
 msgstr "Отзыв"
 
-#: apps/constants/payments.py:77 apps/constants/payments.py:84
+#: apps/constants/payments.py:53 apps/constants/payments.py:60
 msgid "Purchase"
 msgstr "Покупка"
 
-#: apps/constants/payments.py:78 apps/constants/payments.py:85
+#: apps/constants/payments.py:54 apps/constants/payments.py:61
 msgid "Refund"
 msgstr "Возмещение"
 
-#: apps/constants/payments.py:79
+#: apps/constants/payments.py:55
 msgid "Voluntary"
 msgstr "Добровольно"
 
-#: apps/constants/payments.py:122
+#: apps/constants/payments.py:98
 msgid "Approved Instantly"
 msgstr "Мгновенно одобрен"
 
-#: apps/constants/payments.py:125 apps/devhub/templates/devhub/payments/refunds.html:193
+#: apps/constants/payments.py:101 apps/devhub/templates/devhub/payments/refunds.html:193
 msgid "Declined"
 msgstr "Отклонен"
 
-#: apps/constants/payments.py:128 mkt/constants/payments.py:9
+#: apps/constants/payments.py:104 mkt/constants/payments.py:9
 msgid "Failed"
 msgstr "Не удалось"
 
-#: apps/constants/payments.py:132 apps/constants/payments.py:133
+#: apps/constants/payments.py:108 apps/constants/payments.py:109
 msgid "The payment was received, but not completed."
 msgstr ""
 
-#: apps/constants/payments.py:134
+#: apps/constants/payments.py:110
 msgid "The payment failed."
 msgstr "Платёж не прошёл."
 
-#: apps/constants/payments.py:135
+#: apps/constants/payments.py:111
 msgid "The reversal failed."
 msgstr "Отмена не прошла."
 
-#: apps/constants/payments.py:136
+#: apps/constants/payments.py:112
 msgid "The payment was received, but not completed and is awaiting processing."
 msgstr "Платёж был принят, но не завершен и на данный момент находится в процессе ожидания"
 
@@ -4120,7 +4026,7 @@ msgstr "Недавние изменения для %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Недавние изменения для моих дополнений"
 
-#: apps/devhub/forms.py:85 mkt/developers/forms.py:179
+#: apps/devhub/forms.py:85 mkt/developers/forms.py:180
 msgid "Must have at least one owner."
 msgstr "Должно иметь по меньшей мере одного владельца."
 
@@ -4137,7 +4043,7 @@ msgid "Password incorrect."
 msgstr "Пароль неверен."
 
 #: apps/devhub/forms.py:129 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:125 mkt/constants/submit.py:7
-#: mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:498
+#: mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:515
 msgid "Details"
 msgstr "Подробности"
 
@@ -4505,7 +4411,7 @@ msgid "User Reviews"
 msgstr "Отзывы пользователей"
 
 #: apps/devhub/views.py:334 apps/devhub/views.py:338 apps/devhub/views.py:457 apps/devhub/views.py:480 apps/devhub/views.py:527 apps/devhub/views.py:650 apps/devhub/views.py:1333
-#: mkt/developers/views.py:543 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:338 mkt/reviewers/views.py:694
+#: mkt/developers/views.py:543 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:338 mkt/reviewers/views.py:711
 msgid "Changes successfully saved."
 msgstr "Изменения успешно сохранены."
 
@@ -5247,7 +5153,7 @@ msgstr "Нет"
 msgid "Manage Authors & License"
 msgstr "Управление авторами и лицензией"
 
-#: apps/devhub/templates/devhub/addons/owner.html:35 apps/editors/templates/editors/review.html:258 mkt/lookup/templates/lookup/app_summary.html:17
+#: apps/devhub/templates/devhub/addons/owner.html:35 apps/editors/templates/editors/review.html:263 mkt/lookup/templates/lookup/app_summary.html:17
 msgid "Authors"
 msgstr "Авторы"
 
@@ -5307,7 +5213,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Выберите короткий, уникальный URL slug для вашего дополнения."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:49 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:30
-#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:243 mkt/developers/templates/developers/apps/edit/basic.html:60
+#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:248 mkt/developers/templates/developers/apps/edit/basic.html:60
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:96 mkt/developers/templates/developers/includes/addons_edit_nav.html:32 mkt/reviewers/templates/reviewers/review.html:51
 #: mkt/reviewers/templates/reviewers/themes/single.html:33
 msgid "View Listing"
@@ -5657,7 +5563,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:1
-#: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:241 mkt/developers/templates/developers/apps/listing/item_actions.html:1
+#: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:246 mkt/developers/templates/developers/apps/listing/item_actions.html:1
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:1
 msgid "Actions"
 msgstr "Действия"
@@ -8703,7 +8609,7 @@ msgstr "или <a href=\"%(cancel)s\">Отмена</a>"
 msgid "Manage Refunds"
 msgstr "Управление возмещениями"
 
-#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:1047 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
+#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:1048 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
 msgstr "ID транзакции"
 
@@ -9139,7 +9045,7 @@ msgstr "Файлы"
 msgid "Upload Another File"
 msgstr "Загрузить другой файл"
 
-#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:94 mkt/developers/templates/developers/apps/version_edit.html:24
+#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:99 mkt/developers/templates/developers/apps/version_edit.html:24
 #: mkt/reviewers/templates/reviewers/review.html:123
 msgid "Version Notes"
 msgstr "Примечания к версии"
@@ -9156,7 +9062,7 @@ msgstr ""
 msgid "Approval Status"
 msgstr "Статус одобрения"
 
-#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:104 mkt/developers/templates/developers/apps/version_edit.html:39
+#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:109 mkt/developers/templates/developers/apps/version_edit.html:39
 #: mkt/reviewers/templates/reviewers/review.html:133
 msgid "Notes for Reviewers"
 msgstr "Примечания для проверяющих"
@@ -9328,7 +9234,7 @@ msgid "Status"
 msgstr "Состояние"
 
 # Header for a column in a table
-#: apps/devhub/templates/devhub/versions/list.html:177 apps/editors/templates/editors/review.html:66 mkt/reviewers/templates/reviewers/review.html:105
+#: apps/devhub/templates/devhub/versions/list.html:177 apps/editors/templates/editors/review.html:71 mkt/reviewers/templates/reviewers/review.html:105
 msgid "Validation"
 msgstr "Валидация"
 
@@ -9643,11 +9549,11 @@ msgstr "Спасибо за использование %(app)s и поддерж
 msgid "Add-ons downloaded:"
 msgstr "Загруженные дополнения:"
 
-#: apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/discovery/templates/discovery/addons/detail.html:73
 msgid "Active Users"
 msgstr "Активные пользователи"
 
-#: apps/discovery/templates/discovery/addons/detail.html:80
+#: apps/discovery/templates/discovery/addons/detail.html:77
 msgid "Last Updated"
 msgstr "Последнее обновление"
 
@@ -9768,23 +9674,11 @@ msgstr "дополнение, проверяющий или комментари
 msgid "Search by add-on name / author email"
 msgstr "Поиск по имени дополнения/адресу автора"
 
-#: apps/editors/forms.py:86 mkt/ecosystem/templates/ecosystem/publish_payments.html:43 mkt/ecosystem/templates/ecosystem/publish_payments.html:44
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:45 mkt/ecosystem/templates/ecosystem/publish_payments.html:51 mkt/ecosystem/templates/ecosystem/publish_payments.html:52
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:53 mkt/ecosystem/templates/ecosystem/publish_payments.html:54 mkt/ecosystem/templates/ecosystem/publish_payments.html:59
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:67 mkt/ecosystem/templates/ecosystem/publish_payments.html:75 mkt/ecosystem/templates/ecosystem/publish_payments.html:76
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:77 mkt/ecosystem/templates/ecosystem/publish_payments.html:83 mkt/ecosystem/templates/ecosystem/publish_payments.html:84
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:85 mkt/ecosystem/templates/ecosystem/publish_payments.html:86 mkt/ecosystem/templates/ecosystem/publish_payments.html:91
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:92 mkt/ecosystem/templates/ecosystem/publish_payments.html:93 mkt/ecosystem/templates/ecosystem/publish_payments.html:95
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:99 mkt/ecosystem/templates/ecosystem/publish_payments.html:100 mkt/ecosystem/templates/ecosystem/publish_payments.html:101
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:103 mkt/ecosystem/templates/ecosystem/publish_payments.html:107 mkt/ecosystem/templates/ecosystem/publish_payments.html:108
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:109 mkt/ecosystem/templates/ecosystem/publish_payments.html:111
+#: apps/editors/forms.py:86
 msgid "yes"
 msgstr "да"
 
-#: apps/editors/forms.py:87 mkt/ecosystem/templates/ecosystem/publish_payments.html:60 mkt/ecosystem/templates/ecosystem/publish_payments.html:61
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:62 mkt/ecosystem/templates/ecosystem/publish_payments.html:63 mkt/ecosystem/templates/ecosystem/publish_payments.html:68
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:69 mkt/ecosystem/templates/ecosystem/publish_payments.html:70 mkt/ecosystem/templates/ecosystem/publish_payments.html:71
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:94 mkt/ecosystem/templates/ecosystem/publish_payments.html:102 mkt/ecosystem/templates/ecosystem/publish_payments.html:110
+#: apps/editors/forms.py:87
 msgid "no"
 msgstr "нет"
 
@@ -9934,7 +9828,7 @@ msgstr "Тип"
 msgid "Waiting Time"
 msgstr "Время ожидания"
 
-#: apps/editors/helpers.py:185 apps/editors/templates/editors/review.html:280 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
+#: apps/editors/helpers.py:185 apps/editors/templates/editors/review.html:285 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
 #: mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25 mkt/reviewers/templates/reviewers/includes/details.html:145
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:165 mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
@@ -9988,16 +9882,16 @@ msgstr[0] "{0} день"
 msgstr[1] "{0} дня"
 msgstr[2] "{0} дней"
 
-#: apps/editors/helpers.py:436 mkt/reviewers/utils.py:425
+#: apps/editors/helpers.py:436 mkt/reviewers/utils.py:428
 msgid "Push to public"
 msgstr "Поместить в общий доступ"
 
-#: apps/editors/helpers.py:444 mkt/constants/reviewers.py:24 mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43 mkt/reviewers/templates/reviewers/themes/queue.html:71
+#: apps/editors/helpers.py:444 mkt/constants/reviewers.py:24 mkt/reviewers/utils.py:433 mkt/reviewers/templates/reviewers/queue_region.html:43 mkt/reviewers/templates/reviewers/themes/queue.html:71
 #: mkt/reviewers/templates/reviewers/themes/themes.html:93
 msgid "Reject"
 msgstr "Отклонить"
 
-#: apps/editors/helpers.py:447 mkt/reviewers/utils.py:436
+#: apps/editors/helpers.py:447 mkt/reviewers/utils.py:439
 msgid "Request more information"
 msgstr "Запросить дополнительную информацию"
 
@@ -10100,11 +9994,11 @@ msgstr "Содержит комментарий редактора"
 msgid "New Add-ons (Under 5 days)"
 msgstr "Новые дополнения (менее 5 дней)"
 
-#: apps/editors/views.py:122 mkt/reviewers/views.py:80
+#: apps/editors/views.py:122 mkt/reviewers/views.py:81
 msgid "Passable (5 to 10 days)"
 msgstr "Сносно (от 5 до 10 дней)"
 
-#: apps/editors/views.py:123 mkt/reviewers/views.py:81
+#: apps/editors/views.py:123 mkt/reviewers/views.py:82
 msgid "Overdue (Over 10 days)"
 msgstr "Просрочено (более 10 дней)"
 
@@ -10112,11 +10006,11 @@ msgstr "Просрочено (более 10 дней)"
 msgid "An unknown error occurred"
 msgstr "Произошла неизвестная ошибка"
 
-#: apps/editors/views.py:493 mkt/reviewers/views.py:245
+#: apps/editors/views.py:493 mkt/reviewers/views.py:246
 msgid "Self-reviews are not allowed."
 msgstr "Самопроверка не разрешена."
 
-#: apps/editors/views.py:525 mkt/reviewers/views.py:352
+#: apps/editors/views.py:525 mkt/reviewers/views.py:353
 msgid "Review successfully processed."
 msgstr "Проверка успешно обработана."
 
@@ -10129,7 +10023,7 @@ msgid "given preliminary review"
 msgstr "дано предварительное одобрение"
 
 #. L10n: An app is rejected for a particular region.
-#: apps/editors/views.py:707 mkt/webapps/models.py:2108
+#: apps/editors/views.py:707 mkt/webapps/models.py:2156
 msgid "rejected"
 msgstr "отвергнуто"
 
@@ -10312,7 +10206,7 @@ msgstr "Сообщение дня"
 msgid "Update message of the day"
 msgstr "Обновить послание дня"
 
-#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:219 mkt/reviewers/templates/reviewers/motd.html:15 mkt/reviewers/templates/reviewers/review.html:301
+#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:224 mkt/reviewers/templates/reviewers/motd.html:15 mkt/reviewers/templates/reviewers/review.html:301
 msgid "Save"
 msgstr "Сохранить"
 
@@ -10423,83 +10317,83 @@ msgid "Editors' Guide"
 msgstr "Руководство редактора"
 
 #. "Review [add-on name]"
-#: apps/editors/templates/editors/review.html:20
+#: apps/editors/templates/editors/review.html:25
 msgid "Review {0}"
 msgstr "Проверить {0}"
 
-#: apps/editors/templates/editors/review.html:35 apps/editors/templates/editors/review.html:254
+#: apps/editors/templates/editors/review.html:40 apps/editors/templates/editors/review.html:259
 msgid "Add-on History"
 msgstr "История дополнения"
 
-#: apps/editors/templates/editors/review.html:47
+#: apps/editors/templates/editors/review.html:52
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Версия %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
-#: apps/editors/templates/editors/review.html:56 mkt/reviewers/templates/reviewers/review.html:97
+#: apps/editors/templates/editors/review.html:61 mkt/reviewers/templates/reviewers/review.html:97
 msgid "Files in this version:"
 msgstr "Файлы в этой версии:"
 
-#: apps/editors/templates/editors/review.html:68 mkt/reviewers/templates/reviewers/review.html:107
+#: apps/editors/templates/editors/review.html:73 mkt/reviewers/templates/reviewers/review.html:107
 msgid "Contents"
 msgstr "Содержимое"
 
-#: apps/editors/templates/editors/review.html:71 mkt/reviewers/templates/reviewers/review.html:110
+#: apps/editors/templates/editors/review.html:76 mkt/reviewers/templates/reviewers/review.html:110
 msgid "Compare"
 msgstr "Сравнить"
 
-#: apps/editors/templates/editors/review.html:79
+#: apps/editors/templates/editors/review.html:84
 msgid "Compatibility:"
 msgstr "Совместимость:"
 
-#: apps/editors/templates/editors/review.html:120 mkt/reviewers/templates/reviewers/review.html:175
+#: apps/editors/templates/editors/review.html:125 mkt/reviewers/templates/reviewers/review.html:175
 msgid "This version has not been reviewed."
 msgstr "Эта версия не была проверена."
 
-#: apps/editors/templates/editors/review.html:150 mkt/reviewers/templates/reviewers/review.html:219
+#: apps/editors/templates/editors/review.html:155 mkt/reviewers/templates/reviewers/review.html:219
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Вы все ещё можете отправить эту форму, но делайте это, только если вы уверены, что это не вызовет конфликт."
 
-#: apps/editors/templates/editors/review.html:157 mkt/reviewers/templates/reviewers/review.html:226
+#: apps/editors/templates/editors/review.html:162 mkt/reviewers/templates/reviewers/review.html:226
 msgid "Insert canned response..."
 msgstr "Вставить стандартный ответ..."
 
-#: apps/editors/templates/editors/review.html:177
+#: apps/editors/templates/editors/review.html:182
 msgid "Notice: Only review more than one file if you have tested <strong>every</strong> file you select."
 msgstr "Примечание: Оставляйте отзыв более чем на один файл если вы протестировали <strong>каждый</strong> выбранный вами файл."
 
-#: apps/editors/templates/editors/review.html:185
+#: apps/editors/templates/editors/review.html:190
 msgid "Tested on:"
 msgstr "Протестировано на:"
 
-#: apps/editors/templates/editors/review.html:215 mkt/reviewers/templates/reviewers/review.html:297
+#: apps/editors/templates/editors/review.html:220 mkt/reviewers/templates/reviewers/review.html:297
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Предупреждение!</strong> До вас другой пользователь просматривал эту страницу."
 
-#: apps/editors/templates/editors/review.html:234
+#: apps/editors/templates/editors/review.html:239
 msgid "%(current)s of %(total)s"
 msgstr "%(current)s из %(total)s"
 
-#: apps/editors/templates/editors/review.html:245 apps/editors/templates/editors/review.html:246
+#: apps/editors/templates/editors/review.html:250 apps/editors/templates/editors/review.html:251
 msgid "(admin)"
 msgstr "(админ)"
 
-#: apps/editors/templates/editors/review.html:246
+#: apps/editors/templates/editors/review.html:251
 msgid "Admin Page"
 msgstr "Страница администратора"
 
-#: apps/editors/templates/editors/review.html:251
+#: apps/editors/templates/editors/review.html:256
 msgid "Review This Add-on"
 msgstr "Проверить это дополнение"
 
-#: apps/editors/templates/editors/review.html:253 mkt/reviewers/templates/reviewers/review.html:59
+#: apps/editors/templates/editors/review.html:258 mkt/reviewers/templates/reviewers/review.html:59
 msgid "More Information"
 msgstr "Дополнительная информация"
 
-#: apps/editors/templates/editors/review.html:255 mkt/reviewers/templates/reviewers/review.html:61
+#: apps/editors/templates/editors/review.html:260 mkt/reviewers/templates/reviewers/review.html:61
 msgid "Resolution"
 msgstr "Разрешение"
 
-#: apps/editors/templates/editors/review.html:273
+#: apps/editors/templates/editors/review.html:278
 msgid "Premium type"
 msgstr "Тип премиум"
 
@@ -10852,7 +10746,7 @@ msgid "E-Mail Your Team:"
 msgstr "Отправьте письмо вашей команде:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8 apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12 mkt/constants/submit.py:6
-#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:128
+#: mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
 msgid "Submit"
 msgstr "Отправить"
 
@@ -10889,7 +10783,7 @@ msgid "Locale name"
 msgstr "Имя локали"
 
 #. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:77
+#: apps/market/models.py:78
 msgid "Tier %s"
 msgstr "Уровень %s"
 
@@ -13077,11 +12971,11 @@ msgstr "Пользователей зарегистрировано"
 msgid "Custom Date Range"
 msgstr "Настроенный диапазон дат"
 
-#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:1053
+#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:1054
 msgid "From"
 msgstr "От"
 
-#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:1056
+#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:1057
 msgid "To"
 msgstr "До"
 
@@ -14135,7 +14029,7 @@ msgstr "Дополнение содержит бинарные компонен�
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:695
+#: apps/versions/models.py:692
 msgid "{app} {min} and later"
 msgstr "{app} {min} и выше"
 
@@ -14278,1075 +14172,1007 @@ msgstr ""
 msgid "Reviewer"
 msgstr "Редактор"
 
-#: mkt/constants/bango.py:7 mkt/constants/bango.py:32
-msgid "US Dollars"
-msgstr "Доллары США"
-
-#: mkt/constants/bango.py:8 mkt/constants/bango.py:20
-msgid "Pounds Sterling"
-msgstr "Фунт стерлингов"
-
-#: mkt/constants/bango.py:9 mkt/constants/bango.py:19
-msgid "Euros"
-msgstr "Евро"
-
-#: mkt/constants/bango.py:13
-msgid "Australian Dollars"
-msgstr "Австралийские доллары"
-
-#: mkt/constants/bango.py:14
-msgid "Canadian Dollars"
-msgstr "Канадские доллары"
-
-#: mkt/constants/bango.py:15
-msgid "Swiss Francs"
-msgstr "Швейцарские франки"
-
-#: mkt/constants/bango.py:16
-msgid "Colombian Pesos"
-msgstr "Колумбийские песо"
-
-#: mkt/constants/bango.py:18
-msgid "Egyptian Pound"
-msgstr "Египетские фунты"
-
-#: mkt/constants/bango.py:21
-msgid "Indonesian Rupiah"
-msgstr "Индонезийская рупия"
-
-#: mkt/constants/bango.py:22
-msgid "Mexican Pesos"
-msgstr "Мексиканские песо"
-
-#: mkt/constants/bango.py:23
-msgid "Malaysian Ringgits"
-msgstr "Малазийские ринггиты"
-
-#: mkt/constants/bango.py:25
-msgid "New Zealand Dollars"
-msgstr "Новозеландские доллары"
-
-#: mkt/constants/bango.py:27
-msgid "Polish Złoty"
-msgstr "Польский злотый"
-
-#: mkt/constants/bango.py:28
-msgid "Qatar Riyal"
-msgstr "Катарский риал"
-
-#: mkt/constants/bango.py:29
-msgid "Swedish Kronor"
-msgstr "Шведские кроны"
-
-#: mkt/constants/bango.py:30
-msgid "Singapore Dollars"
-msgstr "Сингапурские доллары"
-
-#: mkt/constants/bango.py:33
-msgid "South African Rand"
-msgstr "Южноафриканский ранд"
-
-#: mkt/constants/bango.py:39
+#: mkt/constants/bango.py:17
 msgid "Afghanistan"
 msgstr "Афганистан"
 
-#: mkt/constants/bango.py:40
+#: mkt/constants/bango.py:18
 msgid "Åland Islands"
 msgstr "Аландские острова"
 
-#: mkt/constants/bango.py:41
+#: mkt/constants/bango.py:19
 msgid "Albania"
 msgstr "Албания"
 
-#: mkt/constants/bango.py:42
+#: mkt/constants/bango.py:20
 msgid "Algeria"
 msgstr "Алжир"
 
-#: mkt/constants/bango.py:43
+#: mkt/constants/bango.py:21
 msgid "American Samoa"
 msgstr "Американское Самоа"
 
-#: mkt/constants/bango.py:44
+#: mkt/constants/bango.py:22
 msgid "Andorra"
 msgstr "Андорра"
 
-#: mkt/constants/bango.py:45
+#: mkt/constants/bango.py:23
 msgid "Angola"
 msgstr "Ангола"
 
-#: mkt/constants/bango.py:46
+#: mkt/constants/bango.py:24
 msgid "Anguilla"
 msgstr "Ангилья"
 
-#: mkt/constants/bango.py:47
+#: mkt/constants/bango.py:25
 msgid "Antarctica"
 msgstr "Антарктика"
 
-#: mkt/constants/bango.py:48
+#: mkt/constants/bango.py:26
 msgid "Antigua and Barbuda"
 msgstr "Антигуа и Барбуда"
 
-#: mkt/constants/bango.py:49 mkt/constants/regions.py:209
+#: mkt/constants/bango.py:27 mkt/constants/regions.py:209
 msgid "Argentina"
 msgstr "Аргентина"
 
-#: mkt/constants/bango.py:50
+#: mkt/constants/bango.py:28
 msgid "Armenia"
 msgstr "Армения"
 
-#: mkt/constants/bango.py:51
+#: mkt/constants/bango.py:29
 msgid "Aruba"
 msgstr "Аруба"
 
-#: mkt/constants/bango.py:52
+#: mkt/constants/bango.py:30
 msgid "Australia"
 msgstr "Австралия"
 
-#: mkt/constants/bango.py:53
+#: mkt/constants/bango.py:31
 msgid "Austria"
 msgstr "Австрия"
 
-#: mkt/constants/bango.py:54
+#: mkt/constants/bango.py:32
 msgid "Azerbaijan"
 msgstr "Азербайджан"
 
-#: mkt/constants/bango.py:55
+#: mkt/constants/bango.py:33
 msgid "Bahamas"
 msgstr "Багамские острова"
 
-#: mkt/constants/bango.py:56
+#: mkt/constants/bango.py:34
 msgid "Bahrain"
 msgstr "Бахрейн"
 
-#: mkt/constants/bango.py:57
+#: mkt/constants/bango.py:35
 msgid "Bangladesh"
 msgstr "Бангладеш"
 
-#: mkt/constants/bango.py:58
+#: mkt/constants/bango.py:36
 msgid "Barbados"
 msgstr "Барбадос"
 
-#: mkt/constants/bango.py:59
+#: mkt/constants/bango.py:37
 msgid "Belarus"
 msgstr "Беларусь"
 
-#: mkt/constants/bango.py:60
+#: mkt/constants/bango.py:38
 msgid "Belgium"
 msgstr "Бельгия"
 
-#: mkt/constants/bango.py:61
+#: mkt/constants/bango.py:39
 msgid "Belize"
 msgstr "Белиз"
 
-#: mkt/constants/bango.py:62
+#: mkt/constants/bango.py:40
 msgid "Benin"
 msgstr "Бенин"
 
-#: mkt/constants/bango.py:63
+#: mkt/constants/bango.py:41
 msgid "Bermuda"
 msgstr "Бермудские острова"
 
-#: mkt/constants/bango.py:64
+#: mkt/constants/bango.py:42
 msgid "Bhutan"
 msgstr "Бутан"
 
-#: mkt/constants/bango.py:65
+#: mkt/constants/bango.py:43
 msgid "Bolivia"
 msgstr "Боливия"
 
-#: mkt/constants/bango.py:66
+#: mkt/constants/bango.py:44
 msgid "Bonaire, Saint Eustatius and Saba"
 msgstr "Бонайре, Сен-Эстатиус и Саба"
 
-#: mkt/constants/bango.py:67
+#: mkt/constants/bango.py:45
 msgid "Bosnia and Herzegovina"
 msgstr "Босния и Герцеговина"
 
-#: mkt/constants/bango.py:68
+#: mkt/constants/bango.py:46
 msgid "Botswana"
 msgstr "Ботсвана"
 
-#: mkt/constants/bango.py:69
+#: mkt/constants/bango.py:47
 msgid "Bouvet Island"
 msgstr "Остров Буве"
 
-#: mkt/constants/bango.py:70 mkt/constants/ratingsbodies.py:98 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:48 mkt/constants/ratingsbodies.py:98 mkt/constants/regions.py:81
 msgid "Brazil"
 msgstr "Бразилия"
 
-#: mkt/constants/bango.py:71
+#: mkt/constants/bango.py:49
 msgid "British Indian Ocean Territory"
 msgstr "Британская территория Индийского океана"
 
-#: mkt/constants/bango.py:72
+#: mkt/constants/bango.py:50
 msgid "Brunei Darussalam"
 msgstr "Бруней Дар-эс-Салам"
 
-#: mkt/constants/bango.py:73
+#: mkt/constants/bango.py:51
 msgid "Bulgaria"
 msgstr "Болгария"
 
-#: mkt/constants/bango.py:74
+#: mkt/constants/bango.py:52
 msgid "Burkina Faso"
 msgstr "Буркина-Фасо"
 
-#: mkt/constants/bango.py:75
+#: mkt/constants/bango.py:53
 msgid "Burundi"
 msgstr "Бурунди"
 
-#: mkt/constants/bango.py:76
+#: mkt/constants/bango.py:54
 msgid "Cambodia"
 msgstr "Камбоджа"
 
-#: mkt/constants/bango.py:77
+#: mkt/constants/bango.py:55
 msgid "Cameroon"
 msgstr "Камерун"
 
-#: mkt/constants/bango.py:78
+#: mkt/constants/bango.py:56
 msgid "Canada"
 msgstr "Канада"
 
-#: mkt/constants/bango.py:79
+#: mkt/constants/bango.py:57
 msgid "Cape Verde"
 msgstr "Кабо-Верде"
 
-#: mkt/constants/bango.py:80
+#: mkt/constants/bango.py:58
 msgid "Cayman Islands"
 msgstr "Каймановы острова"
 
-#: mkt/constants/bango.py:81
+#: mkt/constants/bango.py:59
 msgid "Central African Republic"
 msgstr "Центральноафриканская Республика"
 
-#: mkt/constants/bango.py:82
+#: mkt/constants/bango.py:60
 msgid "Chad"
 msgstr "Чад"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:239
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:239
 msgid "Chile"
 msgstr "Чили"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:219
+#: mkt/constants/bango.py:62 mkt/constants/regions.py:219
 msgid "China"
 msgstr "Китай"
 
-#: mkt/constants/bango.py:85
+#: mkt/constants/bango.py:63
 msgid "Christmas Island"
 msgstr "Остров Рождества"
 
-#: mkt/constants/bango.py:86
+#: mkt/constants/bango.py:64
 msgid "Cocos (Keeling) Islands"
 msgstr "Кокосовые (Килинг) острова"
 
-#: mkt/constants/bango.py:87 mkt/constants/regions.py:101 mkt/ecosystem/templates/ecosystem/publish_payments.html:42
+#: mkt/constants/bango.py:65 mkt/constants/regions.py:101
 msgid "Colombia"
 msgstr "Колумбия"
 
-#: mkt/constants/bango.py:88
+#: mkt/constants/bango.py:66
 msgid "Comoros"
 msgstr "Коморские острова"
 
-#: mkt/constants/bango.py:89
+#: mkt/constants/bango.py:67
 msgid "Congo"
 msgstr "Конго"
 
-#: mkt/constants/bango.py:90
+#: mkt/constants/bango.py:68
 msgid "Congo, Democratic Republic"
 msgstr "Конго, Демократическая Республика"
 
-#: mkt/constants/bango.py:91
+#: mkt/constants/bango.py:69
 msgid "Cook Islands"
 msgstr "Острова Кука"
 
-#: mkt/constants/bango.py:92
+#: mkt/constants/bango.py:70
 msgid "Costa Rica"
 msgstr "Коста-Рика"
 
-#: mkt/constants/bango.py:93
+#: mkt/constants/bango.py:71
 msgid "Côte d'Ivoire"
 msgstr "Кот д ' Ивуар"
 
-#: mkt/constants/bango.py:94
+#: mkt/constants/bango.py:72
 msgid "Croatia"
 msgstr "Хорватия"
 
-#: mkt/constants/bango.py:95
+#: mkt/constants/bango.py:73
 msgid "Cuba"
 msgstr "Куба"
 
-#: mkt/constants/bango.py:96
+#: mkt/constants/bango.py:74
 msgid "Curaçao"
 msgstr "Кюрасао"
 
-#: mkt/constants/bango.py:97
+#: mkt/constants/bango.py:75
 msgid "Cyprus"
 msgstr "Кипр"
 
-#: mkt/constants/bango.py:98
+#: mkt/constants/bango.py:76
 msgid "Czech Republic"
 msgstr "Чехия"
 
-#: mkt/constants/bango.py:99
+#: mkt/constants/bango.py:77
 msgid "Denmark Do"
 msgstr "Дания"
 
-#: mkt/constants/bango.py:100
+#: mkt/constants/bango.py:78
 msgid "Djibouti"
 msgstr "Джибути"
 
-#: mkt/constants/bango.py:101
+#: mkt/constants/bango.py:79
 msgid "Dominica"
 msgstr "Доминика"
 
-#: mkt/constants/bango.py:102
+#: mkt/constants/bango.py:80
 msgid "Dominican Republic"
 msgstr "Доминиканская Республика"
 
-#: mkt/constants/bango.py:103
+#: mkt/constants/bango.py:81
 msgid "Ecuador"
 msgstr "Эквадор"
 
-#: mkt/constants/bango.py:104
+#: mkt/constants/bango.py:82
 msgid "Egypt"
 msgstr "Египет"
 
-#: mkt/constants/bango.py:105
+#: mkt/constants/bango.py:83
 msgid "El Salvador"
 msgstr "Сальвадор"
 
-#: mkt/constants/bango.py:106
+#: mkt/constants/bango.py:84
 msgid "Equatorial Guinea"
 msgstr "Экваториальная Гвинея"
 
-#: mkt/constants/bango.py:107
+#: mkt/constants/bango.py:85
 msgid "Eritrea"
 msgstr "Эритрея"
 
-#: mkt/constants/bango.py:108
+#: mkt/constants/bango.py:86
 msgid "Estonia"
 msgstr "Эстония"
 
-#: mkt/constants/bango.py:109
+#: mkt/constants/bango.py:87
 msgid "Ethiopia"
 msgstr "Эфиопия"
 
-#: mkt/constants/bango.py:110
+#: mkt/constants/bango.py:88
 msgid "Falkland Islands (Malvinas)"
 msgstr "Фолклендские (Мальвинские) острова"
 
-#: mkt/constants/bango.py:111
+#: mkt/constants/bango.py:89
 msgid "Faroe Islands"
 msgstr "Фарерские о-ва"
 
-#: mkt/constants/bango.py:112
+#: mkt/constants/bango.py:90
 msgid "Fiji"
 msgstr "Фиджи"
 
-#: mkt/constants/bango.py:113
+#: mkt/constants/bango.py:91
 msgid "Finland"
 msgstr "Финляндия"
 
-#: mkt/constants/bango.py:114
+#: mkt/constants/bango.py:92
 msgid "France"
 msgstr "Франция"
 
-#: mkt/constants/bango.py:115
+#: mkt/constants/bango.py:93
 msgid "French Guiana"
 msgstr "Французская Гвиана"
 
-#: mkt/constants/bango.py:116
+#: mkt/constants/bango.py:94
 msgid "French Polynesia"
 msgstr "Французская Полинезия"
 
-#: mkt/constants/bango.py:117
+#: mkt/constants/bango.py:95
 msgid "French Southern Territories"
 msgstr "Французские южные территории"
 
-#: mkt/constants/bango.py:118
+#: mkt/constants/bango.py:96
 msgid "Gabon"
 msgstr "Габон"
 
-#: mkt/constants/bango.py:119
+#: mkt/constants/bango.py:97
 msgid "Gambia"
 msgstr "Гамбия"
 
-#: mkt/constants/bango.py:120
+#: mkt/constants/bango.py:98
 msgid "Georgia"
 msgstr "Грузия"
 
-#: mkt/constants/bango.py:121 mkt/constants/ratingsbodies.py:207 mkt/constants/regions.py:151 mkt/ecosystem/templates/ecosystem/publish_payments.html:50
+#: mkt/constants/bango.py:99 mkt/constants/ratingsbodies.py:207 mkt/constants/regions.py:151
 msgid "Germany"
 msgstr "Германия"
 
-#: mkt/constants/bango.py:122
+#: mkt/constants/bango.py:100
 msgid "Ghana"
 msgstr "Гана"
 
-#: mkt/constants/bango.py:123
+#: mkt/constants/bango.py:101
 msgid "Gibraltar"
 msgstr "Гибралтар"
 
-#: mkt/constants/bango.py:124 mkt/constants/regions.py:179
+#: mkt/constants/bango.py:102 mkt/constants/regions.py:179
 msgid "Greece"
 msgstr "Греция"
 
-#: mkt/constants/bango.py:125
+#: mkt/constants/bango.py:103
 msgid "Greenland"
 msgstr "Гренландия"
 
-#: mkt/constants/bango.py:126
+#: mkt/constants/bango.py:104
 msgid "Grenada"
 msgstr "Гренада"
 
-#: mkt/constants/bango.py:127
+#: mkt/constants/bango.py:105
 msgid "Guadeloupe"
 msgstr "Гваделупа"
 
-#: mkt/constants/bango.py:128
+#: mkt/constants/bango.py:106
 msgid "Guam"
 msgstr "Гуам"
 
-#: mkt/constants/bango.py:129
+#: mkt/constants/bango.py:107
 msgid "Guatemala"
 msgstr "Гватемала"
 
-#: mkt/constants/bango.py:130
+#: mkt/constants/bango.py:108
 msgid "Guernsey"
 msgstr "Гернси"
 
-#: mkt/constants/bango.py:131
+#: mkt/constants/bango.py:109
 msgid "Guinea"
 msgstr "Гвинея"
 
-#: mkt/constants/bango.py:132
+#: mkt/constants/bango.py:110
 msgid "Guinea-Bissau"
 msgstr "Гвинея-Бисау"
 
-#: mkt/constants/bango.py:133
+#: mkt/constants/bango.py:111
 msgid "Guyana"
 msgstr "Гайана"
 
-#: mkt/constants/bango.py:134
+#: mkt/constants/bango.py:112
 msgid "Haiti"
 msgstr "Гаити"
 
-#: mkt/constants/bango.py:135
+#: mkt/constants/bango.py:113
 msgid "Heard and McDonald Islands"
 msgstr "Острова Хёрд и Макдональд"
 
-#: mkt/constants/bango.py:136
+#: mkt/constants/bango.py:114
 msgid "Holy See (Vatican City State)"
 msgstr "Святейший Престол (Ватикан)"
 
-#: mkt/constants/bango.py:137
+#: mkt/constants/bango.py:115
 msgid "Honduras"
 msgstr "Гондурас"
 
-#: mkt/constants/bango.py:138
+#: mkt/constants/bango.py:116
 msgid "Hong Kong"
 msgstr "Гонконг"
 
-#: mkt/constants/bango.py:139 mkt/constants/regions.py:141 mkt/ecosystem/templates/ecosystem/publish_payments.html:58
+#: mkt/constants/bango.py:117 mkt/constants/regions.py:141
 msgid "Hungary"
 msgstr "Венгрия"
 
-#: mkt/constants/bango.py:140
+#: mkt/constants/bango.py:118
 msgid "Iceland"
 msgstr "Исландия"
 
-#: mkt/constants/bango.py:141
+#: mkt/constants/bango.py:119
 msgid "India"
 msgstr "Индия"
 
-#: mkt/constants/bango.py:142
+#: mkt/constants/bango.py:120
 msgid "Indonesia"
 msgstr "Индонезия"
 
-#: mkt/constants/bango.py:143
+#: mkt/constants/bango.py:121
 msgid "Iran, Islamic Republic of"
 msgstr "Иран"
 
-#: mkt/constants/bango.py:144
+#: mkt/constants/bango.py:122
 msgid "Iraq"
 msgstr "Ирак"
 
-#: mkt/constants/bango.py:145
+#: mkt/constants/bango.py:123
 msgid "Ireland"
 msgstr "Ирландия"
 
-#: mkt/constants/bango.py:146
+#: mkt/constants/bango.py:124
 msgid "Isle of Man"
 msgstr "Остров Мэн"
 
-#: mkt/constants/bango.py:147
+#: mkt/constants/bango.py:125
 msgid "Israel"
 msgstr "Израиль"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:229
+#: mkt/constants/bango.py:126 mkt/constants/regions.py:229
 msgid "Italy"
 msgstr "Италия"
 
-#: mkt/constants/bango.py:149
+#: mkt/constants/bango.py:127
 msgid "Jamaica"
 msgstr "Ямайка"
 
-#: mkt/constants/bango.py:150
+#: mkt/constants/bango.py:128
 msgid "Japan"
 msgstr "Япония"
 
-#: mkt/constants/bango.py:151
+#: mkt/constants/bango.py:129
 msgid "Jersey"
 msgstr "Джерси"
 
-#: mkt/constants/bango.py:152
+#: mkt/constants/bango.py:130
 msgid "Jordan"
 msgstr "Иордания"
 
-#: mkt/constants/bango.py:153
+#: mkt/constants/bango.py:131
 msgid "Kazakhstan"
 msgstr "Казахстан"
 
-#: mkt/constants/bango.py:154
+#: mkt/constants/bango.py:132
 msgid "Kenya"
 msgstr "Кения"
 
-#: mkt/constants/bango.py:155
+#: mkt/constants/bango.py:133
 msgid "Kiribati"
 msgstr "Кирибати"
 
-#: mkt/constants/bango.py:156
+#: mkt/constants/bango.py:134
 msgid "Korea, Democratic People's Rep"
 msgstr "КНДР"
 
-#: mkt/constants/bango.py:157
+#: mkt/constants/bango.py:135
 msgid "Korea, Republic of"
 msgstr "Республика Корея"
 
-#: mkt/constants/bango.py:158
+#: mkt/constants/bango.py:136
 msgid "Kosovo"
 msgstr "Косово"
 
-#: mkt/constants/bango.py:159
+#: mkt/constants/bango.py:137
 msgid "Kuwait"
 msgstr "Кувейт"
 
-#: mkt/constants/bango.py:160
+#: mkt/constants/bango.py:138
 msgid "Kyrgyzstan"
 msgstr "Киргизия"
 
-#: mkt/constants/bango.py:161
+#: mkt/constants/bango.py:139
 msgid "Lao People's Democratic Rep"
 msgstr "Лаос"
 
-#: mkt/constants/bango.py:162
+#: mkt/constants/bango.py:140
 msgid "Latvia"
 msgstr "Латвия"
 
-#: mkt/constants/bango.py:163
+#: mkt/constants/bango.py:141
 msgid "Lebanon"
 msgstr "Ливан"
 
-#: mkt/constants/bango.py:164
+#: mkt/constants/bango.py:142
 msgid "Lesotho"
 msgstr "Лесото"
 
-#: mkt/constants/bango.py:165
+#: mkt/constants/bango.py:143
 msgid "Liberia"
 msgstr "Либерия"
 
-#: mkt/constants/bango.py:166
+#: mkt/constants/bango.py:144
 msgid "Libyan Arab Jamahiriya"
 msgstr "Ливия"
 
-#: mkt/constants/bango.py:167
+#: mkt/constants/bango.py:145
 msgid "Liechtenstei"
 msgstr "Лихтенштейн"
 
-#: mkt/constants/bango.py:168
+#: mkt/constants/bango.py:146
 msgid "Lithuania"
 msgstr "Литва"
 
-#: mkt/constants/bango.py:169
+#: mkt/constants/bango.py:147
 msgid "Luxembourg"
 msgstr "Люксембург"
 
-#: mkt/constants/bango.py:170
+#: mkt/constants/bango.py:148
 msgid "Macao"
 msgstr "Макао"
 
-#: mkt/constants/bango.py:171
+#: mkt/constants/bango.py:149
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "Македония"
 
-#: mkt/constants/bango.py:172
+#: mkt/constants/bango.py:150
 msgid "Madagascar"
 msgstr "Мадагаскар"
 
-#: mkt/constants/bango.py:173
+#: mkt/constants/bango.py:151
 msgid "Malawi"
 msgstr "Малави"
 
-#: mkt/constants/bango.py:174
+#: mkt/constants/bango.py:152
 msgid "Malaysia"
 msgstr "Малайзия"
 
-#: mkt/constants/bango.py:175
+#: mkt/constants/bango.py:153
 msgid "Maldives"
 msgstr "Мальдивские острова"
 
-#: mkt/constants/bango.py:176
+#: mkt/constants/bango.py:154
 msgid "Mali"
 msgstr "Мали"
 
-#: mkt/constants/bango.py:177
+#: mkt/constants/bango.py:155
 msgid "Malta"
 msgstr "Мальта"
 
-#: mkt/constants/bango.py:178
+#: mkt/constants/bango.py:156
 msgid "Marshall Islands"
 msgstr "Маршалловы Острова"
 
-#: mkt/constants/bango.py:179
+#: mkt/constants/bango.py:157
 msgid "Martinique"
 msgstr "Мартиника"
 
-#: mkt/constants/bango.py:180
+#: mkt/constants/bango.py:158
 msgid "Mauritania"
 msgstr "Мавритания"
 
-#: mkt/constants/bango.py:181
+#: mkt/constants/bango.py:159
 msgid "Mauritius"
 msgstr "Маврикий"
 
-#: mkt/constants/bango.py:182
+#: mkt/constants/bango.py:160
 msgid "Mayotte"
 msgstr "Майотта"
 
-#: mkt/constants/bango.py:183 mkt/constants/regions.py:131 mkt/ecosystem/templates/ecosystem/publish_payments.html:66
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:131
 msgid "Mexico"
 msgstr "Мексика"
 
-#: mkt/constants/bango.py:184
+#: mkt/constants/bango.py:162
 msgid "Micronesia, Federated States of"
 msgstr "Микронезия"
 
-#: mkt/constants/bango.py:185
+#: mkt/constants/bango.py:163
 msgid "Moldova, Republic of"
 msgstr "Молдова"
 
-#: mkt/constants/bango.py:186
+#: mkt/constants/bango.py:164
 msgid "Monaco"
 msgstr "Монако"
 
-#: mkt/constants/bango.py:187
+#: mkt/constants/bango.py:165
 msgid "Mongolia"
 msgstr "Монголия"
 
-#: mkt/constants/bango.py:188 mkt/constants/regions.py:161
+#: mkt/constants/bango.py:166 mkt/constants/regions.py:161
 msgid "Montenegro"
 msgstr "Черногория"
 
-#: mkt/constants/bango.py:189
+#: mkt/constants/bango.py:167
 msgid "Montserrat"
 msgstr "Монтсеррат"
 
-#: mkt/constants/bango.py:190
+#: mkt/constants/bango.py:168
 msgid "Morocco"
 msgstr "Марокко"
 
-#: mkt/constants/bango.py:191
+#: mkt/constants/bango.py:169
 msgid "Mozambique"
 msgstr "Мозамбик"
 
-#: mkt/constants/bango.py:192
+#: mkt/constants/bango.py:170
 msgid "Myanmar"
 msgstr "Мьянма"
 
-#: mkt/constants/bango.py:193
+#: mkt/constants/bango.py:171
 msgid "Namibia"
 msgstr "Намибия"
 
-#: mkt/constants/bango.py:194
+#: mkt/constants/bango.py:172
 msgid "Nauru"
 msgstr "Науру"
 
-#: mkt/constants/bango.py:195
+#: mkt/constants/bango.py:173
 msgid "Nepal"
 msgstr "Непал"
 
-#: mkt/constants/bango.py:196
+#: mkt/constants/bango.py:174
 msgid "Netherlands"
 msgstr "Нидерланды"
 
-#: mkt/constants/bango.py:197
+#: mkt/constants/bango.py:175
 msgid "New Caledonia"
 msgstr "Новая Каледония"
 
-#: mkt/constants/bango.py:198
+#: mkt/constants/bango.py:176
 msgid "New Zealand"
 msgstr "Новая Зеландия"
 
-#: mkt/constants/bango.py:199
+#: mkt/constants/bango.py:177
 msgid "Nicaragua"
 msgstr "Никарагуа"
 
-#: mkt/constants/bango.py:200
+#: mkt/constants/bango.py:178
 msgid "Niger"
 msgstr "Нигер"
 
-#: mkt/constants/bango.py:201
+#: mkt/constants/bango.py:179
 msgid "Nigeria"
 msgstr "Нигерия"
 
-#: mkt/constants/bango.py:202
+#: mkt/constants/bango.py:180
 msgid "Niue"
 msgstr "Ниуэ"
 
-#: mkt/constants/bango.py:203
+#: mkt/constants/bango.py:181
 msgid "Norfolk Island"
 msgstr "Остров Норфолк"
 
-#: mkt/constants/bango.py:204
+#: mkt/constants/bango.py:182
 msgid "Northern Mariana Islands"
 msgstr "Северные Марианские острова"
 
-#: mkt/constants/bango.py:205
+#: mkt/constants/bango.py:183
 msgid "Norway"
 msgstr "Норвегия"
 
-#: mkt/constants/bango.py:206
+#: mkt/constants/bango.py:184
 msgid "Oman"
 msgstr "Оман"
 
-#: mkt/constants/bango.py:207
+#: mkt/constants/bango.py:185
 msgid "Pakistan"
 msgstr "Пакистан"
 
-#: mkt/constants/bango.py:208
+#: mkt/constants/bango.py:186
 msgid "Palau"
 msgstr "Палау"
 
-#: mkt/constants/bango.py:209
+#: mkt/constants/bango.py:187
 msgid "Palestinian Territory, Occupied"
 msgstr "Палестинская территория"
 
-#: mkt/constants/bango.py:210
+#: mkt/constants/bango.py:188
 msgid "Panama"
 msgstr "Панама"
 
-#: mkt/constants/bango.py:211
+#: mkt/constants/bango.py:189
 msgid "Papua New Guinea"
 msgstr "Папуа-Новая Гвинея"
 
-#: mkt/constants/bango.py:212
+#: mkt/constants/bango.py:190
 msgid "Paraguay"
 msgstr "Парагвай"
 
-#: mkt/constants/bango.py:213 mkt/constants/regions.py:189
+#: mkt/constants/bango.py:191 mkt/constants/regions.py:189
 msgid "Peru"
 msgstr "Перу"
 
-#: mkt/constants/bango.py:214
+#: mkt/constants/bango.py:192
 msgid "Philippines"
 msgstr "Филиппины"
 
-#: mkt/constants/bango.py:215
+#: mkt/constants/bango.py:193
 msgid "Pitcairn"
 msgstr "Питкэрн"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:121 mkt/ecosystem/templates/ecosystem/publish_payments.html:74
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:121
 msgid "Poland"
 msgstr "Польша"
 
-#: mkt/constants/bango.py:217
+#: mkt/constants/bango.py:195
 msgid "Portugal"
 msgstr "Португалия"
 
-#: mkt/constants/bango.py:218
+#: mkt/constants/bango.py:196
 msgid "Puerto Rico"
 msgstr "Пуэрто-Рико"
 
-#: mkt/constants/bango.py:219
+#: mkt/constants/bango.py:197
 msgid "Qatar"
 msgstr "Катар"
 
-#: mkt/constants/bango.py:220
+#: mkt/constants/bango.py:198
 msgid "Réunion"
 msgstr "Реюньон"
 
-#: mkt/constants/bango.py:221
+#: mkt/constants/bango.py:199
 msgid "Romania"
 msgstr "Румыния"
 
-#: mkt/constants/bango.py:222
+#: mkt/constants/bango.py:200
 msgid "Russian Federation"
 msgstr "Российская Федерация"
 
-#: mkt/constants/bango.py:223
+#: mkt/constants/bango.py:201
 msgid "Rwanda"
 msgstr "Руанда"
 
-#: mkt/constants/bango.py:224
+#: mkt/constants/bango.py:202
 msgid "Saint Barthélemy"
 msgstr "Сен-Бартельми"
 
-#: mkt/constants/bango.py:225
+#: mkt/constants/bango.py:203
 msgid "Saint Helena"
 msgstr "Остров Святой Елены"
 
-#: mkt/constants/bango.py:226
+#: mkt/constants/bango.py:204
 msgid "Saint Kitts and Nevis"
 msgstr "Сент-Китс и Невис"
 
-#: mkt/constants/bango.py:227
+#: mkt/constants/bango.py:205
 msgid "Saint Lucia"
 msgstr "Сент-Люсия"
 
-#: mkt/constants/bango.py:228
+#: mkt/constants/bango.py:206
 msgid "Saint Martin"
 msgstr "Сен-Мартен"
 
-#: mkt/constants/bango.py:229
+#: mkt/constants/bango.py:207
 msgid "Saint Pierre and Miquelon"
 msgstr "Сен-Пьер и Микелон"
 
-#: mkt/constants/bango.py:230
+#: mkt/constants/bango.py:208
 msgid "Saint Vincent and the Grenadines"
 msgstr "Сент-Винсент и Гренадины"
 
-#: mkt/constants/bango.py:231
+#: mkt/constants/bango.py:209
 msgid "Samoa"
 msgstr "Самоа"
 
-#: mkt/constants/bango.py:232
+#: mkt/constants/bango.py:210
 msgid "San Marino"
 msgstr "Сан-Марино"
 
-#: mkt/constants/bango.py:233
+#: mkt/constants/bango.py:211
 msgid "Sao Tome and Principe"
 msgstr "Сан-Томе и Принсипи"
 
-#: mkt/constants/bango.py:234
+#: mkt/constants/bango.py:212
 msgid "Saudi Arabia"
 msgstr "Саудовская Аравия"
 
-#: mkt/constants/bango.py:235
+#: mkt/constants/bango.py:213
 msgid "Senega"
 msgstr "Сенегал"
 
-#: mkt/constants/bango.py:236 mkt/constants/regions.py:170
+#: mkt/constants/bango.py:214 mkt/constants/regions.py:170
 msgid "Serbia"
 msgstr "Сербия"
 
-#: mkt/constants/bango.py:237
+#: mkt/constants/bango.py:215
 msgid "Serbia and Montenegro"
 msgstr "Сербия и Черногория"
 
-#: mkt/constants/bango.py:238
+#: mkt/constants/bango.py:216
 msgid "Seychelles"
 msgstr "Сейшельские острова"
 
-#: mkt/constants/bango.py:239
+#: mkt/constants/bango.py:217
 msgid "Sierra Leone"
 msgstr "Сьерра-Леоне"
 
-#: mkt/constants/bango.py:240
+#: mkt/constants/bango.py:218
 msgid "Singapore"
 msgstr "Сингапур"
 
-#: mkt/constants/bango.py:241
+#: mkt/constants/bango.py:219
 msgid "Sint Maarten (Dutch part)"
 msgstr "Сент-Мартен (голландская часть)"
 
-#: mkt/constants/bango.py:242
+#: mkt/constants/bango.py:220
 msgid "Slovakia"
 msgstr "Словакия"
 
-#: mkt/constants/bango.py:243
+#: mkt/constants/bango.py:221
 msgid "Slovenia"
 msgstr "Словения"
 
-#: mkt/constants/bango.py:244
+#: mkt/constants/bango.py:222
 msgid "Solomon Islands"
 msgstr "Соломоновы острова"
 
-#: mkt/constants/bango.py:245
+#: mkt/constants/bango.py:223
 msgid "Somalia"
 msgstr "Сомали"
 
-#: mkt/constants/bango.py:246
+#: mkt/constants/bango.py:224
 msgid "South Africa"
 msgstr "Южная Африка"
 
-#: mkt/constants/bango.py:247
+#: mkt/constants/bango.py:225
 msgid "South Georgia and the South Sandwich Islands"
 msgstr "Южная Георгия и южные Сандвичевы острова"
 
-#: mkt/constants/bango.py:248
+#: mkt/constants/bango.py:226
 msgid "South Sudan"
 msgstr "Южный Судан"
 
-#: mkt/constants/bango.py:249 mkt/constants/regions.py:91 mkt/ecosystem/templates/ecosystem/publish_payments.html:82
+#: mkt/constants/bango.py:227 mkt/constants/regions.py:91
 msgid "Spain"
 msgstr "Испания"
 
-#: mkt/constants/bango.py:250
+#: mkt/constants/bango.py:228
 msgid "Sri Lanka"
 msgstr "Шри-Ланка"
 
-#: mkt/constants/bango.py:251
+#: mkt/constants/bango.py:229
 msgid "Sudan"
 msgstr "Судан"
 
-#: mkt/constants/bango.py:252
+#: mkt/constants/bango.py:230
 msgid "Suriname"
 msgstr "Суринам"
 
-#: mkt/constants/bango.py:253
+#: mkt/constants/bango.py:231
 msgid "Svalbard and Jan Mayen"
 msgstr "Шпицберген и Ян Майен"
 
-#: mkt/constants/bango.py:254
+#: mkt/constants/bango.py:232
 msgid "Swaziland"
 msgstr "Свазиленд"
 
-#: mkt/constants/bango.py:255
+#: mkt/constants/bango.py:233
 msgid "Sweden"
 msgstr "Швеция"
 
-#: mkt/constants/bango.py:256
+#: mkt/constants/bango.py:234
 msgid "Switzerland"
 msgstr "Швейцария"
 
-#: mkt/constants/bango.py:257
+#: mkt/constants/bango.py:235
 msgid "Syrian Arab Republic"
 msgstr "Сирия"
 
-#: mkt/constants/bango.py:258
+#: mkt/constants/bango.py:236
 msgid "Taiwan, Province of China"
 msgstr "Тайвань"
 
-#: mkt/constants/bango.py:259
+#: mkt/constants/bango.py:237
 msgid "Tajikistan"
 msgstr "Таджикистан"
 
-#: mkt/constants/bango.py:260
+#: mkt/constants/bango.py:238
 msgid "Tanzania, United Republic of"
 msgstr "Танзания"
 
-#: mkt/constants/bango.py:261
+#: mkt/constants/bango.py:239
 msgid "Thailand"
 msgstr "Таиланд"
 
-#: mkt/constants/bango.py:262
+#: mkt/constants/bango.py:240
 msgid "Timor-Leste"
 msgstr "Тимор-Лесте"
 
-#: mkt/constants/bango.py:263
+#: mkt/constants/bango.py:241
 msgid "Togo"
 msgstr "Того"
 
-#: mkt/constants/bango.py:264
+#: mkt/constants/bango.py:242
 msgid "Tokelau"
 msgstr "Токелау"
 
-#: mkt/constants/bango.py:265
+#: mkt/constants/bango.py:243
 msgid "Tonga"
 msgstr "Тонга"
 
-#: mkt/constants/bango.py:266
+#: mkt/constants/bango.py:244
 msgid "Trinidad and Tobago"
 msgstr "Тринидад и Тобаго"
 
-#: mkt/constants/bango.py:267
+#: mkt/constants/bango.py:245
 msgid "Tunisia"
 msgstr "Тунис"
 
-#: mkt/constants/bango.py:268
+#: mkt/constants/bango.py:246
 msgid "Turkey"
 msgstr "Турция"
 
-#: mkt/constants/bango.py:269
+#: mkt/constants/bango.py:247
 msgid "Turkmenistan"
 msgstr "Туркменистан"
 
-#: mkt/constants/bango.py:270
+#: mkt/constants/bango.py:248
 msgid "Turks and Caicos Islands"
 msgstr "Острова Теркс и Кайкос"
 
-#: mkt/constants/bango.py:271
+#: mkt/constants/bango.py:249
 msgid "Tuvalu"
 msgstr "Тувалу"
 
-#: mkt/constants/bango.py:272
+#: mkt/constants/bango.py:250
 msgid "Uganda"
 msgstr "Уганда"
 
-#: mkt/constants/bango.py:273
+#: mkt/constants/bango.py:251
 msgid "Ukraine"
 msgstr "Украина"
 
-#: mkt/constants/bango.py:274
+#: mkt/constants/bango.py:252
 msgid "United Arab Emirates"
 msgstr "Объединенные Арабские Эмираты"
 
-#: mkt/constants/bango.py:275 mkt/constants/regions.py:72 mkt/ecosystem/templates/ecosystem/publish_payments.html:90
+#: mkt/constants/bango.py:253 mkt/constants/regions.py:72
 msgid "United Kingdom"
 msgstr "Великобритания"
 
-#: mkt/constants/bango.py:276 mkt/constants/regions.py:63 mkt/ecosystem/templates/ecosystem/publish_payments.html:98
+#: mkt/constants/bango.py:254 mkt/constants/regions.py:63
 msgid "United States"
 msgstr "Соединённые Штаты"
 
-#: mkt/constants/bango.py:277
+#: mkt/constants/bango.py:255
 msgid "United States Minor Outlying Islands"
 msgstr "Малые Удалённые Острова США"
 
-#: mkt/constants/bango.py:278 mkt/constants/regions.py:199
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:199
 msgid "Uruguay"
 msgstr "Уругвай"
 
-#: mkt/constants/bango.py:279
+#: mkt/constants/bango.py:257
 msgid "Uzbekistan"
 msgstr "Узбекистан"
 
-#: mkt/constants/bango.py:280
+#: mkt/constants/bango.py:258
 msgid "Vanuatu"
 msgstr "Вануату"
 
-#: mkt/constants/bango.py:281
+#: mkt/constants/bango.py:259
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Венесуэла"
 
-#: mkt/constants/bango.py:282
-msgid "Vietnam"
-msgstr "Вьетнам"
+#: mkt/constants/bango.py:260
+msgid "Viet Nam"
+msgstr ""
 
-#: mkt/constants/bango.py:283
+#: mkt/constants/bango.py:261
 msgid "Virgin Islands, British"
 msgstr "Британские Виргинские острова"
 
-#: mkt/constants/bango.py:284
+#: mkt/constants/bango.py:262
 msgid "Virgin Islands, U.S."
 msgstr "Виргинские острова, США"
 
-#: mkt/constants/bango.py:285
+#: mkt/constants/bango.py:263
 msgid "Wallis and Futuna"
 msgstr "Уоллис и Футуна"
 
-#: mkt/constants/bango.py:286
+#: mkt/constants/bango.py:264
 msgid "Western Sahara"
 msgstr "Западная Сахара"
 
-#: mkt/constants/bango.py:287
+#: mkt/constants/bango.py:265
 msgid "Yemen"
 msgstr "Йемен"
 
-#: mkt/constants/bango.py:288
+#: mkt/constants/bango.py:266
 msgid "Zambia"
 msgstr "Замбия"
 
-#: mkt/constants/bango.py:289
+#: mkt/constants/bango.py:267
 msgid "Zimbabwe"
 msgstr "Зимбабве"
 
@@ -15682,6 +15508,14 @@ msgstr ""
 msgid "The app requires the platform to support third-party keyboards."
 msgstr ""
 
+#: mkt/constants/features.py:308
+msgid "Multiple Network Information"
+msgstr ""
+
+#: mkt/constants/features.py:309
+msgid "The app requires the ability to get information about multiple network connections."
+msgstr ""
+
 #: mkt/constants/payments.py:8
 msgid "Completed"
 msgstr "Завершено"
@@ -15710,7 +15544,7 @@ msgstr ""
 msgid "Criminal Acts"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:11 mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:81 mkt/constants/ratingdescriptors.py:99
+#: mkt/constants/ratingdescriptors.py:11 mkt/constants/ratingdescriptors.py:70 mkt/constants/ratingdescriptors.py:82 mkt/constants/ratingdescriptors.py:100
 msgid "Drugs"
 msgstr ""
 
@@ -15722,212 +15556,226 @@ msgstr ""
 msgid "Legal Drugs"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:16 mkt/constants/ratingdescriptors.py:52 mkt/constants/ratingdescriptors.py:73 mkt/constants/ratingdescriptors.py:85 mkt/constants/ratingdescriptors.py:102
+#. L10n: `Language` as in foul language.
+#: mkt/constants/ratingdescriptors.py:15
+msgid "Inappropriate Language"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:16 mkt/constants/ratingdescriptors.py:53 mkt/constants/ratingdescriptors.py:74 mkt/constants/ratingdescriptors.py:86 mkt/constants/ratingdescriptors.py:103
 msgid "No Descriptors"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:17 mkt/constants/ratingdescriptors.py:53
+#: mkt/constants/ratingdescriptors.py:17 mkt/constants/ratingdescriptors.py:54
 msgid "Nudity"
 msgstr ""
 
 #. L10n: `Sex` as in sexual, not as in gender.
-#: mkt/constants/ratingdescriptors.py:19 mkt/constants/ratingdescriptors.py:77 mkt/constants/ratingdescriptors.py:89
+#: mkt/constants/ratingdescriptors.py:19 mkt/constants/ratingdescriptors.py:78 mkt/constants/ratingdescriptors.py:90
 msgid "Sex"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:20
-msgid "Explicit Sex"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:21
-msgid "Shocking Content"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:22 mkt/constants/ratingdescriptors.py:65 mkt/constants/ratingdescriptors.py:78 mkt/constants/ratingdescriptors.py:90 mkt/constants/ratingdescriptors.py:105
-msgid "Violence"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:23
-msgid "Extreme Violence"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:25
-msgid "Alcohol Reference"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:26
-msgid "Alcohol and Tobacco Reference"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:27
-msgid "Use of Alcohol and Tobacco"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:28
-msgid "Use of Alcohol"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:29
-msgid "Blood"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:30
-msgid "Blood and Gore"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:31
-msgid "Comic Mischief"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:32
-msgid "Crime"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:33
-msgid "Criminal Instruction"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:34
-msgid "Crude Humor"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:35
-msgid "Drug and Alcohol Reference"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:36
-msgid "Drug, Alcohol, and Tobacco Reference"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:37
-msgid "Use of Drug, Alcohol, and Tobacco"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:38
-msgid "Use of Drug and Alcohol"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:39
-msgid "Drug Reference"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:40
-msgid "Drug and Tobacco Reference"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:41
-msgid "Use of Drug and Tobacco"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:42
-msgid "Use of Drugs"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:43
-msgid "Fantasy Violence"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:44
-msgid "Hate Speech"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:45
-msgid "Intense Violence"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:48
-msgid "Mild Blood"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:49
-msgid "Mild Fantasy Violence"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:50
-msgid "Mild Language"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:51
-msgid "Mild Violence"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:54
-msgid "Partial Nudity"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:55 mkt/constants/ratingdescriptors.py:70 mkt/constants/ratingdescriptors.py:82
-msgid "Gambling"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:56
-msgid "Scary Themes"
-msgstr ""
-
-#: mkt/constants/ratingdescriptors.py:57 mkt/constants/ratingdescriptors.py:104
+#: mkt/constants/ratingdescriptors.py:20 mkt/constants/ratingdescriptors.py:58 mkt/constants/ratingdescriptors.py:105
 msgid "Sexual Content"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:58
-msgid "Sexual Themes"
+#: mkt/constants/ratingdescriptors.py:21
+msgid "Explicit Sex"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:22
+msgid "Impacting Content"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:23 mkt/constants/ratingdescriptors.py:66 mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:91 mkt/constants/ratingdescriptors.py:106
+msgid "Violence"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:24
+msgid "Extreme Violence"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:26
+msgid "Alcohol Reference"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:27
+msgid "Alcohol and Tobacco Reference"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:28
+msgid "Use of Alcohol and Tobacco"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:29
+msgid "Use of Alcohol"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:30
+msgid "Blood"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:31
+msgid "Blood and Gore"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:32
+msgid "Comic Mischief"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:33
+msgid "Crime"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:34
+msgid "Criminal Instruction"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:35
+msgid "Crude Humor"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:36
+msgid "Drug and Alcohol Reference"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:37
+msgid "Drug, Alcohol, and Tobacco Reference"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:38
+msgid "Use of Drug, Alcohol, and Tobacco"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:39
+msgid "Use of Drug and Alcohol"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:40
+msgid "Drug Reference"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:41
+msgid "Drug and Tobacco Reference"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:42
+msgid "Use of Drug and Tobacco"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:43
+msgid "Use of Drugs"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:44
+msgid "Fantasy Violence"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:45
+msgid "Hate Speech"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:46
+msgid "Intense Violence"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:49
+msgid "Mild Blood"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:50
+msgid "Mild Fantasy Violence"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:51
+msgid "Mild Language"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:52
+msgid "Mild Violence"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:55
+msgid "Partial Nudity"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:56
+msgid "Real Gambling"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:57
+msgid "Scary Themes"
 msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:59
-msgid "Simulated Gambling"
+msgid "Sexual Themes"
 msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:60
-msgid "Strong Language"
+msgid "Simulated Gambling"
 msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:61
-msgid "Strong Sexual Content"
+msgid "Strong Language"
 msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:62
-msgid "Suggestive Themes"
+msgid "Strong Sexual Content"
 msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:63
-msgid "Tobacco Reference"
+msgid "Suggestive Themes"
 msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:64
+msgid "Tobacco Reference"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:65
 msgid "Use of Tobacco"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:66
+#: mkt/constants/ratingdescriptors.py:67
 msgid "Violence References"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:68 mkt/constants/ratingdescriptors.py:80 mkt/constants/ratingdescriptors.py:98
+#: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:81 mkt/constants/ratingdescriptors.py:99
 msgid "Discrimination"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:74 mkt/constants/ratingdescriptors.py:86
-msgid "Online"
+#: mkt/constants/ratingdescriptors.py:71 mkt/constants/ratingdescriptors.py:83
+msgid "Gambling"
 msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:75 mkt/constants/ratingdescriptors.py:87
+msgid "Online"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:88
 msgid "Fear"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:93
+#: mkt/constants/ratingdescriptors.py:94
 msgid "Social Interaction Functionality"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:94
+#: mkt/constants/ratingdescriptors.py:95
 msgid "Personal Data Sharing"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:95
+#: mkt/constants/ratingdescriptors.py:96
 msgid "In-app Purchase Option"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:96
+#: mkt/constants/ratingdescriptors.py:97
 msgid "Location Data Sharing"
 msgstr ""
 
-#: mkt/constants/ratingdescriptors.py:103
+#. L10n: `Language` as in foul language.
+#: mkt/constants/ratingdescriptors.py:102
+msgid "Explicit Language"
+msgstr ""
+
+#: mkt/constants/ratingdescriptors.py:104
 msgid "Frightening Content"
 msgstr ""
 
@@ -16031,7 +15879,7 @@ msgstr ""
 msgid "Rest of World"
 msgstr ""
 
-#: mkt/constants/regions.py:111 mkt/ecosystem/templates/ecosystem/publish_payments.html:106
+#: mkt/constants/regions.py:111
 msgid "Venezuela"
 msgstr "Венесуэла"
 
@@ -16123,172 +15971,172 @@ msgstr ""
 msgid "Content rating changed to Adult."
 msgstr ""
 
-#: mkt/developers/forms.py:58
+#: mkt/developers/forms.py:59
 msgid "You cannot select {region}."
 msgstr ""
 
-#: mkt/developers/forms.py:148
+#: mkt/developers/forms.py:149
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
 
-#: mkt/developers/forms.py:182
+#: mkt/developers/forms.py:183
 msgid "At least one team member must be listed."
 msgstr ""
 
-#: mkt/developers/forms.py:186
+#: mkt/developers/forms.py:187
 msgid "A team member can only be listed once."
 msgstr ""
 
-#: mkt/developers/forms.py:213
+#: mkt/developers/forms.py:214
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:217
+#: mkt/developers/forms.py:218
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:221
+#: mkt/developers/forms.py:222
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:225
+#: mkt/developers/forms.py:226
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:229
+#: mkt/developers/forms.py:230
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled by Mozilla. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:233
+#: mkt/developers/forms.py:234
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:248
+#: mkt/developers/forms.py:249
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "На этом домене уже существует приложение; допускается только одно приложение на домен."
 
-#: mkt/developers/forms.py:369
+#: mkt/developers/forms.py:370
 msgid "Only one rating from each ratings body may be selected."
 msgstr ""
 
-#: mkt/developers/forms.py:378
+#: mkt/developers/forms.py:379
 msgid "Invalid region(s) selected."
 msgstr ""
 
-#: mkt/developers/forms.py:381
+#: mkt/developers/forms.py:382
 msgid "Only regions the app is already available in may be selected."
 msgstr ""
 
-#: mkt/developers/forms.py:468 mkt/webapps/models.py:431
+#: mkt/developers/forms.py:469 mkt/webapps/models.py:448
 msgid "You must upload at least one screenshot or video."
 msgstr "Вы должны выгрузить не менее одного скриншота или видео."
 
-#: mkt/developers/forms.py:509
+#: mkt/developers/forms.py:510
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
 
-#: mkt/developers/forms.py:524
+#: mkt/developers/forms.py:525
 msgid "Error extracting manifest from zip file."
 msgstr ""
 
-#: mkt/developers/forms.py:583
+#: mkt/developers/forms.py:584
 #, fuzzy
 msgid "Provide a detailed description of your app"
 msgstr "Создайте более подробное описание вашего приложения"
 
-#: mkt/developers/forms.py:584 mkt/submit/forms.py:345
+#: mkt/developers/forms.py:585 mkt/submit/forms.py:345
 msgid "This description will appear on the details page."
 msgstr "Это описание появится на странице сведений."
 
-#: mkt/developers/forms.py:656
+#: mkt/developers/forms.py:657
 msgid "Please specify your app's Privacy Policy"
 msgstr "Пожалуйста, укажите политику приватности вашего приложения"
 
-#: mkt/developers/forms.py:677
+#: mkt/developers/forms.py:678
 #, fuzzy
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "Перед изменением вашей локали по умолчанию, вы должны иметь имя, сводку и описание на этой локали. Вам недостаёт %s."
 
-#: mkt/developers/forms.py:732
+#: mkt/developers/forms.py:733
 msgid "Your comments"
 msgstr "Ваши комментарии"
 
-#: mkt/developers/forms.py:755
+#: mkt/developers/forms.py:756
 msgid "Choose the regions your app will be listed in:"
 msgstr ""
 
-#: mkt/developers/forms.py:759 mkt/developers/forms.py:860
+#: mkt/developers/forms.py:760 mkt/developers/forms.py:861
 msgid "You must select at least one region."
 msgstr "Вы должны выбрать не менее одного региона."
 
-#: mkt/developers/forms.py:764
+#: mkt/developers/forms.py:765
 msgid "Enable new regions"
 msgstr ""
 
-#: mkt/developers/forms.py:766
+#: mkt/developers/forms.py:767
 msgid "Make my app available in most regions"
 msgstr ""
 
-#: mkt/developers/forms.py:767
+#: mkt/developers/forms.py:768
 msgid "Choose where my app is made available"
 msgstr ""
 
-#: mkt/developers/forms.py:981
+#: mkt/developers/forms.py:982
 msgid "Agree"
 msgstr "Согласен"
 
-#: mkt/developers/forms.py:998
+#: mkt/developers/forms.py:999
 msgid "Please enter a valid email address."
 msgstr "Введите корректный адрес эл. почты."
 
-#: mkt/developers/forms.py:1001
+#: mkt/developers/forms.py:1002
 #, fuzzy
 msgid "Your email address"
 msgstr "Пожалуйста, подтвердите свой адрес электронной почты"
 
-#: mkt/developers/forms.py:1004
+#: mkt/developers/forms.py:1005
 msgid "Text"
 msgstr "Текст"
 
-#: mkt/developers/forms.py:1008
+#: mkt/developers/forms.py:1009
 msgid "You must agree to the Privacy Policy."
 msgstr "Вы должны принять Политику приватности."
 
-#: mkt/developers/forms.py:1009 mkt/developers/forms_payments.py:403 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1010 mkt/developers/forms_payments.py:404 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Страна"
 
-#: mkt/developers/forms.py:1044
+#: mkt/developers/forms.py:1045
 msgid "Transaction Type"
 msgstr "Тип транзакции"
 
-#: mkt/developers/forms.py:1098
+#: mkt/developers/forms.py:1099
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
 
-#: mkt/developers/forms.py:1105
+#: mkt/developers/forms.py:1106
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr ""
 
-#: mkt/developers/forms.py:1114
+#: mkt/developers/forms.py:1115
 msgid "Test plan required."
 msgstr ""
 
-#: mkt/developers/forms.py:1121
+#: mkt/developers/forms.py:1122
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr ""
 
-#: mkt/developers/forms.py:1127
+#: mkt/developers/forms.py:1128
 msgid "Invalid file type. Only %s files are supported."
 msgstr ""
 
-#: mkt/developers/forms.py:1147
+#: mkt/developers/forms.py:1148
 msgid "Please enter a valid submission ID."
 msgstr ""
 
-#: mkt/developers/forms.py:1171 mkt/developers/forms.py:1182
+#: mkt/developers/forms.py:1172 mkt/developers/forms.py:1184
 msgid "Invalid submission ID or security code."
 msgstr ""
 
@@ -16317,139 +16165,139 @@ msgstr ""
 msgid "Supports all billing methods"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:220
+#: mkt/developers/forms_payments.py:221
 msgid "If app is Free, in-app payments must be enabled"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:227
+#: mkt/developers/forms_payments.py:228
 msgid "Not a valid choice"
 msgstr "Недействительный выбор"
 
-#: mkt/developers/forms_payments.py:331 mkt/developers/templates/developers/payments/premium.html:273
+#: mkt/developers/forms_payments.py:332 mkt/developers/templates/developers/payments/premium.html:273
 msgid "This is a paid upgrade of"
 msgstr "Это платное обновление для"
 
-#: mkt/developers/forms_payments.py:332
+#: mkt/developers/forms_payments.py:333
 msgid "Not an upgrade"
 msgstr "Не обновление"
 
-#: mkt/developers/forms_payments.py:375
+#: mkt/developers/forms_payments.py:376
 msgid "Account Holder Name"
 msgstr "Имя держателя счета"
 
-#: mkt/developers/forms_payments.py:377
+#: mkt/developers/forms_payments.py:378
 msgid "Company Name"
 msgstr "Имя компании"
 
-#: mkt/developers/forms_payments.py:379
+#: mkt/developers/forms_payments.py:380
 msgid "Vendor Name"
 msgstr "Имя вендора"
 
-#: mkt/developers/forms_payments.py:381
+#: mkt/developers/forms_payments.py:382
 msgid "Financial Email"
 msgstr "Финансовый адрес эл. почты"
 
-#: mkt/developers/forms_payments.py:384
+#: mkt/developers/forms_payments.py:385
 msgid "Administrative Email"
 msgstr "Административный адрес эл. почты"
 
-#: mkt/developers/forms_payments.py:387
+#: mkt/developers/forms_payments.py:388
 msgid "Support Email"
 msgstr "Адрес эл. почты поддержки"
 
-#: mkt/developers/forms_payments.py:391
+#: mkt/developers/forms_payments.py:392
 msgid "Address"
 msgstr "Адрес"
 
-#: mkt/developers/forms_payments.py:393
+#: mkt/developers/forms_payments.py:394
 msgid "Address 2"
 msgstr "Адрес 2"
 
-#: mkt/developers/forms_payments.py:395
+#: mkt/developers/forms_payments.py:396
 msgid "City/Municipality"
 msgstr "Город"
 
-#: mkt/developers/forms_payments.py:397
+#: mkt/developers/forms_payments.py:398
 msgid "State/Province/Region"
 msgstr "Область/Край/Регион"
 
-#: mkt/developers/forms_payments.py:399
+#: mkt/developers/forms_payments.py:400
 msgid "Zip/Postal Code"
 msgstr "Почтовый индекс"
 
-#: mkt/developers/forms_payments.py:401
+#: mkt/developers/forms_payments.py:402
 msgid "Phone"
 msgstr "Телефон"
 
-#: mkt/developers/forms_payments.py:406
+#: mkt/developers/forms_payments.py:407
 msgid "I prefer to be paid in"
 msgstr "Я предпочитаю оплату в"
 
-#: mkt/developers/forms_payments.py:409
+#: mkt/developers/forms_payments.py:410
 msgid "VAT Number"
 msgstr "Номер VAT"
 
-#: mkt/developers/forms_payments.py:412
+#: mkt/developers/forms_payments.py:413
 msgid "Bank Account Number"
 msgstr "Номер счёта банка"
 
-#: mkt/developers/forms_payments.py:415
+#: mkt/developers/forms_payments.py:416
 msgid "SWIFT code"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:417
+#: mkt/developers/forms_payments.py:418
 msgid "Bank Name"
 msgstr "Имя банка"
 
-#: mkt/developers/forms_payments.py:419
+#: mkt/developers/forms_payments.py:420
 msgid "Bank Address"
 msgstr "Адрес банка"
 
-#: mkt/developers/forms_payments.py:421
+#: mkt/developers/forms_payments.py:422
 msgid "Bank Address 2"
 msgstr "Адрес банка 2"
 
-#: mkt/developers/forms_payments.py:423
+#: mkt/developers/forms_payments.py:424
 msgid "Bank City/Municipality"
 msgstr "Город банка/Муниципалитет"
 
-#: mkt/developers/forms_payments.py:426
+#: mkt/developers/forms_payments.py:427
 msgid "Bank State/Province/Region"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:428
+#: mkt/developers/forms_payments.py:429
 msgid "Bank Zip/Postal Code"
 msgstr "Почтовый индекс банка"
 
-#: mkt/developers/forms_payments.py:430
+#: mkt/developers/forms_payments.py:431
 msgid "Bank Country"
 msgstr "Страна банка"
 
-#: mkt/developers/forms_payments.py:432 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:433 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "Имя счёта"
 
-#: mkt/developers/forms_payments.py:460 mkt/developers/templates/developers/payments/premium.html:128
+#: mkt/developers/forms_payments.py:461 mkt/developers/templates/developers/payments/premium.html:128
 msgid "Payment Account"
 msgstr "Счёт для платежа"
 
-#: mkt/developers/forms_payments.py:510
+#: mkt/developers/forms_payments.py:511
 msgid "You cannot remove a payment account from an app."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:514
+#: mkt/developers/forms_payments.py:515
 msgid "You are not permitted to change payment accounts."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:557
+#: mkt/developers/forms_payments.py:558
 msgid "Account name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:580
+#: mkt/developers/forms_payments.py:581
 msgid "No payment account set up for that app"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:583
+#: mkt/developers/forms_payments.py:584
 #, fuzzy
 msgid "Account not set up"
 msgstr "Настроить предварительное одобрение"
@@ -16463,7 +16311,7 @@ msgstr "Разработчики"
 msgid "Shared Account: {0}"
 msgstr ""
 
-#: mkt/developers/providers.py:194
+#: mkt/developers/providers.py:197
 msgid "Reference Implementation"
 msgstr ""
 
@@ -16600,7 +16448,7 @@ msgstr "Приложение уже в черном списке."
 msgid "We encountered a problem connecting to the payment server."
 msgstr ""
 
-#: mkt/developers/views_payments.py:172 mkt/ecosystem/templates/ecosystem/publish_payments.html:37
+#: mkt/developers/views_payments.py:172
 msgid "Credit card"
 msgstr "Кредитная карта"
 
@@ -16811,7 +16659,7 @@ msgid "Manifest URLs must start with a protocol (for example, <code>http://</cod
 msgstr ""
 
 #: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:124
-msgid "Learn more about <b>app manifests</b> on MDN."
+msgid "Learn more about submitting an app."
 msgstr ""
 
 #: mkt/developers/templates/developers/validate_addon.html:69
@@ -17129,7 +16977,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:9 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:21
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:505
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:522
 msgid "Content Ratings"
 msgstr "Рейтинг контента"
 
@@ -17460,7 +17308,7 @@ msgid ""
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
-msgid "By using IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
+msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
@@ -17471,31 +17319,31 @@ msgstr ""
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:74
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:81
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:85
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:98
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:113
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
 
@@ -17651,7 +17499,7 @@ msgid "Available Regions"
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:199
-msgid "Check out the <a href=\"%(status_url)s\">status page</a> to see what countries are currently enabled for sale."
+msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:206
@@ -17820,77 +17668,77 @@ msgstr "Спасибо за подписку!"
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr ""
 
-#: mkt/ecosystem/views.py:121
+#: mkt/ecosystem/views.py:115
 msgid "App Stub"
 msgstr "Заготовка приложения"
 
-#: mkt/ecosystem/views.py:124
+#: mkt/ecosystem/views.py:118
 msgid ""
 "App Stub is the simplest of the app templates: It provides an unstyled HTML document and is therefore the best choice for porting over existing web content or for implementing an existing design."
 msgstr ""
 
-#: mkt/ecosystem/views.py:130
+#: mkt/ecosystem/views.py:124
 msgid "well-structured and minimal HTML to get started quickly"
 msgstr ""
 
-#: mkt/ecosystem/views.py:131
+#: mkt/ecosystem/views.py:125
 msgid "<a href=\"http://requirejs.org\" rel=\"external\" target=\"_blank\">RequireJS</a> for JavaScript management"
 msgstr ""
 
-#: mkt/ecosystem/views.py:133
+#: mkt/ecosystem/views.py:127
 msgid "<a href=\"http://volojs.org\" rel=\"external\" target=\"_blank\">Volo.js</a> for adding JavaScript packages, compiling assets, and deploying to Github"
 msgstr ""
 
-#: mkt/ecosystem/views.py:140
+#: mkt/ecosystem/views.py:134
 #, fuzzy
 msgid "List/Detail View"
 msgstr "Просмотреть политику приватности"
 
-#: mkt/ecosystem/views.py:143
+#: mkt/ecosystem/views.py:137
 msgid ""
 "In addition to all the basic app template features, the List/Detail View template provides a simple list of content items and a details page for each of them. The template simplifies common app "
 "tasks, like automated content updating across the app, intelligent back button behavior, etc."
 msgstr ""
 
-#: mkt/ecosystem/views.py:151 mkt/ecosystem/views.py:170
+#: mkt/ecosystem/views.py:145 mkt/ecosystem/views.py:164
 msgid "includes all of <a href=\"https://github.com/mozilla/mortar-app-stub\">App Stub's</a> features"
 msgstr ""
 
-#: mkt/ecosystem/views.py:153
+#: mkt/ecosystem/views.py:147
 msgid "a navigation stack for managing app structure"
 msgstr ""
 
-#: mkt/ecosystem/views.py:154
+#: mkt/ecosystem/views.py:148
 msgid "a header element and automatic back button"
 msgstr ""
 
-#: mkt/ecosystem/views.py:155
+#: mkt/ecosystem/views.py:149
 msgid "data propagation across the app, via <a href=\"http://backbonejs.org\">Backbone.js</a>"
 msgstr ""
 
-#: mkt/ecosystem/views.py:161
+#: mkt/ecosystem/views.py:155
 #, fuzzy
 msgid "Game Stub"
 msgstr "Заготовка приложения"
 
-#: mkt/ecosystem/views.py:164
+#: mkt/ecosystem/views.py:158
 msgid ""
 "Game Stub is a template for developing 2D Games apps in HTML5, CSS and JavaScript. It greatly reduces the time spent on the basics of games development, such as creating a canvas and an event loop."
 msgstr ""
 
-#: mkt/ecosystem/views.py:172
+#: mkt/ecosystem/views.py:166
 msgid "a canvas element and example code drawing a game entity onto it"
 msgstr ""
 
-#: mkt/ecosystem/views.py:174
+#: mkt/ecosystem/views.py:168
 msgid "an event loop using requestAnimationFrame"
 msgstr ""
 
-#: mkt/ecosystem/views.py:175
+#: mkt/ecosystem/views.py:169
 msgid "a means to pause and unpause the game as the app loses and regains focus"
 msgstr ""
 
-#: mkt/ecosystem/views.py:321
+#: mkt/ecosystem/views.py:315
 msgid "Gaia Building Blocks"
 msgstr "Строительные блоки Gaia"
 
@@ -17943,7 +17791,7 @@ msgstr "Хостящиеся приложения"
 msgid "Packaged Apps"
 msgstr "Упакованные приложения"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:218
+#: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:215
 msgid "Badges, Banners, and Icons"
 msgstr ""
 
@@ -18474,7 +18322,7 @@ msgid "Developing Game Apps"
 msgstr "Разработка игровых приложений"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:143 mkt/lookup/templates/lookup/app_summary.html:81 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47
-#: mkt/reviewers/templates/reviewers/queue.html:34 mkt/reviewers/templates/reviewers/queue_region.html:28 mkt/webapps/models.py:511
+#: mkt/reviewers/templates/reviewers/queue.html:34 mkt/reviewers/templates/reviewers/queue_region.html:28 mkt/webapps/models.py:528
 msgid "Payments"
 msgstr "Платежи"
 
@@ -18487,19 +18335,19 @@ msgstr "Отправка в Магазин"
 msgid "Marketplace Review Criteria"
 msgstr "Критерий представления"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:210 mkt/ecosystem/templates/ecosystem/publish_payments.html:5 mkt/ecosystem/templates/ecosystem/publish_payments.html:13
+#: mkt/ecosystem/templates/ecosystem/macros.html:207
 msgid "Payments Status"
 msgstr "Статус платежей"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:257
+#: mkt/ecosystem/templates/ecosystem/macros.html:254
 msgid "View with subtitles"
 msgstr "Просмотр с субтитрами "
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:290
+#: mkt/ecosystem/templates/ecosystem/macros.html:287
 msgid "Made in partnership with our friends at Treehouse"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:292
+#: mkt/ecosystem/templates/ecosystem/macros.html:289
 msgid "Check them out!"
 msgstr "Оцените их!"
 
@@ -18628,39 +18476,6 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:38
 msgid "You can package your app as a zip file, instead of hosting it on a web server."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:15
-msgid ""
-"Payments are processed on a country by country basis, with different prices and payment methods available in each country. A list of price points is <a href=\"%(mdn_url)s\">documented in MDN</a> "
-"and is <a href=\"%(api_url)s\">available through the API</a>."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:24
-msgid "These are the currently supported countries in the Marketplace."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:33
-#, fuzzy
-msgid "Developer setup"
-msgstr "Комментарии разработчика"
-
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:34
-msgid "Paid apps"
-msgstr "Платные приложения"
-
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:35
-msgid "In-app payments"
-msgstr "Платежи в приложении"
-
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:36
-#, fuzzy
-msgid "Carrier billing"
-msgstr "У меня возникли проблемы со счетом или платежом"
-
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:46 mkt/ecosystem/templates/ecosystem/publish_payments.html:47 mkt/ecosystem/templates/ecosystem/publish_payments.html:55
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:78 mkt/ecosystem/templates/ecosystem/publish_payments.html:79 mkt/ecosystem/templates/ecosystem/publish_payments.html:87
-msgid "varies"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
@@ -19746,77 +19561,77 @@ msgstr ""
 msgid "A question about your Theme submission"
 msgstr "Проблема с представлением вашей темы"
 
-#: mkt/reviewers/utils.py:426
+#: mkt/reviewers/utils.py:429
 msgid "This will approve the sandboxed app so it appears on the public side."
 msgstr "Это одобрит приложение из песочницы и оно появится на публичной странице."
 
-#: mkt/reviewers/utils.py:432
+#: mkt/reviewers/utils.py:435
 msgid "This will reject the app and remove it from the review queue."
 msgstr "Это отклонит приложение и удалит его из очереди проверки."
 
-#: mkt/reviewers/utils.py:438
+#: mkt/reviewers/utils.py:441
 msgid "This will send the author(s) an email requesting more information."
 msgstr ""
 
-#: mkt/reviewers/utils.py:442
+#: mkt/reviewers/utils.py:445
 msgid "Escalate"
 msgstr "Эскалация"
 
-#: mkt/reviewers/utils.py:444
+#: mkt/reviewers/utils.py:447
 msgid "Flag this app for an admin to review."
 msgstr ""
 
-#: mkt/reviewers/utils.py:449
+#: mkt/reviewers/utils.py:452
 msgid "Make a comment on this app. The author won't be able to see this."
 msgstr "Прокомментируйте это приложение. Автор не сможет это увидеть."
 
-#: mkt/reviewers/utils.py:453
+#: mkt/reviewers/utils.py:456
 msgid "Clear Escalation"
 msgstr "Очистить эскалацию"
 
-#: mkt/reviewers/utils.py:455
+#: mkt/reviewers/utils.py:458
 msgid "Clear this app from the escalation queue. The author will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:460
+#: mkt/reviewers/utils.py:463
 msgid "Clear Re-review"
 msgstr "Отменить повторную проверку"
 
-#: mkt/reviewers/utils.py:462
+#: mkt/reviewers/utils.py:465
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:467
+#: mkt/reviewers/utils.py:470
 msgid "Disable app"
 msgstr "Отключить приложение"
 
-#: mkt/reviewers/utils.py:469
+#: mkt/reviewers/utils.py:472
 msgid "Disable the app, removing it from public results. Sends comments to author."
 msgstr ""
 
-#: mkt/reviewers/views.py:79
+#: mkt/reviewers/views.py:80
 msgid "New Apps (Under 5 days)"
 msgstr "Новые приложения (менее 5 дней)"
 
-#: mkt/reviewers/views.py:251
+#: mkt/reviewers/views.py:252
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
-#: mkt/reviewers/views.py:301
+#: mkt/reviewers/views.py:302
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Устройство изменено проверяющим: {0}"
 
-#: mkt/reviewers/views.py:305 mkt/reviewers/views.py:325 mkt/submit/forms.py:36 mkt/submit/forms.py:45
+#: mkt/reviewers/views.py:306 mkt/reviewers/views.py:326 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
 msgstr "Удалено {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:327
+#: mkt/reviewers/views.py:328
 #, fuzzy
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Устройство изменено проверяющим"
 
-#: mkt/reviewers/views.py:350
+#: mkt/reviewers/views.py:351
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr ""
 
@@ -20616,7 +20431,7 @@ msgstr ""
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr ""
 
-#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1733
+#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1818
 msgid "Héllo"
 msgstr "Привет"
 
@@ -20660,57 +20475,57 @@ msgstr "Очистить"
 msgid "Expand"
 msgstr "Развернуть"
 
-#: mkt/webapps/models.py:422
+#: mkt/webapps/models.py:439
 msgid "You must provide a support email."
 msgstr "Вы должны указать адрес эл. почты поддержки."
 
-#: mkt/webapps/models.py:424
+#: mkt/webapps/models.py:441
 msgid "You must provide an app name."
 msgstr "Вы должны указать имя приложения."
 
-#: mkt/webapps/models.py:426
+#: mkt/webapps/models.py:443
 msgid "You must provide at least one device type."
 msgstr "Вы должны указать не менее одного типа устройства."
 
-#: mkt/webapps/models.py:429
+#: mkt/webapps/models.py:446
 msgid "You must provide at least one category."
 msgstr "Вы должны указать не менее одной категории."
 
-#: mkt/webapps/models.py:472
+#: mkt/webapps/models.py:489
 msgid "You must set up content ratings."
 msgstr ""
 
-#: mkt/webapps/models.py:474
+#: mkt/webapps/models.py:491
 msgid "You must set up a payment account."
 msgstr ""
 
-#: mkt/webapps/models.py:499
+#: mkt/webapps/models.py:516
 msgid "This app's submission process has not been fully completed."
 msgstr ""
 
-#: mkt/webapps/models.py:506
+#: mkt/webapps/models.py:523
 msgid "This app needs to get a content rating."
 msgstr ""
 
-#: mkt/webapps/models.py:512
+#: mkt/webapps/models.py:529
 msgid "This app needs a payment account set up."
 msgstr ""
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2106
+#: mkt/webapps/models.py:2154
 msgid "awaiting approval"
 msgstr ""
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2110
+#: mkt/webapps/models.py:2158
 msgid "requires additional review"
 msgstr ""
 
-#: mkt/webapps/models.py:2161
+#: mkt/webapps/models.py:2209
 msgid "{region} approval status"
 msgstr ""
 
-#: mkt/webapps/models.py:2166
+#: mkt/webapps/models.py:2214
 msgid "{region} nomination date"
 msgstr ""
 
