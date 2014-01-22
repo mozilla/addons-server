@@ -85,8 +85,6 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 HEKA_CONF = {
     'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {}),
-                'raven': (
-                    'heka_raven.raven_plugin:config_plugin', {'dsn': private_addons.SENTRY_DSN}),
         },
     'stream': {
         'class': 'heka.streams.UdpStream',

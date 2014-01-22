@@ -144,9 +144,7 @@ HEKA_CONF = {
                         'syslog_ident': CEF_PRODUCT,
                         'syslog_priority': 'INFO'
                         }),
-                'raven': (
-                    'heka_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
-        },
+                },
     'stream': {
         'class': 'heka.streams.UdpStream',
         'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
@@ -156,7 +154,6 @@ HEKA_CONF = {
 }
 HEKA = client_from_dict_config(HEKA_CONF)
 USE_HEKA_FOR_CEF = True
-SENTRY_CLIENT = 'djangoraven.heka.HekaDjangoClient'
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 
