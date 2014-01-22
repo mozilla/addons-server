@@ -52,7 +52,7 @@ SYSLOG_TAG = "http_app_addons_marketplacedev"
 SYSLOG_TAG2 = "http_app_addons_marketplacedev_timer"
 SYSLOG_CSP = "http_app_addons_marketplacedev_csp"
 
-STATSD_PREFIX = 'marketplace-dev'
+STATSD_PREFIX = 'stats.marketplace-dev'
 
 ## Celery
 BROKER_URL = private_mkt.BROKER_URL

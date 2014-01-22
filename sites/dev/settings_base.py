@@ -136,7 +136,7 @@ BUILDER_UPGRADE_URL = "https://builder-addons-dev.allizom.org/repackage/rebuild/
 
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT
-STATSD_PREFIX = private.STATSD_PREFIX
+STATSD_PREFIX = 'stats.addons-dev'
 
 GRAPHITE_HOST = private.GRAPHITE_HOST
 GRAPHITE_PORT = private.GRAPHITE_PORT
