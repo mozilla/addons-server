@@ -21,7 +21,7 @@ from amo.decorators import (json_view, login_required, permission_required,
                             post_required)
 from amo.search import TempS as S
 from amo.urlresolvers import reverse
-from amo.utils import paginate
+from amo.utils import days_ago, paginate
 from apps.access import acl
 from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
@@ -38,7 +38,7 @@ from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
 from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.site import messages
-from mkt.webapps.models import Installed, WebappIndexer
+from mkt.webapps.models import WebappIndexer
 from stats.models import Contribution, DownloadCount
 from users.models import UserProfile
 
@@ -417,28 +417,22 @@ def _app_downloads(app):
     stats = {'last_7_days': 0,
              'last_24_hours': 0,
              'alltime': 0}
+
     if app.is_webapp():
-        Data = Installed
-    else:
-        Data = DownloadCount
-    _7_days_ago = datetime.now() - timedelta(days=7)
-    qs = Data.objects.filter(addon=app)
-    if app.is_webapp():
-        _24_hr_ago = datetime.now() - timedelta(hours=24)
-        stats['last_24_hours'] = (qs.filter(created__gte=_24_hr_ago)
-                                    .count())
+        # Webapps populate these fields via Monolith.
         stats['last_7_days'] = app.weekly_downloads
-        stats['alltime'] = qs.count()
-    else:
-        # Non-app add-ons.
+        stats['alltime'] = app.total_downloads
+        return stats
 
-        def sum_(qs):
-            return qs.aggregate(total=Sum('count'))['total'] or 0
+    qs = DownloadCount.objects.filter(addon=app)
 
-        yesterday = datetime.now().date() - timedelta(days=1)
-        stats['last_24_hours'] = sum_(qs.filter(date__gt=yesterday))
-        stats['last_7_days'] = sum_(qs.filter(date__gte=_7_days_ago.date()))
-        stats['alltime'] = sum_(qs)
+    def sum_(qs):
+        return qs.aggregate(total=Sum('count'))['total'] or 0
+
+    stats['last_24_hours'] = sum_(qs.filter(date__gt=days_ago(1).date()))
+    stats['last_7_days'] = sum_(qs.filter(date__gte=days_ago(7).date()))
+    stats['alltime'] = sum_(qs)
+
     return stats
 
 

@@ -12,9 +12,9 @@ from django.utils.encoding import smart_str
 import mock
 from babel import numbers
 from curling.lib import HttpClientError
-from pyquery import PyQuery as pq
 from nose.exc import SkipTest
 from nose.tools import eq_, ok_
+from pyquery import PyQuery as pq
 from slumber import exceptions
 
 import amo
@@ -26,20 +26,18 @@ from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
-from market.models import AddonPaymentData, AddonPremium, Price, Refund
+from market.models import AddonPaymentData, Refund
 from stats.models import Contribution, DownloadCount
 from users.cron import reindex_users
 from users.models import Group, GroupUser, UserProfile
 
-from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
-                                    REFUND_STATUSES)
-from mkt.developers.tests.test_views_payments import (TEST_PACKAGE_ID,
-                                                      setup_payment_account)
+from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
+from mkt.developers.tests.test_views_payments import (setup_payment_account,
+                                                      TEST_PACKAGE_ID)
 from mkt.lookup.views import (_transaction_summary, transaction_refund,
                               user_delete, user_summary)
 from mkt.site.fixtures import fixture
-from mkt.webapps.cron import update_weekly_downloads
-from mkt.webapps.models import Installed, Webapp
+from mkt.webapps.models import Webapp
 
 
 @mock.patch.object(settings, 'TASK_USER_ID', 999)
@@ -199,7 +197,7 @@ class TestAcctSummary(TestCase):
         # Test data.
         assert UserProfile.objects.get(id=self.user.id).deleted
         eq_(staff, ActivityLog.objects.for_user(self.user).filter(
-                  action=amo.LOG.DELETE_USER_LOOKUP.id)[0].user)
+            action=amo.LOG.DELETE_USER_LOOKUP.id)[0].user)
 
         # Test frontend.
         req = req_factory_factory(
@@ -817,63 +815,6 @@ class TestAppSummary(AppSummaryTest):
         eq_(res.status_code, 200)
 
 
-class DownloadSummaryTest(AppSummaryTest):
-
-    def setUp(self):
-        super(DownloadSummaryTest, self).setUp()
-        self._setUp()
-        self.users = [UserProfile.objects.get(username='regularuser'),
-                      UserProfile.objects.get(username='admin')]
-
-
-class TestAppDownloadSummary(DownloadSummaryTest, TestCase):
-
-    def setUp(self):
-        super(TestAppDownloadSummary, self).setUp()
-        self.addon = Addon.objects.get(pk=3615)
-
-    def test_7_days(self):
-        self.app.update(weekly_downloads=0)
-        for user in self.users:
-            Installed.objects.create(addon=self.app, user=user)
-        update_weekly_downloads()
-        res = self.summary()
-        eq_(res.context['downloads']['last_7_days'], 2)
-
-    def test_ignore_older_than_7_days(self):
-        _8_days_ago = datetime.now() - timedelta(days=8)
-        self.app.update(weekly_downloads=0)
-        for user in self.users:
-            c = Installed.objects.create(addon=self.app, user=user)
-            c.update(created=_8_days_ago)
-        update_weekly_downloads()
-        res = self.summary()
-        eq_(res.context['downloads']['last_7_days'], 0)
-
-    def test_24_hours(self):
-        for user in self.users:
-            Installed.objects.create(addon=self.app, user=user)
-        res = self.summary()
-        eq_(res.context['downloads']['last_24_hours'], 2)
-
-    def test_ignore_older_than_24_hours(self):
-        _25_hr_ago = datetime.now() - timedelta(hours=25)
-        for user in self.users:
-            c = Installed.objects.create(addon=self.app, user=user)
-            c.update(created=_25_hr_ago)
-        res = self.summary()
-        eq_(res.context['downloads']['last_24_hours'], 0)
-
-    def test_alltime_dl(self):
-        for user in self.users:
-            Installed.objects.create(addon=self.app, user=user)
-        # Downloads for some other app that shouldn't be counted.
-        for user in self.users:
-            Installed.objects.create(addon=self.addon, user=user)
-        res = self.summary()
-        eq_(res.context['downloads']['alltime'], 2)
-
-
 class TestAppSummaryPurchases(AppSummaryTest):
 
     def setUp(self):
@@ -1003,17 +944,21 @@ class TestAppSummaryRefunds(AppSummaryTest):
         eq_(res.context['refunds']['rejected'], 2)
 
 
-class TestAddonDownloadSummary(DownloadSummaryTest, TestCase):
+class TestAddonDownloadSummary(AppSummaryTest):
+    fixtures = fixture('user_admin', 'group_admin', 'user_admin_group',
+                       'user_999')
 
     def setUp(self):
         super(TestAddonDownloadSummary, self).setUp()
-        self.app = Addon.objects.get(pk=3615)
-        self.url = reverse('lookup.app_summary',
-                           args=[self.app.pk])
+        self.users = [UserProfile.objects.get(username='regularuser'),
+                      UserProfile.objects.get(username='admin')]
+        self.addon = addon_factory()
+        self.url = reverse('lookup.app_summary', args=[self.addon.pk])
+        self.login(self.users[1])
 
     def test_7_days(self):
         for user in self.users:
-            DownloadCount.objects.create(addon=self.app, count=2,
+            DownloadCount.objects.create(addon=self.addon, count=2,
                                          date=datetime.now().date())
         res = self.summary()
         eq_(res.context['downloads']['last_7_days'], 4)
@@ -1021,7 +966,7 @@ class TestAddonDownloadSummary(DownloadSummaryTest, TestCase):
     def test_ignore_older_than_7_days(self):
         _8_days_ago = datetime.now() - timedelta(days=8)
         for user in self.users:
-            c = DownloadCount.objects.create(addon=self.app, count=2,
+            c = DownloadCount.objects.create(addon=self.addon, count=2,
                                              date=datetime.now().date())
             c.date = _8_days_ago.date()
             c.save()
@@ -1030,7 +975,7 @@ class TestAddonDownloadSummary(DownloadSummaryTest, TestCase):
 
     def test_24_hours(self):
         for user in self.users:
-            DownloadCount.objects.create(addon=self.app, count=2,
+            DownloadCount.objects.create(addon=self.addon, count=2,
                                          date=datetime.now().date())
         res = self.summary()
         eq_(res.context['downloads']['last_24_hours'], 4)
@@ -1038,7 +983,7 @@ class TestAddonDownloadSummary(DownloadSummaryTest, TestCase):
     def test_ignore_older_than_24_hours(self):
         yesterday = datetime.now().date() - timedelta(days=1)
         for user in self.users:
-            c = DownloadCount.objects.create(addon=self.app, count=2,
+            c = DownloadCount.objects.create(addon=self.addon, count=2,
                                              date=datetime.now().date())
             c.date = yesterday
             c.save()
@@ -1047,7 +992,7 @@ class TestAddonDownloadSummary(DownloadSummaryTest, TestCase):
 
     def test_alltime_dl(self):
         for i in range(2):
-            DownloadCount.objects.create(addon=self.app, count=2,
+            DownloadCount.objects.create(addon=self.addon, count=2,
                                          date=datetime.now().date())
         # Downloads for some other addon that shouldn't be counted.
         addon = addon_factory()

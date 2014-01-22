@@ -42,7 +42,6 @@ HOME=/tmp
 15 8 * * * %(z_cron)s process_iarc_changes --settings=settings_local_mkt
 30 8 * * * %(z_cron)s dump_user_installs_cron --settings=settings_local_mkt
 30 9 * * * %(z_cron)s update_user_ratings
-40 9 * * * %(z_cron)s update_weekly_downloads
 50 9 * * * %(z_cron)s gc
 45 9 * * * %(z_cron)s mkt_gc --settings=settings_local_mkt
 45 10 * * * %(django)s process_addons --task=update_manifests --settings=settings_local_mkt
@@ -64,6 +63,7 @@ HOME=/tmp
 #Once per day after 2100 PST (after metrics is done)
 35 5 * * * %(z_cron)s update_addon_download_totals
 40 5 * * * %(z_cron)s weekly_downloads
+40 5 * * * %(z_cron)s update_app_downloads --settings=settings_local_mkt
 35 6 * * * %(z_cron)s update_global_totals
 40 6 * * * %(z_cron)s update_addon_average_daily_users
 30 7 * * * %(z_cron)s index_latest_stats

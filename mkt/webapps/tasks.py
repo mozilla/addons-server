@@ -25,7 +25,7 @@ from addons.models import Addon
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import chunked, JSONEncoder, send_mail_jinja
+from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
 from editors.models import RereviewQueue
 from files.models import FileUpload
 from files.utils import WebAppParser
@@ -42,16 +42,6 @@ from mkt.webapps.utils import get_locale_properties
 
 
 task_log = logging.getLogger('z.task')
-
-
-@task(rate_limit='15/m')
-def webapp_update_weekly_downloads(data, **kw):
-    task_log.info('[%s@%s] Update weekly downloads.' % (
-        len(data), webapp_update_weekly_downloads.rate_limit))
-
-    for line in data:
-        webapp = Webapp.objects.get(pk=line['addon'])
-        webapp.update(weekly_downloads=line['count'])
 
 
 def _get_content_hash(content):
@@ -594,7 +584,6 @@ def _get_trending(app_id, region=None):
         kwargs['region'] = region.slug
 
     today = datetime.datetime.today()
-    days_ago = lambda d: today - datetime.timedelta(days=d)
 
     # If we query monolith with interval=week and the past 7 days
     # crosses a Monday, Monolith splits the counts into two. We want
@@ -660,3 +649,67 @@ def update_trending(ids, **kw):
 
     task_log.debug('Trending calculated for %s apps. Avg time overall: '
                    '%0.2fs' % (count, sum(times) / count))
+
+
+@task
+@write
+def update_downloads(ids, **kw):
+    client = get_monolith_client()
+    today = datetime.date.today()
+    count = 0
+
+    for app in Webapp.objects.filter(id__in=ids).no_transforms():
+
+        kwargs = {'app-id': app.id}
+
+        # Get weekly downloads.
+        #
+        # If we query monolith with interval=week and the past 7 days
+        # crosses a Monday, Monolith splits the counts into two. We want
+        # the sum over the past week so we need to `sum` these.
+        try:
+            weekly = sum(
+                c['count'] for c in
+                client('app_installs', days_ago(7).date(), today, 'week',
+                       **kwargs)
+                if c.get('count'))
+        except ValueError as e:
+            task_log.info('Call to ES failed: {0}'.format(e))
+            weekly = 0
+
+        # Get total downloads.
+        #
+        # The monolith client lib doesn't handle this for us so we send a raw
+        # ES query to Monolith.
+        query = {'query': {'match_all': {}},
+                 'facets': {
+                     'installs': {
+                         'statistical': {'field': 'app_installs'},
+                         'facet_filter': {'term': kwargs}}},
+                 'size': 0}
+        try:
+            resp = client.raw(query)
+            total = resp.get('facets', {}).get('installs', {}).get('total', 0)
+        except Exception as e:
+            task_log.info('Call to ES failed: {0}'.format(e))
+            total = 0
+
+        # Update Webapp object, if needed.
+        update = False
+        signal = False
+        if weekly != app.weekly_downloads:
+            update = True
+            signal = True
+        if total != app.total_downloads:
+            update = True
+
+        if update:
+            # Note: Calling `update` will trigger a reindex on the app if
+            # `_signal` is True. Since we only index `weekly_downloads`, we
+            # can skip reindexing if this hasn't changed.
+            count += 1
+            app.update(weekly_downloads=weekly, total_downloads=total,
+                       _signal=signal)
+
+    task_log.debug('App downloads updated for %s out of %s apps.'
+                   % (count, len(ids)))
