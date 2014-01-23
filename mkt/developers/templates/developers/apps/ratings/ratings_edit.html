@@ -53,7 +53,7 @@
         </p>
         <form id="iarc" method="post" action="{{ settings.IARC_SUBMISSION_ENDPOINT }}" target="IARCForm">
           <input type="hidden" name="email" value="{{ request.amo_user.email }}">
-          <input type="hidden" name="company" value="{{ addon.latest_version.developer_name }}">
+          <input type="hidden" name="company" value="{{ company }}">
           <input type="hidden" name="appname" value="{{ app_name }}">
           <input type="hidden" name="platform" value="{{ settings.IARC_PLATFORM }}">
           <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
