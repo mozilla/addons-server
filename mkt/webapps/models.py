@@ -547,7 +547,7 @@ class Webapp(Addon):
         """When the submission process is done, update status accordingly."""
         self.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
-    def update_status(self, using=None):
+    def update_status(self, **kwargs):
         if (self.is_deleted or self.is_disabled or
             self.status == amo.STATUS_BLOCKED):
             return
