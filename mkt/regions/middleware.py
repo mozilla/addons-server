@@ -15,19 +15,15 @@ class RegionMiddleware(object):
 
     def region_from_request(self, request):
         ip_reg = self.geoip.lookup(request.META.get('REMOTE_ADDR'))
-        if ip_reg in mkt.regions.REGIONS_DICT:
-            return ip_reg
-        else:
-            return mkt.regions.RESTOFWORLD.slug
+        return mkt.regions.REGIONS_DICT.get(ip_reg, mkt.regions.RESTOFWORLD)
 
     def process_request(self, request):
         regions = mkt.regions.REGION_LOOKUP
 
-        reg = restofworld = mkt.regions.RESTOFWORLD.slug
-        stored_reg = ''
+        user_region = restofworld = mkt.regions.RESTOFWORLD
 
         if not getattr(request, 'API', False):
-            request.REGION = regions[restofworld]
+            request.REGION = restofworld
             mkt.regions.set_region(restofworld)
             return
 
@@ -35,11 +31,11 @@ class RegionMiddleware(object):
         url_region = request.REQUEST.get('region')
         if url_region in regions:
             statsd.incr('z.regions.middleware.source.url')
-            reg = url_region
+            user_region = regions[url_region]
         else:
-            reg = self.region_from_request(request)
+            user_region = self.region_from_request(request)
             # If the above fails, let's try `Accept-Language`.
-            if reg == restofworld:
+            if user_region == restofworld:
                 statsd.incr('z.regions.middleware.source.accept-lang')
                 if request.LANG == settings.LANGUAGE_CODE:
                     choices = mkt.regions.REGIONS_CHOICES[1:]
@@ -48,30 +44,30 @@ class RegionMiddleware(object):
                 if request.LANG:
                     for name, region in choices:
                         if name.lower() in request.LANG.lower():
-                            reg = region.slug
+                            user_region = region
                             break
                 # All else failed, try to match against our forced Language.
-                if reg == mkt.regions.RESTOFWORLD.slug:
+                if user_region == mkt.regions.RESTOFWORLD:
                     # Try to find a suitable region.
                     for name, region in choices:
                         if region.default_language == request.LANG:
-                            reg = region.slug
+                            user_region = region
                             break
 
-                a_l = request.META.get('HTTP_ACCEPT_LANGUAGE')
-                if (reg == 'us' and a_l is not None
-                    and not a_l.startswith('en')):
+                accept_language = request.META.get('HTTP_ACCEPT_LANGUAGE')
+                if (user_region == mkt.regions.US
+                        and accept_language is not None
+                        and not accept_language.startswith('en')):
                     # Let us default to restofworld if it's not English.
-                    reg = mkt.regions.RESTOFWORLD.slug
+                    user_region = mkt.regions.RESTOFWORLD
             else:
                 statsd.incr('z.regions.middleware.source.geoip')
 
-        # Update cookie if value have changed.
-        if reg != stored_reg:
-            if (getattr(request, 'amo_user', None)
-                and request.amo_user.region != reg):
-                request.amo_user.region = reg
-                request.amo_user.save()
+        # Only update the user's region if it changed.
+        amo_user = getattr(request, 'amo_user', None)
+        if amo_user and amo_user.region != user_region.slug:
+            amo_user.region = user_region.slug
+            amo_user.save()
 
-        request.REGION = regions[reg]
-        mkt.regions.set_region(reg)
+        request.REGION = user_region
+        mkt.regions.set_region(user_region)
