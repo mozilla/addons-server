@@ -332,7 +332,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         new_upsell = AddonUpsell(premium=self.webapp)
         new_upsell.free = new_upsell_app
         new_upsell.save()
-        assert self.webapp.upsold is not None
+        assert self.get_webapp().upsold is not None
         self.client.post(
             self.url, self.get_postdata({'price': 'free',
                                          'allow_inapp': 'True',
