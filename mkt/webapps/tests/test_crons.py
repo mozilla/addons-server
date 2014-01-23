@@ -118,7 +118,7 @@ class TestSignApps(amo.tests.TestCase):
         self.app = Addon.objects.get(id=337141)
         self.app.update(is_packaged=True)
         self.app2 = amo.tests.app_factory(
-            name='Mozillaball ょ', app_slug='test',
+            name=u'Mozillaball ょ', app_slug='test',
             is_packaged=True, version_kw={'version': '1.0',
                                           'created': None})
         self.app3 = amo.tests.app_factory(

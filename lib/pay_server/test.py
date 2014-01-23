@@ -147,11 +147,11 @@ class TestTransactions(test_utils.TestCase):
 class TestPay(test_utils.TestCase):
 
     def setUp(self):
-        self.user = UserProfile.objects.create()
-        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
         # Temporary until we get AMO solitude support.
         if not settings.MARKETPLACE:
             raise SkipTest
+        self.user = UserProfile.objects.create()
+        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
 
         self.data = {'amount': 1, 'currency': 'USD', 'seller': self.addon,
                      'memo': 'foo'}

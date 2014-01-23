@@ -3,6 +3,7 @@ import os
 import random
 import shutil
 import time
+import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -651,7 +652,7 @@ def _get_created(created):
                         random.randint(0, 59))  # Seconds
 
 
-def addon_factory(version_kw={}, file_kw={}, **kw):
+def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     # Disconnect signals until the last save.
     post_save.disconnect(addon_update_search_index, sender=Addon,
                          dispatch_uid='addons.search.index')
@@ -660,27 +661,39 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
+    when = _get_created(kw.pop('created', None))
+
+    # Keep as much unique data as possible in the uuid: '-' aren't important.
+    name = kw.pop('name', u'Addon %s' % unicode(uuid.uuid4()).replace('-', ''))
+
+    kwargs = {
+        # Set artificially the status to STATUS_PUBLIC for now, , the real
+        # status will be set a few lines below, after the update_version()
+        # call. This prevents issues when calling addon_factory with
+        # STATUS_DELETED.
+        'status': amo.STATUS_PUBLIC,
+        'name': name,
+        'slug': name.replace(' ', '-').lower()[:30],
+        'bayesian_rating': random.uniform(1, 5),
+        'average_daily_users': popularity or random.randint(200, 2000),
+        'weekly_downloads': popularity or random.randint(200, 2000),
+        'created': when,
+        'last_updated': when,
+    }
+    kwargs.update(kw)
+
     # Save 1.
     if type_ == amo.ADDON_PERSONA:
-        # Personas need to start life as an extension for versioning
-        a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        # Personas need to start life as an extension for versioning.
+        a = Addon.objects.create(type=amo.ADDON_EXTENSION, **kwargs)
     else:
-        a = Addon.objects.create(type=type_)
-    a.status = amo.STATUS_PUBLIC
-    a.name = name = 'Addon %s' % a.id
-    a.slug = name.replace(' ', '-').lower()
-    a.bayesian_rating = random.uniform(1, 5)
-    a.average_daily_users = popularity or random.randint(200, 2000)
-    a.weekly_downloads = popularity or random.randint(200, 2000)
-    a.created = a.last_updated = _get_created(kw.pop('created', None))
+        a = Addon.objects.create(type=type_, **kwargs)
     version_factory(file_kw, addon=a, **version_kw)  # Save 2.
     a.update_version()
-    a.status = amo.STATUS_PUBLIC
-    for key, value in kw.items():
-        setattr(a, key, value)
+    a.status = status
     if type_ == amo.ADDON_PERSONA:
         a.type = type_
-        Persona.objects.create(addon_id=a.id, persona_id=a.id,
+        Persona.objects.create(addon=a, persona_id=a.id,
                                popularity=a.weekly_downloads)  # Save 3.
 
     # Put signals back.
@@ -695,8 +708,12 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
 
 def app_factory(**kw):
     kw.update(type=amo.ADDON_WEBAPP)
+    # Pop the rated kwarg if present: we only use it to set a content rating,
+    # it's not a real Addon/Webapp attribute we want to set, so don't pass it
+    # through to addon_factory.
+    rated = kw.pop('rated', False)
     app = amo.tests.addon_factory(**kw)
-    if kw.get('rated'):
+    if rated:
         app.set_content_ratings(
             dict((body, body.ratings[0]) for body in
             mkt.ratingsbodies.ALL_RATINGS_BODIES))
@@ -851,13 +868,20 @@ class ESTestCase(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        if hasattr(cls, '_addons'):
-            Addon.objects.filter(pk__in=[a.id for a in cls._addons]).delete()
-            unindex_webapps([a.id for a in cls._addons
-                             if a.type == amo.ADDON_WEBAPP])
-            unindex_addons([a.id for a in cls._addons
-                            if a.type != amo.ADDON_WEBAPP])
-        amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
+        try:
+            if hasattr(cls, '_addons'):
+                Addon.objects.filter(
+                    pk__in=[a.id for a in cls._addons]).delete()
+                unindex_webapps([a.id for a in cls._addons
+                                 if a.type == amo.ADDON_WEBAPP])
+                unindex_addons([a.id for a in cls._addons
+                                if a.type != amo.ADDON_WEBAPP])
+            amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
+        finally:
+            # Make sure we're calling super's tearDownClass even if something
+            # went wrong in the code above, as otherwise we'd run into bug
+            # 960598.
+            super(ESTestCase, cls).tearDownClass()
 
     @classmethod
     def setUpIndex(cls):

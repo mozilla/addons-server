@@ -36,8 +36,10 @@ from versions.models import Version
 
 
 def norm(s):
-    """Normalize a string so that whitespace is uniform."""
-    return re.sub(r'[\s]+', ' ', str(s)).strip()
+    """Normalize a string so that whitespace is uniform and remove whitespace
+    between tags."""
+    s = re.sub(r'\s+', ' ', str(s)).strip()
+    return re.sub(r'>\s+<', '><', s)
 
 
 def add_addon_author(original, copy):
@@ -673,7 +675,7 @@ class TestDetailPage(amo.tests.TestCase):
         eq_(norm(doc(".policy-statement strong")),
             "<strong> what the hell..</strong>")
         eq_(norm(doc(".policy-statement ul")),
-            "<ul><li>papparapara</li> <li>todotodotodo</li> </ul>")
+            "<ul><li>papparapara</li><li>todotodotodo</li></ul>")
         eq_(doc(".policy-statement ol a").text(),
             "firefox")
         eq_(norm(doc(".policy-statement ol li:first")),
@@ -1296,7 +1298,7 @@ class TestEula(amo.tests.TestCase):
         eq_(norm(doc('.policy-statement strong')),
             '<strong> what the hell..</strong>')
         eq_(norm(doc('.policy-statement ul')),
-            '<ul><li>papparapara</li> <li>todotodotodo</li> </ul>')
+            '<ul><li>papparapara</li><li>todotodotodo</li></ul>')
         eq_(doc('.policy-statement ol a').text(), 'firefox')
         eq_(norm(doc('.policy-statement ol li:first')),
             '<li>papparapara2</li>')
