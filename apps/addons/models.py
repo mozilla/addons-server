@@ -55,37 +55,70 @@ log = commonware.log.getLogger('z.addons')
 
 
 def clean_slug(instance, slug_field='slug'):
-    slug = getattr(instance, slug_field, None)
+    """Cleans a model instance slug.
+
+    This strives to be as generic as possible as it's used by Addons, Webapps
+    and Collections, and maybe more in the future.
+
+    """
+    slug = getattr(instance, slug_field, None) or instance.name
 
     if not slug:
-        if not instance.name:
-            try:
-                name = Translation.objects.filter(id=instance.name_id)[0]
-            except IndexError:
-                name = str(instance.id)
+        # Initialize the slug with what we have available: a name translation,
+        # or the id of the instance, or in last resort the model name.
+        translations = Translation.objects.filter(id=instance.name_id)
+        if translations.exists():
+            slug = translations[0]
+        elif instance.id:
+            slug = str(instance.id)
         else:
-            name = instance.name
-        slug = slugify(name)[:27]
+            slug = instance.__class__.__name__
+    slug = slugify(slug)[:27]  # Leave space for "-" and 99 clashes.
 
     if BlacklistedSlug.blocked(slug):
-        slug += '~'
+        slug = slug[:26] + '~'
 
-    qs = instance.__class__.objects.values_list(slug_field, 'id')
-    match = qs.filter(**{slug_field: slug})
+    # The following trick makes sure we are using a manager that returns
+    # all the objects, as otherwise we could have a slug clash on our hands.
+    # Eg with the "Addon.objects" manager, which doesn't list deleted addons,
+    # we could have a "clean" slug which is in fact already assigned to an
+    # already existing (deleted) addon.
+    # Also, make sure we use the base class (eg Webapp, which inherits from
+    # Addon, shouldn't clash with addons). This is extra paranoid, as webapps
+    # have a different slug field, but just in case we need this in the future.
+    manager = models.Manager()
+    manager.model = instance._meta.proxy_for_model or instance.__class__
 
-    if match and match[0][1] != instance.id:
-        if instance.id:
-            prefix = '%s-%s' % (slug[:-len(str(instance.id))], instance.id)
-        else:
-            prefix = slug
-        slugs = dict(qs.filter(
-            **{'%s__startswith' % slug_field: '%s-' % prefix}))
-        slugs.update(match)
-        for idx in range(len(slugs)):
-            new = ('%s-%s' % (prefix, idx + 1))[:30]
-            if new not in slugs:
+    qs = manager.values_list(slug_field, flat=True)  # Get list of all slugs.
+    if instance.id:
+        qs = qs.exclude(pk=instance.id)  # Can't clash with itself.
+
+    # We first need to make sure there's a clash, before trying to find a
+    # suffix that is available. Eg, if there's a "foo-bar" slug, "foo" is still
+    # available.
+    clash = qs.filter(**{slug_field: slug})
+    if clash.exists():
+        # There is a clash, so find a suffix that will make this slug unique.
+        prefix = '%s-' % slug
+        lookup = {'%s__startswith' % slug_field: prefix}
+        clashes = qs.filter(**lookup)
+
+        # Try numbers between 1 and the number of clashes + 1 (+ 1 because we
+        # start the range at 1, not 0):
+        # if we have two clashes "foo-1" and "foo-2", we need to try "foo-x"
+        # for x between 1 and 3 to be absolutely sure to find an available one.
+        for idx in range(1, len(clashes) + 2):
+            new = ('%s%s' % (prefix, idx))[:30]
+            if new not in clashes:
                 slug = new
                 break
+        else:
+            # This could happen. The current implementation ([:27] at the
+            # beginning) only works for the first 100 clashes in the worst case
+            # (if the slug is equal to or longuer than 27 chars). After that,
+            # {verylongslug}-100 will be trimmed down to {verylongslug}-10,
+            # which is already assigned, but it's the last solution tested.
+            raise RuntimeError
 
     setattr(instance, slug_field, slug)
 
