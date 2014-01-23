@@ -116,9 +116,9 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
                 app.is_fully_complete(ignore_ratings=True)):
                 log.info('Updating app status from IARC pingback for app:%s' %
                          app.id)
-                # Prevent recursion in Webapp.update_status.
+                # Don't call update to prevent recursion in update_status.
                 app.status = amo.STATUS_PENDING
-                app.update(status=amo.STATUS_PENDING)
+                app.save()
             elif app.has_incomplete_status():
                 log.info('Reasons for app:%s incompleteness after IARC '
                          'pingback: %s' % (app.id, app.completion_errors()))

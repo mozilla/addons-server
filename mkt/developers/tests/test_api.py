@@ -234,6 +234,7 @@ class TestContentRatingPingback(RestOAuth):
             ['has_shares_info', 'has_shares_location'])
 
         eq_(app.status, amo.STATUS_PENDING)
+        assert app.current_version.nomination
 
     @override_settings(SECRET_KEY='foo')
     def test_token_mismatch(self):
@@ -247,7 +248,7 @@ class TestContentRatingPingback(RestOAuth):
         self.app._geodata.update(region_br_iarc_exclude=True,
                                  region_de_iarc_exclude=True)
 
-        res = self.anon.post(self.url, data=json.dumps(self.data))
+        self.anon.post(self.url, data=json.dumps(self.data))
 
         # Verify things were saved to the database.
         geodata = Geodata.objects.get(addon=self.app)
