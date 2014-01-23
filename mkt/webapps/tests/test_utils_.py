@@ -686,7 +686,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
         upsell = amo.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
-        self.app.save()
         self.refresh('webapp')
 
         res = self.serialize()
@@ -703,7 +702,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
         upsell = amo.tests.app_factory(disabled_by_user=True)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
-        self.app.save()
         self.refresh('webapp')
 
         res = self.serialize()
@@ -713,10 +711,9 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.request = amo.tests.req_factory_factory('/')
         self.request.REGION = mkt.regions.US
         upsell = amo.tests.app_factory()
+        upsell.addonexcludedregion.create(region=mkt.regions.US.id)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
-        upsell.addonexcludedregion.create(region=mkt.regions.US.id)
-        self.app.save()
         self.refresh('webapp')
 
         res = self.serialize()
@@ -726,7 +723,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
         upsell = amo.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
-        self.app.save()
         self.refresh('webapp')
 
         region_id = list(upsell.get_excluded_region_ids())[0]
