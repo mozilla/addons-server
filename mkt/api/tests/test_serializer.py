@@ -62,8 +62,10 @@ class TestURLSerializerMixin(TestCase):
         self.SerializerClass.Meta = type('Meta', (self.Struct,),
                                         {'model': User,
                                          'url_basename': self.url_basename})
+        self.request = RequestFactory().get('/')
+        self.request.API_VERSION = 1
         self.serializer = self.SerializerClass(context=
-            {'request': RequestFactory().get('/')})
+            {'request': self.request})
         self.obj = self.Struct()
         self.obj.pk = 42
 
