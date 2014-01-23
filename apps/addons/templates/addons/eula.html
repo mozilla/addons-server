@@ -12,10 +12,9 @@
 {% block primary %}
 <section class="primary" id="eula">
   <hgroup class="hero">
-    {# L10n: EULA stand for End User License Agreement #}
     {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                            (detail_url, addon.name),
-                           (None, _('EULA'))]) }}
+                           (None, _('End-User License Agreement'))]) }}
     {{ addon_heading(addon, version) }}
   </hgroup>
   <div class="prose">

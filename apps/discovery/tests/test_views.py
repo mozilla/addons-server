@@ -413,7 +413,7 @@ class TestDetails(amo.tests.TestCase):
     def test_install_button_eula(self):
         doc = pq(self.client.get(self.detail_url).content)
         eq_(doc('#install .install-button').text(), 'Download Now')
-        eq_(doc('#install .eula').text(), 'View EULA')
+        eq_(doc('#install .eula').text(), 'View End-User License Agreement')
         doc = pq(self.client.get(self.eula_url).content)
         eq_(doc('#install .install-button').text(), 'Download Now')
 
