@@ -47,6 +47,7 @@ from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config
 
 import mkt
+from mkt.comm.forms import CommAttachmentFormSet
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
@@ -252,9 +253,9 @@ def _review(request, addon, version):
             request, _('Only senior reviewers can review blocklisted apps.'))
         return redirect(reverse('reviewers.home'))
 
-    attachment_formset = forms.AttachmentFormSet(data=request.POST or None,
-                                                 files=request.FILES or None,
-                                                 prefix='attachment')
+    attachment_formset = CommAttachmentFormSet(data=request.POST or None,
+                                               files=request.FILES or None,
+                                               prefix='attachment')
     form = forms.get_review_form(data=request.POST or None,
                                  files=request.FILES or None, request=request,
                                  addon=addon, version=version,

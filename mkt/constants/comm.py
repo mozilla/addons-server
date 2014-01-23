@@ -4,6 +4,8 @@ THREAD_TOKEN_EXPIRY = 30
 # Number of times a token can be used.
 MAX_TOKEN_USE_COUNT = 5
 
+MAX_ATTACH = 10
+
 NO_ACTION = 0
 APPROVAL = 1
 REJECTION = 2
