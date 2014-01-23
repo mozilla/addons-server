@@ -17,6 +17,7 @@ from django.views.decorators.csrf import csrf_view_exempt
 
 import commonware.log
 import jingo
+import jinja2
 import waffle
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -375,6 +376,11 @@ def content_ratings_edit(request, addon_id, addon):
             'addon': addon,
             'app_name': get_iarc_app_title(addon),
             'form': form,
+            # Force double escaping of developer name. If this has HTML
+            # entities we want the escaped version to be passed to IARC.
+            # See bug 962362.
+            'company': jinja2.escape(unicode(
+                jinja2.escape(addon.latest_version.developer_name))),
             'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         })
 

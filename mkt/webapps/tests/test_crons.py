@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
-from datetime import date, datetime, timedelta
+from datetime import date
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
-from django.core.management.base import CommandError
 
 import mock
 from nose.tools import eq_
@@ -13,78 +12,85 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
-from lib.es.utils import flag_reindexing_mkt, unflag_reindexing_mkt
-from users.models import UserProfile
 
 import mkt
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import (clean_old_signed, update_app_trending,
-                              update_weekly_downloads)
+                              update_downloads)
+from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import _get_trending
-from mkt.webapps.models import Installed, Webapp
 
 
 class TestWeeklyDownloads(amo.tests.TestCase):
-    fixtures = ['base/users']
 
     def setUp(self):
-        self.addon = Webapp.objects.create(type=amo.ADDON_WEBAPP)
-        self.user = UserProfile.objects.get(pk=999)
+        self.app = Webapp.objects.create(type=amo.ADDON_WEBAPP,
+                                         status=amo.STATUS_PUBLIC)
 
-    def get_webapp(self):
-        return Webapp.objects.get(pk=self.addon.pk)
+    def get_app(self):
+        return Webapp.objects.get(pk=self.app.pk)
 
-    def add_install(self, addon=None, user=None, created=None):
-        install = Installed.objects.create(addon=addon or self.addon,
-                                           user=user or self.user)
-        if created:
-            install.update(created=created)
-        return install
+    def get_mocks(self):
+        """
+        Returns 2 mocks as a tuple.
 
-    def test_weekly_downloads(self):
-        eq_(self.get_webapp().weekly_downloads, 0)
-        self.add_install()
-        self.add_install(user=UserProfile.objects.get(pk=10482),
-                         created=datetime.today() - timedelta(days=2))
-        update_weekly_downloads()
-        eq_(self.get_webapp().weekly_downloads, 2)
+        First is the `client(...)` call to get histogram data for last 7 days.
+        Second is the `client.raw(...)` call to get the totals data.
+        """
+        weekly = [
+            {'count': 122.0, 'date': date(2013, 12, 30)},
+            {'count': 133.0, 'date': date(2014, 1, 6)},
+        ]
+        raw = {
+            'facets': {
+                'installs': {
+                    u'_type': u'statistical',
+                    u'count': 49,
+                    u'max': 224.0,
+                    u'mean': 135.46938775510205,
+                    u'min': 1.0,
+                    u'std_deviation': 67.41619197523309,
+                    u'sum_of_squares': 1121948.0,
+                    u'total': 6638.0,
+                    u'variance': 4544.9429404414832
+                }
+            },
+            u'hits': {
+                u'hits': [], u'max_score': 1.0, u'total': 46957
+            }
+        }
 
-    def test_weekly_downloads_flagged(self):
-        eq_(self.get_webapp().weekly_downloads, 0)
-        self.add_install()
-        self.add_install(user=UserProfile.objects.get(pk=10482),
-                         created=datetime.today() - timedelta(days=2))
+        return (weekly, raw)
 
-        flag_reindexing_mkt('new', 'old', 'alias')
-        try:
-            # Should fail.
-            self.assertRaises(CommandError, update_weekly_downloads)
-            eq_(self.get_webapp().weekly_downloads, 0)
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
+    def test_weekly_downloads(self, _mock):
+        weekly, raw = self.get_mocks()
+        client = mock.Mock()
+        client.return_value = weekly
+        client.raw.return_value = raw
+        _mock.return_value = client
 
-            # Should work with the environ flag.
-            os.environ['FORCE_INDEXING'] = '1'
-            update_weekly_downloads()
-        finally:
-            unflag_reindexing_mkt()
-            del os.environ['FORCE_INDEXING']
+        eq_(self.app.weekly_downloads, 0)
+        eq_(self.app.total_downloads, 0)
 
-        eq_(self.get_webapp().weekly_downloads, 2)
+        update_downloads([self.app.pk])
 
-    def test_recently(self):
-        self.add_install(created=datetime.today() - timedelta(days=6))
-        update_weekly_downloads()
-        eq_(self.get_webapp().weekly_downloads, 1)
+        self.app.reload()
+        eq_(self.app.weekly_downloads, 255)
+        eq_(self.app.total_downloads, 6638)
 
-    def test_long_ago(self):
-        self.add_install(created=datetime.today() - timedelta(days=8))
-        update_weekly_downloads()
-        eq_(self.get_webapp().weekly_downloads, 0)
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
+    def test_monolith_error(self, _mock):
+        client = mock.Mock()
+        client.side_effect = ValueError
+        client.raw.side_effect = Exception
+        _mock.return_value = client
 
-    def test_addon(self):
-        self.addon.update(type=amo.ADDON_EXTENSION)
-        self.add_install()
-        update_weekly_downloads()
-        eq_(Addon.objects.get(pk=self.addon.pk).weekly_downloads, 0)
+        update_downloads([self.app.pk])
+
+        self.app.reload()
+        eq_(self.app.weekly_downloads, 0)
+        eq_(self.app.total_downloads, 0)
 
 
 class TestCleanup(amo.tests.TestCase):
@@ -112,7 +118,7 @@ class TestSignApps(amo.tests.TestCase):
         self.app = Addon.objects.get(id=337141)
         self.app.update(is_packaged=True)
         self.app2 = amo.tests.app_factory(
-            name='Mozillaball ょ', app_slug='test',
+            name=u'Mozillaball ょ', app_slug='test',
             is_packaged=True, version_kw={'version': '1.0',
                                           'created': None})
         self.app3 = amo.tests.app_factory(

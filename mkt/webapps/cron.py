@@ -1,41 +1,23 @@
-import datetime
 import os
 import shutil
 import stat
 import time
 
 from django.conf import settings
-from django.db.models import Count
 
 import commonware.log
 import cronjobs
 from celery import chord
-from celery.task.sets import TaskSet
-from lib.es.utils import raise_if_reindex_in_progress
 
 import amo
 from amo.utils import chunked
 
 from .models import Installed, Webapp
-from .tasks import (dump_user_installs, update_trending,
-                    webapp_update_weekly_downloads, zip_users)
+from .tasks import (dump_user_installs, update_downloads, update_trending,
+                    zip_users)
+
 
 log = commonware.log.getLogger('z.cron')
-
-
-@cronjobs.register
-def update_weekly_downloads():
-    """Update the weekly "downloads" from the users_install table."""
-    raise_if_reindex_in_progress('mkt')
-    interval = datetime.datetime.today() - datetime.timedelta(days=7)
-    counts = (Installed.objects.values('addon')
-                               .filter(created__gte=interval,
-                                       addon__type=amo.ADDON_WEBAPP)
-                               .annotate(count=Count('addon')))
-
-    ts = [webapp_update_weekly_downloads.subtask(args=[chunk])
-          for chunk in chunked(counts, 1000)]
-    TaskSet(ts).apply_async()
 
 
 @cronjobs.register
@@ -94,3 +76,24 @@ def dump_user_installs_cron():
     post = zip_users.subtask(immutable=True)
     ts = chord(grouping, post)
     ts.apply_async()
+
+
+@cronjobs.register
+def update_app_downloads():
+    """
+    Update download/install stats for all apps.
+
+    Spread these tasks out successively by `seconds_between` seconds so they
+    don't hit Monolith all at once.
+
+    """
+    chunk_size = 50
+    seconds_between = 2
+
+    all_ids = list(Webapp.objects.filter(status=amo.STATUS_PUBLIC)
+                   .values_list('id', flat=True))
+
+    countdown = 0
+    for ids in chunked(all_ids, chunk_size):
+        update_downloads.delay(ids, countdown=countdown)
+        countdown += seconds_between

@@ -24,12 +24,26 @@ Strategies for deprecating and removing endpoints are currently being discussed
 in bug 942934.
 """
 
+from django.conf import settings
 from django.conf.urls import include, patterns, url
 
 
+def include_version(version):
+    """
+    Returns an include statement containing URL patterns for the passed API
+    version. Adds a namespace if that version does not match
+    `settings.API_CURRENT_VERSION`, to ensure that reversed URLs always use the
+    current version.
+    """
+    kwargs = {}
+    if version != settings.API_CURRENT_VERSION:
+        kwargs['namespace'] = 'api-v%d' % version
+    return include('mkt.api.v%d.urls' % version, **kwargs)
+
+
 urlpatterns = patterns('',
-    url('^v2/', include('mkt.api.v2.urls')),
-    url('^v1/', include('mkt.api.v1.urls')),
+    url('^v2/', include_version(2)),
+    url('^v1/', include_version(1)),
 
     # Necessary for backwards-compatibility. We assume that this always means
     # API version 1. The namespace ensures that no URLS are ever reversed to

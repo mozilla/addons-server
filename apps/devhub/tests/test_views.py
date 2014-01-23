@@ -123,15 +123,6 @@ class TestNav(HubTest):
         eq_(doc('#site-nav ul li.top').eq(0).find('li a').eq(7).text(),
             'more add-ons...')
 
-    def test_only_one_header(self):
-        # For bug 682359.
-        # Remove this test when we switch to Impala in the devhub!
-        doc = pq(self.client.get(reverse('devhub.addons')).content)
-        # Make sure we're on a non-impala page.
-        eq_(doc('.is-impala').length, 0,
-            'This test should be run on a non-impala page.')
-        eq_(doc('#header').length, 0, 'Uh oh, there are two headers!')
-
 
 class TestDashboard(HubTest):
 

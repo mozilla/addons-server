@@ -5,7 +5,7 @@ from cStringIO import StringIO
 from datetime import datetime
 
 from django.conf import settings
-from django.core import mail
+from django.core import mail, management
 from django.core.cache import cache
 
 import mock
@@ -1421,7 +1421,7 @@ class TestLookup(amo.tests.TestCase):
 
 
 class TestAddonSearch(amo.tests.ESTestCase):
-    fixtures = ['base/users', 'base/337141-steamcube', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.reindex(Addon)
@@ -1429,7 +1429,14 @@ class TestAddonSearch(amo.tests.ESTestCase):
                                  password='password')
         self.url = reverse('zadmin.addon-search')
 
-    def test_lookup_app(self):
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def test_lookup_app(self, index_webapps_mock):
+        # Load the Webapp fixture here, as loading it in the
+        # TestAddonSearch.fixtures would trigger the reindex, and fail, as
+        # this is an AMO test.
+        management.call_command('loaddata', 'base/337141-steamcube')
+        index_webapps_mock.assert_called()
+
         res = self.client.get(urlparams(self.url, q='steamcube'))
         eq_(res.status_code, 200)
         links = pq(res.content)('form + h3 + ul li a')

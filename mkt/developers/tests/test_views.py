@@ -1146,7 +1146,8 @@ class TestContentRatings(amo.tests.TestCase):
     def setUp(self):
         self.create_switch('iarc')
         self.app = app_factory()
-        self.app.latest_version.update(_developer_name='Lex Luthor')
+        self.app.latest_version.update(
+            _developer_name='Lex Luthor <lex@kryptonite.org>')
         self.user = UserProfile.objects.get()
         self.url = reverse('mkt.developers.apps.ratings',
                            args=[self.app.app_slug])
@@ -1167,7 +1168,9 @@ class TestContentRatings(amo.tests.TestCase):
         # Check the hidden form values.
         values = dict(form.form_values())
         eq_(values['storefront'], '1')
-        eq_(values['company'], 'Lex Luthor')
+        # Note: The HTML is actually double escaped but pyquery shows it how it
+        # will be send to IARC, which is singly escaped.
+        eq_(values['company'], 'Lex Luthor &lt;lex@kryptonite.org&gt;')
         eq_(values['email'], self.user.email)
         eq_(values['appname'], get_iarc_app_title(self.app))
         eq_(values['platform'], 'Firefox')

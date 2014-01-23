@@ -98,8 +98,7 @@ def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
     raise_if_reindex_in_progress('amo')
     cursor = connections[multidb.get_slave()].cursor()
-    q = """SELECT
-               addon_id, AVG(`count`)
+    q = """SELECT addon_id, AVG(`count`)
            FROM update_counts
            WHERE `date` > DATE_SUB(CURDATE(), INTERVAL 7 DAY)
            GROUP BY addon_id
@@ -167,13 +166,15 @@ def update_addon_download_totals():
     cursor = connections[multidb.get_slave()].cursor()
     # We need to use SQL for this until
     # http://code.djangoproject.com/ticket/11003 is resolved
-    q = """SELECT
-               addon_id, AVG(count), SUM(count)
+    q = """SELECT addon_id, AVG(count), SUM(count)
            FROM download_counts
            USE KEY (`addon_and_count`)
+           JOIN addons ON download_counts.addon_id=addons.id
+           WHERE addons.addontype_id != %s AND
+                 addons.status != %s
            GROUP BY addon_id
            ORDER BY addon_id"""
-    cursor.execute(q)
+    cursor.execute(q, [amo.ADDON_WEBAPP, amo.STATUS_DELETED])
     d = cursor.fetchall()
     cursor.close()
 
@@ -189,11 +190,16 @@ def _update_addon_download_totals(data, **kw):
 
     for pk, avg, sum in data:
         try:
-            Addon.objects.get(pk=pk).update(average_daily_downloads=avg,
-                                            total_downloads=sum)
+            addon = Addon.objects.get(pk=pk)
+            # Don't trigger a save unless we have to. Since the query that
+            # sends us data doesn't filter out deleted addons, or the addon may
+            # be unpopular, this can reduce a lot of unnecessary save queries.
+            if (addon.average_daily_downloads != avg or
+                addon.total_downloads != sum):
+                addon.update(average_daily_downloads=avg, total_downloads=sum)
         except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
-            # date in regards to currently existing add-ons
+            # date in regards to currently existing add-ons.
             m = ("Got new download totals (total=%s,avg=%s) but the add-on"
                  "doesn't exist (%s)" % (sum, avg, pk))
             task_log.debug(m)

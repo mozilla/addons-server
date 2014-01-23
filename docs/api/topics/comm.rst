@@ -4,7 +4,9 @@
 Communication
 =============
 
-API for communication between reviewers and developers.
+API for communication between reviewers and developers
+
+.. note:: Under development.
 
 Thread
 ======
@@ -59,6 +61,8 @@ Thread
 .. http:get:: /api/v1/comm/thread/(int:id)/
 
     .. note:: Does not require authentication if the thread is public.
+
+    View a thread object.
 
     **Response**
 
@@ -138,7 +142,7 @@ Thread
 
     .. note:: Requires authentication.
 
-    This endpoint can be used to mark all notes in a thread as read.
+    Mark all notes in a thread as read.
 
     **Request**
 
@@ -148,36 +152,9 @@ Thread
     **Response**
 
     :status code: 204 Thread is marked as read.
-    :status code: 403 There is an attempt to modify other fields or not allowed to access the object.
     :status code: 400 Thread object not found.
+    :status code: 403 There is an attempt to modify other fields or not allowed to access the object.
 
-.. _thread-post-label:
-
-.. http:post:: /api/v1/comm/thread/
-
-    .. note:: Requires authentication.
-
-    **Request**
-
-    :param addon: the id of the addon.
-    :type addon: int
-    :param version: the id of the version of the addon.
-    :type version: int
-
-    **Response**
-
-    :param: A :ref:`thread <thread-response-label>`.
-    :status code: 201 successfully created.
-
-.. _thread-delete-label:
-
-.. http:delete:: /api/v1/comm/thread/(int:id)/
-
-    .. note:: Requires authentication.
-
-    **Response**
-
-    :status code: 204 successfully deleted.
 
 Note
 ====
@@ -186,7 +163,7 @@ Note
 
     .. note:: Does not require authentication if the thread is public.
 
-    Returns the list of notes that the thread contains.
+    Returns the list of notes that a thread contains.
 
     **Request**
 
@@ -210,6 +187,8 @@ Note
 
     .. note:: Does not require authentication if the note is in a public thread.
 
+    View a note.
+
     **Request**
 
     The standard :ref:`list-query-params-label`.
@@ -220,11 +199,17 @@ Note
 
     :status 200: successfully completed.
     :status 403: not allowed to access this object.
-    :status 404: not found.
+    :status 404: thread or note not found.
 
     .. code-block:: json
 
         {
+            "attachments": [{
+                "id": 1,
+                "created": "2013-06-14T11:54:48",
+                "display_name": "Screenshot of my app.",
+                "url": "http://marketplace.cdn.mozilla.net/someImage.jpg",
+            }],
             "author": 1,
             "author_meta": {
                 "name": "Landfill Admin"
@@ -239,6 +224,8 @@ Note
 
     Notes on the response.
 
+    :param attachments: files attached to the note (often images).
+    :type attachments: array
     :param note_type: type of action taken with the note.
     :type note_type: int
     :param is_read: Whether the note is read or unread.
@@ -272,7 +259,7 @@ Note
 
     .. note:: Requires authentication.
 
-    This endpoint can be used to mark an unread note as read.
+    Mark an unread note as read.
 
     **Request**
 
@@ -282,15 +269,16 @@ Note
     **Response**
 
     :status code: 204 Note marked as read.
-    :status code: 403 There is an attempt to modify other fields or not allowed to access the object.
     :status code: 400 Note object not found.
+    :status code: 403 There is an attempt to modify other fields or not allowed to access the object.
 
 .. _note-post-label:
 
 .. http:post:: /api/v1/comm/thread/(int:thread_id)/note/
 
-
     .. note:: Requires authentication.
+
+    Create a note on a thread.
 
     **Request**
 
@@ -307,16 +295,8 @@ Note
 
     :param: A :ref:`note <note-response-label>`.
     :status code: 201 successfully created.
-
-.. _note-delete-label:
-
-.. http:delete:: /api/v1/comm/thread/(int:thread_id)/note/(int:id)/
-
-    .. note:: Requires authentication.
-
-    **Response**
-
-    :status code: 204 successfully deleted.
+    :status code: 400 bad request.
+    :status code: 404 thread not found.
 
 
 .. _list-ordering-params-label:
@@ -333,3 +313,35 @@ Order results by created or modified times, by using `ordering` param.
 * *modified* - Earliest modified notes first.
 
 * *-modified* - Latest modified notes first.
+
+
+Attachment
+==========
+
+.. _attachment-post-label:
+
+.. http:post:: /api/v1/comm/thread/(int:thread_id)/note/(int:note_id)/attachment
+
+    .. note:: Requires authentication and the user to be the author of the note.
+
+    Create attachment(s) on a note.
+
+    **Request**
+
+    The request must be sent and encoded with the multipart/form-data Content-Type.
+
+    :param form-0-attachment: the first attachment file encoded with multipart/form-data.
+    :type form-0-attachment: multipart/form-data encoded file stream
+    :param form-0-description: description of the first attachment.
+    :type form-0-description: string
+    :param form-N-attachment: If sending multiple attachments, replace N with the number of the n-th attachment.
+    :type form-N-attachment: multipart/form-data encoded file stream
+    :param form-N-description: description of the n-th attachment.
+    :type form-N-description: string
+
+    **Response**
+
+    :param: The :ref:`note <note-response-label>` the attachment was attached to.
+    :status code: 201 successfully created.
+    :status code: 400 bad request (e.g. no attachments, more than 10 attachments).
+    :status code: 403 permission denied if user isn't the author of the note.

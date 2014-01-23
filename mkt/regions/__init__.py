@@ -1,21 +1,17 @@
 from threading import local
 
 from mkt.constants.regions import *
+from mkt.regions.utils import parse_region
 
 
 _local = local()
 
 
 def get_region():
-    return getattr(_local, 'region', RESTOFWORLD.slug)
+    """Get the region for the current request lifecycle."""
+    return parse_region(getattr(_local, 'region', '')) or RESTOFWORLD
 
 
-def get_region_id():
-    return REGIONS_DICT[get_region()].id
-
-
-def set_region(slug):
-    """
-    Sets the slug of the region for the current request lifecycle.
-    """
-    _local.region = slug
+def set_region(region):
+    """Set the region for the current request lifecycle."""
+    _local.region = region

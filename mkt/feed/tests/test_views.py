@@ -76,7 +76,7 @@ class TestFeedItemViewSetList(CollectionMixin, BaseTestFeedItemViewSet):
     """
     def setUp(self):
         super(TestFeedItemViewSetList, self).setUp()
-        self.url = reverse('feeditem-list')
+        self.url = reverse('api-v2:feeditem-list')
         self.item = FeedItem.objects.create(collection=self.collection)
 
     def list(self, client, **kwargs):
@@ -110,7 +110,7 @@ class TestFeedItemViewSetCreate(CollectionMixin, BaseTestFeedItemViewSet):
     """
     def setUp(self):
         super(TestFeedItemViewSetCreate, self).setUp()
-        self.url = reverse('feeditem-list')
+        self.url = reverse('api-v2:feeditem-list')
 
     def create(self, client, **kwargs):
         res = client.post(self.url, json.dumps(kwargs))
@@ -146,7 +146,8 @@ class TestFeedItemViewSetDetail(CollectionMixin, BaseTestFeedItemViewSet):
     def setUp(self):
         super(TestFeedItemViewSetDetail, self).setUp()
         self.item = FeedItem.objects.create(collection=self.collection)
-        self.url = reverse('feeditem-detail', kwargs={'pk': self.item.pk})
+        self.url = reverse('api-v2:feeditem-detail',
+                           kwargs={'pk': self.item.pk})
 
     def detail(self, client, **kwargs):
         res = client.get(self.url, kwargs)
@@ -177,7 +178,8 @@ class TestFeedItemViewSetUpdate(CollectionMixin, BaseTestFeedItemViewSet):
     def setUp(self):
         super(TestFeedItemViewSetUpdate, self).setUp()
         self.item = FeedItem.objects.create(collection=self.collection)
-        self.url = reverse('feeditem-detail', kwargs={'pk': self.item.pk})
+        self.url = reverse('api-v2:feeditem-detail',
+                           kwargs={'pk': self.item.pk})
 
     def update(self, client, **kwargs):
         res = client.patch(self.url, json.dumps(kwargs))
@@ -213,7 +215,8 @@ class TestFeedItemViewSetDelete(CollectionMixin, BaseTestFeedItemViewSet):
     def setUp(self):
         super(TestFeedItemViewSetDelete, self).setUp()
         self.item = FeedItem.objects.create(collection=self.collection)
-        self.url = reverse('feeditem-detail', kwargs={'pk': self.item.pk})
+        self.url = reverse('api-v2:feeditem-detail',
+                           kwargs={'pk': self.item.pk})
 
     def delete(self, client, **kwargs):
         res = client.delete(self.url)
@@ -257,7 +260,7 @@ class TestFeedAppViewSetList(BaseTestFeedAppViewSet):
 
     def setUp(self):
         super(TestFeedAppViewSetList, self).setUp()
-        self.url = reverse('feedapp-list')
+        self.url = reverse('api-v2:feedapp-list')
         self.create_feedapps(self.num)
 
     def list(self, client):
@@ -293,7 +296,7 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
 
     def setUp(self):
         super(TestFeedAppViewSetCreate, self).setUp()
-        self.url = reverse('feedapp-list')
+        self.url = reverse('api-v2:feedapp-list')
 
     def create(self, client, **kwargs):
         res = client.post(self.url, json.dumps(kwargs))
@@ -377,7 +380,8 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
     def setUp(self):
         super(TestFeedAppViewSetDetail, self).setUp()
         self.feedapp = self.create_feedapps(1)[0]
-        self.url = reverse('feedapp-detail', kwargs={'pk': self.feedapp.pk})
+        self.url = reverse('api-v2:feedapp-detail',
+                           kwargs={'pk': self.feedapp.pk})
 
     def detail(self, client, **kwargs):
         res = client.get(self.url)
@@ -413,7 +417,8 @@ class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):
     def setUp(self):
         super(TestFeedAppViewSetUpdate, self).setUp()
         self.feedapp = self.create_feedapps(1)[0]
-        self.url = reverse('feedapp-detail', kwargs={'pk': self.feedapp.pk})
+        self.url = reverse('api-v2:feedapp-detail',
+                           kwargs={'pk': self.feedapp.pk})
 
     def update(self, client, **kwargs):
         res = client.patch(self.url, json.dumps(kwargs))
@@ -458,7 +463,8 @@ class TestFeedAppViewSetDelete(BaseTestFeedAppViewSet):
     def setUp(self):
         super(TestFeedAppViewSetDelete, self).setUp()
         self.feedapp = self.create_feedapps(1)[0]
-        self.url = reverse('feedapp-detail', kwargs={'pk': self.feedapp.pk})
+        self.url = reverse('api-v2:feedapp-detail',
+                           kwargs={'pk': self.feedapp.pk})
 
     def delete(self, client, **kwargs):
         res = client.delete(self.url)

@@ -26,9 +26,9 @@ import amo
 import amo.models
 from access.acl import action_allowed, check_reviewer
 from addons import query
-from addons.models import (Addon, AddonDeviceType, attach_categories,
-                           attach_devices, attach_prices, attach_tags,
-                           attach_translations, Category)
+from addons.models import (Addon, AddonDeviceType, AddonUpsell,
+                           attach_categories, attach_devices, attach_prices,
+                           attach_tags, attach_translations, Category)
 from addons.signals import version_changed
 from amo.decorators import skip_cache
 from amo.helpers import absolutify
@@ -547,7 +547,7 @@ class Webapp(Addon):
         """When the submission process is done, update status accordingly."""
         self.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
-    def update_status(self, using=None):
+    def update_status(self, **kwargs):
         if (self.is_deleted or self.is_disabled or
             self.status == amo.STATUS_BLOCKED):
             return
@@ -1762,7 +1762,21 @@ Webapp._meta.translated_fields = Addon._meta.translated_fields
 def update_search_index(sender, instance, **kw):
     from . import tasks
     if not kw.get('raw'):
+        if instance.upsold:
+            tasks.index_webapps.delay([instance.upsold.id])
         tasks.index_webapps.delay([instance.id])
+
+
+@receiver(dbsignals.post_save, sender=AddonUpsell,
+          dispatch_uid='addonupsell.search.index')
+def update_search_index_upsell(sender, instance, **kw):
+    # When saving an AddonUpsell instance, reindex both apps to update their
+    # upsell/upsold properties in ES.
+    from . import tasks
+    if instance.free:
+        tasks.index_webapps.delay([instance.free.id])
+    if instance.premium:
+        tasks.index_webapps.delay([instance.premium.id])
 
 
 models.signals.pre_save.connect(save_signal, sender=Webapp,

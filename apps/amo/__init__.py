@@ -22,7 +22,10 @@ from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
                   LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
                   LOG_REVIEW_EMAIL_USER, log)
 
+
 def patch_waffle():
+    if getattr(waffle, '_PATCHED', None):
+        return 
     suffix = getattr(settings, 'WAFFLE_TABLE_SUFFIX', None)
     if suffix:
         for m in [waffle.Flag, waffle.Switch, waffle.Sample]:
@@ -31,6 +34,7 @@ def patch_waffle():
             waffle.Flag._meta.db_table,)
         waffle.Flag.groups.through._meta.db_table = '%s_groups' % (
             waffle.Flag._meta.db_table,)
+    waffle._PATCHED = True
 
 patch_waffle()
 

@@ -99,9 +99,9 @@ class RatingSerializer(serializers.ModelSerializer):
 
             # Return 403 if the app is not available in the current region.
             current_region = get_region()
-            if not app.listed_in(region=REGIONS_DICT[current_region]):
+            if not app.listed_in(region=current_region):
                 raise PermissionDenied('App not available in region "%s".' %
-                                       current_region)
+                                       current_region.slug)
 
         return attrs
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import mock
 import urlparse
 
 from django.http import QueryDict
@@ -16,6 +17,8 @@ import amo.tests
 from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
+from addons.tasks import unindex_addons
+from mkt.webapps.tasks import unindex_webapps
 from search import views
 from search.utils import floor_version
 from search.views import DEFAULT_NUM_PERSONAS, version_sidebar
@@ -623,15 +626,19 @@ class TestPersonaSearch(SearchBase):
         # Add some public personas.
         self.personas = []
         for status in amo.REVIEWED_STATUSES:
-            self.personas.append(
-                amo.tests.addon_factory(type=amo.ADDON_PERSONA, status=status))
+            addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA,
+                                            status=status)
+            self.personas.append(addon)
+            self._addons.append(addon)
 
         # Add some unreviewed personas.
         for status in set(amo.STATUS_CHOICES) - set(amo.REVIEWED_STATUSES):
-            amo.tests.addon_factory(type=amo.ADDON_PERSONA, status=status)
+            self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
+                                                        status=status))
 
         # Add a disabled persona.
-        amo.tests.addon_factory(type=amo.ADDON_PERSONA, disabled_by_user=True)
+        self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
+                                                    disabled_by_user=True))
 
         # NOTE: There are also some add-ons in `setUpIndex` for good measure.
 
@@ -708,8 +715,9 @@ class TestPersonaSearch(SearchBase):
             ('The Japanese Tattooed Girl', 242),
         ]
         for name, popularity in personas:
-            amo.tests.addon_factory(name=name, type=amo.ADDON_PERSONA,
-                                    popularity=popularity)
+            self._addons.append(amo.tests.addon_factory(name=name,
+                                                        type=amo.ADDON_PERSONA,
+                                                        popularity=popularity))
         self.refresh()
 
         # Japanese Tattoo should be the #1 most relevant result. Obviously.
@@ -749,8 +757,9 @@ class TestPersonaSearch(SearchBase):
         # Generate some (22) personas to get us to two pages.
         left_to_add = DEFAULT_NUM_PERSONAS - len(self.personas) + 1
         for x in xrange(left_to_add):
-            self.personas.append(
-                amo.tests.addon_factory(type=amo.ADDON_PERSONA))
+            addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+            self.personas.append(addon)
+            self._addons.append(addon)
         self.refresh()
 
         # Page one should show 21 personas.
@@ -1109,7 +1118,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         self.search_addons('q=%s' % addon.id, [])
 
     def test_ajax_search_admin_deleted_by_id(self):
-        amo.tests.addon_factory(status=amo.STATUS_DELETED)
+        self._addons.append(amo.tests.addon_factory(status=amo.STATUS_DELETED))
         self.refresh()
         addon = Addon.with_deleted.filter(status=amo.STATUS_DELETED)[0]
         self.search_addons('q=%s' % addon.id, [])
@@ -1121,7 +1130,8 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         Persona.objects.create(persona_id=addon.id, addon_id=addon.id)
         self.search_addons('q=%s' % addon.id, [addon])
 
-    def test_ajax_search_webapp_by_id(self):
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def test_ajax_search_webapp_by_id(self, index_webapps_mock):
         """Webapps should not appear in ajax search results."""
         addon = Addon.objects.all()[3]
         addon.update(type=amo.ADDON_WEBAPP)
@@ -1133,6 +1143,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
             status=amo.STATUS_LITE,
             type=amo.ADDON_EXTENSION,
         )
+        self._addons.append(addon)
         self.refresh(timesleep=1)
         self.search_addons('q=' + unicode(addon.name), [addon])
 
@@ -1142,12 +1153,19 @@ class TestGenericAjaxSearch(TestAjaxSearch):
 
 class TestSearchSuggestions(TestAjaxSearch):
 
-    def setUp(self):
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def setUp(self, index_webapps_mock):
         self.url = reverse('search.suggestions')
-        amo.tests.addon_factory(name='addon webapp', type=amo.ADDON_WEBAPP)
-        amo.tests.addon_factory(name='addon persona', type=amo.ADDON_PERSONA)
-        amo.tests.addon_factory(name='addon persona', type=amo.ADDON_PERSONA,
-                                disabled_by_user=True, status=amo.STATUS_NULL)
+        self._addons += [
+            amo.tests.addon_factory(name='addon webapp',
+                                    type=amo.ADDON_WEBAPP),
+            amo.tests.addon_factory(name='addon persona',
+                                    type=amo.ADDON_PERSONA),
+            amo.tests.addon_factory(name='addon persona',
+                                    type=amo.ADDON_PERSONA,
+                                    disabled_by_user=True,
+                                    status=amo.STATUS_NULL),
+        ]
         self.refresh(timesleep=1)
 
     def search_addons(self, params, addons=[],
@@ -1195,8 +1213,8 @@ class TestSearchSuggestions(TestAjaxSearch):
 
     def test_applications(self):
         self.search_applications('', [])
-        self.search_applications('q=FIREFOX', [amo.FIREFOX])
-        self.search_applications('q=firefox', [amo.FIREFOX])
+        self.search_applications('q=FIREFOX', [amo.FIREFOX, amo.ANDROID])
+        self.search_applications('q=firefox', [amo.FIREFOX, amo.ANDROID])
         self.search_applications('q=bird', [amo.THUNDERBIRD])
         self.search_applications('q=mobile', [amo.MOBILE])
         self.search_applications('q=mozilla', [])
