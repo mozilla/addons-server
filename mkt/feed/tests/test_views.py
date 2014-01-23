@@ -4,6 +4,7 @@ import json
 from nose.tools import eq_, ok_
 
 from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
 
 import mkt.carriers
 import mkt.regions
@@ -58,6 +59,7 @@ class FeedAppMixin(object):
         return feedapps
 
 
+@override_settings(API_CURRENT_VERSION=2)
 class BaseTestFeedItemViewSet(RestOAuth):
     def setUp(self):
         super(BaseTestFeedItemViewSet, self).setUp()
@@ -234,6 +236,7 @@ class TestFeedItemViewSetDelete(CollectionMixin, BaseTestFeedItemViewSet):
         eq_(res.status_code, 204)
 
 
+@override_settings(API_CURRENT_VERSION=2)
 class BaseTestFeedAppViewSet(FeedAppMixin, RestOAuth):
     fixtures = FeedAppMixin.fixtures + RestOAuth.fixtures
 
