@@ -1,5 +1,4 @@
-from django.http import QueryDict
-from django.utils.simplejson import JSONDecodeError
+from django.conf import settings
 
 import commonware.log
 from rest_framework import serializers
@@ -95,7 +94,10 @@ class URLSerializerMixin(serializers.ModelSerializer):
 
     def get_url(self, obj):
         if 'request' in self.context and hasattr(self.Meta, 'url_basename'):
-            return reverse('%s-detail' % self.Meta.url_basename,
-                           request=self.context['request'],
-                           kwargs={'pk': obj.pk})
+            request = self.context['request']
+            namespace = ''
+            if request.API_VERSION != settings.API_CURRENT_VERSION:
+                namespace = 'api-v%d:' % request.API_VERSION
+            return reverse('%s%s-detail' % (namespace, self.Meta.url_basename,),
+                           request=request, kwargs={'pk': obj.pk})
         return None
