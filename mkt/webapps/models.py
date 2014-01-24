@@ -13,7 +13,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import NoReverseMatch
 from django.db import models
-from django.db.models import Min, signals as dbsignals
+from django.db.models import Min, Q, signals as dbsignals
 from django.dispatch import receiver
 
 import commonware.log
@@ -1169,7 +1169,7 @@ class Webapp(Addon):
 
     def set_content_ratings(self, data):
         """
-        Sets content ratings on this app. Tries to set status to PENDING.
+        Central method for setting content ratings.
 
         This overwrites or creates ratings, it doesn't delete and expects data
         of the form::
@@ -1183,6 +1183,19 @@ class Webapp(Addon):
             if not created:
                 cr.update(rating=rating.id, modified=datetime.datetime.now())
         self.set_iarc_storefront_data()  # Ratings updated, sync with IARC.
+
+        if self.content_ratings.filter(
+            # If app gets USK Rating Refused, exclude it from Germany.
+            ratings_body=mkt.ratingsbodies.USK.id,
+            rating=mkt.ratingsbodies.USK_REJECTED.id):
+            geodata, c = Geodata.objects.get_or_create(addon=self)
+            geodata.update(region_de_usk_exclude=True)
+        else:
+            # If app not have USK Rating Refused, un-exclude it from Germany.
+            geodatas = Geodata.objects.filter(addon=self,
+                                              region_de_usk_exclude=True)
+            if geodatas.exists():
+                geodatas.update(region_de_usk_exclude=False)
 
     def set_descriptors(self, data):
         """
@@ -1878,19 +1891,27 @@ class AddonExcludedRegion(amo.models.ModelBase):
 
 @memoize(prefix='get_excluded_in')
 def get_excluded_in(region_id):
-    """Return IDs of Webapp objects excluded from a particular region."""
+    """
+    Return IDs of Webapp objects excluded from a particular region or excluded
+    due to Geodata flags.
+    """
     aers = list(AddonExcludedRegion.objects.filter(region=region_id)
                 .values_list('addon', flat=True))
 
-    iarc_exclusions = []
+    # For pre-IARC unrated games in Brazil/Germany.
+    geodata_qs = Q()
     region = parse_region(region_id)
     if region in (mkt.regions.BR, mkt.regions.DE):
-        # IARC exclusions are Brazil/Germany-specific flags in the Geodata.
-        iarc_exclusions = list(Geodata.objects.filter(
-            **{'region_%s_iarc_exclude' % region.slug: True})
-            .values_list('addon', flat=True))
+        geodata_qs |= Q(**{'region_%s_iarc_exclude' % region.slug: True})
+    # For USK_RATING_REFUSED apps in Germany.
+    if region == mkt.regions.DE:
+        geodata_qs |= Q(**{'region_de_usk_exclude': True})
 
-    return set(aers + iarc_exclusions)
+    geodata_exclusions = []
+    if geodata_qs:
+        geodata_exclusions = list(Geodata.objects.filter(geodata_qs)
+                                  .values_list('addon', flat=True))
+    return set(aers + geodata_exclusions)
 
 
 @receiver(models.signals.post_save, sender=AddonExcludedRegion,
@@ -2136,6 +2157,8 @@ class Geodata(amo.models.ModelBase):
     popular_region = models.CharField(max_length=10, null=True)
     banner_regions = RegionListField(default=None, null=True)
     banner_message = PurifiedField()
+    # Exclude apps with USK_RATING_REFUSED in Germany.
+    region_de_usk_exclude = models.BooleanField()
 
     class Meta:
         db_table = 'webapps_geodata'
