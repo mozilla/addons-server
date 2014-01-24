@@ -42,7 +42,7 @@ class FirstAvailableRenderer(DefaultContentNegotiation):
     """
     def select_renderer(self, request, renderers, format_suffix=None):
         if len(renderers) == 1:
-            return renderers[0]
+            return renderers[0], renderers[0].media_type
         else:
             return super(FirstAvailableRenderer, self).select_renderer(self,
                 request, renderers, format_suffix=format_suffix)
