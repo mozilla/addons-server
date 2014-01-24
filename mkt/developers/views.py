@@ -710,8 +710,7 @@ def json_file_validation(request, addon_id, addon, file_id):
         v_result = file.validation
     validation = json.loads(v_result.validation)
 
-    return make_validation_result(dict(validation=validation,
-                                       error=None))
+    return make_validation_result(dict(validation=validation, error=None))
 
 
 @json_view

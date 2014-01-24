@@ -78,9 +78,8 @@ function initValidator($doc) {
             }
             this.$tierResults.append('<span>' + summaryMsg + '</span>');
         }
-        this.$tierResults.removeClass('ajax-loading', 'tests-failed',
-                                      'tests-passed', 'tests-passed-warnings',
-                                      'tests-notrun')
+        this.$tierResults.removeClass('tests-failed', 'tests-passed',
+                                      'tests-passed-warnings', 'tests-notrun')
                          .addClass(resultClass);
         if ($('.test-tier', this.$suite).length)
             this.topSummary();
@@ -93,8 +92,7 @@ function initValidator($doc) {
             summaryMsg = resultSummary(this.counts.error, this.counts.warning, this.testsWereRun);
 
         $('.tier-summary', $top).text(summaryMsg);
-        $top.removeClass('ajax-loading', 'tests-failed', 'tests-passed',
-                         'tests-notrun');
+        $top.removeClass('tests-failed', 'tests-passed', 'tests-notrun');
         if (this.counts.error > 0) {
             $top.addClass('tests-failed');
         } else {
@@ -421,9 +419,10 @@ function initValidator($doc) {
 
     $('.addon-validator-suite', $doc).bind('validate', function(e) {
         var el = $(this),
-            url = el.attr('data-validateurl');
+            url = el.attr('data-validateurl'),
+            sections = el.find('.test-tier, .tier-results, .suite-summary');
 
-        $('.test-tier,.tier-results', el).addClass('ajax-loading');
+        sections.addClass('ajax-loading');
 
         $.ajax({type: 'POST',
                 url: url,
@@ -462,6 +461,9 @@ function initValidator($doc) {
                         }
                     });
                     el.trigger('badresponse.validation');
+                },
+                complete: function (jqXHR, textStatus) {
+                    sections.removeClass('ajax-loading');
                 },
                 dataType: 'json'
         });

@@ -304,6 +304,17 @@ $lead-col-width = 320px;
         }
     }
 }
+.test-tier.ajax-loading .tier-summary,
+.tier-results.ajax-loading,
+.suite-summary.ajax-loading span {
+    height: 20px;
+    background: url(/media/img/developers/suite-running.gif) no-repeat;
+    background-size: 20px;
+}
+.tier-results.ajax-loading,
+.suite-summary.ajax-loading span {
+    background-position: 10px;
+}
 .html-rtl .suite-container .tiers {
     text-align: right;
 }
@@ -329,6 +340,9 @@ $lead-col-width = 320px;
     .tier-results {
         background-color: $white;
         padding: 10px;
+    }
+    .result-summary:after {
+        content: "\00A0";  /* non-breaking space */
     }
     .result .result-header {
         padding-bottom: 10px;

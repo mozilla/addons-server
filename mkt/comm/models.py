@@ -186,7 +186,7 @@ class CommunicationNote(CommunicationPermissionModel):
         self.thread.save()
 
     def mark_read(self, user):
-        self.reads_set.create(user=user)
+        self.reads_set.get_or_create(user=user)
 
 
 class CommAttachment(amo.models.ModelBase):
