@@ -1443,7 +1443,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(update_name.call_count, 1)
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
-        eq_(update_cached_manifests.delay.call_count, 1)
+
+        # App is not packaged, no need to call update_cached_manifests.
+        eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 1)
 
     @mock.patch('mkt.reviewers.views.messages.success', new=mock.Mock)
