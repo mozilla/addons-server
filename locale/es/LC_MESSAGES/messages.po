@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-23 18:54+0000\n"
+"PO-Revision-Date: 2014-01-24 16:36+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1390503295.0\n"
+"X-POOTLE-MTIME: 1390581405.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -17414,15 +17414,20 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr "Terminado el proceso de la clasificación de contenido con IARC, serás redireccionado a la <a href=\"%(ratings_url)s\">página de clasificación de contenido</a> de tu aplicación."
+msgstr ""
+"Terminado el proceso de la calificación de contenido con IARC, serás "
+"redireccionado a la <a href=\"%(ratings_url)s\">página de calificación de "
+"contenido</a> de tu aplicación."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
-msgstr "Lo sentimos, se ha producido un error en nuestro proceso de clasificación de contenido. Sigue intentándolo o prueba pasados unos minutos."
+msgstr ""
+"Lo sentimos, se ha producido un error en nuestro proceso de calificación de "
+"contenido. Sigue intentándolo o prueba pasados unos minutos."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
-msgstr "Crear un certificado de clasificación IARC"
+msgstr "Crear un certificado de calificación IARC"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
@@ -17430,7 +17435,10 @@ msgstr "¿Tu aplicación ya ha sido clasificada?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
-msgstr "Si ya has recibido la clasificación de tu aplicación a través de la herramienta de la IARC y tienes también un código de seguridad de ella, puedes escribirlo aquí."
+msgstr ""
+"Si ya has recibido la calificación de tu aplicación a través de la "
+"herramienta de la IARC y tienes también un código de seguridad de ella, "
+"puedes escribirlo aquí."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
