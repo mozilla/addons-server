@@ -2,8 +2,7 @@ from django.conf.urls import include, patterns, url
 
 from rest_framework.routers import SimpleRouter
 
-from mkt.fireplace.api import AppViewSet
-from mkt.search.api import FeaturedSearchView
+from mkt.fireplace.api import AppViewSet, FeaturedSearchView
 
 apps = SimpleRouter()
 apps.register(r'app', AppViewSet, base_name='fireplace-app')
