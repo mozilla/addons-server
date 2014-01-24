@@ -2,11 +2,10 @@ import posixpath
 
 from django import http
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 import caching.base as caching
 import commonware.log
-import jingo
 from mobility.decorators import mobile_template
 
 import amo
@@ -35,8 +34,7 @@ def version_list(request, addon, template):
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
     Version.transformer(versions.object_list)
-    return jingo.render(request, template,
-                        {'addon': addon, 'versions': versions})
+    return render(request, template, {'addon': addon, 'versions': versions})
 
 
 @addon_view
@@ -67,9 +65,9 @@ def update_info(request, addon, version_num):
         raise http.Http404()
     serve_xhtml = ('application/xhtml+xml' in
                    request.META.get('HTTP_ACCEPT', '').lower())
-    return jingo.render(request, 'versions/update_info.html',
-                        {'version': qs[0], 'serve_xhtml': serve_xhtml},
-                        content_type='application/xhtml+xml')
+    return render(request, 'versions/update_info.html',
+                  {'version': qs[0], 'serve_xhtml': serve_xhtml},
+                  content_type='application/xhtml+xml')
 
 
 def update_info_redirect(request, version_id):

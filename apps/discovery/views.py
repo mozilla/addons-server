@@ -8,11 +8,10 @@ from django.contrib import admin
 from django.db import IntegrityError
 from django.db.models import F
 from django.forms.models import modelformset_factory
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import jingo
 import waffle
 
 import amo
@@ -60,12 +59,12 @@ def pane(request, version, platform, compat_mode=None):
 
     promovideo = PromoVideoCollection().get_items()
 
-    return jingo.render(request, 'discovery/pane.html',
-                        {'up_and_coming': from_api('hotness'),
-                         'featured_addons': from_api('featured'),
-                         'featured_personas': get_featured_personas(request),
-                         'version': version, 'platform': platform,
-                         'promovideo': promovideo, 'compat_mode': compat_mode})
+    return render(request, 'discovery/pane.html',
+                  {'up_and_coming': from_api('hotness'),
+                   'featured_addons': from_api('featured'),
+                   'featured_personas': get_featured_personas(request),
+                   'version': version, 'platform': platform,
+                   'promovideo': promovideo, 'compat_mode': compat_mode})
 
 
 def pane_account(request):
@@ -75,15 +74,15 @@ def pane_account(request):
     except GlobalStat.DoesNotExist:
         addon_downloads = None
 
-    return jingo.render(request, 'discovery/pane_account.html',
-                        {'addon_downloads': addon_downloads})
+    return render(request, 'discovery/pane_account.html',
+                  {'addon_downloads': addon_downloads})
 
 
 def promos(request, context, version, platform, compat_mode='strict'):
     platform = amo.PLATFORM_DICT.get(version.lower(), amo.PLATFORM_ALL)
     modules = get_modules(request, platform.api_name, version)
-    return jingo.render(request, 'addons/impala/homepage_promos.html',
-                        {'modules': modules, 'module_context': context})
+    return render(request, 'addons/impala/homepage_promos.html',
+                  {'modules': modules, 'module_context': context})
 
 
 def pane_promos(request, version, platform, compat_mode=None):
@@ -107,7 +106,7 @@ def pane_more_addons(request, section, version, platform, compat_mode=None):
         ctx = {'featured_addons': from_api('featured')}
     elif section == 'up-and-coming':
         ctx = {'up_and_coming': from_api('hotness')}
-    return jingo.render(request, 'discovery/more_addons.html', ctx)
+    return render(request, 'discovery/more_addons.html', ctx)
 
 
 def get_modules(request, platform, version):
@@ -161,8 +160,7 @@ def module_admin(request):
         formset.save()
         return redirect('discovery.module_admin')
 
-    return jingo.render(request, 'discovery/module_admin.html',
-                        {'formset': formset})
+    return render(request, 'discovery/module_admin.html', {'formset': formset})
 
 
 def _sync_db_and_registry(qs, app):
@@ -263,9 +261,9 @@ def get_addon_ids(guids):
 def addon_detail(request, addon):
     reviews = Review.objects.valid().filter(addon=addon, is_latest=True)
     src = request.GET.get('src', 'discovery-details')
-    return jingo.render(request, 'discovery/addons/detail.html',
-                        {'addon': addon, 'reviews': reviews,
-                         'get_replies': Review.get_replies, 'src': src})
+    return render(request, 'discovery/addons/detail.html',
+                  {'addon': addon, 'reviews': reviews,
+                   'get_replies': Review.get_replies, 'src': src})
 
 
 @addon_view
@@ -278,8 +276,8 @@ def addon_eula(request, addon, file_id):
     else:
         version = addon.current_version
     src = request.GET.get('src', 'discovery-details')
-    return jingo.render(request, 'discovery/addons/eula.html',
-                        {'addon': addon, 'version': version, 'src': src})
+    return render(request, 'discovery/addons/eula.html',
+                  {'addon': addon, 'version': version, 'src': src})
 
 
 def recs_transform(recs):
@@ -325,4 +323,4 @@ def recs_debug(request):
                         if a.type == amo.ADDON_EXTENSION)
         ctx['fragment'] = json.dumps(fragment, separators=(',', ':'))
 
-    return jingo.render(request, 'discovery/recs-debug.html', ctx)
+    return render(request, 'discovery/recs-debug.html', ctx)

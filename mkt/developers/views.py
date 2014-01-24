@@ -11,12 +11,11 @@ from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import jingo
 import jinja2
 import waffle
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
@@ -121,7 +120,7 @@ def dashboard(request, webapp=False):
     addons = amo.utils.paginate(request, addons, per_page=10)
     data = dict(addons=addons, sorting=filter.field, filter=filter,
                 sort_opts=filter.opts, webapp=webapp)
-    return jingo.render(request, 'developers/apps/dashboard.html', data)
+    return render(request, 'developers/apps/dashboard.html', data)
 
 
 @dev_required(webapp=True, staff=True)
@@ -142,7 +141,7 @@ def edit(request, addon_id, addon, webapp=False):
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon,
                                                               request=request)
-    return jingo.render(request, 'developers/apps/edit.html', data)
+    return render(request, 'developers/apps/edit.html', data)
 
 
 @dev_required(owner_for_post=True, webapp=True)
@@ -290,7 +289,7 @@ def status(request, addon_id, addon, webapp=False):
             ctx['next_step_suffix'] = 'home'
         ctx['test_plan'] = test_plan
 
-    return jingo.render(request, 'developers/apps/status.html', ctx)
+    return render(request, 'developers/apps/status.html', ctx)
 
 
 def _submission_msgs():
@@ -336,10 +335,8 @@ def content_ratings(request, addon_id, addon):
         del session['ratings_edit'][addon.id]  # Clear msg so not shown again.
         request.session.modified = True
 
-    return jingo.render(
-        request, 'developers/apps/ratings/ratings_summary.html', {
-            'addon': addon
-        })
+    return render(request, 'developers/apps/ratings/ratings_summary.html',
+                  {'addon': addon})
 
 
 @waffle_switch('iarc')
@@ -371,18 +368,15 @@ def content_ratings_edit(request, addon_id, addon):
     }
     request.session.modified = True
 
-    return jingo.render(
-        request, 'developers/apps/ratings/ratings_edit.html', {
-            'addon': addon,
-            'app_name': get_iarc_app_title(addon),
-            'form': form,
-            # Force double escaping of developer name. If this has HTML
-            # entities we want the escaped version to be passed to IARC.
-            # See bug 962362.
-            'company': jinja2.escape(unicode(
-                jinja2.escape(addon.latest_version.developer_name))),
-            'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        })
+    return render(request, 'developers/apps/ratings/ratings_edit.html',
+                  {'addon': addon, 'app_name': get_iarc_app_title(addon),
+                   'form': form,
+                   # Force double escaping of developer name. If this has HTML
+                   # entities we want the escaped version to be passed to IARC.
+                   # See bug 962362.
+                   'company': jinja2.escape(unicode(
+                       jinja2.escape(addon.latest_version.developer_name))),
+                   'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
 
 
 @waffle_switch('preload-apps')
@@ -391,9 +385,8 @@ def preload_home(request, addon_id, addon):
     """
     Gives information on the preload process, links to test plan template.
     """
-    return jingo.render(request, 'developers/apps/preload/home.html', {
-        'addon': addon
-    })
+    return render(request, 'developers/apps/preload/home.html',
+                  {'addon': addon})
 
 
 @waffle_switch('preload-apps')
@@ -428,10 +421,8 @@ def preload_submit(request, addon_id, addon, webapp):
     else:
         form = PreloadTestPlanForm()
 
-    return jingo.render(request, 'developers/apps/preload/submit.html', {
-        'addon': addon,
-        'form': form
-    })
+    return render(request, 'developers/apps/preload/submit.html',
+                  {'addon': addon, 'form': form})
 
 
 @dev_required
@@ -472,7 +463,7 @@ def version_edit(request, addon_id, addon, version_id):
             'feature_list': [unicode(f) for f in appfeatures.to_list()]
         })
 
-    return jingo.render(request, 'developers/apps/version_edit.html', context)
+    return render(request, 'developers/apps/version_edit.html', context)
 
 
 @dev_required
@@ -556,12 +547,12 @@ def ownership(request, addon_id, addon, webapp=False):
         return redirect(redirect_url)
 
     ctx = dict(addon=addon, webapp=webapp, user_form=user_form)
-    return jingo.render(request, 'developers/apps/owner.html', ctx)
+    return render(request, 'developers/apps/owner.html', ctx)
 
 
 @anonymous_csrf
 def validate_addon(request):
-    return jingo.render(request, 'developers/validate_addon.html', {
+    return render(request, 'developers/validate_addon.html', {
         'upload_hosted_url':
             reverse('mkt.developers.standalone_hosted_upload'),
         'upload_packaged_url':
@@ -689,10 +680,9 @@ def file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
 
     v = addon.get_dev_url('json_file_validation', args=[file.id])
-    return jingo.render(request, 'developers/validation.html',
-                        dict(validate_url=v, filename=file.filename,
-                             timestamp=file.created,
-                             addon=addon))
+    return render(request, 'developers/validation.html',
+                  dict(validate_url=v, filename=file.filename,
+                       timestamp=file.created, addon=addon))
 
 
 @json_view
@@ -769,9 +759,9 @@ def upload_detail(request, uuid, format='html'):
 
     validate_url = reverse('mkt.developers.standalone_upload_detail',
                            args=['hosted', upload.uuid])
-    return jingo.render(request, 'developers/validation.html',
-                        dict(validate_url=validate_url, filename=upload.name,
-                             timestamp=upload.created))
+    return render(request, 'developers/validation.html',
+                  dict(validate_url=validate_url, filename=upload.name,
+                       timestamp=upload.created))
 
 
 @dev_required(webapp=True, staff=True)
@@ -896,8 +886,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'appfeatures_form': appfeatures_form
         })
 
-    return jingo.render(request,
-                        'developers/apps/edit/%s.html' % section, data)
+    return render(request, 'developers/apps/edit/%s.html' % section, data)
 
 
 @never_cache
@@ -973,7 +962,7 @@ def docs(request, doc_name=None, doc_page=None):
     if not filename:
         return redirect('ecosystem.landing')
 
-    return jingo.render(request, 'developers/docs/%s' % filename)
+    return render(request, 'developers/docs/%s' % filename)
 
 
 @login_required
@@ -986,9 +975,9 @@ def terms(request):
         if request.GET.get('to') and request.GET['to'].startswith('/'):
             return redirect(request.GET['to'])
         messages.success(request, _('Terms of service accepted.'))
-    return jingo.render(request, 'developers/terms.html',
-                        {'accepted': request.amo_user.read_dev_agreement,
-                         'agreement_form': form})
+    return render(request, 'developers/terms.html',
+                  {'accepted': request.amo_user.read_dev_agreement,
+                   'agreement_form': form})
 
 
 @login_required
@@ -1021,8 +1010,8 @@ def api(request):
             else:
                 access.delete()
     consumers = list(Access.objects.filter(user=request.user))
-    return jingo.render(request, 'developers/api.html',
-                        {'consumers': consumers, 'roles': roles, 'form': f})
+    return render(request, 'developers/api.html',
+                  {'consumers': consumers, 'roles': roles, 'form': f})
 
 
 @addon_view
@@ -1046,13 +1035,11 @@ def blocklist(request, addon):
 @login_required
 def transactions(request):
     form, transactions = _get_transactions(request)
-    return jingo.render(
-        request, 'developers/transactions.html',
-        {'form': form,
-         'CONTRIB_TYPES': amo.CONTRIB_TYPES,
-         'count': transactions.count(),
-         'transactions': amo.utils.paginate(request,
-                                            transactions, per_page=50)})
+    return render(request, 'developers/transactions.html',
+                  {'form': form, 'CONTRIB_TYPES': amo.CONTRIB_TYPES,
+                   'count': transactions.count(),
+                   'transactions': amo.utils.paginate(
+                       request, transactions, per_page=50)})
 
 
 def _get_transactions(request):
@@ -1083,4 +1070,4 @@ def _filter_transactions(qs, data):
 
 
 def testing(request):
-    return jingo.render(request, 'developers/testing.html')
+    return render(request, 'developers/testing.html')

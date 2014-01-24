@@ -4,6 +4,12 @@ Settings Changelog
 2014-01-22
 ----------
 
+* Added ``JINGO_EXCLUDE_APPS`` to exclude applications that are not using
+  Jinja2 templates from Jingo's template loader.
+
+2014-01-22
+----------
+
 * Changed ``CACHES['default']['BACKEND']`` from
   ``django.core.cache.backends.locmem.LocMemCache`` to 
   ``caching.backends.locmem.LocMemCache``.

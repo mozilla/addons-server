@@ -81,7 +81,7 @@ def user_vcard(context, user, table_class='person-info', is_profile=False):
         'table_class': table_class,
         'is_profile': is_profile
     })
-    t = env.get_template('users/vcard.html').render(**c)
+    t = env.get_template('users/vcard.html').render(c)
     return jinja2.Markup(t)
 
 

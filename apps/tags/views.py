@@ -1,4 +1,4 @@
-import jingo
+from django.shortcuts import render
 
 from tags.models import Tag
 
@@ -9,6 +9,4 @@ def top_cloud(request, num_tags=100):
        attempts to do so resulted in extreme SQL carnage
        bug 556135 is open to fix"""
     top_tags = Tag.objects.not_blacklisted().order_by('-num_addons')[:num_tags]
-    return jingo.render(request, 'tags/top_cloud.html',
-                        {'top_tags': top_tags})
-
+    return render(request, 'tags/top_cloud.html', {'top_tags': top_tags})

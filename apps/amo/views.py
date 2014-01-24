@@ -5,13 +5,13 @@ from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.shortcuts import render
 from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 import commonware.log
-import jingo
 import waffle
 from django_statsd.views import record as django_statsd_record
 from django_statsd.clients import statsd
@@ -64,8 +64,7 @@ def monitor(request, format=None):
     ctx.update(results)
     ctx['status_summary'] = status_summary
 
-    return jingo.render(request, 'services/monitor.html',
-                        ctx, status=status_code)
+    return render(request, 'services/monitor.html', ctx, status=status_code)
 
 
 def robots(request):
@@ -74,8 +73,7 @@ def robots(request):
     if _service or not settings.ENGAGE_ROBOTS:
         template = "User-agent: *\nDisallow: /"
     else:
-        template = jingo.render(request, 'amo/robots.html',
-                                {'apps': amo.APP_USAGE})
+        template = render(request, 'amo/robots.html', {'apps': amo.APP_USAGE})
 
     return HttpResponse(template, mimetype="text/plain")
 
@@ -85,7 +83,7 @@ def handler403(request):
         # Pass over to handler403 view in api if api was targeted.
         return api.views.handler403(request)
     else:
-        return jingo.render(request, 'amo/403.html', status=403)
+        return render(request, 'amo/403.html', status=403)
 
 
 def handler404(request):
@@ -93,7 +91,7 @@ def handler404(request):
         # Pass over to handler404 view in api if api was targeted.
         return api.views.handler404(request)
     else:
-        return jingo.render(request, 'amo/404.html', status=404)
+        return render(request, 'amo/404.html', status=404)
 
 
 def handler500(request):
@@ -101,13 +99,12 @@ def handler500(request):
         # Pass over to handler500 view in api if api was targeted.
         return api.views.handler500(request)
     else:
-        return jingo.render(request, 'amo/500.html', status=500)
+        return render(request, 'amo/500.html', status=500)
 
 
 def csrf_failure(request, reason=''):
-    return jingo.render(request, 'amo/403.html',
-                        {'because_csrf': 'CSRF' in reason},
-                        status=403)
+    return render(request, 'amo/403.html',
+                  {'because_csrf': 'CSRF' in reason}, status=403)
 
 
 def loaded(request):

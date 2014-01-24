@@ -12,6 +12,15 @@ INSTALLED_APPS += (
     'django_qunit',
 )
 
+# We don't want jingo's template loaded to pick up templates for third party
+# apps that don't use Jinja2. The Following is a list of prefixes for jingo to
+# ignore.
+JINGO_EXCLUDE_APPS += (
+    'debug_toolbar',
+    'django_extensions',
+    'qunit',
+)
+
 # You want one of the caching backends.  Dummy won't do any caching, locmem is
 # cleared every time you restart the server, and memcached is what we run in
 # production.

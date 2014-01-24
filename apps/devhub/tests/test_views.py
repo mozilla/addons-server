@@ -3146,8 +3146,13 @@ class TestSearch(amo.tests.TestCase):
 
     def test_search_titles(self):
         r = self.client.get(reverse('devhub.search'), {'q': 'davor'})
-        self.assertContains(r, '&#34;davor&#34;</h1>')
+        self.assertContains(r, '"davor"</h1>')
         self.assertContains(r, '<title>davor :: Search ::')
+
+        # Prevent XSS.
+        r = self.client.get(reverse('devhub.search'), {'q': '<script>'})
+        self.assertContains(r, '"&lt;script&gt;"</h1>')
+        self.assertContains(r, '<title>&amp;lt;script&amp;gt; :: Search ::')
 
     def test_search_titles_default(self):
         r = self.client.get(reverse('devhub.search'))
