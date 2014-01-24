@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-24 13:45+0000\n"
+"PO-Revision-Date: 2014-01-24 14:15+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1390571102.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1390572915.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -4659,8 +4659,9 @@ msgid "Application Build"
 msgstr ""
 
 #: apps/compat/templates/compat/reporter_detail.html:49
+#, fuzzy
 msgid "Platform"
-msgstr ""
+msgstr "Платформе"
 
 #: apps/compat/templates/compat/reporter_detail.html:50
 #: apps/devhub/templates/devhub/versions/list.html:175
@@ -5068,19 +5069,22 @@ msgstr "Рецензија уређене апликације"
 
 #: apps/constants/base.py:547
 msgid "Level 1"
-msgstr ""
+msgstr "Ниво 1"
 
 #: apps/constants/base.py:548
+#, fuzzy
 msgid "Level 2"
-msgstr ""
+msgstr "Ниво 5"
 
 #: apps/constants/base.py:549
+#, fuzzy
 msgid "Level 3"
-msgstr ""
+msgstr "Ниво 5"
 
 #: apps/constants/base.py:550
+#, fuzzy
 msgid "Level 4"
-msgstr ""
+msgstr "Ниво 5"
 
 #: apps/constants/base.py:551
 msgid "Level 5"
@@ -5350,14 +5354,16 @@ msgstr ""
 #: apps/devhub/forms.py:537
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#, fuzzy
 msgid "Full Review"
-msgstr ""
+msgstr "Потпуно оцењено"
 
 #: apps/devhub/forms.py:538
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:46
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#, fuzzy
 msgid "Preliminary Review"
-msgstr ""
+msgstr "Прелиминарно рецензирано"
 
 #: apps/devhub/forms.py:542
 msgid "Please choose a review nomination type"
@@ -5624,8 +5630,9 @@ msgid "Your manifest must be less than %s bytes."
 msgstr ""
 
 #: apps/devhub/views.py:188
+#, fuzzy
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Сви додаци"
 
 #: apps/devhub/views.py:215
 msgid "All Activity"
@@ -5735,8 +5742,9 @@ msgstr ""
 #: apps/devhub/views.py:1245
 #: apps/users/forms.py:322
 #: mkt/developers/utils.py:63
+#, fuzzy
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Иконе морају бити или PNG или JPG формата."
 
 #: apps/devhub/views.py:1249
 #: mkt/developers/utils.py:68
@@ -6011,12 +6019,14 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:29
 #: apps/devhub/templates/devhub/index.html:34
+#, fuzzy
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "Поднеси нови додатак"
 
 #: apps/devhub/templates/devhub/index.html:38
+#, fuzzy
 msgid "My Addons"
-msgstr ""
+msgstr "My Add-ons"
 
 #: apps/devhub/templates/devhub/index.html:49
 #: apps/devhub/templates/devhub/addons/listing/items.html:38
@@ -6174,8 +6184,9 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/nav.html:2
+#, fuzzy
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Повратак на почетну страницу апликација"
 
 #. Text in small tag is smaller and on its own line.
 #: apps/devhub/templates/devhub/nav.html:7
@@ -6234,12 +6245,14 @@ msgid "Add-on Policies"
 msgstr "Полисе додатака"
 
 #: apps/devhub/templates/devhub/nav.html:74
+#, fuzzy
 msgid "API &amp; Language Reference"
-msgstr ""
+msgstr "АПИ и језичке референце"
 
 #: apps/devhub/templates/devhub/nav.html:87
+#, fuzzy
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Центар за компатибилност додатака"
 
 #: apps/devhub/templates/devhub/nav.html:89
 msgid "Development Add-ons"
@@ -6280,8 +6293,9 @@ msgid "Add-on Name"
 msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon.html:35
+#, fuzzy
 msgid "Add-on Version"
-msgstr ""
+msgstr "Додајте верзију"
 
 #: apps/devhub/templates/devhub/package_addon.html:36
 msgid "Unique ID"
@@ -6306,8 +6320,9 @@ msgid "Primary Author"
 msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon.html:50
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "Сарадник"
 
 #: apps/devhub/templates/devhub/package_addon.html:54
 msgid "Where will your add-on run?"
@@ -6529,8 +6544,9 @@ msgstr ""
 #: templates/impala/base.html:141
 #: templates/impala/base.html:159
 #: templates/impala/base.html:169
+#, fuzzy
 msgid "Close"
-msgstr ""
+msgstr "затвори"
 
 #. {0} is an integer.
 #: apps/devhub/templates/devhub/addons/dashboard.html:21
@@ -6568,9 +6584,10 @@ msgstr ""
 
 #. {0} is an integer.
 #: apps/devhub/templates/devhub/addons/dashboard.html:116
+#, fuzzy
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> корисници"
 msgstr[1] ""
 msgstr[2] ""
 
@@ -6671,8 +6688,9 @@ msgstr ""
 #. {0} is the addon name
 #: apps/devhub/templates/devhub/addons/edit/basic.html:17
 #: mkt/developers/templates/developers/apps/edit/basic.html:16
+#, fuzzy
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Информације о {0} додатку"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:37
 msgid "Add-on URL"
@@ -6724,7 +6742,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/edit/basic.html:160
 #: mkt/developers/templates/developers/apps/edit/admin.html:133
 msgid "Tags"
-msgstr ""
+msgstr "Ознаке"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:161
 msgid ""
@@ -6815,8 +6833,9 @@ msgstr ""
 #. {0} is an addon name
 #: apps/devhub/templates/devhub/addons/edit/support.html:15
 #: mkt/developers/templates/developers/apps/edit/support.html:13
+#, fuzzy
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Информације о {0} додатку"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:22
 msgid ""
@@ -6846,7 +6865,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
-msgstr ""
+msgstr "Коментари аутора"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:24
 msgid ""
@@ -6948,8 +6967,9 @@ msgid "Universally unique identifier"
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:136
+#, fuzzy
 msgid "UUID"
-msgstr ""
+msgstr "GUID"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:138
 msgid ""
@@ -7209,8 +7229,9 @@ msgid "Manage In-App Payments"
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:56
+#, fuzzy
 msgid "View App Listing"
-msgstr ""
+msgstr "View Listing"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
@@ -7255,11 +7276,12 @@ msgstr ""
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:24
+#, fuzzy
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<strong>{0}</strong> корисник"
+msgstr[1] "<strong>{0}</strong> корисника"
+msgstr[2] "<strong>{0}</strong> корисника"
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:6
 msgid "No test results."
@@ -7333,8 +7355,9 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:75
 #: mkt/submit/forms.py:363
+#, fuzzy
 msgid "Support Email:"
-msgstr ""
+msgstr "Е-пошта подршке"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:82
 msgid "Support URL:"
@@ -8321,8 +8344,9 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
+#, fuzzy
 msgid "Plug-ins"
-msgstr ""
+msgstr "Прикључци"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
 msgid "Plug-in Documentation Index"
@@ -8581,8 +8605,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-contact.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:27
 #: apps/devhub/templates/devhub/docs/policies.html:115
+#, fuzzy
 msgid "Contacting Us"
-msgstr ""
+msgstr "Контактирајте нас"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:12
 msgid ""
@@ -8624,8 +8649,9 @@ msgid "Add-on Security Vulnerabilities"
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
+#, fuzzy
 msgid "marketplace-staff at mozilla dot org"
-msgstr ""
+msgstr "marketplace-staff@mozilla.org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -9639,12 +9665,14 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:3
 #: apps/devhub/templates/devhub/docs/reference.html:8
+#, fuzzy
 msgid "API & Language References"
-msgstr ""
+msgstr "АПИ и језичке референце"
 
 #: apps/devhub/templates/devhub/docs/reference.html:11
+#, fuzzy
 msgid "API &amp; Language References"
-msgstr ""
+msgstr "АПИ и језичке референце"
 
 #: apps/devhub/templates/devhub/docs/reference.html:19
 msgid "XUL: Defining User Interfaces"
@@ -10073,8 +10101,9 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:170
+#, fuzzy
 msgid "Creating Your Own Themes"
-msgstr ""
+msgstr "Направите властиту тему"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:173
 msgid "Can I create my own Theme?"
@@ -10452,8 +10481,9 @@ msgid "View Statistics Dashboard"
 msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:38
+#, fuzzy
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Извештаји компатибилности додатка"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "{0} failure reports"
@@ -10719,8 +10749,9 @@ msgid "Price"
 msgstr ""
 
 #: apps/devhub/templates/devhub/payments/refunds.html:15
+#, fuzzy
 msgid "Purchased"
-msgstr ""
+msgstr "Купи"
 
 #: apps/devhub/templates/devhub/payments/refunds.html:16
 msgid "Refund Requested"
@@ -10852,8 +10883,9 @@ msgid "Activate Contributions"
 msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:66
+#, fuzzy
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "или <a id=\"change-owner-cancel\" href=\"#\">Откажи</a>"
 
 #: apps/devhub/templates/devhub/payments/includes/paypal.html:13
 msgid ""
@@ -11115,8 +11147,9 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
+#, fuzzy
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Дајте име Вашој теми."
 
 #: apps/devhub/templates/devhub/personas/submit.html:198
 msgid ""
@@ -11238,7 +11271,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/version_edit.html:24
 #: mkt/reviewers/templates/reviewers/review.html:123
 msgid "Version Notes"
-msgstr ""
+msgstr "Белешке о верзији"
 
 #: apps/devhub/templates/devhub/versions/edit.html:74
 msgid ""
@@ -11289,8 +11322,9 @@ msgid "Show File History"
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:28
+#, fuzzy
 msgid "By %(user_name)s on %(date)s"
-msgstr ""
+msgstr "од %(user)s дана %(date)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:20
 #: mkt/developers/templates/developers/apps/status.html:21
@@ -11483,7 +11517,7 @@ msgstr ""
 #: apps/versions/templates/versions/mobile/version.html:6
 msgctxt "addon_display_header_version"
 msgid "Version {0}"
-msgstr ""
+msgstr "Верзија {0}"
 
 #. {0} is the number of files, {1} is the status
 #: apps/devhub/templates/devhub/versions/list.html:206
@@ -11757,8 +11791,9 @@ msgid "Recommended for You"
 msgstr ""
 
 #: apps/discovery/templates/discovery/pane.html:66
+#, fuzzy
 msgid "What is this?"
-msgstr ""
+msgstr "Шта је ово?"
 
 #: apps/discovery/templates/discovery/pane.html:85
 msgid "Learn More About Add-ons"
@@ -11766,8 +11801,9 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/pane.html:89
 #: apps/discovery/templates/discovery/pane.html:96
+#, fuzzy
 msgid "See all"
-msgstr ""
+msgstr "Види све »"
 
 #: apps/discovery/templates/discovery/pane.html:102
 msgid "More ways to customize"
@@ -11850,8 +11886,9 @@ msgid ""
 msgstr ""
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:13
+#, fuzzy
 msgid "Get Mobile Add-ons"
-msgstr ""
+msgstr "Додаци за мобилни"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
@@ -12019,12 +12056,14 @@ msgid "File %s is not pending review."
 msgstr ""
 
 #: apps/editors/helpers.py:46
+#, fuzzy
 msgid "Pending Preliminary Review"
-msgstr ""
+msgstr "Чекање прелиминарне рецензије"
 
 #: apps/editors/helpers.py:50
+#, fuzzy
 msgid "Pending Full Review"
-msgstr ""
+msgstr "Чекање пуне рецензије"
 
 #: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
@@ -12041,19 +12080,22 @@ msgstr ""
 
 #: apps/editors/helpers.py:108
 #: apps/editors/templates/editors/base.html:34
+#, fuzzy
 msgid "Full Reviews"
-msgstr ""
+msgstr "Потпуно оцењено"
 
 #: apps/editors/helpers.py:109
 #: apps/editors/templates/editors/base.html:38
+#, fuzzy
 msgid "Preliminary Reviews"
-msgstr ""
+msgstr "Прелиминарно рецензирано"
 
 #: apps/editors/helpers.py:110
 #: apps/editors/templates/editors/base.html:40
 #: mkt/reviewers/helpers.py:40
+#, fuzzy
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Рецензија уређене апликације"
 
 #: apps/editors/helpers.py:111
 #: apps/editors/templates/editors/base.html:32
@@ -12186,8 +12228,9 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/queue_region.html:43
 #: mkt/reviewers/templates/reviewers/themes/queue.html:71
 #: mkt/reviewers/templates/reviewers/themes/themes.html:93
+#, fuzzy
 msgid "Reject"
-msgstr ""
+msgstr "Одбијено"
 
 #: apps/editors/helpers.py:447
 #: mkt/reviewers/utils.py:439
@@ -12273,8 +12316,9 @@ msgid ""
 msgstr ""
 
 #: apps/editors/helpers.py:574
+#, fuzzy
 msgid "add-on"
-msgstr ""
+msgstr "Додатак"
 
 #: apps/editors/models.py:175
 msgid "Admin Review"
@@ -12296,8 +12340,9 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:44
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:84
 #: mkt/reviewers/templates/reviewers/includes/macros.html:88
+#, fuzzy
 msgid "More Information Requested"
-msgstr ""
+msgstr "Захтеване додатне информације"
 
 #: apps/editors/models.py:181
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:47
@@ -12345,13 +12390,15 @@ msgstr ""
 #. L10n: An app is rejected for a particular region.
 #: apps/editors/views.py:707
 #: mkt/webapps/models.py:2156
+#, fuzzy
 msgid "rejected"
-msgstr ""
+msgstr "Одбијено"
 
 #: apps/editors/views.py:708
+#, fuzzy
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr ""
+msgstr "Ескалирано"
 
 #: apps/editors/views.py:710
 msgid "needs more information"
@@ -12433,7 +12480,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/logs.html:16
 #: mkt/reviewers/templates/reviewers/themes/logs.html:16
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #: apps/editors/templates/editors/eventlog.html:31
 #: apps/editors/templates/editors/reviewlog.html:35
@@ -12448,8 +12495,9 @@ msgid "More details."
 msgstr ""
 
 #: apps/editors/templates/editors/eventlog.html:53
+#, fuzzy
 msgid "No events found for this period."
-msgstr ""
+msgstr "No reviews found for this period."
 
 #: apps/editors/templates/editors/eventlog_detail.html:5
 msgid "Log Details"
@@ -12739,8 +12787,9 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:125
 #: mkt/reviewers/templates/reviewers/review.html:175
+#, fuzzy
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Овај додатак још нема рецензију."
 
 #: apps/editors/templates/editors/review.html:155
 #: mkt/reviewers/templates/reviewers/review.html:219
@@ -13159,8 +13208,9 @@ msgstr ""
 #: apps/localizers/templates/localizers/categories.html:58
 #: apps/stats/templates/stats/popup.html:27
 #: apps/users/templates/users/pwreset_confirm.html:33
+#, fuzzy
 msgid "Update"
-msgstr ""
+msgstr "Ажурирано"
 
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:24
@@ -13403,8 +13453,9 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
+#, fuzzy
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Извештаји компатибилности додатка"
 
 #: apps/pages/templates/pages/acr_firstrun.html:25
 msgid "Add-on Compatibility Reporter has been installed"
@@ -13475,8 +13526,9 @@ msgid "Localizers"
 msgstr ""
 
 #: apps/pages/templates/pages/credits.html:34
+#, fuzzy
 msgid "Reviewers"
-msgstr ""
+msgstr "Коментара"
 
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
@@ -13527,8 +13579,9 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:4
+#, fuzzy
 msgid "Developer FAQ"
-msgstr ""
+msgstr "Центар за програмера"
 
 #: apps/pages/templates/pages/dev_faq.html:31
 #: apps/pages/templates/pages/review_guide.html:33
@@ -13571,9 +13624,11 @@ msgstr ""
 msgid "References for Open Source Licenses"
 msgstr ""
 
+# The title for a user if they are a developer
 #: apps/pages/templates/pages/dev_faq.html:44
+#, fuzzy
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "Програмер додатака"
 
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid ""
@@ -15178,8 +15233,9 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: apps/reviews/templates/reviews/review_list.html:49
+#, fuzzy
 msgid "No reviews found."
-msgstr ""
+msgstr "Нема пронађених резултата."
 
 #: apps/reviews/templates/reviews/review_list.html:64
 msgid "<strong>Average</strong> (%(total)s)"
@@ -15219,8 +15275,9 @@ msgid "Log in to add a review"
 msgstr ""
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:13
+#, fuzzy
 msgid "Title:"
-msgstr ""
+msgstr "Наслов"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
@@ -15234,8 +15291,9 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
+#, fuzzy
 msgid "by %(user)s"
-msgstr ""
+msgstr "од %(users)s"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:38
 msgid "Read More&nbsp;&raquo;"
@@ -15410,8 +15468,9 @@ msgid "Category"
 msgstr "Категорија"
 
 #: apps/search/templates/search/results.html:84
+#, fuzzy
 msgid "Tag"
-msgstr ""
+msgstr "Ознаке"
 
 #: apps/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
@@ -15547,8 +15606,9 @@ msgid "Share this Add-on"
 msgstr "Дели овај додатак са осталима"
 
 #: apps/sharing/templates/sharing/sharing_widget.html:8
+#, fuzzy
 msgid "Share this Collection"
-msgstr ""
+msgstr "Измени ову колекцију"
 
 #. L10n: the adddon name.
 #: apps/stats/models.py:225
@@ -15587,8 +15647,9 @@ msgid "by Add-on Version"
 msgstr ""
 
 #: apps/stats/templates/stats/addon_report_menu.html:25
+#, fuzzy
 msgid "by Application"
-msgstr ""
+msgstr "Апликација"
 
 #: apps/stats/templates/stats/addon_report_menu.html:28
 msgid "by Language"
@@ -15603,14 +15664,16 @@ msgid "by Add-on Status"
 msgstr ""
 
 #: apps/stats/templates/stats/collection_report_menu.html:6
+#, fuzzy
 msgid "Subscribers"
-msgstr ""
+msgstr "Претплати се"
 
 #: apps/stats/templates/stats/collection_report_menu.html:12
 #: mkt/reviewers/templates/reviewers/includes/details.html:65
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:87
+#, fuzzy
 msgid "Ratings"
-msgstr ""
+msgstr "Оцена"
 
 #: apps/stats/templates/stats/dashboard.html:3
 msgid "Add-on Statistics"
@@ -15634,8 +15697,9 @@ msgstr ""
 
 #: apps/stats/templates/stats/global_report_menu.html:22
 #: mkt/lookup/templates/lookup/user_activity.html:54
+#, fuzzy
 msgid "Collections Created"
-msgstr ""
+msgstr "Колекција је креирана!"
 
 #: apps/stats/templates/stats/global_report_menu.html:26
 msgid "Reviews Written"
@@ -15826,8 +15890,9 @@ msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
 
 #: apps/stats/templates/stats/reports/overview.html:19
+#, fuzzy
 msgid "Top Applications"
-msgstr ""
+msgstr "Апликације"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
@@ -16076,8 +16141,9 @@ msgid "Please confirm your email address"
 msgstr ""
 
 #: apps/users/models.py:441
+#, fuzzy
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Додаци за мобилни"
 
 #: apps/users/notifications.py:17
 msgid "an add-on developer thanks me for a contribution"
@@ -16356,8 +16422,9 @@ msgid "Delete User Photo"
 msgstr ""
 
 #: apps/users/templates/users/delete_photo.html:14
+#, fuzzy
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Delete my user account now"
 
 #: apps/users/templates/users/edit.html:20
 #: apps/users/templates/users/includes/navigation.html:12
@@ -16378,8 +16445,9 @@ msgstr ""
 #: apps/users/templates/users/edit.html:33
 #: apps/users/templates/users/pwreset_request.html:21
 #: apps/users/templates/users/register.html:63
+#, fuzzy
 msgid "Email Address"
-msgstr ""
+msgstr "Адресе е-поште"
 
 #: apps/users/templates/users/edit.html:40
 #: apps/users/templates/users/register.html:70
@@ -16402,12 +16470,14 @@ msgid "Old Password"
 msgstr ""
 
 #: apps/users/templates/users/edit.html:68
+#, fuzzy
 msgid "New Password"
-msgstr ""
+msgstr "New password"
 
 #: apps/users/templates/users/edit.html:73
+#, fuzzy
 msgid "Confirm Password"
-msgstr ""
+msgstr "Потврдите лозинку"
 
 #: apps/users/templates/users/edit.html:80
 msgid "Profile"
@@ -16538,8 +16608,9 @@ msgid "I forgot my password."
 msgstr ""
 
 #: apps/users/templates/users/login_modal.html:3
+#, fuzzy
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "Пријављени сте као <strong>%(user_email)s</strong>!"
 
 #: apps/users/templates/users/newpw_sent.html:3
 #: apps/users/templates/users/newpw_sent.html:8
@@ -16567,8 +16638,9 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:21
 #: apps/users/templates/users/report_abuse_full.html:10
+#, fuzzy
 msgid "Report user"
-msgstr ""
+msgstr "Пријавите злоупотребу"
 
 # The title for a user if they are a developer
 #: apps/users/templates/users/profile.html:32
@@ -16620,8 +16692,9 @@ msgid "Report User"
 msgstr ""
 
 #: apps/users/templates/users/pwreset_complete.html:11
+#, fuzzy
 msgid "Success!"
-msgstr ""
+msgstr "Успех"
 
 #: apps/users/templates/users/pwreset_complete.html:13
 msgid "Password successfully reset."
@@ -16721,8 +16794,9 @@ msgid ""
 msgstr ""
 
 #: apps/users/templates/users/report_abuse_full.html:3
+#, fuzzy
 msgid "Report user {0}"
-msgstr ""
+msgstr "Пријавите злоупотребу {0}-а"
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid ""
@@ -16745,8 +16819,9 @@ msgid ""
 msgstr ""
 
 #: apps/users/templates/users/unsubscribe.html:20
+#, fuzzy
 msgid "More Actions:"
-msgstr ""
+msgstr "Још опција:"
 
 #: apps/users/templates/users/unsubscribe.html:22
 msgid "edit your notification settings"
@@ -16813,9 +16888,11 @@ msgstr ""
 msgid "Log in with BrowserID"
 msgstr ""
 
+# {0} is the add-on name
 #: apps/versions/feeds.py:27
+#, fuzzy
 msgid "%s Version History"
-msgstr ""
+msgstr "Историјат верзија за {0}"
 
 #: apps/versions/feeds.py:35
 msgid "Version History with Changelogs"
@@ -16843,13 +16920,15 @@ msgid "Released {0}"
 msgstr ""
 
 #: apps/versions/templates/versions/version.html:39
+#, fuzzy
 msgid ""
 "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Објављен под <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: apps/versions/templates/versions/version.html:44
+#, fuzzy
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Објављен под <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/versions/templates/versions/version.html:52
 msgctxt "addons_display_a_license_what"
@@ -16932,12 +17011,14 @@ msgid "Form could not be submitted."
 msgstr ""
 
 #: mkt/collections/constants.py:9
+#, fuzzy
 msgid "Basic Collection"
-msgstr ""
+msgstr "Измени колекцију"
 
 #: mkt/collections/constants.py:10
+#, fuzzy
 msgid "Featured App List"
-msgstr ""
+msgstr "Истакнуте апликације"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
@@ -16983,8 +17064,9 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:45
 #: mkt/reviewers/templates/reviewers/themes/single.html:26
 #: mkt/reviewers/templates/reviewers/themes/themes.html:46
+#, fuzzy
 msgid "Reviewer"
-msgstr ""
+msgstr "Коментар"
 
 #: mkt/constants/bango.py:17
 msgid "Afghanistan"
@@ -18071,8 +18153,9 @@ msgid "The app requires the `navigator.mozBluetooth` API."
 msgstr ""
 
 #: mkt/constants/features.py:63
+#, fuzzy
 msgid "Contacts"
-msgstr ""
+msgstr "Контактирајте нас"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
@@ -18827,8 +18910,9 @@ msgstr ""
 #: mkt/constants/reviewers.py:25
 #: mkt/reviewers/templates/reviewers/queue_region.html:42
 #: mkt/reviewers/templates/reviewers/themes/queue.html:70
+#, fuzzy
 msgid "Approve"
-msgstr ""
+msgstr "Одобрено"
 
 #: mkt/constants/reviewers.py:30
 msgid "Sexual or pornographic content"
@@ -18892,8 +18976,9 @@ msgid "Cannot delete shared account"
 msgstr ""
 
 #: mkt/developers/cron.py:132
+#, fuzzy
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Оцена садржаја за {addon} је промењена на Одрасли."
 
 #: mkt/developers/forms.py:59
 msgid "You cannot select {region}."
@@ -18904,8 +18989,9 @@ msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
 
 #: mkt/developers/forms.py:183
+#, fuzzy
 msgid "At least one team member must be listed."
-msgstr ""
+msgstr "Најмање један аутор мора бити на списку."
 
 #: mkt/developers/forms.py:187
 msgid "A team member can only be listed once."
@@ -19035,8 +19121,9 @@ msgid "Your email address"
 msgstr ""
 
 #: mkt/developers/forms.py:1005
+#, fuzzy
 msgid "Text"
-msgstr ""
+msgstr "Следеће"
 
 #: mkt/developers/forms.py:1009
 msgid "You must agree to the Privacy Policy."
@@ -19090,8 +19177,9 @@ msgid "App Price"
 msgstr ""
 
 #: mkt/developers/forms_payments.py:113
+#, fuzzy
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Бесплатно са плаћањем унутар апликације"
 
 #: mkt/developers/forms_payments.py:124
 msgid "Promotional Pricing"
@@ -19147,8 +19235,9 @@ msgid "Administrative Email"
 msgstr ""
 
 #: mkt/developers/forms_payments.py:388
+#, fuzzy
 msgid "Support Email"
-msgstr ""
+msgstr "Е-пошта подршке"
 
 #: mkt/developers/forms_payments.py:392
 msgid "Address"
@@ -19250,8 +19339,9 @@ msgstr ""
 
 #: mkt/developers/helpers.py:37
 #: mkt/developers/helpers.py:66
+#, fuzzy
 msgid "Developers"
-msgstr ""
+msgstr "Аутор"
 
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:129
@@ -19295,8 +19385,9 @@ msgid "Video support not enabled."
 msgstr ""
 
 #: mkt/developers/utils.py:79
+#, fuzzy
 msgid "Please use files smaller than %s."
-msgstr ""
+msgstr "Молимо Вас користите слике мање од %dMB."
 
 #: mkt/developers/utils.py:89
 msgid "Icon could not be opened."
@@ -20320,8 +20411,9 @@ msgstr ""
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:23
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 #: mkt/developers/templates/developers/payments/premium.html:166
+#, fuzzy
 msgid "In-App Payments"
-msgstr ""
+msgstr "Наплате апликација"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:102
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:38
@@ -20335,8 +20427,9 @@ msgstr ""
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:17
+#, fuzzy
 msgid "Created:"
-msgstr ""
+msgstr "Креирано"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:33
 msgid "Packaged App Version:"
@@ -20504,8 +20597,9 @@ msgid "Pick one or two categories."
 msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:86
+#, fuzzy
 msgid "Categories:"
-msgstr ""
+msgstr "Категорије"
 
 #: mkt/developers/templates/developers/includes/macros.html:107
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
@@ -21012,8 +21106,9 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:34
 #: templates/mobile/header.html:4
+#, fuzzy
 msgid "Features"
-msgstr ""
+msgstr "Издвојено"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:42
 msgid "Download Template"
@@ -21823,8 +21918,9 @@ msgid "Grey"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
+#, fuzzy
 msgid "Black"
-msgstr ""
+msgstr "Повратак"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
@@ -22534,13 +22630,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:83
 #: mkt/lookup/templates/lookup/helpers/user_header.html:24
+#, fuzzy
 msgid "Purchases"
-msgstr ""
+msgstr "Купи"
 
 #: mkt/lookup/templates/lookup/app_summary.html:93
 #: mkt/lookup/templates/lookup/user_summary.html:50
+#, fuzzy
 msgid "Refunds"
-msgstr ""
+msgstr "Враћање новца"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
 #: mkt/lookup/templates/lookup/app_summary.html:96
@@ -22625,8 +22723,9 @@ msgid "Account Activity results for"
 msgstr ""
 
 #: mkt/lookup/templates/lookup/user_activity.html:14
+#, fuzzy
 msgid "Account Updates"
-msgstr ""
+msgstr "Налог ажуриран."
 
 #: mkt/lookup/templates/lookup/user_purchases.html:10
 msgid "Purchase results for"
@@ -22907,8 +23006,9 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:39
 #: mkt/submit/forms.py:344
+#, fuzzy
 msgid "Description:"
-msgstr ""
+msgstr "Опис"
 
 #: mkt/reviewers/forms.py:50
 msgid "Attachment exceeds maximum size of %s."
@@ -22969,8 +23069,9 @@ msgstr ""
 #: mkt/reviewers/helpers.py:37
 #: mkt/reviewers/helpers.py:172
 #: mkt/reviewers/helpers.py:191
+#, fuzzy
 msgid "Updates"
-msgstr ""
+msgstr "Ажурирано"
 
 #: mkt/reviewers/helpers.py:38
 msgid "Escalations"
@@ -23013,9 +23114,10 @@ msgid "Re-reviews ({0})"
 msgstr ""
 
 #: mkt/reviewers/helpers.py:96
+#, fuzzy
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Ажурирано {0}"
 
 #: mkt/reviewers/helpers.py:100
 msgctxt "escalated"
@@ -23078,8 +23180,9 @@ msgid "This will send the author(s) an email requesting more information."
 msgstr ""
 
 #: mkt/reviewers/utils.py:445
+#, fuzzy
 msgid "Escalate"
-msgstr ""
+msgstr "Ескалирано"
 
 #: mkt/reviewers/utils.py:447
 msgid "Flag this app for an admin to review."
@@ -23127,8 +23230,9 @@ msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
 #: mkt/reviewers/views.py:302
+#, fuzzy
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Уређај/уређаји промењени од стране рецезента"
 
 #: mkt/reviewers/views.py:306
 #: mkt/reviewers/views.py:326
@@ -23139,8 +23243,9 @@ msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:328
+#, fuzzy
 msgid "Requirements changed by reviewer: {0}"
-msgstr ""
+msgstr "Захтеви измењени од стране рецезента"
 
 #: mkt/reviewers/views.py:351
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
@@ -23205,11 +23310,12 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:24
+#, fuzzy
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} критика"
+msgstr[1] "{num} критике"
+msgstr[2] "{num} критика"
 
 #: mkt/reviewers/templates/reviewers/home.html:31
 msgid "{num} Update Review"
@@ -23249,14 +23355,17 @@ msgid "Payment Category:"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/queue.html:64
+#, fuzzy
 msgid "Abuse Reports:"
-msgstr ""
+msgstr "Извештаји о злоупотреби"
 
+# %1 is the queue mode
 #: mkt/reviewers/templates/reviewers/queue.html:79
 #: mkt/reviewers/templates/reviewers/queue_region.html:55
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:75
+#, fuzzy
 msgid "There are currently no items of this type to review."
-msgstr ""
+msgstr "There are currently no add-ons of this type to review."
 
 #: mkt/reviewers/templates/reviewers/queue.html:95
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:88
@@ -23337,8 +23446,9 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:72
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
+#, fuzzy
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "Ова апликација још нема рецензију."
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:117
@@ -23355,8 +23465,9 @@ msgid "Requirements"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:172
+#, fuzzy
 msgid "More about this app"
-msgstr ""
+msgstr "Више о овом додатку"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:72
 msgid "Privileged App"
@@ -23389,8 +23500,9 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49
 #: mkt/reviewers/templates/reviewers/includes/search_results_themes.html:26
 #: mkt/site/templates/site/helpers/no_results.html:1
+#, fuzzy
 msgid "No results found"
-msgstr ""
+msgstr "Нема пронађених резултата."
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
@@ -23453,8 +23565,9 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/themes/logs.html:4
+#, fuzzy
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Рецензија теме"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:6
 msgid "Theme Review Queue"
@@ -23561,8 +23674,9 @@ msgid "Describe your reason for flagging"
 msgstr ""
 
 #: mkt/search/forms.py:20
+#, fuzzy
 msgid "Reviewed"
-msgstr ""
+msgstr "Коментар"
 
 #: mkt/search/forms.py:29
 msgid "Paid"
@@ -23601,8 +23715,9 @@ msgid "Search for apps"
 msgstr ""
 
 #: mkt/search/forms.py:89
+#, fuzzy
 msgid "Add-on type"
-msgstr ""
+msgstr "Врсте додатка"
 
 #: mkt/search/forms.py:94
 msgid "Device type"
@@ -23625,8 +23740,9 @@ msgid "Supported languages"
 msgstr ""
 
 #: mkt/site/context_processors.py:34
+#, fuzzy
 msgid "Sign out"
-msgstr ""
+msgstr "Одјави се"
 
 #: mkt/site/forms.py:10
 msgid "As soon as it is approved."
@@ -23641,8 +23757,9 @@ msgid "Home"
 msgstr ""
 
 #: mkt/site/templates/site/403.html:4
+#, fuzzy
 msgid "Not Allowed"
-msgstr ""
+msgstr "Није допуштено"
 
 #: mkt/site/templates/site/403.html:8
 msgid "Oops! Not allowed."
@@ -23714,8 +23831,9 @@ msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
+#, fuzzy
 msgid "Requirements changed: {0}"
-msgstr ""
+msgstr "Захтеви измењени"
 
 #: mkt/submit/forms.py:51
 msgid "Cannot be free and paid."
@@ -23743,8 +23861,9 @@ msgid "App to upgrade from"
 msgstr ""
 
 #: mkt/submit/forms.py:348
+#, fuzzy
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "Полиса о приватности"
 
 #: mkt/submit/forms.py:349
 msgid ""
@@ -23761,8 +23880,9 @@ msgid "If your app has another homepage, enter its address here."
 msgstr ""
 
 #: mkt/submit/forms.py:358
+#, fuzzy
 msgid "Support Website:"
-msgstr ""
+msgstr "Сајт подршке"
 
 #: mkt/submit/forms.py:359
 msgid "If your app has a support website or forum, enter its address here."
@@ -23824,8 +23944,9 @@ msgid "Screenshot or video of your app:"
 msgstr ""
 
 #: mkt/submit/templates/submit/details.html:127
+#, fuzzy
 msgid "You must provide at least one."
-msgstr ""
+msgstr "Морате да изаберете барем једну категорију."
 
 #: mkt/submit/templates/submit/details.html:167
 msgid ""
