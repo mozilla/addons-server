@@ -464,11 +464,15 @@ class Webapp(Addon):
 
     def has_payment_account(self):
         """App doesn't have a payment account set up yet."""
+        return bool(self.payment_account)
+
+    @amo.cached_property(writable=True)
+    def payment_account(self):
         try:
-            self.app_payment_account
+            return self.app_payment_account
         except ObjectDoesNotExist:
-            return False
-        return True
+            pass
+        return None
 
     def payments_complete(self):
         """Also returns True if the app doesn't needs payments."""
@@ -530,7 +534,7 @@ class Webapp(Addon):
                 'url': self.get_dev_url('payments'),
             }
 
-    @property
+    @amo.cached_property(writable=True)
     def is_offline(self):
         """
         Returns a boolean of whether this is an app that degrades
@@ -739,17 +743,20 @@ class Webapp(Addon):
             return sorted(p['region'] for p in tier.prices() if p['paid'])
         return []
 
-    def get_regions(self):
+    def get_regions(self, regions=None):
         """
-        Return regions, e.g.:
+        Return a list of regions objects the app is available in, e.g.:
             [<class 'mkt.constants.regions.BR'>,
              <class 'mkt.constants.regions.CA'>,
              <class 'mkt.constants.regions.UK'>,
              <class 'mkt.constants.regions.US'>,
              <class 'mkt.constants.regions.RESTOFWORLD'>]
+
+        if `regions` is provided we'll use that instead of calling
+        self.get_region_ids()
         """
-        _regions = map(mkt.regions.REGIONS_CHOICES_ID_DICT.get,
-                       self.get_region_ids(restofworld=True))
+        regions_ids = regions or self.get_region_ids(restofworld=True)
+        _regions = map(mkt.regions.REGIONS_CHOICES_ID_DICT.get, regions_ids)
         return sorted(_regions, key=lambda x: x.slug)
 
     def listed_in(self, region=None, category=None):
@@ -1753,8 +1760,16 @@ class WebappIndexer(MappingType, Indexable):
                 .order_by('-id').values_list('id', flat=True))
 
 
-# Pull all translated_fields from Addon over to Webapp.
-Webapp._meta.translated_fields = Addon._meta.translated_fields
+# Set translated_fields manually to avoid querying translations for addon
+# fields we don't use.
+Webapp._meta.translated_fields = [
+    Webapp._meta.get_field('homepage'),
+    Webapp._meta.get_field('privacy_policy'),
+    Webapp._meta.get_field('name'),
+    Webapp._meta.get_field('description'),
+    Webapp._meta.get_field('support_email'),
+    Webapp._meta.get_field('support_url'),
+]
 
 
 @receiver(dbsignals.post_save, sender=Webapp,
@@ -1785,7 +1800,7 @@ models.signals.pre_save.connect(save_signal, sender=Webapp,
 
 @receiver(version_changed, dispatch_uid='update_cached_manifests')
 def update_cached_manifests(sender, **kw):
-    if not kw.get('raw'):
+    if not kw.get('raw') and sender.is_packaged:
         from mkt.webapps.tasks import update_cached_manifests
         update_cached_manifests.delay(sender.id)
 

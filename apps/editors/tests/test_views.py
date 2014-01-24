@@ -1928,14 +1928,14 @@ class TestReview(ReviewBase):
         eq_(bool(self.addon.has_eula), False)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        self.assertNotContains(r, 'View EULA')
+        self.assertNotContains(r, 'View End-User License Agreement')
 
         self.addon.eula = 'Test!'
         self.addon.save()
         eq_(bool(self.addon.has_eula), True)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        self.assertContains(r, 'View EULA')
+        self.assertContains(r, 'View End-User License Agreement')
 
     def test_privacy_policy_displayed(self):
         eq_(self.addon.privacy_policy, None)

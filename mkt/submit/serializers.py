@@ -77,3 +77,8 @@ class PreviewSerializer(serializers.ModelSerializer):
         if self.object is None:
             return None
         return reverse('app-preview-detail', kwargs={'pk': self.object.pk})
+
+
+class SimplePreviewSerializer(PreviewSerializer):
+    class Meta(PreviewSerializer.Meta):
+        fields = ['image_url', 'thumbnail_url']

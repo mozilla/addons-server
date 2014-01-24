@@ -12,7 +12,7 @@ from rest_framework.response import Response
 from tower import ungettext as ngettext
 
 import amo
-from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
+from addons.models import AddonCategory, AddonUpsell, AddonUser
 from amo.utils import no_translation
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
@@ -35,7 +35,7 @@ from mkt.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS, get_region,
                          REGIONS_DICT)
 from mkt.submit.api import PreviewViewSet
 from mkt.submit.forms import mark_for_rereview
-from mkt.submit.serializers import PreviewSerializer
+from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures,
                                 get_excluded_in, Webapp)
 from mkt.webapps.utils import filter_content_ratings_by_region
@@ -81,7 +81,6 @@ class SemiSerializerMethodField(serializers.SerializerMethodField):
 
 
 class AppSerializer(serializers.ModelSerializer):
-
     app_type = serializers.ChoiceField(
         choices=amo.ADDON_WEBAPP_TYPES_LOOKUP.items(), read_only=True)
     author = serializers.CharField(source='developer_name', read_only=True)
@@ -205,7 +204,7 @@ class AppSerializer(serializers.ModelSerializer):
     def get_supported_locales(self, app):
         locs = getattr(app.current_version, 'supported_locales', '')
         if locs:
-            return locs.split(',')
+            return locs.split(',') if isinstance(locs, basestring) else locs
         else:
             return []
 
@@ -410,10 +409,12 @@ class SimpleAppSerializer(AppSerializer):
     App serializer with fewer fields (and fewer db queries as a result).
     Used as a base for FireplaceAppSerializer and CollectionAppSerializer.
     """
+    previews = SimplePreviewSerializer(many=True, required=False,
+                                       source='all_previews')
 
     class Meta(AppSerializer.Meta):
         exclude = ['absolute_url', 'app_type', 'categories', 'created',
-                   'default_locale', 'payment_account', 'regions',
+                   'default_locale', 'payment_account', 'regions', 'summary',
                    'supported_locales', 'weekly_downloads', 'upsold', 'tags',]
 
 

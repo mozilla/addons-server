@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.response import Response
@@ -11,9 +12,9 @@ from mkt.reviewers.forms import ApiReviewersSearchForm, ApproveRegionForm
 from mkt.reviewers.serializers import ReviewingSerializer
 from mkt.reviewers.utils import AppsReviewing
 from mkt.search.api import SearchView
+from mkt.search.serializers import ESAppSerializer
 from mkt.search.utils import S
 from mkt.webapps.models import Webapp, WebappIndexer
-from mkt.webapps.utils import get_translations
 
 
 class ReviewingView(ListAPIView):
@@ -26,8 +27,15 @@ class ReviewingView(ListAPIView):
         return [row['app'] for row in AppsReviewing(self.request).get_apps()]
 
 SEARCH_FIELDS = [u'device_types', u'id', u'is_escalated', u'is_packaged',
-                 u'latest_version', u'name', u'premium_type', u'price',
-                 u'slug', u'status']
+                 u'name', u'premium_type', u'price', u'slug', u'status']
+
+
+class ReviewersESAppSerializer(ESAppSerializer):
+    latest_version = serializers.Field(source='es_data.latest_version')
+    is_escalated = serializers.BooleanField()
+
+    class Meta(ESAppSerializer.Meta):
+        fields = SEARCH_FIELDS + ['latest_version', 'is_escalated']
 
 
 class ReviewersSearchView(SearchView):
@@ -35,9 +43,12 @@ class ReviewersSearchView(SearchView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [GroupPermission('Apps', 'Review')]
+    form_class = ApiReviewersSearchForm
+    serializer_class = ReviewersESAppSerializer
 
-    def get(self, request, *args, **kwargs):
-        form_data = self.get_search_data(request, ApiReviewersSearchForm)
+    def search(self, request):
+        form_data = self.get_search_data(request)
+        query = form_data.get('q', '')
         base_filters = {'type': form_data['type']}
         if form_data.get('status') != 'any':
             base_filters['status'] = form_data.get('status')
@@ -45,21 +56,7 @@ class ReviewersSearchView(SearchView):
         qs = self.apply_filters(request, qs, data=form_data)
         qs = apply_reviewer_filters(request, qs, data=form_data)
         page = self.paginate_queryset(qs)
-        return Response(self.get_pagination_serializer(page).data)
-
-    def serialize(self, request, app):
-        full_data = SearchView.serialize(self, request, app)
-        data = {}
-        for k in SEARCH_FIELDS:
-            data[k] = full_data.get(k)
-        # For translated fields, just return the default locale.
-        data['name'] = get_translations(full_data, 'name',
-                                        full_data['default_locale'],
-                                        full_data['default_locale'])
-        # Add reviewer-specific stuff that's not in the standard dehydrate.
-        data['latest_version'] = app.latest_version
-        data['is_escalated'] = app.is_escalated
-        return data
+        return self.get_pagination_serializer(page), query
 
 
 def apply_reviewer_filters(request, qs, data=None):

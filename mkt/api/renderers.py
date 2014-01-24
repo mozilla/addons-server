@@ -2,6 +2,7 @@ import json
 
 from django.http.multipartparser import parse_header
 
+from rest_framework.negotiation import DefaultContentNegotiation
 from rest_framework.renderers import JSONRenderer
 
 
@@ -27,3 +28,21 @@ class SuccinctJSONRenderer(JSONRenderer):
 
         return json.dumps(data, cls=self.encoder_class, indent=indent,
                           ensure_ascii=self.ensure_ascii, separators=(',', ':'))
+
+
+class FirstAvailableRenderer(DefaultContentNegotiation):
+    """
+    Content Negotiation class that ignores the Accept header when there is only
+    one renderer set on the view. Since most of our views only use the default
+    renderer list, which contains only SuccinctJSONRenderer, this means we
+    don't have to parse the Accept header for those.
+
+    Override content_negotiation_class in your class if you need something
+    different.
+    """
+    def select_renderer(self, request, renderers, format_suffix=None):
+        if len(renderers) == 1:
+            return renderers[0], renderers[0].media_type
+        else:
+            return super(FirstAvailableRenderer, self).select_renderer(
+                request, renderers, format_suffix=format_suffix)

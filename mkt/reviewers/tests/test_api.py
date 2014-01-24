@@ -14,14 +14,11 @@ import mkt.regions
 from access.models import GroupUser
 from addons.models import Category
 from amo.tests import ESTestCase
-from amo.urlresolvers import reverse
 from users.models import UserProfile
 
 from mkt.api.tests.test_oauth import RestOAuthClient, RestOAuth
-from mkt.api.base import list_url
 from mkt.api.models import Access, generate
 from mkt.constants.features import FeatureProfile
-from mkt.reviewers.api import SEARCH_FIELDS
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
@@ -96,7 +93,9 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
-        self.assertSetEqual(obj.keys(), SEARCH_FIELDS)
+        self.assertSetEqual(obj.keys(), ['device_types', 'id', 'is_escalated',
+            'is_packaged', 'latest_version', 'name', 'premium_type', 'price',
+            'slug', 'status'])
         eq_(obj['latest_version']['status'], 4)
 
     def test_anonymous_access(self):

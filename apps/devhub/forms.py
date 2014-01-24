@@ -221,10 +221,10 @@ class LicenseForm(AMOModelForm):
 class PolicyForm(TranslationFormMixin, AMOModelForm):
     """Form for editing the add-ons EULA and privacy policy."""
     has_eula = forms.BooleanField(required=False,
-        label=_lazy(u'This add-on has an End User License Agreement'))
+        label=_lazy(u'This add-on has an End-User License Agreement'))
     eula = TransField(widget=TransTextarea(), required=False,
         label=_lazy(u"Please specify your add-on's "
-                    "End User License Agreement:"))
+                    "End-User License Agreement:"))
     has_priv = forms.BooleanField(
         required=False, label=_lazy(u"This add-on has a Privacy Policy"))
     privacy_policy = TransField(widget=TransTextarea(), required=False,

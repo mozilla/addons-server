@@ -48,7 +48,11 @@ class TestEncoding(RestOAuth):
     def test_not_json(self):
         r = self.client.get(reverse('app-list'),
                             HTTP_ACCEPT='application/blah')
-        eq_(r.status_code, 406)
+        # We should return a 406, but for endpoints that only accept JSON, we
+        # cheat and return json content without even looking at the Accept
+        # header (see mkt.api.renderers and settings).
+        eq_(r.status_code, 200)
+        eq_(r['content-type'], 'application/json')
 
     @patch.object(AppViewSet, 'create')
     def test_form_encoded(self, create_mock):

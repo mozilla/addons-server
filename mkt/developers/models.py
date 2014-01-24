@@ -146,6 +146,12 @@ class AddonPaymentAccount(amo.models.ModelBase):
     class Meta:
         db_table = 'addon_payment_account'
 
+    def save(self, *args, **kwargs):
+        # On save, reset the addon's payment_account cached_property just in
+        # case it was already set to something else, like None.
+        super(AddonPaymentAccount, self).save(*args, **kwargs)
+        self.addon.payment_account = self
+
 
 class UserInappKey(amo.models.ModelBase):
     solitude_seller = models.ForeignKey(SolitudeSeller)

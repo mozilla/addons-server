@@ -866,6 +866,42 @@ class TestWebapp(amo.tests.TestCase):
         pay_step.return_value = True
         assert not app.next_step()
 
+    def test_meta_translated_fields(self):
+        """Test that we don't load translations for all the translated fields
+        that live on Addon but we don't need in Webapp."""
+        useless_fields = ('eula', 'thankyou_note', 'summary',
+                          'developer_comments', 'the_future', 'the_reason')
+        useful_fields = ('homepage', 'privacy_policy', 'name', 'description',
+                         'support_email', 'support_url')
+
+        self.assertSetEqual(Addon._meta.translated_fields,
+            [Addon._meta.get_field(f) for f in useless_fields + useful_fields])
+        self.assertSetEqual(Webapp._meta.translated_fields,
+            [Webapp._meta.get_field(f) for f in useful_fields])
+
+        # Build fake data with all fields, and use it to create an app.
+        data = dict(zip(useless_fields + useful_fields,
+                        useless_fields + useful_fields))
+        app = app_factory(**data)
+        for field_name in useless_fields + useful_fields:
+            field_id_name = app._meta.get_field(field_name).attname
+            ok_(getattr(app, field_name, None))
+            ok_(getattr(app, field_id_name, None))
+
+        # Reload the app, the useless fields should all have ids but the value
+        # shouldn't have been loaded.
+        app = Webapp.objects.get(pk=app.pk)
+        for field_name in useless_fields:
+            field_id_name = app._meta.get_field(field_name).attname
+            ok_(getattr(app, field_name, None) is None)
+            ok_(getattr(app, field_id_name, None))
+
+        # The useful fields should all be ok.
+        for field_name in useful_fields:
+            field_id_name = app._meta.get_field(field_name).attname
+            ok_(getattr(app, field_name, None))
+            ok_(getattr(app, field_id_name, None))
+
 
 class DeletedAppTests(amo.tests.ESTestCase):
 
