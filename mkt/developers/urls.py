@@ -7,6 +7,8 @@ from lib.misc.urlconf_decorator import decorate
 
 import amo
 from amo.decorators import write
+from amo.urlresolvers import reverse
+
 from mkt.api.base import SubRouter
 from mkt.developers.api import ContentRatingList, ContentRatingsPingback
 from mkt.developers.api_payments import (
@@ -45,6 +47,9 @@ def provider_patterns(prefix):
 
 # These will all start with /app/<app_slug>/
 app_detail_patterns = patterns('',
+    # Redirect people who go to / instead of /edit.
+    ('^$', lambda r, app_slug: http.HttpResponseRedirect(
+     reverse('mkt.developers.apps.edit', args=[app_slug]))),
     url('^edit$', views.edit, name='mkt.developers.apps.edit'),
     url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
         views.addons_section, name='mkt.developers.apps.section'),
