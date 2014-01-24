@@ -605,6 +605,7 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(len(data['objects']), 2)
         eq_(int(data['objects'][0]['id']), app1.id)
         eq_(int(data['objects'][1]['id']), app2.id)
+
         eq_(data['meta']['total_count'], 3)
         eq_(data['meta']['limit'], 2)
         eq_(data['meta']['previous'], None)
@@ -755,7 +756,14 @@ class TestFeaturedCollections(BaseFeaturedTests):
         self.refresh('webapp')
 
         res, json = self.test_added_to_results()
-        eq_(len(json[self.prop_name][0]['apps']), 1)
+        apps = json[self.prop_name][0]['apps']
+        eq_(len(apps), 1)
+
+        # Make sure we are using the simplified representation for apps.
+        eq_(apps[0]['name'], {u'en-US': u'Something Something Steamcube!',
+                              u'es': u'Algo Algo Steamcube!'})
+        ok_(not 'app_type' in apps[0])
+
         return res, json
 
     def test_features_filtered(self):
@@ -805,8 +813,9 @@ class TestFeaturedCollections(BaseFeaturedTests):
             name='Me', description='Hello', collection_type=self.col_type,
             category=self.cat, is_public=True, region=mkt.regions.US.id)
 
-        # Call standard test method that adds the app and refreshes ES.
-        self.test_apps_included()
+        # Call standard test method. We don't care about apps here, no need to
+        # add some or refresh ES.
+        self.test_added_to_results()
 
         # We are only dealing with one collection with only one app inside,
         # our mock of the method that serializes app data from the db should

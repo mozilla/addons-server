@@ -487,8 +487,18 @@ class Version(amo.models.ModelBase):
     def developer_name(self):
         return self._developer_name
 
-    @amo.cached_property
+    @amo.cached_property(writable=True)
     def is_privileged(self):
+        """
+        Return whether the corresponding addon is privileged by looking at
+        the manifest file.
+
+        This is a cached property, to avoid going in the manifest more than
+        once for a given instance. It's also directly writable do allow you to
+        bypass the manifest fetching if you *know* your app is privileged or
+        not already and want to pass the instance to some code that will use
+        that property.
+        """
         if (self.addon.type != amo.ADDON_WEBAPP or
             not self.addon.is_packaged or not self.all_files):
             return False
