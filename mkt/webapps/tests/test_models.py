@@ -778,7 +778,9 @@ class TestWebapp(amo.tests.TestCase):
         # If there's an appcache_path defined, this is an offline-capable app.
         manifest['appcache_path'] = '/manifest.appcache'
         am.update(manifest=json.dumps(manifest))
-        eq_(app.reload().is_offline, True)
+        # reload isn't enough, it doesn't clear cached_property.
+        app = Webapp.objects.get(pk=app.pk)
+        eq_(app.is_offline, True)
 
     @mock.patch('mkt.webapps.models.Webapp.is_rated')
     def test_content_ratings_complete(self, is_rated_mock):
