@@ -316,6 +316,7 @@ class TestESSearch(SearchBase):
 
     def check_appver_filters(self, appver, expected):
         request = RequestFactory()
+        request.GET = {}
         request.APP = amo.FIREFOX
 
         facets = {
@@ -326,7 +327,7 @@ class TestESSearch(SearchBase):
         }
 
         versions = version_sidebar(request,
-            {'appver': floor_version(appver)}, facets)
+                                   {'appver': floor_version(appver)}, facets)
 
         all_ = versions.pop(0)
         eq_(all_.text, 'Any %s' % unicode(request.APP.pretty))
@@ -985,11 +986,9 @@ class TestCollectionSearch(SearchBase):
         r = self.client.get(self.url.replace('firefox', 'seamonkey'))
         eq_(self.get_results(r), [sm_collection.id])
 
-
-    def test_session_version_sidebar(self):
+    def test_version_sidebar(self):
         request = RequestFactory()
         request.GET = {}
-        request.session = {}
         request.APP = amo.FIREFOX
 
         request.get(reverse('search.search'))
@@ -1005,12 +1004,22 @@ class TestCollectionSearch(SearchBase):
         versions = version_sidebar(request, {'appver': '5.0'}, facets)
         assert versions[1].selected
 
-        versions = version_sidebar(request, {}, facets)
-        assert versions[1].selected
-
-        request.GET['appver'] = ''
+        # We're not storing the version in the session anymore: no memories.
         versions = version_sidebar(request, {}, facets)
         assert versions[0].selected
+
+        # We read the appver from the cleaned form data.
+        request.GET['appver'] = '123.4'
+        # No form data, fallback to default (first entry).
+        versions = version_sidebar(request, {}, facets)
+        assert versions[0].selected
+        # Form data has the proper version, use it.
+        versions = version_sidebar(request, {'appver': '5.0'}, facets)
+        assert versions[1].selected
+        # Form data has the proper version, which is new: add it.
+        versions = version_sidebar(request, {'appver': '123.4'}, facets)
+        assert versions[1].selected
+        eq_(len(versions), 3)
 
 
 def test_search_redirects():
