@@ -44,5 +44,5 @@ class FirstAvailableRenderer(DefaultContentNegotiation):
         if len(renderers) == 1:
             return renderers[0], renderers[0].media_type
         else:
-            return super(FirstAvailableRenderer, self).select_renderer(self,
+            return super(FirstAvailableRenderer, self).select_renderer(
                 request, renderers, format_suffix=format_suffix)
