@@ -140,10 +140,8 @@ class RestSharedSecretAuthentication(BaseAuthentication):
         header = request.META.get('HTTP_AUTHORIZATION', '').split(None, 1)
         if header and header[0].lower() == 'mkt-shared-secret':
             auth = header[1]
-        elif waffle.switch_is_active('shared-secret-in-url'):
-            auth = request.GET.get('_user')
         else:
-            auth = ''
+            auth = request.GET.get('_user')
         if not auth:
             log.info('API request made without shared-secret auth token')
             return False
