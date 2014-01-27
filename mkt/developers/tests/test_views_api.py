@@ -15,7 +15,6 @@ class TestAPI(amo.tests.TestCase):
         self.profile = UserProfile.objects.get(pk=999)
         self.user = self.profile.user
         self.login(self.profile)
-        self.create_switch(name='create-api-tokens')
         self.url = reverse('mkt.developers.apps.api')
 
     def test_logged_out(self):
