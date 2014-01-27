@@ -677,6 +677,22 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(res['payment_account'], reverse('payment-account-detail',
             kwargs={'pk': addon_payment_account.pk}))
 
+    def test_release_notes(self):
+        res = self.serialize()
+        eq_(res['release_notes'], None)
+        version = self.app.current_version
+        version.releasenotes = u'These are nötes.'
+        version.save()
+        self.app.save()
+        self.refresh('webapp')
+        res = self.serialize()
+        eq_(res['release_notes'], {u'en-US': unicode(version.releasenotes)})
+
+        self.request = RequestFactory().get('/?lang=whatever')
+        self.request.REGION = mkt.regions.US
+        res = self.serialize()
+        eq_(res['release_notes'], unicode(version.releasenotes))
+
     def test_upsell(self):
         upsell = amo.tests.app_factory()
         self.make_premium(upsell)

@@ -144,12 +144,13 @@ class ESTranslationSerializerField(TranslationSerializerField):
         super(ESTranslationSerializerField, self).__init__(*args, **kwargs)
 
     @classmethod
-    def attach_translations(cls, obj, field_name, data):
+    def attach_translations(cls, obj, data, source_name, target_name=None):
         """
-        Look for the translation of `field_name` in `data` and create a dict
+        Look for the translation of `source_name` in `data` and create a dict
         with all translations for this field (which will look like
         {'en-US': 'mytranslation'}) and attach it to a property on `obj`.
-        The property name is built with `field_name` and `cls.suffix`.
+        The property name is built with `target_name` and `cls.suffix`. If
+        `target_name` is None, `source_name` is used instead.
 
         The suffix is necessary for two reasons:
         1) The translations app won't let us set the dict on the real field
@@ -157,9 +158,12 @@ class ESTranslationSerializerField(TranslationSerializerField):
         2) This also exactly matches how we store translations in ES, so we can
            directly fetch the translations in the data passed to this method.
         """
-        key = '%s%s' % (field_name, cls.suffix)
-        setattr(obj, key, dict((v.get('lang', ''), v.get('string', ''))
-                               for v in data.get(key, {})))
+        if target_name is None:
+            target_name = source_name
+        target_key = '%s%s' % (target_name, cls.suffix)
+        source_key = '%s%s' % (source_name, cls.suffix)
+        setattr(obj, target_key, dict((v.get('lang', ''), v.get('string', ''))
+                                      for v in data.get(source_key, {})))
 
     def fetch_all_translations(self, obj, source, field):
         return field or None
