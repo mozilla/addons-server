@@ -80,7 +80,7 @@
     </li>
   {% endif %}
 
-  {% if addon.premium_type in amo.ADDON_INAPPS and waffle.switch('in-app-payments') %}
+  {% if addon.premium_type in amo.ADDON_INAPPS %}
     <li>
       <a class="action-link" href="{{ addon.get_dev_url('in_app_config') }}">
         {{ _('In-App Payments') }}

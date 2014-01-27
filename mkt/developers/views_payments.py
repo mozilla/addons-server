@@ -275,7 +275,6 @@ def payments_accounts_delete(request, id):
 
 
 @login_required
-@waffle_switch('in-app-sandbox')
 def in_app_keys(request):
     keys = (UserInappKey.objects.no_cache()
             .filter(solitude_seller__user=request.amo_user))
@@ -299,7 +298,6 @@ def in_app_keys(request):
 
 
 @login_required
-@waffle_switch('in-app-sandbox')
 def in_app_key_secret(request, pk):
     key = (UserInappKey.objects.no_cache()
            .filter(solitude_seller__user=request.amo_user, pk=pk))
@@ -311,7 +309,6 @@ def in_app_key_secret(request, pk):
 
 
 @login_required
-@waffle_switch('in-app-payments')
 @dev_required(owner_for_post=True, webapp=True)
 def in_app_config(request, addon_id, addon, webapp=True):
     inapp = addon.premium_type in amo.ADDON_INAPPS
@@ -345,7 +342,6 @@ def in_app_config(request, addon_id, addon, webapp=True):
 
 
 @login_required
-@waffle_switch('in-app-payments')
 @dev_required(webapp=True)
 def in_app_secret(request, addon_id, addon, webapp=True):
     seller_config = get_seller_product(addon.app_payment_account)

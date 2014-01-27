@@ -1790,8 +1790,8 @@ Webapp._meta.translated_fields = [
 def update_search_index(sender, instance, **kw):
     from . import tasks
     if not kw.get('raw'):
-        if instance.upsold:
-            tasks.index_webapps.delay([instance.upsold.id])
+        if instance.upsold and instance.upsold.free_id:
+            tasks.index_webapps.delay([instance.upsold.free_id])
         tasks.index_webapps.delay([instance.id])
 
 

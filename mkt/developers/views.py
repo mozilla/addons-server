@@ -986,7 +986,6 @@ def terms(request):
                          'agreement_form': form})
 
 
-@waffle_switch('create-api-tokens')
 @login_required
 def api(request):
     roles = request.amo_user.groups.filter(name='Admins').exists()

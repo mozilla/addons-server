@@ -44,12 +44,12 @@ handlers = {
         'formatter': 'debug',
     },
     'syslog': {
-        'class': 'lib.misc.unicode_log.UnicodeHandler',
+        'class': 'mozilla_logger.log.UnicodeHandler',
         'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
         'formatter': 'prod',
     },
     'syslog2': {
-        'class': 'lib.misc.unicode_log.UnicodeHandler',
+        'class': 'mozilla_logger.log.UnicodeHandler',
         'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
         'formatter': 'prod2',
     },

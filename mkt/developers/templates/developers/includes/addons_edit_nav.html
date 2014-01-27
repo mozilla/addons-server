@@ -17,8 +17,7 @@
 {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
   {% do urls.append((addon.get_dev_url('payments'),
                      _('Compatibility & Payments'))) %}
-  {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
-        and waffle.switch('in-app-payments') %}
+  {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS %}
     {% do urls.insert(4,
       (addon.get_dev_url('in_app_config'), _('In-App Payments'))
     ) %}

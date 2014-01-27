@@ -736,7 +736,6 @@ class TestFeaturedCollections(BaseFeaturedTests):
             name='Hi', description='Mom', collection_type=self.col_type,
             category=self.cat, is_public=True, region=mkt.regions.US.id)
         self.qs['region'] = mkt.regions.US.slug
-        self.create_switch('collections-use-es-for-apps')
         # FIXME: mock the search part, we don't care about it.
 
     def make_request(self):

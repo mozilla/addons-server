@@ -175,8 +175,24 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
             }]
         }
         self.app = Webapp()
-        self.field_class().attach_translations(self.app, 'foo', data)
+        self.field_class().attach_translations(self.app, data, 'foo')
         eq_(self.app.foo_translations, {'testlang': 'teststring', 
+                                        'testlang2': 'teststring2'})
+
+    def test_attach_translations_target_name(self):
+        data = {
+            'foo_translations' : [{
+                'lang': 'testlang',
+                'string': 'teststring'
+            }, {
+                'lang': 'testlang2',
+                'string': 'teststring2'
+            }]
+        }
+        self.app = Webapp()
+        self.field_class().attach_translations(self.app, data, 'foo',
+            target_name='bar')
+        eq_(self.app.bar_translations, {'testlang': 'teststring',
                                         'testlang2': 'teststring2'})
 
     def _test_expected_dict(self, field):

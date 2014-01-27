@@ -133,12 +133,12 @@ class ESAppSerializer(AppSerializer):
         # Attach translations for all translated attributes.
         for field_name in ('name', 'description', 'homepage', 'support_email',
                            'support_url'):
-            ESTranslationSerializerField.attach_translations(
-                obj, field_name, data)
-        ESTranslationSerializerField.attach_translations(
-            obj._geodata, 'banner_message', data)
-        ESTranslationSerializerField.attach_translations(
-            obj._current_version, 'releasenotes', data)
+            ESTranslationSerializerField.attach_translations(obj,
+                data, field_name)
+        ESTranslationSerializerField.attach_translations(obj._geodata,
+            data, 'banner_message')
+        ESTranslationSerializerField.attach_translations(obj._current_version,
+            data, 'release_notes', target_name='releasenotes')
 
         # Set attributes that have a different name in ES.
         obj.public_stats = data['has_public_stats']
