@@ -275,7 +275,6 @@ def payments_accounts_delete(request, id):
 
 
 @login_required
-@waffle_switch('in-app-sandbox')
 def in_app_keys(request):
     keys = (UserInappKey.objects.no_cache()
             .filter(solitude_seller__user=request.amo_user))
@@ -299,7 +298,6 @@ def in_app_keys(request):
 
 
 @login_required
-@waffle_switch('in-app-sandbox')
 def in_app_key_secret(request, pk):
     key = (UserInappKey.objects.no_cache()
            .filter(solitude_seller__user=request.amo_user, pk=pk))

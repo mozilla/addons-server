@@ -154,7 +154,6 @@ class InappKeysTest(InappTest):
 
     def setUp(self):
         super(InappKeysTest, self).setUp()
-        self.create_switch('in-app-sandbox')
         self.url = reverse('mkt.developers.apps.in_app_keys')
         self.seller_uri = '/seller/1/'
         self.product_pk = 2
