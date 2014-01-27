@@ -28,7 +28,6 @@ class ButtonTest(amo.tests.TestCase):
         self.addon.is_unreviewed.return_value = False
         self.addon.is_webapp.return_value = False
         self.addon.is_premium.return_value = False
-        self.addon.can_be_purchased.return_value = False
         self.addon.has_eula = False
         self.addon.status = amo.STATUS_PUBLIC
         self.addon.id = 2
@@ -390,20 +389,6 @@ class TestButtonHtml(ButtonTest):
         eq_(['install', 'featuredaddon'],
             doc('.install').attr('class').split())
         eq_('Featured', doc('.install strong:last-child').text())
-
-    def test_premium(self):
-        self.addon.is_premium.return_value = True
-        self.addon.can_be_purchased.return_value = True
-        doc = self.render()
-
-        eq_(['install', 'premium'],
-            doc('.install').attr('class').split())
-
-    def test_premium_no_hash(self):
-        self.addon.is_premium.return_value = True
-        self.addon.can_be_purchased.return_value = True
-        doc = self.render()
-        eq_(doc('.button').attr('data-hash'), None)
 
     def test_unreviewed(self):
         self.addon.status = amo.STATUS_UNREVIEWED

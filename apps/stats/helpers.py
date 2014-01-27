@@ -1,12 +1,9 @@
 import jinja2
-import waffle
-
 from jingo import env, register
-from tower import ugettext as _
+
 from access import acl
 from addons.models import Addon
 from bandwagon.models import Collection
-from amo.urlresolvers import reverse
 
 
 @register.function
@@ -21,8 +18,6 @@ def report_menu(context, request, report, obj=None):
                 obj.has_author(request.amo_user))):
                 has_privs = True
             t = env.get_template('stats/addon_report_menu.html')
-            if obj.is_webapp() and waffle.switch_is_active('marketplace'):
-                t = env.get_template('appstats/app_report_menu.html')
             c = {
                 'addon': obj,
                 'has_privs': has_privs

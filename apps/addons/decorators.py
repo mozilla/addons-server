@@ -4,8 +4,6 @@ from django import http
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 
-import waffle
-
 import commonware.log
 from addons.models import Addon
 
@@ -45,23 +43,6 @@ def addon_view_factory(qs):
     return functools.partial(addon_view, qs=qs)
 
 
-def can_be_purchased(f):
-    """
-    Check if it can be purchased, returns False if not premium.
-    Must be called after the addon_view decorator.
-    """
-    @functools.wraps(f)
-    def wrapper(request, addon, *args, **kw):
-        if not waffle.switch_is_active('marketplace'):
-            log.error('Marketplace waffle switch is off')
-            raise http.Http404
-        if not addon.can_be_purchased():
-            log.info('Cannot be purchased: %d' % addon.pk)
-            raise PermissionDenied
-        return f(request, addon, *args, **kw)
-    return wrapper
-
-
 def has_purchased(f):
     """
     If the addon is premium, require a purchase.
@@ -71,21 +52,6 @@ def has_purchased(f):
     def wrapper(request, addon, *args, **kw):
         if addon.is_premium() and not addon.has_purchased(request.amo_user):
             log.info('Not purchased: %d' % addon.pk)
-            raise PermissionDenied
-        return f(request, addon, *args, **kw)
-    return wrapper
-
-
-def has_purchased_or_refunded(f):
-    """
-    If the addon is premium, require a purchase.
-    Must be called after addon_view decorator.
-    """
-    @functools.wraps(f)
-    def wrapper(request, addon, *args, **kw):
-        if addon.is_premium() and not (addon.has_purchased(request.amo_user) or
-                                       addon.is_refunded(request.amo_user)):
-            log.info('Not purchased or refunded: %d' % addon.pk)
             raise PermissionDenied
         return f(request, addon, *args, **kw)
     return wrapper

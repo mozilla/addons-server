@@ -16,15 +16,6 @@
              value="{{ version.version }}" size="6">
       {{ form.name.errors }}
     </div>
-    {% if addon.is_webapp() and waffle.switch('marketplace') %}
-      <div class="addon-submission-field">
-        <label for="{{ form.homepage.auto_id }}">
-          {{ _('Homepage URL:') }}
-        </label>
-        {{ form.homepage }}
-        {{ form.homepage.errors }}
-      </div>
-    {% endif %}
     <div class="addon-submission-field">
       <label>{{ _("The detail page will be:") }}</label>
       <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
@@ -57,7 +48,7 @@
       {{ cat_form.non_form_errors() }}
       {{ cat_form.management_form }}
       {% for form in cat_form.initial_forms %}
-        {{ select_cats(amo.MAX_CATEGORIES, form, webapp) }}
+        {{ select_cats(amo.MAX_CATEGORIES, form) }}
       {% endfor %}
     </div>
     <div class="addon-submission-field">
@@ -69,22 +60,6 @@
         {{ some_html_tip() }}
       </div>
     </div>
-    {% if addon.is_webapp() and waffle.switch('marketplace') %}
-      <div class="addon-submission-field">
-        <label for="{{ form.support_email.auto_id }}">
-          {{ _('Support Email:') }}
-        </label>
-        {{ form.support_email }}
-        {{ form.support_email.errors }}
-      </div>
-      <div class="addon-submission-field">
-        <label for="{{ form.support_url.auto_id }}">
-          {{ _('Support URL:') }}
-        </label>
-        {{ form.support_url }}
-        {{ form.support_url.errors }}
-      </div>
-    {% endif %}
     <div class="submission-buttons addon-submission-field">
       <button type="submit">
         {{ _('Continue') }}

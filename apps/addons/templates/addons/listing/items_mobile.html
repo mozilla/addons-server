@@ -1,11 +1,6 @@
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 {% for addon in addons %}
-  {% if show_refunds %}
-    {% set contribs = waffle.switch('marketplace') and contributions.get(addon.pk) %}
-  {% endif %}
-  {% set is_refunded = contribs and addon.is_refunded(request.amo_user) %}
-  {% set is_chargeback = contribs and addon.is_chargeback(request.amo_user) %}
-  <li class="item{{ ' refunded' if is_refunded }}{{ ' reversed' if is_chargeback }}">
+  <li class="item">
     <div class="info">
       {% set dl_url = addon.get_url_path() %}
       {% if src %}
@@ -56,15 +51,6 @@
         </div>
       </details>
     </div>
-    {% if is_refunded %}
-      <div class="action">
-        {% if is_refunded %}
-          <span class="purchase refund-notice">
-            {{ _('Purchase Refunded') }}
-          </span>
-        {% endif %}
-      </div>
-    {% endif %}
     {% if src == 'search' %}
       {{ mobile_install_button(addon, show_warning=False) }}
     {% endif %}

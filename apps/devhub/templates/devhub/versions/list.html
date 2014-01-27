@@ -76,14 +76,7 @@
           {{ _("Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org.") }}
         {% endif %}
       {% endif %}
-      {% if webapp %}
-        {# TODO(apps): Enable link when marketplace docs are done.
-          {% if not (addon.is_disabled or addon.is_incomplete()) %}
-            <a href="{{ url('devhub.docs', doc_name='marketplace') }}">
-              {{ _('Learn more') }}</a>
-          {% endif %}
-        #}
-      {% else %}
+      {% if not webapp %}
         {% if addon.status == amo.STATUS_LITE %}
           {{ status(_('This add-on has been <b>preliminarily reviewed</b>.')|safe) }}
           {{ _("Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}

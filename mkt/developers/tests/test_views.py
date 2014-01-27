@@ -12,7 +12,6 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import mock
-import waffle
 from nose.plugins.attrib import attr
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -141,7 +140,6 @@ class TestAppDashboard(AppHubTest):
         AddonUser.objects.create(addon_id=337141, user=self.user)
 
     def test_public_app(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
         app = self.get_app()
         self.make_mine()
         doc = pq(self.client.get(self.url).content)
@@ -294,7 +292,10 @@ class TestDevRequired(AppHubTest):
         self.assertRedirects(self.client.post(self.post_url), self.get_url)
 
 
-class MarketplaceMixin(object):
+@mock.patch('mkt.developers.forms_payments.PremiumForm.clean',
+            new=lambda x: x.cleaned_data)
+class TestMarketplace(amo.tests.TestCase):
+    fixtures = fixture('prices', 'webapp_337141')
 
     def setUp(self):
         self.create_flag('allow-b2g-paid-submission')
@@ -322,12 +323,6 @@ class MarketplaceMixin(object):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.paid_regions = self.get_price_regions(self.price)
         self.paid_regions_two = self.get_price_regions(self.price_two)
-
-
-@mock.patch('mkt.developers.forms_payments.PremiumForm.clean',
-            new=lambda x: x.cleaned_data)
-class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
-    fixtures = fixture('prices', 'webapp_337141')
 
     def get_data(self, **kw):
         data = {
@@ -427,7 +422,8 @@ class TestPublicise(amo.tests.TestCase):
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_publicise(self, update_name, update_locales,
-                       update_cached_manifests, index_webapps, storefront_mock):
+                       update_cached_manifests, index_webapps,
+                       storefront_mock):
         self.create_switch('iarc')
 
         index_webapps.delay.reset_mock()
@@ -501,7 +497,8 @@ class TestPubliciseVersion(amo.tests.TestCase):
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_publicise_version_new_waiting(self, update_name, update_locales,
-                                           update_cached_manifests, index_webapps):
+                                           update_cached_manifests,
+                                           index_webapps):
         """ Test publishing the latest, public_waiting version when the app is
         already public, with a current version also already public """
         eq_(self.app.status, amo.STATUS_PUBLIC)
@@ -530,7 +527,8 @@ class TestPubliciseVersion(amo.tests.TestCase):
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_publicise_version_cur_waiting_app_public(self, update_name,
                                                       update_locales,
-                                                      update_cached_manifests, index_webapps):
+                                                      update_cached_manifests,
+                                                      index_webapps):
         """ Test publishing when the app is in a weird state: public but with
         only one version, which is public_waiting """
         File.objects.filter(version__addon=self.app).update(
@@ -560,7 +558,8 @@ class TestPubliciseVersion(amo.tests.TestCase):
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_publicise_version_cur_waiting(self, update_name, update_locales,
-                                           update_cached_manifests, index_webapps):
+                                           update_cached_manifests,
+                                           index_webapps):
         """ Test publishing when the only version of the app is waiting """
         self.app.update(status=amo.STATUS_PUBLIC_WAITING)
         File.objects.filter(version__addon=self.app).update(

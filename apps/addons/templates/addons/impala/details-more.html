@@ -48,19 +48,6 @@
     {% endif %}
   {% endwith %}
   {{ tags_box(addon=addon, tags=tags) }}
-  {% if addon.is_webapp() and waffle.switch('marketplace') %}
-    <h3>{{ _('Device Support') }}</h3>
-    {% set device_types = addon.device_types %}
-    {% if device_types %}
-      <ul class="device-list">
-        {% for device in device_types %}
-          <li class="{{ device.class_name }}">
-            {{ device.name }}
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endif %}
 </aside>
 
 {% if recommendations or collections or author_addons %}

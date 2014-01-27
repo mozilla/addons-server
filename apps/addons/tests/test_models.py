@@ -2258,19 +2258,6 @@ class TestMarketplace(amo.tests.TestCase):
             else:
                 assert not self.addon.can_become_premium()
 
-    def test_can_not_be_purchased(self):
-        assert not self.addon.can_be_purchased()
-
-    def test_can_still_not_be_purchased(self):
-        self.addon.premium_type = amo.ADDON_PREMIUM
-        assert not self.addon.can_be_purchased()
-
-    def test_can_be_purchased(self):
-        for status in amo.REVIEWED_STATUSES:
-            self.addon.premium_type = amo.ADDON_PREMIUM
-            self.addon.status = status
-            assert self.addon.can_be_purchased()
-
 
 class TestAddonUpsell(amo.tests.TestCase):
 

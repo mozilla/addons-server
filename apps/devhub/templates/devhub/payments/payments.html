@@ -33,23 +33,6 @@
       </form>
     </div>
   {% elif not errors %}
-    {% if waffle.switch('marketplace') %}
-      <p class="intro-blah">
-        {% if webapp %}
-          {{ loc('Mozilla is pleased to provide you with the ability to sell
-                  your app in our Marketplace. Please read the important
-                  information below to learn about this program.') }}
-        {% else %}
-          {% trans %}
-            Mozilla is pleased to provide you with the ability to ask for optional
-            financial contributions or to sell your add-on in our Marketplace.
-            Please read the important information below to learn about these
-            programs.
-          {% endtrans %}
-        {% endif %}
-      </p>
-    {% endif %}
-    {% if not webapp %}
     <div class="intro">
       <h3>{{ _('Voluntary Contributions') }}</h3>
       <p>{{ _('Add-ons enrolled in our contributions program can request voluntary financial support from users.') }}</p>
@@ -70,93 +53,15 @@
           Contributions are only available for fully reviewed add-ons.
         {% endtrans %}
         </p>
-      {% elif addon.upsell %}
-        <p class="error">
-        {% trans upsell=addon.upsell.premium.name,
-                 doc_url=url('devhub.docs', doc_name='marketplace', doc_page='voluntary') %}
-          You cannot set up Contributions while your add-on is linked with a premium
-          add-on enrolled in the Marketplace. To enable Contributions, please disassociate
-          your add-on from {{ upsell }}.
-        {% endtrans %}
-        {# TODO(marketplace-docs):
-           <a href="{{ doc_url }}">Learn more</a>.
-        #}
-        </p>
       {% else %}
         <div class="button-wrapper">
           <a href="#setup" id="do-setup" class="button prominent">{{ _('Set up Contributions') }}</a>
         </div>
-        {% if waffle.switch('marketplace') %}
-        <div class="learn-more">
-          {% trans doc_url=url('devhub.docs', doc_name='marketplace', doc_page='voluntary') %}
-            or <a href="{{ doc_url }}">learn more</a>
-          {% endtrans %}
-        </div>
-        {% endif %}
       {% endif %}
     </div>
-    {% endif %}
-    {% if waffle.switch('marketplace') %}
-    <div class="intro{% if webapp %} full-intro{% endif %}">
-      <h3>{{ _('Firefox Marketplace') }}</h3>
-      {% if webapp %}
-        <p>{{ _('Premium apps can be sold in our marketplace by themselves or
-                 as an upgrade to a free version of your app.') }}</p>
-      {% else %}
-        <p>{{ _('Premium add-ons can be sold in our marketplace by themselves or
-                 as an upgrade to a free version of your add-on.') }}</p>
-      {% endif %}
-      <ul>
-        {% if webapp %}
-          <li>{{ _('Set your price and place your app for sale') }}</li>
-        {% else %}
-          <li>{{ _('Set your price and place your add-on for sale') }}</li>
-        {% endif %}
-        <li>{{ _('Users pay with their credit card or PayPal account all over the world') }}</li>
-        <li>{{ _('Receive funds immediately in your PayPal account') }}</li>
-        {% if webapp %}
-          <li>{{ _("Promote your premium app on your free app's details page") }}</li>
-        {% else %}
-          <li>{{ _("Promote your premium add-on on your free add-on's details page") }}</li>
-        {% endif %}
-      </ul>
-      {% if not addon.can_become_premium() %}
-        <p class="error">
-          {% if webapp %}
-            {{ loc('You cannot enroll in the Marketplace once your app has been
-                    reviewed and downloaded or if your app is being upsold.
-                    Please submit a new app to enroll.') }}
-            {# TODO(marketplace-docs):
-              <a href="{{ doc_url }}">Learn more</a>.
-            #}
-          {% else %}
-            {{ loc('You cannot enroll in the Marketplace once your add-on has been
-                    reviewed and downloaded or if your add-on is being upsold.
-                    Please submit a new add-on to enroll.') }}
-            {# TODO(marketplace-docs):
-              <a href="{{ doc_url }}">Learn more</a>.
-            #}
-          {% endif %}
-        </p>
-      {% else %}
-      <div class="button-wrapper">
-        <a href="#marketplace-confirm" id="do-marketplace" class="button prominent">
-          {{ _('Enroll in Marketplace') }}</a>
-      </div>
-      <div class="learn-more">
-        {% trans doc_url=url('devhub.docs', doc_name='marketplace') %}
-          or <a href="{{ doc_url }}">learn more</a>
-        {% endtrans %}
-      </div>
-      {% endif %}
-    </div>
-    {% endif %}
   {% endif %}
 
   {% include "devhub/payments/voluntary.html" %}
-  {% if waffle.switch('marketplace') and addon.can_become_premium() %}
-    {% include "devhub/payments/first-confirm.html" %}
-  {% endif %}
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}

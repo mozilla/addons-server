@@ -128,7 +128,6 @@ class InstallButton(object):
                          and addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
-        self.can_be_purchased = addon.can_be_purchased()
         self.is_premium = addon.is_premium()
         self.is_webapp = addon.is_webapp()
         self._show_contrib = show_contrib
@@ -151,9 +150,6 @@ class InstallButton(object):
 
         if self.size:
             self.button_class.append(self.size)
-        if self.can_be_purchased:
-            self.install_class.append('premium')
-            self.button_class.append('premium')
         if self.is_beta:
             self.install_class.append('beta')
         if self.is_webapp:
@@ -171,8 +167,6 @@ class InstallButton(object):
 
     def links(self):
         if not self.version:
-            return []
-        if self.is_premium and not self.can_be_purchased:
             return []
         rv = []
         files = [f for f in self.version.all_files

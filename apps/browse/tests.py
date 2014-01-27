@@ -14,7 +14,6 @@ from nose import SkipTest
 from nose.tools import eq_, assert_raises, nottest
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
-import waffle
 
 import amo
 import amo.tests
@@ -1301,16 +1300,6 @@ class TestMobileHeader(amo.tests.MobileTest, amo.tests.TestCase):
 
     @amo.tests.mobile_test
     def test_mobile_auth_nav(self):
-        expected = [
-            (UserProfile.objects.get(username='regularuser').welcome_name,
-             None),
-            ('Log out', reverse('users.logout')),
-        ]
-        self._test_auth_nav(expected)
-
-    @amo.tests.mobile_test
-    def test_apps_mobile_auth_nav(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
         expected = [
             (UserProfile.objects.get(username='regularuser').welcome_name,
              None),

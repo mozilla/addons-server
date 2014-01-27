@@ -30,9 +30,6 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
-        {% if waffle.switch('marketplace') and request.amo_user %}
-          data-purchases="{{ request.amo_user.purchase_ids()|join(',') }}"
-        {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="page">

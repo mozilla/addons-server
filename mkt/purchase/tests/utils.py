@@ -23,7 +23,6 @@ class PurchaseTest(amo.tests.TestCase):
                                                 tier_id=1)
 
     def setup_base(self):
-        self.create_switch(name='marketplace')
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.price = Price.objects.get(pk=1)

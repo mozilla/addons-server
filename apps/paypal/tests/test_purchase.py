@@ -1,7 +1,6 @@
 from mock import Mock, patch
 from nose import SkipTest
 from nose.tools import eq_
-import waffle
 
 from addons.models import Addon
 import amo
@@ -28,7 +27,6 @@ class TestPurchaseIPNOrder(amo.tests.TestCase):
     def setUp(self):
         raise SkipTest
 
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
         self.addon = Addon.objects.get(pk=592)
         self.addon.update(premium_type=amo.ADDON_PREMIUM,
                           status=amo.STATUS_PUBLIC)
@@ -50,9 +48,8 @@ class TestPurchaseIPNOrder(amo.tests.TestCase):
     def is_contribution_good(self):
         # Checks that the IPN has been by and its all good.
         con = self.get_contribution()
-        return (con.uuid == None
-                and con.transaction_id == uuid
-                and con.post_data)
+        return (con.uuid is None and con.transaction_id == uuid and
+                con.post_data)
 
     def urlopener(self, status):
         # Pretend to be requests or ullib2. Hot.

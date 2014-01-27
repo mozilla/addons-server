@@ -1,11 +1,10 @@
 import jinja2
 
-from jingo import register, env
+from jingo import register
 from tower import ugettext as _
 
 from . import buttons
 from amo.utils import chunked
-import amo
 
 
 register.function(buttons.install_button)
@@ -182,8 +181,7 @@ def addon_listing_items_compact(context, addons, show_date=False, src=None):
 
 @register.inclusion_tag('addons/listing/items_mobile.html')
 @jinja2.contextfunction
-def addon_listing_items_mobile(context, addons, sort=None, src=None,
-                               show_refunds=False):
+def addon_listing_items_mobile(context, addons, sort=None, src=None):
     return new_context(**locals())
 
 

@@ -25,7 +25,7 @@ from PIL import Image
 from session_csrf import anonymous_csrf
 from tower import ugettext_lazy as _lazy, ugettext as _
 import waffle
-from waffle.decorators import waffle_flag, waffle_switch
+from waffle.decorators import waffle_switch
 
 from applications.models import Application, AppVersion
 import amo
@@ -304,13 +304,14 @@ def edit(request, addon_id, addon, webapp=False):
     url_prefix = 'apps' if webapp else 'addons'
 
     data = {
-       'page': 'edit',
-       'addon': addon,
-       'webapp': webapp,
-       'url_prefix': url_prefix,
-       'valid_slug': addon.slug,
-       'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
-       'previews': addon.previews.all(),
+        'page': 'edit',
+        'addon': addon,
+        'webapp': webapp,
+        'url_prefix': url_prefix,
+        'valid_slug': addon.slug,
+        'tags': addon.tags.not_blacklisted().values_list('tag_text',
+                                                         flat=True),
+        'previews': addon.previews.all(),
     }
 
     if (not webapp and
@@ -963,7 +964,7 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 @dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
-    if not file.has_been_validated == True:
+    if not file.has_been_validated:
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
@@ -1822,9 +1823,6 @@ def docs(request, doc_name=None, doc_page=None):
                            'thunderbird-mobile', 'theme-development',
                            'other-addons'],
                 'themes': ['faq']}
-
-    if waffle.switch_is_active('marketplace'):
-        all_docs['marketplace'] = ['voluntary']
 
     if doc_name and doc_name in all_docs:
         filename = '%s.html' % doc_name
