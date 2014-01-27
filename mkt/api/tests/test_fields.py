@@ -190,8 +190,8 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
             }]
         }
         self.app = Webapp()
-        self.field_class().attach_translations(self.app, data, 'bar',
-            target_name='foo')
+        self.field_class().attach_translations(self.app, data, 'foo',
+            target_name='bar')
         eq_(self.app.bar_translations, {'testlang': 'teststring',
                                         'testlang2': 'teststring2'})
 
