@@ -2,7 +2,6 @@
 import os
 import uuid
 
-import waffle
 from rest_framework import serializers
 from rest_framework.fields import get_component
 from rest_framework.reverse import reverse
@@ -78,8 +77,7 @@ class CollectionMembershipField(serializers.RelatedField):
         # have a view in the context and that the waffle flag is active. If
         # everything checks out, bypass the db and use ES to fetch apps for a
         # nice performance boost.
-        if (self.context.get('use-es-for-apps') and self.context.get('view')
-            and waffle.switch_is_active('collections-use-es-for-apps')):
+        if self.context.get('use-es-for-apps') and self.context.get('view'):
             return self.field_to_native_es(obj, request)
 
         qs = get_component(obj, self.source)

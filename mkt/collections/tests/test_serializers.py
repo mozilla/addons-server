@@ -124,14 +124,15 @@ class TestCollectionMembershipField(BaseTestCollectionMembershipField,
 class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
                                       CollectionDataMixin,
                                       amo.tests.ESTestCase):
-    """ Same tests as TestCollectionMembershipField above, but we need a
-        different setUp and more importantly, we need to force a sync refresh
-        in ES when we modify our app """
+    """
+    Same tests as TestCollectionMembershipField above, but we need a
+    different setUp and more importantly, we need to force a sync refresh
+    in ES when we modify our app.
+    """
 
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.create_switch('collections-use-es-for-apps')
         super(TestCollectionMembershipFieldES, self).setUp()
         self.field.context['view'] = FeaturedSearchView()
         self.user = UserProfile.objects.get(pk=2519)
@@ -139,8 +140,10 @@ class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
         self.refresh('webapp')
 
     def _field_to_native_profile(self, profile='0.0'):
-        """ Like _field_to_native_profile in BaseTestCollectionMembershipField,
-        but calling field_to_native_es directly. """
+        """
+        Like _field_to_native_profile in BaseTestCollectionMembershipField,
+        but calling field_to_native_es directly.
+        """
         request = self.get_request({'pro': profile, 'dev': 'firefoxos'})
         self.field.context['request'] = request
         return self.field.field_to_native_es(self.collection, request)
