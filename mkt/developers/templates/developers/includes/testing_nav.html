@@ -1,11 +1,8 @@
 {% set urls = [
   (url('mkt.developers.validate_addon'), _('Test App Validation')),
   (url('receipt.test.install'), _('Test App Installation')),
+  (url('mkt.developers.apps.in_app_keys'), _('Test In-App Payments')),
 ] %}
-{% if waffle.switch('in-app-sandbox') %}
-  {% do urls.append((url('mkt.developers.apps.in_app_keys'),
-                     _('Test In-App Payments'))) %}
-{% endif %}
 
 <section class="secondary manage" role="complementary">
   <div class="island">
