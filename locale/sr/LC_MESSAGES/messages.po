@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-24 14:15+0000\n"
+"PO-Revision-Date: 2014-01-27 21:24+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1390572915.0\n"
+"X-POOTLE-MTIME: 1390857874.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -249,9 +249,9 @@ msgstr "Мој додатак не одговара ни једној катег
 #: apps/addons/templates/addons/impala/details-more.html:93
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Други додаци од овог/ових аутора:"
-msgstr[1] "Други додаци од ових аутора:"
-msgstr[2] "Други додаци од ових аутора:"
+msgstr[0] "Други додаци од овог/ових аутора"
+msgstr[1] "Други додаци од ових аутора"
+msgstr[2] "Други додаци од ових аутора"
 
 #: apps/addons/templates/addons/author_other_addons.html:27
 msgctxt "addons_author_addons_submit"
@@ -1249,7 +1249,7 @@ msgid ""
 "To install this Theme, <b>get Thunderbird</b>, a free and open source email "
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
-"Да бисте инсталирали ову тему, </b>преузмите Thunderbird</b>, бесплатаног "
+"Да бисте инсталирали ову тему, <b>преузмите Thunderbird</b>, бесплатаног "
 "клијента е-поште отвореног кода од Mozilla Messaging и инсталирајте додатак "
 "Personas Plus."
 
@@ -5072,19 +5072,16 @@ msgid "Level 1"
 msgstr "Ниво 1"
 
 #: apps/constants/base.py:548
-#, fuzzy
 msgid "Level 2"
-msgstr "Ниво 5"
+msgstr "Ниво 2"
 
 #: apps/constants/base.py:549
-#, fuzzy
 msgid "Level 3"
-msgstr "Ниво 5"
+msgstr "Ниво 3"
 
 #: apps/constants/base.py:550
-#, fuzzy
 msgid "Level 4"
-msgstr "Ниво 5"
+msgstr "Ниво 4"
 
 #: apps/constants/base.py:551
 msgid "Level 5"
@@ -6584,12 +6581,11 @@ msgstr ""
 
 #. {0} is an integer.
 #: apps/devhub/templates/devhub/addons/dashboard.html:116
-#, fuzzy
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] "<b>{0}</b> корисници"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> тема"
+msgstr[1] "<b>{0}</b> теме"
+msgstr[2] "<b>{0}</b> тема"
 
 #: apps/devhub/templates/devhub/addons/edit.html:3
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -10883,9 +10879,8 @@ msgid "Activate Contributions"
 msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:66
-#, fuzzy
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr "или <a id=\"change-owner-cancel\" href=\"#\">Откажи</a>"
+msgstr "или <a id=\"setup-cancel\" href=\"#\">Откажи</a>"
 
 #: apps/devhub/templates/devhub/payments/includes/paypal.html:13
 msgid ""
