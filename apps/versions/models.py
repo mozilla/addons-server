@@ -17,6 +17,7 @@ import addons.query
 import amo
 import amo.models
 import amo.utils
+from amo.decorators import use_master
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
@@ -518,6 +519,7 @@ class Version(amo.models.ModelBase):
         return json.loads(manifest) if manifest else {}
 
 
+@use_master
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
