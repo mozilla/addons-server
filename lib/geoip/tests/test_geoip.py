@@ -16,9 +16,6 @@ def generate_settings(url='', default='restofworld', timeout=0.2):
 
 class GeoIPTest(amo.tests.TestCase):
 
-    def setUp(self):
-        self.create_switch(name='geoip-geodude', active=True)
-
     @mock.patch('requests.post')
     def test_lookup(self, mock_post):
         url = 'localhost'

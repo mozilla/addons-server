@@ -1,7 +1,6 @@
 import logging
 
 import requests
-import waffle
 from django_statsd.clients import statsd
 
 from mkt import regions
@@ -42,8 +41,7 @@ class GeoIP:
         return the default as defined by the settings, or "restofworld".
 
         """
-        if (self.url and waffle.switch_is_active('geoip-geodude') and
-            is_public(address)):
+        if self.url and is_public(address):
             with statsd.timer('z.geoip'):
                 res = None
                 try:
