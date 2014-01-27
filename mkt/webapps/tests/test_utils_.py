@@ -716,6 +716,27 @@ class TestESAppToDict(amo.tests.ESTestCase):
         res = self.serialize()
         eq_(res['upsell'], False)
 
+    def test_upsell_is_made_public_later(self):
+        upsell = amo.tests.app_factory(status=amo.STATUS_PENDING)
+        self.make_premium(upsell)
+        self.app._upsell_from.create(premium=upsell)
+
+        # Don't use .reload() because it doesn't reset cached_property.
+        upsell = Webapp.objects.get(pk=upsell.pk)
+        upsell.update(status=amo.STATUS_PUBLIC)
+
+        # Note that we shouldn't have to call self.app.save(), because saving
+        # the upsell should have triggered the reindex of self.app.
+        self.refresh('webapp')
+
+        res = self.serialize()
+        eq_(res['upsell']['id'], upsell.id)
+        eq_(res['upsell']['app_slug'], upsell.app_slug)
+        eq_(res['upsell']['name'], upsell.name)
+        eq_(res['upsell']['icon_url'], upsell.get_icon_url(128))
+        self.assertApiUrlEqual(res['upsell']['resource_uri'],
+                               '/apps/app/%s/' % upsell.id)
+
     def test_upsell_excluded_from_region(self):
         upsell = amo.tests.app_factory()
         upsell.addonexcludedregion.create(region=mkt.regions.US.id)
