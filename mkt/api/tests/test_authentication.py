@@ -110,15 +110,6 @@ class TestSharedSecretAuthentication(TestCase):
         assert not getattr(req, 'amo_user', None)
         ok_(not this_thread_is_pinned())
 
-    def test_session_auth_query_disabled(self):
-        req = RequestFactory().post('/?_user=cfinke@m.com,56b6f1a3dd735d962c56'
-                                    'ce7d8f46e02ec1d4748d2c00c407d75f0969d08bb'
-                                    '9c68c31b3371aa8130317815c89e5072e31bb94b4'
-                                    '121c5c165f3515838d4d6c60c4,165d631d3c3045'
-                                    '458b4516242dad7ae')
-        ok_(not self.auth.is_authenticated(req))
-        ok_(not this_thread_is_pinned())
-
     def test_session_auth(self):
         req = RequestFactory().post(
             '/',
