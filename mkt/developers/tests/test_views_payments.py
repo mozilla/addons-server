@@ -46,7 +46,6 @@ def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
 class InappTest(amo.tests.TestCase):
 
     def setUp(self):
-        self.create_switch('in-app-payments')
         self.app = Addon.objects.get(pk=337141)
         self.app.update(premium_type=amo.ADDON_FREE_INAPP)
         self.user = UserProfile.objects.get(pk=31337)

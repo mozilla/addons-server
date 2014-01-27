@@ -43,11 +43,9 @@
           (addon.get_dev_url('refunds'), loc('Manage Refunds'))
         ) %}
       {% endif %}
-      {% if waffle.switch('in-app-payments') %}
-        {% do manage_urls.insert(0,
-          (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
-        ) %}
-      {% endif %}
+      {% do manage_urls.insert(0,
+        (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
+      ) %}
       <ul>
         {% for url, title in manage_urls %}
           <li><a href="{{ url }}">{{ title }}</a></li>

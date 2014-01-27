@@ -188,7 +188,6 @@ class TestAppDashboard(AppHubTest):
     def test_action_links(self):
         self.create_switch('iarc')
         self.create_switch('comm-dashboard')
-        self.create_switch('in-app-payments')
         self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True, is_packaged=True,

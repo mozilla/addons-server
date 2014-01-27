@@ -10,7 +10,7 @@
 {% if addon.is_premium() and waffle.switch('allow-refund') %}
   {% do urls.insert(4, (addon.get_dev_url('refunds'), loc('Manage Refunds'))) %}
 {% endif %}
-{% if addon.is_webapp() and waffle.switch('in-app-payments') %}
+{% if addon.is_webapp() %}
   {% do urls.insert(4,
     (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
   ) %}
