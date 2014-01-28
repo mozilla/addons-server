@@ -267,6 +267,16 @@
     }
 }
 
+.spinner:after {
+    content: "";
+    left: 50%;
+    margin-left: -15px;
+    position: absolute;
+    spinner-base();
+    top: 3px;
+}
+
+
 #submit-persona, #addon-edit-license {
     .devhub-form .brform {
         margin-bottom: 10px;
@@ -349,6 +359,12 @@
         #addon-categories-edit .addon-categories {
             column-count(2);
         }
+    }
+}
+
+@media $retina {
+    .spinner:after {
+        spinner-base-image('retina');
     }
 }
 

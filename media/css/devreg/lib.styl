@@ -167,3 +167,35 @@ webkit-spin() {
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
 }
+
+animation($animation) {
+    -webkit-animation: $animation;
+    -moz-animation: $animation;
+    animation: $animation;
+}
+
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0turn); }
+    to { -webkit-transform: rotate(1turn); }
+}
+@keyframes spin {
+    from { transform: rotate(0turn); }
+    to { transform: rotate(1turn); }
+}
+
+spinner-base-image(type = '') {
+    if (type == 'retina') {
+        background-image: url(../../img/mkt/btn_spinner_2x.png);
+        background-size: 30px auto;
+    } else {
+        background: url(../../img/mkt/btn_spinner.png) no-repeat center;
+    }
+}
+
+spinner-base() {
+    animation(unquote('0.9s spin infinite steps(30)'));
+    height: 30px;
+    margin: 0 auto;
+    spinner-base-image();
+    width: 30px;
+}

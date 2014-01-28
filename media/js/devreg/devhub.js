@@ -778,12 +778,12 @@ function initUploadImages() {
         // Remove old errors.
         $(this).closest('.image_preview').find('.errorlist').hide();
         // Don't let users submit a form.
-        $('.edit-media-button button, #submit-media button.prominent').attr('disabled', true);
+        $('.edit-media-button button, #submit-media button.prominent').prop('disabled', true).addClass('spinner');
     }
 
     function upload_finished_all(e) {
         // They can submit again
-        $('.edit-media-button button, #submit-media button.prominent').attr('disabled', false);
+        $('.edit-media-button button, #submit-media button.prominent').prop('disabled', false).removeClass('spinner');
     }
 
     function upload_start(e, file) {
