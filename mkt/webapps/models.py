@@ -1177,11 +1177,14 @@ class Webapp(Addon):
             {<ratingsbodies class>: <rating class>, ...}
 
         """
+        from . import tasks
+
         for ratings_body, rating in data.items():
             cr, created = self.content_ratings.safer_get_or_create(
                 ratings_body=ratings_body.id, defaults={'rating': rating.id})
             if not created:
                 cr.update(rating=rating.id, modified=datetime.datetime.now())
+
         self.set_iarc_storefront_data()  # Ratings updated, sync with IARC.
 
         if self.content_ratings.filter(
@@ -1196,6 +1199,8 @@ class Webapp(Addon):
                                               region_de_usk_exclude=True)
             if geodatas.exists():
                 geodatas.update(region_de_usk_exclude=False)
+
+        tasks.index_webapps.delay([self.id])
 
     def set_descriptors(self, data):
         """

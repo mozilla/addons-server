@@ -630,6 +630,15 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(data['meta']['offset'], 2)
         eq_(data['meta']['next'], None)
 
+    def test_content_ratings_reindex(self):
+        self.webapp.set_content_ratings({
+            mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_T
+        })
+        self.refresh('webapp')
+        res = self.client.get(self.url)
+        obj = res.json['objects'][0]
+        ok_(obj['content_ratings']['ratings'])
+
 
 class TestApiFeatures(RestOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
