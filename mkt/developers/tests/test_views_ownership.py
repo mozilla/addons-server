@@ -8,6 +8,7 @@ import waffle
 import amo
 import amo.tests
 from amo.tests import formset
+from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from devhub.models import ActivityLog
 from mkt.site.fixtures import fixture
@@ -115,6 +116,21 @@ class TestEditAuthor(TestOwnership):
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
         eq_(AddonUser.objects.get(addon=self.webapp.id).user_id, 999)
+
+    def test_delete_own_access(self):
+        # Add a new user and then delete the first user.
+        data = self.formset(dict(user='regular@mozilla.com', listed=True,
+                                 role=amo.AUTHOR_ROLE_OWNER, position=1),
+                            initial_count=0)
+        self.client.post(self.url, data)
+        one, two = self.client.get(self.url).context['user_form'].initial_forms
+        one.initial['DELETE'] = True
+        data = self.formset(one.initial, two.initial, initial_count=2)
+        r = self.client.post(self.url, data)
+
+        # We should be redirected to our My submissions page since we have
+        # now lost access to the current app by deleting our own access.
+        self.assertRedirects(r, reverse('mkt.developers.apps'), 302)
 
     def test_switch_owner(self):
         # See if we can transfer ownership in one POST.

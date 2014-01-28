@@ -525,6 +525,8 @@ def ownership(request, addon_id, addon, webapp=False):
     if request.method == 'POST' and user_form.is_valid():
         # Authors.
         authors = user_form.save(commit=False)
+        redirect_url = addon.get_dev_url('owner')
+
         for author in authors:
             action = None
             if not author.id or author.user_id != author._original_user_id:
@@ -543,12 +545,15 @@ def ownership(request, addon_id, addon, webapp=False):
                         author.get_role_display(), addon)
 
         for author in user_form.deleted_objects:
+            if author.user_id == request.user.id:
+                # The current user removed their own access to the app.
+                redirect_url = reverse('mkt.developers.apps')
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
 
         messages.success(request, _('Changes successfully saved.'))
 
-        return redirect(addon.get_dev_url('owner'))
+        return redirect(redirect_url)
 
     ctx = dict(addon=addon, webapp=webapp, user_form=user_form)
     return jingo.render(request, 'developers/apps/owner.html', ctx)
