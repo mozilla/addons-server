@@ -201,6 +201,7 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         }
         self.app = Webapp()
         self.field_class().attach_translations(self.app, data, 'foo')
+        eq_(self.app.foo_translations, {})
 
     def _test_expected_dict(self, field):
         result = field.field_to_native(self.app, 'name')
