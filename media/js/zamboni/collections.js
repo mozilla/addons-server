@@ -395,14 +395,14 @@ if (addon_ac.length) {
         },
         select: function(event, ui) {
             $('#addon-ac').val(ui.item.name).attr('data-id', ui.item.id)
-            .attr('data-icon', ui.item.icons[32]);
+            .attr('data-icon', ui.item.icons['32']);
             return false;
         }
     }).data('autocomplete')._renderItem = function(ul, item) {
         if (!$("#addons-list input[value=" + item.id + "]").length) {
             return $('<li>')
                 .data('item.autocomplete', item)
-                .append('<a><img src="' + item.icons[32] + '">' + item.name + '</a>')
+                .append('<a><img src="' + item.icons['32'] + '">' + item.name + '</a>')
                 .appendTo(ul);
         }
     };

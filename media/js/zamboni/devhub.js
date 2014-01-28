@@ -548,7 +548,7 @@ function initRequiredAddons() {
         hiddenField: 'dependent_addon',
         addedCB: function(emptyForm, item) {
             var f = template(emptyForm)({
-                icon: item.icon,
+                icon: item.icons['32'],
                 name: item.name || ''
             });
             // Firefox automatically escapes the contents of `href`, borking
