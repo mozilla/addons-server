@@ -28,7 +28,11 @@ def sign_app(src, dest, ids, reviewer=False):
     try:
         return _sign_app(src, dest, ids, reviewer, tempname)
     finally:
-        os.unlink(tempname)
+        try:
+            os.unlink(tempname)
+        except OSError:
+            # If the file has already been removed, don't worry about it.
+            pass
 
 
 def _sign_app(src, dest, ids, reviewer, tempname):
