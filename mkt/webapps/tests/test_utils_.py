@@ -136,13 +136,13 @@ class TestAppSerializer(amo.tests.TestCase):
              'body_label': 'classind',
              'rating': 'For ages 18+',
              'rating_label': '18',
-             'description': unicode(ratingsbodies.CLASSIND_18.description)})
+             'description': unicode(ratingsbodies.DESC_LAZY) % 18})
         eq_(res['content_ratings']['ratings']['generic'],
             {'body': 'Generic',
              'body_label': 'generic',
              'rating': 'For ages 18+',
              'rating_label': '18',
-             'description': unicode(ratingsbodies.GENERIC_18.description)})
+             'description': unicode(ratingsbodies.DESC_LAZY) % 18})
 
     def test_content_ratings_by_region(self):
         self.create_switch('iarc')
@@ -530,13 +530,13 @@ class TestESAppToDict(amo.tests.ESTestCase):
              'body_label': 'classind',
              'rating': 'For ages 18+',
              'rating_label': '18',
-             'description': unicode(ratingsbodies.CLASSIND_18.description)})
+             'description': unicode(ratingsbodies.DESC_LAZY) % 18})
         eq_(res['content_ratings']['ratings']['generic'],
             {'body': 'Generic',
              'body_label': 'generic',
              'rating': 'For ages 18+',
              'rating_label': '18',
-             'description': unicode(ratingsbodies.GENERIC_18.description)})
+             'description': unicode(ratingsbodies.DESC_LAZY) % 18})
 
         eq_(dict(res['content_ratings']['descriptors']),
             {'esrb': [{'label': 'blood', 'name': 'Blood'}],

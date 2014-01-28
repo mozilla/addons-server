@@ -1967,16 +1967,17 @@ class ContentRating(amo.models.ModelBase):
         # All regions w/o specified ratings bodies fallback to Generic.
         generic_regions = []
         if (waffle.switch_is_active('iarc') and
-            self.get_body() == mkt.ratingsbodies.GENERIC):
+            self.get_body_class() == mkt.ratingsbodies.GENERIC):
             generic_regions = mkt.regions.ALL_REGIONS_WITHOUT_CONTENT_RATINGS()
 
-        return [x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()
-                if self.get_body() == x.ratingsbody] + list(generic_regions)
+        return ([x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()
+                if self.get_body_class() == x.ratingsbody] +
+                list(generic_regions))
 
     def get_region_slugs(self):
         """Gives us the region slugs that use this rating body."""
         if (waffle.switch_is_active('iarc') and
-            self.get_body() == mkt.ratingsbodies.GENERIC):
+            self.get_body_class() == mkt.ratingsbodies.GENERIC):
             # For the generic rating body, we just pigeonhole all of the misc.
             # regions into one region slug, GENERIC. Reduces redundancy in the
             # final data structure. Rather than
@@ -1985,15 +1986,19 @@ class ContentRating(amo.models.ModelBase):
             return [mkt.regions.GENERIC_RATING_REGION_SLUG]
         return [x.slug for x in self.get_regions()]
 
+    def get_body_class(self):
+        return mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
+
     def get_body(self):
-        """Gives us something like DEJUS."""
-        body = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
-        return mkt.ratingsbodies.dehydrate_ratings_body(body)
+        """Ratings body instance with translated strings attached."""
+        return mkt.ratingsbodies.dehydrate_ratings_body(self.get_body_class())
+
+    def get_rating_class(self):
+        return self.get_body_class().ratings[self.rating]
 
     def get_rating(self):
-        """Gives us the rating class (containing the name and description)."""
-        rating = self.get_body().ratings[self.rating]
-        return mkt.ratingsbodies.dehydrate_rating(rating)
+        """Ratings instance with translated strings attached."""
+        return mkt.ratingsbodies.dehydrate_rating(self.get_rating_class())
 
     def get_label(self):
         """Gives us the name to be used for the form options."""
