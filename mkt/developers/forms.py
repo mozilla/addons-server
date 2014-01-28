@@ -47,7 +47,6 @@ from mkt.regions.utils import parse_region
 from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import index_webapps
-from mkt.webapps.utils import remove_iarc_exclusions
 
 
 from . import tasks
@@ -1179,7 +1178,6 @@ class IARCGetAppInfoForm(happyforms.Form):
             app.set_interactives(row.get('interactives', []))
             app.set_content_ratings(row.get('ratings', {}))
 
-            remove_iarc_exclusions(app)
         else:
             msg = _('Invalid submission ID or security code.')
             self._errors['submission_id'] = self.error_class([msg])
