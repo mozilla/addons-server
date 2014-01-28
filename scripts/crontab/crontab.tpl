@@ -44,6 +44,7 @@ HOME=/tmp
 30 9 * * * %(z_cron)s update_user_ratings
 50 9 * * * %(z_cron)s gc
 45 9 * * * %(z_cron)s mkt_gc --settings=settings_local_mkt
+45 9 * * * %(z_cron)s clean_old_signed --settings=settings_local_mkt
 45 10 * * * %(django)s process_addons --task=update_manifests --settings=settings_local_mkt
 45 11 * * * %(django)s process_addons --task=dump_apps --settings=settings_local_mkt
 30 12 * * * %(z_cron)s cleanup_synced_collections
