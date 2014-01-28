@@ -1,3 +1,15 @@
+import json
+
+from django.http import HttpResponse
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.permissions import AllowAny
+
+import amo
+
+from mkt.api.base import CORSMixin
+from mkt.api.authentication import (RestAnonymousAuthentication,
+                                    RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
 from mkt.search.api import FeaturedSearchView as BaseFeaturedSearchView
 from mkt.search.serializers import SimpleESAppSerializer
 from mkt.webapps.api import SimpleAppSerializer, AppViewSet as BaseAppViewset
@@ -27,3 +39,29 @@ class AppViewSet(BaseAppViewset):
 
 class FeaturedSearchView(BaseFeaturedSearchView):
     serializer_class = FireplaceESAppSerializer
+
+
+class ConsumerInfoView(CORSMixin, RetrieveAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication,
+                              RestAnonymousAuthentication]
+    cors_allowed_methods = ['get']
+    permission_classes = (AllowAny,)
+
+    def retrieve(self, request, *args, **kwargs):
+        data = {
+            'region': request.REGION.slug
+        }
+        if request.amo_user:
+            user = request.amo_user
+            # FIXME: values_list() doesn't appear to be cached by cachemachine,
+            # is that going to be a problem ?
+            data['developed'] = list(user.addonuser_set.filter(
+                role=amo.AUTHOR_ROLE_OWNER).values_list('addon_id', flat=True))
+            data['installed'] = list(user.installed_set.values_list('addon_id',
+                flat=True))
+            data['purchased'] = list(user.purchase_ids())
+
+        # Return an HttpResponse directly to be as fast as possible.
+        return HttpResponse(json.dumps(data),
+                            content_type='application/json; charset=utf-8')
