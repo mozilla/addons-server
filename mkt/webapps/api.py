@@ -31,8 +31,7 @@ from mkt.api.fields import (LargeTextField, ReverseChoiceField,
 from mkt.constants.features import FeatureProfile
 from mkt.developers import tasks
 from mkt.developers.forms import IARCGetAppInfoForm
-from mkt.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS, get_region,
-                         REGIONS_DICT)
+from mkt.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS, get_region)
 from mkt.submit.api import PreviewViewSet
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
@@ -414,8 +413,8 @@ class SimpleAppSerializer(AppSerializer):
 
     class Meta(AppSerializer.Meta):
         exclude = ['absolute_url', 'app_type', 'categories', 'created',
-                   'default_locale', 'payment_account', 'regions', 'summary',
-                   'supported_locales', 'weekly_downloads', 'upsold', 'tags',]
+                   'default_locale', 'payment_account', 'summary',
+                   'supported_locales', 'weekly_downloads', 'upsold', 'tags']
 
 
 class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
