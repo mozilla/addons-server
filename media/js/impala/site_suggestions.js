@@ -31,10 +31,10 @@
                             cls: '',
                             subtitle: ''
                         };
-                        if (item.icon) {
+                        if (item.icons['32']) {
                             d.icon = format(
                                 'style="background-image:url({0})"',
-                                escape_(item.icon)
+                                escape_(item.icons['32'])
                             );
                         }
                         if (item.cls) {
