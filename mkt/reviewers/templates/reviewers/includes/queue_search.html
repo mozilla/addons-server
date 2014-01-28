@@ -5,6 +5,7 @@
                                      data-review-url="{{ url('reviewers.apps.review', '__slug__') }}">
     <form class="c">
       {{ search_form.q }}
+      <input type="hidden" name="lang" value="any" />
       <button class="search button" type="submit"><span>{{ _('Search') }}</span></button>
       <a class="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
       <span class="clear-queue-search hidden">

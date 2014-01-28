@@ -6,6 +6,7 @@
     <form class="c">
       <label for="{{ search_form.q.auto_id }}">{{ search_form.q.label }}</label>
       {{ search_form.q }}
+      <input type="hidden" name="lang" value="any" />
       <button class="button search" type="submit"><span>{{ _('Search') }}</button>
       <a class="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
       <span class="clear-queue-search hidden">
