@@ -1,4 +1,7 @@
+from contextlib import contextmanager
+
 from nose.tools import eq_
+from tower import activate
 
 import amo.tests
 
@@ -65,3 +68,25 @@ class TestRatingsBodies(amo.tests.TestCase):
             assert isinstance(body.name, unicode)
             assert body.label and body.label != str(None)
             assert isinstance(body.description, unicode)
+
+    @contextmanager
+    def tower_activate(self, region):
+        try:
+            activate(region)
+            yield
+        finally:
+            activate('en-US')
+
+    def test_dehydrate_rating_language(self):
+        self.create_switch('iarc')
+
+        with self.tower_activate('es'):
+            rating = ratingsbodies.dehydrate_rating(ratingsbodies.ESRB_T)
+            eq_(rating.name, 'Adolescente')
+
+        with self.tower_activate('fr'):
+            rating = ratingsbodies.dehydrate_rating(ratingsbodies.ESRB_T)
+            eq_(rating.name, 'Adolescents')
+
+        rating = ratingsbodies.dehydrate_rating(ratingsbodies.ESRB_T)
+        eq_(rating.name, 'Teen')

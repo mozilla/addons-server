@@ -365,11 +365,13 @@ def slugify_iarc_name(obj):
     return obj.iarc_name.lower().replace(' ', '-')
 
 
-def dehydrate_rating(rating):
+def dehydrate_rating(rating_class):
     """
     Returns a rating with translated fields attached and with fields that are
     easily created dynamically.
     """
+    rating = rating_class()
+
     if rating.label is None:
         rating.label = str(rating.age) or slugify_iarc_name(rating)
     if rating.name is None:
@@ -388,8 +390,10 @@ def dehydrate_rating(rating):
     return rating
 
 
-def dehydrate_ratings_body(body):
+def dehydrate_ratings_body(body_class):
     """Returns a rating body with translated fields attached."""
+    body = body_class()
+
     if body.label is None:
         body.label = slugify_iarc_name(body)
 
