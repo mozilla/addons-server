@@ -163,7 +163,7 @@ class ESTranslationSerializerField(TranslationSerializerField):
         target_key = '%s%s' % (target_name, cls.suffix)
         source_key = '%s%s' % (source_name, cls.suffix)
         setattr(obj, target_key, dict((v.get('lang', ''), v.get('string', ''))
-                                      for v in data.get(source_key, {})))
+                                      for v in data.get(source_key, {}) or {}))
 
     def fetch_all_translations(self, obj, source, field):
         return field or None

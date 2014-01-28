@@ -195,6 +195,13 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         eq_(self.app.bar_translations, {'testlang': 'teststring',
                                         'testlang2': 'teststring2'})
 
+    def test_attach_translations_missing_key(self):
+        data = {
+            'foo_translations': None
+        }
+        self.app = Webapp()
+        self.field_class().attach_translations(self.app, data, 'foo')
+
     def _test_expected_dict(self, field):
         result = field.field_to_native(self.app, 'name')
         expected = self.app.name_translations
