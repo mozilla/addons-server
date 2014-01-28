@@ -33,10 +33,12 @@ from mkt.constants import regions
 from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.api import SearchView
+from mkt.search.serializers import SimpleESAppSerializer
 from mkt.search.forms import DEVICE_CHOICES_IDS
+from mkt.search.utils import S
 from mkt.search.views import DEFAULT_SORTING
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Installed, Webapp
+from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
 
 
@@ -947,3 +949,22 @@ class TestSuggestionsApi(ESTestCase):
                                                    'lang': 'en-US'})
         parsed = json.loads(response.content)
         eq_(parsed[1], [unicode(self.app2.name)])
+
+
+class TestSimpleESAppSerializer(amo.tests.ESTestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.request = RequestFactory().get('/')
+        RegionMiddleware().process_request(self.request)
+        self.reindex(Webapp, 'webapp')
+        self.indexer = S(WebappIndexer).filter(id=337141).execute().objects[0]
+        self.serializer = SimpleESAppSerializer(self.indexer,
+            context={'request': self.request})
+
+    def test_regions_present(self):
+        # Regression test for bug 964802.
+        ok_('regions' in self.serializer.data)
+        eq_(len(self.serializer.data['regions']),
+            len(self.webapp.get_regions()))
