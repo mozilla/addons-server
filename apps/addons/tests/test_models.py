@@ -37,7 +37,7 @@ from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
-from reviews.models import Review
+from reviews.models import Review, ReviewFlag
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
@@ -1403,6 +1403,22 @@ class TestAddonDelete(amo.tests.TestCase):
 
         # This should not throw any FK errors if all the cascades work.
         addon.delete()
+
+    def test_review_delete(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                     status=amo.STATUS_PUBLIC,
+                                     highest_status=amo.STATUS_PUBLIC)
+
+        review = Review.objects.create(addon=addon, rating=1, body='foo',
+                                       user=UserProfile.objects.create())
+
+        flag = ReviewFlag(review=review)
+
+        addon.delete()
+
+        eq_(Addon.with_deleted.filter(pk=addon.pk).exists(), True)
+        eq_(Review.objects.filter(pk=review.pk).exists(), False)
+        eq_(ReviewFlag.objects.filter(pk=flag.pk).exists(), False)
 
 
 class TestAddonGetURLPath(amo.tests.TestCase):

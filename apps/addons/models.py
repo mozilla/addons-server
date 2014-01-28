@@ -455,6 +455,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
+            self._reviews.all().delete()
             self.update(status=amo.STATUS_DELETED,
                         slug=None, app_slug=None, app_domain=None,
                         _current_version=None)
