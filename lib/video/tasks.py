@@ -77,7 +77,7 @@ def _resize_video(src, instance, **kw):
         # we don't want the file around anyway.
         if waffle.switch_is_active('video-encode'):
             os.remove(video_file)
-        log.info('Error making thumbnail for %s' % instance.pk)
+        log.info('Error making thumbnail for %s' % instance.pk, exc_info=True)
         return
 
     for path in (instance.thumbnail_path, instance.image_path):
