@@ -21,8 +21,8 @@ class FireplaceAppSerializer(SimpleAppSerializer):
                   'content_ratings', 'current_version', 'description',
                   'device_types', 'homepage', 'icons', 'id', 'is_packaged',
                   'manifest_url', 'name', 'payment_required', 'premium_type',
-                  'previews', 'price', 'price_locale', 'public_stats',
-                  'release_notes', 'ratings', 'slug', 'status',
+                  'previews', 'price', 'price_locale', 'privacy_policy',
+                  'public_stats', 'release_notes', 'ratings', 'slug', 'status',
                   'support_email', 'support_url', 'upsell', 'user']
         exclude = []
 

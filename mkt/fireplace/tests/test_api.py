@@ -21,8 +21,8 @@ from mkt.webapps.models import Installed
 # https://bugzilla.mozilla.org/show_bug.cgi?id=958608#c1 and #c2.
 FIREPLACE_EXCLUDED_FIELDS = (
     'absolute_url', 'app_type', 'created', 'default_locale', 'payment_account',
-    'privacy_policy', 'regions', 'resource_uri', 'summary',
-    'supported_locales', 'versions', 'weekly_downloads', 'upsold', 'tags')
+    'regions', 'resource_uri', 'summary', 'supported_locales', 'versions',
+    'weekly_downloads', 'upsold', 'tags')
 
 
 class TestAppDetail(BaseAPI):
