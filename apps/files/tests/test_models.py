@@ -782,6 +782,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('beta-extension')
         data = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE)
+        eq_(self.addon.status, amo.STATUS_LITE)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
@@ -789,6 +790,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('beta-extension')
         data = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_BETA)
 
@@ -796,6 +798,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('beta-extension')
         data = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_BETA)
 
@@ -803,6 +806,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('extension')
         data = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
@@ -810,6 +814,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('extension')
         data = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_PUBLIC)
 
@@ -817,6 +822,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('extension')
         data = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE)
+        eq_(self.addon.status, amo.STATUS_LITE)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
@@ -824,20 +830,28 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('extension')
         data = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE, trusted=True)
+        eq_(self.addon.status, amo.STATUS_LITE)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_LITE)
 
     def test_litenominated_to_unreviewed(self):
         upload = self.upload('extension')
         data = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        with mock.patch('addons.models.Addon.update_status'):
+            # mock update_status because it doesn't like Addons without files.
+            self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        eq_(self.addon.status, amo.STATUS_LITE_AND_NOMINATED)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
     def test_trusted_litenominated_to_litenominated(self):
         upload = self.upload('extension')
         data = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED, trusted=True)
+        with mock.patch('addons.models.Addon.update_status'):
+            # mock update_status because it doesn't like Addons without files.
+            self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED,
+                              trusted=True)
+        eq_(self.addon.status, amo.STATUS_LITE_AND_NOMINATED)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
 
