@@ -1372,21 +1372,22 @@ class WebappIndexer(MappingType, Indexable):
         For all languages we've customized we're using the ICU plugin.
 
         """
-        analyzers = {}
         filters = {}
+        analyzers = {}
+
+        # Customize the word_delimiter filter to set various options.
+        filters['custom_word_delimiter'] = {
+            'type': 'word_delimiter',
+            'preserve_original': True,
+        }
 
         # The default is used for fields that need ICU but are composed of
         # many languages.
         analyzers['default_icu'] = {
             'type': 'custom',
             'tokenizer': 'icu_tokenizer',
-            'filter': ['word_delimiter', 'icu_folding', 'icu_normalizer'],
-        }
-
-        # Customize the word_delimiter filter to set various options.
-        filters['custom_word_delimiter'] = {
-            'type': 'word_delimiter',
-            'preserve_original': True,
+            'filter': ['custom_word_delimiter', 'icu_folding',
+                       'icu_normalizer'],
         }
 
         for lang, stemmer in amo.STEMMER_MAP.items():
@@ -1399,7 +1400,6 @@ class WebappIndexer(MappingType, Indexable):
                 'stopwords': ['_%s_' % lang],
             }
 
-        for lang in amo.STEMMER_MAP:
             analyzers['%s_analyzer' % lang] = {
                 'type': 'custom',
                 'tokenizer': 'icu_tokenizer',
@@ -1590,7 +1590,6 @@ class WebappIndexer(MappingType, Indexable):
 
         # Add room for language-specific indexes.
         for analyzer in amo.SEARCH_ANALYZER_MAP:
-
             if (not settings.ES_USE_PLUGINS and
                 analyzer in amo.SEARCH_ANALYZER_PLUGINS):
                 log.info('While creating mapping, skipping the %s analyzer'

@@ -16,6 +16,15 @@ DEFAULT_SORTING = {
 }
 
 
+def get_custom_analyzer(language):
+    """
+    Returns name of analyzer based on language name.
+    """
+    if language in amo.STEMMER_MAP:
+        return '%s_analyzer' % language
+    return language
+
+
 def name_only_query(q):
     """
     Returns a dictionary with field/value mappings to pass to elasticsearch.
@@ -39,8 +48,9 @@ def name_only_query(q):
 
     analyzer = _get_locale_analyzer()
     if analyzer:
-        d['name_%s__text' % analyzer] = {'query': q, 'boost': 2.5,
-                                         'analyzer': '%s_analyzer' % analyzer}
+        d['name_%s__text' % analyzer] = {
+            'query': q, 'boost': 2.5,
+            'analyzer': get_custom_analyzer(analyzer)}
     return d
 
 
@@ -59,7 +69,7 @@ def name_query(q):
     if analyzer:
         more['description_%s__text' % analyzer] = {
             'query': q, 'boost': 0.6, 'type': 'phrase',
-            'analyzer': '%s_analyzer' % analyzer}
+            'analyzer': get_custom_analyzer(analyzer)}
 
     more['tags__text'] = {'query': q}
 
