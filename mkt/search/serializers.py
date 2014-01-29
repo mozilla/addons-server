@@ -79,8 +79,6 @@ class ESAppSerializer(AppSerializer):
         # DRF's field_to_native calls .all(), which we want to avoid, so we
         # provide a simplified version that doesn't and just iterates on the
         # object list.
-        # FIXME: since we are not using the ES object, we can probably gain a
-        # little performance by asking elasticutils not to create it.
         return [self.to_native(item) for item in obj.object_list]
 
     def to_native(self, obj):

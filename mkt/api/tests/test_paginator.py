@@ -3,12 +3,24 @@ from urlparse import urlparse
 from django.core.paginator import Paginator
 from django.http import QueryDict
 
+import mock
+from elasticutils.contrib.django import S
 from nose.tools import eq_
 from test_utils import RequestFactory
 
 from amo.tests import TestCase
 
-from mkt.api.paginator import MetaSerializer
+from mkt.api.paginator import MetaSerializer, ESPaginator
+from mkt.webapps.models import WebappIndexer
+
+
+class TestSearchPaginator(TestCase):
+
+    @mock.patch('pyelasticsearch.client.ElasticSearch.send_request')
+    def test_single_hit(self, _mock):
+        """Test the ES paginator only queries ES one time."""
+        ESPaginator(S(WebappIndexer), 5).object_list.execute()
+        eq_(_mock.call_count, 1)
 
 
 class TestMetaSerializer(TestCase):

@@ -347,6 +347,27 @@ class TestApi(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_q_num_requests(self):
+        es = WebappIndexer.get_es()
+        orig_search = es.search
+        es.counter = 0
+
+        def monkey_search(*args, **kwargs):
+            es.counter += 1
+            return orig_search(*args, **kwargs)
+
+        es.search = monkey_search
+
+        res = self.client.get(self.url, data={'q': 'something'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+        # Verify only one search call was made.
+        eq_(es.counter, 1)
+
+        es.search = orig_search
+
     def test_q_exact(self):
         app1 = app_factory(name='test app test11')
         app2 = app_factory(name='test app test21')

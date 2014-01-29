@@ -13,6 +13,7 @@ from access import acl
 from mkt.api.authentication import (RestSharedSecretAuthentication,
                                     RestOAuthAuthentication)
 from mkt.api.base import CORSMixin, form_errors, MarketplaceView
+from mkt.api.paginator import ESPaginator
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
                                        COLLECTIONS_TYPE_OPERATOR)
@@ -34,6 +35,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
     permission_classes = [AllowAny]
     serializer_class = ESAppSerializer
     form_class = ApiSearchForm
+    paginator_class = ESPaginator
 
     def get_region(self, request):
         """
@@ -79,7 +81,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         profile = get_feature_profile(request)
         qs = self.apply_filters(request, qs, data=form_data,
                                 profile=profile)
-        page = self.paginate_queryset(qs)
+        page = self.paginate_queryset(qs.values_dict())
         return self.get_pagination_serializer(page), query
 
     def get(self, request, *args, **kwargs):
