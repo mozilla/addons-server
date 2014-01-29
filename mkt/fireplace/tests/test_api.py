@@ -86,7 +86,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_no_user_just_region(self, region_from_request):
-        region_from_request.return_value = mkt.regions.UK.slug
+        region_from_request.return_value = mkt.regions.UK
         res = self.anon.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'uk')
@@ -96,7 +96,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_developed(self, region_from_request):
-        region_from_request.return_value = mkt.regions.BR.slug
+        region_from_request.return_value = mkt.regions.BR
         developed_app = app_factory()
         AddonUser.objects.create(user=self.user, addon=developed_app)
         self.client.login(username=self.user.email, password='password')
@@ -109,7 +109,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_installed(self, region_from_request):
-        region_from_request.return_value = mkt.regions.BR.slug
+        region_from_request.return_value = mkt.regions.BR
         installed_app = app_factory()
         Installed.objects.create(user=self.user, addon=installed_app)
         self.client.login(username=self.user.email, password='password')
@@ -123,7 +123,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
     @patch('users.models.UserProfile.purchase_ids')
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_purchased(self, region_from_request, purchase_ids):
-        region_from_request.return_value = mkt.regions.BR.slug
+        region_from_request.return_value = mkt.regions.BR
         purchased_app = app_factory()
         purchase_ids.return_value = [purchased_app.pk]
         self.client.login(username=self.user.email, password='password')

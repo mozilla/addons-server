@@ -74,7 +74,7 @@ class TestGetRegion(TestCase):
     def test_get_region_all(self, mock_request_region):
         self.give_permission()
         geoip_fallback = regions.PE  # Different than the default (restofworld).
-        mock_request_region.return_value = geoip_fallback.slug
+        mock_request_region.return_value = geoip_fallback
 
         # Test none-ish values (should return None, i.e. no region).
         eq_(self.region_for('None'), None)
