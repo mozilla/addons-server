@@ -1415,8 +1415,9 @@ class TestAdminSettings(TestAdmin):
         txt = pq(r.content)[0].xpath(
             "//label[@for='app_ratings']/../../td/div/text()")[0]
         eq_(txt,
-            '%s - %s' % (RATINGS_BODIES[0].name,
-                         RATINGS_BODIES[0].ratings[2].name))
+            '%s - %s' %
+            (RATINGS_BODIES[0].name, mkt.ratingsbodies.dehydrate_rating(
+                                     RATINGS_BODIES[0].ratings[2]).name))
 
     def test_banner_region_view(self):
         self.log_in_with('Apps:ViewConfiguration')
