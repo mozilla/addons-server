@@ -83,17 +83,15 @@ class TestAttachTransDict(amo.tests.TestCase):
                  ('fr', 'French 2 Name')]))
 
 
-class TestRemoveLinks(amo.tests.TestCase):
+def test_has_links():
+    html = 'a text <strong>without</strong> links'
+    assert not amo.utils.has_links(html)
 
-    def test_remove_links(self):
-        html = 'a <a href="http://example.com">link</a> with markup'
-        eq_(amo.utils.remove_links(html), 'a  with markup')
+    html = 'a <a href="http://example.com">link</a> with markup'
+    assert amo.utils.has_links(html)
 
-        html = 'a http://example.com text link'
-        eq_(amo.utils.remove_links(html), 'a  text link')
+    html = 'a http://example.com text link'
+    assert amo.utils.has_links(html)
 
-        html = ('a <a href="http://example.com" title="title" class="class" '
-                'ref="ref">link</a> with markup and '
-                'another link without markup: http://other.com, other stuff')
-        eq_(amo.utils.remove_links(html),
-            'a  with markup and another link without markup: , other stuff')
+    html = 'a badly markuped <a href="http://example.com">link'
+    assert amo.utils.has_links(html)

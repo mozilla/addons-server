@@ -4,7 +4,7 @@ argparse==1.2.1
 babel==0.9.6
 basket-client==0.3.7
 billiard==2.7.3.34
-bleach==1.2.2
+bleach==1.4
 boto==2.20.0
 cef==0.5
 celery==3.0.24
@@ -50,7 +50,7 @@ GitPython==0.1.7
 google-api-python-client==1.2
 gunicorn==0.17.4
 hera==0.1.2
-html5lib==0.95
+html5lib==0.999
 httplib2==0.8.0
 importlib-no-failure==1.0.2
 jingo==0.7

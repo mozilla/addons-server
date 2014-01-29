@@ -419,39 +419,49 @@ def clean_nl(string):
     cleaned text.
     """
 
-    html_blocks = ['blockquote', 'ol', 'li', 'ul']
+    html_blocks = ['{http://www.w3.org/1999/xhtml}blockquote',
+                   '{http://www.w3.org/1999/xhtml}ol',
+                   '{http://www.w3.org/1999/xhtml}li',
+                   '{http://www.w3.org/1999/xhtml}ul']
 
     if not string:
         return string
 
     def parse_html(tree):
-        prev_tag = ''
-        for i, node in enumerate(tree.childNodes):
-            if node.type == 4:  # Text node
-                value = node.value
+        # In etree, a tag may have:
+        # - some text content (piece of text before its first child)
+        # - a tail (piece of text just after the tag, and before a sibling)
+        # - children
+        # Eg: "<div>text <b>children's text</b> children's tail</div> tail".
 
-                # Strip new lines directly inside block level elements.
-                if node.parent.name in html_blocks:
-                    value = value.strip('\n')
+        # Strip new lines directly inside block level elements: first new lines
+        # from the text, and:
+        # - last new lines from the tail of the last child if there's children
+        #   (done in the children loop below).
+        # - or last new lines from the text itself.
+        if tree.tag in html_blocks:
+            if tree.text:
+                tree.text = tree.text.lstrip('\n')
+                if not len(tree):  # No children.
+                    tree.text = tree.text.rstrip('\n')
 
-                # Remove the first new line after a block level element.
-                if (prev_tag in html_blocks and value.startswith('\n')):
-                    value = value[1:]
+            # Remove the first new line after a block level element.
+            if tree.tail and tree.tail.startswith('\n'):
+                tree.tail = tree.tail[1:]
 
-                tree.childNodes[i].value = value
-            else:
-                tree.insertBefore(parse_html(node), node)
-                tree.removeChild(node)
-
-            prev_tag = node.name
+        for child in tree:  # Recurse down the tree.
+            if tree.tag in html_blocks:
+                # Strip new lines directly inside block level elements: remove
+                # the last new lines from the children's tails.
+                if child.tail:
+                    child.tail = child.tail.rstrip('\n')
+            parse_html(child)
         return tree
 
     parse = parse_html(html5lib.parseFragment(string))
-    if not parse.childNodes:
-        # The parser couldn't make sense of the given html, eg bad markup.
-        return ''
 
-    walker = html5lib.treewalkers.getTreeWalker('simpletree')
+    # Serialize the parsed tree back to html.
+    walker = html5lib.treewalkers.getTreeWalker('etree')
     stream = walker(parse)
     serializer = HTMLSerializer(quote_attr_values=True,
                                 omit_optional_tags=False)
@@ -1018,14 +1028,19 @@ def find_language(locale):
     return None
 
 
-def remove_links(html):
-    """Remove all the links from the given html."""
-    # First call bleach.linkify to transform text links to real links.
-    linkified = bleach.linkify(unicode(html))
-    # Then call bleach.linkify with a callback that will "empty" all the links:
-    # <a href="http://example.com">http://example.com</a> will become
-    # <a></a>.
-    empty_links = bleach.linkify(linkified,
-                                 callbacks=[lambda attrs, new: {'_text': ''}])
-    # Now simply remove those empty links.
-    return empty_links.replace('<a></a>', '')
+def has_links(html):
+    """Return True if links (text or markup) are found in the given html."""
+    # Call bleach.linkify to transform text links to real links, and add some
+    # content to the ``href`` attribute. If the result is different from the
+    # initial string, links were found.
+    class LinkFound(Exception):
+        pass
+
+    def raise_on_link(attrs, new):
+        raise LinkFound
+
+    try:
+        bleach.linkify(html, callbacks=[raise_on_link])
+    except LinkFound:
+        return True
+    return False

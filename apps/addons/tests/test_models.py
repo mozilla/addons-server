@@ -933,12 +933,14 @@ class TestAddonModels(amo.tests.TestCase):
 
         eq_(self.newlines_helper(before), after)
 
-    def test_newlines_attribute_link_doublequote(self):
+    @patch('amo.helpers.urlresolvers.get_outgoing_url')
+    def test_newlines_attribute_link_doublequote(self, mock_get_outgoing_url):
+        mock_get_outgoing_url.return_value = 'http://google.com'
         before = '<a href="http://google.com">test</a>'
 
         parsed = self.newlines_helper(before)
 
-        assert parsed.endswith('google.com" rel="nofollow">test</a>')
+        eq_(parsed, '<a rel="nofollow" href="http://google.com">test</a>')
 
     def test_newlines_attribute_singlequote(self):
         before = "<abbr title='laugh out loud'>lol</abbr>"

@@ -1,15 +1,28 @@
 from nose.tools import eq_
 
 from translations.models import Translation
-from translations.utils import transfield_changed, truncate
+from translations.utils import transfield_changed, truncate, truncate_text
+
+
+def test_truncate_text():
+    eq_(truncate_text('foobar', 5), ('...', 0))
+    eq_(truncate_text('foobar', 5, True), ('fooba...', 0))
+    eq_(truncate_text('foobar', 5, True, 'xxx'), ('foobaxxx', 0))
+    eq_(truncate_text('foobar', 6), ('foobar...', 0))
+    eq_(truncate_text('foobar', 7), ('foobar', 1))
 
 
 def test_truncate():
-    s = '   <p>one</p><ol><li>two</li><li> three</li> </ol><p> four five</p>'
+    s = '   <p>one</p><ol><li>two</li><li> three</li> </ol> four <p>five</p>'
 
     eq_(truncate(s, 100), s)
-    eq_(truncate(s, 6), '   <p>one</p><ol><li>two...</li></ol>')
-    eq_(truncate(s, 11), '   <p>one</p><ol><li>two</li><li>three...</li></ol>')
+    eq_(truncate(s, 6), '<p>one</p><ol><li>two...</li></ol>')
+    eq_(truncate(s, 5, True), '<p>one</p><ol><li>tw...</li></ol>')
+    eq_(truncate(s, 11), '<p>one</p><ol><li>two</li><li>three...</li></ol>')
+    eq_(truncate(s, 15),
+        '<p>one</p><ol><li>two</li><li>three</li></ol>four...')
+    eq_(truncate(s, 13, True, 'xxx'),
+        '<p>one</p><ol><li>two</li><li>three</li></ol>foxxx')
 
 
 def test_transfield_changed():
