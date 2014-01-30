@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2013-11-06 19:27+0000\n"
+"PO-Revision-Date: 2014-01-30 02:37+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -20,9 +20,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1383766047.0\n"
+"X-POOTLE-MTIME: 1391049458.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -731,6 +731,9 @@ msgstr "Már megvásárolta ezt a kiegészítőt!"
 #: apps/addons/templates/addons/paypal_start.html:15
 msgid "<p>If installation does not automatically begin, please <a class=\"%(class)s\" data-manifest-url=\"%(manifest_url)s\" href=\"%(href)s\" data-receipt=\"%(receipt)s\">click here</a>.</p>"
 msgstr ""
+"<p>Ha a telepítés nem indul el automatikusan, kérjük <a class=\"%(class)s\" "
+"data-manifest-url=\"%(manifest_url)s\" href=\"%(href)s\" data-receipt=\"%"
+"(receipt)s\">kattintson ide</a>.</p>"
 
 #: apps/addons/templates/addons/paypal_start.html:27
 msgid "Purchase App"
@@ -940,7 +943,7 @@ msgstr "Ez a kiegészítő az alábbi okok miatt nem kompatibilis ezzel a %(app)
 
 #: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr "További verziók megtekintése"
+msgstr "Egyéb verziók megtekintése"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
@@ -1148,8 +1151,8 @@ msgstr[1] "Ezen szerzők további alkalmazásai"
 #: apps/addons/templates/addons/impala/details.html:43
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> értékelés"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> értékelés"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> felhasználói vélemény"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> felhasználói vélemény"
 
 #: apps/addons/templates/addons/impala/details.html:71
 msgid "View statistics"
@@ -3038,7 +3041,7 @@ msgstr "%s témák"
 
 #: apps/browse/feeds.py:129
 msgid "Featured Add-ons :: %s"
-msgstr "Kiemelt kiemelt kiegészítők :: %s"
+msgstr "Kiemelt kiegészítők :: %s"
 
 #. L10n: %s is an app name.
 #: apps/browse/feeds.py:138
@@ -3400,7 +3403,7 @@ msgstr "Egyéb"
 
 #: apps/compat/templates/compat/index.html:4
 msgid "Add-on Compatibility Report for {app} {version}"
-msgstr "{app} {version} alkalmazás kompatibilitásvizsgálata"
+msgstr "{app} {version} kiegészítő kompatibilitása"
 
 #: apps/compat/templates/compat/index.html:11
 msgid "{app} {version} Compatibility"
@@ -3423,11 +3426,11 @@ msgstr "Összes aktív kiterjesztés"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/queue_region.html:24
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr "Alkalmazás"
+msgstr "App"
 
 #: apps/compat/templates/compat/index.html:55
 msgid "Details for add-ons compatible with previous version:"
-msgstr ""
+msgstr "Előző verzióval kompatibilis kiegészítők részletei:"
 
 #: apps/compat/templates/compat/index.html:57
 msgid "Show all versions"
@@ -3443,7 +3446,7 @@ msgstr "Csak a korábbi verziók megjelenítése"
 
 #: apps/compat/templates/compat/reporter.html:3
 msgid "Add-on Compatibility Reports"
-msgstr "Kiegészítő kompatibilitási jelentések"
+msgstr "Kiegészítők kompatibilitási jelentései"
 
 #: apps/compat/templates/compat/reporter.html:11 apps/compat/templates/compat/reporter_detail.html:35
 msgid ""
@@ -3470,14 +3473,14 @@ msgstr "{addon} kompatibilitási jelentései"
 #: apps/compat/templates/compat/reporter_detail.html:14
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] "{0} sikeres"
-msgstr[1] "{0} sikeres"
+msgstr[0] "{0} sikeres jelentés"
+msgstr[1] "{0} sikeres jelentés"
 
 #: apps/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] "{0} hiba"
-msgstr[1] "{0} hiba"
+msgstr[0] "{0} hibajelentés"
+msgstr[1] "{0} hibajelentés"
 
 #: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:73 mkt/developers/templates/developers/includes/macros.html:129
 msgid "View all"
@@ -4179,7 +4182,7 @@ msgstr "Adjon meg a kiterjesztésen dolgozó további közreműködőket. Soronk
 
 #: apps/devhub/forms.py:790
 msgid "Add-on names should not contain Mozilla trademarks."
-msgstr "A kiegészítő nevének nem szabad tartalmazni Mozilla védjegyet."
+msgstr "A kiegészítők nevei nem tartalmazhatják a Mozilla védjegyeit."
 
 #: apps/devhub/forms.py:797
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
@@ -4195,7 +4198,7 @@ msgstr "A csomagnév nem lehet %s."
 
 #: apps/devhub/forms.py:815
 msgid "The add-on ID must be a UUID string or an email address."
-msgstr "A kiegészítő ID-nak UUID-nek vagy e-mail címnek kell lennie."
+msgstr "A kiegészítő azonosítójának UUID-nek vagy e-mail címnek kell lennie."
 
 #: apps/devhub/forms.py:821
 msgid "The version string is invalid."
@@ -4267,7 +4270,7 @@ msgstr "Helyi menüt hoz létre képek számára"
 
 #: apps/devhub/forms.py:947
 msgid "Sidebar support"
-msgstr "Oldalsáv támogatása"
+msgstr "Oldalsáv-támogatás"
 
 #: apps/devhub/forms.py:948
 msgid "Creates an example sidebar panel"
@@ -4283,7 +4286,7 @@ msgstr "Nem lehet 3-nál több szükséges kiegészítő."
 
 #: apps/devhub/helpers.py:43
 msgid "Add-on Documentation :: Developer Hub"
-msgstr "Kiegészítő dokumentáció :: Developer Hub"
+msgstr "Kiegészítődokumentáció :: Developer Hub"
 
 #: apps/devhub/helpers.py:68 apps/devhub/templates/devhub/nav.html:19
 msgid "My Apps"
@@ -4426,7 +4429,7 @@ msgstr "Kiegészítő ellenőrzése"
 
 #: apps/devhub/views.py:679
 msgid "Check Add-on Compatibility"
-msgstr "Kiegészítő kompatibilitásviszgálatának ellenőrzése"
+msgstr "Kiegészítő kompatibilitásának ellenőrzése"
 
 #: apps/devhub/views.py:799 mkt/developers/views.py:625
 msgid "There was an error with the submission."
@@ -4509,8 +4512,10 @@ msgid ""
 "Add-on Builder and the Add-on SDK provide powerful APIs and tools that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy "
 "to share it with over 400 million Firefox users world wide."
 msgstr ""
-"Az Add-on Builder és az Add-on SDK hatékony API.kat és eszközöket biztosít, amelynek segítségével a fejlesztők kiegészítőket készíthetnek HTML, CSS és JavaScript használatával. A kiegészítő "
-"elkészültekor könnyedén megoszthatjuk világszerte több, mint 400 millió Firefox felhasználóval."
+"Az Add-on Builder és az Add-on SDK hatékony API-kat és eszközöket biztosít, "
+"amelynek segítségével a fejlesztők kiegészítőket készíthetnek HTML, CSS és "
+"JavaScript használatával. A kiegészítő elkészültekor könnyedén megoszthatjuk "
+"világszerte több, mint 400 millió Firefox felhasználóval."
 
 #: apps/devhub/templates/devhub/builder.html:42 mkt/developers/templates/developers/builder.html:42
 msgid "Choose Your Build Environment"
@@ -4522,7 +4527,9 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:50 mkt/developers/templates/developers/builder.html:50
 msgid "The Add-on Builder is a web-based development environment that provides additional functionality for working with the Add-on SDK."
-msgstr "Az Add.on Builder egy webalapú fejlesztő környezet, amely további funkcionalitást biztosít azzal, hogy együttműködik az Add-on SDK-val."
+msgstr ""
+"Az Add-on Builder egy webalapú fejlesztői környezet, amely további "
+"funkcionalitást biztosít azzal, hogy együttműködik az Add-on SDK-val."
 
 #: apps/devhub/templates/devhub/builder.html:56 mkt/developers/templates/developers/builder.html:56
 msgid "Edit code in a feature-rich environment"
@@ -4571,7 +4578,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/builder.html:91 mkt/developers/templates/developers/builder.html:91
 msgid "If you know HTML, CSS and JavaScript, you can make add-ons. With Builder, you don't even need to set up a build environment. Just log in and go."
 msgstr ""
-"Ha ismeri a HTML-t, CSS-t és a JavaScriptet, akkor készíthet kiegészítőket. A Builder használatával, nem is szükséges fejlesztői környezettel rendelkeznie. Csak jelentkezzen be és fogjon hozzá."
+"Ha ismeri a HTML-t, CSS-t és a JavaScriptet, akkor készíthet kiegészítőket. "
+"A Builder használatával nem is szükséges fejlesztői környezettel "
+"rendelkeznie. Csak jelentkezzen be, és fogjon hozzá."
 
 #: apps/devhub/templates/devhub/builder.html:99 mkt/developers/templates/developers/builder.html:99
 msgid "Great Developer Features"
@@ -4583,7 +4592,7 @@ msgstr "Minden kiegészítő alapértelmezés szerint úgy készül, hogy ne kel
 
 #: apps/devhub/templates/devhub/builder.html:109 mkt/developers/templates/developers/builder.html:109
 msgid "Help is at Hand!"
-msgstr ""
+msgstr "Kéznél van a segítség."
 
 #: apps/devhub/templates/devhub/builder.html:111 mkt/developers/templates/developers/builder.html:111
 msgid "Need some support building your add-on? We have <a href=\"%(url_docs)s\">extensive documentation</a> and a massive developer community to make sure you're never on your own."
@@ -4591,7 +4600,9 @@ msgstr "Segítségre van szüksége a kiegészítők készítésében? <a href=\
 
 #: apps/devhub/templates/devhub/builder.html:120 mkt/developers/templates/developers/builder.html:120
 msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
-msgstr "Érdekli, hogy hogyan tehetné az Add-on SDK-t még jobbá? Fogja a forráskódot és tudja meg <a href='%(url_wiki)s'>hogyan segíthet</a> ebben."
+msgstr ""
+"Érdekli, hogy hogyan tehetné az Add-on SDK-t még jobbá? Nézze meg a "
+"forráskódot, és tudja meg <a href='%(url_wiki)s'>hogyan segíthet</a>."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -4727,7 +4738,9 @@ msgstr "Esettanulmányok"
 
 #: apps/devhub/templates/devhub/index.html:151 apps/devhub/templates/devhub/docs/case-studies.html:35
 msgid "Start-to-finish success stories. See how add-on developers made magic with Mozilla."
-msgstr "Teljes sikertörténetek. Érdemes megnézni, hogy a kiegészítőfejlesztők, hogyan tettek valami varázslatosat a Mozillával."
+msgstr ""
+"Teljes sikertörténetek. Nézze meg, hogy a kiegészítőfejlesztők hogyan tettek "
+"csodákat a Mozillával."
 
 #: apps/devhub/templates/devhub/index.html:163
 msgid "Create &amp; Connect"

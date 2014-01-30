@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-15 09:07-0700\n"
-"PO-Revision-Date: 2013-10-23 18:05+0000\n"
+"PO-Revision-Date: 2014-01-29 21:36+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -13,8 +13,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1382551501.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1391031383.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -93,8 +93,8 @@ msgstr "{0} ellenőrzése befejeződött"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrzésen."
+msgstr[1] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -175,14 +175,14 @@ msgstr "A telepítés sikertelen. Próbálja meg később."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Az app ellenőrzése {0} hiba és {1} üzenet miatt sikertelen."
+msgstr[1] "Az app ellenőrzése {0} hiba és {1} üzenet miatt sikertelen."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Az alkalmazás hiba és {0} üzenettel átment az ellenőrzésen."
-msgstr[1] "Az alkalmazás hiba és {0} üzenettel átment az ellenőrzésen."
+msgstr[0] "Az alkalmazás hiba nélkül és {0} üzenettel átment az ellenőrzésen."
+msgstr[1] "Az alkalmazás hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
@@ -226,7 +226,7 @@ msgstr "vagy az <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr "Flash Player</a>."
+msgstr "Flash Playert</a>."
 
 #: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -246,11 +246,11 @@ msgstr "Nem sikerült bejelentkezni a Personába. Hiba történt a szerveren."
 
 #: media/js/devreg/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "Minden találat megjelenítése"
 
 #: media/js/devreg/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Több mint {0} találat, finomítsa keresését."
 
 #: media/js/devreg/manifest.js:46
 msgid "Requested Permissions:"
@@ -262,11 +262,11 @@ msgstr "Tanúsított"
 
 #: media/js/devreg/manifest.js:57
 msgid "Privileged"
-msgstr ""
+msgstr "Privilegizált"
 
 #: media/js/devreg/manifest.js:60
 msgid "Unprivileged"
-msgstr ""
+msgstr "Nem privilegizált"
 
 #: media/js/devreg/manifest.js:66
 msgid "No reason given"
@@ -298,35 +298,35 @@ msgstr "Holland/US rövid kód"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr "Canadian Transit Number/German Routing Code"
+msgstr "Kanadai tranzitszám/német irányítókód"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Koreai banki és fiók/Indonéz banki kód"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "Görög HEBIC/Indonéz banki kód"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
+msgstr "Brit/ír rövid kód vagy új-zélandi számlaelőtag vagy ausztrál BSB kód"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Osztrák/svájci banki kód"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Dán/svéd banki kód"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Svájci/iraki banki kód"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "Iraki banki kód"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
@@ -338,7 +338,11 @@ msgstr "Észlelt: {0}"
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
+"Figyelmeztetés: a(z) „{0}” fizetési fiók törlésekor a társított app hiányos "
+"állapotba kerül, és nem lesz eladható:"
 msgstr[1] ""
+"Figyelmeztetés: a(z) „{0}” fizetési fiók törlésekor a társított appok "
+"hiányos állapotba kerülnek, és nem lesznek eladhatók:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -351,7 +355,7 @@ msgstr "Hiba történt a fizetési kiszolgálóhoz történő csatlakozás közb
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
-msgstr ""
+msgstr "Hitelesítési hiba"
 
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
@@ -359,7 +363,7 @@ msgstr "Jelenleg nincs egyetlen fizetési fiókja sem."
 
 #: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> téma keresése"
 
 #: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
@@ -442,15 +446,15 @@ msgstr "{name} nézte meg először az oldalt."
 
 #: media/js/devreg/reviewers/editors.js:208 media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Az app ellenőrizte a fogadást."
 
 #: media/js/devreg/reviewers/editors.js:210 media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Az app nem ellenőrizte a fogadást."
 
 #: media/js/devreg/reviewers/editors.js:281 media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} nézte meg először a kiegészítőt."
 
 #: media/js/devreg/reviewers/editors.js:292 media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
@@ -462,7 +466,7 @@ msgstr "Megjegyzések a verzióhoz"
 
 #: media/js/devreg/reviewers/editors.js:302 media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Megjegyzés a vizsgálatot végzőknek"
 
 #: media/js/devreg/reviewers/editors.js:307 media/js/zamboni/editors.js:311
 msgid "No version notes found"
@@ -474,7 +478,7 @@ msgstr "Először válasszon ki alkalmazást"
 
 #: media/js/devreg/reviewers/editors.js:396 media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "Hiba a fordítás betöltésekor"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
@@ -506,7 +510,7 @@ msgstr "Összecsomagolt app"
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "Privileged App"
-msgstr ""
+msgstr "Privilegizált app"
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "More Information Requested"
@@ -514,11 +518,11 @@ msgstr "További információt kér"
 
 #: media/js/devreg/reviewers/reviewers.js:110
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Szerkesztői hozzászólást tartalmaz"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Premium App"
-msgstr ""
+msgstr "Prémium app"
 
 #: media/js/devreg/reviewers/reviewers.js:117
 msgid "Escalated"
@@ -534,19 +538,19 @@ msgstr "Bármely"
 
 #: media/js/devreg/reviewers/reviewers.js:257
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Jóváhagyott app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:260
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Elutasított app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:266
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Hiba az app jóváhagyásakor: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:267
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Hiba az app elutasításakor: {app}"
 
 #: media/js/devreg/reviewers/themes_review.js:174
 msgid "Requested Info"
@@ -768,7 +772,7 @@ msgstr "Kiemelt kezdőlap"
 
 #: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Ígéretes kezdőlap"
 
 #: media/js/impala/stats/csv_keys.js:52
 msgid "Homepage Most Popular"
@@ -784,7 +788,7 @@ msgstr "Részletek oldal (alul)"
 
 #: media/js/impala/stats/csv_keys.js:57
 msgid "Detail Page (Development Channel)"
-msgstr "Detail Page (Fejlesztői csatorna)"
+msgstr "Részletek oldal (Fejlesztői csatorna)"
 
 #: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
@@ -816,59 +820,59 @@ msgstr "Gyűjtemények"
 
 #: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Kategória nyitólap kiemelt körhinta"
 
 #: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Kategória nyitólap legjobb értékelés"
 
 #: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Kategória nyitólap legnépszerűbb"
 
 #: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Kategória nyitólap nemrég hozzáadott"
 
 #: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "„Kiemelt” böngészési lista rendezése"
 
 #: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "„Felhasználók” böngészési lista rendezése"
 
 #: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "„Értékelés” böngészési lista rendezése"
 
 #: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "„Létrehozva” böngészési lista rendezése"
 
 #: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "„Név” böngészési lista rendezése"
 
 #: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "„Népszerűség” böngészési lista rendezése"
 
 #: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "„Frissítve” böngészési lista rendezése"
 
 #: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "„Ígéretes” böngészési lista rendezése"
 
 #: media/js/impala/stats/csv_keys.js:98
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Teljes adomány"
 
 #: media/js/impala/stats/csv_keys.js:99
 msgid "Average Contribution"
-msgstr ""
+msgstr "Átlagos adomány"
 
 #: media/js/impala/stats/csv_keys.js:108
 msgid "Usage"
@@ -991,52 +995,52 @@ msgstr "Kiegészítő állapota {0} és {1} között"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:175
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Letöltési források az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:177
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Letöltési források {0} és {1} között"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:181
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Adományok az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:183
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Adományok {0} és {1} között"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:187
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Oldal metrikái az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:189
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Oldal metrikái {0} és {1} között"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:193
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Használt kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:195
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Használt kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:199
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Letöltött kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:201
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Letöltött kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:205
@@ -1051,12 +1055,12 @@ msgstr "Létrehozott kiegészítők száma {0} és {1} között"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:211
 msgid "Add-ons Updated, last {0} days"
-msgstr "Frissített kiegészítések száma az elmúlt {0} napban"
+msgstr "Frissített kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:213
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Frissített kiterjesztések száma {0} és {1} között"
+msgstr "Frissített kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:217
@@ -1156,11 +1160,14 @@ msgid "Other"
 msgstr "Egyéb"
 
 #: media/js/zamboni/admin_validation.js:53
-#, fuzzy
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} kiterjesztés beállítása a {1} legmagasabb verziójára és levélküldés a szerzőnek."
-msgstr[1] "{0} kiterjesztés beállítása a {1} legmagasabb verziójára és levélküldés a szerzőnek."
+msgstr[0] ""
+"{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a "
+"szerzőnek."
+msgstr[1] ""
+"{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a "
+"szerzőknek."
 
 #: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
@@ -1203,11 +1210,13 @@ msgstr "Hozzáadás ehhez: {0}"
 
 #: media/js/zamboni/buttons.js:113
 msgid "Download Now"
-msgstr "Letöltés"
+msgstr "Letöltés most"
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
+"A kiegészítő nem lett frissítve, hogy támogassa az alapértelmezett "
+"kompatibilitást."
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
@@ -1420,8 +1429,8 @@ msgstr "A kiegészítő átment a vizsgálaton."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} értesítés"
+msgstr[1] "{0} értesítés"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
@@ -1449,11 +1458,11 @@ msgstr "Kísérleti"
 
 #: media/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "A témák újabb {0} verziót igényelnek"
 
 #: media/js/zamboni/mobile/buttons.js:83
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "A témák ezt igénylik: {0}"
 
 #: media/js/zamboni/mobile/buttons.js:128
 msgid "Installing..."
