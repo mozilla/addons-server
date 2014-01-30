@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-30 02:37+0000\n"
+"PO-Revision-Date: 2014-01-30 02:49+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1391049458.0\n"
+"X-POOTLE-MTIME: 1391050163.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -139,11 +139,11 @@ msgstr "Adjon egy nevet a témának."
 
 #: apps/addons/forms.py:577 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Írja le a témát."
 
 #: apps/addons/forms.py:712
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Írjon be egy új szerzői e-mail címet"
 
 #: apps/addons/helpers.py:35
 msgid "Not Reviewed"
@@ -440,7 +440,7 @@ msgstr "Köszönöm, nem"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Adomány elküldve, köszönjük."
 
 #: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
@@ -785,7 +785,7 @@ msgstr "További persona ettől az alkotótól"
 
 #: apps/addons/templates/addons/persona_detail.html:54 apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "A művész összes témájának megjelenítése"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:40 apps/amo/templates/amo/side_nav.html:29
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:94 apps/editors/templates/editors/review.html:270
@@ -811,7 +811,7 @@ msgstr "Licenc"
 
 #: apps/addons/templates/addons/persona_preview.html:12
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Értékelésre vár"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:53
 msgid "Rejected"
@@ -883,6 +883,11 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Hogyan telepítse Thunderbirdben</strong> <ol> <li>Töltse le és "
+"mentse a fájlt merevlemezére.</li> <li>A Mozilla Thunderbirdben nyissa meg a "
+"Kiegészítők pontot az Eszközök menüből.</li> <li>A kiegészítőkereső mező "
+"melletti beállítások gomb menüjéből válassza a „Kiegészítő telepítése "
+"fájlból” pontot, és keresse meg a letöltött kiegészítőt.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -1328,7 +1333,7 @@ msgstr "közvetlen hivatkozás"
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:34
 msgid "translate"
-msgstr ""
+msgstr "fordítás"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -1414,7 +1419,7 @@ msgstr[1] "<strong>{0}</strong> letöltés hetente"
 
 #: apps/addons/templates/addons/listing/items_mobile.html:63
 msgid "Purchase Refunded"
-msgstr ""
+msgstr "Vásárlás visszafizetve"
 
 #: apps/addons/templates/addons/mobile/button.html:23
 msgid "May Slow Down Your Browser"
@@ -1563,7 +1568,7 @@ msgstr "Kijelentkezés"
 
 #: apps/amo/context_processors.py:89 apps/devhub/templates/devhub/addons/dashboard.html:6 mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Beküldéseim kezelése"
 
 #: apps/amo/context_processors.py:92 apps/devhub/templates/devhub/nav.html:51 apps/devhub/templates/devhub/addons/dashboard.html:58 apps/devhub/templates/devhub/addons/submit/base.html:6
 msgid "Submit a New Add-on"
@@ -1849,9 +1854,8 @@ msgid "Review {0} for {addon} deleted."
 msgstr "A(z) {addon} kiegészítő {0} értékelése törölve."
 
 #: apps/amo/log.py:345
-#, fuzzy
 msgid "{user} deleted {0} for {addon}."
-msgstr "{user} felhasználó törölt {0} for {addon}."
+msgstr "{user} törölte ezt: {0} ebből: {addon}."
 
 #: apps/amo/log.py:352
 msgid "Application max version for {version} updated."
