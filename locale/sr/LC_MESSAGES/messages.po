@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-30 15:58+0000\n"
+"PO-Revision-Date: 2014-01-30 17:42+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391097494.0\n"
+"X-POOTLE-MTIME: 1391103742.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -5395,23 +5395,27 @@ msgstr "Платформа Све не може се укомбиновати с
 
 #: apps/devhub/forms.py:660
 msgid "A platform can only be chosen once."
-msgstr ""
+msgstr "Платформа се може само једном изабрати."
 
 #: apps/devhub/forms.py:673
 msgid "A review type must be selected."
-msgstr ""
+msgstr "Морате изабрати тип рецензије."
 
 #: apps/devhub/forms.py:757
 msgid ""
 "Give your add-on a name. The most successful add-ons give some indication of "
 "their function in their name."
 msgstr ""
+"Дајте свом додатку име. Најуспешнији додаци у свом називу дају неки "
+"наговештај о њиховим могућностима."
 
 #: apps/devhub/forms.py:761
 msgid ""
 "Briefly describe your add-on in one sentence. This appears in the Add-ons "
 "Manager."
 msgstr ""
+"Укратко опишите свој додатак у једној реченици. Ово се појављује у Менаџеру "
+"додатака."
 
 #: apps/devhub/forms.py:764
 msgid ""
