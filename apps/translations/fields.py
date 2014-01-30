@@ -7,7 +7,7 @@ from django.utils.translation.trans_real import to_language
 
 from .hold import add_translation, make_key, save_translations
 from .models import (Translation, PurifiedTranslation, LinkifiedTranslation,
-                     NoLinksNoMarkupTranslation)
+                     NoLinksTranslation, NoLinksNoMarkupTranslation)
 from .widgets import TransInput, TransTextarea
 
 
@@ -78,6 +78,10 @@ class PurifiedField(TranslatedField):
 
 class LinkifiedField(TranslatedField):
     to = LinkifiedTranslation
+
+
+class NoLinksField(TranslatedField):
+    to = NoLinksTranslation
 
 
 class NoLinksNoMarkupField(TranslatedField):

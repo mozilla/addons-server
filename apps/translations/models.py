@@ -181,10 +181,10 @@ class PurifiedTranslation(Translation):
     def clean(self):
         from amo.utils import clean_nl
         super(PurifiedTranslation, self).clean()
-        cleaned = self.clean_localised_string()
+        cleaned = self.clean_localized_string()
         self.localized_string_clean = clean_nl(cleaned).strip()
 
-    def clean_localised_string(self):
+    def clean_localized_string(self):
         # All links (text and markup) are normalized.
         linkified = urlresolvers.linkify_with_outgoing(self.localized_string)
         # Keep only the allowed tags and attributes, escape the rest.
@@ -203,16 +203,26 @@ class LinkifiedTranslation(PurifiedTranslation):
         proxy = True
 
 
-class NoLinksNoMarkupTranslation(LinkifiedTranslation):
+class NoLinksMixin(object):
+    """Mixin used to remove links (URLs and text) from localized_string."""
+
+    def clean_localized_string(self):
+        cleaned = super(NoLinksMixin, self).clean_localized_string()
+        return amo.utils.remove_links(cleaned)
+
+
+class NoLinksTranslation(NoLinksMixin, PurifiedTranslation):
     """Run the string through bleach, escape markup and strip all the links."""
 
     class Meta:
         proxy = True
 
-    def clean_localised_string(self):
-        cleaned = super(NoLinksNoMarkupTranslation,
-                        self).clean_localised_string()
-        return amo.utils.remove_links(cleaned)
+
+class NoLinksNoMarkupTranslation(NoLinksMixin, LinkifiedTranslation):
+    """Run the string through bleach, escape markup and strip all the links."""
+
+    class Meta:
+        proxy = True
 
 
 class TranslationSequence(models.Model):

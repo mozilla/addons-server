@@ -46,7 +46,7 @@
     <div class="prose">
       {% if profile.bio %}
         <h3>{{ _('In a little more detail...') }}</h3>
-        <p class="intro">{{ profile.bio|nl2br }}</p>
+        <p class="intro">{{ profile.bio|nl2br|no_links }}</p>
       {% endif %}
     </div>
   </section>

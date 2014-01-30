@@ -28,7 +28,7 @@ import amo
 import amo.models
 from access.models import Group, GroupUser
 from amo.urlresolvers import reverse
-from translations.fields import PurifiedField, save_signal
+from translations.fields import NoLinksField, save_signal
 from translations.query import order_by_translation
 
 log = commonware.log.getLogger('z.users')
@@ -105,7 +105,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     email = models.EmailField(unique=True, null=True)
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
-    bio = PurifiedField(short=False)
+    bio = NoLinksField(short=False)
     confirmationcode = models.CharField(max_length=255, default='',
                                         blank=True)
     deleted = models.BooleanField(default=False)

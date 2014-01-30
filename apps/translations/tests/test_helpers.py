@@ -90,6 +90,14 @@ def test_no_links():
     eq_(jingo.env.from_string('{{ s|no_links }}').render(s=s),
         'a http://example.com, http://text.link')
 
+    # Bad markup.
+    s = '<http://bad.markup.com'
+    eq_(jingo.env.from_string('{{ s|no_links }}').render(s=s), '')
+
+    # Bad markup.
+    s = 'some text <http://bad.markup.com'
+    eq_(jingo.env.from_string('{{ s|no_links }}').render(s=s), 'some text')
+
 
 @patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))
 class TestAllLocales(amo.tests.TestCase):

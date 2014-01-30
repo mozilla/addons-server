@@ -84,14 +84,14 @@ class TestAttachTransDict(amo.tests.TestCase):
 class TestRemoveLinks(amo.tests.TestCase):
 
     def test_remove_links(self):
-        html = '<a href="http://example.com">some link with markup</a> foobar'
-        eq_(amo.utils.remove_links(html), ' foobar')
+        html = 'a <a href="http://example.com">link</a> with markup'
+        eq_(amo.utils.remove_links(html), 'a  with markup')
 
-        html = 'http://example.com foobar'
-        eq_(amo.utils.remove_links(html), ' foobar')
+        html = 'a http://example.com text link'
+        eq_(amo.utils.remove_links(html), 'a  text link')
 
-        html = ('<a href="http://example.com" title="title" class="class" '
-                'ref="ref">some link with markup</a> '
+        html = ('a <a href="http://example.com" title="title" class="class" '
+                'ref="ref">link</a> with markup and '
                 'another link without markup: http://other.com, other stuff')
         eq_(amo.utils.remove_links(html),
-            ' another link without markup: , other stuff')
+            'a  with markup and another link without markup: , other stuff')

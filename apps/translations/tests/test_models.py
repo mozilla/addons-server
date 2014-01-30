@@ -18,7 +18,7 @@ from test_utils import trans_eq, TestCase
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
 from translations import widgets
 from translations.query import order_by_translation
-from translations.models import (LinkifiedTranslation,
+from translations.models import (LinkifiedTranslation, NoLinksTranslation,
                                  NoLinksNoMarkupTranslation,
                                  PurifiedTranslation, Translation,
                                  TranslationSequence)
@@ -541,9 +541,27 @@ class LinkifiedTranslationTest(TestCase):
             '&lt;b&gt;bold&lt;/b&gt;')
 
 
+class NoLinksTranslationTest(TestCase):
+
+    def test_allowed_tags(self):
+        s = u'<b>bold text</b> or <code>code</code>'
+        x = NoLinksTranslation(localized_string=s)
+        eq_(x.__html__(),  u'<b>bold text</b> or <code>code</code>')
+
+    def test_forbidden_tags(self):
+        s = u'<script>some naughty xss</script>'
+        x = NoLinksTranslation(localized_string=s)
+        eq_(x.__html__(), '&lt;script&gt;some naughty xss&lt;/script&gt;')
+
+    def test_links_stripped(self):
+        s = u'<a href="http://example.com">bar</a> foo bar'
+        x = NoLinksTranslation(localized_string=s)
+        eq_(x.__html__(), u'foo bar')
+
+
 class NoLinksNoMarkupTranslationTest(TestCase):
 
-    def test_no_allowed_tags(self):
+    def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script> <b>bold</b>'
         x = NoLinksNoMarkupTranslation(localized_string=s)
         eq_(x.__html__(),

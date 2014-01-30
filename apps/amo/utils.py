@@ -448,6 +448,9 @@ def clean_nl(string):
         return tree
 
     parse = parse_html(html5lib.parseFragment(string))
+    if not parse.childNodes:
+        # The parser couldn't make sense of the given html, eg bad markup.
+        return ''
 
     walker = html5lib.treewalkers.getTreeWalker('simpletree')
     stream = walker(parse)
