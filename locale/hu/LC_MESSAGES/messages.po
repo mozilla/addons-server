@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-30 02:51+0000\n"
+"PO-Revision-Date: 2014-01-30 15:18+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1391050267.0\n"
+"X-POOTLE-MTIME: 1391095103.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -785,7 +785,7 @@ msgstr "További persona ettől az alkotótól"
 
 #: apps/addons/templates/addons/persona_detail.html:54 apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr "A művész összes témájának megjelenítése"
+msgstr "Az alkotó összes témájának megjelenítése"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:40 apps/amo/templates/amo/side_nav.html:29
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:94 apps/editors/templates/editors/review.html:270
@@ -13374,7 +13374,7 @@ msgstr "Kiegészítőfejlesztő"
 
 #: apps/users/templates/users/profile.html:37
 msgid "Themes Artist"
-msgstr ""
+msgstr "Témaalkotó"
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
@@ -19508,7 +19508,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:130
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Kérdés az alkotóhoz"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:137
 msgid "Describe your reason for flagging"
