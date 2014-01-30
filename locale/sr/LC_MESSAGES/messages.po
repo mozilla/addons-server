@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-30 14:50+0000\n"
+"PO-Revision-Date: 2014-01-30 15:58+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391093453.0\n"
+"X-POOTLE-MTIME: 1391097494.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -4621,16 +4621,16 @@ msgstr "{addon} извештаји компатибилности"
 #: apps/compat/templates/compat/reporter_detail.html:14
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} извештај о успеху"
+msgstr[1] "{0} извештаја о успеху"
+msgstr[2] "{0} извештаја о успеху"
 
 #: apps/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} извештај о проблему"
+msgstr[1] "{0} извештаја о проблему"
+msgstr[2] "{0} извештаја о проблему"
 
 #: apps/compat/templates/compat/reporter_detail.html:21
 #: apps/users/templates/users/profile.html:73
@@ -4656,7 +4656,7 @@ msgstr "Апликација"
 
 #: apps/compat/templates/compat/reporter_detail.html:48
 msgid "Application Build"
-msgstr ""
+msgstr "Издање апликације"
 
 #: apps/compat/templates/compat/reporter_detail.html:49
 msgid "Platform"
@@ -4821,15 +4821,15 @@ msgstr "Блокирано"
 
 #: apps/constants/base.py:49
 msgid "Published"
-msgstr ""
+msgstr "Објављено"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr ""
+msgstr "Одобрено али није објављено"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
-msgstr ""
+msgstr "Застарело"
 
 #: apps/constants/base.py:144
 msgid "Full"
@@ -4975,7 +4975,7 @@ msgstr "Persona"
 
 #: apps/constants/base.py:468
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Поени самосталног рецензента"
 
 #: apps/constants/base.py:469
 msgid "Full Add-on Review"
@@ -5095,27 +5095,27 @@ msgstr "Сва права су задржана"
 
 #: apps/constants/licenses.py:21
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: apps/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: apps/constants/licenses.py:36
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: apps/constants/licenses.py:43
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: apps/constants/licenses.py:50
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: apps/constants/payments.py:51
 #: apps/constants/payments.py:59
@@ -5252,19 +5252,21 @@ msgstr "Текст лиценце је неопходан када се изаб
 
 #: apps/devhub/forms.py:224
 msgid "This add-on has an End User License Agreement"
-msgstr ""
+msgstr "Овај додатак има Уговор о лиценци софтвера за крајњег корисника (EULA)"
 
 #: apps/devhub/forms.py:226
 msgid "Please specify your add-on's End User License Agreement:"
 msgstr ""
+"Молимо Вас наведите Уговор о лиценци софтвера за крајњег корисника (ЕULA) "
+"Вашег додатка:"
 
 #: apps/devhub/forms.py:229
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Овај додатак има Полису о приватности"
 
 #: apps/devhub/forms.py:231
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Молимо Вас наведите Полису приватности Вашег додатка:"
 
 #: apps/devhub/forms.py:270
 msgid "Why did you make this app?"
@@ -5288,7 +5290,7 @@ msgstr "Аутори овог додатка"
 
 #: apps/devhub/forms.py:312
 msgid "The Mozilla Foundation"
-msgstr ""
+msgstr "Mozilla фондација"
 
 #: apps/devhub/forms.py:313
 msgid "An organization of my choice"
@@ -5299,6 +5301,8 @@ msgid ""
 "You cannot setup Contributions for an add-on that is linked to a premium "
 "add-on in the Marketplace."
 msgstr ""
+"Не можете подесити Доприносе за додатак који је повезан на премијум додатак "
+"у Marketplace-у."
 
 #: apps/devhub/forms.py:360
 msgid "Please enter a suggested amount greater than 0."
@@ -5310,25 +5314,27 @@ msgstr "Молимо Вас унесите предложен износ мањ�
 
 #: apps/devhub/forms.py:372
 msgid "PayPal ID required to accept contributions."
-msgstr ""
+msgstr "Захтева се PayPal ИД да би се прихватили доприноси."
 
 #: apps/devhub/forms.py:378
 msgid "Could not validate PayPal id."
-msgstr ""
+msgstr "Нисмо могли да проверимо PayPal ИД."
 
 #: apps/devhub/forms.py:429
 #: apps/devhub/forms.py:879
 msgid "Invalid version range."
-msgstr ""
+msgstr "Неисправан опсег верзије."
 
 #: apps/devhub/forms.py:453
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "Потребна је најмање једна компатибилна апликација."
 
 #: apps/devhub/forms.py:466
 msgid ""
 "An app already exists on this domain, only one app per domain is allowed."
 msgstr ""
+"Већ постоји једна апликација на овом домену, само је једна апликација "
+"дозвољена по домену."
 
 #: apps/devhub/forms.py:473
 #: apps/devhub/forms.py:488
@@ -5336,15 +5342,15 @@ msgstr ""
 #: mkt/submit/forms.py:170
 #: mkt/submit/forms.py:236
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Дошло је до грешке током отпремања. Молимо Вас, покушајте поново."
 
 #: apps/devhub/forms.py:491
 msgid "Override failed validation"
-msgstr ""
+msgstr "Препис није прешао валидацију"
 
 #: apps/devhub/forms.py:530
 msgid "Need at least one platform."
-msgstr ""
+msgstr "Потребна је бар једна платформа."
 
 #: apps/devhub/forms.py:537
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
@@ -5360,30 +5366,32 @@ msgstr "Прелиминарна рецензија"
 
 #: apps/devhub/forms.py:542
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "Молимо Вас изаберите врсту номинације за рецензију"
 
 #: apps/devhub/forms.py:557
 #: mkt/submit/forms.py:204
 msgid "Version %s already exists"
-msgstr ""
+msgstr "Верзија %s већ постоји"
 
 #: apps/devhub/forms.py:595
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "Не можете више датотека отпремити за ову верзију."
 
 #: apps/devhub/forms.py:601
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Верзије се не поклапају"
 
 #: apps/devhub/forms.py:635
 msgid ""
 "You cannot delete a file once the review process has started. You must "
 "delete the whole version."
 msgstr ""
+"Не можете обрисати датотеку чим процес рецензије започне. Морате обрисати "
+"целу верзију."
 
 #: apps/devhub/forms.py:655
 msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
+msgstr "Платформа Све не може се укомбиновати са одређеним платформама."
 
 #: apps/devhub/forms.py:660
 msgid "A platform can only be chosen once."
@@ -5447,43 +5455,43 @@ msgstr ""
 
 #: apps/devhub/forms.py:801
 msgid "This package name is already in use."
-msgstr ""
+msgstr "Назив пакета је већ у употреби."
 
 #: apps/devhub/forms.py:804
 msgid "The package name cannot be: %s."
-msgstr ""
+msgstr "Назив пакета не сме бити: %s."
 
 #: apps/devhub/forms.py:815
 msgid "The add-on ID must be a UUID string or an email address."
-msgstr ""
+msgstr "ИД додатка мора бити UUID стринг или адреса е-поште."
 
 #: apps/devhub/forms.py:821
 msgid "The version string is invalid."
-msgstr ""
+msgstr "Стринг верзије је неисправан."
 
 #: apps/devhub/forms.py:829
 msgid "Minimum"
-msgstr ""
+msgstr "Најмање"
 
 #: apps/devhub/forms.py:832
 msgid "Maximum"
-msgstr ""
+msgstr "Највише"
 
 #: apps/devhub/forms.py:883
 msgid "Min version must be less than Max version."
-msgstr ""
+msgstr "Најмања верзија мора бити мања од максималне."
 
 #: apps/devhub/forms.py:909
 msgid "{0} is a required target application."
-msgstr ""
+msgstr "{0} је захтевана циљана апликација."
 
 #: apps/devhub/forms.py:921
 msgid "About dialog"
-msgstr ""
+msgstr "\"О\" дијалог"
 
 #: apps/devhub/forms.py:922
 msgid "Creates a standard About dialog for your extension"
-msgstr ""
+msgstr "Креира стандардан \"О\" дијагол за Вашу екстензију"
 
 #: apps/devhub/forms.py:926
 msgid "Preferences dialog"
@@ -5527,31 +5535,31 @@ msgstr ""
 
 #: apps/devhub/forms.py:947
 msgid "Sidebar support"
-msgstr ""
+msgstr "Sidebar подршка"
 
 #: apps/devhub/forms.py:948
 msgid "Creates an example sidebar panel"
-msgstr ""
+msgstr "Креира панел са стране као пример"
 
 #: apps/devhub/forms.py:957
 #: apps/editors/forms.py:97
 #: apps/zadmin/forms.py:64
 #: apps/zadmin/forms.py:67
 msgid "Select an application first"
-msgstr ""
+msgstr "Прво изаберите апликацију"
 
 #: apps/devhub/forms.py:1024
 msgid "There cannot be more than 3 required add-ons."
-msgstr ""
+msgstr "Не може бити више од 3 захтевана додатка."
 
 #: apps/devhub/helpers.py:43
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Документација додатка :: Центар за програмере"
 
 #: apps/devhub/helpers.py:68
 #: apps/devhub/templates/devhub/nav.html:19
 msgid "My Apps"
-msgstr ""
+msgstr "Моје апликације"
 
 #: apps/devhub/helpers.py:72
 #: mkt/developers/helpers.py:67
@@ -5559,11 +5567,11 @@ msgstr ""
 #: mkt/site/context_processors.py:40
 #: mkt/templates/mkt/account-links.html:10
 msgid "My Submissions"
-msgstr ""
+msgstr "Моје доставе"
 
 #: apps/devhub/helpers.py:106
 msgid "Developer Docs"
-msgstr ""
+msgstr "Програмерски документи"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -5593,11 +5601,11 @@ msgstr "Коментар"
 
 #: apps/devhub/tasks.py:326
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s је одговорио са %s (%s)."
 
 #: apps/devhub/tasks.py:330
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Конекција на \"%s\" је истекла."
 
 #: apps/devhub/tasks.py:332
 msgid "Could not contact host at \"%s\"."
@@ -5661,28 +5669,28 @@ msgstr ""
 #: mkt/developers/views_payments.py:338
 #: mkt/reviewers/views.py:711
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Измене су успешно сачуване."
 
 #: apps/devhub/views.py:341
 #: apps/devhub/views.py:1741
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Молимо Вас проверите да ли има грешака у форми."
 
 #: apps/devhub/views.py:359
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Додатак се не може избрисати. Уместо тога га онемогућите."
 
 #: apps/devhub/views.py:368
 msgid "Theme deleted."
-msgstr ""
+msgstr "Тема обрисана."
 
 #: apps/devhub/views.py:368
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Додатак обрисан."
 
 #: apps/devhub/views.py:374
 msgid "Password was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Лозинка је неисправна. Тема није избрисана."
 
 #: apps/devhub/views.py:378
 msgid "Password was incorrect. Add-on was not deleted."
