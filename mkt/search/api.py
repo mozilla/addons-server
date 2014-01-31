@@ -108,7 +108,9 @@ class FeaturedSearchView(SearchView):
 
     def collections(self, request, collection_type=None, limit=1):
         filters = request.GET.dict()
-        filters.setdefault('region', self.get_region(request).slug)
+        region = self.get_region(request)
+        if region:
+            filters.setdefault('region', region.slug)
         if collection_type is not None:
             qs = Collection.public.filter(collection_type=collection_type)
         else:
