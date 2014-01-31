@@ -30,7 +30,7 @@ from addons.models import (Addon, AddonDeviceType, AddonUpsell,
                            attach_categories, attach_devices, attach_prices,
                            attach_tags, attach_translations, Category)
 from addons.signals import version_changed
-from amo.decorators import skip_cache
+from amo.decorators import skip_cache, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
@@ -1167,6 +1167,7 @@ class Webapp(Addon):
         if not created:
             info.update(**data)
 
+    @write
     def set_content_ratings(self, data):
         """
         Central method for setting content ratings.
@@ -1179,11 +1180,17 @@ class Webapp(Addon):
         """
         from . import tasks
 
+        log.info('IARC setting content ratings for app:%s:%s' %
+                 (self.id, self.app_slug))
+
         for ratings_body, rating in data.items():
             cr, created = self.content_ratings.safer_get_or_create(
                 ratings_body=ratings_body.id, defaults={'rating': rating.id})
             if not created:
                 cr.update(rating=rating.id, modified=datetime.datetime.now())
+
+        log.info('IARC content ratings set for app:%s:%s' %
+                 (self.id, self.app_slug))
 
         self.set_iarc_storefront_data()  # Ratings updated, sync with IARC.
 
@@ -1202,6 +1209,7 @@ class Webapp(Addon):
 
         tasks.index_webapps.delay([self.id])
 
+    @write
     def set_descriptors(self, data):
         """
         Sets IARC rating descriptors on this app.
@@ -1212,6 +1220,9 @@ class Webapp(Addon):
             [<has_descriptor_1>, <has_descriptor_6>]
 
         """
+        log.info('IARC setting descriptors for app:%s:%s' %
+                 (self.id, self.app_slug))
+
         create_kwargs = {}
         for desc in mkt.ratingdescriptors.RATING_DESCS.keys():
             has_desc_attr = 'has_%s' % desc.lower()
@@ -1222,6 +1233,10 @@ class Webapp(Addon):
         if not created:
             rd.update(**create_kwargs)
 
+        log.info('IARC descriptors set for app:%s:%s' %
+                 (self.id, self.app_slug))
+
+    @write
     def set_interactives(self, data):
         """
         Sets IARC interactive elements on this app.
@@ -1242,6 +1257,9 @@ class Webapp(Addon):
             addon=self, defaults=create_kwargs)
         if not created:
             ri.update(**create_kwargs)
+
+        log.info('IARC interactive elements set for app:%s:%s' %
+                 (self.id, self.app_slug))
 
     def set_iarc_storefront_data(self, disable=False):
         """Send app data to IARC for them to verify."""
