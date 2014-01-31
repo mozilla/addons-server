@@ -395,6 +395,12 @@ class TestApi(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_fuzzy_match(self):
+        res = self.client.get(self.url, data={'q': 'soemthing'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_icu_folding(self):
         self.webapp.name = {'es': 'Páginas Amarillos'}
         self.webapp.save()

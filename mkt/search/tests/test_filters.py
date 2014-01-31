@@ -52,6 +52,16 @@ class TestSearchFilters(BaseOAuth):
         ok_('"query": "search terms"' in qs_str)
         # TODO: Could do more checking here.
 
+    def test_fuzzy_single_word(self):
+        qs = self._filter(self.req, {'q': 'term'})
+        qs_str = json.dumps(qs)
+        ok_('fuzzy' in qs_str)
+
+    def test_no_fuzzy_multi_word(self):
+        qs = self._filter(self.req, {'q': 'search terms'})
+        qs_str = json.dumps(qs)
+        ok_('fuzzy' not in qs_str)
+
     def _addon_type_check(self, query, expected=amo.ADDON_WEBAPP):
         qs = self._filter(self.req, query)
         ok_({'term': {'type': expected}} in qs['filter']['and'],
