@@ -486,7 +486,12 @@ class Version(amo.models.ModelBase):
 
     @property
     def developer_name(self):
-        return self._developer_name
+        if self._developer_name:
+            return self._developer_name
+        elif self.addon.listed_authors:
+            return self.addon.listed_authors[0].name
+        else:
+            return ''
 
     @amo.cached_property(writable=True)
     def is_privileged(self):

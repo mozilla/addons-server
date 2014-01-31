@@ -19,6 +19,8 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
 
     def test_developer_name(self):
         version = Version.objects.latest('id')
+        version.update(_developer_name='')
+        eq_(version.developer_name, version.addon.authors.all()[0].name)
         version._developer_name = u'M€lâ'
         eq_(version.developer_name, u'M€lâ')
         eq_(Version(_developer_name=u'M€lâ').developer_name, u'M€lâ')
