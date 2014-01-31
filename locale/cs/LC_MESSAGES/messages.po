@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-09 16:58+0000\n"
+"PO-Revision-Date: 2014-01-31 09:29+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1389286695.0\n"
+"X-POOTLE-MTIME: 1391160553.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -4148,7 +4148,7 @@ msgstr "Předběžná kontrola"
 
 #: apps/devhub/forms.py:542
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "Zvolte prosím typ nominace na kontrolu"
 
 #: apps/devhub/forms.py:557 mkt/submit/forms.py:204
 msgid "Version %s already exists"
@@ -8999,7 +8999,7 @@ msgstr "Zvolte cílovou platformu souboru."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Pro jaký typ kontroly byste rádi provedli nominaci?"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -15080,7 +15080,7 @@ msgstr "Venezuela, Bolívarovská republika"
 
 #: mkt/constants/bango.py:260
 msgid "Viet Nam"
-msgstr ""
+msgstr "Vietnam"
 
 #: mkt/constants/bango.py:261
 msgid "Virgin Islands, British"
@@ -15444,11 +15444,11 @@ msgstr "Aplikace vyžaduje od platformy podporu pro klávesnice třetích stran.
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "Informace i více sítích"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
-msgstr ""
+msgstr "Aplikace vyžaduje dostupnost informací o více síťových připojeních."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15493,7 +15493,7 @@ msgstr "Legální drogy"
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:15
 msgid "Inappropriate Language"
-msgstr ""
+msgstr "Nevhodný jazyk"
 
 #: mkt/constants/ratingdescriptors.py:16 mkt/constants/ratingdescriptors.py:53 mkt/constants/ratingdescriptors.py:74 mkt/constants/ratingdescriptors.py:86 mkt/constants/ratingdescriptors.py:103
 msgid "No Descriptors"
@@ -16587,7 +16587,7 @@ msgstr "URL s manifestem musí začínat protokolem (například: <code>http://<
 
 #: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:124
 msgid "Learn more about submitting an app."
-msgstr ""
+msgstr "Dozvědět se více o přidávání aplikací."
 
 #: mkt/developers/templates/developers/validate_addon.html:69
 msgid ""
