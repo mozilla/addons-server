@@ -41,8 +41,10 @@
                   {% set desc_icon = ratings_body.label in desc_icons and desc_icons[ratings_body.label][descriptor.label] %}
                   {% if desc_icon %}
                     <img src="{{ media(desc_icon) }}" class="icon" title="{{ descriptor.name }}">
-                  {% else %}
+                  {% elif descriptor.label != 'no-descs' %}
                     <span class="dot-sep">{{ descriptor.name }}</span>
+                  {% else %}
+                    &mdash;
                   {% endif %}
                 {% else %}
                   &mdash;
