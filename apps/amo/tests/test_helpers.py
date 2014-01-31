@@ -304,15 +304,6 @@ def test_linkify_with_outgoing(mock_linkify_bounce_url_callback):
     eq_(res, '<a href="bar" rel="nofollow">http://example.com</a>')
 
 
-@patch('bleach.linkify')
-def test_linkify_with_outgoing_raises(mock_linkify):
-    mock_linkify.side_effect = Exception('crash test')
-
-    res = urlresolvers.linkify_with_outgoing('http://example.com')
-
-    eq_(res, 'http://example.com')
-
-
 class TestLicenseLink(amo.tests.TestCase):
 
     def test_license_link(self):

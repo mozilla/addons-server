@@ -17,7 +17,7 @@
         <td class="role">{{ profile.occupation }}</td>
       </tr>
     {% endif %}
-    {% if profile.homepage %}
+    {% if profile.homepage and profile.is_developer %}
       <tr>
         <th>{{ _('Homepage') }}</th>
         <td><a class="url" href="{{ profile.homepage|external_url }}">

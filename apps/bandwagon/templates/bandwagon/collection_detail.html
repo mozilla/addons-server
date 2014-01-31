@@ -63,7 +63,7 @@
       {% if c.type == amo.COLLECTION_FAVORITES %}
         {{ favorites_description() }}
       {% elif c.description %}
-        <p>{{ c.description }}</p>
+        <p>{{ c.description|no_links }}</p>
       {% elif c.type == amo.COLLECTION_MOBILE %}
         <p>{{ _('Add-ons synced to my Mobile Firefox') }}</p>
       {% endif %}
@@ -208,7 +208,7 @@
     {% endif %}
   {% else %} {# owned-by #}
     {% if c.description %}
-      <p>{{ c.description }}</p>
+      <p>{{ c.description|no_links }}</p>
     {% else %}
       <p>{{ _('My favorite add-ons') }}</p>
     {% endif %}

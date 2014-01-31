@@ -312,7 +312,7 @@ class TestEditAdmin(UserViewBase):
 
     def get_user(self):
         # Using pk so that we can still get the user after anonymize.
-        return UserProfile.objects.get(pk=999)
+        return UserProfile.objects.get(pk=10482)
 
     def test_edit(self):
         res = self.client.get(self.url)
@@ -1135,6 +1135,26 @@ class TestRegistration(UserViewBase):
         # URL has the right confirmation code now.
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'An email has been sent to your address')
+
+
+class TestProfileView(UserViewBase):
+
+    def setUp(self):
+        self.user = User.objects.create()
+        UserProfile.objects.create(user=self.user,
+                                   homepage='http://example.com')
+        self.url = reverse('users.profile', args=[self.user.id])
+
+    def test_non_developer_homepage_url(self):
+        """Don't display homepage url if the user is not a developer."""
+        r = self.client.get(self.url)
+        self.assertNotContains(r, self.user.get_profile().homepage)
+
+    @patch.object(UserProfile, 'is_developer', True)
+    def test_developer_homepage_url(self):
+        """Display homepage url for a developer user."""
+        r = self.client.get(self.url)
+        self.assertContains(r, self.user.get_profile().homepage)
 
 
 class TestProfileLinks(UserViewBase):

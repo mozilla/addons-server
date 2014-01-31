@@ -57,6 +57,6 @@
       {% endif %}
     </span>
   </h3>
-  <blockquote>{{ c.description }}</blockquote>
+  <blockquote>{{ c.description|no_links }}</blockquote>
 </div>
 {% endfor %}
