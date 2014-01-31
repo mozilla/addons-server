@@ -1,8 +1,9 @@
-from decimal import Decimal
 import json
 import os
-from StringIO import StringIO
+import urllib
 import tempfile
+from decimal import Decimal
+from StringIO import StringIO
 
 from django.core.urlresolvers import reverse
 from mock import patch
@@ -765,19 +766,21 @@ class TestCategoryHandler(RestOAuth):
         eq_(res.status_code, 404)
 
 
-class TestErrorReporter(RestOAuth):
-    @patch('django.conf.settings.SENTRY_DSN', 'FAKE_DSN')
-    @patch('raven.base.Client')
-    def test_report_stack(self, Client):
-        msg = u'a log message'
-        stack = {u'foo': u'frame 1', u'baz': u'frame 2'}
-        res = self.anon.post(
-            reverse('error-reporter'),
-            data=json.dumps([{'stacktrace': {'frames': stack}, 'value': msg}]))
-        eq_(res.status_code, 204)
-        Client().capture.assert_called_with(
-            'raven.events.Exception', data=[{u'stacktrace': {u'frames': stack},
-                                             u'value': msg}])
+class TestErrorReporter(TestCase):
+
+    @patch('django.conf.settings.SENTRY_DSN', 'http://a:b@FAKE_DSN.com/123')
+    @patch('raven.base.Client.capture')
+    def test_error_reporter_forwards_to_sentry(self, mock_client):
+        sentry_data = {'message': 'Error!'}
+        query_params = {'sentry_data': json.dumps(sentry_data)}
+        path = '%s%s?%s' % (reverse('error-reporter'),
+                            123,
+                            urllib.urlencode(query_params))
+        response = self.client.get(path)
+        eq_(response.status_code, 204)
+        mock_client.assert_called_with('raven.events.Exception',
+                                       data=sentry_data)
+
 
 MANIFEST = """
    {"name": "Steamcubev2!",
