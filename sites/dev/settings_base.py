@@ -171,7 +171,7 @@ NEW_FEATURES = True
 
 PERF_TEST_URL = 'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi'
 
-REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
+REDIRECT_URL = 'https://outgoing-mkt-dev.allizom.org/v1/'
 
 CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
