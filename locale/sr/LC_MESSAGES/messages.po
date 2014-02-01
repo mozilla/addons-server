@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-30 17:42+0000\n"
+"PO-Revision-Date: 2014-02-01 18:08+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391103742.0\n"
+"X-POOTLE-MTIME: 1391278080.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -5422,6 +5422,8 @@ msgid ""
 "Enter your initial version number. Depending on the number of releases and "
 "your preferences, this is usually 0.1 or 1.0"
 msgstr ""
+"Унесите почетни број верзије. У зависности од броја издања и Ваших "
+"преференци, обично је 0.1 или 1.0"
 
 #: apps/devhub/forms.py:768
 msgid ""
@@ -5429,6 +5431,8 @@ msgid ""
 "such as addon-name@developer.com. The email address does not have to be "
 "valid."
 msgstr ""
+"Сваки додатак захтева јединствену ИД у облику UUID или адресе е-поште, као "
+"што је назив-додатка@програмер.com. Адреса е-поште не треба да буде важећа."
 
 #: apps/devhub/forms.py:773
 msgid ""
@@ -5436,26 +5440,32 @@ msgid ""
 "short form of its name (for example, Test Extension might be "
 "test_extension)."
 msgstr ""
+"Назив пакета Вашег додатка кориштен унутар прегледача. Ово би требао да буде "
+"кратак облик његовог назива (нпр. Пробна екстензија би била "
+"пробна_екстензија)."
 
 #: apps/devhub/forms.py:778
 msgid ""
 "Enter the name of the person or entity to be listed as the author of this "
 "add-on."
 msgstr ""
+"Унесите име особе или ентитета који ће бити наведен као аутор овог додатка."
 
 #: apps/devhub/forms.py:781
 msgid ""
 "Enter the names of any other contributors to this extension, one per line."
-msgstr ""
+msgstr "Унесите имена других сарадника ове екстензије, једног по реду."
 
 #: apps/devhub/forms.py:790
 msgid "Add-on names should not contain Mozilla trademarks."
-msgstr ""
+msgstr "Називи додатака не би смели да садрже робне марке Mozilla-е."
 
 #: apps/devhub/forms.py:797
 msgid ""
 "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr ""
+"Унесите исправан назив пакета који се састоји од слова, бројева, или доњих "
+"црта."
 
 #: apps/devhub/forms.py:801
 msgid "This package name is already in use."
@@ -5499,43 +5509,43 @@ msgstr "Креира стандардан \"О\" дијагол за Вашу е
 
 #: apps/devhub/forms.py:926
 msgid "Preferences dialog"
-msgstr ""
+msgstr "Дијалог за подешавања"
 
 #: apps/devhub/forms.py:927
 msgid "Creates an example Preferences window"
-msgstr ""
+msgstr "Креира пример прозора Подешавања"
 
 #: apps/devhub/forms.py:930
 msgid "Toolbar"
-msgstr ""
+msgstr "Трака са алаткама"
 
 #: apps/devhub/forms.py:931
 msgid "Creates an example toolbar for your extension"
-msgstr ""
+msgstr "Креира пример траке са алаткама за Вашу екстензију"
 
 #: apps/devhub/forms.py:934
 msgid "Toolbar button"
-msgstr ""
+msgstr "Дугме за траку са алаткама"
 
 #: apps/devhub/forms.py:935
 msgid "Creates an example button on the browser toolbar"
-msgstr ""
+msgstr "Креира пример дугмета на траци са алаткама на прегледачу"
 
 #: apps/devhub/forms.py:939
 msgid "Main menu command"
-msgstr ""
+msgstr "Команда за главни мени"
 
 #: apps/devhub/forms.py:940
 msgid "Creates an item on the Tools menu"
-msgstr ""
+msgstr "Креира ставку у менију Алатке"
 
 #: apps/devhub/forms.py:943
 msgid "Context menu command"
-msgstr ""
+msgstr "Команда за контекстни мени"
 
 #: apps/devhub/forms.py:944
 msgid "Creates a context menu item for images"
-msgstr ""
+msgstr "Креира ставку за слике у контекстном менију"
 
 #: apps/devhub/forms.py:947
 msgid "Sidebar support"
@@ -5543,7 +5553,7 @@ msgstr "Sidebar подршка"
 
 #: apps/devhub/forms.py:948
 msgid "Creates an example sidebar panel"
-msgstr "Креира панел са стране као пример"
+msgstr "Креира пример панела са стране"
 
 #: apps/devhub/forms.py:957
 #: apps/editors/forms.py:97
@@ -5613,26 +5623,28 @@ msgstr "Конекција на \"%s\" је истекла."
 
 #: apps/devhub/tasks.py:332
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Нисмо могли контактирати хост на \"%s\"."
 
 #: apps/devhub/tasks.py:394
 msgid "Your icon must be less than %s bytes."
-msgstr ""
+msgstr "Икона мора бити мања од %s бајтова."
 
 #: apps/devhub/tasks.py:410
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\"."
-msgstr ""
+msgstr "Манифест мора бити сервиран са HTTP header \"Content-Type: %s\"."
 
 #: apps/devhub/tasks.py:412
 msgid ""
 "Your manifest must be served with the HTTP header \"Content-Type: %s\". We saw "
 "\"%s\"."
 msgstr ""
+"Манифест мора бити сервиран са HTTP header \"Content-Type: %s\". Ми смо видели "
+"\"%s\"."
 
 #: apps/devhub/tasks.py:417
 #: mkt/developers/tasks.py:363
 msgid "Your manifest must be less than %s bytes."
-msgstr ""
+msgstr "Манифест мора бити мањи од %s бајтова."
 
 #: apps/devhub/views.py:188
 msgid "All My Add-ons"
@@ -5640,15 +5652,15 @@ msgstr "Сви моји додаци"
 
 #: apps/devhub/views.py:215
 msgid "All Activity"
-msgstr ""
+msgstr "Сва активност"
 
 #: apps/devhub/views.py:216
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Ажурирања додатка"
 
 #: apps/devhub/views.py:217
 msgid "Add-on Status"
-msgstr ""
+msgstr "Статус додатка"
 
 #: apps/devhub/views.py:218
 msgid "User Collections"
@@ -5659,7 +5671,7 @@ msgstr "Корисничке збирке"
 #: apps/pages/templates/pages/dev_faq.html:39
 #: apps/pages/templates/pages/dev_faq.html:557
 msgid "User Reviews"
-msgstr ""
+msgstr "Рецензије корисника"
 
 #: apps/devhub/views.py:334
 #: apps/devhub/views.py:338
@@ -5698,15 +5710,15 @@ msgstr "Лозинка је неисправна. Тема није избрис
 
 #: apps/devhub/views.py:378
 msgid "Password was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Лозинка је нетачна. Додатак није избрисан."
 
 #: apps/devhub/views.py:533
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "Постоје грешке у Вашој достави."
 
 #: apps/devhub/views.py:564
 msgid "Refund already processed."
-msgstr ""
+msgstr "Повраћај новца је већ процесиран."
 
 #: apps/devhub/views.py:572
 msgid "Refund failed. error: %s"
@@ -5766,51 +5778,53 @@ msgstr ""
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: apps/devhub/views.py:1274
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Слика мора бити широка тачно {0} пиксела и висока {1} пиксела."
 
 #: apps/devhub/views.py:1278
 #: mkt/developers/views.py:927
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Дошло је до грешке приликом отпремања Вашег прегледа."
 
 #: apps/devhub/views.py:1372
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Верзија %s онемогућена."
 
 #: apps/devhub/views.py:1375
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Верзија %s избрисана."
 
 #: apps/devhub/views.py:1385
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
+"Отпремање није прошло валидацију, и можда не садржи потпуне резултате "
+"валидације. Молимо Вас, добро проверите приликом прегледавања."
 
 #: apps/devhub/views.py:1788
 msgid "Preliminary Review Requested."
-msgstr ""
+msgstr "Захтевана прелиминарна рецензија."
 
 #: apps/devhub/views.py:1789
 msgid "Full Review Requested."
-msgstr ""
+msgstr "Захтевана потпуна рецензија."
 
 #: apps/devhub/templates/devhub/base.html:27
 #: apps/devhub/templates/devhub/base_impala.html:24
 #: apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Назад на додатке"
 
 #: apps/devhub/templates/devhub/builder.html:3
 #: mkt/developers/templates/developers/builder.html:3
 msgid "Builder and SDK"
-msgstr ""
+msgstr "Градитељ и SDK"
 
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
 #: mkt/developers/templates/developers/builder.html:11
 msgid "<strong>Builder and SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr ""
+msgstr "<strong>Градитељ и SDK:</strong> Креирајте додатке брзо и лако"
 
 #: apps/devhub/templates/devhub/builder.html:17
 #: apps/devhub/templates/devhub/builder.html:21
@@ -5879,7 +5893,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/builder.html:68
 #: mkt/developers/templates/developers/builder.html:68
 msgid "Add-on SDK"
-msgstr ""
+msgstr "SDK додатка"
 
 #: apps/devhub/templates/devhub/builder.html:70
 #: mkt/developers/templates/developers/builder.html:70
@@ -5887,31 +5901,33 @@ msgid ""
 "The Add-on SDK is set of APIs bundled with a command line utility that "
 "allows you to develop add-ons with your own tool chain."
 msgstr ""
+"SDK додатка је скуп АПИ-а у пакету са услужном командном линијом која Вам "
+"омогућује развог додатака са властитим скупом алата."
 
 #: apps/devhub/templates/devhub/builder.html:76
 #: mkt/developers/templates/developers/builder.html:76
 msgid "Choose your own code editor"
-msgstr ""
+msgstr "Изаберите свој кодни едитор"
 
 #: apps/devhub/templates/devhub/builder.html:77
 #: mkt/developers/templates/developers/builder.html:77
 msgid "Access your development files locally"
-msgstr ""
+msgstr "Приступите својим развојним датотекама локално"
 
 #: apps/devhub/templates/devhub/builder.html:78
 #: mkt/developers/templates/developers/builder.html:78
 msgid "Get greater control over SDK build steps"
-msgstr ""
+msgstr "Набавите већу контролу над корацима SDK изградње"
 
 #: apps/devhub/templates/devhub/builder.html:81
 #: mkt/developers/templates/developers/builder.html:81
 msgid "Download the Add-on SDK"
-msgstr ""
+msgstr "Преузмите SDK за додатке"
 
 #: apps/devhub/templates/devhub/builder.html:89
 #: mkt/developers/templates/developers/builder.html:89
 msgid "There's Nothing to It"
-msgstr ""
+msgstr "Нема лакшег"
 
 #: apps/devhub/templates/devhub/builder.html:91
 #: mkt/developers/templates/developers/builder.html:91
@@ -5919,11 +5935,13 @@ msgid ""
 "If you know HTML, CSS and JavaScript, you can make add-ons. With Builder, "
 "you don't even need to set up a build environment. Just log in and go."
 msgstr ""
+"Ако знате HTML, CSS и JavaScrip, знаћете направити додатке. Са Builder, не "
+"морате чак ни подесити окружење. Само се пријавите и почните."
 
 #: apps/devhub/templates/devhub/builder.html:99
 #: mkt/developers/templates/developers/builder.html:99
 msgid "Great Developer Features"
-msgstr ""
+msgstr "Набавите програмерске могућности"
 
 #: apps/devhub/templates/devhub/builder.html:101
 #: mkt/developers/templates/developers/builder.html:101
@@ -5932,6 +5950,9 @@ msgid ""
 "access to a library of easy-to-implement APIs built by the Mozilla "
 "community."
 msgstr ""
+"Сви додаци направљени од било ког алата су по подразумеваном без поновног "
+"покретања. Такође добијате приступ библиотеци АПИ-а од Mozilla заједнице "
+"који се врло лако примењују."
 
 #: apps/devhub/templates/devhub/builder.html:109
 #: mkt/developers/templates/developers/builder.html:109
@@ -6034,48 +6055,50 @@ msgstr "Моји додаци"
 #: apps/devhub/templates/devhub/personas/edit.html:43
 #: mkt/developers/templates/developers/apps/listing/items.html:21
 msgid "Status:"
-msgstr ""
+msgstr "Статус:"
 
 #: apps/devhub/templates/devhub/index.html:54
 msgid "Latest Version:"
-msgstr ""
+msgstr "Последња верзија:"
 
 #: apps/devhub/templates/devhub/index.html:63
 #: apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
-msgstr ""
+msgstr "Ред позиције:"
 
 #: apps/devhub/templates/devhub/index.html:64
 #: apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s од %(total)s"
 
 #: apps/devhub/templates/devhub/index.html:74
 #: mkt/developers/templates/developers/apps/status.html:251
 msgid "Upload New Version"
-msgstr ""
+msgstr "Отпреми нову верзију"
 
 #: apps/devhub/templates/devhub/index.html:80
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Погледајте све додатке ►"
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO рецензенти"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid ""
 "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed "
 "faster."
 msgstr ""
+"Само напред! Постаните још данас AMO рецензент и учините да се Ваши додаци "
+"брже прегледају."
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Постаните AMO рецензент"
 
 #: apps/devhub/templates/devhub/index.html:97
 msgid "Add-on Builder and SDK:"
-msgstr ""
+msgstr "Builder додатка и SDK:"
 
 #: apps/devhub/templates/devhub/index.html:98
 msgid "Firefox Add-ons Made Easy"
@@ -6159,19 +6182,23 @@ msgid ""
 "Discuss development, brainstorm ideas, and make connections in the world of "
 "add-ons."
 msgstr ""
+"Разговарајте о развоју, брејнстормингујте, и направите везе у свету "
+"додатака."
 
 #: apps/devhub/templates/devhub/index.html:182
 #: apps/devhub/templates/devhub/nav.html:83
 #: apps/devhub/templates/devhub/package_addon.html:4
 #: apps/devhub/templates/devhub/package_addon_success.html:3
 msgid "Add-on Packager"
-msgstr ""
+msgstr "Алат за паковање додатака"
 
 #: apps/devhub/templates/devhub/index.html:184
 msgid ""
 "Auto-generate add-on packaging by entering basic info and picking UI parts. "
 "Get working without setup."
 msgstr ""
+"Ауто-генеришите паковања додатака тако што ћете унети основне информације и "
+"изаберите делове корисничког интерфејса. Почните са радом без постављања."
 
 #: apps/devhub/templates/devhub/index.html:195
 #: apps/devhub/templates/devhub/nav.html:85
@@ -6183,6 +6210,8 @@ msgid ""
 "Check your add-on for common problems and errors. Open to anyone, not just "
 "add-ons hosted here."
 msgstr ""
+"Прегледајте Ваше додатке за чеште проблеме и грешке. Отворено је свакоме, "
+"нису само додаци постављени овде."
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -6191,19 +6220,19 @@ msgstr "Повратак на почетну страну центра за пр
 #. Text in small tag is smaller and on its own line.
 #: apps/devhub/templates/devhub/nav.html:7
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Центар за програмере <small>додатака</small>"
 
 #: apps/devhub/templates/devhub/nav.html:25
 #: mkt/developers/templates/developers/nav.html:14
 msgid "more apps..."
-msgstr ""
+msgstr "још апликација..."
 
 #: apps/devhub/templates/devhub/nav.html:32
 #: apps/devhub/templates/devhub/addons/submit/base.html:4
 #: mkt/developers/templates/developers/nav.html:21
 #: mkt/developers/templates/developers/nav.html:35
 msgid "Submit a New App"
-msgstr ""
+msgstr "Доставите нову апликацију"
 
 #: apps/devhub/templates/devhub/nav.html:44
 msgid "more add-ons..."
@@ -6228,7 +6257,7 @@ msgstr "Документација"
 #: apps/devhub/templates/devhub/docs/how-to.html:13
 #: apps/devhub/templates/devhub/docs/how-to.html:74
 msgid "Getting Started"
-msgstr ""
+msgstr "Како почети"
 
 #: apps/devhub/templates/devhub/nav.html:68
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:6
@@ -6254,7 +6283,7 @@ msgstr "Провера компатибилности додатака"
 
 #: apps/devhub/templates/devhub/nav.html:89
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Развој додатака"
 
 #: apps/devhub/templates/devhub/nav.html:93
 msgid "Community"
@@ -6274,6 +6303,9 @@ msgid ""
 "interface components to start with, and your custom-built add-on will be "
 "ready for download."
 msgstr ""
+"Унесите испод основне информације о Вашем додатку и изаберите са којим "
+"компонентама интерфејса да почнете, и Ваш додатак ће бити спреман за "
+"преузимање."
 
 #: apps/devhub/templates/devhub/package_addon.html:24
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:15
