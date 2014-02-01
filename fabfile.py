@@ -4,8 +4,8 @@ from os.path import join as pjoin
 from fabric.api import (env, execute, lcd, local, parallel,
                         run, roles, task)
 
-from fabdeploytools import helpers
 import fabdeploytools.envs
+from fabdeploytools import helpers
 
 import deploysettings as settings
 
