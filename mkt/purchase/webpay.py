@@ -15,7 +15,7 @@ import bleach
 import commonware.log
 from tower import ugettext as _
 
-from addons.decorators import addon_view_factory, can_be_purchased
+from addons.decorators import addon_view_factory
 import amo
 from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify
@@ -24,6 +24,7 @@ from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import (InvalidSender, parse_from_webpay,
                                sign_webpay_jwt)
 from mkt.api.exceptions import AlreadyPurchased
+from mkt.purchase.decorators import can_be_purchased
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
 

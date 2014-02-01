@@ -274,13 +274,6 @@
     {% endfor %}
   </ul>
 
-  {% if waffle.switch('marketplace') %}
-  <strong>{{ _('Premium type') }}</strong>
-  <ul id="premium-type">
-      <li>{{ addon.premium_type|premium_text }}</li>
-  </ul>
-  {% endif %}
-
   {% if flags: %}
   <strong>{{ _('Flags') }}</strong>
   <ul>

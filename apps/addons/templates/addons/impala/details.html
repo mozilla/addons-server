@@ -67,7 +67,7 @@
   {% endif %}
   {% if cnt %}
     <div id="{{ cnt_id }}">
-      {% if not webapp and (addon.public_stats or is_author) %}
+      {% if addon.public_stats or is_author %}
         <a class="stats" title="{{ _('View statistics') }}"
            href="{{ url('stats.overview', addon.slug) }}">{{ cnt_pretty }}</a>
       {% else %}
@@ -86,13 +86,10 @@
   </div>
   {% if is_author %}
     <p><a href="{{ addon.get_dev_url() }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
-    {% if waffle.switch('marketplace') and addon.is_premium() and not addon.is_webapp() %}
-        <p><a href="{{ url('downloads.latest', addon.slug) }}" class="button developer prominent"><span>{{ _('Download') }}</span></a></p>
-    {% endif %}
   {% endif %}
   </aside>
 
-{% set version = addon.current_version if not addon.is_webapp() else None %}
+{% set version = addon.current_version %}
 
 {# All this depends on the addon or version, and nothing needs the user,
    so we can cache it all against the addon. #}
@@ -112,7 +109,7 @@
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>
     <p id="addon-summary" itemprop="description" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-    {% if version or addon.is_webapp() %}
+    {% if version %}
       {{ big_install_button(addon, show_warning=False, impala=True) }}
     {% endif %}
     {% if addon.is_featured(APP, LANG) %}
@@ -146,13 +143,8 @@
         </h3>
         <img class="avatar" alt="{{ single_dev.name }}" height="64"
              width="64" src="{{ single_dev.picture_url }}"/>
-        {% if addon.is_webapp() %}
-          <p>{{ _("Learn why {0} was created and find out what's next for this "
-                  'app.')|f(addon.name) }}</p>
-        {% else %}
-          <p>{{ _("Learn why {0} was created and find out what's next for this "
-                  'add-on.')|f(addon.name) }}</p>
-        {% endif %}
+        <p>{{ _("Learn why {0} was created and find out what's next for this "
+                'add-on.')|f(addon.name) }}</p>
       {% endwith %}
     </div>
   {% endif %}
@@ -195,7 +187,7 @@
   <ul class="links">
     {% if addon.homepage %}
       <li><a class="home" href="{{ addon.homepage|external_url }}">
-        {{ _('App home page') if addon.is_webapp() else _('Add-on home page') }}</a></li>
+        {{ _('Add-on home page') }}</a></li>
     {% endif %}
     {% if addon.support_url %}
       <li><a class="support" href="{{ addon.support_url|external_url }}">{{ _('Support site') }}</a></li>
@@ -230,11 +222,7 @@
 </aside>
 
 <section class="primary island c">
-  {% if addon.is_webapp() %}
-    <h2>{{ _('About this App') }}</h2>
-  {% else %}
-    <h2>{{ _('About this Add-on') }}</h2>
-  {% endif %}
+  <h2>{{ _('About this Add-on') }}</h2>
   <div class="prose">
   {% if addon.description %}
     <div id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</div>

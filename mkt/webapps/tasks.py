@@ -486,27 +486,27 @@ def _update_developer_name(id):
         _log(id, u'Webapp does not exist')
         return
 
-    version = webapp.current_version
+    # Update developer_name all versions.
 
-    # If the app doesn't have a current_version, don't bother.
-    if not version:
-        _log(id, u'Webapp does not have a current_version')
-        return
+    for version in webapp.versions.all():
 
-    # If the current_version already has a non-empty developer_name set, don't
-    # touch it and bail.
-    if version._developer_name:
-        _log(id, u'Webapp already has a non-empty developer_name')
-        return
+        # If the version already has a non-empty developer_name set, don't
+        # touch it and bail.
+        if version._developer_name:
+            _log(id, u'Webapp version:%s already has a non-empty '
+                     u'developer_name' % version.id)
+            continue
 
-    try:
-        data = WebAppParser().parse(webapp.get_latest_file().file_path)
-    except ValidationError:
-        _log(id, u'Webapp manifest can not be parsed')
-        return
+        try:
+            # FIXME: We should have the manifest at `version.manifest`?
+            data = WebAppParser().parse(version.all_files[0].file_path)
+        except ValidationError:
+            _log(id, u'Webapp manifest can not be parsed')
+            continue
 
-    max_len = version._meta.get_field_by_name('_developer_name')[0].max_length
-    version.update(_developer_name=data['developer_name'][:max_len])
+        max_len = version._meta.get_field_by_name(
+            '_developer_name')[0].max_length
+        version.update(_developer_name=data['developer_name'][:max_len])
 
 
 @task

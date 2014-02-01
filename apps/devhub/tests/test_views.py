@@ -39,7 +39,7 @@ from devhub.models import ActivityLog, BlogPost, SubmitStep
 from devhub import tasks
 from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
-from market.models import AddonPremium, Price, Refund
+from market.models import Refund
 from reviews.models import Review
 from stats.models import Contribution
 from translations.models import Translation
@@ -211,18 +211,6 @@ class TestDashboard(HubTest):
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')
-
-    def test_incomplete_addon(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-        addon = Addon.objects.get(id=self.clone_addon(1)[0])
-        addon.update(status=amo.STATUS_NULL)
-        doc = pq(self.client.get(self.url).content)
-        item = doc('.item[data-addonid=%s]' % addon.id)
-        assert not item.find('h3 a'), 'Unexpected link to add-on'
-        assert not item.find('.item-details'), 'Unexpected item details'
-        assert not item.find('.price'), 'Expected price'
-        assert item.find('p.incomplete'), (
-            'Expected message about incompleted add-on')
 
     def test_dev_news(self):
         self.clone_addon(1)  # We need one to see this module
@@ -821,35 +809,6 @@ class TestPaymentsProfile(amo.tests.TestCase):
         self.client.post(reverse('devhub.check_paypal'),
                          {'email': 'test@test.com'})
         assert 'preapprovalKey' not in get_paykey.call_args[0][0]
-
-
-class MarketplaceMixin(object):
-    def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.addon.update(status=amo.STATUS_NOMINATED,
-                          highest_status=amo.STATUS_NOMINATED)
-        self.url = self.addon.get_dev_url('payments')
-        assert self.client.login(username='del@icio.us', password='password')
-
-        self.marketplace = (waffle.models.Switch.objects
-                                  .get_or_create(name='marketplace')[0])
-        self.marketplace.active = True
-        self.marketplace.save()
-
-    def tearDown(self):
-        self.marketplace.active = False
-        self.marketplace.save()
-
-    def setup_premium(self):
-        self.price = Price.objects.create(price='0.99')
-        self.price_two = Price.objects.create(price='1.99')
-        self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                                premium_type=amo.ADDON_FREE)
-        self.other_addon.addonuser_set.create(
-            user=self.addon.authors.all()[0])
-        AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM,
-                          paypal_id='a@a.com')
 
 
 class TestIssueRefund(amo.tests.TestCase):

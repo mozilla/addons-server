@@ -292,8 +292,7 @@
   <!-- app, warning, mobile -->
   <div id="install-button-warning">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=True),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'is_webapp': Mock(return_value=True)},
 
             b={'show_warning': True,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -316,8 +315,7 @@
   <!-- app, eula, mobile -->
   <div id="install-button-eula">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=True),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'is_webapp': Mock(return_value=True)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -340,8 +338,7 @@
   <!-- premium, mobile -->
   <div id="install-button-premium">
     {% with addon={'is_premium': Mock(return_value=True),
-                   'is_webapp': Mock(return_value=False),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'is_webapp': Mock(return_value=False)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -364,8 +361,7 @@
   <!-- contrib, mobile -->
   <div id="install-button-contrib">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=False),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'is_webapp': Mock(return_value=False)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -388,8 +384,7 @@
   <!-- can be purchased, mobile -->
   <div id="install-button-purchasable">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=False),
-                   'can_be_purchased': Mock(return_value=True)},
+                   'is_webapp': Mock(return_value=False)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -412,8 +407,7 @@
   <!-- marketplace, mobile, can be purchased -->
   <div id="install-button-marketplace">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=False),
-                   'can_be_purchased': Mock(return_value=True)},
+                   'is_webapp': Mock(return_value=False)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -436,8 +430,7 @@
   <!-- app, marketplace, mobile, can be purchased -->
   <div id="install-button-app-marketplace">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=True),
-                   'can_be_purchased': Mock(return_value=True)},
+                   'is_webapp': Mock(return_value=True)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -461,7 +454,6 @@
   <div id="install-button-app-premium">
     {% with addon={'is_premium': Mock(return_value=True),
                    'is_webapp': Mock(return_value=True),
-                   'can_be_purchased': Mock(return_value=False),
                    'has_purchased': Mock(return_value=False),
                    'premium': Mock(return_value=False)},
 
@@ -486,8 +478,7 @@
   <!-- app, contrib, mobile -->
   <div id="install-button-app-contrib">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=True),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'is_webapp': Mock(return_value=True)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -510,8 +501,7 @@
   <!-- app, can be purchased, mobile -->
   <div id="install-button-app-purchasable">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=True),
-                   'can_be_purchased': Mock(return_value=True)},
+                   'is_webapp': Mock(return_value=True)},
 
             b={'show_warning': False,
                 'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -534,8 +524,7 @@
   <!-- marketplace, app, warning, mobile -->
   <div id="install-button-mp-warning">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=True),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'is_webapp': Mock(return_value=True)},
 
             b={'show_warning': True,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -558,8 +547,7 @@
   <!-- marketplace, app, eula, mobile -->
   <div id="install-button-mp-eula">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=True),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'is_webapp': Mock(return_value=True)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -582,8 +570,7 @@
   <!-- marketplace, premium, mobile -->
   <div id="install-button-mp-premium">
     {% with addon={'is_premium': Mock(return_value=True),
-                   'is_webapp': Mock(return_value=False),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'is_webapp': Mock(return_value=False)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
@@ -606,8 +593,7 @@
   <!-- marketplace, contrib, mobile -->
   <div id="install-button-mp-contrib">
     {% with addon={'is_premium': Mock(return_value=False),
-                   'is_webapp': Mock(return_value=False),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'is_webapp': Mock(return_value=False)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},

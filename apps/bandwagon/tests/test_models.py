@@ -37,6 +37,13 @@ class TestCollections(amo.tests.TestCase):
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
         amo.set_user(self.user)
 
+    def test_description(self):
+        c = Collection.objects.create(
+            description='<a href="http://example.com">example.com</a> '
+                        'http://example.com <b>foo</b> some text')
+        # All markup escaped, links are stripped.
+        eq_(unicode(c.description), '&lt;b&gt;foo&lt;/b&gt; some text')
+
     def test_icon_url(self):
         # Has no icon.
         c = Collection(pk=512, modified=datetime.datetime.now())

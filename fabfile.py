@@ -4,8 +4,8 @@ from os.path import join as pjoin
 from fabric.api import (env, execute, lcd, local, parallel,
                         run, roles, task)
 
-from fabdeploytools import helpers
 import fabdeploytools.envs
+from fabdeploytools import helpers
 
 import deploysettings as settings
 
@@ -119,11 +119,11 @@ def update_celery():
     if getattr(settings, 'CELERY_SERVICE_PREFIX', False):
         restarts.extend(['supervisorctl restart {0}{1} &'.format(
                          settings.CELERY_SERVICE_PREFIX, x)
-                         for x in ('', '-devhub', '-priority')])
+                         for x in ('', '-devhub', '-priority', '-limited')])
     if getattr(settings, 'CELERY_SERVICE_MKT_PREFIX', False):
         restarts.extend(['supervisorctl restart {0}{1} &'.format(
                          settings.CELERY_SERVICE_MKT_PREFIX, x)
-                         for x in ('', '-devhub', '-priority')])
+                         for x in ('', '-devhub', '-priority', '-limited')])
 
     if restarts:
         run('%s wait' % ' '.join(restarts))

@@ -7,6 +7,7 @@ from django.utils import encoding
 import bleach
 import commonware.log
 
+import amo
 import amo.models
 from amo import urlresolvers
 from . import utils
@@ -142,7 +143,26 @@ class Translation(amo.models.ModelBase):
 
 
 class PurifiedTranslation(Translation):
-    """Run the string through bleach to get a safe, linkified version."""
+    """Run the string through bleach to get a safe version."""
+    allowed_tags = [
+        'a',
+        'abbr',
+        'acronym',
+        'b',
+        'blockquote',
+        'code',
+        'em',
+        'i',
+        'li',
+        'ol',
+        'strong',
+        'ul',
+    ]
+    allowed_attributes = {
+        'a': ['href', 'title', 'rel'],
+        'abbr': ['title'],
+        'acronym': ['title'],
+    }
 
     class Meta:
         proxy = True
@@ -155,38 +175,54 @@ class PurifiedTranslation(Translation):
     def __html__(self):
         return unicode(self)
 
+    def __truncate__(self, length, killwords, end):
+        return utils.truncate(unicode(self), length, killwords, end)
+
     def clean(self):
         from amo.utils import clean_nl
         super(PurifiedTranslation, self).clean()
-        try:
-            cleaned = bleach.clean(self.localized_string)
-        except Exception as e:
-            log.error('Failed to clean %s: %r' % (self.localized_string, e),
-                      exc_info=sys.exc_info())
-            cleaned = ''
-        linkified = urlresolvers.linkify_with_outgoing(cleaned)
-        self.localized_string_clean = clean_nl(linkified).strip()
+        cleaned = self.clean_localized_string()
+        self.localized_string_clean = clean_nl(cleaned).strip()
 
-    def __truncate__(self, length, killwords, end):
-        return utils.truncate(unicode(self), length, killwords, end)
+    def clean_localized_string(self):
+        # All links (text and markup) are normalized.
+        linkified = urlresolvers.linkify_with_outgoing(self.localized_string)
+        # Keep only the allowed tags and attributes, escape the rest.
+        return bleach.clean(linkified, tags=self.allowed_tags,
+                            attributes=self.allowed_attributes)
 
 
 class LinkifiedTranslation(PurifiedTranslation):
     """Run the string through bleach to get a linkified version."""
+    allowed_tags = ['a']
+    allowed_attributes = {
+        'a': ['href', 'title', 'rel'],
+    }
 
     class Meta:
         proxy = True
 
-    def clean(self):
-        linkified = urlresolvers.linkify_with_outgoing(self.localized_string)
-        try:
-            clean = bleach.clean(linkified, tags=['a'],
-                                 attributes={'a': ['href', 'rel']})
-        except Exception as e:
-            log.error('Failed to clean %s: %r' % (linkified, e),
-                      exc_info=sys.exc_info())
-            clean = ''
-        self.localized_string_clean = clean
+
+class NoLinksMixin(object):
+    """Mixin used to remove links (URLs and text) from localized_string."""
+
+    def clean_localized_string(self):
+        cleaned = super(NoLinksMixin, self).clean_localized_string()
+        return amo.utils.remove_links(cleaned)
+
+
+class NoLinksTranslation(NoLinksMixin, PurifiedTranslation):
+    """Run the string through bleach, escape markup and strip all the links."""
+
+    class Meta:
+        proxy = True
+
+
+class NoLinksNoMarkupTranslation(NoLinksMixin, LinkifiedTranslation):
+    """Run the string through bleach, escape markup and strip all the links."""
+
+    class Meta:
+        proxy = True
 
 
 class TranslationSequence(models.Model):

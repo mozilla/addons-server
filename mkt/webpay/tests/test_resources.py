@@ -31,7 +31,6 @@ class TestPrepare(PurchaseTest, RestOAuth):
     def setUp(self):
         RestOAuth.setUp(self)  # Avoid calling PurchaseTest.setUp().
         self.user = UserProfile.objects.get(pk=2519)
-        self.create_switch('marketplace')
         self.list_url = reverse('webpay-prepare')
         self.setup_base()
         self.setup_package()

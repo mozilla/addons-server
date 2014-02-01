@@ -36,6 +36,7 @@ from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
 from django.utils.http import urlquote
 
+import bleach
 import elasticutils.contrib.django as elasticutils
 import html5lib
 import jinja2
@@ -447,6 +448,9 @@ def clean_nl(string):
         return tree
 
     parse = parse_html(html5lib.parseFragment(string))
+    if not parse.childNodes:
+        # The parser couldn't make sense of the given html, eg bad markup.
+        return ''
 
     walker = html5lib.treewalkers.getTreeWalker('simpletree')
     stream = walker(parse)
@@ -1136,3 +1140,16 @@ def find_language(locale):
         return locale
 
     return None
+
+
+def remove_links(html):
+    """Remove all the links from the given html."""
+    # First call bleach.linkify to transform text links to real links.
+    linkified = bleach.linkify(unicode(html))
+    # Then call bleach.linkify with a callback that will "empty" all the links:
+    # <a href="http://example.com">http://example.com</a> will become
+    # <a></a>.
+    empty_links = bleach.linkify(linkified,
+                                 callbacks=[lambda attrs, new: {'_text': ''}])
+    # Now simply remove those empty links.
+    return empty_links.replace('<a></a>', '')

@@ -235,7 +235,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     slug = models.CharField(max_length=30, unique=True, null=True)
     # This column is only used for webapps, so they can have a slug namespace
     # separate from addons and personas.
-    app_slug = models.CharField(max_length=30, unique=True, null=True, blank=True)
+    app_slug = models.CharField(max_length=30, unique=True, null=True,
+                                blank=True)
     name = TranslatedField(default=None)
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
@@ -1042,7 +1043,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         q = sorted(q, key=lambda u: (u.addon_id, u.position))
         for addon_id, users in itertools.groupby(q, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
-        # FIXME: set listed_authors to empty list on addons without listed 
+        # FIXME: set listed_authors to empty list on addons without listed
         # authors.
 
     @staticmethod
@@ -1300,9 +1301,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return (self.premium_type not in
                 (amo.ADDON_FREE, amo.ADDON_OTHER_INAPP))
 
-    def can_be_purchased(self):
-        return self.is_premium() and self.status in amo.REVIEWED_STATUSES
-
     def can_be_deleted(self):
         return not self.is_deleted
 
@@ -1410,12 +1408,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         personas = (Addon.objects.no_cache().filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
-        webapps = (
-            Addon.objects.no_cache().filter(type=amo.ADDON_WEBAPP,
-                                  status=amo.STATUS_PUBLIC,
-                                  versions__files__status=amo.STATUS_PUBLIC)
-                          .values('id')
-                          .annotate(last_updated=Max('versions__created')))
+        webapps = (Addon.objects.no_cache()
+                   .filter(type=amo.ADDON_WEBAPP,
+                           status=amo.STATUS_PUBLIC,
+                           versions__files__status=amo.STATUS_PUBLIC)
+                   .values('id')
+                   .annotate(last_updated=Max('versions__created')))
 
         return dict(public=public, exp=exp, personas=personas,
                     lite=lite, webapps=webapps)

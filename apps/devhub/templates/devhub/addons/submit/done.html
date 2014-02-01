@@ -63,31 +63,4 @@
   </div>
 {% endif %}
 
-{% if waffle.switch('marketplace') and addon.type in amo.ADDON_BECOME_PREMIUM %}
-  <div id="marketplace-enroll" class="action-needed">
-    <h3>{{ _('Enrolling in Marketplace') }}</h3>
-    {% with doc_url=url('devhub.docs', doc_name='marketplace'),
-            payments_url=addon.get_dev_url('payments') %}
-      {% if webapp %}
-        <p>
-          {# TODO(apps): Finalize copy. #}
-          If this is a premium app you wish to sell in our Marketplace, be
-          sure to enroll on the <a href="{{ payments_url }}">Manage Payments</a>
-          page. {#<a href="{{ doc_url }}">Learn more</a>.#}
-        </p>
-      {% else %}
-        <p>
-          {% trans %}
-            If this is a premium add-on you wish to sell in our Marketplace, be
-            sure to enroll on the <a href="{{ payments_url }}">Manage Payments</a>
-            page <b>before</b> your add-on is reviewed by an editor.
-          {% endtrans %}
-          {# TODO(marketplace-docs):
-          <a href="{{ doc_url }}">Learn more</a>.
-          #}
-        </p>
-      {% endif %}
-    {% endwith %}
-  </div>
-{% endif %}
 {% endblock %}

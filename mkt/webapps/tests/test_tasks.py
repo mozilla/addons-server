@@ -642,6 +642,17 @@ class TestUpdateDeveloperName(amo.tests.TestCase):
         eq_(version.developer_name, u'New Dêv')
 
     @mock.patch('files.utils.WebAppParser.parse')
+    def test_update_developer_name_latest_version(self, mock_parser):
+        mock_parser.return_value = {
+            'developer_name': u'New Dêv'
+        }
+        self.app.latest_version.update(_developer_name='')
+        update_developer_name(ids=(self.app.pk,))
+        version = self.app.latest_version.reload()
+        eq_(version._developer_name, u'New Dêv')
+        eq_(version.developer_name, u'New Dêv')
+
+    @mock.patch('files.utils.WebAppParser.parse')
     @mock.patch('mkt.webapps.tasks._log')
     def test_update_developer_name_validation_error(self, _log, mock_parser):
         mock_parser.side_effect = ValidationError('dummy validation error')
