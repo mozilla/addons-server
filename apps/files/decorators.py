@@ -59,7 +59,11 @@ def file_view(func, **kwargs):
         result = allowed(request, file_)
         if result is not True:
             return result
-        obj = FileViewer(file_, is_webapp=kwargs.get('is_webapp', False))
+        try:
+            obj = FileViewer(file_, is_webapp=kwargs.get('is_webapp', False))
+        except ObjectDoesNotExist:
+            raise http.Http404
+
         response = func(request, obj, *args, **kw)
         if obj.selected:
             response['ETag'] = '"%s"' % obj.selected.get('md5')
