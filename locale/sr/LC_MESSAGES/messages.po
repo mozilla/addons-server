@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-01 21:52+0000\n"
+"PO-Revision-Date: 2014-02-02 22:25+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391291520.0\n"
+"X-POOTLE-MTIME: 1391379959.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -5896,7 +5896,7 @@ msgstr "Користи контролу built-in верзије и дељење"
 #: apps/devhub/templates/devhub/builder.html:60
 #: mkt/developers/templates/developers/builder.html:60
 msgid "Try the Builder Now"
-msgstr ""
+msgstr "Испробајте Builder сада"
 
 #: apps/devhub/templates/devhub/builder.html:68
 #: mkt/developers/templates/developers/builder.html:68
@@ -5965,7 +5965,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/builder.html:109
 #: mkt/developers/templates/developers/builder.html:109
 msgid "Help is at Hand!"
-msgstr ""
+msgstr "Помоћ је на дохват руке!"
 
 #: apps/devhub/templates/devhub/builder.html:111
 #: mkt/developers/templates/developers/builder.html:111
@@ -5974,6 +5974,9 @@ msgid ""
 "(url_docs)s\">extensive documentation</a> and a massive developer community "
 "to make sure you're never on your own."
 msgstr ""
+"Треба Вам мало подршке у изградњи Вашег додатка? Имамо <a href=\"%"
+"(url_docs)s\">обимну документацију</a> и огромну заједницу програмера који ће "
+"се потрудити да се никад не осећате сами."
 
 #: apps/devhub/templates/devhub/builder.html:120
 #: mkt/developers/templates/developers/builder.html:120
@@ -5981,6 +5984,8 @@ msgid ""
 "Interested in making the Add-on SDK even better? Grab the source code, and "
 "find out how to help <a href='%(url_wiki)s'>here</a>."
 msgstr ""
+"Заинтересовани сте за побољшање SDK-а за додатке? Зграбите изворни код, и "
+"пронађите начин да помогнете <a href='%(url_wiki)s'>овде</a>."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -5988,7 +5993,7 @@ msgstr ""
 #: apps/search/templates/search/results.html:9
 #: apps/search/templates/search/mobile/results.html:6
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Претражи"
 
 #: apps/devhub/templates/devhub/devhub_search.html:6
 #: apps/devhub/templates/devhub/search.html:9
@@ -6023,31 +6028,33 @@ msgstr "Search"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:27
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:28
 msgid "Search Results"
-msgstr ""
+msgstr "Резултати претраге"
 
 #. {0} is a search term, such as Firebug.
 #: apps/devhub/templates/devhub/devhub_search.html:13
 #: apps/search/templates/search/results.html:11
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Резултати претраге за \"{0}\""
 
 #: apps/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Молимо Вас унесите термин за претраживање."
 
 #: apps/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Учитавам резултате&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:23
 msgid "Calling All Add-ons!"
-msgstr ""
+msgstr "Позивамо све додатке!"
 
 #: apps/devhub/templates/devhub/index.html:25
 msgid ""
 "There's no better way to distribute your add-on than by hosting it on "
 "Mozilla Add-ons."
 msgstr ""
+"Не постоји бољи начин да поделите Ваш додатак од његовог хостовања на "
+"Mozilla додаци."
 
 #: apps/devhub/templates/devhub/index.html:29
 #: apps/devhub/templates/devhub/index.html:34
@@ -6324,17 +6331,19 @@ msgstr ""
 #: apps/devhub/templates/devhub/package_addon.html:24
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:15
 msgid "Describe your add-on"
-msgstr ""
+msgstr "Опишите свој додатак"
 
 #: apps/devhub/templates/devhub/package_addon.html:26
 msgid ""
 "First, you need to enter some basic information about your add-on. This will "
 "be displayed in the Add-ons Manager when your extension is installed."
 msgstr ""
+"Прво, морате унети неке основне информације о Вашем додатку. Ово ће бити "
+"приказано у управљачу додацима када се Ваша екстензија инсталира."
 
 #: apps/devhub/templates/devhub/package_addon.html:33
 msgid "Add-on Name"
-msgstr ""
+msgstr "Назив додатка"
 
 #: apps/devhub/templates/devhub/package_addon.html:35
 msgid "Add-on Version"
@@ -6342,25 +6351,27 @@ msgstr "Верзија додатка"
 
 #: apps/devhub/templates/devhub/package_addon.html:36
 msgid "Unique ID"
-msgstr ""
+msgstr "Јединствени ИД"
 
 #: apps/devhub/templates/devhub/package_addon.html:37
 msgid "Package Name"
-msgstr ""
+msgstr "Назив пакета"
 
 #: apps/devhub/templates/devhub/package_addon.html:41
 msgid "Who's working on your add-on?"
-msgstr ""
+msgstr "Ко ради на Вашем додатку?"
 
 #: apps/devhub/templates/devhub/package_addon.html:43
 msgid ""
 "Tell us about the people or companies behind this add-on. This information "
 "appears in the add-on's About dialog."
 msgstr ""
+"Реците нам о људима или компанијама који стоје иза овог додатка. Ова "
+"информација се појављује у \"О\" дијалогу додатка."
 
 #: apps/devhub/templates/devhub/package_addon.html:49
 msgid "Primary Author"
-msgstr ""
+msgstr "Примарни аутор"
 
 #: apps/devhub/templates/devhub/package_addon.html:50
 msgid "Contributors"
@@ -6466,17 +6477,19 @@ msgid ""
 "After upload, a series of automated validation tests will be run on your "
 "file."
 msgstr ""
+"Након отпремања, низ аутоматизованих тестова валидације ће бити покренути на "
+"Вашем додатку."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
 #: mkt/developers/templates/developers/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Резултати валидације за {0}"
 
 #: apps/devhub/templates/devhub/validation.html:7
 #: mkt/developers/templates/developers/validation.html:7
 msgid "Validation Results"
-msgstr ""
+msgstr "Резултати валидације"
 
 #: apps/devhub/templates/devhub/validation.html:20
 #: mkt/developers/templates/developers/validation.html:20
@@ -6528,7 +6541,7 @@ msgstr "Активност"
 #: apps/devhub/templates/devhub/includes/blog_posts.html:4
 #: apps/devhub/templates/devhub/includes/blog_posts.html:6
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Претплатите се на ове новости"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:7
 msgid ""
