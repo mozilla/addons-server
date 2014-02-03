@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-03 18:11+0000\n"
+"PO-Revision-Date: 2014-02-03 18:12+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1391451074.0\n"
+"X-POOTLE-MTIME: 1391451179.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -1911,7 +1911,7 @@ msgstr "Visszatérítés jóváhagyva a(z) {addon} {0} vásárlója számára."
 
 #: apps/amo/log.py:417
 msgid "Instant refund granted for {addon}."
-msgstr ""
+msgstr "Azonnali visszatérítés jóváhagyva ehhez: {addon}."
 
 #: apps/amo/log.py:422
 msgid "Account updated."
@@ -1919,11 +1919,11 @@ msgstr "Felhasználói fiók frissítve."
 
 #: apps/amo/log.py:427
 msgid "Pre approval added."
-msgstr ""
+msgstr "Előzetes jóváhagyás hozzáadva."
 
 #: apps/amo/log.py:432
 msgid "Pre-approval removed."
-msgstr ""
+msgstr "Előzetes jóváhagyás eltávolítva."
 
 #: apps/amo/log.py:437
 msgid "Account currency changed"
