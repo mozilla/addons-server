@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-30 15:18+0000\n"
+"PO-Revision-Date: 2014-02-03 17:25+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1391095103.0\n"
+"X-POOTLE-MTIME: 1391448331.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -5077,7 +5077,7 @@ msgstr[1] "<b>{0}</b> alkalmazás"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:32 mkt/developers/templates/developers/apps/dashboard.html:14
 msgid "Welcome to the Developer Dashboard"
-msgstr "Üdvözli a Developer Dashboard!"
+msgstr "Üdvözöljük a fejlesztői vezérlőpulton"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:41
 msgid "You don't currently have any add-ons hosted on Mozilla Add-ons. To learn how the process works and submit your first add-on, click Get Started below."
@@ -20147,11 +20147,13 @@ msgstr "A több ezer elérhető kiegészítő kipróbálásához töltse le a <a
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:146
 msgid "Welcome to {0} Add-ons."
-msgstr "Üdvözli a {0} kiegészítő."
+msgstr "Üdvözöljük a {0} kiegészítők oldalon."
 
 #: templates/impala/base.html:149
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
+"Válasszon több ezer extra funkció és stílus közül, hogy Firefoxát teljesen "
+"magáénak érezhesse."
 
 #: templates/impala/base.html:154
 msgid "Add extra features and styles to make %(app)s your own."
