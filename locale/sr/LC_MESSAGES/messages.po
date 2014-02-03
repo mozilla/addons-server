@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-02 22:25+0000\n"
+"PO-Revision-Date: 2014-02-03 12:33+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391379959.0\n"
+"X-POOTLE-MTIME: 1391430781.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -6127,6 +6127,11 @@ msgid ""
 "the Add-on SDK. What's more, add-ons built with these tools are restartless "
 "by default."
 msgstr ""
+"Додаци пружају милионима корисника Firefox-а да побољшају и прилагоде њихово "
+"искуство на вебу. Ако сте веб програмер и знате HTML, JavaScript и CSS, већ "
+"знате шта треба да би се направили сјајни додаци са Builder-ом и SDK-ом за "
+"додатаке. Шта више, додаци направљени помоћу ових алата су подразумевано без "
+"поновног покретања."
 
 #: apps/devhub/templates/devhub/index.html:110
 msgid "Start Making Add-ons"
@@ -6379,7 +6384,7 @@ msgstr "Сарадници"
 
 #: apps/devhub/templates/devhub/package_addon.html:54
 msgid "Where will your add-on run?"
-msgstr ""
+msgstr "Где ће Ваши додаци радити?"
 
 #: apps/devhub/templates/devhub/package_addon.html:56
 msgid ""
@@ -6388,6 +6393,10 @@ msgid ""
 "installable on. Make sure you only select applications and versions that you "
 "intend to test your add-on with."
 msgstr ""
+"Изаберите апликацију и верзију коју ће Ваш додатак да подржава. Верзију коју "
+"изабере ће бити једина верзија на којој ће Ваш додатак моћи да буде "
+"инсталиран. Будите сигурни да изаберете само оне апликације и верзије на "
+"којима намеравате да тестирате Ваше додатке."
 
 #: apps/devhub/templates/devhub/package_addon.html:64
 msgid "Supported Applications and Versions"
@@ -6403,6 +6412,9 @@ msgid ""
 "your add-on package. We'll include documented code for each item you select "
 "so your extension will work out of the box."
 msgstr ""
+"Почните одмах тако што ћете изабрати компоненте корисничког интерфејса који "
+"ће се налазити у Вашем додатку. Укључићемо документован код за сваку ставку "
+"коју изаберете тако да ће Ваши додаци радити без проблема."
 
 #: apps/devhub/templates/devhub/package_addon.html:95
 msgid "Submit and Build"
@@ -6417,6 +6429,8 @@ msgid ""
 "Want to create XULRunner applications, XPCOM components, and other advanced "
 "skeletons? Visit the <a href=\"%(url)s\">MozDev Project Wizard</a>."
 msgstr ""
+"Желите да направите XULRunner апликације, XPCOM компоненте, и друге напредне "
+"основе? Посетите <a href=\"%(url)s\">MozDev Project чаробњака</a>."
 
 #: apps/devhub/templates/devhub/package_addon_success.html:10
 msgid "Add-on packaged successfully!"
@@ -6428,6 +6442,10 @@ msgid ""
 "source. To install as an extension in Firefox or another compatible "
 "application, simply rename the <kbd>.zip</kbd> extension to <kbd>.xpi</kbd>."
 msgstr ""
+"Употребите испод везу за преузимање да бисте сачували копију компресованог "
+"кода Ваше екстензије. Да бисте инсталирали екстензију у Firefox или у другу "
+"компатибилну апликацију, једноставно преименујте <kbd><kbd>.zip</kbd> "
+"екстензију у <kbd>.xpi</kbd>."
 
 #: apps/devhub/templates/devhub/package_addon_success.html:22
 msgid "Please wait&hellip;"
@@ -6439,7 +6457,7 @@ msgstr "JavaScript треба да је омогућен како би прим�
 
 #: apps/devhub/templates/devhub/package_addon_success.html:29
 msgid "What do I do next?"
-msgstr ""
+msgstr "Који је следећи корак?"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:30
 msgid ""
