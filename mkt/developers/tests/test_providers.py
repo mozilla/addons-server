@@ -1,6 +1,8 @@
+from datetime import datetime
+
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 
-from mock import patch
+from mock import ANY, Mock, patch
 from nose.tools import eq_, ok_, raises
 
 from amo.tests import app_factory, TestCase
@@ -52,7 +54,7 @@ class Patcher(object):
         self.addCleanup(ref_patcher.stop)
 
         generic_patcher = patch('mkt.developers.providers.Provider.generic',
-                                name='test_provider.Patcher.generic_patcher')
+                                name='test_providers.Patcher.generic_patcher')
         self.generic_patcher = generic_patcher.start()
         self.generic_patcher.patcher = generic_patcher
         self.addCleanup(generic_patcher.stop)
@@ -138,10 +140,24 @@ class TestReference(Patcher, TestCase):
         assert self.ref_patcher.terms.called
 
     def test_terms_update(self):
+        seller_mock = Mock()
+        seller_mock.get.return_value = {
+            'id': 1,
+            'resource_uri': '/a/b/c',
+            'resource_name': 'x',
+            'initial_field': u'initial content',
+        }
+        seller_mock.put.return_value = {}
+        self.ref_patcher.sellers.return_value = seller_mock
         account = self.make_account()
         self.ref.terms_update(account)
         eq_(account.reload().agreed_tos, True)
         assert self.ref_patcher.sellers.called
+        seller_mock.get.assert_called_with()
+        seller_mock.put.assert_called_with({
+            'agreement': datetime.now().strftime('%Y-%m-%d'),
+            'initial_field': u'initial content',
+        })
 
     def test_account_retrieve(self):
         account = self.make_account()
@@ -180,4 +196,8 @@ class TestReference(Patcher, TestCase):
         self.ref_patcher.products.get.assert_called_with(
             seller_id='1', external_id='ext')
         self.ref_patcher.products.post.assert_called_with(data={
-            'seller_id': '1', 'external_id': 'ext', 'name': unicode(app.name)})
+            'seller_id': '1',
+            'external_id': 'ext',
+            'name': unicode(app.name),
+            'uuid': ANY,
+        })
