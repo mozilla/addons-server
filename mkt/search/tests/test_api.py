@@ -913,6 +913,11 @@ class TestFeaturedCollections(BaseFeaturedTests):
         ok_(header in res)
         eq_(res[header], 'region,carrier')
 
+    @patch('mkt.search.api.FeaturedSearchView.get_region')
+    def test_region_None(self, get_region):
+        get_region.return_value = None
+        self.test_added_to_results()
+
 
 class TestFeaturedOperator(TestFeaturedCollections):
     col_type = COLLECTIONS_TYPE_OPERATOR
