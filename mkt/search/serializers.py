@@ -107,7 +107,9 @@ class ESAppSerializer(AppSerializer):
         # because we are only setting what the serializer is going to need.
         # In particular, latest_version.is_privileged needs to be set because
         # it's used by obj.app_type_id.
+        obj.listed_authors = []
         obj._current_version = Version()
+        obj._current_version.addon = obj
         obj._current_version._developer_name = data['author']
         obj._current_version.supported_locales = data['supported_locales']
         obj._current_version.version = data['current_version']
