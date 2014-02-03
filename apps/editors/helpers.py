@@ -13,6 +13,7 @@ from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import amo
+from access import acl
 from addons.helpers import new_context
 from addons.models import Addon
 from amo.helpers import absolutify, breadcrumbs, page_title
@@ -103,12 +104,18 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
         queue = queue_ids.get(queue_id, 'queue')
 
     if queue:
-        queues = {'queue': _("Queue"),
-                  'pending': _("Pending Updates"),
-                  'nominated': _("Full Reviews"),
-                  'prelim': _("Preliminary Reviews"),
-                  'moderated': _("Moderated Reviews"),
-                  'fast_track': _("Fast Track")}
+        queues = {
+            'queue': _('Queue'),
+            'pending': _('Pending Updates'),
+            'nominated': _('Full Reviews'),
+            'prelim': _('Preliminary Reviews'),
+            'moderated': _('Moderated Reviews'),
+            'fast_track': _('Fast Track'),
+
+             'pending_themes': _('Pending Themes'),
+             'flagged_themes': _('Flagged Themes'),
+             'rereview_themes': _('Update Themes'),
+        }
 
         if items and not queue == 'queue':
             url = reverse('editors.queue_%s' % queue)
@@ -797,3 +804,59 @@ class ReviewFiles(ReviewBase):
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
 
         self.send_super_mail()
+
+
+@register.function
+@jinja2.contextfunction
+def logs_tabnav_themes(context):
+    """
+    Returns tuple of tab navigation for the log pages.
+
+    Each tuple contains three elements: (named url, tab_code, tab_text)
+    """
+    rv = [
+        ('editors.themes.logs', 'themes', _('Reviews'))
+    ]
+    if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
+        rv.append(('editors.themes.deleted', 'deleted', _('Deleted')))
+
+    return rv
+
+
+@register.function
+@jinja2.contextfunction
+def queue_tabnav_themes(context):
+    """Similar to queue_tabnav, but for themes."""
+    tabs = []
+    if acl.action_allowed(context['request'], 'Personas', 'Review'):
+        tabs.append((
+            'editors.themes.list', 'pending_themes', _('Pending'),
+        ))
+    if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
+        tabs.append((
+            'editors.themes.list_flagged', 'flagged_themes', _('Flagged'),
+        ))
+        tabs.append((
+            'editors.themes.list_rereview', 'rereview_themes',
+            _('Updates'),
+        ))
+    return tabs
+
+
+@register.function
+@jinja2.contextfunction
+def queue_tabnav_themes_interactive(context):
+    """Tabnav for the interactive shiny theme queues."""
+    tabs = []
+    if acl.action_allowed(context['request'], 'Personas', 'Review'):
+        tabs.append((
+            'editors.themes.queue_themes', 'pending', _('Pending'),
+        ))
+    if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
+        tabs.append((
+            'editors.themes.queue_flagged', 'flagged', _('Flagged'),
+        ))
+        tabs.append((
+            'editors.themes.queue_rereview', 'rereview', _('Updates'),
+        ))
+    return tabs

@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from addons.urls import ADDON_ID
-from . import views
+from editors import views, views_themes
 
 
 # All URLs under /editors/
@@ -37,4 +37,35 @@ urlpatterns = (
     url(r'^abuse-reports/%s$' % ADDON_ID, views.abuse_reports,
         name='editors.abuse_reports'),
     url(r'^leaderboard/$', views.leaderboard, name='editors.leaderboard'),
+
+    url('^themes$', views_themes.home,
+        name='editors.themes.home'),
+    url('^themes/pending$', views_themes.themes_list,
+        name='editors.themes.list'),
+    url('^themes/flagged$', views_themes.themes_list,
+        name='editors.themes.list_flagged',
+        kwargs={'flagged': True}),
+    url('^themes/updates$', views_themes.themes_list,
+        name='editors.themes.list_rereview',
+        kwargs={'rereview': True}),
+    url('^themes/queue/$', views_themes.themes_queue,
+        name='editors.themes.queue_themes'),
+        url('^themes/queue/flagged$', views_themes.themes_queue_flagged,
+        name='editors.themes.queue_flagged'),
+    url('^themes/queue/updates$', views_themes.themes_queue_rereview,
+        name='editors.themes.queue_rereview'),
+    url('^themes/queue/commit$', views_themes.themes_commit,
+        name='editors.themes.commit'),
+    url('^themes/queue/single/(?P<slug>[^ /]+)$', views_themes.themes_single,
+        name='editors.themes.single'),
+    url('^themes/history/(?P<username>[^ /]+)?$',
+        views_themes.themes_history, name='editors.themes.history'),
+    url(r'^themes/logs$', views_themes.themes_logs,
+        name='editors.themes.logs'),
+    url('^themes/release$', views_themes.release_locks,
+        name='editors.themes.release_locks'),
+    url('^themes/logs/deleted/$', views_themes.deleted_themes,
+        name='editors.themes.deleted'),
+    url('^themes/search/$', views_themes.themes_search,
+        name='editors.themes.search'),
 )
