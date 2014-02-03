@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-14 19:23+0000\n"
+"PO-Revision-Date: 2014-02-03 18:30+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1389727438.0\n"
+"X-POOTLE-MTIME: 1391452208.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -14693,7 +14693,7 @@ msgstr "委內瑞拉"
 
 #: mkt/constants/bango.py:260
 msgid "Viet Nam"
-msgstr ""
+msgstr "越南"
 
 #: mkt/constants/bango.py:261
 msgid "Virgin Islands, British"
@@ -15055,11 +15055,11 @@ msgstr "此應用程式需要平台支援第三方鍵盤。"
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "多重網路資訊"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
-msgstr ""
+msgstr "此應用程式需要取得多重網路連線的資訊。"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15104,7 +15104,7 @@ msgstr "合法藥物"
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:15
 msgid "Inappropriate Language"
-msgstr ""
+msgstr "不適當的語言"
 
 #: mkt/constants/ratingdescriptors.py:16 mkt/constants/ratingdescriptors.py:53 mkt/constants/ratingdescriptors.py:74 mkt/constants/ratingdescriptors.py:86 mkt/constants/ratingdescriptors.py:103
 msgid "No Descriptors"
@@ -15422,7 +15422,7 @@ msgstr "泛歐遊戲資訊組織"
 
 #: mkt/constants/regions.py:56
 msgid "Rest of World"
-msgstr ""
+msgstr "世界其他地區"
 
 #: mkt/constants/regions.py:111
 msgid "Venezuela"
@@ -16203,13 +16203,15 @@ msgstr "安裝資訊網址必須以一個通訊協定開頭（像是 <code>http:
 
 #: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:124
 msgid "Learn more about submitting an app."
-msgstr ""
+msgstr "了解更多送出應用程式的相關資訊。"
 
 #: mkt/developers/templates/developers/validate_addon.html:69
 msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
+"驗證器是在您實際送出應用程式前，可協助您偵測程式錯誤、最佳實作方式及程式是否符合 Marketplace "
+"指南的工具。若您有興趣想了解其工作原理，或是想要自己執行一份，您可以到 <a href=\"%(repo)s\">Github</a> 取得原始碼。"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:16
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
@@ -16500,7 +16502,7 @@ msgstr "橫幅訊息"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Exclusive message shown on the listing page, only in the selected regions."
-msgstr ""
+msgstr "僅針對選擇的地區的軟體上架頁面中顯示此訊息。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Regions to show banner in"
