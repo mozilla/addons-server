@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-03 17:25+0000\n"
+"PO-Revision-Date: 2014-02-03 18:11+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1391448331.0\n"
+"X-POOTLE-MTIME: 1391451074.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -1883,31 +1883,31 @@ msgstr "{addon} manifest frissítve."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} jóváhagyva, de nyilvánossá tételre vár."
 
 #: apps/amo/log.py:384 apps/constants/base.py:41
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Jóváhagyva, de vár"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} megvásárolva."
 
 #: apps/amo/log.py:397
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} telepítve."
 
 #: apps/amo/log.py:402
 msgid "Refund requested for {addon}"
-msgstr ""
+msgstr "Visszatérítés kérve ehhez: {addon}"
 
 #: apps/amo/log.py:407
 msgid "Refund declined for {addon} for {0}."
-msgstr ""
+msgstr "Visszatérítés elutasítva a(z) {addon} {0} vásárlója számára."
 
 #: apps/amo/log.py:412
 msgid "Refund granted for {addon} for {0}."
-msgstr ""
+msgstr "Visszatérítés jóváhagyva a(z) {addon} {0} vásárlója számára."
 
 #: apps/amo/log.py:417
 msgid "Instant refund granted for {addon}."
