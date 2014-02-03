@@ -395,6 +395,12 @@ class TestApi(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_fuzzy_match(self):
+        res = self.client.get(self.url, data={'q': 'soemthing'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_icu_folding(self):
         self.webapp.name = {'es': 'Páginas Amarillos'}
         self.webapp.save()
@@ -912,6 +918,11 @@ class TestFeaturedCollections(BaseFeaturedTests):
         header = 'API-Fallback-%s' % self.prop_name
         ok_(header in res)
         eq_(res[header], 'region,carrier')
+
+    @patch('mkt.search.api.FeaturedSearchView.get_region')
+    def test_region_None(self, get_region):
+        get_region.return_value = None
+        self.test_added_to_results()
 
 
 class TestFeaturedOperator(TestFeaturedCollections):

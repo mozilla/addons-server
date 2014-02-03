@@ -760,6 +760,14 @@ class TestESAppToDict(amo.tests.ESTestCase):
         res = self.serialize()
         eq_(res['upsell'], False)
 
+    def test_developer_name_empty(self):
+        self.app.current_version.update(_developer_name='')
+        self.app.addonuser_set.update(listed=False)
+        self.app.save()
+        self.refresh('webapp')
+        res = self.serialize()
+        eq_(res['author'], '')
+
 
 class TestSupportedLocales(amo.tests.TestCase):
 

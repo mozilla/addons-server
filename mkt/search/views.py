@@ -39,9 +39,13 @@ def name_only_query(q):
         'term': {'value': q, 'boost': 10},  # Exact match.
         'text': {'query': q, 'boost': 3, 'analyzer': 'standard'},
         'text': {'query': q, 'boost': 4, 'type': 'phrase'},
-        'fuzzy': {'value': q, 'boost': 2, 'prefix_length': 4},
         'startswith': {'value': q, 'boost': 1.5}
     }
+    # Only add fuzzy queries if q is a single word. It doesn't make sense to do
+    # a fuzzy query for multi-word queries.
+    if ' ' not in q:
+        rules['fuzzy'] = {'value': q, 'boost': 2, 'prefix_length': 1}
+
     for k, v in rules.iteritems():
         for field in ('name', 'app_slug', 'author'):
             d['%s__%s' % (field, k)] = v

@@ -263,6 +263,11 @@ class FilesBase(object):
         eq_(res.status_code, 302)
         self.assert3xx(res, reverse('mkt.files.list', args=ids))
 
+    def test_browse_deleted_version(self):
+        self.file.version.delete()
+        res = self.client.post(self.file_url(), {'left': self.file.id})
+        eq_(res.status_code, 404)
+
     def test_file_chooser(self):
         res = self.client.get(self.file_url())
         doc = pq(res.content)
