@@ -81,7 +81,11 @@ def compare_file_view(func, **kwargs):
             result = allowed(request, obj)
             if result is not True:
                 return result
-        obj = DiffHelper(one, two, is_webapp=kwargs.get('is_webapp', False))
+        try:
+            obj = DiffHelper(one, two, is_webapp=kwargs.get('is_webapp', False))
+        except ObjectDoesNotExist:
+            raise http.Http404
+
         response = func(request, obj, *args, **kw)
         if obj.left.selected:
             response['ETag'] = '"%s"' % obj.left.selected.get('md5')
