@@ -156,18 +156,16 @@ class TestFileValidation(amo.tests.TestCase):
 
     @mock.patch('files.models.File.has_been_validated')
     def test_json_results_post(self, has_been_validated):
-        has_been_validated.__ne__ = mock.Mock()
-        has_been_validated.__ne__.return_value = True
+        has_been_validated.__nonzero__.return_value = False
         eq_(self.client.post(self.json_url).status_code, 200)
-        has_been_validated.__ne__.return_value = False
+        has_been_validated.__nonzero__.return_value = True
         eq_(self.client.post(self.json_url).status_code, 200)
 
     @mock.patch('files.models.File.has_been_validated')
     def test_json_results_get(self, has_been_validated):
-        has_been_validated.__eq__ = mock.Mock()
-        has_been_validated.__eq__.return_value = True
+        has_been_validated.__nonzero__.return_value = True
         eq_(self.client.get(self.json_url).status_code, 200)
-        has_been_validated.__eq__.return_value = False
+        has_been_validated.__nonzero__.return_value = False
         eq_(self.client.get(self.json_url).status_code, 405)
 
 
@@ -271,9 +269,9 @@ class TestValidateFile(BaseUploadTest):
 
     @mock.patch('validator.validate.validate')
     def test_validator_sets_binary_flag_for_extensions(self, v):
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
+        self.client.post(reverse('devhub.json_file_validation',
+                                 args=[self.addon.slug, self.file.id]),
+                         follow=True)
         assert not v.call_args[1].get('compat_test', True)
 
     @mock.patch('devhub.tasks.run_validator')
@@ -548,7 +546,6 @@ class TestValidateFile(BaseUploadTest):
             'messages': [],
             'metadata': {}
         })
-        addon = Addon.objects.get(pk=3615)
         xpi = self.get_upload('extension.xpi')
         AppVersion.objects.create(
             application=Application.objects.get(guid=FIREFOX.guid),
