@@ -616,21 +616,11 @@ class TestEditPayments(amo.tests.TestCase):
         err = pq(res.content)('p.error').text()
         eq_('completed developer profile' in err, True)
 
-    def test_with_upsell_no_contributions(self):
-        AddonUpsell.objects.create(free=self.addon, premium=self.addon)
-        res = self.client.get(self.url)
-        error = pq(res.content)('p.error').text()
-        eq_('premium add-on enrolled' in error, True)
-        eq_(' %s' % self.addon.name in error, True)
-
-    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_addon_public(self):
         self.get_addon().update(status=amo.STATUS_PUBLIC)
         res = self.client.get(self.url)
         doc = pq(res.content)
         eq_(doc('#do-setup').text(), 'Set up Contributions')
-        eq_('You cannot enroll in the Marketplace' in doc('p.error').text(),
-            True)
 
     @mock.patch('addons.models.Addon.upsell')
     def test_upsell(self, upsell):
@@ -640,11 +630,10 @@ class TestEditPayments(amo.tests.TestCase):
         res = self.client.post(self.url, d)
         eq_('premium add-on' in res.content, True)
 
-    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_voluntary_contributions_addons(self):
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('.intro').length, 2)
+        eq_(doc('.intro').length, 1)
         eq_(doc('.intro.full-intro').length, 0)
 
 

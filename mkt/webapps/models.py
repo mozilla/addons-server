@@ -594,6 +594,8 @@ class Webapp(Addon):
                               .exclude(id=self.id).distinct()
                               .filter(addonuser__listed=True,
                                       authors__in=self.listed_authors))
+    def can_be_purchased(self):
+        return self.is_premium() and self.status in amo.REVIEWED_STATUSES
 
     def can_purchase(self):
         return self.is_premium() and self.premium and self.is_public()
