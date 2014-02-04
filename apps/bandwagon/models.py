@@ -307,11 +307,14 @@ class Collection(CollectionBase, amo.models.ModelBase):
              .update(ordering=ordering, modified=now))
 
         for addon, comment in comments.iteritems():
-            c = (CollectionAddon.objects.using('default')
-                 .filter(collection=self.id, addon=addon))
-            if c.exists():
-                c[0].comments = comment
-                c[0].save(force_update=True)
+            try:
+                c = (CollectionAddon.objects.using('default')
+                     .get(collection=self.id, addon=addon))
+            except CollectionAddon.DoesNotExist:
+                pass
+            else:
+                c.comments = comment
+                c.save(force_update=True)
 
         self.save()
 
