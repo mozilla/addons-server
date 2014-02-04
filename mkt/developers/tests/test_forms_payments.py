@@ -15,6 +15,7 @@ from users.models import UserProfile
 
 from mkt.developers import forms_payments, models
 from mkt.developers.tests.test_providers import Patcher
+from mkt.developers.tests.test_views_payments import setup_payment_account
 from mkt.site.fixtures import fixture
 
 
@@ -559,10 +560,13 @@ class TestRestoreAppStatus(amo.tests.TestCase):
         eq_(self.addon.status, amo.STATUS_PENDING)
 
 
-class TestBangoAccountForm(amo.tests.TestCase):
+class TestBangoAccountForm(Patcher, amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
+        super(TestBangoAccountForm, self).setUp()
+        self.app = Addon.objects.get(pk=337141)
+        self.user = self.app.addonuser_set.get().user
         form = forms_payments.BangoPaymentAccountForm()
         self.data = {}
         for field in form.fields:
@@ -575,7 +579,6 @@ class TestBangoAccountForm(amo.tests.TestCase):
 
     def test_bank_required(self):
         """When there is no account, require bank details."""
-
         form = forms_payments.BangoPaymentAccountForm(self.data)
         assert form.is_valid(), form.errors
 
@@ -585,9 +588,7 @@ class TestBangoAccountForm(amo.tests.TestCase):
 
     def test_bank_not_required(self):
         """When an account is specified, don't require bank details."""
-
-        account = mock.Mock()
-
+        account = setup_payment_account(self.app, self.user)
         form = forms_payments.BangoPaymentAccountForm(
             self.data, account=account)
         assert form.is_valid(), form.errors
@@ -599,14 +600,14 @@ class TestBangoAccountForm(amo.tests.TestCase):
 
     def test_on_save(self):
         """Save should just trigger the account's update function."""
-
-        account = mock.Mock()
-
+        account = setup_payment_account(self.app, self.user)
         form = forms_payments.BangoPaymentAccountForm(
             self.data, account=account)
         assert form.is_valid(), form.errors
 
-        form.cleaned_data = {'mock': 'talk'}
+        form.cleaned_data = {'account_name': 'foo', 'name': 'bob'}
         form.save()
 
-        account.update_account_details.assert_called_with(mock='talk')
+        account = account.reload()
+        eq_(account.payment_account.name, 'foo')
+        self.bango_patcher.api.by_url.assert_called_with('uid')
