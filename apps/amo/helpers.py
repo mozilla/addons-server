@@ -595,3 +595,10 @@ def hasOneToOne(context, obj, attr):
         return True
     except ObjectDoesNotExist:
         return False
+
+
+@register.function
+def no_results_amo():
+    # This prints a "No results found" message. That's all. Carry on.
+    t = env.get_template('amo/no_results.html').render()
+    return jinja2.Markup(t)

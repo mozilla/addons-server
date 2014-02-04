@@ -46,7 +46,7 @@
       {% endfor %}
     </tbody>
     </table>
-    {% if theme_reviews.paginator.num_pages > 1 %}
+    {% if theme_reviews.has_other_pages() %}
       <div class="listing-footer">
         {{ theme_reviews|impala_paginator }}
       </div>

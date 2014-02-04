@@ -333,7 +333,7 @@ class DeletedThemeLogForm(ReviewLogForm):
     def __init__(self, *args, **kwargs):
         super(DeletedThemeLogForm, self).__init__(*args, **kwargs)
         self.fields['search'].widget.attrs = {
-            # L10n: Descript of what can be searched for.
+            # L10n: Description of what can be searched for.
             'placeholder': _lazy(u'theme name'),
             'size': 30}
 
@@ -358,7 +358,7 @@ class ThemeReviewForm(happyforms.Form):
         theme = self.cleaned_data['theme']
         try:
             ThemeLock.objects.get(theme=theme)
-        except (ThemeLock.DoesNotExist):
+        except ThemeLock.DoesNotExist:
             raise forms.ValidationError(
                 _('Someone else is reviewing this theme.'))
         return theme
@@ -404,13 +404,7 @@ class ThemeReviewForm(happyforms.Form):
             theme.approve = datetime.datetime.now()
             theme.save()
 
-        elif action == rvw.ACTION_REJECT:
-            if is_rereview:
-                reject_rereview(theme)
-            else:
-                theme.addon.update(status=amo.STATUS_REJECTED)
-
-        elif action == rvw.ACTION_DUPLICATE:
+        elif action in (rvw.ACTION_REJECT, rvw.ACTION_DUPLICATE):
             if is_rereview:
                 reject_rereview(theme)
             else:
@@ -440,7 +434,8 @@ class ThemeReviewForm(happyforms.Form):
                 theme.id, action))
 
         score = 0
-        if action not in [rvw.ACTION_MOREINFO, rvw.ACTION_FLAG]:
+        if action in (rvw.ACTION_REJECT, rvw.ACTION_DUPLICATE,
+                      rvw.ACTION_APPROVE):
             score = ReviewerScore.award_points(theme_lock.reviewer, theme.addon,
                                                theme.addon.status)
         theme_lock.delete()
@@ -461,6 +456,6 @@ class ReviewAppLogForm(ReviewLogForm):
     def __init__(self, *args, **kwargs):
         super(ReviewAppLogForm, self).__init__(*args, **kwargs)
         self.fields['search'].widget.attrs = {
-            # L10n: Descript of what can be searched for.
+            # L10n: Description of what can be searched for.
             'placeholder': _lazy(u'app, reviewer, or comment'),
             'size': 30}

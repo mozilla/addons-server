@@ -8,13 +8,14 @@
   {{ macros.log_filter('themes', form) }}
   {{ macros.tabnav('logs', tab, logs_tabnav_themes() ) }}
 
-  <section class="island">
+  <section>
     {% if pager.object_list %}
-      <table id="log-listing" class="data-grid items">
+      <table class="data-grid items">
         <thead>
           <tr class="listing-header">
             <th>{{ _('Date') }}</th>
-            <th>{{ _('Event') }}</th>
+            <th>{{ _('Theme') }}</th>
+            <th>{{ _('Action') }}</th>
             <th>{{ _('Reviewer') }}</th>
             <th>&nbsp;</th>
           </tr>
@@ -24,8 +25,10 @@
             <tr{% if item.arguments[0] %} data-addonid="{{ item.arguments[0].id }}"{% endif %}>
               <td>{{ item.created|babel_datetime }}</td>
               <td>
-                  <a href="{{ url('editors.themes.single', item.arguments.0.slug) }}">{{ item.arguments.0.name }}</a>
-                  {{ ACTION_DICT.get(item.details.action) }}
+                <a href="{{ url('editors.themes.single', item.arguments.0.slug) }}">{{ item.arguments.0.name }}</a>
+              </td>
+              <td>
+                {{ ACTION_DICT.get(item.details.action) }}
               </td>
               <td>{{ item.user.display_name }}</td>
               <td>

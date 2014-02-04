@@ -1,15 +1,17 @@
 {% extends 'editors/themes/base.html' %}
 
-{% block breadcrumbs %}
-  {{ editors_breadcrumbs(queue=tab) }}
+{% block extrahead %}
+  {{ css('zamboni/themes_review') }}
 {% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
 
 {% block content %}
   <section id="reviewers-score-bar" class="island full c">
     {{ reviewers_score_bar(addon_type=amo.ADDON_PERSONA) }}
   </section>
 
-  <section class="island mobile-island">
+  <section>
     <div class="featured" id="editors-stats-charts">
       <div class="listing-header c">
         <div class="editor-stats-title">
@@ -55,7 +57,7 @@
     </div>
   </section>
 
-  <section class="island mobile-island c">
+  <section class="c">
     <div class="featured" id="reviewers-stats">
       <div class="listing-header c">
         <div class="editor-stats-title"><span>{{ _('Total Reviews') }}</span></div>

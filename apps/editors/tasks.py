@@ -1,12 +1,10 @@
+import json
+
 from django.conf import settings
 
 import commonware.log
-import json
 from celeryutils import task
 from tower import ugettext as _
-
-from devhub.models import ActivityLog, CommentLog, VersionLog
-from versions.models import Version
 
 import amo
 import constants.editors as rvw
@@ -14,7 +12,9 @@ from addons.tasks import create_persona_preview_images
 from amo.decorators import write
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.utils import LocalFileStorage, send_mail_jinja
+from devhub.models import ActivityLog, CommentLog, VersionLog
 from editors.models import ReviewerScore
+from versions.models import Version
 
 
 log = commonware.log.getLogger('z.task')
@@ -82,11 +82,7 @@ def send_mail(cleaned_data, theme_lock):
         subject = _('Thanks for submitting your Theme')
         template = 'editors/themes/emails/approve.html'
 
-    elif action == rvw.ACTION_REJECT:
-        subject = _('A problem with your Theme submission')
-        template = 'editors/themes/emails/reject.html'
-
-    elif action == rvw.ACTION_DUPLICATE:
+    elif action in (rvw.ACTION_REJECT, rvw.ACTION_DUPLICATE):
         subject = _('A problem with your Theme submission')
         template = 'editors/themes/emails/reject.html'
 
@@ -108,6 +104,7 @@ def send_mail(cleaned_data, theme_lock):
 
 
 @task
+@write
 def approve_rereview(theme):
     """Replace original theme with pending theme on filesystem."""
     # If reuploaded theme, replace old theme design.
@@ -143,6 +140,7 @@ def approve_rereview(theme):
 
 
 @task
+@write
 def reject_rereview(theme):
     """Delete pending theme from filesystem."""
     storage = LocalFileStorage()
@@ -152,19 +150,3 @@ def reject_rereview(theme):
     storage.delete(reupload.header_path)
     storage.delete(reupload.footer_path)
     rereview.delete()
-
-
-@task
-@write
-def _batch_award_points(activity_log_ids, **kwargs):
-    """For command award_theme_points."""
-    activity_logs = (ActivityLog.objects.filter(id__in=activity_log_ids)
-        .select_related('user'))
-
-    score = amo.REVIEWED_SCORES.get(amo.REVIEWED_PERSONA)
-    ReviewerScore.objects.bulk_create(
-        [ReviewerScore(user=log.user, score=score, note='RETROACTIVE',
-                       note_key=amo.REVIEWED_PERSONA,
-                       addon_id=json.loads(log._arguments)[0]['addons.addon'])
-         for log in activity_logs]
-    )

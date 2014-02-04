@@ -93,7 +93,7 @@ def themes_list(request, flagged=False, rereview=False):
         'flagged': flagged,
         'pager': pager,
         'rereview': rereview,
-        'search_form': search_form,
+        'theme_search_form': search_form,
         'STATUS_CHOICES': amo.MKT_STATUS_CHOICES,
         'statuses': dict((k, unicode(v)) for k, v in
                          amo.STATUS_CHOICES_API.items()),
@@ -226,6 +226,7 @@ def themes_search(request):
         for theme, reviewer in zip(themes, reviewers):
             # Dehydrate.
             theme['reviewer'] = reviewer
+
         return {'objects': themes, 'meta': {'total_count': len(themes)}}
 
 

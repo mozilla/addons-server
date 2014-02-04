@@ -78,7 +78,8 @@ def editor_page_title(context, title=None, addon=None):
 
 @register.function
 @jinja2.contextfunction
-def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
+def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
+                        themes=False):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Editor Tools'
     breadcrumbs.
@@ -91,6 +92,9 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
         Explicit queue type to set.
     """
     crumbs = [(reverse('editors.home'), _('Editor Tools'))]
+
+    if themes:
+        crumbs.append((reverse('editors.themes.home'), _('Themes')))
 
     if addon_queue:
         queue_id = addon_queue.status
@@ -112,9 +116,9 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
             'moderated': _('Moderated Reviews'),
             'fast_track': _('Fast Track'),
 
-             'pending_themes': _('Pending Themes'),
-             'flagged_themes': _('Flagged Themes'),
-             'rereview_themes': _('Update Themes'),
+            'pending_themes': _('Pending Themes'),
+            'flagged_themes': _('Flagged Themes'),
+            'rereview_themes': _('Update Themes'),
         }
 
         if items and not queue == 'queue':
@@ -137,6 +141,7 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     from .views import queue_counts
+
     counts = queue_counts()
     tabnav = [('fast_track', 'queue_fast_track',
                (ngettext('Fast Track ({0})', 'Fast Track ({0})',
@@ -159,6 +164,7 @@ def queue_tabnav(context):
                (ngettext('Moderated Review ({0})', 'Moderated Reviews ({0})',
                          counts['moderated'])
                 .format(counts['moderated'])))]
+
     return tabnav
 
 
@@ -830,7 +836,7 @@ def queue_tabnav_themes(context):
     tabs = []
     if acl.action_allowed(context['request'], 'Personas', 'Review'):
         tabs.append((
-            'editors.themes.list', 'pending_themes', _('Pending'),
+            'editors.themes.list', 'themes', _('Pending'),
         ))
     if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
         tabs.append((
@@ -860,3 +866,9 @@ def queue_tabnav_themes_interactive(context):
             'editors.themes.queue_rereview', 'rereview', _('Updates'),
         ))
     return tabs
+
+
+@register.function
+@jinja2.contextfunction
+def is_expired_lock(context, lock):
+    return lock.expiry < datetime.datetime.now()

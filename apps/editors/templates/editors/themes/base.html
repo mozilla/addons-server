@@ -2,13 +2,12 @@
 
 {% import 'editors/themes/macros.html' as macros %}
 
-{% block extrahead %}
-  {{ super() }}
-  {{ css('mkt/gaia') }}
-{% endblock %}
-
 {% block breadcrumbs %}
   {{ editors_breadcrumbs(queue=tab) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('zamboni/themes_review') }}
 {% endblock %}
 
 {% block queue_menu %}
@@ -27,4 +26,32 @@
 
 {% block logs_overlay %}
   {{ macros.mobile_overlay('log', _('Theme Logs'), logs_tabnav_themes()) }}
+{% endblock %}
+
+{% block navbar %}
+  <div id="navbar">
+    <ul class="top">
+      <li class="top">
+        <a href="{{ url('editors.queue') }}" class="controller">
+          {{ _('Queues') }}</a>
+        <ul>
+          {% for url_name, tab, name in queue_tabnav_themes() %}
+            <li><a href="{{ url(url_name) }}">
+              {{ name }}
+            </a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li class="top">
+        <a href="{{ url('editors.themes.logs') }}" class="controller">{{ _('Logs') }}</a>
+        <ul>
+          {% for url_name, tab, name in logs_tabnav_themes() %}
+            <li><a href="{{ url(url_name) }}">
+              {{ name }}
+            </a></li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  </div>
 {% endblock %}

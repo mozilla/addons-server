@@ -11,16 +11,16 @@
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('mkt/editors') }}
+  {{ css('zamboni/themes_review') }}
 {% endblock %}
 
 {% block breadcrumbs %}
-  {{ editors_breadcrumbs(queue=(tab + '_themes')) }}
+  {{ editors_breadcrumbs(queue=(tab + '_themes'), themes=True) }}
 {% endblock %}
 
 {% block content %}
 
-<h1 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h1>
+<h2 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h2>
 <nav class="theme-review island c">
   <strong>{{ _('Queues') }}:</strong>
   <ul>

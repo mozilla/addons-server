@@ -26,8 +26,7 @@
       <dd>
         {% set author = theme.addon.listed_authors[0] %}
         {% if author %}
-          {# Hardcode #}
-          <a href="{{ 'https://addons.mozilla.org/user/{0}/'|f(author.username) }}">
+          <a href="{{ url('users.profile', author.username) }}">
             {{ author.display_name }}
           </a>
         {% endif %}
