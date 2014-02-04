@@ -80,7 +80,7 @@ $(document).ready(function() {
 
         $form.find('#id_title').val($review.find(title_selector).text());
         $form.find('.ratingwidget input:radio[value=' + rating + ']').click();
-        $form.find('#id_body').val($review.children('p.description').text());
+        $form.find('#id_body').val($review.children('p.description').html().replace(/<br>/g, '\n'));
         $review.hide();
         $form.show();
         $window.resize();
@@ -112,7 +112,7 @@ $(document).ready(function() {
                              .replace(/&/g,'&amp;')
                              .replace(/</g,'&lt;')
                              .replace(/>/g,'&gt;')
-                             .replace("\n", "<br>", "g"));
+                             .replace(/\n/g, '<br>'));
                     done_edit();
                 },
                 error: function(xhr) {
