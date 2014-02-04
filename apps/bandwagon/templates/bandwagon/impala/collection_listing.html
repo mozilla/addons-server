@@ -2,23 +2,17 @@
 
 {% set url_base = url('collections.list') %}
 {% if sort %}
-  {% set title = {'featured': _('Featured'),
-                  'followers': _('Most-Followed'),
-                  'created': _('Newest'),
-                  'name': _('By Name'),
-                  'updated': _('Recently Updated'),
-                  'popular': _('Recently Popular')}.get(sorting) %}
+  {% set title = {'featured': _('Featured Collections'),
+                  'followers': _('Most-Followed Collections'),
+                  'created': _('Newest Collections'),
+                  'name': _('Collections by Name'),
+                  'updated': _('Recently Updated Collections'),
+                  'popular': _('Recently Popular Collections')}.get(sorting) %}
 {% else %}
   {% set title = _('Collections') %}
 {% endif %}
 
-{% block title %}
-  {% if sort %}
-    {{ page_title(title, _('Collection')) }}
-  {% else %}
-    {{ page_title(title) }}
-  {% endif %}
-{% endblock %}
+{% block title %}{{ page_title(title) }}{% endblock %}
 
 {% block primary %}
 <section class="primary">

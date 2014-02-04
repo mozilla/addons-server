@@ -7,37 +7,40 @@
 {% if category %}
   {% set title = category.name %}
 {% else %}
-  {% if section == 'apps' %}
-    {% set title = {'featured': _('Featured'),
-                    'downloads': _('By Weekly Downloads'),
-                    'free': loc('Top Free'),
-                    'paid': loc('Top Paid'),
-                    'rating': _('Top-Rated'),
-                    'created': _('Newest'),
-                    'name': _('By Name'),
-                    'updated': _('Recently Updated'),
-                    'hotness': _('Up & Coming')}.get(sorting) %}
-    {% set section_name = _('Apps') %}
-  {% else  %}
-    {% set title = {'featured': _('Featured'),
-                  'users': _('Most Popular'),
-                  'rating': _('Top-Rated'),
-                  'created': _('Newest'),
-                  'name': _('By Name'),
-                  'popular': _( 'By Weekly Downloads'),
-                  'updated': _('Recently Updated'),
-                  'hotness': _('Up & Coming')}.get(sorting) %}
-    {% if section == 'extensions' %}
-      {% set section_name = _('Extensions') %}
-    {% elif section == 'theme'%}
-      {# L10n: "Complete" is used as an adjective. "Complete Theme" means a full-featured theme. #}
-      {% set section_name = _('Complete Theme') %}
-    {% endif %}
+  {% if section == 'extensions' %}
+    {% set title = {'featured': _('Featured Extensions'),
+                    'users': _('Most Popular Extensions'),
+                    'rating': _('Top-Rated Extensions'),
+                    'created': _('Newest Extensions'),
+                    'name': _('Extensions by Name'),
+                    'popular': _('Extensions by Weekly Downloads'),
+                    'updated': _('Recently Updated Extensions'),
+                    'hotness': _('Up & Coming Extensions')}.get(sorting) %}
+  {% elif section == 'themes' %}
+    {# L10n: "Complete" is used as an adjective. "Complete Theme" means a full-featured theme. #}
+    {% set title = {'featured': _('Featured Complete Themes'),
+                    'users': _('Most Popular Complete Themes'),
+                    'rating': _('Top-Rated Complete Themes'),
+                    'created': _('Newest Complete Themes'),
+                    'name': _('Complete Themes by Name'),
+                    'popular': _('Complete Themes by Weekly Downloads'),
+                    'updated': _('Recently Updated Complete Themes'),
+                    'hotness': _('Up & Coming Complete Themes')}.get(sorting) %}
+  {% elif section == 'apps' %}
+    {% set title = {'featured': _('Featured Apps'),
+                    'downloads': _('Apps by Weekly Downloads'),
+                    'free': loc('Top Free Apps'),
+                    'paid': loc('Top Paid Apps'),
+                    'rating': _('Top-Rated Apps'),
+                    'created': _('Newest Apps'),
+                    'name': _('Apps by Name'),
+                    'updated': _('Recently Updated Apps'),
+                    'hotness': _('Up & Coming Apps')}.get(sorting) %}
   {% endif %}
 {% endif %}
 
 {% block title %}
-  {{ page_title(title, section_name) }}
+  {{ page_title(title) }}
 {% endblock %}
 
 {% set base_crumb = {

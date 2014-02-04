@@ -3,7 +3,7 @@
 
 {% set name = category.name if category else filter.title %}
 {# L10n: {0} is a category name. Ex: "Sports" #}
-{% set title = _('Themes') if is_homepage else _('{0}')|f (name) %}
+{% set title = _('Themes') if is_homepage else _('{0} Themes')|f(name) %}
 {% set url_base = request.path %}
 {% if category %}
   {% set url_base = profile.get_user_url('themes', args=[category.slug]) if profile else url('browse.personas', category.slug) %}
@@ -15,7 +15,7 @@
     {% set pagetitle = _("{0}'s Themes")|f(profile.name) %}
     {{ page_title('%s :: %s' % (name ~ '', pagetitle)) }}
   {% else %}
-    {{ page_title(title, _('Themes'))}}
+    {{ page_title(title) }}
   {% endif %}
 {% endblock %}
 
