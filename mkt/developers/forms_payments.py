@@ -452,7 +452,8 @@ class BangoPaymentAccountForm(happyforms.Form):
 
     def save(self):
         # Save the account name, if it was updated.
-        self.account.update_account_details(**self.cleaned_data)
+        payment = self.account.payment_account
+        payment.get_provider().account_update(payment, self.cleaned_data)
 
 
 class AccountListForm(happyforms.Form):
