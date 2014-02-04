@@ -1,7 +1,5 @@
 from jingo import register, env
 import jinja2
-from access import acl
-from amo.urlresolvers import reverse
 
 
 @register.inclusion_tag('tags/tag_list.html')
@@ -28,7 +26,7 @@ def range_convert(value, old_min, old_max, new_min, new_max):
 @register.function
 def tag_link(tag, min_count, max_count, min_level=1):
     """create the tag cloud link with the poper tagLevel class"""
-    factor = max(range_convert(tag.tagstat.num_addons, 0, max_count, 1, 10),
+    factor = max(range_convert(tag.num_addons, 0, max_count, 1, 10),
                  min_level)
     t = env.get_template('tags/tag_link.html').render({'factor': factor,
                                                        'tag': tag})
