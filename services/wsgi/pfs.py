@@ -9,7 +9,6 @@ for path in ['../', '../..',
              '../../vendor/src/commonware',
              '../../vendor/src/statsd',
              '../../vendor/src/tower',
-             '../../lib',
              '../../vendor/lib/python',
              '../../apps']:
     site.addsitedir(os.path.abspath(os.path.join(wsgidir, path)))
