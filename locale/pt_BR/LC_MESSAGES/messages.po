@@ -2003,7 +2003,7 @@ msgstr "Alteração no manifesto"
 
 #: apps/amo/log.py:487
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr "{add-on} reanalisado porque foi atualizado para tipo premium."
+msgstr "{addon} reanalisado porque foi atualizado para tipo premium."
 
 #: apps/amo/log.py:488
 msgid "Premium Type Upgrade"

@@ -1399,7 +1399,7 @@ msgstr "アドオンは検証に合格しました。"
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] "{0] 個の通知"
+msgstr[0] "{0} 個の通知"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
