@@ -5,7 +5,6 @@ from pyquery import PyQuery as pq
 
 import amo.tests
 from addons.models import Addon
-from tags.models import TagStat
 
 
 class TestManagement(amo.tests.TestCase):
@@ -15,7 +14,7 @@ class TestManagement(amo.tests.TestCase):
     def test_tags_details_view(self):
         """Test that there are some tags being shown on the details page."""
         url = reverse('addons.detail_more', args=['a3615'])
-        r = self.client.get_ajax(url)
+        r = self.client.get_ajax(url, follow=True)
         doc = pq(r.content)
         eq_(len(doc('li.tag')), 4)
         assert 'Tags' in [d.text for d in doc('h3')]
@@ -31,20 +30,20 @@ class TestXSS(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.tag = self.addon.tags.all()[0]
         self.tag.tag_text = self.xss
+        self.tag.num_addons = 1
         self.tag.save()
-        TagStat.objects.create(tag=self.tag, num_addons=1)
 
     def test_tags_xss_detail(self):
         """Test xss tag detail."""
         url = reverse('addons.detail_more', args=['a3615'])
-        r = self.client.get_ajax(url)
+        r = self.client.get_ajax(url, follow=True)
         doc = pq(r.content)
         eq_(doc('li.tag')[0].text_content().strip(), self.xss)
 
     def test_tags_xss_cloud(self):
         """Test xss tag cloud."""
         url = reverse('tags.top_cloud')
-        r = self.client.get(url)
+        r = self.client.get(url, follow=True)
         doc = pq(r.content)
         eq_(doc('a.tag')[0].text_content().strip(), self.xss)
 
@@ -59,13 +58,13 @@ class TestXSSURLFail(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.tag = self.addon.tags.all()[0]
         self.tag.tag_text = self.xss
+        self.tag.num_addons = 1
         self.tag.save()
-        TagStat.objects.create(tag=self.tag, num_addons=1)
 
     def test_tags_xss(self):
         """Test xss tag detail."""
         url = reverse('addons.detail_more', args=['a3615'])
-        r = self.client.get_ajax(url)
+        r = self.client.get_ajax(url, follow=True)
         doc = pq(r.content)
         eq_(doc('li.tag')[0].text_content().strip(), self.xss)
 
@@ -89,6 +88,6 @@ class TestNoTags(amo.tests.TestCase):
     def test_tags_no_details_view(self):
         """Test that there is no tag header tags being shown."""
         url = reverse('addons.detail', args=['a3615'])
-        r = self.client.get(url)
+        r = self.client.get(url, follow=True)
         doc = pq(r.content)
         assert 'Tags' not in [d.text for d in doc('h3')]
