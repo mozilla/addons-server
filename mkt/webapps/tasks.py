@@ -497,16 +497,18 @@ def _update_developer_name(id):
                      u'developer_name' % version.id)
             continue
 
-        try:
-            # FIXME: We should have the manifest at `version.manifest`?
-            data = WebAppParser().parse(version.all_files[0].file_path)
-        except ValidationError:
-            _log(id, u'Webapp manifest can not be parsed')
+        # Force refresh of manifest because we might have an old one.
+        if not webapp.is_packaged:
+            _update_manifest(webapp.pk, False, {})
+
+        data = version.manifest
+        if not 'developer' in data or not 'name' in data['developer']:
+            _log(id, u'Manifest does not contain developer name')
             continue
 
         max_len = version._meta.get_field_by_name(
             '_developer_name')[0].max_length
-        version.update(_developer_name=data['developer_name'][:max_len])
+        version.update(_developer_name=data['developer']['name'][:max_len])
 
 
 @task
