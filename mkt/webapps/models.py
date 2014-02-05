@@ -1182,6 +1182,9 @@ class Webapp(Addon):
         """
         from . import tasks
 
+        if not data:
+            return
+
         log.info('IARC setting content ratings for app:%s:%s' %
                  (self.id, self.app_slug))
 
@@ -1196,18 +1199,25 @@ class Webapp(Addon):
 
         self.set_iarc_storefront_data()  # Ratings updated, sync with IARC.
 
-        if self.content_ratings.filter(
-            # If app gets USK Rating Refused, exclude it from Germany.
+        geodata, c = Geodata.objects.get_or_create(addon=self)
+        save = False
+
+        # If app gets USK Rating Refused, exclude it from Germany.
+        has_usk_refused = self.content_ratings.filter(
             ratings_body=mkt.ratingsbodies.USK.id,
-            rating=mkt.ratingsbodies.USK_REJECTED.id):
-            geodata, c = Geodata.objects.get_or_create(addon=self)
-            geodata.update(region_de_usk_exclude=True)
-        else:
-            # If app not have USK Rating Refused, un-exclude it from Germany.
-            geodatas = Geodata.objects.filter(addon=self,
-                                              region_de_usk_exclude=True)
-            if geodatas.exists():
-                geodatas.update(region_de_usk_exclude=False)
+            rating=mkt.ratingsbodies.USK_REJECTED.id).exists()
+        save = geodata.region_de_usk_exclude != has_usk_refused
+        geodata.region_de_usk_exclude = has_usk_refused
+
+        # Un-exclude games in Brazil/Germany once they get a content rating.
+        save = (save or geodata.region_br_iarc_exclude or
+                geodata.region_de_iarc_exclude)
+        geodata.region_br_iarc_exclude = False
+        geodata.region_de_iarc_exclude = False
+
+        if save:
+            geodata.save()
+            log.info('Un-excluding IARC-excluded app:%s from br/de')
 
         tasks.index_webapps.delay([self.id])
 

@@ -579,6 +579,19 @@ class TestWebapp(amo.tests.TestCase):
         })
         ok_(not Geodata.objects.get(addon=app).region_de_usk_exclude)
 
+    def test_set_content_ratings_iarc_unexclude(self):
+        app = app_factory()
+        app._geodata.update(region_br_iarc_exclude=True,
+                            region_de_iarc_exclude=True)
+
+        app.set_content_ratings({
+            mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_12
+        })
+
+        geodata = Geodata.objects.get(addon=app)
+        ok_(not geodata.region_br_iarc_exclude)
+        ok_(not geodata.region_de_iarc_exclude)
+
     def test_set_descriptors(self):
         app = app_factory()
         eq_(RatingDescriptors.objects.count(), 0)
