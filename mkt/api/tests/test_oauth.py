@@ -12,6 +12,7 @@ from django.utils.encoding import smart_str
 from nose.tools import eq_
 from oauthlib import oauth1
 from pyquery import PyQuery as pq
+from rest_framework.request import Request
 from test_utils import RequestFactory
 
 from amo.tests import TestCase
@@ -19,7 +20,8 @@ from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 
 from mkt.api import authentication
-from mkt.api.models import Access, Token, generate, REQUEST_TOKEN, ACCESS_TOKEN
+from mkt.api.middleware import RestOAuthMiddleware
+from mkt.api.models import Access, ACCESS_TOKEN, generate, REQUEST_TOKEN, Token
 from mkt.api.tests import BaseAPI
 from mkt.site.fixtures import fixture
 
@@ -200,7 +202,9 @@ class Test3LeggedOAuthFlow(TestCase):
         req = RequestFactory().get(
             url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=auth_header)
-        assert auth.is_authenticated(req)
+        req.API = True
+        RestOAuthMiddleware().process_request(req)
+        assert auth.authenticate(Request(req))
         eq_(req.user, self.user2)
 
     def test_bad_access_token(self):
@@ -214,7 +218,9 @@ class Test3LeggedOAuthFlow(TestCase):
         req = RequestFactory().get(
             url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=auth_header)
-        assert not auth.is_authenticated(req)
+        req.API = True
+        RestOAuthMiddleware().process_request(req)
+        assert not auth.authenticate(Request(req))
 
     def test_get_authorize_page(self):
         t = Token.generate_new(REQUEST_TOKEN, self.access)

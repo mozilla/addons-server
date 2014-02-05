@@ -94,11 +94,15 @@ MIDDLEWARE_CLASSES.remove('commonware.middleware.FrameOptionsHeader')
 MIDDLEWARE_CLASSES.remove(
     'django_statsd.middleware.GraphiteRequestTimingMiddleware')
 MIDDLEWARE_CLASSES.remove('multidb.middleware.PinningRouterMiddleware')
+# We remove this to add it later since it's used after the api auth middleware.
+MIDDLEWARE_CLASSES.remove('access.middleware.ACLMiddleware')
 
 MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.RedirectPrefixedURIMiddleware',
+    'mkt.api.middleware.RestOAuthMiddleware',
+    'mkt.api.middleware.RestSharedSecretMiddleware',
+    'access.middleware.ACLMiddleware',
     'mkt.site.middleware.LocaleMiddleware',
-
     'mkt.regions.middleware.RegionMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
     'mkt.site.middleware.DoNotTrackTrackingMiddleware',

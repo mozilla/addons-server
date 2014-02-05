@@ -7,6 +7,16 @@ from lib.geoip import GeoIP
 import mkt
 
 
+def _save_if_changed(request, user_region):
+    """
+    Update the region on the user object if it changed.
+    """
+    amo_user = getattr(request, 'amo_user', None)
+    if amo_user and amo_user.region != user_region.slug:
+        amo_user.region = user_region.slug
+        amo_user.save()
+
+
 class RegionMiddleware(object):
     """Figure out the user's region and store it in a cookie."""
 
@@ -45,6 +55,7 @@ class RegionMiddleware(object):
                     for name, region in choices:
                         if name.lower() in request.LANG.lower():
                             user_region = region
+                            _save_if_changed(request, user_region)
                             break
                 # All else failed, try to match against our forced Language.
                 if user_region == mkt.regions.RESTOFWORLD:
@@ -52,6 +63,7 @@ class RegionMiddleware(object):
                     for name, region in choices:
                         if region.default_language == request.LANG:
                             user_region = region
+                            _save_if_changed(request, user_region)
                             break
 
                 accept_language = request.META.get('HTTP_ACCEPT_LANGUAGE')
@@ -63,11 +75,7 @@ class RegionMiddleware(object):
             else:
                 statsd.incr('z.regions.middleware.source.geoip')
 
-        # Only update the user's region if it changed.
-        amo_user = getattr(request, 'amo_user', None)
-        if amo_user and amo_user.region != user_region.slug:
-            amo_user.region = user_region.slug
-            amo_user.save()
+        _save_if_changed(request, user_region)
 
         request.REGION = user_region
         mkt.regions.set_region(user_region)
