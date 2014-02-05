@@ -212,3 +212,6 @@ IARC_PLATFORM = 'Firefox'
 IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
 IARC_STOREFRONT_ID = 4
 IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
+
+# We'll use zippy, the reference implementation on -dev.
+PAYMENT_PROVIDERS = ['reference']
