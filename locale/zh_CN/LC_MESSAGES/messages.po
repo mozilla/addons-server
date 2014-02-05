@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-30 07:23+0000\n"
-"Last-Translator: xcffl <hc5023295@gmail.com>\n"
+"PO-Revision-Date: 2014-02-05 13:33+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391066593.0\n"
+"X-POOTLE-MTIME: 1391607229.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -2202,7 +2202,7 @@ msgstr "转到第一页"
 #: apps/amo/templates/amo/impala/paginator.html:22 apps/amo/templates/amo/mobile/impala_paginator.html:12 apps/discovery/templates/discovery/pane.html:45
 #: apps/discovery/templates/discovery/pane.html:71 apps/discovery/templates/discovery/addons/detail.html:50 apps/stats/templates/stats/stats.html:156
 msgid "Previous"
-msgstr "上一条"
+msgstr "上一页"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -2364,7 +2364,7 @@ msgstr "描述您的收藏集。"
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
-msgstr "隐私政策："
+msgstr "隐私权政策："
 
 #: apps/bandwagon/forms.py:137
 msgid "Icon"
@@ -2380,7 +2380,7 @@ msgstr "图标必须为 PNG 或 JPG 格式。"
 
 #: apps/bandwagon/forms.py:175 apps/devhub/views.py:1261 apps/users/forms.py:327
 msgid "Please use images smaller than %dMB."
-msgstr "请使用小于 %dMB 的图片。"
+msgstr "请使用小于 %dMB 的图像。"
 
 #: apps/bandwagon/helpers.py:49
 msgid "Remove from Favorites"
@@ -2567,7 +2567,7 @@ msgstr[0] "此收藏集中有 %(num)s 个附加组件"
 #: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:17
 #: templates/includes/lang_switcher.html:10
 msgid "Go"
-msgstr "提交"
+msgstr "转到"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:144
 msgid "What are Collections?"
@@ -2737,7 +2737,7 @@ msgstr "所有者"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:14
 msgid "Make Owner"
-msgstr "设为所有者"
+msgstr "转移所有权"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18
 msgid "Remove this user as a contributor"
@@ -2914,11 +2914,11 @@ msgstr "任何人都可以建立的一组相关的附加组件名单。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:3 apps/blocklist/templates/blocklist/blocked_list.html:3 apps/blocklist/templates/blocklist/blocked_list.html:10
 msgid "Blocked Add-ons"
-msgstr "封锁的附加组件"
+msgstr "阻止的附加组件"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6 mkt/developers/templates/developers/apps/status.html:297
 msgid "Blocklist"
-msgstr "封锁列表"
+msgstr "阻止列表"
 
 #. {0} is an add-on name.
 #: apps/blocklist/templates/blocklist/blocked_detail.html:13
@@ -2950,8 +2950,9 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"当 Mozilla 发现有附加组件、插件，或其他第三方软件严重危及 %(app)s 的安全性、稳定性或性能，并且符合<a href=\"%(criteria)s\">特定标准</a>时，该软件就可能被封锁，防止被公众使用。有关更多信息，请阅读<a "
-"href=\"%(support)s\">这篇支持文章</a>。"
+"当 Mozilla 注意到有附加组件、插件，或其他第三方软件严重危及 %(app)s 的安全性、稳定性或性能，并符合<a href=\"%"
+"(criteria)s\">特定标准</a>时，该软件就可能被封锁，防止被公众使用。有关更多信息，请阅读<a href=\"%"
+"(support)s\">这篇技术支持文章</a>。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -3130,7 +3131,10 @@ msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 浏览
 
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
-msgstr "在 <a href=\"https://developer.mozilla.org/\">Mozilla 开发者中心</a> <a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">自己制作</a>"
+msgstr ""
+"在 <a href=\"https://developer.mozilla.org/\">Mozilla 开发者中心</a> <a href=\"https:"
+"//developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">创建你自己的</"
+"a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:197
 msgid "Complete Themes"
@@ -3211,7 +3215,7 @@ msgstr "评分最高的应用"
 
 #: apps/browse/templates/browse/impala/base_listing.html:35
 msgid "Newest Apps"
-msgstr "最新的应用"
+msgstr "最新应用"
 
 #: apps/browse/templates/browse/impala/base_listing.html:36
 msgid "Apps by Name"
@@ -3259,7 +3263,7 @@ msgstr "新建您自己的主题"
 
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr "你的浏览器，你的风格！用自己的设计装点起来！"
+msgstr "你的浏览器，你的风格！用你自己的设计装点起来！"
 
 #: apps/browse/templates/browse/personas/base.html:51 apps/devhub/templates/devhub/versions/list.html:107 mkt/developers/templates/developers/apps/status.html:65
 msgid "Learn more"
@@ -3271,7 +3275,7 @@ msgstr "查看所有最近添加的"
 
 #: apps/browse/templates/browse/personas/category_landing.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:6
 msgid "View All Most Popular"
-msgstr "查看全部热门作品"
+msgstr "查看所有热门作品"
 
 #: apps/browse/templates/browse/personas/category_landing.html:8 apps/browse/templates/browse/personas/mobile/category_landing.html:7
 msgid "View All Top Rated"
@@ -3344,11 +3348,11 @@ msgstr "{app} {version} 兼容性"
 
 #: apps/compat/templates/compat/index.html:17
 msgid "Top 95% compatible with previous version"
-msgstr "前 95% 与前一版本兼容"
+msgstr "与上一个版本兼容的前 95%"
 
 #: apps/compat/templates/compat/index.html:18
 msgid "Top 95% of all add-ons"
-msgstr "所有前 95% 的附加组件"
+msgstr "全部附加组件的前 95%"
 
 #: apps/compat/templates/compat/index.html:19
 msgid "All active add-ons"
@@ -3375,7 +3379,7 @@ msgstr "与所有版本兼容的附加组件的详细信息："
 
 #: apps/compat/templates/compat/index.html:61
 msgid "Show previous version only"
-msgstr "仅显示前一版本"
+msgstr "仅显示早期版本"
 
 #: apps/compat/templates/compat/reporter.html:3
 msgid "Add-on Compatibility Reports"
@@ -3406,7 +3410,7 @@ msgstr "{addon} 的兼容性报告"
 #: apps/compat/templates/compat/reporter_detail.html:14
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] "{0} 个良好报告"
+msgstr[0] "{0} 个成功报告"
 
 #: apps/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
@@ -4520,11 +4524,11 @@ msgstr "举手之劳！"
 
 #: apps/devhub/templates/devhub/builder.html:111 mkt/developers/templates/developers/builder.html:111
 msgid "Need some support building your add-on? We have <a href=\"%(url_docs)s\">extensive documentation</a> and a massive developer community to make sure you're never on your own."
-msgstr "开发您的附加组件时需要帮助吗？我们拥有<a href=\"%(url_docs)s\">全面的文档</a>以及庞大的开发者社区，确保您不再孤单一人。"
+msgstr "开发附加组件时需要帮助吗？我们有<a href=\"%(url_docs)s\">全面的文档</a>以及庞大的开发者社区确保您不是孤军奋战。"
 
 #: apps/devhub/templates/devhub/builder.html:120 mkt/developers/templates/developers/builder.html:120
 msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
-msgstr "有兴趣让 Add-on SDK 变得更好吗？抓取源代码，然后到<a href='%(url_wiki)s'>这里</a>看看如何帮助我们。"
+msgstr "有兴趣将 Add-on SDK 变得更好吗？抓取源代码后到<a href='%(url_wiki)s'>这里</a>看看如何帮忙。"
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -9313,7 +9317,7 @@ msgstr "看看整个假日购物附加组件收藏集。"
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Mozilla 的月度推荐！"
+msgstr "Mozilla 本月推荐"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
