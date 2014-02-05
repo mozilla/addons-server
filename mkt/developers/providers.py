@@ -249,6 +249,7 @@ class Reference(Provider):
             'external_id': generic['external_id'],
             'seller_id': uri_to_pk(account.uri),
             'name': unicode(app.name),
+            'uuid': str(uuid.uuid4()),
         })
         return created['resource_uri']
 
@@ -257,8 +258,13 @@ class Reference(Provider):
 
     def terms_update(self, account):
         account.update(agreed_tos=True)
-        return self.client.sellers(account.account_id).put({
-            'agreement': datetime.now().strftime('%Y-%m-%d')})
+        # GETed data from Zippy needs to be reformated prior to be PUT
+        # until bug 966096 is fixed.
+        data = self.client.sellers(account.account_id).get()
+        for field in ['id', 'resource_uri', 'resource_name']:
+            del data[field]
+        data['agreement'] = datetime.now().strftime('%Y-%m-%d')
+        return self.client.sellers(account.account_id).put(data)
 
 
 ALL_PROVIDERS = ALL_PROVIDERS_BY_ID = {}

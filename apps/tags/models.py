@@ -18,6 +18,7 @@ class Tag(amo.models.ModelBase):
     restricted = models.BooleanField(default=False)
     addons = models.ManyToManyField('addons.Addon', through='AddonTag',
                                     related_name='tags')
+    num_addons = models.IntegerField(default=0)
 
     objects = TagManager()
 
@@ -30,7 +31,7 @@ class Tag(amo.models.ModelBase):
 
     @property
     def popularity(self):
-        return self.tagstat.num_addons
+        return self.num_addons
 
     def can_reverse(self):
         try:
@@ -61,22 +62,9 @@ class Tag(amo.models.ModelBase):
 
     def update_stat(self):
         if self.blacklisted:
-            TagStat.objects.filter(tag=self).delete()
             return
-        try:
-            tagstat = TagStat.objects.get(tag=self)
-        except TagStat.DoesNotExist:
-            tagstat = TagStat(tag=self)
-        tagstat.num_addons = self.addons.count()
-        tagstat.save()
-
-
-class TagStat(amo.models.ModelBase):
-    tag = models.OneToOneField(Tag, primary_key=True)
-    num_addons = models.IntegerField()
-
-    class Meta:
-        db_table = 'tag_stat'
+        self.num_addons = self.addons.count()
+        self.save()
 
 
 class AddonTag(amo.models.ModelBase):

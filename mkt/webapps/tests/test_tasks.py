@@ -616,50 +616,62 @@ class TestUpdateDeveloperName(amo.tests.TestCase):
         call_command('process_addons', task='update_developer_name')
         assert not mock_.called
 
-    @mock.patch('files.utils.WebAppParser.parse')
-    def test_ignore_no_current_version(self, mock_parser):
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    @mock.patch('versions.models.Version.manifest')
+    def test_ignore_no_current_version(self, manifest, _):
         self.app.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
         self.app.update_version()
         update_developer_name(ids=(self.app.pk,))
-        assert not mock_parser.called
+        assert not manifest.called
 
-    @mock.patch('files.utils.WebAppParser.parse')
-    def test_ignore_if_existing_developer_name(self, mock_parser):
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    @mock.patch('versions.models.Version.manifest')
+    def test_ignore_if_existing_developer_name(self, manifest,
+                                               update_manifest):
         version = self.app.current_version
         version.update(_developer_name=u"Mï")
         update_developer_name(ids=(self.app.pk,))
-        assert not mock_parser.called
+        assert not manifest.called
 
-    @mock.patch('files.utils.WebAppParser.parse')
-    def test_update_developer_name(self, mock_parser):
-        mock_parser.return_value = {
-            'developer_name': u'New Dêv'
-        }
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    @mock.patch('versions.models.Version.manifest')
+    def test_update_developer_name(self, manifest, update_manifest):
+        manifest.__get__ = mock.Mock(return_value = {
+            'developer': {
+                'name': u'New Dêv'
+            }
+        })
         self.app.current_version.update(_developer_name='')
         update_developer_name(ids=(self.app.pk,))
         version = self.app.current_version.reload()
         eq_(version._developer_name, u'New Dêv')
         eq_(version.developer_name, u'New Dêv')
 
-    @mock.patch('files.utils.WebAppParser.parse')
-    def test_update_developer_name_latest_version(self, mock_parser):
-        mock_parser.return_value = {
-            'developer_name': u'New Dêv'
-        }
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    @mock.patch('versions.models.Version.manifest')
+    def test_update_developer_name_latest_version(self, manifest,
+                                                  update_manifest):
+        manifest.__get__ = mock.Mock(return_value = {
+            'developer': {
+                'name': u'New Dêv'
+            }
+        })
         self.app.latest_version.update(_developer_name='')
         update_developer_name(ids=(self.app.pk,))
         version = self.app.latest_version.reload()
         eq_(version._developer_name, u'New Dêv')
         eq_(version.developer_name, u'New Dêv')
 
-    @mock.patch('files.utils.WebAppParser.parse')
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    @mock.patch('versions.models.Version.manifest')
     @mock.patch('mkt.webapps.tasks._log')
-    def test_update_developer_name_validation_error(self, _log, mock_parser):
-        mock_parser.side_effect = ValidationError('dummy validation error')
+    def test_update_developer_name_validation_error(self, _log, manifest,
+                                                    update_manifest):
+        manifest.__get__ = mock.Mock(return_value={})
         self.app.current_version.update(_developer_name='')
         update_developer_name(ids=(self.app.pk,))
-        assert _log.called_with(337141, u'Webapp manifest can not be parsed')
-
+        assert _log.called_with(337141,
+                                u'Manifest does not contain developer name')
         version = self.app.current_version.reload()
         eq_(version._developer_name, '')
 

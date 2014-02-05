@@ -7,7 +7,7 @@ from pyquery import PyQuery as pq
 
 import amo
 from addons.models import Addon
-from tags.models import AddonTag, Tag, TagStat
+from tags.models import AddonTag, Tag
 from tags.helpers import tag_link
 
 
@@ -47,8 +47,8 @@ class TestHelpers(test.TestCase):
         addon = Addon.objects.get(pk=3615)
         tag = addon.tags.all()[0]
         tag.tag_text = xss
+        tag.num_addons = 1
         tag.save()
-        TagStat.objects.create(tag=tag, num_addons=1)
 
         doc = pq(tag_link(tag, 1, 1))
         assert not doc('a')

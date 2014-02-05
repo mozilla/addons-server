@@ -395,6 +395,15 @@ class TestApi(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_q_is_tag_misspelled(self):
+        Tag(tag_text='whatsapp').save_tag(self.webapp)
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url, data={'q': 'whatsupp'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_fuzzy_match(self):
         res = self.client.get(self.url, data={'q': 'soemthing'})
         eq_(res.status_code, 200)

@@ -76,6 +76,8 @@ def name_query(q):
             'analyzer': get_custom_analyzer(analyzer)}
 
     more['tags__text'] = {'query': q}
+    if ' ' not in q:
+        more['tags__fuzzy'] = {'value': q, 'prefix_length': 1}
 
     return dict(more, **name_only_query(q))
 

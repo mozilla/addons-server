@@ -14,7 +14,7 @@
     <h2>{{ _('{0} Top Tags')|f(request.APP.pretty) }}</h2>
     <div id="tag-box">
       <div>
-        {% for tag in top_tags|list|shuffle if tag.tagstat %}
+        {% for tag in top_tags|list|shuffle if tag.num_addons %}
           {{ tag_link(tag, min_tag_count, max_tag_count) }}
         {% endfor %}
       </div>

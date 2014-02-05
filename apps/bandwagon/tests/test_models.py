@@ -9,8 +9,8 @@ import amo
 import amo.tests
 from access.models import Group
 from addons.models import Addon, AddonRecommendation
-from bandwagon.models import (Collection, CollectionUser, CollectionWatcher,
-                              RecommendedCollection)
+from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
+                              CollectionWatcher, RecommendedCollection)
 from devhub.models import ActivityLog
 from bandwagon import tasks
 from users.models import UserProfile
@@ -121,6 +121,15 @@ class TestCollections(amo.tests.TestCase):
         eq_(activitylog_count(amo.LOG.REMOVE_FROM_COLLECTION), delete_cnt)
         eq_(get_addons(c), addons)
         eq_(c.addons.count(), len(addons))
+
+    def test_set_addons_comment(self):
+        addons = list(Addon.objects.values_list('id', flat=True))
+        c = Collection.objects.create(author=self.user)
+
+        c.set_addons(addons, {addons[0]: 'This is a comment.'});
+        collection_addon = CollectionAddon.objects.get(collection=c,
+                                                       addon=addons[0])
+        eq_(collection_addon.comments, 'This is a comment.')
 
     def test_publishable_by(self):
         c = Collection(pk=512, author=self.other)
