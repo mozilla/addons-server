@@ -1325,7 +1325,7 @@ msgstr ""
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Shihni krejt shqyrtimet e përdoruesit"
-msgstr[1] "Shihni krejt shqyrtimet e %(cnt) përdoruesve"
+msgstr[1] "Shihni krejt shqyrtimet e %(cnt)s përdoruesve"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:48
 msgid "This app has not yet been reviewed."

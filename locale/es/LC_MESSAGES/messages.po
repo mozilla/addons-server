@@ -16029,7 +16029,7 @@ msgstr "Calificación de contenido cambiada a Adulto."
 
 #: mkt/developers/forms.py:59
 msgid "You cannot select {region}."
-msgstr "No puedes seleccionar {región}."
+msgstr "No puedes seleccionar {region}."
 
 #: mkt/developers/forms.py:149
 msgid "All team members must have read and agreed to the developer agreement."
