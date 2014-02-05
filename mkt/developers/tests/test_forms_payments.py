@@ -588,26 +588,26 @@ class TestBangoAccountForm(Patcher, amo.tests.TestCase):
 
     def test_bank_not_required(self):
         """When an account is specified, don't require bank details."""
-        account = setup_payment_account(self.app, self.user)
+        payment = setup_payment_account(self.app, self.user).payment_account
         form = forms_payments.BangoPaymentAccountForm(
-            self.data, account=account)
+            self.data, account=payment)
         assert form.is_valid(), form.errors
 
         del self.data['bankName']
         form = forms_payments.BangoPaymentAccountForm(
-            self.data, account=account)
+            self.data, account=payment)
         assert form.is_valid(), form.errors  # Still valid, even now.
 
     def test_on_save(self):
         """Save should just trigger the account's update function."""
-        account = setup_payment_account(self.app, self.user)
+        payment = setup_payment_account(self.app, self.user).payment_account
         form = forms_payments.BangoPaymentAccountForm(
-            self.data, account=account)
+            self.data, account=payment)
         assert form.is_valid(), form.errors
 
         form.cleaned_data = {'account_name': 'foo', 'name': 'bob'}
         form.save()
 
-        account = account.reload()
-        eq_(account.payment_account.name, 'foo')
+        payment = payment.reload()
+        eq_(payment.name, 'foo')
         self.bango_patcher.api.by_url.assert_called_with('uid')
