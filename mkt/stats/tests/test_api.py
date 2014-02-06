@@ -113,8 +113,7 @@ class TestGlobalStatsResource(StatsAPITestMixin, RestOAuth):
         res = self.client.get(self.url('apps_installed'), data=data)
         eq_(res.status_code, 200)
         ok_(client.called)
-        # TODO: Update to expect `{'region': 'us'}` when regions added back.
-        eq_(client.call_args[1], {})
+        eq_(client.call_args[1], {'region': 'us'})
 
     @mock.patch('monolith.client.Client')
     def test_coersion(self, mocked):
