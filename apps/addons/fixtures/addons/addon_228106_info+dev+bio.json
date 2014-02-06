@@ -73,15 +73,15 @@
         }
     },
     {
-        "pk": 1399503,
+        "pk": 1399490,
         "model": "translations.translation",
         "fields": {
-            "localized_string_clean": "test",
-            "created": "2010-09-12 07:25:39",
+            "localized_string_clean": null,
+            "created": "2010-09-12 07:17:04",
             "locale": "en-US",
             "modified": "2010-01-02 12:34:56",
-            "id": 1325263,
-            "localized_string": "nobody@nowhere.com"
+            "id": 1325250,
+            "localized_string": "My Cool Add-on"
         }
     },
     {
@@ -94,18 +94,6 @@
             "modified": "2010-01-02 12:34:56",
             "id": 1325249,
             "localized_string": "http://www.somewhere.com/"
-        }
-    },
-    {
-        "pk": 1399490,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2010-09-12 07:17:04",
-            "locale": "en-US",
-            "modified": "2010-01-02 12:34:56",
-            "id": 1325250,
-            "localized_string": "My Cool Add-on"
         }
     },
     {
@@ -137,7 +125,7 @@
             "share_count": 0,
             "charity": null,
             "homepage": 1325249,
-            "support_email": 1325263,
+            "support_email": null,
             "public_stats": false,
             "status": 1,
             "privacy_policy": null,
@@ -145,7 +133,7 @@
             "default_locale": "en-US",
             "target_locale": null,
             "prerelease": false,
-            "thankyou_note": 1325266,
+            "thankyou_note": null,
             "admin_review": false,
             "slug": "a228106",
             "external_software": false,

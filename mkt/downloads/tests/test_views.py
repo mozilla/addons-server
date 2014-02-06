@@ -9,11 +9,11 @@ from amo.urlresolvers import reverse
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.submit.tests.test_views import BasePackagedAppTest
-
+from mkt.site.fixtures import fixture
 
 class TestDownload(BasePackagedAppTest):
-    fixtures = ['base/apps', 'base/users', 'base/platforms',
-                'webapps/337141-steamcube']
+    fixtures = ['base/apps', 'base/users', 'base/platforms'
+    ] + fixture('webapp_337141')
 
     def setUp(self):
         super(TestDownload, self).setUp()

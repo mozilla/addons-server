@@ -65,6 +65,18 @@
         }
     },
     {
+        "pk": 418040,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "clever phrase here",
+            "created": "2009-05-11 22:06:47",
+            "modified": "2009-05-11 22:06:47",
+            "locale": "en-US",
+            "id": 379598,
+            "localized_string_clean": null
+        }
+    },
+    {
         "pk": 10482,
         "model": "users.userprofile",
         "fields": {
@@ -78,7 +90,7 @@
             "homepage": "http://micropipes.com/blog/",
             "email": "clouserw@gmail.com",
             "location": "Portland, OR",
-            "bio": 480997,
+            "bio": 379598,
             "deleted": 0,
             "emailhidden": 0,
             "user": 10482,

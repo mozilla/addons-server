@@ -5,9 +5,10 @@ import amo.tests
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import Webapp
 
+from mkt.site.fixtures import fixture
 
 class TestAppSubmissionChecklist(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = Webapp.objects.get(id=337141)

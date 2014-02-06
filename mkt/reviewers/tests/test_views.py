@@ -1178,7 +1178,7 @@ class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
 
 class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
                     PackagedFilesMixin):
-    fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/platforms', 'base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         super(TestReviewApp, self).setUp()
@@ -3045,8 +3045,8 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
 @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestAttachmentDownload(amo.tests.TestCase):
     fixtures = ['data/user_editor', 'data/user_editor_group',
-                'data/group_editor', 'data/user_999',
-                'webapps/337141-steamcube']
+                'data/group_editor', 'data/user_999'
+    ] + fixture('webapp_337141')
 
     def _attachment(self, log):
         return ActivityLogAttachment.objects.create(activity_log=log,

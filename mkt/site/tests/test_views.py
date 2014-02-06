@@ -17,9 +17,10 @@ from amo.urlresolvers import reverse
 
 from mkt.webapps.models import Webapp
 
+from mkt.site.fixtures import fixture
 
 class Test403(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         assert self.client.login(username='steamcube@mozilla.com',
@@ -44,7 +45,7 @@ class Test403(amo.tests.TestCase):
 
 
 class Test404(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def _test_404(self, url):
         r = self.client.get(url, follow=True)

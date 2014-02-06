@@ -79,7 +79,7 @@
             "support_email": null,
             "public_stats": false,
             "status": 10,
-            "description": 1276307,
+            "description": null,
             "default_locale": "en-US",
             "prerelease": false,
             "admin_review": false,
@@ -92,7 +92,7 @@
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2010-08-28 23:35:42",
-            "summary": 1276306,
+            "summary": null,
             "site_specific": false,
             "total_reviews": 0
         }

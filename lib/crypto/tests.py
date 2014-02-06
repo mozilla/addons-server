@@ -17,6 +17,7 @@ from lib.crypto.receipt import crack, sign, SigningError
 from mkt.webapps.models import Webapp
 from versions.models import Version
 
+from mkt.site.fixtures import fixture
 
 def mock_sign(version_id, reviewer=False):
     """
@@ -82,7 +83,7 @@ class TestCrack(amo.tests.TestCase):
 
 
 class PackagedApp(amo.tests.TestCase, amo.tests.AMOPaths):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)

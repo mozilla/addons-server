@@ -130,7 +130,7 @@
             "homepage": "",
             "email": "testo@example.com",
             "notifycompat": true,
-            "bio": 1124105,
+            "bio": null,
             "deleted": false,
             "emailhidden": false,
             "user": 5349055,

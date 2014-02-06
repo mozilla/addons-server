@@ -700,8 +700,8 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
 
 class AppSummaryTest(TestCase):
     # TODO: Override in subclasses to convert to new fixture style.
-    fixtures = ['base/users', 'webapps/337141-steamcube',
-                'base/addon_3615', 'market/prices']
+    fixtures = ['base/users', 'base/addon_3615', 'market/prices'
+    ] + fixture('webapp_337141')
 
     def _setUp(self):
         self.app = Addon.objects.get(pk=337141)
@@ -1013,7 +1013,7 @@ class TestAddonDownloadSummary(AppSummaryTest):
 
 
 class TestPurchases(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
@@ -1057,7 +1057,7 @@ class TestPurchases(amo.tests.TestCase):
 
 
 class TestActivity(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)

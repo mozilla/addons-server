@@ -62,6 +62,7 @@ from mkt.constants import regions
 from mkt.webapps.models import (update_search_index as app_update_search_index,
                                 WebappIndexer, Webapp)
 from mkt.webapps.tasks import unindex_webapps
+from mkt.site.fixtures import fixture
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.
@@ -946,7 +947,7 @@ class ESTestCase(TestCase):
 
 
 class WebappTestCase(TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.app = self.get_app()
