@@ -18,12 +18,11 @@ from versions.models import Version
 from translations.models import Translation
 
 
-class TestTranslationSerializerField(TestCase):
-    fixtures = fixture('user_2519', 'webapp_337141')
+class _TestTranslationSerializerField(object):
     field_class = TranslationSerializerField
 
     def setUp(self):
-        super(TestTranslationSerializerField, self).setUp()
+        super(_TestTranslationSerializerField, self).setUp()
         self.factory = APIRequestFactory()
         self.app = Webapp.objects.get(pk=337141)
 
@@ -146,10 +145,12 @@ class TestTranslationSerializerField(TestCase):
         result = field.field_to_native(self.app, 'description')
         eq_(result, None)
 
+class TestTranslationSerializerField(_TestTranslationSerializerField, TestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
 
-class TestESTranslationSerializerField(TestTranslationSerializerField):
+
+class TestESTranslationSerializerField(_TestTranslationSerializerField, TestCase):
     field_class = ESTranslationSerializerField
-    fixtures = ()
 
     def setUp(self):
         self.factory = APIRequestFactory()

@@ -19,7 +19,7 @@ from mkt.constants import comm
 
 class CommunicationPermissionModel(amo.models.ModelBase):
     # Read permissions imply write permissions as well.
-    read_permission_public = models.BooleanField()
+    read_permission_public = models.BooleanField(default=False)
     read_permission_developer = models.BooleanField(default=True)
     read_permission_reviewer = models.BooleanField(default=True)
     read_permission_senior_reviewer = models.BooleanField(default=True)

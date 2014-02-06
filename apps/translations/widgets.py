@@ -1,5 +1,6 @@
 from django import forms
 from django.utils import translation
+from django.utils.encoding import force_text
 from django.utils.translation.trans_real import to_language
 
 from .models import Translation
@@ -31,6 +32,10 @@ class TranslationTextarea(forms.widgets.Textarea):
             value = get_string(value)
         return super(TranslationTextarea, self).render(name, value, attrs)
 
+
+    def _has_changed(self, initial, data):
+        return not ((initial is None and data is None) or
+                    (force_text(initial) == force_text(data)))
 
 class TransMulti(forms.widgets.MultiWidget):
     """

@@ -8,6 +8,7 @@ import mkt.carriers
 import mkt.regions
 from addons.models import Addon, Category, clean_slug
 from amo.decorators import use_master
+from amo.models import SlugField
 from amo.utils import to_language
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import index_webapps
@@ -31,8 +32,8 @@ class Collection(amo.models.ModelBase):
     carrier = models.IntegerField(default=None, null=True, blank=True,
         choices=mkt.carriers.CARRIER_CHOICES, db_index=True)
     author = models.CharField(max_length=255, default='', blank=True)
-    slug = models.SlugField(blank=True, max_length=30,
-                            help_text='Used in collection URLs.')
+    slug = SlugField(blank=True, max_length=30,
+                     help_text='Used in collection URLs.')
     default_language = models.CharField(max_length=10,
         choices=((to_language(lang), desc)
                  for lang, desc in settings.LANGUAGES.items()),

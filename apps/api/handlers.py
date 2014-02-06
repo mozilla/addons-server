@@ -226,6 +226,10 @@ class ApplicationsVersionsHandler(AnonymousBaseHandler):
         return av.min.version
 
 
+class ApplicationsVersionsHandlerEx(ApplicationsVersionsHandler):
+    is_anonymous = False
+
+
 class BaseVersionHandler(object):
     # Custom handler so translated text doesn't look weird
     @classmethod

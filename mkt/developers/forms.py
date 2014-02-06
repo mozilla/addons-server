@@ -152,7 +152,7 @@ class AuthorForm(happyforms.ModelForm):
 
     class Meta:
         model = AddonUser
-        exclude = ('addon')
+        exclude = ('addon',)
 
 
 class BaseModelFormSet(BaseModelFormSet):
@@ -1142,7 +1142,7 @@ class IARCGetAppInfoForm(happyforms.Form):
             self.cleaned_data['submission_id'].lower().replace('subm-', ''))
 
         if submission_id.isdigit():
-            return submission_id
+            return int(submission_id)
 
         raise forms.ValidationError(_('Please enter a valid submission ID.'))
 

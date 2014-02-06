@@ -47,7 +47,7 @@ class SolitudeSeller(amo.models.ModelBase):
 class PaymentAccount(amo.models.ModelBase):
     user = UserForeignKey()
     name = models.CharField(max_length=64)
-    agreed_tos = models.BooleanField()
+    agreed_tos = models.BooleanField(default=False)
     solitude_seller = models.ForeignKey(SolitudeSeller)
 
     # These two fields can go away when we're not 1:1 with SolitudeSellers.
@@ -175,8 +175,8 @@ class UserInappKey(amo.models.ModelBase):
             'external_id': str(uuid.uuid4()), 'public_id': str(uuid.uuid4()),
             'access': ACCESS_SIMULATE,
         })
-        log.info('User %s created an in-app payments dev key product=%s '
-                 'with %s' % (user, prod['resource_pk'], sel))
+        log.info(u'User %s created an in-app payments dev key product=%s '
+                 u'with %s' % (unicode(user), prod['resource_pk'], sel))
         return cls.objects.create(solitude_seller=sel,
                                   seller_product_pk=prod['resource_pk'])
 
