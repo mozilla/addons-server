@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-06 10:16+0000\n"
+"PO-Revision-Date: 2014-02-06 10:18+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391681799.0\n"
+"X-POOTLE-MTIME: 1391681887.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -24,7 +24,7 @@ msgstr[1] ""
 #: media/js/common/upload-image.js:129
 #: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr "123"
+msgstr "12345"
 
 #: media/js/common/upload-addon.js:52
 #: media/js/common/upload-packaged-app.js:52
