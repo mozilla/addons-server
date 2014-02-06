@@ -469,11 +469,11 @@ def zip_users(*args, **kw):
     files = ['license.txt', 'readme.txt']
     for f in files:
         template = loader.get_template('webapps/dump/users/' + f)
-        dest = os.path.join(settings.DUMPED_USERS_PATH, f)
+        dest = os.path.join(settings.DUMPED_USERS_PATH, 'users', f)
         open(dest, 'w').write(template.render(context))
 
     cmd = ['tar', 'czf', target_file, '-C',
-           settings.DUMPED_USERS_PATH, 'users'] + files
+           settings.DUMPED_USERS_PATH, 'users']
     task_log.info(u'Creating user dump {0}'.format(target_file))
     subprocess.call(cmd)
     return target_file
