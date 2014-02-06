@@ -44,9 +44,8 @@ if you're running a recent version, you can `install them automatically
     sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig openssl curl
 
 On versions 12.04 and later, you will need to install a patched version of
-M2Crypto instead of the version from PyPI::
-
-    pip install git+git://github.com/ametaireau/M2Crypto.git
+M2Crypto instead of the version from PyPI. Please check the `Finish the
+install`_ paragraph.
 
 
 .. _osx-packages:
@@ -169,13 +168,16 @@ like the following::
 
     error: command 'gcc' failed with exit status 1
 
-It may be because the SSLv2 symbols are not available on your platform. In this
-case, you can install Alexis' fork:
+It may be because of a `few reasons`_:
+
+.. _few reasons:
+    http://blog.rectalogic.com/2013/11/installing-m2crypto-in-python.html
 
 * comment the line starting with ``M2Crypto`` in ``requirements/compiled.txt``
-* install Alexis' fork and rerun the install::
+* install the patched package from the Debian repositories (replace
+  ``x86_64-linux-gnu`` by ``i386-linux-gnu`` if you're on a 32bits platform)::
 
-    pip install git+git://github.com/ametaireau/M2Crypto.git
+    DEB_HOST_MULTIARCH=x86_64-linux-gnu pip install -I --exists-action=w "git+git://anonscm.debian.org/collab-maint/m2crypto.git@debian/0.21.1-3#egg=M2Crypto"
     pip install --no-deps -r requirements/dev.txt
 
 * revert your changes to ``requirements/compiled.txt``::
