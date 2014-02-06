@@ -3,7 +3,6 @@ import json
 from urlparse import urlparse
 
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
 from django.http import QueryDict
 from django.test.client import RequestFactory
 
@@ -205,10 +204,9 @@ class TestApi(RestOAuth, ESTestCase):
         def fakeauth(auth, req, **kw):
             req.user = user.user
             req.amo_user = user
-            return True
 
-        with patch('mkt.api.authentication.RestSharedSecretAuthentication'
-                   '.is_authenticated', fakeauth):
+        with patch('mkt.api.middleware.RestSharedSecretMiddleware'
+                   '.process_request', fakeauth):
             with self.settings(SITE_URL=''):
                 self.create()
             res = self.client.get(
@@ -217,41 +215,36 @@ class TestApi(RestOAuth, ESTestCase):
             assert 'user' in obj
 
     def test_dehydrate(self):
-        def fakeauth(auth, req, **kw):
-            req.user = AnonymousUser()
-            return True
-
-        with patch('mkt.api.authentication.RestSharedSecretAuthentication'
-                   '.is_authenticated', fakeauth):
-            with self.settings(SITE_URL=''):
-                self.create()
-                res = self.client.get(self.url, data={'cat': self.category.pk})
-                eq_(res.status_code, 200)
-                obj = res.json['objects'][0]
-                content_ratings = obj['content_ratings']
-                eq_(obj['absolute_url'], self.webapp.get_absolute_url())
-                eq_(obj['app_type'], self.webapp.app_type)
-                eq_(content_ratings['descriptors'], {})
-                eq_(content_ratings['interactive_elements'], [])
-                eq_(content_ratings['ratings'], None)
-                eq_(obj['current_version'], u'1.0')
-                eq_(obj['description'],
-                    {'en-US': self.webapp.description.localized_string})
-                eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
-                eq_(obj['id'], long(self.webapp.id))
-                eq_(obj['manifest_url'], self.webapp.get_manifest_url())
-                eq_(obj['payment_account'], None)
-                self.assertApiUrlEqual(obj['privacy_policy'],
-                                       '/apps/app/337141/privacy/')
-                eq_(obj['public_stats'], self.webapp.public_stats)
-                eq_(obj['ratings'], {'average': 0.0, 'count': 0})
-                self.assertApiUrlEqual(obj['resource_uri'],
-                                       '/apps/app/337141/')
-                eq_(obj['slug'], self.webapp.app_slug)
-                eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
-                ok_('1.0' in obj['versions'])
-                self.assertApiUrlEqual(obj['versions']['1.0'],
-                                       '/apps/versions/1268829/')
+        with self.settings(SITE_URL='http://hy.fr'):
+            self.create()
+            res = self.client.get(self.url, data={'cat': self.category.pk})
+            eq_(res.status_code, 200)
+            obj = res.json['objects'][0]
+            content_ratings = obj['content_ratings']
+            eq_(obj['absolute_url'],
+                absolutify(self.webapp.get_absolute_url()))
+            eq_(obj['app_type'], self.webapp.app_type)
+            eq_(content_ratings['descriptors'], {})
+            eq_(content_ratings['interactive_elements'], [])
+            eq_(content_ratings['ratings'], None)
+            eq_(obj['current_version'], u'1.0')
+            eq_(obj['description'],
+                {'en-US': self.webapp.description.localized_string})
+            eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
+            eq_(obj['id'], long(self.webapp.id))
+            eq_(obj['manifest_url'], self.webapp.get_manifest_url())
+            eq_(obj['payment_account'], None)
+            self.assertApiUrlEqual(obj['privacy_policy'],
+                                   '/apps/app/337141/privacy/')
+            eq_(obj['public_stats'], self.webapp.public_stats)
+            eq_(obj['ratings'], {'average': 0.0, 'count': 0})
+            self.assertApiUrlEqual(obj['resource_uri'],
+                                   '/apps/app/337141/')
+            eq_(obj['slug'], self.webapp.app_slug)
+            eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
+            ok_('1.0' in obj['versions'])
+            self.assertApiUrlEqual(obj['versions']['1.0'],
+                                   '/apps/versions/1268829/')
 
         # These only exists if requested by a reviewer.
         ok_('latest_version' not in obj)

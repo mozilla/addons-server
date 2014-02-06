@@ -4172,7 +4172,7 @@ msgid ""
 "(app)s."
 msgstr ""
 "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете "
-"персоналзицију %s-а."
+"персоналзицију %(app)s-а."
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
@@ -15324,7 +15324,7 @@ msgstr[2] ""
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
 msgid "by %(user)s"
-msgstr "од %(users)s"
+msgstr "од %(user)s"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:38
 msgid "Read More&nbsp;&raquo;"

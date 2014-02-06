@@ -10217,7 +10217,7 @@ msgstr ""
 # %1 is the queue mode
 #: apps/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
-msgstr "Tällä hetkellä ei ole yhtään tarkastettavia %sin lisäosia."
+msgstr "Tällä hetkellä ei ole yhtään tarkastettavia in lisäosia."
 
 #: apps/editors/templates/editors/queue.html:181 mkt/reviewers/templates/reviewers/queue.html:94 mkt/reviewers/templates/reviewers/themes/queue_list.html:87
 msgid "Helpful Links:"

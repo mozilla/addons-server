@@ -1,12 +1,16 @@
+import hashlib
+import hmac
 import re
 import time
 from urllib import urlencode
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
 from django.middleware.transaction import TransactionMiddleware
 from django.utils.cache import patch_vary_headers
 
+import commonware.log
 from django_statsd.clients import statsd
 from django_statsd.middleware import (GraphiteRequestTimingMiddleware,
                                       TastyPieRequestTimingMiddleware)
@@ -14,7 +18,150 @@ from multidb.pinning import (pin_this_thread, this_thread_is_pinned,
                              unpin_this_thread)
 from multidb.middleware import PinningRouterMiddleware
 
+from mkt.api.models import Access, ACCESS_TOKEN, Token
+from mkt.api.oauth import OAuthServer
 from mkt.carriers import get_carrier
+from users.models import UserProfile
+
+
+log = commonware.log.getLogger('z.api')
+
+
+class RestOAuthMiddleware(object):
+    """
+    This is based on https://github.com/amrox/django-tastypie-two-legged-oauth
+    with permission.
+    """
+
+    def process_request(self, request):
+        # For now we only want these to apply to the API.
+        # This attribute is set in RedirectPrefixedURIMiddleware.
+        if not getattr(request, 'API', False):
+            return
+
+        if not settings.SITE_URL:
+            raise ValueError('SITE_URL is not specified')
+
+        # Set up authed_from attribute.
+        if not hasattr(request, 'authed_from'):
+            request.authed_from = []
+
+        auth_header_value = request.META.get('HTTP_AUTHORIZATION')
+        if (not auth_header_value and
+            'oauth_token' not in request.META['QUERY_STRING']):
+            self.user = AnonymousUser()
+            log.info('No HTTP_AUTHORIZATION header')
+            return
+
+        # Set up authed_from attribute.
+        auth_header = {'Authorization': auth_header_value}
+        method = getattr(request, 'signed_method', request.method)
+        oauth = OAuthServer()
+        if ('oauth_token' in request.META['QUERY_STRING'] or
+            'oauth_token' in auth_header_value):
+            # This is 3-legged OAuth.
+            log.info('Trying 3 legged OAuth')
+            try:
+                valid, oauth_request = oauth.verify_request(
+                    request.build_absolute_uri(),
+                    method, headers=auth_header,
+                    require_resource_owner=True)
+            except ValueError:
+                log.error('ValueError on verifying_request', exc_info=True)
+                return
+            if not valid:
+                log.error(u'Cannot find APIAccess token with that key: %s'
+                          % oauth.attempted_key)
+                return
+            uid = Token.objects.filter(
+                token_type=ACCESS_TOKEN,
+                key=oauth_request.resource_owner_key).values_list(
+                    'user_id', flat=True)[0]
+            request.amo_user = UserProfile.objects.select_related(
+                'user').get(pk=uid)
+            request.user = request.amo_user.user
+        else:
+            # This is 2-legged OAuth.
+            log.info('Trying 2 legged OAuth')
+            try:
+                valid, oauth_request = oauth.verify_request(
+                    request.build_absolute_uri(),
+                    method, headers=auth_header,
+                    require_resource_owner=False)
+            except ValueError:
+                log.error('ValueError on verifying_request', exc_info=True)
+                return
+            if not valid:
+                log.error(u'Cannot find APIAccess token with that key: %s'
+                          % oauth.attempted_key)
+                return
+            uid = Access.objects.filter(
+                key=oauth_request.client_key).values_list(
+                    'user_id', flat=True)[0]
+            request.amo_user = UserProfile.objects.select_related(
+                'user').get(pk=uid)
+            request.user = request.amo_user.user
+
+        # But you cannot have one of these roles.
+        denied_groups = set(['Admins'])
+        roles = set(request.amo_user.groups.values_list('name', flat=True))
+        if roles and roles.intersection(denied_groups):
+            log.info(u'Attempt to use API with denied role, user: %s'
+                     % request.amo_user.pk)
+            # Set request attributes back to None.
+            request.user = request.amo_user = None
+            return
+
+        if request.user:
+            request.authed_from.append('RestOAuth')
+
+        log.info('Successful OAuth with user: %s' % request.user)
+
+
+class RestSharedSecretMiddleware(object):
+
+    def process_request(self, request):
+        # For now we only want these to apply to the API.
+        # This attribute is set in RedirectPrefixedURIMiddleware.
+        if not getattr(request, 'API', False):
+            return
+
+        # Set up authed_from attribute.
+        if not hasattr(request, 'authed_from'):
+            request.authed_from = []
+
+        header = request.META.get('HTTP_AUTHORIZATION', '').split(None, 1)
+        if header and header[0].lower() == 'mkt-shared-secret':
+            auth = header[1]
+        else:
+            auth = request.GET.get('_user')
+        if not auth:
+            log.info('API request made without shared-secret auth token')
+            return
+        try:
+            email, hm, unique_id = str(auth).split(',')
+            consumer_id = hashlib.sha1(
+                email + settings.SECRET_KEY).hexdigest()
+            matches = hmac.new(unique_id + settings.SECRET_KEY,
+                               consumer_id, hashlib.sha512).hexdigest() == hm
+            if matches:
+                try:
+                    request.amo_user = UserProfile.objects.select_related(
+                        'user').get(email=email)
+                    request.user = request.amo_user.user
+                    request.authed_from.append('RestSharedSecret')
+                except UserProfile.DoesNotExist:
+                    log.info('Auth token matches absent user (%s)' % email)
+                    return
+            else:
+                log.info('Shared-secret auth token does not match')
+                return
+
+            log.info('Successful SharedSecret with user: %s' % request.user.pk)
+            return
+        except Exception, e:
+            log.info('Bad shared-secret auth data: %s (%s)', auth, e)
+            return
 
 
 class APITransactionMiddleware(TransactionMiddleware):

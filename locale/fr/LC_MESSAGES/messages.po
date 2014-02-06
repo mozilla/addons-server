@@ -14126,7 +14126,7 @@ msgstr "Date d'achat"
 
 #: mkt/api/fields.py:19
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr "Sélectionnez un choix valide. %(value) n'est pas une des options disponibles."
+msgstr "Sélectionnez un choix valide. %(value)s n'est pas une des options disponibles."
 
 #: mkt/api/serializers.py:58 mkt/site/forms.py:50
 msgid "Form could not be submitted."

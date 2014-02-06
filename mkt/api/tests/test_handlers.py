@@ -78,7 +78,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.post(self.list_url,
                                data=json.dumps({'manifest': obj.uuid}))
         eq_(res.status_code, 403)
-        eq_(res.json, {'detail':'Terms of Service not accepted.'})
+        eq_(res.json, {'detail': 'Terms of Service not accepted.'})
 
     def test_not_valid(self):
         obj = self.create()
@@ -664,16 +664,6 @@ class TestAppDetail(RestOAuth):
         res = self.client.get(self.get_url, pk=self.app.app_slug)
         data = json.loads(res.content)
         eq_(self.app.get_manifest_url(), data['manifest_url'])
-
-    def test_user_info_with_shared_secret(self):
-        def fakeauth(auth, req, **kw):
-            req.amo_user = UserProfile.objects.get(id=self.user.pk)
-            req.user = self.user
-            return True
-        with patch('mkt.api.authentication.RestSharedSecretAuthentication'
-                   '.is_authenticated', fakeauth):
-            res = self.anon.get(self.get_url)
-        assert 'user' in res.json
 
     def test_get_upsold(self):
         free = Webapp.objects.create(status=amo.STATUS_PUBLIC)

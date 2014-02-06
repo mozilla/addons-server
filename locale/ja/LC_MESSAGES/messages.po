@@ -19035,7 +19035,7 @@ msgstr[0] "{num} 個の更新審査"
 #: mkt/reviewers/templates/reviewers/home.html:40
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
-msgstr[0] "{num} 個の週内新規登録・未審査アプリ"
+msgstr[0] "{c} 個の週内新規登録・未審査アプリ"
 
 #: mkt/reviewers/templates/reviewers/home.html:53
 msgid "{0} app"
