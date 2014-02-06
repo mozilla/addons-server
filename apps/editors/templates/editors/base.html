@@ -4,15 +4,30 @@
 
 {% block bodyclass %}editor-tools {% endblock %}
 
-{# Don't show the amo header on editor pages #}
-{% set hide_header = True %}
-
 {% block site_header_title %}
-<h1 class="site-title">
-  <a href="{{ url('editors.home') }}" title="{{ _('Return to the Editor Tools homepage') }}">
-    <strong>{{ _('Editor Tools') }}</strong>
-  </a>
-</h1>
+  <h1 class="site-title amo">
+    <a href="{{ url('editors.home') }}" title="{{ _('Return to the Editor Tools homepage') }}">
+      <strong>{{ _('Editor Tools') }}</strong>
+    </a>
+  </h1>
+
+  {% block pillnav %}
+    {% if action_allowed('Addons', 'Review') and action_allowed('Personas', 'Review') %}
+      <nav class="pill-nav-amo">
+        {% if action_allowed('Addons', 'Review') %}
+          <a{% if '/editors/themes' not in request.path %} class="selected"{% endif %}
+             href="{{ url('editors.reviewlog') if '/logs' in request.path
+                      else url('editors.home') }}">
+            {{ _('Add-ons') }}</a>
+        {% endif %}
+        {% if action_allowed('Personas', 'Review') %}
+          <a{% if '/editors/themes' in request.path %} class="selected"{% endif %}
+             href="{{ url('editors.themes.logs') if '/reviewlog' in request.path
+                      else url('editors.themes.home') }}">{{ _('Themes') }}</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% endblock %}
 {% endblock %}
 
 {% block extrahead %}
@@ -28,16 +43,16 @@
           {{ _('Queues') }}</a>
         <ul>
           {% if queue_counts %}
-          <li><a href="{{ url('editors.queue_fast_track') }}">
-                {{ _('Fast Track') }} ({{ queue_counts['fast_track'] }})</a></li>
-          <li><a href="{{ url('editors.queue_nominated') }}">
-                {{ _('Full Reviews') }} ({{ queue_counts['nominated'] }})</a></li>
-          <li><a href="{{ url('editors.queue_pending') }}">
-                {{ _('Pending Updates') }} ({{ queue_counts['pending'] }})</a></li>
-          <li><a href="{{ url('editors.queue_prelim') }}">
-                {{ _('Preliminary Reviews') }} ({{ queue_counts['prelim'] }})</a></li>
-          <li><a href="{{ url('editors.queue_moderated') }}">
-                {{ _('Moderated Reviews') }} ({{ queue_counts['moderated'] }})</a></li>
+            <li><a href="{{ url('editors.queue_fast_track') }}">
+                  {{ _('Fast Track') }} ({{ queue_counts['fast_track'] }})</a></li>
+            <li><a href="{{ url('editors.queue_nominated') }}">
+                  {{ _('Full Reviews') }} ({{ queue_counts['nominated'] }})</a></li>
+            <li><a href="{{ url('editors.queue_pending') }}">
+                  {{ _('Pending Updates') }} ({{ queue_counts['pending'] }})</a></li>
+            <li><a href="{{ url('editors.queue_prelim') }}">
+                  {{ _('Preliminary Reviews') }} ({{ queue_counts['prelim'] }})</a></li>
+            <li><a href="{{ url('editors.queue_moderated') }}">
+                  {{ _('Moderated Reviews') }} ({{ queue_counts['moderated'] }})</a></li>
           {% endif %}
         </ul>
       </li>

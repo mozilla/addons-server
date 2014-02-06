@@ -1,3 +1,5 @@
+import datetime
+import logging
 from datetime import timedelta
 
 from django import forms
@@ -11,12 +13,19 @@ import jinja2
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+import constants.editors as rvw
+from addons.models import Persona
 from amo.urlresolvers import reverse
+from amo.utils import raise_required
 from applications.models import AppVersion
 from editors.helpers import (file_review_status, ReviewAddon, ReviewFiles,
                              ReviewHelper)
-from editors.models import CannedResponse
+from editors.models import CannedResponse, ReviewerScore, ThemeLock
+from editors.tasks import approve_rereview, reject_rereview, send_mail
 from files.models import File
+
+
+log = logging.getLogger('z.reviewers.forms')
 
 
 ACTION_FILTERS = (('', ''), ('approved', _lazy(u'Approved reviews')),
@@ -317,3 +326,136 @@ def get_review_form(data, request=None, addon=None, version=None):
 
 class MOTDForm(happyforms.Form):
     motd = forms.CharField(required=True, widget=widgets.Textarea())
+
+
+class DeletedThemeLogForm(ReviewLogForm):
+
+    def __init__(self, *args, **kwargs):
+        super(DeletedThemeLogForm, self).__init__(*args, **kwargs)
+        self.fields['search'].widget.attrs = {
+            # L10n: Description of what can be searched for.
+            'placeholder': _lazy(u'theme name'),
+            'size': 30}
+
+
+class ThemeReviewForm(happyforms.Form):
+    theme = forms.ModelChoiceField(queryset=Persona.objects.all(),
+                                   widget=forms.HiddenInput())
+    action = forms.TypedChoiceField(
+        choices=rvw.REVIEW_ACTIONS.items(),
+        widget=forms.HiddenInput(attrs={'class': 'action'}),
+        coerce=int, empty_value=None
+    )
+    # Duplicate is the same as rejecting but has its own flow.
+    reject_reason = forms.TypedChoiceField(
+        choices=rvw.THEME_REJECT_REASONS.items() + [('duplicate', '')],
+        widget=forms.HiddenInput(attrs={'class': 'reject-reason'}),
+        required=False, coerce=int, empty_value=None)
+    comment = forms.CharField(required=False,
+        widget=forms.HiddenInput(attrs={'class': 'comment'}))
+
+    def clean_theme(self):
+        theme = self.cleaned_data['theme']
+        try:
+            ThemeLock.objects.get(theme=theme)
+        except ThemeLock.DoesNotExist:
+            raise forms.ValidationError(
+                _('Someone else is reviewing this theme.'))
+        return theme
+
+    def clean_reject_reason(self):
+        reject_reason = self.cleaned_data.get('reject_reason', None)
+        if (self.cleaned_data.get('action') == rvw.ACTION_REJECT
+            and reject_reason is None):
+            raise_required()
+        return reject_reason
+
+    def clean_comment(self):
+        # Comment field needed for duplicate, flag, moreinfo, and other reject
+        # reason.
+        action = self.cleaned_data.get('action')
+        reject_reason = self.cleaned_data.get('reject_reason')
+        comment = self.cleaned_data.get('comment')
+        if (not comment and (action == rvw.ACTION_FLAG or
+                             action == rvw.ACTION_MOREINFO or
+                             (action == rvw.ACTION_REJECT and
+                              reject_reason == 0))):
+            raise_required()
+        return comment
+
+    def save(self):
+        action = self.cleaned_data['action']
+        comment = self.cleaned_data.get('comment')
+        reject_reason = self.cleaned_data.get('reject_reason')
+        theme = self.cleaned_data['theme']
+
+        is_rereview = (
+            theme.rereviewqueuetheme_set.exists() and
+            theme.addon.status not in (amo.STATUS_PENDING,
+                                       amo.STATUS_REVIEW_PENDING))
+
+        theme_lock = ThemeLock.objects.get(theme=self.cleaned_data['theme'])
+
+        mail_and_log = True
+        if action == rvw.ACTION_APPROVE:
+            if is_rereview:
+                approve_rereview(theme)
+            theme.addon.update(status=amo.STATUS_PUBLIC)
+            theme.approve = datetime.datetime.now()
+            theme.save()
+
+        elif action in (rvw.ACTION_REJECT, rvw.ACTION_DUPLICATE):
+            if is_rereview:
+                reject_rereview(theme)
+            else:
+                theme.addon.update(status=amo.STATUS_REJECTED)
+
+        elif action == rvw.ACTION_FLAG:
+            if is_rereview:
+                mail_and_log = False
+            else:
+                theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
+
+        elif action == rvw.ACTION_MOREINFO:
+            if not is_rereview:
+                theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
+
+        if mail_and_log:
+            send_mail(self.cleaned_data, theme_lock)
+
+            # Log.
+            amo.log(amo.LOG.THEME_REVIEW, theme.addon, details={
+                    'theme': theme.addon.name.localized_string,
+                    'action': action,
+                    'reject_reason': reject_reason,
+                    'comment': comment}, user=theme_lock.reviewer)
+            log.info('%sTheme %s (%s) - %s' % (
+                '[Rereview] ' if is_rereview else '', theme.addon.name,
+                theme.id, action))
+
+        score = 0
+        if action in (rvw.ACTION_REJECT, rvw.ACTION_DUPLICATE,
+                      rvw.ACTION_APPROVE):
+            score = ReviewerScore.award_points(theme_lock.reviewer, theme.addon,
+                                               theme.addon.status)
+        theme_lock.delete()
+
+        return score
+
+
+class ThemeSearchForm(forms.Form):
+    q = forms.CharField(
+        required=False, label=_lazy(u'Search'),
+        widget=forms.TextInput(attrs={'autocomplete': 'off',
+                                      'placeholder': _lazy(u'Search')}))
+    queue_type = forms.CharField(required=False, widget=forms.HiddenInput())
+
+
+class ReviewAppLogForm(ReviewLogForm):
+
+    def __init__(self, *args, **kwargs):
+        super(ReviewAppLogForm, self).__init__(*args, **kwargs)
+        self.fields['search'].widget.attrs = {
+            # L10n: Description of what can be searched for.
+            'placeholder': _lazy(u'app, reviewer, or comment'),
+            'size': 30}

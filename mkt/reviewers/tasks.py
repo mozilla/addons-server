@@ -1,17 +1,11 @@
-import json
-
 from django.conf import settings
 
 from celeryutils import task
 from tower import ugettext as _
 
-import amo
 from addons.tasks import create_persona_preview_images
-from amo.decorators import write
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.utils import LocalFileStorage, send_mail_jinja
-from devhub.models import ActivityLog
-from editors.models import ReviewerScore
 
 import mkt.constants.reviewers as rvw
 
@@ -115,19 +109,3 @@ def reject_rereview(theme):
     storage.delete(reupload.header_path)
     storage.delete(reupload.footer_path)
     rereview.delete()
-
-
-@task
-@write
-def _batch_award_points(activity_log_ids, **kwargs):
-    """For command award_theme_points."""
-    activity_logs = (ActivityLog.objects.filter(id__in=activity_log_ids)
-        .select_related('user'))
-
-    score = amo.REVIEWED_SCORES.get(amo.REVIEWED_PERSONA)
-    ReviewerScore.objects.bulk_create(
-        [ReviewerScore(user=log.user, score=score, note='RETROACTIVE',
-                       note_key=amo.REVIEWED_PERSONA,
-                       addon_id=json.loads(log._arguments)[0]['addons.addon'])
-         for log in activity_logs]
-    )

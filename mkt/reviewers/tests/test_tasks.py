@@ -1,8 +1,6 @@
 import datetime
 
 from django.conf import settings
-from django.core.management import call_command
-from django.db.models import Q
 
 import mock
 from nose.tools import eq_
@@ -10,16 +8,12 @@ from nose.tools import eq_
 import amo
 from abuse.models import AbuseReport
 from amo.tasks import find_abuse_escalations, find_refund_escalations
-from amo.tests import addon_factory, app_factory
-from devhub.models import ActivityLog, AppLog
-from editors.models import EscalationQueue, ReviewerScore
+from amo.tests import app_factory
+from devhub.models import AppLog
+from editors.models import EscalationQueue
 from market.models import AddonPurchase, Refund
 from stats.models import Contribution
 from users.models import UserProfile
-
-import mkt.constants.reviewers as rvw
-from mkt.reviewers.tasks import _batch_award_points
-from mkt.site.fixtures import fixture
 
 
 class TestAbuseEscalationTask(amo.tests.TestCase):
@@ -230,69 +224,3 @@ class TestRefundsEscalationTask(amo.tests.TestCase):
         assert AppLog.objects.filter(
             addon=self.app, activity_log__action=action.id).exists(), (
                 u'Expected high refunds to be logged')
-
-
-class TestBatchAwardPoints(amo.tests.TestCase):
-    fixtures = fixture('user_999', 'user_2519')
-
-    def test_award_theme_points_command(self):
-        # A review from before we started awarding points (award).
-        user_999 = UserProfile.objects.get(username='regularuser')
-        amo.log(amo.LOG.THEME_REVIEW, addon_factory(), details={
-            'action': rvw.ACTION_APPROVE
-        }, user=user_999)
-        al = ActivityLog.objects.get()
-        al.created = datetime.date(2013, 4, 30)
-        al.save()
-        call_command('award_theme_points')
-        eq_(ReviewerScore.objects.count(), 1)
-        eq_(ReviewerScore.objects.get().note_key, amo.REVIEWED_PERSONA)
-        eq_(ReviewerScore.objects.get().note, 'RETROACTIVE')
-
-        # A review from after we started awarding points (don't award).
-        al.created = datetime.date(2013, 8, 30)
-        al.save()
-        call_command('award_theme_points')
-        eq_(ReviewerScore.objects.count(), 1)
-
-    def test_batch_award_points_task(self):
-        user_999 = UserProfile.objects.get(username='regularuser')
-        addon_999 = addon_factory()
-        amo.log(amo.LOG.THEME_REVIEW, addon_999, details={
-            'action': rvw.ACTION_APPROVE
-        }, user=user_999)
-
-        # No points for this one.
-        amo.log(amo.LOG.THEME_REVIEW, addon_factory(), details={
-            'action': rvw.ACTION_MOREINFO
-        }, user=user_999)
-
-        user_2519 = UserProfile.objects.get(username='cfinke')
-        addon_2519 = addon_factory()
-        amo.log(amo.LOG.THEME_REVIEW, addon_2519, details={
-            'action': rvw.ACTION_REJECT
-        }, user=user_2519)
-
-        # Mostly copied and pasted from award_theme_points command.
-        approve = '"action": %s' % rvw.ACTION_APPROVE
-        reject = '"action": %s' % rvw.ACTION_REJECT
-        log_ids = ActivityLog.objects.filter(
-            (Q(_details__contains=approve) | Q(_details__contains=reject)),
-            action=amo.LOG.THEME_REVIEW.id).values_list('id', flat=True)
-
-        _batch_award_points(log_ids)
-
-        eq_(ReviewerScore.objects.count(), 2)
-
-        points = amo.REVIEWED_SCORES.get(amo.REVIEWED_PERSONA)
-        r1 = ReviewerScore.objects.get(user=user_999)
-        eq_(r1.score, points)
-        eq_(r1.note, 'RETROACTIVE')
-        eq_(r1.addon, addon_999)
-        eq_(r1.note_key, amo.REVIEWED_PERSONA)
-
-        r2 = ReviewerScore.objects.get(user=user_2519)
-        eq_(r2.score, points)
-        eq_(r2.note, 'RETROACTIVE')
-        eq_(r2.addon, addon_2519)
-        eq_(r2.note_key, amo.REVIEWED_PERSONA)

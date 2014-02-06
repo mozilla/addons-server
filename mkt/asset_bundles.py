@@ -73,7 +73,7 @@ CSS = {
         'css/devreg/footer.styl',
     ),
     'mkt/reviewers': (
-        'css/zamboni/editors.css',
+        'css/zamboni/editors.styl',
         'css/devreg/consumer-buttons.styl',
         'css/devreg/content_ratings.styl',
         'css/devreg/data-grid.styl',

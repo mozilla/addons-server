@@ -21,8 +21,8 @@ class AppCannedResponse(CannedResponse):
 
 
 class ThemeLock(amo.models.ModelBase):
-    theme = models.OneToOneField('addons.Persona')
-    reviewer = UserForeignKey()
+    theme = models.OneToOneField('addons.Persona', related_name='theme_locks')
+    reviewer = UserForeignKey(related_name='reviewers')
     expiry = models.DateTimeField()
 
     class Meta:

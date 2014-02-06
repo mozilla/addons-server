@@ -8,6 +8,7 @@ from django.db.models import Sum
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 
+import commonware.log
 from tower import ugettext_lazy as _lazy
 
 import amo
@@ -20,10 +21,8 @@ from addons.models import Addon, Persona
 from devhub.models import ActivityLog
 from editors.sql_model import RawSQLModel
 from translations.fields import save_signal, TranslatedField
-from users.models import UserProfile
+from users.models import UserForeignKey, UserProfile
 from versions.models import version_uploaded
-
-import commonware.log
 
 
 user_log = commonware.log.getLogger('z.users')
@@ -717,3 +716,12 @@ class RereviewQueueTheme(amo.models.ModelBase):
     @property
     def footer_url(self):
         return self.theme._image_url(self.footer or self.theme.footer)
+
+
+class ThemeLock(amo.models.ModelBase):
+    theme = models.OneToOneField('addons.Persona')
+    reviewer = UserForeignKey()
+    expiry = models.DateTimeField()
+
+    class Meta:
+        db_table = 'theme_locks'
