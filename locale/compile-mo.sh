@@ -1,28 +1,54 @@
 #!/bin/bash
+# Requires `pip install dennis` for po linting.
 
 # syntax:
 # compile-mo.sh locale-dir/
 
 function usage() {
     echo "syntax:"
-    echo "compile.sh locale-dir/"
+    echo "compile-mo.sh locale-dir/"
     exit 1
 }
 
 # check if file and dir are there
 if [[ ($# -ne 1) || (! -d "$1") ]]; then usage; fi
 
-echo "compiling messages.po...."
-for lang in `find $1 -type f -name "messages.po"`; do
-    dir=`dirname $lang`
-    stem=`basename $lang .po`
-    msgfmt -o ${dir}/${stem}.mo $lang
+echo "compiling messages.po..."
+for pofile in `find $1 -type f -name "messages.po"`; do
+    dir=`dirname $pofile`
+    lang=`echo $pofile | cut -d "/" -f2`
+    stem=`basename $pofile .po`
+    if [ $lang != 'dbg' ]
+    then
+        # lint the .po file
+        dennis-cmd lint -q --errorsonly "$pofile"
+    fi
+    if [ $? -ne 0 ]
+    then
+        echo "Skipping $pofile, errors detected. Run the following to list errors:"
+        echo "dennis-cmd lint --errorsonly $pofile"
+    else
+        msgfmt -o ${dir}/${stem}.mo $pofile
+    fi
 done
 
-echo "compiling javascript.po...."
-for lang in `find $1 -type f -name "javascript.po"`; do
-    dir=`dirname $lang`
-    stem=`basename $lang .po`
+echo
+echo "compiling javascript.po..."
+for pofile in `find $1 -type f -name "javascript.po"`; do
+    dir=`dirname $pofile`
+    lang=`echo $pofile | cut -d "/" -f2`
+    stem=`basename $pofile .po`
     touch "${dir}/${stem}.mo"
-    msgfmt -o ${dir}/${stem}.mo $lang
+    if [ $lang != 'dbg' ]
+    then
+        # lint the .po file
+        dennis-cmd lint -q --errorsonly "$pofile"
+    fi
+    if [ $? -ne 0 ]
+    then
+        echo "Skipping $pofile, errors detected. Run the following to list errors:"
+        echo "dennis-cmd lint --errorsonly $pofile"
+    else
+        msgfmt -o ${dir}/${stem}.mo $pofile
+    fi
 done
