@@ -1,4 +1,7 @@
+import os
+
 from django.conf import settings
+from django.core.servers.basehttp import FileWrapper
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404
@@ -22,6 +25,7 @@ from rest_framework.viewsets import GenericViewSet
 from addons.models import Addon
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
+from amo.utils import HttpResponseSendFile
 from users.models import UserProfile
 from versions.models import Version
 
@@ -159,32 +163,33 @@ class ThreadPermission(BasePermission):
 class NotePermission(ThreadPermission):
 
     def has_permission(self, request, view):
-        thread_id = view.kwargs['thread_id']
+        thread_id = view.kwargs.get('thread_id')
+        if not thread_id and view.kwargs.get('note_id'):
+            note = CommunicationNote.objects.get(id=view.kwargs['note_id'])
+            thread_id = note.thread_id
+
         # We save the thread in the view object so we can use it later.
         view.comm_thread = get_object_or_404(CommunicationThread,
             id=thread_id)
 
-        if view.action == 'list':
-            return ThreadPermission.has_object_permission(self,
-                request, view, view.comm_thread)
-
-        if view.action == 'create':
-            if not request.user.is_authenticated():
-                return False
-
-            # Determine permission to add the note based on the thread
-            # permission.
-            return ThreadPermission.has_object_permission(self,
-                request, view, view.comm_thread)
-
-        return True
+        return ThreadPermission.has_object_permission(self,
+            request, view, view.comm_thread)
 
     def has_object_permission(self, request, view, obj):
         # Has thread obj-level permission AND note obj-level permission.
-        return (
-            ThreadPermission.has_object_permission(self, request, view,
-                                                   obj.thread) and
-            user_has_perm_note(obj, request.amo_user))
+        return user_has_perm_note(obj, request.amo_user)
+
+
+class AttachmentPermission(NotePermission):
+
+    def has_permission(self, request, view):
+        note = CommunicationNote.objects.get(id=view.kwargs['note_id'])
+        return NotePermission.has_object_permission(self, request, view, note)
+
+    def has_object_permission(self, request, view, obj):
+        # Has thread obj-level permission AND note obj-level permission.
+        note = CommunicationNote.objects.get(id=view.kwargs['note_id'])
+        return NotePermission.has_object_permission(self, request, view, note)
 
 
 class EmailCreationPermission(object):
@@ -370,8 +375,21 @@ class AttachmentViewSet(CreateModelMixin, CommViewSet):
     model = CommAttachment
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
-    permission_classes = (NotePermission,)
-    cors_allowed_methods = ['post']
+    permission_classes = (AttachmentPermission,)
+    cors_allowed_methods = ['get', 'post']
+
+    def get(self, request, note_id, pk, *args, **kwargs):
+        attach = get_object_or_404(CommAttachment, pk=pk)
+        self.check_object_permissions(request, attach)
+
+        full_path = os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
+                                 attach.filepath)
+
+        content_type = 'application/force-download'
+        if attach.is_image():
+            content_type = 'image'
+        return HttpResponseSendFile(
+            request, full_path, content_type=content_type)
 
     def create(self, request, note_id, *args, **kwargs):
         note = get_object_or_404(CommunicationNote, id=note_id)

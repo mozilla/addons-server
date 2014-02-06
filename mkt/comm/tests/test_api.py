@@ -8,6 +8,7 @@ from django.test.client import MULTIPART_CONTENT
 from django.test.utils import override_settings
 
 import mock
+from nose.exc import SkipTest
 from nose.tools import eq_, ok_
 
 from amo.tests import (addon_factory, req_factory_factory, user_factory,
@@ -67,7 +68,7 @@ class AttachmentManagementMixin(object):
             for n in xrange(num):
                 i = 0 if n % 2 else 1
                 path = os.path.join(ATTACHMENTS_DIR, files[i])
-                attachment = open(path, 'r+')
+                attachment = open(path, 'r')
                 data.update({
                     'form-%d-attachment' % n: attachment,
                     'form-%d-description' % n: descriptions[i]
@@ -341,7 +342,7 @@ class TestNote(NoteSetupMixin):
         eq_(len(res.json['attachments']), 1)
         eq_(res.json['attachments'][0]['url'],
             settings.SITE_URL +
-            reverse('reviewers.apps.review.attachment', args=[attach.id]))
+            reverse('comm-attachment-detail', args=[note.id, attach.id]))
         eq_(res.json['attachments'][0]['display_name'], 'desc')
         ok_(not res.json['attachments'][0]['is_image'])
 
@@ -446,20 +447,19 @@ class TestNote(NoteSetupMixin):
 
 
 @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-class TestAttachment(NoteSetupMixin):
+class TestAttachments(NoteSetupMixin):
 
     def setUp(self):
-        super(TestAttachment, self).setUp()
+        super(TestAttachments, self).setUp()
         self.note = self._note_factory(self.thread, author=self.profile)
         self.attachment_url = reverse(
-            'comm-attachment-list', kwargs={'thread_id': self.thread.id,
-                                            'note_id': self.note.id})
+            'comm-attachment-list', kwargs={'note_id': self.note.id})
 
     def test_cors_bad_request(self):
         res = self.client.post(self.attachment_url, data={},
                                content_type=MULTIPART_CONTENT)
         eq_(res.status_code, 400)
-        self.assertCORS(res, 'post')
+        self.assertCORS(res, 'get', 'post')
 
     def _save_attachment_mock(self, storage, attachment, filepath):
         if 'jpg' in filepath:
@@ -502,6 +502,36 @@ class TestAttachment(NoteSetupMixin):
         res = self.client.post(self.attachment_url, data=data,
                                content_type=MULTIPART_CONTENT)
 
+        eq_(res.status_code, 403)
+
+    def test_get_attachment(self):
+        if not settings.XSENDFILE:
+            raise SkipTest
+
+        data = self._attachments(num=1)
+        res = self.client.post(self.attachment_url, data=data,
+                               content_type=MULTIPART_CONTENT)
+        attachment_id = res.json['attachments'][0]['id']
+
+        get_attachment_url = reverse('comm-attachment-detail',
+                                     args=[self.note.id, attachment_id])
+        res = self.client.get(get_attachment_url)
+        eq_(res.status_code, 200)
+        eq_(res._headers['x-sendfile'][1],
+            CommAttachment.objects.get(id=attachment_id).full_path())
+
+    def test_get_attachment_not_note_perm(self):
+        data = self._attachments(num=1)
+        res = self.client.post(self.attachment_url, data=data,
+                               content_type=MULTIPART_CONTENT)
+        attachment_id = res.json['attachments'][0]['id']
+
+        # Remove perms.
+        self.note.update(author=user_factory())
+        self.profile.addonuser_set.all().delete()
+        get_attachment_url = reverse('comm-attachment-detail',
+                                     args=[self.note.id, attachment_id])
+        res = self.client.get(get_attachment_url)
         eq_(res.status_code, 403)
 
 
