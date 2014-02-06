@@ -1198,13 +1198,15 @@ class TestPackagedManifest(BasePackagedAppTest):
     def test_get_manifest_json_multiple_versions(self):
         # Post the real app/version, but backfill an older version.
         webapp = self.post_addon()
-        webapp.update(status=amo.STATUS_PUBLIC, _current_version=None)
+        latest_version = webapp.latest_version
+        webapp.current_version.files.update(status=amo.STATUS_PUBLIC)
         version = version_factory(addon=webapp, version='0.5',
                                   created=self.days_ago(1))
         version.files.update(created=self.days_ago(1))
         webapp = Webapp.objects.get(pk=webapp.pk)
+        webapp._current_version = None  # update_version() should find the 1.0.
         webapp.update_version()
-        assert webapp.current_version
+        eq_(webapp.current_version, latest_version)
         assert webapp.current_version.has_files
         mf = self._get_manifest_json()
         eq_(webapp.get_manifest_json(), mf)
@@ -1600,8 +1602,8 @@ class TestPackagedSigning(amo.tests.WebappTestCase):
 class TestUpdateStatus(amo.tests.TestCase):
 
     def setUp(self):
-        # Disabling signals to simplify these tests and because create doesn't
-        # call the signals anyway.
+        # Disabling signals to simplify these tests. We call update_status()
+        # manually in them.
         version_changed_signal.disconnect(version_changed,
                                           dispatch_uid='version_changed')
         post_save.disconnect(update_status, sender=Version,
@@ -1646,8 +1648,20 @@ class TestUpdateStatus(amo.tests.TestCase):
                                     file_kw=dict(status=amo.STATUS_DISABLED))
         amo.tests.version_factory(addon=app,
                                   file_kw=dict(status=amo.STATUS_PENDING))
-        app.update_status()
+        with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
+            comp.return_value = True
+            app.update_status()
         eq_(app.status, amo.STATUS_PENDING)
+
+    def test_one_version_pending_not_fully_complete(self):
+        app = amo.tests.app_factory(status=amo.STATUS_REJECTED,
+                                    file_kw=dict(status=amo.STATUS_DISABLED))
+        amo.tests.version_factory(addon=app,
+                                  file_kw=dict(status=amo.STATUS_PENDING))
+        with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
+            comp.return_value = False
+            app.update_status()
+        eq_(app.status, amo.STATUS_REJECTED)  # Didn't change.
 
     def test_one_version_public(self):
         app = amo.tests.app_factory(status=amo.STATUS_PUBLIC)

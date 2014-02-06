@@ -888,28 +888,27 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def current_version(self):
-        "Returns the current_version field or updates it if needed."
+        """Returns the current_version or None if the app is deleted or not
+        created yet"""
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
         try:
-            if not self._current_version:
-                self.update_version()
+            return self._current_version
         except ObjectDoesNotExist:
-            return
-        return self._current_version
+            pass
+        return None
 
     @property
     def latest_version(self):
+        """Returns the latest_version or None if the app is deleted or not
+        created yet"""
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
         try:
-            if not self._latest_version:
-                self.update_version()
-                log.info('Setting latest_version on add-on [%s]: %s.'
-                     % (self.id, self._latest_version_id))
+            return self._latest_version
         except ObjectDoesNotExist:
-            return
-        return self._latest_version
+            pass
+        return None
 
     @amo.cached_property
     def binary(self):
@@ -979,7 +978,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 split_id.group(2) or 0, self.id, size,
                 int(time.mktime(self.modified.timetuple())))
 
-    def update_status(self, using=None):
+    @write
+    def update_status(self):
         if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]
             or self.is_disabled or self.is_persona() or self.is_webapp()):
             return
@@ -989,7 +989,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                      % (self.id, old, self.status, reason))
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
-        versions = self.versions.using(using)
+        versions = self.versions.all()
         if not versions.exists():
             self.update(status=amo.STATUS_NULL)
             logit('no versions')

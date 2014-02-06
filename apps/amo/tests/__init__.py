@@ -47,6 +47,7 @@ from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
+from constants.applications import DEVICE_TYPES
 from files.helpers import copyfileobj
 from files.models import File, Platform
 from lib.es.signals import process, reset
@@ -707,19 +708,29 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 
 
 def app_factory(**kw):
+    """Create an app. Any keyword argument is passed to addon_factory, except
+    for the booleans 'rated' and 'complete'. Those allow you to create an app
+    that automatically have content ratings and automatically have everything
+    needed to be considered 'complete', respectively."""
     kw.update(type=amo.ADDON_WEBAPP)
-    # Pop the rated kwarg if present: we only use it to set a content rating,
-    # it's not a real Addon/Webapp attribute we want to set, so don't pass it
-    # through to addon_factory.
+    complete = kw.pop('complete', False)
     rated = kw.pop('rated', False)
+    if complete:
+        kw.setdefault('support_email', 'support@example.com')
     app = amo.tests.addon_factory(**kw)
-    if rated:
+    if rated or complete:
         app.set_content_ratings(
             dict((body, body.ratings[0]) for body in
             mkt.ratingsbodies.ALL_RATINGS_BODIES))
         app.set_iarc_info(123, 'abc')
         app.set_descriptors([])
         app.set_interactives([])
+    if complete:
+        cat, _ = Category.objects.get_or_create(slug='utilities',
+                                                type=amo.ADDON_WEBAPP)
+        app.addoncategory_set.create(category=cat)
+        app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
+        app.previews.create()
     return app
 
 

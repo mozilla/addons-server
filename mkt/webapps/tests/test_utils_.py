@@ -33,6 +33,7 @@ class TestAppSerializer(amo.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
+        self.create_switch('iarc')
         self.app = amo.tests.app_factory(version_kw={'version': '1.8'})
         self.profile = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
@@ -125,7 +126,6 @@ class TestAppSerializer(amo.tests.TestCase):
         self.assertSetEqual(res['categories'], ['cat1', 'cat2'])
 
     def test_content_ratings(self):
-        self.create_switch('iarc')
         self.app.set_content_ratings({
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
@@ -145,7 +145,6 @@ class TestAppSerializer(amo.tests.TestCase):
              'description': unicode(ratingsbodies.DESC_LAZY) % 18})
 
     def test_content_ratings_by_region(self):
-        self.create_switch('iarc')
         self.app.set_content_ratings({
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
@@ -162,7 +161,6 @@ class TestAppSerializer(amo.tests.TestCase):
         assert 'br' in res['regions']
 
     def test_content_ratings_regions(self):
-        self.create_switch('iarc')
         res = self.serialize(self.app)
         region_rating_bodies = res['content_ratings']['regions']
         eq_(region_rating_bodies['br'], 'classind')
@@ -186,8 +184,6 @@ class TestAppSerializer(amo.tests.TestCase):
 
     def test_dehydrate_content_rating_old_es(self):
         """Test dehydrate works with old ES mapping."""
-        self.create_switch('iarc')
-
         rating = dehydrate_content_rating(
             [json.dumps({'body': u'CLASSIND',
                          'slug': u'0',
@@ -197,8 +193,6 @@ class TestAppSerializer(amo.tests.TestCase):
         eq_(rating, {})
 
     def test_filter_iarc_obj_by_region_only(self):
-        self.create_switch('iarc')
-
         region_map = {
             'us': 'esrb',
             'mx': 'esrb',
@@ -212,8 +206,6 @@ class TestAppSerializer(amo.tests.TestCase):
         eq_(_filter_iarc_obj_by_region(region_map, region='DNE'), region_map)
 
     def test_filter_iarc_obj_by_region_and_body(self):
-        self.create_switch('iarc')
-
         classind_rating = {
             'body': u'CLASSIND',
             'slug': u'0',
@@ -389,6 +381,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
+        self.create_switch('iarc')
         self.profile = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
         self.request.REGION = mkt.regions.US
@@ -485,9 +478,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
 
     def test_basic_no_queries(self):
         # If we don't pass a UserProfile, a free app shouldn't have to make any
-        # db queries at all. To prevent a potential query because of iarc check,
-        # we create the iarc waffle switch, it should be cached immediately.
-        self.create_switch('iarc')
+        # db queries at all.
         self.request.amo_user = None
         with self.assertNumQueries(0):
             self.test_basic()
@@ -514,7 +505,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
 
     def test_content_ratings(self):
         self.request.REGION = mkt.regions.RESTOFWORLD
-        self.create_switch('iarc')
         self.app.set_content_ratings({
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
@@ -547,7 +537,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
              {'label': 'shares-info', 'name': 'Shares Info'}])
 
     def test_content_ratings_by_region(self):
-        self.create_switch('iarc')
         self.app.set_content_ratings({
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
@@ -567,7 +556,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
 
     def test_content_ratings_regions(self):
         self.request.REGION = mkt.regions.RESTOFWORLD
-        self.create_switch('iarc')
         res = self.serialize()
         region_rating_bodies = res['content_ratings']['regions']
         eq_(region_rating_bodies['br'], 'classind')
@@ -576,6 +564,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(region_rating_bodies['us'], 'esrb')
 
     def test_content_ratings_regions_no_switch(self):
+        self.create_switch('iarc', active=False, db=True)
         self.app.set_content_ratings({
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,

@@ -2119,9 +2119,9 @@ class TestReviewPending(ReviewBase):
 
     def setUp(self):
         super(TestReviewPending, self).setUp()
-        self.addon.update(status=amo.STATUS_PUBLIC)
         self.file = File.objects.create(version=self.version,
                                         status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_PUBLIC)
 
     def pending_dict(self):
         files = list(self.version.files.values_list('id', flat=True))
@@ -2133,8 +2133,8 @@ class TestReviewPending(ReviewBase):
         eq_(list(statuses), [amo.STATUS_UNREVIEWED, amo.STATUS_LITE])
 
         r = self.client.post(self.url, self.pending_dict())
-        self.assertRedirects(r, reverse('editors.queue_pending'))
         eq_(self.get_addon().status, amo.STATUS_PUBLIC)
+        self.assertRedirects(r, reverse('editors.queue_pending'))
 
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))

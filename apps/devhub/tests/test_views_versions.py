@@ -510,8 +510,8 @@ class TestVersionEditFiles(TestVersionEdit):
         eq_(ActivityLog.objects.count(), 0)
         r = self.client.post(self.url, self.formset(*forms, prefix='files'))
 
-        eq_(ActivityLog.objects.count(), 3)
-        log = ActivityLog.objects.order_by('created')[2]
+        eq_(ActivityLog.objects.count(), 2)
+        log = ActivityLog.objects.order_by('created')[1]
         eq_(log.to_string(), u'File delicious_bookmarks-2.1.072-fx.xpi deleted'
                               ' from <a href="/en-US/firefox/addon/a3615'
                               '/versions/2.1.072">Version 2.1.072</a> of <a '
