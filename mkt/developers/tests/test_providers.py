@@ -108,6 +108,12 @@ class TestBango(Patcher, TestCase):
         ok_('packageId' in
             self.bango_p_patcher.product.post.call_args[1]['data'])
 
+    def test_terms_bleached(self):
+        self.bango_patcher.sbi.agreement.get_object.return_value = {
+            'text': '<script>foo</script><a>bar</a>'}
+        eq_(self.bango.terms_retrieve(Mock())['text'],
+            u'&lt;script&gt;foo&lt;/script&gt;<a>bar</a>')
+
 
 class TestReference(Patcher, TestCase):
     fixtures = fixture('user_999')
@@ -138,6 +144,15 @@ class TestReference(Patcher, TestCase):
         account = self.make_account()
         self.ref.terms_retrieve(account)
         assert self.ref_patcher.terms.called
+
+    def test_terms_bleached(self):
+        account = self.make_account()
+        account_mock = Mock()
+        account_mock.get.return_value = {'text':
+                                         '<script>foo</script><a>bar</a>'}
+        self.ref_patcher.terms.return_value = account_mock
+        eq_(self.ref.terms_retrieve(account)['text'],
+            u'&lt;script&gt;foo&lt;/script&gt;<a>bar</a>')
 
     def test_terms_update(self):
         seller_mock = Mock()
