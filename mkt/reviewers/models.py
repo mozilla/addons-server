@@ -4,7 +4,6 @@ from django.db import models
 import amo
 from apps.addons.models import Addon
 from apps.editors.models import CannedResponse, EscalationQueue, RereviewQueue
-from users.models import UserForeignKey
 
 
 class AppCannedResponseManager(amo.models.ManagerBase):
@@ -18,15 +17,6 @@ class AppCannedResponse(CannedResponse):
 
     class Meta:
         proxy = True
-
-
-class ThemeLock(amo.models.ModelBase):
-    theme = models.OneToOneField('addons.Persona', related_name='theme_locks')
-    reviewer = UserForeignKey(related_name='reviewers')
-    expiry = models.DateTimeField()
-
-    class Meta:
-        db_table = 'theme_locks'
 
 
 def cleanup_queues(sender, instance, **kwargs):

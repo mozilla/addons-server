@@ -10,14 +10,13 @@ import amo
 from addons.models import AddonDeviceType, Persona
 from amo.utils import raise_required
 from editors.forms import NonValidatingChoiceField, ReviewLogForm
-from editors.models import CannedResponse, ReviewerScore
+from editors.models import CannedResponse, ReviewerScore, ThemeLock
 
 import mkt.constants.reviewers as rvw
 from mkt.api.forms import CustomNullBooleanSelect
 from mkt.reviewers.utils import ReviewHelper
 from mkt.search.forms import ApiSearchForm
 
-from .models import ThemeLock
 from .tasks import approve_rereview, reject_rereview, send_mail
 
 
