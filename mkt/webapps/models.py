@@ -613,17 +613,6 @@ class Webapp(Addon):
         This does not consider whether an app is excluded in the current region
         by the developer.
         """
-
-        user_region = getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
-
-        # See if it's a game without a content rating.
-        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
-            if (user_region == region and self.listed_in(category='games') and
-                not self.content_ratings_in(region, 'games')):
-                unrated_game = True
-            else:
-                unrated_game = False
-
         # Let developers see it always.
         can_see = (self.has_author(request.amo_user) or
                    action_allowed(request, 'Apps', 'Edit'))
@@ -637,7 +626,7 @@ class Webapp(Addon):
         if can_see:
             # Developers and reviewers should see it always.
             visible = True
-        elif self.is_public() and not unrated_game:
+        elif self.is_public():
             # Everyone else can see it only if it's public -
             # and if it's a game, it must have a content rating.
             visible = True

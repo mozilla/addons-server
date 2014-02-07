@@ -59,29 +59,6 @@ region_error = lambda region: forms.ValidationError(
 )
 
 
-def toggle_game(app):
-    """
-    Exclude unrated games from regions requiring content ratings.
-    Allow newly rated games in regions requiring content ratings.
-    """
-    if not Webapp.category('games'):
-        return
-    for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
-        if app.listed_in(category='games'):
-            if app.content_ratings_in(region):
-                aer = app.addonexcludedregion.filter(region=region.id)
-                if aer.exists():
-                    aer.delete()
-                    log.info(u'[Webapp:%s] Game included in new region '
-                             u'(%s).' % (app, region.id))
-            else:
-                aer, created = app.addonexcludedregion.get_or_create(
-                    region=region.id)
-                if created:
-                    log.info(u'[Webapp:%s] Game excluded from new region '
-                             u'(%s).' % (app, region.id))
-
-
 def toggle_app_for_special_regions(request, app, enabled_regions=None):
     """Toggle for special regions (e.g., China)."""
     if not waffle.flag_is_active(request, 'special-regions'):
@@ -327,8 +304,6 @@ class AdminSettingsForm(PreviewForm):
 
         self.request = kw.pop('request', None)
 
-        self.disabled_regions = sorted(addon.get_excluded_region_ids())
-
         # Note: After calling `super`, `self.instance` becomes the `Preview`
         # object.
         super(AdminSettingsForm, self).__init__(*args, **kw)
@@ -353,10 +328,6 @@ class AdminSettingsForm(PreviewForm):
         except (TypeError, ValueError):
             # input data is not a list or data contains non-integers.
             raise forms.ValidationError(_('Invalid region(s) selected.'))
-
-        if set(regions).intersection(self.disabled_regions):
-            raise forms.ValidationError(_('Only regions the app is already '
-                                          'available in may be selected.'))
 
         return list(regions)
 
@@ -404,7 +375,6 @@ class AdminSettingsForm(PreviewForm):
         geodata.banner_message = self.cleaned_data.get('banner_message')
         geodata.save()
 
-        toggle_game(addon)
         uses_flash = self.cleaned_data.get('flash')
         af = addon.get_latest_file()
         if af is not None:
@@ -764,21 +734,6 @@ class RegionForm(forms.Form):
                 # If it's pending/public, check its checkbox.
                 self.initial['regions'].append(region.id)
 
-        self.disabled_regions = sorted(self._disabled_regions())
-
-    def _disabled_regions(self):
-        disabled_regions = set()
-
-        # Games cannot be listed in Brazil/Germany without a content rating.
-        games = Webapp.category('games')
-
-        if games and self.product.categories.filter(id=games.id).exists():
-            for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
-                if not self.product.content_ratings_in(region):
-                    disabled_regions.add(region.id)
-
-        return disabled_regions
-
     @property
     def regions_by_id(self):
         return mkt.regions.REGIONS_CHOICES_ID_DICT
@@ -820,11 +775,6 @@ class RegionForm(forms.Form):
             if not regions:
                 raise forms.ValidationError(
                     _('You must select at least one region.'))
-
-            # Handle disabled regions.
-            for region in regions:
-                if region in self.disabled_regions:
-                    raise region_error(region)
         return regions
 
     def save(self):
@@ -846,7 +796,7 @@ class RegionForm(forms.Form):
 
             # Add new region exclusions.
             to_add = before - after
-            for region in to_add - set(self.disabled_regions):
+            for region in to_add:
                 aer, created = self.product.addonexcludedregion.get_or_create(
                     region=region)
                 if created:
@@ -855,7 +805,7 @@ class RegionForm(forms.Form):
 
             # Remove old region exclusions.
             to_remove = after - before
-            for region in to_remove.union(self.disabled_regions):
+            for region in to_remove:
                 self.product.addonexcludedregion.filter(
                     region=region).delete()
                 log.info(u'[Webapp:%s] No longer exluded from region (%s).'
@@ -865,9 +815,6 @@ class RegionForm(forms.Form):
             log.info(u'[Webapp:%s] App mark as unrestricted.' % self.product)
 
         self.product.geodata.update(restricted=restricted)
-
-        # TODO: Stop saving AddonExcludedRegion objects when IARC work lands.
-        toggle_game(self.product)
 
         # Toggle region exclusions/statuses for special regions (e.g., China).
         toggle_app_for_special_regions(self.request, self.product,
@@ -932,10 +879,6 @@ class CategoryForm(happyforms.Form):
         self.product.addoncategory_set.filter(
             category_id__in=to_remove).delete()
 
-        # Disallow/allow games in Brazil/Germany based on content ratings.
-        toggle_game(self.product)
-
-        # Toggle app for special regions (e.g., China).
         toggle_app_for_special_regions(self.request, self.product)
 
 

@@ -955,38 +955,6 @@ class TestRegions(amo.tests.TestCase):
         self.assertNoFormErrors(r)
         eq_(AER.objects.count(), 0)
 
-    def test_games_form_disabled(self):
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        AddonCategory.objects.create(addon=self.webapp, category=games)
-
-        r = self.client.get(self.url, self.get_dict())
-        self.assertNoFormErrors(r)
-
-        td = pq(r.content)('#regions')
-        disabled_regions = json.loads(td.find('div[data-disabled-regions]')
-              .attr('data-disabled-regions'))
-        assert mkt.regions.BR.id in disabled_regions
-        assert mkt.regions.DE.id in disabled_regions
-        eq_(td.find('.note.disabled-regions').length, 1)
-
-    def test_games_form_enabled_with_content_rating(self):
-        amo.tests.make_game(self.webapp, True)
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        AddonCategory.objects.create(addon=self.webapp, category=games)
-
-        r = self.client.get(self.url)
-        td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled-regions]')
-              .attr('data-disabled-regions'), '[]')
-        eq_(td.find('.note.disabled-regions').length, 0)
-
-    def test_brazil_other_cats_form_enabled(self):
-        r = self.client.get(self.url)
-        td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled-regions]')
-              .attr('data-disabled-regions'), '[]')
-        eq_(td.find('.note.disabled-regions').length, 0)
-
 
 class PaymentsBase(amo.tests.TestCase):
     fixtures = fixture('user_editor', 'user_999')
