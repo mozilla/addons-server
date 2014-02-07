@@ -1,14 +1,8 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import patterns, url
 
-from rest_framework.routers import SimpleRouter
-
-from .resources import MonolithViewSet
-
-
-api = SimpleRouter()
-api.register('data', MonolithViewSet, base_name='monolith')
+from .resources import MonolithView
 
 
 urlpatterns = patterns('',
-    url(r'^monolith/', include(api.urls)),
+    url(r'^monolith/data/', MonolithView.as_view(), name='monolith-list'),
 )
