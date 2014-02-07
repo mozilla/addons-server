@@ -26,6 +26,7 @@ class TestSendMail(test.TestCase):
         self._email_blacklist = list(getattr(settings, 'EMAIL_BLACKLIST', []))
 
     def tearDown(self):
+        translation.activate('en_US')
         settings.EMAIL_BLACKLIST = self._email_blacklist
 
     def test_send_string(self):
@@ -202,7 +203,7 @@ class TestSendMail(test.TestCase):
 
     def test_send_attachment(self):
         path = os.path.join(ATTACHMENTS_DIR, 'bacon.txt')
-        attachments = [(os.path.basename(path), storage.open(path),
+        attachments = [(os.path.basename(path), storage.open(path).read(),
                         mimetypes.guess_type(path)[0])]
         send_mail('test subject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'], attachments=attachments)

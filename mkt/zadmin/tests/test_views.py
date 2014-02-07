@@ -103,7 +103,7 @@ class TestAddonAdmin(amo.tests.TestCase):
         doc = pq(res.content)
         rows = doc('#result_list tbody tr')
         eq_(rows.length, 1)
-        eq_(rows.find('a').attr('href'), '337141/')
+        eq_(rows.find('a').attr('href'), '/admin/models/addons/addon/337141/')
 
 
 class TestManifestRevalidation(amo.tests.TestCase):

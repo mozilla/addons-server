@@ -168,14 +168,12 @@ def details(request, addon_id, addon):
         'form_icon': form_icon,
         'form_previews': form_previews,
     }
-
     if request.POST and all(f.is_valid() for f in forms.itervalues()):
         addon = form_basic.save(addon)
         form_cats.save()
         form_icon.save(addon)
         for preview in form_previews.forms:
             preview.save(addon)
-
         # If this is an incomplete app from the legacy submission flow, it may
         # not have device types set yet - so assume it works everywhere.
         if not addon.device_types:

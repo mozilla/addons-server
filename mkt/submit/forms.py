@@ -410,15 +410,13 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         return slug.lower()
 
     def save(self, *args, **kw):
+        self.instance = super(AppDetailsBasicForm, self).save(commit=True)
         uses_flash = self.cleaned_data.get('flash')
         af = self.instance.get_latest_file()
         if af is not None:
             af.update(uses_flash=bool(uses_flash))
 
-        form = super(AppDetailsBasicForm, self).save(commit=False)
-        form.save()
-
-        return form
+        return self.instance
 
 
 class AppFeaturesForm(happyforms.ModelForm):

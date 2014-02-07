@@ -67,7 +67,7 @@ def reverse_version(version):
     The try/except AttributeError allows this to be used where the input is
     ambiguous, and could be either an already-reversed URL or a Version object.
     """
-    if version:
+    if version and settings.MARKETPLACE:
         try:
             return reverse('version-detail', kwargs={'pk': version.pk})
         except AttributeError:

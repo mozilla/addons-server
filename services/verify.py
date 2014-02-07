@@ -6,14 +6,12 @@ from time import gmtime, time
 from urlparse import parse_qsl, urlparse
 from wsgiref.handlers import format_date_time
 
-from django.core.management import setup_environ
 
 from utils import (log_configure, log_exception, log_info, mypool,
                    ADDON_PREMIUM, CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
                    CONTRIB_PURCHASE, CONTRIB_REFUND)
 
 from services.utils import settings
-setup_environ(settings)
 
 # Go configure the log.
 log_configure()

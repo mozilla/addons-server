@@ -527,7 +527,8 @@ class TestDownloadSources(amo.tests.TestCase):
 
 
 class TestMonthlyPick(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'discovery/discoverymodules']
+    fixtures = ['base/users', 'base/apps', 'base/addon_3615',
+                'discovery/discoverymodules']
 
     def setUp(self):
         self.url = reverse('discovery.pane.promos', args=['Darwin', '10.0'])

@@ -6,7 +6,6 @@ import sys
 from time import time
 from urlparse import parse_qsl
 
-from django.core.management import setup_environ
 
 import commonware.log
 import jinja2
@@ -14,7 +13,6 @@ import jinja2
 from utils import log_configure
 
 import settings_local as settings
-setup_environ(settings)
 
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd

@@ -1282,7 +1282,8 @@ class LanguagePacks(UploadTest):
     def setup_localepicker(self, platform):
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
         version = self.addon.versions.all()[0]
-        File.objects.create(version=version, platform_id=platform)
+        File.objects.create(version=version, platform_id=platform,
+                            status=amo.STATUS_PUBLIC)
 
     def test_search_wrong_platform(self):
         self.setup_localepicker(amo.PLATFORM_MAC.id)
