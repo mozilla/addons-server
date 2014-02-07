@@ -16,9 +16,8 @@ import amo.tests
 from amo.tests import addon_factory, days_ago
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
-from editors.models import RereviewQueueTheme, ReviewerScore
+from editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
 import mkt.constants.reviewers as rvw
-from mkt.reviewers.models import ThemeLock
 from mkt.reviewers.views_themes import _get_themes, home, themes_search
 from mkt.site.fixtures import fixture
 from users.models import UserProfile

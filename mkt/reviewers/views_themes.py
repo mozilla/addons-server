@@ -19,7 +19,7 @@ from amo.search import TempS
 from amo.urlresolvers import reverse
 from amo.utils import days_ago, paginate
 from devhub.models import ActivityLog
-from editors.models import RereviewQueueTheme, ReviewerScore
+from editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
 from editors.views import reviewer_required
 from search.views import name_only_query
 from zadmin.decorators import admin_required
@@ -27,7 +27,6 @@ from zadmin.decorators import admin_required
 import mkt.constants.reviewers as rvw
 
 from . import forms
-from .models import ThemeLock
 from .views import context, _get_search_form, queue_counts, QUEUE_PER_PAGE
 
 

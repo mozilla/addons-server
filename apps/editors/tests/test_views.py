@@ -737,6 +737,26 @@ class TestQueueBasics(QueueTest):
             eq_(rows.find('td').eq(1).text(), 'Premium add-on 0.1')
             eq_(rows.find('.ed-sprite-premium').length, 1)
 
+    def test_theme_redirect(self):
+        users = []
+        for x in range(2):
+            user = amo.tests.user_factory()
+            user.set_password('password')
+            user.save()
+            users.append(user)
+
+        self.grant_permission(users[0], 'Personas:Review')
+        self.client.logout()
+        self.login(users[0])
+        res = self.client.get(reverse('editors.home'))
+        self.assertRedirects(res, reverse('editors.themes.home'))
+
+        self.grant_permission(users[1], 'Addons:Review')
+        self.client.logout()
+        self.login(users[1])
+        res = self.client.get(reverse('editors.home'))
+        eq_(res.status_code, 200)
+
 
 class TestPendingQueue(QueueTest):
 
