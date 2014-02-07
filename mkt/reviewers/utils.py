@@ -61,18 +61,6 @@ class ReviewBase(object):
         self.in_escalate = EscalationQueue.objects.filter(
             addon=self.addon).exists()
 
-    def _create_comm_note(self, note_type, attachments=None):
-        # Permissions default to developers + reviewers + Mozilla contacts.
-        # For escalation/comment, exclude the developer from the conversation.
-        perm_overrides = {
-            comm.ESCALATION: {'developer': False},
-            comm.REVIEWER_COMMENT: {'developer': False},
-        }
-        self.comm_thread, self.comm_note = create_comm_note(
-            self.addon, self.version, self.request.amo_user,
-            self.data['comments'], note_type=note_type,
-            perms=perm_overrides.get(note_type), no_switch=False)
-
     def get_attachments(self):
         """
         Returns a list of triples suitable to be attached to an email.
@@ -112,19 +100,33 @@ class ReviewBase(object):
             if hide_disabled_file:
                 file.hide_disabled_file()
 
-    def log_action(self, action):
+    def create_note(self, action):
+        """
+        Permissions default to developers + reviewers + Mozilla contacts.
+        For escalation/comment, exclude the developer from the conversation.
+        """
         details = {'comments': self.data['comments'],
                    'reviewtype': self.review_type}
         if self.files:
             details['files'] = [f.id for f in self.files]
 
         # Commbadge (the future).
-        self._create_comm_note(comm.ACTION_MAP(action.id),
-                               attachments=self.attachment_formset)
+        perm_overrides = {
+            comm.ESCALATION: {'developer': False},
+            comm.REVIEWER_COMMENT: {'developer': False},
+        }
+        note_type = comm.ACTION_MAP(action.id)
+        self.comm_thread, self.comm_note = create_comm_note(
+            self.addon, self.version, self.request.amo_user,
+            self.data['comments'], note_type=note_type,
+            # Ignore switch so we don't have to re-migrate new notes.
+            perms=perm_overrides.get(note_type), no_switch=True,
+            attachments=self.attachment_formset)
+
         # ActivityLog (ye olde).
         amo.log(action, self.addon, self.version, user=self.user.get_profile(),
                 created=datetime.now(), details=details,
-                attachments=self.attachment_formset)  # ActivityLog.
+                attachments=self.attachment_formset)
 
     def notify_email(self, template, subject, fresh_thread=False):
         """Notify the authors that their app has been reviewed."""
@@ -177,7 +179,7 @@ class ReviewBase(object):
     def request_information(self):
         """Send a request for information to the authors."""
         emails = list(self.addon.authors.values_list('email', flat=True))
-        self.log_action(amo.LOG.REQUEST_INFORMATION)
+        self.create_note(amo.LOG.REQUEST_INFORMATION)
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
@@ -229,7 +231,7 @@ class ReviewApp(ReviewBase):
                            highest_status=amo.STATUS_PUBLIC_WAITING)
         self.set_reviewed()
 
-        self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
+        self.create_note(amo.LOG.APPROVE_VERSION_WAITING)
         self.notify_email('pending_to_public_waiting',
                           u'App Approved but waiting: %s')
 
@@ -268,7 +270,7 @@ class ReviewApp(ReviewBase):
         if waffle.switch_is_active('iarc'):
             self.addon.set_iarc_storefront_data()
 
-        self.log_action(amo.LOG.APPROVE_VERSION)
+        self.create_note(amo.LOG.APPROVE_VERSION)
         self.notify_email('pending_to_public', u'App Approved: %s')
 
         log.info(u'Making %s public' % self.addon)
@@ -297,7 +299,7 @@ class ReviewApp(ReviewBase):
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
-        self.log_action(amo.LOG.REJECT_VERSION)
+        self.create_note(amo.LOG.REJECT_VERSION)
         self.notify_email('pending_to_sandbox', u'Submission Update: %s')
 
         log.info(u'Making %s disabled' % self.addon)
@@ -313,10 +315,9 @@ class ReviewApp(ReviewBase):
         Creates Escalation note/email.
         """
         EscalationQueue.objects.get_or_create(addon=self.addon)
+        self.create_note(amo.LOG.ESCALATE_MANUAL)
         log.info(u'Escalated review requested for %s' % self.addon)
         self.notify_email('author_super_review', u'Submission Update: %s')
-
-        self.log_action(amo.LOG.ESCALATE_MANUAL)
         log.info(u'Escalated review requested for %s' % self.addon)
 
         # Special senior reviewer email.
@@ -334,7 +335,7 @@ class ReviewApp(ReviewBase):
         Creates Reviewer Comment note/email.
         """
         self.version.update(has_editor_comment=True)
-        self.log_action(amo.LOG.COMMENT_VERSION)
+        self.create_note(amo.LOG.COMMENT_VERSION)
 
     def process_clear_escalation(self):
         """
@@ -343,7 +344,7 @@ class ReviewApp(ReviewBase):
         Doesn't create note/email.
         """
         EscalationQueue.objects.filter(addon=self.addon).delete()
-        self.log_action(amo.LOG.ESCALATION_CLEARED)
+        self.create_note(amo.LOG.ESCALATION_CLEARED)
         log.info(u'Escalation cleared for app: %s' % self.addon)
 
     def process_clear_rereview(self):
@@ -353,7 +354,7 @@ class ReviewApp(ReviewBase):
         Doesn't create note/email.
         """
         RereviewQueue.objects.filter(addon=self.addon).delete()
-        self.log_action(amo.LOG.REREVIEW_CLEARED)
+        self.create_note(amo.LOG.REREVIEW_CLEARED)
         log.info(u'Re-review cleared for app: %s' % self.addon)
         # Assign reviewer incentive scores.
         return ReviewerScore.award_points(self.request.amo_user, self.addon,
@@ -381,7 +382,7 @@ class ReviewApp(ReviewBase):
         self.addon.set_iarc_storefront_data(disable=True)
 
         self.notify_email('disabled', u'App disabled by reviewer: %s')
-        self.log_action(amo.LOG.APP_DISABLED)
+        self.create_note(amo.LOG.APP_DISABLED)
         log.info(u'App %s has been disabled by a reviewer.' % self.addon)
 
 

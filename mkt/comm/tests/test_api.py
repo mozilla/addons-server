@@ -59,6 +59,14 @@ class CommTestMixin(object):
 
 class AttachmentManagementMixin(object):
 
+    def _attachment_management_form(self, num=1):
+        """
+        Generate and return data for a management form for `num` attachments
+        """
+        return {'form-TOTAL_FORMS': max(1, num),
+                'form-INITIAL_FORMS': 0,
+                'form-MAX_NUM_FORMS': 1000}
+
     def _attachments(self, num):
         """Generate and return data for `num` attachments """
         data = {}
