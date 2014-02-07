@@ -118,6 +118,10 @@ def eventlog_detail(request, id):
 
 @reviewer_required
 def home(request):
+    if (not acl.action_allowed(request, 'Addons', 'Review') and
+        acl.action_allowed(request, 'Personas', 'Review')):
+        return http.HttpResponseRedirect(reverse('editors.themes.home'))
+
     durations = (('new', _('New Add-ons (Under 5 days)')),
                  ('med', _('Passable (5 to 10 days)')),
                  ('old', _('Overdue (Over 10 days)')))
