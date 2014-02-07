@@ -276,13 +276,26 @@ def payments_accounts_delete(request, id):
 
 @login_required
 def in_app_keys(request):
-    keys = (UserInappKey.objects.no_cache()
-            .filter(solitude_seller__user=request.amo_user))
+    keys = UserInappKey.objects.no_cache().filter(
+        solitude_seller__user=request.amo_user
+    )
+
     # TODO(Kumar) support multiple test keys. For now there's only one.
-    if keys.count():
+    key = None
+    key_public_id = None
+
+    if keys.exists():
         key = keys.get()
-    else:
-        key = None
+
+        # Attempt to retrieve the public id from solitude
+        try:
+            key_public_id = key.public_id()
+        except HttpClientError, e:
+            messages.error(request,
+                           _('A server error occurred '
+                             'when retrieving the application key.'))
+            log.exception('Solitude connection error: {}'.format(e.message))
+
     if request.method == 'POST':
         if key:
             key.reset()
@@ -294,7 +307,7 @@ def in_app_keys(request):
         return redirect(reverse('mkt.developers.apps.in_app_keys'))
 
     return jingo.render(request, 'developers/payments/in-app-keys.html',
-                        {'key': key})
+                        {'key': key, 'key_public_id': key_public_id})
 
 
 @login_required

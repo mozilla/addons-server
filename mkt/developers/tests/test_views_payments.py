@@ -15,18 +15,20 @@ from addons.models import (Addon, AddonCategory, AddonDeviceType,
                            AddonPremium, AddonUpsell, AddonUser, Category)
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR, PROVIDER_REFERENCE)
+
+from market.models import Price
+
+import mkt
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
 from mkt.constants.regions import ALL_REGION_IDS
 from mkt.developers.tests.test_providers import Patcher
-from market.models import Price
-from users.models import UserProfile
-
-import mkt
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
 from mkt.developers.utils import uri_to_pk
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
+from users.models import UserProfile
+
 
 # Id without any significance but to be different of 1.
 TEST_PACKAGE_ID = '2'
@@ -189,7 +191,8 @@ class TestInappKeys(InappKeysTest):
         m = solitude.api.generic.product.post.mock_calls
         eq_(m[0][2]['data']['access'], ACCESS_SIMULATE)
 
-    def test_reset(self, solitude):
+    @mock.patch('mkt.developers.models.UserInappKey.public_id')
+    def test_reset(self, mock_public_id, solitude):
         self.setup_solitude(solitude)
         key = UserInappKey.create(self.user)
         product = mock.Mock()
@@ -198,6 +201,16 @@ class TestInappKeys(InappKeysTest):
         self.client.post(self.url)
         product.patch.assert_called_with(data={'secret': ANY})
         solitude.api.generic.product.assert_called_with(key.seller_product_pk)
+
+    def test_keys_page_renders_when_solitude_raises_404(self, solitude):
+        UserInappKey.create(self.user)
+        solitude.api.generic.product.side_effect = HttpClientError()
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+
+        # Test that a message is sent to the user
+        eq_(len(res.context['messages']), 1)
 
 
 @mock.patch('mkt.developers.models.client')
