@@ -41,8 +41,6 @@ from translations.widgets import TransTextarea
 import mkt
 from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
-from mkt.constants.ratingsbodies import (ALL_RATINGS, RATINGS_BODIES,
-                                         RATINGS_BY_NAME)
 from mkt.regions.utils import parse_region
 from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import Webapp
@@ -313,7 +311,6 @@ class AdminSettingsForm(PreviewForm):
     mozilla_contact = SeparatedValuesField(forms.EmailField, separator=',',
                                            required=False)
     tags = forms.CharField(required=False)
-    app_ratings = forms.MultipleChoiceField(required=False)
     banner_regions = JSONMultipleChoiceField(required=False, choices=mkt.regions.REGIONS_CHOICES_NAME)
     banner_message = TransField(required=False)
 
@@ -330,8 +327,6 @@ class AdminSettingsForm(PreviewForm):
 
         self.request = kw.pop('request', None)
 
-        self.base_fields['app_ratings'].choices = RATINGS_BY_NAME()
-
         self.disabled_regions = sorted(addon.get_excluded_region_ids())
 
         # Note: After calling `super`, `self.instance` becomes the `Preview`
@@ -342,15 +337,6 @@ class AdminSettingsForm(PreviewForm):
             self.initial['mozilla_contact'] = addon.mozilla_contact
             self.initial['tags'] = ', '.join(self.get_tags(addon))
 
-        app_ratings = []
-        for acr in addon.content_ratings.all():
-            rating = RATINGS_BODIES[acr.ratings_body].ratings[acr.rating]
-            try:
-                app_ratings.append(ALL_RATINGS().index(rating))
-            except ValueError:
-                pass  # Due to waffled ratings bodies.
-        self.initial['app_ratings'] = app_ratings
-
         self.initial['banner_regions'] = addon.geodata.banner_regions or []
         self.initial['banner_message'] = addon.geodata.banner_message_id
 
@@ -360,15 +346,6 @@ class AdminSettingsForm(PreviewForm):
 
     def clean_position(self):
         return -1
-
-    def clean_app_ratings(self):
-        ratings_ids = self.cleaned_data.get('app_ratings')
-        ratings = [ALL_RATINGS()[int(i)] for i in ratings_ids]
-        ratingsbodies = set([r.ratingsbody for r in ratings])
-        if len(ratingsbodies) != len(ratings):
-            raise forms.ValidationError(_('Only one rating from each ratings '
-                                          'body may be selected.'))
-        return ratings_ids
 
     def clean_banner_regions(self):
         try:
@@ -421,21 +398,6 @@ class AdminSettingsForm(PreviewForm):
             # Remove old tags.
             for t in del_tags:
                 Tag(tag_text=t).remove_tag(addon)
-
-        # Content ratings.
-        ratings = self.cleaned_data.get('app_ratings')
-        if ratings:
-            ratings = [ALL_RATINGS()[int(i)] for i in ratings]
-
-            # Delete content ratings with ratings body not in new set.
-            r_bodies = set([rating.ratingsbody.id for rating in ratings])
-            addon.content_ratings.exclude(ratings_body__in=r_bodies).delete()
-
-            # Set content ratings, takes {<ratingsbody class>: <rating class>}.
-            addon.set_content_ratings(
-                dict((rating.ratingsbody, rating) for rating in ratings))
-        else:
-            addon.content_ratings.all().delete()
 
         geodata = addon.geodata
         geodata.banner_regions = self.cleaned_data.get('banner_regions')
