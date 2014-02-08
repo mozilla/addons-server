@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-05 13:33+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2014-02-08 00:59+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391607229.0\n"
+"X-POOTLE-MTIME: 1391821183.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -739,12 +739,12 @@ msgstr "安装此附加组件将导致 Firefox 启动延迟 <b>%(amount)s%%</b>�
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
 msgid "More {0} Themes"
-msgstr "其他 {0} 个主题"
+msgstr "其他 {0} 主题"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41 apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr "查看全部 {0} 个主题"
+msgstr "查看全部 {0} 主题"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -1762,7 +1762,7 @@ msgstr "{addon} 已从分类 {0} 精选中移除。"
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr "{addon} 已成为精选附加组件。"
+msgstr "{addons} 已成为精选附加组件。"
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
@@ -7261,18 +7261,19 @@ msgstr "窥探或截取其他用户网络流量的附加组件"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
-msgstr "未事先取得用户同意安装横式工具栏"
+msgstr "未事先取得用户同意就安装横式工具栏"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:236
 msgid "Changing of Defaults and Unexpected Features"
-msgstr "更改默认值和非用户预期的功能"
+msgstr "更改了默认值和不能预期的功能"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:238
 msgid ""
 "Surprises can be appropriate in many situations, but they are not welcome when user security, privacy, and control are at stake. It is extremely important to be as transparent as possible when "
 "submitting an add-on for hosting on this site. A Mozilla user should be able to easily discern what the functionality of an add-on is and not be presented with unexpected experiences post-install."
 msgstr ""
-"并非意外的情况都是不适当的，但它们不能危及到用户的安全性、隐私权以及控制权。您提交给本站托管的附加组件应该尽可能的透明。Mozilla 用户在安装附加组件后应该能轻易地理解其功能，并且不应该有非预期的体验。"
+"并非所有无法预料的情况都是不恰当的，但它们不能危及到用户的安全性、隐私权以及控制权。您提交给本网站托管的附加组件应该尽可能的透明。Mozilla "
+"用户应该能轻易地辨别出附加组件的功能，并且不应该经历到意想不到的情况。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:243
 msgid ""
@@ -7282,17 +7283,20 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p>无论附加组件包含以下任何非预期的功能＊：</p> <ul> <li>危及用户的隐私权或安全性（如将数据发给第三方）</li> <li>更改默认设置，比如首页或搜索引擎</li> <li>更改其他附加组件的设置或功能，或者导致其他"
-"附加组件的功能失效</li> </ul> <p>都必须符合以下要求：</p> <ul> <li>附加组件的描述必须明确说明将做出什么样的变更。</li> <li>所有变更都必须是选择性接受的，这意味着必须要用户采取非默认的操作才能进行变"
-"更。</li> <li>选择性接受对话框必须明确指明是哪个附加组件要求更改。</li> <li>如果已经变更，卸载附加组件时应恢复用户的原始设置。</li> </ul> <p>＊非预期的功能是指与附加组件的主要功能无关的功能。</p>"
+"<p> 每当一个附加组件包含任何无法预料的功能* </p> <ul> <li>危及用户的隐私权或安全性（如将数据发给第三方）</li> "
+"<li>更改默认设置，像是首页或搜索引擎</li> <li>或更改其他附加组件的设置或功能，或完全停用其功能，</li> </ul> "
+"<p>则必须符合以下要求：</p> <ul> <li>附加组件的描述必须明确说明将做出什么样的变更。</li> "
+"<li>所有变更都应该由用户主动选择加入，这意味者必须用户采取非默认的动作才进行变更。</li> "
+"<li>选择加入对话框必须指明是哪个附加组件要求更改。</li> <li>如果已经更改，卸载附加组件时应恢复用户的原设置。</li> </ul> "
+"<p>*无法预料的特性指与该附加组件的主要功能无关的特性。</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
-msgstr "已经全面审核的附加组件的更新不得引入这些功能；这些选择性接受的变更必须在首次审核时就已存在。"
+msgstr "已经全面审核的附加组件之更新不得引入这些功能；这些需用户同意的更改程序必须在首次审核中就已存在。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:274
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
-msgstr "已经全面审核的附加组件的更新不得引入这些功能；这些选择性接受的变更必须在首次审核时就已存在。"
+msgstr "以上皆为基本的要求，并不保证附加组件一定能通过审核。本节适用于本站托管的所有附加组件，包括初步审核的附加组件。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
