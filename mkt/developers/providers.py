@@ -5,6 +5,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 
+import bleach
 import commonware
 from curling.lib import HttpClientError
 from tower import ugettext_lazy as _
@@ -180,8 +181,11 @@ class Bango(Provider):
 
     def terms_retrieve(self, account):
         package = self.client.package(account.uri).get_object_or_404()
-        return self.client.sbi.agreement.get_object(data={
+        res = self.client.sbi.agreement.get_object(data={
             'seller_bango': package['resource_uri']})
+        if 'text' in res:
+            res['text'] = bleach.clean(res['text'])
+        return res
 
 
 class Reference(Provider):
@@ -254,7 +258,10 @@ class Reference(Provider):
         return created['resource_uri']
 
     def terms_retrieve(self, account):
-        return self.client.terms(account.account_id).get()
+        res = self.client.terms(account.account_id).get()
+        if 'text' in res:
+            res['text'] = bleach.clean(res['text'])
+        return res
 
     def terms_update(self, account):
         account.update(agreed_tos=True)

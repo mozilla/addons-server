@@ -3,7 +3,8 @@ import json
 import uuid
 from collections import namedtuple
 
-from nose.tools import eq_
+import mock
+from nose.tools import eq_, ok_
 
 from django.core.urlresolvers import reverse
 from django.test import client
@@ -13,6 +14,7 @@ from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 
 from .models import MonolithRecord, record_stat
+from .resources import daterange
 
 
 class RequestFactory(client.RequestFactory):
@@ -99,7 +101,7 @@ class TestMonolithResource(RestOAuth):
         eq_(obj['value'], {'value': 2})
 
         # Check other fields we want to exist but ignore their value here.
-        for field in ('id', 'recorded', 'user_hash'):
+        for field in ('recorded', 'user_hash'):
             assert field in obj
 
     def test_filter_by_date(self):
@@ -130,70 +132,97 @@ class TestMonolithResource(RestOAuth):
         data = json.loads(res.content)
         eq_(len(data['objects']), 1)
 
-    def test_deletion_by_filtering(self):
-        # We should be able to delete a set of items using the API.
-        for id_, date in enumerate((self.last_month, self.last_week,
-                                    self.yesterday, self.now)):
-            record_stat('app.install', self.request, __recorded=date,
-                        value=id_)
+    @mock.patch('mkt.monolith.resources._get_query_result')
+    def test_on_the_fly_query(self, _get_query):
+        key = 'apps_total_ratings'
+        _get_query.return_value = [{
+            'key': key,
+            'recorded': datetime.date.today(),
+            'user_hash': None,
+            'value': {'count': 1, 'app-id': 123}}]
 
-        eq_(MonolithRecord.objects.count(), 4)
+        res = self.client.get(self.list_url, data={'key': key})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 1)
 
-        res = self.client.delete(self.list_url, data={
-            'start': self.last_week.strftime(self.date_format),
-            'end': self.now.strftime(self.date_format)})
-        eq_(res.status_code, 204)
-        eq_(list(MonolithRecord.objects.values_list('recorded', flat=True)),
-            [self.last_month, self.now])
+        obj = data['objects'][0]
+        eq_(obj['key'], key)
+        eq_(obj['recorded'], datetime.date.today().strftime(self.date_format))
+        eq_(obj['value']['count'], 1)
+        eq_(obj['value']['app-id'], 123)
 
-    def test_deletion_by_filtering_old(self):
-        for id_, date in enumerate((self.last_month, self.last_week,
-                                    self.yesterday, self.now)):
-            record_stat('app.install', self.request, __recorded=date,
-                        value=id_)
+    def test_on_the_fly_missing_start(self):
+        key = 'apps_total_ratings'
+        res = self.client.get(self.list_url, data={'key': key})
+        eq_(res.status_code, 400)
+        data = json.loads(res.content)
+        eq_(data['detail'], '`start` was not provided')
 
-        eq_(MonolithRecord.objects.count(), 4)
+    @mock.patch('mkt.monolith.resources._get_query_result')
+    def test_on_the_fly_query_pagination(self, _get_query):
+        key = 'apps_total_ratings'
+        _get_query.return_value = [
+            {'key': key, 'recorded': datetime.date.today(), 'user_hash': None,
+             'value': {'count': 1, 'app-id': 123}},
+            {'key': key, 'recorded': datetime.date.today(), 'user_hash': None,
+             'value': {'count': 1, 'app-id': 234}},
+            {'key': key, 'recorded': datetime.date.today(), 'user_hash': None,
+             'value': {'count': 1, 'app-id': 345}},
+        ]
 
-        res = self.client.delete(self.list_url, data={
-            'start': self.last_week.strftime(self.date_format),
-            'end': self.now.strftime(self.date_format)})
-        eq_(res.status_code, 204)
-        eq_(list(MonolithRecord.objects.values_list('recorded', flat=True)),
-            [self.last_month, self.now])
+        res = self.client.get(self.list_url, data={'key': key, 'limit': 2})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 2)
 
-    def test_deletion_by_id(self):
-        record_stat('app.install', self.request, __recorded=self.now, value=1)
-        records = MonolithRecord.objects.all()
-        eq_(len(records), 1)
+        ok_(data['meta']['next'] is not None)
+        ok_(data['meta']['previous'] is None)
+        eq_(data['meta']['total_count'], 3)
+        eq_(data['meta']['offset'], 0)
+        eq_(data['meta']['limit'], 2)
 
-        url = reverse('monolith-detail', args=(records[0].pk,))
-        res = self.client.delete(url)
+        eq_(data['objects'][0]['value']['app-id'], 123)
+        eq_(data['objects'][1]['value']['app-id'], 234)
 
-        eq_(res.status_code, 204)
-        eq_(MonolithRecord.objects.count(), 0)
+        res = self.client.get(self.list_url, data={'key': key, 'limit': 2,
+                                                   'offset': 2})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['value']['app-id'], 345)
 
-    def test_deletion_by_date(self):
-        for date in (self.last_month, self.last_week, self.yesterday,
-                     self.now):
-            record_stat('app.install', self.request, __recorded=date, value=1)
-            record_stat('foo.bar', self.request, __recorded=date, value=1)
-        res = self.client.delete(self.list_url, data={
-            'start': self.last_week.strftime(self.date_format),
-            'end': self.now.strftime(self.date_format),
-            'key': 'app.install'})
+        ok_(data['meta']['next'] is None)
+        ok_(data['meta']['previous'] is not None)
+        eq_(data['meta']['total_count'], 3)
+        eq_(data['meta']['offset'], 2)
+        eq_(data['meta']['limit'], 2)
 
-        eq_(res.status_code, 204)
-        eq_(MonolithRecord.objects.count(), 6)
+    def test_pagination(self):
+        record_stat('app.install', self.request, value=2)
+        record_stat('app.install', self.request, value=4)
+        record_stat('app.install', self.request, value=6)
 
-        res = self.client.delete(self.list_url, data={
-            'start': self.last_week.strftime(self.date_format),
-            'end': self.now.strftime(self.date_format),
-            'key': 'foo.bar'})
+        res = self.client.get(self.list_url, data={'limit': 2})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 2)
 
-        eq_(res.status_code, 204)
-        eq_(list(MonolithRecord.objects.filter(key='foo.bar')
-            .values_list('recorded', flat=True)),
-            [self.last_month, self.now])
-        eq_(list(MonolithRecord.objects.filter(key='app.install')
-            .values_list('recorded', flat=True)),
-            [self.last_month, self.now])
+        ok_(data['meta']['next'] is not None)
+        ok_(data['meta']['previous'] is None)
+        eq_(data['meta']['total_count'], 3)
+        eq_(data['meta']['offset'], 0)
+        eq_(data['meta']['limit'], 2)
+
+
+class TestDateRange(TestCase):
+
+    def setUp(self):
+        self.today = datetime.datetime.now().replace(microsecond=0)
+        self.week_ago = self.days_ago(7)
+
+    def test_date_range(self):
+        range = list(daterange(self.week_ago, self.today))
+        eq_(len(range), 8)  # Dates are inclusive.
+        eq_(range[0], self.week_ago)
+        eq_(range[-1], self.today)
