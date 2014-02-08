@@ -1,8 +1,8 @@
 <script type="text/template" id="commbadge-note">
-  <tr>
+  <tr class="comm-note">
     <th><%= noteType %></th>
     <td>
-      <div><%= metadata %></div>
+      <strong><%= metadata %></strong>
       <pre class="light history-comment"><%= body %></pre>
       <% if (attachments.length) { %>
         <div class="log-group log-attachments">

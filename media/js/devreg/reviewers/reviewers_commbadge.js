@@ -9,7 +9,9 @@ define('reviewersCommbadge', [], function() {
 
     function _userArg(url) {
         // Persona user token.
-        return urlparams(url, {'_user': localStorage.getItem('0::user')});
+        // TODO: store schema version in localStorage, sync Zamboni + Commonplace login.
+        return urlparams(url, {'_user': localStorage.getItem('0::user'),
+                               'ordering': '-created'});
     }
 
     // Fetch all of the app's threads.
@@ -32,36 +34,60 @@ define('reviewersCommbadge', [], function() {
             }
         });
 
-        function appendNotesToTable(notes, $table) {
-            // Given a list of notes, passes each note into the template
-            // and appends to review history table.
-            notes = notes.objects;
-            for (var i = 0; i < notes.length; i++) {
-                var note = notes[i];
-                var author = note.author_meta.name;
-                var created = moment(note.created).format('MMMM Do YYYY, h:mm:ss a');
-
-                // Append notes to table.
-                $table.append(noteTemplate({
-                    attachments: note.attachments,
-                    body: note.body,
-                    // L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
-                    metadata: format(gettext('By {0} on {1}'),
-                                     [author, created]),
-                    noteType: noteTypes[note.note_type],
-                }));
-            }
-        }
-
         // Fetch all of the notes for each thread.
         for (var i = 0; i < threads.length; i++) {
             var thread = threads[i];
             var $table = $('table.activity[data-version=' + thread.version + ']');
             var commNoteUrl = $itemHistory.data('comm-note-url').replace(threadIdPlaceholder, thread.id);
 
-            $.get(_userArg(commNoteUrl), function(notes) {
-                appendNotesToTable(notes, $table);
-            });
+            $.get(_userArg(commNoteUrl), getNoteHandler($table));
         }
     });
+
+    function appendNotesToTable(notes, $table) {
+        // Given a list of notes, passes each note into the template
+        // and appends to review history table.
+        $table.find('.comm-note').remove();
+        notes = notes.objects;
+
+        for (var i = 0; i < notes.length; i++) {
+            var note = notes[i];
+            var author = note.author_meta.name;
+            var created = moment(note.created).format('MMMM Do YYYY, h:mm:ss a');
+
+            // Append notes to table.
+            $('tbody', $table).append(noteTemplate({
+                attachments: note.attachments,
+                body: note.body,
+                // L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+                metadata: format(gettext('By {0} on {1}'),
+                                 [author, created]),
+                noteType: noteTypes[note.note_type],
+            }));
+        }
+    }
+
+    function getNoteHandler($table) {
+        return function(notes) {
+            appendNotesToTable(notes, $table);
+
+            $table.attr('data-prev-url', notes.meta.previous);
+            $table.attr('data-next-url', notes.meta.next);
+
+            // Show/hide pagination links.
+            var $paginator = $('.comm-notes-paginator', $table);
+            $paginator.toggle(notes.meta.previous !== null || notes.meta.next !== null);
+            $('.prev', $paginator).toggle(notes.meta.previous !== null);
+            $('.next', $paginator).toggle(notes.meta.next !== null)
+                                  .toggleClass('active', notes.meta.next !== null);
+        };
+    }
+
+    $('.prev, .next').click(_pd(function() {
+        // Fetch previous or next offset on click of paginator links..
+        var $this = $(this);
+        var noteUrl = $this.hasClass('next') ? 'data-next-url' : 'data-prev-url';
+        var $table = $this.closest('table.activity');
+        $.get($table.attr(noteUrl), getNoteHandler($table));
+    }));
 });
