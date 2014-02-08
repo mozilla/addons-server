@@ -223,6 +223,6 @@ class TestDateRange(TestCase):
 
     def test_date_range(self):
         range = list(daterange(self.week_ago, self.today))
-        eq_(len(range), 8)  # Dates are inclusive.
+        eq_(len(range), 7)
         eq_(range[0], self.week_ago)
-        eq_(range[-1], self.today)
+        ok_(self.today not in range)
