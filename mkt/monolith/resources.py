@@ -20,7 +20,7 @@ from .forms import MonolithForm
 from .models import MonolithRecord
 
 
-logger = logging.getLogger('z.monolith')
+log = logging.getLogger('z.monolith')
 
 
 # TODO: Move the stats that can be calculated on the fly from
@@ -129,6 +129,8 @@ class MonolithView(CORSMixin, MarketplaceView, ListAPIView):
         key = form.cleaned_data['key']
         start = form.cleaned_data['start']
         end = form.cleaned_data['end']
+
+        log.info('[Monolith] Querying key:%s [%s:%s]' % (key, start, end))
 
         if key in STATS:
             return _get_query_result(key, start, end)
