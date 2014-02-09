@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-03 12:33+0000\n"
+"PO-Revision-Date: 2014-02-09 18:51+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391430781.0\n"
+"X-POOTLE-MTIME: 1391971873.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -4172,7 +4172,7 @@ msgid ""
 "(app)s."
 msgstr ""
 "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете "
-"персоналзицију %(app)s-а."
+"персоналзицију %s-а."
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
@@ -6466,6 +6466,10 @@ msgid ""
 "source code that you don't eventually use.</li> <li>Read the documentation "
 "and ask for help when you need it!</li> </ol>"
 msgstr ""
+"<ol> <li> Следите упутства у запакованом изворном коду да бисте креирали "
+"сопствена подешавања и направите сопствена прилагођавања. </li> <li>Уклоните "
+"изворни код који на крају не искористите.</li> <li>Прочитајте документацију "
+"и затражите помоћ када Вам је потребна.!</li> </ol>"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:41
 msgid ""
@@ -6478,17 +6482,19 @@ msgstr ""
 #: apps/devhub/templates/devhub/search.html:7
 #: mkt/developers/templates/developers/search.html:7
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Претражи Документе програмера"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Искористите поље испод да бисте отпремили пакет додатка."
 
 #: apps/devhub/templates/devhub/validate_addon.html:19
 msgid ""
 "After upload, a series of automated validation tests will run to check "
 "compatibility with the following application version:"
 msgstr ""
+"Након отпремања, серија аутоматизованих тестова провере ће проверити "
+"компатибилност са следећом верзијом апликације:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:34
 msgid ""
@@ -6567,6 +6573,9 @@ msgid ""
 "latest release of %(app_name)s. Please consider updating your add-on's "
 "compatibility info, or uploading a newer version of this add-on."
 msgstr ""
+"Овај додатак није компатибилан са <b>%(app_name)s %(app_version)s</b>, "
+"последнег издања %(app_name)s-а. Молимо Вас узмите у обзир ажурирање "
+"информација компатибилности Вашег додатка, или отпремите новију верзију."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid ""
@@ -6575,20 +6584,24 @@ msgid ""
 "class=\"button\">Upload New Version</a> or <a href=\"#\" "
 "class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%"
+"(update_url)s\">Ажурирање компатибилности</a> <a href=\"%(version_url)s\" "
+"class=\"button\">Отпреми нову верзију</a> или <a href=\"#\" "
+"class=\"close\">Игнориши</a>"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:5
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Погледајте и ажурирајте распон компатибилности апликације."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:6
 #: apps/devhub/templates/devhub/versions/edit.html:44
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:28
 msgid "Compatibility"
-msgstr ""
+msgstr "Компатибилност"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:2
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Ажурирање компатибилности"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4
 #: apps/devhub/templates/devhub/versions/edit.html:45
@@ -6597,15 +6610,18 @@ msgid ""
 "on even if the install manifest in the package indicates that the add-on is "
 "incompatible."
 msgstr ""
+"Подешавање информације о апликацији овде ће дозволити корисницима да "
+"инсталирају Ваш додатак чак иако манифест инсталације у пакету указује да је "
+"додатак некомпатибилан."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
-msgstr ""
+msgstr "Подржане верзије"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:31
 #: apps/devhub/templates/devhub/versions/edit.html:63
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Додај другу апликацију&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38
 #: apps/devhub/templates/devhub/addons/owner.html:102
@@ -6624,9 +6640,9 @@ msgstr "Затвори"
 #: apps/devhub/templates/devhub/addons/dashboard.html:21
 msgid "<b>{0}</b> app"
 msgid_plural "<b>{0}</b> apps"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> апликација"
+msgstr[1] "<b>{0}</b> апликације"
+msgstr[2] "<b>{0}</b> апликација"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:32
 #: mkt/developers/templates/developers/apps/dashboard.html:14
@@ -6643,16 +6659,16 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:51
 msgid "Get Started"
-msgstr ""
+msgstr "Крените"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:76
 #: apps/zadmin/templates/zadmin/index.html:22
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s од %(user)s"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:89
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Старије активности за Моји додаци"
 
 #. {0} is an integer.
 #: apps/devhub/templates/devhub/addons/dashboard.html:116
@@ -6676,7 +6692,7 @@ msgstr[2] "<b>{0}</b> тема"
 #: mkt/reviewers/templates/reviewers/review.html:54
 #: mkt/reviewers/templates/reviewers/themes/single.html:37
 msgid "Edit Listing"
-msgstr ""
+msgstr "Измени списак"
 
 #: apps/devhub/templates/devhub/addons/edit.html:13
 #: apps/devhub/templates/devhub/includes/macros.html:16
@@ -6690,13 +6706,13 @@ msgstr ""
 #: mkt/lookup/templates/lookup/user_summary.html:89
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:45
 msgid "None"
-msgstr ""
+msgstr "Нема"
 
 #: apps/devhub/templates/devhub/addons/owner.html:7
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:52
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Управљајте Ауторима и лиценцама"
 
 #: apps/devhub/templates/devhub/addons/owner.html:35
 #: apps/editors/templates/editors/review.html:263
@@ -6706,7 +6722,7 @@ msgstr "Аутори"
 
 #: apps/devhub/templates/devhub/addons/owner.html:36
 msgid "About author roles"
-msgstr ""
+msgstr "О улогама аутора"
 
 #: apps/devhub/templates/devhub/addons/owner.html:93
 msgid ""
@@ -6729,32 +6745,36 @@ msgid ""
 "Your <a href=\"%(url)s\">developer profile</a> is currently "
 "<strong>public</strong> and <strong>required</strong> for contributions."
 msgstr ""
+"Ваш <a href=\"%(url)s\">профил програмера</a> је тренутно "
+"<strong>јаван</strong> и <strong>неопходан</strong> за доприносе."
 
 #: apps/devhub/templates/devhub/addons/profile.html:22
 msgid "Remove Both"
-msgstr ""
+msgstr "Уклони оба"
 
 #: apps/devhub/templates/devhub/addons/profile.html:27
 msgid ""
 "Your <a href=\"%(url)s\">developer profile</a> is currently "
 "<strong>public</strong>."
 msgstr ""
+"Ваш <a href=\"%(url)s\">профил програмера</a> је тренутно "
+"<strong>јаван</strong>."
 
 #: apps/devhub/templates/devhub/addons/profile.html:33
 #: mkt/developers/templates/developers/apps/profile.html:20
 #: mkt/developers/templates/developers/apps/profile.html:30
 msgid "Remove Profile"
-msgstr ""
+msgstr "Уклоните профил"
 
 #: apps/devhub/templates/devhub/addons/profile.html:42
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48
 msgid "Create Profile"
-msgstr ""
+msgstr "Направите профил"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:7
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
-msgstr ""
+msgstr "Основне информације"
 
 #. {0} is the addon name
 #: apps/devhub/templates/devhub/addons/edit/basic.html:17
@@ -6764,11 +6784,11 @@ msgstr "Основне информације за {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:37
 msgid "Add-on URL"
-msgstr ""
+msgstr "URL адреса додатка"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:38
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Изаберите кратак, јединствен URL опис за Ваш додатак."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:49
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14
@@ -6787,7 +6807,7 @@ msgstr "View Listing"
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
 #: mkt/lookup/templates/lookup/helpers/app_header.html:21
 msgid "Summary"
-msgstr ""
+msgstr "Резиме"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:66
 msgid ""
@@ -6801,6 +6821,8 @@ msgid ""
 "Categories are the primary way users browse through add-ons. Choose any that "
 "fit your add-on's functionality for the most exposure."
 msgstr ""
+"Категорије су примарни начин на који корисници проналазе додатке. Изаберите "
+"ону која одговара функционалности Вашег додатка за што бољу истакнутост."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:122
 msgid ""
@@ -6808,6 +6830,9 @@ msgid ""
 "application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there "
 "is a reason you need to modify your categories."
 msgstr ""
+"Категорије се не могу променити док је Ваш додатак истакнут за ову "
+"апликацију. Молимо пошаљите е-пошту <a href=\"mailto:%(email)s\">%(email)s</a> "
+"ако постоји разлог за измењивање Ваших категорија."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:160
 #: mkt/developers/templates/developers/apps/edit/admin.html:133
@@ -6819,6 +6844,9 @@ msgid ""
 "Tags help users find your add-on and should be short descriptors such as "
 "tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
+"Ознаке помажу корисницима да пронађу Ваш додатак и требало би да садржи "
+"кратке описе као што су tabs, toolbar, или twitter. Можете имати највише {0} "
+"ознака."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:171
 #: apps/devhub/templates/devhub/personas/edit.html:97
@@ -6835,29 +6863,31 @@ msgstr[2] ""
 #: apps/devhub/templates/devhub/personas/submit.html:49
 #: mkt/developers/templates/developers/apps/edit/admin.html:148
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Пример: dark, cinema, noir. Ограничење 20."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:178
 #: mkt/developers/templates/developers/apps/edit/admin.html:152
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Резервисана ознака:"
+msgstr[1] "Резервисане ознаке:"
+msgstr[2] "Резервисане ознаке:"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:9
 msgid "Add-on Details"
-msgstr ""
+msgstr "Детаљи додатка"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:21
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Детаљи додатка за {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:36
 msgid ""
 "A longer explanation of features, functionality, and other relevant "
 "information. This field is only displayed on the add-on's details page."
 msgstr ""
+"Дуже објашњење карактеристика, функционалности, и других сличних "
+"информација. Ово поље је приказано само на страни о детаљима додатка."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
 #: apps/devhub/templates/devhub/addons/edit/details.html:65
@@ -6873,6 +6903,8 @@ msgid ""
 "Information about your add-on is displayed in this locale unless you "
 "override it with a locale-specific translation."
 msgstr ""
+"Информације о Вашем додатку су приказане у овом језику осим ако их не "
+"замените са преводом специфичним за овај језик."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:82
 #: apps/users/forms.py:196
@@ -6881,7 +6913,7 @@ msgstr ""
 #: apps/users/templates/users/vcard.html:22
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
-msgstr ""
+msgstr "Почетна страна"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:92
 msgid ""
@@ -6893,12 +6925,12 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 #: mkt/reviewers/templates/reviewers/includes/details.html:161
 msgid "Images"
-msgstr ""
+msgstr "Слике"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:5
 #: mkt/developers/templates/developers/apps/edit/support.html:4
 msgid "Support Information"
-msgstr ""
+msgstr "Информације подршке"
 
 #. {0} is an addon name
 #: apps/devhub/templates/devhub/addons/edit/support.html:15
@@ -6924,13 +6956,13 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
-msgstr ""
+msgstr "Технички детаљи"
 
 #. {0} is an addon name
 #: apps/devhub/templates/devhub/addons/edit/technical.html:16
 #: mkt/developers/templates/developers/apps/edit/technical.html:14
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Технички детаљи за {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
@@ -6957,15 +6989,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:56
 msgid "Limit 3"
-msgstr ""
+msgstr "Ограничење 3"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:78
 msgid "Add-on Flags"
-msgstr ""
+msgstr "Ознаке додатка"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:79
 msgid "These flags are used to classify add-ons."
-msgstr ""
+msgstr "Ове ознаке се користе за разврставање додатака."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:83
 msgid "This is a site-specific add-on."
@@ -6973,29 +7005,29 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:86
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Овај додатак захтева спољашњи софтвер."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:98
 msgid "View Source?"
-msgstr ""
+msgstr "Погледати извор?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:99
 msgid ""
 "Whether the source of your add-on can be displayed in our online viewer."
-msgstr ""
+msgstr "Да ли се извор Вашег додатка може приказати у онлајн прегледачу."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:103
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Изворни код овог додатка је јаван."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:105
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Не, изворни код овог додатка није доступан за јавност."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:110
 #: mkt/developers/templates/developers/apps/edit/technical.html:35
 msgid "Public Stats?"
-msgstr ""
+msgstr "Јавна статистика?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:111
 msgid ""
@@ -7005,15 +7037,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:115
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Статистика овог додатка је јавна."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:117
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Не, статистика овог додатка није доступна јавности."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:123
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "Надоградити SDK?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:124
 msgid ""
@@ -7029,11 +7061,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:129
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Не, овај додатак ће бити ручно надограђен."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:135
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Универзално јединствени идентификатор"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:136
 msgid "UUID"
@@ -7047,7 +7079,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Уклони овај завистан додатак."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:41
 msgid "Enter the name of an add-on"
@@ -15324,7 +15356,7 @@ msgstr[2] ""
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
 msgid "by %(user)s"
-msgstr "од %(user)s"
+msgstr "од %(users)s"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:38
 msgid "Read More&nbsp;&raquo;"
