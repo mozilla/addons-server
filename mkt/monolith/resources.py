@@ -60,7 +60,7 @@ STATS = {
 
 
 def daterange(start, end):
-    for n in range((end - start).days + 1):
+    for n in range((end - start).days):
         yield start + datetime.timedelta(n)
 
 
