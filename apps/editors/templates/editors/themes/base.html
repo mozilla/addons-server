@@ -20,19 +20,11 @@
                           'logs' in request.path) }}
 {% endblock %}
 
-{% block queues_overlay %}
-  {{ macros.mobile_overlay('queue', _('Theme Queues'), queue_tabnav_themes()) }}
-{% endblock %}
-
-{% block logs_overlay %}
-  {{ macros.mobile_overlay('log', _('Theme Logs'), logs_tabnav_themes()) }}
-{% endblock %}
-
 {% block navbar %}
   <div id="navbar">
     <ul class="top">
       <li class="top">
-        <a href="{{ url('editors.queue') }}" class="controller">
+        <a href="{{ url('editors.themes.list') }}" class="controller">
           {{ _('Queues') }}</a>
         <ul>
           {% for url_name, tab, name in queue_tabnav_themes() %}
