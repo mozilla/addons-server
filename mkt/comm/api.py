@@ -331,7 +331,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     permission_classes = (NotePermission,)
-    filter_backends = (OrderingFilter,)
+    filter_backends = (OrderingFilter, ReadUnreadFilter)
     cors_allowed_methods = ['get', 'patch', 'post']
 
     def get_queryset(self):
