@@ -33,14 +33,16 @@
               <strong>{{ _('Packaged App Version:') }}</strong>
               {{ addon.current_version }}
             </li>
-            {% if addon.current_version != addon.versions.latest() %}
+            {% if addon.current_version != addon.latest_version %}
               <li class="item-latest-version">
                 <strong>{{ _('Pending Version:') }}</strong>
-                {{ addon.versions.latest() }}
+                {{ addon.latest_version }}
               </li>
             {% endif %}
           {% endif %}
-          {{ queue_position(addon, 'li') }}
+          {% if addon.is_pending() or addon.current_version != addon.latest_version %}
+            {{ queue_position(addon, 'li') }}
+          {% endif %}
           <li class="payments">
             <strong>{{ _('Price:') }}</strong>
             {{ price(request, addon) }}

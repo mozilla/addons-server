@@ -361,11 +361,15 @@ def get_position(addon):
                 break
         total = qs.count()
         return {'pos': position, 'total': total}
-    elif addon.is_webapp() and addon.is_pending():
+    elif addon.is_webapp():
         excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
+        # Look at all regular versions of webapps which have pending files. This
+        # includes both new apps and updates to existing apps, to combine both
+        # the regular and updates queue in one big list (In theory, reviewers
+        # should take the same time to process an app in either queue).
         qs = (Version.objects.filter(addon__type=amo.ADDON_WEBAPP,
                                      addon__disabled_by_user=False,
-                                     addon__status=amo.STATUS_PENDING,
+                                     files__status=amo.STATUS_PENDING,
                                      deleted=False)
               .exclude(addon__id__in=excluded_ids)
               .order_by('nomination', 'created').select_related('addon')
@@ -380,13 +384,15 @@ def get_position(addon):
                 break
         total = qs.count()
         days = 1
+        days_in_queue = 0
         if nomination_date:
             # Estimated waiting time is calculated from the rolling average of
             # the queue waiting time in the past 30 days but subtracting from
             # it the number of days this app has already spent in the queue.
-            days_in_queue = datetime.datetime.now() - nomination_date
-            days = get_avg_app_waiting_time() - days_in_queue.days
-        return {'days': days, 'pos': position, 'total': total}
+            days_in_queue = (datetime.datetime.now() - nomination_date).days
+            days = max(get_avg_app_waiting_time() - days_in_queue, days)
+        return {'days': int(days), 'days_in_queue': int(days_in_queue),
+                'pos': position, 'total': total}
     else:
         version = addon.latest_version
 

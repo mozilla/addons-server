@@ -523,6 +523,7 @@ class Version(amo.models.ModelBase):
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
+            instance.addon.reload()
             instance.addon.update_status()
             instance.addon.update_version()
         except models.ObjectDoesNotExist:

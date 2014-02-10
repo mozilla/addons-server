@@ -438,6 +438,7 @@ def cache_localepicker(sender, instance, **kw):
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
+            instance.version.addon.reload()
             instance.version.addon.update_status()
             instance.version.addon.update_version()
         except models.ObjectDoesNotExist:
