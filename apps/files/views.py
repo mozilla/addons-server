@@ -9,11 +9,12 @@ from django.views.decorators.http import condition
 import commonware.log
 import jingo
 import waffle
+from cache_nuggets.lib import Message, Token
 
 from access import acl
 from amo.decorators import json_view
 from amo.urlresolvers import reverse
-from amo.utils import HttpResponseSendFile, Message, Token, urlparams
+from amo.utils import HttpResponseSendFile, urlparams
 from files.decorators import (etag, file_view, compare_file_view,
                               file_view_token, last_modified)
 from files.tasks import extract_file
@@ -32,7 +33,6 @@ def setup_viewer(request, file_obj):
             'status': False,
             'selected': {},
             'validate_url': ''}
-
 
     if (acl.check_reviewer(request) or
         acl.check_addon_ownership(request, file_obj.version.addon,

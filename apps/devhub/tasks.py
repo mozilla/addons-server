@@ -14,14 +14,14 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
+from cache_nuggets.lib import guard
 from celeryutils import task
 from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import amo
 from amo.decorators import write, set_modified_on
-from amo.utils import (guard, remove_icons, resize_image,
-                       send_html_mail_jinja)
+from amo.utils import remove_icons, resize_image, send_html_mail_jinja
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion

@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils.http import http_date
 
+from cache_nuggets.lib import Message
 from mock import patch
 from nose import SkipTest
 from nose.tools import eq_
@@ -14,7 +15,6 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.utils import Message
 from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
 from files.models import File

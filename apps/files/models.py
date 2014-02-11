@@ -18,6 +18,7 @@ from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str
 
 import commonware
+from cache_nuggets.lib import memoize
 from django_statsd.clients import statsd
 from uuidfield.fields import UUIDField
 
@@ -28,7 +29,6 @@ from amo.decorators import use_master
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
-from amo.utils import memoize
 import devhub.signals
 from files.utils import SafeUnzip
 from tags.models import Tag

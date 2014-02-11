@@ -2,6 +2,7 @@ from datetime import datetime
 import functools
 
 import commonware.log
+from cache_nuggets.lib import Token
 
 from django import http
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
@@ -9,7 +10,6 @@ from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
 
 import amo
-from amo.utils import Token
 from access import acl
 from files.helpers import DiffHelper, FileViewer
 from files.models import File

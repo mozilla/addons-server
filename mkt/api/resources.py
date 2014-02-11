@@ -8,6 +8,7 @@ import commonware.log
 import raven.base
 import waffle
 
+from cache_nuggets.lib import memoize
 from rest_framework import generics
 from rest_framework.decorators import permission_classes
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
@@ -22,7 +23,6 @@ from rest_framework.viewsets import (GenericViewSet, ModelViewSet,
 
 import amo
 from addons.models import Category, Webapp
-from amo.utils import memoize
 from constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
 from lib.constants import ALL_CURRENCIES
 from market.models import Price, PriceCurrency
