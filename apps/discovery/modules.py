@@ -264,7 +264,7 @@ class NewYearCollection(CollectionPromo):
 
 class ValentinesDay(CollectionPromo):
     slug = 'Valentines Day'
-    collection_author, collection_slug = 'amoteam', 'va'
+    collection_author, collection_slug = 'mozilla', 'bemine'
     id = 'valentines'
     title = _(u'Love is in the Air')
     subtitle = _(u'Add some romance to your Firefox.')
