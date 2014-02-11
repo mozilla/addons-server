@@ -69,6 +69,13 @@
                 right: 0;
             }
         }
+        ul.refinements li a {
+            padding: 0 10px 0 0;
+        }
+
+        ul.refinements li.selected a {
+            background: url("../../img/zamboni/arrow-left-blue.png") 100% .5em no-repeat;
+        }
     }
 }
 
@@ -353,6 +360,79 @@
     #link-view-all {
         display: block;
         margin-top: 12px;
+    }
+}
+
+/* Devhub navigation panel */
+.secondary {
+    .addon-status {
+        background: white;
+        border: 1px solid @border-blue;
+        border-radius: 8px;
+        clear: both;
+        color: @medium-gray;
+        margin: 0 0 12px;
+        padding: 10px;
+        position: relative;
+        img {
+            left: 10px;
+            position: absolute;
+            top: 12px;
+        }
+        .addon-details {
+            font-size: 12px;
+            margin: 0 0 5px 45px;
+            li:first-child {
+                color: #444;
+            }
+            .tip {
+                border-radius: 6px;
+                font-size: 10px;
+                height: 12px;
+                line-height: 14px;
+                margin-left: 3px;
+                width: 12px;
+            }
+        }
+        .addon-upload {
+            border-top: 1px dotted #94bfce;
+            font-size: 11px;
+            margin: 0;
+            padding-top: 5px;
+        }
+    }
+    ul.refinements {
+        border-bottom: 1px dotted #94bfce;
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+        &:last-child {
+            border-bottom: none;
+        }
+        li a {
+            color: #3d6db5;
+            font-size: .923em;
+            padding: 0 0 0 10px;
+        }
+        li.addon-manage a {
+            display: inline;
+            &:last-child {
+                padding-left: 0;
+                &:before {
+                    content: "\00b7";
+                    padding-right: 5px;
+                }
+            }
+            &:only-child {
+                padding-left: 10px;
+                &:before {
+                    content: "";
+                    padding: 0;
+                }
+            }
+        }
+        li.selected a {
+            background: url("../../img/zamboni/arrow-right-blue.png") 0 .5em no-repeat;
+        }
     }
 }
 

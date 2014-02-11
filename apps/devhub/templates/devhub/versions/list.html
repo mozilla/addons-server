@@ -10,7 +10,7 @@
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
+  <h2>{{ addon.name }}</h2>
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
   <h3>{{ _('Current Status') }}</h3>
@@ -86,15 +86,15 @@
 
         {% if check_addon_ownership(request, addon, dev=True) %}
           {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-            <a href="{{ addon.get_dev_url('enable') }}" id="enable-addon">
+            <a href="{{ addon.get_dev_url('enable') }}" class="enable-addon">
               {{ _('Enable Add-on') }}</a>
           {% elif not addon.is_disabled %}
-            <a href="#" id="disable-addon">
+            <a href="#" class="disable-addon">
               {{ _('Disable Add-on') }}</a>
           {% endif %}
         {% endif %}
         {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
-            &middot; <a href="#" id="delete-addon">
+            &middot; <a href="#" class="delete-addon">
               {{ _('Delete Add-on') }}</a>
         {% endif %}
         {% set current = addon.current_version %}
