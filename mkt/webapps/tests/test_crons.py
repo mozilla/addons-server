@@ -30,53 +30,54 @@ class TestWeeklyDownloads(amo.tests.TestCase):
     def get_app(self):
         return Webapp.objects.get(pk=self.app.pk)
 
-    def get_mocks(self):
-        """
-        Returns 2 mocks as a tuple.
-
-        First is the `client(...)` call to get histogram data for last 7 days.
-        Second is the `client.raw(...)` call to get the totals data.
-        """
-        weekly = [
-            {'count': 122.0, 'date': date(2013, 12, 30)},
-            {'count': 133.0, 'date': date(2014, 1, 6)},
-        ]
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
+    def test_weekly_downloads(self, _mock):
+        client = mock.Mock()
         raw = {
             'facets': {
                 'installs': {
-                    u'_type': u'statistical',
-                    u'count': 49,
-                    u'max': 224.0,
-                    u'mean': 135.46938775510205,
-                    u'min': 1.0,
-                    u'std_deviation': 67.41619197523309,
-                    u'sum_of_squares': 1121948.0,
-                    u'total': 6638.0,
-                    u'variance': 4544.9429404414832
+                    '_type': 'date_histogram',
+                    'entries': [
+                        {'count': 3,
+                         'time': 1390780800000,
+                         'total': 19.0},
+                        {'count': 62,
+                         'time': 1391385600000,
+                         'total': 236.0}
+                    ]
                 }
-            },
-            u'hits': {
-                u'hits': [], u'max_score': 1.0, u'total': 46957
             }
         }
-
-        return (weekly, raw)
-
-    @mock.patch('mkt.webapps.tasks.get_monolith_client')
-    def test_weekly_downloads(self, _mock):
-        weekly, raw = self.get_mocks()
-        client = mock.Mock()
-        client.return_value = weekly
         client.raw.return_value = raw
         _mock.return_value = client
 
         eq_(self.app.weekly_downloads, 0)
-        eq_(self.app.total_downloads, 0)
 
         update_downloads([self.app.pk])
 
         self.app.reload()
         eq_(self.app.weekly_downloads, 255)
+
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
+    def test_total_downloads(self, _mock):
+        client = mock.Mock()
+        raw = {
+            'facets': {
+                'installs': {
+                    u'_type': u'statistical',
+                    u'count': 49,
+                    u'total': 6638.0
+                }
+            }
+        }
+        client.raw.return_value = raw
+        _mock.return_value = client
+
+        eq_(self.app.total_downloads, 0)
+
+        update_downloads([self.app.pk])
+
+        self.app.reload()
         eq_(self.app.total_downloads, 6638)
 
     @mock.patch('mkt.webapps.tasks.get_monolith_client')
