@@ -734,8 +734,14 @@ class Webapp(Addon):
             all_regions = set(mkt.regions.ALL_REGION_IDS)
             # Find every region that does not have payments supported
             # and add that into the exclusions.
-            return excluded.union(
+            excluded = excluded.union(
                 all_regions.difference(self.get_price_region_ids()))
+
+        geo = self.geodata
+        if geo.region_de_iarc_exclude or geo.region_de_usk_exclude:
+            excluded.add(mkt.regions.DE.id)
+        if geo.region_br_iarc_exclude:
+            excluded.add(mkt.regions.BR.id)
 
         return sorted(list(excluded))
 

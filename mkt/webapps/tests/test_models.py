@@ -960,6 +960,7 @@ class TestExclusions(amo.tests.TestCase):
     def setUp(self):
         self.app = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
         self.app.addonexcludedregion.create(region=mkt.regions.US.id)
+        self.geodata = self.app._geodata
 
     def make_tier(self):
         self.price = Price.objects.get(pk=1)
@@ -977,6 +978,17 @@ class TestExclusions(amo.tests.TestCase):
         (self.price.pricecurrency_set
              .filter(region=mkt.regions.PL.id).update(paid=False))
         ok_(mkt.regions.PL.id in self.app.get_excluded_region_ids())
+
+    def test_usk_rating_refused(self):
+        self.geodata.update(region_de_usk_exclude=True)
+        ok_(mkt.regions.DE.id in self.app.get_excluded_region_ids())
+
+    def test_game_iarc(self):
+        self.geodata.update(region_de_iarc_exclude=True,
+                            region_br_iarc_exclude=True)
+        excluded = self.app.get_excluded_region_ids()
+        ok_(mkt.regions.BR.id in excluded)
+        ok_(mkt.regions.DE.id in excluded)
 
 
 class TestPackagedAppManifestUpdates(amo.tests.TestCase):

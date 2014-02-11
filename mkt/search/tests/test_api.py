@@ -670,6 +670,14 @@ class TestApi(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         ok_(obj['content_ratings']['ratings'])
 
+    def test_usk_refused_exclude(self):
+        geodata = self.webapp._geodata
+        geodata.update(region_de_usk_exclude=True)
+        self.reindex(Webapp, 'webapp')
+
+        res = self.client.get(self.url, {'region': 'de'})
+        ok_(not res.json['objects'])
+
 
 class TestApiFeatures(RestOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
