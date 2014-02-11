@@ -1,1475 +1,1653 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AMO-JS 0.1\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 09:07-0700\n"
-"PO-Revision-Date: 2009-02-26 15:08-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: \n"
+"POT-Creation-Date: 2014-01-22 09:17-0700\n"
+"PO-Revision-Date: 2013-09-24 12:31+0000\n"
+"Last-Translator: Milos <mdinic@mozilla.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Translate Toolkit 1.9.0\n"
+"X-POOTLE-MTIME: 1380025907.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} zvedica"
+msgstr[1] "{0} zvedice"
+msgstr[2] "{0} zvedica"
 
-#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-addon.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Došlo je do problema pri kontaktiranju servera."
 
-#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
+#: media/js/common/upload-addon.js:52
+#: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "Izaberite datoteku..."
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
+msgstr "Vaš dodatak se treba završiti sa .xpi, .jar ili .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
+#: media/js/common/upload-addon.js:87
+#: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% završeno"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
+#: media/js/common/upload-addon.js:90
+#: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} od {1}"
 
-#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
+#: media/js/common/upload-addon.js:120
+#: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr ""
+msgstr "Otkaži"
 
-#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
+#: media/js/common/upload-addon.js:142
+#: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Otpremam {0}"
 
-#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
+#: media/js/common/upload-addon.js:169
+#: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "Greška sa {0}"
 
 #: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vaš dodatak nije prošao proveru - {0} greška."
+msgstr[1] "Vaš dodatak nije prošao proveru - {0} greške."
+msgstr[2] "Vaš dodatak nije prošao proveru - {0} grešaka."
 
-#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-addon.js:188
+#: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;i još {0}"
+msgstr[1] "&hellip;i još {0}"
+msgstr[2] "&hellip;i još {0}"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-addon.js:202
+#: media/js/common/upload-addon.js:329
+#: media/js/common/upload-packaged-app.js:197
+#: media/js/common/upload-packaged-app.js:323
+#: media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
 msgid "See full validation report"
-msgstr ""
+msgstr "Pogledajte potpuni izveštaj pregleda"
 
-#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-addon.js:214
+#: media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
-msgstr ""
+msgstr "Proveravam {0}"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252
+#: media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Dobijen je prazan odgovor od servera; status: {0}"
 
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263
+#: media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Neočekivana greška na serveru tokom provere."
 
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301
+#: media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Završena provera {0}"
 
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vaš dodatak je prošao proveru bez grešaka i {0} porukom."
+msgstr[1] "Vaš dodatak je prošao proveru bez grešaka i {0} poruke."
+msgstr[2] "Vaš dodatak je prošao proveru bez grešaka i {0} poruka."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Vaš dodatak je prošao proveru bez grešaka ili upozorenja."
 
 #: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "Neke platforme nisu dostupne za ovaj tip dodatka."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Tip datoteke koju ste poslali nije prepoznat."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Otkazali ste otpremanje."
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
+#: media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Slike moraju biti PNG ili JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Video snimci moraju biti u WebM formatu."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Vaša upakovana aplikacija se mora završavati sa <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:181
+#: media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vaša aplikacija nije prošla proveru zbog {0} greške."
+msgstr[1] "Vaša aplikacija nije prošla proveru zbog {0} greške."
+msgstr[2] "Vaša aplikacija nije prošla proveru zbog {0} grešaka."
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vaša aplikacija je prošla proveru bez grešaka i {0} upozorenjem."
+msgstr[1] "Vaša aplikacija je prošla proveru bez grešaka i {0} upozorenja."
+msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} upozorenja."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Vaša aplikacija je prošla proveru bez grešaka ili upozorenja."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Manifest nije nađen na izabranoj lokaciji."
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
+#: media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Host aplikacije nije dostupan."
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
+#: media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Manifest aplikacije se ne može uporediti."
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
+#: media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Manifest aplikacije je neispravan."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "Aplikacija je već instalirana."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "Serverska greška."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "Serverska greška tokom instalacije aplikacije."
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
+#: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Instalacija neuspešna. Molimo Vas pokušajte kasnije."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vaša aplikacija nije prošla proveru - {0} greška i {1} poruka."
+msgstr[1] "Vaša aplikacija nije prošla proveru - {0} greške i {1} poruke."
+msgstr[2] "Vaša aplikacija nije prošla proveru - {0} grešaka i {1} poruka."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200
+#: media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vaša aplikacija je prošla proveru bez grešaka i {0} porukom."
+msgstr[1] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruke."
+msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruka."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205
+#: media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
-msgstr ""
+msgstr "Vaša aplikacija je prošla proveru bez grešaka ili poruka."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419
+#: media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
-msgstr ""
+msgstr "Izmene sačuvane"
 
 #: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "Unesite adresu e-pošte novog člana tima"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
-msgstr ""
+msgstr "Osveženo"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616
+#: media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Došlo je do greške prilikom otpremanja Vaše datoteke."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886
+#: media/js/zamboni/devhub.js:925
 msgid "Learn more"
-msgstr ""
+msgstr "Saznajte više"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890
+#: media/js/zamboni/devhub.js:929
 msgid "Example"
-msgstr ""
+msgstr "Primer"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192
+#: media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Izmene na slici se obrađuju"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "Ovaj video zahteva pregledač koji podržava otvorene video snimke "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "ili <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe"
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "Flash Player</a>."
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+#: media/js/devreg/init.js:35
+#: media/js/zamboni/init.js:32
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
 msgstr ""
+"Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja "
+"sajta. Molimo probajte malo kasnije."
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
+#: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Ukloni ovu lokalizaciju"
 
 #: media/js/devreg/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
 msgstr ""
+"Prijava putem Persona sistema je neuspešna. Možda nemate nalog pod tom "
+"adresom e-pošte? "
 
 #: media/js/devreg/login.js:78
 msgid "Persona login failed. A server error was encountered."
 msgstr ""
+"Prijava putem Persona sistema je neuspešna. Došlo je do greške na serveru."
 
 #: media/js/devreg/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "Prikaži sve rezultate"
 
 #: media/js/devreg/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Preko {0} rezultata je nađeno, tačnije definišite Bašu pretragu."
 
 #: media/js/devreg/manifest.js:46
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Neophodne dozvole:"
 
 #: media/js/devreg/manifest.js:54
 msgid "Certified"
-msgstr ""
+msgstr "Sertifikovano"
 
 #: media/js/devreg/manifest.js:57
 msgid "Privileged"
-msgstr ""
+msgstr "Ovlašćeno"
 
 #: media/js/devreg/manifest.js:60
 msgid "Unprivileged"
-msgstr ""
+msgstr "Neovlašćeno"
 
 #: media/js/devreg/manifest.js:66
 msgid "No reason given"
-msgstr ""
+msgstr "Nije dat razlog"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "U redu"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Kod banke Španije"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Kod banke Irske"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Kod banke Belgije"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Kod banke Španije/Francuske/Italije/Holandije"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Kod banke Holandije/SAD"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Tranzitni broj Kanade/Ruting kod (kod usmeravanja) Nemačke"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Banka Koreje i kod filijale/Indonezijske banke"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "HEBIC Grčke/Kod banke Indonezije"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
 msgstr ""
+"Kod banke Ujedinjenog Kraljevstva/Irske ili prefiks novozelandskog naloga ili "
+"Australijski BSB kod"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Kod banke Austrije/Švajcarske"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Kod banke Danske/Švajcarske"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Kod banke Švajcarske/Iraka"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "Kod banke Iraka"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "Otkriveno: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:24
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
+msgid ""
+"Warning: deleting payment account \"{0}\" will move that associated app to an "
+"incomplete status and it will no longer be available for sale:"
+msgid_plural ""
+"Warning: deleting payment account \"{0}\" will move those associated apps to "
+"an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
+"Upozorenje: brisanje platnog naloga \"{0}\" će premestiti povezane aplikacije u "
+"nedovršeno stanje i više neće biti dostupne za prodaju:"
 msgstr[1] ""
+"Upozorenje: brisanje platnog naloga \"{0}\" će premestiti povezane aplikacije u "
+"nedovršeno stanje i više neće biti dostupne za prodaju:"
+msgstr[2] ""
+"Upozorenje: brisanje platnog naloga \"{0}\" će premestiti povezane aplikacije u "
+"nedovršeno stanje i više neće biti dostupne za prodaju:"
 
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/payments-manage.js:58
+#: media/js/devreg/payments-manage.js:107
+#: media/js/devreg/validator.js:193
+#: media/js/devreg/validator.js:438
+#: media/js/devreg/validator.js:457
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/zamboni/validator.js:194
+#: media/js/zamboni/validator.js:449
+#: media/js/zamboni/validator.js:468
 msgid "Error"
-msgstr ""
+msgstr "Greška"
 
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
+#: media/js/devreg/payments-manage.js:59
+#: media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Došlo je do greške prilikom kontaktiranja servera za plaćanje."
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
-msgstr ""
+msgstr "Greška tokom autentifikacije"
 
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "Trenutno nemate ni jedan nalog za plaćanje."
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
+#: media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Pretraži teme za termin <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
+#: media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Pretraži aplikacije za termin <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
+#: media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Pretraži dodatke za termin <b>{0}</b>"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} preostao karakter."
+msgstr[1] "{0} preostala karaktera."
+msgstr[2] "{0} preostalih karaktera."
 
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71
+#: media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Svi testovi su uspešno završeni."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:358
+#: media/js/zamboni/validator.js:74
+#: media/js/zamboni/validator.js:367
 msgid "These tests were not run."
-msgstr ""
+msgstr "Ovi testovi nisu izvršeni."
 
-#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:119
+#: media/js/devreg/validator.js:132
+#: media/js/zamboni/validator.js:120
+#: media/js/zamboni/validator.js:133
 msgid "Tests"
-msgstr ""
+msgstr "Testovi"
 
-#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:194
+#: media/js/zamboni/validator.js:195
 msgid "Warning"
-msgstr ""
+msgstr "Upozorenje"
 
-#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:281
+#: media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Testovi kompatibilnosti"
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:329
+#: media/js/zamboni/validator.js:331
 msgid "App failed validation."
-msgstr ""
+msgstr "Aplikacija nije prošla validaciju."
 
-#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:331
+#: media/js/zamboni/validator.js:333
 msgid "App passed validation."
-msgstr ""
+msgstr "Aplikacija je prošla validaciju."
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:361
+#: media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} greška"
+msgstr[1] "{0} greške"
+msgstr[2] "{0} grešaka"
 
-#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:363
+#: media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} upozorenje"
+msgstr[1] "{0} upozorenja"
+msgstr[2] "{0} upozorenja"
 
-#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:440
+#: media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Zadatak provere nije mogao biti završen ili je završen sa greškama"
 
-#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:458
+#: media/js/zamboni/validator.js:469
 msgid "Internal server error"
-msgstr ""
+msgstr "Greška na serveru"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
-msgstr ""
+msgstr "Kupujem"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr ""
+msgstr "Kupljeno"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "Pokreni"
 
-#: media/js/devreg/reviewers/editors.js:158 media/js/zamboni/editors.js:162
+#: media/js/devreg/reviewers/editors.js:158
+#: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} je prvi gledao ovu stranicu."
 
-#: media/js/devreg/reviewers/editors.js:208 media/js/zamboni/editors.js:212
+#: media/js/devreg/reviewers/editors.js:208
+#: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Potvrda proverena od strane aplikacije."
 
-#: media/js/devreg/reviewers/editors.js:210 media/js/zamboni/editors.js:214
+#: media/js/devreg/reviewers/editors.js:210
+#: media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Potvrda nije proverena od strane aplikacije."
 
-#: media/js/devreg/reviewers/editors.js:281 media/js/zamboni/editors.js:285
+#: media/js/devreg/reviewers/editors.js:281
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} je prvi pregledavao ovaj dodatak."
 
-#: media/js/devreg/reviewers/editors.js:292 media/js/zamboni/editors.js:296
+#: media/js/devreg/reviewers/editors.js:292
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Učitavam&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:297 media/js/zamboni/editors.js:301
+#: media/js/devreg/reviewers/editors.js:297
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
-msgstr ""
+msgstr "Beleške o verziji"
 
-#: media/js/devreg/reviewers/editors.js:302 media/js/zamboni/editors.js:306
+#: media/js/devreg/reviewers/editors.js:302
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Beleške za recenzente"
 
-#: media/js/devreg/reviewers/editors.js:307 media/js/zamboni/editors.js:311
+#: media/js/devreg/reviewers/editors.js:307
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
-msgstr ""
+msgstr "Nije nađena ni jedna beleška o verziji"
 
-#: media/js/devreg/reviewers/editors.js:332 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:332
+#: media/js/zamboni/admin_validation.js:24
+#: media/js/zamboni/devhub.js:1438
+#: media/js/zamboni/editors.js:336
 msgid "Select an application first"
-msgstr ""
+msgstr "Prvo izaberite aplikaciju"
 
-#: media/js/devreg/reviewers/editors.js:396 media/js/zamboni/editors.js:486
+#: media/js/devreg/reviewers/editors.js:396
+#: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "Greška pri učitavanju prevoda"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "još..."
 
 #: media/js/devreg/reviewers/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "manje..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:6
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Zadrži recenziju; ukloni oznake"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "Obriši recenziju"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr ""
+msgstr "Preskoči za sada"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr ""
+msgstr "Plaćanje neuspešno. Pokušajte kasnije."
 
 #: media/js/devreg/reviewers/reviewers.js:100
 msgid "Packaged App"
-msgstr ""
+msgstr "Spakovana aplikacija"
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "Privileged App"
-msgstr ""
+msgstr "Ovlašćena aplikacija"
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "More Information Requested"
-msgstr ""
+msgstr "Zahteva se više informacija"
 
 #: media/js/devreg/reviewers/reviewers.js:110
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Sadrži komentar urednika"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Premium App"
-msgstr ""
+msgstr "Premijum aplikacija"
 
 #: media/js/devreg/reviewers/reviewers.js:117
 msgid "Escalated"
-msgstr ""
+msgstr "Eskalirano"
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"
-msgstr ""
+msgstr "Besplatno"
 
 #: media/js/devreg/reviewers/reviewers.js:230
 msgid "Any"
-msgstr ""
+msgstr "Bilo koju"
 
 #: media/js/devreg/reviewers/reviewers.js:257
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Odobrena aplikacija: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:260
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Odbijena aplikacija: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:266
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Greška prilikom odobravanja aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:267
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Greška prilikom odbijanja aplikacije: {app} "
 
 #: media/js/devreg/reviewers/themes_review.js:174
 msgid "Requested Info"
-msgstr ""
+msgstr "Zahtevane informacije"
 
 #: media/js/devreg/reviewers/themes_review.js:175
 msgid "Flagged"
-msgstr ""
+msgstr "Označeno"
 
 #: media/js/devreg/reviewers/themes_review.js:176
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: media/js/devreg/reviewers/themes_review.js:177
 msgid "Rejected"
-msgstr ""
+msgstr "Odbijeno"
 
 #: media/js/devreg/reviewers/themes_review.js:178
 msgid "Approved"
-msgstr ""
+msgstr "Odobreno"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10
+#: media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Prati ovu kolekciju"
 
 #: media/js/impala/collections.js:19
 msgid "Stop Following"
-msgstr ""
+msgstr "Prekini praćenje"
 
 #: media/js/impala/collections.js:20
 msgid "Following"
-msgstr ""
+msgstr "Praćenje"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:17
+#: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Ova tema nije kompatibilna sa Vašom verzijom {0}"
 
 #: media/js/impala/persona_creation.js:102
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Sva prava su zadržana"
 
 #: media/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: media/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: media/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: media/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: media/js/impala/persona_creation.js:131
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Naziv Vaše teme"
 
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23
+#: media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
-msgstr ""
+msgstr "Naznačeno za pregled"
 
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40
+#: media/js/zamboni/reviews.js:34
 msgid "Your input is required"
-msgstr ""
+msgstr "Vaš odziv je neophodan"
 
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133
+#: media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Obeleženo za brisanje"
 
 #: media/js/impala/search.js:104
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Ažuriram rezultate&hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
+#: media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #: media/js/impala/users.js:33
 msgid "use original"
-msgstr ""
+msgstr "koristi original"
 
 #: media/js/impala/stats/chart.js:267
 msgid "Week of {0}"
-msgstr ""
+msgstr "Sedmica od {0}"
 
 #: media/js/impala/stats/chart.js:269
 msgid "downloads"
-msgstr ""
+msgstr "preuzimanja"
 
 #: media/js/impala/stats/chart.js:270
 msgid "{0} users"
-msgstr ""
+msgstr "{0} korisnika"
 
 #: media/js/impala/stats/chart.js:271
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} dodataka"
 
 #: media/js/impala/stats/chart.js:272
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} kolekcije"
 
 #: media/js/impala/stats/chart.js:273
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} recenzija"
 
 #: media/js/impala/stats/chart.js:275
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} prodaja"
 
 #: media/js/impala/stats/chart.js:276
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} refunkdacija"
 
 #: media/js/impala/stats/chart.js:277
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} instalacija"
 
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
+#: media/js/impala/stats/chart.js:369
+#: media/js/impala/stats/csv_keys.js:3
+#: media/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
-msgstr ""
+msgstr "Preuzimanja"
 
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
+#: media/js/impala/stats/chart.js:379
+#: media/js/impala/stats/csv_keys.js:6
+#: media/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
-msgstr ""
+msgstr "Broj korisnika po danu"
 
 #: media/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Količina, u valuti USD"
 
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97
+#: media/js/impala/stats/chart.js:421
+#: media/js/impala/stats/csv_keys.js:97
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Broj doprinosa"
 
 #: media/js/impala/stats/chart.js:447
 msgid "More Info..."
-msgstr ""
+msgstr "Više informacija..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/impala/stats/chart.js:451
 msgid "Details for {0}"
-msgstr ""
+msgstr "Detalji o {0}"
 
 #: media/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
-msgstr ""
+msgstr "Napravljene kolekcije"
 
 #: media/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Dodaci koji se koriste"
 
 #: media/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Dodataka napravljeno"
 
 #: media/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Dodataka preuzeto"
 
 #: media/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Dodataka ažurirano"
 
 #: media/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr ""
+msgstr "Recenzija napisano"
 
 #: media/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
-msgstr ""
+msgstr "Prijave korisnika"
 
 #: media/js/impala/stats/csv_keys.js:30
 msgid "Subscribers"
-msgstr ""
+msgstr "Pretplatnici"
 
 #: media/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
-msgstr ""
+msgstr "Ocene"
 
-#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107
+#: media/js/impala/stats/csv_keys.js:36
+#: media/js/impala/stats/csv_keys.js:107
 msgid "Sales"
-msgstr ""
+msgstr "Prodaje"
 
-#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106
+#: media/js/impala/stats/csv_keys.js:39
+#: media/js/impala/stats/csv_keys.js:106
 msgid "Installs"
-msgstr ""
+msgstr "Instalacije"
 
 #: media/js/impala/stats/csv_keys.js:42
 msgid "Unknown"
-msgstr ""
+msgstr "Nepoznato"
 
 #: media/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Menadžer dodataka"
 
 #: media/js/impala/stats/csv_keys.js:44
 msgid "Search Results"
-msgstr ""
+msgstr "Rezultati pretrage"
 
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47
+#: media/js/impala/stats/csv_keys.js:45
+#: media/js/impala/stats/csv_keys.js:46
+#: media/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Promocija na početnoj strani"
 
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49
+#: media/js/impala/stats/csv_keys.js:48
+#: media/js/impala/stats/csv_keys.js:49
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Izdvojeno na početnoj strani"
 
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
+#: media/js/impala/stats/csv_keys.js:50
+#: media/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Nadolazeće na početnoj strani"
 
 #: media/js/impala/stats/csv_keys.js:52
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Najpopularnije na početnoj strani"
 
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55
+#: media/js/impala/stats/csv_keys.js:53
+#: media/js/impala/stats/csv_keys.js:55
 msgid "Detail Page"
-msgstr ""
+msgstr "Dodatne informacije"
 
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56
+#: media/js/impala/stats/csv_keys.js:54
+#: media/js/impala/stats/csv_keys.js:56
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Dodatne informacije (dole)"
 
 #: media/js/impala/stats/csv_keys.js:57
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Dodatne informacije (Kanal za razvoj)"
 
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
+#: media/js/impala/stats/csv_keys.js:58
+#: media/js/impala/stats/csv_keys.js:59
+#: media/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
-msgstr ""
+msgstr "Često korišćeno uz"
 
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62
+#: media/js/impala/stats/csv_keys.js:61
+#: media/js/impala/stats/csv_keys.js:62
 msgid "Others By Author"
-msgstr ""
+msgstr "Ostalo od autora"
 
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64
+#: media/js/impala/stats/csv_keys.js:63
+#: media/js/impala/stats/csv_keys.js:64
 msgid "Dependencies"
-msgstr ""
+msgstr "Zavisi od"
 
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66
+#: media/js/impala/stats/csv_keys.js:65
+#: media/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
-msgstr ""
+msgstr "Tehnike uvećanja prodaje"
 
 #: media/js/impala/stats/csv_keys.js:68
 msgid "Sharing"
-msgstr ""
+msgstr "Deljenje"
 
 #: media/js/impala/stats/csv_keys.js:69
 msgid "Category Pages"
-msgstr ""
+msgstr "Stranice kategorija"
 
 #: media/js/impala/stats/csv_keys.js:70
 msgid "Collections"
-msgstr ""
+msgstr "Kolekcije"
 
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72
+#: media/js/impala/stats/csv_keys.js:71
+#: media/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Klizač izdvojenih apl. na početnoj strani kategorije"
 
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74
+#: media/js/impala/stats/csv_keys.js:73
+#: media/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Najbolje ocenjene apl. na početnoj strani kategorije"
 
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76
+#: media/js/impala/stats/csv_keys.js:75
+#: media/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Najpopularnije apl. na početnoj strani kategorije"
 
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78
+#: media/js/impala/stats/csv_keys.js:77
+#: media/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Skoro dodate apl. na početnoj strani kategorije"
 
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80
+#: media/js/impala/stats/csv_keys.js:79
+#: media/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Pregled sortirane liste istaknutih aplikacija"
 
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82
+#: media/js/impala/stats/csv_keys.js:81
+#: media/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Pregled sortirane liste korisnika"
 
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84
+#: media/js/impala/stats/csv_keys.js:83
+#: media/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Pregled sortirane liste ocena"
 
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86
+#: media/js/impala/stats/csv_keys.js:85
+#: media/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Pregled sortirane liste kreiranih aplikacija"
 
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88
+#: media/js/impala/stats/csv_keys.js:87
+#: media/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Pregled sortirane liste naziva"
 
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90
+#: media/js/impala/stats/csv_keys.js:89
+#: media/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Pregled sortirane liste popularnih aplikacija"
 
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92
+#: media/js/impala/stats/csv_keys.js:91
+#: media/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Pregled sortirane liste ažuriranih aplikacija"
 
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94
+#: media/js/impala/stats/csv_keys.js:93
+#: media/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Pregled sortirane liste nadolazećih aplikacija"
 
 #: media/js/impala/stats/csv_keys.js:98
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Ukupan broj doprinosa"
 
 #: media/js/impala/stats/csv_keys.js:99
 msgid "Average Contribution"
-msgstr ""
+msgstr "Prosek doprinosa"
 
 #: media/js/impala/stats/csv_keys.js:108
 msgid "Usage"
-msgstr ""
+msgstr "Upotreba"
 
 #: media/js/impala/stats/csv_keys.js:111
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: media/js/impala/stats/csv_keys.js:112
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: media/js/impala/stats/csv_keys.js:113
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: media/js/impala/stats/csv_keys.js:114
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: media/js/impala/stats/csv_keys.js:115
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: media/js/impala/stats/csv_keys.js:116
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:121
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Preuzimanja i dnevni korisnici, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:123
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Preuzimanja i dnevni korisnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:127
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Instalacije i dnevni korisnici, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:129
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Instalacije i dnevni korisnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:133
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Preuzimanja, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:135
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Preuzimanja od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:139
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Dnevni korisnici, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:141
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Dnevni korisnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:145
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Aplikacije, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:147
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Aplikacije od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:151
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Platforme, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:153
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Platforme od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:157
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Jezici, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:159
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Jezici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:163
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Verzije dodataka, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:165
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Verzije dodataka od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:169
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Status dodataka, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:171
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Status dodataka, od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:175
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Izvori preuzimanja, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:177
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Izvori preuzimanja od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:181
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Doprinosi, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:183
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Doprinosi od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:187
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Pokazatelji za sajt, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:189
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Pokazatelji za sajt od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:193
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Dodaci u upotrebi, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:195
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Dodaci u upotrebi od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:199
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Dodataka preuzeto, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:201
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Dodataka preuzeto od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:205
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Dodataka napravljeno, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:207
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Dodataka napravljeno od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:211
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Dodataka ažurirano, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:213
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Dodataka ažurirano od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:217
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Recenzija napisano, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:219
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Recenzija napisano od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:223
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Registracije korisnika, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:225
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Registracije korisnika od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:229
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Kolekcija napravljeno, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:231
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Kolekcija napravljeno od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:235
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Pretplatnici, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:237
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Pretplatnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:241
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Ocenjivanja, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:243
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Ocenjivanja od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:247
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Prodaja, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:249
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Prodaja od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:253
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Instalacije, poslednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:255
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Instalacije, od {0} do {1}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:261
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> u poslednjih {1} dana"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269
+#: media/js/impala/stats/csv_keys.js:263
+#: media/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> od {1} do {2}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:267
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> prosečne u poslednjih {1} dana"
 
 #: media/js/impala/stats/overview.js:19
 msgid "No data available."
-msgstr ""
+msgstr "Nema dostupnih podataka."
 
 #: media/js/impala/stats/table.js:74
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: media/js/impala/stats/topchart.js:96
 msgid "Other"
-msgstr ""
+msgstr "Ostali"
 
 #: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
+"Podesite {0} dodatak na maksimalnu verziju od {1} i pošalji e-poštu autoru."
 msgstr[1] ""
+"Podesite {0} dodataka na maksimalnu verziju od {1} i pošalji e-poštu "
+"autorima."
+msgstr[2] ""
+"Podesite {0} dodataka na maksimalnu verziju od {1} i pošalji e-poštu "
+"autorima."
 
 #: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
 msgid_plural "This will send emails to the authors of {0} files."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ovo će poslati e-pošte autorima {0} datoteke."
+msgstr[1] "Ovo će poslati e-pošte autorima {0} datoteke."
+msgstr[2] "Ovo će poslati e-pošte autorima {0} datoteka."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Nije dozvoljena instalacija aplikacije."
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Manifest aplikacije je u pogrešnom formatu."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "Instalacija aplikacije nije uspela."
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Ovaj sistem ne podržava isntalacije aplikacija."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Administratori i urednici moraju ukucati lozinku za prijavljivanje."
 
 #: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
 msgstr ""
+"Prijava preko BrowserID-a neuspela. Možda nemate nalog sa tom adresom "
+"e-pošte?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
 msgid "Accept and Install"
-msgstr ""
+msgstr "Prihvati i instaliraj"
 
 #: media/js/zamboni/buttons.js:108
 msgid "Add to {0}"
-msgstr ""
+msgstr "Dodaj u {0}"
 
 #: media/js/zamboni/buttons.js:113
 msgid "Download Now"
-msgstr ""
+msgstr "Preuzmi odmah"
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "Dodatak nije ažuriran da podržava default-to-compatible."
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Morate koristiti Firefox 10.0 ili novije."
 
 #: media/js/zamboni/buttons.js:171
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"Mozilla je označila ovu verziju kao nekompatabilnu sa Vašom verzijom "
+"Firefox-a."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Instaliraj za {0} u svakom slučaju"
 
 #: media/js/zamboni/buttons.js:249
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Preuzmi za {0} u svakom slučaju"
 
 #: media/js/zamboni/buttons.js:306
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Nije dostupno za Vašu platformu"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+#: media/js/zamboni/buttons.js:317
+#: media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Nije dostupno za {0} {1}"
 
 #: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Radi sa {app} {min} - {max}"
 
 #: media/js/zamboni/buttons.js:382
 msgid "View other versions"
-msgstr ""
+msgstr "Pogledaj ostale verzije"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+#: media/js/zamboni/buttons.js:597
+#: media/js/zamboni/mobile/buttons.js:39
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
 msgstr ""
+"Žao nam je, treba Vam pregledač baziran na tehnologiji Mozilla fondacije "
+"(kao što je Firefox) da biste instalirali priključak za pretraživanje."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
-msgstr ""
+msgstr "obriši skorije gledano"
 
 #: media/js/zamboni/collections.js:365
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Dodajem u Omiljeno&hellip;"
 
 #: media/js/zamboni/collections.js:368
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Brišem iz Omiljenih&hellip;"
 
 #: media/js/zamboni/collections.js:371
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Dodaj u Omiljene"
 
 #: media/js/zamboni/collections.js:374
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Izbriši iz Omiljenih"
 
 #: media/js/zamboni/collections.js:437
 msgid "Pending"
-msgstr ""
+msgstr "Na čekanju"
 
 #: media/js/zamboni/collections.js:438
 msgid "Add a comment"
-msgstr ""
+msgstr "Dodaj komentar"
 
 #: media/js/zamboni/collections.js:438
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: media/js/zamboni/collections.js:439
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Izbriši ovaj dodatak iz kolekcije"
 
-#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
+#: media/js/zamboni/collections.js:439
+#: media/js/zamboni/collections.js:468
 msgid "Remove"
-msgstr ""
+msgstr "Izbriši"
 
 #: media/js/zamboni/collections.js:468
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Ukloni korisnika kao saradnika"
 
 #: media/js/zamboni/collections.js:480
 msgid "An email address is required."
-msgstr ""
+msgstr "Adresa e-pošte je obavezna."
 
 #: media/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Ne možete sebe dodati kao saradnika."
 
 #: media/js/zamboni/collections.js:500
 msgid "You have already added that user."
-msgstr ""
+msgstr "Već ste dodali tog korisnika."
 
 #: media/js/zamboni/collections.js:703
 msgid "Add to favorites"
-msgstr ""
+msgstr "Dodaj u Omiljene"
 
 #: media/js/zamboni/collections.js:707
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Izbriši iz Omiljenih"
 
 #: media/js/zamboni/collections.js:734
 msgid "Stop following"
-msgstr ""
+msgstr "Prekini praćenje"
 
 #: media/js/zamboni/contributions.js:134
 msgid "Install App"
-msgstr ""
+msgstr "Instaliraj aplikaciju"
 
 #: media/js/zamboni/devhub.js:242
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Vaš pregledač ne podržava oznake video snimaka"
 
 #: media/js/zamboni/devhub.js:503
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Unesite adresu e-pošte novog autora"
 
 #: media/js/zamboni/devhub.js:793
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} datoteka"
+msgstr[1] "{files} datoteke"
+msgstr[2] "{files} datoteka"
 
 #: media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} recenzija"
+msgstr[1] "{reviews} recenzije"
+msgstr[2] "{reviews} recenzija"
 
 #: media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
-msgstr ""
+msgstr "Pokrećem testova..."
 
 #: media/js/zamboni/devhub.js:1473
 msgid "Waiting for test results..."
-msgstr ""
+msgstr "Čekam rezultate testova..."
 
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1475
+#: media/js/zamboni/devhub.js:1480
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Serverska greška"
 
 #: media/js/zamboni/devhub.js:1515
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Adresa e-pošte mora biti ispravna."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "Nema rezultata."
 
 #: media/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"Žao nam je, nismo uspeli naći preporuke za Vas.<br>Molimo posetite <a "
+"href=\"{0}\">stranicu sa dodacima</a> da bi pronašli dodatke pogodne za Vas."
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "Tražim preporuke&hellip;"
 
 #: media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "Ažuriram preporuke&hellip;"
 
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
-msgstr ""
+msgstr "Prosečne recenzije"
 
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Broj recenzija"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
-msgstr ""
+msgstr "Učitavanje..."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Još <b>{0}</b> karakter."
+msgstr[1] "Još <b>{0}</b> karaktera."
+msgstr[2] "Još <b>{0}</b> karaktera."
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
 msgid "Download {0}"
-msgstr ""
+msgstr "Preuzmi {0}"
 
 #: media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr ""
+msgstr "Jačina lozinke:"
 
 #: media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ostao je još najmanje {0} karater."
+msgstr[1] "Ostalo je još najmanje {0} karatera."
+msgstr[2] "Ostalo je još najmanje {0} karatera."
 
-#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
+#: media/js/zamboni/perf.js:29
+#: media/js/zamboni/perf.js:42
 msgid "All"
-msgstr ""
+msgstr "Sve"
 
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Dodatak nije prošao proveru."
 
 #: media/js/zamboni/validator.js:339
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Dodatak je prošao proveru."
 
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} obaveštenje"
+msgstr[1] "{0} obaveštenja"
+msgstr[2] "{0} obaveštenja"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Nije ažurirano za {0} {1}"
 
 #: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Zahteva verziju noviju od {0}"
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
-msgstr ""
+msgstr "Neocenjeno"
 
 #: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Eksperimentalno <span>(Saznaj više)</span>"
 
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79
+#: media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Nije dostupno za {0}"
 
 #: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimentalno"
 
 #: media/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Teme zahtevaju noviju verziju od {0}"
 
 #: media/js/zamboni/mobile/buttons.js:83
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Teme zahtevaju {0}"
 
 #: media/js/zamboni/mobile/buttons.js:128
 msgid "Installing..."
-msgstr ""
+msgstr "Instaliram..."
 
 #: media/js/zamboni/mobile/buttons.js:136
 msgid "Purchasing..."
-msgstr ""
+msgstr "Kupujem..."
 
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Ovaj dodatak je preliminarno pregledan od  Mozilla-e."
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
-msgstr ""
+msgstr "Zadrži"
 
 #: media/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Isprobavate je!"
 
 #: media/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Dodato u Firefox"
