@@ -836,7 +836,7 @@ def queue_tabnav_themes(context):
     tabs = []
     if acl.action_allowed(context['request'], 'Personas', 'Review'):
         tabs.append((
-            'editors.themes.list', 'themes', _('Pending'),
+            'editors.themes.list', 'pending_themes', _('Pending'),
         ))
     if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
         tabs.append((

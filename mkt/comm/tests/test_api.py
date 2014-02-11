@@ -353,6 +353,8 @@ class TestNote(NoteSetupMixin):
         # Test with `show_read=true`.
         res = self.client.get(self.list_url, {'show_read': 'truey'})
         eq_(res.json['objects'][0]['is_read'], True)
+        res = self.client.get(self.list_url, {'show_read': '0'})
+        ok_(not res.json['objects'])
 
         # Test with `show_read=false`.
         note.reads_set.all().delete()
@@ -501,6 +503,7 @@ class TestAttachment(NoteSetupMixin):
                                content_type=MULTIPART_CONTENT)
 
         eq_(res.status_code, 403)
+
 
 @mock.patch.object(settings, 'WHITELISTED_CLIENTS_EMAIL_API',
                    ['10.10.10.10'])
