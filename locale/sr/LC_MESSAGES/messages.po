@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-09 18:51+0000\n"
+"PO-Revision-Date: 2014-02-12 16:50+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391971873.0\n"
+"X-POOTLE-MTIME: 1392223836.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -6478,6 +6478,10 @@ msgid ""
 "our <a href=\"%(gs_url)s\">Getting Started</a> page for the basics, or visit "
 "the <a href=\"%(ht_url)s\">How-to Library</a> for tutorials and documentation."
 msgstr ""
+"Сада када сте добили основу за екстензију, забава почиње: хаковање на "
+"екстензију да би урадила оно што желите. Ако Вам треба помоћ, погледајте "
+"нашу <a href=\"%(gs_url)s\">Како почети</a> страницу за основе, или посетите "
+"<a href=\"%(ht_url)s\">Како-да библиотеку</a> за туторијале и документацију."
 
 #: apps/devhub/templates/devhub/search.html:7
 #: mkt/developers/templates/developers/search.html:7
@@ -6733,6 +6737,12 @@ msgid ""
 "authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's "
 "settings and statistics, but cannot make any changes</li> </ul>"
 msgstr ""
+"<p>Додаци могу имати било који број аутора са 3 могуће улоге:</p> <ul> "
+"<li><b>Власник:</b> Може управљати свим аспектима листинга додатка, "
+"укључујући и додавање и уклањање других аутора</li> <li><b>Програмер:</b> "
+"Може управљати свим аспектима листинга додатка, осим за додавање и уклањање "
+"других аутора и управљање плаћања</li> <li><b>Посматрач:</b> Може видети "
+"подешавања додатка и статистике, али не може да мења</li> </ul>"
 
 #: apps/devhub/templates/devhub/addons/profile.html:3
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:53
@@ -6815,6 +6825,9 @@ msgid ""
 "in search and browse listings, as well as at the top of your add-on's "
 "details page."
 msgstr ""
+"Кратко објашњење основне функционалности Вашег додатка који је приказан у "
+"претрази и прегледавању листинга, као и на врху странице са детаљима "
+"додатка."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:95
 msgid ""
@@ -6854,9 +6867,9 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/admin.html:145
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Раздвојено зарезима, најмање {0} карактер."
+msgstr[1] "Раздвојено зарезима, најмање {0} карактера."
+msgstr[2] "Раздвојено зарезима, најмање {0} карактера."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:174
 #: apps/devhub/templates/devhub/personas/edit.html:100
@@ -6921,6 +6934,8 @@ msgid ""
 "is localized into other languages multiple translations of this field can "
 "be added."
 msgstr ""
+"Ако Ваш додатак има и другу страницу, унесите њену адресу овде. Ако је Ваш "
+"сајт преведен на друге језике, могу се додати више превода овог поља."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 #: mkt/reviewers/templates/reviewers/includes/details.html:161
@@ -6944,6 +6959,9 @@ msgid ""
 "here. If you have different addresses for each language multiple "
 "translations of this field can be added."
 msgstr ""
+"Ако желите да прикажете адресу е-поште ради испитивања подршке, унесите га "
+"овде. Ако имате различите адресе за сваки језик, може се додати више превода "
+"овог поља."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:52
 #: mkt/developers/templates/developers/apps/edit/support.html:48
