@@ -10,6 +10,8 @@ from translations.tests.testapp.models import TranslatedModel
 
 class TestForm(forms.TranslationFormMixin, ModelForm):
     name = fields.TransField()
+    class Meta:
+        model = TranslatedModel
 
 
 class TestTranslationFormMixin(amo.tests.TestCase):

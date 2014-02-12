@@ -403,7 +403,7 @@ def browserid_login(request, browserid_audience=None):
             is_mobile = False
         with statsd.timer('auth.browserid.verify'):
             profile, msg = browserid_authenticate(
-                request, request.POST['assertion'],
+                request, request.POST.get('assertion'),
                 is_mobile=is_mobile,
                 browserid_audience=browserid_audience or get_audience(request))
         if profile is not None:

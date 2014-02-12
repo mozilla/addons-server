@@ -88,6 +88,12 @@ mod = Markup.__mod__
 trans_log = logging.getLogger('z.trans')
 
 
+#waffle and amo form an import cycle because amo patches waffle and
+#waffle loads the user model, so we have to make sure amo gets
+#imported before anything else imports waffle.
+import amo
+
+
 def new(self, arg):
     try:
         return mod(self, arg)

@@ -1834,11 +1834,11 @@ class TestMemcache(amo.tests.TestCase):
         eq_(self.client.get(self.url).status_code, 302)
 
     def test_can_clear(self):
-        self.client.post(self.url, {'yes': 1})
+        self.client.post(self.url, {'yes': 'True'})
         eq_(cache.get('foo'), None)
 
     def test_cant_clear(self):
-        self.client.post(self.url, {'yes': 0})
+        self.client.post(self.url, {'yes': 'False'})
         eq_(cache.get('foo'), 'bar')
 
 

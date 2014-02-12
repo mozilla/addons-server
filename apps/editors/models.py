@@ -420,8 +420,9 @@ class ReviewerScore(amo.models.ModelBase):
                                note_key=event)
             cls.get_key(invalidate=True)
             user_log.info(
-                u'Awarding %s points to user %s for "%s" for addon %s' % (
-                    score, user, amo.REVIEWED_CHOICES[event], addon.id))
+                (u'Awarding %s points to user %s for "%s" for addon %s' % (
+                    score, user, amo.REVIEWED_CHOICES[event], addon.id)
+             ).encode('utf-8'))
         return score
 
     @classmethod

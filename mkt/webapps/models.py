@@ -2196,7 +2196,7 @@ class Geodata(amo.models.ModelBase):
     banner_regions = RegionListField(default=None, null=True)
     banner_message = PurifiedField()
     # Exclude apps with USK_RATING_REFUSED in Germany.
-    region_de_usk_exclude = models.BooleanField()
+    region_de_usk_exclude = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'webapps_geodata'
