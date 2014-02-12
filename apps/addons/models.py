@@ -929,7 +929,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def backup_version(self):
         """Returns the backup version."""
-        if not self._current_version:
+        if not self.current_version:
             return
         return self._backup_version
 
