@@ -331,8 +331,8 @@ class TestReviewHelper(amo.tests.TestCase):
     def setup_data(self, status, delete=[]):
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
+        self.addon.update(status=status)
         self.file.update(status=status)
-        self.addon.status = status
         self.helper = self.get_helper()
         data = self.get_data().copy()
         for key in delete:
@@ -369,12 +369,13 @@ class TestReviewHelper(amo.tests.TestCase):
     def test_nomination_to_public_and_current_version(self):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status, ['addon_files'])
+            self.addon = Addon.objects.get(pk=3615)
             self.addon.update(_current_version=None)
+            assert not self.addon.current_version
 
-            addon = Addon.objects.get(pk=3615)
-            assert not addon.current_version
             self.helper.handler.process_public()
-            assert addon.current_version
+            self.addon = Addon.objects.get(pk=3615)
+            assert self.addon.current_version
 
     def test_nomination_to_public_new_addon(self):
         """ Make sure new add-ons can be made public (bug 637959) """

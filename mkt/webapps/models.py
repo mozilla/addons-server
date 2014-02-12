@@ -573,6 +573,10 @@ class Webapp(Addon):
             _log('no versions with files')
             return
 
+        # If the app is incomplete, don't update status.
+        if not self.is_fully_complete():
+            return
+
         # If there are no public versions and at least one pending, set status
         # to pending.
         public_statuses = amo.WEBAPPS_APPROVED_STATUSES

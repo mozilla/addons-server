@@ -24,6 +24,7 @@ from uuidfield.fields import UUIDField
 import amo
 import amo.models
 import amo.utils
+from amo.decorators import use_master
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
@@ -433,14 +434,19 @@ def cache_localepicker(sender, instance, **kw):
         instance.get_localepicker()
 
 
-@receiver(models.signals.post_delete, sender=File,
-          dispatch_uid='version_update_status')
+@use_master
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
-            instance.version.addon.update_status(using='default')
+            instance.version.addon.update_status()
+            instance.version.addon.update_version()
         except models.ObjectDoesNotExist:
             pass
+
+models.signals.post_save.connect(
+    update_status, sender=File, dispatch_uid='version_update_status')
+models.signals.post_delete.connect(
+    update_status, sender=File, dispatch_uid='version_update_status')
 
 
 @receiver(models.signals.post_delete, sender=File,

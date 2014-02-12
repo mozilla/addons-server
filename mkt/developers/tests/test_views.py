@@ -395,6 +395,7 @@ class TestPublicise(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
+        self.create_switch('iarc')
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_PUBLIC_WAITING)
         self.file = self.webapp.versions.latest().all_files[0]
@@ -424,13 +425,12 @@ class TestPublicise(amo.tests.TestCase):
     def test_publicise(self, update_name, update_locales,
                        update_cached_manifests, index_webapps,
                        storefront_mock):
-        self.create_switch('iarc')
-
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
+        eq_(self.get_webapp().status, amo.STATUS_PUBLIC_WAITING)
 
         res = self.client.post(self.publicise_url)
         eq_(res.status_code, 302)

@@ -425,25 +425,15 @@ class TestAddonModels(amo.tests.TestCase):
         v2.save()
         eq_(a.latest_version.id, v1.id)  # Still should be f1
 
-    def test_latest_version_fallback(self):
-        a = Addon.objects.get(pk=3615)
-        version = a.latest_version
-
-        a._latest_version = None
-        eq_(a.latest_version, version)
-        eq_(a._latest_version, version)
-
-    @patch('addons.models.Addon.update_version')
-    def test_current_version_unsaved(self, update_version):
+    def test_current_version_unsaved(self):
         a = Addon()
+        a._current_version = Version()
         eq_(a.current_version, None)
-        assert not update_version.called
 
-    @patch('addons.models.Addon.update_version')
-    def test_latest_version_unsaved(self, update_version):
+    def test_latest_version_unsaved(self):
         a = Addon()
+        a._latest_version = Version()
         eq_(a.latest_version, None)
-        assert not update_version.called
 
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
@@ -1170,12 +1160,16 @@ class TestAddonModels(amo.tests.TestCase):
         a.update(status=amo.STATUS_LITE)
         f.update(datestatuschanged=now - timedelta(days=4))
         eq_(a.days_until_full_nomination(), 6)
+
         f.update(datestatuschanged=now - timedelta(days=1))
         eq_(a.days_until_full_nomination(), 9)
+
         f.update(datestatuschanged=now - timedelta(days=10))
         eq_(a.days_until_full_nomination(), 0)
+
         f.update(datestatuschanged=now)
         eq_(a.days_until_full_nomination(), 10)
+
         # Only calculate days from first submitted version:
         f.update(datestatuschanged=now - timedelta(days=2),
                  created=now - timedelta(days=2))
@@ -1184,9 +1178,10 @@ class TestAddonModels(amo.tests.TestCase):
         f2.update(datestatuschanged=now - timedelta(days=1),
                   created=now - timedelta(days=1))
         eq_(a.days_until_full_nomination(), 8)
+
         # Wrong status:
-        a.update(status=amo.STATUS_PUBLIC)
         f.update(datestatuschanged=now - timedelta(days=4))
+        a.update(status=amo.STATUS_PUBLIC)
         eq_(a.days_until_full_nomination(), 0)
 
     def setup_files(self, status):
@@ -2177,19 +2172,24 @@ class TestSearchSignals(amo.tests.ESTestCase):
         eq_(Addon.search().count(), 0)
 
 
-class TestLanguagePack(LanguagePackBase):
+class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def setUp(self):
         super(TestLanguagePack, self).setUp()
-        self.platform = Platform.objects.create(id=amo.PLATFORM_ANDROID.id)
+        self.addon = amo.tests.addon_factory(type=amo.ADDON_LPAPP,
+                                             status=amo.STATUS_PUBLIC)
+        self.platform_all = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+        self.platform_mob = Platform.objects.create(id=amo.PLATFORM_ANDROID.id)
+        self.version = self.addon.current_version
 
     def test_extract(self):
-        File.objects.create(platform=self.platform, version=self.version,
+        File.objects.create(platform=self.platform_mob, version=self.version,
                             filename=self.xpi_path('langpack-localepicker'))
+        assert self.addon.get_localepicker()
         assert 'title=Select a language' in self.addon.get_localepicker()
 
     def test_extract_no_file(self):
-        File.objects.create(platform=self.platform, version=self.version,
+        File.objects.create(platform=self.platform_mob, version=self.version,
                             filename=self.xpi_path('langpack'))
         eq_(self.addon.get_localepicker(), '')
 
@@ -2197,13 +2197,15 @@ class TestLanguagePack(LanguagePackBase):
         eq_(self.addon.get_localepicker(), '')
 
     def test_extract_not_language_pack(self):
-        self.addon.update(type=amo.ADDON_LPAPP)
+        File.objects.create(platform=self.platform_mob, version=self.version,
+                            filename=self.xpi_path('langpack-localepicker'))
+        assert self.addon.get_localepicker()
+        self.addon.update(type=amo.ADDON_EXTENSION)
         eq_(self.addon.get_localepicker(), '')
 
-    def test_extract_not_platform_all(self):
-        self.mac = Platform.objects.create(id=amo.PLATFORM_MAC.id)
-        File.objects.create(platform=self.mac, version=self.version,
-                            filename=self.xpi_path('langpack'))
+    def test_extract_not_platform_mobile(self):
+        File.objects.create(platform=self.platform_all, version=self.version,
+                            filename=self.xpi_path('langpack-localepicker'))
         eq_(self.addon.get_localepicker(), '')
 
 

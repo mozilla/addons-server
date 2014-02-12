@@ -150,8 +150,8 @@ class TestAddVersion(BasePackagedAppTest):
 
     def setUp(self):
         super(TestAddVersion, self).setUp()
-        self.app = amo.tests.app_factory(is_packaged=True,
-                                         version_kw=dict(version='1.0'))
+        self.app = amo.tests.app_factory(
+            complete=True, is_packaged=True, version_kw=dict(version='1.0'))
         self.url = self.app.get_dev_url('versions')
         self.user = UserProfile.objects.get(username='regularuser')
         AddonUser.objects.create(user=self.user, addon=self.app)

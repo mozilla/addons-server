@@ -925,8 +925,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         assert app in apps
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (3)')
 
-    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
-    def test_deleted_version_not_in_queue(self, update_cached_manifests):
+    def test_deleted_version_not_in_queue(self):
         """
         This tests that an app with a prior pending version that got
         deleted doesn't trigger the app to remain in the review queue.
@@ -937,13 +936,11 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         old_ver.files.latest().update(status=amo.STATUS_PENDING)
         old_ver.delete()
         # "Approve" the app.
-        app.update(status=amo.STATUS_PUBLIC)
         app.versions.latest().files.latest().update(status=amo.STATUS_PUBLIC)
+        eq_(app.reload().status, amo.STATUS_PUBLIC)
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-
-        eq_(update_cached_manifests.delay.call_count, 1)
 
         # Verify that our app has 2 versions.
         eq_(Version.with_deleted.filter(addon=app).count(), 2)
@@ -1623,8 +1620,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
             index_webapps, storefront_mock):
         self.app.update(status=amo.STATUS_PUBLIC, is_packaged=True)
         self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
-        new_version = version_factory(addon=self.app)
-        new_version.files.all().update(status=amo.STATUS_PENDING)
+        new_version = version_factory(addon=self.app,
+                                      file_kw={'status': amo.STATUS_PENDING})
 
         index_webapps.delay.reset_mock()
         eq_(sign_app_mock.call_count, 0)
