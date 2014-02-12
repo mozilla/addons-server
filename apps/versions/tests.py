@@ -755,7 +755,7 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_platform_multiple_objects(self):
         p = Platform.objects.create(id=3)
         f = File.objects.create(platform=p, version=self.file.version,
-                                filename='unst.xpi')
+                                filename='unst.xpi', status=self.file.status)
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.slug, 'platform': 3})
         self.assert_served_locally(self.client.get(url), file_=f)

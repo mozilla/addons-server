@@ -362,7 +362,13 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
         """Reloads the instance from the database."""
         from_db = self.__class__.objects.get(id=self.id)
         for field in self.__class__._meta.fields:
-            setattr(self, field.name, getattr(from_db, field.name))
+            try:
+                setattr(self, field.name, getattr(from_db, field.name))
+            except models.ObjectDoesNotExist:
+                # reload() can be called before cleaning up an object of stale
+                # related fields, when we do soft-deletion for instance. Avoid
+                # failing because of that.
+                pass
         return self
 
     def update(self, **kw):

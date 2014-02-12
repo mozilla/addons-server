@@ -1129,12 +1129,10 @@ class TestHome(amo.tests.TestCase):
                     (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
 
         for addon_status in statuses:
-            addon.status = addon_status[0]
-            addon.save()
-
             file = addon.latest_version.files.all()[0]
-            file.status = addon_status[1]
-            file.save()
+            file.update(status=addon_status[1])
+
+            addon.update(status=addon_status[0])
 
             doc = self.get_pq()
             addon_item = doc('#my-addons .addon-item')

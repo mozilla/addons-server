@@ -41,7 +41,13 @@
             {{ queue_position(addon, 'p') }}
             <p>{{ _('You will receive an email when the review is complete.') }}</p>
           {% elif addon.status == amo.STATUS_PUBLIC %}
-            {{ status(_('This app is <b>public</b>.')|safe) }}
+            <p>
+              {{ status(_('This app is <b>public</b>.')|safe) }}
+              {% if addon.latest_version != addon.current_version and addon.latest_version.all_files[0].status == amo.STATUS_PENDING %}
+                <strong class="status status-pending">{{ _('Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer.') }}</strong>
+                {{ queue_position(addon, 'p') }}
+              {% endif %}
+            </p>
           {% elif addon.status == amo.STATUS_DISABLED %}
             {{ status(_('This app has been <b>disabled by Mozilla</b>.')|safe) }}
             {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
