@@ -72,29 +72,19 @@ class ValidationJob(amo.models.ModelBase):
         return self.result_set.exclude(completed=None).filter(errors__gt=0)
 
     @property
-    def preview_success_mail_link(self):
-        return self._preview_link(EmailPreviewTopic(self, 'success'))
-
-    @property
-    def preview_failure_mail_link(self):
-        return self._preview_link(EmailPreviewTopic(self, 'failures'))
+    def preview_notify_mail_link(self):
+        return self._preview_link(EmailPreviewTopic(self, 'notify'))
 
     def _preview_link(self, topic):
         qs = topic.filter()
         if qs.count():
             return reverse('zadmin.email_preview_csv', args=[topic.topic])
 
-    def preview_success_mail(self, *args, **kwargs):
-        EmailPreviewTopic(self, 'success').send_mail(*args, **kwargs)
+    def preview_notify_mail(self, *args, **kwargs):
+        EmailPreviewTopic(self, 'notify').send_mail(*args, **kwargs)
 
-    def preview_failure_mail(self, *args, **kwargs):
-        EmailPreviewTopic(self, 'failures').send_mail(*args, **kwargs)
-
-    def get_success_preview_emails(self):
-        return EmailPreviewTopic(self, 'success').filter()
-
-    def get_failure_preview_emails(self):
-        return EmailPreviewTopic(self, 'failures').filter()
+    def get_notify_preview_emails(self):
+        return EmailPreviewTopic(self, 'notify').filter()
 
     def is_complete(self, as_int=False):
         completed = self.completed is not None
