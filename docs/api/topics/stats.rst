@@ -385,6 +385,75 @@ The total number of visits to Marketplace over time.
             ],
         }
 
+Ratings
+~~~~~~~
+
+The number of app ratings each day to Marketplace over time.
+
+.. http:get:: /api/v1/stats/global/ratings/
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "objects": [
+                {
+                    "count": 12,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 23,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+        }
+
+Abuse Reports
+~~~~~~~~~~~~~
+
+The number of abuse reports each day to Marketplace over time.
+
+.. http:get:: /api/v1/stats/global/abuse_reports/
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "objects": [
+                {
+                    "count": 3,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 0,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+        }
 
 Gross Revenue
 ~~~~~~~~~~~~~
@@ -509,6 +578,111 @@ The number of page visits each day over time.
             ],
         }
 
+Ratings
+~~~~~~~
+
+The number of app ratings each day for this app over time.
+
+.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/ratings/
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "objects": [
+                {
+                    "count": 12,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 8,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+        }
+
+Average ratings
+~~~~~~~~~~~~~~~
+
+The average rating for this app over time.
+
+.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/average_rating/
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "objects": [
+                {
+                    "count": 3.5,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 3.75,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+        }
+
+Abuse Reports
+~~~~~~~~~~~~~
+
+The number of abuse reports each day for this app over time.
+
+.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/abuse_reports/
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "objects": [
+                {
+                    "count": 3,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 0,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+        }
+
 Gross Revenue
 ~~~~~~~~~~~~~
 
@@ -569,16 +743,33 @@ Statistical information about global metrics.
     .. code-block:: json
 
         {
-            "installs": {
-                "max": 2019.0,
-                "mean": 11.56877361380578,
+            "abuse_reports": {
+                "max": 2.0,
+                "mean": 1.5,
                 "min": 1.0,
-                "sum_of_squares": 40141960.0,
-                "std_deviation": 43.768557273891901,
-                "total": 226586.0,
-                "variance": 1915.6866058379558
+                "std_deviation": 0.5,
+                "sum_of_squares": 10.0,
+                "total": 6.0,
+                "variance": 0.25
             },
-            ...
+            "installs": {
+                "max": 2716.0,
+                "mean": 14.313328064711078,
+                "min": 1.0,
+                "std_deviation": 55.293387141332197,
+                "sum_of_squares": 70173830.0,
+                "total": 307894.0,
+                "variance": 3057.3586615612408
+            },
+            "ratings": {
+                "max": 1.0,
+                "mean": 1.0,
+                "min": 1.0,
+                "std_deviation": 0.0,
+                "sum_of_squares": 2.0,
+                "total": 2.0,
+                "variance": 0.0
+            }
         }
 
 Per-app totals
@@ -593,14 +784,31 @@ Statistical information about per-app metrics.
     .. code-block:: json
 
         {
-            "installs": {
-                "max": 224.0,
-                "mean": 184.80000000000001,
-                "min": 132.0,
-                "sum_of_squares": 692112.0,
-                "std_deviation": 21.320412753978232,
-                "total": 3696.0,
-                "variance": 454.55999999999767
+            "abuse_reports": {
+                "max": 1.0,
+                "mean": 1.0,
+                "min": 1.0,
+                "std_deviation": 0.0,
+                "sum_of_squares": 2.0,
+                "total": 2.0,
+                "variance": 0.0
             },
-            ...
+            "installs": {
+                "max": 43.0,
+                "mean": 7.730769230769231,
+                "min": 1.0,
+                "std_deviation": 7.5483087736492305,
+                "sum_of_squares": 21247.0,
+                "total": 1407.0,
+                "variance": 56.976965342349956
+            },
+            "ratings": {
+                "max": 1.0,
+                "mean": 1.0,
+                "min": 1.0,
+                "std_deviation": 0.0,
+                "sum_of_squares": 2.0,
+                "total": 2.0,
+                "variance": 0.0
+            }
         }
