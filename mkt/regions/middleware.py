@@ -1,10 +1,13 @@
 from django.conf import settings
 
+import commonware.log
 from django_statsd.clients import statsd
 
 from lib.geoip import GeoIP
 
 import mkt
+
+log = commonware.log.getLogger('mkt.regions')
 
 
 def _save_if_changed(request, user_region):
@@ -24,7 +27,11 @@ class RegionMiddleware(object):
         self.geoip = GeoIP(settings)
 
     def region_from_request(self, request):
-        ip_reg = self.geoip.lookup(request.META.get('REMOTE_ADDR'))
+        address = request.META.get('REMOTE_ADDR')
+        log.info('About to ask Geodude to look up IP {0}'.format(address))
+        ip_reg = self.geoip.lookup(address)
+        log.info('Geodude lookup for {0} returned {1}'
+                 .format(address, ip_reg))
         return mkt.regions.REGIONS_DICT.get(ip_reg, mkt.regions.RESTOFWORLD)
 
     def process_request(self, request):
@@ -42,10 +49,15 @@ class RegionMiddleware(object):
         if url_region in regions:
             statsd.incr('z.regions.middleware.source.url')
             user_region = regions[url_region]
+            log.info('Region {0} specified in URL; region set as {1}'
+                     .format(url_region, user_region.slug))
         else:
             user_region = self.region_from_request(request)
+            log.info('Region not specified in URL; region set as {0}'
+                     .format(user_region.slug))
             # If the above fails, let's try `Accept-Language`.
             if user_region == restofworld:
+                log.info('Region from GeoIP was RESTOFWORLD')
                 statsd.incr('z.regions.middleware.source.accept-lang')
                 if request.LANG == settings.LANGUAGE_CODE:
                     choices = mkt.regions.REGIONS_CHOICES[1:]
@@ -65,6 +77,7 @@ class RegionMiddleware(object):
                             user_region = region
                             _save_if_changed(request, user_region)
                             break
+                log.info('Region set as {0}'.format(user_region.slug))
 
                 accept_language = request.META.get('HTTP_ACCEPT_LANGUAGE')
                 if (user_region == mkt.regions.US
@@ -76,6 +89,7 @@ class RegionMiddleware(object):
                 statsd.incr('z.regions.middleware.source.geoip')
 
         _save_if_changed(request, user_region)
+        log.info('Region finally set as {0}'.format(user_region.slug))
 
         request.REGION = user_region
         mkt.regions.set_region(user_region)
