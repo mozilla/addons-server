@@ -337,12 +337,8 @@ msgstr "Észlelt: {0}"
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
-"Figyelmeztetés: a(z) „{0}” fizetési fiók törlésekor a társított app hiányos "
-"állapotba kerül, és nem lesz eladható:"
-msgstr[1] ""
-"Figyelmeztetés: a(z) „{0}” fizetési fiók törlésekor a társított appok "
-"hiányos állapotba kerülnek, és nem lesznek eladhatók:"
+msgstr[0] "Figyelmeztetés: a(z) „{0}” fizetési fiók törlésekor a társított app hiányos állapotba kerül, és nem lesz eladható:"
+msgstr[1] "Figyelmeztetés: a(z) „{0}” fizetési fiók törlésekor a társított appok hiányos állapotba kerülnek, és nem lesznek eladhatók:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -1162,12 +1158,8 @@ msgstr "Egyéb"
 #: media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a "
-"szerzőnek."
-msgstr[1] ""
-"{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a "
-"szerzőknek."
+msgstr[0] "{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a szerzőnek."
+msgstr[1] "{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a szerzőknek."
 
 #: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
@@ -1214,9 +1206,7 @@ msgstr "Letöltés most"
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-"A kiegészítő nem lett frissítve, hogy támogassa az alapértelmezett "
-"kompatibilitást."
+msgstr "A kiegészítő nem lett frissítve, hogy támogassa az alapértelmezett kompatibilitást."
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."

@@ -730,10 +730,7 @@ msgstr "Már megvásárolta ezt a kiegészítőt!"
 
 #: apps/addons/templates/addons/paypal_start.html:15
 msgid "<p>If installation does not automatically begin, please <a class=\"%(class)s\" data-manifest-url=\"%(manifest_url)s\" href=\"%(href)s\" data-receipt=\"%(receipt)s\">click here</a>.</p>"
-msgstr ""
-"<p>Ha a telepítés nem indul el automatikusan, kérjük <a class=\"%(class)s\" "
-"data-manifest-url=\"%(manifest_url)s\" href=\"%(href)s\" data-receipt=\"%"
-"(receipt)s\">kattintson ide</a>.</p>"
+msgstr "<p>Ha a telepítés nem indul el automatikusan, kérjük <a class=\"%(class)s\" data-manifest-url=\"%(manifest_url)s\" href=\"%(href)s\" data-receipt=\"%(receipt)s\">kattintson ide</a>.</p>"
 
 #: apps/addons/templates/addons/paypal_start.html:27
 msgid "Purchase App"
@@ -883,11 +880,8 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Hogyan telepítse Thunderbirdben</strong> <ol> <li>Töltse le és "
-"mentse a fájlt merevlemezére.</li> <li>A Mozilla Thunderbirdben nyissa meg a "
-"Kiegészítők pontot az Eszközök menüből.</li> <li>A kiegészítőkereső mező "
-"melletti beállítások gomb menüjéből válassza a „Kiegészítő telepítése "
-"fájlból” pontot, és keresse meg a letöltött kiegészítőt.</li> </ol>"
+"<strong>Hogyan telepítse Thunderbirdben</strong> <ol> <li>Töltse le és mentse a fájlt merevlemezére.</li> <li>A Mozilla Thunderbirdben nyissa meg a Kiegészítők pontot az Eszközök menüből.</li> "
+"<li>A kiegészítőkereső mező melletti beállítások gomb menüjéből válassza a „Kiegészítő telepítése fájlból” pontot, és keresse meg a letöltött kiegészítőt.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -4516,10 +4510,8 @@ msgid ""
 "Add-on Builder and the Add-on SDK provide powerful APIs and tools that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy "
 "to share it with over 400 million Firefox users world wide."
 msgstr ""
-"Az Add-on Builder és az Add-on SDK hatékony API-kat és eszközöket biztosít, "
-"amelynek segítségével a fejlesztők kiegészítőket készíthetnek HTML, CSS és "
-"JavaScript használatával. A kiegészítő elkészültekor könnyedén megoszthatjuk "
-"világszerte több, mint 400 millió Firefox felhasználóval."
+"Az Add-on Builder és az Add-on SDK hatékony API-kat és eszközöket biztosít, amelynek segítségével a fejlesztők kiegészítőket készíthetnek HTML, CSS és JavaScript használatával. A kiegészítő "
+"elkészültekor könnyedén megoszthatjuk világszerte több, mint 400 millió Firefox felhasználóval."
 
 #: apps/devhub/templates/devhub/builder.html:42 mkt/developers/templates/developers/builder.html:42
 msgid "Choose Your Build Environment"
@@ -4531,9 +4523,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:50 mkt/developers/templates/developers/builder.html:50
 msgid "The Add-on Builder is a web-based development environment that provides additional functionality for working with the Add-on SDK."
-msgstr ""
-"Az Add-on Builder egy webalapú fejlesztői környezet, amely további "
-"funkcionalitást biztosít azzal, hogy együttműködik az Add-on SDK-val."
+msgstr "Az Add-on Builder egy webalapú fejlesztői környezet, amely további funkcionalitást biztosít azzal, hogy együttműködik az Add-on SDK-val."
 
 #: apps/devhub/templates/devhub/builder.html:56 mkt/developers/templates/developers/builder.html:56
 msgid "Edit code in a feature-rich environment"
@@ -4582,9 +4572,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/builder.html:91 mkt/developers/templates/developers/builder.html:91
 msgid "If you know HTML, CSS and JavaScript, you can make add-ons. With Builder, you don't even need to set up a build environment. Just log in and go."
 msgstr ""
-"Ha ismeri a HTML-t, CSS-t és a JavaScriptet, akkor készíthet kiegészítőket. "
-"A Builder használatával nem is szükséges fejlesztői környezettel "
-"rendelkeznie. Csak jelentkezzen be, és fogjon hozzá."
+"Ha ismeri a HTML-t, CSS-t és a JavaScriptet, akkor készíthet kiegészítőket. A Builder használatával nem is szükséges fejlesztői környezettel rendelkeznie. Csak jelentkezzen be, és fogjon hozzá."
 
 #: apps/devhub/templates/devhub/builder.html:99 mkt/developers/templates/developers/builder.html:99
 msgid "Great Developer Features"
@@ -4604,9 +4592,7 @@ msgstr "Segítségre van szüksége a kiegészítők készítésében? <a href=\
 
 #: apps/devhub/templates/devhub/builder.html:120 mkt/developers/templates/developers/builder.html:120
 msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
-msgstr ""
-"Érdekli, hogy hogyan tehetné az Add-on SDK-t még jobbá? Nézze meg a "
-"forráskódot, és tudja meg <a href='%(url_wiki)s'>hogyan segíthet</a>."
+msgstr "Érdekli, hogy hogyan tehetné az Add-on SDK-t még jobbá? Nézze meg a forráskódot, és tudja meg <a href='%(url_wiki)s'>hogyan segíthet</a>."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -4742,9 +4728,7 @@ msgstr "Esettanulmányok"
 
 #: apps/devhub/templates/devhub/index.html:151 apps/devhub/templates/devhub/docs/case-studies.html:35
 msgid "Start-to-finish success stories. See how add-on developers made magic with Mozilla."
-msgstr ""
-"Teljes sikertörténetek. Nézze meg, hogy a kiegészítőfejlesztők hogyan tettek "
-"csodákat a Mozillával."
+msgstr "Teljes sikertörténetek. Nézze meg, hogy a kiegészítőfejlesztők hogyan tettek csodákat a Mozillával."
 
 #: apps/devhub/templates/devhub/index.html:163
 msgid "Create &amp; Connect"
@@ -20151,9 +20135,7 @@ msgstr "Üdvözöljük a {0} kiegészítők oldalon."
 
 #: templates/impala/base.html:149
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
-"Válasszon több ezer extra funkció és stílus közül, hogy Firefoxát teljesen "
-"magáénak érezhesse."
+msgstr "Válasszon több ezer extra funkció és stílus közül, hogy Firefoxát teljesen magáénak érezhesse."
 
 #: templates/impala/base.html:154
 msgid "Add extra features and styles to make %(app)s your own."

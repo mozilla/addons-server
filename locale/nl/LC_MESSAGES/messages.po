@@ -15478,9 +15478,7 @@ msgstr "Informatie meerdere netwerken"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
-msgstr ""
-"De app vereist de mogelijkheid om informatie over meerdere "
-"netwerkverbindingen op te halen."
+msgstr "De app vereist de mogelijkheid om informatie over meerdere netwerkverbindingen op te halen."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -17284,10 +17282,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
-"Door gebruik te maken van het waarderingscertificeringhulpmiddel van de IARC "
-"geeft u aan dat u instemt met hun <a href=\"%"
-"(privacy_url)s\">privacybeleid</a> en <a href=\"%"
-"(tos_url)s\">servicevoorwaarden</a>."
+"Door gebruik te maken van het waarderingscertificeringhulpmiddel van de IARC geeft u aan dat u instemt met hun <a href=\"%(privacy_url)s\">privacybeleid</a> en <a href=\"%(tos_url)s"
+"\">servicevoorwaarden</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
@@ -17483,9 +17479,7 @@ msgstr "Beschikbare regio’s"
 
 #: mkt/developers/templates/developers/payments/premium.html:199
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
-msgstr ""
-"Kijk op de <a href=\"%(status_url)s\" target=\"_blank\">statuspagina</a> om te "
-"zien in welke landen momenteel verkoop kan plaatsvinden."
+msgstr "Kijk op de <a href=\"%(status_url)s\" target=\"_blank\">statuspagina</a> om te zien in welke landen momenteel verkoop kan plaatsvinden."
 
 #: mkt/developers/templates/developers/payments/premium.html:206
 msgid "Your app will be available in the following selected regions:"

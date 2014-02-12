@@ -2950,9 +2950,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"当 Mozilla 注意到有附加组件、插件，或其他第三方软件严重危及 %(app)s 的安全性、稳定性或性能，并符合<a href=\"%"
-"(criteria)s\">特定标准</a>时，该软件就可能被封锁，防止被公众使用。有关更多信息，请阅读<a href=\"%"
-"(support)s\">这篇技术支持文章</a>。"
+"当 Mozilla 注意到有附加组件、插件，或其他第三方软件严重危及 %(app)s 的安全性、稳定性或性能，并符合<a href=\"%(criteria)s\">特定标准</a>时，该软件就可能被封锁，防止被公众使用。有关更多信息，请阅读<a "
+"href=\"%(support)s\">这篇技术支持文章</a>。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -3131,10 +3130,7 @@ msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 浏览
 
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
-msgstr ""
-"在 <a href=\"https://developer.mozilla.org/\">Mozilla 开发者中心</a> <a href=\"https:"
-"//developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">创建你自己的</"
-"a>"
+msgstr "在 <a href=\"https://developer.mozilla.org/\">Mozilla 开发者中心</a> <a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">创建你自己的</a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:197
 msgid "Complete Themes"
@@ -7272,8 +7268,8 @@ msgid ""
 "Surprises can be appropriate in many situations, but they are not welcome when user security, privacy, and control are at stake. It is extremely important to be as transparent as possible when "
 "submitting an add-on for hosting on this site. A Mozilla user should be able to easily discern what the functionality of an add-on is and not be presented with unexpected experiences post-install."
 msgstr ""
-"并非所有无法预料的情况都是不恰当的，但它们不能危及到用户的安全性、隐私权以及控制权。您提交给本网站托管的附加组件应该尽可能的透明。Mozilla "
-"用户应该能轻易地辨别出附加组件的功能，并且不应该经历到意想不到的情况。"
+"并非所有无法预料的情况都是不恰当的，但它们不能危及到用户的安全性、隐私权以及控制权。您提交给本网站托管的附加组件应该尽可能的透明。Mozilla 用户应该能轻易地辨别出附加组件的功能，并且不应该经历到意想不"
+"到的情况。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:243
 msgid ""
@@ -7283,12 +7279,9 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p> 每当一个附加组件包含任何无法预料的功能* </p> <ul> <li>危及用户的隐私权或安全性（如将数据发给第三方）</li> "
-"<li>更改默认设置，像是首页或搜索引擎</li> <li>或更改其他附加组件的设置或功能，或完全停用其功能，</li> </ul> "
-"<p>则必须符合以下要求：</p> <ul> <li>附加组件的描述必须明确说明将做出什么样的变更。</li> "
-"<li>所有变更都应该由用户主动选择加入，这意味者必须用户采取非默认的动作才进行变更。</li> "
-"<li>选择加入对话框必须指明是哪个附加组件要求更改。</li> <li>如果已经更改，卸载附加组件时应恢复用户的原设置。</li> </ul> "
-"<p>*无法预料的特性指与该附加组件的主要功能无关的特性。</p>"
+"<p> 每当一个附加组件包含任何无法预料的功能* </p> <ul> <li>危及用户的隐私权或安全性（如将数据发给第三方）</li> <li>更改默认设置，像是首页或搜索引擎</li> <li>或更改其他附加组件的设置或功能，或完全停用"
+"其功能，</li> </ul> <p>则必须符合以下要求：</p> <ul> <li>附加组件的描述必须明确说明将做出什么样的变更。</li> <li>所有变更都应该由用户主动选择加入，这意味者必须用户采取非默认的动作才进行变更。</li> "
+"<li>选择加入对话框必须指明是哪个附加组件要求更改。</li> <li>如果已经更改，卸载附加组件时应恢复用户的原设置。</li> </ul> <p>*无法预料的特性指与该附加组件的主要功能无关的特性。</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -16815,9 +16808,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
-msgstr ""
-"使用 IARC 的等级验证工具，即代表您同意遵循他们的<a href=\"%(privacy_url)s\">隐私权政策</a>和<a href=\"%"
-"(tos_url)s\">服务条款</a>。"
+msgstr "使用 IARC 的等级验证工具，即代表您同意遵循他们的<a href=\"%(privacy_url)s\">隐私权政策</a>和<a href=\"%(tos_url)s\">服务条款</a>。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."

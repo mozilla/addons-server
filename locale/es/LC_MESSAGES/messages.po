@@ -8400,10 +8400,8 @@ msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
-"Tu perfil de desarrollador debe contar a los usuarios algo sobre ti, por qué "
-"hiciste este complemento y cuáles son las novedades acerca del mismo. Este "
-"perfil es requerido para pedir colaboraciones, pero puede ser útil para "
-"cualquier desarrollador interesado en conectar con los usuarios."
+"Tu perfil de desarrollador debe contar a los usuarios algo sobre ti, por qué hiciste este complemento y cuáles son las novedades acerca del mismo. Este perfil es requerido para pedir "
+"colaboraciones, pero puede ser útil para cualquier desarrollador interesado en conectar con los usuarios."
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:42
 msgid "Make sure your user profile is up to date."
@@ -9334,15 +9332,11 @@ msgstr "Al borrar esta versión, se eliminará definitivamente:"
 
 #: apps/devhub/templates/devhub/versions/list.html:271
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
-"<strong>Importante:</strong> Una vez que se ha eliminado una versión, no "
-"podrás subir una nueva versión con el mismo número de versión."
+msgstr "<strong>Importante:</strong> Una vez que se ha eliminado una versión, no podrás subir una nueva versión con el mismo número de versión."
 
 #: apps/devhub/templates/devhub/versions/list.html:276
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
-msgstr ""
-"Eliminar una versión que ya ha sido revisada también puede causar un retraso "
-"significativo en la revisión de tu próxima actualización."
+msgstr "Eliminar una versión que ya ha sido revisada también puede causar un retraso significativo en la revisión de tu próxima actualización."
 
 #: apps/devhub/templates/devhub/versions/list.html:279 mkt/developers/templates/developers/apps/status.html:343
 msgid "Are you sure you wish to delete this version?"
@@ -10910,8 +10904,7 @@ msgstr "Si te interesan los complementos, aunque no tengas muchas habilidades t�
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
-"¡Cuéntaselo a tus amigos! Que todos sepan los complementos que utilizas. "
+msgstr "¡Cuéntaselo a tus amigos! Que todos sepan los complementos que utilizas. "
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -13627,9 +13620,7 @@ msgstr ""
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
-"Al hacer clic en \"borrar\", <strong>se eliminará definitivamente</strong> tu "
-"cuenta. Esto significa que:"
+msgstr "Al hacer clic en \"borrar\", <strong>se eliminará definitivamente</strong> tu cuenta. Esto significa que:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
@@ -13637,9 +13628,7 @@ msgstr "Ya no podrás entrar en %(site)s."
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
-"Tus comentarios y valoraciones no se eliminarán, pero ya no aparecerán "
-"asociados a ti."
+msgstr "Tus comentarios y valoraciones no se eliminarán, pero ya no aparecerán asociados a ti."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13931,9 +13920,7 @@ msgstr "¿Por qué registrarme?"
 
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
-msgstr ""
-"El registro en AMO <strong>no es obligatorio</strong> si solo quieres "
-"descargar e instalar complementos públicos."
+msgstr "El registro en AMO <strong>no es obligatorio</strong> si solo quieres descargar e instalar complementos públicos."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
@@ -13945,29 +13932,19 @@ msgstr "Quieres enviar valoraciones sobre los complementos"
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
-"Quieres hacer un seguimiento de tus colecciones de complementos favoritos o "
-"crear una colección tú mismo"
+msgstr "Quieres hacer un seguimiento de tus colecciones de complementos favoritos o crear una colección tú mismo"
 
 #: apps/users/templates/users/register.html:21
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
-"Eres desarrollador de complementos y quieres subir un complemento para "
-"alojarlo en AMO"
+msgstr "Eres desarrollador de complementos y quieres subir un complemento para alojarlo en AMO"
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr ""
-"Una vez completado el registro, recibirás un correo electrónico de "
-"confirmación en la dirección que facilitaste. Sigue las instrucciones para "
-"confirmar tu cuenta."
+msgstr "Una vez completado el registro, recibirás un correo electrónico de confirmación en la dirección que facilitaste. Sigue las instrucciones para confirmar tu cuenta."
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
-msgstr ""
-"Si lo deseas, puedes leer nuestro <a href=\"%(legal)s\" title=\"Legal "
-"Notices\">Aviso legal</a> y nuestra <a href=\"%(privacy)s\" title=\"Privacy "
-"Policy\">Política de privacidad</a>."
+msgstr "Si lo deseas, puedes leer nuestro <a href=\"%(legal)s\" title=\"Legal Notices\">Aviso legal</a> y nuestra <a href=\"%(privacy)s\" title=\"Privacy Policy\">Política de privacidad</a>."
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
 msgid "Register"
@@ -15568,9 +15545,7 @@ msgstr "Información sobre redes múltiples"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
-msgstr ""
-"La aplicación necesita poder obtener información sobre varias conexiones de "
-"red."
+msgstr "La aplicación necesita poder obtener información sobre varias conexiones de red."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -16081,9 +16056,7 @@ msgstr "Región(es) seleccionada(s) no válida(s)."
 
 #: mkt/developers/forms.py:382
 msgid "Only regions the app is already available in may be selected."
-msgstr ""
-"Solo se pueden seleccionar regiones en las que la aplicación esté ya "
-"disponible."
+msgstr "Solo se pueden seleccionar regiones en las que la aplicación esté ya disponible."
 
 #: mkt/developers/forms.py:469 mkt/webapps/models.py:448
 msgid "You must upload at least one screenshot or video."
@@ -16170,10 +16143,8 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
-"Ruego que se considere mi aplicación como candidata a precargarse en un "
-"dispositivo con Firefox OS. Estoy de acuerdo con los términos y las "
-"condiciones descritas anteriormente. Entiendo que este documento no es un "
-"compromiso para precargar mi aplicación."
+"Ruego que se considere mi aplicación como candidata a precargarse en un dispositivo con Firefox OS. Estoy de acuerdo con los términos y las condiciones descritas anteriormente. Entiendo que este "
+"documento no es un compromiso para precargar mi aplicación."
 
 #: mkt/developers/forms.py:1106
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -16448,9 +16419,7 @@ msgstr "Se agregó con éxito la versión nueva."
 
 #: mkt/developers/views.py:297
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr ""
-"¡Enhorabuena! El envío de tu aplicación se ha completado y pronto será "
-"revisada."
+msgstr "¡Enhorabuena! El envío de tu aplicación se ha completado y pronto será revisada."
 
 #: mkt/developers/views.py:299
 msgid "Content ratings successfully saved."
@@ -16571,16 +16540,12 @@ msgstr "Actualmente no tienes una clave API."
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:30 mkt/developers/templates/developers/apps/status.html:34
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr ""
-"Debes configurar <a href=\"%(next_url)s\">%(next_step_name)s</a> antes de "
-"revisar o publicar tu aplicación."
+msgstr "Debes configurar <a href=\"%(next_url)s\">%(next_step_name)s</a> antes de revisar o publicar tu aplicación."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:37
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> or else your app will be disabled on %(pretty_date)s."
-msgstr ""
-"Debes configurar <a href=\"%(next_url)s\">%(next_step_name)s</a> o tu "
-"aplicación se desactivará el %(pretty_date)s."
+msgstr "Debes configurar <a href=\"%(next_url)s\">%(next_step_name)s</a> o tu aplicación se desactivará el %(pretty_date)s."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
@@ -16727,10 +16692,8 @@ msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
-"El validador es una herramienta que te ayuda a buscar errores, mejores "
-"prácticas y conformidad con las pautas de Marketplace antes de enviar a "
-"revisión tu aplicación. Si quieres saber cómo funciona u obtener una copia, "
-"tienes el código fuente disponible en <a href=\"%(repo)s\">Github</a>."
+"El validador es una herramienta que te ayuda a buscar errores, mejores prácticas y conformidad con las pautas de Marketplace antes de enviar a revisión tu aplicación. Si quieres saber cómo funciona "
+"u obtener una copia, tienes el código fuente disponible en <a href=\"%(repo)s\">Github</a>."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:16
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
@@ -17027,9 +16990,7 @@ msgstr "Mensaje del banner"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Exclusive message shown on the listing page, only in the selected regions."
-msgstr ""
-"El mensaje exclusivo que aparece en la página del listado, solo para las "
-"regiones seleccionadas."
+msgstr "El mensaje exclusivo que aparece en la página del listado, solo para las regiones seleccionadas."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Regions to show banner in"
@@ -17108,10 +17069,7 @@ msgstr "Notas de la versión"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:128
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
-msgstr ""
-"Información sobre los cambios en la última versión, nuevas características, "
-"bugs conocidos y cualquier otra información específica de este lanzamiento o "
-"versión."
+msgstr "Información sobre los cambios en la última versión, nuevas características, bugs conocidos y cualquier otra información específica de este lanzamiento o versión."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:149
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
@@ -17353,10 +17311,8 @@ msgstr "Cambiar de dispositivos"
 #: mkt/developers/templates/developers/apps/listing/items.html:59
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr ""
-"<strong class=\"rating-notice alert-notice\">Se desactivará esta aplicación si "
-"no se asigna una calificación del contenido antes de %"
-"(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Configurar calificación de "
-"contenido</a>"
+"<strong class=\"rating-notice alert-notice\">Se desactivará esta aplicación si no se asigna una calificación del contenido antes de %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Configurar "
+"calificación de contenido</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -17408,22 +17364,16 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
-"Al usar la herramienta de certificado de calificación de la IARC, te "
-"comprometes a cumplir con su <a href=\"%(privacy_url)s\">Política de "
-"privacidad</a> y sus <a href=\"%(tos_url)s\">Condiciones de servicio</a>."
+"Al usar la herramienta de certificado de calificación de la IARC, te comprometes a cumplir con su <a href=\"%(privacy_url)s\">Política de privacidad</a> y sus <a href=\"%(tos_url)s\">Condiciones de "
+"servicio</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr ""
-"Terminado el proceso de la calificación de contenido con IARC, serás "
-"redireccionado a la <a href=\"%(ratings_url)s\">página de calificación de "
-"contenido</a> de tu aplicación."
+msgstr "Terminado el proceso de la calificación de contenido con IARC, serás redireccionado a la <a href=\"%(ratings_url)s\">página de calificación de contenido</a> de tu aplicación."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
-msgstr ""
-"Lo sentimos, se ha producido un error en nuestro proceso de calificación de "
-"contenido. Sigue intentándolo o prueba pasados unos minutos."
+msgstr "Lo sentimos, se ha producido un error en nuestro proceso de calificación de contenido. Sigue intentándolo o prueba pasados unos minutos."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
@@ -17435,10 +17385,7 @@ msgstr "¿Tu aplicación ya ha sido clasificada?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
-msgstr ""
-"Si ya has recibido la calificación de tu aplicación a través de la "
-"herramienta de la IARC y tienes también un código de seguridad de ella, "
-"puedes escribirlo aquí."
+msgstr "Si ya has recibido la calificación de tu aplicación a través de la herramienta de la IARC y tienes también un código de seguridad de ella, puedes escribirlo aquí."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
@@ -17622,9 +17569,7 @@ msgstr "Regiones disponibles"
 
 #: mkt/developers/templates/developers/payments/premium.html:199
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
-msgstr ""
-"Visita la <a href=\"%(status_url)s\" target=\"_blank\">página de estado</a> para "
-"ver en qué países se permite actualmente la venta."
+msgstr "Visita la <a href=\"%(status_url)s\" target=\"_blank\">página de estado</a> para ver en qué países se permite actualmente la venta."
 
 #: mkt/developers/templates/developers/payments/premium.html:206
 msgid "Your app will be available in the following selected regions:"
@@ -20524,9 +20469,7 @@ msgstr "Requisitos mínimos de la aplicación"
 
 #: mkt/submit/templates/submit/manifest.html:113
 msgid "<b>What's next:</b> fill out the rest of your app's details"
-msgstr ""
-"<b>Qué hay que hacer ahora:</b> completar el resto de los detalles de tu "
-"aplicación"
+msgstr "<b>Qué hay que hacer ahora:</b> completar el resto de los detalles de tu aplicación"
 
 #: mkt/submit/templates/submit/manifest.html:127
 msgid "Learn more about <b>packaged apps</b> on MDN."
@@ -20550,9 +20493,7 @@ msgstr "Incluir detalles de la ap."
 
 #: mkt/submit/templates/submit/next_steps.html:31
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr ""
-"<span>Configurar <a href=\"%(rating_url)s\">calificación de "
-"contenido</a></span>"
+msgstr "<span>Configurar <a href=\"%(rating_url)s\">calificación de contenido</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:37
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"

@@ -16210,8 +16210,8 @@ msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
-"驗證器是在您實際送出應用程式前，可協助您偵測程式錯誤、最佳實作方式及程式是否符合 Marketplace "
-"指南的工具。若您有興趣想了解其工作原理，或是想要自己執行一份，您可以到 <a href=\"%(repo)s\">Github</a> 取得原始碼。"
+"驗證器是在您實際送出應用程式前，可協助您偵測程式錯誤、最佳實作方式及程式是否符合 Marketplace 指南的工具。若您有興趣想了解其工作原理，或是想要自己執行一份，您可以到 <a href=\"%(repo)s\">Github</a> 取"
+"得原始碼。"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:16
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
