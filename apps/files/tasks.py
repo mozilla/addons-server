@@ -13,6 +13,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import transaction
 
 import jingo
+from cache_nuggets.lib import Message
 from celeryutils import task
 from tower import ugettext as _
 
@@ -20,7 +21,7 @@ import amo
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import get_email_backend, Message
+from amo.utils import get_email_backend
 from addons.models import Addon
 from versions.compare import version_int as vint
 from versions.models import ApplicationsVersions, Version

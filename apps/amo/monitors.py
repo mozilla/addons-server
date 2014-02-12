@@ -9,10 +9,10 @@ from django.conf import settings
 
 import commonware.log
 import requests
+from cache_nuggets.lib import memoize
 from PIL import Image
 
 import amo.search
-from amo.utils import memoize
 from applications.management.commands import dump_apps
 from lib.crypto import packaged, receipt
 from lib.crypto.packaged import SigningError as PackageSigningError

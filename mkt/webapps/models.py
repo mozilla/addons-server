@@ -19,6 +19,7 @@ from django.dispatch import receiver
 import commonware.log
 import json_field
 import waffle
+from cache_nuggets import memoize, memoize_key
 from elasticutils.contrib.django import F, Indexable, MappingType
 from tower import ugettext as _
 
@@ -34,8 +35,7 @@ from amo.decorators import skip_cache, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
-from amo.utils import (JSONEncoder, memoize, memoize_key, smart_path,
-                       to_language, urlparams)
+from amo.utils import JSONEncoder, smart_path, to_language, urlparams
 from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser

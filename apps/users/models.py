@@ -22,6 +22,7 @@ from django.utils.functional import lazy
 import caching.base as caching
 import commonware.log
 import tower
+from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
 import amo
@@ -465,7 +466,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         cache empty queries on an as need basis.
         """
         # Circular import
-        from amo.utils import memoize
         from market.models import AddonPurchase
 
         @memoize(prefix='users:purchase-ids')
