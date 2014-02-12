@@ -57,6 +57,9 @@ class GeoIP:
                     log.error('Geodude connection error: {0}'.format(str(e)))
                 if res and res.status_code == 200:
                     statsd.incr('z.geoip.success')
-                    return res.json().get('country_code',
-                                          self.default_val).lower()
+                    country_code = res.json().get('country_code',
+                        self.default_val).lower()
+                    log.info(('Geodude lookup for {0} returned {1}'
+                              .format(address, country_code)))
+                    return country_code
         return self.default_val
