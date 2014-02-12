@@ -17,7 +17,7 @@ from jingo import register, env
 from tower import ugettext as _
 
 import amo
-from amo.utils.lib import rm_local_tmp_dir
+from amo.utils import rm_local_tmp_dir
 from amo.urlresolvers import reverse
 from files.utils import extract_xpi, get_md5
 from validator.testcases.packagelayout import (blacklisted_extensions,

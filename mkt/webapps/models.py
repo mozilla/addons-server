@@ -19,7 +19,7 @@ from django.dispatch import receiver
 import commonware.log
 import json_field
 import waffle
-from cache_nuggets import memoize, memoize_key
+from cache_nuggets.lib import memoize, memoize_key
 from elasticutils.contrib.django import F, Indexable, MappingType
 from tower import ugettext as _
 
