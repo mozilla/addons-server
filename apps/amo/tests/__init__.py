@@ -689,7 +689,7 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         a = Addon.objects.create(type=amo.ADDON_EXTENSION, **kwargs)
     else:
         a = Addon.objects.create(type=type_, **kwargs)
-    version_factory(file_kw, addon=a, **version_kw)  # Save 2.
+    version = version_factory(file_kw, addon=a, **version_kw)  # Save 2.
     a.update_version()
     a.status = status
     if type_ == amo.ADDON_PERSONA:
@@ -704,6 +704,12 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
                       dispatch_uid='webapp.search.index')
 
     a.save()  # Save 4.
+
+    if 'nomination' in version_kw:
+        # If a nomination date was set on the version, then it might have been
+        # erased at post_save by addons.models.watch_status() or
+        # mkt.webapps.models.watch_status().
+        version.save()
     return a
 
 
