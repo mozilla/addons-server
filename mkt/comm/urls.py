@@ -14,7 +14,7 @@ api_thread.register(
     r'thread/(?P<thread_id>\d+)/note/(?P<note_id>\d+)/replies', ReplyViewSet,
     base_name='comm-note-replies')
 api_thread.register(
-    r'thread/(?P<thread_id>\d+)/note/(?P<note_id>\d+)/attachment',
+    r'note/(?P<note_id>\d+)/attachment',
     AttachmentViewSet, base_name='comm-attachment')
 
 api_patterns = patterns('',

@@ -208,7 +208,7 @@ class CommAttachment(amo.models.ModelBase):
         return 'Note %s - %s' % (self.note.id, self.filepath)
 
     def get_absolute_url(self):
-        return reverse('reviewers.apps.review.attachment', args=[self.pk])
+        return reverse('comm-attachment-detail', args=[self.note_id, self.pk])
 
     def filename(self):
         """Returns the attachment's file name."""
