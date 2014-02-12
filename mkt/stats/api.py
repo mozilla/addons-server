@@ -67,10 +67,16 @@ STATS = {
         'dimensions': {'region': None},
     },
     'total_developers': {
-        'metric': 'total_dev_count'
+        'metric': 'total_dev_count',
     },
     'total_visits': {
-        'metric': 'visits'
+        'metric': 'visits',
+    },
+    'ratings': {
+        'metric': 'apps_ratings',
+    },
+    'abuse_reports': {
+        'metric': 'apps_abuse_reports',
     },
     'revenue': {
         'metric': 'gross_revenue',
@@ -86,25 +92,44 @@ APP_STATS = {
     'visits': {
         'metric': 'app_visits',
     },
+    'ratings': {
+        'metric': 'apps_ratings',
+    },
+    'average_rating': {
+        'metric': 'apps_average_rating',
+    },
+    'abuse_reports': {
+        'metric': 'apps_abuse_reports',
+    },
     'revenue': {
         'metric': 'gross_revenue',
         # Counts are floats. Let's convert them to strings with 2 decimals.
         'coerce': {'count': lambda d: '{0:.2f}'.format(d)},
     },
 }
+# The total API will iterate over each key and return statistical totals
+# information on them all.
 STATS_TOTAL = {
     'installs': {
         'metric': 'app_installs',
     },
-    # TODO: Add more metrics here as needed. The total API will iterate over
-    # them and return statistical totals information on them all.
+    'ratings': {
+        'metric': 'apps_ratings',
+    },
+    'abuse_reports': {
+        'metric': 'apps_abuse_reports',
+    },
 }
 APP_STATS_TOTAL = {
     'installs': {
         'metric': 'app_installs',
     },
-    # TODO: Add more metrics here as needed. The total API will iterate over
-    # them and return statistical totals information on them all.
+    'ratings': {
+        'metric': 'apps_ratings',
+    },
+    'abuse_reports': {
+        'metric': 'apps_abuse_reports',
+    },
 }
 
 

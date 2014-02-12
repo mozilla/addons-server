@@ -704,7 +704,7 @@ section#featured-addons {
 }
 
 .pane #main .persona-large .persona-preview [data-browsertheme] {
-    background-position: 50% 0;
+    background-position: right center;
     height: 67px;
     width: 100%;
 }

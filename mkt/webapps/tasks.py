@@ -10,7 +10,6 @@ import time
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
-from django.forms import ValidationError
 from django.template import Context, loader
 
 import pytz
@@ -657,37 +656,54 @@ def update_trending(ids, **kw):
 @write
 def update_downloads(ids, **kw):
     client = get_monolith_client()
-    today = datetime.date.today()
     count = 0
 
     for app in Webapp.objects.filter(id__in=ids).no_transforms():
 
-        kwargs = {'app-id': app.id}
+        appid = {'app-id': app.id}
 
         # Get weekly downloads.
-        #
-        # If we query monolith with interval=week and the past 7 days
-        # crosses a Monday, Monolith splits the counts into two. We want
-        # the sum over the past week so we need to `sum` these.
+        query = {
+            'query': {'match_all': {}},
+            'facets': {
+                'installs': {
+                    'date_histogram': {
+                        'value_field': 'app_installs',
+                        'interval': 'week',
+                        'key_field': 'date',
+                    },
+                    'facet_filter': {
+                        'and': [
+                            {'term': appid},
+                            {'range': {'date': {
+                                'gte': days_ago(8).date().strftime('%Y-%m-%d'),
+                                'lte': days_ago(1).date().strftime('%Y-%m-%d'),
+                            }}}
+                        ]
+                    }
+                }
+            },
+            'size': 0}
+
         try:
+            resp = client.raw(query)
+            # If we query monolith with interval=week and the past 7 days
+            # crosses a Monday, Monolith splits the counts into two. We want
+            # the sum over the past week so we need to `sum` these.
             weekly = sum(
-                c['count'] for c in
-                client('app_installs', days_ago(7).date(), today, 'week',
-                       **kwargs)
-                if c.get('count'))
-        except ValueError as e:
+                c['total'] for c in
+                resp.get('facets', {}).get('installs', {}).get('entries')
+                if c.get('total'))
+        except Exception as e:
             task_log.info('Call to ES failed: {0}'.format(e))
             weekly = 0
 
         # Get total downloads.
-        #
-        # The monolith client lib doesn't handle this for us so we send a raw
-        # ES query to Monolith.
         query = {'query': {'match_all': {}},
                  'facets': {
                      'installs': {
                          'statistical': {'field': 'app_installs'},
-                         'facet_filter': {'term': kwargs}}},
+                         'facet_filter': {'term': appid}}},
                  'size': 0}
         try:
             resp = client.raw(query)

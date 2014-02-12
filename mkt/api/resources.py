@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 from django.http import Http404
 from django.views import debug
@@ -5,6 +7,7 @@ from django.views import debug
 import commonware.log
 import raven.base
 import waffle
+
 from rest_framework import generics
 from rest_framework.decorators import permission_classes
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
@@ -145,12 +148,13 @@ class CarrierViewSet(RegionViewSet):
         return CARRIER_MAP.get(self.kwargs['pk'], None)
 
 
-@cors_api_view(['POST'])
+@cors_api_view(['GET'])
 @permission_classes([AllowAny])
 def error_reporter(request):
-    request._request.CORS = ['POST']
+    request._request.CORS = ['GET']
     client = raven.base.Client(settings.SENTRY_DSN)
-    client.capture('raven.events.Exception', data=request.DATA)
+    error_data = json.loads(request.GET['sentry_data'])
+    client.capture('raven.events.Exception', data=error_data)
     return Response(status=204)
 
 
