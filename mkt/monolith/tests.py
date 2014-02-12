@@ -134,7 +134,7 @@ class TestMonolithResource(RestOAuth):
 
     @mock.patch('mkt.monolith.resources._get_query_result')
     def test_on_the_fly_query(self, _get_query):
-        key = 'apps_total_ratings'
+        key = 'apps_ratings'
         _get_query.return_value = [{
             'key': key,
             'recorded': datetime.date.today(),
@@ -153,7 +153,7 @@ class TestMonolithResource(RestOAuth):
         eq_(obj['value']['app-id'], 123)
 
     def test_on_the_fly_missing_start(self):
-        key = 'apps_total_ratings'
+        key = 'apps_ratings'
         res = self.client.get(self.list_url, data={'key': key})
         eq_(res.status_code, 400)
         data = json.loads(res.content)
@@ -161,7 +161,7 @@ class TestMonolithResource(RestOAuth):
 
     @mock.patch('mkt.monolith.resources._get_query_result')
     def test_on_the_fly_query_pagination(self, _get_query):
-        key = 'apps_total_ratings'
+        key = 'apps_ratings'
         _get_query.return_value = [
             {'key': key, 'recorded': datetime.date.today(), 'user_hash': None,
              'value': {'count': 1, 'app-id': 123}},

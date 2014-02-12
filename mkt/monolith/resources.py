@@ -26,12 +26,12 @@ log = logging.getLogger('z.monolith')
 # TODO: Move the stats that can be calculated on the fly from
 # apps/stats/tasks.py here.
 STATS = {
-    'apps_total_ratings': {
+    'apps_ratings': {
         'qs': Review.objects
             .filter(editorreview=0, addon__type=amo.ADDON_WEBAPP)
             .values('addon')
             .annotate(count=Count('addon')),
-        'type': 'total',
+        'type': 'slice',
         'field_map': {
             'count': 'count',
             'app-id': 'addon'},
