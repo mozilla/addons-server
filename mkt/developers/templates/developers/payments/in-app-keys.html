@@ -29,7 +29,7 @@
         <tr id="in-app-public-key">
           <th class="label">{{ _('Application Key') }}</th>
           {% if key %}
-            <td><input type="text" value="{{ key.public_id() }}" readonly></td>
+            <td><input type="text" value="{{ key_public_id }}" readonly></td>
           {% else %}
             <td class="not-generated">({{ _('Not yet generated.') }})</td>
           {% endif %}
