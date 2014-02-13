@@ -44,16 +44,18 @@ class MineMixin(object):
         return super(MineMixin, self).get_object(queryset)
 
 
-class InstalledView(MarketplaceView, ListAPIView):
+class InstalledView(CORSMixin, MarketplaceView, ListAPIView):
+    cors_allowed_methods = ['get']
     serializer_class = SimpleAppSerializer
     permission_classes = [AllowSelf]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
+
     def get_queryset(self):
         return Webapp.objects.no_cache().filter(
             installed__user=self.request.amo_user,
             installed__install_type=INSTALL_TYPE_USER).order_by(
-            'installed__id')
+                'installed__id')
 
 
 class CreateAPIViewWithoutModel(CreateAPIView):
