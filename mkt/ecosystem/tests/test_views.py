@@ -8,8 +8,7 @@ from amo.urlresolvers import reverse
 
 
 VIEW_PAGES = (
-    'build_app_generator', 'build_dev_tools', 'build_tools', 'design_ui',
-    'dev_phone', 'partners', 'publish_deploy', 'support',
+    'design_ui', 'dev_phone', 'partners', 'publish_deploy', 'support'
 )
 
 REDIRECT_PAGES = (
@@ -19,7 +18,8 @@ REDIRECT_PAGES = (
     'design_fundamentals', 'design_patterns', 'ffos_guideline',
     'publish_hosted', 'publish_packaged', 'publish_review', 'publish_submit',
     'responsive_design', 'firefox_os_simulator', 'build_payments',
-    'publish_payments',
+    'publish_payments', 'build_app_generator', 'build_dev_tools', 'build_tools',
+    'app_manager'
 )
 
 

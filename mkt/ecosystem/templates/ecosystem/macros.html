@@ -142,19 +142,14 @@
               <a href="{{ url('ecosystem.build_payments') }}">
                 {{- _('Payments') }}</a>
             </li>
-            <li class="has-children{{ ' active' if section in ('build_tools',
-                                                               'build_app_generator',
-                                                               'build_dev_tools') }}">
+            <li class="has-children">
               <h2 class="subtitle nav-title">
                 <a href="{{ url('ecosystem.build_tools') }}">
                   {{- _('Tools') }}</a>
               </h2>
               <ol>
                 <li>
-                  <a href="{{ url('ecosystem.build_app_generator') }}"
-                     {%- if section == 'build_app_generator' %}
-                     class="selected"
-                     {% endif %}>
+                  <a href="{{ url('ecosystem.build_app_generator') }}">
                     {{- _('App Generator') }}</a>
                 </li>
                 <li>
@@ -162,14 +157,15 @@
                     {{- _('App Validator') }}</a>
                 </li>
                 <li>
+                  <a href="{{ url('ecosystem.app_manager') }}">
+                    {{- _('App Manager') }}</a>
+                </li>
+                <li>
                   <a href="{{ url('ecosystem.firefox_os_simulator') }}">
                     {{- _('Firefox OS Simulator') }}</a>
                 </li>
                 <li>
-                  <a href="{{ url('ecosystem.build_dev_tools') }}"
-                     {%- if section == 'build_dev_tools' %}
-                     class="selected"
-                     {% endif %}>
+                  <a href="{{ url('ecosystem.build_dev_tools') }}">
                     {{- _('Firefox Developer Tools') }}</a>
                 </li>
               </ol>
