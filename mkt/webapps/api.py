@@ -12,7 +12,7 @@ from rest_framework.response import Response
 from tower import ungettext as ngettext
 
 import amo
-from addons.models import AddonCategory, AddonUpsell, AddonUser
+from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from amo.utils import no_translation
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
@@ -31,12 +31,11 @@ from mkt.api.fields import (LargeTextField, ReverseChoiceField,
 from mkt.constants.features import FeatureProfile
 from mkt.developers import tasks
 from mkt.developers.forms import IARCGetAppInfoForm
-from mkt.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS, get_region)
+from mkt.regions import get_region
 from mkt.submit.api import PreviewViewSet
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
-from mkt.webapps.models import (AddonExcludedRegion, AppFeatures,
-                                get_excluded_in, Webapp)
+from mkt.webapps.models import AppFeatures, get_excluded_in, Webapp
 from mkt.webapps.utils import filter_content_ratings_by_region
 
 
@@ -87,7 +86,8 @@ class AppSerializer(serializers.ModelSerializer):
         source='geodata.banner_message')
     banner_regions = serializers.Field(source='geodata.banner_regions_slugs')
     categories = serializers.SlugRelatedField(source='categories',
-        many=True, slug_field='slug', required=True)
+        many=True, slug_field='slug', required=True,
+        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
     content_ratings = serializers.SerializerMethodField('get_content_ratings')
     created = serializers.DateField(read_only=True)
     current_version = serializers.CharField(
@@ -263,11 +263,6 @@ class AppSerializer(serializers.ModelSerializer):
                 'You can have only {0} category.',
                 'You can have only {0} categories.',
                 max_cat).format(max_cat))
-
-        for cat in set_categories:
-            if cat.type != amo.ADDON_WEBAPP:
-                raise serializers.ValidationError(
-                    'Invalid category (not a Webapp category).')
 
         return attrs
 
