@@ -16,6 +16,7 @@ from constants.payments import PROVIDER_BANGO
 from market.models import Price, PriceCurrency
 from users.models import UserProfile, GroupUser
 
+import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import regions
 from mkt.purchase.tests.utils import PurchaseTest
@@ -25,6 +26,8 @@ from mkt.webpay.resources import PricesViewSet
 from stats.models import Contribution
 
 
+@patch('mkt.regions.middleware.RegionMiddleware.region_from_request',
+       lambda s, r: mkt.regions.US)
 class TestPrepare(PurchaseTest, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519', 'prices')
 
@@ -126,6 +129,8 @@ class TestStatus(RestOAuth):
         eq_(res.status_code, 403, res.content)
 
 
+@patch('mkt.regions.middleware.RegionMiddleware.region_from_request',
+       lambda s, r: mkt.regions.BR)
 class TestPrices(RestOAuth):
 
     def make_currency(self, amount, tier, currency, region):

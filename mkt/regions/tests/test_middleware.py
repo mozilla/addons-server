@@ -53,31 +53,6 @@ class TestRegionMiddleware(amo.tests.TestCase):
         self.client.get('/api/v1/apps/?region=worldwide')
         set_region.assert_called_with(mkt.regions.RESTOFWORLD)
 
-    @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
-    @mock.patch('mkt.regions.set_region')
-    def test_accept_language(self, set_region, mock_rfr):
-        mock_rfr.return_value = mkt.regions.RESTOFWORLD
-        locales = [
-            ('', mkt.regions.RESTOFWORLD),
-            ('de', mkt.regions.DE),
-            ('en-us, de', mkt.regions.US),
-            ('en-US', mkt.regions.US),
-            ('fr, en', mkt.regions.RESTOFWORLD),
-            ('pt-XX, xx, yy', mkt.regions.RESTOFWORLD),
-            ('pt', mkt.regions.RESTOFWORLD),
-            ('pt, de', mkt.regions.RESTOFWORLD),
-            ('pt-XX, xx, de', mkt.regions.RESTOFWORLD),
-            ('pt-br', mkt.regions.BR),
-            ('pt-BR', mkt.regions.BR),
-            ('xx, yy, zz', mkt.regions.RESTOFWORLD),
-            ('<script>alert("ballin")</script>', mkt.regions.RESTOFWORLD),
-            ('en-us;q=0.5, de', mkt.regions.DE),
-            ('es-PE', mkt.regions.SPAIN),
-        ]
-        for locale, expected in locales:
-            self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE=locale)
-            set_region.assert_called_with(expected)
-
     @mock.patch('mkt.regions.set_region')
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_url_param_override(self, mock_rfr, set_region):
@@ -107,15 +82,6 @@ class TestRegionMiddleware(amo.tests.TestCase):
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch('mkt.regions.set_region')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'restofworld')
-    def test_geoip_lookup_unavailable_fall_to_accept_lang(self, set_region,
-                                                          mock_lookup):
-        mock_lookup.return_value = 'restofworld'
-        self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='pt-BR')
-        set_region.assert_called_with(mkt.regions.BR)
-
-    @mock.patch('mkt.regions.middleware.GeoIP.lookup')
-    @mock.patch('mkt.regions.set_region')
-    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'restofworld')
     def test_geoip_lookup_unavailable(self, set_region, mock_lookup):
         lang = 'zz'
         mock_lookup.return_value = lang
@@ -126,7 +92,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     def test_geoip_missing_lang(self, set_region):
         """ Test for US region """
-        self.client.get('/api/v1/apps/', REMOTE_ADDR='mozilla.com')
+        self.client.get('/api/v1/apps/', REMOTE_ADDR='127.0.0.1')
         set_region.assert_called_with(mkt.regions.US)
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
@@ -135,7 +101,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
     def test_geoip_down(self, set_region, mock_socket):
         """ Test that we fail gracefully if the GeoIP server is down. """
         mock_socket.connect.side_effect = IOError
-        self.client.get('/api/v1/apps/', REMOTE_ADDR='mozilla.com')
+        self.client.get('/api/v1/apps/', REMOTE_ADDR='127.0.0.1')
         set_region.assert_called_with(mkt.regions.US)
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
@@ -145,7 +111,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
         """ Test that we fail gracefully if the GeoIP server times out. """
         mock_socket.return_value.connect.return_value = True
         mock_socket.return_value.send.side_effect = socket.timeout
-        self.client.get('/api/v1/apps/', REMOTE_ADDR='mozilla.com')
+        self.client.get('/api/v1/apps/', REMOTE_ADDR='127.0.0.1')
         set_region.assert_called_with(mkt.regions.US)
 
 

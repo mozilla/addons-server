@@ -23,7 +23,11 @@ from users.models import UserProfile
 def create_addon_file(name, version_str, addon_status, file_status,
                       platform=amo.PLATFORM_ALL, application=amo.FIREFOX,
                       admin_review=False, addon_type=amo.ADDON_EXTENSION,
-                      created=None):
+                      created=None, file_kw=None, version_kw=None):
+    if file_kw is None:
+        file_kw = {}
+    if version_kw is None:
+        version_kw = {}
     app, created_ = Application.objects.get_or_create(id=application.id,
                                                       guid=application.guid)
     app_vr, created_ = AppVersion.objects.get_or_create(application=app,
@@ -35,16 +39,19 @@ def create_addon_file(name, version_str, addon_status, file_status,
         ad = Addon.objects.create(type=addon_type, name=name)
     if admin_review:
         ad.update(admin_review=True)
-    vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str)
+    vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str,
+                                                 defaults=version_kw)
+    if not created_:
+        vr.update(**version_kw)
     va, created_ = ApplicationsVersions.objects.get_or_create(
         version=vr, application=app, min=app_vr, max=app_vr)
     file_ = File.objects.create(version=vr, filename=u"%s.xpi" % name,
-                                platform=pl, status=file_status)
-    # Update status *after* there are files:
-    Addon.objects.get(pk=ad.id).update(status=addon_status)
+                                platform=pl, status=file_status, **file_kw)
     if created:
         vr.update(created=created)
         file_.update(created=created)
+    # Update status *after* we are done creating/modifying version and files:
+    Addon.objects.get(pk=ad.id).update(status=addon_status)
     return {'addon': ad, 'version': vr, 'file': file_}
 
 
@@ -134,6 +141,10 @@ class TestPendingQueue(TestQueue):
     Queue = ViewPendingQueue
 
     def new_file(self, name=u'Pending', version=u'1.0', **kw):
+        # Create the addon and everything related. Note that we are cheating,
+        # the addon status might not correspond to the files attached. This is
+        # important not to re-save() attached versions and files afterwards,
+        # because that might alter the addon status.
         return create_addon_file(name, version,
                                  amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
                                  **kw)
@@ -161,28 +172,25 @@ class TestPendingQueue(TestQueue):
         eq_(q.flags, [('admin-review', 'Admin Review')])
 
     def test_flags_info_request(self):
-        f = self.new_file(version=u'0.1')
-        f['version'].update(has_info_request=True)
+        self.new_file(version=u'0.1', version_kw={'has_info_request': True})
         q = self.Queue.objects.get()
         eq_(q.flags, [('info', 'More Information Requested')])
 
     def test_flags_editor_comment(self):
-        f = self.new_file(version=u'0.1')
-        f['version'].update(has_editor_comment=True)
+        self.new_file(version=u'0.1', version_kw={'has_editor_comment': True})
 
         q = self.Queue.objects.get()
         eq_(q.flags, [('editor', 'Contains Editor Comment')])
 
     def test_flags_jetpack_and_restartless(self):
-        f = self.new_file(version=u'0.1')
-        f['file'].update(jetpack_version='1.8', no_restart=True)
+        self.new_file(version=u'0.1', file_kw={'jetpack_version': '1.8',
+                                               'no_restart': True})
 
         q = self.Queue.objects.get()
         eq_(q.flags, [('jetpack', 'Jetpack Add-on')])
 
     def test_flags_restartless(self):
-        f = self.new_file(version=u'0.1')
-        f['file'].update(no_restart=True)
+        self.new_file(version=u'0.1', file_kw={'no_restart': True})
 
         q = self.Queue.objects.get()
         eq_(q.flags, [('restartless', 'Restartless Add-on')])
