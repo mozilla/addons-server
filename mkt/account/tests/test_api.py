@@ -494,8 +494,8 @@ class TestNewsletter(RestOAuth):
                                data=json.dumps({'email': 'bob@example.com'}))
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
-            'bob@example.com', 'marketplace', lang='en-US', country='us',
-            trigger_welcome='Y', optin='Y', format='H')
+            'bob@example.com', 'marketplace', lang='en-US',
+            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
 
     @patch('basket.subscribe')
     def test_signup_plus(self, subscribe):
@@ -504,5 +504,5 @@ class TestNewsletter(RestOAuth):
             data=json.dumps({'email': 'bob+totally+real@example.com'}))
         subscribe.assert_called_with(
             'bob+totally+real@example.com', 'marketplace', lang='en-US',
-            country='us', trigger_welcome='Y', optin='Y', format='H')
+            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
         eq_(res.status_code, 204)

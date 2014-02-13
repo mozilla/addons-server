@@ -62,7 +62,8 @@ class TestAPI(RestOAuth):
         eq_(res.status_code, 201)
         record_action.assert_called_with(
             'install', mock.ANY, {'app-domain': u'http://micropipes.com',
-                                  'app-id': self.addon.pk, 'region': 'us',
+                                  'app-id': self.addon.pk,
+                                  'region': 'restofworld',
                                   'anonymous': False})
 
     @mock.patch('mkt.installs.utils.record_action')
@@ -74,7 +75,7 @@ class TestAPI(RestOAuth):
         eq_(res.status_code, 201)
         record_action.assert_called_with(
             'install', mock.ANY, {'app-domain': None, 'app-id': self.addon.pk,
-                                  'region': 'us', 'anonymous': False})
+                                  'region': 'restofworld', 'anonymous': False})
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_log_metrics(self, cef):
