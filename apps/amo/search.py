@@ -235,7 +235,7 @@ class ES(object):
                 rv.append({'term': {key: val}})
             elif field_action in ('text', 'match'):
                 rv.append({'match': {key: val}})
-            elif field_action == 'startswith':
+            elif field_action in ('prefix', 'startswith'):
                 rv.append({'prefix': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
                 rv.append({'range': {key: {field_action: val}}})

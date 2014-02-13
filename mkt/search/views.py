@@ -36,8 +36,8 @@ def name_only_query(q):
     d = {}
 
     rules = {
-        'text': {'query': q, 'boost': 3, 'analyzer': 'standard'},
-        'text': {'query': q, 'boost': 4, 'type': 'phrase'},
+        'match': {'query': q, 'boost': 3, 'analyzer': 'standard'},
+        'match': {'query': q, 'boost': 4, 'type': 'phrase'},
         'startswith': {'value': q, 'boost': 1.5}
     }
 
@@ -57,7 +57,7 @@ def name_only_query(q):
 
     analyzer = _get_locale_analyzer()
     if analyzer:
-        d['name_%s__text' % analyzer] = {
+        d['name_%s__match' % analyzer] = {
             'query': q, 'boost': 2.5,
             'analyzer': get_custom_analyzer(analyzer)}
     return d
@@ -71,16 +71,16 @@ def name_query(q):
 
     """
     more = {
-        'description__text': {'query': q, 'boost': 0.8, 'type': 'phrase'},
+        'description__match': {'query': q, 'boost': 0.8, 'type': 'phrase'},
     }
 
     analyzer = _get_locale_analyzer()
     if analyzer:
-        more['description_%s__text' % analyzer] = {
+        more['description_%s__match' % analyzer] = {
             'query': q, 'boost': 0.6, 'type': 'phrase',
             'analyzer': get_custom_analyzer(analyzer)}
 
-    more['tags__text'] = {'query': q}
+    more['tags__match'] = {'query': q}
     if ' ' not in q:
         more['tags__fuzzy'] = {'value': q, 'prefix_length': 1}
 

@@ -517,7 +517,7 @@ def es_collections_json(request):
     try:
         qs = qs.query(id__startswith=int(q))
     except ValueError:
-        qs = qs.query(name__text=q)
+        qs = qs.query(name__match=q)
     try:
         qs = qs.filter(app=int(app))
     except ValueError:
@@ -675,7 +675,7 @@ def addon_search(request):
             qs = Addon.objects.filter(id=int(q))
         else:
             qs = (Addon.search()
-                       .query(name__text=q.lower())
+                       .query(name__match=q.lower())
                        .filter(type__in=amo.MARKETPLACE_TYPES if
                                         settings.MARKETPLACE else
                                         amo.ADDON_ADMIN_SEARCH_TYPES)[:100])

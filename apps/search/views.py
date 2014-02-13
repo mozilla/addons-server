@@ -313,8 +313,8 @@ def _get_locale_analyzer():
 def name_only_query(q):
     d = {}
 
-    rules = {'text': {'query': q, 'boost': 3, 'analyzer': 'standard'},
-             'text': {'query': q, 'boost': 4, 'type': 'phrase'},
+    rules = {'match': {'query': q, 'boost': 3, 'analyzer': 'standard'},
+             'match': {'query': q, 'boost': 4, 'type': 'phrase'},
              'fuzzy': {'value': q, 'boost': 2, 'prefix_length': 4},
              'startswith': {'value': q, 'boost': 1.5}}
     for k, v in rules.iteritems():
@@ -323,8 +323,8 @@ def name_only_query(q):
 
     analyzer = _get_locale_analyzer()
     if analyzer:
-        d['name_%s__text' % analyzer] = {'query': q, 'boost': 2.5,
-                                         'analyzer': analyzer}
+        d['name_%s__match' % analyzer] = {'query': q, 'boost': 2.5,
+                                          'analyzer': analyzer}
     return d
 
 
@@ -340,20 +340,20 @@ def name_query(q):
     # * Look for phrase matches inside the description using language
     #   specific analyzer (boost=0.1).
     # * Look for matches inside tags (boost=0.1).
-    more = dict(summary__text={'query': q, 'boost': 0.8, 'type': 'phrase'},
-                description__text={'query': q, 'boost': 0.3, 'type': 'phrase'},
-                tags__text={'query': q.split(), 'boost': 0.1})
+    more = dict(summary__match={'query': q, 'boost': 0.8, 'type': 'phrase'},
+                description__match={'query': q, 'boost': 0.3, 'type': 'phrase'},
+                tags__match={'query': q.split(), 'boost': 0.1})
 
     analyzer = _get_locale_analyzer()
     if analyzer:
-        more['summary_%s__text' % analyzer] = {'query': q,
-                                               'boost': 0.6,
-                                               'type': 'phrase',
-                                               'analyzer': analyzer}
-        more['description_%s__text' % analyzer] = {'query': q,
-                                                   'boost': 0.1,
-                                                   'type': 'phrase',
-                                                   'analyzer': analyzer}
+        more['summary_%s__match' % analyzer] = {'query': q,
+                                                'boost': 0.6,
+                                                'type': 'phrase',
+                                                'analyzer': analyzer}
+        more['description_%s__match' % analyzer] = {'query': q,
+                                                    'boost': 0.1,
+                                                    'type': 'phrase',
+                                                    'analyzer': analyzer}
     return dict(more, **name_only_query(q))
 
 

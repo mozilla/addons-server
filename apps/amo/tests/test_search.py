@@ -87,11 +87,6 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query(), {'fields': ['id'],
                                 'query': {'term': {'type': 1}}})
 
-    def test_query_text(self):
-        qs = Addon.search().query(name__text='woo woo')
-        eq_(qs._build_query(), {'fields': ['id'],
-                                'query': {'match': {'name': 'woo woo'}}})
-
     def test_query_match(self):
         qs = Addon.search().query(name__match='woo woo')
         eq_(qs._build_query(), {'fields': ['id'],
