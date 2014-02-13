@@ -19,7 +19,6 @@ class RegionMiddleware(object):
 
     def region_from_request(self, request):
         address = request.META.get('REMOTE_ADDR')
-        log.info('About to ask Geodude to look up IP {0}'.format(address))
         ip_reg = self.geoip.lookup(address)
         log.info('Geodude lookup for {0} returned {1}'
                  .format(address, ip_reg))
@@ -53,8 +52,6 @@ class RegionMiddleware(object):
         if amo_user and amo_user.region != user_region.slug:
             amo_user.region = user_region.slug
             amo_user.save()
-
-        log.info('Region finally set as {0}'.format(user_region.slug))
 
         # Persist the region on the request / local thread.
         request.REGION = user_region
