@@ -39,8 +39,8 @@ def addon_to_dict(addon, disco=False, src='api'):
         'authors': [{'id': a.id, 'name': unicode(a.name),
                      'link': absolutify(a.get_url_path(src=src))}
                     for a in addon.listed_authors],
-        'summary': strip_tags(addon.summary) if addon.summary else None,
-        'description': strip_tags(addon.description),
+        'summary': strip_tags(unicode(addon.summary)) if addon.summary else None,
+        'description': strip_tags(unicode(addon.description)),
         'icon': addon.icon_url,
         'learnmore': learnmore,
         'reviews': url(addon.reviews_url),

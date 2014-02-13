@@ -391,7 +391,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 args[type_idx] == amo.ADDON_WEBAPP) or kw and
                 kw.get('type') == amo.ADDON_WEBAPP):
             cls = Webapp
-        return super(Addon, cls).__new__(cls, *args, **kw)
+        return object.__new__(cls)
 
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.name)
@@ -414,6 +414,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks
+        # Check for soft deletion path. Happens only if the addon status isn't 0
+        # (STATUS_INCOMPLETE), or when we are in Marketplace.
+        soft_deletion = self.highest_status or self.status or settings.MARKETPLACE
+        if soft_deletion and self.status == amo.STATUS_DELETED:
+            # We're already done.
+            return
 
         id = self.id
 
@@ -427,9 +433,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
 
-        if self.highest_status or self.status or settings.MARKETPLACE:
-            # Soft deletion path. Happens only if the addon status isn't 0
-            # (STATUS_INCOMPLETE), or when we are in Marketplace.
+
+        if soft_deletion:
 
             if self.guid:
                 log.debug('Adding guid to blacklist: %s' % self.guid)
@@ -474,10 +479,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
-            self.status = amo.STATUS_DELETED
-            self.slug = self.app_slug = self.app_domain = None
-            self._current_version = None
-            self.save()
+            self.update(status=amo.STATUS_DELETED,
+                        slug=None, app_slug=None, app_domain=None,
+                        _current_version=None)
             models.signals.post_delete.send(sender=Addon, instance=self)
 
             send_mail(subject, email_msg, recipient_list=to)
@@ -2115,7 +2119,8 @@ class BlacklistedGuid(amo.models.ModelBase):
 
 class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
     name = TranslatedField()
-    slug = models.SlugField(max_length=50, help_text='Used in Category URLs.')
+    slug = amo.models.SlugField(max_length=50,
+                                help_text='Used in Category URLs.')
     type = models.PositiveIntegerField(db_column='addontype_id',
                                        choices=do_dictsort(amo.ADDON_TYPE))
     application = models.ForeignKey('applications.Application', null=True,

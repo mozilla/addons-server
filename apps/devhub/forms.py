@@ -58,7 +58,7 @@ class AuthorForm(happyforms.ModelForm):
 
     class Meta:
         model = AddonUser
-        exclude = ('addon')
+        exclude = ('addon',)
 
 
 class BaseModelFormSet(BaseModelFormSet):

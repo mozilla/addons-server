@@ -12,11 +12,12 @@ from django.template.defaultfilters import filesizeformat
 
 import jinja2
 import commonware.log
+from cache_nuggets.lib import memoize, Message
 from jingo import register, env
 from tower import ugettext as _
 
 import amo
-from amo.utils import memoize, Message, rm_local_tmp_dir
+from amo.utils import rm_local_tmp_dir
 from amo.urlresolvers import reverse
 from files.utils import extract_xpi, get_md5
 from validator.testcases.packagelayout import (blacklisted_extensions,

@@ -9,8 +9,6 @@ import commonware.log
 
 from product_details import product_details
 
-import waffle
-
 from apps.search.utils import floor_version
 from constants.applications import *
 from constants.base import *
@@ -22,21 +20,6 @@ from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
                   LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
                   LOG_REVIEW_EMAIL_USER, log)
 
-
-def patch_waffle():
-    if getattr(waffle, '_PATCHED', None):
-        return 
-    suffix = getattr(settings, 'WAFFLE_TABLE_SUFFIX', None)
-    if suffix:
-        for m in [waffle.Flag, waffle.Switch, waffle.Sample]:
-            m._meta.db_table = '%s_%s' % (m._meta.db_table, suffix)
-        waffle.Flag.users.through._meta.db_table = '%s_users' % (
-            waffle.Flag._meta.db_table,)
-        waffle.Flag.groups.through._meta.db_table = '%s_groups' % (
-            waffle.Flag._meta.db_table,)
-    waffle._PATCHED = True
-
-patch_waffle()
 
 logger_log = commonware.log.getLogger('z.amo')
 
@@ -155,3 +138,24 @@ else:
     COMPAT = {}
     NIGHTLY_VERSION = '17.0'
     DEFAULT_MINVER = '13.0'
+
+
+# Waffle and amo form an import cycle because amo patches waffle and
+# waffle loads the user model, so we have to make sure waffle gets
+# loaded after everything else in amo, Hence, this is at the bottom of
+# the file.
+def patch_waffle():
+    import waffle
+    if getattr(waffle, '_PATCHED', None):
+        return
+    suffix = getattr(settings, 'WAFFLE_TABLE_SUFFIX', None)
+    if suffix:
+        for m in [waffle.Flag, waffle.Switch, waffle.Sample]:
+            m._meta.db_table = '%s_%s' % (m._meta.db_table, suffix)
+        waffle.Flag.users.through._meta.db_table = '%s_users' % (
+            waffle.Flag._meta.db_table,)
+        waffle.Flag.groups.through._meta.db_table = '%s_groups' % (
+            waffle.Flag._meta.db_table,)
+    waffle._PATCHED = True
+
+patch_waffle()

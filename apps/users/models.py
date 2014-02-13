@@ -10,18 +10,22 @@ from datetime import datetime
 
 from django import dispatch, forms
 from django.conf import settings
+from django.contrib.auth.hashers import BasePasswordHasher
 from django.contrib.auth.models import User as DjangoUser
 from django.core import validators
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.template import Context, loader
 from django.utils import translation
+from django.utils.crypto import constant_time_compare
+from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import lazy
 
 import caching.base as caching
 import commonware.log
 import tower
+from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
 import amo
@@ -32,6 +36,35 @@ from translations.fields import NoLinksField, save_signal
 from translations.query import order_by_translation
 
 log = commonware.log.getLogger('z.users')
+
+
+
+class SHA512PasswordHasher(BasePasswordHasher):
+    """
+    The SHA2 password hashing algorithm, 512 bits.
+    """
+    algorithm = 'sha512'
+
+    def encode(self, password, salt):
+        assert password is not None
+        assert salt and '$' not in salt
+        hash = hashlib.new('sha512', smart_str(salt + password)).hexdigest()
+        return "%s$%s$%s" % (self.algorithm, salt, hash)
+
+    def verify(self, password, encoded):
+        algorithm, salt, hash = encoded.split('$', 2)
+        assert algorithm == self.algorithm
+        encoded_2 = self.encode(password, salt)
+        return constant_time_compare(encoded, encoded_2)
+
+    def safe_summary(self, encoded):
+        algorithm, salt, hash = encoded.split('$', 2)
+        assert algorithm == self.algorithm
+        return SortedDict([
+            (_('algorithm'), algorithm),
+            (_('salt'), mask_hash(salt, show=2)),
+            (_('hash'), mask_hash(hash)),
+        ])
 
 
 def get_hexdigest(algorithm, salt, raw_password):
@@ -465,7 +498,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         cache empty queries on an as need basis.
         """
         # Circular import
-        from amo.utils import memoize
         from market.models import AddonPurchase
 
         @memoize(prefix='users:purchase-ids')

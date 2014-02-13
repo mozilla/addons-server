@@ -18,6 +18,7 @@ from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
 
 import jingo
+from cache_nuggets.lib import memoize
 from product_details import product_details
 
 import amo
@@ -26,7 +27,6 @@ from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
 from amo.decorators import allow_cross_site_request, json_view, login_required
 from amo.urlresolvers import reverse
-from amo.utils import memoize
 from bandwagon.models import Collection
 from bandwagon.views import get_collection
 from zadmin.models import SiteEvent

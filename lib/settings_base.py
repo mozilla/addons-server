@@ -115,6 +115,10 @@ DATABASE_POOL_ARGS = {
 # Put the aliases for your slave databases in this list.
 SLAVE_DATABASES = []
 
+PASSWORD_HASHERS = (
+    'users.models.SHA512PasswordHasher',
+)
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.

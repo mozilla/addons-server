@@ -20,6 +20,7 @@ dj-database-url==0.2.2
 django-aesfield==0.1.2
 django-browserid==0.8
 django-cache-machine==0.8
+django-cache-nuggets==0.1.1
 django-celery==3.0.23
 django-cronjobs==0.2.3
 django_csp==1.0.2

@@ -19,7 +19,7 @@ from mkt.constants import comm
 
 class CommunicationPermissionModel(amo.models.ModelBase):
     # Read permissions imply write permissions as well.
-    read_permission_public = models.BooleanField()
+    read_permission_public = models.BooleanField(default=False)
     read_permission_developer = models.BooleanField(default=True)
     read_permission_reviewer = models.BooleanField(default=True)
     read_permission_senior_reviewer = models.BooleanField(default=True)
@@ -208,7 +208,7 @@ class CommAttachment(amo.models.ModelBase):
         return 'Note %s - %s' % (self.note.id, self.filepath)
 
     def get_absolute_url(self):
-        return reverse('reviewers.apps.review.attachment', args=[self.pk])
+        return reverse('comm-attachment-detail', args=[self.note_id, self.pk])
 
     def filename(self):
         """Returns the attachment's file name."""

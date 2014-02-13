@@ -422,6 +422,14 @@ class BlobField(models.Field):
         return 'blob'
 
 
+class SlugField(models.SlugField):
+    """
+    Django 1.6's SlugField rejects non-ASCII slugs. This field just
+    keeps the old behaviour of not checking contents.
+    """
+    default_validators = []
+
+
 class FakeEmail(ModelBase):
     message = models.TextField()
 

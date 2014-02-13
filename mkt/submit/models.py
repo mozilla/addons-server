@@ -6,9 +6,9 @@ import mkt
 
 class AppSubmissionChecklist(amo.models.ModelBase):
     addon = models.OneToOneField('addons.Addon')
-    terms = models.BooleanField()
-    manifest = models.BooleanField()
-    details = models.BooleanField()
+    terms = models.BooleanField(default=False)
+    manifest = models.BooleanField(default=False)
+    details = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'submission_checklist_apps'

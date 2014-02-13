@@ -15,7 +15,7 @@ class TestWidget(amo.tests.TestCase):
                                            locale='fr', id=10)
         link.clean()
         widget = w.render('name', link)
-        eq_(pq(widget).html(), '<b>yum yum</b>')
+        eq_(pq(widget).html().strip(), '<b>yum yum</b>')
 
     def test_default_locale(self):
         w = widgets.TransTextarea()

@@ -4,12 +4,11 @@ from django.utils import translation
 from django.utils.http import urlquote
 
 import waffle
+from cache_nuggets.lib import memoize
 from tower import ugettext as _
-
 
 import amo
 from amo.urlresolvers import remora_url, reverse
-from amo.utils import memoize
 from access import acl
 from zadmin.models import get_config
 

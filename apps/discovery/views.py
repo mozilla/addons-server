@@ -191,7 +191,7 @@ def recommendations(request, version, platform, limit=9, compat_mode=None):
         compat_mode = get_compat_mode(version)
 
     try:
-        POST = json.loads(request.raw_post_data)
+        POST = json.loads(request.body)
         guids = POST['guids']
     except (ValueError, TypeError, KeyError), e:
         # Errors: invalid json, didn't get a dict, didn't find "guids".

@@ -125,7 +125,7 @@ def cspreport(request):
         return HttpResponse()
 
     try:
-        v = json.loads(request.raw_post_data)['csp-report']
+        v = json.loads(request.body)['csp-report']
         # If possible, alter the PATH_INFO to contain the request of the page
         # the error occurred on, spec: http://mzl.la/P82R5y
         meta = request.META.copy()

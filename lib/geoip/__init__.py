@@ -41,7 +41,8 @@ class GeoIP:
         return the default as defined by the settings, or "restofworld".
 
         """
-        if self.url and is_public(address):
+        public_ip = is_public(address)
+        if self.url and public_ip:
             with statsd.timer('z.geoip'):
                 res = None
                 try:
@@ -57,6 +58,18 @@ class GeoIP:
                     log.error('Geodude connection error: {0}'.format(str(e)))
                 if res and res.status_code == 200:
                     statsd.incr('z.geoip.success')
-                    return res.json().get('country_code',
-                                          self.default_val).lower()
+                    country_code = res.json().get('country_code',
+                        self.default_val).lower()
+                    log.info(('Geodude lookup for {0} returned {1}'
+                              .format(address, country_code)))
+                    return country_code
+                    log.info('Geodude lookup returned non-200 response: {0}'
+                             .format(res.status_code))
+        else:
+            if public_ip:
+                log.info('Geodude lookup skipped for public IP: {0}'
+                         .format(address))
+            else:
+                log.info('Geodude lookup skipped for private IP: {0}'
+                         .format(address))
         return self.default_val

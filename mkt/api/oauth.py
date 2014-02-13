@@ -2,7 +2,7 @@ import string
 from urllib import urlencode
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.decorators.csrf import csrf_view_exempt
+from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jingo
@@ -120,7 +120,7 @@ class OAuthServer(oauth1.Server):
         return t.secret
 
 
-@csrf_view_exempt
+@csrf_exempt
 def access_request(request):
     oa = OAuthServer()
     try:
@@ -152,7 +152,7 @@ def access_request(request):
         return HttpResponse(status=401)
 
 
-@csrf_view_exempt
+@csrf_exempt
 def token_request(request):
     oa = OAuthServer()
     try:
@@ -178,7 +178,7 @@ def token_request(request):
         return HttpResponse(status=401)
 
 
-@csrf_view_exempt
+@csrf_exempt
 @login_required
 def authorize(request):
     if request.method == 'GET' and 'oauth_token' in request.GET:

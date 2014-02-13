@@ -10,7 +10,6 @@ define('payments', [], function() {
 
     var allPaidRegionIds = regionsData.allPaidRegionIds;
     var apiErrorMsg = regionsData.apiErrorMsg;
-    var disabledRegions = regionsData.disabledRegions;
     var tierZeroId = regionsData.tierZeroId;
     var notApplicableMsg = regionsData.notApplicableMsg;
     var paymentMethods = regionsData.paymentMethods || {};
@@ -122,18 +121,6 @@ define('payments', [], function() {
         $tr.append($tds);
         return $tr;
     }
-
-    function disableCheckbox() {
-        /*jshint validthis:true */
-        var $this = $(this);
-
-        $this.prop('disabled', true)
-             .closest('label').addClass('disabled');
-
-        // Remove the text, where it shouldn't be displayed.
-        $this.closest('tr').find('.local-retail, .local-method').text('');
-    }
-
 
     function updatePrices() {
 

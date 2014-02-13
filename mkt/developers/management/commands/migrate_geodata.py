@@ -3,8 +3,7 @@ import logging
 from django.core.management.base import BaseCommand
 
 import amo
-from mkt.constants.regions import (ALL_REGIONS_WITH_CONTENT_RATINGS,
-                                   REGIONS_CHOICES_ID_DICT,
+from mkt.constants.regions import (REGIONS_CHOICES_ID_DICT,
                                    SPECIAL_REGION_IDS)
 
 log = logging.getLogger('z.task')
@@ -14,16 +13,13 @@ class Command(BaseCommand):
     """
     Backfill Webapp Geodata by inferring regional popularity from
     AddonExcludedRegion objects (or lack thereof).
-    Remove AddonExcludedRegion objects for free apps (except unrated games).
+    Remove AddonExcludedRegion objects for free apps.
     """
 
     def handle(self, *args, **options):
         from mkt.webapps.models import Webapp
 
         paid_types = amo.ADDON_PREMIUMS + (amo.ADDON_FREE_INAPP,)
-
-        games_cat = Webapp.category('games')
-        content_region_ids = [x.id for x in ALL_REGIONS_WITH_CONTENT_RATINGS()]
 
         apps = Webapp.objects.all()
         for app in apps:
@@ -47,13 +43,6 @@ class Command(BaseCommand):
                 exclusions = app.addonexcludedregion.exclude(
                     region__in=SPECIAL_REGION_IDS)
                 for exclusion in exclusions:
-                    # Do not delete region exclusions meant for unrated games.
-                    region = REGIONS_CHOICES_ID_DICT[exclusion.region]
-                    if (games_cat and region.id in content_region_ids and
-                        app.listed_in(category='games') and
-                        not app.content_ratings_in(region)):
-                        continue
-
                     log.info('[App %s - %s] Removed exclusion: %s'
                              % (app.pk, app.slug, exclusion))
 

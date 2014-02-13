@@ -142,7 +142,7 @@ class TestEditBasic(TestEdit):
 
         # Now make sure we don't have escaped content in the rendered form.
         form = AddonFormBasic(instance=self.get_addon(), request=object())
-        eq_(pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html(),
+        eq_(pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html().strip(),
             '<b>oh my</b>')
 
     def test_edit_as_developer(self):
@@ -731,7 +731,6 @@ class TestEditMedia(TestEdit):
         data = dict(upload_image=src_image)
         data_formset = self.formset_media(**data)
         url = self.preview_upload
-
         r = self.client.post(url, data_formset)
 
         details = json.loads(r.content)
@@ -792,11 +791,10 @@ class TestEditMedia(TestEdit):
         eq_(data_formset['files-2-caption'], 'first')
 
         self.client.post(self.media_edit_url, data_formset)
-
         # They should come out "first", "second", "third"
-        eq_(self.get_addon().previews.all()[0].caption, 'first')
-        eq_(self.get_addon().previews.all()[1].caption, 'second')
-        eq_(self.get_addon().previews.all()[2].caption, 'third')
+        eq_(str(self.get_addon().previews.all()[0].caption), 'first')
+        eq_(str(self.get_addon().previews.all()[1].caption), 'second')
+        eq_(str(self.get_addon().previews.all()[2].caption), 'third')
 
     def test_edit_media_preview_delete(self):
         self.preview_add()

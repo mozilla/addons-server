@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 from urlparse import urljoin
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import encoding
 
@@ -18,7 +17,7 @@ from pyquery import PyQuery
 import amo
 import amo.tests
 from amo import urlresolvers, utils, helpers
-from amo.utils import guard, ImageCheck, Message, Token
+from amo.utils import ImageCheck
 from versions.models import License
 
 
@@ -413,93 +412,6 @@ class TestAnimatedImages(amo.tests.TestCase):
         assert not img.is_image()
         img = ImageCheck(open(get_image_path('non-animated.gif')))
         assert img.is_image()
-
-
-class TestToken(amo.tests.TestCase):
-
-    def test_token_pop(self):
-        new = Token()
-        new.save()
-        assert Token.pop(new.token)
-        assert not Token.pop(new.token)
-
-    def test_token_valid(self):
-        new = Token()
-        new.save()
-        assert Token.valid(new.token)
-
-    def test_token_fails(self):
-        assert not Token.pop('some-random-token')
-
-    def test_token_ip(self):
-        new = Token(data='127.0.0.1')
-        new.save()
-        assert Token.valid(new.token, '127.0.0.1')
-
-    def test_token_no_ip_invalid(self):
-        new = Token()
-        assert not Token.valid(new.token, '255.255.255.0')
-
-    def test_token_bad_ip_invalid(self):
-        new = Token(data='127.0.0.1')
-        new.save()
-        assert not Token.pop(new.token, '255.255.255.0')
-        assert Token.pop(new.token, '127.0.0.1')
-
-    def test_token_well_formed(self):
-        new = Token('some badly formed token')
-        assert not new.well_formed()
-
-
-class TestMessage(amo.tests.TestCase):
-
-    def test_message_save(self):
-        new = Message('abc')
-        new.save('123')
-
-        new = Message('abc')
-        eq_(new.get(), '123')
-
-    def test_message_expires(self):
-        new = Message('abc')
-        new.save('123')
-        cache.clear()
-
-        new = Message('abc')
-        eq_(new.get(), None)
-
-    def test_message_get_delete(self):
-        new = Message('abc')
-        new.save('123')
-
-        new = Message('abc')
-        eq_(new.get(delete=False), '123')
-        eq_(new.get(delete=True), '123')
-        eq_(new.get(), None)
-
-    def test_guard(self):
-        with guard('abc') as locked:
-            eq_(locked, False)
-            eq_(Message('abc').get(), True)
-
-    def test_guard_copes(self):
-        try:
-            with guard('abc'):
-                1 / 0
-        except ZeroDivisionError:
-            pass
-
-        eq_(Message('abc').get(), None)
-
-    def test_guard_deletes(self):
-        with guard('abc'):
-            pass
-        eq_(Message('abc').get(), None)
-
-    def test_guard_blocks(self):
-        Message('abc').save(True)
-        with guard('abc') as locked:
-            eq_(locked, True)
 
 
 def test_site_nav():

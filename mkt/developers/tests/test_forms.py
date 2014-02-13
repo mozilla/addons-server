@@ -26,7 +26,7 @@ import mkt
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonExcludedRegion, Geodata, IARCInfo, Webapp
+from mkt.webapps.models import Geodata, IARCInfo, Webapp
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -191,67 +191,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
             eq_(self.app.reload().get_region_ids(True), to_exclude,
                 'Failed for %s' % r_id)
 
-    def test_unrated_games_excluded(self):
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        self.app.addoncategory_set.create(category=games)
-
-        form = forms.RegionForm({'regions': mkt.regions.REGION_IDS,
-                                 'restricted': '1',
-                                 'enable_new_regions': True},
-                                **self.kwargs)
-
-        # Developers should still be able to save form OK, even
-        # if they pass a bad region. Think of the grandfathered developers.
-        assert form.is_valid(), form.errors
-        form.save()
-
-        # No matter what the developer tells us, still exclude Brazilian
-        # and German games.
-        form = forms.RegionForm(data=None, **self.kwargs)
-        assert mkt.regions.BR.id not in form.initial['regions']
-        assert mkt.regions.DE.id not in form.initial['regions']
-        eq_(form.initial['enable_new_regions'], True)
-
-    def test_unrated_games_already_excluded(self):
-        regions = [x.id for x in
-                   mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()]
-        for region in regions:
-            self.app.addonexcludedregion.create(region=region)
-
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        self.app.addoncategory_set.create(category=games)
-
-        form = forms.RegionForm({'regions': mkt.regions.REGION_IDS,
-                                 'restricted': '1',
-                                 'enable_new_regions': True},
-                                **self.kwargs)
-
-        assert form.is_valid(), form.errors
-        form.save()
-
-        form = forms.RegionForm(data=None, **self.kwargs)
-        self.assertSetEqual(form.initial['regions'],
-            set(mkt.regions.REGION_IDS) -
-            set(mkt.regions.SPECIAL_REGION_IDS) -
-            set(regions + [mkt.regions.RESTOFWORLD.id]))
-        eq_(form.initial['enable_new_regions'], True)
-
-    def test_rated_games_with_content_rating(self):
-        # This game has a government content rating!
-        for body in mkt.ratingsbodies.RATINGS_BODIES.keys():
-            self.app.content_ratings.create(ratings_body=body, rating=0)
-
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        self.app.addoncategory_set.create(category=games)
-
-        form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
-                                 'enable_new_regions': True},
-                                **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save()
-
-        eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
-
     def test_exclude_restofworld(self):
         form = forms.RegionForm({'regions': mkt.regions.REGION_IDS,
                                  'restricted': '1',
@@ -322,7 +261,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
             choices = dict(form.fields['regions'].choices).keys()
             assert cn in choices, (status, choices)
 
-            eq_(form.disabled_regions, [])
             assert form.is_valid(), form.errors
             form.save()
 
@@ -368,7 +306,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
         assert cn in form.initial['regions']
         assert cn in dict(form.fields['regions'].choices).keys()
 
-        eq_(form.disabled_regions, [])
         assert form.is_valid(), form.errors
         form.save()
 
@@ -394,7 +331,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
         assert cn in form.initial['regions']
         assert cn in dict(form.fields['regions'].choices).keys()
 
-        eq_(form.disabled_regions, [])
         assert form.is_valid(), form.errors
         form.save()
 
@@ -415,7 +351,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
                                  'special_regions': [mkt.regions.CN.id]},
                                 **self.kwargs)
-        eq_(form.disabled_regions, [])
         assert form.is_valid(), form.errors
         form.save()
 
@@ -599,7 +534,6 @@ class TestAdminSettingsForm(TestAdmin):
         self.request.user = self.user
         self.request.groups = ()
         self.kwargs = {'instance': self.webapp, 'request': self.request}
-        self.create_switch('iarc')
 
     @mock.patch('mkt.developers.forms.index_webapps.delay')
     def test_reindexed(self, index_webapps_mock):
@@ -607,135 +541,6 @@ class TestAdminSettingsForm(TestAdmin):
         assert form.is_valid(), form.errors
         form.save(self.webapp)
         index_webapps_mock.assert_called_with([self.webapp.id])
-
-    def test_reinclude_rated_games(self):
-        """
-        Adding a content rating for a game in a region should remove the
-        regional exclusion for that region.
-        """
-        # List it in the Games category.
-        cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        self.webapp.addoncategory_set.create(category=cat)
-
-        self.log_in_with('Apps:Configure')
-
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save(self.webapp)
-
-        excluded_regions = [
-            x.id for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()
-        ]
-
-        # After the form was saved, it should be excluded in Brazil.
-        self.assertSetEqual(
-            self.webapp.addonexcludedregion.values_list('region', flat=True),
-            excluded_regions)
-
-        # Add Brazil content rating.
-        rb_br = mkt.regions.BR.ratingsbody
-        br_0_idx = mkt.ratingsbodies.ALL_RATINGS().index(rb_br.ratings[0])
-        self.data['app_ratings'] = [br_0_idx]
-
-        # Post the form again.
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save(self.webapp)
-
-        # Notice the Brazilian region exclusion is now gone.
-        excluded_regions.remove(mkt.regions.BR.id)
-        eq_(len(self.webapp.content_ratings_in(region=mkt.regions.DE)), 0)
-        eq_(len(self.webapp.content_ratings_in(region=mkt.regions.BR)), 1)
-
-        self.assertSetEqual(
-            self.webapp.addonexcludedregion.values_list('region', flat=True),
-            excluded_regions)
-
-    def test_exclude_unrated_games_when_removing_content_rating(self):
-        """
-        Removing a content rating for a game in Brazil should exclude that
-        game in Brazil only.
-        """
-        self.log_in_with('Apps:Configure')
-        rb_br = mkt.regions.BR.ratingsbody
-        self.webapp.content_ratings.create(ratings_body=rb_br.id,
-                                           rating=rb_br.ratings[0].id)
-
-        rb_de = mkt.regions.DE.ratingsbody
-        self.webapp.content_ratings.create(ratings_body=rb_de.id,
-                                           rating=rb_de.ratings[0].id)
-
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        AddonCategory.objects.create(addon=self.webapp, category=games)
-
-        # Remove Brazil but keep Germany.
-        de_0_idx = mkt.ratingsbodies.ALL_RATINGS().index(rb_de.ratings[0])
-        self.data['app_ratings'] = [de_0_idx]
-
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save(self.webapp)
-
-        regions = self.webapp.get_region_ids()
-        assert mkt.regions.BR.id not in regions
-        assert mkt.regions.DE.id in regions
-
-    def test_exclude_unrated_games_with_waffle(self):
-        """
-        Removing a content rating for a game in Brazil should exclude that
-        game in Brazil only. Include all ratings bodies in the form choices.
-        """
-        self.create_switch('iarc')
-        self.log_in_with('Apps:Configure')
-
-        rb_br = mkt.regions.BR.ratingsbody
-        self.webapp.content_ratings.create(ratings_body=rb_br.id,
-                                          rating=rb_br.ratings[0].id)
-
-        rb_de = mkt.regions.DE.ratingsbody
-        self.webapp.content_ratings.create(ratings_body=rb_de.id,
-                                           rating=rb_de.ratings[0].id)
-
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        AddonCategory.objects.create(addon=self.webapp, category=games)
-
-        # Remove Brazil but keep Germany.
-        de_0_idx = mkt.ratingsbodies.ALL_RATINGS().index(rb_de.ratings[0])
-        self.data['app_ratings'] = [de_0_idx]
-
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save(self.webapp)
-
-        regions = self.webapp.get_region_ids()
-        assert mkt.regions.BR.id not in regions
-        assert mkt.regions.DE.id in regions
-
-    def test_update_content_rating(self):
-        """
-        Test changing the content rating of a rating body to a different
-        rating.
-        """
-        self.create_switch('iarc')
-        self.log_in_with('Apps:Configure')
-
-        self.webapp.set_content_ratings({
-            mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_L
-        })
-
-        # Change CLASSIND rating from L to 18.
-        classind_18_idx = mkt.ratingsbodies.ALL_RATINGS().index(
-            mkt.ratingsbodies.CLASSIND_18)
-        self.data['app_ratings'] = [classind_18_idx]
-
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save(self.webapp)
-
-        eq_(
-            self.webapp.content_ratings.get(
-                ratings_body=mkt.ratingsbodies.CLASSIND.id).rating,
-            mkt.ratingsbodies.CLASSIND_18.id)
 
     def test_adding_tags(self):
         self.data.update({'tags': 'tag one, tag two'})
@@ -809,16 +614,6 @@ class TestAdminSettingsForm(TestAdmin):
         self.webapp.geodata.update(banner_regions=[])
         form = forms.AdminSettingsForm(self.data, **self.kwargs)
         eq_(form.initial['banner_regions'], [])
-
-    def test_banner_regions_disabled(self):
-        self.data.update({
-            'banner_regions': [mkt.regions.BR.id]
-        })
-        AddonExcludedRegion.objects.create(addon=self.webapp,
-                                           region=mkt.regions.BR.id)
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert not form.is_valid(), form.errors
-        assert 'banner_regions' in form.errors
 
 
 class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):

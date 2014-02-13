@@ -10,7 +10,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 import jingo
 import jinja2
 
-from amo.utils import memoize
+from cache_nuggets.lib import memoize
 
 
 def get_build_id(repo):

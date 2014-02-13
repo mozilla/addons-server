@@ -303,28 +303,6 @@ class AppSerializer(serializers.ModelSerializer):
         for c in to_remove:
             obj.addoncategory_set.filter(category=c).delete()
 
-        # Disallow games in Brazil without a rating.
-        games = Webapp.category('games')
-        if not games:
-            return
-
-        for region in ALL_REGIONS_WITH_CONTENT_RATINGS():
-            if (self.product.listed_in(region) and
-                not self.product.content_ratings_in(region)):
-
-                if games.id in to_add:
-                    aer, created = AddonExcludedRegion.objects.get_or_create(
-                        addon=self.product, region=region.id)
-                    if created:
-                        log.info(u'[Webapp:%s] Game excluded from new region '
-                                 u'(%s).' % (self.product, region.slug))
-
-                elif games.id in to_remove:
-                    self.product.addonexcludedregion.filter(
-                        region=region.id).delete()
-                    log.info(u'[Webapp:%s] Game no longer excluded from region'
-                             u' (%s).' % (self.product, region.slug))
-
     def save_upsold(self, obj, upsold):
         current_upsell = obj.upsold
         if upsold and upsold != obj.upsold.free:

@@ -9,13 +9,14 @@ from django.utils import translation
 
 import commonware.log
 from babel import numbers
+from cache_nuggets.lib import memoize_key
 from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
 import amo
 import amo.models
 from amo.decorators import write
-from amo.utils import get_locale_from_lang, memoize_key
+from amo.utils import get_locale_from_lang
 from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
                                 PROVIDER_CHOICES)

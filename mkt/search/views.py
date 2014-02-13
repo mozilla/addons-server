@@ -36,11 +36,11 @@ def name_only_query(q):
     d = {}
 
     rules = {
-        'term': {'value': q, 'boost': 10},  # Exact match.
         'text': {'query': q, 'boost': 3, 'analyzer': 'standard'},
         'text': {'query': q, 'boost': 4, 'type': 'phrase'},
         'startswith': {'value': q, 'boost': 1.5}
     }
+
     # Only add fuzzy queries if q is a single word. It doesn't make sense to do
     # a fuzzy query for multi-word queries.
     if ' ' not in q:
@@ -49,6 +49,11 @@ def name_only_query(q):
     for k, v in rules.iteritems():
         for field in ('name', 'app_slug', 'author'):
             d['%s__%s' % (field, k)] = v
+
+    # Exact matches need to be queried against a non-analyzed field. Let's do a
+    # term query on `name_sort` for an exact match against the app name and
+    # give it a good boost since this is likely what the user wants.
+    d['name_sort__term'] = {'value': q, 'boost': 10}
 
     analyzer = _get_locale_analyzer()
     if analyzer:

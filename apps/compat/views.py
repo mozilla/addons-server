@@ -114,7 +114,7 @@ def incoming(request):
     snake_case = lambda s: re.sub('[A-Z]+', '_\g<0>', s).lower()
     try:
         data = [(snake_case(k), v)
-                for k, v in json.loads(request.raw_post_data).items()]
+                for k, v in json.loads(request.body).items()]
     except Exception:
         return http.HttpResponseBadRequest()
 

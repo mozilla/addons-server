@@ -13,7 +13,7 @@ from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_view_exempt
+from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jingo
@@ -696,7 +696,7 @@ def file_validation(request, addon_id, addon, file_id):
 
 
 @json_view
-@csrf_view_exempt
+@csrf_exempt
 @dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)

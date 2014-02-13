@@ -138,7 +138,7 @@ class Contribution(amo.models.ModelBase):
     charity = models.ForeignKey('addons.Charity', null=True)
     annoying = models.PositiveIntegerField(default=0,
                                            choices=amo.CONTRIB_CHOICES,)
-    is_suggested = models.BooleanField()
+    is_suggested = models.BooleanField(default=False)
     suggested_amount = DecimalCharField(max_digits=254, decimal_places=2,
                                         nullify_invalid=True, null=True)
 
@@ -408,7 +408,7 @@ class ClientData(models.Model):
     download_source = models.ForeignKey('zadmin.DownloadSource', null=True)
     device_type = models.CharField(max_length=255)
     user_agent = models.CharField(max_length=255)
-    is_chromeless = models.BooleanField()
+    is_chromeless = models.BooleanField(default=False)
     language = models.CharField(max_length=7)
     region = models.IntegerField(null=True)
 

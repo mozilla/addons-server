@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 import hashlib
 from base64 import encodestring
@@ -5,6 +6,8 @@ from urlparse import urlparse
 
 from django import forms
 from django.conf import settings
+from django.contrib.auth.hashers import (is_password_usable,
+    check_password, make_password, load_hashers, identify_hasher)
 from django.contrib.auth.models import User
 from django.core import mail
 from django.utils import encoding, translation
@@ -324,6 +327,24 @@ class TestPasswords(amo.tests.TestCase):
 
         u = UserProfile(password=self.utf, source=amo.LOGIN_SOURCE_UNKNOWN)
         assert u.needs_tougher_password
+
+    def test_sha512(self):
+        encoded = make_password('lètmein', 'seasalt', 'sha512')
+        self.assertEqual(
+            encoded,
+            'sha512$seasalt$16bf4502ffdfce9551b90319d06674e6faa3e174144123d'
+            '392d94470ebf0aa77096b871f9e84f60ed2bac2f10f755368b068e52547e04'
+            '35fef8b4f6ca237d7d8')
+        self.assertTrue(is_password_usable(encoded))
+        self.assertTrue(check_password('lètmein', encoded))
+        self.assertFalse(check_password('lètmeinz', encoded))
+        self.assertEqual(identify_hasher(encoded).algorithm, "sha512")
+        # Blank passwords
+        blank_encoded = make_password('', 'seasalt', 'sha512')
+        self.assertTrue(blank_encoded.startswith('sha512$'))
+        self.assertTrue(is_password_usable(blank_encoded))
+        self.assertTrue(check_password('', blank_encoded))
+        self.assertFalse(check_password(' ', blank_encoded))
 
 
 class TestBlacklistedUsername(amo.tests.TestCase):

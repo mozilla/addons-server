@@ -41,8 +41,6 @@ from translations.widgets import TransTextarea
 import mkt
 from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
-from mkt.constants.ratingsbodies import (ALL_RATINGS, RATINGS_BODIES,
-                                         RATINGS_BY_NAME)
 from mkt.regions.utils import parse_region
 from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import Webapp
@@ -59,29 +57,6 @@ region_error = lambda region: forms.ValidationError(
         region=unicode(parse_region(region).name)
     )
 )
-
-
-def toggle_game(app):
-    """
-    Exclude unrated games from regions requiring content ratings.
-    Allow newly rated games in regions requiring content ratings.
-    """
-    if not Webapp.category('games'):
-        return
-    for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
-        if app.listed_in(category='games'):
-            if app.content_ratings_in(region):
-                aer = app.addonexcludedregion.filter(region=region.id)
-                if aer.exists():
-                    aer.delete()
-                    log.info(u'[Webapp:%s] Game included in new region '
-                             u'(%s).' % (app, region.id))
-            else:
-                aer, created = app.addonexcludedregion.get_or_create(
-                    region=region.id)
-                if created:
-                    log.info(u'[Webapp:%s] Game excluded from new region '
-                             u'(%s).' % (app, region.id))
 
 
 def toggle_app_for_special_regions(request, app, enabled_regions=None):
@@ -152,7 +127,7 @@ class AuthorForm(happyforms.ModelForm):
 
     class Meta:
         model = AddonUser
-        exclude = ('addon')
+        exclude = ('addon',)
 
 
 class BaseModelFormSet(BaseModelFormSet):
@@ -313,7 +288,6 @@ class AdminSettingsForm(PreviewForm):
     mozilla_contact = SeparatedValuesField(forms.EmailField, separator=',',
                                            required=False)
     tags = forms.CharField(required=False)
-    app_ratings = forms.MultipleChoiceField(required=False)
     banner_regions = JSONMultipleChoiceField(required=False, choices=mkt.regions.REGIONS_CHOICES_NAME)
     banner_message = TransField(required=False)
 
@@ -330,10 +304,6 @@ class AdminSettingsForm(PreviewForm):
 
         self.request = kw.pop('request', None)
 
-        self.base_fields['app_ratings'].choices = RATINGS_BY_NAME()
-
-        self.disabled_regions = sorted(addon.get_excluded_region_ids())
-
         # Note: After calling `super`, `self.instance` becomes the `Preview`
         # object.
         super(AdminSettingsForm, self).__init__(*args, **kw)
@@ -341,15 +311,6 @@ class AdminSettingsForm(PreviewForm):
         if self.instance:
             self.initial['mozilla_contact'] = addon.mozilla_contact
             self.initial['tags'] = ', '.join(self.get_tags(addon))
-
-        app_ratings = []
-        for acr in addon.content_ratings.all():
-            rating = RATINGS_BODIES[acr.ratings_body].ratings[acr.rating]
-            try:
-                app_ratings.append(ALL_RATINGS().index(rating))
-            except ValueError:
-                pass  # Due to waffled ratings bodies.
-        self.initial['app_ratings'] = app_ratings
 
         self.initial['banner_regions'] = addon.geodata.banner_regions or []
         self.initial['banner_message'] = addon.geodata.banner_message_id
@@ -361,25 +322,12 @@ class AdminSettingsForm(PreviewForm):
     def clean_position(self):
         return -1
 
-    def clean_app_ratings(self):
-        ratings_ids = self.cleaned_data.get('app_ratings')
-        ratings = [ALL_RATINGS()[int(i)] for i in ratings_ids]
-        ratingsbodies = set([r.ratingsbody for r in ratings])
-        if len(ratingsbodies) != len(ratings):
-            raise forms.ValidationError(_('Only one rating from each ratings '
-                                          'body may be selected.'))
-        return ratings_ids
-
     def clean_banner_regions(self):
         try:
             regions = map(int, self.cleaned_data.get('banner_regions'))
         except (TypeError, ValueError):
             # input data is not a list or data contains non-integers.
             raise forms.ValidationError(_('Invalid region(s) selected.'))
-
-        if set(regions).intersection(self.disabled_regions):
-            raise forms.ValidationError(_('Only regions the app is already '
-                                          'available in may be selected.'))
 
         return list(regions)
 
@@ -422,27 +370,11 @@ class AdminSettingsForm(PreviewForm):
             for t in del_tags:
                 Tag(tag_text=t).remove_tag(addon)
 
-        # Content ratings.
-        ratings = self.cleaned_data.get('app_ratings')
-        if ratings:
-            ratings = [ALL_RATINGS()[int(i)] for i in ratings]
-
-            # Delete content ratings with ratings body not in new set.
-            r_bodies = set([rating.ratingsbody.id for rating in ratings])
-            addon.content_ratings.exclude(ratings_body__in=r_bodies).delete()
-
-            # Set content ratings, takes {<ratingsbody class>: <rating class>}.
-            addon.set_content_ratings(
-                dict((rating.ratingsbody, rating) for rating in ratings))
-        else:
-            addon.content_ratings.all().delete()
-
         geodata = addon.geodata
         geodata.banner_regions = self.cleaned_data.get('banner_regions')
         geodata.banner_message = self.cleaned_data.get('banner_message')
         geodata.save()
 
-        toggle_game(addon)
         uses_flash = self.cleaned_data.get('flash')
         af = addon.get_latest_file()
         if af is not None:
@@ -802,21 +734,6 @@ class RegionForm(forms.Form):
                 # If it's pending/public, check its checkbox.
                 self.initial['regions'].append(region.id)
 
-        self.disabled_regions = sorted(self._disabled_regions())
-
-    def _disabled_regions(self):
-        disabled_regions = set()
-
-        # Games cannot be listed in Brazil/Germany without a content rating.
-        games = Webapp.category('games')
-
-        if games and self.product.categories.filter(id=games.id).exists():
-            for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
-                if not self.product.content_ratings_in(region):
-                    disabled_regions.add(region.id)
-
-        return disabled_regions
-
     @property
     def regions_by_id(self):
         return mkt.regions.REGIONS_CHOICES_ID_DICT
@@ -858,11 +775,6 @@ class RegionForm(forms.Form):
             if not regions:
                 raise forms.ValidationError(
                     _('You must select at least one region.'))
-
-            # Handle disabled regions.
-            for region in regions:
-                if region in self.disabled_regions:
-                    raise region_error(region)
         return regions
 
     def save(self):
@@ -884,7 +796,7 @@ class RegionForm(forms.Form):
 
             # Add new region exclusions.
             to_add = before - after
-            for region in to_add - set(self.disabled_regions):
+            for region in to_add:
                 aer, created = self.product.addonexcludedregion.get_or_create(
                     region=region)
                 if created:
@@ -893,7 +805,7 @@ class RegionForm(forms.Form):
 
             # Remove old region exclusions.
             to_remove = after - before
-            for region in to_remove.union(self.disabled_regions):
+            for region in to_remove:
                 self.product.addonexcludedregion.filter(
                     region=region).delete()
                 log.info(u'[Webapp:%s] No longer exluded from region (%s).'
@@ -903,9 +815,6 @@ class RegionForm(forms.Form):
             log.info(u'[Webapp:%s] App mark as unrestricted.' % self.product)
 
         self.product.geodata.update(restricted=restricted)
-
-        # TODO: Stop saving AddonExcludedRegion objects when IARC work lands.
-        toggle_game(self.product)
 
         # Toggle region exclusions/statuses for special regions (e.g., China).
         toggle_app_for_special_regions(self.request, self.product,
@@ -970,10 +879,6 @@ class CategoryForm(happyforms.Form):
         self.product.addoncategory_set.filter(
             category_id__in=to_remove).delete()
 
-        # Disallow/allow games in Brazil/Germany based on content ratings.
-        toggle_game(self.product)
-
-        # Toggle app for special regions (e.g., China).
         toggle_app_for_special_regions(self.request, self.product)
 
 
@@ -1142,7 +1047,7 @@ class IARCGetAppInfoForm(happyforms.Form):
             self.cleaned_data['submission_id'].lower().replace('subm-', ''))
 
         if submission_id.isdigit():
-            return submission_id
+            return int(submission_id)
 
         raise forms.ValidationError(_('Please enter a valid submission ID.'))
 

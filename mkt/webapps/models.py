@@ -19,6 +19,7 @@ from django.dispatch import receiver
 import commonware.log
 import json_field
 import waffle
+from cache_nuggets.lib import memoize, memoize_key
 from elasticutils.contrib.django import F, Indexable, MappingType
 from tower import ugettext as _
 
@@ -34,8 +35,7 @@ from amo.decorators import skip_cache, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
-from amo.utils import (JSONEncoder, memoize, memoize_key, smart_path,
-                       to_language, urlparams)
+from amo.utils import JSONEncoder, smart_path, to_language, urlparams
 from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
@@ -617,17 +617,6 @@ class Webapp(Addon):
         This does not consider whether an app is excluded in the current region
         by the developer.
         """
-
-        user_region = getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
-
-        # See if it's a game without a content rating.
-        for region in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS():
-            if (user_region == region and self.listed_in(category='games') and
-                not self.content_ratings_in(region, 'games')):
-                unrated_game = True
-            else:
-                unrated_game = False
-
         # Let developers see it always.
         can_see = (self.has_author(request.amo_user) or
                    action_allowed(request, 'Apps', 'Edit'))
@@ -641,7 +630,7 @@ class Webapp(Addon):
         if can_see:
             # Developers and reviewers should see it always.
             visible = True
-        elif self.is_public() and not unrated_game:
+        elif self.is_public():
             # Everyone else can see it only if it's public -
             # and if it's a game, it must have a content rating.
             visible = True
@@ -2207,7 +2196,7 @@ class Geodata(amo.models.ModelBase):
     banner_regions = RegionListField(default=None, null=True)
     banner_message = PurifiedField()
     # Exclude apps with USK_RATING_REFUSED in Germany.
-    region_de_usk_exclude = models.BooleanField()
+    region_de_usk_exclude = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'webapps_geodata'

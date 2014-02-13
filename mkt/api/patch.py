@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.utils.functional import lazy
 
-from rest_framework import reverse as rest_reverse
+from rest_framework import relations, reverse as rest_reverse
 
 
 def _reverse(viewname, args=None, kwargs=None, request=None, format=None,
@@ -18,5 +18,6 @@ _reverse.patched = 'patched'
 
 # Monkeypatch this in.
 def patch():
+    relations.reverse = _reverse
     rest_reverse.reverse = _reverse
     rest_reverse.reverse_lazy = lazy(_reverse, str)

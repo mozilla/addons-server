@@ -16,7 +16,7 @@ class CompatReport(amo.models.ModelBase):
     client_ip = models.CharField(max_length=128)
     comments = models.TextField()
     other_addons = json_field.JSONField()
-    works_properly = models.BooleanField()
+    works_properly = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'compatibility_reports'

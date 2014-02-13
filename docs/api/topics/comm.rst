@@ -320,7 +320,7 @@ Attachment
 
 .. _attachment-post-label:
 
-.. http:post:: /api/v1/comm/thread/(int:thread_id)/note/(int:note_id)/attachment
+.. http:post:: /api/v1/comm/note/(int:note_id)/attachment
 
     .. note:: Requires authentication and the user to be the author of the note.
 

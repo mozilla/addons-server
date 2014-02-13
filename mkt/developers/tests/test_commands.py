@@ -71,35 +71,6 @@ class TestMigrateGeodata(amo.tests.TestCase):
                             [mkt.regions.CN.id])
         eq_(self.webapp.geodata.reload().popular_region, mkt.regions.BR.slug)
 
-    def test_migration_of_rated_games(self):
-        # This adds a ContentRating for only Brazil, not Germany.
-        amo.tests.make_game(self.webapp, rated=True)
-        self.webapp.content_ratings.filter(
-            ratings_body=mkt.regions.DE.ratingsbody.id).delete()
-
-        regions = (mkt.regions.BR.id, mkt.regions.DE.id)
-        for region in regions:
-            self.webapp.addonexcludedregion.create(region=region)
-
-        migrate_geodata.Command().handle()
-
-        self.assertSetEqual(self.webapp.reload().addonexcludedregion
-                                .values_list('region', flat=True),
-                            [mkt.regions.DE.id])
-
-    def test_no_migration_of_unrated_games(self):
-        amo.tests.make_game(self.webapp, rated=False)
-
-        regions = (mkt.regions.BR.id, mkt.regions.DE.id)
-        for region in regions:
-            self.webapp.addonexcludedregion.create(region=region)
-
-        migrate_geodata.Command().handle()
-
-        self.assertSetEqual(self.webapp.reload().addonexcludedregion
-                                .values_list('region', flat=True),
-                            regions)
-
 
 class TestExcludeUnratedGames(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')

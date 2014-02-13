@@ -805,7 +805,7 @@ def recalc_hash(request, file_id):
 @admin.site.admin_view
 def memcache(request):
     form = YesImSure(request.POST or None)
-    if form.is_valid():
+    if form.is_valid() and form.cleaned_data['yes']:
         cache.clear()
         form = YesImSure()
         messages.success(request, 'Cache cleared')

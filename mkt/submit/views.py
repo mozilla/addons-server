@@ -116,7 +116,7 @@ def manifest(request):
             AddonUser(addon=addon, user=request.amo_user).save()
             # Checking it once. Checking it twice.
             AppSubmissionChecklist.objects.create(addon=addon, terms=True,
-                                                  manifest=True)
+                                                  manifest=True, details=False)
 
             # Create feature profile.
             addon.current_version.features.update(**features_form.cleaned_data)

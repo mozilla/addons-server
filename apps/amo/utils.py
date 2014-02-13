@@ -643,37 +643,6 @@ def redirect_for_login(request):
     return http.HttpResponseRedirect(url)
 
 
-def memoize_key(prefix, *args, **kwargs):
-    """Returns the memoize key."""
-    key = hashlib.md5()
-    for arg in itertools.chain(args, sorted(kwargs.items())):
-        key.update(str(arg))
-    return '%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
-                                 prefix, key.hexdigest())
-
-
-def memoize_get(prefix, *args, **kwargs):
-    """Returns the content of the cache given the key."""
-    return cache.get(memoize_key(prefix, *args, **kwargs))
-
-
-def memoize(prefix, time=60):
-    """
-    A simple memoize that caches into memcache, using a simple
-    key based on stringing args and kwargs. Keep args simple.
-    """
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            key = memoize_key(prefix, *args, **kwargs)
-            data = cache.get(key)
-            if data is not None:
-                return data
-            data = func(*args, **kwargs)
-            cache.set(key, data, time)
-            return data
-        return wrapper
-    return decorator
 
 
 def cache_ns_key(namespace, increment=False):
@@ -700,98 +669,6 @@ def cache_ns_key(namespace, increment=False):
             ns_val = epoch(datetime.datetime.now())
             cache.set(ns_key, ns_val, 0)
     return '%s:%s' % (ns_val, ns_key)
-
-
-class Message:
-    """
-    A simple message class for when you don't have a session, but wish
-    to pass a message through memcache. For example, memcache up to the
-    user.
-    """
-    def __init__(self, key):
-        self.key = '%s:message:%s' % (settings.CACHE_PREFIX, key)
-
-    def delete(self):
-        cache.delete(self.key)
-
-    def save(self, message, time=60 * 5):
-        cache.set(self.key, message, time)
-
-    def get(self, delete=False):
-        res = cache.get(self.key)
-        if delete:
-            cache.delete(self.key)
-        return res
-
-
-@contextlib.contextmanager
-def guard(name):
-    """
-    A memcache based guard around a function such as extracting something on
-    to the file system, that you'd like to prevent from having race conditions.
-    Saves us doing lock files or similar.
-    """
-    msg = Message(name)
-    if msg.get():
-        # This is currently in progress.
-        yield True
-    else:
-        # This is not in progress, save a flag and delete on exit.
-        msg.save(True)
-        try:
-            yield False
-        finally:
-            msg.delete()
-
-
-class Token:
-    """
-    A simple token, useful for security. It can have an expiry
-    or be grabbed and deleted. It will check that the key is valid and
-    and well formed before checking. If you don't have a key, it will
-    generate a randomish one for you.
-    """
-    _well_formed = re.compile('^[a-z0-9-]+$')
-
-    def __init__(self, token=None, data=True):
-        if token is None:
-            token = str(uuid.uuid4())
-        self.token = token
-        self.data = data
-
-    def cache_key(self):
-        assert self.token, 'No token value set.'
-        return '%s:token:%s' % (settings.CACHE_PREFIX, self.token)
-
-    def save(self, time=60):
-        cache.set(self.cache_key(), self.data, time)
-
-    def well_formed(self):
-        return self._well_formed.match(self.token)
-
-    @classmethod
-    def valid(cls, key, data=True):
-        """Checks that the token is valid."""
-        token = cls(key)
-        if not token.well_formed():
-            return False
-        result = cache.get(token.cache_key())
-        if result is not None:
-            return result == data
-        return False
-
-    @classmethod
-    def pop(cls, key, data=True):
-        """Checks that the token is valid and deletes it."""
-        token = cls(key)
-        if not token.well_formed():
-            return False
-        result = cache.get(token.cache_key())
-        if result is not None:
-            if result == data:
-                cache.delete(token.cache_key())
-                return True
-        return False
 
 
 def get_email_backend(real_email=False):

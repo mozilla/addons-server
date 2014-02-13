@@ -644,7 +644,8 @@ class TestPlatformSearch(TestVersionEdit):
         self.version = Version.objects.get(id=42352)
         self.file = self.version.files.all()[0]
         for platform in amo.PLATFORMS:
-            k, _ = Platform.objects.get_or_create(id=platform)
+            if platform != 0:
+                Platform.objects.get_or_create(id=platform)
 
     def test_no_platform_search_engine(self):
         response = self.client.get(self.url)

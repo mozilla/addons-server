@@ -160,25 +160,6 @@
             {% endif %}
           </td>
         </tr>
-        <tr>
-          <th>
-            <label for="app_ratings">
-              {{ _('Content Ratings') }}
-              {{ tip(None,
-                     _('Ratings from official ratings bodies for this app.')) }}
-            </label>
-          </th>
-          <td>
-            {% if editable and form %}
-              {{ form.app_ratings }}
-              {{ form.app_ratings.errors }}
-            {% else %}
-              {%  for r in addon.content_ratings.all() %}
-                <div>{{ r.get_label() }}</div>
-              {% endfor %}
-            {% endif %}
-          </td>
-        </tr>
       </tbody>
     </table>
     {% if editable %}

@@ -270,8 +270,8 @@ class TestWebapp(amo.tests.TestCase):
 
     def test_get_price_tier_no_charge(self):
         webapp = amo.tests.app_factory()
-        self.make_premium(webapp, '0.00')
-        eq_(str(webapp.get_tier().price), '0.00')
+        self.make_premium(webapp, 0)
+        eq_(str(webapp.get_tier().price), '0')
         ok_(webapp.get_tier_name())
 
     def test_has_no_premium(self):
@@ -660,7 +660,7 @@ class TestWebapp(amo.tests.TestCase):
         app.current_version.reviewed = datetime(2013, 1, 1, 12, 34, 56)
         app.current_version._developer_name = 'Lex Luthor'
 
-        app.set_iarc_info(submission_id='1234', security_code='sektor')
+        app.set_iarc_info(submission_id=1234, security_code='sektor')
         app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
         app.set_interactives(['has_users_interact', 'has_shares_info'])
         app.content_ratings.create(
