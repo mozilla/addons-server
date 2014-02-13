@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-03 18:30+0000\n"
+"PO-Revision-Date: 2014-02-13 04:24+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391452208.0\n"
+"X-POOTLE-MTIME: 1392265444.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -15129,7 +15129,7 @@ msgstr "露骨的性愛"
 
 #: mkt/constants/ratingdescriptors.py:22
 msgid "Impacting Content"
-msgstr ""
+msgstr "衝擊性內容"
 
 #: mkt/constants/ratingdescriptors.py:23 mkt/constants/ratingdescriptors.py:66 mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:91 mkt/constants/ratingdescriptors.py:106
 msgid "Violence"
@@ -15245,7 +15245,7 @@ msgstr "部份裸露"
 
 #: mkt/constants/ratingdescriptors.py:56
 msgid "Real Gambling"
-msgstr ""
+msgstr "實際賭博"
 
 #: mkt/constants/ratingdescriptors.py:57
 msgid "Scary Themes"
@@ -15318,7 +15318,7 @@ msgstr "位置資訊共享"
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:102
 msgid "Explicit Language"
-msgstr ""
+msgstr "露骨的語言"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Frightening Content"
@@ -16862,6 +16862,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
+"使用 IARC 分級工具即代表您願意遵守其 <a href=\"%(privacy_url)s\">隱私權保護政策</a> 與 <a href=\"%"
+"(tos_url)s\">服務使用條款</a>。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
@@ -17052,7 +17054,7 @@ msgstr "可用地區"
 
 #: mkt/developers/templates/developers/payments/premium.html:199
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
-msgstr ""
+msgstr "到 <a href=\"%(status_url)s\" target=\"_blank\">狀態頁面</a> 看看目前可以在那些國家近行銷售。"
 
 #: mkt/developers/templates/developers/payments/premium.html:206
 msgid "Your app will be available in the following selected regions:"
@@ -18596,7 +18598,7 @@ msgstr "檢視"
 
 #: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Privileged Packaged app"
-msgstr "有權限的已封裝應用程式"
+msgstr "有權限的封裝應用程式"
 
 #: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
 msgid "Packaged app"
@@ -18851,7 +18853,7 @@ msgstr "測試計劃"
 
 #: mkt/operators/templates/operators/preloads.html:41
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}、{1}"
 
 #: mkt/operators/templates/operators/preloads.html:55
 msgid "No preload candidates found"
@@ -19574,7 +19576,7 @@ msgstr "任何應用程式類型"
 
 #: mkt/search/forms.py:36
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "有權限的封裝應用程式"
 
 #: mkt/search/forms.py:41
 msgid "Free with In-app"
