@@ -61,7 +61,7 @@ class TestAPI(RestOAuth):
         eq_(self.post().status_code, 201)
         record_action.assert_called_with('install', ANY,
             {'app-domain': u'http://micropipes.com', 'app-id': 337141L,
-             'region': 'us', 'anonymous': False})
+             'region': 'restofworld', 'anonymous': False})
 
     @patch('mkt.installs.utils.record_action')
     def test_logged_anon(self, record_action):
@@ -69,7 +69,7 @@ class TestAPI(RestOAuth):
         eq_(self.post(anon=True).status_code, 201)
         record_action.assert_called_with('install', ANY,
             {'app-domain': u'http://micropipes.com', 'app-id': 337141L,
-             'region': 'us', 'anonymous': True})
+             'region': 'restofworld', 'anonymous': True})
 
     @patch('mkt.installs.utils.record_action')
     def test_app_install_twice(self, record_action):
