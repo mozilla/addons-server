@@ -294,7 +294,7 @@ def in_app_keys(request):
             messages.error(request,
                            _('A server error occurred '
                              'when retrieving the application key.'))
-            log.exception('Solitude connection error: {}'.format(e.message))
+            log.exception('Solitude connection error: {0}'.format(e.message))
 
     if request.method == 'POST':
         if key:
