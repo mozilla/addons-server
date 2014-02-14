@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-01-22 18:59+0000\n"
-"Last-Translator: Mark <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2014-02-14 12:33+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1390417174.0\n"
+"X-POOTLE-MTIME: 1392381204.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -16197,7 +16197,7 @@ msgstr "Ik wil graag betaald worden in"
 
 #: mkt/developers/forms_payments.py:410
 msgid "VAT Number"
-msgstr "BTW-nummer"
+msgstr "Btw-nummer"
 
 #: mkt/developers/forms_payments.py:413
 msgid "Bank Account Number"
