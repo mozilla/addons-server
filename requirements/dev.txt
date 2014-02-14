@@ -1,9 +1,5 @@
 -r prod.txt
 -r compiled.txt
 
-# For building the .po files.
-dennis==0.3.10
-polib==1.0.3
-
 django-debug-toolbar==0.9.4
 django-fixture-magic==0.0.4

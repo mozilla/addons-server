@@ -13,6 +13,8 @@ function usage() {
 # check if file and dir are there
 if [[ ($# -ne 1) || (! -d "$1") ]]; then usage; fi
 
+hash dennis-cmd 2>/dev/null || source $VENV/bin/activate
+
 echo "compiling messages.po..."
 for pofile in `find $1 -type f -name "messages.po"`; do
     dir=`dirname $pofile`

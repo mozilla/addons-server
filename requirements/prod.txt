@@ -15,6 +15,7 @@ commonware==0.4.2
 cssutils==0.9.7b3
 curling==0.2.6
 defusedxml==0.4.1
+dennis==0.3.10
 Django==1.4.8
 dj-database-url==0.2.2
 django-aesfield==0.1.2
@@ -67,8 +68,9 @@ newrelic==2.4.0.4
 oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
-pyasn1==0.1.7
+polib==1.0.3
 protobuf==2.5.0
+pyasn1==0.1.7
 PyBrowserID==0.6
 pyelasticsearch==0.6.1
 pyes==0.16.0

@@ -37,7 +37,7 @@ def create_virtualenv(update_on_change=False):
 @task
 def update_locales():
     with lcd(pjoin(ZAMBONI, 'locale')):
-        local("./compile-mo.sh .")
+        local("VENV=%s ./compile-mo.sh ." % VIRTUALENV)
 
 
 @task
