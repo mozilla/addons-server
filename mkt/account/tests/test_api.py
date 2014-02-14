@@ -68,6 +68,9 @@ class TestPermission(RestOAuth):
         self.get_url = reverse('account-permissions', kwargs={'pk': 2519})
         self.user = UserProfile.objects.get(pk=2519)
 
+    def test_has_cors(self):
+        self.assertCORS(self.client.get(self.get_url), 'get')
+
     def test_verbs(self):
         self._allowed_verbs(self.get_url, ('get'))
 
@@ -154,6 +157,9 @@ class TestAccount(RestOAuth):
         self.url = reverse('account-settings', kwargs={'pk': 2519})
         self.user = UserProfile.objects.get(pk=2519)
 
+    def test_has_cors(self):
+        self.assertCORS(self.client.get(self.url), 'get', 'patch', 'put')
+
     def test_verbs(self):
         self._allowed_verbs(self.url, ('get', 'patch', 'put'))
 
@@ -214,6 +220,9 @@ class TestInstalled(RestOAuth):
         super(TestInstalled, self).setUp()
         self.list_url = reverse('installed-apps')
         self.user = UserProfile.objects.get(pk=2519)
+
+    def test_has_cors(self):
+        self.assertCORS(self.client.get(self.list_url), 'get')
 
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ('get'))

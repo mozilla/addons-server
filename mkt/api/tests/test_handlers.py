@@ -46,6 +46,10 @@ class CreateHandler(RestOAuth):
                 name='cat-%s' % x,
                 slug='cat-%s' % x,
                 type=amo.ADDON_WEBAPP))
+            self.categories.append(Category.objects.create(
+                name='cat-%s' % x,
+                slug='cat-%s' % x,
+                type=amo.ADDON_EXTENSION))
 
     def create(self, fil=None):
         if fil is None:
@@ -229,15 +233,18 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.json['privacy_policy'], data['privacy_policy'])
 
     def base_data(self):
-        return {'support_email': 'a@a.com',
-                'privacy_policy': 'wat',
-                'homepage': 'http://www.whatever.com',
-                'name': 'mozball',
-                'categories': [c.slug for c in self.categories],
-                'description': 'wat...',
-                'premium_type': 'free',
-                'regions': ['us'],
-                'device_types': amo.DEVICE_LOOKUP.keys()}
+        return {
+            'support_email': 'a@a.com',
+            'privacy_policy': 'wat',
+            'homepage': 'http://www.whatever.com',
+            'name': 'mozball',
+            'categories': [c.slug for c in
+                           Category.objects.filter(type=amo.ADDON_WEBAPP)],
+            'description': 'wat...',
+            'premium_type': 'free',
+            'regions': ['us'],
+            'device_types': amo.DEVICE_LOOKUP.keys()
+        }
 
     def test_put(self):
         app = self.create_app()
@@ -248,12 +255,14 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
     def test_put_as_post(self):
         # This is really a test of the HTTP_X_HTTP_METHOD_OVERRIDE header
-        # and that signing works correctly. Do a POST, but ask tastypie to do
+        # and that signing works correctly. Do a POST, but ask DRF to do
         # a PUT.
-        self.create_app()
+        app = self.create_app()
         res = self.client.post(self.get_url, data=json.dumps(self.base_data()),
                                HTTP_X_HTTP_METHOD_OVERRIDE='PUT')
         eq_(res.status_code, 202)
+        app = Webapp.objects.get(pk=app.pk)
+        eq_(app.privacy_policy, 'wat')
 
     def test_put_anon(self):
         app = self.create_app()
@@ -267,7 +276,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
         eq_(set([c.pk for c in app.categories.all()]),
-            set([c.pk for c in self.categories]))
+            set([c.pk for c in Category.objects.filter(type=amo.ADDON_WEBAPP)]))
 
     def test_get_content_ratings(self):
         rating = ratingsbodies.CLASSIND_12
@@ -336,7 +345,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         self.assertSetEqual(data['categories'],
-                            [c.slug for c in self.categories])
+                            [c.slug for c in app.categories.all()])
         eq_(data['current_version'], app.current_version.version)
         self.assertSetEqual(data['device_types'],
                             [n.api_name for n in amo.DEVICE_TYPES.values()])
@@ -372,8 +381,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         data['categories'] = [wrong.slug]
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
-        eq_(res.json['categories'][0],
-            'Invalid category (not a Webapp category).')
 
     def test_put_no_categories(self):
         self.create_app()
