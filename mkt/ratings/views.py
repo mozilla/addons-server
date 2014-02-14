@@ -42,7 +42,7 @@ class RatingPaginator(Paginator):
 
 class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     # Unfortunately, the model class name for ratings is "Review".
-    queryset = Review.objects.valid()
+    queryset = Review.objects.valid().filter(addon__type=amo.ADDON_WEBAPP)
     cors_allowed_methods = ('get', 'post', 'put', 'delete')
     permission_classes = [ByHttpMethod({
         'options': AllowAny,  # Needed for CORS.
