@@ -127,6 +127,7 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 TASK_USER_ID = '4043307'
 
 PASSWORD_HASHERS = (
+    'users.models.SHA512PasswordHasher',
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
 

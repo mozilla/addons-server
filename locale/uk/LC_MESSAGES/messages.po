@@ -18656,7 +18656,7 @@ msgid "Firefox Marketplace purchase of {0}"
 msgstr ""
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/webpay_tasks.py:27
+#: mkt/purchase/tasks.py:27
 msgid "Receipt for {0}"
 msgstr ""
 
