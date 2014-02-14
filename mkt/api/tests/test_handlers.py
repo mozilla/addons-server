@@ -216,6 +216,24 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         app = self.create_app()
         data = self.base_data()
         self.client.put(self.get_url, data=json.dumps(data))
+        app.reload()
+        app.authors.clear()
+        res = self.client.get(reverse('app-privacy-policy-detail',
+                                      args=[app.pk]))
+        eq_(res.status_code, 403)
+
+    def test_get_privacy_policy_anon(self):
+        app = self.create_app()
+        data = self.base_data()
+        self.client.put(self.get_url, data=json.dumps(data))
+        res = self.anon.get(reverse('app-privacy-policy-detail',
+                                    args=[app.pk]))
+        eq_(res.status_code, 403)
+
+    def test_get_privacy_policy_mine(self):
+        app = self.create_app()
+        data = self.base_data()
+        self.client.put(self.get_url, data=json.dumps(data))
         res = self.client.get(reverse('app-privacy-policy-detail',
                                       args=[app.pk]))
         eq_(res.json['privacy_policy'], data['privacy_policy'])
@@ -512,7 +530,10 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         assert Webapp.objects.filter(pk=obj.pk).exists()
 
     def test_reviewer_get(self):
-        self.create_app()
+        app = self.create_app()
+        data = self.base_data()
+        self.client.put(self.get_url, data=json.dumps(data))
+
         editor = UserProfile.objects.get(email='admin@mozilla.com')
         g = Group.objects.create(rules='Apps:Review,Reviews:Edit')
         GroupUser.objects.create(group=g, user=editor)
@@ -522,8 +543,16 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         r = client.get(self.get_url)
         eq_(r.status_code, 200)
 
+        res = client.get(reverse('app-privacy-policy-detail',
+                                 args=[app.pk]))
+        eq_(r.status_code, 200)
+        eq_(res.json['privacy_policy'], data['privacy_policy'])
+
     def test_admin_get(self):
-        self.create_app()
+        app = self.create_app()
+        data = self.base_data()
+        self.client.put(self.get_url, data=json.dumps(data))
+
         admin = UserProfile.objects.get(email='admin@mozilla.com')
         g = Group.objects.create(rules='*:*')
         GroupUser.objects.create(group=g, user=admin)
@@ -532,6 +561,11 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         client = RestOAuthClient(ac)
         r = client.get(self.get_url)
         eq_(r.status_code, 200)
+
+        res = client.get(reverse('app-privacy-policy-detail',
+                                 args=[app.pk]))
+        eq_(r.status_code, 200)
+        eq_(res.json['privacy_policy'], data['privacy_policy'])
 
 
 class CreatePackagedHandler(amo.tests.AMOPaths, RestOAuth):

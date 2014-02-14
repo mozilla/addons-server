@@ -543,7 +543,8 @@ class PrivacyPolicyViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                            viewsets.GenericViewSet):
     queryset = Webapp.objects.all()
     cors_allowed_methods = ('get',)
-    permission_classes = [AnyOf(AllowAppOwner, AllowReadOnlyIfPublic)]
+    permission_classes = [AnyOf(AllowAppOwner, AllowReviewerReadOnly,
+                                AllowReadOnlyIfPublic)]
     slug_field = 'app_slug'
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
