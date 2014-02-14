@@ -28,7 +28,7 @@ from mkt.purchase.decorators import can_be_purchased
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
 
-from . import webpay_tasks as tasks
+from . import tasks
 
 log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
