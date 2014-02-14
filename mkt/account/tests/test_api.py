@@ -183,12 +183,33 @@ class TestAccount(RestOAuth):
         data = json.loads(res.content)
         eq_(data['display_name'], self.user.display_name)
 
+    def test_own_empty(self):
+        self.user.update(display_name='')
+        url = reverse('account-settings', kwargs={'pk': 'mine'})
+        res = self.client.get(url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['display_name'], self.user.username)
+
     def test_patch(self):
         res = self.client.patch(self.url,
                                 data=json.dumps({'display_name': 'foo'}))
         eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')
+
+    def test_patch_empty(self):
+        res = self.client.patch(self.url,
+                                data=json.dumps({'display_name': None}))
+        eq_(res.status_code, 400)
+        data = json.loads(res.content)
+        eq_(data['display_name'], [u'This field is required'])
+
+        res = self.client.patch(self.url,
+                                data=json.dumps({'display_name': ''}))
+        eq_(res.status_code, 400)
+        data = json.loads(res.content)
+        eq_(data['display_name'], [u'This field is required'])
 
     def test_put(self):
         res = self.client.put(self.url,
