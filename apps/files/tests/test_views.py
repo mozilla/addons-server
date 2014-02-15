@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 from django.utils.http import http_date
 
+from cache_nuggets.lib import Message
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -16,7 +17,6 @@ from waffle.models import Switch
 
 import amo
 import amo.tests
-from amo.utils import Message
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from files.helpers import DiffHelper, FileViewer

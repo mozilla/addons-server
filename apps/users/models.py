@@ -10,7 +10,7 @@ from datetime import datetime
 
 from django import dispatch, forms
 from django.conf import settings
-from django.contrib.auth.hashers import BasePasswordHasher
+from django.contrib.auth.hashers import BasePasswordHasher, mask_hash
 from django.contrib.auth.models import User as DjangoUser
 from django.core import validators
 from django.core.exceptions import ObjectDoesNotExist
