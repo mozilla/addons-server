@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-13 20:55+0000\n"
-"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
+"PO-Revision-Date: 2014-02-16 20:38+0000\n"
+"Last-Translator: Бранко <bane.msn@hotmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1392324933.0\n"
+"X-POOTLE-MTIME: 1392583109.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -5328,6 +5328,9 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the app summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc."
 msgstr ""
+"Све информације које би крајњи корисници волели да имају а које нису "
+"искључиво везане за опис апликације. Најчешће су то информације о познатим "
+"грешкама, упутство за пријављивање грешака, најава следећег ажурирања, итд."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:31
 msgid ""
@@ -5351,7 +5354,7 @@ msgstr "Ове ознаке се користе за разврставање д
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:83
 msgid "This is a site-specific add-on."
-msgstr ""
+msgstr "Ово је додатак специфичан сајту."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:86
 msgid "This add-on requires external software."
@@ -5380,6 +5383,8 @@ msgstr "Јавна статистика?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:111
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer."
 msgstr ""
+"Да ли преузимање и коришћење статистике Вашег додатка може бити приказано у "
+"нашем онлајн прегледачу."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:115
 msgid "This add-on's stats are publicly viewable."
@@ -5396,10 +5401,13 @@ msgstr "Надоградити SDK?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:124
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released."
 msgstr ""
+"Ако се означи, покушаћемо да аутоматски надоградимо Ваш додатак када се нова "
+"верзија SDK-а појави."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:127
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
 msgstr ""
+"Овај додатак ће аутоматски бити надограђен на нове верзије SDK-а додатка."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:129
 msgid "No, this add-on will be upgraded manually."
@@ -5407,7 +5415,7 @@ msgstr "Не, овај додатак ће бити ручно надограђ�
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:135
 msgid "Universally unique identifier"
-msgstr "Универзално јединствени идентификатор"
+msgstr "Универзално јединствен идентификатор (УЈИД)"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:136
 msgid "UUID"
@@ -5416,6 +5424,9 @@ msgstr "UUID"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:138
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
+"УЈИД Вашег додатка је наведен у његовом инсталационом манифесту и "
+"јединствено га идентификује. Не можете променити свој УЈИД након што буде "
+"послат."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -5423,85 +5434,90 @@ msgstr "Уклони овај завистан додатак."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:41
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Унесите име додатка"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:11
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Медиј додатка за {0}"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:24
 msgid "Add-on icon"
-msgstr ""
+msgstr "Иконица додатка"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg"
 msgstr ""
+"Отпремите иконицу за Ваш додатак или одаберете једну од наших. Иконица се "
+"приказује скоро свуда где је Ваш додатак. Отпремљене слике морају бити "
+"једног од следећих формата: .png, .jpg"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:38
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Изаберите иконицу за Ваш додатак:"
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:51 mkt/developers/templates/developers/apps/forms_shared/media.html:54
 msgid "32x32px"
-msgstr ""
+msgstr "32x32 пиксела"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:59
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr ""
+"Користи се у списковима додатака, као што су резултати претраге и истакнути "
+"додаци."
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:69 mkt/developers/templates/developers/apps/forms_shared/media.html:44
 msgid "64x64px"
-msgstr ""
+msgstr "64x64 пиксела"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:74
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Користи се у страницама о детаљима додатка."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:82 mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Отпремите сопствену иконицу..."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:91
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG и JPG су подржани. Иконице се смањују на 64x64 пиксела ако су веће."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:109
 msgid "Screenshots"
-msgstr ""
+msgstr "Слике екрана"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:119
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Молимо обезбедите најмање једну слику Вашег додатка:"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:145
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Молимо обезбедите опис за ову слику екрана:"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:161
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Додај слику екрана..."
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:17
 msgid "Tests"
-msgstr ""
+msgstr "Тестови"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:25 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:5
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:39 mkt/developers/templates/developers/apps/includes/validation_test_results.html:5
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
-msgstr ""
+msgstr "Општи тестови"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:32 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:9
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "Security Tests"
-msgstr ""
+msgstr "Тестови безбедности"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:39 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:13
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:66
 msgid "Extension Tests"
-msgstr ""
+msgstr "Тестови екстензије"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:46 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:17
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:79
@@ -5553,28 +5569,28 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:246 mkt/developers/templates/developers/apps/listing/item_actions.html:1
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:1
 msgid "Actions"
-msgstr ""
+msgstr "Акције"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:7 mkt/developers/templates/developers/apps/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Настави подношење процеса за овај додатак."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:8 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:8
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:8 mkt/developers/templates/developers/apps/listing/item_actions_app.html:10
 msgid "Resume"
-msgstr ""
+msgstr "Наставак"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:14 mkt/developers/templates/developers/apps/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Избришите овај додатак."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:24 mkt/developers/templates/developers/apps/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
-msgstr ""
+msgstr "Измените детаље о списку овог додатка."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:29 mkt/developers/templates/developers/apps/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Постави нову верзију овог додатка."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:30 mkt/developers/templates/developers/apps/listing/item_actions.html:30
 msgid "New Version"
@@ -5582,7 +5598,7 @@ msgstr "New Version"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:44
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Дневне статистике о преузимању и корисницима."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:54 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:33 apps/devhub/templates/devhub/includes/addons_edit_nav.html:6
 #: apps/devhub/templates/devhub/payments/payments.html:3 apps/devhub/templates/devhub/payments/paypal.html:4 apps/devhub/templates/devhub/payments/premium.html:3
