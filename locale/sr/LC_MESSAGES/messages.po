@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-16 20:38+0000\n"
-"Last-Translator: Бранко <bane.msn@hotmail.com>\n"
+"PO-Revision-Date: 2014-02-16 20:52+0000\n"
+"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1392583109.0\n"
+"X-POOTLE-MTIME: 1392583939.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -5522,11 +5522,11 @@ msgstr "Тестови екстензије"
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:46 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:17
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:79
 msgid "Localization Tests"
-msgstr ""
+msgstr "Тестови локализације"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:21 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:92
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Тестови компатибилности"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:36 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:63 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:76
@@ -5537,33 +5537,36 @@ msgstr "Top"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/personas/edit.html:63
 msgid "Delete Theme"
-msgstr ""
+msgstr "Избриши тему"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/versions/list.html:153
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Избриши додатак"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:13
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Брисање Ваше теме ће је трајно уклонити са сајта."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:15
 msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted ever again, even by you. The existing users of your add-on will remain on this update channel "
 "and never receive updates again."
 msgstr ""
+"Брисање Вашег додатака ће га трајно уклонити са сајта и спречити његов GUID "
+"да буде поново поднет, чак и од Вас. Постојећи корисници Вашег додатка ће "
+"остати на овом каналу ажурирања и неће више примати ажурирања."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:26
 msgid "Enter your password to confirm your decision:"
-msgstr ""
+msgstr "Унесите лозинку да бисте потврдили своју одлуку:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:35
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Реците нам зашто бришете своју тему:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:37
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Реците нам зашто бришете свој додатак:"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:1
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:246 mkt/developers/templates/developers/apps/listing/item_actions.html:1
@@ -5604,40 +5607,40 @@ msgstr "Дневне статистике о преузимању и корис�
 #: apps/devhub/templates/devhub/payments/payments.html:3 apps/devhub/templates/devhub/payments/paypal.html:4 apps/devhub/templates/devhub/payments/premium.html:3
 #: apps/devhub/templates/devhub/payments/second-confirm.html:4 apps/devhub/templates/devhub/payments/tier.html:4 apps/devhub/templates/devhub/payments/upsell.html:3
 msgid "Manage Payments"
-msgstr ""
+msgstr "Управљање плаћањима"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:55 apps/devhub/templates/devhub/includes/addons_edit_nav.html:8
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Управљање статуса и верзијама"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:67 mkt/developers/templates/developers/apps/listing/item_actions.html:55
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Погледајте списак додатка"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:68 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:57
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:19 apps/devhub/templates/devhub/includes/addons_edit_nav.html:32 apps/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Погледајте најновије измене"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:7 mkt/developers/templates/developers/apps/listing/item_actions_app.html:9
 msgid "Resume the submission process for this app."
-msgstr ""
+msgstr "Настави подношење процеса за ову апликацију."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14 mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
-msgstr ""
+msgstr "Избриши ову апликацију."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:24
 msgid "Edit details about this app's listing."
-msgstr ""
+msgstr "Измените детаље о листингу ове апликације."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:39
 msgid "Manage Status"
-msgstr ""
+msgstr "Управљање статусом"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:48 apps/devhub/templates/devhub/includes/addons_edit_nav.html:15 apps/devhub/templates/devhub/payments/in-app-config.html:3
 msgid "Manage In-App Payments"
-msgstr ""
+msgstr "Управљање плаћањима унутар апликације"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:56
 msgid "View App Listing"
@@ -5645,31 +5648,33 @@ msgstr "Преглед листинга апликације"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Измените детаље о листингу ове теме."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:13
 msgid "View this theme's public listing page."
-msgstr ""
+msgstr "Погледајте јавну страницу списка ове теме."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Погледајте популарност ове теме током времена."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:29
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Промени власника ове теме."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:30
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Пренос власништва"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 msgid "Delete this theme."
-msgstr ""
+msgstr "Избриши ову тему."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
 msgstr ""
+"Овај додатак ће се аутоматски обрисати после неколико дана, ако процес "
+"подношења није завршено."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/developers/templates/developers/apps/status.html:222 mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
@@ -5677,7 +5682,7 @@ msgstr "Онемогућен"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:51 mkt/developers/templates/developers/includes/macros.html:100
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Ред позиције:</b> %(pos)s од %(total)s"
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:24
@@ -5731,22 +5736,23 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/describe.html:33 apps/devhub/templates/devhub/personas/edit.html:89 apps/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
+"Молимо Вас да користите само слова, бројеве, доње цртице у Вашој URL адреси."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:43
 msgid "Provide a brief summary:"
-msgstr ""
+msgstr "Обезбедите кратак резиме:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:47
 msgid "This summary will be shown in listings and searches."
-msgstr ""
+msgstr "Овај резиме ће бити приказан у списковима и претрагама."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:64
 msgid "Provide a more detailed description:"
-msgstr ""
+msgstr "Обезбедите детаљнији опис:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:68
 msgid "The description will appear on the detail page."
-msgstr ""
+msgstr "Опис ће се појавити на страници са детаљима."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:75 mkt/submit/forms.py:363
 msgid "Support Email:"
@@ -5754,16 +5760,16 @@ msgstr "Е-пошта подршке:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:82
 msgid "Support URL:"
-msgstr ""
+msgstr "URL адреса подршке:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:4 apps/devhub/templates/devhub/personas/submit_done.html:4
 msgid "Submission Complete"
-msgstr ""
+msgstr "Подношење завршено"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:9 apps/devhub/templates/devhub/addons/submit/sidebar.html:19
 #: apps/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
-msgstr ""
+msgstr "Готови сте!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:12
 msgid "Your add-on has been submitted to the Preliminary Review queue."
