@@ -52,7 +52,7 @@ install`_ paragraph.
 
 On OS X
 ~~~~~~~
-The best solution for installing UNIX tools on OSX is Homebrew_.
+The best solution for installing UNIX tools on OS X is Homebrew_.
 
 The following packages will get you set for zamboni::
 
