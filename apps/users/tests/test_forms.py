@@ -173,7 +173,7 @@ class TestUserAdminForm(UserFormBase):
                                      args=[self.user.id]),
                              data)
         eq_(pq(r.content)('#id_password strong').text(),
-            'Invalid password format or unknown hashing algorithm.')
+            'algorithm salt hash')
 
 
 class TestUserEditForm(UserFormBase):

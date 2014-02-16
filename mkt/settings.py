@@ -220,7 +220,7 @@ SENTRY_DSN = None
 
 # A smaller range of languages for the Marketplace.
 AMO_LANGUAGES = (
-    'ca', 'cs', 'de', 'el', 'en-US', 'es', 'fr', 'hr', 'hu', 'it', 'mk', 'nl',
+    'bn-BD', 'ca', 'cs', 'de', 'el', 'en-US', 'es', 'fr', 'hr', 'hu', 'it', 'mk', 'nl',
     'pl', 'pt-BR', 'ro', 'ru', 'sr', 'sr-Latn', 'sk', 'tr',
 )
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
