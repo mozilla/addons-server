@@ -52,7 +52,7 @@ install`_ paragraph.
 
 On OS X
 ~~~~~~~
-The best solution for installing UNIX tools on OSX is brew_.
+The best solution for installing UNIX tools on OS X is Homebrew_.
 
 The following packages will get you set for zamboni::
 
@@ -99,7 +99,7 @@ and configure your shell using the `virtualenv-burrito`_. Type this::
 Open a new shell to test it out. You should have the ``workon`` and
 ``mkvirtualenv`` commands.
 
-.. _brew: http://github.com/mxcl/homebrew#readme
+.. _Homebrew: http://brew.sh/
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
 .. _`virtualenv-burrito`: https://github.com/brainsik/virtualenv-burrito
 .. _virtualenvwrapper: http://www.doughellmann.com/docs/virtualenvwrapper/

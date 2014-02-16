@@ -40,7 +40,7 @@ To get the same results as our servers, configure Elasticsearch by copying the
 :src:`scripts/elasticsearch/elasticsearch.yml` (available in the
 ``scripts/elasticsearch/`` folder of your install) to your system:
 
-* If on OSX, copy that file into
+* If on OS X, copy that file into
   ``/usr/local/Cellar/elasticsearch/*/config/``.
 * On Linux, the directory is ``/etc/elasticsearch/``.
 
