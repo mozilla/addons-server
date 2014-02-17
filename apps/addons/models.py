@@ -73,10 +73,12 @@ def clean_slug(instance, slug_field='slug'):
             slug = str(instance.id)
         else:
             slug = instance.__class__.__name__
-    slug = slugify(slug)[:27]  # Leave space for "-" and 99 clashes.
+
+    max_length = instance._meta.get_field_by_name(slug_field)[0].max_length
+    slug = slugify(slug)[:max_length]
 
     if BlacklistedSlug.blocked(slug):
-        slug = slug[:26] + '~'
+        slug = slug[:max_length - 1] + '~'
 
     # The following trick makes sure we are using a manager that returns
     # all the objects, as otherwise we could have a slug clash on our hands.
@@ -98,6 +100,9 @@ def clean_slug(instance, slug_field='slug'):
     # available.
     clash = qs.filter(**{slug_field: slug})
     if clash.exists():
+        # Leave space for "-" and 99 clashes.
+        slug = slugify(slug)[:max_length - 3]
+
         # There is a clash, so find a suffix that will make this slug unique.
         prefix = '%s-' % slug
         lookup = {'%s__startswith' % slug_field: prefix}
@@ -108,16 +113,18 @@ def clean_slug(instance, slug_field='slug'):
         # if we have two clashes "foo-1" and "foo-2", we need to try "foo-x"
         # for x between 1 and 3 to be absolutely sure to find an available one.
         for idx in range(1, len(clashes) + 2):
-            new = ('%s%s' % (prefix, idx))[:30]
+            new = ('%s%s' % (prefix, idx))[:max_length]
             if new not in clashes:
                 slug = new
                 break
         else:
-            # This could happen. The current implementation ([:27] at the
-            # beginning) only works for the first 100 clashes in the worst case
-            # (if the slug is equal to or longuer than 27 chars). After that,
-            # {verylongslug}-100 will be trimmed down to {verylongslug}-10,
-            # which is already assigned, but it's the last solution tested.
+            # This could happen. The current implementation (using
+            # ``[:max_length -3]``) only works for the first 100 clashes in the
+            # worst case (if the slug is equal to or longuer than
+            # ``max_length - 3`` chars).
+            # After that, {verylongslug}-100 will be trimmed down to
+            # {verylongslug}-10, which is already assigned, but it's the last
+            # solution tested.
             raise RuntimeError
 
     setattr(instance, slug_field, slug)

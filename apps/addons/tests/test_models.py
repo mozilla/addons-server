@@ -135,17 +135,29 @@ class TestCleanSlug(amo.tests.TestCase):
         b.clean_slug()
         eq_(b.slug, "%s~-1" % blacklisted_slug)
 
+    def test_clean_slug_blacklisted_slug_long_slug(self):
+        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+        BlacklistedSlug.objects.create(name=long_slug[:30])
+
+        # If there's no clashing slug, just append a "~".
+        a = Addon.objects.create(slug=long_slug[:30])
+        eq_(a.slug, "%s~" % long_slug[:29])
+
+        # If there's a clash, use the standard clash resolution.
+        a = Addon.objects.create(slug=long_slug[:30])
+        eq_(a.slug, "%s-1" % long_slug[:27])
+
     def test_clean_slug_long_slug(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
-        shortened_long_slug = long_slug[:27]
 
-        # Make sure there's at least an addon with the very long slug
+        # If there's no clashing slug, don't over-shorten it.
         a = Addon.objects.create(slug=long_slug)
-        eq_(a.slug, shortened_long_slug)
+        eq_(a.slug, long_slug[:30])
 
+        # Now that there is a clash, test the clash resolution.
         b = Addon(slug=long_slug)
         b.clean_slug()
-        eq_(b.slug, "%s-1" % shortened_long_slug)
+        eq_(b.slug, "%s-1" % long_slug[:27])
 
     def test_clean_slug_always_slugify(self):
         illegal_chars = "some spaces and !?@"
