@@ -1,8 +1,0 @@
-{% extends 'reviewers/emails/base.txt' -%}
-{% block content %}
-Your App, {{ name }}, has been escalated for an admin review by a reviewer.
-
-Your App is now in our escalated review queue, and it will need to be checked by one of our senior reviewers. This means that your review will probably take longer than usual. You don't need to take any further action - we will contact you if any more information is required from you.  Thanks for your understanding.
-
-{% include 'reviewers/emails/decisions/includes/questions.txt' %}
-{% endblock %}

@@ -1,3 +1,0 @@
-{% if waffle.switch('comm-dashboard') %}
-You can also post to {{ ('/comm/thread/' + thread_id)|absolutify }}
-{% endif %}

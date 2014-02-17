@@ -1,5 +1,0 @@
-{% if account_list_form.fields['accounts'].queryset.exists() %}
-  {{ account_list_form.accounts }}
-{% else %}
-  <p class="no-accounts">{{ _("You don't have any payment accounts set up.") }}</p>
-{% endif %}

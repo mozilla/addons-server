@@ -1,5 +1,0 @@
-To: reply+%s@mozilla.org
-
-This is the body
-
-> this is the reply text
