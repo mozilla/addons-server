@@ -171,12 +171,10 @@ Creating an App
 
     :param required name: the title of the app. Maximum length 127 characters.
     :type name: string
-    :param required summary: the summary of the app. Maximum length 255 characters.
-    :type summary: string
     :param required categories: a list of the categories, at least two of the
         category ids provided from the category api (see below).
     :type categories: array
-    :param optional description: long description. Some HTML supported.
+    :param required description: long description. Some HTML supported.
     :type description: string
     :param required privacy_policy: your privacy policy. Some HTML supported.
     :type privacy_policy: string

@@ -124,7 +124,6 @@ class AppSerializer(serializers.ModelSerializer):
     resource_uri = serializers.HyperlinkedIdentityField(view_name='app-detail')
     slug = serializers.CharField(source='app_slug', required=False)
     status = serializers.IntegerField(read_only=True)
-    summary = TranslationSerializerField(required=False)
     support_email = TranslationSerializerField(required=False)
 
     support_url = TranslationSerializerField(required=False)
@@ -150,9 +149,8 @@ class AppSerializer(serializers.ModelSerializer):
             'payment_account', 'payment_required', 'premium_type', 'previews',
             'price', 'price_locale', 'privacy_policy', 'public_stats',
             'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
-            'status', 'summary', 'support_email', 'support_url',
-            'supported_locales', 'tags', 'upsell', 'upsold', 'user',
-            'versions', 'weekly_downloads']
+            'status', 'support_email', 'support_url', 'supported_locales',
+            'tags', 'upsell', 'upsold', 'user', 'versions', 'weekly_downloads']
 
     def _get_region_id(self):
         request = self.context.get('request')
@@ -386,8 +384,8 @@ class SimpleAppSerializer(AppSerializer):
 
     class Meta(AppSerializer.Meta):
         exclude = ['absolute_url', 'app_type', 'categories', 'created',
-                   'default_locale', 'payment_account', 'summary',
-                   'supported_locales', 'weekly_downloads', 'upsold', 'tags']
+                   'default_locale', 'payment_account', 'supported_locales',
+                   'weekly_downloads', 'upsold', 'tags']
 
 
 class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,

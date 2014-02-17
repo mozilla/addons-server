@@ -55,7 +55,6 @@ class ESAppSerializer(AppSerializer):
 
         # Remove fields that we don't have in ES or don't want / need to
         # support/support in search results at the moment.
-        self.fields.pop('summary', None)
         self.fields.pop('tags', None)
         self.fields.pop('upsold', None)
 
