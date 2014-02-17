@@ -14,13 +14,13 @@ class TestAttachTransDict(amo.tests.TestCase):
     of mocking one from scratch and we rely on internal Translation unicode
     implementation, because mocking django models and fields is just painful.
     """
-    fixtures = ['base/addon_3615']
 
     def test_basic(self):
-        addon = Addon.objects.get(pk=3615)
-        addon.description = (unicode(addon.description) +
-                             u'<script>alert(42)</script>!')
-        addon.eula = ''
+        addon = amo.tests.addon_factory(
+            name='Name', description='Description <script>alert(42)</script>!',
+            eula='', summary='Summary', homepage='http://home.pa.ge',
+            developer_comments='Developer Comments', privacy_policy='Policy',
+            support_email='sup@example.com', support_url='http://su.pport.url')
         addon.save()
 
         # Quick sanity checks: is description properly escaped? The underlying
@@ -34,6 +34,8 @@ class TestAttachTransDict(amo.tests.TestCase):
         attach_trans_dict(Addon, [addon])
         ok_(isinstance(addon.translations, collections.defaultdict))
         translations = dict(addon.translations)
+
+        # addon.translations is a defaultdict.
         eq_(addon.translations['whatever'], [])
 
         # No-translated fields should be absent.
@@ -58,7 +60,7 @@ class TestAttachTransDict(amo.tests.TestCase):
         eq_(translations, expected_translations)
 
     def test_multiple_objects_with_multiple_translations(self):
-        addon = Addon.objects.get(pk=3615)
+        addon = amo.tests.addon_factory()
         addon.description = {
             'fr': 'French Description',
             'en-us': 'English Description'
