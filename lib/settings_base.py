@@ -313,6 +313,7 @@ JINGO_EXCLUDE_APPS = (
     'browserid',
     'toolbar_statsd',
     'registration',
+    'debug_toolbar',
 )
 
 JINGO_EXCLUDE_PATHS = (
