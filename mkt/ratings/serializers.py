@@ -8,7 +8,7 @@ from reviews.models import Review, ReviewFlag
 from mkt.account.serializers import AccountSerializer
 from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
 from mkt.api.exceptions import Conflict
-from mkt.regions import REGIONS_DICT, get_region
+from mkt.regions import get_region
 from mkt.versions.api import SimpleVersionSerializer
 from mkt.webapps.models import Webapp
 
