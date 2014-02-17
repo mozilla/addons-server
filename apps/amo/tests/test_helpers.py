@@ -23,7 +23,7 @@ from versions.models import License
 
 def render(s, context={}):
     t = jingo.env.from_string(s)
-    return t.render(**context)
+    return t.render(context)
 
 
 def test_strip_html():

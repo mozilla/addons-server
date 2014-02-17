@@ -24,11 +24,11 @@
       <div class="island" id="version-status" data-status="{{ addon.status }}">
         <div class="status-info">
           {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-            {{ status(_('You have <b>delisted</b> this app.')|safe) }}
+            {{ status(_('You have <b>delisted</b> this app.')) }}
 
           {% elif addon.status == amo.STATUS_NULL %}
             {# Links to complete app submission. #}
-            {{ status(_('This app is <b>incomplete</b>.')|safe) }}
+            {{ status(_('This app is <b>incomplete</b>.')) }}
             {% if next_step %}
               {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
               {%- trans next_url=next_step['url'], next_step_name=next_step['name'] %}
@@ -37,33 +37,33 @@
             {% endif %}
 
           {% elif addon.status == amo.STATUS_PENDING %}
-            <p>{{ status(_('This app is <b>pending review</b> by a Firefox Marketplace reviewer.')|safe) }}</p>
+            <p>{{ status(_('This app is <b>pending review</b> by a Firefox Marketplace reviewer.')) }}</p>
             {{ queue_position(addon, 'p') }}
             <p>{{ _('You will receive an email when the review is complete.') }}</p>
           {% elif addon.status == amo.STATUS_PUBLIC %}
             <p>
-              {{ status(_('This app is <b>public</b>.')|safe) }}
+              {{ status(_('This app is <b>public</b>.')) }}
               {% if addon.latest_version != addon.current_version and addon.latest_version.all_files[0].status == amo.STATUS_PENDING %}
                 <strong class="status status-pending">{{ _('Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer.') }}</strong>
                 {{ queue_position(addon, 'p') }}
               {% endif %}
             </p>
           {% elif addon.status == amo.STATUS_DISABLED %}
-            {{ status(_('This app has been <b>disabled by Mozilla</b>.')|safe) }}
+            {{ status(_('This app has been <b>disabled by Mozilla</b>.')) }}
             {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
               Your app was disabled by a site administrator. If you have any
               questions, please email {{ email }}.
             {% endtrans %}
           {% elif addon.status == amo.STATUS_BLOCKED %}
-            {{ status(_('Your app has been <b>blocked by Mozilla</b>.')|safe) }}
+            {{ status(_('Your app has been <b>blocked by Mozilla</b>.')) }}
             {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
               Your app was blocked by a site administrator. If you have any
               questions, please email {{ email }}.
             {% endtrans %}
           {% elif addon.status == amo.STATUS_REJECTED %}
-            {{ status(_('This app has been <b>rejected</b> by a Firefox Marketplace reviewer.')|safe) }}
+            {{ status(_('This app has been <b>rejected</b> by a Firefox Marketplace reviewer.')) }}
           {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}
-            {{ status(_('Your app has been <b>approved but not yet published</b>.')|safe) }}
+            {{ status(_('Your app has been <b>approved but not yet published</b>.')) }}
             {{ _('This app is waiting for your approval to be published.') }}
           {% endif %}
           {% if not (addon.is_disabled or addon.has_incomplete_status()) %}

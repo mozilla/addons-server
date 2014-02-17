@@ -10,14 +10,13 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db.models.loading import cache as app_cache
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.encoding import smart_str
 from django.views import debug
 from django.views.decorators.cache import never_cache
 
 import commonware.log
 import jinja2
-import jingo
 from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
 from tower import ugettext as _
@@ -72,8 +71,8 @@ def flagged(request):
         return redirect('zadmin.flagged')
 
     if not addons:
-        return jingo.render(request, 'zadmin/flagged_addon_list.html',
-                            {'addons': addons, 'reverse': reverse})
+        return render(request, 'zadmin/flagged_addon_list.html',
+                      {'addons': addons, 'reverse': reverse})
 
     sql = """SELECT {t}.* FROM {t} JOIN (
                 SELECT addon_id, MAX(created) AS created
@@ -100,8 +99,8 @@ def flagged(request):
         addon.version = versions.get(addon.id)
         addon.approval = approvals.get(addon.id)
 
-    return jingo.render(request, 'zadmin/flagged_addon_list.html',
-                        {'addons': addons})
+    return render(request, 'zadmin/flagged_addon_list.html',
+                  {'addons': addons})
 
 
 @admin_required(reviewers=True)
@@ -123,7 +122,7 @@ def langpacks(request):
             'default_path': settings.LANGPACK_PATH_DEFAULT % (
                 'firefox', amo.FIREFOX.latest_version)}
 
-    return jingo.render(request, 'zadmin/langpack_update.html', data)
+    return render(request, 'zadmin/langpack_update.html', data)
 
 
 @admin.site.admin_view
@@ -156,8 +155,7 @@ def hera(request):
                 log.info("[Hera] (user:%s) %s" % (request.user, msg))
                 messages.success(request, msg)
 
-    return jingo.render(request, 'zadmin/hera.html',
-                        {'form': form, 'boxes': boxes})
+    return render(request, 'zadmin/hera.html', {'form': form, 'boxes': boxes})
 
 
 @admin_required
@@ -178,8 +176,8 @@ def show_settings(request):
 
     settings_dict['WEBAPPS_RECEIPT_KEY'] = '********************'
 
-    return jingo.render(request, 'zadmin/settings.html',
-                        {'settings_dict': settings_dict})
+    return render(request, 'zadmin/settings.html',
+                  {'settings_dict': settings_dict})
 
 
 @admin_required
@@ -196,9 +194,8 @@ def fix_disabled_file(request):
             file_.unhide_disabled_file()
             messages.success(request, 'We have done a great thing.')
             return redirect('zadmin.fix-disabled')
-    return jingo.render(request, 'zadmin/fix-disabled.html',
-                        {'file': file_,
-                         'file_id': request.POST.get('file', '')})
+    return render(request, 'zadmin/fix-disabled.html',
+                  {'file': file_, 'file_id': request.POST.get('file', '')})
 
 
 @login_required
@@ -218,11 +215,10 @@ def validation(request, form=None):
     if not form:
         form = BulkValidationForm()
     jobs = ValidationJob.objects.order_by('-created')
-    return jingo.render(request, 'zadmin/validation.html',
-                        {'form': form,
-                         'success_form': NotifyForm(text='success'),
-                         'failure_form': NotifyForm(text='failure'),
-                         'validation_jobs': jobs})
+    return render(request, 'zadmin/validation.html',
+                  {'form': form, 'validation_jobs': jobs,
+                   'success_form': NotifyForm(text='success'),
+                   'failure_form': NotifyForm(text='failure')})
 
 
 def find_files(job):
@@ -425,12 +421,12 @@ def jetpack(request):
 
     groups = sorted_groupby(jetpacks, 'jetpack_version')
     by_version = dict((version, len(list(files))) for version, files in groups)
-    return jingo.render(request, 'zadmin/jetpack.html',
-                        dict(form=form, upgrader=upgrader,
-                             by_version=by_version, upgrading=upgrading,
-                             need_upgrade=need_upgrade, subset=subset,
-                             show=show, repacked=repacked,
-                             repack_status=repack_status))
+    return render(request, 'zadmin/jetpack.html',
+                  dict(form=form, upgrader=upgrader,
+                       by_version=by_version, upgrading=upgrading,
+                       need_upgrade=need_upgrade, subset=subset,
+                       show=show, repacked=repacked,
+                       repack_status=repack_status))
 
 
 def start_upgrade(minver, maxver):
@@ -479,13 +475,9 @@ def compat(request):
     usage_addons, usage_total = compat_stats(request, app, ver, minimum, ratio,
                                              binary)
 
-    return jingo.render(request, 'zadmin/compat.html', {
-        'app': APP,
-        'version': VER,
-        'form': form,
-        'usage_addons': usage_addons,
-        'usage_total': usage_total,
-    })
+    return render(request, 'zadmin/compat.html', {
+        'app': APP, 'version': VER, 'form': form, 'usage_addons': usage_addons,
+        'usage_total': usage_total})
 
 
 def compat_stats(request, app, ver, minimum, ratio, binary):
@@ -547,8 +539,8 @@ def featured_collection(request):
     except ValueError:
         pk = 0
     c = get_object_or_404(Collection, pk=pk)
-    return jingo.render(request, 'zadmin/featured_collection.html',
-                        dict(collection=c))
+    return render(request, 'zadmin/featured_collection.html',
+                  dict(collection=c))
 
 
 @admin_required
@@ -558,7 +550,7 @@ def features(request):
         form.save(commit=False)
         messages.success(request, 'Changes successfully saved.')
         return redirect('zadmin.features')
-    return jingo.render(request, 'zadmin/features.html', dict(form=form))
+    return render(request, 'zadmin/features.html', dict(form=form))
 
 
 @admin_required
@@ -568,7 +560,7 @@ def monthly_pick(request):
         form.save()
         messages.success(request, 'Changes successfully saved.')
         return redirect('zadmin.monthly_pick')
-    return jingo.render(request, 'zadmin/monthly_pick.html', dict(form=form))
+    return render(request, 'zadmin/monthly_pick.html', dict(form=form))
 
 
 @admin.site.admin_view
@@ -585,7 +577,7 @@ def elastic(request):
         'state': es.cluster_state(),
         'mappings': [(index, es_mappings.get(index, {})) for index in indexes],
     }
-    return jingo.render(request, 'zadmin/elastic.html', ctx)
+    return render(request, 'zadmin/elastic.html', ctx)
 
 
 @admin.site.admin_view
@@ -594,8 +586,7 @@ def mail(request):
     if request.method == 'POST':
         backend.clear()
         return redirect('zadmin.mail')
-    return jingo.render(request, 'zadmin/mail.html',
-                        dict(mail=backend.view_all()))
+    return render(request, 'zadmin/mail.html', dict(mail=backend.view_all()))
 
 
 @admin.site.admin_view
@@ -662,8 +653,8 @@ def email_devs(request):
             msg = '%s (for preview only, emails not sent!)' % msg
         messages.success(request, msg)
         return redirect('zadmin.email_devs')
-    return jingo.render(request, 'zadmin/email-devs.html',
-                        dict(form=form, preview_csv=preview_csv))
+    return render(request, 'zadmin/email-devs.html',
+                  dict(form=form, preview_csv=preview_csv))
 
 
 @any_permission_required([('Admin', '%'),
@@ -672,7 +663,7 @@ def email_devs(request):
                           ('BulkValidationAdminTools', 'View')])
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
-    return jingo.render(request, 'zadmin/index.html', {'log': log})
+    return render(request, 'zadmin/index.html', {'log': log})
 
 
 @admin_required(reviewers=True)
@@ -691,7 +682,7 @@ def addon_search(request):
         if len(qs) == 1:
             return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs
-    return jingo.render(request, 'zadmin/addon-search.html', ctx)
+    return render(request, 'zadmin/addon-search.html', ctx)
 
 
 @admin.site.admin_view
@@ -703,8 +694,7 @@ def oauth_consumer_create(request):
         form.instance.generate_random_codes()
         return redirect('admin:piston_consumer_changelist')
 
-    return jingo.render(request, 'zadmin/oauth-consumer-create.html',
-                        {'form': form})
+    return render(request, 'zadmin/oauth-consumer-create.html', {'form': form})
 
 
 @never_cache
@@ -775,15 +765,9 @@ def addon_manage(request, addon):
     for file in files:
         file_map.setdefault(file.version_id, []).append(file)
 
-    return jingo.render(request, 'zadmin/addon_manage.html', {
-        'addon': addon,
-        'pager': pager,
-        'versions': versions,
-        'form': form,
-        'formset': formset,
-        'form_map': form_map,
-        'file_map': file_map,
-    })
+    return render(request, 'zadmin/addon_manage.html', {
+        'addon': addon, 'pager': pager, 'versions': versions, 'form': form,
+        'formset': formset, 'form_map': form_map, 'file_map': file_map})
 
 
 @admin.site.admin_view
@@ -813,8 +797,8 @@ def memcache(request):
         stats = cache._cache.get_stats()
     else:
         stats = []
-    return jingo.render(request, 'zadmin/memcache.html',
-                        {'form': form, 'stats': stats})
+    return render(request, 'zadmin/memcache.html',
+                  {'form': form, 'stats': stats})
 
 
 @admin.site.admin_view
@@ -832,10 +816,8 @@ def site_events(request, event_id=None):
         return redirect('zadmin.site_events')
     pager = amo.utils.paginate(request, SiteEvent.objects.all(), 30)
     events = pager.object_list
-    return jingo.render(request, 'zadmin/site_events.html', {
-        'form': form,
-        'events': events,
-    })
+    return render(request, 'zadmin/site_events.html', {
+        'form': form, 'events': events})
 
 
 @admin.site.admin_view
@@ -850,13 +832,13 @@ def generate_error(request):
     form = GenerateErrorForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.explode()
-    return jingo.render(request, 'zadmin/generate-error.html', {'form': form})
+    return render(request, 'zadmin/generate-error.html', {'form': form})
 
 
 @any_permission_required([('Admin', '%'),
                           ('MailingLists', 'View')])
 def export_email_addresses(request):
-    return jingo.render(request, 'zadmin/export_button.html', {})
+    return render(request, 'zadmin/export_button.html', {})
 
 
 @any_permission_required([('Admin', '%'),
@@ -882,5 +864,5 @@ def price_tiers(request):
     if request.method == 'POST' and form.is_valid():
         output = update_from_csv(form.cleaned_data['prices'])
 
-    return jingo.render(request, 'zadmin/update-prices.html',
-                        {'result': output, 'form': form})
+    return render(request, 'zadmin/update-prices.html',
+                  {'result': output, 'form': form})

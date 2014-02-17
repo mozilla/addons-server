@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from django.views.decorators.cache import cache_page
 
@@ -247,8 +248,8 @@ class Link(object):
 # Cache it for a year.
 @cache_page(60 * 60 * 24 * 365)
 def js(request):
-    return jingo.render(request, 'addons/popups.html',
-                        content_type='text/javascript')
+    return render(request, 'addons/popups.html',
+                  content_type='text/javascript')
 
 
 def smorgasbord(request):
@@ -352,5 +353,5 @@ def smorgasbord(request):
     # Future Version.
     # No versions.
 
-    return jingo.render(request, 'addons/smorgasbord.html',
-                        {'addons': addons, 'beta': beta})
+    return render(request, 'addons/smorgasbord.html',
+                  {'addons': addons, 'beta': beta})

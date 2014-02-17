@@ -6,6 +6,7 @@ from urlparse import urlparse
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render
 
 import jingo
 import jinja2
@@ -67,7 +68,7 @@ def commonplace(request, repo, **kwargs):
     if media_url.netloc:
         ctx['media_origin'] = media_url.scheme + '://' + media_url.netloc
 
-    return jingo.render(request, 'commonplace/index.html', ctx)
+    return render(request, 'commonplace/index.html', ctx)
 
 
 def appcache_manifest(request):

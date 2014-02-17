@@ -7,10 +7,9 @@ from django.conf import settings
 from django.db import connection
 from django.db.models import Count, Q, Sum
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 import commonware.log
-import jingo
 from babel import numbers
 from slumber.exceptions import HttpClientError, HttpServerError
 from tower import ugettext as _
@@ -50,9 +49,7 @@ log = commonware.log.getLogger('z.lookup')
 def home(request):
     tx_form = TransactionSearchForm()
 
-    return jingo.render(request, 'lookup/home.html', {
-        'tx_form': tx_form
-    })
+    return render(request, 'lookup/home.html', {'tx_form': tx_form})
 
 
 @login_required
@@ -88,17 +85,14 @@ def user_summary(request, user_id):
         delete_log = None
 
     payment_accounts = user.paymentaccount_set.all()
-    return jingo.render(request, 'lookup/user_summary.html',
-                        {'account': user,
-                         'app_summary': app_summary,
-                         'delete_form': DeleteUserForm(),
-                         'delete_log': delete_log,
-                         'is_admin': is_admin,
-                         'refund_summary': refund_summary,
-                         'user_addons': user_addons,
-                         'payment_data': payment_data,
-                         'paypal_ids': paypal_ids,
-                         'payment_accounts': payment_accounts})
+    return render(request, 'lookup/user_summary.html',
+                  {'account': user, 'app_summary': app_summary,
+                   'delete_form': DeleteUserForm(), 'delete_log': delete_log,
+                   'is_admin': is_admin, 'refund_summary': refund_summary,
+                   'user_addons': user_addons, 'payment_data': payment_data,
+                   'paypal_ids': paypal_ids,
+                   'payment_accounts': payment_accounts})
+
 
 @login_required
 @permission_required('AccountLookup', 'View')
@@ -129,10 +123,10 @@ def transaction_summary(request, tx_uuid):
     tx_form = TransactionSearchForm()
     tx_refund_form = TransactionRefundForm()
 
-    return jingo.render(request, 'lookup/transaction_summary.html',
-                        dict({'uuid': tx_uuid, 'tx_form': tx_form,
-                              'tx_refund_form': tx_refund_form}.items() +
-                             tx_data.items()))
+    return render(request, 'lookup/transaction_summary.html',
+                  dict({'uuid': tx_uuid, 'tx_form': tx_form,
+                        'tx_refund_form': tx_refund_form}.items() +
+                            tx_data.items()))
 
 
 def _transaction_summary(tx_uuid):
@@ -180,11 +174,10 @@ def transaction_refund(request, tx_uuid):
 
     form = TransactionRefundForm(request.POST)
     if not form.is_valid():
-        return jingo.render(
-            request, 'lookup/transaction_summary.html',
-            dict({'uuid': tx_uuid, 'tx_refund_form': form,
-                  'tx_form': TransactionSearchForm()}.items() +
-                 _transaction_summary(tx_uuid).items()))
+        return render(request, 'lookup/transaction_summary.html',
+                      dict({'uuid': tx_uuid, 'tx_refund_form': form,
+                            'tx_form': TransactionSearchForm()}.items() +
+                           _transaction_summary(tx_uuid).items()))
 
     data = {'uuid': contrib.transaction_id,
             'manual': form.cleaned_data['manual']}
@@ -258,15 +251,11 @@ def app_summary(request, addon_id):
         payment_account = app.app_payment_account.payment_account
     except AddonPaymentAccount.DoesNotExist:
         payment_account = False
-    return jingo.render(request, 'lookup/app_summary.html',
-                        {'abuse_reports': app.abuse_reports.count(),
-                         'app': app,
-                         'authors': authors,
-                         'downloads': _app_downloads(app),
-                         'purchases': purchases,
-                         'refunds': refunds,
-                         'price': price,
-                         'payment_account': payment_account})
+    return render(request, 'lookup/app_summary.html',
+                  {'abuse_reports': app.abuse_reports.count(), 'app': app,
+                   'authors': authors, 'downloads': _app_downloads(app),
+                   'purchases': purchases, 'refunds': refunds, 'price': price,
+                   'payment_account': payment_account})
 
 
 @login_required
@@ -290,14 +279,10 @@ def user_purchases(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
     is_admin = acl.action_allowed(request, 'Users', 'Edit')
     products, contributions, listing = purchase_list(request, user, None)
-    return jingo.render(request, 'lookup/user_purchases.html',
-                        {'pager': products,
-                         'account': user,
-                         'is_admin': is_admin,
-                         'listing_filter': listing,
-                         'contributions': contributions,
-                         'single': bool(None),
-                         'show_link': False})
+    return render(request, 'lookup/user_purchases.html',
+                  {'pager': products, 'account': user, 'is_admin': is_admin,
+                   'listing_filter': listing, 'contributions': contributions,
+                   'single': bool(None), 'show_link': False})
 
 
 @login_required
@@ -314,17 +299,12 @@ def user_activity(request, user_id):
     admin_items = ActivityLog.objects.for_user(user).filter(
         action__in=amo.LOG_HIDE_DEVELOPER)
     amo.log(amo.LOG.ADMIN_VIEWED_LOG, request.amo_user, user=user)
-    return jingo.render(request, 'lookup/user_activity.html',
-                        {'pager': products,
-                         'account': user,
-                         'is_admin': is_admin,
-                         'listing_filter': listing,
-                         'collections': collections,
-                         'contributions': contributions,
-                         'single': bool(None),
-                         'user_items': user_items,
-                         'admin_items': admin_items,
-                         'show_link': False})
+    return render(request, 'lookup/user_activity.html',
+                  {'pager': products, 'account': user, 'is_admin': is_admin,
+                   'listing_filter': listing, 'collections': collections,
+                   'contributions': contributions, 'single': bool(None),
+                   'user_items': user_items, 'admin_items': admin_items,
+                   'show_link': False})
 
 
 def _expand_query(q, fields):
@@ -373,7 +353,7 @@ def transaction_search(request):
         return redirect(reverse('lookup.transaction_summary',
                                 args=[tx_form.cleaned_data['q']]))
     else:
-        return jingo.render(request, 'lookup/home.html', {'tx_form': tx_form})
+        return render(request, 'lookup/home.html', {'tx_form': tx_form})
 
 
 @login_required

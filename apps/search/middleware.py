@@ -1,6 +1,7 @@
 import logging
 
-import jingo
+from django.shortcuts import render
+
 from pyes.exceptions import ElasticSearchException
 from pyes.urllib3.connectionpool import HTTPError
 
@@ -14,4 +15,4 @@ class ElasticsearchExceptionMiddleware(object):
         if (issubclass(exception.__class__, (ElasticSearchException,
                                              HTTPError))):
             log.error(u'Elasticsearch error: %s' % exception)
-            return jingo.render(request, 'search/down.html', status=503)
+            return render(request, 'search/down.html', status=503)

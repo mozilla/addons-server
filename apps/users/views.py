@@ -5,7 +5,7 @@ from django import http
 from django.conf import settings
 from django.db import IntegrityError, transaction
 from django.shortcuts import (get_list_or_404, get_object_or_404,
-                              redirect)
+                              redirect, render)
 from django.contrib import auth
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
@@ -15,7 +15,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.http import base36_to_int, is_safe_url
 
 import commonware.log
-import jingo
 import waffle
 from django_browserid import get_audience, verify
 from django_statsd.clients import statsd
@@ -163,8 +162,8 @@ def delete(request):
     else:
         form = forms.UserDeleteForm()
 
-    return jingo.render(request, 'users/delete.html',
-                        {'form': form, 'amouser': amouser})
+    return render(request, 'users/delete.html',
+                  {'form': form, 'amouser': amouser})
 
 
 @login_required
@@ -180,7 +179,7 @@ def delete_photo(request):
         return http.HttpResponseRedirect(reverse('users.edit') +
                                          '#user-profile')
 
-    return jingo.render(request, 'users/delete_photo.html', dict(user=u))
+    return render(request, 'users/delete_photo.html', dict(user=u))
 
 
 @write
@@ -202,8 +201,8 @@ def edit(request):
                     messages.error(request, 'Error',
                                    'You cannot change your email on the '
                                    'developer preview site.')
-                    return jingo.render(request, 'users/edit.html',
-                                        {'form': form, 'amouser': amouser})
+                    return render(request, 'users/edit.html',
+                                  {'form': form, 'amouser': amouser})
 
                 l = {'user': amouser,
                      'mail1': original_email,
@@ -241,8 +240,8 @@ def edit(request):
                                       'resubmit.'))
     else:
         form = forms.UserEditForm(instance=amouser)
-    return jingo.render(request, 'users/edit.html',
-                        {'form': form, 'amouser': amouser, 'webapp': False})
+    return render(request, 'users/edit.html',
+                  {'form': form, 'amouser': amouser, 'webapp': False})
 
 
 @write
@@ -259,8 +258,7 @@ def admin_edit(request, user):
             return http.HttpResponseRedirect(reverse('zadmin.index'))
     else:
         form = forms.AdminUserEditForm(instance=user)
-    return jingo.render(request, 'users/edit.html',
-                        {'form': form, 'amouser': user})
+    return render(request, 'users/edit.html', {'form': form, 'amouser': user})
 
 
 @user_view
@@ -490,7 +488,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
                     username=request.user,
                     signature='AUTHFAIL',
                     msg='Account is deactivated')
-            return jingo.render(request, template, data)
+            return render(request, template, data)
 
         if user.confirmationcode:
             logout(request)
@@ -510,7 +508,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
                           title_safe=True, message_safe=True)
             data.update({'form': partial_form()})
             user.log_login_attempt(False)
-            return jingo.render(request, template, data)
+            return render(request, template, data)
 
         rememberme = request.POST.get('rememberme', None)
         if rememberme:
@@ -523,7 +521,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
         if dont_redirect:
             # We're recalling the middleware to re-initialize amo_user
             ACLMiddleware().process_request(request)
-            r = jingo.render(request, template, data)
+            r = render(request, template, data)
 
     if login_status is not None:
         user.log_login_attempt(login_status)
@@ -610,7 +608,7 @@ def profile(request, user):
     if not own_profile:
         data['abuse_form'] = AbuseForm(request=request)
 
-    return jingo.render(request, 'users/profile.html', data)
+    return render(request, 'users/profile.html', data)
 
 
 @user_view
@@ -647,7 +645,7 @@ def themes(request, user, category=None):
         'sort_opts': filter_.opts
     })
 
-    return jingo.render(request, 'browse/personas/grid.html', ctx)
+    return render(request, 'browse/personas/grid.html', ctx)
 
 
 @anonymous_csrf
@@ -713,8 +711,8 @@ def register(request):
                 f.users_cache = [mkt_user[0]]
                 f.save(use_https=request.is_secure(),
                        email_template_name='users/email/pwreset.ltxt',
-                        request=request)
-                return jingo.render(request, 'users/newpw_sent.html', {})
+                       request=request)
+                return render(request, 'users/newpw_sent.html', {})
         else:
             messages.error(request, _('There are errors in this form'),
                             _('Please correct them and resubmit.'))
@@ -722,8 +720,8 @@ def register(request):
         form = forms.UserRegisterForm()
 
     reg_action = reverse('users.register')
-    return jingo.render(request, 'users/register.html',
-                        {'form': form, 'register_action': reg_action})
+    return render(request, 'users/register.html',
+                  {'form': form, 'register_action': reg_action})
 
 
 @anonymous_csrf_exempt
@@ -734,8 +732,8 @@ def report_abuse(request, user):
         send_abuse_report(request, user, form.cleaned_data['text'])
         messages.success(request, _('User reported.'))
     else:
-        return jingo.render(request, 'users/report_abuse_full.html',
-                            {'profile': user, 'abuse_form': form, })
+        return render(request, 'users/report_abuse_full.html',
+                      {'profile': user, 'abuse_form': form})
     return redirect(user.get_url_path())
 
 
@@ -771,8 +769,8 @@ def password_reset_confirm(request, uidb36=None, token=None):
         validlink = False
         form = None
 
-    return jingo.render(request, 'users/pwreset_confirm.html',
-                        {'form': form, 'validlink': validlink})
+    return render(request, 'users/pwreset_confirm.html',
+                  {'form': form, 'validlink': validlink})
 
 
 @never_cache
@@ -806,6 +804,6 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
         unsubscribed = False
         email = ''
 
-    return jingo.render(request, 'users/unsubscribe.html',
-            {'unsubscribed': unsubscribed, 'email': email,
-             'perm_settings': perm_settings})
+    return render(request, 'users/unsubscribe.html',
+                  {'unsubscribed': unsubscribed, 'email': email,
+                   'perm_settings': perm_settings})
