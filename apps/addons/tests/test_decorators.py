@@ -89,13 +89,6 @@ class TestAddonView(amo.tests.TestCase):
         request, addon = self.func.call_args[0]
         eq_(addon, app)
 
-    def test_app(self):
-        app = amo.tests.app_factory(name='xxxx')
-        app.update(slug=str(app.id) + 'foo', app_slug=str(app.id))
-        res = self.view(self.request, app_slug=str(app.id))
-        eq_(res, mock.sentinel.OK)
-        eq_(self.func.call_args[0][1].type, amo.ADDON_WEBAPP)
-
 
 class TestPremiumDecorators(amo.tests.TestCase):
 

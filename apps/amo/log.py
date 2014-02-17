@@ -685,10 +685,8 @@ def log(action, *args, **kw):
     from access.models import Group
     from addons.models import Addon
     from amo import get_user, logger_log
-    from devhub.models import (ActivityLog, ActivityLogAttachment, AddonLog,
-                               AppLog, CommentLog, GroupLog, UserLog,
-                               VersionLog)
-    from mkt.webapps.models import Webapp
+    from devhub.models import (ActivityLog, AddonLog, CommentLog, GroupLog,
+                               UserLog, VersionLog)
     from users.models import UserProfile
     from versions.models import Version
 
@@ -713,25 +711,9 @@ def log(action, *args, **kw):
         # Double save necessary since django resets the created date on save.
         al.save()
 
-    if 'attachments' in kw:
-        formset = kw['attachments']
-        storage = get_storage_class()()
-        for form in formset:
-            data = form.cleaned_data
-            if 'attachment' in data:
-                attachment = data['attachment']
-                storage.save('%s/%s' % (settings.REVIEWER_ATTACHMENTS_PATH,
-                                        attachment.name), attachment)
-                ActivityLogAttachment(activity_log=al,
-                                      description=data['description'],
-                                      mimetype=attachment.content_type,
-                                      filepath=attachment.name).save()
-
     for arg in args:
         if isinstance(arg, tuple):
-            if arg[0] == Webapp:
-                AppLog(addon_id=arg[1], activity_log=al).save()
-            elif arg[0] == Addon:
+            if arg[0] == Addon:
                 AddonLog(addon_id=arg[1], activity_log=al).save()
             elif arg[0] == Version:
                 VersionLog(version_id=arg[1], activity_log=al).save()
@@ -739,10 +721,6 @@ def log(action, *args, **kw):
                 UserLog(user_id=arg[1], activity_log=al).save()
             elif arg[0] == Group:
                 GroupLog(group_id=arg[1], activity_log=al).save()
-
-        # Webapp first since Webapp subclasses Addon.
-        if isinstance(arg, Webapp):
-            AppLog(addon=arg, activity_log=al).save()
         elif isinstance(arg, Addon):
             AddonLog(addon=arg, activity_log=al).save()
         elif isinstance(arg, Version):

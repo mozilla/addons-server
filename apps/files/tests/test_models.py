@@ -28,7 +28,6 @@ from files.helpers import copyfileobj
 from files.utils import check_rdf, JetpackUpgrader, parse_addon, parse_xpi
 from versions.models import Version
 
-from mkt.site.fixtures import fixture
 
 class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     """
@@ -50,13 +49,11 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     def file_path(self, *args, **kw):
         return self.file_fixture_path(*args, **kw)
 
-    def get_upload(self, filename=None, abspath=None, validation=None,
-                   is_webapp=False):
+    def get_upload(self, filename=None, abspath=None, validation=None):
         xpi = open(abspath if abspath else self.file_path(filename)).read()
         upload = FileUpload.from_post([xpi], filename=abspath or filename,
                                       size=1234)
         # Simulate what fetch_manifest() does after uploading an app.
-        upload.is_webapp = is_webapp
         upload.validation = (validation or
                              json.dumps(dict(errors=0, warnings=1, notices=2,
                                              metadata={}, messages=[])))
@@ -216,35 +213,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f = File.objects.get(id=67442)
         eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx.xpi')
 
-    def test_generate_filename_webapp(self):
-        f = File.objects.get(id=67442)
-        f.version.addon.app_slug = 'testing-123'
-        f.version.addon.type = amo.ADDON_WEBAPP
-        eq_(f.generate_filename(), 'testing-123-2.1.072.webapp')
-
-    def test_generate_filename_packaged_app(self):
-        f = File.objects.get(id=67442)
-        f.version.addon.app_slug = 'testing-123'
-        f.version.addon.type = amo.ADDON_WEBAPP
-        f.version.addon.is_packaged = True
-        eq_(f.generate_filename(), 'testing-123-2.1.072.zip')
-
-    def test_generate_webapp_fn_non_ascii(self):
-        f = File()
-        f.version = Version(version='0.1.7')
-        f.version.compatible_apps = (amo.FIREFOX,)
-        f.version.addon = Addon(app_slug=u' フォクすけ  といっしょ',
-                                type=amo.ADDON_WEBAPP)
-        eq_(f.generate_filename(), 'app-0.1.7.webapp')
-
-    def test_generate_webapp_fn_partial_non_ascii(self):
-        f = File()
-        f.version = Version(version='0.1.7')
-        f.version.compatible_apps = (amo.FIREFOX,)
-        f.version.addon = Addon(app_slug=u'myapp フォクすけ  といっしょ',
-                                type=amo.ADDON_WEBAPP)
-        eq_(f.generate_filename(), 'myapp-0.1.7.webapp')
-
     def test_pretty_filename(self):
         f = File.objects.get(id=67442)
         f.generate_filename()
@@ -326,11 +294,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.version.addon.update(disabled_by_user=True)
         eq_(f.can_be_perf_tested(), False)
 
-    def test_webapp_is_not_testable(self):
-        f = File.objects.get(pk=67442)
-        f.version.addon.update(type=amo.ADDON_WEBAPP)
-        eq_(f.can_be_perf_tested(), False)
-
     def test_file_is_mirrorable(self):
         f = File.objects.get(pk=67442)
         eq_(f.is_mirrorable(), True)
@@ -341,11 +304,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_premium_addon_not_mirrorable(self):
         f = File.objects.get(pk=67442)
         f.version.addon.premium_type = amo.ADDON_PREMIUM
-        eq_(f.is_mirrorable(), False)
-
-    def test_dont_mirror_apps(self):
-        f = File.objects.get(pk=67442)
-        f.version.addon.update(type=amo.ADDON_WEBAPP)
         eq_(f.is_mirrorable(), False)
 
     def test_addon(self):
@@ -1051,23 +1009,3 @@ class TestLanguagePack(LanguagePackBase):
         self.addon.update(type=amo.ADDON_DICT)
         self.file_create('langpack-localepicker')
         assert not get_localepicker.called
-
-
-class TestSignedPath(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.file_ = File.objects.get(pk=81555)
-
-    def test_path(self):
-        path = (self.file_.file_path
-                    .replace('.webapp', '.signed.webapp')
-                    .replace(settings.ADDONS_PATH, settings.SIGNED_APPS_PATH))
-        eq_(self.file_.signed_file_path, path)
-
-    def test_reviewer_path(self):
-        path = (self.file_.file_path
-                    .replace('.webapp', '.signed.webapp')
-                    .replace(settings.ADDONS_PATH,
-                             settings.SIGNED_APPS_REVIEWER_PATH))
-        eq_(self.file_.signed_reviewer_file_path, path)

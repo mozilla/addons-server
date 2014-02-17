@@ -1,7 +1,0 @@
-{% trans -%}
-Your request for a refund for {{ name }} was accepted. The app will be uninstalled and information the app has stored on the device may be deleted.
-
-You should receive a credit in the amount of the app on your phone bill. If you do not receive a credit please contact your carrier.
-
-Thank you for shopping in the Firefox Marketplace.
-{% endtrans %}

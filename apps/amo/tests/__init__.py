@@ -42,27 +42,18 @@ import amo
 import amo.search
 import stats.search
 from access.models import Group, GroupUser
-from addons.models import (Addon, Category, Persona,
+from addons.models import (Addon, Persona,
                            update_search_index as addon_update_search_index)
 from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
-from constants.applications import DEVICE_TYPES
-from files.helpers import copyfileobj
 from files.models import File, Platform
 from lib.es.signals import process, reset
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
 from users.models import RequestUser, UserProfile
-
-import mkt
-from mkt.constants import regions
-from mkt.webapps.models import (update_search_index as app_update_search_index,
-                                WebappIndexer, Webapp)
-from mkt.webapps.tasks import unindex_webapps
-from mkt.site.fixtures import fixture
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.
@@ -213,10 +204,7 @@ class TestClient(Client):
 
 
 ES_patchers = [mock.patch('amo.search.get_es', spec=True),
-               mock.patch('elasticutils.contrib.django', spec=True),
-               mock.patch('mkt.webapps.tasks.WebappIndexer', spec=True),
-               mock.patch('mkt.webapps.tasks.get_indices', spec=True,
-                          side_effect=lambda i: [i])]
+               mock.patch('elasticutils.contrib.django', spec=True)]
 
 
 def start_es_mock():
@@ -466,33 +454,6 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         eq_(res['Access-Control-Allow-Headers'],
             'X-HTTP-Method-Override, Content-Type')
 
-    def assertApiUrlEqual(self, *args, **kwargs):
-        """
-        Allows equality comparison of two or more URLs agnostic of API version.
-        This is done by prepending '/api/vx' (where x is equal to the `version`
-        keyword argument or API_CURRENT_VERSION) to each string passed as a
-        positional argument if that URL doesn't already start with that string.
-
-        Example usage:
-
-        url = '/api/v1/apps/app/bastacorp/'
-        self.assertApiUrlEqual(url, '/apps/app/bastacorp1/')
-
-        # settings.API_CURRENT_VERSION = 2
-        url = '/api/v1/apps/app/bastacorp/'
-        self.assertApiUrlEqual(url, '/apps/app/bastacorp/', version=1)
-        """
-        PATH = 2
-        version = kwargs.get('version', settings.API_CURRENT_VERSION)
-        urls = list(args)
-        prefix = '/api/v%d' % version
-        for idx, url in enumerate(urls):
-            urls[idx] = list(urlsplit(url))
-            if not urls[idx][PATH].startswith(prefix):
-                urls[idx][PATH] = prefix + urls[idx][PATH]
-            urls[idx] = SplitResult(*urls[idx])
-        eq_(*urls)
-
     def update_session(self, session):
         """
         Update the session on the client. Needed if you manipulate the session
@@ -592,39 +553,6 @@ class AMOPaths(object):
             os.makedirs(os.path.dirname(file.file_path))
         shutil.copyfile(self.xpi_path(name), file.file_path)
 
-    def manifest_path(self, name):
-        return os.path.join(settings.ROOT,
-                            'mkt/submit/tests/webapps/%s' % name)
-
-    def manifest_copy_over(self, dest, name):
-        with storage.open(dest, 'wb') as f:
-            copyfileobj(open(self.manifest_path(name)), f)
-
-    @staticmethod
-    def sample_key():
-        return os.path.join(settings.ROOT,
-                            'mkt/webapps/tests/sample.key')
-
-    def sample_packaged_key(self):
-        return os.path.join(settings.ROOT,
-                            'mkt/webapps/tests/sample.packaged.pem')
-
-    def mozball_image(self):
-        return os.path.join(settings.ROOT,
-                            'mkt/developers/tests/addons/mozball-128.png')
-
-    def preview_image(self):
-        return os.path.join(settings.ROOT,
-                            'apps/amo/tests/images/preview.jpg')
-
-    def packaged_app_path(self, name):
-        return os.path.join(
-            settings.ROOT, 'mkt/submit/tests/packaged/%s' % name)
-
-    def packaged_copy_over(self, dest, name):
-        with storage.open(dest, 'wb') as f:
-            copyfileobj(open(self.packaged_app_path(name)), f)
-
 
 def assert_no_validation_errors(validation):
     """Assert that the validation (JSON) does not contain a traceback.
@@ -670,8 +598,6 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     # Disconnect signals until the last save.
     post_save.disconnect(addon_update_search_index, sender=Addon,
                          dispatch_uid='addons.search.index')
-    post_save.disconnect(app_update_search_index, sender=Webapp,
-                         dispatch_uid='webapp.search.index')
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
@@ -713,44 +639,14 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
                       dispatch_uid='addons.search.index')
-    post_save.connect(app_update_search_index, sender=Webapp,
-                      dispatch_uid='webapp.search.index')
 
     a.save()  # Save 4.
 
     if 'nomination' in version_kw:
         # If a nomination date was set on the version, then it might have been
-        # erased at post_save by addons.models.watch_status() or
-        # mkt.webapps.models.watch_status().
+        # erased at post_save by addons.models.watch_status()
         version.save()
     return a
-
-
-def app_factory(**kw):
-    """Create an app. Any keyword argument is passed to addon_factory, except
-    for the booleans 'rated' and 'complete'. Those allow you to create an app
-    that automatically have content ratings and automatically have everything
-    needed to be considered 'complete', respectively."""
-    kw.update(type=amo.ADDON_WEBAPP)
-    complete = kw.pop('complete', False)
-    rated = kw.pop('rated', False)
-    if complete:
-        kw.setdefault('support_email', 'support@example.com')
-    app = amo.tests.addon_factory(**kw)
-    if rated or complete:
-        app.set_content_ratings(
-            dict((body, body.ratings[0]) for body in
-            mkt.ratingsbodies.ALL_RATINGS_BODIES))
-        app.set_iarc_info(123, 'abc')
-        app.set_descriptors([])
-        app.set_interactives([])
-    if complete:
-        cat, _ = Category.objects.get_or_create(slug='utilities',
-                                                type=amo.ADDON_WEBAPP)
-        app.addoncategory_set.create(category=cat)
-        app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
-        app.previews.create()
-    return app
 
 
 def collection_factory(**kw):
@@ -823,7 +719,7 @@ def version_factory(file_kw={}, **kw):
     v = Version.objects.create(version=version, **kw)
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
     v.save()
-    if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
+    if kw.get('addon').type != amo.ADDON_PERSONA:
         a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
         av_min, _ = AppVersion.objects.get_or_create(application=a,
                                                      version=min_app_version)
@@ -853,8 +749,7 @@ class ESTestCase(TestCase):
         # because we may have indexation occuring in upper classes.
         for key, index in settings.ES_INDEXES.items():
             if not index.startswith('test_'):
-                settings.ES_INDEXES[key] = 'test_%s_%s' % (
-                    'mkt' if settings.MARKETPLACE else 'amo', index)
+                settings.ES_INDEXES[key] = 'test_%s_%s' % ('amo', index)
 
         super(ESTestCase, cls).setUpClass()
         try:
@@ -893,8 +788,6 @@ class ESTestCase(TestCase):
 
         addons.search.setup_mapping()
         stats.search.setup_indexes()
-        if settings.MARKETPLACE:
-            WebappIndexer.setup_mapping()
 
     @classmethod
     def tearDownClass(cls):
@@ -902,10 +795,7 @@ class ESTestCase(TestCase):
             if hasattr(cls, '_addons'):
                 Addon.objects.filter(
                     pk__in=[a.id for a in cls._addons]).delete()
-                unindex_webapps([a.id for a in cls._addons
-                                 if a.type == amo.ADDON_WEBAPP])
-                unindex_addons([a.id for a in cls._addons
-                                if a.type != amo.ADDON_WEBAPP])
+                unindex_addons([a.id for a in cls._addons])
             amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
         finally:
             # Make sure we're calling super's tearDownClass even if something
@@ -944,31 +834,3 @@ class ESTestCase(TestCase):
             addon_factory(),
             addon_factory(),
         ]
-
-
-class WebappTestCase(TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.app = self.get_app()
-
-    def get_app(self):
-        return Addon.objects.get(id=337141)
-
-    def make_game(self, app=None, rated=False):
-        app = make_game(self.app or app, rated)
-
-
-def make_game(app, rated):
-    cat, created = Category.objects.get_or_create(slug='games',
-        type=amo.ADDON_WEBAPP)
-    app.addoncategory_set.create(category=cat)
-    if rated:
-        app.set_content_ratings(
-            dict((body, body.ratings[0]) for body in
-            mkt.ratingsbodies.ALL_RATINGS_BODIES))
-        app.set_iarc_info(123, 'abc')
-        app.set_descriptors([])
-        app.set_interactives([])
-    app = app.reload()
-    return app

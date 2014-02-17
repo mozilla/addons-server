@@ -46,7 +46,6 @@ def test_match_rules():
         'Stats:View',
         'CollectionStats:View',
         'Addons:Review',
-        'Apps:Review',
         'Personas:Review',
         'Locales:Edit',
         'Locale.de:Edit',
@@ -209,15 +208,6 @@ class TestCheckReviewer(TestCase):
     def test_no_perm(self):
         req = req_factory_factory('noop', user=self.user)
         assert not check_reviewer(req)
-        assert not check_reviewer(req, only='app')
-        assert not check_reviewer(req, only='addon')
-        assert not check_reviewer(req, only='persona')
-
-    def test_perm_apps(self):
-        self.grant_permission(self.user, 'Apps:Review')
-        req = req_factory_factory('noop', user=self.user)
-        assert check_reviewer(req)
-        assert check_reviewer(req, only='app')
         assert not check_reviewer(req, only='addon')
         assert not check_reviewer(req, only='persona')
 
@@ -225,7 +215,6 @@ class TestCheckReviewer(TestCase):
         self.grant_permission(self.user, 'Addons:Review')
         req = req_factory_factory('noop', user=self.user)
         assert check_reviewer(req)
-        assert not check_reviewer(req, only='app')
         assert check_reviewer(req, only='addon')
         assert not check_reviewer(req, only='persona')
 
@@ -233,6 +222,5 @@ class TestCheckReviewer(TestCase):
         self.grant_permission(self.user, 'Personas:Review')
         req = req_factory_factory('noop', user=self.user)
         assert check_reviewer(req)
-        assert not check_reviewer(req, only='app')
         assert not check_reviewer(req, only='addon')
         assert check_reviewer(req, only='persona')

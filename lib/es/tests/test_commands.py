@@ -3,7 +3,6 @@ import threading
 
 from nose.exc import SkipTest
 from nose.tools import eq_
-from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 
 from django.conf import settings
 from django.core import management
@@ -14,11 +13,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from es.management.commands.reindex import call_es
-from es.management.commands.fixup_mkt_index import Command as FixupCommand
 from lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
-
-from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp, WebappIndexer
 
 
 class TestIndexCommand(amo.tests.ESTestCase):
@@ -133,45 +128,3 @@ class TestIndexCommand(amo.tests.ESTestCase):
         new_indices = self.get_indices_aliases()
         eq_(len(old_indices), len(new_indices), (old_indices, new_indices))
         assert new_indices != old_indices
-
-
-class TestFixupCommand(amo.tests.ESTestCase):
-    fixtures = fixture('webapp_337141')
-
-    @classmethod
-    def setUpClass(cls):
-        if not settings.MARKETPLACE:
-            raise SkipTest('Only a marketplace management command')
-        super(TestFixupCommand, cls).setUpClass()
-
-    def setUp(self):
-        super(TestFixupCommand, self).setUp()
-        self.index = WebappIndexer.get_index()
-        self.doctype = WebappIndexer.get_mapping_type_name()
-        self.es = WebappIndexer.get_es()
-        self.app = Webapp.objects.get(pk=337141)
-
-    def test_missing(self):
-        try:
-            self.es.delete(self.index, self.doctype, self.app.id)
-        except ElasticHttpNotFoundError:
-            pass  # Already not in the index.
-
-        FixupCommand().handle()
-        self.es.refresh(self.index)
-
-        # If not there this will throw `ElasticHttpNotFoundError`.
-        self.es.get(self.index, self.doctype, self.app.id, fields='id')
-
-    def test_missing_no_deleted(self):
-        self.app.update(status=amo.STATUS_DELETED)
-        try:
-            self.es.delete(self.index, self.doctype, self.app.id)
-        except ElasticHttpNotFoundError:
-            pass  # Already not in the index.
-
-        FixupCommand().handle()
-        self.es.refresh(self.index)
-
-        with self.assertRaises(ElasticHttpNotFoundError):
-            self.es.get(self.index, self.doctype, self.app.id, fields='id')

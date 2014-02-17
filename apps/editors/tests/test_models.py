@@ -130,11 +130,6 @@ class TestQueue(amo.tests.TestCase):
         self.new_file(name='Addon 2', version=u'0.2')
         eq_(self.Queue.objects.all().count(), 2)
 
-    def test_no_apps(self):
-        self.new_file(name='Addon 1', version=u'0.1',
-                      addon_type=amo.ADDON_WEBAPP)
-        eq_(self.Queue.objects.count(), 0)
-
 
 class TestPendingQueue(TestQueue):
     __test__ = True
@@ -389,7 +384,6 @@ class TestReviewerScore(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = amo.tests.addon_factory(status=amo.STATUS_NOMINATED)
-        self.app = amo.tests.app_factory(status=amo.STATUS_NOMINATED)
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
 
     def _give_points(self, user=None, addon=None, status=None):
@@ -444,22 +438,6 @@ class TestReviewerScore(amo.tests.TestCase):
                     except AttributeError:
                         event = None
                 self.check_event(tk, sk, event)
-
-    def test_events_webapps(self):
-        self.addon = amo.tests.app_factory()
-        self.check_event(self.addon.type, amo.STATUS_PENDING,
-                         amo.REVIEWED_WEBAPP_HOSTED)
-
-        RereviewQueue.objects.create(addon=self.addon)
-        self.check_event(self.addon.type, amo.STATUS_PUBLIC,
-                         amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
-        RereviewQueue.objects.all().delete()
-
-        self.addon.is_packaged = True
-        self.check_event(self.addon.type, amo.STATUS_PENDING,
-                         amo.REVIEWED_WEBAPP_PACKAGED)
-        self.check_event(self.addon.type, amo.STATUS_PUBLIC,
-                         amo.REVIEWED_WEBAPP_UPDATE)
 
     def test_award_points(self):
         self._give_points()
@@ -531,43 +509,6 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(len(leaders['leader_top']), 1)  # Only the editor is here.
         assert user2.id not in [l['user_id'] for l in leaders['leader_top']], (
             'Unexpected admin user found in leaderboards.')
-
-    def test_no_marketplace_points_in_amo_leaderboards(self):
-        self._give_points()
-        self._give_points(status=amo.STATUS_LITE)
-        self._give_points(addon=self.app, status=amo.STATUS_NOMINATED)
-        leaders = ReviewerScore.get_leaderboards(self.user,
-                                                 types=amo.REVIEWED_AMO)
-        eq_(leaders['leader_top'][0]['total'],
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
-
-    def test_no_amo_points_in_marketplace_leaderboards(self):
-        self._give_points()
-        self._give_points(status=amo.STATUS_LITE)
-        self._give_points(addon=self.app, status=amo.STATUS_NOMINATED)
-        leaders = ReviewerScore.get_leaderboards(
-            self.user, types=amo.REVIEWED_MARKETPLACE)
-        eq_(leaders['leader_top'][0]['total'],
-            amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED])
-
-    def test_get_breakdown(self):
-        self._give_points()
-        self._give_points(addon=amo.tests.app_factory())
-        breakdown = ReviewerScore.get_breakdown(self.user)
-        eq_(len(breakdown), 2)
-        eq_(set([b.atype for b in breakdown]),
-            set([amo.ADDON_EXTENSION, amo.ADDON_WEBAPP]))
-
-    def test_get_breakdown_since(self):
-        self._give_points()
-        self._give_points(addon=amo.tests.app_factory())
-        rs = list(ReviewerScore.objects.all())
-        rs[0].update(created=self.days_ago(50))
-        breakdown = ReviewerScore.get_breakdown_since(self.user,
-                                                      self.days_ago(30))
-        eq_(len(breakdown), 1)
-        eq_([b.atype for b in breakdown], [rs[1].addon.type])
 
     def test_get_leaderboards_last(self):
         users = []

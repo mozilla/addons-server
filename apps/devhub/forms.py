@@ -3,8 +3,6 @@ import os
 import re
 import socket
 
-from jinja2 import Markup
-
 from django import forms
 from django.conf import settings
 from django.db.models import Q
@@ -12,7 +10,6 @@ from django.forms.models import modelformset_factory
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
-from django.contrib import messages
 
 import commonware
 import happyforms
@@ -24,9 +21,8 @@ from access import acl
 import amo
 import addons.forms
 import paypal
-from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
+from addons.models import (Addon, AddonDependency, AddonUser,
                            BlacklistedSlug, Charity, Preview)
-from amo.helpers import loc
 from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
 from amo.utils import raise_required, slugify
@@ -34,13 +30,11 @@ from amo.utils import raise_required, slugify
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
-from market.models import AddonPremium, Price
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation, Translation
 from translations.forms import TranslationFormMixin
 from versions.models import License, Version, ApplicationsVersions
-from mkt.webapps.models import Webapp
 from . import tasks
 
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -266,12 +260,8 @@ def ProfileForm(*args, **kw):
     addon = kw['instance']
     fields_required = (kw.pop('required', False) or
                        bool(addon.takes_contributions))
-    if addon.is_webapp():
-        the_reason_label = _('Why did you make this app?')
-        the_future_label = _("What's next for this app?")
-    else:
-        the_reason_label = _('Why did you make this add-on?')
-        the_future_label = _("What's next for this add-on?")
+    the_reason_label = _('Why did you make this add-on?')
+    the_future_label = _("What's next for this add-on?")
 
     class _Form(TranslationFormMixin, happyforms.ModelForm):
         the_reason = TransField(widget=TransTextarea(),
@@ -458,30 +448,6 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
-def verify_app_domain(manifest_url):
-    if waffle.switch_is_active('webapps-unique-by-domain'):
-        domain = Webapp.domain_from_url(manifest_url)
-        if Addon.objects.filter(app_domain=domain).exists():
-            raise forms.ValidationError(
-                _('An app already exists on this domain, '
-                  'only one app per domain is allowed.'))
-
-
-class NewWebappForm(happyforms.Form):
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
-        queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy(u'There was an error with your '
-                                                u'upload. Please try again.')})
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request', None)
-        super(AddonUploadForm, self).__init__(*args, **kw)
-
-    def clean_upload(self):
-        upload = self.cleaned_data['upload']
-        verify_app_domain(upload.name)  # JS puts manifest URL here
-        return upload
-
 class AddonUploadForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects,
@@ -611,8 +577,7 @@ class FileForm(happyforms.ModelForm):
 
     def __init__(self, *args, **kw):
         super(FileForm, self).__init__(*args, **kw)
-        if kw['instance'].version.addon.type in (amo.ADDON_SEARCH,
-                                                 amo.ADDON_WEBAPP):
+        if kw['instance'].version.addon.type == amo.ADDON_SEARCH:
             del self.fields['platform']
         else:
             compat = kw['instance'].version.compatible_platforms()
@@ -680,14 +645,6 @@ class Step3Form(addons.forms.AddonFormBasic):
         model = Addon
         fields = ('name', 'slug', 'summary', 'tags', 'description',
                   'homepage', 'support_email', 'support_url')
-
-
-class Step3WebappForm(Step3Form):
-    """Form to override certain fields for webapps"""
-    name = TransField(max_length=128)
-    homepage = TransField.adapt(forms.URLField)(required=False)
-    support_url = TransField.adapt(forms.URLField)(required=False)
-    support_email = TransField.adapt(forms.EmailField)(required=False)
 
 
 class PreviewForm(happyforms.ModelForm):
@@ -979,25 +936,13 @@ class CheckCompatibilityForm(happyforms.Form):
         return AppVersion.objects.get(pk=int(v))
 
 
-class NewManifestForm(happyforms.Form):
-    manifest = forms.URLField()
-
-    def clean_manifest(self):
-        manifest = self.cleaned_data['manifest']
-        verify_app_domain(manifest)
-        return manifest
-
-
 def DependencyFormSet(*args, **kw):
     addon_parent = kw.pop('addon')
 
     # Add-ons: Required add-ons cannot include apps nor personas.
     # Apps:    Required apps cannot include any add-ons.
-    qs = Addon.objects.reviewed().exclude(id=addon_parent.id)
-    if addon_parent.is_webapp():
-        qs = qs.filter(type=amo.ADDON_WEBAPP)
-    else:
-        qs = qs.exclude(type__in=[amo.ADDON_PERSONA, amo.ADDON_WEBAPP])
+    qs = (Addon.objects.reviewed().exclude(id=addon_parent.id).
+          exclude(type__in=[amo.ADDON_PERSONA]))
 
     class _Form(happyforms.ModelForm):
         addon = forms.CharField(required=False, widget=forms.HiddenInput)
@@ -1018,10 +963,7 @@ def DependencyFormSet(*args, **kw):
             form_count = len([f for f in self.forms
                               if not f.cleaned_data.get('DELETE', False)])
             if form_count > 3:
-                if addon_parent.is_webapp():
-                    error = loc('There cannot be more than 3 required apps.')
-                else:
-                    error = _('There cannot be more than 3 required add-ons.')
+                error = _('There cannot be more than 3 required add-ons.')
                 raise forms.ValidationError(error)
 
     FormSet = modelformset_factory(AddonDependency, formset=_FormSet,

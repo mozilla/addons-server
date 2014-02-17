@@ -21,8 +21,6 @@ from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
                                 PROVIDER_CHOICES)
 from lib.constants import ALL_CURRENCIES
-from mkt.constants import apps
-from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -256,25 +254,7 @@ def create_addon_purchase(sender, instance, **kw):
               % (unicode(amo.CONTRIB_TYPES[instance.type]),
                  instance.addon.pk, instance.user.pk))
 
-    if instance.type == amo.CONTRIB_PURCHASE:
-        log.debug('Creating addon purchase: addon %s, user %s'
-                  % (instance.addon.pk, instance.user.pk))
-
-        data = {'addon': instance.addon, 'user': instance.user}
-        purchase, created = AddonPurchase.objects.safer_get_or_create(**data)
-        purchase.update(type=amo.CONTRIB_PURCHASE)
-        from mkt.webapps.models import Installed  # Circular import
-        # Ensure that devs have the correct installed object found
-        # or created.
-        #
-        is_dev = instance.addon.has_author(instance.user,
-                 (amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV))
-        install_type = (apps.INSTALL_TYPE_DEVELOPER if is_dev
-                        else apps.INSTALL_TYPE_USER)
-        Installed.objects.safer_get_or_create(user=instance.user,
-            addon=instance.addon, install_type=install_type)
-
-    elif instance.type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
+    if instance.type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
         purchases = AddonPurchase.objects.filter(addon=instance.addon,
                                                  user=instance.user)
         for p in purchases:

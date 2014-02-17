@@ -77,20 +77,6 @@ class TestActivity(HubTest):
         eq_(doc('.subscribe-feed').attr('href')[:-32],
             reverse('devhub.feed_all') + '?privaterss=')
 
-    def test_ignore_apps_on_dashboard(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        self.log_creates(1)
-        rp = self.client.get(reverse('devhub.addons'))
-        doc = pq(rp.content)
-        eq_(doc('li.item').text(), None)
-
-    def test_ignore_apps_in_feed(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        self.log_creates(1)
-        rp = self.get_response()
-        doc = pq(rp.content)
-        eq_(doc('.item').text(), None)
-
     def test_items(self):
         self.log_creates(10)
         doc = self.get_pq()
@@ -204,15 +190,6 @@ class TestActivity(HubTest):
         eq_(r['content-type'], 'application/rss+xml; charset=utf-8')
         eq_(len(pq(r.content)('item')), 5)
         assert '<title>Recent Changes for %s</title>' % self.addon in r.content
-
-    def test_rss_ignores_apps(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        self.log_creates(1)
-        # This will give us a new RssKey
-        self.get_response()
-        key = RssKey.objects.get()
-        rp = self.get_response(privaterss=key.key)
-        eq_(pq(rp.content)('item').text(), None)
 
     def test_logged_out(self):
         self.client.logout()

@@ -57,7 +57,7 @@ log = commonware.log.getLogger('z.addons')
 def clean_slug(instance, slug_field='slug'):
     """Cleans a model instance slug.
 
-    This strives to be as generic as possible as it's used by Addons, Webapps
+    This strives to be as generic as possible as it's used by Addons
     and Collections, and maybe more in the future.
 
     """
@@ -84,10 +84,7 @@ def clean_slug(instance, slug_field='slug'):
     # all the objects, as otherwise we could have a slug clash on our hands.
     # Eg with the "Addon.objects" manager, which doesn't list deleted addons,
     # we could have a "clean" slug which is in fact already assigned to an
-    # already existing (deleted) addon.
-    # Also, make sure we use the base class (eg Webapp, which inherits from
-    # Addon, shouldn't clash with addons). This is extra paranoid, as webapps
-    # have a different slug field, but just in case we need this in the future.
+    # already existing (deleted) addon. Also, make sure we use the base class.
     manager = models.Manager()
     manager.model = instance._meta.proxy_for_model or instance.__class__
 
@@ -386,8 +383,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @staticmethod
     def __new__(cls, *args, **kw):
-        # Return a Webapp instead of an Addon if the `type` column says this is
-        # really a webapp.
         try:
             type_idx = Addon._meta._type_idx
         except AttributeError:
@@ -397,7 +392,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if ((len(args) == len(Addon._meta.fields) and
                 args[type_idx] == amo.ADDON_WEBAPP) or kw and
                 kw.get('type') == amo.ADDON_WEBAPP):
-            cls = Webapp
+            raise RuntimeError
         return object.__new__(cls)
 
     def __unicode__(self):
@@ -430,16 +425,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         id = self.id
 
-        # Tell IARC this app is delisted from the set_iarc_storefront_data.
-        if self.type == amo.ADDON_WEBAPP:
-            self.set_iarc_storefront_data(disable=True)
-
         # Fetch previews before deleting the addon instance, so that we can
         # pass the list of files to delete to the delete_preview_files task
         # after the addon is deleted.
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
-
 
         if soft_deletion:
 
@@ -500,12 +490,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             tasks.delete_preview_files.delay(preview)
 
         # Remove from search index.
-        #
-        # Note: We keep webapps in the indexes so the lookup tool can find
-        # deleted apps (bug 896782). Otherwise we'd call:
-        # `mkt.webapps.tasks.unindex_webapps.delay([id])`
-        if not self.type == amo.ADDON_WEBAPP:
-            tasks.unindex_addons.delay([id])
+        tasks.unindex_addons.delay([id])
 
         return True
 
@@ -524,13 +509,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(translation.get_language())
-        if addon.is_webapp():
-            addon.is_packaged = is_packaged
-            if is_packaged:
-                addon.app_domain = data.get('origin')
-            else:
-                addon.manifest_url = upload.name
-                addon.app_domain = addon.domain_from_url(addon.manifest_url)
         addon.save()
         Version.from_upload(upload, addon, platforms)
 
@@ -574,25 +552,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         # Either link to the "new" Marketplace Developer Hub or the old one.
         args = args or []
-        prefix = ('mkt.developers' if getattr(settings, 'MARKETPLACE', False)
-                  else 'devhub')
-        if self.is_webapp():
-            view_name = '%s.%s' if prefix_only else '%s.apps.%s'
-            return reverse(view_name % (prefix, action),
-                           args=[self.app_slug] + args)
-        else:
-            type_ = 'themes' if self.type == amo.ADDON_PERSONA else 'addons'
-            if not prefix_only:
-                prefix += '.%s' % type_
-            view_name = '{prefix}.{action}'.format(prefix=prefix,
-                                                   action=action)
-            return reverse(view_name, args=[self.slug] + args)
+        prefix = 'devhub'
+        type_ = 'themes' if self.type == amo.ADDON_PERSONA else 'addons'
+        if not prefix_only:
+            prefix += '.%s' % type_
+        view_name = '{prefix}.{action}'.format(prefix=prefix,
+                                               action=action)
+        return reverse(view_name, args=[self.slug] + args)
 
     def get_detail_url(self, action='detail', args=[]):
-        if self.is_webapp():
-            return reverse('apps.%s' % action, args=[self.app_slug] + args)
-        else:
-            return reverse('addons.%s' % action, args=[self.slug] + args)
+        return reverse('addons.%s' % action, args=[self.slug] + args)
 
     def meet_the_dev_url(self):
         return reverse('addons.meet', args=[self.slug])
@@ -2167,11 +2136,8 @@ class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
             type = amo.ADDON_SLUGS[self.type]
         except KeyError:
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
-        if settings.MARKETPLACE and self.type == amo.ADDON_PERSONA:
-            # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
+        if self.type == amo.ADDON_PERSONA:
             return 'https://addons.mozilla.org/firefox/themes/%s' % self.slug
-        elif settings.MARKETPLACE and self.type == amo.ADDON_WEBAPP:
-            return '/search?cat=%s' % self.slug
         return reverse('browse.%s' % type, args=[self.slug])
 
     @staticmethod
@@ -2186,26 +2152,6 @@ class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
     def clean(self):
         if self.slug.isdigit():
             raise ValidationError('Slugs cannot be all numbers.')
-
-
-@Category.on_change
-def reindex_cat_slug(old_attr=None, new_attr=None, instance=None,
-                     sender=None, **kw):
-    """ES reindex category's apps if category slug changes."""
-    from mkt.webapps.tasks import index_webapps
-
-    if new_attr.get('type') != amo.ADDON_WEBAPP:
-        instance.save()
-        return
-
-    slug_changed = (instance.pk is not None and old_attr and new_attr and
-                    old_attr.get('slug') != new_attr.get('slug'))
-
-    instance.save()
-
-    if slug_changed:
-        index_webapps(list(instance.addon_set.filter(type=amo.ADDON_WEBAPP)
-                           .values_list('id', flat=True)))
 
 
 dbsignals.pre_save.connect(save_signal, sender=Category,
@@ -2558,8 +2504,3 @@ models.signals.post_save.connect(update_incompatible_versions,
 models.signals.post_delete.connect(update_incompatible_versions,
                                    sender=CompatOverrideRange,
                                    dispatch_uid='cor_update_incompatible')
-
-
-# webapps.models imports addons.models to get Addon, so we need to keep the
-# Webapp import down here.
-from mkt.webapps.models import Webapp

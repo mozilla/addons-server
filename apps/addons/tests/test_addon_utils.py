@@ -29,22 +29,3 @@ class TestReverseNameLookup(amo.tests.TestCase):
 
     def test_get_case(self):
         eq_(reverse_name_lookup('delicious bookmarks'), 3615)
-
-    def test_addon_and_app_namespaces(self):
-        eq_(reverse_name_lookup('Delicious Bookmarks', webapp=False), 3615)
-        eq_(reverse_name_lookup('Delicious Bookmarks', webapp=True), None)
-
-        # Note: The factory creates the app which calls the reverse_name_lookup
-        # in a post_save signal, so no need to call it explicitly here.
-        app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP)
-        self.assertTrue(app.is_webapp())
-
-        eq_(reverse_name_lookup(app.name, webapp=False), None)
-        eq_(reverse_name_lookup(app.name, webapp=True), app.id)
-
-        # Show we can also create an app with the same name as an addon
-        name = 'Delicious Bookmarks'
-        app = amo.tests.addon_factory(name=name, type=amo.ADDON_WEBAPP)
-        self.assertTrue(app.is_webapp())
-        eq_(reverse_name_lookup(name, webapp=False), 3615)
-        eq_(reverse_name_lookup(name, webapp=True), app.id)

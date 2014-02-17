@@ -11,11 +11,6 @@ from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 from market.tasks import check_paypal, check_paypal_multiple
 
-from mkt.webapps.tasks import (add_uuids, clean_apps, dump_apps,
-                               fix_missing_icons, import_manifests,
-                               update_developer_name, update_manifests,
-                               update_supported_locales, zip_apps)
-
 
 tasks = {
     # binary-components depend on having a chrome manifest.
@@ -35,38 +30,6 @@ tasks = {
                      'qs': [Q(premium_type=amo.ADDON_PREMIUM,
                               disabled_by_user=False),
                             ~Q(status=amo.STATUS_DISABLED)]},
-    'update_manifests': {'method': update_manifests,
-                         'qs': [Q(type=amo.ADDON_WEBAPP, is_packaged=False,
-                                  status__in=[amo.STATUS_PENDING,
-                                              amo.STATUS_PUBLIC,
-                                              amo.STATUS_PUBLIC_WAITING],
-                                  disabled_by_user=False)]},
-    'add_uuids': {'method': add_uuids,
-                  'qs': [Q(type=amo.ADDON_WEBAPP, guid=None),
-                         ~Q(status=amo.STATUS_DELETED)]},
-    'update_supported_locales': {
-        'method': update_supported_locales,
-        'qs': [Q(type=amo.ADDON_WEBAPP, disabled_by_user=False,
-                 status__in=[amo.STATUS_PENDING, amo.STATUS_PUBLIC,
-                             amo.STATUS_PUBLIC_WAITING])]},
-    'dump_apps': {'method': dump_apps,
-                  'qs': [Q(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                           disabled_by_user=False)],
-                  'pre': clean_apps,
-                  'post': zip_apps},
-    'update_developer_name': {'method': update_developer_name,
-                         'qs': [Q(type=amo.ADDON_WEBAPP,
-                                  disabled_by_user=False),
-                                ~Q(status=amo.STATUS_DISABLED)]},
-    'fix_missing_icons': {'method': fix_missing_icons,
-                          'qs': [Q(type=amo.ADDON_WEBAPP,
-                                  status__in=[amo.STATUS_PENDING,
-                                              amo.STATUS_PUBLIC,
-                                              amo.STATUS_PUBLIC_WAITING],
-                                  disabled_by_user=False)]},
-    'import_manifests': {'method': import_manifests,
-                         'qs': [Q(type=amo.ADDON_WEBAPP,
-                                  disabled_by_user=False)]},
 }
 
 

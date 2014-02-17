@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<WEBSERVICE SERVICE_NAME="GET_RATING_CHANGES" TYPE="REQUEST">
-  <ROW>
-    <FIELD NAME="password" VALUE="{{ password }}" TYPE="String" />
-    <FIELD NAME="date_from" VALUE="{{ date_from.strftime('%Y-%m-%d') }}" TYPE="date" />
-    <FIELD NAME="date_to" VALUE="{{ date_to.strftime('%Y-%m-%d') }}" TYPE="date" />
-  </ROW>
-</WEBSERVICE>

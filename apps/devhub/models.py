@@ -21,7 +21,6 @@ import amo.models
 from access.models import Group
 from addons.models import Addon
 from bandwagon.models import Collection
-from mkt.webapps.models import Webapp
 from reviews.models import Review
 from tags.models import Tag
 from translations.fields import save_signal, TranslatedField
@@ -106,18 +105,6 @@ class AddonLog(amo.models.ModelBase):
         # This table is addons only and not in use by the marketplace (except
         # for Themes).
         db_table = table_name('log_activity_addon')
-        ordering = ('-created',)
-
-
-class AppLog(amo.models.ModelBase):
-    """
-    This table is for indexing the activity log by app.
-    """
-    addon = models.ForeignKey(Webapp)
-    activity_log = models.ForeignKey('ActivityLog')
-
-    class Meta:
-        db_table = table_name('log_activity_app')
         ordering = ('-created',)
 
 
@@ -428,55 +415,6 @@ class ActivityLog(amo.models.ModelBase):
 
     def __html__(self):
         return self
-
-
-# TODO: remove once we migrate to CommAtttachment (ngoke).
-class ActivityLogAttachment(amo.models.ModelBase):
-    """
-    Model for an attachment to an ActivityLog instance. Used by the Marketplace
-    reviewer tools, where reviewers can attach files to comments made during the
-    review process.
-    """
-    activity_log = models.ForeignKey('ActivityLog')
-    filepath = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, blank=True)
-    mimetype = models.CharField(max_length=255, blank=True)
-
-    class Meta:
-        db_table = 'log_activity_attachment_mkt'
-        ordering = ('id',)
-
-    def get_absolute_url(self):
-        if settings.MARKETPLACE:
-            return reverse('reviewers.apps.review.attachment', args=[self.pk])
-        return None
-
-    def filename(self):
-        """
-        Returns the attachment's file name.
-        """
-        return os.path.basename(self.filepath)
-
-    def full_path(self):
-        """
-        Returns the full filesystem path of the attachment.
-        """
-        return os.path.join(settings.REVIEWER_ATTACHMENTS_PATH, self.filepath)
-
-    def display_name(self):
-        """
-        Returns a string describing the attachment suitable for front-end
-        display.
-        """
-        display = self.description if self.description else self.filename()
-        return mark_safe(bleach.clean(display))
-
-    def is_image(self):
-        """
-        Returns a boolean indicating whether the attached file is an image of a
-        format recognizable by the stdlib imghdr module.
-        """
-        return imghdr.what(self.full_path()) is not None
 
 
 class SubmitStep(models.Model):

@@ -1,23 +1,15 @@
 import os
 import socket
 import StringIO
-import tempfile
-import time
 import traceback
 
 from django.conf import settings
 
 import commonware.log
-import requests
-from cache_nuggets.lib import memoize
 from PIL import Image
 
 import amo.search
 from applications.management.commands import dump_apps
-from lib.crypto import packaged, receipt
-from lib.crypto.packaged import SigningError as PackageSigningError
-from lib.crypto.receipt import SigningError
-from lib.pay_server import client
 
 monitor_log = commonware.log.getLogger('z.monitor')
 
@@ -176,114 +168,3 @@ def redis():
         status = ','.join(status)
 
     return status, redis_results
-
-
-# The signer check actually asks the signing server to sign something. Do this
-# once per nagios check, once per web head might be a bit much. The memoize
-# slows it down a bit, by caching the result for 15 seconds.
-@memoize('monitors-signer', time=15)
-def receipt_signer():
-    destination = getattr(settings, 'SIGNING_SERVER', None)
-    if not destination:
-        return '', 'Signer is not configured.'
-
-    # Just send some test data into the signer.
-    now = int(time.time())
-    not_valid = (settings.SITE_URL + '/not-valid')
-    data = {'detail': not_valid, 'exp': now + 3600, 'iat': now,
-            'iss': settings.SITE_URL,
-            'product': {'storedata': 'id=1', 'url': u'http://not-valid.com'},
-            'nbf': now, 'typ': 'purchase-receipt',
-            'reissue': not_valid,
-            'user': {'type': 'directed-identifier',
-                     'value': u'something-not-valid'},
-            'verify': not_valid
-            }
-
-    try:
-        result = receipt.sign(data)
-    except SigningError as err:
-        msg = 'Error on signing (%s): %s' % (destination, err)
-        return msg, msg
-
-    try:
-        cert, rest = receipt.crack(result)
-    except Exception as err:
-        msg = 'Error on cracking receipt (%s): %s' % (destination, err)
-        return msg, msg
-
-    # Check that the certs used to sign the receipts are not about to expire.
-    limit = now + (60 * 60 * 24)  # One day.
-    if cert['exp'] < limit:
-        msg = 'Cert will expire soon (%s)' % destination
-        return msg, msg
-
-    cert_err_msg = 'Error on checking public cert (%s): %s'
-    location = cert['iss']
-    try:
-        resp = requests.get(location, timeout=5, stream=False)
-    except Exception as err:
-        msg = cert_err_msg % (location, err)
-        return msg, msg
-
-    if not resp.ok:
-        msg = cert_err_msg % (location, resp.reason)
-        return msg, msg
-
-    cert_json = resp.json()
-    if not cert_json or not 'jwk' in cert_json:
-        msg = cert_err_msg % (location, 'Not valid JSON/JWK')
-        return msg, msg
-
-    return '', 'Signer working and up to date'
-
-
-# Like the receipt signer above this asks the packaged app signing
-# service to sign one for us.
-@memoize('monitors-package-signer', time=60)
-def package_signer():
-    destination = getattr(settings, 'SIGNED_APPS_SERVER', None)
-    if not destination:
-        return '', 'Signer is not configured.'
-    app_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            'nagios_check_packaged_app.zip')
-    signed_path = tempfile.mktemp()
-    try:
-        packaged.sign_app(app_path, signed_path, None, False)
-        return '', 'Package signer working'
-    except PackageSigningError, e:
-        msg = 'Error on package signing (%s): %s' % (destination, e)
-        return msg, msg
-    finally:
-        os.unlink(signed_path)
-
-
-# Not called settings to avoid conflict with django.conf.settings.
-def settings_check():
-    if not settings.MARKETPLACE:
-        return '', 'No required settings checked on amo'
-
-    required = ['APP_PURCHASE_KEY', 'APP_PURCHASE_TYP', 'APP_PURCHASE_AUD',
-                'APP_PURCHASE_SECRET']
-    for key in required:
-        if not getattr(settings, key):
-            msg = 'Missing required value %s' % key
-            return msg, msg
-
-    return '', 'Required settings ok'
-
-
-def solitude():
-    if not settings.MARKETPLACE:
-        return '', 'Solitude access not required on amo'
-
-    try:
-        res = client.api.services.request.get()
-    except Exception as err:
-        return repr(err), repr(err)
-    auth = res.get('authenticated', None)
-    if auth != 'marketplace':
-        msg = 'Solitude authenticated as: %s' % auth
-        return msg, msg
-
-    return '', 'Solitude authentication ok'

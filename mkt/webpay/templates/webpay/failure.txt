@@ -1,7 +1,0 @@
-We've tried unsuccessfully to send a payment notification from the Firefox Marketplace. The attempt was sent {{ retries }} times and failed each time. The URL we tried was specified in the payment request we received.
-
-URL: {{ url }}
-Transaction ID: {{ transaction_id }}
-Transaction: {{ transaction_url }}
-
-Please check your server and ensure that the requests can be processed as per the documentation.

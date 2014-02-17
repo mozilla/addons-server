@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import datetime
-import json
 import os
 
 import django.dispatch
@@ -26,7 +25,6 @@ from tower import ugettext as _
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
 from users.models import UserProfile
-from versions.tasks import update_supported_locales_single
 
 from .compare import version_dict, version_int
 
@@ -94,13 +92,7 @@ class Version(amo.models.ModelBase):
             else:
                 log.error('No version_int written for version %s, %s' %
                           (self.pk, self.version))
-        creating = not self.id
         super(Version, self).save(*args, **kw)
-        if creating:
-            # To avoid circular import.
-            from mkt.webapps.models import AppFeatures
-            if self.addon.type == amo.ADDON_WEBAPP:
-                AppFeatures.objects.create(version=self)
         return self
 
     @classmethod
@@ -120,44 +112,20 @@ class Version(amo.models.ModelBase):
         for app in data.get('apps', []):
             AV(version=v, min=app.min, max=app.max,
                application_id=app.id).save()
-        if addon.type in [amo.ADDON_SEARCH, amo.ADDON_WEBAPP]:
-            # Search extensions and webapps are always for all platforms.
+        if addon.type == amo.ADDON_SEARCH:
+            # Search extensions are always for all platforms.
             platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
         else:
             platforms = cls._make_safe_platform_files(platforms)
 
-        if addon.is_webapp():
-            from mkt.webapps.models import AppManifest
-
-            # Create AppManifest if we're a Webapp.
-            # Note: This must happen before we call `File.from_upload`.
-            manifest = utils.WebAppParser().get_json_data(upload)
-            AppManifest.objects.create(
-                version=v, manifest=json.dumps(manifest))
-
         for platform in platforms:
             File.from_upload(upload, v, platform, parse_data=data)
-
-        if addon.is_webapp():
-            # Update supported locales from manifest.
-            # Note: This needs to happen after we call `File.from_upload`.
-            update_supported_locales_single.apply_async(
-                args=[addon.id], kwargs={'latest': True},
-                eta=datetime.datetime.now() +
-                    datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
 
         v.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
         if send_signal:
             version_uploaded.send(sender=v)
-
-        # If packaged app and app is blocked, put in escalation queue.
-        if (addon.is_webapp() and addon.is_packaged and
-            addon.status == amo.STATUS_BLOCKED):
-            # To avoid circular import.
-            from editors.models import EscalationQueue
-            EscalationQueue.objects.create(addon=addon)
 
         return v
 
@@ -488,36 +456,6 @@ class Version(amo.models.ModelBase):
     def developer_name(self):
         return self._developer_name
 
-    @amo.cached_property(writable=True)
-    def is_privileged(self):
-        """
-        Return whether the corresponding addon is privileged by looking at
-        the manifest file.
-
-        This is a cached property, to avoid going in the manifest more than
-        once for a given instance. It's also directly writable do allow you to
-        bypass the manifest fetching if you *know* your app is privileged or
-        not already and want to pass the instance to some code that will use
-        that property.
-        """
-        if (self.addon.type != amo.ADDON_WEBAPP or
-            not self.addon.is_packaged or not self.all_files):
-            return False
-        data = self.addon.get_manifest_json(file_obj=self.all_files[0])
-        return data.get('type') == 'privileged'
-
-    @amo.cached_property
-    def manifest(self):
-        # To avoid circular import.
-        from mkt.webapps.models import AppManifest
-
-        try:
-            manifest = self.manifest_json.manifest
-        except AppManifest.DoesNotExist:
-            manifest = None
-
-        return json.loads(manifest) if manifest else {}
-
 
 @use_master
 def update_status(sender, instance, **kw):
@@ -539,32 +477,15 @@ def inherit_nomination(sender, instance, **kw):
     if kw.get('raw'):
         return
     addon = instance.addon
-    if (addon.type == amo.ADDON_WEBAPP and addon.is_packaged):
-        # If prior version's file is pending, inherit nomination. Otherwise,
-        # set nomination to now.
+    if (instance.nomination is None
+        and addon.status in (amo.STATUS_NOMINATED,
+                             amo.STATUS_LITE_AND_NOMINATED)
+        and not instance.is_beta):
         last_ver = (Version.objects.filter(addon=addon)
-                                   .exclude(pk=instance.pk)
-                                   .order_by('-nomination'))
-        if (last_ver.exists() and
-            last_ver[0].all_files[0].status == amo.STATUS_PENDING):
-            instance.update(nomination=last_ver[0].nomination, _signal=False)
-            log.debug('[Webapp:%s] Inheriting nomination from prior pending '
-                      'version' % addon.id)
-        elif (addon.status in amo.WEBAPPS_APPROVED_STATUSES and
-              not instance.nomination):
-            log.debug('[Webapp:%s] Setting nomination date to now for new '
-                      'version.' % addon.id)
-            instance.update(nomination=datetime.datetime.now(), _signal=False)
-    else:
-        if (instance.nomination is None
-            and addon.status in (amo.STATUS_NOMINATED,
-                                 amo.STATUS_LITE_AND_NOMINATED)
-            and not instance.is_beta):
-            last_ver = (Version.objects.filter(addon=addon)
-                        .exclude(nomination=None).order_by('-nomination'))
-            if last_ver.exists():
-                instance.update(nomination=last_ver[0].nomination,
-                                _signal=False)
+                    .exclude(nomination=None).order_by('-nomination'))
+        if last_ver.exists():
+            instance.update(nomination=last_ver[0].nomination,
+                            _signal=False)
 
 
 def update_incompatible_versions(sender, instance, **kw):

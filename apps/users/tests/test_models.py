@@ -162,8 +162,6 @@ class TestUserProfile(amo.tests.TestCase):
     def test_addons_listed(self):
         """Make sure we're returning distinct add-ons."""
         AddonUser.objects.create(addon_id=3615, user_id=2519, listed=True)
-        AddonUser.objects.create(addon=amo.tests.app_factory(), user_id=2519,
-                                 listed=True)
         u = UserProfile.objects.get(id=2519)
         addons = u.addons_listed.values_list('id', flat=True)
         eq_(sorted(addons), [3615])
@@ -182,21 +180,8 @@ class TestUserProfile(amo.tests.TestCase):
         AddonUser.objects.create(addon_id=addon1.id, user_id=2519, listed=True)
         addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
-        AddonUser.objects.create(addon=amo.tests.app_factory(), user_id=2519,
-                                 listed=True)
         addons = UserProfile.objects.get(id=2519).my_addons()
         eq_(sorted(a.name for a in addons), [addon1.name, addon2.name])
-
-    def test_my_apps(self):
-        """Test helper method to get N apps."""
-        addon1 = Addon.objects.create(name='test-1', type=amo.ADDON_WEBAPP)
-        AddonUser.objects.create(addon_id=addon1.id, user_id=2519, listed=True)
-        addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_WEBAPP)
-        AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
-        u = UserProfile.objects.get(id=2519)
-        addons = u.my_apps()
-        self.assertTrue(sorted([a.name for a in addons]) == [addon1.name,
-                                                             addon2.name])
 
     def test_mobile_collection(self):
         u = UserProfile.objects.get(id='4043307')
@@ -213,15 +198,6 @@ class TestUserProfile(amo.tests.TestCase):
         c = u.favorites_collection()
         eq_(c.type, amo.COLLECTION_FAVORITES)
         eq_(c.slug, 'favorites')
-
-    def test_is_app_developer(self):
-        extension = Addon.objects.create(name='test', type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(addon=extension, user_id=2519)
-        eq_(UserProfile.objects.get(id=2519).is_app_developer, False)
-
-        app = Addon.objects.create(name='test', type=amo.ADDON_WEBAPP)
-        AddonUser.objects.create(addon=app, user_id=2519)
-        eq_(UserProfile.objects.get(id=2519).is_app_developer, True)
 
     def test_get_url_path(self):
         eq_(UserProfile(username='yolo').get_url_path(),

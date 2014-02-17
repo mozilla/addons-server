@@ -834,10 +834,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     def get_pq(self):
         return pq(self.client.get(self.url).content)
 
-    def test_no_webapps(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        eq_(self.client.get(self.url).status_code, 404)
-
     def test_adu_stats_private(self):
         eq_(self.addon.public_stats, False)
         adu = self.get_pq()('#daily-users')

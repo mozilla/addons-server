@@ -14,7 +14,7 @@ from addons.models import Addon
 from amo.decorators import set_task_user
 from amo.utils import get_email_backend
 from bandwagon.models import Collection
-from devhub.models import ActivityLog, AppLog
+from devhub.models import ActivityLog
 from editors.models import EscalationQueue, EventLog
 from market.models import Refund
 from reviews.models import Review

@@ -55,7 +55,6 @@ from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import Version
-from mkt.webapps.models import Webapp
 from zadmin.models import ValidationResult
 
 from . import forms, tasks, feeds, signals
@@ -76,28 +75,15 @@ class AddonFilter(BaseFilter):
             ('rating', _lazy(u'Rating')))
 
 
-class AppFilter(BaseFilter):
-    opts = (('name', _lazy(u'Name')),
-            ('created', _lazy(u'Created')),
-            ('downloads', _lazy(u'Weekly Downloads')),
-            ('rating', _lazy(u'Rating')))
-
-
-def addon_listing(request, default='name', webapp=False, theme=False):
+def addon_listing(request, default='name', theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
-    Filter = AppFilter if webapp else AddonFilter
-    if webapp:
-        qs = Webapp.objects.filter(
-            id__in=request.amo_user.addons.filter(type=amo.ADDON_WEBAPP))
-        model = Webapp
-    elif theme:
+    if theme:
         qs = request.amo_user.addons.filter(type=amo.ADDON_PERSONA)
         model = Addon
     else:
-        qs = request.amo_user.addons.exclude(type__in=[amo.ADDON_WEBAPP,
-                                                       amo.ADDON_PERSONA])
+        qs = request.amo_user.addons.exclude(type=amo.ADDON_PERSONA)
         model = Addon
-    filter = Filter(request, qs, 'sort', default, model=model)
+    filter = AddonFilter(request, qs, 'sort', default, model=model)
     return filter.qs, filter
 
 
@@ -108,7 +94,7 @@ def index(request):
 
     ctx = {'blog_posts': _get_posts()}
     if request.amo_user:
-        user_addons = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
+        user_addons = request.amo_user.addons.all()
         recent_addons = user_addons.order_by('-modified')[:3]
         ctx['recent_addons'] = []
         for addon in recent_addons:
@@ -119,16 +105,16 @@ def index(request):
 
 
 @login_required
-def dashboard(request, webapp=False, theme=False):
+def dashboard(request, theme=False):
     addon_items = _get_items(
-        None, request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP))[:4]
+        None, request.amo_user.addons.all())[:4]
 
     data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
-                timestamp=int(time.time()), addon_tab=not webapp and not theme,
-                webapp=webapp, theme=theme, addon_items=addon_items)
+                timestamp=int(time.time()), addon_tab=not theme,
+                theme=theme, addon_items=addon_items)
 
     if data['addon_tab']:
-        addons, data['filter'] = addon_listing(request, webapp=webapp)
+        addons, data['filter'] = addon_listing(request)
         data['addons'] = amo.utils.paginate(request, addons, per_page=10)
 
     if theme:
@@ -260,8 +246,7 @@ def feed(request, addon_id=None):
         p = urlquote(request.get_full_path())
         return http.HttpResponseRedirect('%s?to=%s' % (url, p))
     else:
-        # We exclude apps on AMO.
-        addons_all = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
+        addons_all = request.amo_user.addons.all()
 
         if addon_id:
             addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
@@ -297,14 +282,13 @@ def feed(request, addon_id=None):
     return render(request, 'devhub/addons/activity.html', data)
 
 
-@dev_required(webapp=True)
-def edit(request, addon_id, addon, webapp=False):
-    url_prefix = 'apps' if webapp else 'addons'
+@dev_required
+def edit(request, addon_id, addon):
+    url_prefix = 'addons'
 
     data = {
         'page': 'edit',
         'addon': addon,
-        'webapp': webapp,
         'url_prefix': url_prefix,
         'valid_slug': addon.slug,
         'tags': addon.tags.not_blacklisted().values_list('tag_text',
@@ -312,8 +296,7 @@ def edit(request, addon_id, addon, webapp=False):
         'previews': addon.previews.all(),
     }
 
-    if (not webapp and
-        acl.action_allowed(request, 'Addons', 'Configure')):
+    if acl.action_allowed(request, 'Addons', 'Configure'):
         data['admin_form'] = forms.AdminForm(instance=addon)
 
     return render(request, 'devhub/addons/edit.html', data)
@@ -344,15 +327,12 @@ def edit_theme(request, addon_id, addon, theme=False):
         'owner_form': owner_form})
 
 
-@dev_required(owner_for_post=True, webapp=True, theme=True)
+@dev_required(owner_for_post=True, theme=True)
 @post_required
-def delete(request, addon_id, addon, webapp=False, theme=False):
+def delete(request, addon_id, addon, theme=False):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
-        if webapp:
-            msg = loc('App cannot be deleted. Disable this app instead.')
-        else:
-            msg = _('Add-on cannot be deleted. Disable this add-on instead.')
+        msg = _('Add-on cannot be deleted. Disable this add-on instead.')
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
@@ -362,8 +342,7 @@ def delete(request, addon_id, addon, webapp=False, theme=False):
         addon.delete(msg='Removed via devhub', reason=reason)
         messages.success(request,
             _('Theme deleted.') if theme else _('Add-on deleted.'))
-        return redirect('devhub.%s' % ('apps' if webapp else
-                                       'themes' if theme else 'addons'))
+        return redirect('devhub.%s' % ('themes' if theme else 'addons'))
     else:
         if theme:
             messages.error(request,
@@ -403,8 +382,8 @@ def disable(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
-@dev_required(owner_for_post=True, webapp=True)
-def ownership(request, addon_id, addon, webapp=False):
+@dev_required(owner_for_post=True)
+def ownership(request, addon_id, addon):
     fs, ctx = [], {}
     # Authors.
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
@@ -412,15 +391,13 @@ def ownership(request, addon_id, addon, webapp=False):
     fs.append(user_form)
     # Versions.
     license_form = forms.LicenseForm(request.POST or None, addon=addon)
-    if not addon.is_webapp():
-        ctx.update(license_form.get_context())
-        if ctx['license_form']:  # if addon has a version
-            fs.append(ctx['license_form'])
+    ctx.update(license_form.get_context())
+    if ctx['license_form']:  # if addon has a version
+        fs.append(ctx['license_form'])
     # Policy.
     policy_form = forms.PolicyForm(request.POST or None, addon=addon)
-    if not addon.is_webapp():
-        ctx.update(policy_form=policy_form)
-        fs.append(policy_form)
+    ctx.update(policy_form=policy_form)
+    fs.append(policy_form)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
         # Authors.
@@ -454,18 +431,18 @@ def ownership(request, addon_id, addon, webapp=False):
 
         return redirect(addon.get_dev_url('owner'))
 
-    ctx.update(addon=addon, webapp=webapp, user_form=user_form)
+    ctx.update(addon=addon, user_form=user_form)
     return render(request, 'devhub/addons/owner.html', ctx)
 
 
-@dev_required(owner_for_post=True, webapp=True)
-def payments(request, addon_id, addon, webapp=False):
+@dev_required(owner_for_post=True)
+def payments(request, addon_id, addon):
     if addon.is_premium():
-        return _premium(request, addon_id, addon, webapp)
-    return _voluntary(request, addon_id, addon, webapp)
+        return _premium(request, addon_id, addon)
+    return _voluntary(request, addon_id, addon)
 
 
-def _premium(request, addon_id, addon, webapp=False):
+def _premium(request, addon_id, addon):
     premium_form = forms.PremiumForm(request.POST or None,
                                      request=request,
                                      extra={'addon': addon,
@@ -477,11 +454,11 @@ def _premium(request, addon_id, addon, webapp=False):
         return redirect(addon.get_dev_url('payments'))
 
     return render(request, 'devhub/payments/premium.html',
-                  dict(addon=addon, webapp=webapp, premium=addon.premium,
+                  dict(addon=addon, premium=addon.premium,
                        form=premium_form))
 
 
-def _voluntary(request, addon_id, addon, webapp):
+def _voluntary(request, addon_id, addon):
     solitude = waffle.flag_is_active(request, 'solitude-payments')
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
 
@@ -527,10 +504,10 @@ def _voluntary(request, addon_id, addon, webapp):
     errors = charity_form.errors or contrib_form.errors or profile_form.errors
     if errors:
         messages.error(request, _('There were errors in your submission.'))
+
     return render(request, 'devhub/payments/payments.html',
-        dict(addon=addon, webapp=webapp, errors=errors,
-             charity_form=charity_form, contrib_form=contrib_form,
-             profile_form=profile_form))
+                  dict(addon=addon, errors=errors, charity_form=charity_form,
+                       contrib_form=contrib_form, profile_form=profile_form))
 
 
 def _save_charity(addon, contrib_form, charity_form):
@@ -548,8 +525,8 @@ def _save_charity(addon, contrib_form, charity_form):
 
 
 @waffle_switch('allow-refund')
-@dev_required(webapp=True)
-def issue_refund(request, addon_id, addon, webapp=False):
+@dev_required
+def issue_refund(request, addon_id, addon):
     txn_id = request.REQUEST.get('transaction_id')
     if not txn_id:
         raise http.Http404
@@ -596,14 +573,14 @@ def issue_refund(request, addon_id, addon, webapp=False):
 
     return render(request, 'devhub/payments/issue-refund.html',
                   {'enabled': form_enabled, 'contribution': contribution,
-                   'addon': addon, 'webapp': webapp, 'transaction_id': txn_id})
+                   'addon': addon, 'transaction_id': txn_id})
 
 
 @waffle_switch('allow-refund')
-@dev_required(webapp=True)
+@dev_required
 # TODO: Make sure 'Support' staff can access this.
-def refunds(request, addon_id, addon, webapp=False):
-    ctx = {'addon': addon, 'webapp': webapp}
+def refunds(request, addon_id, addon):
+    ctx = {'addon': addon}
     queues = {
         'pending': Refund.objects.pending(addon),
         'approved': Refund.objects.approved(addon),
@@ -623,9 +600,9 @@ def disable_payments(request, addon_id, addon):
     return redirect(addon.get_dev_url('payments'))
 
 
-@dev_required(webapp=True)
+@dev_required
 @post_required
-def remove_profile(request, addon_id, addon, webapp=False):
+def remove_profile(request, addon_id, addon):
     delete_translation(addon, 'the_reason')
     delete_translation(addon, 'the_future')
     if addon.wants_contributions:
@@ -633,8 +610,8 @@ def remove_profile(request, addon_id, addon, webapp=False):
     return redirect(addon.get_dev_url('profile'))
 
 
-@dev_required(webapp=True)
-def profile(request, addon_id, addon, webapp=False):
+@dev_required
+def profile(request, addon_id, addon):
     profile_form = forms.ProfileForm(request.POST or None, instance=addon)
 
     if request.method == 'POST' and profile_form.is_valid():
@@ -644,7 +621,7 @@ def profile(request, addon_id, addon, webapp=False):
         return redirect(addon.get_dev_url('profile'))
 
     return render(request, 'devhub/addons/profile.html',
-                  dict(addon=addon, webapp=webapp, profile_form=profile_form))
+                  dict(addon=addon, profile_form=profile_form))
 
 
 @login_required
@@ -1072,27 +1049,20 @@ def upload_detail(request, uuid, format='html'):
 
 
 class AddonDependencySearch(BaseAjaxSearch):
-    # No personas. No webapps.
+    # No personas.
     types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
              amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
-
-
-class AppDependencySearch(BaseAjaxSearch):
-    # Only webapps.
-    types = [amo.ADDON_WEBAPP]
 
 
 @dev_required
 @json_view
 def ajax_dependencies(request, addon_id, addon):
-    s = AppDependencySearch if addon.is_webapp() else AddonDependencySearch
-    return s(request, excluded_ids=[addon_id]).items
+    return AddonDependencySearch(request, excluded_ids=[addon_id]).items
 
 
-@dev_required(webapp=True)
-def addons_section(request, addon_id, addon, section, editable=False,
-                   webapp=False):
-    basic = addon_forms.AppFormBasic if webapp else addon_forms.AddonFormBasic
+@dev_required
+def addons_section(request, addon_id, addon, section, editable=False):
+    basic = addon_forms.AddonFormBasic
     models = {'basic': basic,
               'media': addon_forms.AddonFormMedia,
               'details': addon_forms.AddonFormDetails,
@@ -1117,10 +1087,9 @@ def addons_section(request, addon_id, addon, section, editable=False,
             prefix='files', queryset=addon.previews.all())
 
     elif section == 'technical':
-        if not webapp:
-            dependency_form = forms.DependencyFormSet(request.POST or None,
-                queryset=addon.addons_dependencies.all(), addon=addon,
-                prefix='dependencies')
+        dependency_form = forms.DependencyFormSet(request.POST or None,
+            queryset=addon.addons_dependencies.all(), addon=addon,
+            prefix='dependencies')
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.slug
@@ -1165,10 +1134,9 @@ def addons_section(request, addon_id, addon, section, editable=False,
     else:
         form = False
 
-    url_prefix = 'apps' if webapp else 'addons'
+    url_prefix = 'addons'
 
     data = {'addon': addon,
-            'webapp': webapp,
             'url_prefix': url_prefix,
             'form': form,
             'editable': editable,
@@ -1413,15 +1381,14 @@ def version_add_file(request, addon_id, addon, version_id):
                   {'form': form[0], 'addon': addon})
 
 
-@dev_required(webapp=True)
-def version_list(request, addon_id, addon, webapp=False):
+@dev_required
+def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
     new_file_form = forms.NewVersionForm(None, addon=addon, request=request)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
     data = {'addon': addon,
-            'webapp': webapp,
             'versions': versions,
             'new_file_form': new_file_form,
             'position': get_position(addon),
@@ -1463,11 +1430,7 @@ def submit_step(outer_step):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
             step = outer_step
-            webapp = kw.get('webapp', False)
-            if webapp and step == 7:
-                # decorator calls this step 7, but it's step 5 for apps
-                step = 5
-            max_step = 5 if webapp else 7
+            max_step = 7
             # We only bounce on pages with an addon id.
             if 'addon' in kw:
                 addon = kw['addon']
@@ -1476,11 +1439,10 @@ def submit_step(outer_step):
                     max_step = on_step[0].step
                     if max_step < step:
                         # The step was too high, so bounce to the saved step.
-                        return redirect(_step_url(max_step, webapp),
-                                        addon.slug)
+                        return redirect(_step_url(max_step), addon.slug)
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
-                    return redirect(_step_url(7, webapp), addon.slug)
+                    return redirect(_step_url(7), addon.slug)
             kw['step'] = Step(step, max_step)
             return f(request, *args, **kw)
         # Tell @dev_required that this is a function in the submit flow so it
@@ -1490,61 +1452,53 @@ def submit_step(outer_step):
     return decorator
 
 
-def _step_url(step, is_webapp):
-    url_base = 'devhub.submit%s' % ('_apps' if is_webapp else '')
-    if is_webapp and str(step).isdigit() and step > 5:
-        step = 5
+def _step_url(step):
+    url_base = 'devhub.submit'
     return '%s.%s' % (url_base, step)
 
 
 @login_required
 @submit_step(1)
-def submit(request, step, webapp=False):
+def submit(request, step):
     if request.method == 'POST':
-        response = redirect(_step_url(2, webapp))
+        response = redirect(_step_url(2))
         response.set_cookie(DEV_AGREEMENT_COOKIE)
         return response
 
-    return render(request, 'devhub/addons/submit/start.html',
-                  {'step': step, 'webapp': webapp})
+    return render(request, 'devhub/addons/submit/start.html', {'step': step})
 
 
 @login_required
 @submit_step(2)
-def submit_addon(request, step, webapp=False):
+def submit_addon(request, step):
     if DEV_AGREEMENT_COOKIE not in request.COOKIES:
-        return redirect(_step_url(1, webapp))
-    NewItem = forms.NewWebappForm if webapp else forms.NewAddonForm
+        return redirect(_step_url(1))
+    NewItem = forms.NewAddonForm
     form = NewItem(request.POST or None, request=request)
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
 
-            if webapp:
-                p = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
-            else:
-                p = (list(data.get('desktop_platforms', [])) +
-                     list(data.get('mobile_platforms', [])))
+            p = (list(data.get('desktop_platforms', [])) +
+                 list(data.get('mobile_platforms', [])))
 
             addon = Addon.from_upload(data['upload'], p)
-            if webapp:
-                tasks.fetch_icon.delay(addon)
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
             check_validation_override(request, form, addon,
                                       addon.current_version)
-            return redirect(_step_url(3, webapp), addon.slug)
-    template = 'upload_webapp.html' if webapp else 'upload.html'
+            return redirect(_step_url(3), addon.slug)
+    template = 'upload.html'
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+
     return render(request, 'devhub/addons/submit/%s' % template,
-                  {'step': step, 'webapp': webapp, 'new_addon_form': form,
-                   'is_admin': is_admin})
+                  {'step': step, 'new_addon_form': form, 'is_admin': is_admin})
 
 
-@dev_required(webapp=True)
+@dev_required
 @submit_step(3)
-def submit_describe(request, addon_id, addon, step, webapp=False):
-    form_cls = forms.Step3WebappForm if addon.is_webapp() else forms.Step3Form
+def submit_describe(request, addon_id, addon, step):
+    form_cls = forms.Step3Form
     form = form_cls(request.POST or None, instance=addon, request=request)
     cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon,
                                            request=request)
@@ -1553,15 +1507,15 @@ def submit_describe(request, addon_id, addon, step, webapp=False):
         addon = form.save(addon)
         cat_form.save()
         SubmitStep.objects.filter(addon=addon).update(step=4)
-        return redirect(_step_url(4, webapp), addon.slug)
+        return redirect(_step_url(4), addon.slug)
     return render(request, 'devhub/addons/submit/describe.html',
                   {'form': form, 'cat_form': cat_form, 'addon': addon,
-                   'step': step, 'webapp': addon.is_webapp()})
+                   'step': step })
 
 
-@dev_required(webapp=True)
+@dev_required
 @submit_step(4)
-def submit_media(request, addon_id, addon, step, webapp=False):
+def submit_media(request, addon_id, addon, step):
     form_icon = addon_forms.AddonFormMedia(request.POST or None,
             request.FILES or None, instance=addon, request=request)
     form_previews = forms.PreviewFormSet(request.POST or None,
@@ -1576,28 +1530,21 @@ def submit_media(request, addon_id, addon, step, webapp=False):
 
         SubmitStep.objects.filter(addon=addon).update(step=5)
 
-        # Special handling for webapps, where this is jumping to the done step
-        if addon.is_webapp():
-            addon.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
-            SubmitStep.objects.filter(addon=addon).delete()
-            signals.submission_done.send(sender=addon)
-
-        return redirect(_step_url(5, webapp), addon.slug)
+        return redirect(_step_url(5), addon.slug)
 
     return render(request, 'devhub/addons/submit/media.html',
                   {'form': form_icon, 'addon': addon, 'step': step,
-                   'preview_form': form_previews, 'webapp': addon.is_webapp()})
+                   'preview_form': form_previews })
 
 
-@dev_required(webapp=True)
+@dev_required
 @submit_step(5)
-def submit_license(request, addon_id, addon, step, webapp=False):
+def submit_license(request, addon_id, addon, step):
     fs, ctx = [], {}
     # Versions.
     license_form = forms.LicenseForm(request.POST or None, addon=addon)
-    if not addon.is_webapp():
-        ctx.update(license_form.get_context())
-        fs.append(ctx['license_form'])
+    ctx.update(license_form.get_context())
+    fs.append(ctx['license_form'])
     # Policy.
     policy_form = forms.PolicyForm(request.POST or None, addon=addon)
     fs.append(policy_form)
@@ -1607,8 +1554,8 @@ def submit_license(request, addon_id, addon, step, webapp=False):
         policy_form.save()
         SubmitStep.objects.filter(addon=addon).update(step=6)
         return redirect('devhub.submit.6', addon.slug)
-    ctx.update(addon=addon, policy_form=policy_form, step=step,
-               webapp=addon.is_webapp())
+    ctx.update(addon=addon, policy_form=policy_form, step=step)
+
     return render(request, 'devhub/addons/submit/license.html', ctx)
 
 
@@ -1632,9 +1579,9 @@ def submit_select_review(request, addon_id, addon, step):
                    'step': step})
 
 
-@dev_required(webapp=True)
+@dev_required
 @submit_step(7)
-def submit_done(request, addon_id, addon, step, webapp=False):
+def submit_done(request, addon_id, addon, step):
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():
         return redirect(addon.get_dev_url('versions'))
@@ -1649,7 +1596,6 @@ def submit_done(request, addon_id, addon, step, webapp=False):
 
     if author:
         submitted_addons = (author.addons
-                            .exclude(type=amo.ADDON_WEBAPP)
                             .exclude(status=amo.STATUS_NULL).count())
         if submitted_addons == 1:
             # We can use locale-prefixed URLs because the submitter probably
@@ -1664,7 +1610,7 @@ def submit_done(request, addon_id, addon, step, webapp=False):
             tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
     return render(request, 'devhub/addons/submit/done.html',
-                  {'addon': addon, 'step': step, 'webapp': addon.is_webapp(),
+                  {'addon': addon, 'step': step,
                    'is_platform_specific': is_platform_specific})
 
 
@@ -1676,14 +1622,14 @@ def submit_resume(request, addon_id, addon):
 
 def _resume(addon, step):
     if step:
-        return redirect(_step_url(step[0].step, addon.is_webapp()), addon.slug)
+        return redirect(_step_url(step[0].step), addon.slug)
 
     return redirect(addon.get_dev_url('versions'))
 
 
 @login_required
 @dev_required
-def submit_bump(request, addon_id, addon, webapp=False):
+def submit_bump(request, addon_id, addon):
     if not acl.action_allowed(request, 'Admin', 'EditSubmitStep'):
         raise PermissionDenied
     step = SubmitStep.objects.filter(addon=addon)
@@ -1695,7 +1641,7 @@ def submit_bump(request, addon_id, addon, webapp=False):
         else:
             step = SubmitStep(addon=addon, step=new_step)
         step.save()
-        return redirect(_step_url('bump', webapp), addon.slug)
+        return redirect(_step_url('bump'), addon.slug)
     return render(request, 'devhub/addons/submit/bump.html',
                   dict(addon=addon, step=step))
 
