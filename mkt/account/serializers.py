@@ -13,6 +13,18 @@ class AccountSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ('display_name',)
 
+    def validate_display_name(self, attrs, source):
+        """Validate that display_name is not empty"""
+        value = attrs.get(source)
+        if value is None or not value.strip():
+            raise serializers.ValidationError("This field is required")
+        return attrs
+
+    def transform_display_name(self, obj, value):
+        """Return obj.name instead of display_name to handle users without
+        a valid display_name."""
+        return obj.name
+
 
 class FeedbackSerializer(PotatoCaptchaSerializer):
     feedback = fields.CharField()
