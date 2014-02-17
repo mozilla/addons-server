@@ -556,6 +556,8 @@ class AccountListForm(happyforms.Form):
 
 
 class ReferenceAccountForm(happyforms.Form):
+    uuid = forms.CharField(max_length=36, required=False,
+                           widget=forms.HiddenInput())
     account_name = forms.CharField(max_length=50, label=_lazy(u'Account name'))
     name = forms.CharField(max_length=50, label=_lazy(u'Name'))
     email = forms.CharField(max_length=50, label=_lazy(u'Email'))
