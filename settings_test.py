@@ -141,4 +141,7 @@ ES_DEFAULT_NUM_SHARDS = 3
 
 IARC_MOCK = True
 
+# Ensure that exceptions aren't re-raised.
+DEBUG_PROPAGATE_EXCEPTIONS = False
+
 PAYMENT_PROVIDERS = ['bango']
