@@ -680,6 +680,7 @@ class TestWebapp(amo.tests.TestCase):
         # Check arguments to the XML template are all correct.
         data = render_mock.call_args_list[0][0][1]
         eq_(type(data['title']), unicode)
+        eq_(data['app_url'], app.get_url_path())
         eq_(data['submission_id'], 1234)
         eq_(data['security_code'], 'sektor')
         eq_(data['rating_system'], 'ESRB')

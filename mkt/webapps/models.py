@@ -598,6 +598,7 @@ class Webapp(Addon):
                               .exclude(id=self.id).distinct()
                               .filter(addonuser__listed=True,
                                       authors__in=self.listed_authors))
+
     def can_be_purchased(self):
         return self.is_premium() and self.status in amo.REVIEWED_STATUSES
 
@@ -1306,6 +1307,7 @@ class Webapp(Addon):
         xmls = []
         for cr in self.content_ratings.all():
             xmls.append(render_xml('set_storefront_data.xml', {
+                'app_url': self.get_url_path(),
                 'submission_id': iarc_info.submission_id,
                 'security_code': iarc_info.security_code,
                 'rating_system': cr.get_body().iarc_name,

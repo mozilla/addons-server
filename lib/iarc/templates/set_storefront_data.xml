@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WEBSERVICE SERVICE_NAME="SET_STOREFRONT_DATA" TYPE="REQUEST">
   <ROW>
+    <FIELD NAME="AppUrl" VALUE="{{ app_url }}" TYPE="String" />
     <FIELD NAME="password" VALUE="{{ password }}" TYPE="String" />
     <FIELD NAME="storefront_company" VALUE="{{ company }}" TYPE="String" />
     <FIELD NAME="platform" VALUE="{{ platform }}" TYPE="String" />
