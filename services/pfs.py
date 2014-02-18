@@ -133,8 +133,8 @@ def get_output(data):
         plugin.update(
             guid='{45f2a22c-4029-4209-8b3d-1421b989633f}',
             XPILocation='',
-            version='12.0.7.148',
-            InstallerHash='sha256:2c439b90132b7283d8c0d139ca4768f20219f40dec0f42a2c4e1b0be1626e6aa',
+            version='12.0.9.149',
+            InstallerHash='sha256:2c552fac768d9cbbb5b91540676ae7ad3fbe13d6e48f9a8df447ab7281758636',
             InstallerLocation='http://fpdownload.macromedia.com/pub/shockwave/default/english/win95nt/latest/Shockwave_Installer_FF.exe',
             manualInstallationURL='http://get.adobe.com/shockwave/otherversions',
             needsRestart='false',
