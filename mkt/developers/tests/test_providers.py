@@ -133,12 +133,19 @@ class TestReference(Patcher, TestCase):
         acct = PaymentAccount.objects.get(user=self.user)
         eq_(acct.provider, PROVIDER_REFERENCE)
         eq_(res.pk, acct.pk)
+        self.ref_patcher.sellers.post.assert_called_with(data={
+            'status': 'ACTIVE',
+            'email': 'a@a.com',
+            'uuid': ANY,
+            'name': 'f',
+        })
 
     def make_account(self):
         seller = SolitudeSeller.objects.create(user=self.user)
         return PaymentAccount.objects.create(user=self.user,
                                              solitude_seller=seller,
-                                             uri='/f/b/1')
+                                             uri='/f/b/1',
+                                             name='account name')
 
     def test_terms_retrieve(self):
         account = self.make_account()
@@ -176,14 +183,30 @@ class TestReference(Patcher, TestCase):
 
     def test_account_retrieve(self):
         account = self.make_account()
-        self.ref.account_retrieve(account)
+        acc = self.ref.account_retrieve(account)
+        eq_(acc, {'account_name': 'account name'})
         assert self.ref_patcher.sellers.called
 
     def test_account_update(self):
+        account_data = {
+            'status': '',
+            'resource_name': 'sellers',
+            'uuid': 'custom-uuid',
+            'agreement': '',
+            'email': 'a@a.com',
+            'id': 'custom-uuid',
+            'resource_uri': '/provider/reference/sellers/custom-uuid/',
+            'account_name': u'Test',
+            'name': 'Test',
+        }
+        seller_mock = Mock()
+        seller_mock.get.return_value =  account_data
+        self.ref_patcher.sellers.return_value = seller_mock
         account = self.make_account()
-        self.ref.account_update(account, {'account_name': 'foo'})
-        eq_(account.reload().name, 'foo')
-        assert self.ref_patcher.sellers.called
+        self.ref.account_update(account, account_data)
+        eq_(self.ref.forms['account']().hidden_fields()[0].name, 'uuid')
+        eq_(account.reload().name, 'Test')
+        seller_mock.put.assert_called_with(account_data)
 
     def test_product_create_exists(self):
         self.ref_patcher.products.get.return_value = [{'resource_uri': '/f'}]
