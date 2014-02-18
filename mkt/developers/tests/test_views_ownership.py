@@ -16,7 +16,7 @@ from users.models import UserProfile
 
 
 class TestOwnership(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = self.get_webapp()
@@ -208,7 +208,7 @@ class TestEditAuthor(TestOwnership):
 
 
 class TestEditWebappAuthors(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')

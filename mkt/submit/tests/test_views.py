@@ -963,7 +963,7 @@ class TestDetails(TestSubmit):
 
 
 class TestDone(TestSubmit):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('base_users', 'webapp_337141')
 
     def setUp(self):
         super(TestDone, self).setUp()

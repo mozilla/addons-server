@@ -685,9 +685,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return None
 
     @write
-    def update_version(self, _signal=True):
+    def update_version(self, ignore=None, _signal=True):
         """
         Returns true if we updated the field.
+
+        The optional ``ignore`` parameter, if present, is a a version
+        to not consider as part of the update, since it may be in the
+        process of being deleted.
 
         Pass ``_signal=False`` if you want to no signals fired at all.
 
@@ -711,8 +715,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 backup = self.get_version(backup_version=True)
 
         try:
-            latest = (self.versions.exclude(files__status=amo.STATUS_BETA)
-                          .latest())
+            latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
+            if ignore is not None:
+                latest_qs = latest_qs.exclude(pk=ignore.pk)
+            latest = latest_qs.latest()
         except Version.DoesNotExist:
             latest = None
         latest_id = latest and latest.id
@@ -745,6 +751,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # changes.
         if self._latest_version_id != latest_id:
             updated.update({'_latest_version': latest})
+
+        # update_version can be called by a post_delete signal (such
+        # as File's) when deleting a version. If so, we should avoid putting
+        # that version-being-deleted in any fields.
+        if ignore is not None:
+            updated = dict([(k, v) for (k, v) in updated.iteritems() if v != ignore])
 
         if updated:
             # Pass along _signal to the .update() to prevent it from firing

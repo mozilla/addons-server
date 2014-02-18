@@ -145,7 +145,7 @@
             "default_locale": "en-US",
             "target_locale": null,
             "prerelease": false,
-            "thankyou_note": 13252966,
+            "thankyou_note": null,
             "admin_review": false,
             "slug": "a228107",
             "external_software": false,

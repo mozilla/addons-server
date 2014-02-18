@@ -431,7 +431,7 @@
         "pk": 60,
         "model": "versions.license",
         "fields": {
-            "text": 377095,
+            "text": null,
             "modified": "2009-05-06 17:42:02",
             "created": "2009-05-06 17:42:01"
         }
@@ -473,7 +473,7 @@
             "support_email": null,
             "public_stats": 0,
             "status": 1,
-            "description": 377981,
+            "description": null,
             "default_locale": "en-US",
             "target_locale": null,
             "prerelease": 0,
@@ -486,7 +486,7 @@
             "icon_type": "",
             "annoying": 0,
             "modified": "2009-05-13 18:19:30",
-            "summary": 377980,
+            "summary": null,
             "suggested_amount": null,
             "site_specific": 0,
             "total_reviews": 0,
@@ -517,7 +517,7 @@
         "fields": {
             "license": 345,
             "created": "2010-01-14 11:39:40",
-            "releasenotes": 758487,
+            "releasenotes": null,
             "approvalnotes": "",
             "modified": "2010-01-14 11:40:45",
             "version": "4.5.16",
@@ -530,7 +530,7 @@
         "fields": {
             "license": 13,
             "created": "2010-01-12 20:50:20",
-            "releasenotes": 756306,
+            "releasenotes": null,
             "approvalnotes": "",
             "modified": "2010-01-13 08:21:43",
             "version": "2.17",
@@ -553,7 +553,7 @@
         "fields": {
             "license": 60,
             "created": "2009-12-24 18:30:07",
-            "releasenotes": 733724,
+            "releasenotes": null,
             "approvalnotes": "",
             "modified": "2009-12-24 18:31:25",
             "version": "2.0.3",

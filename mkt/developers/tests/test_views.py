@@ -609,7 +609,7 @@ class TestPubliciseVersion(amo.tests.TestCase):
 
 
 class TestStatus(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = Addon.objects.get(id=337141)
@@ -661,7 +661,7 @@ class TestStatus(amo.tests.TestCase):
 
 
 class TestDelete(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = self.get_webapp()
@@ -679,7 +679,7 @@ class TestDelete(amo.tests.TestCase):
 
 
 class TestResumeStep(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = self.get_addon()
@@ -924,7 +924,7 @@ def assert_json_field(request, field, msg):
 
 
 class TestDeleteApp(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = Webapp.objects.get(id=337141)
@@ -1005,7 +1005,7 @@ class TestEnableDisable(amo.tests.TestCase):
 
 
 class TestRemoveLocale(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = Addon.objects.no_cache().get(id=337141)

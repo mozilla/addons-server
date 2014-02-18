@@ -930,7 +930,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
 
 
 class TestRegions(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = self.get_webapp()

@@ -15,7 +15,7 @@ from versions.models import Version
 
 
 class TestVersion(BaseUploadTest, amo.tests.TestCase):
-    fixtures = fixture('webapp_337141', 'platforms_all')
+    fixtures = fixture('webapp_337141', 'platform_all')
 
     def test_developer_name(self):
         version = Version.objects.latest('id')

@@ -26,8 +26,9 @@ from versions.models import Version, ApplicationsVersions
 
 
 class TestRecs(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/addon-recs',
-                'base/addon_5299_gcal', 'base/category', 'base/featured']
+    fixtures = ['base/apps', 'base/appversion', 'base/addon_3615',
+                'base/addon-recs', 'base/addon_5299_gcal', 'base/category',
+                'base/featured', 'addons/featured']
 
     @classmethod
     def setUpClass(cls):
@@ -219,7 +220,8 @@ class TestModuleAdmin(amo.tests.TestCase):
 
 
 class TestUrls(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615']
+    fixtures = ['base/users', 'base/apps', 'base/featured', 'addons/featured',
+                'base/addon_3615']
 
     def test_reverse(self):
         eq_('/en-US/firefox/discovery/pane/10.0/WINNT',
@@ -261,7 +263,7 @@ class TestUrls(amo.tests.TestCase):
 
 
 class TestPromos(amo.tests.TestCase):
-    fixtures = ['discovery/discoverymodules']
+    fixtures = ['base/apps', 'base/users', 'discovery/discoverymodules']
 
     def get_disco_url(self, platform, version):
         return reverse('discovery.pane.promos', args=[platform, version])
@@ -478,8 +480,8 @@ class TestPersonaDetails(amo.tests.TestCase):
 
 
 class TestDownloadSources(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/collections',
-                'base/featured', 'addons/featured',
+    fixtures = ['base/apps', 'base/addon_3615', 'base/users',
+                'base/collections', 'base/featured', 'addons/featured',
                 'discovery/discoverymodules']
 
     def setUp(self):

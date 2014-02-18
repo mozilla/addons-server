@@ -237,8 +237,8 @@ class TestLookup(amo.tests.TestCase):
         and the oldest public version is now 1.1.3.
         """
         self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
-
-        Version.objects.filter(pk__gte=self.version_1_2_1).delete()
+        for v in Version.objects.filter(pk__gte=self.version_1_2_1):
+            v.delete()
         version, file = self.get('1.2', self.version_int,
                                  self.app, self.platform)
 

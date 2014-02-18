@@ -1396,7 +1396,8 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_lone_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
-        Version.objects.all().delete()
+        for v in Version.objects.all():
+            v.delete()
         v = Version.objects.create(addon=a, version='1.0')
         eq_(v.nomination, None)
 
@@ -1538,7 +1539,8 @@ class TestBackupVersion(amo.tests.TestCase):
         eq_(self.addon.current_version.version, '1.2.2')
 
     def test_no_current_version(self):
-        Version.objects.all().delete()
+        for v in Version.objects.all():
+            v.delete()
         self.addon.update(_current_version=None)
         eq_(self.addon.backup_version, None)
         eq_(self.addon.current_version, None)

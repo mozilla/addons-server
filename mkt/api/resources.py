@@ -107,7 +107,8 @@ def site_config(request):
     settings or waffle flags that might be relevant to the client app.
     """
     def data(cls):
-        as_list = cls(cls.Meta.model.objects.all().order_by('name')).data
+        as_list = cls(cls.Meta.model.objects.all().order_by('name'),
+                      many=True).data
         return dict((d['name'], d) for d in as_list)
 
     return Response({

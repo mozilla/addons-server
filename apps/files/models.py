@@ -440,14 +440,23 @@ def update_status(sender, instance, **kw):
         try:
             instance.version.addon.reload()
             instance.version.addon.update_status()
-            instance.version.addon.update_version()
+            if 'delete' in kw:
+                instance.version.addon.update_version(ignore=instance.version)
+            else:
+                instance.version.addon.update_version()
         except models.ObjectDoesNotExist:
             pass
+
+
+def update_status_delete(sender, instance, **kw):
+    kw['delete'] = True
+    return update_status(sender, instance, **kw)
+
 
 models.signals.post_save.connect(
     update_status, sender=File, dispatch_uid='version_update_status')
 models.signals.post_delete.connect(
-    update_status, sender=File, dispatch_uid='version_update_status')
+    update_status_delete, sender=File, dispatch_uid='version_update_status')
 
 
 @receiver(models.signals.post_delete, sender=File,

@@ -23,6 +23,7 @@ from versions.models import Version
 
 from . test_models import create_addon_file
 
+from mkt.site.fixtures import fixture
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                          amo.STATUS_UNREVIEWED)
 REVIEW_FILES_STATUSES = (amo.STATUS_BETA, amo.STATUS_NULL, amo.STATUS_PUBLIC,

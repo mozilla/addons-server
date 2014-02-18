@@ -29,7 +29,7 @@
         }
     },
     {
-        "pk": 0,
+        "pk": 7,
         "model": "addons.addon",
         "fields": {
             "slug": "0",

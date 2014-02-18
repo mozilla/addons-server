@@ -28,6 +28,7 @@ from files.helpers import copyfileobj
 from files.utils import check_rdf, JetpackUpgrader, parse_addon, parse_xpi
 from versions.models import Version
 
+from mkt.site.fixtures import fixture
 
 class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     """
@@ -1053,7 +1054,7 @@ class TestLanguagePack(LanguagePackBase):
 
 
 class TestSignedPath(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.file_ = File.objects.get(pk=81555)

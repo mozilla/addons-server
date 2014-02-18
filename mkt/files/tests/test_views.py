@@ -19,6 +19,7 @@ from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
 from mkt.webapps.models import Webapp
+from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
 packaged_app = 'mkt/submit/tests/packaged/full-tpa.zip'
@@ -290,7 +291,7 @@ class FilesBase(object):
 
 
 class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
 
     def poll_url(self):
         return reverse('mkt.files.poll', args=[self.file.pk])
@@ -431,7 +432,7 @@ class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
 
 
 class TestDiffViewer(FilesBase, amo.tests.WebappTestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
 
     def setUp(self):
         super(TestDiffViewer, self).setUp()

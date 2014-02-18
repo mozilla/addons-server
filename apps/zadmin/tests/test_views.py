@@ -1463,7 +1463,8 @@ class TestAddonAdmin(amo.tests.TestCase):
         doc = pq(res.content)
         rows = doc('#result_list tbody tr')
         eq_(rows.length, 1)
-        eq_(rows.find('a').attr('href'), '3615/')
+        eq_(rows.find('a').attr('href'),
+            '/en-US/admin/models/addons/addon/3615/')
 
 
 class TestAddonManagement(amo.tests.TestCase):
