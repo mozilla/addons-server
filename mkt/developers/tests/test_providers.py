@@ -110,9 +110,9 @@ class TestBango(Patcher, TestCase):
 
     def test_terms_bleached(self):
         self.bango_patcher.sbi.agreement.get_object.return_value = {
-            'text': '<script>foo</script><a>bar</a>'}
+            'text': '<script>foo</script><h3></h3>'}
         eq_(self.bango.terms_retrieve(Mock())['text'],
-            u'&lt;script&gt;foo&lt;/script&gt;<a>bar</a>')
+            u'&lt;script&gt;foo&lt;/script&gt;<h3></h3>')
 
 
 class TestReference(Patcher, TestCase):

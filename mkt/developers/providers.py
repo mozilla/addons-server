@@ -184,7 +184,8 @@ class Bango(Provider):
         res = self.client.sbi.agreement.get_object(data={
             'seller_bango': package['resource_uri']})
         if 'text' in res:
-            res['text'] = bleach.clean(res['text'])
+            res['text'] = bleach.clean(res['text'], tags=['h3', 'h4', 'br',
+                                                          'p', 'hr'])
         return res
 
 
