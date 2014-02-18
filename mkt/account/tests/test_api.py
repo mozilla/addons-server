@@ -364,6 +364,26 @@ class TestLoginHandler(TestCase):
              'webpay': False,
              'stats': False,
              'revenue_stats': False})
+        eq_(data['installed'], [])
+        eq_(data['purchased'], [])
+        eq_(data['developed'], [])
+
+    @patch('users.models.UserProfile.purchase_ids')
+    def test_relevant_apps(self, purchase_ids):
+        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        profile.create_django_user(
+            backend='django_browserid.auth.BrowserIDBackend')
+        purchased_app = app_factory()
+        purchase_ids.return_value = [purchased_app.pk]
+        developed_app = app_factory()
+        developed_app.addonuser_set.create(user=profile)
+        installed_app = app_factory()
+        installed_app.installed.create(user=profile)
+
+        data = self._test_login()
+        eq_(data['installed'], [installed_app.pk])
+        eq_(data['purchased'], [purchased_app.pk])
+        eq_(data['developed'], [developed_app.pk])
 
     @patch('requests.post')
     def test_login_failure(self, http_request):

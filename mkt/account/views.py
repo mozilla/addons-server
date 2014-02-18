@@ -16,6 +16,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 
+import amo
 from amo.utils import send_mail_jinja
 from users.models import UserProfile
 from users.views import browserid_authenticate
@@ -34,6 +35,16 @@ from mkt.webapps.models import Webapp
 
 
 log = commonware.log.getLogger('z.account')
+
+
+def user_relevant_apps(user):
+    return {
+        'developed': list(user.addonuser_set.filter(
+            role=amo.AUTHOR_ROLE_OWNER).values_list('addon_id', flat=True)),
+        'installed': list(user.installed_set.values_list('addon_id',
+            flat=True)),
+        'purchased': list(user.purchase_ids()),
+    }
 
 
 class MineMixin(object):
@@ -175,6 +186,10 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
         permissions = PermissionsSerializer(context={'request': request},
                                             instance=True)
         data.update(permissions.data)
+
+        # Add ids of installed/purchased/developed apps.
+        data.update(user_relevant_apps(profile))
+
         return data
 
 
