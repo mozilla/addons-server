@@ -963,7 +963,7 @@ class TestDetails(TestSubmit):
 
 
 class TestDone(TestSubmit):
-    fixtures = fixture('base_users', 'webapp_337141')
+    fixtures = fixture('base_users', 'user_999', 'webapp_337141')
 
     def setUp(self):
         super(TestDone, self).setUp()
