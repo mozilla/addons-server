@@ -16861,9 +16861,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
-msgstr ""
-"使用 IARC 分級工具即代表您願意遵守其 <a href=\"%(privacy_url)s\">隱私權保護政策</a> 與 <a href=\"%"
-"(tos_url)s\">服務使用條款</a>。"
+msgstr "使用 IARC 分級工具即代表您願意遵守其 <a href=\"%(privacy_url)s\">隱私權保護政策</a> 與 <a href=\"%(tos_url)s\">服務使用條款</a>。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
