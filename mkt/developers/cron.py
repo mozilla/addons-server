@@ -11,7 +11,7 @@ from editors.models import RereviewQueue
 
 import lib.iarc
 
-from lib.iarc.utils import DESC_MAPPING, RATINGS_MAPPING
+from lib.iarc.utils import DESC_MAPPING, INTERACTIVES_MAPPING, RATINGS_MAPPING
 from mkt.developers.tasks import region_email, region_exclude
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
@@ -107,6 +107,14 @@ def process_iarc_changes(date=None):
             descriptors = filter(None, [DESC_MAPPING[ratings_body].get(desc)
                                         for desc in native_descs])
             app.set_descriptors(descriptors)
+
+            # Process 'new_interactiveelements'.
+            native_interactives = filter(None, [
+                s.strip() for s in
+                row.get('new_interactiveelements', '').split(',')])
+            interactives = filter(None, [INTERACTIVES_MAPPING.get(desc)
+                                         for desc in native_interactives])
+            app.set_interactives(interactives)
 
             # Log change reason.
             reason = row.get('change_reason')
