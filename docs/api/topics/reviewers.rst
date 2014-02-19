@@ -92,3 +92,21 @@ Reviewing
     :type objects: array
 
     :status 200: successfully completed.
+
+
+.. note:: Requires authentication and permission to review apps.
+
+.. warning:: Not available through CORS.
+
+.. http:post::  /api/v1/reviewers/app/(int:id)|(string:slug)/token
+
+    Returns a short-lived token that can be used to access the
+    mini-manifest. Use this token as a query-string parameter to the
+    mini-manifest URL named "token" within 60 seconds.
+
+    **Response**:
+
+    :param token: The token.
+    :type meta: string
+
+    :status 200: successfully completed.

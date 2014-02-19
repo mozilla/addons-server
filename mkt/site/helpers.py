@@ -112,8 +112,10 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         author = product.listed_authors[0].name
         author_url = product.listed_authors[0].get_url_path()
 
-    url = (reverse('receipt.issue', args=[product.app_slug])
-           if receipt_type else product.get_detail_url('record'))
+    receipt_url = (reverse('receipt.issue', args=[product.app_slug]) if
+                   receipt_type else product.get_detail_url('record'))
+    token_url = reverse('generate-reviewer-token', args=[product.app_slug])
+
     src = src or request.GET.get('src', '')
     reviewer = receipt_type == 'reviewer'
 
@@ -123,7 +125,8 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         'categories': [unicode(cat.slug) for cat in
                        product.categories.all()],
         'manifest_url': product.get_manifest_url(reviewer),
-        'recordUrl': urlparams(url, src=src),
+        'recordUrl': urlparams(receipt_url, src=src),
+        'tokenUrl': token_url,
         'author': author,
         'author_url': author_url,
         'iconUrl': product.get_icon_url(64),

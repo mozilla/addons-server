@@ -359,7 +359,7 @@ class Webapp(Addon):
                 # Get latest version and return reviewer manifest URL.
                 version = self.latest_version
                 return absolutify(reverse('reviewers.mini_manifest',
-                                          args=[self.id, version.id]))
+                                          args=[self.app_slug, version.id]))
             elif self.current_version:
                 return absolutify(reverse('detail.manifest', args=[self.guid]))
             else:

@@ -66,6 +66,7 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
         }
 
         z.doc.trigger('app_install_start', product);
+
         $.post(product.recordUrl, post_data).success(function(response) {
             if (response.error) {
                 $('#pay-error').show().find('div').text(response.error);
@@ -75,9 +76,32 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
             if (response.receipt) {
                 data.data = {'receipts': [response.receipt]};
             }
-            $.when(apps.install(product, data))
-             .done(installSuccess)
-             .fail(installError);
+
+            var browserVersion = 0;
+            var match = /Mozilla.*(Firefox|Fennec)\/([^\s]*).*$/.exec(navigator.userAgent);
+            if (match && match.length === 3) {
+                browserVersion = parseInt(match[2], 10);
+            }
+
+            // APK Factory support was added to Firefox Android in v29.
+            if (product.is_packaged && caps.firefoxAndroid && browserVersion >= 29) {
+                $.post(product.tokenUrl).success(function(response) {
+                    if (/[?&]token=/.exec(product.manifest_url)) {
+                        product.manifest_url += (
+                            product.manifest_url.indexOf('?') > 1 ? '&' : '?') +
+                            'token=' + response.token;
+                    }
+                    $.when(apps.install(product, data))
+                     .done(installSuccess)
+                     .fail(installError);
+                }).error(function(response) {
+                    installError(null, product, 'Token generation error');
+                });
+            } else {
+                $.when(apps.install(product, data))
+                 .done(installSuccess)
+                 .fail(installError);
+            }
         }).error(function(response) {
             // Could not record/generate receipt!
             installError(null, product);

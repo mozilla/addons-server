@@ -15,6 +15,7 @@ from django.utils import translation
 
 import mock
 import requests
+from cache_nuggets.lib import Token
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -26,7 +27,7 @@ import reviews
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import AddonDeviceType
-from amo.helpers import absolutify
+from amo.helpers import absolutify, urlparams
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
                        req_factory_factory, user_factory, version_factory)
 from amo.urlresolvers import reverse
@@ -2753,6 +2754,31 @@ class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
 
+    def test_token_good(self):
+        token = Token(data={'app_id': self.app.id})
+        token.save()
+        self.setup_files()
+        self.client.logout()
+
+        res = self.client.get(urlparams(self.url, token=token.token))
+        eq_(res.status_code, 200)
+        file_ = self.app.current_version.all_files[0]
+        eq_(res['x-sendfile'], file_.signed_reviewer_file_path)
+        eq_(res['etag'], '"%s"' % file_.hash.split(':')[-1])
+
+        # Test token doesn't work the 2nd time.
+        res = self.client.get(urlparams(self.url, token=token.token))
+        eq_(res.status_code, 403)
+
+    def test_token_bad(self):
+        token = Token(data={'app_id': 'abcdef'})
+        token.save()
+        self.setup_files()
+        self.client.logout()
+
+        res = self.client.get(urlparams(self.url, token=token.token))
+        eq_(res.status_code, 403)
+
 
 class TestMiniManifestView(BasePackagedAppTest):
     fixtures = fixture('user_editor', 'user_editor_group', 'group_editor',
@@ -2765,7 +2791,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         self.version = self.app.versions.latest()
         self.file = self.version.all_files[0]
         self.file.update(filename='mozball.zip')
-        self.url = reverse('reviewers.mini_manifest', args=[self.app.id,
+        self.url = reverse('reviewers.mini_manifest', args=[self.app.app_slug,
                                                             self.version.pk])
         self.login('editor@mozilla.com')
 
@@ -2784,7 +2810,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         eq_(res.status_code, 404)
 
     def test_wrong_version(self):
-        url = reverse('reviewers.mini_manifest', args=[self.app.id, 0])
+        url = reverse('reviewers.mini_manifest', args=[self.app.app_slug, 0])
         res = self.client.get(url)
         eq_(res.status_code, 404)
 
@@ -2829,6 +2855,32 @@ class TestMiniManifestView(BasePackagedAppTest):
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['name'], manifest['name'])
+
+    def test_token_good(self):
+        token = Token(data={'app_id': self.app.id})
+        token.save()
+        self.setup_files()
+        self.client.logout()
+
+        res = self.client.get(urlparams(self.url, token=token.token))
+        eq_(res.status_code, 200)
+        eq_(res['Content-type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
+        data = json.loads(res.content)
+        ok_('token=' in data['package_path'])
+
+        # Test token doesn't work the 2nd time.
+        res = self.client.get(urlparams(self.url, token=token.token))
+        eq_(res.status_code, 403)
+
+    def test_token_bad(self):
+        token = Token(data={'app_id': 'abcdef'})
+        token.save()
+        self.setup_files()
+        self.client.logout()
+
+        res = self.client.get(urlparams(self.url, token=token.token))
+        eq_(res.status_code, 403)
 
 
 class TestReviewersScores(AppReviewerTest, AccessMixin):

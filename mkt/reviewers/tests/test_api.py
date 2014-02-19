@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 
+from cache_nuggets.lib import Token
 from nose.tools import eq_
 from test_utils import RequestFactory
 
@@ -22,7 +23,6 @@ from mkt.constants.features import FeatureProfile
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-
 
 
 class TestReviewing(RestOAuth):
@@ -336,3 +336,34 @@ class TestApproveRegion(RestOAuth):
         obj = json.loads(res.content)
         eq_(obj['approved'], True)
         eq_(app.geodata.reload().get_status('cn'), amo.STATUS_PUBLIC)
+
+
+class TestGenerateToken(RestOAuth):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestGenerateToken, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.url = reverse('generate-reviewer-token', args=[self.app.app_slug])
+        self.user = UserProfile.objects.get(pk=2519)
+        self.req = RequestFactory().get('/')
+        self.req.amo_user = self.user
+
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ('post'))
+
+    def test_not_allowed(self):
+        eq_(self.anon.post(self.url).status_code, 403)
+
+    def test_still_not_allowed(self):
+        eq_(self.client.post(self.url).status_code, 403)
+
+    def test_token(self):
+        self.grant_permission(self.user, 'Apps:Review')
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200, res.content)
+        data = json.loads(res.content)
+        assert 'token' in data
+
+        # Check data in token.
+        assert Token.valid(data['token'], data={'app_id': self.app.id})

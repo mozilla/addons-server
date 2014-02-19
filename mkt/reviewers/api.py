@@ -1,3 +1,5 @@
+import commonware.log
+from cache_nuggets.lib import Token
 from rest_framework import serializers
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView
@@ -17,6 +19,9 @@ from mkt.search.utils import S
 from mkt.webapps.models import Webapp, WebappIndexer
 
 
+log = commonware.log.getLogger('z.reviewers')
+
+
 class ReviewingView(ListAPIView):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
@@ -25,6 +30,7 @@ class ReviewingView(ListAPIView):
 
     def get_queryset(self):
         return [row['app'] for row in AppsReviewing(self.request).get_apps()]
+
 
 SEARCH_FIELDS = [u'device_types', u'id', u'is_escalated', u'is_packaged',
                  u'name', u'premium_type', u'price', u'slug', u'status']
@@ -98,3 +104,26 @@ class ApproveRegion(SlugOrIdMixin, CreateAPIView):
         form.save()
 
         return Response({'approved': bool(form.cleaned_data['approve'])})
+
+
+class GenerateToken(SlugOrIdMixin, CreateAPIView):
+    """
+    This generates a short-lived token to be used by the APK factory service
+    for authentication of requests to the reviewer mini-manifest and package.
+
+    """
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    permission_classes = [GroupPermission('Apps', 'Review')]
+    model = Webapp
+    slug_field = 'app_slug'
+
+    def post(self, request, pk, *args, **kwargs):
+        app = self.get_object()
+        token = Token(data={'app_id': app.id})
+        token.save()
+
+        log.info('Generated token on app:%s for user:%s' % (
+            app.id, request.amo_user.id))
+
+        return Response({'token': token.token})

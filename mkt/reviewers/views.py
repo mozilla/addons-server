@@ -1,5 +1,6 @@
 import collections
 import datetime
+import functools
 import json
 import os
 import sys
@@ -8,6 +9,7 @@ import urllib
 
 from django import http
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.db.models import Count, Q
 from django.db.models.signals import post_save
@@ -15,6 +17,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 import commonware.log
 import requests
+from cache_nuggets.lib import Token
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
@@ -26,11 +29,11 @@ from addons.models import AddonDeviceType, Persona, Version
 from addons.signals import version_changed
 from amo.decorators import (any_permission_required, json_view,
                             permission_required)
-from amo.helpers import absolutify
+from amo.helpers import absolutify, urlparams
 from amo.models import manual_order
 from amo.urlresolvers import reverse
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
-                       smart_decode)
+                       redirect_for_login, smart_decode)
 from devhub.models import ActivityLog, ActivityLogAttachment
 from editors.forms import MOTDForm
 from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
@@ -790,15 +793,46 @@ def app_view_manifest(request, addon):
                        'permissions': _get_permissions(manifest)})
 
 
-@permission_required('Apps', 'Review')
-def mini_manifest(request, addon_id, version_id):
-    addon = get_object_or_404(Webapp, pk=addon_id)
+def reviewer_or_token_required(f):
+    @functools.wraps(f)
+    def wrapper(request, addon, *args, **kw):
+        # If there is a 'token' in request.GET we either return 200 or 403.
+        # Otherwise we treat it like a normal django view and redirect to a
+        # login page or check for Apps:Review permissions.
+        allowed = False
+        token = request.GET.get('token')
+
+        if token and Token.pop(token, data={'app_id': addon.id}):
+            log.info('Token for app:%s was successfully used' % addon.id)
+            allowed = True
+        elif not token and not request.user.is_authenticated():
+            return redirect_for_login(request)
+        elif acl.action_allowed(request, 'Apps', 'Review'):
+            allowed = True
+
+        if allowed:
+            return f(request, addon, *args, **kw)
+        else:
+            if token:
+                log.info('Token provided for app:%s but was not valid'
+                         % (addon.id))
+            else:
+                log.info('Apps:Review permissions not met')
+            raise PermissionDenied
+
+    return wrapper
+
+
+@addon_view
+@reviewer_or_token_required
+def mini_manifest(request, addon, version_id):
+    token = request.GET.get('token')
     return http.HttpResponse(
-        _mini_manifest(addon, version_id),
+        _mini_manifest(addon, version_id, token),
         content_type='application/x-web-app-manifest+json; charset=utf-8')
 
 
-def _mini_manifest(addon, version_id):
+def _mini_manifest(addon, version_id, token=None):
     if not addon.is_packaged:
         raise http.Http404
 
@@ -806,13 +840,21 @@ def _mini_manifest(addon, version_id):
     file_ = version.all_files[0]
     manifest = addon.get_manifest_json(file_)
 
+    package_path = absolutify(
+        reverse('reviewers.signed', args=[addon.app_slug, version.id]))
+
+    if token:
+        # Generate a fresh token.
+        token = Token(data={'app_id': addon.id})
+        token.save()
+        package_path = urlparams(package_path, token=token.token)
+
     data = {
         'name': manifest['name'],
         'version': version.version,
         'size': file_.size,
         'release_notes': version.releasenotes,
-        'package_path': absolutify(
-            reverse('reviewers.signed', args=[addon.app_slug, version.id]))
+        'package_path': package_path,
     }
     for key in ['developer', 'icons', 'locales']:
         if key in manifest:
@@ -832,8 +874,8 @@ def app_abuse(request, addon):
                           total=total))
 
 
-@permission_required('Apps', 'Review')
 @addon_view
+@reviewer_or_token_required
 def get_signed_packaged(request, addon, version_id):
     version = get_object_or_404(addon.versions, pk=version_id)
     file = version.all_files[0]
