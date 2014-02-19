@@ -239,11 +239,6 @@ msgstr "Овај додатак није прегледан од стране Mo
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Овај додатак је био прелиминарно прегледан од стране Mozilla фондације. <a href=\"%(url)s\">Сазнај вишe</a>"
 
-#: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
-#: apps/addons/templates/addons/impala/theme_grid.html:22 apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
-msgid "by %(users)s"
-msgstr "од %(users)s"
-
 # {0} is the count of addons in a collection
 #. {0} is the number of add-ons.
 #: apps/addons/templates/addons/collections_sidebar.html:21
@@ -3124,7 +3119,7 @@ msgstr "Нема истакнутих додатака у категорији {
 
 #: apps/browse/templates/browse/featured.html:15
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете персоналзицију %s-а."
+msgstr "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете персоналзицију %(app)-а."
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
@@ -12103,7 +12098,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
-msgid "by %(user)s"
+msgid "by %(users)s"
 msgstr "од %(users)s"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:38
