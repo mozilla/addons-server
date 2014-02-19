@@ -40,6 +40,10 @@ def custom_exception_handler(exc):
     Custom exception handler for DRF, which doesn't provide one for HTTP
     responses like tastypie does.
     """
+    # If propagate is true, bail early.
+    if settings.DEBUG_PROPAGATE_EXCEPTIONS:
+        raise
+
     # Call REST framework's default exception handler first,
     # to get the standard error response.
     response = exception_handler(exc)
