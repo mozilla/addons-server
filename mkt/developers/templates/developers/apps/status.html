@@ -265,6 +265,12 @@
               reviewed before they will be available for install.
             {% endtrans %}
             </p>
+            <p>
+              {% trans ratings_url=addon.get_dev_url('ratings') %}
+                Remember to update the app's <a href="{{ ratings_url }}">content ratings</a>
+                if a large portion of the app's content has changed.
+              {% endtrans %}
+            </p>
             <div id="upload-file">
               <div class="hidden">{{ upload_form.upload }}</div>
               <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload_for_addon', addon.app_slug) }}">
