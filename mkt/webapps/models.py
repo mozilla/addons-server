@@ -1288,8 +1288,9 @@ class Webapp(Addon):
 
         if self.status in amo.WEBAPPS_APPROVED_STATUSES:
             version = self.current_version
-            if version and version.reviewed:
-                release_date = version.reviewed
+            reviewed = self.current_version.reviewed
+            if reviewed:
+                release_date = reviewed
         elif self.status in amo.WEBAPPS_EXCLUDED_STATUSES:
             # Using `_latest_version` since the property returns None when
             # deleted.
@@ -1312,7 +1313,7 @@ class Webapp(Addon):
                 'rating_system': cr.get_body().iarc_name,
                 'release_date': '' if disable else release_date,
                 'title': get_iarc_app_title(self),
-                'company': version.developer_name if version else '',
+                'company': version.developer_name,
                 'rating': cr.get_rating().iarc_name,
                 'descriptors': self.rating_descriptors.iarc_deserialize(
                     body=cr.get_body()),

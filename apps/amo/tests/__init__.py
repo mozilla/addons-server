@@ -727,20 +727,16 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 
 
 def app_factory(**kw):
-    """
-    Create an app. Keyword arguments are passed to addon_factory.
-
-    complete -- fills out app details + creates content ratings.
-    rated -- creates content ratings
-    """
+    """Create an app. Any keyword argument is passed to addon_factory, except
+    for the booleans 'rated' and 'complete'. Those allow you to create an app
+    that automatically have content ratings and automatically have everything
+    needed to be considered 'complete', respectively."""
+    kw.update(type=amo.ADDON_WEBAPP)
     complete = kw.pop('complete', False)
     rated = kw.pop('rated', False)
     if complete:
         kw.setdefault('support_email', 'support@example.com')
-
-    kw.update(type=amo.ADDON_WEBAPP)
     app = amo.tests.addon_factory(**kw)
-
     if rated or complete:
         app.set_content_ratings(
             dict((body, body.ratings[0]) for body in
@@ -748,14 +744,12 @@ def app_factory(**kw):
         app.set_iarc_info(123, 'abc')
         app.set_descriptors([])
         app.set_interactives([])
-
     if complete:
         cat, _ = Category.objects.get_or_create(slug='utilities',
                                                 type=amo.ADDON_WEBAPP)
         app.addoncategory_set.create(category=cat)
         app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
         app.previews.create()
-
     return app
 
 
