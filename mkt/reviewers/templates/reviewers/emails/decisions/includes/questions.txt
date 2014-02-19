@@ -1,5 +1,0 @@
-**********************************************************************
-If you have any questions about this review, please reply to this email or join #app-reviewers on irc.mozilla.org. 
-
-{% include 'reviewers/emails/decisions/includes/commbadge.txt' %}
-**********************************************************************

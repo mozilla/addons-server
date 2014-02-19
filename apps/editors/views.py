@@ -37,8 +37,6 @@ from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
-from mkt.reviewers.utils import AppsReviewing
-
 
 def _view_on_get(request):
     """Returns whether the user can access this page.
@@ -639,8 +637,6 @@ def review_viewing(request):
         is_user = 1
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
-
-    AppsReviewing(request).add(addon_id)
 
     return {'current': currently_viewing, 'current_name': current_name,
             'is_user': is_user, 'interval_seconds': interval}

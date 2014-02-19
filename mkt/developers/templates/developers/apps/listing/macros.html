@@ -1,8 +1,0 @@
-{% macro dev_heading(addon, amo) %}
-  <h3>
-    {% set details_complete = addon.details_complete() %}
-    {% if details_complete %}<a href="{{ addon.get_dev_url() }}">{% endif %}
-    <img class="icon" src="{{ addon.get_icon_url(64) }}">
-    {{ addon.name }}{% if details_complete %}</a>{% endif %}
-  </h3>
-{% endmacro %}

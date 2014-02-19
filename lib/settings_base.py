@@ -443,9 +443,7 @@ INSTALLED_APPS = (
     'translations',
     'users',
     'versions',
-    'mkt.webapps',
-    'mkt.collections',
-    'mkt.comm',
+    'mkt.webapps',  # FIXME
     'zadmin',
 
     # Third party apps
@@ -491,12 +489,6 @@ DOMAIN_METHODS = {
         ('apps/**/templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
         ('templates/**.html',
-            'tower.management.commands.extract.extract_tower_template'),
-        ('mkt/**.py',
-            'tower.management.commands.extract.extract_tower_python'),
-        ('mkt/**/templates/**.html',
-            'tower.management.commands.extract.extract_tower_template'),
-        ('mkt/templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
         ('**/templates/**.lhtml',
             'tower.management.commands.extract.extract_tower_template'),
@@ -1090,8 +1082,8 @@ CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERYD_HIJACK_ROOT_LOGGER = False
 CELERY_IMPORTS = ('lib.video.tasks', 'lib.metrics',
-                  'lib.es.management.commands.reindex',
-                  'lib.es.management.commands.reindex_mkt')
+                  'lib.es.management.commands.reindex')
+
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
@@ -1107,9 +1099,6 @@ CELERY_ROUTES = {
     'bandwagon.tasks.index_collections': {'queue': 'priority'},
     'bandwagon.tasks.unindex_collections': {'queue': 'priority'},
     'lib.crypto.packaged.sign': {'queue': 'priority'},
-    'mkt.inapp_pay.tasks.fetch_product_image': {'queue': 'priority'},
-    'mkt.webapps.tasks.index_webapps': {'queue': 'priority'},
-    'mkt.webapps.tasks.unindex_webapps': {'queue': 'priority'},
     'stats.tasks.update_monolith_stats': {'queue': 'priority'},
     'users.tasks.index_users': {'queue': 'priority'},
     'users.tasks.unindex_users': {'queue': 'priority'},
@@ -1124,13 +1113,6 @@ CELERY_ROUTES = {
     'devhub.tasks.fetch_icon': {'queue': 'devhub'},
     'devhub.tasks.file_validator': {'queue': 'devhub'},
     'devhub.tasks.packager': {'queue': 'devhub'},
-    # MKT Devhub.
-    'mkt.developers.tasks.validator': {'queue': 'devhub'},
-    'mkt.developers.tasks.file_validator': {'queue': 'devhub'},
-    'mkt.developers.tasks.resize_icon': {'queue': 'devhub'},
-    'mkt.developers.tasks.resize_preview': {'queue': 'devhub'},
-    'mkt.developers.tasks.fetch_icon': {'queue': 'devhub'},
-    'mkt.developers.tasks.fetch_manifest': {'queue': 'devhub'},
 
     # Videos.
     'lib.video.tasks.resize_video': {'queue': 'devhub'},
@@ -1152,10 +1134,6 @@ CELERY_ROUTES = {
 # Otherwise your task will use the default settings.
 CELERY_TIME_LIMITS = {
     'lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
-    'lib.es.management.commands.reindex_mkt.run_indexing': {
-        'soft': 60 * 20,  # 20 mins to reindex.
-        'hard': 60 * 120,  # 120 mins hard limit.
-    },
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
@@ -1635,7 +1613,7 @@ POSTFIX_AUTH_TOKEN = 'make-sure-to-override-this-with-a-long-weird-string'
 POSTFIX_DOMAIN = 'marketplace.firefox.com'
 
 # This is a sample AES_KEY, we will override this on each server.
-AES_KEYS = {
+AES_KEYS = {  # FIXME
     'api:access:secret': os.path.join(ROOT, 'mkt/api/sample-aes.key'),
 }
 

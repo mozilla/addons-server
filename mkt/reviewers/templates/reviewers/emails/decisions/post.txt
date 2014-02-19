@@ -1,8 +1,0 @@
-{% extends 'reviewers/emails/base.txt' -%}
-{% block content %}
-A user posted on a discussion of {{ name }}.
-
-{{ sender }} wrote:
-{{ comments }}
-{% include 'reviewers/emails/decisions/includes/questions.txt' %}
-{% endblock %}
