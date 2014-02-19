@@ -111,6 +111,9 @@ class TestIARCChangesCron(amo.tests.TestCase):
             ['has_classind_shocking', 'has_classind_sex_content',
              'has_classind_drugs', 'has_classind_lang', 'has_classind_nudity',
              'has_classind_violence_extreme'])
+        self.assertSetEqual(
+            app.rating_interactives.to_keys(),
+            ['has_shares_location', 'has_shares_info'])
 
     def test_rereview_flag_adult(self):
         amo.set_user(amo.tests.user_factory())
