@@ -4,8 +4,7 @@ from django.http import HttpResponse
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 
-import amo
-
+from mkt.account.views import user_relevant_apps
 from mkt.api.base import CORSMixin
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -53,14 +52,7 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
             'region': request.REGION.slug
         }
         if request.amo_user:
-            user = request.amo_user
-            # FIXME: values_list() doesn't appear to be cached by cachemachine,
-            # is that going to be a problem ?
-            data['developed'] = list(user.addonuser_set.filter(
-                role=amo.AUTHOR_ROLE_OWNER).values_list('addon_id', flat=True))
-            data['installed'] = list(user.installed_set.values_list('addon_id',
-                flat=True))
-            data['purchased'] = list(user.purchase_ids())
+          data.update(user_relevant_apps(request.amo_user))
 
         # Return an HttpResponse directly to be as fast as possible.
         return HttpResponse(json.dumps(data),
