@@ -1,0 +1,109 @@
+<div id="history" class="island alpha c">
+  <div id="review-files-header">
+    <h3>
+      {{ _('App History') }}
+    </h3>
+  </div>
+  <table id="review-files" class="item-history">
+    {% for i in range(pager.object_list.count(), 0, -1) %}
+    {% set version = pager.object_list[i-1] %}
+    <tr class="listing-header">
+      <th colspan="2">
+        {% trans version = version.version, created = version.created|datetime, version_status = version_status(product, version), developer_name = version.developer_name %}
+        Version {{ version }} &middot; {{ developer_name }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
+        {% endtrans %}
+      </th>
+    </tr>
+    <tr class="listing-body">
+      {% if product.is_packaged %}
+        <td class="files">
+          {% set version_files = version.all_files %}
+          {% if version_files %}
+            <div><strong>{{ _('Files in this version:') }}</strong></div>
+            <ul>
+            {% for file in version_files %}
+            <li class="file-info">
+              <span class="light">
+                <div>
+                  {{ file_review_status(product, file) }}
+                </div>
+                <a href="{{ url('mkt.developers.apps.file_validation', product.app_slug, file) }}">{{ _('Validation') }}</a>
+                &middot;
+                <a href="{{ url('mkt.files.list', file) }}">{{ _('Contents') }}</a>
+                {% if show_diff and version == product.latest_version %}
+                  &middot;
+                  <a class="compare" href="{{ url('mkt.files.compare', file, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
+                {% endif %}
+              </span>
+            </li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        </td>
+      {% endif %}
+      <td>
+        <table class="activity">
+          {% if version.releasenotes %}
+          <tr>
+            <th>{{ _('Version Notes') }}</th>
+            <td class="activity_version">
+              <div class="history-notes">
+                {{ version.releasenotes|nl2br }}
+              </div>
+            </td>
+          </tr>
+          {% endif %}
+          {% if version.approvalnotes %}
+          <tr>
+            <th>{{ _('Notes for Reviewers') }}</th>
+            <td class="activity_approval">
+              <div class="history-notes">
+                {{ version.approvalnotes|urlize(100)|nl2br }}
+              </div>
+            </td>
+          </tr>
+          {% endif %}
+          {% set records = version.all_activity %}
+          {% for record_version in records %}
+            {% set record = record_version.activity_log %}
+            <tr>
+              <th>
+                {{ record.log.short }}
+              </th>
+              <td>
+                {% trans user=record.user|user_link,
+                         date=record.created|babel_datetime %}
+                  <div>By {{ user }} on {{ date }}</div>
+                {% endtrans %}
+                {% if record.details %}
+                  <div class="log-group log-comments">{{ record.details.comments|nl2br }}</div>
+                {% endif %}
+                {% set attachments = record.activitylogattachment_set.all() %}
+                {% if attachments %}
+                  <div class="log-group log-attachments">
+                    <strong>Attachments</strong>
+                    <ul>
+                      {% for attachment in attachments %}
+                        <li{% if attachment.is_image() %} class="image"{% endif %}>
+                          <a href="{{ attachment.get_absolute_url() }}">{{ attachment.display_name() }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+          {% if not version.releasenotes and not version.approvalnotes and not records %}
+          <tr>
+            <td class="no-activity">
+              {{ _('This version has not been reviewed.') }}
+            </td>
+          </tr>
+          {% endif %}
+        </table>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>

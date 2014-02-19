@@ -1,0 +1,82 @@
+<div id="history" class="island alpha c comm-dashboard-switch">
+  <div id="review-files-header"><h3>{{ _('App History') }}</h3></div>
+
+  <table id="review-files" class="item-history"
+         data-slug="{{ product.app_slug }}" data-note-types="{{ mkt.comm.NOTE_TYPES_JSON() }}"
+         data-comm-thread-url="{{ url('comm-thread-list')|urlparams(app=product.app_slug) }}"
+         data-thread-id-placeholder="0" data-comm-note-url="{{ url('comm-note-list', 0) }}">
+    {# Results populated below by reviewers_commbadge.js (Commbadge API) #}
+
+    {% for i in range(pager.object_list.count(), 0, -1) %}
+      {% set version = pager.object_list[i - 1] %}
+      <tr class="listing-header">
+        <th colspan="2">
+          {% trans version = version.version, created = version.created|datetime, version_status = version_status(product, version), developer_name = version.developer_name %}
+          Version {{ version }} &middot; {{ developer_name }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
+          {% endtrans %}
+        </th>
+      </tr>
+
+      <tr class="listing-body">
+        {% if product.is_packaged %}
+          <td class="files">
+            {% set version_files = version.all_files %}
+            {% if version_files %}
+              <div><strong>{{ _('Files in this version:') }}</strong></div>
+              <ul>
+              {% for file in version_files %}
+                <li class="file-info">
+                  <span class="light">
+                    <div>{{ file_review_status(product, file) }}</div>
+                    <a href="{{ url('mkt.developers.apps.file_validation', product.app_slug, file) }}">{{ _('Validation') }}</a>
+                    {% if not version.deleted %}
+                      <a href="{{ url('mkt.developers.apps.file_validation', product.app_slug, file) }}">{{ _('Validation') }}</a>
+                      &middot;
+                      <a href="{{ url('mkt.files.list', file) }}">{{ _('Contents') }}</a>
+                      {% if show_diff and version == product.latest_version %}
+                        &middot;
+                        <a class="compare" href="{{ url('mkt.files.compare', file, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
+                      {% endif %}
+                    {% endif %}
+                  </span>
+                </li>
+              {% endfor %}
+              </ul>
+            {% endif %}
+          </td>
+        {% endif %}
+
+        <td>
+          {# By version. #}
+          <table class="activity" data-version="{{ version.id }}">
+            {% if version.releasenotes %}
+              <tr>
+                <th>{{ _('Version Notes') }}</th>
+                <td class="activity_version">
+                  <div class="history-notes">
+                    {{ version.releasenotes|nl2br }}
+                  </div>
+                </td>
+              </tr>
+            {% endif %}
+            {% if version.approvalnotes %}
+              <tr>
+                <th>{{ _('Notes for Reviewers') }}</th>
+                <td class="activity_approval">
+                  <div class="history-notes">
+                    {{ version.approvalnotes|urlize(100)|nl2br }}
+                  </div>
+                </td>
+              </tr>
+            {% endif %}
+
+            {# Results populated here by reviewers_commbadge.js (Commbadge API) #}
+          </table>
+        </td>
+
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% include "reviewers/includes/commbadge_note_template.html" %}

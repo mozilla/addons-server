@@ -1304,15 +1304,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(scores[0].score, amo.REVIEWED_SCORES[reviewed_type])
         eq_(scores[0].note_key, reviewed_type)
 
-    def test_xss(self):
-        data = {'action': 'comment',
-                'comments': '<script>alert("xss")</script>'}
-        data.update(self._attachment_management_form(num=0))
-        self.post(data)
-        res = self.client.get(self.url)
-        assert '<script>alert' not in res.content
-        assert '&lt;script&gt;alert' in res.content
-
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_pending_to_public_w_device_overrides(self, storefront_mock):
         AddonDeviceType.objects.create(addon=self.app,

@@ -75,7 +75,6 @@ function initReviewActions() {
         $data_toggle.filter('[data-value*="' + value + '"]').show();
 
         toggle_input();
-        togglePermissions(value);
 
         /* Fade out canned responses */
         var label = $element.text().trim();
@@ -104,22 +103,6 @@ function initReviewActions() {
         // Add a dummy, disabled input
         $files_input.prop('checked', true).hide();
         $files_input.after($('<input>', {'type': 'checkbox', 'checked': true, 'disabled': true}));
-    }
-
-    function togglePermissions(action) {
-        // Check/Uncheck/Disable default permissions associated with the action.
-        var $reviewerActions = $('.review-actions-visibility');
-        var $permissions = $('input[name="action_visibility"]');
-        $permissions.prop('checked', true).prop('disabled', false);
-
-        var disable_list = $reviewerActions.data('default-visibility')[action];
-        if (disable_list) {
-            _.each(disable_list.disabled, function(v) {
-                $permissions.filter('[value="' + v + '"]')
-                            .prop('disabled', true)
-                            .prop('checked', false);
-            });
-        }
     }
 
     function toggle_input(){
