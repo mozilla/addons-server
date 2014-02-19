@@ -520,6 +520,125 @@ class TestWebapp(amo.tests.TestCase):
         region.adolescent = False
         eq_(app.get_trending(region=region), 10.0)
 
+    @mock.patch('mkt.webapps.models.cache.get')
+    def test_is_offline_when_packaged(self, mock_get):
+        mock_get.return_value = ''
+        eq_(Webapp(is_packaged=True).is_offline, True)
+        eq_(Webapp(is_packaged=False).is_offline, False)
+
+    def test_is_offline_when_appcache_path(self):
+        app = app_factory()
+        manifest = {'name': 'Swag'}
+
+        # If there's no appcache_path defined, ain't an offline-capable app.
+        am = AppManifest.objects.create(version=app.current_version,
+                                        manifest=json.dumps(manifest))
+        eq_(app.is_offline, False)
+
+        # If there's an appcache_path defined, this is an offline-capable app.
+        manifest['appcache_path'] = '/manifest.appcache'
+        am.update(manifest=json.dumps(manifest))
+        # reload isn't enough, it doesn't clear cached_property.
+        app = Webapp.objects.get(pk=app.pk)
+        eq_(app.is_offline, True)
+
+    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
+    def test_completion_errors(self, complete_mock):
+        app = app_factory()
+        complete_mock.return_value = {
+            'details': ['1', '2'],
+            'payments': 'pc load letter'
+        }
+        eq_(app.completion_error_msgs(), ['1', '2', 'pc load letter'])
+        assert not app.is_fully_complete()
+
+        complete_mock.return_value = {}
+        eq_(app.completion_error_msgs(), [])
+        assert app.is_fully_complete()
+
+    @mock.patch('mkt.webapps.models.Webapp.payments_complete')
+    @mock.patch('mkt.webapps.models.Webapp.content_ratings_complete')
+    @mock.patch('mkt.webapps.models.Webapp.details_complete')
+    def test_next_step(self, detail_step, rating_step, pay_step):
+        self.create_switch('iarc')
+        for step in (detail_step, rating_step, pay_step):
+            step.return_value = False
+        app = app_factory(status=amo.STATUS_NULL)
+        self.make_premium(app)
+        eq_(app.next_step()['url'], app.get_dev_url())
+
+        detail_step.return_value = True
+        eq_(app.next_step()['url'], app.get_dev_url('ratings'))
+
+        rating_step.return_value = True
+        eq_(app.next_step()['url'], app.get_dev_url('payments'))
+
+        pay_step.return_value = True
+        assert not app.next_step()
+
+    def test_meta_translated_fields(self):
+        """Test that we don't load translations for all the translated fields
+        that live on Addon but we don't need in Webapp."""
+        useless_fields = ('eula', 'thankyou_note', 'summary',
+                          'developer_comments', 'the_future', 'the_reason')
+        useful_fields = ('homepage', 'privacy_policy', 'name', 'description',
+                         'support_email', 'support_url')
+
+        self.assertSetEqual(Addon._meta.translated_fields,
+            [Addon._meta.get_field(f) for f in useless_fields + useful_fields])
+        self.assertSetEqual(Webapp._meta.translated_fields,
+            [Webapp._meta.get_field(f) for f in useful_fields])
+
+        # Build fake data with all fields, and use it to create an app.
+        data = dict(zip(useless_fields + useful_fields,
+                        useless_fields + useful_fields))
+        app = app_factory(**data)
+        for field_name in useless_fields + useful_fields:
+            field_id_name = app._meta.get_field(field_name).attname
+            ok_(getattr(app, field_name, None))
+            ok_(getattr(app, field_id_name, None))
+
+        # Reload the app, the useless fields should all have ids but the value
+        # shouldn't have been loaded.
+        app = Webapp.objects.get(pk=app.pk)
+        for field_name in useless_fields:
+            field_id_name = app._meta.get_field(field_name).attname
+            ok_(getattr(app, field_name, None) is None)
+            ok_(getattr(app, field_id_name, None))
+
+        # The useful fields should all be ok.
+        for field_name in useful_fields:
+            field_id_name = app._meta.get_field(field_name).attname
+            ok_(getattr(app, field_name, None))
+            ok_(getattr(app, field_id_name, None))
+
+    def test_has_payment_account(self):
+        app = app_factory()
+        assert not app.has_payment_account()
+
+        user = UserProfile.objects.create(email='a', username='b')
+        payment = PaymentAccount.objects.create(
+            solitude_seller=SolitudeSeller.objects.create(user=user),
+            user=user)
+        AddonPaymentAccount.objects.create(addon=app, payment_account=payment)
+        assert app.has_payment_account()
+
+    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
+    def test_payments_complete(self, pay_mock):
+        # Default to complete if it's not needed.
+        pay_mock.return_value = False
+        app = app_factory()
+        assert app.payments_complete()
+
+        self.make_premium(app)
+        assert not app.payments_complete()
+
+        pay_mock.return_value = True
+        assert app.payments_complete()
+
+
+class TestContentRatings(amo.tests.TestCase):
+
     def test_rated(self):
         self.create_switch('iarc')
         assert app_factory(rated=True).is_rated()
@@ -711,6 +830,14 @@ class TestWebapp(amo.tests.TestCase):
         app_factory().set_iarc_storefront_data()
         assert not storefront_mock.called
 
+    @mock.patch('mkt.webapps.models.Webapp.current_version', new=None)
+    @mock.patch('lib.iarc.client.MockClient.call')
+    def test_set_iarc_storefront_data_no_version(self, storefront_mock):
+        self.create_switch('iarc')
+        app = app_factory(rated=True, status=amo.STATUS_PUBLIC)
+        app.set_iarc_storefront_data()
+        assert storefront_mock.called
+
     @mock.patch('lib.iarc.client.MockClient.call')
     def test_set_iarc_storefront_data_invalid_status(self, storefront_mock):
         self.create_switch('iarc')
@@ -793,28 +920,6 @@ class TestWebapp(amo.tests.TestCase):
         eq_(app.status, amo.STATUS_DELETED)
         assert storefront_mock.called
 
-    @mock.patch('mkt.webapps.models.cache.get')
-    def test_is_offline_when_packaged(self, mock_get):
-        mock_get.return_value = ''
-        eq_(Webapp(is_packaged=True).is_offline, True)
-        eq_(Webapp(is_packaged=False).is_offline, False)
-
-    def test_is_offline_when_appcache_path(self):
-        app = app_factory()
-        manifest = {'name': 'Swag'}
-
-        # If there's no appcache_path defined, ain't an offline-capable app.
-        am = AppManifest.objects.create(version=app.current_version,
-                                        manifest=json.dumps(manifest))
-        eq_(app.is_offline, False)
-
-        # If there's an appcache_path defined, this is an offline-capable app.
-        manifest['appcache_path'] = '/manifest.appcache'
-        am.update(manifest=json.dumps(manifest))
-        # reload isn't enough, it doesn't clear cached_property.
-        app = Webapp.objects.get(pk=app.pk)
-        eq_(app.is_offline, True)
-
     @mock.patch('mkt.webapps.models.Webapp.is_rated')
     def test_content_ratings_complete(self, is_rated_mock):
         # Default to complete if it's not needed.
@@ -827,30 +932,6 @@ class TestWebapp(amo.tests.TestCase):
 
         is_rated_mock.return_value = True
         assert app.content_ratings_complete()
-
-    def test_has_payment_account(self):
-        app = app_factory()
-        assert not app.has_payment_account()
-
-        user = UserProfile.objects.create(email='a', username='b')
-        payment = PaymentAccount.objects.create(
-            solitude_seller=SolitudeSeller.objects.create(user=user),
-            user=user)
-        AddonPaymentAccount.objects.create(addon=app, payment_account=payment)
-        assert app.has_payment_account()
-
-    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
-    def test_payments_complete(self, pay_mock):
-        # Default to complete if it's not needed.
-        pay_mock.return_value = False
-        app = app_factory()
-        assert app.payments_complete()
-
-        self.make_premium(app)
-        assert not app.payments_complete()
-
-        pay_mock.return_value = True
-        assert app.payments_complete()
 
     @mock.patch('mkt.webapps.models.Webapp.details_complete')
     @mock.patch('mkt.webapps.models.Webapp.payments_complete')
@@ -866,76 +947,6 @@ class TestWebapp(amo.tests.TestCase):
         assert 'content_ratings' not in (
             app.completion_errors(ignore_ratings=True))
         assert app.is_fully_complete(ignore_ratings=True)
-
-    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
-    def test_completion_errors(self, complete_mock):
-        app = app_factory()
-        complete_mock.return_value = {
-            'details': ['1', '2'],
-            'payments': 'pc load letter'
-        }
-        eq_(app.completion_error_msgs(), ['1', '2', 'pc load letter'])
-        assert not app.is_fully_complete()
-
-        complete_mock.return_value = {}
-        eq_(app.completion_error_msgs(), [])
-        assert app.is_fully_complete()
-
-    @mock.patch('mkt.webapps.models.Webapp.payments_complete')
-    @mock.patch('mkt.webapps.models.Webapp.content_ratings_complete')
-    @mock.patch('mkt.webapps.models.Webapp.details_complete')
-    def test_next_step(self, detail_step, rating_step, pay_step):
-        self.create_switch('iarc')
-        for step in (detail_step, rating_step, pay_step):
-            step.return_value = False
-        app = app_factory(status=amo.STATUS_NULL)
-        self.make_premium(app)
-        eq_(app.next_step()['url'], app.get_dev_url())
-
-        detail_step.return_value = True
-        eq_(app.next_step()['url'], app.get_dev_url('ratings'))
-
-        rating_step.return_value = True
-        eq_(app.next_step()['url'], app.get_dev_url('payments'))
-
-        pay_step.return_value = True
-        assert not app.next_step()
-
-    def test_meta_translated_fields(self):
-        """Test that we don't load translations for all the translated fields
-        that live on Addon but we don't need in Webapp."""
-        useless_fields = ('eula', 'thankyou_note', 'summary',
-                          'developer_comments', 'the_future', 'the_reason')
-        useful_fields = ('homepage', 'privacy_policy', 'name', 'description',
-                         'support_email', 'support_url')
-
-        self.assertSetEqual(Addon._meta.translated_fields,
-            [Addon._meta.get_field(f) for f in useless_fields + useful_fields])
-        self.assertSetEqual(Webapp._meta.translated_fields,
-            [Webapp._meta.get_field(f) for f in useful_fields])
-
-        # Build fake data with all fields, and use it to create an app.
-        data = dict(zip(useless_fields + useful_fields,
-                        useless_fields + useful_fields))
-        app = app_factory(**data)
-        for field_name in useless_fields + useful_fields:
-            field_id_name = app._meta.get_field(field_name).attname
-            ok_(getattr(app, field_name, None))
-            ok_(getattr(app, field_id_name, None))
-
-        # Reload the app, the useless fields should all have ids but the value
-        # shouldn't have been loaded.
-        app = Webapp.objects.get(pk=app.pk)
-        for field_name in useless_fields:
-            field_id_name = app._meta.get_field(field_name).attname
-            ok_(getattr(app, field_name, None) is None)
-            ok_(getattr(app, field_id_name, None))
-
-        # The useful fields should all be ok.
-        for field_name in useful_fields:
-            field_id_name = app._meta.get_field(field_name).attname
-            ok_(getattr(app, field_name, None))
-            ok_(getattr(app, field_id_name, None))
 
 
 class DeletedAppTests(amo.tests.ESTestCase):
