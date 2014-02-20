@@ -90,6 +90,7 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
                         product.manifest_url += (
                             product.manifest_url.indexOf('?') > 1 ? '&' : '?') +
                             'token=' + response.token;
+                        console.log('[install] manifest_url: ' + product.manifest_url);
                     }
                     $.when(apps.install(product, data))
                      .done(installSuccess)
