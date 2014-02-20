@@ -169,3 +169,4 @@ IARC_PLATFORM = 'Firefox'
 IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCProdService/IARCServices.svc'
 IARC_STOREFRONT_ID = 4
 IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCProdRating/Submission.aspx'
+IARC_ALLOW_CERT_REUSE = False

@@ -1041,12 +1041,13 @@ class IARCGetAppInfoForm(happyforms.Form):
     security_code = forms.CharField(max_length=10)
 
     def clean(self):
-        iarc_id = self.cleaned_data.get('submission_id')
+        if not settings.IARC_ALLOW_CERT_REUSE:
+            iarc_id = self.cleaned_data.get('submission_id')
 
-        if IARCInfo.objects.filter(submission_id=iarc_id).exists():
-            raise forms.ValidationError(
-                _('This IARC certificate is already being used for another '
-                  'app. Please create a new IARC Ratings Certificate.'))
+            if IARCInfo.objects.filter(submission_id=iarc_id).exists():
+                raise forms.ValidationError(
+                    _('This IARC certificate is already being used for another '
+                      'app. Please create a new IARC Ratings Certificate.'))
 
         return self.cleaned_data
 
