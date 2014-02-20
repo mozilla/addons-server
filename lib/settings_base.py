@@ -314,6 +314,7 @@ JINGO_EXCLUDE_APPS = (
     'toolbar_statsd',
     'registration',
     'debug_toolbar',
+    'waffle',
 )
 
 JINGO_EXCLUDE_PATHS = (
