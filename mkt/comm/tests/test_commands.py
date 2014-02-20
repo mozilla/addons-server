@@ -92,6 +92,14 @@ class TestMigrateActivityLog(amo.tests.TestCase):
 
         eq_(CommunicationThread.objects.count(), 1)
 
+    def test_empty_comment(self):
+        amo.log(amo.LOG.REQUEST_VERSION, self.app, self.version,
+                user=self.user, details={})
+        call_command('migrate_activity_log')
+        note = CommunicationNote.objects.get()
+        eq_(note.thread.addon, self.app)
+        eq_(note.body, '')
+
     def test_none(self):
         call_command('migrate_activity_log')
         assert not CommunicationThread.objects.exists()
