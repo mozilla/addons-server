@@ -17,8 +17,6 @@ import amo.tests
 from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
-from addons.tasks import unindex_addons
-from mkt.webapps.tasks import unindex_webapps
 from search import views
 from search.utils import floor_version
 from search.views import DEFAULT_NUM_PERSONAS, version_sidebar
@@ -1139,13 +1137,6 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         Persona.objects.create(persona_id=addon.id, addon_id=addon.id)
         self.search_addons('q=%s' % addon.id, [addon])
 
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    def test_ajax_search_webapp_by_id(self, index_webapps_mock):
-        """Webapps should not appear in ajax search results."""
-        addon = Addon.objects.all()[3]
-        addon.update(type=amo.ADDON_WEBAPP)
-        self.search_addons('q=%s' % addon.id, [])
-
     def test_ajax_search_by_name(self):
         addon = amo.tests.addon_factory(
             name='uniqueaddon',
@@ -1162,12 +1153,9 @@ class TestGenericAjaxSearch(TestAjaxSearch):
 
 class TestSearchSuggestions(TestAjaxSearch):
 
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    def setUp(self, index_webapps_mock):
+    def setUp(self):
         self.url = reverse('search.suggestions')
         self._addons += [
-            amo.tests.addon_factory(name='addon webapp',
-                                    type=amo.ADDON_WEBAPP),
             amo.tests.addon_factory(name='addon persona',
                                     type=amo.ADDON_PERSONA),
             amo.tests.addon_factory(name='addon persona',

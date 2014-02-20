@@ -240,24 +240,6 @@ ADDONS_PATH = NETAPP_STORAGE + '/addons'
 # not be publicly accessible (like disabled add-ons).
 GUARDED_ADDONS_PATH = NETAPP_STORAGE + '/guarded-addons'
 
-# Used for storing signed webapps.
-SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed-apps'
-# Special reviewer signed ones for special people.
-SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
-# A seperate signing server for signing packaged apps. If not set, for example
-# on local dev instances, the file will just be copied over unsigned.
-SIGNED_APPS_SERVER_ACTIVE = False
-# The reviewers equivalent to the above.
-SIGNED_APPS_REVIEWER_SERVER_ACTIVE = False
-# This is the signing REST server for signing apps.
-SIGNED_APPS_SERVER = ''
-# This is the signing REST server for signing apps with the reviewers cert.
-SIGNED_APPS_REVIEWER_SERVER = ''
-# And how long we'll give the server to respond.
-SIGNED_APPS_SERVER_TIMEOUT = 10
-# Send the more terse manifest signatures to the app signing server.
-SIGNED_APPS_OMIT_PER_FILE_SIGS = True
-
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.
 # Example: /data/uploads
@@ -443,7 +425,6 @@ INSTALLED_APPS = (
     'translations',
     'users',
     'versions',
-    'mkt.webapps',  # FIXME
     'zadmin',
 
     # Third party apps
@@ -1102,7 +1083,6 @@ CELERY_ROUTES = {
     'stats.tasks.update_monolith_stats': {'queue': 'priority'},
     'users.tasks.index_users': {'queue': 'priority'},
     'users.tasks.unindex_users': {'queue': 'priority'},
-    'versions.tasks.update_supported_locales_single': {'queue': 'priority'},
 
     # Other queues we prioritize below.
 
@@ -1586,51 +1566,6 @@ MONOLITH_SERVER = None
 MONOLITH_INDEX = 'time_*'
 MONOLITH_MAX_DATE_RANGE = 365
 
-# Error generation service. Should *not* be on in production.
-ENABLE_API_ERROR_SERVICE = False
-
-# The version we append to the app feature profile. Bump when we add new app
-# features to the `AppFeatures` model.
-APP_FEATURES_VERSION = 4
-
-# Whether to throttle API requests. Default is True. Disable where appropriate.
-API_THROTTLE = True
-
-# Cache timeout on the /search/featured API.
-CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 60  # 1 hour.
-
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.
 WHITELISTED_CLIENTS_EMAIL_API = []
-
-# Base URL to the Bango Vendor Portal (keep the trailing question mark).
-BANGO_BASE_PORTAL_URL = 'http://mozilla.com.test.bango.org/login/al.aspx?'
-
-# Auth token required to authorize a postfix host.
-POSTFIX_AUTH_TOKEN = 'make-sure-to-override-this-with-a-long-weird-string'
-
-# Domain name of the postfix server.
-POSTFIX_DOMAIN = 'marketplace.firefox.com'
-
-# This is a sample AES_KEY, we will override this on each server.
-AES_KEYS = {  # FIXME
-    'api:access:secret': os.path.join(ROOT, 'mkt/api/sample-aes.key'),
-}
-
-# IARC content ratings.
-IARC_ENV = 'test'
-IARC_MOCK = False
-IARC_PASSWORD = ''
-IARC_PLATFORM = 'Firefox'
-IARC_SERVICE_ENDPOINT = ''
-IARC_STOREFRONT_ID = 4
-IARC_SUBMISSION_ENDPOINT = ''
-IARC_PRIVACY_URL = 'https://www.globalratings.com/IARCPRODClient/privacypolicy.aspx'
-IARC_TOS_URL = 'https://www.globalratings.com/IARCPRODClient/termsofuse.aspx'
-
-# The payment providers supported.
-PAYMENT_PROVIDERS = []
-
-# The currently-recommended version of the API. Any requests to versions older
-# than this will include the `API-Status: Deprecated` header.
-API_CURRENT_VERSION = 1

@@ -1192,14 +1192,6 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
 
-    def test_edit_addon_dependencies_no_add_apps(self):
-        """Add-ons should not be able to add app dependencies."""
-        addon = Addon.objects.get(id=5299)
-        addon.update(type=amo.ADDON_WEBAPP)
-        d = self.dep_formset({'dependent_addon': addon.id})
-        r = self.client.post(self.technical_edit_url, d)
-        self.check_bad_dep(r)
-
     def test_dependencies_add_self(self):
         """Ensure that an add-on cannot be made dependent on itself."""
         d = self.dep_formset({'dependent_addon': self.addon.id})

@@ -1,7 +1,5 @@
 import functools
-import json
 
-from django.conf import settings
 from django.db import transaction
 
 import commonware.log
@@ -9,20 +7,16 @@ import happyforms
 from piston.handler import AnonymousBaseHandler, BaseHandler
 from piston.utils import rc
 from tower import ugettext as _
-import waffle
 
 import amo
 from access import acl
 from addons.forms import AddonForm
 from addons.models import Addon, AddonUser
 from amo.utils import paginate
-from devhub.forms import LicenseForm, NewManifestForm
-from devhub import tasks
-from files.models import FileUpload, Platform
+from devhub.forms import LicenseForm
 from users.models import UserProfile
 from versions.forms import XPIForm
 from versions.models import Version, ApplicationsVersions
-from mkt.webapps.models import Webapp
 
 log = commonware.log.getLogger('z.api')
 
@@ -166,46 +160,6 @@ class AddonsHandler(BaseHandler):
         return {'objects': paginator.object_list,
                 'num_pages': paginator.paginator.num_pages,
                 'count': paginator.paginator.count}
-
-
-class AppsHandler(AddonsHandler):
-    allowed_methods = ('GET', 'POST')
-    model = Webapp
-
-    fields = ('id', 'name', 'manifest_url', 'status', 'app_slug')
-    exclude = ('highest_status', 'icon_type')
-
-    @transaction.commit_on_success
-    def create(self, request):
-        form = NewManifestForm(request.POST)
-        if form.is_valid():
-            # This feels like an awful lot of work.
-            # But first upload the file and do the validation.
-            upload = FileUpload.objects.create()
-            tasks.fetch_manifest(form.cleaned_data['manifest'], upload.pk)
-
-            # We must reget the object here since the above has
-            # saved changes to the object.
-            upload = FileUpload.objects.get(pk=upload.pk)
-            # Check it validated correctly.
-            if settings.VALIDATE_ADDONS:
-                validation = json.loads(upload.validation)
-                if validation['errors']:
-                    response = rc.BAD_REQUEST
-                    response.write(validation)
-                    return response
-
-            # Fetch the addon, the icon and set the user.
-            addon = Addon.from_upload(upload,
-                        [Platform.objects.get(id=amo.PLATFORM_ALL.id)])
-            if addon.has_icon_in_manifest():
-                tasks.fetch_icon(addon)
-            AddonUser(addon=addon, user=request.amo_user).save()
-            addon.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
-
-        else:
-            return _form_error(form)
-        return addon
 
 
 class ApplicationsVersionsHandler(AnonymousBaseHandler):

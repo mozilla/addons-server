@@ -1,19 +1,16 @@
 from datetime import datetime, timedelta
 from os import path
 
-from django.core.urlresolvers import NoReverseMatch
-from django.test.utils import override_settings
-
 import jingo
 from nose.tools import eq_
-from mock import Mock, patch
+from mock import Mock
 from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
-from devhub.models import ActivityLog, ActivityLogAttachment, AddonLog, BlogPost
+from devhub.models import ActivityLog, AddonLog, BlogPost
 from tags.models import Tag
 from files.models import File
 from reviews.models import Review
@@ -130,19 +127,6 @@ class TestActivityLog(amo.tests.TestCase):
                 user=self.request.amo_user)
         entries = ActivityLog.objects.for_version(version)
         eq_(len(entries), 1)
-
-    @patch('django.conf.settings.MARKETPLACE', True)
-    @patch('users.helpers._user_link', lambda *args: 'xss bob link')
-    def test_version_xss(self):
-        addon = Addon.objects.get()
-        addon.update(type=amo.ADDON_WEBAPP)
-        version = addon.latest_version
-        version.update(version='<script></script>')
-        amo.log(amo.LOG.APPROVE_VERSION, addon, version)
-
-        log = ActivityLog.objects.get()
-        assert not '<script' in log.to_string(), (
-            'Unescaped html detected in log output.')
 
     def test_version_log_transformer(self):
         addon = Addon.objects.get()
@@ -334,75 +318,3 @@ class TestBlogPosts(amo.tests.TestCase):
         bp = BlogPost.objects.all()
         eq_(bp.count(), 1)
         eq_(bp[0].title, "hi")
-
-
-@override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-class TestActivityLogAttachment(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
-
-    XSS_STRING = 'MMM <script>alert(bacon);</script>'
-
-    def setUp(self):
-        self.user = self._user()
-        addon = Addon.objects.get()
-        version = addon.latest_version
-        al = amo.log(amo.LOG.COMMENT_VERSION, addon, version, user=self.user)
-        self.attachment1, self.attachment2 = self._attachments(al)
-
-    def tearDown(self):
-        amo.set_user(None)
-
-    def _user(self):
-        """Create and return a user"""
-        u = UserProfile.objects.create(username='porkbelly')
-        amo.set_user(u)
-        return u
-
-    def _attachments(self, activity_log):
-        """
-        Create and return a tuple of ActivityLogAttachment instances.
-        """
-        ala1 = ActivityLogAttachment.objects.create(activity_log=activity_log,
-                                                    filepath='bacon.txt',
-                                                    mimetype='text/plain')
-        ala2 = ActivityLogAttachment.objects.create(activity_log=activity_log,
-                                                    filepath='bacon.jpg',
-                                                    description=self.XSS_STRING,
-                                                    mimetype='image/jpeg')
-        return ala1, ala2
-
-    def test_filename(self):
-        msg = ('ActivityLogAttachment().filename() returning '
-               'incorrect filename.')
-        eq_(self.attachment1.filename(), 'bacon.txt', msg)
-        eq_(self.attachment2.filename(), 'bacon.jpg', msg)
-
-    def test_full_path_dirname(self):
-        msg = ('ActivityLogAttachment().full_path() returning incorrect path.')
-        FAKE_PATH = '/tmp/attachments/'
-        with self.settings(REVIEWER_ATTACHMENTS_PATH=FAKE_PATH):
-            eq_(self.attachment1.full_path(), FAKE_PATH + 'bacon.txt', msg)
-            eq_(self.attachment2.full_path(), FAKE_PATH + 'bacon.jpg', msg)
-
-    def test_display_name(self):
-        msg = ('ActivityLogAttachment().display_name() returning '
-               'incorrect display name.')
-        eq_(self.attachment1.display_name(), 'bacon.txt', msg)
-
-    def test_display_name_xss(self):
-        self.assertNotIn('<script>', self.attachment2.display_name())
-
-    def test_is_image(self):
-        msg = ('ActivityLogAttachment().is_image() not correctly detecting '
-               'images.')
-        eq_(self.attachment1.is_image(), False, msg)
-        eq_(self.attachment2.is_image(), True, msg)
-
-    def test_get_absolute_url(self):
-        msg = ('ActivityLogAttachment().get_absolute_url() raising a '
-               'NoReverseMatch exception.')
-        try:
-            self.attachment1.get_absolute_url()
-            self.attachment2.get_absolute_url()
-        except NoReverseMatch:
-            assert False, msg

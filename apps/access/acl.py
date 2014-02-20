@@ -103,19 +103,10 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
 
 
 def check_reviewer(request, only=None, region=None):
-    if only == 'app' and region is not None:
-        # This is for reviewers in special regions (e.g., China).
-        from mkt.regions.utils import parse_region
-        region_slug = parse_region(region).slug.upper()
-        return action_allowed(request, 'Apps', 'ReviewRegion%s' % region_slug)
-
     addon = action_allowed(request, 'Addons', 'Review')
-    app = action_allowed(request, 'Apps', 'Review')
     persona = action_allowed(request, 'Personas', 'Review')
     if only == 'addon':
         return addon
-    elif only == 'app':
-        return app
     elif only == 'persona':
         return persona
-    return addon or app or persona
+    return addon or persona

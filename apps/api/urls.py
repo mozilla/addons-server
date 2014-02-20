@@ -70,7 +70,6 @@ for regexp in list_regexps:
 ad = {'authentication': authentication.AMOOAuthAuthentication(two_legged=True)}
 user_resource = Resource(handler=handlers.UserHandler, **ad)
 addons_resource = Resource(handler=handlers.AddonsHandler, **ad)
-apps_resource = Resource(handler=handlers.AppsHandler, **ad)
 version_resource = Resource(handler=handlers.VersionsHandler, **ad)
 
 piston_patterns = patterns('',
@@ -81,8 +80,6 @@ piston_patterns = patterns('',
         name='api.versions'),
     url(r'^addon/%s/version/(?P<version_id>\d+)$' % ADDON_ID,
         version_resource, name='api.version'),
-    url(r'^apps/$', apps_resource, name='api.apps'),
-    url(r'^app/%s$' % ADDON_ID, apps_resource, name='api.app'),
 )
 
 urlpatterns = patterns('',

@@ -144,13 +144,6 @@ class TestFlagged(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(set(res.context['addons']), set([]))
 
-    @mock.patch.object(settings, 'MARKETPLACE', False)
-    def test_addons_only(self):
-        Addon.objects.get(id=2).update(type=amo.ADDON_WEBAPP)
-        res = self.client.get(self.url)
-        eq_(set([r.pk for r in res.context['addons']]),
-            set([1, 3]))
-
 
 class BulkValidationTest(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/platforms', 'base/addon_3615',
@@ -1429,21 +1422,6 @@ class TestAddonSearch(amo.tests.ESTestCase):
                                  password='password')
         self.url = reverse('zadmin.addon-search')
 
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    def test_lookup_app(self, index_webapps_mock):
-        # Load the Webapp fixture here, as loading it in the
-        # TestAddonSearch.fixtures would trigger the reindex, and fail, as
-        # this is an AMO test.
-        management.call_command('loaddata', 'base/337141-steamcube')
-        index_webapps_mock.assert_called()
-
-        res = self.client.get(urlparams(self.url, q='steamcube'))
-        eq_(res.status_code, 200)
-        links = pq(res.content)('form + h3 + ul li a')
-        eq_(len(links), 0)
-        if any(li.text().contains('Steamcube') for li in links):
-            raise AssertionError('Did not expect webapp in results.')
-
     def test_lookup_addon(self):
         res = self.client.get(urlparams(self.url, q='delicious'))
         # There's only one result, so it should just forward us to that page.
@@ -1451,14 +1429,14 @@ class TestAddonSearch(amo.tests.ESTestCase):
 
 
 class TestAddonAdmin(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/337141-steamcube', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('admin:addons_addon_changelist')
 
-    def test_no_webapps(self):
+    def test_basic(self):
         res = self.client.get(self.url)
         doc = pq(res.content)
         rows = doc('#result_list tbody tr')
@@ -1907,100 +1885,6 @@ class TestEmailDevs(amo.tests.TestCase):
         res = self.post(recipients='sdk')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
-
-    def test_only_apps_with_payments(self):
-        self.addon.update(type=amo.ADDON_WEBAPP,
-                          premium_type=amo.ADDON_PREMIUM)
-        res = self.post(recipients='payments')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
-
-        mail.outbox = []
-        self.addon.update(status=amo.STATUS_PENDING)
-        res = self.post(recipients='payments')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
-
-        mail.outbox = []
-        self.addon.update(status=amo.STATUS_DELETED)
-        res = self.post(recipients='payments')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 0)
-
-    def test_only_free_apps_with_new_regions(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        res = self.post(recipients='free_apps_region_enabled')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 0)
-        mail.outbox = []
-        res = self.post(recipients='free_apps_region_disabled')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
-
-        mail.outbox = []
-        self.addon.update(enable_new_regions=True)
-        res = self.post(recipients='free_apps_region_enabled')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
-        mail.outbox = []
-        res = self.post(recipients='free_apps_region_disabled')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 0)
-
-    def test_only_apps_with_payments_and_new_regions(self):
-        self.addon.update(type=amo.ADDON_WEBAPP,
-                          premium_type=amo.ADDON_PREMIUM)
-        res = self.post(recipients='payments_region_enabled')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 0)
-        mail.outbox = []
-        res = self.post(recipients='payments_region_disabled')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
-
-        mail.outbox = []
-        self.addon.update(enable_new_regions=True)
-        res = self.post(recipients='payments_region_enabled')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
-        mail.outbox = []
-        res = self.post(recipients='payments_region_disabled')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 0)
-
-    def test_only_desktop_apps(self):
-        from addons.models import AddonDeviceType
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        AddonDeviceType.objects.create(addon=self.addon,
-            device_type=amo.DEVICE_MOBILE.id)
-        res = self.post(recipients='desktop_apps')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 0)
-
-        mail.outbox = []
-        AddonDeviceType.objects.create(addon=self.addon,
-            device_type=amo.DEVICE_DESKTOP.id)
-        res = self.post(recipients='desktop_apps')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
-
-        mail.outbox = []
-        self.addon.update(status=amo.STATUS_PENDING)
-        res = self.post(recipients='desktop_apps')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
-
-        mail.outbox = []
-        self.addon.update(status=amo.STATUS_DELETED)
-        res = self.post(recipients='desktop_apps')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 0)
-
-    def test_only_apps(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        res = self.post(recipients='apps')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
 
     def test_only_extensions(self):
         self.addon.update(type=amo.ADDON_EXTENSION)

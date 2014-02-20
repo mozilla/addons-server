@@ -36,14 +36,13 @@ from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
 from files.models import File, Platform
-from files.tests.test_models import LanguagePackBase, UploadTest
+from files.tests.test_models import UploadTest
 from market.models import AddonPaymentData, AddonPremium, Price
 from reviews.models import Review
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
-from mkt.webapps.models import Webapp
 
 
 class TestCleanSlug(amo.tests.TestCase):
@@ -344,27 +343,6 @@ class TestAddonManager(amo.tests.TestCase):
             [2464, 7661, 15679])
         f = Addon.objects.featured(amo.THUNDERBIRD)
         assert not f.exists()
-
-
-class TestNewAddonVsWebapp(amo.tests.TestCase):
-
-    def test_addon_from_kwargs(self):
-        a = Addon(type=amo.ADDON_EXTENSION)
-        assert isinstance(a, Addon)
-
-    def test_webapp_from_kwargs(self):
-        w = Addon(type=amo.ADDON_WEBAPP)
-        assert isinstance(w, Webapp)
-
-    def test_addon_from_db(self):
-        a = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        assert isinstance(a, Addon)
-        assert isinstance(Addon.objects.get(id=a.id), Addon)
-
-    def test_webapp_from_db(self):
-        a = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        assert isinstance(a, Webapp)
-        assert isinstance(Addon.objects.get(id=a.id), Webapp)
 
 
 class TestAddonModels(amo.tests.TestCase):
@@ -1598,20 +1576,6 @@ class TestCategoryModel(amo.tests.TestCase):
             cat = Category(type=AddonType(id=t), slug='omg')
             assert cat.get_url_path()
 
-    @patch('mkt.webapps.tasks.index_webapps')
-    def test_reindex_on_change(self, index_mock):
-        c = Category.objects.create(type=amo.ADDON_PERSONA, slug='keyboardcat')
-        c.update(slug='ceilingcat')
-        assert not index_mock.called
-        index_mock.reset_mock()
-
-        c = Category.objects.create(type=amo.ADDON_WEBAPP, slug='keyboardcat')
-        app = amo.tests.app_factory()
-        AddonCategory.objects.create(addon=app, category=c)
-        c.update(slug='nyancat')
-        assert index_mock.called
-        eq_(index_mock.call_args[0][0], [app.id])
-
 
 class TestPersonaModel(amo.tests.TestCase):
     fixtures = ['addons/persona']
@@ -1853,26 +1817,6 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.description, None)
         eq_(addon.slug, 'xpi-name')
 
-    def test_manifest_url(self):
-        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        addon = Addon.from_upload(upload, [self.platform])
-        assert addon.is_webapp()
-        eq_(addon.manifest_url, upload.name)
-
-    def test_app_domain(self):
-        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        addon = Addon.from_upload(upload, [self.platform])
-        eq_(addon.app_domain, 'http://mozilla.com')
-
-    def test_non_english_app(self):
-        upload = self.get_upload(abspath=self.manifest('non-english.webapp'))
-        upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        addon = Addon.from_upload(upload, [self.platform])
-        eq_(addon.default_locale, 'it')
-        eq_(unicode(addon.name), 'ItalianMozBall')
-        eq_(addon.name.locale, 'it')
-
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   [self.platform])
@@ -1925,42 +1869,6 @@ class TestAddonFromUpload(UploadTest):
         addon = Addon.from_upload(self.get_upload('search.xml'),
                                   [self.platform])
         eq_(addon.default_locale, 'es')
-
-    def test_webapp_default_locale_override(self):
-        with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
-                    open(self.manifest('mozball.webapp'))) as (tmp, mf):
-            mf = json.load(mf)
-            mf['default_locale'] = 'es'
-            tmp.write(json.dumps(mf))
-            tmp.flush()
-            upload = self.get_upload(abspath=tmp.name)
-        addon = Addon.from_upload(upload, [self.platform])
-        eq_(addon.default_locale, 'es')
-
-    def test_webapp_default_locale_unsupported(self):
-        with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
-                    open(self.manifest('mozball.webapp'))) as (tmp, mf):
-            mf = json.load(mf)
-            mf['default_locale'] = 'gb'
-            tmp.write(json.dumps(mf))
-            tmp.flush()
-            upload = self.get_upload(abspath=tmp.name)
-        addon = Addon.from_upload(upload, [self.platform])
-        eq_(addon.default_locale, 'en-US')
-
-    def test_browsing_locale_does_not_override(self):
-        with translation.override('fr'):
-            # Upload app with en-US as default.
-            upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-            addon = Addon.from_upload(upload, [self.platform])
-            eq_(addon.default_locale, 'en-US')  # not fr
-
-    @raises(forms.ValidationError)
-    def test_malformed_locales(self):
-        manifest = self.manifest('malformed-locales.webapp')
-        upload = self.get_upload(abspath=manifest)
-        Addon.from_upload(upload, [self.platform])
-
 
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 
@@ -2258,12 +2166,6 @@ class TestMarketplace(amo.tests.TestCase):
                 assert self.addon.can_become_premium()
             else:
                 assert not self.addon.can_become_premium()
-
-    def test_webapp_can_become_premium(self):
-        self.addon.type = amo.ADDON_WEBAPP
-        for status in amo.STATUS_CHOICES.keys():
-            self.addon.status = status
-            assert self.addon.can_become_premium(), status
 
     def test_can_be_premium_type(self):
         for type in amo.ADDON_TYPES.keys():
