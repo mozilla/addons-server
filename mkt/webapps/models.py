@@ -1967,7 +1967,6 @@ class IARCInfo(amo.models.ModelBase):
 
     class Meta:
         db_table = 'webapps_iarc_info'
-        unique_together = ('addon', 'submission_id')
 
     def __unicode__(self):
         return u'app:%s' % self.addon.app_slug
@@ -2101,6 +2100,20 @@ class RatingInteractives(amo.models.ModelBase, DynamicBoolFieldsMixin):
 for k, v in mkt.ratinginteractives.RATING_INTERACTIVES.iteritems():
     field = models.BooleanField(default=False, help_text=v['name'])
     field.contribute_to_class(RatingInteractives, 'has_%s' % k.lower())
+
+
+def iarc_cleanup(*args, **kwargs):
+    instance = kwargs.get('instance')
+    IARCInfo.objects.filter(addon=instance).delete()
+    ContentRating.objects.filter(addon=instance).delete()
+    RatingDescriptors.objects.filter(addon=instance).delete()
+    RatingInteractives.objects.filter(addon=instance).delete()
+
+
+# When an app is deleted we need to remove the IARC data so the certificate can
+# be re-used later.
+models.signals.post_delete.connect(iarc_cleanup, sender=Addon,
+                                   dispatch_uid='webapps_iarc_cleanup')
 
 
 # The AppFeatures table is created with dynamic fields based on

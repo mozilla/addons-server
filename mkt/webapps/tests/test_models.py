@@ -686,6 +686,24 @@ class TestWebappContentRatings(amo.tests.TestCase):
                 rating=expected[1]).exists()
         eq_(app.reload().status, amo.STATUS_PENDING)
 
+    def test_app_delete_clears_iarc_data(self):
+        self.create_switch('iarc')
+        app = app_factory(rated=True)
+
+        # Ensure we have some data to start with.
+        ok_(IARCInfo.objects.filter(addon=app).exists())
+        ok_(ContentRating.objects.filter(addon=app).exists())
+        ok_(RatingDescriptors.objects.filter(addon=app).exists())
+        ok_(RatingInteractives.objects.filter(addon=app).exists())
+
+        # Delete.
+        app.delete()
+        msg = 'Related IARC data should be deleted.'
+        ok_(not IARCInfo.objects.filter(addon=app).exists(), msg)
+        ok_(not ContentRating.objects.filter(addon=app).exists(), msg)
+        ok_(not RatingDescriptors.objects.filter(addon=app).exists(), msg)
+        ok_(not RatingInteractives.objects.filter(addon=app).exists(), msg)
+
     def test_set_content_ratings_usk_refused(self):
         app = app_factory()
         app.set_content_ratings({

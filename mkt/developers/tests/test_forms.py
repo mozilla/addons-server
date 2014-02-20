@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo
@@ -631,6 +631,27 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         iarc_info = self.app.iarc_info
         eq_(iarc_info.submission_id, 1)
         eq_(iarc_info.security_code, 'a')
+        assert storefront_mock.called
+
+    def test_iarc_already_used(self):
+        self.app.set_iarc_info(1, 'a')
+        form = forms.IARCGetAppInfoForm({'submission_id': 1,
+                                         'security_code': 'a'})
+        ok_(not form.is_valid(), 'Form should be invalid.')
+        ok_('Please create a new IARC Ratings Certificate.'
+            in form.non_field_errors()[0], 'Expected appropriate form error.')
+
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_changing_cert(self, storefront_mock):
+        self.app.set_iarc_info(1, 'a')
+        form = forms.IARCGetAppInfoForm({'submission_id': 2,
+                                         'security_code': 'b'})
+        ok_(form.is_valid(), form.errors)
+        form.save(self.app)
+
+        iarc_info = self.app.iarc_info
+        eq_(iarc_info.submission_id, 2)
+        eq_(iarc_info.security_code, 'b')
         assert storefront_mock.called
 
     def test_iarc_unexclude(self):
