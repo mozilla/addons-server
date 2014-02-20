@@ -68,7 +68,6 @@ database:
         - update_counts
         - users_install
         - users_history
-        - users_preapproval
         - users_versioncomments
         - versioncomments
         - zadmin_reindexing
@@ -122,8 +121,6 @@ database:
             nullify: approvalnotes
         users_install:
             random_email: email
-        users_preapproval:
-            nullify: paypal_key
         addon_payment_data:
             random_email: email
             nullify:

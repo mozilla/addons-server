@@ -8,7 +8,5 @@ database:
     tables:
         stats_contributions:
             nullify: [post_data, paykey]
-        users_preapproval:
-            nullify: [paypal_key]
         addon_inapp:
             nullify: [private_key]

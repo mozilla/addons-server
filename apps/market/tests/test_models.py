@@ -10,7 +10,7 @@ import amo
 import amo.tests
 from addons.models import Addon, AddonUser
 from constants.payments import PROVIDER_BANGO
-from market.models import AddonPremium, PreApprovalUser, Price, Refund
+from market.models import AddonPremium, Price, Refund
 from mkt.constants import apps
 from mkt.constants.regions import (ALL_REGION_IDS, BR, HU,
                                    SPAIN, US, RESTOFWORLD)
@@ -389,22 +389,3 @@ class TestRefundManager(amo.tests.TestCase):
         eq_(sorted(r.id for r in Refund.objects.by_addon(addon=self.addon)),
             sorted(r.id for r in self.expected.values()))
         eq_(list(Refund.objects.by_addon(addon=other)), [ref])
-
-
-class TestUserPreApproval(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        self.user = UserProfile.objects.get(pk=999)
-
-    def test_get_preapproval(self):
-        eq_(self.user.get_preapproval(), None)
-        pre = PreApprovalUser.objects.create(user=self.user)
-        eq_(self.user.get_preapproval(), pre)
-
-    def test_has_key(self):
-        assert not self.user.has_preapproval_key()
-        pre = PreApprovalUser.objects.create(user=self.user, paypal_key='')
-        assert not self.user.has_preapproval_key()
-        pre.update(paypal_key='123')
-        assert UserProfile.objects.get(pk=self.user.pk).has_preapproval_key()

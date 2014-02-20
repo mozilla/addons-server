@@ -508,23 +508,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                                  .order_by('pk'))
         return ids(self.pk)
 
-    def get_preapproval(self):
-        """
-        Returns the pre approval object for this user, or None if it does
-        not exist
-        """
-        try:
-            return self.preapprovaluser
-        except ObjectDoesNotExist:
-            pass
-
-    def has_preapproval_key(self):
-        """
-        Returns the pre approval paypal key for this user, or False if the
-        pre_approval doesn't exist or the key is blank.
-        """
-        return bool(getattr(self.get_preapproval(), 'paypal_key', ''))
-
     @contextmanager
     def activate_lang(self):
         """
