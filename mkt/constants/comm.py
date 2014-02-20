@@ -31,9 +31,11 @@ NOTE_TYPES = {
     RESUBMISSION: _('App Resubmission'),
 }
 
+
 def NOTE_TYPES_JSON():
     return json.dumps(dict(
         (k, unicode(v)) for k, v in NOTE_TYPES.items()))
 
+
 # Prefix of the reply to address in comm emails.
-REPLY_TO_PREFIX = 'reply+'
+REPLY_TO_PREFIX = 'commreply+'

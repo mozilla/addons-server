@@ -29,17 +29,19 @@ class TestEmailReplySaving(TestCase):
         t = CommunicationThread.objects.create(addon=app,
             version=app.current_version, read_permission_reviewer=True)
 
+        self.create_switch('comm-dashboard')
         self.token = CommunicationThreadToken.objects.create(thread=t,
             user=self.profile)
         self.email_template = open(sample_email).read()
+        self.grant_permission(self.profile, 'Apps:Review')
 
     def test_successful_save(self):
-        self.grant_permission(self.profile, 'Apps:Review')
         email_text = self.email_template % self.token.uuid
         note = save_from_email_reply(email_text)
         assert note
         eq_(note.body, 'This is the body')
 
+    def test_with_max_count_token(self):
         # Test with an invalid token.
         self.token.update(use_count=comm.MAX_TOKEN_USE_COUNT + 1)
         email_text = self.email_template % self.token.uuid
@@ -47,6 +49,8 @@ class TestEmailReplySaving(TestCase):
 
     def test_with_unpermitted_token(self):
         """Test when the token's user does not have a permission on thread."""
+        self.profile.groupuser_set.filter(
+            group__rules__contains='Apps:Review').delete()
         email_text = self.email_template % self.token.uuid
         assert not save_from_email_reply(email_text)
 
