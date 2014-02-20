@@ -443,11 +443,6 @@ class TestVersion(amo.tests.TestCase):
         amo.tests.version_factory(addon=addon)
         assert inv_mock.called
 
-    def test_app_feature_creation_app(self):
-        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        ver = Version.objects.create(addon=app)
-        assert ver.features, 'AppFeatures was not created with version.'
-
 
 class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']

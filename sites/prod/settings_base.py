@@ -169,8 +169,6 @@ XSENDFILE_HEADER = 'X-Accel-Redirect'
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
 GOOGLE_API_CREDENTIALS = private.GOOGLE_API_CREDENTIALS
 
-MONOLITH_SERVER = 'https://monolith.firefox.com'
-
 GEOIP_URL = 'http://geo.marketplace.firefox.com'
 
 NEWRELIC_WHITELIST = ['web1.addons.phx1.mozilla.com',

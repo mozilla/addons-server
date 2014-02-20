@@ -59,7 +59,6 @@ heka-py==0.30.3
 heka-py-cef==0.3.1
 heka-py-raven==0.6
 mock==1.0.1
-monolith.client==0.9
 moz-addon-packager==1.0.1
 mozilla-logger==0.2
 mozpay==2.0.0

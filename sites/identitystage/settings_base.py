@@ -178,8 +178,6 @@ XSENDFILE_HEADER  = 'X-Accel-Redirect'
 
 ALLOW_SELF_REVIEWS = True
 
-MONOLITH_SERVER = 'https://monolith.allizom.org'
-
 GEOIP_URL = 'http://geo.marketplace.allizom.org'
 
 API_THROTTLE = False
