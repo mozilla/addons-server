@@ -43,13 +43,11 @@ class TestDataValidate(amo.tests.TestCase):
             data['version'] = good
             form = self.get(data)
             assert form.is_valid()
-            assert form.is_beta_version
 
         for bad in ['1.0', 'beta 1.0', '1.0 beta 2']:
             data['version'] = bad
             form = self.get(data)
             assert form.is_valid()
-            assert not form.is_beta_version
 
     def test_app_os(self):
         data = self.good_data.copy()
@@ -363,15 +361,31 @@ class TestLookup(amo.tests.TestCase):
     def test_file_preliminary_addon(self):
         """
         If the addon is in prelim. review, show the highest file with
-        public., which in this case is 1.2.1
+        prelim, which in this case is 1.2.1
         """
         for status in amo.LITE_STATUSES:
             self.addon.update(status=status)
 
+            # Since we're asking for an update from version 1.2, and
+            # we want to serve a prelim update, 1.2 needs to be
+            # prelim as well.
+            self.change_status(self.version_1_2_0, amo.STATUS_LITE)
             self.change_status(self.version_1_2_1, amo.STATUS_LITE)
             version, file = self.get('1.2', self.version_int,
                                      self.app, amo.PLATFORM_LINUX)
             eq_(version, self.version_1_2_1)
+
+    def test_file_preliminary_ex_full_addon(self):
+        """
+        If the addon is in prelim. review, user has a full reviewed version.
+        Show the most recent full reviewed version.
+        """
+        self.addon.update(status=amo.STATUS_LITE)
+
+        self.change_status(self.version_1_2_2, amo.STATUS_LITE)
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, amo.PLATFORM_LINUX)
+        eq_(version, self.version_1_2_1)
 
 
 class TestDefaultToCompat(amo.tests.TestCase):
@@ -662,6 +676,10 @@ class TestResponse(amo.tests.TestCase):
         version = file.version
         version.version = beta_version
         version.save()
+
+        # Changing the status of the only reviewed file resets the
+        # add-on status to UNREVIEWED. Change it back to public.
+        version.addon.update(status=amo.STATUS_PUBLIC)
 
         data = self.good_data.copy()
         up = self.get(data)
