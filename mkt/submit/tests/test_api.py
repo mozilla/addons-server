@@ -324,7 +324,7 @@ class TestPreviewHandler(RestOAuth, amo.tests.AMOPaths):
         self.user = UserProfile.objects.get(pk=2519)
         AddonUser.objects.create(user=self.user, addon=self.app)
         self.file = base64.b64encode(open(self.preview_image(), 'r').read())
-        self.list_url = reverse('app-preview-list',
+        self.list_url = reverse('app-preview',
                                 kwargs={'pk': self.app.pk})
         self.good = {'file': {'data': self.file, 'type': 'image/jpg'},
                      'position': 1}
@@ -344,7 +344,7 @@ class TestPreviewHandler(RestOAuth, amo.tests.AMOPaths):
         eq_(previews.all()[0].position, 1)
 
     def test_wrong_url(self):
-        self.list_url = reverse('app-preview-list',
+        self.list_url = reverse('app-preview',
                                 kwargs={'pk': 'booyah'})
         res = self.client.post(self.list_url, data=json.dumps(self.good))
         eq_(res.status_code, 404)
