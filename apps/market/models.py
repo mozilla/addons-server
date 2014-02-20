@@ -281,17 +281,6 @@ class AddonPremium(amo.models.ModelBase):
                     self.addon.paypal_id and self.addon.support_email)
 
 
-class PreApprovalUser(amo.models.ModelBase):
-
-    user = models.OneToOneField('users.UserProfile')
-    paypal_key = models.CharField(max_length=255, blank=True, null=True)
-    paypal_expiry = models.DateField(blank=True, null=True)
-    currency = models.CharField(max_length=3, blank=True, null=True)
-
-    class Meta:
-        db_table = 'users_preapproval'
-
-
 class RefundManager(amo.models.ManagerBase):
 
     def by_addon(self, addon):

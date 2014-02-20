@@ -513,10 +513,6 @@ def contribute(request, addon):
     # l10n: {0} is the addon name
     contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
 
-    preapproval = None
-    if waffle.flag_is_active(request, 'allow-pre-auth') and request.amo_user:
-        preapproval = request.amo_user.get_preapproval()
-
     paykey, error, status = '', '', ''
     try:
         paykey, status = paypal.get_paykey(
@@ -525,7 +521,6 @@ def contribute(request, addon):
                  ip=request.META.get('REMOTE_ADDR'),
                  memo=contrib_for,
                  pattern='%s.paypal' % ('apps' if webapp else 'addons'),
-                 preapproval=preapproval,
                  slug=addon.slug,
                  uuid=contribution_uuid))
     except paypal.PaypalError as error:

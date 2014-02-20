@@ -13,8 +13,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1392583939.0\n"
 
@@ -239,11 +238,6 @@ msgstr "Овај додатак није прегледан од стране Mo
 #: apps/addons/templates/addons/button.html:100 apps/addons/templates/addons/impala/button.html:69
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Овај додатак је био прелиминарно прегледан од стране Mozilla фондације. <a href=\"%(url)s\">Сазнај вишe</a>"
-
-#: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
-#: apps/addons/templates/addons/impala/theme_grid.html:22 apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
-msgid "by %(users)s"
-msgstr "од %(users)s"
 
 # {0} is the count of addons in a collection
 #. {0} is the number of add-ons.
@@ -3125,7 +3119,7 @@ msgstr "Нема истакнутих додатака у категорији {
 
 #: apps/browse/templates/browse/featured.html:15
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете персоналзицију %s-а."
+msgstr "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете персоналзицију %(app)-а."
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
@@ -5305,10 +5299,7 @@ msgstr "Ако желите да прикажете адресу е-поште �
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:52 mkt/developers/templates/developers/apps/edit/support.html:48
 msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
-msgstr ""
-"Ако Ваш додатак има сајт за подршку или форум, унесите овде њену адресу. Ако "
-"је Ваш сајт преведен на друге језике, може се додати више превода овог "
-"поља."
+msgstr "Ако Ваш додатак има сајт за подршку или форум, унесите овде њену адресу. Ако је Ваш сајт преведен на друге језике, може се додати више превода овог поља."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6 mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -5328,9 +5319,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the app summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc."
 msgstr ""
-"Све информације које би крајњи корисници волели да имају а које нису "
-"искључиво везане за опис апликације. Најчешће су то информације о познатим "
-"грешкама, упутство за пријављивање грешака, најава следећег ажурирања, итд."
+"Све информације које би крајњи корисници волели да имају а које нису искључиво везане за опис апликације. Најчешће су то информације о познатим грешкама, упутство за пријављивање грешака, најава "
+"следећег ажурирања, итд."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:31
 msgid ""
@@ -5382,9 +5372,7 @@ msgstr "Јавна статистика?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:111
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer."
-msgstr ""
-"Да ли преузимање и коришћење статистике Вашег додатка може бити приказано у "
-"нашем онлајн прегледачу."
+msgstr "Да ли преузимање и коришћење статистике Вашег додатка може бити приказано у нашем онлајн прегледачу."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:115
 msgid "This add-on's stats are publicly viewable."
@@ -5400,14 +5388,11 @@ msgstr "Надоградити SDK?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:124
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released."
-msgstr ""
-"Ако се означи, покушаћемо да аутоматски надоградимо Ваш додатак када се нова "
-"верзија SDK-а појави."
+msgstr "Ако се означи, покушаћемо да аутоматски надоградимо Ваш додатак када се нова верзија SDK-а појави."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:127
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
-"Овај додатак ће аутоматски бити надограђен на нове верзије SDK-а додатка."
+msgstr "Овај додатак ће аутоматски бити надограђен на нове верзије SDK-а додатка."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:129
 msgid "No, this add-on will be upgraded manually."
@@ -5423,10 +5408,7 @@ msgstr "UUID"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:138
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
-"УЈИД Вашег додатка је наведен у његовом инсталационом манифесту и "
-"јединствено га идентификује. Не можете променити свој УЈИД након што буде "
-"послат."
+msgstr "УЈИД Вашег додатка је наведен у његовом инсталационом манифесту и јединствено га идентификује. Не можете променити свој УЈИД након што буде послат."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -5446,10 +5428,7 @@ msgstr "Иконица додатка"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg"
-msgstr ""
-"Отпремите иконицу за Ваш додатак или одаберете једну од наших. Иконица се "
-"приказује скоро свуда где је Ваш додатак. Отпремљене слике морају бити "
-"једног од следећих формата: .png, .jpg"
+msgstr "Отпремите иконицу за Ваш додатак или одаберете једну од наших. Иконица се приказује скоро свуда где је Ваш додатак. Отпремљене слике морају бити једног од следећих формата: .png, .jpg"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:38
 msgid "Select an icon for your add-on:"
@@ -5462,9 +5441,7 @@ msgstr "32x32 пиксела"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:59
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
-"Користи се у списковима додатака, као што су резултати претраге и истакнути "
-"додаци."
+msgstr "Користи се у списковима додатака, као што су резултати претраге и истакнути додаци."
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:69 mkt/developers/templates/developers/apps/forms_shared/media.html:44
@@ -5552,9 +5529,8 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted ever again, even by you. The existing users of your add-on will remain on this update channel "
 "and never receive updates again."
 msgstr ""
-"Брисање Вашег додатака ће га трајно уклонити са сајта и спречити његов GUID "
-"да буде поново поднет, чак и од Вас. Постојећи корисници Вашег додатка ће "
-"остати на овом каналу ажурирања и неће више примати ажурирања."
+"Брисање Вашег додатака ће га трајно уклонити са сајта и спречити његов GUID да буде поново поднет, чак и од Вас. Постојећи корисници Вашег додатка ће остати на овом каналу ажурирања и неће више "
+"примати ажурирања."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:26
 msgid "Enter your password to confirm your decision:"
@@ -5672,9 +5648,7 @@ msgstr "Избриши ову тему."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr ""
-"Овај додатак ће се аутоматски обрисати после неколико дана, ако процес "
-"подношења није завршено."
+msgstr "Овај додатак ће се аутоматски обрисати после неколико дана, ако процес подношења није завршено."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/developers/templates/developers/apps/status.html:222 mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
@@ -5735,8 +5709,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:33 apps/devhub/templates/devhub/personas/edit.html:89 apps/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
-"Молимо Вас да користите само слова, бројеве, доње цртице у Вашој URL адреси."
+msgstr "Молимо Вас да користите само слова, бројеве, доње цртице у Вашој URL адреси."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:43
 msgid "Provide a brief summary:"
@@ -12125,7 +12098,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
-msgid "by %(user)s"
+msgid "by %(users)s"
 msgstr "од %(users)s"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:38

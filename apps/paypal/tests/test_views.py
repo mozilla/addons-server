@@ -32,109 +32,6 @@ class Client(test.Client):
             kw['content_type'] = URL_ENCODED
         return super(Client, self).post(url, data, **kw)
 
-
-# These are taken from the real IPNs paypal returned to us.
-# TODO(andym): compress all these down, at this moment they are
-# a bit verbose.
-sample_refund = {
-    'action_type': 'PAY',
-    'charset': 'windows-1252',
-    'cancel_url': 'http://some.url/cancel',
-    'notify_version': 'UNVERSIONED',
-    'pay_key': '1234',
-    'payment_request_date': 'Mon Nov 21 15:23:02 PST 2011',
-    'reason_code': 'Refund',
-    'return_url': 'http://some.url/complete',
-    'reverse_all_parallel_payments_on_error': 'false',
-    'sender_email': 'some.other@gmail.com',
-    'status': 'COMPLETED',
-    'tracking_id': '5678',
-    'transaction[0].amount': 'USD 1.00',
-    'transaction[0].id': 'ABC',
-    'transaction[0].id_for_sender_txn': 'DEF',
-    'transaction[0].is_primary_receiver': 'false',
-    'transaction[0].paymentType': 'DIGITALGOODS',
-    'transaction[0].pending_reason': 'NONE',
-    'transaction[0].receiver': 'some@gmail.com',
-    'transaction[0].refund_account_charged': 'some@gmail.com',
-    'transaction[0].refund_amount': 'USD 0.01',
-    'transaction[0].refund_id': 'XYZ',
-    'transaction[0].status': 'Refunded',
-    'transaction[0].status_for_sender_txn': 'Refunded',
-    'transaction_type': 'Adjustment',
-    'verify_sign': 'xyz'
-}
-
-sample_chained_refund = {
-    'action_type': 'PAY',
-    'charset': 'windows-1252',
-    'fees_payer': 'SECONDARYONLY',
-    'log_default_shipping_address_in_transaction': 'false',
-    'memo': 'Purchase of Sinuous-andy-video-test',
-    'notify_version': 'UNVERSIONED',
-    'pay_key': '1234',
-    'payment_request_date': 'Mon Apr 02 12:51:50 PDT 2012',
-    'reason_code': 'Refund',
-    'reverse_all_parallel_payments_on_error': 'false',
-    'sender_email': 'some-1@gmail.com',
-    'status': 'COMPLETED',
-    'test_ipn': '1',
-    'tracking_id': '5678',
-    'transaction[0].amount': 'USD 0.99',
-    'transaction[0].id': 'ABC',
-    'transaction[0].id_for_sender_txn': 'DEF',
-    'transaction[0].is_primary_receiver': 'true',
-    'transaction[0].paymentType': 'DIGITALGOODS',
-    'transaction[0].pending_reason': 'NONE',
-    'transaction[0].receiver': 'some-2@gmail.com',
-    'transaction[0].status': 'Refunded',
-    'transaction[0].status_for_sender_txn': 'Refunded',
-    'transaction[1].amount': 'USD 0.30',
-    'transaction[1].id': 'ABC',
-    'transaction[1].id_for_sender_txn': 'ASD',
-    'transaction[1].is_primary_receiver': 'false',
-    'transaction[1].paymentType': 'DIGITALGOODS',
-    'transaction[1].pending_reason': 'NONE',
-    'transaction[1].receiver': 'some-3@gmail.com',
-    'transaction[1].refund_account_charged': 'some-3@gmail.com',
-    'transaction[1].refund_amount': 'USD 0.30',
-    'transaction[1].refund_id': 'XYX',
-    'transaction[1].status': 'Refunded',
-    'transaction[1].status_for_sender_txn': 'Refunded',
-    'transaction_type': 'Adjustment',
-    'verify_sign': 'xyz',
-}
-
-sample_purchase = {
-    'action_type': 'PAY',
-    'cancel_url': 'http://some.url/cancel',
-    'charset': 'windows-1252',
-    'fees_payer': 'EACHRECEIVER',
-    'ipn_notification_url': 'http://some.url.ipn',
-    'log_default_shipping_address_in_transaction': 'false',
-    'memo': 'Purchase of Sinuous',
-    'notify_version': 'UNVERSIONED',
-    'pay_key': '1234',
-    'payment_request_date': 'Mon Nov 21 22:30:48 PST 2011',
-    'return_url': 'http://some.url/return',
-    'reverse_all_parallel_payments_on_error': 'false',
-    'sender_email': 'some.other@gmail.com',
-    'status': 'COMPLETED',
-    'test_ipn': '1',
-    'tracking_id': '5678',
-    'transaction[0].amount': 'USD 0.01',
-    'transaction[0].id': 'ABC',
-    'transaction[0].id_for_sender_txn': 'DEF',
-    'transaction[0].is_primary_receiver': 'false',
-    'transaction[0].paymentType': 'DIGITALGOODS',
-    'transaction[0].pending_reason': 'NONE',
-    'transaction[0].receiver': 'some@gmail.com',
-    'transaction[0].status': 'Completed',
-    'transaction[0].status_for_sender_txn': 'Completed',
-    'transaction_type': 'Adaptive Payment PAY',
-    'verify_sign': 'zyx'
-}
-
 sample_contribution = {
     'action_type': 'PAY',
     'cancel_url': 'http://some.url/cancel',
@@ -164,9 +61,6 @@ sample_contribution = {
     'transaction_type': 'Adaptive Payment PAY',
     'verify_sign': 'ZZ'
 }
-
-sample_reversal = sample_refund.copy()
-sample_reversal['transaction[0].status'] = 'reversal'
 
 
 class PaypalTest(amo.tests.TestCase):
@@ -213,7 +107,7 @@ class TestPaypal(PaypalTest):
 
     def test_mysterious_contribution(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
-        response = self.client.post(self.url, sample_purchase)
+        response = self.client.post(self.url, sample_contribution)
         eq_(response.content, 'Transaction not found; skipping.')
 
     def test_query_string_order(self, urlopen):
@@ -265,151 +159,6 @@ class TestPaypal(PaypalTest):
             response = self.client.post(self.url, sample_contribution)
             eq_(response.status_code, 200)
             eq_(response.content, 'Transaction already processed')
-
-
-@patch('paypal.views.requests.post')
-class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/addon_3615', 'market/prices']
-    uuid = 'e76059abcf747f5b4e838bf47822e6b2'
-
-    def setUp(self):
-        self.url = reverse('amo.paypal')
-        self.addon = Addon.objects.get(pk=3615)
-
-    def urlopener(self, status):
-        m = Mock()
-        m.text = status
-        return m
-
-    def test_parse_post(self, urlopen):
-        junk, transactions = views._parse(sample_refund)
-        eq_(transactions['0']['status'], 'Refunded')
-
-    def test_parse_currency(self, urlopen):
-        res = views._parse_currency(sample_refund['transaction[0].amount'])
-        eq_(res['amount'], Decimal('1.00'))
-        eq_(res['currency'], 'USD')
-
-    def test_success(self, urlopen):
-        Contribution.objects.create(uuid=sample_purchase['tracking_id'],
-                                    addon=self.addon)
-        urlopen.return_value = self.urlopener('VERIFIED')
-
-        response = self.client.post(self.url, sample_purchase)
-        eq_(response.content, 'Success!')
-
-    def test_wrong_uuid(self, urlopen):
-        Contribution.objects.create(uuid=sample_purchase['tracking_id'] + 'x',
-                                    addon=self.addon)
-        urlopen.return_value = self.urlopener('VERIFIED')
-
-        response = self.client.post(self.url, sample_purchase)
-        eq_(response.content, 'Transaction not found; skipping.')
-
-    def _receive_ipn(self, urlopen, data):
-        """
-        Create and post an IPN.
-        """
-        urlopen.return_value = self.urlopener('VERIFIED')
-        response = self.client.post(self.url, data)
-        return response
-
-    def _refund(self, urlopen, data=sample_refund):
-        """
-        Receipt of an IPN for a refund results in a Contribution
-        object recording its relation to the original payment.
-        """
-        user = UserProfile.objects.get(pk=999)
-        # The original transaction will have no uuid and
-        # a transaction id that will map the tracking_id sent by paypal.
-        original = Contribution.objects.create(
-                        uuid=None, user=user, addon=self.addon,
-                        transaction_id=data['tracking_id'],
-                        price_tier=Price.objects.get(price=Decimal('.99')))
-
-        response = self._receive_ipn(urlopen, data)
-        eq_(response.content, 'Success!')
-        return original
-
-    def test_two_contributions(self, urlopen):
-        self._refund(urlopen)
-        eq_(Contribution.objects.count(), 2)
-
-    def test_original_has_related(self, urlopen):
-        original = self._refund(urlopen)
-        refunds = Contribution.objects.filter(related=original)
-        eq_(len(refunds), 1)
-        eq_(refunds[0].addon, self.addon)
-        eq_(refunds[0].user, original.user)
-        eq_(refunds[0].type, amo.CONTRIB_REFUND)
-        eq_(refunds[0].amount, Decimal('-1.00'))
-
-    def test_refund_twice(self, urlopen):
-        self._refund(urlopen)
-        response = self._receive_ipn(urlopen, sample_refund)
-        eq_(response.content, 'Transaction already processed')
-
-    def test_orphaned_refund(self, urlopen):
-        """
-        Receipt of an IPN for a refund for a payment we haven't
-        recorded results in an error.
-        """
-        response = self._receive_ipn(urlopen, sample_refund)
-        eq_(response.content, 'Transaction not found; skipping.')
-        refunds = Contribution.objects.filter(type=amo.CONTRIB_REFUND)
-        eq_(len(refunds), 0)
-
-    def test_refund_amount(self, urlopen):
-        self._refund(urlopen, sample_chained_refund)
-        eq_(Contribution.objects.all()[1].amount, Decimal('-0.99'))
-
-    def test_refund_price_tier_usd(self, urlopen):
-        # Store refund values before changing it.
-        amount = sample_refund['transaction[0].amount']
-        refund_amount = sample_refund['transaction[0].refund_amount']
-
-        sample_refund['transaction[0].amount'] = 'USD 0.99'
-        sample_refund['transaction[0].refund_amount'] = 'USD 0.99'
-        self._refund(urlopen, sample_refund)
-        eq_(Contribution.objects.all()[1].price_tier.id, 1)
-
-        # Restore refund values.
-        sample_refund['transaction[0].amount'] = amount
-        sample_refund['transaction[0].refund_amount'] = refund_amount
-
-    def test_refund_price_tier_non_usd(self, urlopen):
-        # Store refund values before changing it.
-        amount = sample_refund['transaction[0].amount']
-        refund_amount = sample_refund['transaction[0].refund_amount']
-
-        sample_refund['transaction[0].amount'] = 'EUR 5.01'
-        sample_refund['transaction[0].refund_amount'] = 'EUR 5.01'
-        self._refund(urlopen, sample_refund)
-        eq_(Contribution.objects.all()[1].price_tier.id, 1)
-
-        sample_refund['transaction[0].amount'] = amount
-        sample_refund['transaction[0].refund_amount'] = refund_amount
-
-    def reversal(self, urlopen):
-        user = UserProfile.objects.get(pk=999)
-        Contribution.objects.create(
-                transaction_id=sample_reversal['tracking_id'],
-                user=user, addon=self.addon)
-        response = self._receive_ipn(urlopen, sample_reversal)
-        eq_(response.content, 'Success!')
-
-    def test_chargeback(self, urlopen):
-        self.reversal(urlopen)
-        eq_(Contribution.objects.all()[1].type, amo.CONTRIB_CHARGEBACK)
-
-    def test_chargeback_twice(self, urlopen):
-        self.reversal(urlopen)
-        response = self._receive_ipn(urlopen, sample_reversal)
-        eq_(response.content, 'Transaction already processed')
-
-    def test_email(self, urlopen):
-        self.reversal(urlopen)
-        eq_(len(mail.outbox), 1)
 
 
 class TestDecorators(amo.tests.TestCase):

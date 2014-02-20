@@ -11,14 +11,19 @@ want to create a foreign key to the ``translations`` table, use
 :class:`django.db.models.ForeignKey` to make it work with our special handling
 of translation rows.
 
-A minimal Addon model looks like this::
+A minimal model with translations in zamboni would look like this::
+
+    from django.db import models
 
     import amo.models
-    from translations.fields import TranslatedField
+    import translations.fields
 
-    class Addon(amo.models.ModelBase):
-        name = TranslatedField()
-        description = TranslatedField()
+    class MyModel(amo.models.ModelBase):
+        description = translations.fieldsTranslatedField()
+
+    models.signals.pre_save.connect(translations.fields.save_signal,
+                                    sender=MyModel,
+                                    dispatch_uid='mymodel_translations')
 
 How it works behind the scenes
 ==============================
@@ -28,7 +33,7 @@ As mentioned above, a ``TranslatedField`` is actually a ``ForeignKey`` to the
 special feature of MySQL allowing you to have a ``ForeignKey`` pointing to 
 multiple rows.
 
-When fetching
+When querying
 -------------
 Our base manager has a ``_with_translations()`` method that is automatically 
 called when you instanciate a queryset. It does 2 things:
@@ -75,8 +80,10 @@ It instantiates a new ``Translation`` object with the correct values if
 necessary, or just updates the correct one. It then places that object in a 
 queue of Translation instances to be saved later.
 
-When you eventually call ``obj.save()``, on post_save signal that queue is 
-unqueued and all Translation objects in it are saved.
+When you eventually call ``obj.save()``, the ``pre_save`` signal is sent. If
+you followed the example above, that means ``translations.fields.save_signal``
+is then called, and in unqueues all Translation objects and saves them. It's
+important to do this on ``pre_save`` to prevent foreign key constraint errors.
 
 When deleting
 -------------
@@ -105,3 +112,7 @@ Additional tricks
 In addition to the above, ``apps/translations/__init__.py`` monkeypatches 
 django to bypass errors thrown because we have a ``ForeignKey`` pointing to 
 multiple rows.
+
+Also, you might be interested into ``translations.query.order_by_translation``.
+Like the name suggests, it allows you to order a ``QuerySet`` by a translated
+field, honoring the current and fallback locales like it's done when querying.

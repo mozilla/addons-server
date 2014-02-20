@@ -8,7 +8,6 @@ from decimal import Decimal
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
-import jingo
 import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
@@ -752,12 +751,6 @@ class TestPaymentsProfile(amo.tests.TestCase):
         eq_(result[u'valid'], False)
         assert len(result[u'message']) > 0, "No error on missing paykey"
 
-    @mock.patch('paypal.get_paykey')
-    def test_checker_no_pre_approval(self, get_paykey):
-        self.client.post(reverse('devhub.check_paypal'),
-                         {'email': 'test@test.com'})
-        assert 'preapprovalKey' not in get_paykey.call_args[0][0]
-
 
 class TestDelete(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
@@ -1269,7 +1262,7 @@ class TestSubmitStep3(TestSubmitBase):
     def test_submit_categories_remove(self):
         c = Category.objects.get(id=23)
         AddonCategory(addon=self.addon, category=c).save()
-        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
+        eq_([a.id for a in self.get_addon().all_categories], [22, 23])
 
         self.cat_initial['categories'] = [22]
         self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
@@ -2610,7 +2603,7 @@ class TestRequestReview(amo.tests.TestCase):
     fixtures = ['base/users', 'base/platforms']
 
     def setUp(self):
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='xxx')
+        self.addon = Addon.objects.create(type=1, name='xxx')
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,
                                         platform_id=amo.PLATFORM_ALL.id)
@@ -2707,34 +2700,6 @@ class TestRequestReview(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         eq_(self.get_version().nomination.timetuple()[0:5],
             orig_date.timetuple()[0:5])
-
-
-class TestDeleteVersion(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/platforms']
-
-    def setUp(self):
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='xxx')
-        self.version = Version.objects.create(addon=self.addon)
-        self.file = File.objects.create(version=self.version,
-                                        platform_id=amo.PLATFORM_ALL.id,
-                                        status=amo.STATUS_PUBLIC)
-        self.url = reverse('devhub.versions.delete', args=[self.addon.slug])
-        self.login('admin@mozilla.com')
-
-    def test_delete_version(self):
-        self.client.post(self.url, {'version_id': self.version.id,
-                                    'addon_id': self.addon.id})
-
-        assert not Version.objects.filter(id=self.version.id).exists()
-
-    def test_disable_version(self):
-        self.client.post(self.url, {'version_id': self.version.id,
-                                    'addon_id': self.addon.id,
-                                    'disable_version': ''})
-
-        assert Version.objects.filter(id=self.version.id).exists()
-        self.file.reload()
-        eq_(self.file.status, amo.STATUS_DISABLED)
 
 
 class TestRedirects(amo.tests.TestCase):

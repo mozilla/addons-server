@@ -296,6 +296,7 @@ JINGO_EXCLUDE_APPS = (
     'toolbar_statsd',
     'registration',
     'debug_toolbar',
+    'waffle',
 )
 
 JINGO_EXCLUDE_PATHS = (
@@ -1031,9 +1032,6 @@ PAYPAL_REFUND_INSTANT = 30 * 60
 # The PayPal cert that we'll use for checking.
 # When None, the Mozilla CA bundle is used to look it up.
 PAYPAL_CERT = None
-
-# Limit PayPal pre-approvals to certain limits.
-PAYPAL_LIMIT_PREAPPROVAL = True
 
 # Contribution limit, one time and monthly
 MAX_CONTRIBUTION = 1000

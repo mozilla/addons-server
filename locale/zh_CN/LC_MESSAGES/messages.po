@@ -1762,7 +1762,7 @@ msgstr "{addon} 已从分类 {0} 精选中移除。"
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr "{addons} 已成为精选附加组件。"
+msgstr "{addon} 已成为精选附加组件。"
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."

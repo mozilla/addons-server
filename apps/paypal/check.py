@@ -86,7 +86,6 @@ class Check(object):
         data.update({
             'pattern': '',
             'ip': '127.0.0.1',
-            'preapproval': None,
             'slug': 'foo',
             'uuid': hashlib.md5(str(uuid.uuid4())).hexdigest()
         })

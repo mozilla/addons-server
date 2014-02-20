@@ -422,21 +422,6 @@ class USER_EDITED(_LOG):
     format = _(u'Account updated.')
 
 
-class PREAPPROVAL_ADDED(_LOG):
-    id = 62
-    format = _(u'Pre approval added.')
-
-
-class PREAPPROVAL_REMOVED(_LOG):
-    id = 63
-    format = _(u'Pre-approval removed.')
-
-
-class CURRENCY_UPDATED(_LOG):
-    id = 64
-    format = _(u'Account currency changed')
-
-
 class RECEIPT_CHECKED(_LOG):
     id = 65
     format = _(u'Valid receipt was checked for {addon}.')
