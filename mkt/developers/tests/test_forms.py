@@ -633,6 +633,7 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         eq_(iarc_info.security_code, 'a')
         assert storefront_mock.called
 
+    @mock.patch.object(settings, 'IARC_ALLOW_CERT_REUSE', False)
     def test_iarc_already_used(self):
         self.app.set_iarc_info(1, 'a')
         form = forms.IARCGetAppInfoForm({'submission_id': 1,
@@ -640,6 +641,13 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         ok_(not form.is_valid(), 'Form should be invalid.')
         ok_('Please create a new IARC Ratings Certificate.'
             in form.non_field_errors()[0], 'Expected appropriate form error.')
+
+    @mock.patch.object(settings, 'IARC_ALLOW_CERT_REUSE', True)
+    def test_iarc_already_used_dev(self):
+        self.app.set_iarc_info(1, 'a')
+        form = forms.IARCGetAppInfoForm({'submission_id': 1,
+                                         'security_code': 'a'})
+        ok_(form.is_valid())
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_changing_cert(self, storefront_mock):

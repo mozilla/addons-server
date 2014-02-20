@@ -203,10 +203,11 @@ POSTFIX_DOMAIN = 'marketplace-dev.allizom.org'
 MONOLITH_INDEX = 'mktdev-time_*'
 
 # IARC content ratings.
-IARC_ENV = 'prod'
+IARC_ENV = 'test'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD
 IARC_PLATFORM = 'Firefox'
 IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
 IARC_STOREFRONT_ID = 4
 IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
+IARC_ALLOW_CERT_REUSE = True
