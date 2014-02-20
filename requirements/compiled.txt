@@ -3,13 +3,5 @@ MarkupSafe==0.18
 MySQL-python==1.2.5
 lxml==2.2.6
 PIL==1.1.7
-
-# For JWT to sign App receipts:
-# Temporary.
-M2Crypto==0.20.2
-
-# To get SNI support in requests (needed by the app validator).
-pyOpenSSL==0.13.1
-
 # For the addon validator, including C speedups.
 simplejson==2.3.2

@@ -1,8 +1,6 @@
 amqp==1.0.13
-anyjson==0.3.3
 argparse==1.2.1
 babel==0.9.6
-basket-client==0.3.7
 billiard==2.7.3.34
 bleach==1.2.2
 boto==2.20.0
@@ -13,7 +11,6 @@ certifi==0.0.8
 chardet==2.1.1
 commonware==0.4.2
 cssutils==0.9.7b3
-curling==0.2.6
 defusedxml==0.4.1
 dennis==0.3.10
 Django==1.4.8
@@ -36,7 +33,6 @@ django-quieter-formset==0.3
 django-raven-heka==0.3
 django-recaptcha-mozilla==0.0.1
 djangorestframework==2.3.12
-#django-session-csrf==0.6
 django-statsd-mozilla==0.3.10
 django-storages==1.1.8
 django-waffle==0.9.2
@@ -66,7 +62,6 @@ m2secret==0.1.1
 ndg-httpsclient==0.3.2
 newrelic==2.4.0.4
 oauth2==1.5.211
-oauthlib==0.4.0
 ordereddict==1.1
 phpserialize==1.3
 polib==1.0.3
@@ -75,7 +70,6 @@ pyasn1==0.1.7
 PyBrowserID==0.6
 pyelasticsearch==0.6.1
 pyes==0.16.0
-PyJWT-mozilla==0.1.4.2
 PyMySQL==0.5
 pyquery==0.4
 python-dateutil==1.5
@@ -85,11 +79,9 @@ pytz==2013.8
 raven==4.0.3
 rdflib==3.0.0
 recaptcha-client==1.0.6
-receipts==0.2.9
 redis==2.8.0
 requests==2.0.0
 schematic==0.2
-#signing_clients==0.1.7
 six==1.4.1
 slumber==0.5.3
 SQLAlchemy==0.7.5
@@ -98,7 +90,6 @@ suds==0.4
 
 ## Not on pypi.
 -e git+https://github.com/mozilla/amo-validator.git@cd0edd7f81bb83be810002023730a3a762f27d79#egg=amo-validator
--e git+https://github.com/mozilla/app-validator.git@3725f5fe8e75e537c7f4b5392bb6eb8a7b3f2f15#egg=app-validator
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
@@ -108,7 +99,6 @@ suds==0.4
 -e git+https://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
 -e git+https://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
 -e git+https://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
--e git+https://github.com/mozilla/signing-clients@a8bd730b202391c080113d224d223463e03088e9#egg=signing-clients
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 
 ## Forked.
