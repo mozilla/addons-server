@@ -187,8 +187,6 @@ ALLOW_SELF_REVIEWS = True
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
 GOOGLE_API_CREDENTIALS = private.GOOGLE_API_CREDENTIALS
 
-MONOLITH_SERVER = 'https://monolith-dev.allizom.org'
-
 GEOIP_URL = 'https://geo-dev-marketplace.allizom.org'
 
 AWS_ACCESS_KEY_ID = private.AWS_ACCESS_KEY_ID

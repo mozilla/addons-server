@@ -3,16 +3,16 @@ from functools import partial
 
 from django import http
 from django.conf import settings
-from django.db import IntegrityError, transaction
-from django.shortcuts import (get_list_or_404, get_object_or_404,
-                              redirect, render)
 from django.contrib import auth
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
+from django.db import IntegrityError, transaction
+from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
+                              render)
 from django.template import Context, loader
+from django.utils.http import base36_to_int, is_safe_url
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.http import base36_to_int, is_safe_url
 
 import commonware.log
 import waffle
@@ -25,6 +25,7 @@ from tower import ugettext as _
 import amo
 import users.notifications as notifications
 from abuse.models import send_abuse_report
+from access import acl
 from access.middleware import ACLMiddleware
 from addons.decorators import addon_view_factory
 from addons.models import Addon, Category
@@ -35,19 +36,17 @@ from amo.forms import AbuseForm
 from amo.helpers import loc
 from amo.urlresolvers import get_url_prefix, reverse
 from amo.utils import escape_all, log_cef, send_mail
-from access import acl
 from bandwagon.models import Collection
 from browse.views import PersonasFilter
 from translations.query import order_by_translation
 from users.models import UserNotification
 
-from lib.metrics import record_action
-
+import tasks
+from . import forms
 from .models import UserProfile
 from .signals import logged_out
-from . import forms
 from .utils import autocreate_username, EmailResetCode, UnsubscribeCode
-import tasks
+
 
 log = commonware.log.getLogger('z.users')
 
@@ -380,8 +379,6 @@ def browserid_authenticate(request, assertion, is_mobile=False,
     log_cef('New Account', 5, request, username=username,
             signature='AUTHNOTICE',
             msg='User created a new account (from Persona)')
-    if settings.MARKETPLACE:
-        record_action('new-user', request)
     return profile, None
 
 
