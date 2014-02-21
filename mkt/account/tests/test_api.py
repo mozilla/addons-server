@@ -364,9 +364,9 @@ class TestLoginHandler(TestCase):
              'webpay': False,
              'stats': False,
              'revenue_stats': False})
-        eq_(data['installed'], [])
-        eq_(data['purchased'], [])
-        eq_(data['developed'], [])
+        eq_(data['apps']['installed'], [])
+        eq_(data['apps']['purchased'], [])
+        eq_(data['apps']['developed'], [])
 
     @patch('users.models.UserProfile.purchase_ids')
     def test_relevant_apps(self, purchase_ids):
@@ -381,9 +381,9 @@ class TestLoginHandler(TestCase):
         installed_app.installed.create(user=profile)
 
         data = self._test_login()
-        eq_(data['installed'], [installed_app.pk])
-        eq_(data['purchased'], [purchased_app.pk])
-        eq_(data['developed'], [developed_app.pk])
+        eq_(data['apps']['installed'], [installed_app.pk])
+        eq_(data['apps']['purchased'], [purchased_app.pk])
+        eq_(data['apps']['developed'], [developed_app.pk])
 
     @patch('requests.post')
     def test_login_failure(self, http_request):
@@ -411,6 +411,7 @@ class TestLoginHandler(TestCase):
         data = json.loads(res.content)
         eq_(res.status_code, 400)
         assert 'assertion' in data
+        assert not 'apps' in data
 
 
 class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):

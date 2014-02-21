@@ -75,9 +75,9 @@ Consumer Information
     If user authentication information is passed to the request, the following
     will also be added to the response:
 
-    :param developed: IDs of apps the user has developed.
+    :param apps.developed: IDs of apps the user has developed.
     :type active: array
-    :param installed: IDs of apps the user has installed.
+    :param apps.installed: IDs of apps the user has installed.
     :type active: array
-    :param purchased: IDs of apps the user has purchased.
+    :param apps.purchased: IDs of apps the user has purchased.
     :type active: array
