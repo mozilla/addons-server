@@ -115,7 +115,7 @@
 {% endif %}
 {% with position = get_position(addon) %}
   {% if position and position.pos and position.total %}
-    <li>
+    <li class="queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
       <strong>{{ _('Queue Position:') }}</strong>
       {% trans position=position.pos|numberfmt,
                total=position.total|numberfmt %}

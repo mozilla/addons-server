@@ -1987,9 +1987,9 @@ class TestQueuePosition(UploadTest):
             r = self.client.get(self.addon.get_dev_url('versions'))
             doc = pq(r.content)
 
-            span = doc('.version-status-actions .dark')
+            span = doc('.queue-position')
 
-            eq_(span.length, 1)
+            assert span.length
             assert "Queue Position: 1 of 1" in span.text()
 
 
