@@ -1,6 +1,6 @@
-from decimal import Decimal
 import random
 import re
+from decimal import Decimal
 
 from django import http
 from django.conf import settings
@@ -8,17 +8,16 @@ from django.core.cache import cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-from django_statsd.clients import statsd
 import phpserialize as php
 import requests
-import waffle
+from django_statsd.clients import statsd
 
 import amo
 from amo.decorators import post_required, write
-from lib.pay_server import client
 from paypal import paypal_log_cef
 from stats.db import StatsDictField
 from stats.models import Contribution, ContributionError
+
 
 paypal_log = commonware.log.getLogger('z.paypal')
 
@@ -39,41 +38,12 @@ def paypal(request):
                     &content_ID=developer/e_howto_html_IPNandPDTVariables
     """
     try:
-        if waffle.flag_is_active(request, 'solitude-payments'):
-            return ipn(request)
         return _paypal(request)
     except Exception, e:
         paypal_log.error('%s\n%s' % (e, request), exc_info=True)
         if settings.IN_TEST_SUITE:
             raise
         return http.HttpResponseServerError('Unknown error.')
-
-
-def ipn(request):
-    result = client.post_ipn(data={'data': request.read()})
-    paypal_log.info('Solitude IPN returned: %s' % result['status'])
-
-    # PayPal could not verify this result.
-    if result['status'] in ['IGNORED', 'ERROR']:
-        paypal_log.info('Solitude IPN ignored: %s' % result['status'])
-        return http.HttpResponse('Ignored')
-
-    paypal_log.info('Solitude IPN processed: %s,' % result['action'])
-
-    # Process the payment.
-    if result['action'] == 'PAYMENT':
-        return paypal_completed(request, result['uuid'])
-
-    elif result['action'] == 'REFUND':
-        return paypal_refunded(request, result['uuid'],
-                               amount=result['amount'])
-
-    elif result['action'] == 'REVERSAL':
-        return paypal_reversal(request, result['uuid'],
-                               amount=result['amount'])
-
-    else:
-        raise NotImplementedError
 
 
 # TODO(solitude): alot of this can be removed or refactored.

@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
-from decimal import Decimal
 import urllib
+from decimal import Decimal
 
 from django import http, test
 from django.conf import settings
 from django.core import mail
 
-from mock import patch, Mock
+from mock import Mock, patch
 from nose.tools import eq_
 from test_utils import RequestFactory
-import waffle
 
 import amo.tests
-from amo.urlresolvers import reverse
 from addons.models import Addon
+from amo.urlresolvers import reverse
 from market.models import Price
+from paypal import PaypalError, views
+from paypal.decorators import handle_paypal_error
 from stats.models import Contribution
 from users.models import UserProfile
-from paypal import views, PaypalError
-from paypal.decorators import handle_paypal_error
 
 
 URL_ENCODED = 'application/x-www-form-urlencoded'
@@ -183,47 +182,6 @@ class PaypalTest(amo.tests.TestCase):
         return m
 
 
-@patch('paypal.views.client.post_ipn')
-class TestPaypalSolitude(PaypalTest):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        waffle.models.Flag.objects.create(name='solitude-payments',
-                                          everyone=True)
-        self.addon = Addon.objects.get(pk=3615)
-        self.url = reverse('amo.paypal')
-        self.user = UserProfile.objects.get(pk=999)
-
-    def test_ignore(self, post_ipn):
-        post_ipn.return_value = {'status': 'IGNORED'}
-        res = self.client.post(self.url, {})
-        eq_(res.content, 'Ignored')
-
-    def test_payment(self, post_ipn):
-        Contribution.objects.create(uuid=sample_purchase['tracking_id'],
-                                    addon=self.addon)
-        post_ipn.return_value = {'action': 'PAYMENT', 'status': 'OK',
-                                 'uuid': sample_purchase['tracking_id']}
-        res = self.client.post(self.url, {})
-        eq_(res.content, 'Success!')
-
-    def test_refund(self, post_ipn):
-        Contribution.objects.create(addon=self.addon, uuid=None,
-                transaction_id=sample_purchase['tracking_id'], user=self.user)
-        post_ipn.return_value = {'action': 'REFUND', 'amount': 'USD 1.00',
-                'status': 'OK', 'uuid': sample_purchase['tracking_id']}
-        res = self.client.post(self.url, {})
-        eq_(res.content, 'Success!')
-
-    def test_chargeback(self, post_ipn):
-        Contribution.objects.create(addon=self.addon, uuid=None,
-                transaction_id=sample_purchase['tracking_id'], user=self.user)
-        post_ipn.return_value = {'action': 'REVERSAL', 'amount': 'USD 1.00',
-                'status': 'OK', 'uuid': sample_purchase['tracking_id']}
-        res = self.client.post(self.url, {})
-        eq_(res.content, 'Success!')
-
-
 @patch('paypal.views.requests.post')
 class TestPaypal(PaypalTest):
     fixtures = ['base/users']
@@ -331,10 +289,6 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         res = views._parse_currency(sample_refund['transaction[0].amount'])
         eq_(res['amount'], Decimal('1.00'))
         eq_(res['currency'], 'USD')
-
-    def test_parse_currency_solitude(self, urlopen):
-        res = views._parse_currency({'amount': '1.00', 'currency': 'USD'})
-        eq_(res['amount'], Decimal('1.00'))
 
     def test_success(self, urlopen):
         Contribution.objects.create(uuid=sample_purchase['tracking_id'],
