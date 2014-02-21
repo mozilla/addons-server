@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-13 04:24+0000\n"
+"PO-Revision-Date: 2014-02-21 13:45+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1392265444.0\n"
+"X-POOTLE-MTIME: 1392990315.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -17720,6 +17720,10 @@ msgid ""
 "we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You "
 "can edit pages after creating a Mozilla Persona user account and logging in."
 msgstr ""
+"為新創平台開發時，比起已經成熟的平台總是比較難找到相關的參考資訊。為了給 Firefox OS "
+"開發者更多的幫助，我們也希望您能加入幫忙！我們想請您將您手上的有用資訊新增到 <a href=\"%(mdn_url)s\" "
+"target=\"_blank\">Mozilla Developer Network</a> 上。您可以註冊 Mozilla Persona "
+"帳號後登入即可編輯頁面。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:133
 msgid ""
@@ -17789,12 +17793,16 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
+"Firefox Marketplace "
+"提供使用者尋找、測試並購買與他們最相關內容的應用程式的機會。這代表了使用者可以得到適合在地市場，最令人驚艷、最好用的高品質應用程式的不同分類應用程式。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
+"Mozilla 在全球有數以億計的 Firefox 使用者。透過智慧的 Marketplace 策展並有效地使用 Mozilla "
+"的行銷頻道，Mozilla 可幫助開發者將應用程式傳送到目標族群使用者的掌上。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
@@ -17996,6 +18004,8 @@ msgstr "徽章、橫幅與圖示"
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
 msgstr ""
+"「到 Firefox Marketplace 下載」是您可以在您網站上使用的徽章與宣傳材料，指引到您在 Firefox Marketplace "
+"的產品頁面。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
@@ -18275,7 +18285,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:23
 msgid "Writing a New Note"
-msgstr ""
+msgstr "撰寫新筆記"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:28
 msgid "Local Notes"
@@ -18299,7 +18309,7 @@ msgstr "伺服器與客戶端程式碼都是以 Javascript 編寫的。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:85
 msgid "A key-value store that contains all the server notes."
-msgstr ""
+msgstr "包含所有伺服器端筆記的鍵/值儲存空間。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:126
 msgid "81%"
@@ -18346,6 +18356,9 @@ msgid ""
 "Podcasts is a <a href=\"%(packaged_apps_link)s\">packaged app</a>, so it requires a build step to be installed to Firefox OS. The <code>Makefile</code> contains a multi-step process that will "
 "create a <code>www-built</code> folder used to install the app on a phone or the <a href=\"%(simulator_link)s\">Firefox OS Simulator</a>."
 msgstr ""
+"Podcasts 是一個 <a href=\"%(packaged_apps_link)s\">封裝</a> 應用程式，所以在安裝到 Firefox OS "
+"前需先編譯。<code>Makefile</code> 當中包含了一組多步驟的過程，以建立用來安裝到手機或 <a href=\"%"
+"(simulator_link)s\">Firefox OS Simulator</a> 的 <code>www-built</code> 資料夾。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:78
 msgid "Used to store settings and basic podcast metadata. Not used for podcast audio files or cover art."
