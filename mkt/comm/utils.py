@@ -37,6 +37,7 @@ class CommEmailParser(object):
             # Strip everything between "reply+" and the "@" sign.
             uuid = addr[len(self.address_prefix):].split('@')[0]
         else:
+            log.error('Reply-to address not related to comm notes.')
             return False
 
         return uuid
@@ -50,25 +51,26 @@ def save_from_email_reply(reply_text):
     uuid = parser.get_uuid()
 
     if not uuid:
+        log.error('Could not parse uuid from comm email.')
         return False
     try:
         tok = CommunicationThreadToken.objects.get(uuid=uuid)
     except CommunicationThreadToken.DoesNotExist:
-        log.error('An email was skipped with non-existing uuid %s' % uuid)
+        log.error('An email was skipped with non-existing uuid %s.' % uuid)
         return False
 
     if user_has_perm_thread(tok.thread, tok.user) and tok.is_valid():
         t, note = create_comm_note(tok.thread.addon, tok.thread.version,
                                    tok.user, parser.get_body())
-        log.info('A new note has been created (from %s using tokenid %s)'
+        log.info('A new note has been created (from %s using tokenid %s).'
                  % (tok.user.id, uuid))
         return note
     elif tok.is_valid():
-        log.info('%s did not have perms to reply to comm email thread %s'
-                 % (tok.user.email, tok.thread.id))
+        log.error('%s did not have perms to reply to comm email thread %s.'
+                  % (tok.user.email, tok.thread.id))
     else:
-        log.info('%s tried to use an invalid comm token for thread %s.'
-                 % (tok.user.email, tok.thread.id))
+        log.error('%s tried to use an invalid comm token for thread %s.'
+                  % (tok.user.email, tok.thread.id))
 
     return False
 
