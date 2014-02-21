@@ -33,10 +33,13 @@ class CommEmailParser(object):
 
     def get_uuid(self):
         name, addr = self._get_address_line()
+        log.info('Received email addressed to %s' % addr)
+
         if addr.startswith(self.address_prefix):
             # Strip everything between "reply+" and the "@" sign.
             uuid = addr[len(self.address_prefix):].split('@')[0]
         else:
+            log.debug(self.email)
             log.error('Reply-to address not related to comm notes.')
             return False
 
@@ -51,7 +54,6 @@ def save_from_email_reply(reply_text):
     uuid = parser.get_uuid()
 
     if not uuid:
-        log.error('Could not parse uuid from comm email.')
         return False
     try:
         tok = CommunicationThreadToken.objects.get(uuid=uuid)
