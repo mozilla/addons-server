@@ -33,14 +33,13 @@ class CommEmailParser(object):
 
     def get_uuid(self):
         name, addr = self._get_address_line()
-        log.info('Received email addressed to %s' % addr)
 
         if addr.startswith(self.address_prefix):
             # Strip everything between "reply+" and the "@" sign.
             uuid = addr[len(self.address_prefix):].split('@')[0]
         else:
-            log.debug(self.email)
-            log.error('Reply-to address not related to comm notes.')
+            log.info('TO: address missing or not related to comm. (%s)'
+                      % unicode(self.email).strip())
             return False
 
         return uuid
