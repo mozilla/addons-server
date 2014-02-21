@@ -152,6 +152,9 @@ CELERY_ROUTES.update({
     'mkt.developers.tasks.fetch_icon': {'queue': 'devhub'},
     'mkt.developers.tasks.file_validator': {'queue': 'devhub'},
 
+    # Webapps.
+    'mkt.webapps.tasks.pre_generate_apk': {'queue': 'devhub'},
+
     # Images.
     'mkt.developers.tasks.resize_icon': {'queue': 'images'},
     'mkt.developers.tasks.resize_preview': {'queue': 'images'},
@@ -332,3 +335,11 @@ CACHE_MIDDLEWARE_SECONDS = 60 * 3
 
 # Set Etag headers.
 USE_ETAGS = True
+
+# When True, pre-generate APKs for apps.
+PRE_GENERATE_APKS = True
+
+# URL to the APK Factory service.
+# See https://github.com/mozilla/apk-factory-service
+PRE_GENERATE_APK_URL = (
+    'https://apk-controller.dev.mozaws.net/application.apk')

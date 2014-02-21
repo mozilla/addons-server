@@ -188,3 +188,6 @@ IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServi
 IARC_STOREFRONT_ID = 4
 IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
 IARC_ALLOW_CERT_REUSE = True
+
+PRE_GENERATE_APK_URL = \
+    'https://apk-controller.stage.mozaws.net/application.apk'
