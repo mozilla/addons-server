@@ -18,13 +18,12 @@ from product_details import product_details
 from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
-import amo
 import addons.forms
+import amo
 import lib.iarc
 from access import acl
 from addons.forms import clean_tags, icons, IconWidgetRenderer, slug_validator
-from addons.models import (Addon, AddonUser, BlacklistedSlug,
-                           Category, Preview)
+from addons.models import Addon, AddonUser, BlacklistedSlug, Category, Preview
 from addons.widgets import CategoriesSelectMultiple
 from amo import get_user
 from amo.fields import SeparatedValuesField
@@ -43,11 +42,11 @@ from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.regions.utils import parse_region
 from mkt.site.forms import AddonChoiceField
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import IARCInfo, Webapp
 from mkt.webapps.tasks import index_webapps
 
-
 from . import tasks
+
 
 log = commonware.log.getLogger('mkt.developers')
 
@@ -1040,6 +1039,17 @@ class PreloadTestPlanForm(happyforms.Form):
 class IARCGetAppInfoForm(happyforms.Form):
     submission_id = forms.CharField()
     security_code = forms.CharField(max_length=10)
+
+    def clean(self):
+        if not settings.IARC_ALLOW_CERT_REUSE:
+            iarc_id = self.cleaned_data.get('submission_id')
+
+            if IARCInfo.objects.filter(submission_id=iarc_id).exists():
+                raise forms.ValidationError(
+                    _('This IARC certificate is already being used for another '
+                      'app. Please create a new IARC Ratings Certificate.'))
+
+        return self.cleaned_data
 
     def clean_submission_id(self):
         submission_id = (

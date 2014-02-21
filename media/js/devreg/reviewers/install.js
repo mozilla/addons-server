@@ -86,10 +86,11 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
             // APK Factory support was added to Firefox Android in v29.
             if (product.is_packaged && caps.firefoxAndroid && browserVersion >= 29) {
                 $.post(product.tokenUrl).success(function(response) {
-                    if (/[?&]token=/.exec(product.manifest_url)) {
+                    if (!/[?&]token=/.exec(product.manifest_url)) {
                         product.manifest_url += (
                             product.manifest_url.indexOf('?') > 1 ? '&' : '?') +
                             'token=' + response.token;
+                        console.log('[install] manifest_url: ' + product.manifest_url);
                     }
                     $.when(apps.install(product, data))
                      .done(installSuccess)

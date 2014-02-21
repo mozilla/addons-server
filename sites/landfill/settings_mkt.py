@@ -95,8 +95,6 @@ PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
 
 SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
 
-PAYPAL_LIMIT_PREAPPROVAL = False
-
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org',

@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 
+import commonware.log
 from celeryutils import task
 
 import amo
@@ -9,6 +10,9 @@ from devhub.models import ActivityLog, AppLog
 
 from mkt.comm.models import CommunicationNote, CommunicationThread
 import mkt.constants.comm as cmb
+
+
+log = commonware.log.getLogger('comm')
 
 
 class Command(BaseCommand):
@@ -41,7 +45,7 @@ def _migrate_activity_log(logs, **kwargs):
             'thread': thread,
             'note_type': action,
             'author': log.user,
-            'body': log.details.get('comments', ''),
+            'body': log.details.get('comments', '') if log.details else '',
         }
         notes = CommunicationNote.objects.filter(created=log.created,
                                                  **note_params)

@@ -6,7 +6,6 @@ from django.conf import settings
 from django.db.models import Model
 
 from base import Client, Encoder, SolitudeError
-from errors import pre_approval_codes
 
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
@@ -56,7 +55,7 @@ class ZamboniClient(Client):
 
     def create_buyer_if_missing(self, buyer):
         """
-        Checks to see if the buyer exists in solitude. If not we'll create
+        Checks to see if the buyer exists in solitude.
         it so that solitude can store the pre-approval data for that buyer.
         """
         res = self.get_buyer(filters={'uuid': buyer})
@@ -140,16 +139,6 @@ class ZamboniClient(Client):
         """
         data = payload.copy()
         data.update(self.make_urls(payload))
-        data['use_preapproval'] = True
-
-        try:
-            return self.post_pay(data=data)
-        except self.Error, error:
-            if not (retry and error.code in pre_approval_codes):
-                raise
-
-        data.update(self.make_urls(payload))
-        data['use_preapproval'] = False
         return self.post_pay(data=data)
 
 

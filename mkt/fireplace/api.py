@@ -52,7 +52,7 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
             'region': request.REGION.slug
         }
         if request.amo_user:
-          data.update(user_relevant_apps(request.amo_user))
+          data['apps'] = user_relevant_apps(request.amo_user)
 
         # Return an HttpResponse directly to be as fast as possible.
         return HttpResponse(json.dumps(data),

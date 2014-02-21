@@ -102,8 +102,6 @@ SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
 SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
                   'secret': private_mkt.SOLITUDE_OAUTH_SECRET}
 
-PAYPAL_LIMIT_PREAPPROVAL = False
-
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org']
@@ -212,6 +210,7 @@ IARC_PLATFORM = 'Firefox'
 IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
 IARC_STOREFRONT_ID = 4
 IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
+IARC_ALLOW_CERT_REUSE = True
 
 # We'll use zippy, the reference implementation on -dev.
 PAYMENT_PROVIDERS = ['reference']

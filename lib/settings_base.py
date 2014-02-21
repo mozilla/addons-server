@@ -314,6 +314,7 @@ JINGO_EXCLUDE_APPS = (
     'toolbar_statsd',
     'registration',
     'debug_toolbar',
+    'waffle',
 )
 
 JINGO_EXCLUDE_PATHS = (
@@ -1059,9 +1060,6 @@ PAYPAL_REFUND_INSTANT = 30 * 60
 # When None, the Mozilla CA bundle is used to look it up.
 PAYPAL_CERT = None
 
-# Limit PayPal pre-approvals to certain limits.
-PAYPAL_LIMIT_PREAPPROVAL = True
-
 # Contribution limit, one time and monthly
 MAX_CONTRIBUTION = 1000
 
@@ -1649,6 +1647,7 @@ IARC_STOREFRONT_ID = 4
 IARC_SUBMISSION_ENDPOINT = ''
 IARC_PRIVACY_URL = 'https://www.globalratings.com/IARCPRODClient/privacypolicy.aspx'
 IARC_TOS_URL = 'https://www.globalratings.com/IARCPRODClient/termsofuse.aspx'
+IARC_ALLOW_CERT_REUSE = False
 
 # The payment providers supported.
 PAYMENT_PROVIDERS = []

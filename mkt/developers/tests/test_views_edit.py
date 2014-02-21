@@ -1470,6 +1470,11 @@ class TestEditVersion(TestEdit):
 
     def test_comm_thread(self):
         self.create_switch('comm-dashboard')
+
+        # With empty note.
+        self.test_post(approvalnotes='')
+        eq_(CommunicationNote.objects.count(), 0)
+
         self.test_post(approvalnotes='abc')
         notes = CommunicationNote.objects.all()
         eq_(notes.count(), 1)

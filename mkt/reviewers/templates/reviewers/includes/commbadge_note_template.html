@@ -1,0 +1,31 @@
+<script type="text/template" id="commbadge-note">
+  <tr>
+    <th><%= noteType %></th>
+    <td>
+      <div><%= metadata %></div>
+      <pre class="light history-comment"><%= body %></pre>
+      <% if (attachments.length) { %>
+        <div class="log-group log-attachments">
+          <strong>{{ _('Attachments') }}</strong>
+          <ul>
+            <% _.each(attachments, function(attachment){ %>
+              <li<% if (attachment.is_image) { %> class="image"<% } %>>
+                <a href="<%= attachment.url %>">
+                  <%= attachment.display_name %>
+                </a>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+    </td>
+  </tr>
+</script>
+
+<script type="text/template" id="no-notes">
+  <tr>
+    <td class="no-activity">
+      {{ _('This version has not been reviewed.') }}
+    </td>
+  </tr>
+</script>

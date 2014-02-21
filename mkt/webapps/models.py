@@ -1288,9 +1288,8 @@ class Webapp(Addon):
 
         if self.status in amo.WEBAPPS_APPROVED_STATUSES:
             version = self.current_version
-            reviewed = self.current_version.reviewed
-            if reviewed:
-                release_date = reviewed
+            if version and version.reviewed:
+                release_date = version.reviewed
         elif self.status in amo.WEBAPPS_EXCLUDED_STATUSES:
             # Using `_latest_version` since the property returns None when
             # deleted.
@@ -1313,7 +1312,7 @@ class Webapp(Addon):
                 'rating_system': cr.get_body().iarc_name,
                 'release_date': '' if disable else release_date,
                 'title': get_iarc_app_title(self),
-                'company': version.developer_name,
+                'company': version.developer_name if version else '',
                 'rating': cr.get_rating().iarc_name,
                 'descriptors': self.rating_descriptors.iarc_deserialize(
                     body=cr.get_body()),
@@ -1968,7 +1967,6 @@ class IARCInfo(amo.models.ModelBase):
 
     class Meta:
         db_table = 'webapps_iarc_info'
-        unique_together = ('addon', 'submission_id')
 
     def __unicode__(self):
         return u'app:%s' % self.addon.app_slug
@@ -2102,6 +2100,20 @@ class RatingInteractives(amo.models.ModelBase, DynamicBoolFieldsMixin):
 for k, v in mkt.ratinginteractives.RATING_INTERACTIVES.iteritems():
     field = models.BooleanField(default=False, help_text=v['name'])
     field.contribute_to_class(RatingInteractives, 'has_%s' % k.lower())
+
+
+def iarc_cleanup(*args, **kwargs):
+    instance = kwargs.get('instance')
+    IARCInfo.objects.filter(addon=instance).delete()
+    ContentRating.objects.filter(addon=instance).delete()
+    RatingDescriptors.objects.filter(addon=instance).delete()
+    RatingInteractives.objects.filter(addon=instance).delete()
+
+
+# When an app is deleted we need to remove the IARC data so the certificate can
+# be re-used later.
+models.signals.post_delete.connect(iarc_cleanup, sender=Addon,
+                                   dispatch_uid='webapps_iarc_cleanup')
 
 
 # The AppFeatures table is created with dynamic fields based on

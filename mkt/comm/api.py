@@ -265,9 +265,9 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         self.serializer_class = ThreadSerializer
         profile = request.amo_user
         # We list all the threads the user has posted a note to.
-        notes = profile.comm_notes.values_list('thread', flat=True)
+        notes = list(profile.comm_notes.values_list('thread', flat=True))
         # We list all the threads where the user has been CC'd.
-        cc = profile.comm_thread_cc.values_list('thread', flat=True)
+        cc = list(profile.comm_thread_cc.values_list('thread', flat=True))
 
         # This gives 404 when an app with given slug/id is not found.
         data = {}
@@ -276,7 +276,6 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
             if not form.is_valid():
                 raise Http404()
 
-            notes, cc = list(notes), list(cc)
             # TODO: use CommunicationThread.with_perms once other PR merged in.
             queryset = CommunicationThread.objects.filter(pk__in=notes + cc,
                 addon=form.cleaned_data['app'])
@@ -287,7 +286,6 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         else:
             # We list all the threads which uses an add-on authored by the
             # user and with read permissions for add-on devs.
-            notes, cc = list(notes), list(cc)
             addons = list(profile.addons.values_list('pk', flat=True))
             q_dev = Q(addon__in=addons, read_permission_developer=True)
             queryset = CommunicationThread.objects.filter(

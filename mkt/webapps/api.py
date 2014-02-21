@@ -504,7 +504,7 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
     @action(methods=['POST'],
             cors_allowed_methods=PreviewViewSet.cors_allowed_methods)
-    def preview_list(self, request, *args, **kwargs):
+    def preview(self, request, *args, **kwargs):
         kwargs['app'] = self.get_object()
         view = PreviewViewSet.as_view({'post': '_create'})
         return view(request, *args, **kwargs)
