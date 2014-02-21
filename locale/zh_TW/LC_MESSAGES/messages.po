@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-21 13:49+0000\n"
+"PO-Revision-Date: 2014-02-21 13:51+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1392990579.0\n"
+"X-POOTLE-MTIME: 1392990683.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -18263,7 +18263,7 @@ msgstr "在離線環境中運作良好，只有在您需要更新的匯率時才
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:102
 msgid "By using backbone's data bindings, Face Value ensures that changes to the backend (such as exchange rate updates) are automatically reflected on the frontend."
-msgstr ""
+msgstr "使用 backbone 的資料繫結，Face Value 確保背景中的變更（諸如匯率更新）可自動在前端更新。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:112 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:112
 msgid "The lightweight jQuery-like library simplifies common tasks such as DOM manipulation."
