@@ -106,8 +106,7 @@ class BulkValidationForm(happyforms.ModelForm):
 
 path = os.path.join(settings.ROOT, 'apps/zadmin/templates/zadmin')
 texts = {
-    'success': open('%s/%s' % (path, 'success.txt')).read(),
-    'failure': open('%s/%s' % (path, 'failure.txt')).read(),
+    'validation': open('%s/%s' % (path, 'validation-email.txt')).read(),
 }
 
 
@@ -119,16 +118,15 @@ class NotifyForm(happyforms.Form):
     preview_only = forms.BooleanField(initial=True, required=False,
                             label=_lazy(u'Log emails instead of sending'))
     text = forms.CharField(widget=forms.Textarea, required=True)
-    variables = ['{{ADDON_NAME}}', '{{ADDON_VERSION}}', '{{APPLICATION}}',
-                 '{{COMPAT_LINK}}', '{{RESULT_LINKS}}', '{{VERSION}}']
+    variables = ['{{PASSING_ADDONS}}', '{{FAILING_ADDONS}}', '{{APPLICATION}}',
+                 '{{VERSION}}']
     variable_names = [varname.match(v).group(1) for v in variables]
 
     def __init__(self, *args, **kw):
         kw.setdefault('initial', {})
         if 'text' in kw:
             kw['initial']['text'] = texts[kw.pop('text')]
-        kw['initial']['subject'] = ('{{ADDON_NAME}} {{ADDON_VERSION}} '
-                                    'compatibility with '
+        kw['initial']['subject'] = ('Add-on compatibility with '
                                     '{{APPLICATION}} {{VERSION}}')
         super(NotifyForm, self).__init__(*args, **kw)
 

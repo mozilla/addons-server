@@ -35,7 +35,7 @@ from versions.models import ApplicationsVersions, Version
 from zadmin import forms, tasks
 from zadmin.forms import DevMailerForm
 from zadmin.models import EmailPreviewTopic, ValidationJob, ValidationResult
-from zadmin.views import completed_versions_dirty, find_files
+from zadmin.views import updated_versions, find_files
 
 
 no_op_validation = dict(errors=0, warnings=0, notices=0, messages=[],
@@ -163,7 +163,7 @@ class BulkValidationTest(amo.tests.TestCase):
         self.creator = UserProfile.objects.get(username='editor')
         self.version = self.addon.get_version()
         ApplicationsVersions.objects.filter(
-            application=1, version=self.version).update(
+            application=amo.FIREFOX.id, version=self.version).update(
             max=AppVersion.objects.get(application=1, version='3.7a1pre'))
         self.application_version = self.version.apps.all()[0]
         self.application = self.application_version.application
@@ -189,6 +189,7 @@ class BulkValidationTest(amo.tests.TestCase):
                                             self.appversion('3.7a3')),
                   creator=self.creator)
         kw.update(kwargs)
+
         return ValidationJob.objects.create(**kw)
 
     def create_file(self, version=None, platform_id=amo.PLATFORM_ALL.id):
@@ -377,7 +378,7 @@ class TestBulkUpdate(BulkValidationTest):
         super(TestBulkUpdate, self).setUp()
 
         self.job = self.create_job(completed=datetime.now())
-        self.update_url = reverse('zadmin.notify.success', args=[self.job.pk])
+        self.update_url = reverse('zadmin.notify', args=[self.job.pk])
         self.list_url = reverse('zadmin.validation')
         self.data = {'text': '{{ APPLICATION }} {{ VERSION }}',
                      'subject': '..'}
@@ -385,17 +386,25 @@ class TestBulkUpdate(BulkValidationTest):
         self.version_one = Version.objects.create(addon=self.addon)
         self.version_two = Version.objects.create(addon=self.addon)
 
+        appver = AppVersion.objects.get(application=1, version='3.7a1pre')
+        for v in self.version_one, self.version_two:
+            ApplicationsVersions.objects.create(
+                application_id=amo.FIREFOX.id, version=v,
+                min=appver, max=appver)
+
     def test_no_update_link(self):
         self.create_result(self.job, self.create_file(), **{})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        eq_(doc('table tr td a.set-max-version').text(), 'Set max version')
+        eq_(doc('table tr td a.set-max-version').text(),
+            'Notify and set max versions')
 
     def test_update_link(self):
         self.create_result(self.job, self.create_file(), **{'valid': 1})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        eq_(doc('table tr td a.set-max-version').text(), 'Set max version')
+        eq_(doc('table tr td a.set-max-version').text(),
+            'Notify and set max versions')
 
     def test_update_url(self):
         self.create_result(self.job, self.create_file(), **{'valid': 1})
@@ -414,14 +423,15 @@ class TestBulkUpdate(BulkValidationTest):
             for x in range(0, 3):
                 self.create_result(self.job, self.create_file(version))
 
-        eq_(sorted(completed_versions_dirty(self.job)),
+        eq_(sorted(updated_versions(self.job)),
             [self.version_one.pk, self.version_two.pk])
 
     def test_update_passing_only(self):
         self.create_result(self.job, self.create_file(self.version_one))
         self.create_result(self.job, self.create_file(self.version_two),
                            errors=1)
-        eq_(sorted(completed_versions_dirty(self.job)),
+
+        eq_(sorted(updated_versions(self.job)),
             [self.version_one.pk])
 
     def test_update_pks(self):
@@ -472,7 +482,7 @@ class TestBulkUpdate(BulkValidationTest):
         # .* was not sorting right
         self.version.apps.all().update(max=self.appversion('3.0.*'))
         self.create_result(job, self.create_file(self.version))
-        self.client.post(reverse('zadmin.notify.success', args=[job.pk]),
+        self.client.post(reverse('zadmin.notify', args=[job.pk]),
                          self.data)
         eq_(self.version.apps.all()[0].max, self.appversion('3.5'))
 
@@ -498,21 +508,25 @@ class TestBulkUpdate(BulkValidationTest):
 
     def test_update_subject(self):
         data = self.data.copy()
-        data['subject'] = '{{ ADDON_NAME }}{{ ADDON_VERSION }}'
+        data['subject'] = '{{ PASSING_ADDONS.0.name }}'
         f = self.create_file(self.version)
         self.create_result(self.job, f)
         self.client.post(self.update_url, data)
         eq_(mail.outbox[0].subject,
-            '%s%s' % (self.addon.name, f.version.version))
+            '%s' % self.addon.name)
 
     @mock.patch('zadmin.tasks.log')
-    def test_bulk_update_logs_stats(self, log):
+    def test_bulk_email_logs_stats(self, log):
         log.info = mock.Mock()
         self.create_result(self.job, self.create_file(self.version))
         self.client.post(self.update_url, self.data)
-        eq_(log.info.call_args_list[-1][0][0],
+        eq_(log.info.call_args_list[-4][0][0],
             '[1@None] bulk update stats for job %s: '
-            '{author_emailed: 1, bumped: 1, is_dry_run: 0, processed: 1}'
+            '{bumped: 1, is_dry_run: 0, processed: 1}'
+            % self.job.pk)
+        eq_(log.info.call_args_list[-1][0][0],
+            '[1@None] bulk email stats for job %s: '
+            '{author_emailed: 1, is_dry_run: 0, processed: 1}'
             % self.job.pk)
 
     def test_application_version(self):
@@ -525,13 +539,14 @@ class TestBulkUpdate(BulkValidationTest):
         results = [
             self.create_result(self.job, self.create_file(self.version)),
             self.create_result(self.job, self.create_file(self.version))]
-        self.client.post(self.update_url, {'text': '{{ RESULT_LINKS }}',
-                                           'subject': '..'})
+        self.client.post(self.update_url,
+                         {'text': '{{ PASSING_ADDONS.0.links }}',
+                          'subject': '..'})
         links = mail.outbox[0].body.split(' ')
         for result in results:
             assert any(ln.endswith(reverse('devhub.bulk_compat_result',
                                            args=(self.addon.slug, result.pk)))
-                       for ln in links), ('Unexpected links: %s' % links)
+                       for ln in links), ('Expected links: %s' % links)
 
     def test_notify_mail_preview(self):
         self.create_result(self.job, self.create_file(self.version))
@@ -539,7 +554,7 @@ class TestBulkUpdate(BulkValidationTest):
                          {'text': 'the message', 'subject': 'the subject',
                           'preview_only': 'on'})
         eq_(len(mail.outbox), 0)
-        rs = self.job.get_success_preview_emails()
+        rs = self.job.get_notify_preview_emails()
         eq_([e.subject for e in rs], ['the subject'])
         # version should not be bumped since it's in preview mode:
         eq_(self.version.apps.all()[0].max, self.max)
@@ -554,7 +569,7 @@ class TestBulkNotify(BulkValidationTest):
         super(TestBulkNotify, self).setUp()
 
         self.job = self.create_job(completed=datetime.now())
-        self.update_url = reverse('zadmin.notify.failure', args=[self.job.pk])
+        self.update_url = reverse('zadmin.notify', args=[self.job.pk])
         self.syntax_url = reverse('zadmin.notify.syntax')
         self.list_url = reverse('zadmin.validation')
 
@@ -571,13 +586,15 @@ class TestBulkNotify(BulkValidationTest):
         self.create_result(self.job, self.create_file(), **{'errors': 1})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        eq_(doc('table tr td a.notify').text(), 'Notify')
+        eq_(doc('table tr td a.set-max-version').text(),
+            'Notify and set max versions')
 
     def test_notify_url(self):
         self.create_result(self.job, self.create_file(), **{'errors': 1})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        eq_(doc('table tr td a.notify').attr('data-job-url'), self.update_url)
+        eq_(doc('table tr td a.set-max-version').attr('data-job-url'),
+            self.update_url)
 
     def test_notify_anonymous(self):
         self.client.logout()
@@ -589,7 +606,18 @@ class TestBulkNotify(BulkValidationTest):
                            **{'errors': 1})
         eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
         self.client.post(self.update_url, {'text': '..', 'subject': '..'})
-        upd = amo.LOG.BULK_VALIDATION_EMAILED.id
+        upd = amo.LOG.BULK_VALIDATION_USER_EMAILED.id
+        logs = (ActivityLog.objects.for_user(self.creator)
+                           .filter(action=upd))
+        eq_(logs.count(), 1)
+        eq_(logs[0].user, self.creator)
+
+    def test_compat_bump_log(self):
+        self.create_result(self.job, self.create_file(self.version),
+                           **{'errors': 0})
+        eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
+        self.client.post(self.update_url, {'text': '..', 'subject': '..'})
+        upd = amo.LOG.MAX_APPVERSION_UPDATED.id
         logs = ActivityLog.objects.for_addons(self.addon).filter(action=upd)
         eq_(logs.count(), 1)
         eq_(logs[0].user, self.creator)
@@ -597,8 +625,9 @@ class TestBulkNotify(BulkValidationTest):
     def test_notify_mail(self):
         self.create_result(self.job, self.create_file(self.version),
                            **{'errors': 1})
-        r = self.client.post(self.update_url, {'text': '..',
-                                               'subject': '{{ ADDON_NAME }}'})
+        r = self.client.post(self.update_url,
+                             {'text': '..',
+                              'subject': '{{ FAILING_ADDONS.0.name }}'})
         eq_(r.status_code, 302)
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].body, '..')
@@ -608,8 +637,9 @@ class TestBulkNotify(BulkValidationTest):
     def test_result_links(self):
         result = self.create_result(self.job, self.create_file(self.version),
                                     **{'errors': 1})
-        r = self.client.post(self.update_url, {'text': '{{ RESULT_LINKS }}',
-                                               'subject': '...'})
+        r = self.client.post(self.update_url,
+                             {'text': '{{ FAILING_ADDONS.0.links }}',
+                              'subject': '...'})
         eq_(r.status_code, 302)
         eq_(len(mail.outbox), 1)
         res = reverse('devhub.bulk_compat_result',
@@ -632,7 +662,7 @@ class TestBulkNotify(BulkValidationTest):
                            **{'errors': 1})
         r = self.client.post(self.update_url, {'text': '..', 'subject': '..'})
         eq_(r.status_code, 302)
-        eq_(len(mail.outbox), 2)
+        eq_(len(mail.outbox), 1)
 
     def test_notify_mail_preview(self):
         for i in range(2):
@@ -643,15 +673,16 @@ class TestBulkNotify(BulkValidationTest):
                               'preview_only': 'on'})
         eq_(r.status_code, 302)
         eq_(len(mail.outbox), 0)
-        rs = self.job.get_failure_preview_emails()
-        eq_([e.subject for e in rs], ['the subject', 'the subject'])
+        rs = self.job.get_notify_preview_emails()
+        eq_([e.subject for e in rs], ['the subject'])
 
     def test_notify_rendering(self):
         self.create_result(self.job, self.create_file(self.version),
                            **{'errors': 1})
         r = self.client.post(self.update_url,
-                             {'text': '{{ ADDON_NAME }}{{ COMPAT_LINK }}',
-                              'subject': '{{ ADDON_NAME }} blah'})
+                             {'text': '{{ FAILING_ADDONS.0.name }}'
+                                      '{{ FAILING_ADDONS.0.compat_link }}',
+                              'subject': '{{ FAILING_ADDONS.0.name }} blah'})
         eq_(r.status_code, 302)
         eq_(len(mail.outbox), 1)
         url = reverse('devhub.versions.edit', args=[self.addon.pk,
@@ -666,21 +697,21 @@ class TestBulkNotify(BulkValidationTest):
         self.create_result(self.job, self.create_file(self.version),
                            **{'errors': 1})
         r = self.client.post(self.update_url,
-                             {'text': '{{ ADDON_NAME }}',
-                              'subject': '{{ ADDON_NAME }} blah'})
+                             {'text': '{{ FAILING_ADDONS.0.name }}',
+                              'subject': '{{ FAILING_ADDONS.0.name }} blah'})
         eq_(r.status_code, 302)
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].body, self.addon.name)
 
     def test_notify_template(self):
         for text, res in (['some sample text', True],
-                          ['{{ ADDON_NAME }}{% if %}', False]):
+                          ['{{ FAILING_ADDONS.0.name }}{% if %}', False]):
             eq_(forms.NotifyForm({'text': text, 'subject': '...'}).is_valid(),
                 res)
 
     def test_notify_syntax(self):
         for text, res in (['some sample text', True],
-                          ['{{ ADDON_NAME }}{% if %}', False]):
+                          ['{{ FAILING_ADDONS.0.name }}{% if %}', False]):
             r = self.client.post(self.syntax_url, {'text': text,
                                                    'subject': '..'})
             eq_(r.status_code, 200)
@@ -690,11 +721,12 @@ class TestBulkNotify(BulkValidationTest):
         for text, res in (['{{NOT_DECLARED}}', False],
                           ['{{ NOT_DECLARED }}', False],
                           ["""
-                                {{ADDON_NAME}}
+                                {{FAILING_ADDONS.0.name}}
                                 {{NOT_DECLARED}}
                            """, False],
-                          ['{{ADDON_NAME}} {{NOT_DECLARED}}', False],
-                          ['{{ADDON_NAME}}', True]):
+                          ['{{FAILING_ADDONS.0.name}} {{NOT_DECLARED}}',
+                           False],
+                          ['{{FAILING_ADDONS.0.name}}', True]):
             r = self.client.post(self.syntax_url, {'text': text,
                                                    'subject': '..'})
             eq_(r.status_code, 200)
@@ -704,24 +736,6 @@ class TestBulkNotify(BulkValidationTest):
     def test_undeclared_variable_form_submit(self):
         f = forms.NotifyForm({'text': '{{ UNDECLARED }}', 'subject': '...'})
         eq_(f.is_valid(), False)
-
-    def test_addon_name_contains_platform(self):
-        for pl in (amo.PLATFORM_MAC.id, amo.PLATFORM_LINUX.id):
-            f = self.create_file(self.version, platform_id=pl)
-            self.create_result(self.job, f, errors=1)
-        self.client.post(self.update_url, {'text': '...',
-                                           'subject': '{{ ADDON_NAME }}'})
-        subjects = sorted(m.subject for m in mail.outbox)
-        eq_(subjects,
-            ['Delicious Bookmarks (Linux)',
-             'Delicious Bookmarks (Mac OS X)'])
-
-    def test_addon_name_for_platform_all(self):
-        f = self.create_file(self.version, platform_id=amo.PLATFORM_ALL.id)
-        self.create_result(self.job, f, errors=1)
-        self.client.post(self.update_url, {'text': '...',
-                                           'subject': '{{ ADDON_NAME }}'})
-        eq_(mail.outbox[0].subject, unicode(self.addon.name))
 
 
 class TestBulkValidationTask(BulkValidationTest):

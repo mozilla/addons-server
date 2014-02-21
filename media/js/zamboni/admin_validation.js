@@ -46,20 +46,17 @@ function initAdminValidation(doc) {
             var $ct = $(obj.click_target),
                 msg = '',
                 form = '';
-            if ($ct.hasClass('set-max-version')) {
-                // L10n: {0} is the number of add-ons, {1} is a version like 4.0
-                msg = ngettext('Set {0} add-on to a max version of {1} and email the author.',
-                               'Set {0} add-ons to a max version of {1} and email the authors.',
-                               $ct.attr('data-job-count'));
-                msg = format(msg, [$ct.attr('data-job-count'), $ct.attr('data-job-version')]);
-                form = $('#success-form').html();
-            } else {
-                msg = ngettext('This will send emails to the authors of {0} file.',
-                               'This will send emails to the authors of {0} files.',
-                               $ct.attr('data-notify-count'));
-                msg = format(msg, [$ct.attr('data-notify-count')]);
-                form = $('#failure-form').html();
-            }
+            // L10n: {0} is the number of add-ons, {1} is a version like 4.0
+            msg = ngettext('Set {0} add-on to a max version of {1} and email the author.',
+                           'Set {0} add-ons to a max version of {1} and email the authors.',
+                           $ct.attr('data-job-count-passing')) + ' ' +
+                  ngettext('Email author of {2} add-on which failed validation.',
+                           'Email authors of {2} add-ons which failed validation.',
+                           $ct.attr('data-job-count-failing'));
+
+            msg = format(msg, [$ct.attr('data-job-count-passing'), $ct.attr('data-job-version'),
+                               $ct.attr('data-job-count-failing')]);
+            form = $('#notify-form').html();
             $(this).find('p.error').text('');  // clear any existing errors.
             $(this).find('p').eq(0).text(msg);
             $(this).children('form').attr('action', $ct.attr('data-job-url'));

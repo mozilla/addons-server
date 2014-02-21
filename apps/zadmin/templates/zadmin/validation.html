@@ -64,33 +64,26 @@
       <td>{{ job.curr_max_version.version }}</td>
       <td>{{ job.target_version.version }}</td>
       <td class="tested">{{ job.stats['total'] }}</td>
-      <td class="failing">{{ job.stats['failing'] }}
-        {% if job.completed and job.stats['failing'] > 0 %}
-            <a href="" class="notify v-popup"
-                       data-job-url="{{ url('zadmin.notify.failure', job.pk) }}"
-                       data-notify-count="{{ job.stats['failing'] }}">Notify</a>
-          {% if job.preview_failure_mail_link %}
-            [<a href="{{ job.preview_failure_mail_link }}">Download Email Log</a>]
-          {% endif %}
-        {% endif %}
-      </td>
-      <td class="passing">{{ job.stats['passing'] }}
-          {% if job.completed and job.stats['passing'] > 0 %}
-              <a href="#" class="set-max-version v-popup"
-                          data-job-version="{{ job.target_version.version }}"
-                          data-job-url="{{ url('zadmin.notify.success', job.pk) }}"
-                          data-job-count="{{ job.stats['passing'] }}">Set max version</a>
-            {% if job.preview_success_mail_link %}
-              [<a href="{{ job.preview_success_mail_link }}">Download Email Log</a>]
-            {% endif %}
-          {% endif %}
-      </td>
+      <td class="failing">{{ job.stats['failing'] }}</td>
+      <td class="passing">{{ job.stats['passing'] }}</td>
       <td class="exceptions">{{ job.stats['errors'] }}</td>
       <td>
         {% if job.completed %}
           [<a href="{{ url('zadmin.validation_tally_csv', job.pk) }}">
               Download Errors/Warnings
           </a>]
+
+          <br/>
+
+          <a href="#" class="set-max-version v-popup"
+                      data-job-version="{{ job.target_version.version }}"
+                      data-job-url="{{ url('zadmin.notify', job.pk) }}"
+                      data-job-count-passing="{{ job.stats['passing'] }}"
+                      data-job-count-failing="{{ job.stats['failing'] }}"
+                      >Notify and set max versions</a>
+          {% if job.preview_notify_mail_link %}
+            [<a href="{{ job.preview_notify_mail_link }}">Download Email Log</a>]
+          {% endif %}
         {% endif %}
       </td>
     </tr>
@@ -103,7 +96,7 @@
         <form method="post" action="" data-url="{{ url('zadmin.notify.syntax') }}">
             {{ csrf() }}
             <p>{# placeholder for form text #}</p>
-            <p>Available variables: {{ ', '.join(success_form.variables) }}</p>
+            <p>Available variables: {{ ', '.join(notify_form.variables) }}</p>
             <p class="js-hidden error"></p>
             <div>{# placeholder for the form #}</div>
             <button type="submit">Continue</button>
@@ -112,11 +105,7 @@
     </div>
 </div>
 
-<div class="hidden" id="success-form">
-    {{ success_form.as_p() }}
-</div>
-
-<div class="hidden" id="failure-form">
-    {{ failure_form.as_p() }}
+<div class="hidden" id="notify-form">
+    {{ notify_form.as_p() }}
 </div>
 {% endblock %}
