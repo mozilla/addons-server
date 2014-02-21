@@ -487,27 +487,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
             c = Collection.objects.using('default').get(id=c.id)
         return c
 
-    def purchase_ids(self):
-        """
-        I'm special casing this because we use purchase_ids a lot in the site
-        and we are not caching empty querysets in cache-machine.
-        That means that when the site is first launched we are having a
-        lot of empty queries hit.
-
-        We can probably do this in smarter fashion by making cache-machine
-        cache empty queries on an as need basis.
-        """
-        # Circular import
-        from market.models import AddonPurchase
-
-        @memoize(prefix='users:purchase-ids')
-        def ids(pk):
-            return (AddonPurchase.objects.filter(user=pk)
-                                 .values_list('addon_id', flat=True)
-                                 .filter(type=amo.CONTRIB_PURCHASE)
-                                 .order_by('pk'))
-        return ids(self.pk)
-
     @contextmanager
     def activate_lang(self):
         """

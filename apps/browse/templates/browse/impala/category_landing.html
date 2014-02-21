@@ -2,11 +2,9 @@
 
 {% set addon_sets = filter.all() %}
 
-{% set popular = 'downloads' if section == 'apps' else 'users' %}
-
 {% set src_dict = {'featured': 'featured',
                    'created': 'recentlyadded',
-                   popular: 'mostpopular',
+                   'users': 'mostpopular',
                    'rating': 'toprated'} %}
 
 {% block bodyclass %}category-landing{% endblock %}
@@ -47,12 +45,6 @@
         See the {{ cnt }} extension in {{ name }} &raquo;
       {% pluralize %}
         See all {{ cnt }} extensions in {{ name }} &raquo;
-      {% endtrans %}
-    {% elif section == 'apps' %}
-      {% trans cnt = category.count, name = category.name %}
-        See the {{ cnt }} app in {{ name }} &raquo;
-      {% pluralize %}
-        See all {{ cnt }} apps in {{ name }} &raquo;
       {% endtrans %}
     {% endif %}
   </a></h2>

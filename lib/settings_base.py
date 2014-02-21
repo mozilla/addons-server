@@ -1022,13 +1022,6 @@ PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
 # Permissions for the live or sandbox servers
 PAYPAL_EMBEDDED_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
 
-# PayPal split for Adaptive Payments.
-# A tuple of lists of % and destination.
-PAYPAL_CHAINS = ()
-
-# If the refund request is under this amount of seconds, it will be instant.
-PAYPAL_REFUND_INSTANT = 30 * 60
-
 # The PayPal cert that we'll use for checking.
 # When None, the Mozilla CA bundle is used to look it up.
 PAYPAL_CERT = None

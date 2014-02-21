@@ -41,15 +41,6 @@ paypal_log = commonware.log.getLogger('z.paypal')
 
 
 class AuthorForm(happyforms.ModelForm):
-
-    # TODO: Remove this whole __init__ when the 'allow-refund' flag goes away.
-    def __init__(self, *args, **kwargs):
-        super(AuthorForm, self).__init__(*args, **kwargs)
-        self.fields['role'].choices = (
-            (c, s) for c, s in amo.AUTHOR_CHOICES
-            if c != amo.AUTHOR_ROLE_SUPPORT or
-            waffle.switch_is_active('allow-refund'))
-
     class Meta:
         model = AddonUser
         exclude = ('addon',)

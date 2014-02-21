@@ -29,7 +29,6 @@ from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionWatcher
 from devhub.models import ActivityLog
-from market.models import Price
 from reviews.models import Review
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
@@ -516,21 +515,6 @@ class TestLogin(UserViewBase):
 
         res = self.client.post(url, data=self.data)
         eq_(res.status_code, 302)
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    def test_login_paypal(self):
-        raise SkipTest
-        addon = Addon.objects.all()[0]
-        price = Price.objects.create(price='0.99')
-        AddonPremium.objects.create(addon=addon, price=price)
-        addon.update(premium_type=amo.ADDON_PREMIUM)
-
-        url = reverse('addons.purchase.start', args=[addon.slug])
-        r = self.client.get_ajax(url)
-        eq_(r.status_code, 200)
-
-        res = self.client.post_ajax(url, data=self.data)
-        eq_(res.status_code, 200)
 
     def test_login_ajax_error(self):
         url = reverse('users.login_modal')

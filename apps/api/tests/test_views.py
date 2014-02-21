@@ -27,7 +27,6 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
-from market.models import AddonPremium, Price, PriceCurrency
 from tags.models import AddonTag, Tag
 
 
@@ -463,16 +462,6 @@ class APITest(TestCase):
         Addon.objects.filter(id=4664).update(suggested_amount=None)
         response = make_call('addon/4664', version=1.5)
         assert '<suggested_amount' not in response.content
-
-    def setup_premium(self, lang='en-US'):
-        addon = Addon.objects.get(id=4664)
-        addon.update(premium_type=amo.ADDON_PREMIUM,
-                     wants_contributions=False)
-        price = Price.objects.create(price=Decimal('5.12'))
-        PriceCurrency.objects.create(tier=price, currency='EUR',
-                                     price=Decimal('5.12'))
-        AddonPremium.objects.create(addon=addon, price=price)
-        return pq(make_call('addon/4664', version=1.5, lang=lang).content)
 
     def test_beta_channel(self):
         """

@@ -20,7 +20,7 @@ from versions.models import Version
 
 # pulling tasks from cron
 from . import cron, search  # NOQA
-from .models import (Addon, attach_categories, attach_devices, attach_prices,
+from .models import (Addon, attach_categories, attach_devices,
                      attach_tags, attach_translations, CompatOverride,
                      IncompatibleVersions, Preview)
 
@@ -107,7 +107,7 @@ def delete_preview_files(id, **kw):
 @task(acks_late=True)
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-    transforms = (attach_categories, attach_devices, attach_prices,
+    transforms = (attach_categories, attach_devices,
                   attach_tags, attach_translations)
     index_objects(ids, Addon, search, kw.pop('index', None), transforms)
 

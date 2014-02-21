@@ -1,5 +1,0 @@
-{% trans %}
-Your refund request for {{ name }} has been granted by the developer. Your account will be refunded {{ amount }} shortly.
-
-Thank you for shopping in the Firefox Marketplace.
-{% endtrans %}

@@ -36,7 +36,6 @@ from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
                        to_language, urlparams)
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
-from market.models import AddonPremium, Price
 from reviews.models import Review
 import sharing.utils as sharing
 from stats.models import AddonShareCountTotal
@@ -192,22 +191,6 @@ class AddonManager(amo.models.ManagerBase):
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
         return self.filter(self.valid_q(status), appsupport__app=app.id)
-
-    def top_free(self, app, listed=True):
-        qs = (self.listed(app) if listed else
-              self.filter(appsupport__app=app.id))
-        return (qs.exclude(premium_type__in=amo.ADDON_PREMIUMS)
-                .exclude(addonpremium__price__price__isnull=False)
-                .order_by('-weekly_downloads')
-                .with_index(addons='downloads_type_idx'))
-
-    def top_paid(self, app, listed=True):
-        qs = (self.listed(app) if listed else
-              self.filter(appsupport__app=app.id))
-        return (qs.filter(premium_type__in=amo.ADDON_PREMIUMS,
-                          addonpremium__price__price__isnull=False)
-                .order_by('-weekly_downloads')
-                .with_index(addons='downloads_type_idx'))
 
     def valid_q(self, status=[], prefix=''):
         """
@@ -417,8 +400,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # To avoid a circular import.
         from . import tasks
         # Check for soft deletion path. Happens only if the addon status isn't 0
-        # (STATUS_INCOMPLETE), or when we are in Marketplace.
-        soft_deletion = self.highest_status or self.status or settings.MARKETPLACE
+        # (STATUS_INCOMPLETE).
+        soft_deletion = self.highest_status or self.status
         if soft_deletion and self.status == amo.STATUS_DELETED:
             # We're already done.
             return
@@ -534,9 +517,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def get_url_path(self, more=False, add_prefix=True):
         # If more=True you get the link to the ajax'd middle chunk of the
         # detail page.
-        if settings.MARKETPLACE and self.is_persona():
-            # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
-            return 'https://addons.mozilla.org/firefox/addon/%s/' % self.slug
         view = 'addons.detail_more' if more else 'addons.detail'
         return reverse(view, args=[self.slug], add_prefix=add_prefix)
 
@@ -545,12 +525,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return absolutify(self.get_url_path())
 
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
-        # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
-        if settings.MARKETPLACE and self.is_persona():
-            return 'https://addons.mozilla.org/firefox/themes/%s/edit' % (
-                self.slug)
-
-        # Either link to the "new" Marketplace Developer Hub or the old one.
         args = args or []
         prefix = 'devhub'
         type_ = 'themes' if self.type == amo.ADDON_PERSONA else 'addons'
@@ -1053,33 +1027,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # FIXME: set all_previews to empty list on addons without previews.
 
     @staticmethod
-    def attach_prices(addons, addon_dict=None):
-        # FIXME: merge with attach_prices transformer below.
-        if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
-
-        # There's a constrained amount of price tiers, may as well load
-        # them all and let cache machine keep them cached.
-        prices = dict((p.id, p) for p in Price.objects.all())
-        # Attach premium addons.
-        qs = AddonPremium.objects.filter(addon__in=addons)
-        premium_dict = dict((ap.addon_id, ap) for ap in qs)
-
-        # Attach premiums to addons, making sure to attach None to free addons
-        # or addons where the corresponding AddonPremium is missing.
-        for addon in addons:
-            if addon.is_premium():
-                addon_p = premium_dict.get(addon.id)
-                if addon_p:
-                    price = prices.get(addon_p.price_id)
-                    if price:
-                        addon_p.price = price
-                    addon_p.addon = addon
-                addon._premium = addon_p
-            else:
-                addon._premium = None
-
-    @staticmethod
     @timer
     def transformer(addons):
         if not addons:
@@ -1118,9 +1065,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for addon in addons:
             category = categories[cats[addon.id]] if addon.id in cats else None
             addon._first_category[amo.FIREFOX.id] = category
-
-        # Attach prices.
-        Addon.attach_prices(addons, addon_dict=addon_dict)
 
         return addon_dict
 
@@ -1490,62 +1434,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def get_mozilla_contacts(self):
         return [x.strip() for x in self.mozilla_contact.split(',')]
 
-    @amo.cached_property
-    def upsell(self):
-        """Return the upsell or add-on, or None if there isn't one."""
-        try:
-            # We set unique_together on the model, so there will only be one.
-            return self._upsell_from.all()[0]
-        except IndexError:
-            pass
-
-    @amo.cached_property
-    def upsold(self):
-        """
-        Return what this is going to upsold from,
-        or None if there isn't one.
-        """
-        try:
-            return self._upsell_to.all()[0]
-        except IndexError:
-            pass
-
-    def get_purchase_type(self, user):
-        if user and isinstance(user, UserProfile):
-            try:
-                return self.addonpurchase_set.get(user=user).type
-            except models.ObjectDoesNotExist:
-                pass
-
-    def has_purchased(self, user):
-        return self.get_purchase_type(user) == amo.CONTRIB_PURCHASE
-
-    def is_refunded(self, user):
-        return self.get_purchase_type(user) == amo.CONTRIB_REFUND
-
-    def is_chargeback(self, user):
-        return self.get_purchase_type(user) == amo.CONTRIB_CHARGEBACK
-
     def can_review(self, user):
         if user and self.has_author(user):
             return False
         else:
-            return (not self.is_premium() or self.has_purchased(user) or
-                    self.is_refunded(user))
-
-    @property
-    def premium(self):
-        """
-        Returns the premium object which will be gotten by the transformer,
-        if its not there, try and get it. Will return None if there's nothing
-        there.
-        """
-        if not hasattr(self, '_premium'):
-            try:
-                self._premium = self.addonpremium
-            except AddonPremium.DoesNotExist:
-                self._premium = None
-        return self._premium
+           return True
 
     @property
     def all_dependencies(self):
@@ -1579,11 +1472,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def in_escalation_queue(self):
         return self.escalationqueue_set.exists()
-
-    def in_rereview_queue(self):
-        # Rereview is part of marketplace and not AMO, so setting for False
-        # to avoid having to catch NotImplemented errors.
-        return False
 
     def sign_if_packaged(self, version_pk, reviewer=False):
         raise NotImplementedError('Not available for add-ons.')
@@ -1758,16 +1646,6 @@ def attach_devices(addons):
                .values_list('addon', 'device_type'))
     for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
         addon_dict[addon].device_ids = [d[1] for d in device_types]
-
-
-def attach_prices(addons):
-    addon_dict = dict((a.id, a) for a in addons)
-    prices = (AddonPremium.objects
-              .filter(addon__in=addon_dict,
-                      addon__premium_type__in=amo.ADDON_PREMIUMS)
-              .values_list('addon', 'price__price'))
-    for addon, price in prices:
-        addon_dict[addon].price = price
 
 
 def attach_categories(addons):

@@ -397,34 +397,9 @@ class INSTALL_ADDON(_LOG):
     format = _(u'{addon} installed.')
 
 
-class REFUND_REQUESTED(_LOG):
-    id = 56
-    format = _(u'Refund requested for {addon}')
-
-
-class REFUND_DECLINED(_LOG):
-    id = 57
-    format = _(u'Refund declined for {addon} for {0}.')
-
-
-class REFUND_GRANTED(_LOG):
-    id = 58
-    format = _(u'Refund granted for {addon} for {0}.')
-
-
-class REFUND_INSTANT(_LOG):
-    id = 59
-    format = _(u'Instant refund granted for {addon}.')
-
-
 class USER_EDITED(_LOG):
     id = 60
     format = _(u'Account updated.')
-
-
-class RECEIPT_CHECKED(_LOG):
-    id = 65
-    format = _(u'Valid receipt was checked for {addon}.')
 
 
 class ESCALATION_CLEARED(_LOG):
@@ -447,14 +422,6 @@ class ESCALATED_HIGH_ABUSE(_LOG):
     id = 68
     format = _(u'{addon} escalated because of high number of abuse reports.')
     short = _(u'High Abuse Reports')
-    keep = True
-    review_queue = True
-
-
-class ESCALATED_HIGH_REFUNDS(_LOG):
-    id = 69
-    format = _(u'{addon} escalated because of high number of refund requests.')
-    short = _(u'High Refund Requests')
     keep = True
     review_queue = True
 

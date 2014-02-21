@@ -26,16 +26,6 @@
                     'popular': _('Complete Themes by Weekly Downloads'),
                     'updated': _('Recently Updated Complete Themes'),
                     'hotness': _('Up & Coming Complete Themes')}.get(sorting) %}
-  {% elif section == 'apps' %}
-    {% set title = {'featured': _('Featured Apps'),
-                    'downloads': _('Apps by Weekly Downloads'),
-                    'free': loc('Top Free Apps'),
-                    'paid': loc('Top Paid Apps'),
-                    'rating': _('Top-Rated Apps'),
-                    'created': _('Newest Apps'),
-                    'name': _('Apps by Name'),
-                    'updated': _('Recently Updated Apps'),
-                    'hotness': _('Up & Coming Apps')}.get(sorting) %}
   {% endif %}
 {% endif %}
 

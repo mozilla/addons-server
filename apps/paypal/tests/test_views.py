@@ -13,7 +13,6 @@ from test_utils import RequestFactory
 import amo.tests
 from addons.models import Addon
 from amo.urlresolvers import reverse
-from market.models import Price
 from paypal import PaypalError, views
 from paypal.decorators import handle_paypal_error
 from stats.models import Contribution

@@ -156,9 +156,7 @@ def _paypal(request):
     # There could be multiple transactions on the IPN. This will deal
     # with them appropriately or cope if we don't know how to deal with
     # any of them.
-    methods = {'refunded': paypal_refunded,
-               'completed': paypal_completed,
-               'reversal': paypal_reversal}
+    methods = {'completed': paypal_completed,}
     result = None
     called = False
     # Ensure that we process 0, then 1 etc.
@@ -184,80 +182,6 @@ def _paypal(request):
         return http.HttpResponse('Ignoring %s' % post.get('txn_id', ''))
 
     return result
-
-
-def paypal_refunded(request, transaction_id, serialize=None, amount=None):
-    try:
-        original = Contribution.objects.get(transaction_id=transaction_id)
-    except Contribution.DoesNotExist:
-        paypal_log.info('Ignoring transaction: %s' % transaction_id)
-        return http.HttpResponse('Transaction not found; skipping.')
-
-    # If the contribution has a related contribution we've processed it.
-    try:
-        original = Contribution.objects.get(related=original)
-        paypal_log.info('Related contribution, state: %s, pk: %s' %
-                        (original.related.type, original.related.pk))
-        return http.HttpResponse('Transaction already processed')
-    except Contribution.DoesNotExist:
-        pass
-
-    original.handle_chargeback('refund')
-    paypal_log.info('Refund IPN received: %s' % transaction_id)
-    price_currency = _parse_currency(amount)
-    amount = price_currency['amount']
-    currency = price_currency['currency']
-
-    # Contribution with negative amount for refunds.
-    Contribution.objects.create(
-        addon=original.addon, related=original,
-        user=original.user, type=amo.CONTRIB_REFUND,
-        amount=-amount, currency=currency,
-        price_tier=original.price_tier,
-        post_data=php.serialize(serialize)
-    )
-    paypal_log.info('Refund successfully processed')
-
-    paypal_log_cef(request, original.addon, transaction_id,
-                   'Refund', 'REFUND',
-                   'A paypal refund was processed')
-
-    return http.HttpResponse('Success!')
-
-
-def paypal_reversal(request, transaction_id, serialize=None, amount=None):
-    try:
-        original = Contribution.objects.get(transaction_id=transaction_id)
-    except Contribution.DoesNotExist:
-        paypal_log.info('Ignoring transaction: %s' % transaction_id)
-        return http.HttpResponse('Transaction not found; skipping.')
-
-    # If the contribution has a related contribution we've processed it.
-    try:
-        original = Contribution.objects.get(related=original)
-        paypal_log.info('Related contribution, state: %s, pk: %s' %
-                        (original.related.type, original.related.pk))
-        return http.HttpResponse('Transaction already processed')
-    except Contribution.DoesNotExist:
-        pass
-
-    original.handle_chargeback('reversal')
-    paypal_log.info('Reversal IPN received: %s' % transaction_id)
-    amount = _parse_currency(amount)
-    refund = Contribution.objects.create(
-        addon=original.addon, related=original,
-        user=original.user, type=amo.CONTRIB_CHARGEBACK,
-        amount=-amount['amount'], currency=amount['currency'],
-        post_data=php.serialize(serialize)
-    )
-    refund.mail_chargeback()
-
-    paypal_log_cef(request, original.addon, transaction_id,
-                   'Chargeback', 'CHARGEBACK',
-                   'A paypal chargeback was processed')
-
-    return http.HttpResponse('Success!')
-
 
 def paypal_completed(request, transaction_id, serialize=None, amount=None):
     # Make sure transaction has not yet been processed.

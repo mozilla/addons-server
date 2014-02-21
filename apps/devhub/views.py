@@ -48,7 +48,6 @@ from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import parse_addon
-from market.models import Refund
 from paypal.check import Check
 from search.views import BaseAjaxSearch
 from stats.models import Contribution
@@ -438,28 +437,6 @@ def ownership(request, addon_id, addon):
 
 @dev_required(owner_for_post=True)
 def payments(request, addon_id, addon):
-    if addon.is_premium():
-        return _premium(request, addon_id, addon)
-    return _voluntary(request, addon_id, addon)
-
-
-def _premium(request, addon_id, addon):
-    premium_form = forms.PremiumForm(request.POST or None,
-                                     request=request,
-                                     extra={'addon': addon,
-                                            'amo_user': request.amo_user,
-                                            'dest': 'payment'})
-    if request.method == 'POST' and premium_form.is_valid():
-        premium_form.save()
-        messages.success(request, _('Changes successfully saved.'))
-        return redirect(addon.get_dev_url('payments'))
-
-    return render(request, 'devhub/payments/premium.html',
-                  dict(addon=addon, premium=addon.premium,
-                       form=premium_form))
-
-
-def _voluntary(request, addon_id, addon):
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
 
     charity_form = forms.CharityForm(request.POST or None, instance=charity,
@@ -504,75 +481,6 @@ def _save_charity(addon, contrib_form, charity_form):
         else:
             return False
     return True
-
-
-@waffle_switch('allow-refund')
-@dev_required
-def issue_refund(request, addon_id, addon):
-    txn_id = request.REQUEST.get('transaction_id')
-    if not txn_id:
-        raise http.Http404
-    form_enabled = True
-    contribution = get_object_or_404(Contribution, transaction_id=txn_id,
-                                     type=amo.CONTRIB_PURCHASE)
-    if Refund.objects.filter(contribution=contribution).exists():
-        messages.error(request, _('Refund already processed.'))
-        form_enabled = False
-
-    elif request.method == 'POST':
-        if 'issue' in request.POST:
-            try:
-                results = paypal.refund(contribution.paykey)
-            except paypal.PaypalError, e:
-                messages.error(request, _('Refund failed. error: %s') % e)
-                contribution.record_failed_refund(e)
-            else:
-                for res in results:
-                    if res['refundStatus'] == 'ALREADY_REVERSED_OR_REFUNDED':
-                        paypal_log.debug(
-                            'Refund attempt for already-refunded paykey: %s, '
-                            '%s' % (contribution.paykey,
-                                    res['receiver.email']))
-                        messages.error(request,
-                                       _('Refund was previously issued; '
-                                         'no action taken.'))
-                        return redirect(addon.get_dev_url('refunds'))
-                contribution.mail_approved()
-                refund = contribution.enqueue_refund(amo.REFUND_APPROVED,
-                                                     request.amo_user)
-                paypal_log.info('Refund %r issued for contribution %r' %
-                                (refund.pk, contribution.pk))
-                messages.success(request, _('Refund issued.'))
-        else:
-            contribution.mail_declined()
-            # TODO: Consider requiring a rejection reason for declined refunds.
-            refund = contribution.enqueue_refund(amo.REFUND_DECLINED,
-                                                 request.amo_user)
-            paypal_log.info('Refund %r declined for contribution %r' %
-                            (refund.pk, contribution.pk))
-            messages.success(request, _('Refund declined.'))
-        return redirect(addon.get_dev_url('refunds'))
-
-    return render(request, 'devhub/payments/issue-refund.html',
-                  {'enabled': form_enabled, 'contribution': contribution,
-                   'addon': addon, 'transaction_id': txn_id})
-
-
-@waffle_switch('allow-refund')
-@dev_required
-# TODO: Make sure 'Support' staff can access this.
-def refunds(request, addon_id, addon):
-    ctx = {'addon': addon}
-    queues = {
-        'pending': Refund.objects.pending(addon),
-        'approved': Refund.objects.approved(addon),
-        'instant': Refund.objects.instant(addon),
-        'declined': Refund.objects.declined(addon),
-    }
-    # For now set the limit to something stupid so this is stupid easy to QA.
-    for status, refunds in queues.iteritems():
-        ctx[status] = amo.utils.paginate(request, refunds, per_page=5)
-    return render(request, 'devhub/payments/refunds.html', ctx)
 
 
 @dev_required
