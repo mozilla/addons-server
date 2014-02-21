@@ -2080,3 +2080,30 @@ class TestGeodata(amo.tests.WebappTestCase):
 
         self.geo.update(banner_regions=[mkt.regions.UK.id, mkt.regions.CN.id])
         eq_(self.geo.banner_regions_names(), [u'China', u'United Kingdom'])
+
+
+@mock.patch.object(settings, 'PRE_GENERATE_APKS', True)
+@mock.patch('mkt.webapps.tasks.pre_generate_apk')
+class TestPreGenAPKs(amo.tests.WebappTestCase):
+
+    def setUp(self):
+        super(TestPreGenAPKs, self).setUp()
+        self.manifest_url = 'http://some-app.com/manifest.webapp'
+        self.app.update(status=amo.STATUS_PUBLIC,
+                        manifest_url=self.manifest_url)
+
+    def test_approved_apps(self, pre_gen_task):
+        assert not pre_gen_task.delay.called
+        self.app.save()
+        pre_gen_task.delay.assert_called_with(self.app.id)
+
+    def test_unapproved_apps(self, pre_gen_task):
+        self.app.update(status=amo.STATUS_REJECTED)
+        assert not pre_gen_task.delay.called, (
+            'APKs for unapproved apps should not be pre-generated')
+
+    def test_disabled(self, pre_gen_task):
+        with self.settings(PRE_GENERATE_APKS=False):
+            self.app.save()
+        assert not pre_gen_task.delay.called, (
+            'task should not be called if PRE_GENERATE_APKS is False')

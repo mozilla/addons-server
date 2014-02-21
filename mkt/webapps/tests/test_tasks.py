@@ -11,10 +11,10 @@ from django.core.files.storage import default_storage as storage
 from django.core import mail
 from django.core.management import call_command
 from django.core.urlresolvers import reverse
-from django.forms import ValidationError
 
 import mock
 from nose.tools import eq_, ok_
+from requests.exceptions import RequestException
 
 import amo
 import amo.tests
@@ -29,8 +29,11 @@ from versions.models import Version
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs,
+                               notify_developers_of_failure,
+                               pre_generate_apk,
+                               PreGenAPKError,
                                update_developer_name,
-                               notify_developers_of_failure, update_manifests,
+                               update_manifests,
                                zip_apps)
 
 
@@ -720,3 +723,31 @@ class TestFixMissingIcons(amo.tests.TestCase):
         assert _log.any_call(337141, 'Webapp is missing icon size 64')
         assert _log.any_call(337141, 'Webapp is missing icon size 128')
         assert fetch_icon.called
+
+
+@mock.patch('mkt.webapps.tasks.requests')
+class TestPreGenAPKs(amo.tests.WebappTestCase):
+
+    def setUp(self):
+        super(TestPreGenAPKs, self).setUp()
+        self.manifest_url = 'http://some-app.net/manifest.webapp'
+        self.app.update(manifest_url=self.manifest_url)
+
+    def test_get(self, req):
+        res = mock.Mock()
+        req.get.return_value = res
+        pre_generate_apk.delay(self.app.id)
+        assert req.get.called, 'APK requested from factory'
+        assert req.get.mock_calls[0].startswith(
+            settings.PRE_GENERATE_APK_URL), req.get.mock_calls
+        assert res.raise_for_status.called, 'raise on bad status codes'
+
+    def test_no_manifest(self, req):
+        self.app.update(manifest_url=None)
+        with self.assertRaises(PreGenAPKError):
+            pre_generate_apk.delay(self.app.id)
+
+    def test_error_getting(self, req):
+        req.get.side_effect = RequestException
+        with self.assertRaises(PreGenAPKError):
+            pre_generate_apk.delay(self.app.id)

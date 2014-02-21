@@ -145,3 +145,8 @@ IARC_MOCK = True
 DEBUG_PROPAGATE_EXCEPTIONS = False
 
 PAYMENT_PROVIDERS = ['bango']
+
+# When not testing this specific feature, make sure it's off.
+PRE_GENERATE_APKS = False
+# This is a precaution in case something isn't mocked right.
+PRE_GENERATE_APK_URL = 'http://you-should-never-load-this.com/'

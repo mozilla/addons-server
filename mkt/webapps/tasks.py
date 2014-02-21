@@ -13,15 +13,17 @@ from django.core.files.storage import default_storage as storage
 from django.template import Context, loader
 
 import pytz
+import requests
 from celery.exceptions import RetryTaskError
 from celeryutils import task
 from pyelasticsearch.exceptions import ElasticHttpNotFoundError
+from requests.exceptions import RequestException
 from test_utils import RequestFactory
 from tower import ugettext as _
 
 import amo
 from addons.models import Addon
-from amo.decorators import write
+from amo.decorators import use_master, write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
@@ -731,3 +733,31 @@ def update_downloads(ids, **kw):
 
     task_log.info('App downloads updated for %s out of %s apps.'
                   % (count, len(ids)))
+
+
+class PreGenAPKError(Exception):
+    """
+    An error encountered while trying to pre-generate an APK.
+    """
+
+
+@task
+@use_master
+def pre_generate_apk(app_id, **kw):
+    app = Webapp.objects.get(pk=app_id)
+    task_log.info('pre-generating APK for app {w}'.format(w=app))
+    if not app.manifest_url:
+        raise PreGenAPKError('Webapp {w} has an empty manifest URL'
+                             .format(w=app))
+    try:
+        res = requests.get(settings.PRE_GENERATE_APK_URL,
+                           params={'manifestUrl': app.manifest_url})
+        res.raise_for_status()
+    except RequestException, exc:
+        raise PreGenAPKError('Error pre-generating APK for app {a}: '
+                             '{e.__class__.__name__}: {e}'
+                             .format(a=app, e=exc))
+
+    # The factory returns a binary APK blob but we don't need it.
+    res.close()
+    del res

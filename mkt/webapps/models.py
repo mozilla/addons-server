@@ -1872,6 +1872,23 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
             pass
 
 
+@receiver(dbsignals.post_save, sender=Webapp,
+          dispatch_uid='webapp.pre_generate_apk')
+def pre_generate_apk(sender=None, instance=None, **kw):
+    """
+    Pre-generate an Android APK for a public app.
+    """
+    if kw.get('raw'):
+        return
+    if not getattr(settings, 'PRE_GENERATE_APKS', False):
+        log.info('[Webapp:{a}] APK pre-generation is disabled.'
+                 .format(a=instance.id))
+        return
+    from . import tasks
+    if instance.status in amo.WEBAPPS_APPROVED_STATUSES:
+        tasks.pre_generate_apk.delay(instance.id)
+
+
 class Installed(amo.models.ModelBase):
     """Track WebApp installations."""
     addon = models.ForeignKey('addons.Addon', related_name='installed')
