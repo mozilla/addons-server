@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 
 from django.conf import settings
-from django.core import mail
 from django.core.files.storage import default_storage as storage
 
 import jingo
@@ -26,22 +25,20 @@ import amo
 import amo.tests
 import files
 import paypal
-from addons.models import Addon, AddonCategory, AddonUpsell, Category, Charity
-from amo.helpers import (absolutify, babel_datetime, url as url_reverse,
-                         timesince)
+from addons.models import Addon, AddonCategory, Category, Charity
+from amo.helpers import url as url_reverse
+from amo.helpers import absolutify
 from amo.tests import (addon_factory, assert_no_validation_errors, formset,
                        initial)
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
+from devhub import tasks
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
-from devhub import tasks
 from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
-from market.models import Refund
 from reviews.models import Review
-from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
@@ -439,44 +436,6 @@ class TestEditPayments(amo.tests.TestCase):
         self.post(d)
         self.check(paypal_id='', suggested_amount=Decimal('11.50'),
                    charity=Charity.objects.get(name='fligtar fund'))
-
-    @mock.patch('devhub.views.client')
-    def test_success_solitude(self, client):
-        self.create_flag(name='solitude-payments')
-        self.post(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
-                  annoying=amo.CONTRIB_AFTER)
-        eq_(client.create_seller_paypal.call_args[0][0], self.addon)
-        eq_(client.patch_seller_paypal.call_args[1]['data'],
-            {'paypal_id': u'greed@dev'})
-
-    @mock.patch('devhub.views.client')
-    def test_success_solitude_charity(self, client):
-        self.create_flag(name='solitude-payments')
-        d = dict(recipient='org', suggested_amount=11.5,
-                 annoying=amo.CONTRIB_PASSIVE)
-        d.update({'charity-name': 'fligtar fund',
-                  'charity-url': 'http://feed.me',
-                  'charity-paypal': 'greed@org'})
-        self.post(d)
-        eq_(client.create_seller_paypal.call_args[0][0], self.addon)
-        eq_(client.patch_seller_paypal.call_args[1]['data'],
-            {'paypal_id': u'greed@org'})
-
-    @mock.patch('devhub.views.client')
-    def test_uses_solitude(self, client):
-        self.create_flag(name='solitude-payments')
-        self.addon.update(charity=self.foundation)
-        client.get_seller_paypal_if_exists.return_value = {'paypal_id': 'f@f'}
-        res = self.client.get(self.url)
-        eq_(res.context['addon'].paypal_id, 'f@f')
-        eq_(res.context['contrib_form'].initial['paypal_id'], 'f@f')
-
-    @mock.patch('devhub.views.client')
-    def test_uses_solitude_missing(self, client):
-        self.create_flag(name='solitude-payments')
-        client.get_seller_paypal_if_exists.return_value = None
-        res = self.client.get(self.url)
-        eq_(res.context['addon'].paypal_id, '')
 
     def test_dev_paypal_id_length(self):
         r = self.client.get(self.url)
