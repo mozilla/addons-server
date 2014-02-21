@@ -90,9 +90,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         res = self.anon.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'uk')
-        ok_(not 'developed' in data)
-        ok_(not 'installed' in data)
-        ok_(not 'purchased' in data)
+        ok_(not 'apps' in data)
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_developed(self, region_from_request):
@@ -103,9 +101,9 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'br')
-        eq_(data['installed'], [])
-        eq_(data['developed'], [developed_app.pk])
-        eq_(data['purchased'], [])
+        eq_(data['apps']['installed'], [])
+        eq_(data['apps']['developed'], [developed_app.pk])
+        eq_(data['apps']['purchased'], [])
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_installed(self, region_from_request):
@@ -116,9 +114,9 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'br')
-        eq_(data['installed'], [installed_app.pk])
-        eq_(data['developed'], [])
-        eq_(data['purchased'], [])
+        eq_(data['apps']['installed'], [installed_app.pk])
+        eq_(data['apps']['developed'], [])
+        eq_(data['apps']['purchased'], [])
 
     @patch('users.models.UserProfile.purchase_ids')
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
@@ -130,6 +128,6 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'br')
-        eq_(data['installed'], [])
-        eq_(data['developed'], [])
-        eq_(data['purchased'], [purchased_app.pk])
+        eq_(data['apps']['installed'], [])
+        eq_(data['apps']['developed'], [])
+        eq_(data['apps']['purchased'], [purchased_app.pk])

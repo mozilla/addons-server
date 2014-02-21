@@ -188,7 +188,7 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
         data.update(permissions.data)
 
         # Add ids of installed/purchased/developed apps.
-        data.update(user_relevant_apps(profile))
+        data['apps'] = user_relevant_apps(profile)
 
         return data
 
