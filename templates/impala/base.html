@@ -86,7 +86,7 @@
             <div class="header-search" role="search">
               {% block search_form %}
                 {# Get this in scope. #}
-                {% with WEBAPPS=WEBAPPS, query_term=query_term %}
+                {% with query_term=query_term %}
                   {% include 'impala/search.html' %}
                 {% endwith %}
               {% endblock %}
@@ -111,61 +111,45 @@
               </div>
             {% endif %}
             {% block amo_balloons %}
-              {% if WEBAPPS %}
-                <div class="site-tip" id="appruntime-pitch">
+              {% if APP == amo.FIREFOX %}
+                <div class="site-balloon" id="site-nonfx">
                   <p>
-                    {% with url='https://addons.mozilla.org/en-US/firefox/addon/app-runtime/?src=apps-preview' %}
-                      To easily install and manage Apps in Firefox with a
-                      tightly integrated experience, check out the experimental
-                      <a href="{{ url }}">App Runtime extension</a>.
-                    {% endwith %}
-                  </p>
-                  <a href="#" class="close">{{ _('Close') }}</a>
-                </div>
-                <div class="site-balloon" id="site-nojs-apps">
-                  <p>{{ loc('To use Apps, you must enable JavaScript.') }}</p>
-                </div>
-              {% else %}
-                {% if APP == amo.FIREFOX %}
-                  <div class="site-balloon" id="site-nonfx">
-                    <p>
-                      {% trans url='http://mozilla.org/firefox/?src=amo' %}
-                        To try the thousands of add-ons available here, download
-                        <a href="{{ url }}">Mozilla Firefox</a>,
-                        a fast, free way to surf the Web!
-                      {% endtrans %}
-                    </p>
-                    <a href="#" class="close">{{ _('Close') }}</a>
-                  </div>
-                {% endif %}
-                <div class="site-balloon" id="site-welcome">
-                  {# L10n: {0} is an application, such as Firefox. #}
-                  <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>
-                  <p>
-                    {% if APP == amo.FIREFOX %}
-                      {% trans %}
-                        Choose from thousands of extra features and styles to make
-                        Firefox your own.
-                      {% endtrans %}
-                    {% else %}
-                      {% trans app=APP.pretty %}
-                        Add extra features and styles to make {{ app }} your own.
-                      {% endtrans %}
-                    {% endif %}
-                  </p>
-                  <a href="#" class="close">{{ _('Close') }}</a>
-                </div>
-                <div class="site-balloon" id="mobile-banner">
-                  <h3>{{ _('On the go?') }}</h3>
-                  <p>
-                    {% trans %}
-                      Check out our
-                      <a class="mobile-link" href="#">Mobile Add-ons site</a>.
+                    {% trans url='http://mozilla.org/firefox/?src=amo' %}
+                      To try the thousands of add-ons available here, download
+                      <a href="{{ url }}">Mozilla Firefox</a>,
+                      a fast, free way to surf the Web!
                     {% endtrans %}
                   </p>
                   <a href="#" class="close">{{ _('Close') }}</a>
                 </div>
               {% endif %}
+              <div class="site-balloon" id="site-welcome">
+                {# L10n: {0} is an application, such as Firefox. #}
+                <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>
+                <p>
+                  {% if APP == amo.FIREFOX %}
+                    {% trans %}
+                      Choose from thousands of extra features and styles to make
+                      Firefox your own.
+                    {% endtrans %}
+                  {% else %}
+                    {% trans app=APP.pretty %}
+                      Add extra features and styles to make {{ app }} your own.
+                    {% endtrans %}
+                  {% endif %}
+                </p>
+                <a href="#" class="close">{{ _('Close') }}</a>
+              </div>
+              <div class="site-balloon" id="mobile-banner">
+                <h3>{{ _('On the go?') }}</h3>
+                <p>
+                  {% trans %}
+                    Check out our
+                    <a class="mobile-link" href="#">Mobile Add-ons site</a>.
+                  {% endtrans %}
+                </p>
+                <a href="#" class="close">{{ _('Close') }}</a>
+              </div>
             {% endblock %}
           </div>
         {% endblock site_header %}

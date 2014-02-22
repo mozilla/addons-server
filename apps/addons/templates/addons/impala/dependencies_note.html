@@ -1,11 +1,7 @@
 {% set deps = addon.all_dependencies %}
 {% if deps %}
   <div class="notice dependencies">
-    {% if addon.is_webapp() %}
-      <h3>{{ _('This app requires the following apps to work properly:') }}</h3>
-    {% else %}
-      <h3>{{ _('This add-on requires the following add-ons to work properly:') }}</h3>
-    {% endif %}
+    <h3>{{ _('This add-on requires the following add-ons to work properly:') }}</h3>
     {% if module_context == 'discovery' %}
       <ul>
         {% for dep in deps %}

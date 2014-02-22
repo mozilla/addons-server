@@ -48,10 +48,8 @@
     {% endif %}
     {% for link in links %}
       {% set extra = "platform " + link.os.shortname if link.os else "" %}
-      <a class="button {{ b.button_class|join(' ') }} {{ extra }} {% if addon.is_webapp() %}disabled{% endif %}"
-         {% if not addon.is_premium() %}
-           data-hash="{{ link.file.hash }}"
-         {% endif %}
+      <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
+         data-hash="{{ link.file.hash }}"
          {% if b.show_warning %}
            href="{{ b.addon.get_url_path() }}"
            data-realurl="{{ link.url }}"

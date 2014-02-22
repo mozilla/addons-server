@@ -11,7 +11,7 @@
   {% if search_form.cat.value() %}
     {{ search_form.cat }}
   {% endif %}
-  {% if not (WEBAPPS or search_cat in ('themes', 'collections')) %}
+  {% if not search_cat in ('themes', 'collections') %}
     {{ search_form.appver }}
     {{ search_form.platform }}
   {% endif %}

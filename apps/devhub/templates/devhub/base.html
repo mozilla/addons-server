@@ -1,13 +1,9 @@
-{% if webapp or WEBAPPS %}
-  {% set webapp, WEBAPPS = True, True %}
-{% endif %}
-
 {% extends "base.html" %}
 
 {% if addon %}
   {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}
-{% block bodyclass %}developer-hub{{ ' apps' if webapp }} {{ editable }}{% endblock %}
+{% block bodyclass %}developer-hub {{ editable }}{% endblock %}
 
 {# Don't show the amo header on devhub pages #}
 {% set hide_header = True %}
@@ -29,9 +25,7 @@
 {% endblock %}
 
 {% block site_header_title %}
-  {% with webapp=webapp %}
-    {% include "devhub/nav.html" %}
-  {% endwith %}
+  {% include "devhub/nav.html" %}
 {% endblock %}
 
 {% block search_form %}
@@ -45,16 +39,6 @@
 {% endblock %}
 
 {% set hide_mobile_link=True %}
-{% block footer %}
-  {% if webapp %}
-    {% with hide_mobile_link=True %}
-      {% include "amo_footer_small.html" %}
-    {% endwith %}
-  {% else %}
-    {{ super() }}
-  {% endif %}
-{% endblock %}
-
 {% block footer_extras %}
   <img class="footerlogo" src="{{ media('img/developers/hub-logo-footer.png') }}" alt="">
 {% endblock %}

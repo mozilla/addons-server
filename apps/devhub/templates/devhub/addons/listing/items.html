@@ -17,22 +17,20 @@
           {{ dev_item_info(addon, amo) }}
         </div>
         <ul class="item-details">
-          {% if not webapp %}
-            {% if addon.current_version %}
-              {% set link = url('devhub.versions.edit', addon.slug, addon.current_version.id) %}
-              {# L10n: {1} is a version number. #}
-              <li>{{ _('<strong>Latest version:</strong> <a href="{0}">{1}</a>')|
-                       f(link, addon.current_version) }}</li>
-            {% endif %}
-            {% if sorting == 'created' %}
-              {# L10n: {0} is a date. #}
-              <li class="date-created">{{ _('<strong>Created:</strong> {0}'|
-                     f(addon.created|datetime)) }}</li>
-            {% else %}
-              {# L10n: {0} is a date. #}
-              <li class="date-updated">{{ _('<strong>Last updated:</strong> {0}'|
-                     f(addon.last_updated|datetime)) }}</li>
-            {% endif %}
+          {% if addon.current_version %}
+            {% set link = url('devhub.versions.edit', addon.slug, addon.current_version.id) %}
+            {# L10n: {1} is a version number. #}
+            <li>{{ _('<strong>Latest version:</strong> <a href="{0}">{1}</a>')|
+                     f(link, addon.current_version) }}</li>
+          {% endif %}
+          {% if sorting == 'created' %}
+            {# L10n: {0} is a date. #}
+            <li class="date-created">{{ _('<strong>Created:</strong> {0}'|
+                   f(addon.created|datetime)) }}</li>
+          {% else %}
+            {# L10n: {0} is a date. #}
+            <li class="date-updated">{{ _('<strong>Last updated:</strong> {0}'|
+                   f(addon.last_updated|datetime)) }}</li>
           {% endif %}
           <li id="version-status-item">
             <strong>{{ _('Status:') }}</strong>
@@ -57,14 +55,10 @@
         </ul>
       {% endif %}
       <div class="item-actions">
-        {% if webapp %}
-          {% include "devhub/addons/listing/item_actions_app.html" %}
+        {% if addon.is_persona() %}
+          {% include "devhub/addons/listing/item_actions_theme.html" %}
         {% else %}
-          {% if addon.is_persona() %}
-            {% include "devhub/addons/listing/item_actions_theme.html" %}
-          {% else %}
-            {% include "devhub/addons/listing/item_actions.html" %}
-          {% endif %}
+          {% include "devhub/addons/listing/item_actions.html" %}
         {% endif %}
       </div>
     </div>

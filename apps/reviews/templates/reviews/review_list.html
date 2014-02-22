@@ -23,17 +23,10 @@
       {% if page == 'list' %}
         <h1>{{ _('Reviews for {0}')|f(addon.name) }}</h1>
         {% with num = reviews.paginator.count %}
-          {% if addon.is_webapp() %}
-            {# L10n: {0} is a number. #}
-            <h3>{{ ngettext('<b>{0}</b> review for this app',
-                            '<b>{0}</b> reviews for this app',
-                            num)|f(num|numberfmt)|safe }}</h3>
-          {% else %}
-            {# L10n: {0} is a number. #}
-            <h3>{{ ngettext('<b>{0}</b> review for this add-on',
-                            '<b>{0}</b> reviews for this add-on',
-                            num)|f(num|numberfmt)|safe }}</h3>
-          {% endif %}
+          {# L10n: {0} is a number. #}
+          <h3>{{ ngettext('<b>{0}</b> review for this add-on',
+                          '<b>{0}</b> reviews for this add-on',
+                          num)|f(num|numberfmt)|safe }}</h3>
         {% endwith %}
       {% elif reply %}
         {# L10n: {0} is a developer's name. #}

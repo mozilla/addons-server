@@ -1,23 +1,13 @@
 <a class="button {% if request.MOBILE %}add{% endif %} {{ b.button_class|join(' ') }} {{ extra }}"
-  {% if not addon.is_premium() and not addon.is_webapp() %}
-    data-hash="{{ link.file.hash }}"
-  {% endif %}
-  {% if b.show_warning and not addon.is_webapp() %}
+  data-hash="{{ link.file.hash }}"
+  {% if b.show_warning %}
     href="{{ b.addon.get_url_path() }}"
     data-realurl="{{ link.url }}"
   {% else %}
     href="{{ link.url }}"
   {% endif %}>
   {% if request.MOBILE %}
-    {% if addon.is_webapp() %}
-      {% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) %}
-        {{ _('Install') }}
-      {% else %}
-        {{ _('Purchase for {0}')|f(addon.premium.get_price_locale()) }}
-      {% endif %}
-    {% else %}
-      {{ _('Add to Firefox') }}
-    {% endif %}
+     {{ _('Add to Firefox') }}
   {% else %}
     <b></b>
     <span>

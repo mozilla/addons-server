@@ -1,25 +1,15 @@
 {# Steps below HAS_ADDON don't have an addon associated.  Once we have an
    addon we can't go back below that line. #}
 {% set HAS_ADDON = 3 %}
-{% if webapp %}
-  {% set NAV = (_('Getting Started'),
-                _('Link your app'),
-                _('Describe your app'),
-                _('Add images'),
-                _("You're done!")) %}
-  {% set MAX = 5 %}
-  {% set BASE = 'devhub.submit_apps.%s' %}
-{% else %}
-  {% set NAV = (_('Getting Started'),
-                _('Upload your add-on'),
-                _('Describe your add-on'),
-                _('Add images'),
-                _('Select a license'),
-                _('Select a review process'),
-                _("You're done!")) %}
-  {% set MAX = 7 %}
-  {% set BASE = 'devhub.submit.%s' %}
-{% endif %}
+{% set NAV = (_('Getting Started'),
+              _('Upload your add-on'),
+              _('Describe your add-on'),
+              _('Add images'),
+              _('Select a license'),
+              _('Select a review process'),
+              _("You're done!")) %}
+{% set MAX = 7 %}
+{% set BASE = 'devhub.submit.%s' %}
 <div class="highlight">
   <hgroup>
     <h3>{{ _('Submission Process') }}</h3>

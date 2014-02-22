@@ -4,29 +4,21 @@
 
 {% block primary %}
 <h3>{{ _('Step 1. Getting Started') }}</h3>
-{% if webapp %}
+
 <p>
-  {% with url="https://developer.mozilla.org/en-US/docs/Apps/Manifest" %}
-    {{ loc('To list your app, we need to know where to find it. Give us the URL
-            to your <a href="{url}">manifest</a> below.</a>')|f(url=url)|safe }}
-  {% endwith %}
+{% trans %}
+  Hosting your add-on in our gallery is the best way to expose your work
+  to millions of Firefox users. We'll provide everything you need to
+  distribute and update your add-on for free.
+{% endtrans %}
 </p>
-{% else %}
-  <p>
-  {% trans %}
-    Hosting your add-on in our gallery is the best way to expose your work
-    to millions of Firefox users. We'll provide everything you need to
-    distribute and update your add-on for free.
-  {% endtrans %}
-  </p>
-  <p>
-  {% trans %}
-    To complete this submission process you'll need your add-on
-    package (.xpi, .jar, or .xml) and at least one screenshot of
-    your add-on in action.
-  {% endtrans %}
-  </p>
-{% endif %}
+<p>
+{% trans %}
+  To complete this submission process you'll need your add-on
+  package (.xpi, .jar, or .xml) and at least one screenshot of
+  your add-on in action.
+{% endtrans %}
+</p>
 
 <p>
 {% trans %}
@@ -35,21 +27,14 @@
 {% endtrans %}
 </p>
 <div id="agreement-container">
-  {% if webapp %}
-    {% include 'amo/developer_webapp_agreement.html' %}
-  {% else %}
-    {% include 'amo/developer_agreement.html' %}
-  {% endif %}
+  {% include 'amo/developer_agreement.html' %}
 </div>
 <div id="agreement-extra-links">
   <a href="{{ url('devhub.docs', 'policies', 'agreement') }}">
     {{ _('Printable Version') }}</a>
-{# TODO: Add link to "App Policies" once fligtar authors it (bug 699882). #}
-{% if not webapp %}
-  <span>&bull;</span>
-  <a href="{{ url('devhub.docs', 'policies') }}">
-    {{ _('Additional Add-on Policies') }}</a>
-{% endif %}
+<span>&bull;</span>
+<a href="{{ url('devhub.docs', 'policies') }}">
+  {{ _('Additional Add-on Policies') }}</a>
 </div>
 <div class="submit-buttons">
   <form method="post" action="">

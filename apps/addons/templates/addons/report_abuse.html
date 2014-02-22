@@ -7,20 +7,10 @@
     {% endif %}
     <ol {% if hide %}style="display: none"{% endif %}>
       <li>
-        {% if addon.is_webapp() %}
-          <p>
-            {# TODO(apps): Add link back to apps policies when bug 685602 is done. #}
-            {{ loc('If you suspect this app violates our policies or has
-                    security or privacy issues, please use the form below to
-                    describe your concerns. Please do not use this form for
-                    any other reason.') }}
-          </p>
-        {% else %}
-          <p>{% trans url=remora_url('developers/docs/policies') %}
-            If you suspect this add-on violates <a href="{{ url }}">our policies</a> or
-            has security or privacy issues, please use the form below to describe your
-            concerns. Please do not use this form for any other reason.{% endtrans %}</p>
-        {% endif %}
+        <p>{% trans url=remora_url('developers/docs/policies') %}
+          If you suspect this add-on violates <a href="{{ url }}">our policies</a> or
+          has security or privacy issues, please use the form below to describe your
+          concerns. Please do not use this form for any other reason.{% endtrans %}</p>
       </li>
       <li>
         {{ abuse_form.text }}

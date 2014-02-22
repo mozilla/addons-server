@@ -19,21 +19,12 @@
             <th>
               <label data-for="developer_comments">
                 {{ _("Developer Comments") }}
-                {% if webapp %}
-                  {{ tip(None,
-                         _("Any information end users may want to know that isn't
-                            necessarily applicable to the app summary or description.
-                            Common uses include listing known major bugs, information on
-                            how to report bugs, anticipated release date of a new version,
-                            etc.")) }}
-                {% else %}
-                  {{ tip(None,
-                         _("Any information end users may want to know that isn't
-                            necessarily applicable to the add-on summary or description.
-                            Common uses include listing known major bugs, information on
-                            how to report bugs, anticipated release date of a new version,
-                            etc.")) }}
-                {% endif %}
+                {{ tip(None,
+                       _("Any information end users may want to know that isn't
+                          necessarily applicable to the add-on summary or description.
+                          Common uses include listing known major bugs, information on
+                          how to report bugs, anticipated release date of a new version,
+                          etc.")) }}
               </label>
             </th>
             <td>

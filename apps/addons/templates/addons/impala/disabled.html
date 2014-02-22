@@ -4,10 +4,8 @@
 {% block bodyclass %}gutter{% endblock %}
 
 {% block content %}
-{% if not addon.is_webapp() %}
-  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+{{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                          (None, addon.name)]) }}
-{% endif %}
 
 <aside class="secondary">
   {{ addon|sidebar_listing }}
@@ -15,18 +13,10 @@
 
 <div class="primary">
   <div class="notification-box error {{ 'removed' if addon.disabled_by_user else 'disabled' }}">
-    {% if addon.is_webapp() %}
-      {% if addon.disabled_by_user %}
-        {{ _('This app has been removed by its author.') }}
-      {% elif addon.status == amo.STATUS_DISABLED %}
-        {{ _('This app has been disabled by an administrator.') }}
-      {% endif %}
-    {% else %}
-      {% if addon.disabled_by_user %}
-        {{ _('This add-on has been removed by its author.') }}
-      {% elif addon.status == amo.STATUS_DISABLED %}
-        {{ _('This add-on has been disabled by an administrator.') }}
-      {% endif %}
+    {% if addon.disabled_by_user %}
+      {{ _('This add-on has been removed by its author.') }}
+    {% elif addon.status == amo.STATUS_DISABLED %}
+      {{ _('This add-on has been disabled by an administrator.') }}
     {% endif %}
   </div>
 </div>

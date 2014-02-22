@@ -1,4 +1,4 @@
-{{ 'App' if addon.is_webapp() else 'Add-on' }}, {{ addon.name }}, has received a new support request:
+Add-on, {{ addon.name }}, has received a new support request:
 User: {{ user.display_name or user.username }}
 Email: {{ user.email }}
 Purchased on {{ contribution.date|datetime }}

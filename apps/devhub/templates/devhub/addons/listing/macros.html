@@ -17,14 +17,12 @@
                   num)|f(num|numberfmt)|safe }}
     {% endwith %}
   </p>
-  {% if not addon.is_webapp() %}
-    <p class="users">
-      {% with num=addon.average_daily_users %}
-        {# L10n: {0} is the number of active users. #}
-        {{ ngettext("<strong>{0}</strong> active user",
-                    "<strong>{0}</strong> active users",
-                    num)|f(num|numberfmt)|safe }}
-      {% endwith %}
-    </p>
-  {% endif %}
+  <p class="users">
+    {% with num=addon.average_daily_users %}
+      {# L10n: {0} is the number of active users. #}
+      {{ ngettext("<strong>{0}</strong> active user",
+                  "<strong>{0}</strong> active users",
+                  num)|f(num|numberfmt)|safe }}
+    {% endwith %}
+  </p>
 {% endmacro %}

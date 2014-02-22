@@ -22,24 +22,11 @@
   {% if status == 'error' %}
       <a href="{{ shared_url('addons.purchase.error', addon)|urlparams(realurl=realurl) }}"
          id="paypal-error">Error</a>
-  {% elif status != 'cancel' %}
-    {% if addon.is_premium() %}
-      <a href="{{ shared_url('addons.purchase.thanks', addon)|urlparams(realurl=realurl) }}"
-         id="paypal-thanks">
-        {% if webapp %}
-          {{ loc('Thank you for purchasing the app') -}}
-        {% else %}
-          {{ _('Thank you for purchasing the add-on') -}}
-        {% endif %}</a>
-    {% endif %}
   {% endif %}
   <p>
     <a id="paypal-result" target="_top" href="{{ addon.get_url_path() }}">
-      {% if webapp %}
-        {{ _('Return to the app.') -}}
-      {% else %}
         {{ _('Return to the addon.') -}}
-      {% endif %}</a>
+    </a>
   </p>
 </section>
 {% endblock %}

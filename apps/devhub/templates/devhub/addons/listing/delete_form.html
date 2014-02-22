@@ -7,9 +7,7 @@
   </h3>
   {% if addon.highest_status or addon.status %}
     <p class="warning">
-      {% if webapp %}
-        {{ loc('Deleting your app will permanently remove it from the site.') }}
-      {% elif addon.is_persona() %}
+      {% if addon.is_persona() %}
         {{ _('Deleting your theme will permanently remove it from the site.') }}
       {% else %}
         {% trans %}
