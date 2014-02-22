@@ -932,20 +932,6 @@ class TestEditSupport(TestEdit):
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
 
-    def test_edit_support_premium(self):
-        self.get_addon().update(premium_type=amo.ADDON_PREMIUM)
-        data = dict(support_email='sjobs@apple.com',
-                    support_url='')
-        r = self.client.post(self.support_edit_url, data)
-        eq_(r.context['form'].errors, {})
-        eq_(self.get_addon().support_email, data['support_email'])
-
-    def test_edit_support_premium_required(self):
-        self.get_addon().update(premium_type=amo.ADDON_PREMIUM)
-        data = dict(support_url='')
-        r = self.client.post(self.support_edit_url, data)
-        assert 'support_email' in r.context['form'].errors
-
     def test_edit_support_optional_url(self):
         data = dict(support_email='sjobs@apple.com',
                     support_url='')

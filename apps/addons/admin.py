@@ -9,8 +9,7 @@ from . import models
 
 class AddonAdmin(admin.ModelAdmin):
     exclude = ('authors',)
-    list_display = ('__unicode__', 'type', 'status', 'average_rating',
-                    'premium_type', 'premium')
+    list_display = ('__unicode__', 'type', 'status', 'average_rating')
     list_filter = ('type', 'status')
 
     fieldsets = (

@@ -199,16 +199,6 @@ class Contribution(amo.models.ModelBase):
         send_mail(subject, body, settings.MARKETPLACE_EMAIL,
                   [self.user.email], fail_silently=True)
 
-    def mail_chargeback(self):
-        """Send to the purchaser of an add-on about reversal from Paypal."""
-        locale = self._switch_locale()
-        amt = numbers.format_currency(abs(self.amount), self.currency,
-                                      locale=locale)
-        self._mail('users/support/emails/chargeback.txt',
-                   # L10n: the adddon name.
-                   _(u'%s payment reversal' % self.addon.name),
-                   {'name': self.addon.name, 'amount': amt})
-
     def mail_thankyou(self, request=None):
         """
         Mail a thankyou note for a completed contribution.

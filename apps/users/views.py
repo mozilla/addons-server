@@ -240,7 +240,7 @@ def edit(request):
     else:
         form = forms.UserEditForm(instance=amouser)
     return render(request, 'users/edit.html',
-                  {'form': form, 'amouser': amouser, 'webapp': False})
+                  {'form': form, 'amouser': amouser})
 
 
 @write
@@ -428,7 +428,6 @@ def login(request, template=None):
 
 def _login(request, template=None, data=None, dont_redirect=False):
     data = data or {}
-    data['webapp'] = settings.APP_PREVIEW
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
@@ -559,18 +558,15 @@ def profile(request, user):
     if settings.MARKETPLACE:
         raise http.Http404
 
-    webapp = False
-
     # Get user's own and favorite collections, if they allowed that.
     own_coll = fav_coll = []
-    if not webapp:
-        if user.display_collections:
-            own_coll = (Collection.objects.listed().filter(author=user)
-                        .order_by('-created'))[:10]
-        if user.display_collections_fav:
-            fav_coll = (Collection.objects.listed()
-                        .filter(following__user=user)
-                        .order_by('-following__created'))[:10]
+    if user.display_collections:
+        own_coll = (Collection.objects.listed().filter(author=user)
+                    .order_by('-created'))[:10]
+    if user.display_collections_fav:
+        fav_coll = (Collection.objects.listed()
+                    .filter(following__user=user)
+                    .order_by('-following__created'))[:10]
 
     edit_any_user = acl.action_allowed(request, 'Users', 'Edit')
     own_profile = (request.user.is_authenticated() and
@@ -580,7 +576,7 @@ def profile(request, user):
     personas = []
     limited_personas = False
     if user.is_developer:
-        addons = user.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
+        addons = user.addons.reviewed().filter(
             addonuser__user=user, addonuser__listed=True)
 
         personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
@@ -593,9 +589,7 @@ def profile(request, user):
             '-weekly_downloads')
         addons = amo.utils.paginate(request, addons, 5)
 
-    # Don't show marketplace reviews for AMO (since that would break).
-    reviews = list(user.reviews.exclude(addon__type=amo.ADDON_WEBAPP))
-    reviews = amo.utils.paginate(request, reviews)
+    reviews = amo.utils.paginate(request, user.reviews.all())
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,

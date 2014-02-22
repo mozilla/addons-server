@@ -324,28 +324,6 @@ def send_mail(template, subject, emails, context, perm_setting=None):
                   use_blacklist=False, perm_setting=perm_setting)
 
 
-def get_avg_app_waiting_time():
-    """
-    Returns the rolling average from the past 30 days of the time taken for a
-    pending app to become public.
-    """
-    cursor = connection.cursor()
-    cursor.execute('''
-        SELECT AVG(DATEDIFF(reviewed, nomination)) FROM versions
-        RIGHT JOIN addons ON versions.addon_id = addons.id
-        WHERE addontype_id = %s AND status = %s AND
-              reviewed >= DATE_SUB(NOW(), INTERVAL 30 DAY)
-    ''', (amo.ADDON_WEBAPP, amo.STATUS_PUBLIC))
-    row = cursor.fetchone()
-    days = 0
-    if row:
-        try:
-            days = math.ceil(float(row[0]))
-        except TypeError:
-            pass
-    return days
-
-
 @register.function
 def get_position(addon):
     if addon.is_persona() and addon.is_pending():
@@ -361,38 +339,6 @@ def get_position(addon):
                 break
         total = qs.count()
         return {'pos': position, 'total': total}
-    elif addon.is_webapp():
-        excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
-        # Look at all regular versions of webapps which have pending files. This
-        # includes both new apps and updates to existing apps, to combine both
-        # the regular and updates queue in one big list (In theory, reviewers
-        # should take the same time to process an app in either queue).
-        qs = (Version.objects.filter(addon__type=amo.ADDON_WEBAPP,
-                                     addon__disabled_by_user=False,
-                                     files__status=amo.STATUS_PENDING,
-                                     deleted=False)
-              .exclude(addon__id__in=excluded_ids)
-              .order_by('nomination', 'created').select_related('addon')
-              .no_transforms().values_list('addon_id', 'nomination'))
-        id_ = addon.id
-        position = 0
-        nomination_date = None
-        for idx, (addon_id, nomination) in enumerate(qs, start=1):
-            if addon_id == addon.id:
-                position = idx
-                nomination_date = nomination
-                break
-        total = qs.count()
-        days = 1
-        days_in_queue = 0
-        if nomination_date:
-            # Estimated waiting time is calculated from the rolling average of
-            # the queue waiting time in the past 30 days but subtracting from
-            # it the number of days this app has already spent in the queue.
-            days_in_queue = (datetime.datetime.now() - nomination_date).days
-            days = max(get_avg_app_waiting_time() - days_in_queue, days)
-        return {'days': int(days), 'days_in_queue': int(days_in_queue),
-                'pos': position, 'total': total}
     else:
         version = addon.latest_version
 
@@ -454,11 +400,9 @@ class ReviewHelper:
                                  'minimal': False,
                                  'label': _lazy('Push to public')}
 
-        if not self.addon.is_premium():
-            actions['prelim'] = {'method': self.handler.process_preliminary,
-                                 'label': labels['prelim'],
-                                 'minimal': False}
-
+        actions['prelim'] = {'method': self.handler.process_preliminary,
+                             'label': labels['prelim'],
+                             'minimal': False}
         actions['reject'] = {'method': self.handler.process_sandbox,
                              'label': _lazy('Reject'),
                              'minimal': False}
@@ -698,9 +642,6 @@ class ReviewAddon(ReviewBase):
 
     def process_preliminary(self):
         """Set an addon to preliminary."""
-        if self.addon.is_premium():
-            raise AssertionError('Premium add-ons cannot become preliminary.')
-
         # Hold onto the status before we change it.
         status = self.addon.status
 
@@ -787,9 +728,6 @@ class ReviewFiles(ReviewBase):
 
     def process_preliminary(self):
         """Set an addons files to preliminary."""
-        if self.addon.is_premium():
-            raise AssertionError('Premium add-ons cannot become preliminary.')
-
         # Hold onto the status before we change it.
         status = self.addon.status
 

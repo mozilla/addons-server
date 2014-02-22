@@ -284,80 +284,6 @@ class TestCreate(ReviewTest):
 
     def test_add_admin(self):
         self.login_admin()
-        r = self.client.get(self.add)
-        eq_(r.status_code, 200)
-
-    def test_add_dev(self):
-        self.login_dev()
-        r = self.client.get(self.add)
-        eq_(r.status_code, 403)
-
-    def test_no_body(self):
-        for body in ('', ' \t \n '):
-            r = self.client.post(self.add, {'body': body})
-            self.assertFormError(r, 'form', 'body', 'This field is required.')
-            eq_(len(mail.outbox), 0)
-
-    def test_no_rating(self):
-        r = self.client.post(self.add, {'body': 'no rating'})
-        self.assertFormError(r, 'form', 'rating', 'This field is required.')
-        eq_(len(mail.outbox), 0)
-
-    def test_restrict(self):
-        g = Group.objects.get(rules='Restricted:UGC')
-        GroupUser.objects.create(group=g, user=self.user)
-        r = self.client.post(self.add, {'body': 'x', 'rating': 1})
-        eq_(r.status_code, 403)
-
-    def test_review_success(self):
-        old_cnt = self.qs.count()
-        log_count = self.log_count()
-        r = self.client.post(self.add, {'body': 'xx', 'rating': 3})
-        self.assertRedirects(r, shared_url('reviews.list', self.addon),
-                             status_code=302)
-        eq_(self.qs.count(), old_cnt + 1)
-        # We should have an ADD_REVIEW entry now.
-        eq_(self.log_count(), log_count + 1)
-
-        eq_(len(mail.outbox), 1)
-
-        assert '3 out of 5' in mail.outbox[0].body, "Rating not included"
-        self.assertTemplateUsed(r, 'reviews/emails/add_review.ltxt')
-
-    def test_new_reply(self):
-        self.login_dev()
-        Review.objects.filter(reply_to__isnull=False).delete()
-        url = shared_url('reviews.reply', self.addon, 218207)
-        r = self.client.post(url, {'body': 'unst unst'})
-        self.assertRedirects(r,
-            shared_url('reviews.detail', self.addon, 218207))
-        eq_(self.qs.filter(reply_to=218207).count(), 1)
-
-        eq_(len(mail.outbox), 1)
-        self.assertTemplateUsed(r, 'reviews/emails/reply_review.ltxt')
-
-    def test_double_reply(self):
-        self.login_dev()
-        url = shared_url('reviews.reply', self.addon, 218207)
-        r = self.client.post(url, {'body': 'unst unst'})
-        self.assertRedirects(r,
-            shared_url('reviews.detail', self.addon, 218207))
-        eq_(self.qs.filter(reply_to=218207).count(), 1)
-        review = Review.objects.get(id=218468)
-        eq_('%s' % review.body, 'unst unst')
-
-    def test_can_review_purchased(self):
-        self.addon.addonpurchase_set.create(user=self.user)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        data = {'body': 'x', 'rating': 1}
-        eq_(self.client.get(self.add, data).status_code, 200)
-        eq_(self.client.post(self.add, data).status_code, 302)
-
-    def test_not_review_purchased(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        data = {'body': 'x', 'rating': 1}
-        eq_(self.client.get(self.add, data).status_code, 403)
-        eq_(self.client.post(self.add, data).status_code, 403)
 
     def test_add_link_visitor(self):
         """
@@ -419,74 +345,6 @@ class TestCreate(ReviewTest):
         eq_(doc('#add-review').length, 0)
         eq_(doc('#no-add-first-review').length, 1)
         eq_(doc('#add-first-review').length, 0)
-
-    def test_premium_no_add_review_link_visitor(self):
-        """Check for no review link for premium add-ons for non-logged user."""
-        self.client.logout()
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 0)
-        r = self.client.get(self.list)
-        eq_(pq(r.content)('#add-review').length, 0)
-
-    def test_premium_no_add_review_link_logged(self):
-        """Check for no review link for premium add-ons for logged users."""
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 0)
-        r = self.client.get(self.list)
-        eq_(pq(r.content)('#add-review').length, 0)
-
-    def test_premium_add_review_link_dev(self):
-        """Check for no review link for premium add-ons for add-on owners."""
-        self.login_dev()
-        self.addon.addonpurchase_set.create(user=self.user)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 0)
-        r = self.client.get(self.list)
-        eq_(pq(r.content)('#add-review').length, 0)
-
-    def test_premium_no_add_review_link(self):
-        """Check for review link for non-purchased premium add-ons."""
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 0)
-        r = self.client.get(self.list)
-        eq_(pq(r.content)('#add-review').length, 0)
-        eq_(pq(r.content)('#add-first-review').length, 0)
-
-    def test_premium_add_review_link(self):
-        """Check for review link for owners of purchased premium add-ons."""
-        self.addon.addonpurchase_set.create(user=self.user)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 1)
-        r = self.client.get(self.list)
-        eq_(pq(r.content)('#add-review').length, 1)
-        eq_(pq(r.content)('#add-first-review').length, 0)
-
-    def test_no_reviews_premium_no_add_review_link(self):
-        """Ensure no 'Be the First!' link for non-purchased premium add-ons."""
-        Review.objects.all().delete()
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 0)
-        eq_(pq(r.content)('#add-first-review').length, 0)
-        r = self.client.get(self.list)
-        eq_(pq(r.content)('#add-review').length, 0)
-        eq_(pq(r.content)('#add-first-review').length, 0)
-
-    def test_no_reviews_premium_add_review_link(self):
-        """Ensure 'Be the First!' link exists for purchased premium add-ons."""
-        Review.objects.all().delete()
-        self.addon.addonpurchase_set.create(user=self.user)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 1)
-        r = self.client.get(self.list)
-        eq_(pq(r.content)('#add-review').length, 1)
-        eq_(pq(r.content)('#add-first-review').length, 1)
 
     def test_body_has_url(self):
         """ test that both the create and revise reviews segments properly
@@ -632,19 +490,6 @@ class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
         self.login_dev()
         r = self.client.get(self.add)
         eq_(r.status_code, 403)
-
-    def test_add_nonpurchased_premium(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        data = {'body': 'x', 'rating': 1}
-        eq_(self.client.get(self.add).status_code, 403)
-        eq_(self.client.post(self.add, data).status_code, 403)
-
-    def test_add_purchased_premium(self):
-        self.addon.addonpurchase_set.create(user=self.user)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        data = {'body': 'x', 'rating': 1}
-        eq_(self.client.get(self.add).status_code, 200)
-        eq_(self.client.post(self.add, data).status_code, 302)
 
     def test_add_link_visitor(self):
         self.client.logout()

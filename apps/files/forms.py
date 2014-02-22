@@ -28,20 +28,12 @@ class FileSelectWidget(widgets.Select):
                 label = u', '.join(unicode(os.platform) for os in f)
 
             output = [u'<option value="', jinja2.escape(files[0].id), u'" ']
-            if files[0].status == amo.STATUS_DISABLED:
-                # Disabled files can be diffed on Marketplace.
-                if addon.type != amo.ADDON_WEBAPP:
-                    output.append(u' disabled')
             if selected in files:
                 output.append(u' selected="true"')
 
             status = set(u'status-%s' % amo.STATUS_CHOICES_API[f.status]
                          for f in files)
             output.extend((u' class="', jinja2.escape(' '.join(status)), u'"'))
-
-            if addon.type == amo.ADDON_WEBAPP:
-                # Extend apps to show file status in selects.
-                label += ' (%s)' % amo.STATUS_CHOICES_API[f.status]
             output.extend((u'>', jinja2.escape(label), u'</option>\n'))
             return output
 

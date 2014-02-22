@@ -317,11 +317,6 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
                 'annoying': addon.annoying or amo.CONTRIB_PASSIVE}
 
     def clean(self):
-        if self.instance.upsell:
-            raise forms.ValidationError(_('You cannot setup Contributions for '
-                                    'an add-on that is linked to a premium '
-                                    'add-on in the Marketplace.'))
-
         data = self.cleaned_data
         try:
             if not self.errors and data['recipient'] == 'dev':

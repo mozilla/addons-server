@@ -40,10 +40,8 @@ log = commonware.log.getLogger('z.addons')
 def clean_name(name, instance=None):
     if not instance:
         log.debug('clean_name called without an instance: %s' % name)
-    if instance:
-        id = reverse_name_lookup(name, instance.is_webapp())
-    else:
-        id = reverse_name_lookup(name)
+
+    id = reverse_name_lookup(name)
 
     # If we get an id and either there's no instance or the instance.id != id.
     if id and (not instance or id != instance.id):
@@ -54,10 +52,9 @@ def clean_name(name, instance=None):
 
 def clean_slug(slug, instance):
     slug_validator(slug, lower=False)
-    slug_field = 'app_slug' if instance.is_webapp() else 'slug'
 
-    if slug != getattr(instance, slug_field):
-        if Addon.objects.filter(**{slug_field: slug}).exists():
+    if slug != instance.slug:
+        if Addon.objects.filter(slug=slug).exists():
             raise forms.ValidationError(
                 _('This slug is already in use. Please choose another.'))
         if BlacklistedSlug.blocked(slug):
@@ -152,11 +149,6 @@ class AddonFormBasic(AddonFormBase):
         fields = ('name', 'slug', 'summary', 'tags')
 
     def __init__(self, *args, **kw):
-        # Force the form to use app_slug if this is a webapp. We want to keep
-        # this under "slug" so all the js continues to work.
-        if kw['instance'].is_webapp():
-            kw.setdefault('initial', {})['slug'] = kw['instance'].app_slug
-
         super(AddonFormBasic, self).__init__(*args, **kw)
 
         self.fields['tags'].initial = ', '.join(self.get_tags(self.instance))
@@ -185,23 +177,6 @@ class AddonFormBasic(AddonFormBase):
         addonform.save()
 
         return addonform
-
-    def _post_clean(self):
-        if self.instance.is_webapp():
-            # Switch slug to app_slug in cleaned_data and self._meta.fields so
-            # we can update the app_slug field for webapps.
-            try:
-                self._meta.fields = list(self._meta.fields)
-                slug_idx = self._meta.fields.index('slug')
-                data = self.cleaned_data
-                if 'slug' in data:
-                    data['app_slug'] = data.pop('slug')
-                self._meta.fields[slug_idx] = 'app_slug'
-                super(AddonFormBasic, self)._post_clean()
-            finally:
-                self._meta.fields[slug_idx] = 'slug'
-        else:
-            super(AddonFormBasic, self)._post_clean()
 
 
 class AppFormBasic(AddonFormBasic):
@@ -245,12 +220,8 @@ class CategoryForm(forms.Form):
         max_cat = amo.MAX_CATEGORIES
 
         if getattr(self, 'disabled', False) and total:
-            if categories[0].type == amo.ADDON_WEBAPP:
-                raise forms.ValidationError(_('Categories cannot be changed '
-                    'while your app is featured for this application.'))
-            else:
-                raise forms.ValidationError(_('Categories cannot be changed '
-                    'while your add-on is featured for this application.'))
+            raise forms.ValidationError(_('Categories cannot be changed '
+                'while your add-on is featured for this application.'))
         if total > max_cat:
             # L10n: {0} is the number of categories.
             raise forms.ValidationError(ngettext(
@@ -274,16 +245,11 @@ class BaseCategoryFormSet(BaseFormSet):
         self.request = kw.pop('request', None)
         super(BaseCategoryFormSet, self).__init__(*args, **kw)
         self.initial = []
-        if self.addon.type == amo.ADDON_WEBAPP:
-            apps = [None]
-        else:
-            apps = sorted(self.addon.compatible_apps.keys(),
-                          key=lambda x: x.id)
+        apps = sorted(self.addon.compatible_apps.keys(),
+                      key=lambda x: x.id)
 
         # Drop any apps that don't have appropriate categories.
         qs = Category.objects.filter(type=self.addon.type)
-        if self.addon.type != amo.ADDON_WEBAPP:
-            qs = qs.filter(application__in=[a.id for a in apps])
         app_cats = dict((k, list(v)) for k, v in
                         sorted_groupby(qs, 'application_id'))
         for app in list(apps):
@@ -408,8 +374,6 @@ class AddonFormSupport(AddonFormBase):
 
     def __init__(self, *args, **kw):
         super(AddonFormSupport, self).__init__(*args, **kw)
-        if self.instance.is_premium():
-            self.fields['support_email'].required = True
 
     def save(self, addon, commit=True):
         instance = self.instance

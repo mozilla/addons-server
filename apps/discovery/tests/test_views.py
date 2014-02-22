@@ -447,17 +447,6 @@ class TestDetails(amo.tests.TestCase):
         eq_(a.text(), unicode(req.name))
         eq_(a.attr('href').endswith('?src=discovery-dependencies'), True)
 
-    def test_upsell(self):
-        doc = pq(self.client.get(self.detail_url).content)
-        eq_(doc('.upsell').length, 0)
-        premie = Addon.objects.get(id=592)
-        AddonUpsell.objects.create(free=self.addon, premium=premie)
-        upsell = pq(self.client.get(self.detail_url).content)('.upsell')
-        eq_(upsell.length, 1)
-        a = upsell.find('.premium a')
-        eq_(a.text(), unicode(premie.name))
-        eq_(a.attr('href').endswith('?src=discovery-upsell'), True)
-
 
 class TestPersonaDetails(amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/users']

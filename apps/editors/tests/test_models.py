@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 import datetime
 import time
 
@@ -409,7 +409,6 @@ class TestReviewerScore(amo.tests.TestCase):
             amo.ADDON_PLUGIN: 'ADDON',
             amo.ADDON_API: 'ADDON',
             amo.ADDON_PERSONA: 'PERSONA',
-            # WEBAPP is special cased below.
         }
         statuses = {
             amo.STATUS_NULL: None,

@@ -23,7 +23,7 @@ import amo
 import amo.tests
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
-from addons.models import Addon, AddonPremium, AddonUser, Category
+from addons.models import Addon, AddonUser, Category
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
@@ -94,7 +94,6 @@ class TestAjax(UserViewBase):
         assert '<script>' not in r.content
         assert '&lt;script&gt;' in r.content
 
-    @patch.object(settings, 'MARKETPLACE', False)
     def test_ajax_failure_incorrect_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
                             follow=True)
@@ -102,16 +101,6 @@ class TestAjax(UserViewBase):
         eq_(data,
             {'status': 0,
              'message': 'A user with that email address does not exist.'})
-
-    @patch.object(settings, 'MARKETPLACE', True)
-    def test_ajax_failure_incorrect_email_mkt(self):
-        r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
-                            follow=True)
-        data = json.loads(r.content)
-        eq_(data,
-            {'status': 0,
-             'message': 'A user with that email address does not exist, or the'
-                        ' user has not yet accepted the developer agreement.'})
 
     def test_ajax_failure_no_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': ''}, follow=True)
@@ -542,9 +531,7 @@ class TestLogin(UserViewBase):
         profile.save()
 
         self.client.get(self.url)
-        with self.settings(MARKETPLACE=False):
-            # A failed login produces a 200.
-            eq_(self.client.post(self.url, data=self.data).status_code, 200)
+        eq_(self.client.post(self.url, data=self.data).status_code, 200)
 
     def test_login_no_recaptcha(self):
         res = self.client.post(self.url, data=self.data)
@@ -726,8 +713,7 @@ class TestPersonaLogin(UserViewBase):
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
-    @patch('users.views.record_action')
-    def test_browserid_no_account(self, record_action, http_request):
+    def test_browserid_no_account(self, http_request):
         """
         BrowserID login for an email address with no account creates a
         new account.
@@ -741,8 +727,7 @@ class TestPersonaLogin(UserViewBase):
         eq_(profiles[0].display_name, 'newuser')
 
     @patch('requests.post')
-    @patch('users.views.record_action')
-    def test_browserid_misplaced_auth_user(self, record_action, http_request):
+    def test_browserid_misplaced_auth_user(self, http_request):
         """
         Login still works even after the user has changed his email
         address on AMO.
@@ -762,8 +747,7 @@ class TestPersonaLogin(UserViewBase):
         eq_(res.status_code, 200)
 
     @patch('requests.post')
-    @patch('users.views.record_action')
-    def test_browserid_no_auth_user(self, record_action, http_request):
+    def test_browserid_no_auth_user(self, http_request):
         """
         Login still works after a new UserProfile has been created for an
         email address another UserProfile formerly used.
@@ -782,8 +766,7 @@ class TestPersonaLogin(UserViewBase):
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
-    @patch('users.views.record_action')
-    def test_browserid_no_mark_as_market(self, record_action, post):
+    def test_browserid_no_mark_as_market(self, post):
         email = 'newuser@example.com'
         self._browserid_login(email, post)
         profile = UserProfile.objects.get(email=email)
@@ -805,8 +788,7 @@ class TestPersonaLogin(UserViewBase):
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
-    @patch('users.views.record_action')
-    def test_browserid_duplicate_username(self, record_action, post):
+    def test_browserid_duplicate_username(self, post):
         email = 'jbalogh@example.com'  # existing
         post.return_value = FakeResponse(200, json.dumps({'status': 'okay',
                                                           'email': email}))
@@ -831,17 +813,9 @@ class TestPersonaLogin(UserViewBase):
         browserid_authenticate(request=request, assertion='fake-assertion')
         return UserProfile.objects.get(email=email)
 
-    @patch('users.views.record_action')
-    def test_amo_source(self, record_action):
+    def test_amo_source(self):
         profile = self.create_profile()
         eq_(profile.source, amo.LOGIN_SOURCE_AMO_BROWSERID)
-
-    @patch.object(settings, 'MARKETPLACE', True)
-    @patch('users.views.record_action')
-    def test_mmo_source(self, record_action):
-        profile = self.create_profile()
-        eq_(profile.source, amo.LOGIN_SOURCE_MMO_BROWSERID)
-        assert record_action.called
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
@@ -1408,15 +1382,6 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(doc('#profile-actions #report-user-abuse').length, 0)
         eq_(doc('#popup-staging #report-user-modal.modal').length, 0)
         self.assertTemplateNotUsed(r, 'users/report_abuse.html')
-
-    def test_with_mkt_reviews(self):
-        # Test Marketplace reviews don't break profiles on AMO.
-        app = amo.tests.app_factory(type=amo.ADDON_WEBAPP, app_slug='1abcxyz1')
-        app.addonuser_set.create(user=self.user)
-        Review.objects.create(user_id=self.user.id, addon=app, rating=1)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(app.app_slug in r.content, False)
 
 
 class TestThemesProfile(amo.tests.TestCase):

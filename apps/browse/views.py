@@ -247,13 +247,9 @@ class CategoryLandingFilter(BaseFilter):
 
 def category_landing(request, category, addon_type=amo.ADDON_EXTENSION,
                      Filter=CategoryLandingFilter):
-    if addon_type == amo.ADDON_WEBAPP:
-        base = (Addon.objects.public()
-                .filter(type=amo.ADDON_WEBAPP, categories__id=category.id))
-    else:
-        base = (Addon.objects.listed(request.APP)
-                .exclude(type=amo.ADDON_PERSONA)
-                .filter(categories__id=category.id))
+    base = (Addon.objects.listed(request.APP)
+            .exclude(type=amo.ADDON_PERSONA)
+            .filter(categories__id=category.id))
     filter = Filter(request, base, category, key='browse', default='featured')
     return render(request, 'browse/impala/category_landing.html',
                   {'section': amo.ADDON_SLUGS[addon_type],

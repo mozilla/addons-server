@@ -27,7 +27,6 @@ from users.cron import reindex_users
 
 _INDEXES = {}
 _ALIASES = django_settings.ES_INDEXES.copy()
-_ALIASES.pop('webapp')  # Don't index webapps here.
 # Remove stats indexes. They may be added later via the --with-stats option.
 _STATS_ALIASES = {}
 for k, v in _ALIASES.items():

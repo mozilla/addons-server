@@ -79,22 +79,6 @@ def test_share_view():
     sharing.views.share(request, obj, s, s)
 
 
-def test_share_view_for_webapp():
-    u = u'\u05d0\u05d5\u05e1\u05e3'
-    s = encoding.smart_str(u)
-    request, obj = Mock(), Mock()
-    request.GET = {'service': 'twitter'}
-    obj.get_url_path.return_value = u
-    obj.is_webapp = Mock()
-    obj.is_webapp.return_value = True
-    sharing.views.share(request, obj, u, u)
-    obj.get_url_path.return_value = s
-    res = sharing.views.share(request, obj, s, s)
-    qs = parse_qs(urlparse(res['Location']).query)
-    assert 'Firefox Marketplace' in qs['status'][0], (
-                                    'Unexpected status: %s' % qs['status'][0])
-
-
 @patch.object(settings, 'SITE_URL', 'http://test')
 def test_share_form():
     form = ShareForm({

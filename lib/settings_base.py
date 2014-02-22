@@ -300,7 +300,6 @@ JINGO_EXCLUDE_APPS = (
 )
 
 JINGO_EXCLUDE_PATHS = (
-    'webapps/dump',
     'users/email',
     'reviews/emails',
     'editors/emails',
@@ -1077,8 +1076,6 @@ CELERY_ROUTES = {
     # AMO Devhub.
     'devhub.tasks.validator': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
-    'devhub.tasks.fetch_manifest': {'queue': 'devhub'},
-    'devhub.tasks.fetch_icon': {'queue': 'devhub'},
     'devhub.tasks.file_validator': {'queue': 'devhub'},
     'devhub.tasks.packager': {'queue': 'devhub'},
 
@@ -1277,7 +1274,6 @@ MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
-MAX_WEBAPP_UPLOAD_SIZE = 2 * 1024 * 1024
 
 # RECAPTCHA - copy all three statements to settings_local.py
 RECAPTCHA_PUBLIC_KEY = ''
@@ -1363,7 +1359,6 @@ BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
 ES_HOSTS = ['127.0.0.1:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {'default': 'addons',
-              'webapp': 'apps',
               'update_counts': 'addons_stats',
               'download_counts': 'addons_stats',
               'stats_contributions': 'addons_stats',
@@ -1405,18 +1400,6 @@ DEVELOPER_BLOG_URL = 'http://blog.mozilla.com/addons/feed/'
 
 LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
-
-# The verification URL, the addon id will be appended to this. This will
-# have to be altered to the right domain for each server, eg:
-# https://receiptcheck.addons.mozilla.org/verify/
-WEBAPPS_RECEIPT_URL = '%s/verify/' % SITE_URL
-# The key we'll use to sign webapp receipts.
-WEBAPPS_RECEIPT_KEY = ''
-# The expiry that we will add into the receipt.
-# Set to 6 months for the next little while.
-WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 182
-# Send a new receipt back when it expires.
-WEBAPPS_RECEIPT_EXPIRED_SEND = False
 
 CSRF_FAILURE_VIEW = 'amo.views.csrf_failure'
 

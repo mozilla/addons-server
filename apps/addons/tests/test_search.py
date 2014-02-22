@@ -1,8 +1,8 @@
 from nose.tools import eq_
 
 import amo.tests
-from addons.models import (Addon, attach_categories, attach_devices,
-                           attach_tags, attach_translations)
+from addons.models import (Addon, attach_categories, attach_tags,
+                           attach_translations)
 from addons.search import extract
 
 
@@ -14,8 +14,7 @@ class TestExtract(amo.tests.TestCase):
                       'weekly_downloads', 'average_daily_users', 'status',
                       'type', 'hotness', 'is_disabled', 'premium_type',
                       'uses_flash')
-        self.transforms = (attach_categories, attach_devices,
-                           attach_tags, attach_translations)
+        self.transforms = (attach_categories, attach_tags, attach_translations)
 
     def _extract(self):
         qs = Addon.objects.filter(id__in=[3615])

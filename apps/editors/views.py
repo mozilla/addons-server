@@ -213,17 +213,14 @@ def performance(request, user_id=False):
     breakdown = {
         'month': {
             'addons': _sum(months, amo.GROUP_TYPE_ADDON),
-            'apps': _sum(months, amo.GROUP_TYPE_WEBAPP),
             'themes': _sum(months, amo.GROUP_TYPE_THEME),
         },
         'year': {
             'addons': _sum(years, amo.GROUP_TYPE_ADDON),
-            'apps': _sum(years, amo.GROUP_TYPE_WEBAPP),
             'themes': _sum(years, amo.GROUP_TYPE_THEME),
         },
         'total': {
             'addons': _sum(totals, amo.GROUP_TYPE_ADDON),
-            'apps': _sum(totals, amo.GROUP_TYPE_WEBAPP),
             'themes': _sum(totals, amo.GROUP_TYPE_THEME),
         }
     }
@@ -397,8 +394,7 @@ def queue_counts(type=None, **kw):
               'prelim': construct_query(ViewPreliminaryQueue, **kw),
               'fast_track': construct_query(ViewFastTrackQueue, **kw),
               'moderated': (
-                  Review.objects.exclude(addon__type=amo.ADDON_WEBAPP)
-                                .filter(reviewflag__isnull=False,
+                  Review.objects.filter(reviewflag__isnull=False,
                                         editorreview=1).count)}
     rv = {}
     if isinstance(type, basestring):
@@ -436,8 +432,7 @@ def queue_fast_track(request):
 
 @reviewer_required
 def queue_moderated(request):
-    rf = (Review.objects.exclude(Q(addon__type=amo.ADDON_WEBAPP) |
-                                 Q(addon__isnull=True) |
+    rf = (Review.objects.exclude(Q(addon__isnull=True) |
                                  Q(reviewflag__isnull=True))
                         .filter(editorreview=1)
                         .order_by('reviewflag__created'))

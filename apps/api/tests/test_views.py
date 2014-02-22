@@ -314,13 +314,6 @@ class APITest(TestCase):
             absolutify('/en-US/firefox/addon/a3615/?src=api'))
         assert 'theme' not in data
 
-    def test_app_detail(self):
-        addon = Addon.objects.get(id=3615)
-        addon.update(type=amo.ADDON_WEBAPP)
-        response = self.client.get(
-            '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
-        eq_(json.loads(response.content)['msg'], 'Add-on not found!')
-
     def test_theme_detail(self):
         addon = Addon.objects.get(id=3615)
         addon.update(type=amo.ADDON_PERSONA)
@@ -585,11 +578,6 @@ class ListTest(TestCase):
         """
         response = make_call('list')
         self.assertContains(response, '<addon id', 3)
-
-    def test_ignore_apps(self):
-        Addon.objects.update(type=amo.ADDON_WEBAPP)
-        response = make_call('list')
-        self.assertNotContains(response, '<addon id')
 
     def test_type_filter(self):
         """

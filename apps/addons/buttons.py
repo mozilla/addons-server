@@ -129,8 +129,6 @@ class InstallButton(object):
                          and addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
-        self.is_premium = addon.is_premium()
-        self.is_webapp = addon.is_webapp()
         self._show_contrib = show_contrib
         self.show_contrib = (show_contrib and addon.takes_contributions
                              and addon.annoying == amo.CONTRIB_ROADBLOCK)
@@ -153,8 +151,6 @@ class InstallButton(object):
             self.button_class.append(self.size)
         if self.is_beta:
             self.install_class.append('beta')
-        if self.is_webapp:
-            self.install_class.append('webapp')
 
     def attrs(self):
         rv = {}
@@ -195,9 +191,6 @@ class InstallButton(object):
             text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, version=self.version.version)
-
-        if self.addon.is_webapp():
-            text = _(u'Install App')
 
         return text, url, os
 

@@ -19,8 +19,7 @@ def share(request, obj, name, description):
     is_webapp = hasattr(obj, 'is_webapp') and obj.is_webapp()
 
     form = ShareForm({
-        'title': page_title({'request': request}, name,
-                            force_webapps=is_webapp),
+        'title': page_title({'request': request}, name),
         'url': u(obj.get_url_path()),
         'description': description,
     })

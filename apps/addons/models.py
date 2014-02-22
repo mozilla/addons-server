@@ -372,10 +372,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             type_idx = (idx for idx, f in enumerate(Addon._meta.fields)
                         if f.attname == 'type').next()
             Addon._meta._type_idx = type_idx
-        if ((len(args) == len(Addon._meta.fields) and
-                args[type_idx] == amo.ADDON_WEBAPP) or kw and
-                kw.get('type') == amo.ADDON_WEBAPP):
-            raise RuntimeError
         return object.__new__(cls)
 
     def __unicode__(self):
@@ -947,7 +943,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @write
     def update_status(self):
         if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]
-            or self.is_disabled or self.is_persona() or self.is_webapp()):
+            or self.is_disabled or self.is_persona()):
             return
 
         def logit(reason, old=self.status):
@@ -1073,7 +1069,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.status == amo.STATUS_PUBLIC and self.current_beta_version
 
     def show_adu(self):
-        return self.type not in (amo.ADDON_SEARCH, amo.ADDON_WEBAPP)
+        return self.type != amo.ADDON_SEARCH
 
     @amo.cached_property
     def current_beta_version(self):
@@ -1097,7 +1093,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             qs = Addon.objects.valid()
         return (qs.exclude(id=self.id)
-                  .exclude(type=amo.ADDON_WEBAPP)
                   .filter(addonuser__listed=True,
                           authors__in=self.listed_authors)
                   .distinct())
@@ -1163,9 +1158,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
 
-    def is_webapp(self):
-        return self.type == amo.ADDON_WEBAPP
-
     @property
     def is_disabled(self):
         """True if this Addon is disabled.
@@ -1199,44 +1191,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def is_rejected(self):
         return self.status == amo.STATUS_REJECTED
-
-    def can_become_premium(self):
-        """
-        Not all addons can become premium and those that can only at
-        certain times. Webapps can become premium at any time.
-        """
-        if self.upsell:
-            return False
-        if self.type == amo.ADDON_WEBAPP and not self.is_premium():
-            return True
-        return (self.status in amo.PREMIUM_STATUSES
-                and self.highest_status in amo.PREMIUM_STATUSES
-                and self.type in amo.ADDON_BECOME_PREMIUM)
-
-    def is_premium(self):
-        """
-        If the addon is premium. Will include addons that are premium
-        and have a price of zero. Primarily of use in the devhub to determine
-        if an app is intending to be premium.
-        """
-        return self.premium_type in amo.ADDON_PREMIUMS
-
-    def is_free(self):
-        """
-        This is the opposite of is_premium. Will not include apps that have a
-        price of zero. Primarily of use in the devhub to determine if an app is
-        intending to be free.
-        """
-        return not (self.is_premium() and self.premium and
-                    self.premium.price)
-
-    def is_free_inapp(self):
-        return self.premium_type == amo.ADDON_FREE_INAPP
-
-    def needs_payment(self):
-        return (self.premium_type not in
-                (amo.ADDON_FREE, amo.ADDON_OTHER_INAPP))
-
     def can_be_deleted(self):
         return not self.is_deleted
 
@@ -1327,32 +1281,23 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         public = (
             Addon.objects.no_cache().filter(status=amo.STATUS_PUBLIC,
                                   versions__files__status=amo.STATUS_PUBLIC)
-            .exclude(type__in=(amo.ADDON_PERSONA, amo.ADDON_WEBAPP))
+            .exclude(type=amo.ADDON_PERSONA)
             .values('id').annotate(last_updated=status_change))
 
         lite = (Addon.objects.no_cache().filter(status__in=amo.LISTED_STATUSES,
                                       versions__files__status=amo.STATUS_LITE)
-                .exclude(type=amo.ADDON_WEBAPP)
                 .values('id').annotate(last_updated=status_change))
 
         stati = amo.LISTED_STATUSES + (amo.STATUS_PUBLIC,)
         exp = (Addon.objects.no_cache().exclude(status__in=stati)
                .filter(versions__files__status__in=amo.VALID_STATUSES)
-               .exclude(type=amo.ADDON_WEBAPP)
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
         personas = (Addon.objects.no_cache().filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
-        webapps = (Addon.objects.no_cache()
-                   .filter(type=amo.ADDON_WEBAPP,
-                           status=amo.STATUS_PUBLIC,
-                           versions__files__status=amo.STATUS_PUBLIC)
-                   .values('id')
-                   .annotate(last_updated=Max('versions__created')))
-
         return dict(public=public, exp=exp, personas=personas,
-                    lite=lite, webapps=webapps)
+                    lite=lite)
 
     @amo.cached_property(writable=True)
     def all_categories(self):
@@ -1547,11 +1492,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return old_locale, locale
         return None
 
-    @property
-    def app_type(self):
-        # Not implemented for non-webapps.
-        return ''
-
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
         """
@@ -1638,14 +1578,6 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     if instance.is_disabled and not Addon(**attrs).is_disabled:
         for f in File.objects.filter(version__addon=instance.id):
             f.hide_disabled_file()
-
-
-def attach_devices(addons):
-    addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
-    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
-               .values_list('addon', 'device_type'))
-    for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
-        addon_dict[addon].device_ids = [d[1] for d in device_types]
 
 
 def attach_categories(addons):
@@ -2200,40 +2132,6 @@ class AddonUpsell(amo.models.ModelBase):
     class Meta:
         db_table = 'addon_upsell'
         unique_together = ('free', 'premium')
-
-    def __unicode__(self):
-        return u'Free: %s to Premium: %s' % (self.free, self.premium)
-
-    @amo.cached_property
-    def premium_addon(self):
-        """
-        Return the premium version, or None if there isn't one.
-        """
-        try:
-            return self.premium
-        except Addon.DoesNotExist:
-            pass
-
-    def cleanup(self):
-        try:
-            # Just accessing these may raise an error.
-            assert self.free and self.premium
-        except ObjectDoesNotExist:
-            log.info('Deleted upsell: from %s, to %s' %
-                     (self.free_id, self.premium_id))
-            self.delete()
-
-
-def cleanup_upsell(sender, instance, **kw):
-    if 'raw' in kw:
-        return
-
-    both = Q(free=instance) | Q(premium=instance)
-    for upsell in list(AddonUpsell.objects.filter(both)):
-        upsell.cleanup()
-
-dbsignals.post_delete.connect(cleanup_upsell, sender=Addon,
-                              dispatch_uid='addon_upsell')
 
 
 class CompatOverride(amo.models.ModelBase):

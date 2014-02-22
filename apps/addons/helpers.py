@@ -50,12 +50,6 @@ def impala_performance_note(context, amount, listing=False):
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/impala/upsell_note.html')
-@jinja2.contextfunction
-def upsell_note(context, addon, module_context='impala'):
-    return new_context(**locals())
-
-
 @register.inclusion_tag('addons/impala/dependencies_note.html')
 @jinja2.contextfunction
 def dependencies_note(context, addon, module_context='impala'):
@@ -228,10 +222,9 @@ def addon_hovercard(context, addon, lazyload=False, src=None, dl_src=None):
     if not dl_src:
         dl_src = context.get('dl_src', src)
     vital_summary = context.get('vital_summary') or 'rating'
-    vital_more_default = 'downloads' if addon.is_webapp() else 'adu'
     vital_more = context.get('vital_more')
     if 'vital_more' not in context:
-        vital_more = vital_more_default
+        vital_more = 'adu'
     return new_context(**locals())
 
 

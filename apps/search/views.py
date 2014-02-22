@@ -215,7 +215,7 @@ class SearchSuggestionsAjax(BaseAjaxSearch):
 
 
 class AddonSuggestionsAjax(SearchSuggestionsAjax):
-    # No personas. No webapps.
+    # No personas.
     types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
              amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
@@ -274,16 +274,12 @@ def _build_suggestions(request, cat, suggester):
 
         # Categories.
         cats = Category.objects
-        if cat == 'apps':
-            cats = cats.filter(type=amo.ADDON_WEBAPP)
+        cats = cats.filter(Q(application=request.APP.id) |
+                           Q(type=amo.ADDON_SEARCH))
+        if cat == 'themes':
+            cats = cats.filter(type=amo.ADDON_PERSONA)
         else:
-            cats = cats.filter(Q(application=request.APP.id) |
-                               Q(type=amo.ADDON_SEARCH))
-            if cat == 'themes':
-                cats = cats.filter(type=amo.ADDON_PERSONA)
-            else:
-                cats = cats.exclude(type__in=[amo.ADDON_PERSONA,
-                                              amo.ADDON_WEBAPP])
+            cats = cats.exclude(type=amo.ADDON_PERSONA)
 
         for c in cats:
             if not c.name:
@@ -387,11 +383,10 @@ def _filter_search(request, qs, query, filters, sorting,
     else:
         qs = qs.filter(type__in=types)
     if 'cat' in show:
-        if amo.ADDON_WEBAPP not in types:
-            cat = (Category.objects.filter(id=query['cat'])
-                   .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
-            if not cat.exists():
-                show.remove('cat')
+        cat = (Category.objects.filter(id=query['cat'])
+               .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
+        if not cat.exists():
+            show.remove('cat')
         if 'cat' in show:
             qs = qs.filter(category=query['cat'])
     if 'tag' in show:
@@ -511,15 +506,13 @@ def sort_sidebar(request, form_data, form):
 def category_sidebar(request, form_data, facets):
     APP = request.APP
     qatype, qcat = form_data.get('atype'), form_data.get('cat')
-    webapp = qatype == amo.ADDON_WEBAPP
     cats = [f['term'] for f in facets['categories']]
     categories = Category.objects.filter(id__in=cats)
     if qatype in amo.ADDON_TYPES:
         categories = categories.filter(type=qatype)
-    if not webapp:
-        # Search categories don't have an application.
-        categories = categories.filter(Q(application=APP.id) |
-                                       Q(type=amo.ADDON_SEARCH))
+    # Search categories don't have an application.
+    categories = categories.filter(Q(application=APP.id) |
+                                   Q(type=amo.ADDON_SEARCH))
 
     # If category is listed as a facet but type is not, then show All.
     if qcat in cats and not qatype:
@@ -535,20 +528,18 @@ def category_sidebar(request, form_data, facets):
 
     rv = []
     cat_params = dict(cat=None)
-    all_label = _(u'All Apps') if webapp else _(u'All Add-ons')
+    all_label = _(u'All Add-ons')
 
-    if not webapp or (webapp and not categories):
-        rv = [FacetLink(all_label, dict(atype=None, cat=None), not qatype)]
+    rv = [FacetLink(all_label, dict(atype=None, cat=None), not qatype)]
 
     for addon_type, cats in categories:
-        selected = (webapp and not qatype) or addon_type == qatype and not qcat
+        selected = not qatype or addon_type == qatype and not qcat
 
         # Build the linkparams.
         cat_params = cat_params.copy()
-        if not webapp:
-            cat_params.update(atype=addon_type)
+        cat_params.update(atype=addon_type)
 
-        link = FacetLink(all_label if webapp else amo.ADDON_TYPES[addon_type],
+        link = FacetLink(amo.ADDON_TYPES[addon_type],
                          cat_params, selected)
         link.children = [FacetLink(c.name, dict(cat_params, **dict(cat=c.id)),
                                    c.id == qcat) for c in cats]

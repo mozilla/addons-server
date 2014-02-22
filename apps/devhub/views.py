@@ -48,7 +48,6 @@ from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import parse_addon
-from paypal.check import Check
 from search.views import BaseAjaxSearch
 from stats.models import Contribution
 from translations.models import delete_translation
@@ -1653,20 +1652,6 @@ def docs(request, doc_name=None, doc_page=None):
 
 def builder(request):
     return render(request, 'devhub/builder.html')
-
-
-@json_view
-@post_required
-def check_paypal(request):
-    if 'email' not in request.POST:
-        raise http.Http404()
-
-    check = Check(paypal_id=request.POST['email'])
-    check.all()
-    # TODO(andym): we will want to l10n these messages at some point and
-    # we'll need to change this to give more detail back to the user than
-    # a tooltip at a later date.
-    return {'valid': check.passed, 'message': ' '.join(check.errors)}
 
 
 def search(request):

@@ -170,18 +170,6 @@ class ActivityLogManager(amo.models.ManagerBase):
         else:
             return self.none()
 
-    def for_apps(self, apps):
-        if isinstance(apps, Webapp):
-            apps = (apps,)
-
-        vals = (AppLog.objects.filter(addon__in=apps)
-                .values_list('activity_log', flat=True))
-
-        if vals:
-            return self.filter(pk__in=list(vals))
-        else:
-            return self.none()
-
     def for_version(self, version):
         vals = (VersionLog.objects.filter(version=version)
                 .values_list('activity_log', flat=True))
@@ -204,13 +192,13 @@ class ActivityLogManager(amo.models.ManagerBase):
     def editor_events(self):
         return self.filter(action__in=amo.LOG_EDITORS)
 
-    def review_queue(self, webapp=False):
-        qs = self._by_type(webapp)
+    def review_queue(self):
+        qs = self._by_type()
         return (qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID))
 
-    def total_reviews(self, webapp=False, theme=False):
-        qs = self._by_type(webapp)
+    def total_reviews(self, theme=False):
+        qs = self._by_type()
         """Return the top users, and their # of reviews."""
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(action__in=([amo.LOG.THEME_REVIEW.id] if theme
@@ -219,9 +207,9 @@ class ActivityLogManager(amo.models.ManagerBase):
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
 
-    def monthly_reviews(self, webapp=False, theme=False):
+    def monthly_reviews(self, theme=False):
         """Return the top users for the month, and their # of reviews."""
-        qs = self._by_type(webapp)
+        qs = self._by_type()
         now = datetime.now()
         created_date = datetime(now.year, now.month, 1)
         return (qs.values('user', 'user__display_name', 'user__username')
@@ -239,16 +227,15 @@ class ActivityLogManager(amo.models.ManagerBase):
         except StopIteration:
             return None
 
-    def total_reviews_user_position(self, user, webapp=False, theme=False):
-        return self.user_position(self.total_reviews(webapp, theme), user)
+    def total_reviews_user_position(self, user, theme=False):
+        return self.user_position(self.total_reviews(theme), user)
 
-    def monthly_reviews_user_position(self, user, webapp=False, theme=False):
-        return self.user_position(self.monthly_reviews(webapp, theme), user)
+    def monthly_reviews_user_position(self, user, theme=False):
+        return self.user_position(self.monthly_reviews(theme), user)
 
-    def _by_type(self, webapp=False):
+    def _by_type(self):
         qs = super(ActivityLogManager, self).get_query_set()
-        table = (table_name('log_activity_app') if webapp
-                 else table_name('log_activity_addon'))
+        table = table_name('log_activity_addon')
         return qs.extra(
             tables=[table],
             where=['%s.activity_log_id=%s.id'

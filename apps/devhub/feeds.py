@@ -20,8 +20,8 @@ class ActivityFeedRSS(Feed):
     def items(self, key):
         if key.addon:
             addons = key.addon
-        else:  # We are showing all the add-ons (excluding apps).
-            addons = key.user.addons.exclude(type=amo.ADDON_WEBAPP)
+        else:  # We are showing all the add-ons
+            addons = key.user.addons.all()
 
         return (ActivityLog.objects.for_addons(addons)
                            .exclude(action__in=amo.LOG_HIDE_DEVELOPER))[:20]
