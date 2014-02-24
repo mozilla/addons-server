@@ -22,7 +22,7 @@ class RegionMiddleware(object):
         ip_reg = self.geoip.lookup(address)
         log.info('Geodude lookup for {0} returned {1}'
                  .format(address, ip_reg))
-        return mkt.regions.REGIONS_DICT.get(ip_reg, mkt.regions.RESTOFWORLD)
+        return mkt.regions.REGION_LOOKUP.get(ip_reg, mkt.regions.RESTOFWORLD)
 
     def process_request(self, request):
         regions = mkt.regions.REGION_LOOKUP
