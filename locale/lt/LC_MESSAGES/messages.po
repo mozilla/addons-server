@@ -3,18 +3,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-02-24 21:21+0000\n"
+"Last-Translator: Paulius <ekstras@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1393276875.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
-msgstr ""
+msgstr "Parsisiųsti"
 
 #: apps/addons/buttons.py:196
 #: apps/addons/templates/addons/impala/details.html:90
@@ -29,39 +32,39 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:86
 #: mkt/operators/templates/operators/preloads.html:50
 msgid "Download"
-msgstr ""
+msgstr "Siųstis"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: apps/addons/buttons.py:200
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr ""
+msgstr "Pereiti prie parsisiuntimo"
 
 #: apps/addons/buttons.py:205
 msgid "Install App"
-msgstr ""
+msgstr "Įdiegti priedą"
 
 #: apps/addons/buttons.py:219
 msgctxt "install_button"
 msgid "Featured"
-msgstr ""
+msgstr "Rekomenduojamas"
 
 #: apps/addons/buttons.py:224
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Neperžiūrėtas"
 
 #: apps/addons/buttons.py:231
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "Bandomasis"
 
 #: apps/addons/buttons.py:238
 msgid "Add to {0}"
-msgstr ""
+msgstr "Pridėti į {0}"
 
 #: apps/addons/forms.py:50
 msgid "This name is already in use. Please choose another."
-msgstr ""
+msgstr "Pavadinimas jau naudojamas. Prašome sugalvoti kitą."
 
 #: apps/addons/forms.py:62
 #: mkt/developers/forms.py:625
@@ -79,44 +82,54 @@ msgstr ""
 #: apps/addons/forms.py:84
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Klaidinga žyma: {0}"
+msgstr[1] "Klaidingos žymos: {0}"
+msgstr[2] "Klaidingos žymos: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:94
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" yra rezervuota žyma ir negali būtų naudojama."
+msgstr[1] "\"{0}\" yra rezervuotos žymos ir negali būti naudojamos."
+msgstr[2] "\"{0}\" yra rezervuotos žymos ir negali būti naudojamos."
 
 #: apps/addons/forms.py:102
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Jūs turite {0} žyma per daug."
+msgstr[1] "Jūs turite {0} žymomis per daug."
+msgstr[2] "Jūs turite {0} žymų per daug."
 
 #: apps/addons/forms.py:107
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
+"Žymos turi būti %s arba mažiau simbolių ilgio po neteisingų simbolių "
+"pašalinimo."
 
 #: apps/addons/forms.py:111
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Visos žymos turi būti bent iš {0} simbolio."
+msgstr[1] "Visos žymos turi būti bent iš {0} simbolių."
+msgstr[2] "Visos žymos turi būti bent iš {0} simbolių."
 
 #: apps/addons/forms.py:249
 msgid ""
 "Categories cannot be changed while your app is featured for this "
 "application."
 msgstr ""
+"Kategorijos negali būti keičiamos kol jūsų programėlė yra rekomenduojama "
+"šiai programai."
 
 #: apps/addons/forms.py:252
 msgid ""
 "Categories cannot be changed while your add-on is featured for this "
 "application."
 msgstr ""
+"Kategorijos negali būti keičiamos kol jūsų priedas yra rekomenduojamas šiai "
+"programėlei."
 
 #. L10n: {0} is the number of categories.
 #: apps/addons/forms.py:256
@@ -124,24 +137,28 @@ msgstr ""
 #: mkt/webapps/api.py:264
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Jūs galite turėti tik {0} kategoriją."
+msgstr[1] "Jūs galite turėti tik {0} kategorijas."
+msgstr[2] "Jūs galite turėti tik {0} kategorijų."
 
 #: apps/addons/forms.py:264
 msgid ""
 "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
+"The miscellaneous category cannot be combined with additional categories."
 
 #: apps/addons/forms.py:395
 msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
 msgstr ""
+"Prieš keisdami savo numatytąją lokalę, turite turėti pavadinimą, santrauką "
+"bei aprašymą toje lokalėje. Jums trūksta %s."
 
 #: apps/addons/forms.py:510
 #: apps/addons/forms.py:584
 msgid "A license must be selected."
-msgstr ""
+msgstr "Turi būti pasirinkta licencija"
 
 #: apps/addons/forms.py:571
 msgid "Give Your Theme a Name."
@@ -158,7 +175,7 @@ msgstr ""
 
 #: apps/addons/helpers.py:35
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Neperžiūrėtas"
 
 #: apps/addons/helpers.py:35
 #: apps/addons/views.py:329
@@ -177,31 +194,33 @@ msgstr ""
 #: apps/browse/templates/browse/impala/category_landing.html:24
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
-msgstr ""
+msgstr "Rekomenduojamas"
 
 #: apps/addons/models.py:291
 msgid "Users have the option of contributing more or less than this amount."
-msgstr ""
+msgstr "Naudotojai turi galimybę paremti didesne ar mažesne suma už šią."
 
 #: apps/addons/models.py:300
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr ""
+"Naudotojų bus visada klausiama „Priedų tvarkytuvėje“ („Firefox 4“ ir "
+"naujesnėse versijose)"
 
 #: apps/addons/models.py:2048
 msgid "Listed"
-msgstr ""
+msgstr "Išvardinta"
 
 #: apps/addons/views.py:330
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
-msgstr ""
+msgstr "Populiarus"
 
 #: apps/addons/views.py:331
 #: apps/browse/views.py:234
 #: apps/browse/views.py:292
 #: apps/browse/views.py:473
 msgid "Recently Added"
-msgstr ""
+msgstr "Neseniai pridėtas"
 
 #: apps/addons/views.py:332
 #: apps/bandwagon/views.py:90
@@ -210,58 +229,59 @@ msgstr ""
 #: apps/search/forms.py:17
 #: apps/search/forms.py:95
 msgid "Recently Updated"
-msgstr ""
+msgstr "Neseniai atnaujintas"
 
 #: apps/addons/views.py:515
 msgid "Contribution for {0}"
-msgstr ""
+msgstr "Paremti už {0}"
 
 #: apps/addons/views.py:608
 msgid "Abuse reported."
-msgstr ""
+msgstr "Pranešta apie piktnaudžiavimą."
 
 #: apps/addons/widgets.py:48
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Mano priedas netinka nė į vieną iš esamų kategorijų"
 
 #: apps/addons/templates/addons/author_other_addons.html:4
 #: apps/addons/templates/addons/impala/details-more.html:93
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kiti %(author)s priedai"
+msgstr[1] "Kiti šių autorių priedai"
+msgstr[2] "Kiti šių autorių priedai"
 
 #: apps/addons/templates/addons/author_other_addons.html:27
 msgctxt "addons_author_addons_submit"
 msgid "Go"
-msgstr ""
+msgstr "Pirmyn"
 
 #: apps/addons/templates/addons/button.html:27
 #: apps/addons/templates/addons/impala/button.html:13
 #: apps/addons/templates/addons/mobile/button.html:11
 msgid "No compatible versions"
-msgstr ""
+msgstr "Jokių suderinamų versijų"
 
 #: apps/addons/templates/addons/button.html:35
 #: apps/addons/templates/addons/impala/button.html:21
 msgid "Added to Mobile"
-msgstr ""
+msgstr "Pridėta prie mobilių"
 
 #: apps/addons/templates/addons/button.html:37
 #: apps/addons/templates/addons/impala/button.html:23
 msgid "Add to Mobile"
-msgstr ""
+msgstr "Pridėti prie mobilių"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: apps/addons/templates/addons/button.html:68
 #: apps/addons/templates/addons/includes/install_button.html:29
 msgid "for {0}"
-msgstr ""
+msgstr "skirta {0}"
 
 #: apps/addons/templates/addons/button.html:84
 #: apps/addons/templates/addons/mobile/button.html:28
 msgid "View privacy policy"
-msgstr ""
+msgstr "Peržiūrėti privatumo nuostatus"
 
 #. EULA stands for End-User License Agreement.
 #: apps/addons/templates/addons/button.html:90
@@ -269,7 +289,7 @@ msgstr ""
 #: apps/addons/templates/addons/mobile/button.html:34
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View EULA"
-msgstr ""
+msgstr "Peržiūrėti EULA"
 
 #: apps/addons/templates/addons/button.html:95
 #: apps/addons/templates/addons/impala/button.html:62
@@ -277,6 +297,7 @@ msgid ""
 "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn "
 "more</a>"
 msgstr ""
+"„Mozilla“ neperžiūrėjo šio priedo. <a href=\"%(url)s\">Sužinokite daugiau</a>"
 
 #: apps/addons/templates/addons/button.html:100
 #: apps/addons/templates/addons/impala/button.html:69
@@ -284,6 +305,8 @@ msgid ""
 "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%"
 "(url)s\">Learn more</a>"
 msgstr ""
+"„Mozilla“ preliminariai peržiūrėjo šį priedą. <a href=\"%(url)s\">Sužinoti "
+"daugiau/a>"
 
 #: apps/addons/templates/addons/collections_sidebar.html:11
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
@@ -292,40 +315,44 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31
 #: apps/users/templates/users/helpers/addon_users_list.html:7
 msgid "by %(users)s"
-msgstr ""
+msgstr "sukūrė %(users)s"
 
 #. {0} is the number of add-ons.
 #: apps/addons/templates/addons/collections_sidebar.html:21
 msgid "<strong>{0}</strong> add-on"
 msgid_plural "<strong>{0}</strong> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> priedas"
+msgstr[1] "<strong>{0}</strong> priedai"
+msgstr[2] "<strong>{0}</strong> priedų"
 
 #. {0} is the number of subscribers.
 #: apps/addons/templates/addons/collections_sidebar.html:29
 msgid "<span>{0}</span> follower"
 msgid_plural "<span>{0}</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>{0}</span> sekėjas"
+msgstr[1] "<span>{0}</span> sekėjai"
+msgstr[2] "<span>{0}</span> sekėjų"
 
 #: apps/addons/templates/addons/collections_teaser.html:7
 msgid "Introduction"
-msgstr ""
+msgstr "Įžanga"
 
 #: apps/addons/templates/addons/collections_teaser.html:15
 #: apps/discovery/templates/discovery/pane.html:24
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "Kas yra priedai?"
 
 #: apps/addons/templates/addons/collections_teaser.html:19
 msgid "Extras"
-msgstr ""
+msgstr "Papildiniai"
 
 #: apps/addons/templates/addons/collections_teaser.html:22
 msgid ""
 "<strong>Over 5000 free extras</strong> that let you customize and extend "
 "Firefox to meet your needs."
 msgstr ""
+"<strong>Virš 5000 nemokamų papildinių</strong>, leidžiančių keisti ir "
+"išplėsti „Firefox“ galimybes, taip pritaikant ją savo reikmėms."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -355,32 +382,34 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/performance.html:28
 #: templates/menu_links.html:9
 msgid "Themes"
-msgstr ""
+msgstr "Temos"
 
 #: apps/addons/templates/addons/collections_teaser.html:33
 msgid ""
 "Toolbars, themes and search providers that <strong>help you perform common "
 "tasks.</strong>"
 msgstr ""
+"Įrankių juostos, temos bei paieškos servisų tiekėjai, kurie <strong>padeda "
+"jums atlikti kasdienes užduotis.</strong>"
 
 #: apps/addons/templates/addons/collections_teaser.html:41
 #: apps/addons/templates/addons/includes/install_button.html:14
 #: mkt/receipts/templates/receipts/test_manifest.html:36
 #: mkt/site/helpers.py:92
 msgid "Install"
-msgstr ""
+msgstr "Įdiegti"
 
 #: apps/addons/templates/addons/collections_teaser.html:44
 msgid "<strong>Easy to install</strong> and keep up-to-date."
-msgstr ""
+msgstr "<strong>Lengva įdiegti</strong> ir atnaujinti."
 
 #: apps/addons/templates/addons/collections_teaser.html:63
 msgid "Learn more about this add-on"
-msgstr ""
+msgstr "Sužinoti apie šį priedą daugiau"
 
 #: apps/addons/templates/addons/collections_teaser.html:73
 msgid "Like these? Find more add-ons in the {0} collection."
-msgstr ""
+msgstr "Patinka šie? Atrask daugiau priedų kolekcijoje „{0}“"
 
 #: apps/addons/templates/addons/contribution.html:11
 #: apps/addons/templates/addons/impala/developers.html:44
@@ -388,24 +417,30 @@ msgid ""
 "The developer of this add-on asks that you help support its continued "
 "development by making a small contribution."
 msgstr ""
+"Šio priedo kūrėjas prašo padėti užtikrinti tolimesnį jo plėtojimą paremiant "
+"nedidele auka."
 
 #: apps/addons/templates/addons/contribution.html:14
 msgid ""
 "The developer of this add-on asks that you show your support by making a "
 "donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"Šio priedo kūrėjas prašo jūsų parodyti savo neabejingumą skiriant paramą "
+"labdarai: <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:19
 msgid ""
 "The developer of this add-on asks that you show your support by making a "
 "small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"Šio priedo kūrėjas prašo jūsų parodyti savo paramą skiriant nedidelę auką "
+"labdarai: <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:30
 #: apps/addons/templates/addons/impala/contribution.html:18
 #: templates/menu_links.html:25
 msgid "Contribute"
-msgstr ""
+msgstr "Paaukoti"
 
 #. Click Contribute button OR Install button
 #. This 'or' goes between two choices in a dialog.
@@ -446,22 +481,24 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 #: mkt/submit/templates/submit/done.html:50
 msgid "or"
-msgstr ""
+msgstr "arba"
 
 #: apps/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "Siūloma auka: {0}"
 
 #: apps/addons/templates/addons/contribution.html:48
 #: apps/amo/templates/amo/recaptcha.html:5
 msgid "What's this?"
-msgstr ""
+msgstr "Kas tai?"
 
 #: apps/addons/templates/addons/contribution.html:63
 msgid ""
 "The developer of this add-on would like you to consider making a donation to "
 "the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
+"Šio priedo kūrėjas norėtų paprašyti jūsų paremti  <a href=\"%(charity_url)s\">"
+"%(charity_name)s</a>, jeigu jums patiko šis priedas."
 
 #: apps/addons/templates/addons/contribution.html:69
 msgid ""
@@ -469,6 +506,8 @@ msgid ""
 "contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy "
 "using it."
 msgstr ""
+"Šio priedo kūrėjas norėtų paprašyti jūsų skirti nedidelę auką <a href=\"%"
+"(charity_url)s\">%(charity_name)s</a>, jeigu jums patiko šis priedas."
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid ""
@@ -476,16 +515,20 @@ msgid ""
 "ecosystem. Your optional contribution helps sustain further development of "
 "this add-on."
 msgstr ""
+"Mozilla yra įsipareigojusi remti energingą ir sveiką kūrėjų ekosistemą. Jūsų "
+"pasirinkta auka padeda išlaikyti tolimesnį šio priedo plėtojimą."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
-msgstr ""
+msgstr "Paaukoti"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid ""
 "Help support the continued development of <strong>%(addon_name)s</strong> by "
 "making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Padėkite palaikyti tolimesnį priedo <strong>%(addon_name)s</strong> "
+"plėtojimą paaukodami nedielę sumą per <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
@@ -493,6 +536,9 @@ msgid ""
 "make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> "
 "through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Norėdami parodyti savo palaikymą <b>%(addon_name)s</b> predui, paklausykite "
+"kūrėjo prašymo paremti <a href=\"%(charity_url)s\">%(charity_name)s</a> per <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
@@ -500,37 +546,40 @@ msgid ""
 "make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> "
 "through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Norėdami parodyti savo palaikymą <b>%(addon_name)s</b> predui, paklausykite "
+"kūrėjo prašymo skirti nedidelę auką <a href=\"%(charity_url)s\">%"
+"(charity_name)s</a> per <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "Kiek norėtumėte paaukoti?"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
-msgstr ""
+msgstr "Didžiausia auka gali būti {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:37
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "Mažiausia auka gali būti {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "Aukojama suma turi būti skaičius."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: apps/addons/templates/addons/contributions_lightbox.html:52
 msgid "A one-time suggested contribution of {0}"
-msgstr ""
+msgstr "Vienkartinė siūloma auka yra {0}."
 
 #. {0} is a currency symbol (e.g., $),
 #.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
-msgstr ""
+msgstr "Vienkartinė {0} {1} auka"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
-msgstr ""
+msgstr "Palike komentarą ar užklausą prie savo aukos."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:74
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:20
@@ -538,34 +587,34 @@ msgstr ""
 #: apps/reviews/templates/reviews/mobile/add_form.html:13
 #: templates/includes/forms.html:10
 msgid "(optional)"
-msgstr ""
+msgstr "(nebūtina)"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:80
 msgid "Make Contribution"
-msgstr ""
+msgstr "Paaukoti"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:82
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "Jungiamsi su PayPal"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:83
 msgid "No Thanks"
-msgstr ""
+msgstr "Ne, ačiū"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Auka gauta, ačiū jums."
 
 #: apps/addons/templates/addons/details_box.html:10
 #: apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
-msgstr ""
+msgstr "Nereikalingas perkrovimas"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: apps/addons/templates/addons/details_box.html:30
 #: apps/addons/templates/addons/includes/persona.html:9
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr " Priedo {0} indormacija"
 
 #: apps/addons/templates/addons/details_box.html:34
 #: apps/addons/templates/addons/persona_detail_table.html:3
@@ -577,7 +626,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:75
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:95
 msgid "Updated"
-msgstr ""
+msgstr "Atnaujinta"
 
 #: apps/addons/templates/addons/details_box.html:42
 #: apps/addons/templates/addons/mobile/details.html:71
@@ -587,7 +636,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:81
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:101
 msgid "Website"
-msgstr ""
+msgstr "Svetainė"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: apps/addons/templates/addons/details_box.html:51
@@ -597,27 +646,27 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:90
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:110
 msgid "Works with"
-msgstr ""
+msgstr "Veikia su"
 
 #: apps/addons/templates/addons/details_box.html:60
 msgid "Required Apps"
-msgstr ""
+msgstr "Reikalingos programėlės"
 
 #: apps/addons/templates/addons/details_box.html:62
 #: apps/devhub/templates/devhub/addons/edit/technical.html:54
 msgid "Required Add-ons"
-msgstr ""
+msgstr "Reikalingi priedai"
 
 #: apps/addons/templates/addons/details_box.html:77
 #: apps/addons/templates/addons/persona_detail_table.html:15
 msgctxt "advanced_search_form_rating"
 msgid "Rating"
-msgstr ""
+msgstr "Reitingas"
 
 #: apps/addons/templates/addons/details_box.html:81
 msgctxt "list_sortby_downloads"
 msgid "Downloads"
-msgstr ""
+msgstr "Parsisiuntimai"
 
 #: apps/addons/templates/addons/details_box.html:87
 #: apps/addons/templates/addons/details_box.html:99
@@ -626,11 +675,11 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:101
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:121
 msgid "View Statistics"
-msgstr ""
+msgstr "Peržiūrėti statistiką"
 
 #: apps/addons/templates/addons/details_box.html:93
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Vidutiniškai kasdienių naudotojų"
 
 #: apps/addons/templates/addons/details_box.html:105
 #: mkt/lookup/templates/lookup/app_summary.html:67
@@ -639,7 +688,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:108
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Pranešimai apie piktnaudžiavimą"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116
@@ -655,14 +704,14 @@ msgstr ""
 #: templates/mobile/base_addons.html:87
 #: templates/mobile/base_apps.html:74
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Privatumo politika"
 
 #: apps/addons/templates/addons/details_box.html:119
 #: apps/discovery/templates/discovery/addons/detail.html:30
 #: mkt/reviewers/templates/reviewers/includes/details.html:127
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:147
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Peržiūrėti privatumo politiką"
 
 #. EULA stand for End User License Agreement
 #: apps/addons/templates/addons/details_box.html:125
@@ -670,26 +719,26 @@ msgstr ""
 #: apps/addons/templates/addons/impala/button.html:50
 #: apps/devhub/templates/devhub/includes/policy_form.html:3
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 #: apps/addons/templates/addons/details_box.html:166
 #: apps/addons/templates/addons/details_box.html:226
 msgid "More about this add-on"
-msgstr ""
+msgstr "Daugiau apie šį priedą"
 
 #: apps/addons/templates/addons/details_box.html:175
 msgid "Image Gallery"
-msgstr ""
+msgstr "Paveikslėlių galerija"
 
 #: apps/addons/templates/addons/details_box.html:185
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
-msgstr ""
+msgstr "Kūrėjo komentarai"
 
 #: apps/addons/templates/addons/details_box.html:194
 #: apps/addons/templates/addons/impala/details.html:279
 msgid "Development Channel"
-msgstr ""
+msgstr "Plėtojimo kanalas"
 
 #: apps/addons/templates/addons/details_box.html:197
 #: apps/addons/templates/addons/mobile/details.html:126
@@ -698,11 +747,14 @@ msgid ""
 "add-on before it's released to the general public. Once you install the "
 "development version, you will continue to get updates from this channel."
 msgstr ""
+"Plėtojimo kanalas leidžia jums testuoti naujas bandomąsias šio priedo "
+"versijas prieš joms būnant pateiktoms visiems naudotojams. Kai jūs įsirašote "
+"plėtojimo versiją, jums toliau bus siunčiami šio kanalo atnaujinimai."
 
 #: apps/addons/templates/addons/details_box.html:202
 #: apps/addons/templates/addons/impala/details.html:289
 msgid "Install development version"
-msgstr ""
+msgstr "Įdiegti plėtojimo versiją"
 
 #: apps/addons/templates/addons/details_box.html:206
 msgid ""
@@ -712,21 +764,25 @@ msgid ""
 "receiving development updates, reinstall the default version from the link "
 "above."
 msgstr ""
+"<strong>Dėmesio:</strong> šio priedo plėtojimo versijos nebuvo peržiūrėtos "
+"Mozilla atstovų. Įsidiegę plėtojimo versiją jūs toliaugausite plėtojimo "
+"atnaujinimus iš šio kūrėjo. Norėdami tai nutraukti, persirašykite įprastinę "
+"priedo versiją iš nuorodos viršuje."
 
 #: apps/addons/templates/addons/details_box.html:215
 #: apps/addons/templates/addons/impala/details.html:298
 msgid "Version {0}:"
-msgstr ""
+msgstr "Versija {0}:"
 
 #: apps/addons/templates/addons/details_box.html:229
 #: mkt/reviewers/templates/reviewers/includes/details.html:175
 msgid "Nothing to see here! The developer did not include any details."
-msgstr ""
+msgstr "Čia nieko nėra! Kūrėjas nepateikė jokių detalių."
 
 #: apps/addons/templates/addons/details_box.html:246
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr ""
+msgstr "Versijos pastabos"
 
 #: apps/addons/templates/addons/disabled.html:17
 #: apps/addons/templates/addons/persona_detail.html:19
@@ -738,34 +794,34 @@ msgstr ""
 #: apps/perf/templates/perf/index.html:78
 #: mkt/reviewers/templates/reviewers/review.html:20
 msgid "by"
-msgstr ""
+msgstr "sukūrė"
 
 #: apps/addons/templates/addons/disabled.html:23
 #: apps/addons/templates/addons/impala/disabled.html:26
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Autorius pašalino šį priedą."
 
 #: apps/addons/templates/addons/disabled.html:25
 #: apps/addons/templates/addons/impala/disabled.html:28
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Administratorius apribojo šį priedą"
 
 #: apps/addons/templates/addons/disabled.html:27
 msgid "This add-on is not ready for sale yet."
-msgstr ""
+msgstr "Šis priedas dar neparuoštas pardavimui."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 #: apps/addons/templates/addons/eula.html:6
 #: apps/discovery/templates/discovery/addons/eula.html:5
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Galutinio naudotojo licencijos sutikimas (EULA), skirtas {0}"
 
 #: apps/addons/templates/addons/eula.html:22
 #: apps/addons/templates/addons/impala/details.html:331
 #: apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "Galutinio naudotojo licencijos sutikimas (EULA)"
 
 #: apps/addons/templates/addons/eula.html:24
 #: apps/discovery/templates/discovery/addons/eula.html:13
@@ -773,27 +829,29 @@ msgid ""
 "%(addon_name)s requires that you accept the following End-User License "
 "Agreement before installation can proceed:"
 msgstr ""
+"%(addon_name)s prašo, kad sutiktumėte su toliau pateikiama galutinio "
+"naudotojo licencija prieš pradedant diegimą:"
 
 #: apps/addons/templates/addons/eula.html:35
 #: apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Grįžti į {0}…"
 
 #: apps/addons/templates/addons/home.html:3
 #: apps/addons/templates/addons/mobile/home.html:3
 #: apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "Priedai, skirti {0}"
 
 #: apps/addons/templates/addons/home.html:10
 #: apps/addons/templates/addons/home.html:51
 #: apps/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Rekomenduojami plėtiniai"
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Populiarūs plėtiniai"
 
 #: apps/addons/templates/addons/home.html:42
 #: apps/amo/templates/amo/side_nav.html:3
@@ -805,11 +863,11 @@ msgstr ""
 #: apps/browse/views.py:293
 #: apps/browse/views.py:472
 msgid "Most Popular"
-msgstr ""
+msgstr "Populiariausi"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr ""
+msgstr "Visi"
 
 #: apps/addons/templates/addons/home.html:52
 #: apps/addons/templates/addons/home.html:61
@@ -817,11 +875,11 @@ msgstr ""
 #: apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:38
 msgid "See all »"
-msgstr ""
+msgstr "Rodyti visus »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Up &amp; Coming plėtiniai"
 
 #: apps/addons/templates/addons/home.html:69
 #: apps/browse/templates/browse/personas/category_landing.html:61
@@ -833,14 +891,14 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:4
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
-msgstr ""
+msgstr "Rekomenduojamos kolekcijos"
 
 #: apps/addons/templates/addons/listing_header.html:3
 #: apps/addons/templates/addons/impala/listing/sorter.html:2
 #: apps/amo/templates/amo/mobile/sort_by.html:2
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:126
 msgid "Sort by:"
-msgstr ""
+msgstr "Rušiuoti pagal:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -852,7 +910,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:40
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:40
 msgid "Updated {0}"
-msgstr ""
+msgstr "Atnaujinta {0}"
 
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10
@@ -867,19 +925,21 @@ msgstr ""
 #: mkt/submit/forms.py:34
 #: mkt/submit/forms.py:44
 msgid "Added {0}"
-msgstr ""
+msgstr "Pridėta {0}"
 
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s parsisiuntimas per savaitę"
+msgstr[1] "%(num)s parsisiuntimai per savaitę"
+msgstr[2] "%(num)s parsisiuntimų per savaitę"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s naudotojas"
+msgstr[1] "%(num)s naudotojai"
+msgstr[2] "%(num)s naudotojų"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53
@@ -887,8 +947,9 @@ msgstr[1] ""
 #: mkt/detail/helpers.py:22
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} parsisiuntimas per savaitę"
+msgstr[1] "{0} parsisiuntimai per savaitę"
+msgstr[2] "{0} parsisiuntimų per savaitę"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61
@@ -897,44 +958,45 @@ msgstr[1] ""
 #: apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} vartotojas"
+msgstr[1] "{0} vartotojai"
+msgstr[2] "{0} vartotojų"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Mokėjimas atšauktas"
 
 #: apps/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr ""
+msgstr "Mokėjimas atliktas"
 
 #: apps/addons/templates/addons/paypal_result.html:32
 msgid "Thank you for purchasing the add-on"
-msgstr ""
+msgstr "Ačiū, kad nusipirkote šį priedą"
 
 #: apps/addons/templates/addons/paypal_result.html:39
 msgid "Return to the app."
-msgstr ""
+msgstr "Grįžti į programėlę"
 
 #: apps/addons/templates/addons/paypal_result.html:41
 msgid "Return to the addon."
-msgstr ""
+msgstr "Grįžti į priedą"
 
 #: apps/addons/templates/addons/paypal_start.html:9
 msgid "Purchased App"
-msgstr ""
+msgstr "Pirkta programėlė"
 
 #: apps/addons/templates/addons/paypal_start.html:10
 msgid "You've already bought this app!"
-msgstr ""
+msgstr "Jūs jau nusipirkote šią programėlę!"
 
 #: apps/addons/templates/addons/paypal_start.html:12
 msgid "Purchased Add-on"
-msgstr ""
+msgstr "Pirktas priedas"
 
 #: apps/addons/templates/addons/paypal_start.html:13
 msgid "You've already bought this add-on!"
-msgstr ""
+msgstr "Jūs jau nusipirkote šį priedą!"
 
 #: apps/addons/templates/addons/paypal_start.html:15
 msgid ""
@@ -942,30 +1004,33 @@ msgid ""
 "data-manifest-url=\"%(manifest_url)s\" href=\"%(href)s\" data-receipt=\"%"
 "(receipt)s\">click here</a>.</p>"
 msgstr ""
+"<p>Jei diegimas neprasideda automatiškai, prašome <a class=\"%(class)s\" data-"
+"manifest-url=\"%(manifest_url)s\" href=\"%(href)s\" data-receipt=\"%"
+"(receipt)s\">paspausti čia</a>.</p>"
 
 #: apps/addons/templates/addons/paypal_start.html:27
 msgid "Purchase App"
-msgstr ""
+msgstr "Pirkti programėlę"
 
 #: apps/addons/templates/addons/paypal_start.html:29
 msgid "Purchase Add-on"
-msgstr ""
+msgstr "Pirkti priedą"
 
 #: apps/addons/templates/addons/paypal_start.html:54
 msgid "You are logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "Jūs esate prisijungę kaip <strong>%(user_email)s</strong>!"
 
 #: apps/addons/templates/addons/performance_note.html:4
 #: apps/addons/templates/addons/performance_note.html:22
 #: apps/addons/templates/addons/impala/performance_note.html:4
 #: apps/addons/templates/addons/impala/performance_note.html:20
 msgid "This add-on can slow down Firefox."
-msgstr ""
+msgstr "Šis priedas gali sulėtinti Firefox."
 
 #: apps/addons/templates/addons/performance_note.html:5
 #: apps/amo/templates/amo/site_nav.html:76
 msgid "More&hellip;"
-msgstr ""
+msgstr "Daugiau&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:8
 #: apps/addons/templates/addons/impala/performance_note.html:8
@@ -973,13 +1038,15 @@ msgid ""
 "<b>Performance warning:</b> Installing this add-on can slow down Firefox's "
 "start-up by <b>%(amount)s%%</b>."
 msgstr ""
+"<b>Perspėjimas dėl veikimo:</b> šio priedo įdiegimas gali sulėtinti Firefox "
+"paleidimą <b>%(amount)s%%</b>."
 
 #: apps/addons/templates/addons/performance_note.html:14
 #: apps/addons/templates/addons/performance_note.html:27
 #: apps/addons/templates/addons/impala/performance_note.html:14
 #: apps/addons/templates/addons/impala/performance_note.html:26
 msgid "Learn more&hellip;"
-msgstr ""
+msgstr "Sužinoti daugiau&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:23
 #: apps/addons/templates/addons/impala/performance_note.html:22
@@ -987,6 +1054,7 @@ msgid ""
 "Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%"
 "</b>."
 msgstr ""
+"Šio priedo įdiegimas gali sulėtinti Firefox paleidimą <b>%(amount)s%%</b>."
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
@@ -1001,7 +1069,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
-msgstr ""
+msgstr "Daugiau  šio kūrėjo darbų"
 
 #: apps/addons/templates/addons/persona_detail.html:54
 #: apps/addons/templates/addons/mobile/persona_detail.html:49
@@ -1021,20 +1089,20 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/themes/themes.html:35
 #: templates/categories.html:7
 msgid "Categories"
-msgstr ""
+msgstr "Kategorijos"
 
 #: apps/addons/templates/addons/persona_detail_table.html:10
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:3
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:19
 #: mkt/reviewers/templates/reviewers/themes/themes.html:25
 msgid "Artist"
-msgstr ""
+msgstr "Kūrėjas"
 
 #: apps/addons/templates/addons/persona_detail_table.html:19
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:14
 #: apps/stats/templates/stats/addon_report_menu.html:17
 msgid "Daily Users"
-msgstr ""
+msgstr "Kasdienių naudotojų"
 
 #. The License for this add-on.
 #: apps/addons/templates/addons/persona_detail_table.html:26
@@ -1044,7 +1112,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/edit.html:89
 #: mkt/reviewers/templates/reviewers/themes/themes.html:42
 msgid "License"
-msgstr ""
+msgstr "Licencija"
 
 #: apps/addons/templates/addons/persona_preview.html:12
 msgid "Awaiting Review"
@@ -1071,12 +1139,13 @@ msgstr ""
 #: apps/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> naudotojas"
+msgstr[1] "<strong>{0}</strong> naudotojai"
+msgstr[2] "<strong>{0}</strong> naudotojų"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Užveskite pelę peržiūrai"
 
 #: apps/addons/templates/addons/persona_preview.html:46
 #: apps/addons/templates/addons/persona_preview.html:48
@@ -1113,11 +1182,11 @@ msgstr ""
 #. For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #: apps/addons/templates/addons/persona_preview.html:66
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "sukūrė {0}, tarp {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75
 #: apps/reviews/helpers.py:16
@@ -1125,26 +1194,28 @@ msgstr ""
 #: apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:12
 msgid "Not yet rated"
-msgstr ""
+msgstr "Dar neįvertintas"
 
 #: apps/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> naudotojų"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid ""
 "To install this add-on and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"Norėdami įdiegti šį ir tūkstančius kitų priedų, <b>parsisiųskite "
+"Firefox</b>, nemokamą bei atvirą interneto naršyklę iš Mozilla."
 
 #: apps/addons/templates/addons/popups.html:21
 #: apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "Sužinokite daugiau apie Firefox"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "arba <b><a class=\"installer\" href=\"{url}\">siųskitės vistiek</a></b>"
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
@@ -1154,6 +1225,11 @@ msgid ""
 "search field, select \"Install Add-on From File...\" and locate the downloaded "
 "add-on.</li> </ol>"
 msgstr ""
+"<strong>Kaip įdiegti į Thunderbird</strong> <ol><li>Parsisiųskite ir "
+"išsisaugokite failą.</li><li>Atsidarę Mozilla Thunderbird, atverkite "
+"„Priedų“ parinktis iš „Įrankių“ meniu.</li> <li>Iš parinkčių mygtuko šalia "
+"priedų paieškos laukelio pasirinkite „Įdiegti priedą iš failo...“ bei "
+"suraskite parsisiųstą priedą."
 
 #: apps/addons/templates/addons/popups.html:41
 msgid ""
@@ -1163,7 +1239,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "Sužinoti daugiau apie Thunderbird"
 
 #: apps/addons/templates/addons/popups.html:48
 msgid ""
@@ -1174,55 +1250,66 @@ msgstr ""
 #: apps/addons/templates/addons/popups.html:60
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr ""
+"Šis priedas dar nebuvo atnaujintas, kad veiktų su jūsų turima %(app)s "
+"versija."
 
 #: apps/addons/templates/addons/popups.html:63
 #: apps/addons/templates/addons/popups.html:140
 #: apps/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
-msgstr ""
+msgstr "Vis tiek įdiegti"
 
 #: apps/addons/templates/addons/popups.html:71
 msgid ""
 "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "Šis priedas reikalauja dar neišleistos Firefox versijos."
 
 #: apps/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Padėkite testuoti naujas Firefox versijas."
 
 #: apps/addons/templates/addons/popups.html:77
 msgid ""
 "This add-on requires %(app)s {new_version}. You are currently using %(app)s "
 "{old_version}."
 msgstr ""
+"Šis priedas reikalauja %(app)s {new_version}. Šiuo metu jūs naudojate %"
+"(app)s {old_version}."
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82
 #: apps/addons/templates/addons/popups.html:102
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "Atnaujinkite {0}"
 
 #: apps/addons/templates/addons/popups.html:85
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "arba peržiūrėkite <a href=\"%(href)s\">senesnes priedo versijas</a>."
 
 #: apps/addons/templates/addons/popups.html:97
 msgid ""
 "This Persona requires %(app)s %(new_version)s. You are currently using %"
 "(app)s {old_version}."
 msgstr ""
+"Ši „Persona“ reikalauja %(app)s {new_version}. Šiuo metu jūs naudojate %"
+"(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
 msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be "
 "careful when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Dėmesio:</strong> Šis priedas dar nebuvo peržiūrėtas Mozilla "
+"darbuotojų. Būkite atsargūs diegdami trečiųjų šalių programinę įrangą, kuri "
+"gali pakenkti jūsų kompiuteriui."
 
 #: apps/addons/templates/addons/popups.html:120
 msgid ""
 "<strong>Please note:</strong> This add-on is not compatible with your "
 "operating system."
 msgstr ""
+"<strong>Atkreipkite dėmesį:</strong> Šis priedas nėra suderinamas su jūsų "
+"operacine sistema."
 
 #: apps/addons/templates/addons/popups.html:136
 #: apps/addons/templates/addons/impala/button.html:79
@@ -1230,24 +1317,26 @@ msgid ""
 "This add-on is not compatible with your version of %(app)s because of the "
 "following:"
 msgstr ""
+"Šis priedas nėra suderinamas su jūsų naudojama %(app)s versija dėl šių "
+"priežasčių:"
 
 #: apps/addons/templates/addons/popups.html:141
 #: apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "Peržiūrėti kitas versijas"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Šis priedas nėra suderinamas su jūsų turima %(app)s versija."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "{0} privatumo politika"
 
 #: apps/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
-msgstr ""
+msgstr "Priedo QR kodas"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid ""
@@ -1255,13 +1344,16 @@ msgid ""
 "your phone. (You'll need a QR reader. Search your phone's marketplace if "
 "don't have one.)"
 msgstr ""
+"Norite {0} savo mobiliojoje Firefox? Nuskenuokite šį QR kodą ir galėsite "
+"įdiegti iškart savo telefone. (Jums reikės QR kodų skaitytuvo. Paieškote "
+"savo telefono programėlių parduotuvėje, jeigu jo dar neturite)."
 
 #: apps/addons/templates/addons/report_abuse.html:6
 #: apps/addons/templates/addons/report_abuse_full.html:11
 #: apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:343
 msgid "Report Abuse"
-msgstr ""
+msgstr "Pranešti apie piktnaudžiavimą"
 
 #: apps/addons/templates/addons/report_abuse.html:19
 msgid ""
@@ -1269,11 +1361,15 @@ msgid ""
 "has security or privacy issues, please use the form below to describe your "
 "concerns. Please do not use this form for any other reason."
 msgstr ""
+"Jeigu įtariate, kad šis priedas pažeidžia <a href=\"%(url)s\">mūsų "
+"taisykles</a> arba turi saugumo ar privatumo problemų, prašome pranešti apie "
+"savo susirūpinimą naudojantis žemiau esančia forma. Prašome nenaudoti jos "
+"jokiems kitiems dalykams."
 
 #: apps/addons/templates/addons/report_abuse.html:33
 #: apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
-msgstr ""
+msgstr "Siųsti pranešimą"
 
 #: apps/addons/templates/addons/report_abuse.html:35
 #: apps/addons/templates/addons/mobile/eula.html:16
@@ -1408,6 +1504,7 @@ msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -1512,12 +1609,14 @@ msgid "Other apps by %(author)s"
 msgid_plural "Other apps by these authors"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/addons/templates/addons/impala/details.html:43
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/addons/templates/addons/impala/details.html:71
 msgid "View statistics"
@@ -1537,6 +1636,7 @@ msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/addons/templates/addons/impala/details.html:150
 msgid "Learn why {0} was created and find out what's next for this app."
@@ -1672,6 +1772,7 @@ msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/addons/templates/addons/impala/developers.html:96
 #: apps/users/templates/users/edit.html:111
@@ -1726,6 +1827,7 @@ msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/addons/templates/addons/impala/review_list_box.html:48
 msgid "This app has not yet been reviewed."
@@ -1769,7 +1871,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/includes/install_button.html:16
 msgid "Purchase for {0}"
-msgstr ""
+msgstr "Pirkti už {0}"
 
 #: apps/addons/templates/addons/includes/install_button.html:19
 msgid "Add to Firefox"
@@ -1813,6 +1915,7 @@ msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/addons/templates/addons/listing/items_mobile.html:63
 msgid "Purchase Refunded"
@@ -2844,6 +2947,7 @@ msgid "Page {n}"
 msgid_plural "Page {n}"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/amo/templates/services/install.html:38
 msgid ""
@@ -3217,6 +3321,7 @@ msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:62
 msgid "About this Collection"
@@ -3256,12 +3361,14 @@ msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133
 #: apps/compat/templates/compat/index.html:25
@@ -3325,12 +3432,14 @@ msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:31
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:5
 msgid "Popular Collections"
@@ -3361,6 +3470,7 @@ msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -3369,6 +3479,7 @@ msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -3379,6 +3490,7 @@ msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:56
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9
@@ -3962,6 +4074,7 @@ msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
@@ -4103,12 +4216,14 @@ msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/browse/templates/browse/impala/category_landing.html:52
 msgid "See the %(cnt)s app in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s apps in %(name)s &raquo;"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/browse/templates/browse/mobile/extensions.html:13
 #: apps/compat/templates/compat/index.html:82
@@ -4324,12 +4439,14 @@ msgid "{0} success report"
 msgid_plural "{0} success reports"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/compat/templates/compat/reporter_detail.html:21
 #: apps/users/templates/users/profile.html:73
@@ -5268,6 +5385,7 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. L10n: first parameter is the number of warnings
 #: apps/devhub/helpers.py:201
@@ -5276,6 +5394,7 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/devhub/models.py:392
 #: apps/reviews/templates/reviews/add.html:86
@@ -6229,6 +6348,7 @@ msgid "<b>{0}</b> app"
 msgid_plural "<b>{0}</b> apps"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:32
 #: mkt/developers/templates/developers/apps/dashboard.html:14
@@ -6260,6 +6380,7 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/devhub/templates/devhub/addons/edit.html:3
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -6427,6 +6548,7 @@ msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:174
 #: apps/devhub/templates/devhub/personas/edit.html:100
@@ -6441,6 +6563,7 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:9
 msgid "Add-on Details"
@@ -6941,6 +7064,7 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:6
 msgid "No test results."
@@ -10183,6 +10307,7 @@ msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:4
 msgid ""
@@ -11090,6 +11215,7 @@ msgid "Full nomination will be available in {0} day"
 msgid_plural "Full nomination will be available in {0} days"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/devhub/templates/devhub/versions/list.html:138
 #: apps/devhub/templates/devhub/versions/list.html:340
@@ -11169,6 +11295,7 @@ msgid "{0} file is {1}"
 msgid_plural "{0} files are {1}"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/devhub/templates/devhub/versions/list.html:209
 msgid "0 files"
@@ -11740,30 +11867,35 @@ msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/helpers.py:139
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/helpers.py:143
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/helpers.py:147
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/helpers.py:152
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/helpers.py:182
 msgid "Addon"
@@ -11827,6 +11959,7 @@ msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. L10n: first argument is number of hours
 #: apps/editors/helpers.py:243
@@ -11834,6 +11967,7 @@ msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. L10n: first argument is number of days
 #: apps/editors/helpers.py:247
@@ -11841,6 +11975,7 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/helpers.py:436
 #: mkt/reviewers/utils.py:428
@@ -12131,24 +12266,28 @@ msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/templates/editors/home.html:36
 msgid "{c} unreviewed submissions."
 msgid_plural "{c} unreviewed submissions."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/templates/editors/home.html:41
 #: mkt/reviewers/templates/reviewers/home.html:45
@@ -12160,6 +12299,7 @@ msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/templates/editors/home.html:50
 #: mkt/reviewers/templates/reviewers/home.html:54
@@ -12194,6 +12334,7 @@ msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/editors/templates/editors/leaderboard.html:3
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:57
@@ -14772,6 +14913,7 @@ msgid_plural ""
 "this add-on."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid ""
@@ -14814,6 +14956,7 @@ msgid "<b>{0}</b> review for this app"
 msgid_plural "<b>{0}</b> reviews for this app"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. {0} is a number.
 #: apps/reviews/templates/reviews/review_list.html:33
@@ -14821,6 +14964,7 @@ msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. {0} is a developer's name.
 #: apps/reviews/templates/reviews/review_list.html:40
@@ -14832,6 +14976,7 @@ msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/reviews/templates/reviews/review_list.html:49
 msgid "No reviews found."
@@ -14855,6 +15000,7 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
@@ -14886,6 +15032,7 @@ msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
 msgid "by %(user)s"
@@ -14900,6 +15047,7 @@ msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/search/forms.py:12
 msgid "Most popular this week"
@@ -15032,6 +15180,7 @@ msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/search/templates/search/results.html:67
 msgid "Filter Results"
@@ -15055,6 +15204,7 @@ msgid "{0} post"
 msgid_plural "{0} posts"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/sharing/__init__.py:20
 msgid "Add to Delicious"
@@ -15069,6 +15219,7 @@ msgid "{0} digg"
 msgid_plural "{0} diggs"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/sharing/__init__.py:40
 msgid "Post to Facebook"
@@ -15083,6 +15234,7 @@ msgid "{0} share"
 msgid_plural "{0} shares"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/sharing/__init__.py:58
 msgid "Post to MySpace"
@@ -15097,6 +15249,7 @@ msgid "{0} tweet"
 msgid_plural "{0} tweets"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:78
@@ -15119,6 +15272,7 @@ msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:93
@@ -15141,6 +15295,7 @@ msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:108
@@ -15163,6 +15318,7 @@ msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this App"
@@ -16412,12 +16568,14 @@ msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/users/templates/users/vcard.html:68
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/users/templates/users/vcard.html:81
 msgid "Average rating of developer's add-ons"
@@ -16485,6 +16643,7 @@ msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: apps/versions/templates/versions/version_list.html:30
 #: apps/versions/templates/versions/mobile/version_list.html:14
@@ -19222,6 +19381,7 @@ msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
@@ -20123,6 +20283,7 @@ msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid ""
@@ -22761,6 +22922,7 @@ msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/views_themes.py:315
 msgid ""
@@ -22811,30 +22973,35 @@ msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:24
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:31
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:40
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:53
 msgid "{0} app"
 msgid_plural "{0} apps"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/logs.html:4
 msgid "App Review Log"
@@ -23033,24 +23200,28 @@ msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:25
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:32
 msgid "{num} Update"
 msgid_plural "{num} Updates"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:47
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/themes/logs.html:4
 msgid "Theme Review Log"
@@ -23924,4 +24095,4 @@ msgstr ""
 #. a link
 #: templates/mobile/header.html:10
 msgid "menu"
-msgstr ""
+msgstr "meniu"
