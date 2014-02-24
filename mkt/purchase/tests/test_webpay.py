@@ -32,7 +32,6 @@ class TestPurchase(PurchaseTest):
         super(TestPurchase, self).setUp()
         self.prepare_pay = reverse('webpay.prepare_pay',
                                    kwargs={'app_slug': self.addon.app_slug})
-        self.create_flag(name='solitude-payments')
         self.setup_package()
 
     def _req(self, method, url):
@@ -136,7 +135,6 @@ class TestPurchaseJWT(PurchaseTest):
         super(TestPurchaseJWT, self).setUp()
         self.prepare_pay = reverse('webpay.prepare_pay',
                                    kwargs={'app_slug': self.addon.app_slug})
-        # This test relies on *not* setting the solitude-payments flag.
 
     def pay_jwt(self, lang=None):
         if not lang:

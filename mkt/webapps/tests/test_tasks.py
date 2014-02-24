@@ -622,7 +622,8 @@ class TestUpdateDeveloperName(amo.tests.TestCase):
     @mock.patch('mkt.webapps.tasks._update_manifest')
     @mock.patch('versions.models.Version.manifest')
     def test_ignore_no_current_version(self, manifest, _):
-        self.app.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
+        self.app.current_version.all_files[0].update(
+            status=amo.STATUS_DISABLED)
         self.app.update_version()
         update_developer_name(ids=(self.app.pk,))
         assert not manifest.called
@@ -639,7 +640,7 @@ class TestUpdateDeveloperName(amo.tests.TestCase):
     @mock.patch('mkt.webapps.tasks._update_manifest')
     @mock.patch('versions.models.Version.manifest')
     def test_update_developer_name(self, manifest, update_manifest):
-        manifest.__get__ = mock.Mock(return_value = {
+        manifest.__get__ = mock.Mock(return_value={
             'developer': {
                 'name': u'New Dêv'
             }
@@ -654,7 +655,7 @@ class TestUpdateDeveloperName(amo.tests.TestCase):
     @mock.patch('versions.models.Version.manifest')
     def test_update_developer_name_latest_version(self, manifest,
                                                   update_manifest):
-        manifest.__get__ = mock.Mock(return_value = {
+        manifest.__get__ = mock.Mock(return_value={
             'developer': {
                 'name': u'New Dêv'
             }
