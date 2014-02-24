@@ -745,18 +745,20 @@ class PreGenAPKError(Exception):
 @use_master
 def pre_generate_apk(app_id, **kw):
     app = Webapp.objects.get(pk=app_id)
-    task_log.info('pre-generating APK for app {w}'.format(w=app))
-    if not app.manifest_url:
+    manifest_url = app.get_manifest_url()
+    task_log.info('pre-generating APK for app {a} at {url}'
+                  .format(a=app, url=manifest_url))
+    if not manifest_url:
         raise PreGenAPKError('Webapp {w} has an empty manifest URL'
                              .format(w=app))
     try:
         res = requests.get(settings.PRE_GENERATE_APK_URL,
-                           params={'manifestUrl': app.manifest_url})
+                           params={'manifestUrl': manifest_url})
         res.raise_for_status()
     except RequestException, exc:
         raise PreGenAPKError('Error pre-generating APK for app {a} at {url}: '
                              '{e.__class__.__name__}: {e}'
-                             .format(a=app, url=app.manifest_url, e=exc))
+                             .format(a=app, url=manifest_url, e=exc))
 
     # The factory returns a binary APK blob but we don't need it.
     res.close()
