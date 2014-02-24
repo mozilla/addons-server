@@ -54,11 +54,6 @@
         (addon.get_dev_url('payments'), _('Manage Payments')),
         (addon.get_dev_url('versions'), _('Manage Status & Versions')),
       ] %}
-      {% if addon.is_premium() and waffle.switch('allow-refund') %}
-        {% do manage_urls.insert(3,
-          (addon.get_dev_url('refunds'), loc('Manage Refunds'))
-        ) %}
-      {% endif %}
       <ul>
         {% for url, title in manage_urls %}
           <li><a href="{{ url }}">{{ title }}</a></li>

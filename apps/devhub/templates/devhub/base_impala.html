@@ -1,13 +1,9 @@
-{% if webapp or WEBAPPS %}
-  {% set webapp, WEBAPPS = True, True %}
-{% endif %}
-
 {% extends "impala/base.html" %}
 
 {% if addon %}
   {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}
-{% block bodyclass %}developer-hub{{ ' apps' if webapp }} gutter {{ editable }}{% endblock %}
+{% block bodyclass %}developer-hub gutter {{ editable }}{% endblock %}
 
 {% block bodyattrs %}
 {% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
@@ -26,9 +22,7 @@
 {% endblock %}
 
 {% block site_header_title %}
-  {% with webapp=webapp %}
-    {% include "devhub/nav.html" %}
-  {% endwith %}
+  {% include "devhub/nav.html" %}
 {% endblock %}
 
 {% block search_form %}
@@ -40,15 +34,6 @@
 {% endblock %}
 
 {% set hide_mobile_link=True %}
-{% block footer %}
-  {% if webapp %}
-    {% with hide_mobile_link=True %}
-      {% include "amo_footer_small.html" %}
-    {% endwith %}
-  {% else %}
-    {{ super() }}
-  {% endif %}
-{% endblock %}
 
 {% block footer_extras %}
   <img class="footerlogo" src="{{ media('img/developers/hub-logo-footer.png') }}" alt="">

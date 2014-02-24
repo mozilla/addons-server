@@ -362,11 +362,6 @@ class CHANGE_PASSWORD(_LOG):
     format = _(u'Password changed.')
 
 
-class MAKE_PREMIUM(_LOG):
-    id = 50
-    format = _(u'{addon} changed to premium.')
-
-
 class PAYPAL_FAILED(_LOG):
     id = 51
     format = _(u'{addon} failed checks with PayPal.')
@@ -397,34 +392,9 @@ class INSTALL_ADDON(_LOG):
     format = _(u'{addon} installed.')
 
 
-class REFUND_REQUESTED(_LOG):
-    id = 56
-    format = _(u'Refund requested for {addon}')
-
-
-class REFUND_DECLINED(_LOG):
-    id = 57
-    format = _(u'Refund declined for {addon} for {0}.')
-
-
-class REFUND_GRANTED(_LOG):
-    id = 58
-    format = _(u'Refund granted for {addon} for {0}.')
-
-
-class REFUND_INSTANT(_LOG):
-    id = 59
-    format = _(u'Instant refund granted for {addon}.')
-
-
 class USER_EDITED(_LOG):
     id = 60
     format = _(u'Account updated.')
-
-
-class RECEIPT_CHECKED(_LOG):
-    id = 65
-    format = _(u'Valid receipt was checked for {addon}.')
 
 
 class ESCALATION_CLEARED(_LOG):
@@ -447,38 +417,6 @@ class ESCALATED_HIGH_ABUSE(_LOG):
     id = 68
     format = _(u'{addon} escalated because of high number of abuse reports.')
     short = _(u'High Abuse Reports')
-    keep = True
-    review_queue = True
-
-
-class ESCALATED_HIGH_REFUNDS(_LOG):
-    id = 69
-    format = _(u'{addon} escalated because of high number of refund requests.')
-    short = _(u'High Refund Requests')
-    keep = True
-    review_queue = True
-
-
-class REREVIEW_MANIFEST_CHANGE(_LOG):
-    id = 70
-    format = _(u'{addon} re-reviewed because of manifest change.')
-    short = _(u'Manifest Change')
-    keep = True
-    review_queue = True
-
-
-class REREVIEW_PREMIUM_TYPE_UPGRADE(_LOG):
-    id = 71
-    format = _(u'{addon} re-reviewed because app upgraded premium type.')
-    short = _(u'Premium Type Upgrade')
-    keep = True
-    review_queue = True
-
-
-class REREVIEW_CLEARED(_LOG):
-    id = 72
-    format = _(u'Re-review cleared for {addon}.')
-    short = _(u'Re-review cleared')
     keep = True
     review_queue = True
 

@@ -33,7 +33,7 @@ def dev_page_title(context, title=None, addon=None):
     else:
         devhub = _('Developer Hub')
         title = '%s :: %s' % (title, devhub) if title else devhub
-    return page_title(context, title, force_webapps=context.get('webapp'))
+    return page_title(context, title)
 
 
 @register.function
@@ -63,14 +63,9 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
     **impala**
         Whether to use the impala_breadcrumbs helper. Default is False.
     """
-    if context.get('webapp'):
-        crumbs = []
-        title = _('My Apps')
-        link = reverse('devhub.apps')
-    else:
-        crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
-        title = _('My Submissions')
-        link = reverse('devhub.addons')
+    crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
+    title = _('My Submissions')
+    link = reverse('devhub.addons')
 
     if not addon and not items:
         # We are at the end of the crumb trail.

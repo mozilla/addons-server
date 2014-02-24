@@ -209,14 +209,9 @@ def test_urlparams_unicode():
 class TestSharedURL(amo.tests.TestCase):
 
     def setUp(self):
-        self.webapp = Mock()
-        self.webapp.type = amo.ADDON_WEBAPP
-        self.webapp.app_slug = 'webapp'
-
         self.addon = Mock()
         self.addon.type = amo.ADDON_EXTENSION
         self.addon.slug = 'addon'
-        self.addon.is_webapp.return_value = False
 
     def test_addonurl(self):
         expected = '/en-US/firefox/addon/addon/'

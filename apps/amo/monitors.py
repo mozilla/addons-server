@@ -133,12 +133,6 @@ def path():
         filepath_status = filepath_status and path_exists and path_perms
         filepath_results.append((path, path_exists, path_perms, notes))
 
-    key_exists = os.path.exists(settings.WEBAPPS_RECEIPT_KEY)
-    key_perms = os.access(settings.WEBAPPS_RECEIPT_KEY, os.R_OK)
-    filepath_status = filepath_status and key_exists and key_perms
-    filepath_results.append(('settings.WEBAPPS_RECEIPT_KEY',
-                             key_exists, key_perms, 'We want read'))
-
     status = filepath_status
     status = ''
     if not filepath_status:

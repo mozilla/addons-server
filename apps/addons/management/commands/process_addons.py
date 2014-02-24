@@ -9,7 +9,6 @@ import amo
 from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
-from market.tasks import check_paypal, check_paypal_multiple
 
 
 tasks = {
@@ -25,11 +24,6 @@ tasks = {
     'flag_binary': {'method': flag_binary, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
-    'check_paypal': {'pre': check_paypal_multiple,
-                     'method': check_paypal,
-                     'qs': [Q(premium_type=amo.ADDON_PREMIUM,
-                              disabled_by_user=False),
-                            ~Q(status=amo.STATUS_DISABLED)]},
 }
 
 

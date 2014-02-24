@@ -278,12 +278,6 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(self.get_action(amo.STATUS_PUBLIC, 'public')[-29:],
             'to appear on the public side.')
 
-    def test_action_premium(self):
-        for type_ in amo.ADDON_PREMIUMS:
-            self.addon.update(premium_type=type_)
-            self.assertRaises(KeyError, self.get_action,
-                              amo.STATUS_NOMINATED, 'prelim')
-
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.set_data({'addon_files': self.version.files.all()})
@@ -426,17 +420,6 @@ class TestReviewHelper(amo.tests.TestCase):
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    def to_preliminary_premium(self, statuses):
-        for type_ in amo.ADDON_PREMIUMS:
-            self.addon.update(premium_type=type_)
-            for status in helpers.NOMINATED_STATUSES:
-                self.setup_data(status)
-                self.assertRaises(AssertionError,
-                                  self.helper.handler.process_preliminary)
-
-    def test_nomination_to_preliminary_premium(self):
-        self.to_preliminary_premium(helpers.NOMINATED_STATUSES)
-
     def test_nomination_to_preliminary(self):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
@@ -511,9 +494,6 @@ class TestReviewHelper(amo.tests.TestCase):
         self.setup_data(amo.STATUS_LITE)
         self.assertRaises(AssertionError,
                           self.helper.handler.process_public)
-
-    def test_preliminary_to_preliminary_premium(self):
-        self.to_preliminary_premium(helpers.PRELIMINARY_STATUSES)
 
     def test_preliminary_to_preliminary(self):
         for status in helpers.PRELIMINARY_STATUSES:

@@ -29,14 +29,8 @@
           </tr>
           <tr>
             <th>
-              {% if webapp %}
-                {# TODO(apps): Finalize copy. #}
-                {{ tip('App URL',
-                       'Choose a short, unique URL slug for your app.') }}
-              {% else %}
-                {{ tip(_("Add-on URL"),
-                   _("Choose a short, unique URL slug for your add-on.")) }}
-              {% endif %}
+              {{ tip(_("Add-on URL"),
+                 _("Choose a short, unique URL slug for your add-on.")) }}
             </th>
             <td id="slug_edit">
               {% if editable %}
@@ -45,7 +39,7 @@
                 </div>
                 {{ form.slug.errors }}
               {% else %}
-                {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug if webapp else addon.slug }}
+                {{ settings.SITE_URL }}/&hellip;/{{ addon.slug }}
                 <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
               {% endif %}
             </td>
@@ -54,20 +48,11 @@
             <th>
               <label data-for="summary">
                 {{ _("Summary") }}
-                {% if webapp %}
-                  {# TODO(apps): Finalize copy. #}
-                  {{ tip(None,
-                         "A short explanation of your app's basic
+                {{ tip(None,
+                       _("A short explanation of your add-on's basic
                           functionality that is displayed in search and browse
-                          listings, as well as at the top of your app's
-                          details page.") }}
-                {% else %}
-                  {{ tip(None,
-                         _("A short explanation of your add-on's basic
-                            functionality that is displayed in search and browse
-                            listings, as well as at the top of your add-on's
-                            details page.")) }}
-                {% endif %}
+                          listings, as well as at the top of your add-on's
+                          details page.")) }}
               </label>
             </th>
             <td>
@@ -84,18 +69,10 @@
           </tr>
           <tr>
             <th>
-              {% if webapp %}
-                {# TODO(apps): Finalize copy. #}
-                {{ tip('Categories',
-                       "Categories are the primary way users browse through apps.
-                        Choose any that fit your app's functionality for the
-                        most exposure.") }}
-              {% else %}
-                {{ tip(_("Categories"),
-                       _("Categories are the primary way users browse through add-ons.
-                          Choose any that fit your add-on's functionality for the most
-                          exposure.")) }}
-              {% endif %}
+              {{ tip(_("Categories"),
+                     _("Categories are the primary way users browse through add-ons.
+                        Choose any that fit your add-on's functionality for the most
+                        exposure.")) }}
             </th>
             <td id="addon-categories-edit"
                 data-max-categories="{{ amo.MAX_CATEGORIES }}">
@@ -110,25 +87,15 @@
                       {{ cats|join(' &middot; ')|safe }}
                     </p>
                     <p>
-                      {% if webapp %}
-                        {# TODO(apps): Finalize copy. #}
-                        {% with email='amo-editors@mozilla.org' %}
-                          Categories cannot be changed while your app is
-                          featured. Please email
-                          <a href="mailto:{{ email }}">{{ email }}</a> if there
-                          is a reason you need to modify your categories.
-                        {% endwith %}
-                      {% else %}
-                        {% trans email='amo-editors@mozilla.org' %}
-                          Categories cannot be changed while your add-on is
-                          featured for this application. Please email
-                          <a href="mailto:{{ email }}">{{ email }}</a> if there is
-                          a reason you need to modify your categories.
-                        {% endtrans %}
-                      {% endif %}
+                      {% trans email='amo-editors@mozilla.org' %}
+                        Categories cannot be changed while your add-on is
+                        featured for this application. Please email
+                        <a href="mailto:{{ email }}">{{ email }}</a> if there is
+                        a reason you need to modify your categories.
+                      {% endtrans %}
                     </p>
                   {% else %}
-                    {{ select_cats(amo.MAX_CATEGORIES, form, webapp) }}
+                    {{ select_cats(amo.MAX_CATEGORIES, form) }}
                   {% endif %}
                 {% endfor %}
               {% else %}
@@ -137,9 +104,7 @@
                   <ul class="addon-app-cats-inline">
                     {% for app, cats in categories %}
                       <li>
-                        {% if not webapp %}
-                          <b>{{ app.pretty }}:</b>
-                        {% endif %}
+                        <b>{{ app.pretty }}:</b>
                         {{ cats|join(' &middot; ')|safe }}
                       </li>
                     {% endfor %}
@@ -150,18 +115,10 @@
           </tr>
           <tr>
             <th>
-              {% if webapp %}
-                {# TODO(apps): Finalize copy. #}
-                {{ tip('Tags',
-                       "Tags help users find your app and should be short
-                        descriptors such as tabs, toolbar, or twitter. You
-                        may have a maximum of {0} tags.".format(amo.MAX_TAGS)) }}
-              {% else %}
-                {{ tip(_("Tags"),
-                       _("Tags help users find your add-on and should be short
-                          descriptors such as tabs, toolbar, or twitter.  You
-                          may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
-              {% endif %}
+              {{ tip(_("Tags"),
+                     _("Tags help users find your add-on and should be short
+                        descriptors such as tabs, toolbar, or twitter.  You
+                        may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
             </th>
             <td id="addon_tags_edit">
               {% if editable %}

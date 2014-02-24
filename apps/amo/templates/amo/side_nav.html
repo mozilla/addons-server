@@ -5,13 +5,6 @@
       ('created', _('Newest')),
       ('featured', _('Featured')),
   ) %}
-{% elif addon_type == amo.ADDON_WEBAPP %}
-  {% set extras = (
-      ('downloads', _('Most Popular')),
-      ('free', loc('Top Free')),
-      ('paid', loc('Top Paid')),
-      ('rating', _('Highest Rated')),
-  ) %}
 {% else %}
   {% set extras = (
       ('featured', _('Featured')),

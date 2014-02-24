@@ -75,13 +75,11 @@
           </td>
         </tr>
       {% endif %}
-      {% if not addon.is_webapp() %}
-        {% if addon.compatible_apps[APP] %}
-          <tr>
-            <th>{{ _('Works with') }}</th>
-            <td>{{ addon.compatible_apps[APP] }}</td>
-          </tr>
-        {% endif %}
+      {% if addon.compatible_apps[APP] %}
+        <tr>
+          <th>{{ _('Works with') }}</th>
+          <td>{{ addon.compatible_apps[APP] }}</td>
+        </tr>
       {% endif %}
       {% if addon.show_adu() and addon.average_daily_users %}
         <tr class="adu">
@@ -95,7 +93,7 @@
           <td>{{ addon.weekly_downloads|numberfmt }}</td>
         </tr>
       {% endif %}
-      {% set version = addon.current_version if not addon.is_webapp() else None %}
+      {% set version = addon.current_version %}
       {% if version %}
         <tr>
           <th>{{ _('Version') }}</th>

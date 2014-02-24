@@ -1,6 +1,0 @@
-{% trans %}
-Your refund request for {{ name }} failed for some reason.
-
-We've informed the developer, who should be able to sort it out.
-Thank you for shopping in the Firefox Marketplace.
-{% endtrans %}

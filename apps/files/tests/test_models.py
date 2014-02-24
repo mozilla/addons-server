@@ -254,15 +254,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.copy_to_mirror()
         assert storage.exists(f.mirror_file_path)
 
-    @mock.patch('shutil.copyfile')
-    def test_not_copy_to_mirror(self, copyfile):
-        f = File.objects.get(id=67442)
-        f.version.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.clean_files(f)
-        f.copy_to_mirror()
-        assert not f.mirror_file_path
-        assert not copyfile.called
-
     def test_generate_hash(self):
         f = File()
         f.version = Version.objects.get(pk=81551)
@@ -299,11 +290,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(f.is_mirrorable(), True)
 
         f.update(status=amo.STATUS_DISABLED)
-        eq_(f.is_mirrorable(), False)
-
-    def test_premium_addon_not_mirrorable(self):
-        f = File.objects.get(pk=67442)
-        f.version.addon.premium_type = amo.ADDON_PREMIUM
         eq_(f.is_mirrorable(), False)
 
     def test_addon(self):

@@ -788,48 +788,6 @@ class TestAddon(BaseOAuth):
         eq_(json.loads(r.content)['count'], 0)
 
 
-@patch.object(settings, 'VALIDATE_ADDONS', False)
-class TestCreateApp(BaseOAuth):
-
-    def setUp(self):
-        raise SkipTest
-
-        super(TestCreateApp, self).setUp()
-
-        patcher = patch('devhub.tasks._fetch_content')
-
-        response_mock = Mock()
-        response_mock.read.return_value = '{"name": "Some App"}'
-        response_mock.headers = {'Content-Type':
-                                 'application/x-web-app-manifest+json'}
-
-        self.urlopen_mock = patcher.start()
-        self.urlopen_mock.return_value = response_mock
-        self.addCleanup(patcher.stop)
-
-        patcher = patch('waffle.flag_is_active')
-        patcher.start().return_value = True
-        self.addCleanup(patcher.stop)
-
-    def make_create_request(self, data):
-        return client.post('api.apps', self.accepted_consumer, self.token,
-                           data=data)
-
-    def test_create_app(self):
-        res = self.make_create_request({'manifest': 'http://x.com/a.webapp'})
-        eq_(res.status_code, 200)
-
-    def test_no_manifest(self):
-        res = self.make_create_request({'manifest': ''})
-        eq_(res.status_code, 400)
-        assert 'manifest' in res.content
-
-    def test_validation_fails(self):
-        raise SkipTest
-        # TODO(andym) figure out how to stop it doing validation, but
-        # coping with a bad validation.
-
-
 class TestPerformanceAPI(BaseOAuth):
     fixtures = ['base/users']
 

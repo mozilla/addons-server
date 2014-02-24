@@ -723,20 +723,6 @@ class TestQueueBasics(QueueTest):
         eq_(rows.find('.ed-sprite-jetpack').length, 1)
         eq_(rows.find('.ed-sprite-restartless').length, 0)
 
-    def test_flags_premium(self):
-        ad = create_addon_file('Premium add-on', '0.1', amo.STATUS_NOMINATED,
-                               amo.STATUS_UNREVIEWED)
-        for type_ in amo.ADDON_PREMIUMS:
-            ad['addon'].update(premium_type=type_)
-
-            r = self.client.get(reverse('editors.queue_nominated'))
-
-            rows = pq(r.content)('#addon-queue tr.addon-row')
-            eq_(rows.length, 1)
-            eq_(rows.attr('data-addon'), str(ad['addon'].id))
-            eq_(rows.find('td').eq(1).text(), 'Premium add-on 0.1')
-            eq_(rows.find('.ed-sprite-premium').length, 1)
-
     def test_theme_redirect(self):
         users = []
         for x in range(2):
@@ -989,10 +975,6 @@ class TestModeratedQueue(QueueTest):
 
     def test_queue_count(self):
         self._test_queue_count(4, 'Moderated Review', 1)
-
-    def test_queue_count_w_webapp_reviews(self):
-        Addon.objects.update(type=amo.ADDON_WEBAPP)
-        self._test_queue_count(4, 'Moderated Reviews', 0)
 
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Moderated Reviews', None)])

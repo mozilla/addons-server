@@ -41,28 +41,3 @@ def addon_view_factory(qs):
     # GOOD: lambda: Addon.objects.valid().filter(type=1)
     # BAD: Addon.objects.valid()
     return functools.partial(addon_view, qs=qs)
-
-
-def has_purchased(f):
-    """
-    If the addon is premium, require a purchase.
-    Must be called after addon_view decorator.
-    """
-    @functools.wraps(f)
-    def wrapper(request, addon, *args, **kw):
-        if addon.is_premium() and not addon.has_purchased(request.amo_user):
-            log.info('Not purchased: %d' % addon.pk)
-            raise PermissionDenied
-        return f(request, addon, *args, **kw)
-    return wrapper
-
-
-def can_become_premium(f):
-    """Check that the addon can become premium."""
-    @functools.wraps(f)
-    def wrapper(request, addon_id, addon, *args, **kw):
-        if not addon.can_become_premium():
-            log.info('Cannot become premium: %d' % addon.pk)
-            raise PermissionDenied
-        return f(request, addon_id, addon, *args, **kw)
-    return wrapper

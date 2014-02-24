@@ -56,11 +56,7 @@
               {% if deps %}
                 <tr class="addon-dependencies">
                   <th>
-                    {% if addon.is_webapp() %}
-                      {{ _('Required Apps') }}
-                    {% else %}
-                      {{ _('Required Add-ons') }}
-                    {% endif %}
+                    {{ _('Required Add-ons') }}
                   </th>
                   <td>
                     <ul>

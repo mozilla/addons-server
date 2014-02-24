@@ -580,14 +580,6 @@ class TestEditPayments(amo.tests.TestCase):
         doc = pq(res.content)
         eq_(doc('#do-setup').text(), 'Set up Contributions')
 
-    @mock.patch('addons.models.Addon.upsell')
-    def test_upsell(self, upsell):
-        upsell.return_value = self.get_addon()
-        d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
-                 annoying=amo.CONTRIB_AFTER)
-        res = self.client.post(self.url, d)
-        eq_('premium add-on' in res.content, True)
-
     def test_voluntary_contributions_addons(self):
         r = self.client.get(self.url)
         doc = pq(r.content)
@@ -705,52 +697,6 @@ class TestPaymentsProfile(amo.tests.TestCase):
                              'This field is required.')
         check_page(r)
         eq_(self.get_addon().wants_contributions, False)
-
-    def test_checker_no_email(self):
-        url = reverse('devhub.check_paypal')
-        r = self.client.post(url)
-        eq_(r.status_code, 404)
-
-    @mock.patch('paypal.check_paypal_id')
-    @mock.patch('paypal.get_paykey')
-    def test_checker_valid_email(self, gp, cpi):
-        cpi.return_value = (True, "")
-        gp.return_value = "123abc"
-
-        url = reverse('devhub.check_paypal')
-        r = self.client.post(url, {'email': 'test@test.com'})
-        eq_(r.status_code, 200)
-        result = json.loads(r.content)
-        eq_(result['valid'], True)
-
-    @mock.patch('paypal.check_paypal_id')
-    @mock.patch('paypal.get_paykey')
-    def test_checker_invalid_email(self, gp, cpi):
-        cpi.return_value = (False, "Oh no you didn't")
-        gp.return_value = "123abc"
-
-        url = reverse('devhub.check_paypal')
-        r = self.client.post(url, {'email': 'test.com'})
-        eq_(r.status_code, 200)
-        result = json.loads(r.content)
-
-        eq_(result[u'valid'], False)
-        assert len(result[u'message']) > 0, "No error on invalid email"
-
-    @mock.patch('paypal.check_paypal_id')
-    @mock.patch('paypal.get_paykey')
-    def test_checker_no_paykey(self, gp, cpi):
-        cpi.return_value = (True, "")
-        gp.side_effect = paypal.PaypalError()
-
-        url = reverse('devhub.check_paypal')
-        r = self.client.post(url, {'email': 'test@test.com'})
-        eq_(r.status_code, 200)
-        result = json.loads(r.content)
-
-        eq_(result[u'valid'], False)
-        assert len(result[u'message']) > 0, "No error on missing paykey"
-
 
 class TestDelete(amo.tests.TestCase):
     fixtures = ['base/addon_3615']

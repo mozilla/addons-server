@@ -27,7 +27,6 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
-from market.models import AddonPremium, Price, PriceCurrency
 from tags.models import AddonTag, Tag
 
 
@@ -315,13 +314,6 @@ class APITest(TestCase):
             absolutify('/en-US/firefox/addon/a3615/?src=api'))
         assert 'theme' not in data
 
-    def test_app_detail(self):
-        addon = Addon.objects.get(id=3615)
-        addon.update(type=amo.ADDON_WEBAPP)
-        response = self.client.get(
-            '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
-        eq_(json.loads(response.content)['msg'], 'Add-on not found!')
-
     def test_theme_detail(self):
         addon = Addon.objects.get(id=3615)
         addon.update(type=amo.ADDON_PERSONA)
@@ -464,16 +456,6 @@ class APITest(TestCase):
         response = make_call('addon/4664', version=1.5)
         assert '<suggested_amount' not in response.content
 
-    def setup_premium(self, lang='en-US'):
-        addon = Addon.objects.get(id=4664)
-        addon.update(premium_type=amo.ADDON_PREMIUM,
-                     wants_contributions=False)
-        price = Price.objects.create(price=Decimal('5.12'))
-        PriceCurrency.objects.create(tier=price, currency='EUR',
-                                     price=Decimal('5.12'))
-        AddonPremium.objects.create(addon=addon, price=price)
-        return pq(make_call('addon/4664', version=1.5, lang=lang).content)
-
     def test_beta_channel(self):
         """
         This tests that addons with files in beta will have those files
@@ -596,11 +578,6 @@ class ListTest(TestCase):
         """
         response = make_call('list')
         self.assertContains(response, '<addon id', 3)
-
-    def test_ignore_apps(self):
-        Addon.objects.update(type=amo.ADDON_WEBAPP)
-        response = make_call('list')
-        self.assertNotContains(response, '<addon id')
 
     def test_type_filter(self):
         """

@@ -6,11 +6,7 @@
     {% if addon.takes_contributions %}
       {{ required() }}
       <span class="req">
-        {% if webapp %}
-          {{ loc('(required since this app accepts contributions)') }}
-        {% else %}
-          {{ _('(required since this add-on accepts contributions)') }}
-        {% endif %}
+        {{ _('(required since this add-on accepts contributions)') }}
       </span>
     {% else %}
       {{ optional() }}
@@ -25,18 +21,12 @@
 {% endif %}
 
 <p>
-  {% if webapp %}
-    {{ _("Your developer profile will tell users about you, why you made this
-          app, and what's next for the app. This profile can be useful for
-          any developer interested in connecting with users.") }}
-  {% else %}
-    {% trans %}
-      Your developer profile will tell users about you, why you made this
-      add-on, and what's next for the add-on. This profile is required for
-      add-ons requesting contributions, but can be useful for any developer
-      interested in connecting with users.
-    {% endtrans %}
-  {% endif %}
+  {% trans %}
+    Your developer profile will tell users about you, why you made this
+    add-on, and what's next for the add-on. This profile is required for
+    add-ons requesting contributions, but can be useful for any developer
+    interested in connecting with users.
+  {% endtrans %}
 </p>
 
 <h4>{{ _('Make sure your user profile is up to date.') }}</h4>

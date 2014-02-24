@@ -123,7 +123,6 @@ class ViewQueue(RawSQLModel):
                 ('external_software', 'addons.externalsoftware'),
                 ('binary', 'files.binary'),
                 ('binary_components', 'files.binary_components'),
-                ('premium_type', 'addons.premium_type'),
                 ('latest_version', 'versions.version'),
                 ('has_editor_comment', 'versions.has_editor_comment'),
                 ('has_info_request', 'versions.has_info_request'),
@@ -148,13 +147,8 @@ class ViewQueue(RawSQLModel):
             ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
-                'addons.addontype_id <> 11',  # No webapps for AMO.
             ],
             'group_by': 'id'}
-
-    @property
-    def is_premium(self):
-        return self.premium_type in amo.ADDON_PREMIUMS
 
     @property
     def file_platform_ids(self):
@@ -175,7 +169,6 @@ class ViewQueue(RawSQLModel):
             ('is_jetpack', 'jetpack', _lazy('Jetpack Add-on')),
             ('is_traditional_restartless', 'restartless',
              _lazy('Restartless Add-on')),
-            ('is_premium', 'premium', _lazy('Premium Add-on')),
             ('has_info_request', 'info', _lazy('More Information Requested')),
             ('has_editor_comment', 'editor', _lazy('Contains Editor Comment')),
         )
@@ -390,18 +383,6 @@ class ReviewerScore(amo.models.ModelBase):
             return getattr(amo, 'REVIEWED_SEARCH_%s' % queue)
         elif addon.type == amo.ADDON_THEME and queue:
             return getattr(amo, 'REVIEWED_THEME_%s' % queue)
-        elif addon.type == amo.ADDON_WEBAPP:
-            if addon.is_packaged:
-                if status == amo.STATUS_PUBLIC:
-                    return amo.REVIEWED_WEBAPP_UPDATE
-                else:  # If it's not PUBLIC, assume it's a new submission.
-                    return amo.REVIEWED_WEBAPP_PACKAGED
-            else:  # It's a hosted app.
-                in_rereview = kwargs.pop('in_rereview', False)
-                if status == amo.STATUS_PUBLIC and in_rereview:
-                    return amo.REVIEWED_WEBAPP_REREVIEW
-                else:
-                    return amo.REVIEWED_WEBAPP_HOSTED
         else:
             return None
 
@@ -429,8 +410,6 @@ class ReviewerScore(amo.models.ModelBase):
     def award_moderation_points(cls, user, addon, review_id):
         """Awards points to user based on moderated review."""
         event = amo.REVIEWED_ADDON_REVIEW
-        if addon.type == amo.ADDON_WEBAPP:
-            event = amo.REVIEWED_APP_REVIEW
         score = amo.REVIEWED_SCORES.get(event)
 
         cls.objects.create(user=user, addon=addon, score=score, note_key=event)

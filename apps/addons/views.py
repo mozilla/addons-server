@@ -78,9 +78,6 @@ def addon_detail(request, addon):
     if addon.is_disabled:
         return render(request, 'addons/impala/disabled.html',
                       {'addon': addon}, status=404)
-    if addon.is_webapp():
-        # Apps don't deserve AMO detail pages.
-        raise http.Http404
 
     # addon needs to have a version and be valid for this app.
     if addon.type in request.APP.types:
@@ -144,8 +141,6 @@ def extension_detail(request, addon):
         ctx['author_addons'] = addon.authors_other_addons(app=request.APP)[:6]
         return render(request, 'addons/impala/details-more.html', ctx)
     else:
-        if addon.is_webapp():
-            ctx['search_placeholder'] = 'apps'
         return render(request, 'addons/impala/details.html', ctx)
 
 
@@ -262,9 +257,6 @@ class BaseFilter(object):
     def filter_featured(self):
         ids = self.model.featured_random(self.request.APP, self.request.LANG)
         return manual_order(self.model.objects, ids, 'addons.id')
-
-    def filter_price(self):
-        return self.model.objects.order_by('addonpremium__price__price', 'id')
 
     def filter_free(self):
         if self.model == Addon:
@@ -480,7 +472,6 @@ def developers(request, addon, page):
 @anonymous_csrf_exempt
 @post_required
 def contribute(request, addon):
-    webapp = addon.is_webapp()
     contrib_type = request.POST.get('type', 'suggested')
     is_suggested = contrib_type == 'suggested'
     source = request.POST.get('source', '')
@@ -520,7 +511,7 @@ def contribute(request, addon):
                  email=paypal_id,
                  ip=request.META.get('REMOTE_ADDR'),
                  memo=contrib_for,
-                 pattern='%s.paypal' % ('apps' if webapp else 'addons'),
+                 pattern='addons.paypal',
                  slug=addon.slug,
                  uuid=contribution_uuid))
     except paypal.PaypalError as error:

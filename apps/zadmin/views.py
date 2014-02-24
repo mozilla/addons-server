@@ -37,7 +37,6 @@ from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
-from market.utils import update_from_csv
 from users.models import UserProfile
 from versions.compare import version_int as vint
 from versions.models import Version
@@ -173,8 +172,6 @@ def show_settings(request):
               'GOOGLE_ANALYTICS_CREDENTIALS']:
         settings_dict[i] = debug.cleanse_setting(i,
                                                  getattr(settings, i, {}))
-
-    settings_dict['WEBAPPS_RECEIPT_KEY'] = '********************'
 
     return render(request, 'zadmin/settings.html',
                   {'settings_dict': settings_dict})
@@ -602,35 +599,11 @@ def email_devs(request):
         data = form.cleaned_data
         qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
                                                  amo.AUTHOR_ROLE_OWNER))
-                               .exclude(user__email=None))
-
-        if data['recipients'] in ('payments', 'desktop_apps'):
-            qs = qs.exclude(addon__status=amo.STATUS_DELETED)
-        else:
-            qs = qs.filter(addon__status__in=amo.LISTED_STATUSES)
+                               .exclude(user__email=None)
+                               .filter(addon__status__in=amo.LISTED_STATUSES))
 
         if data['recipients'] == 'eula':
             qs = qs.exclude(addon__eula=None)
-        elif data['recipients'] in ('payments',
-                                    'payments_region_enabled',
-                                    'payments_region_disabled'):
-            qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
-            qs = qs.exclude(addon__premium_type__in=(amo.ADDON_FREE,
-                                                     amo.ADDON_OTHER_INAPP))
-            if data['recipients'] == 'payments_region_enabled':
-                qs = qs.filter(addon__enable_new_regions=True)
-            elif data['recipients'] == 'payments_region_disabled':
-                qs = qs.filter(addon__enable_new_regions=False)
-        elif data['recipients'] in ('apps', 'free_apps_region_enabled',
-                                    'free_apps_region_disabled'):
-            qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
-            if data['recipients'] == 'free_apps_region_enabled':
-                qs = qs.filter(addon__enable_new_regions=True)
-            elif data['recipients'] == 'free_apps_region_disabled':
-                qs = qs.filter(addon__enable_new_regions=False)
-        elif data['recipients'] == 'desktop_apps':
-            qs = (qs.filter(addon__type=amo.ADDON_WEBAPP,
-                addon__addondevicetype__device_type=amo.DEVICE_DESKTOP.id))
         elif data['recipients'] == 'sdk':
             qs = qs.exclude(addon__versions__files__jetpack_version=None)
         elif data['recipients'] == 'all_extensions':
@@ -855,14 +828,3 @@ def email_addresses_file(request):
         if e is not None:
             resp.write(e + '\n')
     return resp
-
-
-@admin_required
-def price_tiers(request):
-    output = []
-    form = PriceTiersForm(request.POST or None, request.FILES)
-    if request.method == 'POST' and form.is_valid():
-        output = update_from_csv(form.cleaned_data['prices'])
-
-    return render(request, 'zadmin/update-prices.html',
-                  {'result': output, 'form': form})

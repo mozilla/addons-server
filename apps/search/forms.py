@@ -122,13 +122,6 @@ class ESSearchForm(forms.Form):
         self.addon_type = kw.pop('type', None)
         super(ESSearchForm, self).__init__(*args, **kw)
         self.sort_choices = SORT_CHOICES
-        self.webapp = self.addon_type == amo.ADDON_WEBAPP
-        if self.webapp:
-            self.fields['atype'].choices = [
-                (amo.ADDON_WEBAPP, amo.ADDON_TYPE[amo.ADDON_WEBAPP])
-            ]
-            self.data['atype'] = amo.ADDON_WEBAPP
-            self.sort_choices = APP_SORT_CHOICES
 
     def clean_appver(self):
         return floor_version(self.cleaned_data.get('appver'))

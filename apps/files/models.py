@@ -37,7 +37,7 @@ from versions.compare import version_int as vint
 log = commonware.log.getLogger('z.files')
 
 # Acceptable extensions.
-EXTENSIONS = ('.xpi', '.jar', '.xml', '.webapp', '.json', '.zip')
+EXTENSIONS = ('.xpi', '.jar', '.xml', '.json', '.zip')
 
 
 class File(amo.models.OnChangeMixin, amo.models.ModelBase):
@@ -95,10 +95,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             return True
 
     def is_mirrorable(self):
-        if (self.version.addon_id and
-            (self.version.addon.is_premium() or
-             self.version.addon.type == amo.ADDON_WEBAPP)):
-            return False
         return self.status in amo.MIRROR_STATUSES
 
     def has_been_copied(self):
@@ -111,7 +107,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         """True if it's okay to run performance tests on this addon file.
         """
         is_eligible = (self.status in amo.REVIEWED_STATUSES and
-                       self.version.addon.type != amo.ADDON_WEBAPP and
                        not self.version.addon.disabled_by_user)
         return is_eligible
 
@@ -145,7 +140,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload, version, platform, parse_data={}):
-        is_webapp = version.addon.is_webapp()
         f = cls(version=version, platform=platform)
         upload.path = amo.utils.smart_path(nfd_str(upload.path))
         ext = os.path.splitext(upload.path)[1]
@@ -161,9 +155,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
-        if is_webapp:
-            f.status = amo.STATUS_PENDING
-        elif version.addon.status == amo.STATUS_PUBLIC:
+        if version.addon.status == amo.STATUS_PUBLIC:
             if amo.VERSION_BETA.search(parse_data.get('version', '')):
                 f.status = amo.STATUS_BETA
             elif version.addon.trusted:
@@ -226,25 +218,18 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         addon = self.version.addon
         # slugify drops unicode so we may end up with an empty string.
         # Apache did not like serving unicode filenames (bug 626587).
-        if addon.is_webapp():
-            extension = extension or '.zip' if addon.is_packaged else '.webapp'
-            # Apparently we have non-ascii slugs leaking into prod :(
-            # FIXME.
-            parts.append(slugify(addon.app_slug) or 'app')
-            parts.append(self.version.version)
-        else:
-            extension = extension or '.xpi'
-            name = slugify(addon.name).replace('-', '_') or 'addon'
-            parts.append(name)
-            parts.append(self.version.version)
+        extension = extension or '.xpi'
+        name = slugify(addon.name).replace('-', '_') or 'addon'
+        parts.append(name)
+        parts.append(self.version.version)
 
-            if self.version.compatible_apps:
-                apps = '+'.join([a.shortername for a in
-                                 self.version.compatible_apps])
-                parts.append(apps)
+        if self.version.compatible_apps:
+            apps = '+'.join([a.shortername for a in
+                             self.version.compatible_apps])
+            parts.append(apps)
 
-            if self.platform_id and self.platform_id != amo.PLATFORM_ALL.id:
-                parts.append(amo.PLATFORMS[self.platform_id].shortname)
+        if self.platform_id and self.platform_id != amo.PLATFORM_ALL.id:
+            parts.append(amo.PLATFORMS[self.platform_id].shortname)
 
         self.filename = '-'.join(parts) + extension
         return self.filename
@@ -289,8 +274,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def mirror_file_path(self):
-        if self.addon.is_premium():
-            return
         return os.path.join(settings.MIRROR_STAGE_PATH,
                             str(self.version.addon_id), self.filename)
 
@@ -583,7 +566,7 @@ class FileUpload(amo.models.ModelBase):
                 log.error('Invalid validation json: %r' % self)
         super(FileUpload, self).save()
 
-    def add_file(self, chunks, filename, size, is_webapp=False):
+    def add_file(self, chunks, filename, size):
         filename = smart_str(filename)
         loc = os.path.join(settings.ADDONS_PATH, 'temp', uuid.uuid4().hex)
         base, ext = os.path.splitext(amo.utils.smart_path(filename))
@@ -598,13 +581,12 @@ class FileUpload(amo.models.ModelBase):
         self.path = loc
         self.name = filename
         self.hash = 'sha256:%s' % hash.hexdigest()
-        self.is_webapp = is_webapp
         self.save()
 
     @classmethod
-    def from_post(cls, chunks, filename, size, is_webapp=False):
+    def from_post(cls, chunks, filename, size):
         fu = FileUpload()
-        fu.add_file(chunks, filename, size, is_webapp)
+        fu.add_file(chunks, filename, size)
         return fu
 
     @property

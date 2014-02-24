@@ -1,103 +1,71 @@
 <h1 class="site-title prominent">
   <a href="{{ url('devhub.index') }}" title="{{ _('Return to the DevHub homepage') }}">
-    {% if webapp %}
-      Apps Developer Preview
-    {% else %}
-      {# L10n: Text in small tag is smaller and on its own line. #}
-      {% trans %}
-      <small>Add-on</small> Developer Hub
-      {% endtrans %}
-    {% endif %}
+    {# L10n: Text in small tag is smaller and on its own line. #}
+    {% trans %}
+    <small>Add-on</small> Developer Hub
+    {% endtrans %}
   </a>
 </h1>
-<nav id="site-nav" class="menu-nav{{ ' app-nav' if webapp }} no-img c">
+<nav id="site-nav" class="menu-nav no-img c">
   <ul>
     {% if request.user.is_authenticated() and request.amo_user.is_developer %}
-      {% if webapp %}
-        <li class="top">
-          <a href="{{ url('devhub.apps') }}" class="controller">
-            {{ _('My Apps') }}</a>
-          <ul>
-            {% set my_apps = request.amo_user.my_apps() %}
-            {% for addon in my_apps %}
-              {% if loop.index == 8 %}
-                <li><a href="{{ url('devhub.apps') }}">
-                  {{ _('more apps...') }}</a></li>
-              {% else %}
-                <li><a href="{{ addon.get_dev_url() }}">
-                  {{ addon.name }}</a></li>
-              {% endif %}
-            {% endfor %}
-            <li><em><a href="{{ url('devhub.submit_apps.1') }}">
-              {{ _('Submit a New App') }}</a></em></li>
-          </ul>
-        </li>
-      {% else %}
-        <li class="top">
-          <a href="{{ url('devhub.addons') }}" class="controller">
-              {{ _('My Add-ons') }}</a>
-          <ul>
-            {% set my_addons = request.amo_user.my_addons() %}
-            {% for addon in my_addons %}
-              {% if loop.index == 8 %}
-                <li><a href="{{ url('devhub.addons') }}">
-                  {{ _('more add-ons...') }}</a></li>
-              {% else %}
-                <li><a href="{{ addon.get_dev_url() }}">
-                  {{ addon.name }}</a></li>
-              {% endif %}
-            {% endfor %}
-            <li><em><a href="{{ url('devhub.submit.1') }}">
-                {{ _('Submit a New Add-on') }}</a></em></li>
-          </ul>
-        </li>
-      {% endif %}
-    {% endif %}
-    {% if webapp %}
-      <li class="slim">
-        <a href="http://developer.mozilla.org/en-US/apps" class="controller">
-          {{ _('Documentation') }}</a>
-      </li>
-    {% else %}
-      <li>
-        <a href="#" class="controller">{{ _('Documentation') }}</a>
+      <li class="top">
+        <a href="{{ url('devhub.addons') }}" class="controller">
+            {{ _('My Add-ons') }}</a>
         <ul>
-          <li><a href="{{ url('devhub.docs', 'getting-started') }}">
-            {{ _('Getting Started') }}</a></li>
-          <li><a href="{{ url('devhub.docs', 'policies') }}">
-            {{ _('Add-on Policies') }}</a></li>
-          <li><a href="{{ url('devhub.docs', 'case-studies') }}">
-            {{ _('Case Studies') }}</a></li>
-          <li><a href="{{ url('devhub.docs', 'how-to') }}">
-            {{ _('How-to Library') }}</a></li>
-          <li><a href="{{ url('devhub.docs', 'reference') }}">
-            {{ _('API &amp; Language Reference') }}</a></li>
-          <li><a href="{{ url('devhub.docs', 'themes') }}">
-            {{ _('Themes') }}</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" class="controller">{{ _('Tools') }}</a>
-        <ul>
-          <li><a href="{{ url('devhub.package_addon') }}">
-            {{ _('Add-on Packager') }}</a></li>
-          <li><a href="{{ url('devhub.validate_addon') }}">
-            {{ _('Add-on Validator') }}</a></li>
-          <li><a href="{{ url('devhub.check_addon_compatibility') }}">
-            {{ _('Add-on Compatibility Checker') }}</a></li>
-          <li><a href="{{ remora_url('/collection/devel-tools') }}">
-            {{ _('Development Add-ons') }}</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" class="controller">{{ _('Community') }}</a>
-        <ul>
-          <li><a href="http://blog.mozilla.com/addons/">
-            {{ _('Add-ons Blog') }}</a></li>
-          <li><a href="https://forums.addons.mozilla.org">
-            {{ _('Add-ons Forum') }}</a></li>
+          {% set my_addons = request.amo_user.my_addons() %}
+          {% for addon in my_addons %}
+            {% if loop.index == 8 %}
+              <li><a href="{{ url('devhub.addons') }}">
+                {{ _('more add-ons...') }}</a></li>
+            {% else %}
+              <li><a href="{{ addon.get_dev_url() }}">
+                {{ addon.name }}</a></li>
+            {% endif %}
+          {% endfor %}
+          <li><em><a href="{{ url('devhub.submit.1') }}">
+              {{ _('Submit a New Add-on') }}</a></em></li>
         </ul>
       </li>
     {% endif %}
+    <li>
+      <a href="#" class="controller">{{ _('Documentation') }}</a>
+      <ul>
+        <li><a href="{{ url('devhub.docs', 'getting-started') }}">
+          {{ _('Getting Started') }}</a></li>
+        <li><a href="{{ url('devhub.docs', 'policies') }}">
+          {{ _('Add-on Policies') }}</a></li>
+        <li><a href="{{ url('devhub.docs', 'case-studies') }}">
+          {{ _('Case Studies') }}</a></li>
+        <li><a href="{{ url('devhub.docs', 'how-to') }}">
+          {{ _('How-to Library') }}</a></li>
+        <li><a href="{{ url('devhub.docs', 'reference') }}">
+          {{ _('API &amp; Language Reference') }}</a></li>
+        <li><a href="{{ url('devhub.docs', 'themes') }}">
+          {{ _('Themes') }}</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#" class="controller">{{ _('Tools') }}</a>
+      <ul>
+        <li><a href="{{ url('devhub.package_addon') }}">
+          {{ _('Add-on Packager') }}</a></li>
+        <li><a href="{{ url('devhub.validate_addon') }}">
+          {{ _('Add-on Validator') }}</a></li>
+        <li><a href="{{ url('devhub.check_addon_compatibility') }}">
+          {{ _('Add-on Compatibility Checker') }}</a></li>
+        <li><a href="{{ remora_url('/collection/devel-tools') }}">
+          {{ _('Development Add-ons') }}</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#" class="controller">{{ _('Community') }}</a>
+      <ul>
+        <li><a href="http://blog.mozilla.com/addons/">
+          {{ _('Add-ons Blog') }}</a></li>
+        <li><a href="https://forums.addons.mozilla.org">
+          {{ _('Add-ons Forum') }}</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>

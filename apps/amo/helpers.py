@@ -112,9 +112,6 @@ def shared_url(viewname, addon, *args, **kwargs):
     A viewname such as `details` becomes `addons.details` or `apps.details`,
     depending on the add-on type.
     """
-    slug = addon.app_slug if addon.is_webapp() else addon.slug
-    prefix = 'apps' if addon.is_webapp() else 'addons'
-
     namespace, dot, latter = viewname.partition('.')
 
     # If `viewname` is prefixed with `addons.` but we're linking to a
@@ -123,8 +120,8 @@ def shared_url(viewname, addon, *args, **kwargs):
         viewname = latter
 
     # Otherwise, we just slap the appropriate prefix in front of `viewname`.
-    viewname = '.'.join([prefix, viewname])
-    return url(viewname, *([slug] + list(args)), **kwargs)
+    viewname = '.'.join(['addons', viewname])
+    return url(viewname, *([addon.slug] + list(args)), **kwargs)
 
 
 @register.function
@@ -272,14 +269,9 @@ def login_link(context):
 
 @register.function
 @jinja2.contextfunction
-def page_title(context, title, force_webapps=False):
+def page_title(context, title):
     title = smart_unicode(title)
-    if settings.APP_PREVIEW:
-        base_title = _('Firefox Marketplace')
-    elif context.get('WEBAPPS') or force_webapps:
-        base_title = _('Firefox Marketplace')
-    else:
-        base_title = page_name(context['request'].APP)
+    base_title = page_name(context['request'].APP)
     return u'%s :: %s' % (title, base_title)
 
 
@@ -317,10 +309,7 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
     Accepts: [(url, label)]
     """
     if add_default:
-        if context.get('WEBAPPS'):
-            base_title = _('Apps Marketplace')
-        else:
-            base_title = page_name(context['request'].APP)
+        base_title = page_name(context['request'].APP)
         crumbs = [(urlresolvers.reverse('home'), base_title)]
     else:
         crumbs = []
@@ -518,7 +507,7 @@ def _side_nav(context, addon_type, cat):
     from addons.models import Category, AddonType
     request = context['request']
     qs = Category.objects.filter(weight__gte=0)
-    if addon_type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
+    if addon_type != amo.ADDON_PERSONA:
         qs = qs.filter(application=request.APP.id)
     sort_key = attrgetter('weight', 'name')
     categories = sorted(qs.filter(type=addon_type), key=sort_key)
@@ -553,11 +542,6 @@ def _site_nav(context):
                extensions=sorted_cats(extensions),
                personas=sorted_cats(personas))
     return jinja2.Markup(env.get_template('amo/site_nav.html').render(ctx))
-
-
-@register.filter
-def premium_text(type):
-    return amo.ADDON_PREMIUM_TYPES[type]
 
 
 @register.function

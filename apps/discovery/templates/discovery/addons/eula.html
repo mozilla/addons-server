@@ -29,5 +29,4 @@
 {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
   {{ performance_note(amount=addon.ts_slowness) }}
 {% endif %}
-{{ upsell_note(addon, 'discovery') }}
 {% endblock %}

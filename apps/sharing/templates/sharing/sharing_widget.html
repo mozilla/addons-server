@@ -1,7 +1,4 @@
-{% if obj.is_webapp and obj.is_webapp() %}
-  {% set sharemsg = _('Share this App') %}
-  {% set listed = True %}
-{% elif obj.__class__.__name__ == 'Addon' %}
+{% if obj.__class__.__name__ == 'Addon' %}
   {% set sharemsg = _('Share this Add-on') %}
   {% set listed = True %}
 {% elif obj.__class__.__name__ == 'Collection' %}

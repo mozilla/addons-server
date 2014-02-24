@@ -69,8 +69,6 @@ urlpatterns = patterns('',
     url('^email_addresses_file$', views.email_addresses_file,
         name='zadmin.email_addresses_file'),
 
-    url('^price-tiers$', views.price_tiers, name='zadmin.price_tiers'),
-
     # Site Event admin.
     url('^events/(?P<event_id>\d+)?$', views.site_events,
         name='zadmin.site_events'),

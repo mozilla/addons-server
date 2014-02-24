@@ -217,31 +217,18 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     @amo.cached_property
     def addons_listed(self):
         """Public add-ons this user is listed as author of."""
-        return self.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
+        return self.addons.reviewed().filter(
             addonuser__user=self, addonuser__listed=True)
 
     @property
     def num_addons_listed(self):
         """Number of public add-ons this user is listed as author of."""
-        return self.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
+        return self.addons.reviewed().filter(
             addonuser__user=self, addonuser__listed=True).count()
 
-    @amo.cached_property
-    def apps_listed(self):
-        """Public apps this user is listed as author of."""
-        return self.addons.reviewed().filter(type=amo.ADDON_WEBAPP,
-            addonuser__user=self, addonuser__listed=True)
-
     def my_addons(self, n=8):
-        """Returns n addons (anything not a webapp)"""
-        qs = self.addons.exclude(type=amo.ADDON_WEBAPP)
-        qs = order_by_translation(qs, 'name')
-        return qs[:n]
-
-    def my_apps(self, n=8):
-        """Returns n apps"""
-        qs = self.addons.filter(type=amo.ADDON_WEBAPP)
-        qs = order_by_translation(qs, 'name')
+        """Returns n addons"""
+        qs = order_by_translation(self.addons, 'name')
         return qs[:n]
 
     @property
@@ -272,10 +259,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_addon_developer(self):
         return self.addonuser_set.exclude(
             addon__type=amo.ADDON_PERSONA).exists()
-
-    @amo.cached_property
-    def is_app_developer(self):
-        return self.addonuser_set.filter(addon__type=amo.ADDON_WEBAPP).exists()
 
     @amo.cached_property
     def is_artist(self):
@@ -486,27 +469,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
             # Do an extra query to make sure this gets transformed.
             c = Collection.objects.using('default').get(id=c.id)
         return c
-
-    def purchase_ids(self):
-        """
-        I'm special casing this because we use purchase_ids a lot in the site
-        and we are not caching empty querysets in cache-machine.
-        That means that when the site is first launched we are having a
-        lot of empty queries hit.
-
-        We can probably do this in smarter fashion by making cache-machine
-        cache empty queries on an as need basis.
-        """
-        # Circular import
-        from market.models import AddonPurchase
-
-        @memoize(prefix='users:purchase-ids')
-        def ids(pk):
-            return (AddonPurchase.objects.filter(user=pk)
-                                 .values_list('addon_id', flat=True)
-                                 .filter(type=amo.CONTRIB_PURCHASE)
-                                 .order_by('pk'))
-        return ids(self.pk)
 
     @contextmanager
     def activate_lang(self):

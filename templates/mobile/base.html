@@ -1,4 +1,2 @@
-{% if webapp %}
-  {% set WEBAPPS = True %}
-{% endif %}
-{% extends "mobile/base_apps.html" if WEBAPPS else "mobile/base_addons.html" %}
+
+{% extends "mobile/base_addons.html" %}

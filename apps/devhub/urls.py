@@ -57,8 +57,6 @@ app_detail_patterns = patterns('',
     url('^profile$', views.profile, name='devhub.apps.profile'),
     url('^profile/remove$', views.remove_profile,
         name='devhub.apps.profile.remove'),
-    url('^issue_refund$', views.issue_refund, name='devhub.apps.issue_refund'),
-    url('^refunds$', views.refunds, name='devhub.apps.refunds'),
     url('^rmlocale$', views.remove_locale, name='devhub.apps.remove-locale'),
 )
 
@@ -77,9 +75,6 @@ detail_patterns = patterns('',
     url('^payments$', views.payments, name='devhub.addons.payments'),
     url('^payments/disable$', views.disable_payments,
         name='devhub.addons.payments.disable'),
-    url('^issue_refund$', views.issue_refund,
-        name='devhub.addons.issue_refund'),
-    url('^refunds$', views.refunds, name='devhub.addons.refunds'),
     url('^profile$', views.profile, name='devhub.addons.profile'),
     url('^profile/remove$', views.remove_profile,
         name='devhub.addons.profile.remove'),
@@ -245,9 +240,6 @@ urlpatterns = decorate(write, patterns('',
         views.docs, name='devhub.docs'),
     url('docs/(?P<doc_name>[-_\w]+)/(?P<doc_page>[-_\w]+)',
         views.docs, name='devhub.docs'),
-
-    # PayPal Checker
-    url('^check_paypal$', views.check_paypal, name='devhub.check_paypal'),
 
     # Search
     url(r'^search$', views.search, name='devhub.search'),

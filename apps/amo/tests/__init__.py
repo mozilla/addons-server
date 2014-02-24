@@ -50,7 +50,6 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.models import File, Platform
 from lib.es.signals import process, reset
-from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
 from users.models import RequestUser, UserProfile
@@ -462,24 +461,6 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         cookie = SimpleCookie()
         cookie[settings.SESSION_COOKIE_NAME] = session._get_session_key()
         self.client.cookies.update(cookie)
-
-    def make_price(self, price='1.00'):
-        price_obj, created = Price.objects.get_or_create(price=price,
-                                                         name='1')
-        for region in [regions.US.id, regions.RESTOFWORLD.id]:
-            PriceCurrency.objects.create(region=region, currency='USD',
-                                         price=price, tier=price_obj,
-                                         provider=1)
-        return price_obj
-
-    def make_premium(self, addon, price='1.00'):
-        price_obj = self.make_price(price=Decimal(price))
-        addon.update(premium_type=amo.ADDON_PREMIUM)
-        addon._premium = AddonPremium.objects.create(addon=addon,
-                                                     price=price_obj)
-        if hasattr(Price, '_currencies'):
-            del Price._currencies
-        return addon._premium
 
     def create_sample(self, name=None, db=False, **kw):
         if name is not None:

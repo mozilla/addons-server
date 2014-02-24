@@ -32,8 +32,7 @@
    and it all depends on the addon in some way. #}
 {% cache addon %}
 <aside id="related" class="secondary metadata c">
-  {% with categories = addon.all_categories if addon.is_webapp()
-                       else addon.categories.filter(application=APP.id) %}
+  {% with categories = addon.categories.filter(application=APP.id) %}
     {% if categories %}
       <h3>{{ _('Related Categories') }}</h3>
       <ul>
@@ -70,19 +69,11 @@
         <h2>
           {% with count=addon.listed_authors|length,
                   author=users_list(addon.listed_authors) %}
-            {% if addon.is_webapp() %}
-              {% trans count=count %}
-                Other apps by {{ author }}
-              {% pluralize %}
-                Other apps by these authors
-              {% endtrans %}
-            {% else %}
-              {% trans count=count %}
-                Other add-ons by {{ author }}
-              {% pluralize %}
-                Other add-ons by these authors
-              {% endtrans %}
-            {% endif %}
+            {% trans count=count %}
+              Other add-ons by {{ author }}
+            {% pluralize %}
+              Other add-ons by these authors
+            {% endtrans %}
           {% endwith %}
         </h2>
         {{ author_addons|addon_grid(cols=3, src='dp-hc-othersby',

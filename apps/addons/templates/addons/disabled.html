@@ -23,8 +23,6 @@
       {{ _('This add-on has been removed by its author.') }}
   {% elif addon.status == amo.STATUS_DISABLED %}
       {{ _('This add-on has been disabled by an administrator.') }}
-  {% elif addon.is_premium() %}
-      {{ _('This add-on is not ready for sale yet.') }}
   {% endif %}
   </div>
 </div>

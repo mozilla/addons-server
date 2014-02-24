@@ -192,112 +192,6 @@ def parse_search(fileorpath, addon=None):
             'version': datetime.now().strftime('%Y%m%d')}
 
 
-class WebAppParser(object):
-
-    def extract_locale(self, locales, key, default=None):
-        """Gets a locale item based on key.
-
-        For example, given this:
-
-            locales = {'en': {'foo': 1, 'bar': 2},
-                       'it': {'foo': 1, 'bar': 2}}
-
-        You can get english foo like:
-
-            self.extract_locale(locales, 'foo', 'en')
-
-        """
-        ex = {}
-        for loc, data in locales.iteritems():
-            ex[loc] = data.get(key, default)
-        return ex
-
-    def get_json_data(self, fileorpath):
-        path = get_filepath(fileorpath)
-        if zipfile.is_zipfile(path):
-            zf = SafeUnzip(path)
-            zf.is_valid()  # Raises forms.ValidationError if problems.
-            try:
-                data = zf.extract_path('manifest.webapp')
-            except KeyError:
-                raise forms.ValidationError(
-                    _('The file "manifest.webapp" was not found at the root '
-                      'of the packaged app archive.'))
-        else:
-            file_ = get_file(fileorpath)
-            data = file_.read()
-            file_.close()
-
-        return WebAppParser.decode_manifest(data)
-
-    @classmethod
-    def decode_manifest(cls, manifest):
-        """
-        Returns manifest, stripped of BOMs and UTF-8 decoded, as Python dict.
-        """
-        try:
-            data = strip_bom(manifest)
-            # Marketplace only supports UTF-8 encoded manifests.
-            decoded_data = data.decode('utf-8')
-        except (ValueError, UnicodeDecodeError) as exc:
-            msg = 'Error parsing manifest (encoding: utf-8): %s: %s'
-            log.error(msg % (exc.__class__.__name__, exc))
-            raise forms.ValidationError(
-                _('Could not decode the webapp manifest file.'))
-
-        try:
-            return json.loads(decoded_data)
-        except Exception:
-            raise forms.ValidationError(
-                _('The webapp manifest is not valid JSON.'))
-
-    def parse(self, fileorpath):
-        data = self.get_json_data(fileorpath)
-        loc = data.get('default_locale', translation.get_language())
-        default_locale = self.trans_locale(loc)
-        locales = data.get('locales', {})
-        if type(locales) == list:
-            raise forms.ValidationError(
-                _('Your specified app locales are not in the correct format.'))
-
-        localized_descr = self.extract_locale(locales, 'description',
-                                              default='')
-        if 'description' in data:
-            localized_descr.update({default_locale: data['description']})
-
-        localized_name = self.extract_locale(locales, 'name',
-                                             default=data['name'])
-        localized_name.update({default_locale: data['name']})
-
-        developer_info = data.get('developer', {})
-        developer_name = developer_info.get('name')
-        if not developer_name:
-            # Missing developer name shouldn't happen if validation took place,
-            # but let's be explicit about this just in case.
-            raise forms.ValidationError(
-                _("Developer name is required in the manifest in order to "
-                  "display it on the app's listing."))
-
-        return {'guid': None,
-                'type': amo.ADDON_WEBAPP,
-                'name': self.trans_all_locales(localized_name),
-                'developer_name': developer_name,
-                'description': self.trans_all_locales(localized_descr),
-                'version': data.get('version', '1.0'),
-                'default_locale': default_locale,
-                'origin': data.get('origin')}
-
-    def trans_locale(self, locale):
-        return to_language(settings.SHORTER_LANGUAGES.get(locale, locale))
-
-    def trans_all_locales(self, locale_dict):
-        trans = {}
-        for key, item in locale_dict.iteritems():
-            key = self.trans_locale(key)
-            trans[key] = item
-        return trans
-
-
 class SafeUnzip(object):
     def __init__(self, source, mode='r'):
         self.source = source
@@ -510,10 +404,7 @@ def parse_addon(pkg, addon=None):
     or files.models.FileUpload.
     """
     name = getattr(pkg, 'name', pkg)
-    if (getattr(pkg, 'is_webapp', False) or
-        name.endswith(('.webapp', '.json', '.zip'))):
-        parsed = WebAppParser().parse(pkg)
-    elif name.endswith('.xml'):
+    if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
     else:
         parsed = parse_xpi(pkg, addon)

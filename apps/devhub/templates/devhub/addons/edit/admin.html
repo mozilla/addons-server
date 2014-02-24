@@ -21,13 +21,8 @@
             <th>
               <label data-for="trusted">
                 Trusted?
-                {% if webapp %}
-                  {{ tip(None,
-                         'Trusted apps can become public without editor review.') }}
-                {% else %}
-                  {{ tip(None,
-                         'Trusted add-ons can become public without editor review.') }}
-                {% endif %}
+                {{ tip(None,
+                       'Trusted add-ons can become public without editor review.') }}
               </label>
             </th>
             <td>
@@ -41,11 +36,7 @@
           <tr>
             <th>
               <label data-for="type">
-                {% if webapp %}
-                  App Type
-                {% else %}
-                  Add-on Type
-                {% endif %}
+                Add-on Type
               </label>
             </th>
             <td>
@@ -59,11 +50,7 @@
           <tr>
             <th>
               <label data-for="guid">
-                {% if webapp %}
-                  App GUID
-                {% else %}
-                  Add-on GUID
-                {% endif %}
+                Add-on GUID
                 {{ tip(None,
                        "Only change if you understand all of the consequences.") }}
               </label>

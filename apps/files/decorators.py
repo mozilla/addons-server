@@ -60,7 +60,7 @@ def file_view(func, **kwargs):
         if result is not True:
             return result
         try:
-            obj = FileViewer(file_, is_webapp=kwargs.get('is_webapp', False))
+            obj = FileViewer(file_,)
         except ObjectDoesNotExist:
             raise http.Http404
 
@@ -82,7 +82,7 @@ def compare_file_view(func, **kwargs):
             if result is not True:
                 return result
         try:
-            obj = DiffHelper(one, two, is_webapp=kwargs.get('is_webapp', False))
+            obj = DiffHelper(one, two)
         except ObjectDoesNotExist:
             raise http.Http404
 
@@ -98,8 +98,7 @@ def compare_file_view(func, **kwargs):
 def file_view_token(func, **kwargs):
     @functools.wraps(func)
     def wrapper(request, file_id, key, *args, **kw):
-        viewer = FileViewer(get_object_or_404(File, pk=file_id),
-                            is_webapp=kwargs.get('is_webapp', False))
+        viewer = FileViewer(get_object_or_404(File, pk=file_id))
         token = request.GET.get('token')
         if not token:
             log.error('Denying access to %s, no token.' % viewer.file.id)
@@ -109,8 +108,3 @@ def file_view_token(func, **kwargs):
             raise PermissionDenied
         return func(request, viewer, key, *args, **kw)
     return wrapper
-
-
-webapp_file_view = functools.partial(file_view, is_webapp=True)
-compare_webapp_file_view = functools.partial(compare_file_view, is_webapp=True)
-webapp_file_view_token = functools.partial(file_view_token, is_webapp=True)

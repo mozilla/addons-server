@@ -16,7 +16,7 @@ from amo.decorators import (json_view, login_required, post_required,
 from amo.helpers import absolutify, shared_url
 import amo.utils
 from access import acl
-from addons.decorators import addon_view_factory, has_purchased
+from addons.decorators import addon_view_factory
 from addons.models import Addon
 
 from .helpers import user_can_delete_review
@@ -221,7 +221,6 @@ def reply(request, addon, review_id):
 @mobile_template('reviews/{mobile/}add.html')
 @login_required
 @restricted_content
-@has_purchased
 def add(request, addon, template=None):
     if addon.has_author(request.user):
         raise PermissionDenied

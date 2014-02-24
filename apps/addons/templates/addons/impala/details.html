@@ -125,8 +125,6 @@
 
   {{ dependencies_note(addon) }}
 
-  {{ upsell_note(addon) }}
-
   {% if addon.takes_contributions %}
     {{ impala_contribution(addon=addon, src='dp-btn-primary') }}
   {% elif addon.has_profile() and addon.listed_authors %}

@@ -1,9 +1,0 @@
-Your add-on, {{ addon.name }}, has received a new refund request:
-User: {{ user.display_name or user.username }}
-Purchased on {{ contribution.date|datetime }}
-Price: {{ contribution.get_amount_locale() }}
-
-Reason given:
-{{ refund_reason }}
-
-To approve or deny this request, click here: {{ refund_url }}

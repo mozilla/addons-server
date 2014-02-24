@@ -37,7 +37,6 @@ from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
-from market.models import AddonPaymentData, AddonPremium, Price
 from reviews.models import Review
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
@@ -290,51 +289,6 @@ class TestAddonManager(amo.tests.TestCase):
         addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
         addon.update(_current_version=None, _signal=False)
         eq_(Addon.objects.valid_and_disabled_and_pending().count(), before + 1)
-
-    def test_top_free_public(self):
-        addons = list(Addon.objects.listed(amo.FIREFOX))
-        eq_(list(Addon.objects.top_free(amo.FIREFOX)),
-            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
-        eq_(list(Addon.objects.top_free(amo.THUNDERBIRD)), [])
-
-    def test_top_free_all(self):
-        addons = list(Addon.objects.filter(appsupport__app=amo.FIREFOX.id)
-                     .exclude(premium_type__in=amo.ADDON_PREMIUMS)
-                     .exclude(addonpremium__price__price__isnull=False))
-        eq_(list(Addon.objects.top_free(amo.FIREFOX, listed=False)),
-            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
-        eq_(list(Addon.objects.top_free(amo.THUNDERBIRD, listed=False)), [])
-
-    def make_paid(self, addons, type=amo.ADDON_PREMIUM):
-        price = Price.objects.create(price='1.00')
-        for addon in addons:
-            addon.update(premium_type=type)
-            AddonPremium.objects.create(addon=addon, price=price)
-
-    def test_top_paid_public(self):
-        addons = list(Addon.objects.listed(amo.FIREFOX)[:3])
-        self.make_paid(addons)
-        eq_(list(Addon.objects.top_paid(amo.FIREFOX)),
-            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
-        eq_(list(Addon.objects.top_paid(amo.THUNDERBIRD)), [])
-
-    def test_top_paid_all(self):
-        addons = list(Addon.objects.listed(amo.FIREFOX)[:3])
-        for addon in addons:
-            addon.update(status=amo.STATUS_LITE)
-        self.make_paid(addons)
-        eq_(list(Addon.objects.top_paid(amo.FIREFOX, listed=False)),
-            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
-        eq_(list(Addon.objects.top_paid(amo.THUNDERBIRD, listed=False)), [])
-
-    def test_top_paid_in_app_all(self):
-        addons = list(Addon.objects.listed(amo.FIREFOX)[:3])
-        for addon in addons:
-            addon.update(status=amo.STATUS_LITE)
-        self.make_paid(addons, amo.ADDON_PREMIUM_INAPP)
-        eq_(list(Addon.objects.top_paid(amo.FIREFOX, listed=False)),
-            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
-        eq_(list(Addon.objects.top_paid(amo.THUNDERBIRD, listed=False)), [])
 
     def test_new_featured(self):
         f = Addon.objects.featured(amo.FIREFOX)
@@ -1433,7 +1387,6 @@ class TestAddonDelete(amo.tests.TestCase):
             device_type=DEVICE_TYPES.keys()[0])
         AddonRecommendation.objects.create(addon=addon,
             other_addon=addon, score=0)
-        AddonUpsell.objects.create(free=addon, premium=addon)
         AddonUser.objects.create(addon=addon,
             user=UserProfile.objects.create())
         AppSupport.objects.create(addon=addon,
@@ -1447,9 +1400,6 @@ class TestAddonDelete(amo.tests.TestCase):
             activity_log=ActivityLog.objects.create(action=0))
         RssKey.objects.create(addon=addon)
         SubmitStep.objects.create(addon=addon, step=0)
-
-        AddonPremium.objects.create(addon=addon)
-        AddonPaymentData.objects.create(addon=addon)
 
         # This should not throw any FK errors if all the cascades work.
         addon.delete()
@@ -2129,120 +2079,6 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
         File.objects.create(platform=self.platform_all, version=self.version,
                             filename=self.xpi_path('langpack-localepicker'))
         eq_(self.addon.get_localepicker(), '')
-
-
-class TestMarketplace(amo.tests.TestCase):
-
-    def setUp(self):
-        self.addon = Addon(type=amo.ADDON_EXTENSION)
-
-    def test_is_premium(self):
-        assert not self.addon.is_premium()
-        self.addon.premium_type = amo.ADDON_PREMIUM
-        assert self.addon.is_premium()
-
-    def test_is_premium_inapp(self):
-        assert not self.addon.is_premium()
-        self.addon.premium_type = amo.ADDON_PREMIUM_INAPP
-        assert self.addon.is_premium()
-
-    def test_is_premium_free(self):
-        assert not self.addon.is_premium()
-        self.addon.premium_type = amo.ADDON_FREE_INAPP
-        assert not self.addon.is_premium()
-
-    def test_can_be_premium_upsell(self):
-        self.addon.premium_type = amo.ADDON_PREMIUM
-        self.addon.save()
-        free = Addon.objects.create(type=amo.ADDON_EXTENSION)
-
-        AddonUpsell.objects.create(free=free, premium=self.addon)
-        assert not free.can_become_premium()
-
-    def test_can_be_premium_status(self):
-        for status in amo.STATUS_CHOICES.keys():
-            self.addon.status = status
-            if status in amo.PREMIUM_STATUSES:
-                assert self.addon.can_become_premium()
-            else:
-                assert not self.addon.can_become_premium()
-
-    def test_can_be_premium_type(self):
-        for type in amo.ADDON_TYPES.keys():
-            self.addon.update(type=type)
-            if type in [amo.ADDON_EXTENSION, amo.ADDON_WEBAPP,
-                        amo.ADDON_LPAPP, amo.ADDON_DICT, amo.ADDON_THEME]:
-                assert self.addon.can_become_premium()
-            else:
-                assert not self.addon.can_become_premium()
-
-
-class TestAddonUpsell(amo.tests.TestCase):
-
-    def setUp(self):
-        self.one = Addon.objects.create(type=amo.ADDON_EXTENSION, name='free')
-        self.two = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                        name='premium')
-        self.upsell = AddonUpsell.objects.create(free=self.one,
-                                                 premium=self.two)
-
-    def test_create_upsell(self):
-        eq_(self.one.upsell.free, self.one)
-        eq_(self.one.upsell.premium, self.two)
-        eq_(self.two.upsell, None)
-
-    def test_delete(self):
-        self.upsell = AddonUpsell.objects.create(free=self.two,
-                                                 premium=self.one)
-        # Note: delete ignores if status 0.
-        self.one.update(status=amo.STATUS_PUBLIC)
-        self.one.delete()
-        eq_(AddonUpsell.objects.count(), 0)
-
-
-class TestAddonPurchase(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        self.user = UserProfile.objects.get(pk=999)
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                          premium_type=amo.ADDON_PREMIUM,
-                                          name='premium')
-
-    def test_no_premium(self):
-        # If you've purchased something, the fact that its now free
-        # doesn't change the fact that you purchased it.
-        self.addon.addonpurchase_set.create(user=self.user)
-        self.addon.update(premium_type=amo.ADDON_FREE)
-        assert self.addon.has_purchased(self.user)
-
-    def test_has_purchased(self):
-        self.addon.addonpurchase_set.create(user=self.user)
-        assert self.addon.has_purchased(self.user)
-
-    def test_not_purchased(self):
-        assert not self.addon.has_purchased(self.user)
-
-    def test_anonymous(self):
-        assert not self.addon.has_purchased(None)
-        assert not self.addon.has_purchased(AnonymousUser)
-
-    def test_is_refunded(self):
-        self.addon.addonpurchase_set.create(user=self.user,
-                                            type=amo.CONTRIB_REFUND)
-        assert self.addon.is_refunded(self.user)
-
-    def test_is_chargeback(self):
-        self.addon.addonpurchase_set.create(user=self.user,
-                                            type=amo.CONTRIB_CHARGEBACK)
-        assert self.addon.is_chargeback(self.user)
-
-    def test_purchase_state(self):
-        purchase = self.addon.addonpurchase_set.create(user=self.user)
-        for state in [amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
-                      amo.CONTRIB_CHARGEBACK]:
-            purchase.update(type=state)
-            eq_(state, self.addon.get_purchase_type(self.user))
 
 
 class TestCompatOverride(amo.tests.TestCase):

@@ -23,37 +23,23 @@
 
     <div>
       <p>
-        {% if webapp %}
-          {{ loc('Please do not post bug reports in reviews. We do not make
-                  your email address available to app developers and they may
-                  need to contact you to help resolve your issue.') }}
-        {% else %}
-          {% trans %}
-            Please do not post bug reports in reviews. We do not make your email
-            address available to add-on developers and they may need to contact
-            you to help resolve your issue.
-          {% endtrans %}
-        {% endif %}
+        {% trans %}
+          Please do not post bug reports in reviews. We do not make your email
+          address available to add-on developers and they may need to contact
+          you to help resolve your issue.
+        {% endtrans %}
       </p>
       {% if addon.support_url or addon.support_email %}
         <p>
           {% with support=request.path + '#support' %}
-            {% if webapp %}
-              {{ loc('See the <a href="{support}">support section</a> to
-                      find out where to get assistance for this app.')|f(
-                      support=support)|safe }}
-            {% else %}
-              {% trans %}
-                See the <a href="{{ support }}">support section</a> to find out
-                where to get assistance for this add-on.
-              {% endtrans %}
-            {% endif %}
+            {% trans %}
+              See the <a href="{{ support }}">support section</a> to find out
+              where to get assistance for this add-on.
+            {% endtrans %}
           {% endwith %}
         </p>
       {% endif %}
-      {% if not webapp %}
-        <p><a href="{{ remora_url('/pages/review_guide') }}" target="_blank">{{ _('Review Guidelines') }}</a></p>
-      {% endif %}
+      <p><a href="{{ remora_url('/pages/review_guide') }}" target="_blank">{{ _('Review Guidelines') }}</a></p>
       <p>
         <a href="{{ shared_url('reviews.add', addon) }}"
            id="detail-review-link">{{ _('Detailed Review') }}</a>

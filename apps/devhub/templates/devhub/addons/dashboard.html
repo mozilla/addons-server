@@ -1,10 +1,7 @@
 {% extends "devhub/base_impala.html" %}
 
-{% if webapp %}
-  {% set title = loc('Manage My Apps') %}
-{% else %}
-  {% set title = _('Manage My Submissions') %}
-{% endif %}
+
+{% set title = _('Manage My Submissions') %}
 
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
 
@@ -16,115 +13,76 @@
 
       {% if addon_tab %}
         {% set cnt = addons.paginator.count %}
-        {% if webapp %}
-          {# L10n: {0} is an integer. #}
-          <h2>{{ ngettext('<b>{0}</b> app', '<b>{0}</b> apps', cnt)|f(cnt|numberfmt)|safe }}</h2>
-        {% else %}
-          {# L10n: {0} is an integer. #}
-          <h2 class="submission-count">{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)|f(cnt|numberfmt)|safe }}</h2>
-        {% endif %}
+        {# L10n: {0} is an integer. #}
+        <h2 class="submission-count">{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)|f(cnt|numberfmt)|safe }}</h2>
       {% endif %}
     </header>
   </section>
 
-{% if webapp %}
-  <div class="island action-needed">
-    <h2>{{ _('Welcome to the Developer Dashboard') }}</h2>
-    {% if webapp %}
-      <p>
-        {{ loc("You don't currently have any apps hosted on Firefox Marketplace. To
-                learn how the process works and submit your first app, click Get
-                Started below.") }}
-      </p>
-    {% else %}
-      <p>
-      {% trans %}
-        You don't currently have any add-ons hosted on Mozilla Add-ons. To learn
-        how the process works and submit your first add-on, click Get Started
-        below.
-      {% endtrans %}
-      </p>
+<section class="secondary devhub-sidebar">
+  <p id="submit-addon" class="submit-cta">
+    <a href="{{ url('devhub.submit.1') }}"
+       class="button prominent">{{ _('Submit a New Add-on') }}</a>
+  </p>
+  <p class="submit-theme submit-cta">
+    <a href="{{ url('devhub.themes.submit') }}"
+       class="button prominent">{{ _('Submit a New Theme') }}</a>
+  </p>
+  <div class="item recent-activity">
+    <h3>
+      {{ _('Recent Activity') }}
+      <a href="{{ rss }}" class="subscribe-feed" title="{{ _('Subscribe to this feed') }}">
+        {{ _('Subscribe to this feed') }}</a>
+    </h3>
+    {% if addon_items %}
+      <ul>
+        {% for item in addon_items %}
+          <li class="item">
+            {{ item }}
+            <span class="activity-timestamp">
+            {% trans user=item.user|user_link, ago=item.created|timesince %}
+            {{ ago }} by {{ user }}
+            {% endtrans %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
     {% endif %}
-    {% set submit_view = 'devhub.submit_apps.1' if webapp else 'devhub.submit.1' %}
-    <p class="button-wrapper">
-      <a href="{{ url(submit_view) }}" class="button prominent">
-        {{ _('Get Started') }}</a>
-    </p>
+    <p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
+      {{ _('Older activity for My Add-ons') }} &#9658;</a></p>
   </div>
-{% else %}
-  <section class="secondary devhub-sidebar">
-    <p id="submit-addon" class="submit-cta">
-      <a href="{{ url('devhub.submit.1') }}"
-         class="button prominent">{{ _('Submit a New Add-on') }}</a>
-    </p>
-    <p class="submit-theme submit-cta">
-      <a href="{{ url('devhub.themes.submit') }}"
-         class="button prominent">{{ _('Submit a New Theme') }}</a>
-    </p>
-    <div class="item recent-activity">
-      <h3>
-        {{ _('Recent Activity') }}
-        <a href="{{ rss }}" class="subscribe-feed" title="{{ _('Subscribe to this feed') }}">
-          {{ _('Subscribe to this feed') }}</a>
-      </h3>
-      {% if addon_items %}
-        <ul>
-          {% for item in addon_items %}
-            <li class="item">
-              {{ item }}
-              <span class="activity-timestamp">
-              {% trans user=item.user|user_link, ago=item.created|timesince %}
-              {{ ago }} by {{ user }}
-              {% endtrans %}
-              </span>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-      {% if webapp %}
-        {#<p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
-          {{ loc('Older activity for My Apps') }} &#9658;</a></p>#}
-      {% else %}
-        <p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
-          {{ _('Older activity for My Add-ons') }} &#9658;</a></p>
-      {% endif %}
+
+  {% include "devhub/includes/blog_posts.html" %}
+</section>
+
+{% if addon_tab %}
+  {% include "addons/includes/dashboard_tabs.html" %}
+  <section class="dashboard primary" role="main">
+    <div class="listing island hero c">
+      {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
+      <div class="items">
+        {{ dev_addon_listing_items(addons.object_list) }}
+      </div>
+      {{ addons|impala_paginator }}
     </div>
-
-    {% if not webapp %}
-      {% include "devhub/includes/blog_posts.html" %}
-    {% endif %}
   </section>
+{% endif %}
 
-  {% if addon_tab %}
+{% if theme %}
+  {# L10n: {0} is an integer. #}
+  <section class="dashboard primary theme-dashboard">
+    {% set cnt = themes.paginator.count %}
+    <h2 class="submission-count">
+      {{ ngettext('<b>{0}</b> theme', '<b>{0}</b> themes', cnt)|f(cnt|numberfmt)|safe }}
+    </h2>
     {% include "addons/includes/dashboard_tabs.html" %}
-    <section class="dashboard primary" role="main">
-      <div class="listing island hero c">
-        {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
-        <div class="items">
-          {{ dev_addon_listing_items(addons.object_list) }}
-        </div>
-        {{ addons|impala_paginator }}
+    <div class="listing island hero c">
+      {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
+      <div class="items">
+        {{ dev_addon_listing_items(themes.object_list) }}
       </div>
-    </section>
-  {% endif %}
-
-  {% if theme %}
-    {# L10n: {0} is an integer. #}
-    <section class="dashboard primary theme-dashboard">
-      {% set cnt = themes.paginator.count %}
-      <h2 class="submission-count">
-        {{ ngettext('<b>{0}</b> theme', '<b>{0}</b> themes', cnt)|f(cnt|numberfmt)|safe }}
-      </h2>
-      {% include "addons/includes/dashboard_tabs.html" %}
-      <div class="listing island hero c">
-        {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
-        <div class="items">
-          {{ dev_addon_listing_items(themes.object_list) }}
-        </div>
-        {{ themes|impala_paginator }}
-      </div>
-    </section>
-  {% endif %}
-
+      {{ themes|impala_paginator }}
+    </div>
+  </section>
 {% endif %}
 {% endblock %}

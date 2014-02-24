@@ -38,11 +38,6 @@
       {% set manage_urls = [
         (addon.get_dev_url('versions'), _('Manage Status')),
       ] %}
-      {% if addon.is_premium() and waffle.switch('allow-refund') %}
-        {% do manage_urls.insert(1,
-          (addon.get_dev_url('refunds'), loc('Manage Refunds'))
-        ) %}
-      {% endif %}
       {% do manage_urls.insert(0,
         (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
       ) %}

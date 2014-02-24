@@ -25,7 +25,6 @@ def admin_site_links():
             ('View site settings', reverse('zadmin.settings')),
             ('Django admin pages', reverse('zadmin.home')),
             ('Site Events', reverse('zadmin.site_events')),
-            ('Update prices', reverse('zadmin.price_tiers')),
         ],
         'tools': [
             ('View request environment', reverse('amo.env')),

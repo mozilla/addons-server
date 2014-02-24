@@ -68,10 +68,9 @@ class FileViewer(object):
     local temp path.
     """
 
-    def __init__(self, file_obj, is_webapp=False):
+    def __init__(self, file_obj):
         self.file = file_obj
         self.addon = self.file.version.addon
-        self.is_webapp = is_webapp
         self.src = (file_obj.guarded_file_path
                     if file_obj.status == amo.STATUS_DISABLED
                     else file_obj.file_path)
@@ -152,12 +151,6 @@ class FileViewer(object):
         """
         try:
             file_data = self._read_file(allow_empty)
-
-            # If this is a webapp manifest, we should try to pretty print it.
-            if (self.selected and
-                self.selected.get('filename') == 'manifest.webapp'):
-                file_data = self._process_manifest(file_data)
-
             return file_data
         except (IOError, OSError):
             self.selected['msg'] = _('That file no longer exists.')
@@ -186,39 +179,6 @@ class FileViewer(object):
                     _('Problems decoding {0}.').format(codec))
                 return cont
 
-    def _process_manifest(self, data):
-        """
-        If we're dealing with a webapp manifest, this will format it nicely for
-        maximum diff-ability.
-        """
-
-        # If this isn't a webapp, don't reformat it.
-        if not self.is_webapp:
-            return data
-
-        try:
-            json_data = json.loads(data)
-        except Exception:
-            # If there are any JSON decode problems, just return the raw file.
-            return data
-
-        def format_dict(data):
-            def do_format(value):
-                if isinstance(value, dict):
-                    return format_dict(value)
-                else:
-                    return value
-
-            # We want everything sorted, but we always want these few nodes
-            # right at the top.
-            prefix_nodes = ["name", "description", "version"]
-            prefix_nodes = [(k, data.pop(k)) for k in prefix_nodes if
-                            k in data]
-
-            processed_nodes = [(k, do_format(v)) for k, v in data.items()]
-            return SortedDict(prefix_nodes + sorted(processed_nodes))
-
-        return json.dumps(format_dict(json_data), indent=2)
 
     def select(self, file_):
         self.selected = self.get_files().get(file_)
@@ -226,7 +186,7 @@ class FileViewer(object):
     def is_binary(self):
         if self.selected:
             binary = self.selected['binary']
-            if binary and (binary != 'image' or not self.is_webapp):
+            if binary and (binary != 'image'):
                 self.selected['msg'] = _('This file is not viewable online. '
                                          'Please download the file to view '
                                          'the contents.')
@@ -247,7 +207,7 @@ class FileViewer(object):
         if key:
             return key
 
-        return 'manifest.webapp' if self.is_webapp else 'install.rdf'
+        return 'install.rdf'
 
     def get_files(self):
         """
@@ -294,7 +254,7 @@ class FileViewer(object):
         if filename:
             short = os.path.splitext(filename)[1][1:]
             syntax_map = {'xul': 'xml', 'rdf': 'xml', 'jsm': 'js',
-                          'json': 'js', 'webapp': 'js'}
+                          'json': 'js'}
             short = syntax_map.get(short, short)
             if short in ['actionscript3', 'as3', 'bash', 'shell', 'cpp', 'c',
                          'c#', 'c-sharp', 'csharp', 'css', 'diff', 'html',
@@ -323,13 +283,10 @@ class FileViewer(object):
 
         iterate(self.dest)
 
-        url_prefix = 'mkt.%s' if self.is_webapp else '%s'
         for path in all_files:
             filename = smart_unicode(os.path.basename(path), errors='replace')
             short = smart_unicode(path[len(self.dest) + 1:], errors='replace')
             mime, encoding = mimetypes.guess_type(filename)
-            if not mime and filename == 'manifest.webapp':
-                mime = 'application/x-web-app-manifest+json'
             directory = os.path.isdir(path)
 
             res[short] = {
@@ -345,9 +302,9 @@ class FileViewer(object):
                 'short': short,
                 'size': os.stat(path)[stat.ST_SIZE],
                 'truncated': self.truncate(filename),
-                'url': reverse(url_prefix % 'files.list',
+                'url': reverse('files.list',
                                args=[self.file.id, 'file', short]),
-                'url_serve': reverse(url_prefix % 'files.redirect',
+                'url_serve': reverse('files.redirect',
                                      args=[self.file.id, short]),
                 'version': self.file.version.version,
             }
@@ -357,13 +314,11 @@ class FileViewer(object):
 
 class DiffHelper(object):
 
-    def __init__(self, left, right, is_webapp=False):
-        self.left = FileViewer(left, is_webapp=is_webapp)
-        self.right = FileViewer(right, is_webapp=is_webapp)
+    def __init__(self, left, right):
+        self.left = FileViewer(left)
+        self.right = FileViewer(right)
         self.addon = self.left.addon
         self.key = None
-
-        self.is_webapp = is_webapp
 
     def __str__(self):
         return '%s:%s' % (self.left, self.right)
@@ -378,8 +333,7 @@ class DiffHelper(object):
         return self.left.is_extracted() and self.right.is_extracted()
 
     def get_url(self, short):
-        url_name = 'mkt.files.compare' if self.is_webapp else 'files.compare'
-        return reverse(url_name,
+        return reverse('files.compare',
                        args=[self.left.file.id, self.right.file.id,
                              'file', short])
 

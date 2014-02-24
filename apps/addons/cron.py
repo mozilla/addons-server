@@ -170,11 +170,10 @@ def update_addon_download_totals():
            FROM download_counts
            USE KEY (`addon_and_count`)
            JOIN addons ON download_counts.addon_id=addons.id
-           WHERE addons.addontype_id != %s AND
-                 addons.status != %s
+           WHERE addons.status != %s
            GROUP BY addon_id
            ORDER BY addon_id"""
-    cursor.execute(q, [amo.ADDON_WEBAPP, amo.STATUS_DELETED])
+    cursor.execute(q, [amo.STATUS_DELETED])
     d = cursor.fetchall()
     cursor.close()
 
@@ -347,7 +346,6 @@ def deliver_hotness():
     """
     frozen = set(f.id for f in FrozenAddon.objects.all())
     all_ids = list((Addon.objects.exclude(type=amo.ADDON_PERSONA)
-                   .exclude(type=amo.ADDON_WEBAPP)
                    .values_list('id', flat=True)))
     now = datetime.now()
     one_week = now - timedelta(days=7)
