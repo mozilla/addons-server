@@ -342,7 +342,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         url = reverse('app-content-ratings', kwargs={'pk': app.pk})
         res = self.client.post(url, data=json.dumps(
             {'submission_id': 50, 'security_code': 'AB12CD3'}))
-        eq_(res.status_code, 204)
+        eq_(res.status_code, 201)
         eq_(res.content, '')
 
     def test_post_content_ratings_bad(self):
