@@ -32,48 +32,45 @@ class TestEmailReplySaving(TestCase):
         self.create_switch('comm-dashboard')
         self.token = CommunicationThreadToken.objects.create(thread=t,
             user=self.profile)
-        self.email_template = open(sample_email).read()
+        self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
+        self.email_base64 = open(sample_email).read()
         self.grant_permission(self.profile, 'Apps:Review')
 
     def test_successful_save(self):
-        email_text = self.email_template % self.token.uuid
-        note = save_from_email_reply(email_text)
+        note = save_from_email_reply(self.email_base64)
         assert note
-        eq_(note.body, 'This is the body')
+        eq_(note.body, 'test note 5\n')
 
     def test_with_max_count_token(self):
         # Test with an invalid token.
         self.token.update(use_count=comm.MAX_TOKEN_USE_COUNT + 1)
-        email_text = self.email_template % self.token.uuid
-        assert not save_from_email_reply(email_text)
+        assert not save_from_email_reply(self.email_base64)
 
     def test_with_unpermitted_token(self):
         """Test when the token's user does not have a permission on thread."""
         self.profile.groupuser_set.filter(
             group__rules__contains='Apps:Review').delete()
-        email_text = self.email_template % self.token.uuid
-        assert not save_from_email_reply(email_text)
+        assert not save_from_email_reply(self.email_base64)
 
     def test_non_existent_token(self):
-        email_text = self.email_template % (self.token.uuid + 'junk')
-        assert not save_from_email_reply(email_text)
+        self.token.update(uuid='youtube?v=wn4RP57Y7bw')
+        assert not save_from_email_reply(self.email_base64)
 
-    def test_with_junk_body(self):
-        email_text = 'this is junk'
-        assert not save_from_email_reply(email_text)
+    def test_with_invalid_msg(self):
+        assert not save_from_email_reply('youtube?v=WwJjts9FzxE')
 
 
 class TestEmailParser(TestCase):
 
     def setUp(self):
-        email_text = open(sample_email).read() % 'someuuid'
+        email_text = open(sample_email).read()
         self.parser = CommEmailParser(email_text)
 
     def test_uuid(self):
-        eq_(self.parser.get_uuid(), 'someuuid')
+        eq_(self.parser.get_uuid(), '5a0b8a83d501412589cc5d562334b46b')
 
     def test_body(self):
-        eq_(self.parser.get_body(), 'This is the body')
+        eq_(self.parser.get_body(), 'test note 5\n')
 
 
 class TestCreateCommNote(TestCase):

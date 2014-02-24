@@ -1,3 +1,5 @@
+import base64
+import urllib2
 from email import message_from_string
 from email.utils import parseaddr
 
@@ -25,6 +27,15 @@ class CommEmailParser(object):
     address_prefix = comm.REPLY_TO_PREFIX
 
     def __init__(self, email_text):
+        """Decode base64 email and turn it into a Django email object."""
+        try:
+            email_text = base64.standard_b64decode(
+                urllib2.unquote(email_text.rstrip()))
+        except TypeError:
+            # Corrupt or invalid base 64.
+            self.decode_error = True
+            return
+
         self.email = message_from_string(email_text)
         self.reply_text = EmailReplyParser.read(self.email.get_payload()).reply
 
@@ -50,6 +61,9 @@ class CommEmailParser(object):
 
 def save_from_email_reply(reply_text):
     parser = CommEmailParser(reply_text)
+    if hasattr(parser, 'decode_error'):
+        return False
+
     uuid = parser.get_uuid()
 
     if not uuid:
