@@ -3,20 +3,24 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-02-24 21:25+0000\n"
+"Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1393277153.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common/upload-addon.js:34
 #: media/js/common/upload-image.js:129
@@ -27,7 +31,7 @@ msgstr ""
 #: media/js/common/upload-addon.js:52
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "TEST"
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
@@ -65,6 +69,7 @@ msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common/upload-addon.js:188
 #: media/js/common/upload-packaged-app.js:183
@@ -72,6 +77,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common/upload-addon.js:202
 #: media/js/common/upload-addon.js:329
@@ -108,6 +114,7 @@ msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -145,12 +152,14 @@ msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
@@ -197,6 +206,7 @@ msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/devreg/devhub.js:200
 #: media/js/zamboni/devhub.js:183
@@ -204,6 +214,7 @@ msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/devreg/devhub.js:205
 #: media/js/zamboni/devhub.js:188
@@ -376,6 +387,7 @@ msgid_plural ""
 "an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/devreg/payments-manage.js:58
 #: media/js/devreg/payments-manage.js:107
@@ -424,6 +436,7 @@ msgid "{0} character left."
 msgid_plural "{0} characters left."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/devreg/validator.js:71
 #: media/js/zamboni/validator.js:71
@@ -470,6 +483,7 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/devreg/validator.js:363
 #: media/js/zamboni/validator.js:372
@@ -477,6 +491,7 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/devreg/validator.js:440
 #: media/js/zamboni/validator.js:451
@@ -1273,12 +1288,14 @@ msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
 msgid_plural "This will send emails to the authors of {0} files."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -1452,12 +1469,14 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
@@ -1512,6 +1531,7 @@ msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
@@ -1527,6 +1547,7 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/perf.js:29
 #: media/js/zamboni/perf.js:42
@@ -1546,6 +1567,7 @@ msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
