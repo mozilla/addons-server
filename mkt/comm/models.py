@@ -216,7 +216,12 @@ class CommAttachment(amo.models.ModelBase):
 
     def full_path(self):
         """Returns the full filesystem path of the attachment."""
-        return os.path.join(settings.REVIEWER_ATTACHMENTS_PATH, self.filepath)
+        try:
+            return os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
+                                self.filepath)
+        except IOError:
+            if not settings.DEBUG:
+                raise IOError
 
     def display_name(self):
         """
@@ -231,7 +236,11 @@ class CommAttachment(amo.models.ModelBase):
         Returns a boolean indicating whether the attached file is an image of a
         format recognizable by the stdlib imghdr module.
         """
-        return imghdr.what(self.full_path()) is not None
+        try:
+            return imghdr.what(self.full_path()) is not None
+        except IOError:
+            if not settings.DEBUG:
+                raise IOError
 
 
 class CommunicationNoteRead(models.Model):
