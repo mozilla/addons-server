@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-24 21:25+0000\n"
+"PO-Revision-Date: 2014-02-24 21:26+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393277153.0\n"
+"X-POOTLE-MTIME: 1393277212.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -31,7 +31,7 @@ msgstr ""
 #: media/js/common/upload-addon.js:52
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr "TEST"
+msgstr ""
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
