@@ -9,7 +9,7 @@ API for IARC (International Age Rating Coalition) app content ratings.
 Content Rating
 ==============
 
-.. http:get:: /api/v1/apps/app/(int:id|string:app_slug)/content-ratings
+.. http:get:: /api/v1/apps/app/(int:id|string:app_slug)/content_ratings
 
     Returns the list of content ratings of an app.
 

@@ -742,6 +742,12 @@ class TestPreGenAPKs(amo.tests.WebappTestCase):
             settings.PRE_GENERATE_APK_URL), req.get.mock_calls
         assert res.raise_for_status.called, 'raise on bad status codes'
 
+    def test_get_packaged(self, req):
+        self.app.update(manifest_url=None, is_packaged=True)
+        # Make sure this doesn't raise an exception.
+        pre_generate_apk.delay(self.app.id)
+        assert req.get.called, 'APK requested from factory'
+
     def test_no_manifest(self, req):
         self.app.update(manifest_url=None)
         with self.assertRaises(PreGenAPKError):

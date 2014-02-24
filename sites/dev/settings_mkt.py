@@ -214,3 +214,5 @@ IARC_ALLOW_CERT_REUSE = True
 
 # We'll use zippy, the reference implementation on -dev.
 PAYMENT_PROVIDERS = ['reference']
+
+PRE_GENERATE_APK_URL = 'http://dapk.net/application.apk'
