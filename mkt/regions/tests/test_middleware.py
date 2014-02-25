@@ -114,6 +114,14 @@ class TestRegionMiddleware(amo.tests.TestCase):
         self.client.get('/api/v1/apps/', REMOTE_ADDR='127.0.0.1')
         set_region.assert_called_with(mkt.regions.US)
 
+    @mock.patch('mkt.regions.middleware.GeoIP.lookup')
+    @mock.patch('mkt.regions.set_region')
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'restofworld')
+    def test_geoip_gb(self, set_region, mock_lookup):
+        mock_lookup.return_value = 'gb'
+        self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        set_region.assert_called_with(mkt.regions.UK)
+
 
 class TestRegionMiddlewarePersistence(amo.tests.TestCase):
     fixtures = fixture('user_999')

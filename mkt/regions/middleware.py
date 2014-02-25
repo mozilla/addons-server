@@ -6,6 +6,7 @@ from django_statsd.clients import statsd
 from lib.geoip import GeoIP
 
 import mkt
+from mkt.regions.utils import parse_region
 
 log = commonware.log.getLogger('mkt.regions')
 
@@ -22,7 +23,7 @@ class RegionMiddleware(object):
         ip_reg = self.geoip.lookup(address)
         log.info('Geodude lookup for {0} returned {1}'
                  .format(address, ip_reg))
-        return mkt.regions.REGIONS_DICT.get(ip_reg, mkt.regions.RESTOFWORLD)
+        return parse_region(ip_reg) or mkt.regions.RESTOFWORLD
 
     def process_request(self, request):
         regions = mkt.regions.REGION_LOOKUP
