@@ -1,5 +1,6 @@
 from django.db.models import Q
-from django.shortcuts import render
+
+import jingo
 
 import amo
 from amo.utils import chunked
@@ -22,4 +23,4 @@ def manifest_revalidation(request):
 
         amo.messages.success(request, 'Manifest revalidation queued')
 
-    return render(request, 'zadmin/manifest.html')
+    return jingo.render(request, 'zadmin/manifest.html')

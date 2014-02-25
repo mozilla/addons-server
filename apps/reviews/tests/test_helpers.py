@@ -15,7 +15,7 @@ def setup():
 
 def render(s, context={}):
     t = jingo.env.from_string(s)
-    return t.render(context)
+    return t.render(**context)
 
 
 def test_stars():

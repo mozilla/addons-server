@@ -26,7 +26,6 @@ import mock
 import pyelasticsearch.exceptions as pyelasticsearch
 import pyes.exceptions as pyes
 import test_utils
-import tower
 from dateutil.parser import parse as dateutil_parser
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
@@ -63,15 +62,6 @@ from mkt.webapps.models import (update_search_index as app_update_search_index,
                                 WebappIndexer, Webapp)
 from mkt.webapps.tasks import unindex_webapps
 from mkt.site.fixtures import fixture
-
-
-# We might now have gettext available in jinja2.env.globals when running tests.
-# It's only added to the globals when activating a language with tower (which
-# is usually done in the middlewares). During tests, however, we might not be
-# running middlewares, and thus not activating a language, and thus not
-# installing gettext in the globals, and thus not have it in the context when
-# rendering templates.
-tower.activate('en')
 
 
 def formset(*args, **kw):

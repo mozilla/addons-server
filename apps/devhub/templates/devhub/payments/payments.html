@@ -18,7 +18,7 @@
   {% if contrib and not errors %}
     <div id="status-bar">
       <p>
-        {{ _('You are currently requesting <b>contributions</b> from users') }}
+        {{ _('You are currently requesting <b>contributions</b> from users')|safe }}
         <br>
         <span class="light">
           {% trans url=url('addons.about', addon.slug),

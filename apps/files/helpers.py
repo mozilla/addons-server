@@ -55,7 +55,7 @@ def file_tree(files, selected):
             output.append('<ul class="js-hidden">')
         elif v['depth'] < depth:
             output.extend(['</ul>' for x in range(v['depth'], depth)])
-        output.append(t.render({'value': v, 'selected': selected}))
+        output.append(t.render(value=v, selected=selected))
         depth = v['depth']
     output.extend(['</ul>' for x in range(depth, -1, -1)])
     return jinja2.Markup('\n'.join(output))

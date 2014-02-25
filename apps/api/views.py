@@ -10,7 +10,6 @@ from datetime import date, timedelta
 
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponsePermanentRedirect
-from django.shortcuts import render
 from django.template.context import get_standard_processors
 from django.utils import encoding, translation
 from django.utils.encoding import smart_str
@@ -75,7 +74,7 @@ def render_xml_to_string(request, template, context={}):
         context.update(processor(request))
 
     template = xml_env.get_template(template)
-    return template.render(context)
+    return template.render(**context)
 
 
 def render_xml(request, template, context={}, **kwargs):
@@ -482,7 +481,7 @@ def redirect_view(request, url):
 def request_token_ready(request, token):
     error = request.GET.get('error', '')
     ctx = {'error': error, 'token': token}
-    return render(request, 'piston/request_token_ready.html', ctx)
+    return jingo.render(request, 'piston/request_token_ready.html', ctx)
 
 
 @csrf_exempt

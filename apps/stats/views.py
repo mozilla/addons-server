@@ -12,11 +12,12 @@ from django.core.exceptions import PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import connection
 from django.db.models import Avg, Count, Q, Sum
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.utils import simplejson
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
 
+import jingo
 from cache_nuggets.lib import memoize
 from product_details import product_details
 
@@ -51,9 +52,10 @@ GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
 def dashboard(request):
     stats_base_url = reverse('stats.dashboard')
     view = get_report_view(request)
-    return render(request, 'stats/dashboard.html',
-                  {'report': 'site', 'view': view,
-                   'stats_base_url': stats_base_url})
+    return jingo.render(request, 'stats/dashboard.html',
+                        {'report': 'site',
+                         'view': view,
+                         'stats_base_url': stats_base_url})
 
 
 def get_series(model, extra_field=None, **filters):
@@ -302,17 +304,19 @@ def stats_report(request, addon, report):
                            for_contributions=(report == 'contributions'))
     stats_base_url = reverse('stats.overview', args=[addon.slug])
     view = get_report_view(request)
-    return render(request, 'stats/reports/%s.html' % report,
-                  {'addon': addon, 'report': report, 'view': view,
-                   'stats_base_url': stats_base_url})
+    return jingo.render(request, 'stats/reports/%s.html' % report,
+                        {'addon': addon,
+                         'report': report,
+                         'view': view,
+                         'stats_base_url': stats_base_url})
 
 
 def site_stats_report(request, report):
     stats_base_url = reverse('stats.dashboard')
     view = get_report_view(request)
-    return render(request, 'stats/reports/%s.html' % report,
-                  {'report': report, 'view': view,
-                   'stats_base_url': stats_base_url})
+    return jingo.render(request, 'stats/reports/%s.html' % report,
+                        {'report': report, 'view': view,
+                         'stats_base_url': stats_base_url})
 
 
 def get_report_view(request):
@@ -531,10 +535,14 @@ def collection_report(request, username, slug, report):
     c = get_collection(request, username, slug)
     stats_base_url = c.stats_url()
     view = get_report_view(request)
-    return render(request, 'stats/reports/%s.html' % report,
-                  {'collection': c, 'search_cat': 'collections',
-                   'report': report, 'view': view, 'username': username,
-                   'slug': slug, 'stats_base_url': stats_base_url})
+    return jingo.render(request, 'stats/reports/%s.html' % report,
+                        {'collection': c,
+                         'search_cat': 'collections',
+                         'report': report,
+                         'view': view,
+                         'username': username,
+                         'slug': slug,
+                         'stats_base_url': stats_base_url})
 
 
 def site_series(request, format, group, start, end, field):
@@ -660,7 +668,7 @@ def render_csv(request, addon, stats, fields,
     ts = time.strftime('%c %z')
     context = {'addon': addon, 'timestamp': ts, 'title': title,
                'show_disclaimer': show_disclaimer}
-    response = render(request, 'stats/csv_header.txt', context)
+    response = jingo.render(request, 'stats/csv_header.txt', context)
 
     writer = UnicodeCSVDictWriter(response, fields, restval=0,
                                   extrasaction='ignore')

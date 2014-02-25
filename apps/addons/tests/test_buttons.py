@@ -74,7 +74,7 @@ class ButtonTest(amo.tests.TestCase):
             kwargs['show_backup'] = True
         install_button(self.context, self.addon, **kwargs)
         # Extract button from the kwargs from the first call.
-        return template_mock.render.call_args[0][0]['button']
+        return template_mock.render.call_args[1]['button']
 
     def render(self, **kwargs):
         return PyQuery(_install_button(self.context, self.addon, **kwargs))

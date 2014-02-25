@@ -8,14 +8,14 @@ from operator import attrgetter
 from django import http
 from django.conf import settings
 from django.db.models import Q
-from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
-                              render)
+from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
+import jingo
 import jinja2
 import commonware.log
 import session_csrf
@@ -76,8 +76,8 @@ def addon_detail(request, addon):
         # Allow pending themes to be listed.
         raise http.Http404
     if addon.is_disabled:
-        return render(request, 'addons/impala/disabled.html',
-                      {'addon': addon}, status=404)
+        return jingo.render(request, 'addons/impala/disabled.html',
+                            {'addon': addon}, status=404)
     if addon.is_webapp():
         # Apps don't deserve AMO detail pages.
         raise http.Http404
@@ -142,16 +142,17 @@ def extension_detail(request, addon):
     if request.is_ajax():
         # Other add-ons/apps from the same author(s).
         ctx['author_addons'] = addon.authors_other_addons(app=request.APP)[:6]
-        return render(request, 'addons/impala/details-more.html', ctx)
+        return jingo.render(request, 'addons/impala/details-more.html', ctx)
     else:
         if addon.is_webapp():
             ctx['search_placeholder'] = 'apps'
-        return render(request, 'addons/impala/details.html', ctx)
+        return jingo.render(request, 'addons/impala/details.html', ctx)
 
 
 @mobilized(extension_detail)
 def extension_detail(request, addon):
-    return render(request, 'addons/mobile/details.html', {'addon': addon})
+    return jingo.render(request, 'addons/mobile/details.html',
+                        {'addon': addon})
 
 
 def _category_personas(qs, limit):
@@ -205,7 +206,7 @@ def persona_detail(request, addon, template=None):
             'abuse_form': AbuseForm(request=request),
         })
 
-    return render(request, template, data)
+    return jingo.render(request, template, data)
 
 
 class BaseFilter(object):
@@ -349,10 +350,10 @@ def home(request):
     hotness = base.exclude(id__in=frozen).order_by('-hotness')[:18]
     personas = Addon.objects.featured(request.APP, request.LANG,
                                       amo.ADDON_PERSONA)[:18]
-    return render(request, 'addons/home.html',
-                  {'popular': popular, 'featured': featured,
-                   'hotness': hotness, 'personas': personas,
-                   'src': 'homepage', 'collections': collections})
+    return jingo.render(request, 'addons/home.html',
+                        {'popular': popular, 'featured': featured,
+                         'hotness': hotness, 'personas': personas,
+                         'src': 'homepage', 'collections': collections})
 
 
 @mobilized(home)
@@ -373,8 +374,8 @@ def home(request):
     featured = [a for a in addons if a.id in featured]
     popular = sorted([a for a in addons if a.id in popular],
                      key=attrgetter('average_daily_users'), reverse=True)
-    return render(request, 'addons/mobile/home.html',
-                  {'featured': featured, 'popular': popular})
+    return jingo.render(request, 'addons/mobile/home.html',
+                        {'featured': featured, 'popular': popular})
 
 
 def homepage_promos(request):
@@ -438,8 +439,8 @@ def eula(request, addon, file_id=None):
         version = get_object_or_404(addon.versions, files__id=file_id)
     else:
         version = addon.current_version
-    return render(request, 'addons/eula.html',
-                  {'addon': addon, 'version': version})
+    return jingo.render(request, 'addons/eula.html',
+                        {'addon': addon, 'version': version})
 
 
 @addon_view
@@ -447,7 +448,7 @@ def privacy(request, addon):
     if not addon.privacy_policy:
         return http.HttpResponseRedirect(addon.get_url_path())
 
-    return render(request, 'addons/privacy.html', {'addon': addon})
+    return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
 
 @addon_view
@@ -470,10 +471,10 @@ def developers(request, addon, page):
         }
         # Download src and contribution_src are different.
         src, contribution_src = page_srcs.get(page)
-    return render(request, 'addons/impala/developers.html',
-                  {'addon': addon, 'page': page, 'src': src,
-                   'contribution_src': contribution_src,
-                   'version': version})
+    return jingo.render(request, 'addons/impala/developers.html',
+                        {'addon': addon, 'page': page, 'src': src,
+                         'contribution_src': contribution_src,
+                         'version': version})
 
 
 @addon_view
@@ -563,8 +564,8 @@ def paypal_result(request, addon, status):
         log.info('User cancelled contribution: %s' % uuid)
     else:
         log.info('User completed contribution: %s' % uuid)
-    response = render(request, 'addons/paypal_result.html',
-                      {'addon': addon, 'status': status})
+    response = jingo.render(request, 'addons/paypal_result.html',
+                            {'addon': addon, 'status': status})
     response['x-frame-options'] = 'allow'
     return response
 
@@ -584,8 +585,8 @@ def license(request, addon, version=None):
         version = addon.current_version
     if not (version and version.license):
         raise http.Http404
-    return render(request, 'addons/impala/license.html',
-                  dict(addon=addon, version=version))
+    return jingo.render(request, 'addons/impala/license.html',
+                        dict(addon=addon, version=version))
 
 
 def license_redirect(request, version):
@@ -602,8 +603,8 @@ def report_abuse(request, addon):
         messages.success(request, _('Abuse reported.'))
         return http.HttpResponseRedirect(addon.get_url_path())
     else:
-        return render(request, 'addons/report_abuse_full.html',
-                      {'addon': addon, 'abuse_form': form})
+        return jingo.render(request, 'addons/report_abuse_full.html',
+                            {'addon': addon, 'abuse_form': form, })
 
 
 @cache_control(max_age=60 * 60 * 24)

@@ -9,10 +9,11 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, get_object_or_404
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
 
+import jingo
 from tower import ugettext as _
 
 import amo
@@ -105,14 +106,14 @@ def eventlog(request):
     pager = amo.utils.paginate(request, eventlog, 50)
 
     data = context(form=form, pager=pager)
-    return render(request, 'editors/eventlog.html', data)
+    return jingo.render(request, 'editors/eventlog.html', data)
 
 
 @reviewer_required
 def eventlog_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.editor_events(), pk=id)
     data = context(log=log)
-    return render(request, 'editors/eventlog_detail.html', data)
+    return jingo.render(request, 'editors/eventlog_detail.html', data)
 
 
 @reviewer_required
@@ -157,7 +158,7 @@ def home(request):
         durations=durations,
         reviews_max_display=reviews_max_display)
 
-    return render(request, 'editors/home.html', data)
+    return jingo.render(request, 'editors/home.html', data)
 
 
 def _editor_progress():
@@ -237,7 +238,7 @@ def performance(request, user_id=False):
                    editors=editors, current_user=user, is_admin=is_admin,
                    is_user=(request.amo_user.id == user.id))
 
-    return render(request, 'editors/performance.html', data)
+    return jingo.render(request, 'editors/performance.html', data)
 
 
 def _recent_editors(days=90):
@@ -319,7 +320,7 @@ def motd(request):
     if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
         form = forms.MOTDForm()
     data = context(form=form)
-    return render(request, 'editors/motd.html', data)
+    return jingo.render(request, 'editors/motd.html', data)
 
 
 @reviewer_required
@@ -332,7 +333,7 @@ def save_motd(request):
         set_config('editors_review_motd', form.cleaned_data['motd'])
         return redirect(reverse('editors.motd'))
     data = context(form=form)
-    return render(request, 'editors/motd.html', data)
+    return jingo.render(request, 'editors/motd.html', data)
 
 
 def _queue(request, TableObj, tab, qs=None):
@@ -373,10 +374,10 @@ def _queue(request, TableObj, tab, qs=None):
         per_page = default
     page = paginate(request, table.rows, per_page=per_page)
     table.set_page(page)
-    return render(request, 'editors/queue.html',
-                  context(table=table, page=page, tab=tab,
-                          search_form=search_form,
-                          point_types=amo.REVIEWED_AMO))
+    return jingo.render(request, 'editors/queue.html',
+                        context(table=table, page=page, tab=tab,
+                                search_form=search_form,
+                                point_types=amo.REVIEWED_AMO))
 
 
 def queue_counts(type=None, **kw):
@@ -461,11 +462,11 @@ def queue_moderated(request):
                                   for e in reviews_formset.errors))
         return redirect(reverse('editors.queue_moderated'))
 
-    return render(request, 'editors/queue.html',
-                  context(reviews_formset=reviews_formset,
-                          tab='moderated', page=page, flags=flags,
-                          search_form=None,
-                          point_types=amo.REVIEWED_AMO))
+    return jingo.render(request, 'editors/queue.html',
+                        context(reviews_formset=reviews_formset,
+                                tab='moderated', page=page, flags=flags,
+                                search_form=None,
+                                point_types=amo.REVIEWED_AMO))
 
 
 @reviewer_required
@@ -609,7 +610,7 @@ def _review(request, addon):
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal)
 
-    return render(request, 'editors/review.html', ctx)
+    return jingo.render(request, 'editors/review.html', ctx)
 
 
 @never_cache
@@ -714,7 +715,7 @@ def reviewlog(request):
         amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
     }
     data = context(form=form, pager=pager, ACTION_DICT=ad)
-    return render(request, 'editors/reviewlog.html', data)
+    return jingo.render(request, 'editors/reviewlog.html', data)
 
 
 @reviewer_required
@@ -723,12 +724,12 @@ def abuse_reports(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
     total = reports.count()
     reports = amo.utils.paginate(request, reports)
-    return render(request, 'editors/abuse_reports.html',
-                  dict(addon=addon, reports=reports, total=total))
+    return jingo.render(request, 'editors/abuse_reports.html',
+                        dict(addon=addon, reports=reports, total=total))
 
 
 @reviewer_required
 def leaderboard(request):
-    return render(request, 'editors/leaderboard.html', context(**{
+    return jingo.render(request, 'editors/leaderboard.html', context(**{
         'scores': ReviewerScore.all_users_by_score(),
     }))

@@ -4,9 +4,10 @@ import urllib
 from django import http
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 
 import commonware
+import jingo
 import jinja2
 import waffle
 
@@ -148,29 +149,32 @@ def payments(request, addon_id, addon, webapp=False):
     paid_platform_names = [unicode(platform[1])
                            for platform in PAID_PLATFORMS(request, is_packaged)]
 
-    return render(request, 'developers/payments/premium.html',
-                  {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
-                   'form': premium_form, 'upsell_form': upsell_form,
-                   'tier_zero_id': tier_zero_id, 'region_form': region_form,
-                   'DEVICE_LOOKUP': DEVICE_LOOKUP,
-                   'is_paid': (addon.premium_type in amo.ADDON_PREMIUMS
-                               or addon.premium_type == amo.ADDON_FREE_INAPP),
-                   'cannot_be_paid': cannot_be_paid,
-                   'paid_platform_names': paid_platform_names,
-                   'has_incomplete_status': addon.status == amo.STATUS_NULL,
-                   'is_packaged': addon.is_packaged,
-                   # Bango values
-                   'account_form': provider.forms['account'](),
-                   'account_list_form': account_list_form,
-                   # Waffles
-                   'api_pricelist_url': reverse('price-list'),
-                   'payment_methods': {
-                       PAYMENT_METHOD_ALL: _('All'),
-                       PAYMENT_METHOD_CARD: _('Credit card'),
-                       PAYMENT_METHOD_OPERATOR: _('Carrier'),
-                   },
-                   'all_paid_region_ids_by_slug': paid_region_ids_by_slug,
-                   'provider': provider})
+    return jingo.render(
+        request, 'developers/payments/premium.html',
+        {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
+         'form': premium_form, 'upsell_form': upsell_form,
+         'tier_zero_id': tier_zero_id,
+         'region_form': region_form,
+         'DEVICE_LOOKUP': DEVICE_LOOKUP,
+         'is_paid': (addon.premium_type in amo.ADDON_PREMIUMS
+                     or addon.premium_type == amo.ADDON_FREE_INAPP),
+         'cannot_be_paid': cannot_be_paid,
+         'paid_platform_names': paid_platform_names,
+         'has_incomplete_status': addon.status == amo.STATUS_NULL,
+         'is_packaged': addon.is_packaged,
+         # Bango values
+         'account_form': provider.forms['account'](),
+         'account_list_form': account_list_form,
+         # Waffles
+         'api_pricelist_url': reverse('price-list'),
+         'payment_methods': {
+             PAYMENT_METHOD_ALL: _('All'),
+             PAYMENT_METHOD_CARD: _('Credit card'),
+             PAYMENT_METHOD_OPERATOR: _('Carrier'),
+         },
+         'all_paid_region_ids_by_slug': paid_region_ids_by_slug,
+         'provider': provider,
+        })
 
 
 @login_required
@@ -214,9 +218,9 @@ def payment_accounts(request):
 def payment_accounts_form(request):
     bango_account_form = forms_payments.AccountListForm(
         user=request.amo_user, addon=None)
-    return render(request,
-                  'developers/payments/includes/bango_accounts_form.html',
-                  {'account_list_form': bango_account_form})
+    return jingo.render(
+        request, 'developers/payments/includes/bango_accounts_form.html',
+        {'account_list_form': bango_account_form})
 
 
 @write
@@ -302,8 +306,8 @@ def in_app_keys(request):
                              _('Key and secret were created successfully.'))
         return redirect(reverse('mkt.developers.apps.in_app_keys'))
 
-    return render(request, 'developers/payments/in-app-keys.html',
-                  {'key': key, 'key_public_id': key_public_id})
+    return jingo.render(request, 'developers/payments/in-app-keys.html',
+                        {'key': key, 'key_public_id': key_public_id})
 
 
 @login_required
@@ -345,9 +349,9 @@ def in_app_config(request, addon_id, addon, webapp=True):
         return redirect(reverse('mkt.developers.apps.in_app_config',
                                 args=[addon.app_slug]))
 
-    return render(request, 'developers/payments/in-app-config.html',
-                  {'addon': addon, 'owner': owner,
-                   'seller_config': seller_config})
+    return jingo.render(request, 'developers/payments/in-app-config.html',
+                        {'addon': addon, 'owner': owner,
+                         'seller_config': seller_config})
 
 
 @login_required

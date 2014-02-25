@@ -1,12 +1,12 @@
 from django import http
 from django.conf import settings
 from django.db.models import Q
-from django.shortcuts import render
 from django.utils import translation
 from django.utils.encoding import smart_str
 from django.views.decorators.vary import vary_on_headers
 
 import commonware.log
+import jingo
 from mobility.decorators import mobile_template
 from tower import ugettext as _
 
@@ -65,7 +65,7 @@ def _personas(request):
     categories, filter, base, category = browse.views.personas_listing(request)
     c = dict(pager=pager, form=form, categories=categories, query=form_data,
              filter=filter, search_placeholder='themes')
-    return render(request, 'search/personas.html', c)
+    return jingo.render(request, 'search/personas.html', c)
 
 
 def _collections(request):
@@ -107,7 +107,7 @@ def _collections(request):
     c = dict(pager=pager, form=form, query=form_data, opts=search_opts,
              filter=bandwagon.views.get_filter(request),
              search_placeholder='collections')
-    return render(request, 'search/collections.html', c)
+    return jingo.render(request, 'search/collections.html', c)
 
 
 class BaseAjaxSearch(object):
@@ -490,7 +490,7 @@ def search(request, tag_name=None, template=None):
             'versions': version_sidebar(request, form_data, facets),
             'tags': tag_sidebar(request, form_data, facets),
         })
-    return render(request, template, ctx)
+    return jingo.render(request, template, ctx)
 
 
 class FacetLink(object):

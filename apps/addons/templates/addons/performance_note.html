@@ -2,7 +2,7 @@
 {% if listing %}
   <div class="performance-note">
     {{ _('This add-on can slow down Firefox.') }}
-    &nbsp;<a href="#">{{ _('More&hellip;') }}</a>
+    &nbsp;<a href="#">{{ _('More&hellip;')|safe }}</a>
     <div class="popup warning hidden">
       <p class="msg">
         {% trans amount=amount|int %}
@@ -11,7 +11,7 @@
         {% endtrans %}
       </p>
       <p>
-        <a href="{{ url('perf.index' )}}">{{ _('Learn more&hellip;') }}</a>
+        <a href="{{ url('perf.index' )}}">{{ _('Learn more&hellip;')|safe }}</a>
       </p>
     </div>
   </div>
@@ -24,7 +24,7 @@
         Installing this add-on can slow down
         Firefox's start-up by <b>{{ amount }}%</b>.
       {% endtrans %}
-      <a href="{{ url('perf.index' )}}">{{ _('Learn more&hellip;') }}</a>
+      <a href="{{ url('perf.index' )}}">{{ _('Learn more&hellip;')|safe }}</a>
     </div>
   </div>
 {% endif %}

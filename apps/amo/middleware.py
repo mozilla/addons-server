@@ -12,12 +12,12 @@ from django.core.urlresolvers import is_valid_path
 from django.http import (Http404, HttpResponseRedirect,
                          HttpResponsePermanentRedirect)
 from django.middleware import common
-from django.shortcuts import render
 from django.utils.cache import patch_vary_headers, patch_cache_control
 from django.utils.encoding import iri_to_uri, smart_str
 
 import MySQLdb as mysql
 import tower
+import jingo
 
 import amo
 from . import urlresolvers
@@ -170,11 +170,11 @@ class ReadOnlyMiddleware(object):
 
     def process_request(self, request):
         if request.method == 'POST':
-            return render(request, 'amo/read-only.html', status=503)
+            return jingo.render(request, 'amo/read-only.html', status=503)
 
     def process_exception(self, request, exception):
         if isinstance(exception, mysql.OperationalError):
-            return render(request, 'amo/read-only.html', status=503)
+            return jingo.render(request, 'amo/read-only.html', status=503)
 
 
 class ViewMiddleware(object):

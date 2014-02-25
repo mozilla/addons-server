@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.views.i18n import javascript_catalog
 from django.views.decorators.cache import cache_page
 
@@ -204,7 +204,7 @@ if 'django_qunit' in settings.INSTALLED_APPS:
 
         ctx = django_qunit.views.get_suite_context(request, path)
         ctx.update(timestamp=time(), Mock=mock.Mock, js=js)
-        response = render(request, template, ctx)
+        response = jingo.render(request, template, ctx)
         # This allows another site to embed the QUnit suite
         # in an iframe (for CI).
         response['x-frame-options'] = ''

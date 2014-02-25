@@ -89,7 +89,7 @@
               <td class="impact">
                 <div class="slower">
                   {# L10n: {0} is an add-on's percentage of slowness #}
-                  {{ _('<b>{0}%</b> <span>slower</span>')|f(num|int) }}
+                  {{ _('<b>{0}%</b> <span>slower</span>')|f(num|int)|safe }}
                 </div>
                 <div class="percentage">
                   <div class="bar" style="width: {{ num / worst * 100 }}%">&nbsp;</div>
