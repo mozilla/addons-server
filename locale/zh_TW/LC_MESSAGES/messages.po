@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-21 13:51+0000\n"
+"PO-Revision-Date: 2014-02-25 16:10+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1392990683.0\n"
+"X-POOTLE-MTIME: 1393344600.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -18284,7 +18284,7 @@ msgstr "16%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:18
 msgid "Note Listing"
-msgstr ""
+msgstr "Note Listing"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:23
 msgid "Writing a New Note"
@@ -18297,6 +18297,8 @@ msgstr "Local Notes"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:35
 msgid "General Notes is a simple note app that allows you to sync local and remote content. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"General Notes 是一套能夠讓您同步本機與遠端筆記內容的應用程式。<a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">閱讀完整的開發過程</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:53
 msgid "Stores local and remote notes on the client side."
@@ -18413,6 +18415,8 @@ msgid ""
 "Roller is a micro blog app that allows you to post text, upload an image or paste a link that has an image extension such as jpg, gif, png or jpeg. <a href=\"%(walkthrough_link)s\" class="
 "\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"Roller 是一套能夠讓您張貼文字、上傳圖片或含有圖片副檔名 (jpg、gif、png、jpeg) 鏈結的微網誌應用程式。<a href=\"%"
+"(walkthrough_link)s\" class=\"walkthrough\">閱讀完整的開發過程</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:62
 msgid "A key-value store that contains all the post data for Roller."
@@ -18441,6 +18445,8 @@ msgstr "選取一張圖片"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"rtcamera 是一套好玩的相機應用程式，可使用 Web 技術即時處理圖片。<a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">閱讀完整的開發過程</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
@@ -18476,7 +18482,7 @@ msgstr "用來與相機裝置並且取得裝置的影片串流。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
-msgstr ""
+msgstr "儲存裝置捕捉到的圖片，並在畫廊檢視模式中取得這些圖片。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
@@ -18513,6 +18519,10 @@ msgid ""
 "addition to destroying the alien bug, kill as many enemies as possible to get the highest score. <a href=\"%(marketplace_link)s\">View on the marketplace</a> <a href=\"%(walkthrough_link)s\" class="
 "\"walkthrough\">Read the full developer walkthrough</a>"
 msgstr ""
+"Webfighter 是一套受 R-Type 與 Tyrian 啟發的遊戲，您必須在遊戲中獵捕外星蟲子並毀滅它。作為一套側向捲動射擊遊戲，您需要撿起一些"
+"不同的武器才能在怪物中殺出一條路來。除了殺掉外星蟲子之外，您還必須要能夠殺掉最多的怪物才能得到高分。<a href=\"%"
+"(marketplace_link)s\">到 Marketplace 下載這套遊戲</a><a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">閱讀完整的開發過程</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:56
 msgid "Used to generate the game graphics."
@@ -18859,7 +18869,7 @@ msgstr "預載候選"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr ""
+msgstr "加入預載"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
@@ -18961,7 +18971,7 @@ msgstr "測試用收據詳細資訊"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
-msgstr ""
+msgstr "這是收據詳細資訊的示範頁面。若您真的從 Marketplace 下載了一套應用程式，此頁面將會顯示更多詳細資訊。"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
