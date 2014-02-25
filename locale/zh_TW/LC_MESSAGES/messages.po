@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-25 16:18+0000\n"
+"PO-Revision-Date: 2014-02-25 16:20+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393345098.0\n"
+"X-POOTLE-MTIME: 1393345221.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -18284,7 +18284,7 @@ msgstr "16%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:18
 msgid "Note Listing"
-msgstr "Note Listing"
+msgstr "筆記清單"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:23
 msgid "Writing a New Note"
