@@ -13,8 +13,7 @@ import mock
 from nose.tools import eq_
 
 from amo.models import FakeEmail
-from amo.tasks import send_email
-from amo.utils import send_mail, send_html_mail_jinja, get_email_backend
+from amo.utils import send_mail, send_html_mail_jinja
 from devhub.tests.test_models import ATTACHMENTS_DIR
 from users.models import UserProfile, UserNotification
 import users.notifications
@@ -108,6 +107,7 @@ class TestSendMail(test.TestCase):
         success = send_mail('test subject', 'test body', perm_setting=n,
                             recipient_list=[to], fail_silently=False)
 
+        assert success, "Email wasn't sent"
         body = mail.outbox[0].body
         assert "Unsubscribe:" not in body
         assert "You can't unsubscribe from" in body
@@ -207,6 +207,11 @@ class TestSendMail(test.TestCase):
         send_mail('test subject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'], attachments=attachments)
         eq_(attachments, mail.outbox[0].attachments, 'Attachments not included')
+
+    def test_send_multilines_subjects(self):
+        send_mail('test\nsubject', 'test body', from_email='a@example.com',
+                  recipient_list=['b@example.com'])
+        eq_('test subject', mail.outbox[0].subject, 'Subject not stripped')
 
     def make_backend_class(self, error_order):
         throw_error = iter(error_order)

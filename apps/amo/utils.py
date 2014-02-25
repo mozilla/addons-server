@@ -5,7 +5,6 @@ import contextlib
 import datetime
 import errno
 import functools
-import hashlib
 import itertools
 import operator
 import os
@@ -16,7 +15,6 @@ import time
 import unicodedata
 import urllib
 import urlparse
-import uuid
 
 import django.core.mail
 from django import http
@@ -214,7 +212,8 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             'real_email': real_email,
         }
         kwargs.update(options)
-        args = (recipient, subject, message)
+        # Email subject *must not* contain newlines
+        args = (recipient, ' '.join(subject.splitlines()), message)
         if async:
             return send_email.delay(*args, **kwargs)
         else:
