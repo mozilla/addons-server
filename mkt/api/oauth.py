@@ -2,10 +2,10 @@ import string
 from urllib import urlencode
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
+import jingo
 from oauthlib import oauth1
 from oauthlib.common import safe_string_equals
 
@@ -188,9 +188,9 @@ def authorize(request):
         except Token.DoesNotExist:
             log.error('Invalid OAuth request for obtaining user authorization')
             return HttpResponse(status=401)
-        return render(request, 'developers/oauth_authorize.html',
-                      {'app_name': t.creds.app_name,
-                       'oauth_token': request.GET['oauth_token']})
+        return jingo.render(request, 'developers/oauth_authorize.html',
+                            {'app_name': t.creds.app_name,
+                             'oauth_token': request.GET['oauth_token']})
     elif request.method == 'POST':
         token = request.POST.get('oauth_token')
         try:

@@ -1,8 +1,5 @@
 import jingo
 import mock
-
-from django.shortcuts import render
-
 from nose.tools import eq_
 
 
@@ -14,7 +11,7 @@ def test_app_in_fragment_cache_key(cache_mock):
     request.user.is_authenticated.return_value = False
     request.groups = []
     template = jingo.env.from_string('{% cache 1 %}{% endcache %}')
-    render(request, template)
+    jingo.render(request, template)
     assert cache_mock.call_args[0][0].endswith('<app>')
 
 

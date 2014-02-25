@@ -6,10 +6,11 @@ from django import http
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 
 import caching.base as caching
 import commonware.log
+import jingo
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
@@ -112,9 +113,9 @@ def get_filter(request, base=None):
     return CollectionFilter(request, base, key='sort', default='featured')
 
 
-def render_cat(request, template, data={}, extra={}):
+def render(request, template, data={}, extra={}):
     data.update(dict(search_cat='collections'))
-    return render(request, template, data, **extra)
+    return jingo.render(request, template, data, **extra)
 
 
 # TODO (potch): restore this when we do mobile bandwagon
@@ -134,10 +135,10 @@ def collection_listing(request, base=None):
         count = filter.qs.count()
         cache.set(countkey, count, 300)
     collections = paginate(request, filter.qs, count=count)
-    return render_cat(request, 'bandwagon/impala/collection_listing.html',
-                      dict(collections=collections, src='co-hc-sidebar',
-                           dl_src='co-dp-sidebar', filter=filter, sort=sort,
-                           sorting=filter.field))
+    return render(request, 'bandwagon/impala/collection_listing.html',
+                  dict(collections=collections, src='co-hc-sidebar',
+                       dl_src='co-dp-sidebar', filter=filter, sort=sort,
+                       sorting=filter.field))
 
 
 def get_votes(request, collections):
@@ -162,10 +163,9 @@ def user_listing(request, username):
         qs = qs.filter(listed=True)
     collections = paginate(request, qs)
     votes = get_votes(request, collections.object_list)
-    return render_cat(request, 'bandwagon/user_listing.html',
-                      dict(collections=collections, collection_votes=votes,
-                           page=page, author=author,
-                           filter=get_filter(request)))
+    return render(request, 'bandwagon/user_listing.html',
+                  dict(collections=collections, collection_votes=votes,
+                       page=page, author=author, filter=get_filter(request)))
 
 
 class CollectionAddonFilter(BaseFilter):
@@ -222,10 +222,10 @@ def collection_detail(request, username, slug):
     }
 
     tags = Tag.objects.filter(id__in=c.top_tags) if c.top_tags else []
-    return render_cat(request, 'bandwagon/collection_detail.html',
-                      {'collection': c, 'filter': filter, 'addons': addons,
-                       'notes': notes, 'author_collections': others,
-                       'tags': tags, 'user_perms': user_perms})
+    return render(request, 'bandwagon/collection_detail.html',
+                  {'collection': c, 'filter': filter, 'addons': addons,
+                   'notes': notes, 'author_collections': others, 'tags': tags,
+                   'user_perms': user_perms})
 
 
 @json_view(has_trans=True)
@@ -331,7 +331,7 @@ def add(request):
         form = forms.CollectionForm()
 
     data.update(form=form, filter=get_filter(request))
-    return render_cat(request, 'bandwagon/add.html', data)
+    return render(request, 'bandwagon/add.html', data)
 
 
 @write
@@ -350,7 +350,7 @@ def ajax_new(request):
         return http.HttpResponseRedirect(reverse('collections.ajax_list')
                                          + '?addon_id=%s' % addon_id)
 
-    return render(request, 'bandwagon/ajax_new.html', {'form': form})
+    return jingo.render(request, 'bandwagon/ajax_new.html', {'form': form})
 
 
 @login_required(redirect=False)
@@ -368,8 +368,8 @@ def ajax_list(request):
         if addon_id in collection.addons.values_list('id', flat=True):
             collection.has_addon = True
 
-    return render(request, 'bandwagon/ajax_list.html',
-                  {'collections': collections})
+    return jingo.render(request, 'bandwagon/ajax_list.html',
+                        {'collections': collections})
 
 
 @write
@@ -448,6 +448,7 @@ def edit(request, collection, username, slug):
 
     data = dict(collection=collection,
                 form=form,
+                user=request.amo_user,
                 username=username,
                 slug=slug,
                 meta=meta,
@@ -456,7 +457,7 @@ def edit(request, collection, username, slug):
                 admin_form=admin_form,
                 addons=addons,
                 comments=comments)
-    return render_cat(request, 'bandwagon/edit.html', data)
+    return render(request, 'bandwagon/edit.html', data)
 
 
 @write
@@ -533,7 +534,7 @@ def delete(request, username, slug):
         else:
             return http.HttpResponseRedirect(collection.get_url_path())
 
-    return render_cat(request, 'bandwagon/delete.html', data)
+    return render(request, 'bandwagon/delete.html', data)
 
 
 @write
@@ -593,9 +594,9 @@ def following(request):
           .order_by('-following__created'))
     collections = paginate(request, qs)
     votes = get_votes(request, collections.object_list)
-    return render_cat(request, 'bandwagon/user_listing.html',
-                      dict(collections=collections, votes=votes,
-                           page='following', filter=get_filter(request)))
+    return render(request, 'bandwagon/user_listing.html',
+                  dict(collections=collections, votes=votes,
+                       page='following', filter=get_filter(request)))
 
 
 @login_required

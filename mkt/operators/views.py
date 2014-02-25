@@ -1,5 +1,4 @@
-from django.shortcuts import render
-
+import jingo
 from waffle.decorators import waffle_switch
 
 import amo
@@ -16,4 +15,6 @@ def preloads(request):
                                        .order_by('addon__name'))
     preloads = paginate(request, preloads, per_page=20)
 
-    return render(request, 'operators/preloads.html', {'preloads': preloads})
+    return jingo.render(request, 'operators/preloads.html', {
+        'preloads': preloads
+    })

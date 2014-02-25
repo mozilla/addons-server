@@ -59,7 +59,7 @@ def test_empty_locale_html():
 def test_truncate_purified_field():
     s = '<i>one</i><i>two</i>'
     t = PurifiedTranslation(localized_string=s)
-    actual = jingo.env.from_string('{{ s|truncate(6) }}').render({'s': t})
+    actual = jingo.env.from_string('{{ s|truncate(6) }}').render(s=t)
     eq_(actual, s)
 
 
@@ -67,9 +67,9 @@ def test_truncate_purified_field_xss():
     """Truncating should not introduce xss issues."""
     s = 'safe <script>alert("omg")</script>'
     t = PurifiedTranslation(localized_string=s)
-    actual = jingo.env.from_string('{{ s|truncate(100) }}').render({'s': t})
+    actual = jingo.env.from_string('{{ s|truncate(100) }}').render(s=t)
     eq_(actual, 'safe &lt;script&gt;alert("omg")&lt;/script&gt;')
-    actual = jingo.env.from_string('{{ s|truncate(5) }}').render({'s': t})
+    actual = jingo.env.from_string('{{ s|truncate(5) }}').render(s=t)
     eq_(actual, 'safe ...')
 
 
@@ -82,22 +82,21 @@ def test_clean():
 
 def test_clean_in_template():
     s = '<a href="#woo">yeah</a>'
-    eq_(jingo.env.from_string('{{ s|clean }}').render({'s': s}), s)
+    eq_(jingo.env.from_string('{{ s|clean }}').render(s=s), s)
 
 
 def test_no_links():
     s = 'a <a href="http://url.link">http://example.com</a>, http://text.link'
-    eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}),
+    eq_(jingo.env.from_string('{{ s|no_links }}').render(s=s),
         'a http://example.com, http://text.link')
 
     # Bad markup.
     s = '<http://bad.markup.com'
-    eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}), '')
+    eq_(jingo.env.from_string('{{ s|no_links }}').render(s=s), '')
 
     # Bad markup.
     s = 'some text <http://bad.markup.com'
-    eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}),
-        'some text')
+    eq_(jingo.env.from_string('{{ s|no_links }}').render(s=s), 'some text')
 
 
 @patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))

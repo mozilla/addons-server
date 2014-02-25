@@ -210,8 +210,8 @@ def send_upgrade_email(addon, new_version, sdk_version):
     from_ = settings.DEFAULT_FROM_EMAIL
     to = set(addon.authors.values_list('email', flat=True))
     t = jingo.env.get_template('files/jetpack_upgraded.txt')
-    msg = t.render({'addon': addon, 'new_version': new_version,
-                    'sdk_version': sdk_version})
+    msg = t.render(addon=addon, new_version=new_version,
+                   sdk_version=sdk_version)
     django.core.mail.send_mail(subject, msg, from_, to, connection=cxn)
 
 

@@ -18,22 +18,21 @@ def stars(num, large=False):
         num = min(5, int(round(num)))
         t = jingo.env.get_template('reviews/impala/reviews_rating.html')
         # These are getting renamed for contextual sense in the template.
-        return jinja2.Markup(t.render({'rating': num, 'detailpage': large}))
+        return jinja2.Markup(t.render(rating=num, detailpage=large))
 
 
 @jingo.register.function
 def reviews_link(addon, collection_uuid=None, link_to_list=False):
     t = jingo.env.get_template('reviews/reviews_link.html')
-    return jinja2.Markup(t.render({'addon': addon,
-                                   'link_to_list': link_to_list,
-                                   'collection_uuid': collection_uuid}))
+    return jinja2.Markup(t.render(addon=addon, link_to_list=link_to_list,
+                                  collection_uuid=collection_uuid))
 
 
 @jingo.register.function
 def impala_reviews_link(addon, collection_uuid=None):
     t = jingo.env.get_template('reviews/impala/reviews_link.html')
-    return jinja2.Markup(t.render({'addon': addon,
-                                   'collection_uuid': collection_uuid}))
+    return jinja2.Markup(t.render(addon=addon,
+                                  collection_uuid=collection_uuid))
 
 
 @jingo.register.inclusion_tag('reviews/mobile/reviews_link.html')

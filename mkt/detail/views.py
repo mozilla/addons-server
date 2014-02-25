@@ -1,10 +1,11 @@
 import hashlib
 
 from django import http
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.views.decorators.http import etag
 
 import commonware.log
+import jingo
 
 import amo
 from addons.decorators import addon_view_factory
@@ -69,6 +70,7 @@ def app_activity(request, addon):
     user_items = paginate(request, user_items, per_page=20)
     admin_items = paginate(request, admin_items, per_page=20)
 
-    return render(request, 'detail/app_activity.html',
-                  {'admin_items': admin_items, 'product': addon,
-                   'user_items': user_items})
+    return jingo.render(request, 'detail/app_activity.html',
+                        {'admin_items': admin_items,
+                         'product': addon,
+                         'user_items': user_items})

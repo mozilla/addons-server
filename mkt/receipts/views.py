@@ -1,9 +1,10 @@
 from django import http
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
+import jingo
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
 
@@ -203,8 +204,8 @@ def check(request, uuid):
 
 # These methods are for the test of receipts in the devhub.
 def devhub_install(request):
-    return render(request, 'receipts/test_manifest.html',
-                  {'form': forms.TestInstall()})
+    return jingo.render(request, 'receipts/test_manifest.html',
+                        {'form': forms.TestInstall()})
 
 
 @anonymous_csrf_exempt
@@ -226,7 +227,7 @@ def devhub_receipt(request):
 
 
 def devhub_details(request):
-    return render(request, 'receipts/test_details.html')
+    return jingo.render(request, 'receipts/test_details.html')
 
 
 @csrf_exempt

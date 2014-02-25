@@ -16,7 +16,7 @@
       <div id="status-bar" class="notification-box c">
         <form method="post" action="{{ remove_url }}">
           {{ csrf() }}
-          {{ _('Your developer profile is set to be <b>public</b>.') }}
+          {{ _('Your developer profile is set to be <b>public</b>.')|safe }}
           <button type="submit">{{ _('Remove Profile') }}</button>
         </form>
       </div>
@@ -26,7 +26,7 @@
         <form method="post" action="{{ remove_url }}">
           {{ csrf() }}
           {{ _('Your developer profile will be <b>public</b> when it '
-               'is fully completed.') }}
+               'is fully completed.')|safe }}
           <button type="submit">{{ _('Remove Profile') }}</button>
         </form>
       </div>

@@ -281,7 +281,7 @@ def send_mail_jinja(subject, template, context, *args, **kwargs):
     autoescape_orig = env.autoescape
     env.autoescape = False
     template = env.get_template(template)
-    msg = send_mail(subject, template.render(context), *args, **kwargs)
+    msg = send_mail(subject, template.render(**context), *args, **kwargs)
     env.autoescape = autoescape_orig
     return msg
 
@@ -295,8 +295,8 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
     html_template = env.get_template(html_template)
     text_template = env.get_template(text_template)
 
-    msg = send_mail(subject, text_template.render(context),
-                    html_message=html_template.render(context), *args,
+    msg = send_mail(subject, text_template.render(**context),
+                    html_message=html_template.render(**context), *args,
                     **kwargs)
 
     env.autoescape = autoescape_orig

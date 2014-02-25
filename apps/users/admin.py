@@ -4,7 +4,8 @@ from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.models import User
 from django.core.validators import MaxLengthValidator
 from django.db.utils import IntegrityError
-from django.shortcuts import render
+
+import jingo
 
 from access.admin import GroupUserInline
 from .models import UserProfile, BlacklistedUsername, BlacklistedEmailDomain
@@ -92,7 +93,7 @@ class BlacklistModelAdmin(admin.ModelAdmin):
                     msg += ' %s duplicates were ignored.' % (duplicates)
                 messages.success(request, msg)
                 form = self.model_add_form()
-        return render(request, self.template_path, {'form': form})
+        return jingo.render(request, self.template_path, {'form': form})
 
 
 class BlacklistedUsernameAdmin(BlacklistModelAdmin):
@@ -101,7 +102,7 @@ class BlacklistedUsernameAdmin(BlacklistModelAdmin):
     model_field = 'username'
     model_add_form = forms.BlacklistedUsernameAddForm
     add_form_field = 'usernames'
-    template_path = 'users/admin/blacklisted_username/add.html'
+    template_path = 'admin/blacklisted_username/add.html'
 
 
 class BlacklistedEmailDomainAdmin(BlacklistModelAdmin):
@@ -110,7 +111,7 @@ class BlacklistedEmailDomainAdmin(BlacklistModelAdmin):
     model_field = 'domain'
     model_add_form = forms.BlacklistedEmailDomainAddForm
     add_form_field = 'domains'
-    template_path = 'users/admin/blacklisted_email_domain/add.html'
+    template_path = 'admin/blacklisted_email_domain/add.html'
 
 admin.site.register(UserProfile, UserAdmin)
 admin.site.register(BlacklistedUsername, BlacklistedUsernameAdmin)

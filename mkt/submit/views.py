@@ -1,9 +1,10 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.utils.translation.trans_real import to_language
 
 import commonware.log
+import jingo
 import waffle
 
 import amo
@@ -48,9 +49,11 @@ def proceed(request):
         return submit(request)
     agreement_form = forms.DevAgreementForm({'read_dev_agreement': True},
                                             instance=None)
-    return render(request, 'submit/terms.html',
-                  {'step': 'terms', 'agreement_form': agreement_form,
-                   'proceed': True})
+    return jingo.render(request, 'submit/terms.html', {
+        'step': 'terms',
+        'agreement_form': agreement_form,
+        'proceed': True,
+    })
 
 
 @login_required
@@ -67,8 +70,10 @@ def terms(request):
     if request.POST and agreement_form.is_valid():
         agreement_form.save()
         return redirect('submit.app')
-    return render(request, 'submit/terms.html',
-                  {'step': 'terms', 'agreement_form': agreement_form})
+    return jingo.render(request, 'submit/terms.html', {
+        'step': 'terms',
+        'agreement_form': agreement_form,
+    })
 
 
 @login_required
@@ -122,9 +127,12 @@ def manifest(request):
 
         return redirect('submit.app.details', addon.app_slug)
 
-    return render(request, 'submit/manifest.html',
-                  {'step': 'manifest', 'features_form': features_form,
-                   'form': form, 'DEVICE_LOOKUP': DEVICE_LOOKUP})
+    return jingo.render(request, 'submit/manifest.html', {
+        'step': 'manifest',
+        'features_form': features_form,
+        'form': form,
+        'DEVICE_LOOKUP': DEVICE_LOOKUP
+    })
 
 
 @dev_required
@@ -206,18 +214,18 @@ def details(request, addon_id, addon):
         'addon': addon,
     }
     ctx.update(forms)
-    return render(request, 'submit/details.html', ctx)
+    return jingo.render(request, 'submit/details.html', ctx)
 
 
 @dev_required
 def done(request, addon_id, addon):
     # No submit step forced on this page, we don't really care.
     if waffle.switch_is_active('iarc'):
-        return render(request, 'submit/next_steps.html',
-                      {'step': 'next_steps', 'addon': addon})
+        return jingo.render(request, 'submit/next_steps.html',
+                            {'step': 'next_steps', 'addon': addon})
     else:
-        return render(request, 'submit/done.html',
-                      {'step': 'done', 'addon': addon})
+        return jingo.render(request, 'submit/done.html',
+                            {'step': 'done', 'addon': addon})
 
 
 @dev_required

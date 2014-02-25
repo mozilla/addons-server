@@ -1,6 +1,6 @@
 from django import test
 
-from jingo import env
+from jingo.tests.test_helpers import render
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -12,12 +12,6 @@ from tags.helpers import tag_link
 
 
 xss = "<script>alert('xss')</script>"
-
-
-def render(s, context={}):
-    """Taken from jingo.tests.utils, previously jingo.tests.test_helpers."""
-    t = env.from_string(s)
-    return t.render(context)
 
 
 class TestHelpers(test.TestCase):

@@ -3,9 +3,10 @@ import re
 
 from django import http
 from django.db.models import Count
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
+import jingo
 from tower import ugettext as _
 
 import amo
@@ -25,7 +26,7 @@ def index(request, version=None):
     COMPAT = [v for v in amo.COMPAT if v['app'] == request.APP.id]
     compat_dict = dict((v['main'], v) for v in COMPAT)
     if not COMPAT:
-        return render(request, template, {'results': False})
+        return jingo.render(request, template, {'results': False})
     if version not in compat_dict:
         return http.HttpResponseRedirect(reverse('compat.index',
                                                  args=[COMPAT[0]['main']]))
@@ -58,11 +59,14 @@ def index(request, version=None):
     compat_levels = [(key, version_compat(qs, compat, app, binary))
                      for key, qs in compat_queries]
     usage_addons, usage_total = usage_stats(request, compat, app, binary)
-    return render(request, template,
-                  {'version': version, 'usage_addons': usage_addons,
-                   'usage_total': usage_total, 'compat_levels': compat_levels,
-                   'form': form, 'results': True,
-                   'show_previous': request.GET.get('previous')})
+    return jingo.render(request, template,
+                        {'version': version,
+                         'usage_addons': usage_addons,
+                         'usage_total': usage_total,
+                         'compat_levels': compat_levels,
+                         'form': form,
+                         'results': True,
+                         'show_previous': request.GET.get('previous')})
 
 
 def version_compat(qs, compat, app, binary):
@@ -143,8 +147,8 @@ def reporter(request):
             return redirect('compat.reporter_detail', qs[0].guid)
     addons = (request.amo_user.addons.all()
               if request.user.is_authenticated() else [])
-    return render(request, 'compat/reporter.html',
-                  dict(query=query, addons=addons))
+    return jingo.render(request, 'compat/reporter.html',
+                        dict(query=query, addons=addons))
 
 
 def reporter_detail(request, guid):
@@ -173,7 +177,7 @@ def reporter_detail(request, guid):
     addon = Addon.objects.filter(guid=guid)
     name = addon[0].name if addon else guid
 
-    return render(request, 'compat/reporter_detail.html',
-                  dict(reports=reports, works=works,
-                       works_properly=works_properly,
-                       name=name, guid=guid, form=form))
+    return jingo.render(request, 'compat/reporter_detail.html',
+                        dict(reports=reports, works=works,
+                             works_properly=works_properly,
+                             name=name, guid=guid, form=form))

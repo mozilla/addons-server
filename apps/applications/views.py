@@ -1,7 +1,7 @@
 from django.contrib.syndication.views import Feed
-from django.shortcuts import render
 
 import caching.base as caching
+import jingo
 from tower import ugettext as _
 
 import amo
@@ -24,8 +24,8 @@ def get_versions(order=('application', 'version_int')):
 
 def appversions(request):
     apps, versions = get_versions()
-    return render(request, 'applications/appversions.html',
-                  dict(apps=apps, versions=versions))
+    return jingo.render(request, 'applications/appversions.html',
+                        dict(apps=apps, versions=versions))
 
 
 class AppversionsFeed(Feed):
