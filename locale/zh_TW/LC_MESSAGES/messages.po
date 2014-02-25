@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 09:17-0700\n"
-"PO-Revision-Date: 2014-02-25 16:10+0000\n"
+"PO-Revision-Date: 2014-02-25 16:18+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393344600.0\n"
+"X-POOTLE-MTIME: 1393345098.0\n"
 
 #: apps/addons/buttons.py:194
 msgid "Download Now"
@@ -733,7 +733,7 @@ msgstr "了解更多&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:23 apps/addons/templates/addons/impala/performance_note.html:22
 msgid "Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
-msgstr "安裝這個附加元件可能降低 Firefox <b>%(amount)s%%</b>的啟動速度。"
+msgstr "安裝這個附加元件可能會拖慢 Firefox 的啟動速度<b>%(amount)s%%</b>。"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
