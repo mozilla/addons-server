@@ -135,7 +135,6 @@ class TestCreateCommNote(TestCase, AttachmentManagementMixin):
         # More checking that joining a thread marks all old notes as read.
         eq_(thread.thread_cc.count(), 3)
         eq_(note.read_by_users.count(), 3)
-        eq_(reply.read_by_users.count(), 2)
         eq_(last_word.read_by_users.count(), 1)
 
     @mock.patch('mkt.comm.utils.post_create_comm_note', new=mock.Mock)

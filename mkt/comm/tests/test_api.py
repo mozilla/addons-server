@@ -255,6 +255,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
     def test_addon_filter(self):
         self._thread_factory(note=True)
 
+        self.grant_permission(self.user.get_profile(), 'Apps:Review')
         res = self.client.get(self.list_url, {'app': '337141'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
@@ -268,6 +269,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
         CommunicationNote.objects.create(author=self.profile, thread=thread,
             note_type=0, body='something')
 
+        self.grant_permission(self.user.get_profile(), 'Apps:Review')
         res = self.client.get(self.list_url, {'app': self.addon.app_slug})
         eq_(res.status_code, 200)
         eq_(res.json['objects'][0]['addon_meta']['app_slug'],
@@ -284,10 +286,12 @@ class TestThreadList(RestOAuth, CommTestMixin):
             addon=self.addon, version=version2, read_permission_public=True)
         CommunicationThreadCC.objects.create(user=self.profile, thread=thread2)
 
+        self.grant_permission(self.user.get_profile(), 'Apps:Review')
         res = self.client.get(self.list_url, {'app': self.addon.app_slug})
+        eq_(res.status_code, 200)
         eq_(res.json['app_threads'],
-            [{"id": thread2.id, "version__version": version2.version},
-             {"id": thread1.id, "version__version": version1.version}])
+            [{'id': thread2.id, 'version__version': version2.version},
+             {'id': thread1.id, 'version__version': version1.version}])
 
     def test_create(self):
         self.create_switch('comm-dashboard')

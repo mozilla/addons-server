@@ -13,7 +13,8 @@ from users.models import UserProfile
 
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC,
-                             CommunicationThreadToken, user_has_perm_note,
+                             CommunicationThreadToken,
+                             user_has_perm_app, user_has_perm_note,
                              user_has_perm_thread)
 from mkt.comm.tests.test_api import CommTestMixin
 from mkt.constants import comm as const
@@ -93,7 +94,6 @@ class TestCommunicationNote(PermissionTestMixin, amo.tests.TestCase):
                                                  self.thread).count(), 0)
 
         self.note.update(author=self.user)
-        eq_(CommunicationNote.objects.count(), 1)
         eq_(CommunicationNote.objects.with_perms(self.user,
                                                  self.thread).count(), 1)
 
@@ -112,6 +112,16 @@ class TestCommunicationThread(PermissionTestMixin, amo.tests.TestCase):
     def test_has_perm_cc(self):
         CommunicationThreadCC.objects.create(user=self.user, thread=self.obj)
         self._eq_obj_perm(True)
+
+    def test_has_perm_app_reviewer(self):
+        ok_(not user_has_perm_app(self.user, self.addon))
+        self.grant_permission(self.user, 'Apps:Review')
+        ok_(user_has_perm_app(self.user, self.addon))
+
+    def test_has_perm_app_developer(self):
+        ok_(not user_has_perm_app(self.user, self.addon))
+        self.addon.addonuser_set.create(user=self.user)
+        ok_(user_has_perm_app(self.user, self.addon))
 
 
 class TestThreadTokenModel(amo.tests.TestCase):
