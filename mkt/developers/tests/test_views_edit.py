@@ -1331,7 +1331,7 @@ class TestAdminSettings(TestAdmin):
             mozilla_contact='<script>alert("xss")</script>@mozilla.com')
         webapp = self.get_webapp()
         self.assertFormError(r, 'form', 'mozilla_contact',
-                             'Enter a valid email address.')
+                             'Enter a valid e-mail address.')
         eq_(webapp.mozilla_contact, '')
 
     def test_staff(self):

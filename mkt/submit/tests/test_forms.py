@@ -187,6 +187,7 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
                                          instance=app)
         assert form.is_valid()
         form.save()
+        app.reload()
         eq_(app.app_slug, 'thisisaslug')
 
 

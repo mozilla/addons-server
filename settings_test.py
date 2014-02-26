@@ -79,7 +79,7 @@ CACHES = {
 
 # COUNT() caching can't be invalidated, it just expires after x seconds. This
 # is just too annoying for tests, so disable it.
-CACHE_COUNT_TIMEOUT = -1
+CACHE_COUNT_TIMEOUT = None
 
 # No more failures!
 APP_PREVIEW = False
@@ -127,8 +127,8 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 TASK_USER_ID = '4043307'
 
 PASSWORD_HASHERS = (
-    'django.contrib.auth.hashers.MD5PasswordHasher',
     'users.models.SHA512PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
 )
 
 SQL_RESET_SEQUENCES = False

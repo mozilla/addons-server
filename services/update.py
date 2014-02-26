@@ -7,10 +7,11 @@ from email.mime.text import MIMEText
 from time import time
 from urlparse import parse_qsl
 
+from django.core.management import setup_environ
 from django.utils.http import urlencode
 
 import settings_local as settings
-
+setup_environ(settings)
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
 
