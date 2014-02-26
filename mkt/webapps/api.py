@@ -496,7 +496,7 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         if form.is_valid():
             try:
                 form.save(app)
-                return Response(status=status.HTTP_204_NO_CONTENT)
+                return Response(status=status.HTTP_201_CREATED)
             except django_forms.ValidationError:
                 pass
 
