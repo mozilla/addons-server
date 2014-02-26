@@ -183,7 +183,6 @@ REVERSE_DEVICE_LOOKUP = dict((d.id, d.api_name) for d in DEVICE_TYPE_LIST)
 DEVICE_LOOKUP = dict((d.api_name, d) for d in DEVICE_TYPE_LIST)
 
 
-
 # UAs will attempt to match in this order.
 APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, FIREFOX)
 APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID, MOBILE, SEAMONKEY)
