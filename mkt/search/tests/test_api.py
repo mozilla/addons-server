@@ -132,7 +132,8 @@ class TestApi(RestOAuth, ESTestCase):
 
     def tearDown(self):
         unindex_webapps(list(Webapp.with_deleted.values_list('id', flat=True)))
-        Webapp.objects.all().delete()
+        for w in Webapp.objects.all():
+            w.delete()
         super(TestApi, self).tearDown()
 
     def test_verbs(self):

@@ -7,7 +7,7 @@ import urlparse
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.test.client import Client, FakePayload
-from django.utils.encoding import smart_str
+from django.utils.encoding import iri_to_uri, smart_str
 
 from nose.tools import eq_
 from oauthlib import oauth1
@@ -153,7 +153,10 @@ class RestOAuthClient(OAuthClient):
     def __init__(self, access):
         super(OAuthClient, self).__init__(self)
         self.access = access
-        self.get_absolute_url = absolutify
+
+    def get_absolute_url(self, url):
+        unquoted_url = urlparse.unquote(url)
+        return absolutify(iri_to_uri(unquoted_url))
 
 
 class RestOAuth(BaseOAuth):

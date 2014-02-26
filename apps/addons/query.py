@@ -77,11 +77,12 @@ class IndexCompiler(compiler.SQLCompiler):
         qn2 = self.connection.ops.quote_name
         index_map = self.query.index_map
         first = True
+        from_params = []
         for alias in self.query.tables:
             if not self.query.alias_refcount[alias]:
                 continue
             try:
-                name, alias, join_type, lhs, lhs_col, col, nullable = self.query.alias_map[alias]
+                name, alias, join_type, lhs, join_cols, _, join_field = self.query.alias_map[alias]
             except KeyError:
                 # Extra tables can end up in self.tables, but not in the
                 # alias_map if they aren't in a join. That's OK. We skip them.
@@ -93,13 +94,25 @@ class IndexCompiler(compiler.SQLCompiler):
             else:
                 use_index = ''
             if join_type and not first:
-                # If you really need a LEFT OUTER JOIN, file a bug.
-                join_type = 'INNER JOIN'
-                result.append('%s %s%s %s ON (%s.%s = %s.%s)'
-                        % (join_type, qn(name), alias_str, use_index, qn(lhs),
-                           qn2(lhs_col), qn(alias), qn2(col)))
+                extra_cond = join_field.get_extra_restriction(
+                    self.query.where_class, alias, lhs)
+                if extra_cond:
+                    extra_sql, extra_params = extra_cond.as_sql(
+                        qn, self.connection)
+                    extra_sql = 'AND (%s)' % extra_sql
+                    from_params.extend(extra_params)
+                else:
+                    extra_sql = ""
+                result.append('%s %s%s %s ON ('
+                              % (join_type, qn(name), alias_str, use_index))
+                for index, (lhs_col, rhs_col) in enumerate(join_cols):
+                    if index != 0:
+                        result.append(' AND ')
+                    result.append('%s.%s = %s.%s' %
+                    (qn(lhs), qn2(lhs_col), qn(alias), qn2(rhs_col)))
+                result.append('%s)' % extra_sql)
             else:
-                connector = not first and ', ' or ''
+                connector = connector = '' if first else ', '
                 result.append('%s%s%s %s' % (connector, qn(name), alias_str, use_index))
             ### jbalogh out. ###
             first = False
@@ -112,4 +125,4 @@ class IndexCompiler(compiler.SQLCompiler):
                 connector = not first and ', ' or ''
                 result.append('%s%s' % (connector, qn(alias)))
                 first = False
-        return result, []
+        return result, from_params

@@ -113,7 +113,7 @@ class AppLog(amo.models.ModelBase):
     """
     This table is for indexing the activity log by app.
     """
-    addon = models.ForeignKey(Webapp)
+    addon = models.ForeignKey(Webapp, db_constraint=False)
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:

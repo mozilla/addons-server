@@ -296,9 +296,6 @@ class BaseCategoryFormSet(BaseFormSet):
             cats = dict(self.addon.app_categories).get(app, [])
             self.initial.append({'categories': [c.id for c in cats]})
 
-        # Reconstruct the forms according to the initial data.
-        self._construct_forms()
-
         for app, form in zip(apps, self.forms):
             key = app.id if app else None
             form.request = self.request

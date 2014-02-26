@@ -381,7 +381,7 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
     def test_unicode(self):
         self.file_viewer.src = unicode_filenames
         self.file_viewer.extract()
-        res = self.client.get(self.file_url(iri_to_uri(u'\u1109\u1161\u11a9')))
+        res = self.client.get(self.file_url(u'\u1109\u1161\u11a9'))
         eq_(res.status_code, 200)
 
     def test_serve_no_token(self):

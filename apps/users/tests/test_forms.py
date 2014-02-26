@@ -3,7 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
-from django.utils.http import int_to_base36
+from django.utils.http import urlsafe_base64_encode
 
 from django.conf import settings
 from mock import Mock, patch
@@ -26,21 +26,22 @@ class UserFormBase(amo.tests.TestCase):
     def setUp(self):
         self.user = User.objects.get(id='4043307')
         self.user_profile = self.user.get_profile()
-        self.uidb36 = int_to_base36(self.user.id)
+        self.uidb64 = urlsafe_base64_encode(str(self.user.id))
         self.token = default_token_generator.make_token(self.user)
 
 
 class TestSetPasswordForm(UserFormBase):
 
     def _get_reset_url(self):
-        return "/en-US/firefox/users/pwreset/%s/%s" % (self.uidb36, self.token)
+        return "/en-US/firefox/users/pwreset/%s/%s" % (self.uidb64, self.token)
 
     def test_url_fail(self):
         r = self.client.get('/users/pwreset/junk/', follow=True)
         eq_(r.status_code, 404)
 
         r = self.client.get('/en-US/firefox/users/pwreset/%s/12-345' %
-                                                                self.uidb36)
+                                                                self.uidb64
+)
         self.assertContains(r, "Password reset unsuccessful")
 
     def test_set_fail(self):
@@ -106,15 +107,7 @@ class TestPasswordResetForm(UserFormBase):
 
         eq_(len(mail.outbox), 1)
         assert mail.outbox[0].subject.find('Password reset') == 0
-        assert mail.outbox[0].body.find('pwreset/%s' % self.uidb36) > 0
-
-    def test_amo_user_but_no_django_user(self):
-        # Password reset should work without a Django user.
-        self.user_profile.update(user=None, _signal=True)
-        self.user.delete()
-        self.client.post('/en-US/firefox/users/pwreset',
-                        {'email': self.user.email})
-        eq_(len(mail.outbox), 1)
+        assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
 
 
 class TestUserDeleteForm(UserFormBase):
@@ -280,7 +273,7 @@ class TestUserLoginForm(UserFormBase):
                                    'password': 'wrongpassword'})
         self.assertFormError(r, 'form', '', ("Please enter a correct username "
                                              "and password. Note that both "
-                                             "fields are case-sensitive."))
+                                             "fields may be case-sensitive."))
 
     def test_credential_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
@@ -358,7 +351,7 @@ class TestUserLoginForm(UserFormBase):
                                    'password': 'foo'}, follow=True)
         self.assertNotContains(r, "Welcome, Jeff")
         self.assertContains(r, 'Please enter a correct username and password. '
-                               'Note that both fields are case-sensitive.')
+                               'Note that both fields may be case-sensitive.')
 
     def test_successful_login_logging(self):
         t = datetime.now()

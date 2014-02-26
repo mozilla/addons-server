@@ -12,7 +12,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.template import Context, loader
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.http import base36_to_int, is_safe_url
+from django.utils.http import urlsafe_base64_decode, is_safe_url
 
 import commonware.log
 import jingo
@@ -740,15 +740,15 @@ def report_abuse(request, user):
 
 
 @never_cache
-def password_reset_confirm(request, uidb36=None, token=None):
+def password_reset_confirm(request, uidb64=None, token=None):
     """
     Pulled from django contrib so that we can add user into the form
     so then we can show relevant messages about the user.
     """
-    assert uidb36 is not None and token is not None
+    assert uidb64 is not None and token is not None
     user = None
     try:
-        uid_int = base36_to_int(uidb36)
+        uid_int = urlsafe_base64_decode(uidb64)
         user = UserProfile.objects.get(id=uid_int)
     except (ValueError, UserProfile.DoesNotExist):
         pass

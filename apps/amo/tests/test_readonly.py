@@ -3,7 +3,6 @@ from django.db import models
 from django.utils import importlib
 
 import MySQLdb as mysql
-from lib.misc import safe_signals
 from nose.tools import assert_raises, eq_
 from pyquery import PyQuery as pq
 
@@ -30,7 +29,6 @@ class ReadOnlyModeTest(amo.tests.TestCase):
     extra = ('amo.middleware.ReadOnlyMiddleware',)
 
     def setUp(self):
-        safe_signals.Signal.send = safe_signals.unsafe_send
         models.signals.pre_save.connect(self.db_error)
         models.signals.pre_delete.connect(self.db_error)
         self.old_settings = dict((k, quickcopy(getattr(settings, k)))
@@ -52,7 +50,6 @@ class ReadOnlyModeTest(amo.tests.TestCase):
                 pass
         models.signals.pre_save.disconnect(self.db_error)
         models.signals.pre_delete.disconnect(self.db_error)
-        safe_signals.Signal.send = safe_signals.safe_send
 
     def db_error(self, *args, **kwargs):
         raise mysql.OperationalError("You can't do this in read-only mode.")

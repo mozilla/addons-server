@@ -441,7 +441,11 @@ class BaseCompatFormSet(BaseModelFormSet):
         self.initial = ([{} for _ in qs] +
                         [{'application': a.id} for a in apps])
         self.extra = len(amo.APP_GUIDS) - len(self.forms)
-        self._construct_forms()
+        # After these changes, the forms need to be rebuilt. `forms`
+        # is a cached property, so we delete the existing cache and
+        # ask for a new one to be built.
+        del self.forms
+        self.forms
 
     def clean(self):
         if any(self.errors):
@@ -896,7 +900,6 @@ class PackagerCompatBaseFormSet(BaseFormSet):
     def __init__(self, *args, **kw):
         super(PackagerCompatBaseFormSet, self).__init__(*args, **kw)
         self.initial = [{'application': a} for a in amo.APP_USAGE]
-        self._construct_forms()
 
     def clean(self):
         if any(self.errors):

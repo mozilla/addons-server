@@ -641,7 +641,7 @@ class ReviewAddon(ReviewBase):
     def __init__(self, *args, **kwargs):
         super(ReviewAddon, self).__init__(*args, **kwargs)
 
-        self.is_upgrade = (self.addon.status is amo.STATUS_LITE_AND_NOMINATED
+        self.is_upgrade = (self.addon.status == amo.STATUS_LITE_AND_NOMINATED
                            and self.review_type == 'nominated')
 
     def set_data(self, data):

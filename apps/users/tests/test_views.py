@@ -9,7 +9,7 @@ from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
-from django.utils.http import int_to_base36
+from django.utils.http import urlsafe_base64_encode
 
 from mock import ANY, Mock, patch
 from nose.tools import eq_
@@ -1050,7 +1050,7 @@ class TestReset(UserViewBase):
 
     def setUp(self):
         user = User.objects.get(email='editor@mozilla.com').get_profile()
-        self.token = [int_to_base36(user.id),
+        self.token = [urlsafe_base64_encode(str(user.id)),
                       default_token_generator.make_token(user)]
 
     def test_reset_msg(self):

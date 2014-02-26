@@ -25,7 +25,7 @@ class TestAPI(amo.tests.TestCase):
         res = self.client.post(
             self.url,
             {'app_name': 'test', 'redirect_uri': 'mailto:cvan@example.com'})
-        self.assertFormError(res, 'form', 'redirect_uri', ['Enter a valid value.'])
+        self.assertFormError(res, 'form', 'redirect_uri', ['Enter a valid URL.'])
 
     def test_create(self):
         Access.objects.create(user=self.user, key='foo', secret='bar')

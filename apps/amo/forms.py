@@ -37,7 +37,7 @@ class AMOModelForm(happyforms.ModelForm):
         """
         Model = self._meta.model
         if self._changed_data is None:
-            changed = copy(super(AMOModelForm, self)._get_changed_data())
+            changed = copy(forms.ModelForm.changed_data.__get__(self))
             fieldnames = [f.name for f in Model._meta.fields]
             fields = [(name, Model._meta.get_field(name))
                       for name in changed if name in fieldnames]

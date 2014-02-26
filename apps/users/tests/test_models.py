@@ -7,7 +7,7 @@ from urlparse import urlparse
 from django import forms
 from django.conf import settings
 from django.contrib.auth.hashers import (is_password_usable,
-                                         check_password, make_password)
+    check_password, make_password, load_hashers, identify_hasher)
 from django.contrib.auth.models import User
 from django.core import mail
 from django.utils import encoding, translation
@@ -338,6 +338,13 @@ class TestPasswords(amo.tests.TestCase):
         self.assertTrue(is_password_usable(encoded))
         self.assertTrue(check_password('lètmein', encoded))
         self.assertFalse(check_password('lètmeinz', encoded))
+        self.assertEqual(identify_hasher(encoded).algorithm, "sha512")
+        # Blank passwords
+        blank_encoded = make_password('', 'seasalt', 'sha512')
+        self.assertTrue(blank_encoded.startswith('sha512$'))
+        self.assertTrue(is_password_usable(blank_encoded))
+        self.assertTrue(check_password('', blank_encoded))
+        self.assertFalse(check_password(' ', blank_encoded))
 
 
 class TestBlacklistedUsername(amo.tests.TestCase):

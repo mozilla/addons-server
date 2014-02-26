@@ -553,7 +553,6 @@ def ownership(request, addon_id, addon, webapp=False):
                     author.get_role_display(), addon)
 
         messages.success(request, _('Changes successfully saved.'))
-
         return redirect(redirect_url)
 
     ctx = dict(addon=addon, webapp=webapp, user_form=user_form)
