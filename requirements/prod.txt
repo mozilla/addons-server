@@ -28,7 +28,6 @@ django-extensions==1.2.5
 django-filter==0.7
 django-memcached-pool==0.4.1
 django-multidb-router==0.5.1
-django-mysql-pool==0.2
 django-mysql-pymysql==0.1
 django-nose==1.2
 django-quieter-formset==0.4
@@ -109,7 +108,7 @@ suds==0.4
 -e git+https://github.com/mozilla/signing-clients@a8bd730b202391c080113d224d223463e03088e9#egg=signing-clients
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 -e git+https://github.com/jbalogh/django-cache-machine@449861a61bcf096b792039128f044659e3e96eb6#egg=django-cache-machine
-
+-e git+https://github.com/washort/django-mysql-pool@01c207912aa00f0aed5d356a420b4d9397b293d8#egg=django-mysql-pool
 ## Forked.
 -e git+https://github.com/andymckay/django-piston-oauth2.git@177aaf937860318af8d9c2bb74adc27860803eb9#egg=django-piston-oauth2
 -e git+https://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
