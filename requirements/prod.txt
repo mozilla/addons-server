@@ -16,10 +16,11 @@ cssutils==0.9.7b3
 curling==0.2.6
 defusedxml==0.4.1
 dennis==0.3.10
-Django==1.6.2
+Django==1.4.8
 dj-database-url==0.2.2
 django-aesfield==0.1.2
 django-browserid==0.8
+django-cache-machine==0.8
 django-cache-nuggets==0.1.1
 django-celery==3.0.23
 django-cronjobs==0.2.3
@@ -31,7 +32,7 @@ django-multidb-router==0.5.1
 django-mysql-pool==0.2
 django-mysql-pymysql==0.1
 django-nose==1.2
-django-quieter-formset==0.4
+django-quieter-formset==0.3
 django-raven-heka==0.3
 django-recaptcha-mozilla==0.0.1
 djangorestframework==2.3.12
@@ -103,15 +104,14 @@ suds==0.4
 
 # Temporary fork.
 -e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify
--e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
--e git+https://github.com/washort/test-utils.git@4917197a64b6d0f2068c9ad1bfea0427c3e412e1#egg=test-utils
--e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details
+-e git+https://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
+-e git+https://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
+-e git+https://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
 -e git+https://github.com/mozilla/signing-clients@a8bd730b202391c080113d224d223463e03088e9#egg=signing-clients
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
--e git+https://github.com/jbalogh/django-cache-machine@449861a61bcf096b792039128f044659e3e96eb6#egg=django-cache-machine
 
 ## Forked.
--e git+https://github.com/andymckay/django-piston-oauth2.git@177aaf937860318af8d9c2bb74adc27860803eb9#egg=django-piston-oauth2
+-e git+https://github.com/andymckay/django-piston-oauth2.git@fa28ee#egg=django-piston-oauth2
 -e git+https://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
 
