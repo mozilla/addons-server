@@ -1,5 +1,4 @@
 {% from 'detail/includes/price.html' import price %}
-{% from 'developers/includes/macros.html' import iarc_rating_icon %}
 
 {% set previews = product.all_previews %}
 <div id="summary">
@@ -87,7 +86,9 @@
           <dt>{{ _('Ratings') }}</dt>
           <dd class="content-ratings">
             {% for content_rating in product.content_ratings.order_by('ratings_body') %}
-              {{ iarc_rating_icon(content_rating) }}
+              {% set ratings_body = content_rating.get_body() %}
++             {% set rating = content_rating.get_rating() %}
+              {% include "developers/includes/content_rating_icon.html" %}
             {% else %}
               <strong>{{ _('This app has not yet been rated') }}</strong>
             {% endfor %}
