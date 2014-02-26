@@ -82,8 +82,11 @@ class CollectionMembershipField(serializers.RelatedField):
 
         qs = get_component(obj, self.source)
 
-        # Filter apps based on feature profiles.
+        # Filter apps based on device and feature profiles.
+        device = amo.DEVICE_LOOKUP.get(request.GET.get('dev'))
         profile = get_feature_profile(request)
+        if device and device != amo.DEVICE_DESKTOP:
+            qs = qs.filter(addondevicetype__device_type=device.id)
         if profile:
             qs = qs.filter(**profile.to_kwargs(
                 prefix='_current_version__features__has_'))
@@ -100,9 +103,14 @@ class CollectionMembershipField(serializers.RelatedField):
         """
         profile = get_feature_profile(request)
         region = self.context['view'].get_region(request)
+        device = amo.DEVICE_LOOKUP.get(request.GET.get('dev'))
 
-        qs = Webapp.from_search(request, region=region)
+        _rget = lambda d: getattr(request, d, False)
+        qs = Webapp.from_search(request, region=region, gaia=_rget('GAIA'),
+                                mobile=_rget('MOBILE'), tablet=_rget('TABLET'))
         filters = {'collection.id': obj.pk}
+        if device and device != amo.DEVICE_DESKTOP:
+            filters['device'] = device.id
         if profile:
             filters.update(**profile.to_kwargs(prefix='features.has_'))
         qs = qs.filter(**filters).order_by({
@@ -200,10 +208,10 @@ class CollectionSerializer(serializers.ModelSerializer):
         # For featured apps and operator shelf collections, we need to check if
         # one already exists for the same region/category/carrier combination.
         #
-        # Sadly, this can't be expressed as a db-level unique constaint,
+        # Sadly, this can't be expressed as a db-level unique constraint,
         # because this doesn't apply to basic collections.
         #
-        # We have to do it  ourselves, and we need the rest of the validation
+        # We have to do it ourselves, and we need the rest of the validation
         # to have already taken place, and have the incoming data and original
         # data from existing instance if it's an edit, so full_clean() is the
         # best place to do it.
