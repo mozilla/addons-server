@@ -919,7 +919,7 @@ msgstr "arba peržiūrėkite <a href=\"%(href)s\">senesnes priedo versijas</a>."
 
 #: apps/addons/templates/addons/popups.html:97
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Ši „Persona“ reikalauja %(app)s {new_version}. Šiuo metu jūs naudojate %(app)s {old_version}."
+msgstr "Ši „Persona“ reikalauja %(app)s %(new_version)s. Šiuo metu jūs naudojate %(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
