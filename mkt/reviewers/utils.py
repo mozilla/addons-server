@@ -313,7 +313,6 @@ class ReviewApp(ReviewBase):
         Creates Escalation note/email.
         """
         EscalationQueue.objects.get_or_create(addon=self.addon)
-        self.log_action(amo.LOG.ESCALATE_MANUAL)
         log.info(u'Escalated review requested for %s' % self.addon)
         self.notify_email('author_super_review', u'Submission Update: %s')
 
@@ -336,7 +335,6 @@ class ReviewApp(ReviewBase):
         """
         self.version.update(has_editor_comment=True)
         self.log_action(amo.LOG.COMMENT_VERSION)
-        self._create_comm_note(comm.REVIEWER_COMMENT)
 
     def process_clear_escalation(self):
         """
