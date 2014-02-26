@@ -363,14 +363,17 @@ def get_position(addon):
         return {'pos': position, 'total': total}
     elif addon.is_webapp():
         excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
-        # Look at all regular versions of webapps which have pending files. This
-        # includes both new apps and updates to existing apps, to combine both
-        # the regular and updates queue in one big list (In theory, reviewers
-        # should take the same time to process an app in either queue).
+        # Look at all regular versions of webapps which have pending files.
+        # This includes both new apps and updates to existing apps, to combine
+        # both the regular and updates queue in one big list (In theory, it
+        # should take the same time for reviewers to process an app in either
+        # queue). Escalated apps are excluded just like in reviewer tools.
         qs = (Version.objects.filter(addon__type=amo.ADDON_WEBAPP,
                                      addon__disabled_by_user=False,
                                      files__status=amo.STATUS_PENDING,
                                      deleted=False)
+              .exclude(addon__status__in=(amo.STATUS_DISABLED,
+                                          amo.STATUS_DELETED, amo.STATUS_NULL))
               .exclude(addon__id__in=excluded_ids)
               .order_by('nomination', 'created').select_related('addon')
               .no_transforms().values_list('addon_id', 'nomination'))
