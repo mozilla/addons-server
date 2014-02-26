@@ -2,7 +2,7 @@
   <div id="review-files-header"><h3>{{ _('App History') }}</h3></div>
 
   <table id="review-files" class="item-history"
-         data-slug="{{ product.app_slug }}" data-note-types="{{ mkt.comm.NOTE_TYPES_JSON() }}"
+         data-slug="{{ product.app_slug }}" data-note-types="{{ mkt.comm.U_NOTE_TYPES()|json }}"
          data-comm-thread-url="{{ url('comm-thread-list')|urlparams(app=product.app_slug) }}"
          data-thread-id-placeholder="0" data-comm-note-url="{{ url('comm-note-list', 0) }}">
     {# Results populated below by reviewers_commbadge.js (Commbadge API) #}
@@ -22,25 +22,32 @@
           <td class="files">
             {% set version_files = version.all_files %}
             {% if version_files %}
-              <div><strong>{{ _('Files in this version:') }}</strong></div>
+              <h4>{{ _('Files in this version:') }}</h4>
               <ul>
-              {% for file in version_files %}
-                <li class="file-info">
-                  <span class="light">
-                    <div>{{ file_review_status(product, file) }}</div>
-                    <a href="{{ url('mkt.developers.apps.file_validation', product.app_slug, file) }}">{{ _('Validation') }}</a>
-                    {% if not version.deleted %}
+                {% for file in version_files %}
+                  <li class="file-info">
+                    <span class="light">
+                      <div>{{ file_review_status(product, file) }}</div>
                       <a href="{{ url('mkt.developers.apps.file_validation', product.app_slug, file) }}">{{ _('Validation') }}</a>
-                      &middot;
-                      <a href="{{ url('mkt.files.list', file) }}">{{ _('Contents') }}</a>
-                      {% if show_diff and version == product.latest_version %}
+                      {% if not version.deleted %}
+                        <a href="{{ url('mkt.developers.apps.file_validation', product.app_slug, file) }}">{{ _('Validation') }}</a>
                         &middot;
-                        <a class="compare" href="{{ url('mkt.files.compare', file, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
+                        <a href="{{ url('mkt.files.list', file) }}">{{ _('Contents') }}</a>
+                        {% if show_diff and version == product.latest_version %}
+                          &middot;
+                          <a class="compare" href="{{ url('mkt.files.compare', file, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
+                        {% endif %}
                       {% endif %}
-                    {% endif %}
-                  </span>
-                </li>
-              {% endfor %}
+                    </span>
+                  </li>
+                {% endfor %}
+                {% for file in version_files %}
+                  <li class="file-info">
+                    <span class="light">
+                      <div>{{ file_review_status(product, file) }}</div>
+                    </span>
+                  </li>
+                {% endfor %}
               </ul>
             {% endif %}
           </td>

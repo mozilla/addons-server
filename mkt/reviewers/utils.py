@@ -61,6 +61,18 @@ class ReviewBase(object):
         self.in_escalate = EscalationQueue.objects.filter(
             addon=self.addon).exists()
 
+    def _create_comm_note(self, note_type, attachments=None):
+        # Permissions default to developers + reviewers + Mozilla contacts.
+        # For escalation/comment, exclude the developer from the conversation.
+        perm_overrides = {
+            comm.ESCALATION: {'developer': False},
+            comm.REVIEWER_COMMENT: {'developer': False},
+        }
+        self.comm_thread, self.comm_note = create_comm_note(
+            self.addon, self.version, self.request.amo_user,
+            self.data['comments'], note_type=note_type,
+            perms=perm_overrides.get(note_type), no_switch=False)
+
     def get_attachments(self):
         """
         Returns a list of triples suitable to be attached to an email.
@@ -106,9 +118,13 @@ class ReviewBase(object):
         if self.files:
             details['files'] = [f.id for f in self.files]
 
+        # Commbadge (the future).
+        self._create_comm_note(comm.ACTION_MAP(action.id),
+                               attachments=self.attachment_formset)
+        # ActivityLog (ye olde).
         amo.log(action, self.addon, self.version, user=self.user.get_profile(),
                 created=datetime.now(), details=details,
-                attachments=self.attachment_formset)
+                attachments=self.attachment_formset)  # ActivityLog.
 
     def notify_email(self, template, subject, fresh_thread=False):
         """Notify the authors that their app has been reviewed."""
@@ -167,7 +183,6 @@ class ReviewBase(object):
                  (self.addon, emails))
 
         # Create thread.
-        self._create_comm_note(comm.MORE_INFO_REQUIRED)
         self.notify_email('info', u'Submission Update: %s')
 
 
@@ -176,19 +191,6 @@ class ReviewApp(ReviewBase):
     def set_data(self, data):
         self.data = data
         self.files = self.version.files.all()
-
-    def _create_comm_note(self, note_type):
-        # Permissions default to developers + reviewers + Mozilla contacts.
-        # For escalation/comment, exclude the developer from the conversation.
-        perm_overrides = {
-            comm.ESCALATION: {'developer': False},
-            comm.REVIEWER_COMMENT: {'developer': False},
-        }
-
-        self.comm_thread, self.comm_note = create_comm_note(
-            self.addon, self.version, self.request.amo_user,
-            self.data['comments'], note_type=note_type,
-            perms=perm_overrides.get(note_type))
 
     def process_public(self):
         """
@@ -199,9 +201,6 @@ class ReviewApp(ReviewBase):
         if self.addon.has_incomplete_status():
             # Failsafe.
             return
-
-        # Create thread.
-        self._create_comm_note(comm.APPROVAL)
 
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -299,7 +298,6 @@ class ReviewApp(ReviewBase):
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
         self.log_action(amo.LOG.REJECT_VERSION)
-        self._create_comm_note(comm.REJECTION)
         self.notify_email('pending_to_sandbox', u'Submission Update: %s')
 
         log.info(u'Making %s disabled' % self.addon)
@@ -315,7 +313,8 @@ class ReviewApp(ReviewBase):
         Creates Escalation note/email.
         """
         EscalationQueue.objects.get_or_create(addon=self.addon)
-        self._create_comm_note(comm.ESCALATION)
+        self.log_action(amo.LOG.ESCALATE_MANUAL)
+        log.info(u'Escalated review requested for %s' % self.addon)
         self.notify_email('author_super_review', u'Submission Update: %s')
 
         self.log_action(amo.LOG.ESCALATE_MANUAL)
@@ -383,7 +382,6 @@ class ReviewApp(ReviewBase):
 
         self.addon.set_iarc_storefront_data(disable=True)
 
-        self._create_comm_note(comm.DISABLED)
         self.notify_email('disabled', u'App disabled by reviewer: %s')
         self.log_action(amo.LOG.APP_DISABLED)
         log.info(u'App %s has been disabled by a reviewer.' % self.addon)

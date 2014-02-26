@@ -137,28 +137,12 @@ function baseurl(url) {
 }
 
 
-function getVars(qs, excl_undefined) {
-    if (!qs) qs = location.search;
-    if (!qs || qs === '?') return {};
-    if (qs && qs[0] == '?') {
-        qs = qs.substr(1);  // Filter off the leading ? if it's there.
-    }
-
-    return _.chain(qs.split('&'))  // ['a=b', 'c=d']
-            .map(function(c) {return c.split('=').map(decodeURIComponent);}) //  [['a', 'b'], ['c', 'd']]
-            .filter(function(p) {  // [['a', 'b'], ['c', undefined]] -> [['a', 'b']]
-                return !!p[0] && (!excl_undefined || !_.isUndefined(p[1]));
-            }).object()  // {'a': 'b', 'c': 'd'}
-            .value();
-}
-
-
 function querystring(url) {
     var qpos = url.indexOf('?');
     if (qpos === -1) {
         return {};
     } else {
-        return getVars(url.substr(qpos + 1));
+        return z.getVars(url.substr(qpos + 1));
     }
 }
 
