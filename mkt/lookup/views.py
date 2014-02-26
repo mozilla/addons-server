@@ -354,11 +354,17 @@ def user_search(request):
         # id is added implictly by the ES filter. Add it explicitly:
         fields = ['id'] + list(fields)
         qs = UserProfile.objects.filter(pk=q).values(*fields)
+        db = True
     else:
         qs = (UserProfile.search().query(or_=_expand_query(q, fields))
                                   .values_dict(*fields))
         qs = _slice_results(request, qs)
+        db = False
     for user in qs:
+        if not db:
+            for field in ('id',) + fields:
+                if field in user:
+                    user[field] = user[field][0]
         user['url'] = reverse('lookup.user_summary', args=[user['id']])
         user['name'] = user['username']
         results.append(user)
@@ -402,14 +408,20 @@ def app_search(request):
                     .values_dict(*fields))
         qs = _slice_results(request, qs)
     for app in qs:
-        app['url'] = reverse('lookup.app_summary', args=[app['id']])
-        # ES returns a list of localized names but database queries do not.
-        if type(app['name']) != list:
-            app['name'] = [app['name__localized_string']]
-        for name in app['name']:
-            dd = app.copy()
-            dd['name'] = name
-            results.append(dd)
+        if 'name__localized_string' in app:
+            # This is a result from the database.
+            app['url'] = reverse('lookup.app_summary', args=[app['id']])
+            app['name'] = app['name__localized_string']
+            results.append(app)
+        else:
+            # This is a result from elasticsearch which returns lists.
+            app['url'] = reverse('lookup.app_summary', args=[app['id'][0]])
+            for field in ('id', 'app_slug'):
+                app[field] = app.get(field, [None])[0]
+            for name in app['name']:
+                dd = app.copy()
+                dd['name'] = name
+                results.append(dd)
     return {'results': results}
 
 

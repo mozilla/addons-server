@@ -81,7 +81,7 @@ class TestRefreshTest(amo.tests.ESTestCase):
 
     def get_bayesian_rating(self):
         q = Addon.search().filter(id=self.addon.id)
-        return list(q.values_dict('bayesian_rating'))[0]['bayesian_rating']
+        return list(q.values_dict('bayesian_rating'))[0]['bayesian_rating'][0]
 
     def test_created(self):
         eq_(self.get_bayesian_rating(), 0.0)

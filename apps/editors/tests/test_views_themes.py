@@ -616,7 +616,7 @@ class TestThemeSearch(amo.tests.ESTestCase):
                                             'flagged' if flagged else '')}
 
         request = amo.tests.req_factory_factory(
-            reverse('editors.themes.list'),
+            reverse('editors.themes.search'),
             user=UserProfile.objects.get(username='senior_persona_reviewer'))
         request.GET = get_query
         return json.loads(themes_search(request).content)['objects']

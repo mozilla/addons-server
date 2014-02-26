@@ -9,19 +9,19 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from access.models import GroupUser
-from addons.models import Persona
 import amo
 import amo.tests
+from access.models import GroupUser
+from addons.models import Persona
 from amo.tests import addon_factory, days_ago
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
+from users.models import UserProfile
+
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.views_themes import _get_themes, home, themes_search
 from mkt.site.fixtures import fixture
-from users.models import UserProfile
-
 
 class ThemeReviewTestMixin(object):
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
