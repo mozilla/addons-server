@@ -1,0 +1,13 @@
+Dear Superheroes,
+
+A developer has uploaded/resubmitted an app we've designated to be super important and/or a massive PITA.
+
+Please roll out the red carpet, don your white/rubber gloves and give the following app your attention in due time:
+
+App: {{ name }}
+URL: {{ review_url }}
+
+Love,
+
+Firefox Marketplace
+{{ SITE_URL }}

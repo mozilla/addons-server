@@ -86,6 +86,24 @@
         </tr>
         <tr>
           <th>
+            <label for="id_vip_app">
+              {{ _('Mozilla VIP App') }}
+              {{ tip(None,
+                _("Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?")) }}
+                   <span class="hint">{{ _('Use sparingly') }}</span>
+            </label>
+          </th>
+          <td>
+            {% if editable and form %}
+              {{ form.vip_app }}
+              {{ form.vip_app.errors }}
+            {% else %}
+              <input type="checkbox" disabled{{ ' checked' if addon.vip_app }}>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>
             <label for="id_banner_message">
               {{ _('Banner message') }}
               {{ tip(None,

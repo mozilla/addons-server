@@ -1334,6 +1334,21 @@ class TestAdminSettings(TestAdmin):
                              'Enter a valid e-mail address.')
         eq_(webapp.mozilla_contact, '')
 
+    def test_vip_app_toggle(self):
+        # Turn on.
+        data = {
+            'position': 1,  # Required, useless in this test.
+            'vip_app': 'on'
+        }
+        r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
+        self.compare({'vip_app': True})
+
+        # And off.
+        data.update({'vip_app': ''})
+        r = self.client.post(self.edit_url, data)
+        self.compare({'vip_app': False})
+
     def test_staff(self):
         # Staff and Support Staff should have Apps:Configure.
         self.log_in_with('Apps:Configure')

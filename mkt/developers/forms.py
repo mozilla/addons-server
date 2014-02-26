@@ -286,6 +286,7 @@ class AdminSettingsForm(PreviewForm):
     DELETE = forms.BooleanField(required=False)
     mozilla_contact = SeparatedValuesField(forms.EmailField, separator=',',
                                            required=False)
+    vip_app = forms.BooleanField(required=False)
     tags = forms.CharField(required=False)
     banner_regions = JSONMultipleChoiceField(required=False, choices=mkt.regions.REGIONS_CHOICES_NAME)
     banner_message = TransField(required=False)
@@ -306,6 +307,8 @@ class AdminSettingsForm(PreviewForm):
         # Note: After calling `super`, `self.instance` becomes the `Preview`
         # object.
         super(AdminSettingsForm, self).__init__(*args, **kw)
+
+        self.initial['vip_app'] = addon.vip_app
 
         if self.instance:
             self.initial['mozilla_contact'] = addon.mozilla_contact
@@ -352,6 +355,9 @@ class AdminSettingsForm(PreviewForm):
         contact = self.cleaned_data.get('mozilla_contact')
         if contact:
             addon.update(mozilla_contact=contact)
+
+        vip = self.cleaned_data.get('vip_app')
+        addon.update(vip_app=bool(vip))
 
         tags = self.cleaned_data.get('tags')
         if tags:

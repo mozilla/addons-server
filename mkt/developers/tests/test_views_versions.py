@@ -250,6 +250,15 @@ class TestAddVersion(BasePackagedAppTest):
         eq_(version.all_files[0].status, amo.STATUS_PENDING)
         eq_(self.app.status, amo.STATUS_PENDING)
 
+    def test_vip_app_added_to_escalation_queue(self):
+        self.app.current_version.update(version='0.9',
+                                        created=self.days_ago(1))
+        self.app.update(vip_app=True)
+        self._post(302)
+
+        assert EscalationQueue.objects.filter(addon=self.app).exists(), (
+            'VIP App not in escalation queue')
+
 
 class TestVersionPackaged(amo.tests.WebappTestCase):
     fixtures = fixture('user_999', 'webapp_337141')
