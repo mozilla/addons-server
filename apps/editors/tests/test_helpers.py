@@ -778,6 +778,12 @@ class TestGetPosition(amo.tests.TestCase):
             file_kw={'status': amo.STATUS_PENDING},
             version_kw={'nomination': self.days_ago(1)})
 
+        # A deleted app that shouldn't change calculations.
+        amo.tests.app_factory(
+            status=amo.STATUS_DELETED,
+            file_kw={'status': amo.STATUS_PENDING},
+            version_kw={'nomination': self.days_ago(1)})
+
     def test_min(self):
         pending_app = amo.tests.app_factory(
             status=amo.STATUS_PENDING,
