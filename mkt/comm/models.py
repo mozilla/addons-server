@@ -72,6 +72,20 @@ def check_acls_comm_obj(obj, profile):
     return False
 
 
+def user_has_perm_app(user, app):
+    """
+    Check if user has any app-level ACLs.
+    (Mozilla contact, admin, review, senior reivewer, developer).
+    """
+    return (
+        check_acls(user, None, 'reviewer') or
+        user.addons.filter(pk=app.id).exists() or
+        check_acls(user, None, 'senior_reviewer') or
+        check_acls(user, None, 'admin') or
+        user.email in app.get_mozilla_contacts()
+    )
+
+
 def user_has_perm_thread(thread, profile):
     """
     Check if the user has read/write permissions on the given thread.

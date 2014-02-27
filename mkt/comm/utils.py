@@ -13,8 +13,8 @@ from email_reply_parser import EmailReplyParser
 from access.models import Group
 from users.models import UserProfile
 
-from mkt.comm.models import (CommunicationNote, CommunicationNoteRead,
-                             CommunicationThreadToken, user_has_perm_thread)
+from mkt.comm.models import (CommunicationNoteRead, CommunicationThreadToken,
+                             user_has_perm_thread)
 from mkt.constants import comm
 
 
