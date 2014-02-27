@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-27 01:01+0000\n"
+"PO-Revision-Date: 2014-02-27 01:24+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393462900.0\n"
+"X-POOTLE-MTIME: 1393464279.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -450,7 +450,7 @@ msgstr "版本資訊"
 
 #: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
-msgstr "給審核者的筆記"
+msgstr "給審查者的筆記"
 
 #: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
 msgid "No version notes found"
@@ -1176,7 +1176,7 @@ msgstr "此系統不支援安裝應用程式。"
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr "管理員與審核者必須輸入密碼才能登入。"
+msgstr "管理員與審查者必須輸入密碼才能登入。"
 
 #: media/js/zamboni/browserid_support.js:42
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
@@ -1325,7 +1325,7 @@ msgstr[0] "{files} 個檔案"
 #: media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} 個審核"
+msgstr[0] "{reviews} 個審查"
 
 #: media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
@@ -1418,7 +1418,7 @@ msgstr "需要安裝 {0} 的較新版本"
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
-msgstr "尚未審核"
+msgstr "尚未審查"
 
 #: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
@@ -1452,7 +1452,7 @@ msgstr "購買中..."
 
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "此附加元件已經通過 Mozilla 初步審核。"
+msgstr "此附加元件已經通過 Mozilla 初步審查。"
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"

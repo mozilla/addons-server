@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-27 01:20+0000\n"
+"PO-Revision-Date: 2014-02-27 01:25+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393464052.0\n"
+"X-POOTLE-MTIME: 1393464350.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -43,7 +43,7 @@ msgstr "精選"
 #: apps/addons/buttons.py:218
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "尚未審核"
+msgstr "尚未審查"
 
 #: apps/addons/buttons.py:225
 msgctxt "install_button"
@@ -132,7 +132,7 @@ msgstr "輸入一個新的作者電子郵件地址"
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
-msgstr "尚未審核"
+msgstr "尚未審查"
 
 #: apps/addons/helpers.py:34 apps/addons/views.py:329 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:17 apps/amo/templates/amo/site_nav.html:2
@@ -217,11 +217,11 @@ msgstr "檢視終端使用者授權合約"
 
 #: apps/addons/templates/addons/button.html:94 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "這個附加元件尚未經過 Mozilla 審核。<a href=\"%(url)s\">了解詳情</a>"
+msgstr "這個附加元件尚未經過 Mozilla 審查。<a href=\"%(url)s\">了解詳情</a>"
 
 #: apps/addons/templates/addons/button.html:99 apps/addons/templates/addons/impala/button.html:67
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "這個附加元件已經通過 Mozilla 初步審核。<a href=\"%(url)s\">了解更多</a>"
+msgstr "這個附加元件已經通過 Mozilla 初步審查。<a href=\"%(url)s\">了解更多</a>"
 
 #: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
 #: apps/addons/templates/addons/impala/theme_grid.html:22 apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -526,7 +526,9 @@ msgstr "安裝開發版本"
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "<strong>注意:</strong> Mozilla 不會審核此附加元件的開發版本。在您安裝開發版本後，您會持續由該開發者收到開發版本的更新版。如果您不想要再收到此更新，請進入上方的連結重新安裝預設的正式版本。"
+msgstr ""
+"<strong>注意:</strong> Mozilla 不會審查此附加元件的開發版本。在您安裝開發版本後，您會持續由該開發者收到開發版本的更新版。如果"
+"您不想要再收到此更新，請進入上方的連結重新安裝預設的正式版本。"
 
 #: apps/addons/templates/addons/details_box.html:215 apps/addons/templates/addons/impala/details.html:286
 msgid "Version {0}:"
@@ -777,7 +779,7 @@ msgstr "授權"
 
 #: apps/addons/templates/addons/persona_preview.html:12
 msgid "Awaiting Review"
-msgstr "等待審核"
+msgstr "等待審查"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:54 mkt/constants/comm.py:30
 msgid "Rejected"
@@ -786,7 +788,7 @@ msgstr "已被退回"
 #: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157 apps/constants/payments.py:95 apps/devhub/templates/devhub/payments/refunds.html:139
 #: apps/devhub/templates/devhub/payments/refunds.html:166 mkt/constants/comm.py:29
 msgid "Approved"
-msgstr "已審核通過"
+msgstr "已審查通過"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/persona_preview.html:26 apps/addons/templates/addons/listing/items_mobile.html:36 apps/addons/templates/addons/listing/macros.html:31
@@ -898,7 +900,7 @@ msgstr "此個性面板需要 %(app)s %(new_version)s。您現在所使用的是
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>注意：</strong>這個附加元件尚未通過 Mozilla 審核，請注意在安裝第三方軟體時，可能會傷害您的電腦。"
+msgstr "<strong>注意：</strong>這個附加元件尚未通過 Mozilla 審查，請注意在安裝第三方軟體時，可能會傷害您的電腦。"
 
 #: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -999,7 +1001,7 @@ msgstr "請見 <a href=\"%(support)s\">技術支援</a> 一節了解如何取得
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:55 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:47
 msgid "Review Guidelines"
-msgstr "審核指南"
+msgstr "審查指南"
 
 #: apps/addons/templates/addons/review_add_box.html:41 apps/addons/templates/addons/impala/review_add_box.html:59
 msgid "Detailed Review"
@@ -1031,7 +1033,7 @@ msgstr "標籤"
 
 #: apps/addons/templates/addons/impala/button.html:55
 msgid "This app has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "這個應用程式未經 Mozilla 審核。<a href=\"%(url)s\">了解更多資訊</a>"
+msgstr "這個應用程式未經 Mozilla 審查。<a href=\"%(url)s\">了解更多資訊</a>"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1188,7 +1190,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:281
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>注意:</strong> 這個附加元件的開發版本未經 Mozilla 審核。"
+msgstr "<strong>注意:</strong> 這個附加元件的開發版本未經 Mozilla 審查。"
 
 #: apps/addons/templates/addons/impala/details.html:309 apps/addons/templates/addons/impala/details.html:318 apps/addons/templates/addons/impala/details.html:330
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1327,15 +1329,15 @@ msgstr "核准 / 拒絕"
 #: apps/addons/templates/addons/includes/persona.html:25 apps/editors/templates/editors/themes/single.html:43 mkt/lookup/templates/lookup/helpers/app_header.html:46
 #: mkt/reviewers/templates/reviewers/themes/single.html:43
 msgid "Review History"
-msgstr "審核歷史"
+msgstr "審查歷史"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr "很抱歉，這個佈景主題還在等待審核，請稍等。"
+msgstr "很抱歉，這個佈景主題還在等待審查，請稍等。"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr "這個佈景主題還在等待審核，因此除了您以外其他人都看不到這個佈景主題。"
+msgstr "這個佈景主題還在等待審查，除了您以外其他人都還看不到。"
 
 #: apps/addons/templates/addons/listing/items.html:31
 msgid "Collector's Note"
@@ -1514,7 +1516,7 @@ msgstr "開發者交流中心"
 
 #: apps/amo/context_processors.py:100 apps/editors/helpers.py:74 apps/editors/helpers.py:94 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
-msgstr "審核者工具"
+msgstr "審查者工具"
 
 #: apps/amo/context_processors.py:103 mkt/site/context_processors.py:49
 msgid "Localizer Tools"
