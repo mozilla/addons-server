@@ -533,7 +533,7 @@ def category_sidebar(request, form_data, facets):
     rv = [FacetLink(all_label, dict(atype=None, cat=None), not qatype)]
 
     for addon_type, cats in categories:
-        selected = not qatype or addon_type == qatype and not qcat
+        selected = addon_type == qatype and not qcat
 
         # Build the linkparams.
         cat_params = cat_params.copy()
