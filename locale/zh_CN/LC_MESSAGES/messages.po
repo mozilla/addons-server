@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-08 00:59+0000\n"
+"PO-Revision-Date: 2014-02-27 01:29+0000\n"
 "Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391821183.0\n"
+"X-POOTLE-MTIME: 1393464583.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -213,7 +213,7 @@ msgstr "查看隐私政策"
 #: apps/addons/templates/addons/button.html:89 apps/addons/templates/addons/details_box.html:128 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "查看最终用户许可协议"
 
 #: apps/addons/templates/addons/button.html:94 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -1794,7 +1794,7 @@ msgstr "已发送电子邮件通知作者关于 {version} 的兼容性。"
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "邮件通知作者有关附加组件兼容性的问题。"
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -2335,7 +2335,7 @@ msgstr "网址："
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "描述收藏集（不允许使用链接）。"
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2347,7 +2347,7 @@ msgstr "图标"
 
 #: apps/bandwagon/forms.py:152 apps/users/forms.py:340
 msgid "No links are allowed."
-msgstr ""
+msgstr "不允许使用链接。"
 
 #: apps/bandwagon/forms.py:164
 msgid "This url is already in use by another collection"
@@ -4001,11 +4001,11 @@ msgstr "选择其他时必须填写许可协议的文本内容。"
 
 #: apps/devhub/forms.py:224
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "这个附加组件有最终用户许可协议"
 
 #: apps/devhub/forms.py:226
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "请指定附加组件的最终用户许可协议："
 
 #: apps/devhub/forms.py:229
 msgid "This add-on has a Privacy Policy"
@@ -4470,13 +4470,15 @@ msgstr "Add-on SDK"
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr ""
+msgstr "<strong>附加组件 SDK：</strong>更快捷简单地创建附加组件"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"附加组件 SDK 提供了强大的 API，让作者可以使用 HTML、CSS 和 JavaScript 创建 Firefox "
+"附加组件。当附加组件完成时，我们可以帮助您很容易地分享给全世界超过4亿 Firefox 用户。"
 
 #: apps/devhub/templates/devhub/builder.html:32 mkt/developers/templates/developers/builder.html:70
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4606,6 +4608,8 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"附加组件让数以百万计的 Firefox 用户能够优化和定制浏览体验。如果您是一位网页开发者，熟悉 HTML、JavaScript 和 "
+"CSS，就可以借助附加组件 SDK 创建强大的附加组件。此外，通过 SDK 构建的附加组件在默认情况下安装时无需重新启动浏览器。"
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -5961,6 +5965,8 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
+"如果您的附加组件需要的功能超出 Packager 在空白侧边栏提供的那些，还有多种途径可以找到您需要的功能。最常见的办法就是看看其他扩展是如何实现的。只"
+"是要记住，如果其他扩展的许可协议不允许您复制其源代码，您就不可以这么做。"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -13036,15 +13042,15 @@ msgstr "其他"
 
 #: apps/users/models.py:64
 msgid "algorithm"
-msgstr ""
+msgstr "算法"
 
 #: apps/users/models.py:65
 msgid "salt"
-msgstr ""
+msgstr "盐"
 
 #: apps/users/models.py:66
 msgid "hash"
-msgstr ""
+msgstr "哈希"
 
 #: apps/users/models.py:124
 msgid "No user with that email."
@@ -13360,7 +13366,7 @@ msgstr "给我们提供更多有关您的信息。所有这些字段都是可选
 
 #: apps/users/templates/users/edit.html:106
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "这个网址只对开发者显示。"
 
 #: apps/users/templates/users/edit.html:115
 msgid "Choose Photo&hellip;"
@@ -13376,7 +13382,7 @@ msgstr "如果愿意，向社区介绍您自己。这些内容将会公开显示
 
 #: apps/users/templates/users/edit.html:136
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "允许的 HTML：{0}。不允许使用链接。"
 
 #: apps/users/templates/users/edit.html:143
 msgid "Miscellaneous"
@@ -14863,23 +14869,23 @@ msgstr "津巴布韦"
 
 #: mkt/constants/comm.py:28
 msgid "No action"
-msgstr ""
+msgstr "无动作"
 
 #: mkt/constants/comm.py:35
 msgid "App resubmission"
-msgstr ""
+msgstr "重新提交应用"
 
 #: mkt/constants/comm.py:36
 msgid "Approved but waiting to be made public"
-msgstr ""
+msgstr "已核准但还在等待公开发布"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "因收到大量滥用投诉而提交上一级审核"
 
 #: mkt/constants/comm.py:39
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "因大量退款申请而提交上一级审核"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -15774,7 +15780,7 @@ msgstr "错误的文件类型。仅支持 %s 文件。"
 
 #: mkt/developers/forms.py:1049
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
-msgstr ""
+msgstr "这个 IARC 证书已经用于另外一个应用。请创建一个新的 IARC 评级证书。"
 
 #: mkt/developers/forms.py:1062
 msgid "Please enter a valid submission ID."
@@ -16097,7 +16103,7 @@ msgstr "运营商"
 
 #: mkt/developers/views_payments.py:295
 msgid "A server error occurred when retrieving the application key."
-msgstr ""
+msgstr "接收应用程序密钥时服务器出现错误。"
 
 #: mkt/developers/views_payments.py:302
 msgid "Secret was reset successfully."
@@ -16456,7 +16462,7 @@ msgstr "该应用是 <b>公开的</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:47
 msgid "Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer."
-msgstr ""
+msgstr "最新版本正在由火狐应用市场审核者</b>进行审核</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
@@ -16579,7 +16585,7 @@ msgstr "上传这个打包应用的新版本。新版本在可用于安装之前
 
 #: mkt/developers/templates/developers/apps/status.html:269
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
-msgstr ""
+msgstr "如果应用程序内容发生大规模变动，记得要更新应用的 <a href=\"%(ratings_url)s\">内容评级</a>。"
 
 #: mkt/developers/templates/developers/apps/status.html:294
 msgid "Blocklist App"
@@ -17749,7 +17755,7 @@ msgstr "应用验证工具"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:161
 msgid "App Manager"
-msgstr ""
+msgstr "应用管理器"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:169
 msgid "Firefox Developer Tools"
@@ -19092,11 +19098,11 @@ msgstr "覆盖最低需求："
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "附件"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28 mkt/reviewers/templates/reviewers/includes/review_history.html:98
 msgid "This version has not been reviewed"
-msgstr ""
+msgstr "这个版本尚未通过审核"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2013-12-01 06:17+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2014-02-27 01:06+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1385878670.0\n"
+"X-POOTLE-MTIME: 1393463188.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -537,7 +537,7 @@ msgstr "拒绝出错应用：{app}"
 #. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:49
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "由 {0} 于 {1}"
 
 #: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1154,7 +1154,7 @@ msgstr[0] "将 {0} 个附加组件的最大版本号设置为 {1} 并用电子�
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
+msgstr[0] "邮件通知 {2} 个未通过验证的附加组件作者。"
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
