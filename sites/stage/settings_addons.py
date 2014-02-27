@@ -80,8 +80,6 @@ TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
 
-WEBAPPS_RECEIPT_KEY = private_addons.WEBAPPS_RECEIPT_KEY
-
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
 NEWRELIC_INI = '/etc/newrelic.d/addons.allizom.org.ini'

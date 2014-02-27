@@ -32,14 +32,14 @@ data-default-locale="en-us"
   </ul>
 {% endmacro %}
 
-{% set links = mkt_admin_site_links() if settings.MARKETPLACE else admin_site_links() %}
+{% set links = admin_site_links() %}
 
 {% block navbar %}
 <div id="navbar">
   <ul class="top">
     <li class="top">
       <a href="{{ url('zadmin.home') }}" class="controller">
-        Manage {{ 'Apps' if settings.MARKETPLACE else 'Add-ons' }}
+        Manage {{ 'Add-ons' }}
       </a>
       {{ ul(links, 'addons') }}
     </li>

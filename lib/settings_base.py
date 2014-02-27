@@ -1410,10 +1410,10 @@ CELERY_DISABLE_RATE_LIMITS = True
 # if you want to experience app-preview.mozilla.org.
 APP_PREVIEW = False
 
-# Super temporary.
+# Super temporary. Or Not.
 MARKETPLACE = False
 
-# Name of view to use for homepage. AMO uses this. Marketplace has its own.
+# Name of view to use for homepage.
 HOME = 'addons.views.home'
 
 # Default file storage mechanism that holds media.

@@ -287,11 +287,6 @@ class TestPasswords(amo.tests.TestCase):
         assert u.check_password('password') is True
 
     def test_browserid_password(self):
-        with self.settings(MARKETPLACE=True):
-            for source in amo.LOGIN_SOURCE_BROWSERIDS:
-                u = UserProfile(password=self.utf, source=source)
-                assert u.check_password('foo')
-
         u = UserProfile(password=self.utf, source=amo.LOGIN_SOURCE_UNKNOWN)
         assert not u.check_password('foo')
 

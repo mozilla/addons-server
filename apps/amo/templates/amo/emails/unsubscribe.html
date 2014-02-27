@@ -1,6 +1,4 @@
 {{ message }}
-{% if show_unsubscribe %}
-
 <p>
 ===================================================================<br>
 You received this email because you're subscribed to:
@@ -14,5 +12,4 @@ You received this email because you're subscribed to:
 <p><a href="{{ manage_url }}">Manage email notifications</a></p>
 {% else %}
 <p><a href="{{ unsubscribe_url }}">Unsubscribe</a></p>
-{% endif %}
 {% endif %}

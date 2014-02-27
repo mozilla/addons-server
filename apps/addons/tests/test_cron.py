@@ -248,26 +248,3 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
 
         addon = Addon.objects.get(pk=3615)
         eq_(addon.average_daily_users, 1234)
-
-
-class TestReindex(amo.tests.ESTestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        if not settings.MARKETPLACE:
-            raise SkipTest('Only a marketplace management command')
-        super(TestReindex, cls).setUpClass()
-
-    @mock.patch('addons.models.update_search_index', new=mock.Mock)
-    def setUp(self):
-        self.addons = []
-        self.apps = []
-        for x in xrange(3):
-            self.addons.append(amo.tests.addon_factory())
-            self.apps.append(amo.tests.app_factory())
-
-    def test_job(self):
-        cron.reindex_addons()
-        self.refresh()
-        eq_(sorted(a.id for a in Addon.search()),
-            sorted(a.id for a in self.apps + self.addons))

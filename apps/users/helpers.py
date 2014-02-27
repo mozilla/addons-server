@@ -65,9 +65,6 @@ def addon_users_list(context, addon):
 def _user_link(user):
     if isinstance(user, basestring):
         return user
-    # Marketplace doesn't have user profile pages.
-    if settings.MARKETPLACE:
-        return jinja2.escape(smart_unicode(user.name))
     return u'<a href="%s">%s</a>' % (
         user.get_url_path(), jinja2.escape(smart_unicode(user.name)))
 

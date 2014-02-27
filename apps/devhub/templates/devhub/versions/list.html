@@ -27,15 +27,8 @@
         {{ status(loc('This app is <b>awaiting review</b>.')|safe) }}
         {{ loc('You will receive an email when the review is complete.') }}
       {% elif addon.status == amo.STATUS_UNREVIEWED %}
-        {% if webapp %}
-          {{ status(loc('This app is <b>awaiting preliminary review</b>.')|safe) }}
-          {{ loc("You will receive an email when the review is complete. Until
-                  then, your app is not listed in our gallery but can be
-                  accessed directly from its details page.") }}
-        {% else %}
-          {{ status(_('This add-on is <b>awaiting preliminary review</b>.')) }}
-          {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page.") }}
-        {% endif %}
+        {{ status(_('This add-on is <b>awaiting preliminary review</b>.')) }}
+        {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page.") }}
       {% elif addon.status == amo.STATUS_NOMINATED %}
         {{ status(_('This add-on is <b>awaiting full review</b>.')) }}
         {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. ") }}
