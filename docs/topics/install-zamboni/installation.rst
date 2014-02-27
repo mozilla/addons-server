@@ -149,9 +149,19 @@ To get back into the zamboni environment later, type::
 Finish the install
 ~~~~~~~~~~~~~~~~~~
 
+First make sure you have a recent `pip`_ for security reasons.
 From inside your activated virtualenv, install the required python packages::
 
-    pip install --no-deps -r requirements/dev.txt
+    make update
+
+This runs a command like this::
+
+    pip install --no-deps -r requirements/dev.txt --exists-action=w \
+                --find-links https://pyrepo.addons.mozilla.org/ \
+                --allow-external PIL --allow-unverified PIL \
+                --download-cache=/tmp/pip-cache
+
+.. _pip: http://www.pip-installer.org/en/latest/
 
 If you are on a linux box and get a compilation error while installing M2Crypto
 like the following::

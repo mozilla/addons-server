@@ -37,7 +37,7 @@ test_failed:
 update:
 	git checkout master && git pull && git submodule update --init --recursive
 	pushd vendor && git pull && git submodule update --init && popd
-	pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt
+	pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/ --allow-external PIL --allow-unverified PIL
 	schematic migrations
 	npm install
 
