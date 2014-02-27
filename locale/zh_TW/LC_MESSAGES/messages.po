@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-27 01:25+0000\n"
+"PO-Revision-Date: 2014-02-27 01:30+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393464350.0\n"
+"X-POOTLE-MTIME: 1393464622.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -19855,7 +19855,7 @@ msgstr "參與"
 
 #: templates/menu_links.html:26
 msgid "Press Center"
-msgstr "新聞稿"
+msgstr "新聞中心"
 
 #: templates/menu_links.html:27
 msgid "Brand Toolkit"
