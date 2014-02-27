@@ -77,6 +77,24 @@ class TestMigrateActivityLog(amo.tests.TestCase):
                 user=self.user, details={'comments': 'something'})
         self._assert(cmb.NO_ACTION)
 
+    def test_migrate_escalation_high_abuse(self):
+        amo.log(amo.LOG.ESCALATED_HIGH_ABUSE, self.app, self.version,
+                user=self.user, details={'comments': 'something'})
+        thread, note = self._assert(cmb.ESCALATION_HIGH_ABUSE)
+        assert not note.read_permission_developer
+
+    def test_migrate_escalation_high_refunds(self):
+        amo.log(amo.LOG.ESCALATED_HIGH_REFUNDS, self.app, self.version,
+                user=self.user, details={'comments': 'something'})
+        thread, note = self._assert(cmb.ESCALATION_HIGH_REFUNDS)
+        assert not note.read_permission_developer
+
+    def test_migrate_escalation_cleared(self):
+        amo.log(amo.LOG.ESCALATION_CLEARED, self.app, self.version,
+                user=self.user, details={'comments': 'something'})
+        thread, note = self._assert(cmb.ESCALATION_CLEARED)
+        assert not note.read_permission_developer
+
     def test_get_or_create(self):
         amo.log(amo.LOG.REQUEST_VERSION, self.app, self.version,
                 user=self.user, details={'comments': 'something'})

@@ -59,8 +59,7 @@ def _migrate_activity_log(logs, **kwargs):
         # Create note.
         note = CommunicationNote.objects.create(
             # Developers should not see escalate/reviewer comments.
-            read_permission_developer=action not in (cmb.ESCALATION,
-                                                     cmb.REVIEWER_COMMENT),
+            read_permission_developer=action not in cmb.REVIEWER_NOTE_TYPES,
             **note_params)
         note.update(created=log.created)
 
