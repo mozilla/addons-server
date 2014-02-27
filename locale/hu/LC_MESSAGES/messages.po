@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-03 18:12+0000\n"
+"PO-Revision-Date: 2014-02-27 16:15+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1391451179.0\n"
+"X-POOTLE-MTIME: 1393517716.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -3255,7 +3255,7 @@ msgstr "Legmagasabbra értékelt alkalmazások"
 
 #: apps/browse/templates/browse/impala/base_listing.html:35
 msgid "Newest Apps"
-msgstr "Legújabb alkalmazások"
+msgstr "Legújabb appok"
 
 #: apps/browse/templates/browse/impala/base_listing.html:36
 msgid "Apps by Name"
@@ -4753,7 +4753,7 @@ msgstr "további alkalmazások..."
 
 #: apps/devhub/templates/devhub/nav.html:32 apps/devhub/templates/devhub/addons/submit/base.html:4 mkt/developers/templates/developers/nav.html:21 mkt/developers/templates/developers/nav.html:35
 msgid "Submit a New App"
-msgstr "Új alkalmazás beküldése"
+msgstr "Új app beküldése"
 
 #: apps/devhub/templates/devhub/nav.html:44
 msgid "more add-ons..."
@@ -4779,7 +4779,7 @@ msgstr "Kiegészítő-irányelvek"
 
 #: apps/devhub/templates/devhub/nav.html:74
 msgid "API &amp; Language Reference"
-msgstr ""
+msgstr "API &amp; nyelvi referencia"
 
 #: apps/devhub/templates/devhub/nav.html:87
 msgid "Add-on Compatibility Checker"
@@ -5546,7 +5546,7 @@ msgstr "Legutóbbi változtatások megtekintése"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:7 mkt/developers/templates/developers/apps/listing/item_actions_app.html:9
 msgid "Resume the submission process for this app."
-msgstr "Az alkalmazás benyújtási folyamatának folytatása"
+msgstr "Az app benyújtási folyamatának folytatása."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14 mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
@@ -6670,7 +6670,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103 mkt/developers/templates/developers/docs/policies-agreement.html:3
 #: mkt/developers/templates/developers/docs/policies-agreement.html:10 mkt/developers/templates/developers/docs/policies-agreement.html:11
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Fejlesztői megállapodás"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:3 apps/devhub/templates/devhub/docs/policies-contact.html:7 apps/devhub/templates/devhub/docs/policies-contact.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:27 apps/devhub/templates/devhub/docs/policies.html:115
@@ -7461,11 +7461,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:3 apps/devhub/templates/devhub/docs/reference.html:8
 msgid "API & Language References"
-msgstr ""
+msgstr "API & nyelvi referenciák"
 
 #: apps/devhub/templates/devhub/docs/reference.html:11
 msgid "API &amp; Language References"
-msgstr ""
+msgstr "API &amp; nyelvi referenciák"
 
 #: apps/devhub/templates/devhub/docs/reference.html:19
 msgid "XUL: Defining User Interfaces"
@@ -11596,10 +11596,15 @@ msgid ""
 "compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
-"Amennyiben egy kiegészítő nem kompatibilis az adott %(app_name)s alkalmazással, annak oka lehet az is, hogy a %(app_name)s alkalmazásnak egy régi verzióját használja és a kiegészítő csak a legújabb "
-"verzióval kompatibilis. A Mozilla nem javasolja ezen kompatibilitási ellenőrzések megkerülését, mivel ez a böngésző instabilitásához, néhány esetben pedig adatvesztéshez vezethet. Azon felhasználók "
-"számára, akik alpha vagy beta Firefox-verziókat tesztelnek, azok használhatják a <a href=\"%(acr_url)s\">Kompatibiltásjelentő</a> kiegészítőt, hogy segítsen a fejlesztőknek a kompatibilitás "
-"frissítésében."
+"Amennyiben egy kiegészítő nem kompatibilis az adott %(app_name)s "
+"alkalmazással, annak oka lehet az is, hogy a %(app_name)s alkalmazásnak egy "
+"régi verzióját használja és a kiegészítő csak a legújabb verzióval "
+"kompatibilis. A Mozilla nem javasolja ezen kompatibilitási ellenőrzések "
+"megkerülését, mivel ez a böngésző instabilitásához, néhány esetben pedig "
+"adatvesztéshez vezethet. Azon felhasználók számára, akik alpha vagy beta "
+"Firefox-verziókat tesztelnek, azok használhatják a <a href=\"%"
+"(acr_url)s\">Kompatibilitásjelentő</a> kiegészítőt, hogy segítsen a "
+"fejlesztőknek a kompatibilitás frissítésében."
 
 #: apps/pages/templates/pages/faq.html:157
 msgid "What if I have problems with an add-on?"
@@ -16300,7 +16305,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/nav.html:32 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Appok tesztelése"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -16324,11 +16329,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:67
 msgid "API Reference"
-msgstr ""
+msgstr "API referencia"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:70
 msgid "Submit an app"
-msgstr ""
+msgstr "App beküldése"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:74 mkt/templates/mkt/header.html:28
 msgid "Sign In"
@@ -16433,7 +16438,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/dashboard.html:24
 msgid "Submit An App"
-msgstr ""
+msgstr "App beküldése"
 
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:20 mkt/developers/templates/developers/apps/listing/item_actions_app.html:92
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:30 mkt/reviewers/templates/reviewers/includes/details.html:130 mkt/reviewers/templates/reviewers/includes/mobile_details.html:150
@@ -19427,7 +19432,7 @@ msgstr ""
 #: mkt/submit/templates/submit/details.html:19 mkt/submit/templates/submit/manifest.html:7 mkt/submit/templates/submit/manifest.html:25 mkt/submit/templates/submit/payments-upsell.html:10
 #: mkt/submit/templates/submit/payments.html:10 mkt/submit/templates/submit/terms.html:3
 msgid "Submit an App"
-msgstr ""
+msgstr "App beküldése"
 
 #: mkt/submit/templates/submit/details.html:25
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
