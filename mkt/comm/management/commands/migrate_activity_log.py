@@ -37,8 +37,11 @@ def _migrate_activity_log(logs, **kwargs):
         action = cmb.ACTION_MAP(log.action)
 
         # Create thread.
-        thread, tc = CommunicationThread.objects.safer_get_or_create(
-            addon=log.arguments[0], version=log.arguments[1])
+        try:
+            thread, tc = CommunicationThread.objects.safer_get_or_create(
+                addon=log.arguments[0], version=log.arguments[1])
+        except IndexError:
+            continue
 
         # Filter notes.
         note_params = {
