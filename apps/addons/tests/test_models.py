@@ -2198,32 +2198,29 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_extract(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_PUBLIC)
-        assert self.addon.reload().get_localepicker()
+                            filename=self.xpi_path('langpack-localepicker'))
+        assert self.addon.get_localepicker()
         assert 'title=Select a language' in self.addon.get_localepicker()
 
     def test_extract_no_file(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack'), status=amo.STATUS_PUBLIC)
-        eq_(self.addon.reload().get_localepicker(), '')
+                            filename=self.xpi_path('langpack'))
+        eq_(self.addon.get_localepicker(), '')
 
     def test_extract_no_files(self):
         eq_(self.addon.get_localepicker(), '')
 
     def test_extract_not_language_pack(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_PUBLIC)
-        assert self.addon.reload().get_localepicker()
+                            filename=self.xpi_path('langpack-localepicker'))
+        assert self.addon.get_localepicker()
         self.addon.update(type=amo.ADDON_EXTENSION)
         eq_(self.addon.get_localepicker(), '')
 
     def test_extract_not_platform_mobile(self):
         File.objects.create(platform=self.platform_all, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_PUBLIC)
-        eq_(self.addon.reload().get_localepicker(), '')
+                            filename=self.xpi_path('langpack-localepicker'))
+        eq_(self.addon.get_localepicker(), '')
 
 
 class TestMarketplace(amo.tests.TestCase):

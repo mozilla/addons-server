@@ -312,11 +312,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     @amo.cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
-        qs = self._reviews_all.filter(reply_to=None)
-        # Force the query to occur immediately. Several
-        # reviews-related tests hang if this isn't done.
-        list(qs)
-        return qs
+        return self._reviews_all.filter(reply_to=None)
 
     def anonymize(self):
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))

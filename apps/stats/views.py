@@ -1,7 +1,6 @@
 import cStringIO
 import csv
 import itertools
-import json
 import logging
 import time
 from datetime import date, timedelta
@@ -14,6 +13,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import connection
 from django.db.models import Avg, Count, Q, Sum
 from django.shortcuts import get_object_or_404
+from django.utils import simplejson
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
 
@@ -691,5 +691,5 @@ def render_json(request, addon, stats):
 
     # Django's encoder supports date and datetime.
     fudge_headers(response, stats)
-    json.dump(stats, response, cls=DjangoJSONEncoder)
+    simplejson.dump(stats, response, cls=DjangoJSONEncoder)
     return response
