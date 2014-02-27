@@ -2056,19 +2056,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('amo.utils.LocalFileStorage.save')
     def test_attachment(self, save_mock):
-        """ Test addition of 1 attachment """
+        """ Test addition of an attachment """
         self._attachment_post(1)
-        eq_(save_mock.call_args_list,
-            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY)])
-
-    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('amo.utils.LocalFileStorage.save')
-    def test_multiple_attachments(self, save_mock):
-        """ Test addition of multiple attachments """
-        self._attachment_post(2)
-        eq_(save_mock.call_args_list,
-            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY),
-             mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.jpg'), mock.ANY)])
+        eq_(save_mock.call_args_list[0],
+            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('amo.utils.LocalFileStorage.save')
@@ -2082,8 +2073,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
             'Review attachment not added to email')
         for attachment in mail.outbox[0].attachments:
             self.assertNotEqual(len(attachment), 0, '0-length attachment')
-        eq_(save_mock.call_args_list,
-            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY)])
+        eq_(save_mock.call_args_list[0],
+            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('amo.utils.LocalFileStorage.save')
@@ -2095,9 +2086,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(self._attachment_form_data(num=2, action='reject'))
         eq_(len(mail.outbox[0].attachments), 2,
             'Review attachments not added to email')
-        eq_(save_mock.call_args_list,
-            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY),
-             mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.jpg'), mock.ANY)])
+        eq_(save_mock.call_args_list[0],
+            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('amo.utils.LocalFileStorage.save')
@@ -2110,8 +2100,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(self._attachment_form_data(num=1, action='escalate'))
         eq_(len(mail.outbox[0].attachments), 1,
             'Review attachment not added to email')
-        eq_(save_mock.call_args_list,
-            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY)])
+        eq_(save_mock.call_args_list[0],
+            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('amo.utils.LocalFileStorage.save')
@@ -2123,8 +2113,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(self._attachment_form_data(num=1, action='info'))
         eq_(len(mail.outbox[0].attachments), 1,
             'Review attachment not added to email')
-        eq_(save_mock.call_args_list,
-            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY)])
+        eq_(save_mock.call_args_list[0],
+            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     def test_idn_app_domain(self):
         response = self.client.get(self.url)
@@ -2582,6 +2572,16 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
 
         # Test emails.
         self._check_email_dev_and_contact()
+
+    def test_attachments(self):
+        data = {'action': 'comment', 'comments': 'huh'}
+        data.update(self._attachment_management_form(num=2))
+        data.update(self._attachments(num=2))
+        self._post(data)
+
+        # Test attachments.
+        note = self._get_note()
+        eq_(note.attachments.count(), 2)
 
 
 class TestAbuseReports(amo.tests.TestCase):
