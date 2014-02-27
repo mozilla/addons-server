@@ -455,8 +455,8 @@ be used for `replacing receipts <https://wiki.mozilla.org/Apps/WebApplicationRec
     :status 200: successfully completed.
 
 
-Pay Tiers
-==========
+Price Tiers
+===========
 
 .. http:get:: /api/v1/webpay/prices/
 
@@ -525,9 +525,9 @@ Pay Tiers
     :type localized: object
     :param tier: the id of the tier.
     :type tier: int
-    :param method: the payment method.
+    :param method: the :ref:`payment method <payment-methods-label>`.
     :type method: int
-    :param provider: payment provider, currently only ``1`` is supported.
+    :param provider: the :ref:`payment provider <provider-label>`.
     :type provider: int
     :param pricePoint: this is the value used for in-app payments.
     :type pricePoint: string
@@ -538,6 +538,22 @@ Pay Tiers
     :type paid: boolean
     :statuscode 200: successfully completed.
 
+.. _payment-methods-label:
+
+Payment methods:
+
+* ``0`` Carrier billing only
+* ``1`` Credit card only
+* ``2`` Both carrier billing and credit card
+
+.. _provider-label:
+
+Provider:
+
+* ``0`` Paypal, not currently supported
+* ``1`` Bango
+* ``2`` `Reference implementation`_, not currently supported outside of
+  development instances
 
 .. _localized-tier-label:
 
@@ -690,3 +706,4 @@ Transaction failure
 .. _WebPay: https://github.com/mozilla/webpay
 .. _In-app Payments: https://developer.mozilla.org/en-US/docs/Apps/Publishing/In-app_payments
 .. _navigator.mozPay: https://wiki.mozilla.org/WebAPI/WebPayment
+.. _Reference Implementation: http://zippypayments.readthedocs.org/en/latest/
