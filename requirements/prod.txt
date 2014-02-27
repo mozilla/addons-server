@@ -107,7 +107,7 @@ suds==0.4
 -e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details
 -e git+https://github.com/mozilla/signing-clients@a8bd730b202391c080113d224d223463e03088e9#egg=signing-clients
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
--e git+https://github.com/jbalogh/django-cache-machine@449861a61bcf096b792039128f044659e3e96eb6#egg=django-cache-machine
+-e git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
 -e git+https://github.com/washort/django-mysql-pool@88d832e#egg=django-mysql-pool
 ## Forked.
 -e git+https://github.com/andymckay/django-piston-oauth2.git@177aaf937860318af8d9c2bb74adc27860803eb9#egg=django-piston-oauth2
