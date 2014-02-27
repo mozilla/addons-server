@@ -25,6 +25,8 @@ REDIRECT_SECRET_KEY = private.REDIRECT_SECRET_KEY
 
 ADMINS = ()
 
+CONN_MAX_AGE = 10
+
 DATABASES = {}
 DATABASES['default'] = dj_database_url.parse(private.DATABASES_DEFAULT_URL)
 DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
