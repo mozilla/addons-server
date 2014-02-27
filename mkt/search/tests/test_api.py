@@ -825,6 +825,18 @@ class TestFeaturedCollections(BaseFeaturedTests):
         res, json = self.test_added_to_results()
         eq_(len(json[self.prop_name][0]['apps']), 0)
 
+    def test_device_filtered(self):
+        """
+        Test that the app list properly filters by supported device.
+        """
+        AddonDeviceType.objects.filter(addon=self.app).update(
+            device_type=DEVICE_CHOICES_IDS['desktop'])
+        self.col.add_app(self.app)
+        self.refresh('webapp')
+
+        res, json = self.test_added_to_results()
+        eq_(len(json[self.prop_name][0]['apps']), 0)
+
     def test_only_public(self):
         self.col2 = Collection.objects.create(
             name='Col', description='Hidden', collection_type=self.col_type,

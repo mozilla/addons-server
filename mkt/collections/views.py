@@ -15,10 +15,9 @@ from rest_framework.response import Response
 
 from amo.utils import HttpResponseSendFile
 
-from mkt.api.authentication import (RestOAuthAuthentication,
-                                    RestAnonymousAuthentication,
+from mkt.api.authentication import (RestAnonymousAuthentication,
+                                    RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.collections.serializers import DataURLImageField
 from mkt.webapps.models import Webapp
@@ -28,8 +27,7 @@ from .authorization import (CanBeHeroAuthorization, CuratorAuthorization,
                             StrictCuratorAuthorization)
 from .filters import CollectionFilterSetWithFallback
 from .models import Collection
-from .serializers import (CollectionMembershipField, CollectionSerializer,
-                          CuratorSerializer)
+from .serializers import CollectionSerializer, CuratorSerializer
 
 
 class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,

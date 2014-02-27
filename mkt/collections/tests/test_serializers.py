@@ -36,6 +36,8 @@ class BaseTestCollectionMembershipField(object):
     def setUp(self):
         self.collection = Collection.objects.create(**self.collection_data)
         self.app = amo.tests.app_factory()
+        self.app.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
         self.collection.add_app(self.app, order=1)
         self.field = CollectionMembershipField()
         self.field.context = {}
@@ -65,8 +67,8 @@ class BaseTestCollectionMembershipField(object):
         eq_(data[1]['id'], int(self.app2.id))
         eq_(data[1]['resource_uri'], self.app2.get_api_url(pk=self.app2.pk))
 
-    def _field_to_native_profile(self, profile='0.0'):
-        request = self.get_request({'pro': profile, 'dev': 'firefoxos'})
+    def _field_to_native_profile(self, profile='0.0', dev='firefoxos'):
+        request = self.get_request({'pro': profile, 'dev': dev})
         self.field.parent = self.collection
         self.field.source = 'apps'
         self.field.context['request'] = request
@@ -75,8 +77,12 @@ class BaseTestCollectionMembershipField(object):
 
     def test_ordering(self):
         self.app2 = amo.tests.app_factory()
+        self.app2.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
         self.collection.add_app(self.app2, order=0)
         self.app3 = amo.tests.app_factory()
+        self.app3.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
         self.collection.add_app(self.app3)
         result = self._field_to_native_profile()
         eq_(len(result), 3)
@@ -115,6 +121,10 @@ class BaseTestCollectionMembershipField(object):
         eq_(len(result), 1)
         eq_(int(result[0]['id']), self.app.id)
 
+    def test_field_to_native_device_filter(self):
+        result = self._field_to_native_profile('muahahah', 'android-mobile')
+        eq_(len(result), 0)
+
 
 class TestCollectionMembershipField(BaseTestCollectionMembershipField,
                                     CollectionDataMixin, amo.tests.TestCase):
@@ -139,12 +149,12 @@ class TestCollectionMembershipFieldES(BaseTestCollectionMembershipField,
         AddonUser.objects.create(addon=self.app, user=self.user)
         self.refresh('webapp')
 
-    def _field_to_native_profile(self, profile='0.0'):
+    def _field_to_native_profile(self, profile='0.0', dev='firefoxos'):
         """
         Like _field_to_native_profile in BaseTestCollectionMembershipField,
         but calling field_to_native_es directly.
         """
-        request = self.get_request({'pro': profile, 'dev': 'firefoxos'})
+        request = self.get_request({'pro': profile, 'dev': dev})
         self.field.context['request'] = request
         return self.field.field_to_native_es(self.collection, request)
 

@@ -185,4 +185,3 @@ class CollectionFilterSetWithFallback(CollectionFilterSet):
         self._qs = qs
         self._qs.filter_fallback = self.fields_to_null
         return self._qs
-
