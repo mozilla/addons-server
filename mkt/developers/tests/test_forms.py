@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf8 -*-
 import json
 import os
 import shutil
@@ -657,7 +657,7 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         ok_(form.is_valid(), form.errors)
         form.save(self.app)
 
-        iarc_info = self.app.iarc_info.reload()
+        iarc_info = self.app.iarc_info
         eq_(iarc_info.submission_id, 2)
         eq_(iarc_info.security_code, 'b')
         assert storefront_mock.called

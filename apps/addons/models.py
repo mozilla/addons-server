@@ -1354,7 +1354,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """Returns a tuple of developer tags and user tags for this addon."""
         tags = self.tags.not_blacklisted()
         if self.is_persona:
-            return [], tags
+            return models.query.EmptyQuerySet(), tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
@@ -1714,7 +1714,7 @@ dbsignals.pre_save.connect(save_signal, sender=Addon,
 
 
 class AddonDeviceType(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, db_constraint=False)
+    addon = models.ForeignKey(Addon)
     device_type = models.PositiveIntegerField(
         default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
         db_index=True)

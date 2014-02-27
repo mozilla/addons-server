@@ -1,7 +1,10 @@
 from django.db import models
 
 import phpserialize as php
-import json
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 
 class StatsDictField(models.TextField):

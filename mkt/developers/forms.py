@@ -927,7 +927,7 @@ class AppFormTechnical(addons.forms.AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('public_stats',)
+        fields = 'public_stats',
 
     def __init__(self, *args, **kw):
         super(AppFormTechnical, self).__init__(*args, **kw)
@@ -935,11 +935,11 @@ class AppFormTechnical(addons.forms.AddonFormBase):
 
     def save(self, addon, commit=False):
         uses_flash = self.cleaned_data.get('flash')
-        self.instance = super(AppFormTechnical, self).save(commit=True)
         af = self.instance.get_latest_file()
         if af is not None:
             af.update(uses_flash=bool(uses_flash))
-        return self.instance
+
+        return super(AppFormTechnical, self).save(commit=True)
 
 
 class TransactionFilterForm(happyforms.Form):
