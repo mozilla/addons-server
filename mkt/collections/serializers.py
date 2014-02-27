@@ -42,8 +42,8 @@ class CollectionAppSerializer(SimpleAppSerializer):
 
 class CollectionESAppSerializer(SimpleESAppSerializer):
     """
-    Like CollectionAppSerializer, but used when fetching apps from ES instead of
-    the database.
+    Like CollectionAppSerializer, but used when fetching apps from ES instead
+    of the database.
     """
     pass
 
@@ -65,6 +65,18 @@ class CollectionMembershipField(serializers.RelatedField):
         ser = CollectionESAppSerializer(value, context=self.context, many=True)
         return ser.data
 
+    def _get_device(self, request):
+        # Fireplace sends `dev` and `device`. See the API docs. When
+        # `dev` is 'android' we also need to check `device` to pick a device
+        # object.
+        dev = request.GET.get('dev')
+        device = request.GET.get('device')
+
+        if dev == 'android' and device:
+            dev = '%s-%s' % (dev, device)
+
+        return amo.DEVICE_LOOKUP.get(dev)
+
     def field_to_native(self, obj, field_name):
         if not hasattr(self, 'context') or not 'request' in self.context:
             raise ImproperlyConfigured('Pass request in self.context when'
@@ -72,8 +84,8 @@ class CollectionMembershipField(serializers.RelatedField):
 
         request = self.context['request']
 
-        # Having 'use-es-for-apps' in the context means the parent view wants us
-        # to use ES to fetch the apps. If that key is present, check that we
+        # Having 'use-es-for-apps' in the context means the parent view wants
+        # us to use ES to fetch the apps. If that key is present, check that we
         # have a view in the context and that the waffle flag is active. If
         # everything checks out, bypass the db and use ES to fetch apps for a
         # nice performance boost.
@@ -83,7 +95,7 @@ class CollectionMembershipField(serializers.RelatedField):
         qs = get_component(obj, self.source)
 
         # Filter apps based on device and feature profiles.
-        device = amo.DEVICE_LOOKUP.get(request.GET.get('dev'))
+        device = self._get_device(request)
         profile = get_feature_profile(request)
         if device and device != amo.DEVICE_DESKTOP:
             qs = qs.filter(addondevicetype__device_type=device.id)
@@ -103,7 +115,7 @@ class CollectionMembershipField(serializers.RelatedField):
         """
         profile = get_feature_profile(request)
         region = self.context['view'].get_region(request)
-        device = amo.DEVICE_LOOKUP.get(request.GET.get('dev'))
+        device = self._get_device(request)
 
         _rget = lambda d: getattr(request, d, False)
         qs = Webapp.from_search(request, region=region, gaia=_rget('GAIA'),
