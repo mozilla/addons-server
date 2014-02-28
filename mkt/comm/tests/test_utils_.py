@@ -1,6 +1,7 @@
 import os.path
 
 from django.conf import settings
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 import mock
 from nose.tools import eq_
@@ -9,7 +10,9 @@ import amo
 from amo.tests import app_factory, TestCase, user_factory
 from users.models import UserProfile
 
+from mkt.comm.forms import CommAttachmentFormSet
 from mkt.comm.models import CommunicationThread, CommunicationThreadToken
+from mkt.comm.tests.test_api import AttachmentManagementMixin
 from mkt.comm.utils import (CommEmailParser, create_comm_note,
                             save_from_email_reply)
 from mkt.constants import comm
@@ -73,7 +76,7 @@ class TestEmailParser(TestCase):
         eq_(self.parser.get_body(), 'test note 5\n')
 
 
-class TestCreateCommNote(TestCase):
+class TestCreateCommNote(TestCase, AttachmentManagementMixin):
 
     def setUp(self):
         self.create_switch('comm-dashboard')
@@ -132,7 +135,6 @@ class TestCreateCommNote(TestCase):
         # More checking that joining a thread marks all old notes as read.
         eq_(thread.thread_cc.count(), 3)
         eq_(note.read_by_users.count(), 3)
-        eq_(reply.read_by_users.count(), 2)
         eq_(last_word.read_by_users.count(), 1)
 
     @mock.patch('mkt.comm.utils.post_create_comm_note', new=mock.Mock)
@@ -147,3 +149,22 @@ class TestCreateCommNote(TestCase):
             'senior_reviewer': True, 'mozilla_contact': True, 'staff': True}
         for perm, has_perm in expected.items():
             eq_(getattr(thread, 'read_permission_%s' % perm), has_perm, perm)
+
+    @mock.patch('mkt.comm.utils.post_create_comm_note', new=mock.Mock)
+    def test_attachments(self):
+        attach_formdata = self._attachment_management_form(num=2)
+        attach_formdata.update(self._attachments(num=2))
+        attach_formset = CommAttachmentFormSet(
+            attach_formdata,
+            {'form-0-attachment':
+                SimpleUploadedFile(
+                    'lol', attach_formdata['form-0-attachment'].read()),
+             'form-1-attachment':
+                SimpleUploadedFile(
+                    'lol2', attach_formdata['form-1-attachment'].read())})
+
+        thread, note = create_comm_note(
+            self.app, self.app.current_version, self.user, 'lol',
+            note_type=comm.APPROVAL, attachments=attach_formset)
+
+        eq_(note.attachments.count(), 2)

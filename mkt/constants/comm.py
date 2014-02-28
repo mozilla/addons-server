@@ -40,10 +40,14 @@ NOTE_TYPES = {
     REREVIEW_CLEARED: _('Re-review cleared')
 }
 
-
-def NOTE_TYPES_JSON():
-    return json.dumps(dict(
-        (k, unicode(v)) for k, v in NOTE_TYPES.items()))
+# Note types only visible by reviewers and not developers.
+REVIEWER_NOTE_TYPES = (
+    ESCALATION,
+    REVIEWER_COMMENT,
+    ESCALATION_HIGH_ABUSE,
+    ESCALATION_HIGH_REFUNDS,
+    ESCALATION_CLEARED
+)
 
 
 # Prefix of the reply to address in comm emails.

@@ -1,9 +1,7 @@
 import os
 
 from django.conf import settings
-from django.core.servers.basehttp import FileWrapper
 from django.db.models import Q
-from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from rest_framework import status
@@ -23,6 +21,7 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.viewsets import GenericViewSet
 
 from addons.models import Addon
+from amo.decorators import skip_cache
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import HttpResponseSendFile
@@ -36,7 +35,8 @@ from mkt.api.authentication import (RestOAuthAuthentication,
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationNoteRead, CommunicationThread,
-                             user_has_perm_note, user_has_perm_thread)
+                             user_has_perm_app, user_has_perm_note,
+                             user_has_perm_thread)
 from mkt.comm.tasks import consume_email, mark_thread_read
 from mkt.comm.utils import (create_attachments, create_comm_note,
                             filter_notes_by_read_status)
@@ -261,6 +261,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
     filter_backends = (OrderingFilter,)
     cors_allowed_methods = ['get', 'post', 'patch']
 
+    @skip_cache
     def list(self, request):
         self.serializer_class = ThreadSerializer
         profile = request.amo_user
@@ -274,10 +275,13 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         if 'app' in request.GET:
             form = forms.AppSlugForm(request.GET)
             if not form.is_valid():
-                raise Http404()
+                return Response('App does not exist or no app slug given',
+                                status=status.HTTP_404_NOT_FOUND)
+            elif not user_has_perm_app(profile, form.cleaned_data['app']):
+                return Response('You do not have permissions for this app',
+                                status=status.HTTP_403_FORBIDDEN)
 
-            # TODO: use CommunicationThread.with_perms once other PR merged in.
-            queryset = CommunicationThread.objects.filter(pk__in=notes + cc,
+            queryset = CommunicationThread.objects.filter(
                 addon=form.cleaned_data['app'])
 
             # Thread IDs and version numbers from same app.
