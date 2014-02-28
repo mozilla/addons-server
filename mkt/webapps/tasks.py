@@ -756,9 +756,11 @@ def pre_generate_apk(app_id, **kw):
                            params={'manifestUrl': manifest_url})
         res.raise_for_status()
     except RequestException, exc:
-        raise PreGenAPKError('Error pre-generating APK for app {a} at {url}: '
+        raise PreGenAPKError('Error pre-generating APK for app {a} at {url}; '
+                             'generator={gen} (SSL cert ok?); '
                              '{e.__class__.__name__}: {e}'
-                             .format(a=app, url=manifest_url, e=exc))
+                             .format(a=app, url=manifest_url, e=exc,
+                                     gen=settings.PRE_GENERATE_APK_URL))
 
     # The factory returns a binary APK blob but we don't need it.
     res.close()

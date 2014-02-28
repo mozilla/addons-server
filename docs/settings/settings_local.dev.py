@@ -90,6 +90,9 @@ APP_PURCHASE_AUD = 'localhost'
 APP_PURCHASE_TYP = 'mozilla-local/payments/pay/v1'
 APP_PURCHASE_SECRET = 'This secret must match your webpay SECRET'
 
+# If you want to skip pre-generation locally, disable it:
+PRE_GENERATE_APKS = False
+
 # Assuming you did `npm install` (and not `-g`) like you were supposed to,
 # this will be the path to the `stylus` and `lessc` executables.
 STYLUS_BIN = path('node_modules/stylus/bin/stylus')
