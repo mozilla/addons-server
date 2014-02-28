@@ -86,17 +86,20 @@ class TestVerify(amo.tests.TestCase):
         decode_receipt.return_value = receipt
         return self.get_decode('', check_purchase=check_purchase)
 
-    def make_install(self):
-        install = Installed.objects.create(addon=self.addon, user=self.user)
-        install.update(uuid='some-uuid')
-        return install
-
     def make_purchase(self):
-        return AddonPurchase.objects.create(addon=self.addon, user=self.user)
+        return AddonPurchase.objects.create(addon=self.addon, user=self.user,
+                                            uuid='some-uuid')
 
     def make_contribution(self, type=amo.CONTRIB_PURCHASE):
-        return Contribution.objects.create(addon=self.addon, user=self.user,
+        cont = Contribution.objects.create(addon=self.addon, user=self.user,
                                            type=type)
+        # This was created by the contribution, but we need to tweak
+        # the uuid to ensure its correct.
+        AddonPurchase.objects.get().update(uuid='some-uuid')
+        return cont
+
+    def get_uuid(self):
+        return self.make_purchase().uuid
 
     @mock.patch.object(utils.settings, 'SIGNING_SERVER_ACTIVE', True)
     def test_invalid_receipt(self):
@@ -124,42 +127,33 @@ class TestVerify(amo.tests.TestCase):
     def test_user_type_incorrect(self):
         user_data = self.user_data.copy()
         user_data['user']['type'] = 'nope'
-        self.make_install()
         res = self.get(user_data)
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'NO_DIRECTED_IDENTIFIER')
 
-    def test_user_value_incorrect(self):
-        user_data = self.user_data.copy()
-        user_data['user']['value'] = 'ugh'
-        self.make_install()
-        res = self.get(user_data)
-        eq_(res['status'], 'invalid')
-        eq_(res['reason'], 'WRONG_USER')
-
-    def test_user_addon(self):
-        self.make_install()
-        res = self.get(self.user_data)
-        eq_(res['status'], 'ok')
-
     def test_type(self):
         user_data = self.user_data.copy()
         user_data['typ'] = 'anything'
-        self.make_install()
         res = self.get(user_data)
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'WRONG_TYPE')
 
+    def test_user_incorrect(self):
+        user_data = self.user_data.copy()
+        user_data['user']['value'] = 'ugh'
+        res = self.get(user_data)
+        eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'NO_PURCHASE')
+
     def test_user_deleted(self):
-        self.make_install()
         self.user.delete()
         res = self.get(self.user_data)
         eq_(res['status'], 'invalid')
-        eq_(res['reason'], 'WRONG_USER')
+        eq_(res['reason'], 'NO_PURCHASE')
 
     def test_user_anonymise(self):
-        self.make_install()
-        self.user.anonymize()
+        #self.user.anonymize()
+        self.make_purchase()
         res = self.get(self.user_data)
         eq_(res['status'], 'ok')
 
@@ -169,7 +163,7 @@ class TestVerify(amo.tests.TestCase):
         sign.return_value = ''
         user_data = self.user_data.copy()
         user_data['exp'] = calendar.timegm(time.gmtime()) - 1000
-        self.make_install()
+        self.make_purchase()
         res = self.get(user_data)
         eq_(res['status'], 'expired')
         ok_(log.called)
@@ -179,7 +173,7 @@ class TestVerify(amo.tests.TestCase):
         sign.return_value = ''
         user_data = self.user_data.copy()
         user_data['exp'] = 'a'
-        self.make_install()
+        self.make_purchase()
         res = self.get(user_data)
         eq_(res['status'], 'expired')
 
@@ -189,7 +183,7 @@ class TestVerify(amo.tests.TestCase):
         sign.return_value = ''
         user_data = self.user_data.copy()
         user_data['exp'] = calendar.timegm(time.gmtime()) - 1000
-        self.make_install()
+        self.make_purchase()
         res = self.get(user_data)
         assert 'receipt' in res
 
@@ -204,7 +198,7 @@ class TestVerify(amo.tests.TestCase):
     def test_new_expiry(self, sign):
         user_data = self.user_data.copy()
         user_data['exp'] = old = calendar.timegm(time.gmtime()) - 10000
-        self.make_install()
+        self.make_purchase()
         sign.return_value = ''
         self.get(user_data)
         assert sign.call_args[0][0]['exp'] > old
@@ -212,20 +206,18 @@ class TestVerify(amo.tests.TestCase):
     def test_expired_not_signed(self):
         user_data = self.user_data.copy()
         user_data['exp'] = calendar.timegm(time.gmtime()) - 10000
-        self.make_install()
+        self.make_purchase()
         res = self.get(user_data)
         eq_(res['status'], 'expired')
 
     def test_premium_addon_not_purchased(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.make_install()
         res = self.get(self.user_data)
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'NO_PURCHASE')
 
     def test_premium_dont_check(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.make_install()
         res = self.get(self.user_data, check_purchase=False)
         # Because the receipt is the wrong type for skipping purchase.
         eq_(res['status'], 'invalid')
@@ -234,7 +226,6 @@ class TestVerify(amo.tests.TestCase):
     @mock.patch.object(utils.settings, 'DOMAIN', 'foo.com')
     def test_premium_dont_check_properly(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.make_install()
         user_data = self.user_data.copy()
         user_data['typ'] = 'developer-receipt'
         res = self.get(user_data, check_purchase=False)
@@ -242,14 +233,12 @@ class TestVerify(amo.tests.TestCase):
 
     def test_premium_addon_purchased(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.make_install()
         self.make_purchase()
         res = self.get(self.user_data)
         eq_(res['status'], 'ok')
 
     def test_premium_addon_contribution(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.make_install()
         # There's no purchase, but the last entry we have is a sale.
         self.make_contribution()
         res = self.get(self.user_data)
@@ -258,7 +247,6 @@ class TestVerify(amo.tests.TestCase):
     @mock.patch('services.verify.receipt_cef.log')
     def test_premium_addon_refund(self, log):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.make_install()
         purchase = self.make_purchase()
         for type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
             purchase.update(type=type)
@@ -268,44 +256,34 @@ class TestVerify(amo.tests.TestCase):
 
     def test_premium_no_charge(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.make_install()
         purchase = self.make_purchase()
         purchase.update(type=amo.CONTRIB_NO_CHARGE)
         res = self.get(self.user_data)
         eq_(res['status'], 'ok')
 
     def test_other_premiums(self):
-        for k in (amo.ADDON_FREE, amo.ADDON_PREMIUM_INAPP,
-                  amo.ADDON_FREE_INAPP, amo.ADDON_OTHER_INAPP):
-            Installed.objects.all().delete()
+        self.make_purchase()
+        for k in (amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP):
             self.addon.update(premium_type=k)
-            self.make_install()
             res = self.get(self.user_data)
             eq_(res['status'], 'ok')
 
     def test_product_wrong_store_data(self):
-        self.make_install()
+        self.make_purchase()
         data = self.user_data.copy()
         data['product'] = {'url': 'http://f.com',
                            'storedata': urlencode({'id': 123})}
         eq_(self.get(data)['status'], 'invalid')
 
-    def test_product_wrong_type(self):
-        self.make_install()
-        data = self.user_data.copy()
-        data['product'] = {'url': 'http://f.com',
-                           'storedata': urlencode({'id': 337141})}
-        eq_(self.get(data)['status'], 'ok')
-
     def test_product_ok_store_data(self):
-        self.make_install()
+        self.make_purchase()
         data = self.user_data.copy()
         data['product'] = {'url': 'http://f.com',
                            'storedata': urlencode({'id': 337141})}
         eq_(self.get(data)['status'], 'ok')
 
     def test_product_barf_store_data(self):
-        self.make_install()
+        self.make_purchase()
         for storedata in (urlencode({'id': 'NaN'}), 'NaN'):
             data = self.user_data.copy()
             data['product'] = {'url': 'http://f.com', 'storedata': storedata}
@@ -313,11 +291,11 @@ class TestVerify(amo.tests.TestCase):
             eq_(res['status'], 'invalid')
             eq_(res['reason'], 'WRONG_STOREDATA')
 
-
     def test_crack_receipt(self):
         # Check that we can decode our receipt and get a dictionary back.
         self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
-        receipt = create_receipt(self.make_install())
+        purchase = self.make_purchase()
+        receipt = create_receipt(purchase.addon, purchase.user, purchase.uuid)
         result = verify.decode_receipt(receipt)
         eq_(result['typ'], u'purchase-receipt')
 
@@ -331,7 +309,8 @@ class TestVerify(amo.tests.TestCase):
 
     def test_crack_borked_receipt(self):
         self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
-        receipt = create_receipt(self.make_install())
+        purchase = self.make_purchase()
+        receipt = create_receipt(purchase.addon, purchase.user, purchase.uuid)
         self.assertRaises(M2Crypto.RSA.RSAError, verify.decode_receipt,
                           receipt + 'x')
 

@@ -14,7 +14,7 @@ from mkt.api.base import cors_api_view
 from mkt.constants import apps
 from mkt.installs.utils import install_type, record
 from mkt.receipts.forms import ReceiptForm, TestInstall
-from mkt.receipts.utils import create_receipt, create_test_receipt
+from mkt.receipts.utils import create_receipt, create_test_receipt, get_uuid
 
 from mkt.webapps.models import Installed
 
@@ -74,7 +74,8 @@ def install_record(obj, request, install_type):
 
     log.info('Creating receipt: %s' % obj.pk)
     receipt_cef.log(request._request, obj, 'sign', 'Receipt signing')
-    return create_receipt(installed)
+    uuid = get_uuid(installed.addon, installed.user)
+    return create_receipt(installed.addon, installed.user, uuid)
 
 
 @cors_api_view(['POST'])
