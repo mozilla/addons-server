@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-06 10:30+0400\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2014-02-28 17:54+0000\n"
+"Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386149053.0\n"
+"X-POOTLE-MTIME: 1393610079.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1490,7 +1491,7 @@ msgstr "Это дополнение было предварительно про
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
-msgstr "Оставить её"
+msgstr "Оставить их"
 
 #: media/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
