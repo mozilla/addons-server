@@ -61,22 +61,10 @@ class TestGetRegion(TestCase):
         ACLMiddleware().process_request(req)
         return self.resource.get_region(req)
 
-    def give_permission(self):
-        self.grant_permission(self.profile, 'Regions:BypassFilters')
-
-    def make_curator(self):
-        collection = Collection.objects.create(
-            collection_type=COLLECTIONS_TYPE_BASIC)
-        collection.curators.add(self.profile)
-
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_get_region_all(self, mock_request_region):
-        self.give_permission()
         geoip_fallback = regions.PE  # Different than the default (restofworld).
         mock_request_region.return_value = geoip_fallback
-
-        # Test none-ish values (should return None, i.e. no region).
-        eq_(self.region_for('None'), None)
 
         # Test string values (should return region with that slug).
         eq_(self.region_for('restofworld'), regions.RESTOFWORLD)
@@ -93,28 +81,11 @@ class TestGetRegion(TestCase):
             eq_(self.region_for(None), regions.RESTOFWORLD)
             ok_(mock_process_request.called)
 
-        # Test invalid value (should raise exception).
-        with self.assertRaises(ParseError):
-            self.region_for('cvanland')  # Scary place
-
-    def test_get_region_permission(self):
-        self.give_permission()
+    def test_get_region_none(self):
         eq_(self.region_for('None'), None)
-        eq_(self.region_for('us'), regions.US)
 
     def test_get_region_worldwide(self):
-        self.give_permission()
         eq_(self.region_for('worldwide'), regions.RESTOFWORLD)
-
-    def test_collection_curator(self):
-        self.make_curator()
-        eq_(self.region_for('None'), None)
-        eq_(self.region_for('us'), regions.US)
-
-    def test_no_permission_not_curator(self):
-        with self.assertRaises(PermissionDenied):
-            eq_(self.region_for('None'), None)
-        eq_(self.region_for('us'), regions.US)
 
 
 @patch('versions.models.Version.is_privileged', False)
