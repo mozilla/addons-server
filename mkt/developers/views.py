@@ -58,7 +58,7 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   trap_duplicate)
 from mkt.developers.models import PreloadTestPlan
 from mkt.developers.tasks import run_validator, save_test_plan
-from mkt.developers.utils import check_upload
+from mkt.developers.utils import check_upload, handle_vip
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.models import IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
@@ -219,6 +219,8 @@ def status(request, addon_id, addon, webapp=False):
             create_comm_note(addon, addon.latest_version,
                              request.amo_user, form.data['notes'],
                              note_type=comm.RESUBMISSION)
+            if addon.vip_app:
+                handle_vip(addon, addon.current_version, request.amo_user)
 
             messages.success(request, _('App successfully resubmitted.'))
             return redirect(addon.get_dev_url('versions'))
@@ -254,6 +256,10 @@ def status(request, addon_id, addon, webapp=False):
             messages.success(request, _('New version successfully added.'))
             log.info('[Webapp:%s] New version created id=%s from upload: %s'
                      % (addon, ver.pk, upload_form.cleaned_data['upload']))
+
+            if addon.vip_app:
+                handle_vip(addon, ver, request.amo_user)
+
             return redirect(addon.get_dev_url('versions.edit', args=[ver.pk]))
 
     ctx = {'addon': addon, 'webapp': webapp, 'form': form,
