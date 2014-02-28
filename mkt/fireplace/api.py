@@ -32,6 +32,10 @@ class FireplaceESAppSerializer(SimpleESAppSerializer):
         fields = FireplaceAppSerializer.Meta.fields
         exclude = FireplaceAppSerializer.Meta.exclude
 
+    def get_user_info(self, app):
+        # Fireplace search should always be anonymous for extra-cacheability.
+        return None
+
 
 class AppViewSet(BaseAppViewset):
     serializer_class = FireplaceAppSerializer
@@ -39,6 +43,7 @@ class AppViewSet(BaseAppViewset):
 
 class FeaturedSearchView(BaseFeaturedSearchView):
     serializer_class = FireplaceESAppSerializer
+    authentication_classes = []
 
 
 class SearchView(BaseSearchView):

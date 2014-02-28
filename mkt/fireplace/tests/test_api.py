@@ -21,8 +21,8 @@ from mkt.webapps.models import Installed
 # https://bugzilla.mozilla.org/show_bug.cgi?id=958608#c1 and #c2.
 FIREPLACE_EXCLUDED_FIELDS = (
     'absolute_url', 'app_type', 'created', 'default_locale', 'payment_account',
-    'regions', 'resource_uri', 'supported_locales', 'versions',
-    'weekly_downloads', 'upsold', 'tags')
+    'regions', 'resource_uri', 'supported_locales', 'tags', 'upsold',
+    'versions', 'weekly_downloads')
 
 
 class TestAppDetail(BaseAPI):
@@ -54,8 +54,8 @@ class TestAppDetail(BaseAPI):
         self._allowed_verbs(url, [])
 
 
-class TestFeaturedSearchView(ESTestCase):
-    fixtures = fixture('webapp_337141')
+class TestFeaturedSearchView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
         super(TestFeaturedSearchView, self).setUp()
@@ -102,6 +102,17 @@ class TestSearchView(ESTestCase):
         ok_(not 'featured' in res.json)
         ok_(not 'collections' in res.json)
         ok_(not 'operator' in res.json)
+
+    def test_anonymous_user(self):
+        res = self.anon.get(self.url)
+        eq_(res.status_code, 200)
+        data = res.json['objects'][0]
+        eq_(data['user'], None)
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        data = res.json['objects'][0]
+        eq_(data['user'], None)
 
 
 class TestConsumerInfoView(RestOAuth, TestCase):
