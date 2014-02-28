@@ -13,7 +13,8 @@ App
 
 .. http:get:: /api/v1/fireplace/app/
 
-    A copy of :ref:`the app API <app-response-label>`.
+    A copy of :ref:`the app API <app-response-label>`. The response only
+    contains the specific subset of fields Fireplace needs.
 
 
 Error reporter
@@ -59,6 +60,24 @@ Error reporter
     **Response**
 
     :status 204: Message sent.
+
+Search
+======
+
+.. http:get:: /api/v1/fireplace/search/
+
+    A copy of :ref:`the search API <search-api>`. Like the App API above, the
+    response only contains the specific subset of fields Fireplace needs.
+
+Featured Search
+===============
+
+.. http:get:: /api/v1/fireplace/search/featured/
+
+    A copy of :ref:`the featured search API <featured-search-api>`. Like the
+    App API above, the response contains the specific subset of fields Fireplace
+    needs.
+
 
 Consumer Information
 ====================

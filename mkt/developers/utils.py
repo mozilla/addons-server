@@ -1,16 +1,28 @@
 import os
 import uuid
+from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.template.defaultfilters import filesizeformat
 
+import commonware.log
+import waffle
 from PIL import Image
 from tower import ugettext as _
 
 import amo
 from mkt.constants import APP_PREVIEW_MINIMUMS
 from lib.video import library as video_library
+
+from editors.models import EscalationQueue
+from mkt.comm.utils import create_comm_note
+from mkt.constants import comm
+from mkt.reviewers.utils import send_mail
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
+
+log = commonware.log.getLogger('z.devhub')
 
 
 def uri_to_pk(uri):
@@ -112,3 +124,30 @@ def check_upload(file_obj, upload_type, content_type):
                           '{1}px by {0}px.').format(*APP_PREVIEW_MINIMUMS))
 
     return errors, upload_hash
+
+
+def handle_vip(addon, version, user):
+    msg = u'VIP app updated'
+
+    # Add to escalation queue
+    EscalationQueue.objects.get_or_create(addon=addon)
+
+    # Create comm note
+    create_comm_note(addon, version, user, msg, note_type=comm.ESCALATION,
+                     perms={'developer': False})
+
+    # Log action
+    amo.log(amo.LOG.ESCALATION_VIP_APP, addon, version, created=datetime.now(),
+            details={'comments': msg})
+    log.info(u'[app:%s] escalated - %s' % (addon.name, msg))
+
+    # Special senior reviewer email.
+    if not waffle.switch_is_active('comm-dashboard'):
+        context = {'name': addon.name,
+                   'review_url': absolutify(reverse('reviewers.apps.review',
+                                                     args=[addon.app_slug],
+                                                     add_prefix=False)),
+                   'SITE_URL': settings.SITE_URL}
+        send_mail(u'%s: %s' % (msg, addon.name),
+                   'developers/emails/vip_escalation.ltxt', context,
+                   [settings.MKT_SENIOR_EDITORS_EMAIL])
