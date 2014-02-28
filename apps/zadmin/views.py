@@ -221,8 +221,7 @@ def validation(request, form=None):
     jobs = ValidationJob.objects.order_by('-created')
     return jingo.render(request, 'zadmin/validation.html',
                         {'form': form,
-                         'success_form': NotifyForm(text='success'),
-                         'failure_form': NotifyForm(text='failure'),
+                         'notify_form': NotifyForm(text='validation'),
                          'validation_jobs': jobs})
 
 
