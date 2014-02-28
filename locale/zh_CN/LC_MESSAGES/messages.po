@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-27 01:29+0000\n"
-"Last-Translator: Shen <steekid@icloud.com>\n"
+"PO-Revision-Date: 2014-02-28 02:05+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393464583.0\n"
+"X-POOTLE-MTIME: 1393553125.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -1479,7 +1479,7 @@ msgstr "我的概况"
 
 #: apps/amo/context_processors.py:69 apps/users/templates/users/edit.html:5 apps/users/templates/users/includes/navigation.html:3 mkt/site/context_processors.py:31
 msgid "Account Settings"
-msgstr "帐户设置"
+msgstr "账户设置"
 
 #: apps/amo/context_processors.py:73 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:86 apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
@@ -2476,7 +2476,7 @@ msgstr "或者 <a id=\"collections-new-cancel\" href=\"#\">取消</a>"
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr "您必须有一个附加组件帐户才能对收藏集评分。"
+msgstr "您必须有一个附加组件账户才能对收藏集评分。"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:19 templates/base.html:134 templates/impala/base.html:194
 msgid "Create an Add-ons Account"
@@ -2484,7 +2484,7 @@ msgstr "创建附加组件账户"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:23 templates/base.html:137 templates/impala/base.html:197
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "或者 <a href=\"%(login)s\">登录您已有的帐户</a>"
+msgstr "或者<a href=\"%(login)s\">登录您已有的账户</a>"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
@@ -3090,7 +3090,7 @@ msgstr "为 Firefox 添加搜索相关的功能"
 
 #: apps/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
-msgstr "搜索提供程序"
+msgstr "搜索提供商"
 
 #: apps/browse/templates/browse/search_tools.html:75
 msgid "Find new providers for your search bar"
@@ -4057,11 +4057,11 @@ msgstr "请输入小于 ${0} 的建议金额。"
 
 #: apps/devhub/forms.py:372
 msgid "PayPal ID required to accept contributions."
-msgstr "需要 PayPal 帐号以便接受捐助。"
+msgstr "需要 PayPal 账户才能接受捐助。"
 
 #: apps/devhub/forms.py:378
 msgid "Could not validate PayPal id."
-msgstr "无法验证 PayPal 帐号。"
+msgstr "无法验证 PayPal 账户。"
 
 #: apps/devhub/forms.py:429 apps/devhub/forms.py:879
 msgid "Invalid version range."
@@ -6127,11 +6127,11 @@ msgstr "以受限特权执行求值代码"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:99
 msgid "Creating Sandboxed HTTP Connections"
-msgstr "本文讲述了 Components.utils.evalInSandbox 的使用，这是一种在没有 Chrome 权限的情况下用来执行求值代码（例如远程代码）的方式。"
+msgstr "创建沙箱内的 HTTP 连接"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
-msgstr "这篇文章说明了如何在沙盒中创建 HTTP 连接又不影响到用户 cookie 。"
+msgstr "创建沙箱内的 HTTP 连接"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -6962,7 +6962,9 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:127
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
-msgstr "关注<a href=\"%(link_blog)s\">附加组件博客</a>或者 Twitter 帐号<a href=\"%(link_twitter)s\">@mozamo</a>了解下一期什么时候开始。"
+msgstr ""
+"关注<a href=\"%(link_blog)s\">附加组件博客</a>或者 Twitter 账户<a href=\"%"
+"(link_twitter)s\">@mozamo</a>了解下一期何时开始。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:132
 msgid "Last updated: January 31, 2013"
@@ -8699,7 +8701,7 @@ msgstr "给审核员的备注"
 
 #: apps/devhub/templates/devhub/versions/edit.html:114
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
-msgstr "可选，请输入任何可能有助于审核员审核此附加组件的信息，例如测试用帐号的信息。"
+msgstr "选填，请输入任何可能有助于审核员审核此附加组件的信息，例如测试所需的账户信息。"
 
 #: apps/devhub/templates/devhub/versions/edit.html:133
 msgid "Upload a new file"
@@ -11133,7 +11135,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:316
 msgid "Does Mozilla keep my account information private?"
-msgstr "Mozilla 会保证我的帐户的私密性吗？"
+msgstr "Mozilla 会保证我的账户私密性吗？"
 
 #: apps/pages/templates/pages/dev_faq.html:318
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
@@ -11783,7 +11785,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:296
 msgid "How can I opt out of these recommendations?"
-msgstr "我该怎么才能退出这些推荐呢？"
+msgstr "我该怎么选择退出这些推荐？"
 
 #: apps/pages/templates/pages/faq.html:297
 msgid "Please see <a href=\"%(support_url)s\">this support article</a> for instructions on how to opt out."
@@ -12039,7 +12041,7 @@ msgstr "请输入有效的电子邮件地址。"
 
 #: apps/paypal/check.py:64
 msgid "You have not setup permissions for us to check this PayPal account."
-msgstr "您没有设置我们校验您PayPal帐户的许可。"
+msgstr "您没有设置我们校验您的 PayPal 账户的许可。"
 
 #: apps/perf/templates/perf/index.html:3
 msgid "Slow Performing Add-ons"
@@ -13243,7 +13245,7 @@ msgstr "有问题？"
 
 #: apps/users/views.py:663
 msgid "You are already logged in to an account."
-msgstr "您已经登录到了一个帐户。"
+msgstr "您已经登录到了一个账户。"
 
 #: apps/users/views.py:685
 msgid "Congratulations! Your user account was successfully created."
@@ -13271,7 +13273,7 @@ msgstr "新的"
 
 #: apps/users/templates/users/delete.html:4 apps/users/templates/users/delete.html:10
 msgid "Delete User Account"
-msgstr "删除用户帐户"
+msgstr "删除用户账户"
 
 #: apps/users/templates/users/delete.html:14
 msgid ""
@@ -13293,7 +13295,7 @@ msgstr "您的评论和评分不会被删除，但不再与您有关联。"
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
-msgstr "确认帐户删除"
+msgstr "确认账户删除"
 
 #: apps/users/templates/users/delete.html:49 apps/users/templates/users/edit.html:52 apps/users/templates/users/login_form.html:36 apps/users/templates/users/register.html:75
 #: apps/users/templates/users/mobile/login.html:52
@@ -13306,7 +13308,7 @@ msgstr "我明白这个步骤无法撤销。"
 
 #: apps/users/templates/users/delete.html:64
 msgid "Delete my user account now"
-msgstr "立即删除我的用户帐户"
+msgstr "立即删除我的用户账户"
 
 #: apps/users/templates/users/delete_photo.html:3 apps/users/templates/users/delete_photo.html:9
 msgid "Delete User Photo"
@@ -13318,11 +13320,11 @@ msgstr "立即删除我的用户图片"
 
 #: apps/users/templates/users/edit.html:20 apps/users/templates/users/includes/navigation.html:12 templates/user_login.html:22
 msgid "My Account"
-msgstr "我的帐户"
+msgstr "我的账户"
 
 #: apps/users/templates/users/edit.html:22
 msgid "Manage basic account information, such as username and email address."
-msgstr "管理基本的帐户信息，像是用户名和电子邮件地址。"
+msgstr "管理基本的账户信息，例如用户名和电子邮件地址。"
 
 #: apps/users/templates/users/edit.html:28 apps/users/templates/users/register.html:48 mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Username"
@@ -13418,12 +13420,12 @@ msgstr "管理"
 
 #: apps/users/templates/users/edit.html:222
 msgid "Delete Account"
-msgstr "删除帐户"
+msgstr "删除账户"
 
 #: apps/users/templates/users/edit.html:224 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:115
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:26
 msgid "Update Account"
-msgstr "更新帐户"
+msgstr "更新账户"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
@@ -15243,7 +15245,7 @@ msgstr "Windows, Mac and Linux"
 
 #: mkt/constants/platforms.py:79 mkt/constants/platforms.py:82 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr "Android 智能机"
+msgstr "Android 智能手机"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
@@ -15924,7 +15926,7 @@ msgstr "银行所在国家"
 
 #: mkt/developers/forms_payments.py:433 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr "帐户名"
+msgstr "账户名称"
 
 #: mkt/developers/forms_payments.py:462 mkt/developers/templates/developers/payments/premium.html:128
 msgid "Payment Account"
@@ -16267,7 +16269,7 @@ msgstr "已核准权限"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr "%(app_name)s 希望访问你的“市场”帐户。"
+msgstr "%(app_name)s 希望访问你的应用市场账户。"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
@@ -16311,7 +16313,7 @@ msgstr "请登录"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:133
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
-msgstr "只需在下面用您 <a href=\"%(url)s\">Persona</a> 的登录或者注册。"
+msgstr "只须在下方登录或注册您的 <a href=\"%(url)s\">Persona</a> 账户。"
 
 #: mkt/developers/templates/developers/terms.html:3
 msgid "Terms and Conditions"
@@ -16319,7 +16321,7 @@ msgstr "条款和规定"
 
 #: mkt/developers/templates/developers/terms.html:22 mkt/submit/templates/submit/terms.html:41
 msgid "Additional Marketplace Policies"
-msgstr "附加市场政策"
+msgstr "应用市场额外政策"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
@@ -16640,7 +16642,7 @@ msgstr "这次发布的改动情况，新特性，已知缺陷和其他针对此
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
-msgstr "可选的，可以输入任何有助于审核者审核这款应用的信息，例如测试帐户信息。"
+msgstr "随意，输入任何有助于审核者审核这款应用的信息，例如测试所需的测试账户信息。"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:52 mkt/developers/templates/developers/apps/edit/technical.html:48
 msgid "Minimum Requirements"
@@ -17479,15 +17481,17 @@ msgstr "为移动设备带去开放网络。"
 msgid ""
 "Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the "
 "phone vibrate, placing phone calls, and sending text messages."
-msgstr "Firefox OS 是完全使用开放网络技术构建的全新的移动操作系统。在 Firefox OS 中，HTML5 应用可以直接控制手机硬件及重要功能——例如让手机震动，打电话，以及发送短信。"
+msgstr ""
+"Firefox OS 是一个完全使用开放网络技术构筑的全新移动操作系统。在 Firefox OS 中，HTML5 "
+"应用可以直接控制手机硬件及关键功能——例如手机震动、打电话、发短信等。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
 msgid ""
 "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
 "and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
 msgstr ""
-"我们坚信，开发者需要真正有益的帮助，将网络的力量带入移动设备。因此我们与许多合作伙伴一道，在设备上开发和测试应用，并进一步了解如何定制 Firefox OS 自身。本页面向开发者提供有用的信息，包括开发者文档链"
-"接、可用的设备，以及从哪里可以获得他们。"
+"我们坚信开发者需要真正有益的帮助将网络的力量带入移动设备。因此我们与许多合作伙伴一道，在设备上开发和测试应用，并进一步了解如何定制 Firefox OS "
+"本身。本页面目的向开发者提供有用的信息，包括开发者文档、可用的设备，以及从哪里可以获得它们。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
@@ -17537,8 +17541,9 @@ msgid ""
 "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-"
 "to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
 msgstr ""
-"<strong>如果您刚刚得到了一部 Geeksphone Keon 或 Peak ，它可能还运行着已经过时的 Firefox OS 版本 1.0.1。在使用之前，应该按照我们的 <a href=\"%(geeksphone_update_url)s\">Geeksphone刷新指南</a>升级到最"
-"新版本的 Firefox OS。</strong>"
+"<strong>如果您刚刚得到了一部 Geeksphone Keon 或 Peak ，它可能还运行着已经过时的 Firefox OS 版本 "
+"1.0.1。在开始使用设备之前，您应该按照我们的 <a href=\"%(geeksphone_update_url)s\">Geeksphone "
+"刷新指南</a>升级到最新版本的 Firefox OS。</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
@@ -17576,9 +17581,11 @@ msgid ""
 "In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
 "mail</a>."
 msgstr ""
-"我们特别希望您能分享 <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">Firefox OS 自身的剖析与应用技巧</a>，<a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">开发 Firefox OS 应用</a>以及<a "
-"href=\"%(mdn_devphone_url)s\" target=\"_blank\">在各种设备上安装使用 Firefox OS 的经验</a>。此外，也随时欢迎您通过 <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> 或者 <a href="
-"\"%(b2g_mail_url)s\" target=\"_blank\">电子邮件</a>提出问题或者分享反馈信息、资源。"
+"我们特别希望您能分享 <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">Firefox OS "
+"自身的剖析与应用技巧</a>，<a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">开发 Firefox OS "
+"应用</a>以及<a href=\"%(mdn_devphone_url)s\" target=\"_blank\">在各种设备上安装使用 Firefox OS "
+"的经验</a>。此外也随时欢迎您通过 <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> 或者<a "
+"href=\"%(b2g_mail_url)s\" target=\"_blank\">电子邮件</a>提出问题或者分享反馈意见和资源。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -17646,7 +17653,7 @@ msgstr "Mozilla 可以接触到全球数以亿计的 Firefox 用户。通过智�
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
-msgstr "火狐应用市场目前开放并接受应用。提交你的应用到："
+msgstr "火狐应用市场目前开放并接受应用。提交你的应用以："
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
@@ -17654,11 +17661,11 @@ msgstr "借助忠诚的早期用户帮助您测试应用。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
-msgstr "建立资深用户基础并让他流行起来。"
+msgstr "及早建立用户群，尽早收获知名度。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
-msgstr "以精明的科技产品消费者为您的应用的目标用户。"
+msgstr "使您的应用瞄准精明的科技产品消费者。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
@@ -17666,7 +17673,8 @@ msgstr "Firefox 应用和技巧"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
-msgstr "注册我们有关 Firefox OS 、应用市场和应用生态系统的每月通讯。<a href=\"%(dev_phone_url)s\">看看开发者手机预览</a>"
+msgstr ""
+"注册我们有关 Firefox OS、应用市场和应用生态系统的每月通讯。<a href=\"%(dev_phone_url)s\">开发者手机抢先看</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -19239,7 +19247,7 @@ msgstr "支持的语言"
 
 #: mkt/site/context_processors.py:34
 msgid "Sign out"
-msgstr "退出"
+msgstr "登出"
 
 #: mkt/site/forms.py:10
 msgid "As soon as it is approved."
@@ -19478,7 +19486,7 @@ msgstr "<b>下一步：</b>补充您的应用的其他详情"
 
 #: mkt/submit/templates/submit/manifest.html:127
 msgid "Learn more about <b>packaged apps</b> on MDN."
-msgstr "在 MDN 上进一步了解<b>封包的应用</b>。"
+msgstr "在 MDN 上进一步了解<b>封装应用</b>。"
 
 #: mkt/submit/templates/submit/next_steps.html:23
 msgid "Published!"
@@ -19569,7 +19577,9 @@ msgstr "市场开发者计划"
 msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
-msgstr "我们很高兴您使用 Web 技术构建应用，提交应用到火狐应用市场市场是让用户在他们的设备上发现和使用应用的最好方式。首先，您要加入下面的“应用市场开发者计划”。"
+msgstr ""
+"我们很高兴您使用 Web "
+"技术构建应用，提交应用到火狐应用市场市场是让用户在他们的设备上发现和使用应用的最好方式。首先，您需要加入如下所列的“应用市场开发者计划”。"
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -19577,7 +19587,7 @@ msgstr "要想开始，请阅读并接受我们的<strong>开发者协议</stron
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
-msgstr "Mozilla 可能会发送给我相关应用开发者的新闻和调查的邮件。"
+msgstr "Mozilla 可以向我发送有关应用开发者的新闻与调查的邮件"
 
 #: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1945
 msgid "Héllo"
@@ -19585,7 +19595,7 @@ msgstr "您好"
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr "编辑帐户设置"
+msgstr "编辑账户设置"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Return to the Marketplace"
@@ -19593,13 +19603,15 @@ msgstr "返回市场"
 
 #: mkt/templates/mkt/account-links.html:15
 msgid "Sign Out"
-msgstr "退出"
+msgstr "登出"
 
 #: mkt/templates/mkt/footer.html:5
 msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
 "version."
-msgstr "除特别<a href=\"%(legal_url)s\">标明</a>以外，本站所有内容均遵循<a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a>或者更新版本的许可协议。"
+msgstr ""
+"除特别<a href=\"%(legal_url)s\">注明</a>外，本站所有内容均遵循<a href=\"%(cc_url)s\">知识共享 "
+"署名-相同方式共享 v3.0</a>或者更新版本的许可协议。"
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
@@ -19607,7 +19619,7 @@ msgstr "使用条款"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
-msgstr "报告商标侵权。"
+msgstr "报告商标侵权"
 
 #: mkt/templates/mkt/header.html:5
 msgid "Back"
