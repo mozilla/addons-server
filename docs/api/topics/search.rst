@@ -83,6 +83,8 @@ Search
 
     :status 200: successfully completed.
 
+.. _featured-search-api:
+
 Featured App Listing
 ====================
 
