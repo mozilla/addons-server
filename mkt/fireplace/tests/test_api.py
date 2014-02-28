@@ -65,7 +65,8 @@ class TestFeaturedSearchView(ESTestCase):
 
     def test_get(self):
         res = self.client.get(self.url)
-        objects = json.loads(res.content)['objects']
+        eq_(res.status_code, 200)
+        objects = res.json['objects']
         eq_(len(objects), 1)
         data = objects[0]
         eq_(data['id'], 337141)
@@ -73,6 +74,34 @@ class TestFeaturedSearchView(ESTestCase):
             ok_(not field in data, field)
         for field in FireplaceAppSerializer.Meta.fields:
             ok_(field in data, field)
+        ok_('featured' in res.json)
+        ok_('collections' in res.json)
+        ok_('operator' in res.json)
+
+
+class TestSearchView(ESTestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        super(TestSearchView, self).setUp()
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.reindex(Webapp, 'webapp')
+        self.url = reverse('fireplace-search-api')
+
+    def test_get(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        objects = res.json['objects']
+        eq_(len(objects), 1)
+        data = objects[0]
+        eq_(data['id'], 337141)
+        for field in FIREPLACE_EXCLUDED_FIELDS:
+            ok_(not field in data, field)
+        for field in FireplaceAppSerializer.Meta.fields:
+            ok_(field in data, field)
+        ok_(not 'featured' in res.json)
+        ok_(not 'collections' in res.json)
+        ok_(not 'operator' in res.json)
 
 
 class TestConsumerInfoView(RestOAuth, TestCase):

@@ -9,7 +9,8 @@ from mkt.api.base import CORSMixin
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.search.api import FeaturedSearchView as BaseFeaturedSearchView
+from mkt.search.api import (FeaturedSearchView as BaseFeaturedSearchView,
+                            SearchView as BaseSearchView)
 from mkt.search.serializers import SimpleESAppSerializer
 from mkt.webapps.api import SimpleAppSerializer, AppViewSet as BaseAppViewset
 
@@ -37,6 +38,10 @@ class AppViewSet(BaseAppViewset):
 
 
 class FeaturedSearchView(BaseFeaturedSearchView):
+    serializer_class = FireplaceESAppSerializer
+
+
+class SearchView(BaseSearchView):
     serializer_class = FireplaceESAppSerializer
 
 
