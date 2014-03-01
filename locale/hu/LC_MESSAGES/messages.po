@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-01 02:49+0000\n"
+"PO-Revision-Date: 2014-03-01 02:51+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1393642189.0\n"
+"X-POOTLE-MTIME: 1393642294.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -3484,7 +3484,7 @@ msgstr "Összes megjelenítése"
 
 #: apps/compat/templates/compat/reporter_detail.html:28
 msgid "Filter by Application"
-msgstr ""
+msgstr "Szűrés alkalmazás szerint"
 
 #: apps/compat/templates/compat/reporter_detail.html:45
 msgid "Report Type"
