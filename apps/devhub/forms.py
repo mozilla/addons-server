@@ -731,7 +731,9 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
 
 
 class AdminForm(happyforms.ModelForm):
-    type = forms.ChoiceField(choices=amo.ADDON_TYPE.items())
+    _choices = [(k, v) for k, v in amo.ADDON_TYPE.items()
+                if k != amo.ADDON_ANY]
+    type = forms.ChoiceField(choices=_choices)
 
     # Request is needed in other ajax forms so we're stuck here.
     def __init__(self, request=None, *args, **kw):
