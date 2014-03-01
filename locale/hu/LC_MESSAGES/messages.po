@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-27 16:15+0000\n"
+"PO-Revision-Date: 2014-03-01 02:49+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1393517716.0\n"
+"X-POOTLE-MTIME: 1393642189.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -229,7 +229,7 @@ msgstr "Adatvédelmi nyilatkozat megtekintése"
 #: apps/addons/templates/addons/button.html:89 apps/addons/templates/addons/details_box.html:128 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Végfelhasználói licencszerződés megjelenítése"
 
 #: apps/addons/templates/addons/button.html:94 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -378,16 +378,18 @@ msgstr "Támogassa a(z) <strong>%(addon_name)s</strong> kiegészítő folyamatos
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"A fejlesztő adományt kér a(z) <b>%(addon_name)s</b> kiegészítő fejlesztéséért, <a href=\"%(paypal_url)s\">Paypal</a>on keresztül a(z) <a href=\"%(charity_url)s\">%(charity_name)s</a> szervezet "
-"számára."
+"A fejlesztő adományt kér a(z) <b>%(addon_name)s</b> kiegészítő "
+"fejlesztéséért, <a href=\"%(paypal_url)s\">Paypalon</a> keresztül a(z) <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> szervezet számára."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
-"A fejlesztő adományt kér a(z) <b>%(addon_name)s</b> kiegészítő fejlesztéséért, <a href=\"%(paypal_url)s\">Paypal</a>on keresztül a(z) <a href=\"%(charity_url)s\">%(charity_name)s</a> szervezet "
-"számára."
+"A fejlesztő adományt kér a(z) <b>%(addon_name)s</b> kiegészítő "
+"fejlesztéséért, <a href=\"%(paypal_url)s\">Paypalon</a> keresztül a(z) <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> szervezet számára."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -828,7 +830,7 @@ msgstr[1] "<strong>{0}</strong> felhasználó"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr "Előnézethez huzza fölé az egeret"
+msgstr "Előnézethez húzza fölé az egeret"
 
 #: apps/addons/templates/addons/persona_preview.html:46 apps/addons/templates/addons/persona_preview.html:48 apps/reviews/templates/reviews/add.html:15
 msgid "Add"
@@ -1776,7 +1778,7 @@ msgstr "{review} értékelés érkezett a(z) {addon} kiegészítőhöz."
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr "{addon} featured in {0}."
+msgstr "{addon} kiemelve itt: {0}."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
@@ -1839,7 +1841,7 @@ msgstr "A szerző e-mailt küldött a {version} kompatibilitásáról."
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-mail elküldve a szerzőnek a kiegészítő kompatibilitásáról."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -1895,79 +1897,79 @@ msgstr "Felhasználói fiók frissítve."
 
 #: apps/amo/log.py:432
 msgid "Valid receipt was checked for {addon}."
-msgstr ""
+msgstr "Érvényes bizonylat ellenőrizve ehhez: {addon}."
 
 #: apps/amo/log.py:437
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Eszkaláció törölve erről: {addon}."
 
 #: apps/amo/log.py:438 mkt/constants/comm.py:37
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Eszkaláció törölve"
 
 #: apps/amo/log.py:446
 msgid "App disabled"
-msgstr ""
+msgstr "App letiltva"
 
 #: apps/amo/log.py:453
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
+msgstr "{addon} eszkalálva a visszaélési jelentések nagy száma miatt."
 
 #: apps/amo/log.py:454
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Sok visszaélési jelentés"
 
 #: apps/amo/log.py:461
 msgid "{addon} escalated because of high number of refund requests."
-msgstr ""
+msgstr "{addon} eszkalálva a visszatérítési kérések nagy száma miatt."
 
 #: apps/amo/log.py:462
 msgid "High Refund Requests"
-msgstr ""
+msgstr "Sok visszatérítési kérés"
 
 #: apps/amo/log.py:469
 msgid "{addon} re-reviewed because of manifest change."
-msgstr ""
+msgstr "{addon} újra áttekintve a manifest változása miatt."
 
 #: apps/amo/log.py:470
 msgid "Manifest Change"
-msgstr ""
+msgstr "Manifest változás"
 
 #: apps/amo/log.py:477
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr ""
+msgstr "{addon} újra áttekintve, mert az app prémium típusra váltott."
 
 #: apps/amo/log.py:478
 msgid "Premium Type Upgrade"
-msgstr ""
+msgstr "Prémium típusra váltás"
 
 #: apps/amo/log.py:485
 msgid "Re-review cleared for {addon}."
-msgstr ""
+msgstr "Újra áttekintés törölve erről: {addon}."
 
 #: apps/amo/log.py:486 mkt/constants/comm.py:40
 msgid "Re-review cleared"
-msgstr ""
+msgstr "Újra áttekintés törölve"
 
 #: apps/amo/log.py:493
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "A vizsgálatot végző eszkalálta ezt: {addon}."
 
 #: apps/amo/log.py:494
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "A vizsgálatot végző általi eszkalálás"
 
 #: apps/amo/log.py:502
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "A videó a hibája miatt eltávolítva ebből: {addon}."
 
 #: apps/amo/log.py:504
 msgid "Video removed"
-msgstr ""
+msgstr "Videó eltávolítva"
 
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "{addon} ismételt vizsgálata újonnan hozzáadott eszközök miatt."
 
 #: apps/amo/log.py:510
 msgid "Device(s) Added"
@@ -1976,18 +1978,19 @@ msgstr "Eszköz(ök) hozzáadva"
 #: apps/amo/log.py:517
 msgid "{addon} device support manually changed by reviewer."
 msgstr ""
+"{addon} eszköztámogatása kézzel megváltoztatva a vizsgálatot végző által."
 
 #: apps/amo/log.py:518
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Eszközök megváltoztatva a vizsgálatot végző által"
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
-msgstr ""
+msgstr "{addon} újra beküldve vizsgálatra."
 
 #: apps/amo/log.py:526
 msgid "App Resubmission"
-msgstr ""
+msgstr "App ismételt beküldése"
 
 #: apps/amo/log.py:543
 msgid "Created: {0}."
@@ -2011,65 +2014,66 @@ msgstr "A(z) {user} felhasználó elrejtett."
 
 #: apps/amo/log.py:573
 msgid "User {user} restricted."
-msgstr ""
+msgstr "{user} felhasználó korlátozva."
 
 #: apps/amo/log.py:579
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "{0} admin megjelenítette {user} felhasználó tevékenységnaplóját."
 
 #: apps/amo/log.py:586
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} frissítve ehhez: {addon}."
 
 #: apps/amo/log.py:592
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} megvizsgálva."
 
 #: apps/amo/log.py:598
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "{0.name} felhasználó hozzáadva ehhez: {group}."
 
 #: apps/amo/log.py:606
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "{0.name} felhasználó eltávolítva ebből: {group}."
 
 #: apps/amo/log.py:613
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr ""
+"{addon} minimális követelményeit a vizsgálatot végző kézzel módosította."
 
 #: apps/amo/log.py:614
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "A követelményeket a vizsgálatot végző módosította"
 
 #: apps/amo/log.py:621
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "{addon} minimális követelményei kézzel módosítva."
 
 #: apps/amo/log.py:622
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Követelmének módosítva"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:630
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "{version} állapota módosítva: {0}."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:637
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "{0.name} {0.id} felhasználó törölve a keresőeszközön keresztül."
 
 #: apps/amo/log.py:643
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "{addon} tartalom besorolása módosítva Felnőttre."
 
 #: apps/amo/log.py:649
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "{addon} tartalom besorolása módosítva."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Nem engedélyezett"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
@@ -2110,7 +2114,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
-msgstr ""
+msgstr "marketplace-staff@mozilla.org"
 
 #: apps/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -2119,7 +2123,7 @@ msgstr "Néhány jog fenntartva"
 #: apps/amo/templates/amo/no_results.html:1 apps/editors/templates/editors/includes/search_results_themes.html:26 mkt/reviewers/templates/reviewers/includes/search_results.html:49
 #: mkt/reviewers/templates/reviewers/includes/search_results_themes.html:26 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Nincs találat"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
@@ -2165,11 +2169,15 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Írja be <strong>mindkét szót</strong> alább, <strong>egy szóközzel "
+"elválasztva</strong>. </p> <p> Ha ez nehezen olvasható, akkor helyette <a "
+"href=\"#\" id=\"recaptcha_different\">megpróbálkozhat más szavakkal</a>, vagy <a "
+"href=\"#\" id=\"recaptcha_audio\">más típusú feladattal</a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
 msgid "Top Rated"
-msgstr "Legmagasabbra értékelt"
+msgstr "Legjobbra értékelt"
 
 #: apps/amo/templates/amo/side_nav.html:23
 msgid "Explore"
@@ -2183,7 +2191,7 @@ msgstr "Bővítmények"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "További személyre szabást szeretne? Próbálja ki a <b>Teljes témákat</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:87
 msgid "Most Followers"
@@ -2241,23 +2249,25 @@ msgstr[1] "{n}. oldal"
 #: apps/amo/templates/services/install.html:38
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
 msgstr ""
+"Ha nem kap felszólítást a(z) %(addon_name)s telepítésére egy pillanat múlva, "
+"akkor <a href=\"%(addon_xpi)s\">kattintson ide</a>."
 
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53 apps/reviews/templates/reviews/add.html:84 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
 msgid "Title"
-msgstr ""
+msgstr "Cím"
 
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53
 msgid "Body"
-msgstr ""
+msgstr "Törzs"
 
 #: apps/amo/tests/test_messages.py:54
 msgid "Another Title"
-msgstr ""
+msgstr "Másik cím"
 
 #: apps/amo/tests/test_messages.py:54
 msgid "Another Body"
-msgstr ""
+msgstr "Másik törzs"
 
 #. L10n: {0} is comma separated data errors.
 #: apps/api/handlers.py:62
@@ -2306,6 +2316,12 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
+"<p> %(consumer)s felhatalmazást kér az Ön nevében való cselekvésre. Ide "
+"tartozhat:</p><ul><li>Kiegészítők feltöltése, módosítása vagy eltávolítása "
+"az Ön nevében.</li> <li>Kiegészítőverziók feltöltése, módosítása vagy "
+"eltávolítása az Ön nevében.</li> <li>Személyes információinak megismerése, "
+"például felhasználóneve és e-mail címe (de a jelszava nem tartozik "
+"ide).</li></ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29 mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Confirm"
@@ -2382,7 +2398,7 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Írja le gyűjteményét (hivatkozások nem engedélyezettek)."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2394,7 +2410,7 @@ msgstr "Ikon"
 
 #: apps/bandwagon/forms.py:152 apps/users/forms.py:340
 msgid "No links are allowed."
-msgstr ""
+msgstr "Hivatkozások nem engedélyezettek."
 
 #: apps/bandwagon/forms.py:164
 msgid "This url is already in use by another collection"
@@ -2479,6 +2495,7 @@ msgstr "A gyűjtemény frissítése megtörtént!"
 #: apps/bandwagon/views.py:301
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr ""
+"<a href=\"%(url)s\">Nézze meg gyűjteményét</a> a változások megjelenítéséhez."
 
 #: apps/bandwagon/views.py:555
 msgid "Icon Deleted"
@@ -2553,7 +2570,7 @@ msgstr "Erről a gyűjteményről"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:68
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Mobil Firefoxra szinkronizált kiegészítők"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:77
 msgid "Make this Collection Private"
@@ -2582,8 +2599,8 @@ msgstr "Gyűjtemény törlése"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s téma ebben a gyűjteményben"
+msgstr[1] "%(num)s téma ebben a gyűjteményben"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
@@ -2686,8 +2703,8 @@ msgstr[1] "%(num)s követő hetente"
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s havi követő"
+msgstr[1] "%(num)s havi követő"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -3178,7 +3195,7 @@ msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_f
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:197
 msgid "Complete Themes"
-msgstr ""
+msgstr "Teljes témák"
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
@@ -3186,7 +3203,7 @@ msgstr "Legnépszerűbb kiterjesztések"
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
-msgstr "Legmagasabbra értékelt bővítmények"
+msgstr "Legjobbra értékelt bővítmények"
 
 #: apps/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
@@ -3211,35 +3228,35 @@ msgstr "Ígéretes bővítmények"
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Kiemelt teljes témák"
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Legnépszerűbb teljes témák"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Legjobb értékelésű teljes témák"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Legújabb teljes témák"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Teljes témák név szerint"
 
 #: apps/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Teljes témák heti letöltések szerint"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Legutóbb frissített teljes témák"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Ígéretes teljes témák"
 
 #: apps/browse/templates/browse/impala/base_listing.html:30
 msgid "Featured Apps"
@@ -3251,7 +3268,7 @@ msgstr "Alkalmazások heti letöltések szerint"
 
 #: apps/browse/templates/browse/impala/base_listing.html:34
 msgid "Top-Rated Apps"
-msgstr "Legmagasabbra értékelt alkalmazások"
+msgstr "Legjobbra értékelt alkalmazások"
 
 #: apps/browse/templates/browse/impala/base_listing.html:35
 msgid "Newest Apps"
@@ -3288,12 +3305,12 @@ msgstr "A keresés eredménytelen."
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} téma"
 
 #. {0} is a user's name.
 #: apps/browse/templates/browse/personas/base.html:15 apps/browse/templates/browse/personas/base.html:40 apps/browse/templates/browse/personas/grid.html:8
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "{0} témái"
 
 #: apps/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
@@ -4547,7 +4564,10 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:32 mkt/developers/templates/developers/builder.html:70
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
-msgstr "Az Add-on SDK egy API-készlet, amely egy parancssori eszközzel van integrálva, lehetőséget biztosítva arra, hogy mindenki a saját fejlesztői környezetét használja."
+msgstr ""
+"A Kiegészítő SDK egy API-készlet, amely egy parancssori eszközzel van "
+"integrálva, lehetőséget biztosítva arra, hogy mindenki a saját fejlesztői "
+"környezetét használja."
 
 #: apps/devhub/templates/devhub/builder.html:38 mkt/developers/templates/developers/builder.html:76
 msgid "Choose your own code editor"
@@ -4563,7 +4583,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:43 mkt/developers/templates/developers/builder.html:81
 msgid "Download the Add-on SDK"
-msgstr "Add-on SDK letöltése"
+msgstr "Kiegészítő SDK letöltése"
 
 #: apps/devhub/templates/devhub/builder.html:49 mkt/developers/templates/developers/builder.html:109
 msgid "Help is at Hand!"
@@ -4575,7 +4595,9 @@ msgstr "Segítségre van szüksége a kiegészítők készítésében? <a href=\
 
 #: apps/devhub/templates/devhub/builder.html:60 mkt/developers/templates/developers/builder.html:120
 msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
-msgstr "Érdekli, hogy hogyan tehetné az Add-on SDK-t még jobbá? Nézze meg a forráskódot, és tudja meg <a href='%(url_wiki)s'>hogyan segíthet</a>."
+msgstr ""
+"Érdekli, hogy hogyan tehetné a Kiegészítő SDK-t még jobbá? Nézze meg a "
+"forráskódot, és tudja meg <a href='%(url_wiki)s'>hogyan segíthet</a>."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -4673,6 +4695,11 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"A kiegészítők több millió Firefox felhasználó számára teszik lehetővé "
+"böngészési élményük bővítését és személyre szabását. Ha Ön webfejlesztő, és "
+"ismeri a HTML-t, JavaScriptet és CSS-t, akkor már tud mindent, ami nagyszerű "
+"kiegészítők készítéséhez kell a Kiegészítő SDK-val. Ezen kívül az SDK-val "
+"készített kiegészítők alapesetben nem igényelnek újraindítást."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -4921,7 +4948,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/search.html:7 mkt/developers/templates/developers/search.html:7
 msgid "Search Developer Docs"
-msgstr "Fejlesztői dokumentációk keresése"
+msgstr "Keresés fejlesztői doksiban"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -5337,7 +5364,9 @@ msgstr "Kiválasztásakor megpróbáljok automatikusan frissíteni a kiegészít
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:127
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Ez a kiegészítő automatikusan frissítésre kerül az Add-on SDK új verziójára."
+msgstr ""
+"Ez a kiegészítő automatikusan frissítésre kerül a Kiegészítő SDK új "
+"verziójára."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:129
 msgid "No, this add-on will be upgraded manually."
@@ -9582,7 +9611,8 @@ msgstr ""
 
 #: apps/editors/helpers.py:502
 msgid "This will reject the files and remove them from the review queue."
-msgstr "s"
+msgstr ""
+"Ez visszautasítja a fájlokat, és eltávolítja azokat a vizsgálati sorból."
 
 #: apps/editors/helpers.py:506
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
@@ -11515,7 +11545,10 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
+msgstr ""
+"A <strong><a href=\"%(browse_url)s\">keresőszolgáltatások</a></strong> további "
+"lehetőségeket adnak a keresőmező legördülő listához. Ezek a szolgáltatások "
+"lehetővé teszik a gyors keresést tetszőleges weboldalon."
 
 #: apps/pages/templates/pages/faq.html:72
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
@@ -13378,7 +13411,7 @@ msgstr "E-mail cím"
 
 #: apps/users/templates/users/edit.html:40 apps/users/templates/users/register.html:70
 msgid "Hide email address from other users"
-msgstr "E-mail cím elrejtése más felhasználó"
+msgstr "E-mail cím elrejtése más felhasználók elől"
 
 #: apps/users/templates/users/edit.html:46 mkt/site/context_processors.py:32
 msgid "Change Password"
@@ -16243,8 +16276,10 @@ msgid ""
 "Add-on Builder and the Add-on SDK provide powerful APIs and tools that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy "
 "to share it with over 400 million Firefox users world wide."
 msgstr ""
-"Az Add-on Builder és az Add-on SDK hatékony API-kat és eszközöket biztosít, amelynek segítségével a fejlesztők kiegészítőket készíthetnek HTML, CSS és JavaScript használatával. A kiegészítő "
-"elkészültekor könnyedén megoszthatjuk világszerte több, mint 400 millió Firefox felhasználóval."
+"Az Add-on Builder és a Kiegészítő SDK hatékony API-kat és eszközöket "
+"biztosít, amelynek segítségével a fejlesztők kiegészítőket készíthetnek "
+"HTML, CSS és JavaScript használatával. A kiegészítő elkészültekor könnyedén "
+"megoszthatjuk világszerte több, mint 400 millió Firefox felhasználóval."
 
 #: mkt/developers/templates/developers/builder.html:42
 msgid "Choose Your Build Environment"
@@ -16256,7 +16291,9 @@ msgstr ""
 
 #: mkt/developers/templates/developers/builder.html:50
 msgid "The Add-on Builder is a web-based development environment that provides additional functionality for working with the Add-on SDK."
-msgstr "Az Add-on Builder egy webalapú fejlesztői környezet, amely további funkcionalitást biztosít azzal, hogy együttműködik az Add-on SDK-val."
+msgstr ""
+"Az Add-on Builder egy webalapú fejlesztői környezet, amely további "
+"funkcionalitást biztosít azzal, hogy együttműködik a Kiegészítő SDK-val."
 
 #: mkt/developers/templates/developers/builder.html:56
 msgid "Edit code in a feature-rich environment"
@@ -19854,7 +19891,7 @@ msgstr "Nézze meg a <a class=\"mobile-link\" href=\"#\">Mobile Add-ons weboldal
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Android kiegészítők"
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
@@ -19870,7 +19907,7 @@ msgstr "Szükséges mezők"
 
 #: templates/mobile/base_addons.html:63
 msgid "Mobile Home"
-msgstr "Mobile Home"
+msgstr "Mobile kezdőoldal"
 
 #: templates/mobile/base_addons.html:82 templates/mobile/base_apps.html:69
 msgid "View full site"
