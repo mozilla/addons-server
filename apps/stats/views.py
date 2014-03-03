@@ -382,28 +382,27 @@ def site_events(request, start, end):
 
     type_pretty = unicode(amo.SITE_EVENT_CHOICES[amo.SITE_EVENT_RELEASE])
 
-    if not settings.MARKETPLACE:
-        releases = product_details.firefox_history_major_releases
+    releases = product_details.firefox_history_major_releases
 
-        for version, date in releases.items():
-            events.append({
-                'start':       date,
-                'type_pretty': type_pretty,
-                'type':        amo.SITE_EVENT_RELEASE,
-                'description': 'Firefox %s released' % version,
-            })
+    for version, date in releases.items():
+        events.append({
+            'start': date,
+            'type_pretty': type_pretty,
+            'type': amo.SITE_EVENT_RELEASE,
+            'description': 'Firefox %s released' % version,
+        })
     return events
 
 
 def site_event_format(request, events):
     for e in events:
         yield {
-            'start':        e.start.isoformat(),
-            'end':          e.end.isoformat() if e.end else None,
-            'type_pretty':  unicode(amo.SITE_EVENT_CHOICES[e.event_type]),
-            'type':         e.event_type,
-            'description':  e.description,
-            'url':          e.more_info_url,
+            'start': e.start.isoformat(),
+            'end': e.end.isoformat() if e.end else None,
+            'type_pretty': unicode(amo.SITE_EVENT_CHOICES[e.event_type]),
+            'type': e.event_type,
+            'description': e.description,
+            'url': e.more_info_url,
         }
 
 

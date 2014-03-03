@@ -453,14 +453,6 @@ class REVIEW_DEVICE_OVERRIDE(_LOG):
     review_queue = True
 
 
-class WEBAPP_RESUBMIT(_LOG):
-    id = 77
-    format = _(u'{addon} resubmitted for review.')
-    short = _(u'App Resubmission')
-    keep = True
-    review_queue = True
-
-
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'

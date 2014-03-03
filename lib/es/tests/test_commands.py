@@ -1,10 +1,8 @@
 import StringIO
 import threading
 
-from nose.exc import SkipTest
 from nose.tools import eq_
 
-from django.conf import settings
 from django.core import management
 from django.db import connection
 
@@ -17,12 +15,6 @@ from lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
 
 
 class TestIndexCommand(amo.tests.ESTestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        if settings.MARKETPLACE:
-            raise SkipTest('Only an amo management command')
-        super(TestIndexCommand, cls).setUpClass()
 
     def setUp(self):
         super(TestIndexCommand, self).setUp()

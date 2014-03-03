@@ -58,8 +58,6 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
             current_app=None, add_prefix=True):
     """Wraps django's reverse to prepend the correct locale and app."""
     prefixer = get_url_prefix()
-    if settings.MARKETPLACE:
-        prefix = None
     # Blank out the script prefix since we add that in prefixer.fix().
     if prefixer:
         prefix = prefix or '/'
@@ -148,18 +146,13 @@ class Prefixer(object):
         return lang_from_accept_header(accept)
 
     def fix(self, path):
-        # Marketplace URLs are not prefixed with `/<locale>/<app>`.
-        if settings.MARKETPLACE:
-            return path
-
         path = path.lstrip('/')
         url_parts = [self.request.META['SCRIPT_NAME']]
 
         if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
             url_parts.append(self.locale or self.get_language())
 
-        if (not settings.MARKETPLACE and
-            path.partition('/')[0] not in settings.SUPPORTED_NONAPPS):
+        if path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
             url_parts.append(self.app or self.get_app())
 
         url_parts.append(path)

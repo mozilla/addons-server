@@ -69,9 +69,6 @@ STATSD_PREFIX = 'addons'
 
 GRAPHITE_PREFIX = STATSD_PREFIX
 
-# Just need it to be set to *something* for now, to make monitoring happy
-WEBAPPS_RECEIPT_KEY = './README.rst'
-
 VALIDATOR_TIMEOUT = 90
 
 SENTRY_DSN = private_addons.SENTRY_DSN

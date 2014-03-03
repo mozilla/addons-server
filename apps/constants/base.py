@@ -117,25 +117,6 @@ MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA,
 # An add-on in one of these statuses can become premium.
 PREMIUM_STATUSES = (STATUS_NULL,) + STATUS_UNDER_REVIEW
 
-# Newly submitted apps begin life at this status.
-WEBAPPS_UNREVIEWED_STATUS = STATUS_PENDING
-
-# These apps have been approved and are listed; or could be without further
-# review
-WEBAPPS_APPROVED_STATUSES = (STATUS_PUBLIC, STATUS_PUBLIC_WAITING)
-
-# An app with this status makes its detail page "invisible".
-WEBAPPS_UNLISTED_STATUSES = (STATUS_DISABLED, STATUS_PENDING,
-                             STATUS_PUBLIC_WAITING, STATUS_REJECTED)
-
-# The only statuses we use in the marketplace.
-MARKET_STATUSES = (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC, STATUS_DISABLED,
-                   STATUS_DELETED, STATUS_REJECTED, STATUS_PUBLIC_WAITING,
-                   STATUS_BLOCKED)
-
-# These apps shouldn't be considered anymore in mass-emailing etc.
-WEBAPPS_EXCLUDED_STATUSES = (STATUS_DISABLED, STATUS_DELETED, STATUS_REJECTED)
-
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1
 ADMIN_REVIEW_PRELIM = 2
@@ -175,7 +156,6 @@ ADDON_WEBAPP = 11  # Calling this ADDON_* is gross but we've gotta ship code.
 GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
                     ADDON_LPADDON, ADDON_PLUGIN, ADDON_API]
 GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA]
-GROUP_TYPE_WEBAPP = [ADDON_WEBAPP]
 
 # Singular
 ADDON_TYPE = {
@@ -187,7 +167,6 @@ ADDON_TYPE = {
     ADDON_PLUGIN: _(u'Plugin'),
     ADDON_LPAPP: _(u'Language Pack (Application)'),
     ADDON_PERSONA: _(u'Theme'),
-    ADDON_WEBAPP: _(u'App'),
 }
 
 # Plural
@@ -200,7 +179,6 @@ ADDON_TYPES = {
     ADDON_PLUGIN: _(u'Plugins'),
     ADDON_LPAPP: _(u'Language Packs (Application)'),
     ADDON_PERSONA: _(u'Themes'),
-    ADDON_WEBAPP: _(u'Apps'),
 }
 
 # Searchable Add-on Types
@@ -216,20 +194,6 @@ ADDON_SEARCH_TYPES = [
 
 ADDON_ADMIN_SEARCH_TYPES = ADDON_SEARCH_TYPES + [ADDON_PLUGIN]
 
-MARKETPLACE_TYPES = [ADDON_PERSONA, ADDON_WEBAPP]
-
-# ADDON_WEBAPP Types
-ADDON_WEBAPP_HOSTED = 1
-ADDON_WEBAPP_PACKAGED = 2
-ADDON_WEBAPP_PRIVILEGED = 3
-
-ADDON_WEBAPP_TYPES = {
-    ADDON_WEBAPP_HOSTED: 'hosted',
-    ADDON_WEBAPP_PACKAGED: 'packaged',
-    ADDON_WEBAPP_PRIVILEGED: 'privileged',
-}
-ADDON_WEBAPP_TYPES_LOOKUP = dict((v, k) for k, v in ADDON_WEBAPP_TYPES.items())
-
 # Icons
 ADDON_ICONS = {
     ADDON_ANY: 'default-addon.png',
@@ -244,7 +208,6 @@ ADDON_SLUGS = {
     ADDON_LPAPP: 'language-tools',
     ADDON_PERSONA: 'personas',
     ADDON_SEARCH: 'search-tools',
-    ADDON_WEBAPP: 'apps',
 }
 
 # These are used in the update API.
@@ -257,7 +220,6 @@ ADDON_SLUGS_UPDATE = {
     ADDON_LPADDON: 'extension',
     ADDON_PERSONA: 'background-theme',
     ADDON_PLUGIN: 'plugin',
-    ADDON_WEBAPP: 'app',
 }
 
 # A slug to ID map for the search API. Included are all ADDON_TYPES that are
@@ -275,7 +237,6 @@ ADDON_SEARCH_SLUGS = {
 # Marketplace search API addon types.
 MKT_ADDON_TYPES_API = {
     'theme': ADDON_PERSONA,
-    'app': ADDON_WEBAPP,
 }
 
 ADDON_FREE = 0
@@ -308,8 +269,7 @@ ADDON_PREMIUMS = (ADDON_PREMIUM, ADDON_PREMIUM_INAPP)
 # Apps that do *not* require a payment prior to installing.
 ADDON_FREES = (ADDON_FREE, ADDON_FREE_INAPP, ADDON_OTHER_INAPP)
 ADDON_INAPPS = (ADDON_PREMIUM_INAPP, ADDON_FREE_INAPP)
-ADDON_BECOME_PREMIUM = (ADDON_EXTENSION, ADDON_THEME, ADDON_DICT,
-                        ADDON_LPAPP, ADDON_WEBAPP)
+ADDON_BECOME_PREMIUM = (ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP)
 ADDON_HAS_PAYMENTS = (ADDON_FREE_INAPP, ADDON_PREMIUM, ADDON_PREMIUM_INAPP)
 
 # Edit addon information
@@ -457,10 +417,6 @@ REVIEWED_SEARCH_UPDATE = 52
 REVIEWED_THEME_FULL = 60
 REVIEWED_THEME_PRELIM = 61
 REVIEWED_THEME_UPDATE = 62
-REVIEWED_WEBAPP_HOSTED = 70
-REVIEWED_WEBAPP_PACKAGED = 71
-REVIEWED_WEBAPP_REREVIEW = 72
-REVIEWED_WEBAPP_UPDATE = 73
 REVIEWED_ADDON_REVIEW = 80
 REVIEWED_APP_REVIEW = 81
 
@@ -482,10 +438,6 @@ REVIEWED_CHOICES = {
     REVIEWED_THEME_FULL: _('Complete Theme Review'),
     REVIEWED_THEME_PRELIM: _('Preliminary Complete Theme Review'),
     REVIEWED_THEME_UPDATE: _('Updated Complete Theme Review'),
-    REVIEWED_WEBAPP_HOSTED: _('Web App Review'),
-    REVIEWED_WEBAPP_PACKAGED: _('Packaged App Review'),
-    REVIEWED_WEBAPP_REREVIEW: _('Web App Re-review'),
-    REVIEWED_WEBAPP_UPDATE: _('Updated Packaged App Review'),
     REVIEWED_ADDON_REVIEW: _('Moderated Addon Review'),
     REVIEWED_APP_REVIEW: _('Moderated App Review'),
 }
@@ -508,10 +460,6 @@ REVIEWED_SCORES = {
     REVIEWED_THEME_FULL: 80,
     REVIEWED_THEME_PRELIM: 40,
     REVIEWED_THEME_UPDATE: 80,
-    REVIEWED_WEBAPP_HOSTED: 60,
-    REVIEWED_WEBAPP_PACKAGED: 120,
-    REVIEWED_WEBAPP_REREVIEW: 30,
-    REVIEWED_WEBAPP_UPDATE: 80,
     REVIEWED_ADDON_REVIEW: 1,
     REVIEWED_APP_REVIEW: 1,
 }
@@ -533,14 +481,6 @@ REVIEWED_AMO = (
     REVIEWED_THEME_PRELIM,
     REVIEWED_THEME_UPDATE,
     REVIEWED_ADDON_REVIEW,
-)
-
-REVIEWED_MARKETPLACE = (
-    REVIEWED_WEBAPP_HOSTED,
-    REVIEWED_WEBAPP_PACKAGED,
-    REVIEWED_WEBAPP_REREVIEW,
-    REVIEWED_WEBAPP_UPDATE,
-    REVIEWED_APP_REVIEW,
 )
 
 REVIEWED_LEVELS = [

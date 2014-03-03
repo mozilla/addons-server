@@ -242,9 +242,6 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     'perm_setting': perm_setting.label,
                     'SITE_URL': settings.SITE_URL,
                     'mandatory': perm_setting.mandatory,
-                    # Hide "Unsubscribe" links in Marketplace emails
-                    # (bug 802379).
-                    'show_unsubscribe': not settings.MARKETPLACE
                 }
                 # Render this template in the default locale until
                 # bug 635840 is fixed.

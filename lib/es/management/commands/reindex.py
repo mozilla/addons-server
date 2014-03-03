@@ -254,10 +254,6 @@ class Command(BaseCommand):
         works while the indexation occurs.
 
         """
-        if django_settings.MARKETPLACE:
-            raise CommandError('This command affects the AMO ES indexes and '
-                               'can only be run from AMO.')
-
         force = kwargs.get('force', False)
 
         if is_reindexing_amo() and not force:

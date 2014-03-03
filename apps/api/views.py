@@ -252,8 +252,7 @@ class AddonDetailView(APIView):
     @allow_cross_site_request
     def process_request(self, addon_id):
         try:
-            addon = (Addon.objects.id_or_slug(addon_id)
-                                  .exclude(type=amo.ADDON_WEBAPP).get())
+            addon = Addon.objects.id_or_slug(addon_id).get()
         except Addon.DoesNotExist:
             return self.render_msg('Add-on not found!', ERROR, status=404,
                 mimetype=self.mimetype)
@@ -418,7 +417,7 @@ class ListView(APIView):
         """
         limit = min(MAX_LIMIT, int(limit))
         APP, platform = self.request.APP, platform.lower()
-        qs = Addon.objects.listed(APP).exclude(type=amo.ADDON_WEBAPP)
+        qs = Addon.objects.listed(APP)
         shuffle = True
 
         if list_type in ('by_adu', 'featured'):

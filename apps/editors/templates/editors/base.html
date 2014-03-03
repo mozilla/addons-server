@@ -79,10 +79,6 @@
   {{ js('zamboni/editors') }}
 {% endblock %}
 
-{# Hiding these for the Marketplace Editor Tools until consumer pages are done. #}
-{% block header_search %}{{ super() if not settings.MARKETPLACE }}{% endblock %}
-{% block footer %}{{ super() if not settings.MARKETPLACE }}{% endblock %}
-
 {% block outer_content %}
   {% block breadcrumbs %}{% endblock %}
   {% include "editors/includes/daily-message.html" %}

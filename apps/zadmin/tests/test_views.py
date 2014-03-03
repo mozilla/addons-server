@@ -96,7 +96,6 @@ class TestFlagged(amo.tests.TestCase):
         self.client.login(username='admin@mozilla.com', password='password')
         self.url = reverse('zadmin.flagged')
 
-    @mock.patch.object(settings, 'MARKETPLACE', False)
     def test_get(self):
         response = self.client.get(self.url, follow=True)
 
@@ -125,7 +124,6 @@ class TestFlagged(amo.tests.TestCase):
             Approval.objects.filter(addon=addon).latest().id)
         eq_(addons[3].version, None)
 
-    @mock.patch.object(settings, 'MARKETPLACE', False)
     def test_post(self):
         response = self.client.post(self.url, {'addon_id': ['1', '2']},
                                     follow=True)
@@ -138,7 +136,6 @@ class TestFlagged(amo.tests.TestCase):
         eq_(len(addons), 1)
         eq_(addons[0], Addon.objects.get(id=3))
 
-    @mock.patch.object(settings, 'MARKETPLACE', False)
     def test_empty(self):
         Addon.objects.update(admin_review=False)
         res = self.client.get(self.url)

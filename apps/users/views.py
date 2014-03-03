@@ -83,29 +83,19 @@ def ajax(request):
     data = {'status': 0, 'message': ''}
 
     email = request.GET.get('q', '').strip()
-    dev_only = request.GET.get('dev', '1')
-    try:
-        dev_only = int(dev_only)
-    except ValueError:
-        dev_only = 1
-    dev_only = dev_only and settings.MARKETPLACE
 
     if not email:
         data.update(message=_('An email address is required.'))
         return data
 
     user = UserProfile.objects.filter(email=email)
-    if dev_only:
-        user = user.exclude(read_dev_agreement=None)
 
     msg = _('A user with that email address does not exist.')
-    msg_dev = _('A user with that email address does not exist, or the user '
-                'has not yet accepted the developer agreement.')
 
     if user:
         data.update(status=1, id=user[0].id, name=user[0].name)
     else:
-        data['message'] = msg_dev if dev_only else msg
+        data['message'] = msg
 
     return escape_all(data)
 
@@ -369,8 +359,7 @@ def browserid_authenticate(request, assertion, is_mobile=False,
         return profile, None
 
     username = autocreate_username(email.partition('@')[0])
-    source = (amo.LOGIN_SOURCE_MMO_BROWSERID if settings.MARKETPLACE else
-              amo.LOGIN_SOURCE_AMO_BROWSERID)
+    source = amo.LOGIN_SOURCE_AMO_BROWSERID
     profile = UserProfile.objects.create(username=username, email=email,
                                          source=source, display_name=username,
                                          is_verified=verified)
@@ -421,8 +410,6 @@ def login_modal(request, template=None):
 @mobile_template('users/{mobile/}login.html')
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login(request, template=None):
-    if settings.MARKETPLACE:
-        return redirect('users.login')
     return _login(request, template=template)
 
 
@@ -554,10 +541,6 @@ def logout(request):
 
 @user_view
 def profile(request, user):
-    # Temporary until we decide we want user profile pages.
-    if settings.MARKETPLACE:
-        raise http.Http404
-
     # Get user's own and favorite collections, if they allowed that.
     own_coll = fav_coll = []
     if user.display_collections:

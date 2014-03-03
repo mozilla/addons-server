@@ -743,10 +743,3 @@ def test_version_status():
 
     version.all_files = [File(status=amo.STATUS_UNREVIEWED)]
     eq_(u'Awaiting Preliminary Review', helpers.version_status(addon, version))
-
-    with patch.object(settings, 'MARKETPLACE', True):
-        version.all_files = [File(status=amo.STATUS_PENDING)]
-        eq_(u'Pending approval', helpers.version_status(addon, version))
-
-        version.deleted = True
-        eq_(u'Deleted', helpers.version_status(addon, version))

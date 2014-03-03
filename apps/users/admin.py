@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.models import User
@@ -12,12 +11,6 @@ from . import forms
 
 
 class BetterDjangoUserAdmin(DjangoUserAdmin):
-
-    # Password is always empty for users registered through BrowserID.
-    if settings.MARKETPLACE:
-        fieldsets = list(DjangoUserAdmin.fieldsets)
-        fieldsets[0] = None, {'fields': ('username',)}
-
     def formfield_for_dbfield(self, db_field, **kwargs):
         """
         Override password field to allow AMO's longer hashed passwords.

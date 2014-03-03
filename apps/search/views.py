@@ -211,7 +211,7 @@ class BaseAjaxSearch(object):
 
 
 class SearchSuggestionsAjax(BaseAjaxSearch):
-    src = 'mkt-ss' if settings.MARKETPLACE else 'ss'
+    src = 'ss'
 
 
 class AddonSuggestionsAjax(SearchSuggestionsAjax):
@@ -239,9 +239,6 @@ def ajax_search(request):
 @json_view
 def ajax_search_suggestions(request):
     cat = request.GET.get('cat', 'all')
-    # Don't let Marketplace query any other types.
-    if settings.MARKETPLACE:
-        cat = 'apps'
     suggesterClass = {
         'all': AddonSuggestionsAjax,
         'themes': PersonaSuggestionsAjax,

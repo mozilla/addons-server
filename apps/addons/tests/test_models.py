@@ -1408,20 +1408,13 @@ class TestAddonDelete(amo.tests.TestCase):
 class TestAddonGetURLPath(amo.tests.TestCase):
 
     def test_get_url_path(self):
-        if not settings.MARKETPLACE:
-            addon = Addon(slug='woo')
-            eq_(addon.get_url_path(), '/en-US/firefox/addon/woo/')
+        addon = Addon(slug='woo')
+        eq_(addon.get_url_path(), '/en-US/firefox/addon/woo/')
 
     def test_get_url_path_more(self):
-        if not settings.MARKETPLACE:
-            addon = Addon(slug='yeah')
-            eq_(addon.get_url_path(more=True),
-                '/en-US/firefox/addon/yeah/more')
-
-    def test_get_url_path_theme(self):
-        if settings.MARKETPLACE:
-            addon = Addon(slug='boi', type=amo.ADDON_PERSONA)
-            eq_(addon.get_url_path(), '/en-US/theme/boi/')
+        addon = Addon(slug='yeah')
+        eq_(addon.get_url_path(more=True),
+            '/en-US/firefox/addon/yeah/more')
 
 
 class TestAddonModelsFeatured(amo.tests.TestCase):

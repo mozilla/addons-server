@@ -40,7 +40,7 @@ from files.utils import find_jetpacks, JetpackUpgrader
 from users.models import UserProfile
 from versions.compare import version_int as vint
 from versions.models import Version
-from zadmin.forms import GenerateErrorForm, PriceTiersForm, SiteEventForm
+from zadmin.forms import GenerateErrorForm, SiteEventForm
 from zadmin.models import SiteEvent
 
 from . import tasks
@@ -56,9 +56,7 @@ log = commonware.log.getLogger('z.zadmin')
 
 @admin_required(reviewers=True)
 def flagged(request):
-    types = (amo.MARKETPLACE_TYPES if settings.MARKETPLACE
-             else list(set(amo.ADDON_TYPES.keys()) -
-                       set(amo.MARKETPLACE_TYPES)))
+    types = list(set(amo.ADDON_TYPES.keys()))
     addons = (Addon.objects.no_cache()
                            .filter(admin_review=True, type__in=types)
                            .no_transforms().order_by('-created'))
@@ -649,9 +647,7 @@ def addon_search(request):
         else:
             qs = (Addon.search()
                        .query(name__text=q.lower())
-                       .filter(type__in=amo.MARKETPLACE_TYPES if
-                                        settings.MARKETPLACE else
-                                        amo.ADDON_ADMIN_SEARCH_TYPES)[:100])
+                       .filter(type__in=amo.ADDON_ADMIN_SEARCH_TYPES)[:100])
         if len(qs) == 1:
             return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs

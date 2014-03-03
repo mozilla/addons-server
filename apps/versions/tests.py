@@ -170,32 +170,6 @@ class TestVersion(amo.tests.TestCase):
         assert not Version.objects.filter(addon=addon).exists()
         assert not Version.with_deleted.filter(addon=addon).exists()
 
-    @mock.patch('versions.models.settings.MARKETPLACE', True)
-    @mock.patch('versions.models.storage')
-    def test_version_delete_marketplace(self, storage_mock):
-        version = Version.objects.get(pk=81551)
-        version.delete()
-        addon = Addon.objects.no_cache().get(pk=3615)
-        assert addon
-
-        assert not Version.objects.filter(addon=addon).exists()
-        assert Version.with_deleted.filter(addon=addon).exists()
-
-        assert not storage_mock.delete.called
-
-    @mock.patch('versions.models.settings.MARKETPLACE', True)
-    @mock.patch('versions.models.storage')
-    def test_packaged_version_delete_marketplace(self, storage_mock):
-        addon = Addon.objects.no_cache().get(pk=3615)
-        addon.update(is_packaged=True)
-        version = Version.objects.get(pk=81551)
-        version.delete()
-
-        assert not Version.objects.filter(addon=addon).exists()
-        assert Version.with_deleted.filter(addon=addon).exists()
-
-        assert storage_mock.delete.called
-
     def test_version_delete_files(self):
         version = Version.objects.get(pk=81551)
         eq_(version.files.count(), 1)

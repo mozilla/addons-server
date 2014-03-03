@@ -186,18 +186,7 @@ class Version(amo.models.ModelBase):
     def delete(self):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
-        if settings.MARKETPLACE:
-            self.update(deleted=True)
-            if self.addon.is_packaged:
-                f = self.all_files[0]
-                # Unlink signed packages if packaged app.
-                storage.delete(f.signed_file_path)
-                log.info(u'Unlinked file: %s' % f.signed_file_path)
-                storage.delete(f.signed_reviewer_file_path)
-                log.info(u'Unlinked file: %s' % f.signed_reviewer_file_path)
-
-        else:
-            super(Version, self).delete()
+        super(Version, self).delete()
 
     @property
     def current_queue(self):
@@ -317,14 +306,7 @@ class Version(amo.models.ModelBase):
 
     @property
     def status(self):
-        status_choices = amo.STATUS_CHOICES
-        if settings.MARKETPLACE:
-            status_choices = amo.MKT_STATUS_FILE_CHOICES
-
-        if settings.MARKETPLACE and self.deleted:
-            return [status_choices[amo.STATUS_DELETED]]
-        else:
-            return [status_choices[f.status] for f in self.all_files]
+        return [amo.STATUS_CHOICES[f.status] for f in self.all_files]
 
     @property
     def statuses(self):
