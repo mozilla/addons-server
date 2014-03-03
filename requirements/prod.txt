@@ -96,7 +96,7 @@ statsd==2.0.3
 suds==0.4
 
 ## Not on pypi.
--e git+https://github.com/mozilla/amo-validator.git@cd0edd7f81bb83be810002023730a3a762f27d79#egg=amo-validator
+-e git+https://github.com/mozilla/amo-validator.git@cde411df44cb3d4fcd763b58d9e5924dfc34df8b#egg=amo-validator
 -e git+https://github.com/mozilla/app-validator.git@e4a7a1afc584ea3704f8394b6718fe19e449a304#egg=app-validator
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
