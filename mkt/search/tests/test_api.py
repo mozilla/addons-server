@@ -962,7 +962,7 @@ class TestSuggestionsApi(ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.url = reverse('suggestions-api')
+        self.url = reverse('suggestions-search-api')
         self.refresh('webapp')
         self.client = RestOAuthClient(None)
         self.app1 = Webapp.objects.get(pk=337141)
@@ -1003,6 +1003,38 @@ class TestSuggestionsApi(ESTestCase):
                                                    'lang': 'en-US'})
         parsed = json.loads(response.content)
         eq_(parsed[1], [unicode(self.app2.name)])
+
+
+class TestRocketbarApi(ESTestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.url = reverse('rocketbar-search-api')
+        self.refresh('webapp')
+        self.client = RestOAuthClient(None)
+        self.app1 = Webapp.objects.get(pk=337141)
+        self.app1.save()
+        self.app2 = app_factory(name=u'Second âpp',
+                                description=u'Second dèsc' * 25,
+                                icon_type='image/png',
+                                created=self.days_ago(3),
+                                manifest_url='http://testrocketbar.example.com')
+        self.refresh('webapp')
+
+    def tearDown(self):
+        # Cleanup to remove these from the index.
+        unindex_webapps([self.app1.id, self.app2.id])
+        self.app1.delete()
+        self.app2.delete()
+
+    def test_suggestions_filtered(self):
+        response = self.client.get(self.url, data={'q': 'Second',
+                                                   'lang': 'en-US'})
+        parsed = json.loads(response.content)
+        eq_(parsed, [{'manifest_url': self.app2.get_manifest_url(),
+                      'icon': self.app2.get_icon_url(64),
+                      'name': unicode(self.app2.name),
+                      'slug': self.app2.app_slug}])
 
 
 class TestSimpleESAppSerializer(amo.tests.ESTestCase):
