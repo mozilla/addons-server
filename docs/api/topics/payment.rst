@@ -263,6 +263,115 @@ Payment accounts
     :param account: URL to the account.
     :type account: string
 
+
+In-app products
+===============
+
+In-app products are used for setting up in-app payments without the need to
+host your own JWT signer. This API is for managing your in-app products for use
+with the in-app payment service.
+
+.. note:: Authentication is required.
+
+.. http:post:: /api/v1/payments/(string:app_slug)/in-app/
+
+    Creates a new in-app product for sale.
+
+    **Request**
+
+    :param name: The name for the in-app product.
+    :type name: string
+    :param logo_url: URL to a logo for the product.
+    :type logo_url: string
+    :param price_id: ID for the :ref:`price tier <price-tiers>`.
+    :type price_id: int
+
+    **Response**
+
+    :status 201: successfully created.
+    :param id: The in-app product ID.
+    :type id: int
+    :param app: The slug for the app.
+    :type app: string
+    :param name: The name for the in-app product.
+    :type name: string
+    :param logo_url: URL to a logo for the product.
+    :type logo_url: string
+    :param price_id: ID for the :ref:`price tier <price-tiers>`.
+    :type price_id: int
+
+.. http:get:: /api/v1/payments/(string:app_slug)/in-app/
+
+    List the in-app products for this app.
+
+    **Request**
+
+    None
+
+    **Response**
+
+    :status 200: successfully completed.
+    :param id: The in-app product ID.
+    :type id: int
+    :param app: The slug for the app.
+    :type app: string
+    :param name: The name for the in-app product.
+    :type name: string
+    :param logo_url: URL to a logo for the product.
+    :type logo_url: string
+    :param price_id: ID for the :ref:`price tier <price-tiers>`.
+    :type price_id: int
+
+.. http:get:: /api/v1/payments/(string:app_slug)/in-app/(int:id)/
+
+    Details of an in-app product.
+
+    **Request**
+
+    None
+
+    **Response**
+
+    :status 200: successfully completed.
+    :param id: The in-app product ID.
+    :type id: int
+    :param app: The slug for the app.
+    :type app: string
+    :param name: The name for the in-app product.
+    :type name: string
+    :param logo_url: URL to a logo for the product.
+    :type logo_url: string
+    :param price_id: ID for the :ref:`price tier <price-tiers>`.
+    :type price_id: int
+
+.. http:put:: /api/v1/payments/(string:app_slug)/in-app/(int:id)/
+
+    Update an in-app product.
+
+    **Request**
+
+    :param name: The name for the in-app product.
+    :type name: string
+    :param logo_url: URL to a logo for the product.
+    :type logo_url: string
+    :param price_id: ID for the :ref:`price tier <price-tiers>`.
+    :type price_id: int
+
+    **Response**
+
+    :status 200: successfully completed.
+    :param id: The in-app product ID.
+    :type id: int
+    :param app: The slug for the app.
+    :type app: string
+    :param name: The name for the in-app product.
+    :type name: string
+    :param logo_url: URL to a logo for the product.
+    :type logo_url: string
+    :param price_id: ID for the :ref:`price tier <price-tiers>`.
+    :type price_id: int
+
+
 Preparing payment
 =================
 
@@ -453,6 +562,8 @@ be used for `replacing receipts <https://wiki.mozilla.org/Apps/WebApplicationRec
     :param status: one of ``not-implemented``.
     :type status: string
     :status 200: successfully completed.
+
+.. _price-tiers:
 
 
 Price Tiers

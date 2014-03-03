@@ -8,10 +8,10 @@ from test_utils import RequestFactory
 from amo.tests import TestCase
 from users.models import UserProfile
 
-from mkt.api.authorization import (AllowAppOwner, AllowNone, AllowOwner,
-                                   AllowRelatedAppOwner, AllowReadOnlyIfPublic,
-                                   AllowSelf, AnyOf, ByHttpMethod, flag,
-                                   GroupPermission, switch)
+from mkt.api.authorization import (AllowAuthor, AllowAppOwner, AllowNone,
+                                   AllowOwner, AllowRelatedAppOwner,
+                                   AllowReadOnlyIfPublic, AllowSelf, AnyOf,
+                                   ByHttpMethod, flag, GroupPermission, switch)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -257,6 +257,35 @@ class TestAllowRelatedAppOwner(TestCase):
         obj.addon = self.app
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             False)
+
+
+class TestAllowAuthor(TestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        self.permission = AllowAuthor()
+        app = Webapp.objects.get(pk=337141)
+        self.authors = app.authors.all()
+        self.view = Mock()
+        self.view.get_authors.return_value = self.authors
+
+    def create_request(self, user_profile):
+        request = RequestFactory().get('/')
+        request.amo_user = user_profile
+        return request
+
+    def test_has_permission_anonymous(self):
+        request = self.create_request(user_profile=None)
+        eq_(self.permission.has_permission(request, self.view), False)
+
+    def test_has_permission_user(self):
+        request = self.create_request(user_profile=self.authors[0])
+        eq_(self.permission.has_permission(request, self.view), True)
+
+    def test_has_permission_different_user(self):
+        other_user_profile = UserProfile.objects.get(pk=2519)
+        request = self.create_request(user_profile=other_user_profile)
+        eq_(self.permission.has_permission(request, self.view), False)
 
 
 class TestAllowReadOnlyIfPublic(TestCase):

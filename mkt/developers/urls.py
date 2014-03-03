@@ -15,6 +15,7 @@ from mkt.developers.api_payments import (
     AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
     PaymentDebugViewSet, PaymentViewSet, UpsellViewSet)
 from mkt.developers.decorators import use_apps
+from mkt.inapp.views import InAppProductViewSet
 from mkt.receipts.urls import test_patterns
 
 from . import views
@@ -184,6 +185,10 @@ api_payments.register(r'upsell', UpsellViewSet, base_name='app-upsell')
 api_payments.register(r'app', AddonPaymentAccountViewSet,
                       base_name='app-payment-account')
 
+in_app_products = SimpleRouter()
+in_app_products.register(r'in-app', InAppProductViewSet,
+                         base_name='in-app-products')
+
 app_payments = SubRouter()
 app_payments.register(r'payments', PaymentViewSet, base_name='app-payments')
 app_payments.register(r'payments/status', PaymentCheckViewSet,
@@ -193,6 +198,7 @@ app_payments.register(r'payments/debug', PaymentDebugViewSet,
 
 payments_api_patterns = patterns('',
     url(r'^payments/', include(api_payments.urls)),
+    url(r'^payments/(?P<app_slug>[^\/]+)/', include(in_app_products.urls)),
     url(r'^apps/app/', include(app_payments.urls)),
 )
 

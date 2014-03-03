@@ -111,6 +111,15 @@ class AllowReviewerReadOnly(BasePermission):
         return self.has_permission(request, view)
 
 
+class AllowAuthor(BasePermission):
+    """Allow any user that is included in the `view.get_authors()` queryset of
+    authors."""
+
+    def has_permission(self, request, view):
+        user_pk = getattr(request.amo_user, 'pk', False)
+        return user_pk and view.get_authors().filter(pk=user_pk).exists()
+
+
 class AllowReadOnly(BasePermission):
     """
     The request does not modify the resource.
