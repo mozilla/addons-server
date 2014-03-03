@@ -1158,20 +1158,6 @@ class TestStatus(amo.tests.TestCase):
         v = self.new_version(amo.STATUS_PUBLIC)
         eq_(self.addon.get_version(), v)
 
-    def test_public_waiting_new_unreviewed_version(self):
-        self.file.update(status=amo.STATUS_PUBLIC_WAITING)
-        self.addon.update(status=amo.STATUS_PUBLIC_WAITING)
-        new_version = self.new_version(amo.STATUS_UNREVIEWED)
-        assert self.version != new_version
-        eq_(self.addon.get_version(), self.version)
-        eq_(self.addon.latest_version, new_version)
-
-    def test_public_new_public_waiting_version(self):
-        new_version = self.new_version(amo.STATUS_PUBLIC_WAITING)
-        assert self.version != new_version
-        eq_(self.addon.get_version(), self.version)
-        eq_(self.addon.latest_version, new_version)
-
     def test_public_new_unreviewed_version(self):
         self.new_version(amo.STATUS_UNREVIEWED)
         eq_(self.addon.get_version(), self.version)

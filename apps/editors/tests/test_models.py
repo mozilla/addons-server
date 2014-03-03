@@ -423,7 +423,6 @@ class TestReviewerScore(amo.tests.TestCase):
             amo.STATUS_PURGATORY: None,
             amo.STATUS_DELETED: None,
             amo.STATUS_REJECTED: None,
-            amo.STATUS_PUBLIC_WAITING: None,
             amo.STATUS_REVIEW_PENDING: None,
             amo.STATUS_BLOCKED: None,
         }

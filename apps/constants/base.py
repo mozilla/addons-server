@@ -38,20 +38,9 @@ STATUS_CHOICES = {
     STATUS_REJECTED: _(u'Rejected'),
     # Approved, but the developer would like to put it public when they want.
     # The need to go to the marketplace and actualy make it public.
-    STATUS_PUBLIC_WAITING: _(u'Approved but waiting'),
     STATUS_REVIEW_PENDING: _(u'Flagged for further review'),
     STATUS_BLOCKED: _(u'Blocked'),
 }
-
-
-# Marketplace app status terms.
-MKT_STATUS_CHOICES = STATUS_CHOICES.copy()
-MKT_STATUS_CHOICES[STATUS_PUBLIC] = _(u'Published')
-MKT_STATUS_CHOICES[STATUS_PUBLIC_WAITING] = _(u'Approved but unpublished')
-
-# Marketplace file status terms.
-MKT_STATUS_FILE_CHOICES = MKT_STATUS_CHOICES.copy()
-MKT_STATUS_FILE_CHOICES[STATUS_DISABLED] = _(u'Obsolete')
 
 # We need to expose nice values that aren't localisable.
 STATUS_CHOICES_API = {
@@ -67,7 +56,6 @@ STATUS_CHOICES_API = {
     STATUS_PURGATORY: 'purgatory',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
-    STATUS_PUBLIC_WAITING: 'waiting',
     STATUS_REVIEW_PENDING: 'review-pending',
     STATUS_BLOCKED: 'blocked',
 }
@@ -85,7 +73,6 @@ STATUS_CHOICES_API_LOOKUP = {
     'purgatory': STATUS_PURGATORY,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
-    'waiting': STATUS_PUBLIC_WAITING,
     'review-pending': STATUS_REVIEW_PENDING,
     'blocked': STATUS_BLOCKED,
 }
@@ -99,11 +86,9 @@ UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
                        STATUS_PURGATORY)
 VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
                   STATUS_PUBLIC, STATUS_BETA, STATUS_LITE,
-                  STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY,
-                  STATUS_PUBLIC_WAITING)
+                  STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY)
 # We don't show addons/versions with UNREVIEWED_STATUS in public.
-LISTED_STATUSES = tuple(st for st in VALID_STATUSES
-                        if st not in (STATUS_PENDING, STATUS_PUBLIC_WAITING))
+LISTED_STATUSES = tuple(st for st in VALID_STATUSES if st != STATUS_PENDING)
 
 # An add-on in one of these statuses is awaiting a review.
 STATUS_UNDER_REVIEW = (STATUS_UNREVIEWED, STATUS_NOMINATED,
@@ -232,11 +217,6 @@ ADDON_SEARCH_SLUGS = {
     'search': ADDON_SEARCH,
     'language': ADDON_LPAPP,
     'persona': ADDON_PERSONA,
-}
-
-# Marketplace search API addon types.
-MKT_ADDON_TYPES_API = {
-    'theme': ADDON_PERSONA,
 }
 
 ADDON_FREE = 0

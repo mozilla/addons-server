@@ -156,13 +156,6 @@ def update_celery(ctx):
                    settings.CELERY_SERVICE_PREFIX)
         ctx.remote("/sbin/service %s-priority restart" %
                    settings.CELERY_SERVICE_PREFIX)
-    if getattr(settings, 'CELERY_SERVICE_MKT_PREFIX', False):
-        ctx.remote("/sbin/service %s restart" %
-                   settings.CELERY_SERVICE_MKT_PREFIX)
-        ctx.remote("/sbin/service %s-devhub restart" %
-                   settings.CELERY_SERVICE_MKT_PREFIX)
-        ctx.remote("/sbin/service %s-priority restart" %
-                   settings.CELERY_SERVICE_MKT_PREFIX)
 
 
 @task

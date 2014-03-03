@@ -19,10 +19,6 @@ class ReindexingManager(models.Manager):
         """Flag the database for an AMO reindex."""
         return self._flag_reindexing('amo', new_index, old_index, alias)
 
-    def flag_reindexing_mkt(self, new_index, old_index, alias):
-        """Flag the database for a MKT reindex."""
-        return self._flag_reindexing('mkt', new_index, old_index, alias)
-
     def _unflag_reindexing(self, site):
         """Unflag the database for a reindex on the given site."""
         self.filter(site=site).delete()
@@ -31,10 +27,6 @@ class ReindexingManager(models.Manager):
         """Unflag the database for an AMO reindex."""
         self._unflag_reindexing('amo')
 
-    def unflag_reindexing_mkt(self):
-        """Unflag the database for a MKT reindex."""
-        self._unflag_reindexing('mkt')
-
     def _is_reindexing(self, site):
         """Return True if a reindexing is occuring for the given site."""
         return self.filter(site=site).exists()
@@ -42,10 +34,6 @@ class ReindexingManager(models.Manager):
     def is_reindexing_amo(self):
         """Return True if a reindexing is occuring on AMO."""
         return self._is_reindexing('amo')
-
-    def is_reindexing_mkt(self):
-        """Return True if a reindexing is occuring on MKT."""
-        return self._is_reindexing('mkt')
 
     def get_indices(self, index):
         """Return the indices associated with an alias.
@@ -65,7 +53,6 @@ class ReindexingManager(models.Manager):
 class Reindexing(models.Model):
     SITE_CHOICES = (
         ('amo', 'AMO'),
-        ('mkt', 'MKT'),
     )
     start_date = models.DateTimeField(default=timezone.now)
     old_index = models.CharField(max_length=255, null=True)

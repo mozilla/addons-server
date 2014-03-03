@@ -93,7 +93,7 @@ def themes_list(request, flagged=False, rereview=False):
         'pager': pager,
         'rereview': rereview,
         'theme_search_form': search_form,
-        'STATUS_CHOICES': amo.MKT_STATUS_CHOICES,
+        'STATUS_CHOICES': amo.STATUS_CHOICES,
         'statuses': dict((k, unicode(v)) for k, v in
                          amo.STATUS_CHOICES_API.items()),
         'tab': ('rereview_themes' if rereview else
