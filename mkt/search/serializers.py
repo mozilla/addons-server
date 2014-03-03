@@ -197,5 +197,15 @@ class SimpleESAppSerializer(ESAppSerializer):
 
 
 class SuggestionsESAppSerializer(ESAppSerializer):
+    icon = serializers.SerializerMethodField('get_icon')
+
     class Meta(ESAppSerializer.Meta):
-        fields = ['name', 'description', 'absolute_url', 'icons']
+        fields = ['name', 'description', 'absolute_url', 'icon']
+
+    def get_icon(self, app):
+        return app.get_icon_url(64)
+
+
+class RocketbarESAppSerializer(SuggestionsESAppSerializer):
+    class Meta(ESAppSerializer.Meta):
+        fields = ['name', 'icon', 'slug', 'manifest_url']

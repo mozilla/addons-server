@@ -1,7 +1,8 @@
 import json
 
+from django.http import HttpResponse
+
 from rest_framework.permissions import AllowAny
-from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.exceptions import ParseError, PermissionDenied
 from rest_framework.generics import GenericAPIView
@@ -24,7 +25,8 @@ from mkt.constants.regions import REGION_LOOKUP
 from mkt.features.utils import get_feature_profile
 from mkt.search.views import _filter_search
 from mkt.search.forms import ApiSearchForm
-from mkt.search.serializers import ESAppSerializer, SuggestionsESAppSerializer
+from mkt.search.serializers import (ESAppSerializer, RocketbarESAppSerializer,
+                                    SuggestionsESAppSerializer)
 from mkt.webapps.models import Webapp
 
 
@@ -151,30 +153,40 @@ class FeaturedSearchView(SearchView):
         return data, filter_fallbacks
 
 
-class JSONSuggestionsRenderer(JSONRenderer):
-    media_type = 'application/x-suggestions+json'
-
-
 class SuggestionsView(SearchView):
     cors_allowed_methods = ['get']
-    authentication_classes = [RestSharedSecretAuthentication,
-                              RestOAuthAuthentication]
+    authentication_classes = []
     permission_classes = [AllowAny]
-    renderer_classes = [JSONSuggestionsRenderer, JSONRenderer]
     serializer_class = SuggestionsESAppSerializer
 
     def get(self, request, *args, **kwargs):
         results, query = self.search(request)
 
         names = []
-        descriptions = []
+        descs = []
         urls = []
         icons = []
 
         for base_data in results.data['objects']:
             names.append(base_data['name'])
-            descriptions.append(truncate(base_data['description']))
+            descs.append(truncate(base_data['description']))
             urls.append(base_data['absolute_url'])
-            icons.append(base_data['icons'][64])
-        return Response([query, names, descriptions, urls, icons],
-                        content_type='application/x-suggestions+json')
+            icons.append(base_data['icon'])
+        # This results a list. Usually this is a bad idea, but we don't return
+        # any user-specific data, it's fully anonymous, so we're fine.
+        return HttpResponse(json.dumps([query, names, descs, urls, icons]),
+                            content_type='application/x-suggestions+json')
+
+
+class RocketbarView(SearchView):
+    cors_allowed_methods = ['get']
+    authentication_classes = []
+    permission_classes = [AllowAny]
+    serializer_class = RocketbarESAppSerializer
+
+    def get(self, request, *args, **kwargs):
+        results, query = self.search(request)
+        # This results a list. Usually this is a bad idea, but we don't return
+        # any user-specific data, it's fully anonymous, so we're fine.
+        return HttpResponse(json.dumps(results.data['objects']),
+                            content_type='application/x-rocketbar+json')

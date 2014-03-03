@@ -16,7 +16,8 @@ from mkt.developers.urls import dev_api_patterns, payments_api_patterns
 from mkt.features.views import AppFeaturesList
 from mkt.receipts.urls import receipt_api_patterns
 from mkt.reviewers.urls import api_patterns as reviewer_api_patterns
-from mkt.search.api import FeaturedSearchView, SearchView, SuggestionsView
+from mkt.search.api import (FeaturedSearchView, RocketbarView, SearchView,
+                            SuggestionsView)
 from mkt.stats.urls import stats_api_patterns, txn_api_patterns
 from mkt.submit.api import PreviewViewSet, StatusViewSet, ValidationViewSet
 from mkt.webapps.api import AppViewSet, PrivacyPolicyViewSet
@@ -60,9 +61,11 @@ urlpatterns = patterns('',
     url(r'^apps/app/', include(subapps.urls)),
     url(r'^apps/search/featured/', FeaturedSearchView.as_view(),
         name='featured-search-api'),
+    url(r'^apps/search/suggest/', SuggestionsView.as_view(),
+        name='suggestions-search-api'),
+    url(r'^apps/search/rocketbar/', RocketbarView.as_view(),
+        name='rocketbar-search-api'),
     url(r'^apps/search/', SearchView.as_view(), name='search-api'),
-    url(r'^apps/suggest/', SuggestionsView.as_view(),
-        name='suggestions-api'),
     url(r'^services/', include(services.urls)),
     url(r'^services/config/site/', site_config, name='site-config'),
     url(r'^fireplace/report_error/\d*', error_reporter, name='error-reporter'),
