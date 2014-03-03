@@ -7,11 +7,8 @@ from django.core.management.base import CommandError
 
 # shortcut functions
 is_reindexing_amo = Reindexing.objects.is_reindexing_amo
-is_reindexing_mkt = Reindexing.objects.is_reindexing_mkt
 flag_reindexing_amo = Reindexing.objects.flag_reindexing_amo
-flag_reindexing_mkt = Reindexing.objects.flag_reindexing_mkt
 unflag_reindexing_amo = Reindexing.objects.unflag_reindexing_amo
-unflag_reindexing_mkt = Reindexing.objects.unflag_reindexing_mkt
 get_indices = Reindexing.objects.get_indices
 
 

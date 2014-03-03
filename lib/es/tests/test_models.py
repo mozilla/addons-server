@@ -29,13 +29,6 @@ class TestReindexManager(amo.tests.TestCase):
         assert flag_reindexing_mock.called_with([
             ('amo', 'bar', 'baz', 'quux')])
 
-    @mock.patch('lib.es.models.ReindexingManager._flag_reindexing')
-    def test_flag_reindexing_mkt(self, flag_reindexing_mock):
-        # This test doesn't run with AMO settings, no idea why.
-        Reindexing.objects.flag_reindexing_mkt('bar', 'baz', 'quux')
-        assert flag_reindexing_mock.called_with([
-            ('mkt', 'bar', 'baz', 'quux')])
-
     def test_unflag_reindexing(self):
         assert Reindexing.objects.filter(site='foo').count() == 0
 
@@ -62,12 +55,6 @@ class TestReindexManager(amo.tests.TestCase):
         Reindexing.objects.unflag_reindexing_amo()
         assert unflag_reindexing_mock.called_with([('amo')])
 
-    @mock.patch('lib.es.models.ReindexingManager._unflag_reindexing')
-    def test_unflag_reindexing_mkt(self, unflag_reindexing_mock):
-        # This test doesn't run with AMO settings, no idea why.
-        Reindexing.objects.unflag_reindexing_mkt()
-        assert unflag_reindexing_mock.called_with([('mkt')])
-
     def test_is_reindexing(self):
         assert Reindexing.objects.filter(site='foo').count() == 0
         assert not Reindexing.objects._is_reindexing('foo')
@@ -83,12 +70,6 @@ class TestReindexManager(amo.tests.TestCase):
     def test_is_reindexing_amo(self, is_reindexing_mock):
         Reindexing.objects.is_reindexing_amo()
         assert is_reindexing_mock.called_with([('amo')])
-
-    @mock.patch('lib.es.models.ReindexingManager._is_reindexing')
-    def test_is_reindexing_mkt(self, is_reindexing_mock):
-        # This test doesn't run with AMO settings, no idea why.
-        Reindexing.objects.is_reindexing_mkt()
-        assert is_reindexing_mock.called_with([('mkt')])
 
     def test_get_indices(self):
         # Not reindexing.

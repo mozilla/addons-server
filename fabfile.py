@@ -169,7 +169,6 @@ def update():
     execute(update_locales)
     execute(update_products)
     execute(compress_assets)
-    execute(compress_assets, arg='--settings=settings_local_mkt')
     execute(schematic)
     managecmd('dump_apps')
     managecmd('statsd_ping --key=update')
