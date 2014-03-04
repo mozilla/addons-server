@@ -772,13 +772,48 @@ button.search, .log-filter-outside button {
     top: -20px;
     width: auto;
 }
+#review-files .activity .comm-notes-paginator {
+    border-bottom: none;
+    display: none;
+
+    a {
+        display: none;
+        float: right;
+        margin-right: 5px;
+
+    }
+    .next.active + .prev:after {
+        background-color: $medium-gray;
+        border-radius: 3px;
+        bottom: 2px;
+        content: "";
+        display: inline-block;
+        height: 3px;
+        left: 2px;
+        margin: 0 2px;
+        position: relative;
+        width: 3px;
+    }
+}
+
+.comm-note {
+
+    pre {
+        padding-left: 0;
+    }
+    strong {
+        color: lighten($medium-gray, 15%);
+    }
+}
+
 #review-files table.activity {
     th {
       width: 25%;
       padding-right: 1em;
     }
     tr {
-        border-top: 1px dotted #ccc;
+        border-bottom: 1px dotted #ccc;
+        border-top: none;
 
         td {
             padding: 15px 0;
@@ -790,8 +825,8 @@ button.search, .log-filter-outside button {
             padding-bottom: 0;
         }
     }
-    tr:first-child {
-        border-top: 0 none;
+    tr:last-child {
+        border-bottom: 0;
     }
 }
 #review-files .listing-header span.light {
