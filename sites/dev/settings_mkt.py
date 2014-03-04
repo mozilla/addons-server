@@ -54,6 +54,19 @@ SYSLOG_CSP = "http_app_addons_marketplacedev_csp"
 
 STATSD_PREFIX = 'marketplace-dev'
 
+# Redis
+REDIS_BACKEND = getattr(private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
+REDIS_BACKENDS_CACHE_SLAVE = getattr(private_mkt, 'REDIS_BACKENDS_CACHE_SLAVE', private.REDIS_BACKENDS_CACHE_SLAVE)
+REDIS_BACKENDS_MASTER = getattr(private_mkt, 'REDIS_BACKENDS_MASTER', private.REDIS_BACKENDS_MASTER)
+REDIS_BACKENDS_SLAVE = getattr(private_mkt, 'REDIS_BACKENDS_SLAVE', private.REDIS_BACKENDS_SLAVE)
+
+REDIS_BACKENDS = {
+    'cache': REDIS_BACKEND,
+    'cache_slave': REDIS_BACKENDS_CACHE_SLAVE,
+    'master': REDIS_BACKENDS_MASTER,
+    'slave': REDIS_BACKENDS_SLAVE,
+}
+
 ## Celery
 BROKER_URL = private_mkt.BROKER_URL
 CELERY_IGNORE_RESULT = True
