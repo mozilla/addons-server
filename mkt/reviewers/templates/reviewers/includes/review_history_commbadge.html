@@ -56,28 +56,38 @@
         <td>
           {# By version. #}
           <table class="activity" data-version="{{ version.id }}">
-            {% if version.releasenotes %}
-              <tr>
-                <th>{{ _('Version Notes') }}</th>
-                <td class="activity_version">
-                  <div class="history-notes">
-                    {{ version.releasenotes|nl2br }}
-                  </div>
+            <thead>
+              {% if version.releasenotes %}
+                <tr>
+                  <th>{{ _('Version Notes') }}</th>
+                  <td class="activity_version">
+                    <div class="history-notes">
+                      {{ version.releasenotes|nl2br }}
+                    </div>
+                  </td>
+                </tr>
+              {% endif %}
+              {% if version.approvalnotes %}
+                <tr>
+                  <th>{{ _('Notes for Reviewers') }}</th>
+                  <td class="activity_approval">
+                    <div class="history-notes">
+                      {{ version.approvalnotes|urlize(100)|nl2br }}
+                    </div>
+                  </td>
+                </tr>
+              {% endif %}
+            </thead>
+            <tbody>
+              {# Results populated here by reviewers_commbadge.js (Commbadge API) #}
+              <tr class="comm-notes-paginator">
+                <th>&nbsp;</th>
+                <td>
+                  <a class="next" href="#">{{ _('Next Page') }}</a>
+                  <a class="prev" href="#">{{ _('Previous Page') }}</a>
                 </td>
               </tr>
-            {% endif %}
-            {% if version.approvalnotes %}
-              <tr>
-                <th>{{ _('Notes for Reviewers') }}</th>
-                <td class="activity_approval">
-                  <div class="history-notes">
-                    {{ version.approvalnotes|urlize(100)|nl2br }}
-                  </div>
-                </td>
-              </tr>
-            {% endif %}
-
-            {# Results populated here by reviewers_commbadge.js (Commbadge API) #}
+            </tbody>
           </table>
         </td>
 
