@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-28 02:05+0000\n"
+"PO-Revision-Date: 2014-03-04 03:13+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393553125.0\n"
+"X-POOTLE-MTIME: 1393902785.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -15530,7 +15530,7 @@ msgstr "适用所有年龄段"
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:13
 msgid "For ages %d+"
-msgstr "适用年龄大于 %d"
+msgstr "适用年龄超过%d岁者"
 
 #: mkt/constants/ratingsbodies.py:14
 msgid "Rating Rejected"
