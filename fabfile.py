@@ -13,30 +13,30 @@ import deploysettings as settings
 env.key_filename = settings.SSH_KEY
 fabdeploytools.envs.loadenv(settings.CLUSTER)
 
-ROOT, ZAMBONI = helpers.get_app_dirs(__file__)
+ROOT, OLYMPIA = helpers.get_app_dirs(__file__)
 
 VIRTUALENV = pjoin(ROOT, 'venv')
 PYTHON = pjoin(VIRTUALENV, 'bin', 'python')
 
 
 def managecmd(cmd):
-    with lcd(ZAMBONI):
+    with lcd(OLYMPIA):
         local('%s manage.py %s' % (PYTHON, cmd))
 
 
 @task
 def create_virtualenv(update_on_change=False):
     helpers.create_venv(VIRTUALENV, settings.PYREPO,
-                        pjoin(ZAMBONI, 'requirements/prod.txt'),
+                        pjoin(OLYMPIA, 'requirements/prod.txt'),
                         update_on_change=update_on_change)
 
     if settings.LOAD_TESTING:
-        helpers.pip_install_reqs(pjoin(ZAMBONI, 'requirements/load.txt'))
+        helpers.pip_install_reqs(pjoin(OLYMPIA, 'requirements/load.txt'))
 
 
 @task
 def update_locales():
-    with lcd(pjoin(ZAMBONI, 'locale')):
+    with lcd(pjoin(OLYMPIA, 'locale')):
         local("VENV=%s ./compile-mo.sh ." % VIRTUALENV)
 
 
@@ -61,15 +61,15 @@ def compress_assets(arg=''):
 
 @task
 def schematic():
-    with lcd(ZAMBONI):
+    with lcd(OLYMPIA):
         local("%s %s/bin/schematic migrations" %
               (PYTHON, VIRTUALENV))
 
 
 @task
 def update_info(ref='origin/master'):
-    helpers.git_info(ZAMBONI)
-    with lcd(ZAMBONI):
+    helpers.git_info(OLYMPIA)
+    with lcd(OLYMPIA):
         local("/bin/bash -c "
               "'source /etc/bash_completion.d/git && __git_ps1'")
         local('git show -s {0} --pretty="format:%h" '
@@ -83,12 +83,12 @@ def disable_cron():
 
 @task
 def install_cron(installed_dir):
-    installed_zamboni_dir = os.path.join(installed_dir, 'zamboni')
+    installed_olympia_dir = os.path.join(installed_dir, 'olympia')
     installed_python = os.path.join(installed_dir, 'venv', 'bin', 'python')
-    with lcd(ZAMBONI):
+    with lcd(OLYMPIA):
         local('%s ./scripts/crontab/gen-cron.py '
               '-z %s -u %s -p %s > /etc/cron.d/.%s' %
-              (PYTHON, installed_zamboni_dir,
+              (PYTHON, installed_olympia_dir,
                getattr(settings, 'CRON_USER', 'apache'),
                installed_python, settings.CRON_NAME))
 
@@ -126,13 +126,13 @@ def update_celery():
 
 @task
 def deploy():
-    rpmbuild = helpers.deploy(name='zamboni',
+    rpmbuild = helpers.deploy(name='olympia',
                               env=settings.ENV,
                               cluster=settings.CLUSTER,
                               domain=settings.DOMAIN,
                               root=ROOT,
                               deploy_roles=['web', 'celery'],
-                              package_dirs=['zamboni', 'venv'])
+                              package_dirs=['olympia', 'venv'])
 
     execute(restart_workers)
     helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
@@ -143,13 +143,13 @@ def deploy():
 
 @task
 def deploy_web():
-    rpmbuild = helpers.deploy(name='zamboni',
+    rpmbuild = helpers.deploy(name='olympia',
                               env=settings.ENV,
                               cluster=settings.CLUSTER,
                               domain=settings.DOMAIN,
                               root=ROOT,
                               use_yum=False,
-                              package_dirs=['zamboni', 'venv'])
+                              package_dirs=['olympia', 'venv'])
 
     execute(restart_workers)
     helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
@@ -159,7 +159,7 @@ def deploy_web():
 def pre_update(ref=settings.UPDATE_REF):
     local('date')
     execute(disable_cron)
-    execute(helpers.git_update, ZAMBONI, ref)
+    execute(helpers.git_update, OLYMPIA, ref)
     execute(update_info, ref)
 
 
@@ -176,8 +176,8 @@ def update():
 
 @task
 def pre_update_latest_tag():
-    current_tag_file = os.path.join(ZAMBONI, '.tag')
-    latest_tag = helpers.git_latest_tag(ZAMBONI)
+    current_tag_file = os.path.join(OLYMPIA, '.tag')
+    latest_tag = helpers.git_latest_tag(OLYMPIA)
     with open(current_tag_file, 'r+') as f:
         if f.read() == latest_tag:
             print 'Environemnt is at %s' % latest_tag
