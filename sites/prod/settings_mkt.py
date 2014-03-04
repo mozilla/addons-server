@@ -49,6 +49,15 @@ SYSLOG_TAG = "http_app_addons_marketplace"
 SYSLOG_TAG2 = "http_app_addons_marketplace_timer"
 SYSLOG_CSP = "http_app_addons_marketplace_csp"
 
+# Redis
+REDIS_BACKEND = private_mkt.REDIS_BACKENDS_CACHE
+REDIS_BACKENDS = {
+    'cache': REDIS_BACKEND,
+    'cache_slave': private_mkt.REDIS_BACKENDS_CACHE_SLAVE,
+    'master': private_mkt.REDIS_BACKENDS_MASTER,
+    'slave': private_mkt.REDIS_BACKENDS_SLAVE,
+}
+
 ## Celery
 
 BROKER_URL = private_mkt.BROKER_URL
