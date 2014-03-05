@@ -1,5 +1,4 @@
 import logging
-from operator import itemgetter
 
 from django.conf import settings as dj_settings
 
@@ -310,18 +309,38 @@ class SearchResults(object):
 class DictSearchResults(SearchResults):
 
     def set_objects(self, hits):
-        key = 'fields' if self.fields else '_source'
-        self.objects = [r[key] for r in hits]
+        objs = []
+
+        if self.fields:
+            # When fields are specified in `values_dict(...)` we return the
+            # fields. Each field is coerced to a list to match the
+            # Elasticsearch >= 1.0 style.
+            for h in hits:
+                hit = {}
+                for field, value in h['fields'].items():
+                    if type(value) != list:
+                        value = [value]
+                    hit[field] = value
+                objs.append(hit)
+            self.objects = objs
+        else:
+            self.objects = [r['_source'] for r in hits]
+
+        return self.objects
 
 
 class ListSearchResults(SearchResults):
 
     def set_objects(self, hits):
-        if self.fields:
-            getter = itemgetter(*self.fields)
-            objs = [getter(r['fields']) for r in hits]
-        else:
-            objs = [r['_source'].values() for r in hits]
+        key = 'fields' if self.fields else '_source'
+
+        # When fields are specified in `values(...)` we return the fields. Each
+        # field is coerced to a list to match the Elasticsearch >= 1.0 style.
+        objs = []
+        for hit in hits:
+            objs.append(tuple([v] if key == 'fields' and type(v) != list else v
+                              for v in hit[key].values()))
+
         self.objects = objs
 
 

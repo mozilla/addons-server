@@ -224,6 +224,10 @@ def themes_search(request):
         themes = list(themes.values_dict('name', 'slug', 'status'))
 
         for theme, reviewer in zip(themes, reviewers):
+            # Collapse single value fields from a list.
+            theme['id'] = theme['id'][0]
+            theme['slug'] = theme['slug'][0]
+            theme['status'] = theme['status'][0]
             # Dehydrate.
             theme['reviewer'] = reviewer
 
