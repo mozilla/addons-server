@@ -13,10 +13,9 @@ from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.db.models import Count, Q
 from django.db.models.signals import post_save
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 import commonware.log
-import jingo
 import requests
 from cache_nuggets.lib import Token
 from tower import ugettext as _
@@ -97,7 +96,7 @@ def home(request):
         percentage=percentage,
         durations=durations
     )
-    return jingo.render(request, 'reviewers/home.html', data)
+    return render(request, 'reviewers/home.html', data)
 
 
 def queue_counts(request):
@@ -410,7 +409,7 @@ def _review(request, addon, version):
     if features_list is not None:
         ctx['feature_list'] = features_list
 
-    return jingo.render(request, 'reviewers/review.html', ctx)
+    return render(request, 'reviewers/review.html', ctx)
 
 
 @transaction.commit_manually
@@ -478,7 +477,7 @@ def _queue(request, apps, tab, pager_processor=None, date_sort='created',
     if data is not None:
         ctx.update(data)
 
-    return jingo.render(request, template, context(request, **ctx))
+    return render(request, template, context(request, **ctx))
 
 
 def _do_sort(request, qs, date_sort='created'):
@@ -659,9 +658,9 @@ def queue_moderated(request):
         reviews_formset.save()
         return redirect(reverse('reviewers.apps.queue_moderated'))
 
-    return jingo.render(request, 'reviewers/queue.html',
-                        context(request, reviews_formset=reviews_formset,
-                                tab='moderated', page=page, flags=flags))
+    return render(request, 'reviewers/queue.html',
+                  context(request, reviews_formset=reviews_formset,
+                          tab='moderated', page=page, flags=flags))
 
 
 def _get_search_form(request):
@@ -701,7 +700,7 @@ def logs(request):
     pager = paginate(request, approvals, 50)
     data = context(request, form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID,
                    tab='apps')
-    return jingo.render(request, 'reviewers/logs.html', data)
+    return render(request, 'reviewers/logs.html', data)
 
 
 @reviewer_required
@@ -715,7 +714,7 @@ def motd(request):
         messages.success(request, _('Changes successfully saved.'))
         return redirect(reverse('reviewers.apps.motd'))
     data = context(request, form=form)
-    return jingo.render(request, 'reviewers/motd.html', data)
+    return render(request, 'reviewers/motd.html', data)
 
 
 # TODO: Move these to the validator when they live there someday.
@@ -870,9 +869,9 @@ def app_abuse(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
     total = reports.count()
     reports = paginate(request, reports, count=total)
-    return jingo.render(request, 'reviewers/abuse.html',
-                        context(request, addon=addon, reports=reports,
-                                total=total))
+    return render(request, 'reviewers/abuse.html',
+                  context(request, addon=addon, reports=reports,
+                          total=total))
 
 
 @addon_view
@@ -939,22 +938,23 @@ def performance(request, username=None):
         'breakdown': breakdown,
     })
 
-    return jingo.render(request, 'reviewers/performance.html', ctx)
+    return render(request, 'reviewers/performance.html', ctx)
 
 
 @any_permission_required([('Apps', 'Review'), ('Personas', 'Review')])
 def leaderboard(request):
-    return jingo.render(request, 'reviewers/leaderboard.html', context(request,
-        **{'scores': ReviewerScore.all_users_by_score()}))
+    return render(request, 'reviewers/leaderboard.html',
+                  context(request,
+                          **{'scores': ReviewerScore.all_users_by_score()}))
 
 
 @permission_required('Apps', 'Review')
 @json_view
 def apps_reviewing(request):
-    return jingo.render(request, 'reviewers/apps_reviewing.html',
-                        context(request, **{
-                            'apps': AppsReviewing(request).get_apps(),
-                            'tab': 'reviewing'}))
+    return render(request, 'reviewers/apps_reviewing.html',
+                  context(request,
+                          **{'tab': 'reviewing',
+                             'apps': AppsReviewing(request).get_apps()}))
 
 
 @permission_required('Apps', 'Review')

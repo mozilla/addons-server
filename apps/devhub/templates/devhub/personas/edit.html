@@ -24,7 +24,7 @@
       <img class="addon-icon" src="{{ addon.icon_url }}">
       <h2 class="addon-name">{{ addon.name }}</h2>
       <h3 class="author">
-        {{ _('by {0}')|f(users_list(addon.listed_authors) or persona.display_username)|safe }}
+        {{ _('by {0}')|f(users_list(addon.listed_authors)|safe or persona.display_username|safe) }}
         <a href="#ownership" class="button transfer-ownership">{{ _('Transfer ownership') }}</a>
       </h3>
       <div class="owner-email hidden">

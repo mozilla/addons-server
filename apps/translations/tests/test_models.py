@@ -332,7 +332,7 @@ class TranslationTestCase(TestCase):
         m = FancyModel.objects.get(id=1)
         env = jinja2.Environment()
         t = env.from_string('{{ m.purified }}=={{ m.linkified }}')
-        s = t.render(m=m)
+        s = t.render({'m': m})
         eq_(s, u'%s==%s' % (m.purified.localized_string_clean,
                             m.linkified.localized_string_clean))
 

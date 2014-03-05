@@ -6,7 +6,7 @@
         <a href="{{ c.get_url_path() }}">
           <img src="{{ c.icon_url }}">{{ c.name }}</a>
         {% if c.author %}
-          <span class="author">{{ _('by {0}')|f(c.author|user_link)|safe }}</span>
+          <span class="author">{{ _('by {0}')|f(c.author|user_link|safe) }}</span>
         {% endif %}
       </h3>
       <p class="desc">{{ c.description|truncate(250)|nl2br }}</p>

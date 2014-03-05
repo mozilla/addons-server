@@ -26,14 +26,14 @@
           {{ loc("Your app's listing is disabled and is not showing anywhere in
                   our gallery. You may re-enable it at any time below.") }}
         {% else %}
-          {{ status(_('You have <b>disabled</b> this add-on.')|safe) }}
+          {{ status(_('You have <b>disabled</b> this add-on.')) }}
           {{ _("Your add-on's listing is disabled and is not showing anywhere in our gallery or update service. You may re-enable it at any time below.") }}
         {% endif %}
       {% elif addon.status == amo.STATUS_NULL %}
         {% if webapp %}
           {{ status(loc('This app is <b>incomplete</b>.')|safe) }}
         {% else %}
-          {{ status(_('This add-on is <b>incomplete</b>.')|safe) }}
+          {{ status(_('This add-on is <b>incomplete</b>.')) }}
         {% endif %}
         <a href="{{ url('devhub.submit.resume', addon.slug) }}">
           {% if webapp %}
@@ -51,18 +51,18 @@
                   then, your app is not listed in our gallery but can be
                   accessed directly from its details page.") }}
         {% else %}
-          {{ status(_('This add-on is <b>awaiting preliminary review</b>.')|safe) }}
+          {{ status(_('This add-on is <b>awaiting preliminary review</b>.')) }}
           {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page.") }}
         {% endif %}
       {% elif addon.status == amo.STATUS_NOMINATED %}
-        {{ status(_('This add-on is <b>awaiting full review</b>.')|safe) }}
+        {{ status(_('This add-on is <b>awaiting full review</b>.')) }}
         {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. ") }}
       {% elif addon.status == amo.STATUS_PUBLIC %}
         {% if webapp %}
           {{ status(loc('This app is <b>public</b>.')|safe) }}
           {{ loc('Your app is displayed in our gallery.') }}
         {% else %}
-          {{ status(_('This add-on has been <b>fully reviewed</b>.')|safe) }}
+          {{ status(_('This add-on has been <b>fully reviewed</b>.')) }}
           {{ _("Your add-on is displayed in our gallery and users are receiving automatic updates.") }}
         {% endif %}
       {% elif addon.status == amo.STATUS_DISABLED %}
@@ -72,13 +72,13 @@
                   longer shown in our gallery. If you have any questions,
                   please email marketplace-staff@mozilla.org.") }}
         {% else %}
-          {{ status(_('This add-on has been <b>disabled by Mozilla</b>.')|safe) }}
+          {{ status(_('This add-on has been <b>disabled by Mozilla</b>.')) }}
           {{ _("Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org.") }}
         {% endif %}
       {% endif %}
       {% if not webapp %}
         {% if addon.status == amo.STATUS_LITE %}
-          {{ status(_('This add-on has been <b>preliminarily reviewed</b>.')|safe) }}
+          {{ status(_('This add-on has been <b>preliminarily reviewed</b>.')) }}
           {{ _("Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
         {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
           {% if webapp %}
@@ -88,7 +88,7 @@
                     experimental and users are receiving automatic updates. Some
                     features are unavailable to your app.") }}
           {% else %}
-            {{ status(_('This add-on has been <b>preliminarily reviewed</b> and is <i>awaiting full review</i>.')|safe) }}
+            {{ status(_('This add-on has been <b>preliminarily reviewed</b> and is <i>awaiting full review</i>.')) }}
             {{ _("You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
           {% endif %}
         {% elif addon.status == amo.STATUS_PURGATORY %}

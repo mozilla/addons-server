@@ -8,12 +8,12 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.http import (HttpResponse, HttpResponseNotFound,
                          HttpResponseServerError)
+from django.shortcuts import render
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
 from django.views.decorators.http import etag
 
-import jingo
 import jingo_minify
 from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
@@ -37,7 +37,7 @@ log = logging.getLogger('z.mkt.site')
 @requires_csrf_token
 def handler403(request):
     # TODO: Bug 793241 for different 403 templates at different URL paths.
-    return jingo.render(request, 'site/403.html', status=403)
+    return render(request, 'site/403.html', status=403)
 
 
 def handler404(request):
@@ -45,7 +45,7 @@ def handler404(request):
         # Pass over to API handler404 view if API was targeted.
         return HttpResponseNotFound()
     else:
-        return jingo.render(request, 'site/404.html', status=404)
+        return render(request, 'site/404.html', status=404)
 
 
 def handler500(request):
@@ -53,12 +53,12 @@ def handler500(request):
         # Pass over to API handler500 view if API was targeted.
         return HttpResponseServerError()
     else:
-        return jingo.render(request, 'site/500.html', status=500)
+        return render(request, 'site/500.html', status=500)
 
 
 def csrf_failure(request, reason=''):
-    return jingo.render(request, 'site/403.html',
-                        {'because_csrf': 'CSRF' in reason}, status=403)
+    return render(request, 'site/403.html',
+                  {'because_csrf': 'CSRF' in reason}, status=403)
 
 
 def manifest(request):
@@ -109,7 +109,7 @@ def package_minifest(request):
 
 def robots(request):
     """Generate a `robots.txt`."""
-    template = jingo.render(request, 'site/robots.txt')
+    template = render(request, 'site/robots.txt')
     return HttpResponse(template, mimetype='text/plain')
 
 

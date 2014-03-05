@@ -5,10 +5,9 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.forms.formsets import formset_factory
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.datastructures import MultiValueDictKeyError
 
-import jingo
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
@@ -38,7 +37,7 @@ def home(request):
         reviews_monthly=ActivityLog.objects.monthly_reviews(theme=True)[:5],
         weekly_theme_counts=_weekly_theme_counts(),
     )
-    return jingo.render(request, 'reviewers/themes/home.html', data)
+    return render(request, 'reviewers/themes/home.html', data)
 
 
 @reviewer_required('persona')
@@ -63,17 +62,16 @@ def themes_list(request, flagged=False, rereview=False):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, themes, per_page)
 
-    return jingo.render(request, 'reviewers/themes/queue_list.html', context(
-        request, **{
-        'addons': pager.object_list,
-        'flagged': flagged,
-        'pager': pager,
-        'rereview': rereview,
-        'STATUS_CHOICES': amo.MKT_STATUS_CHOICES,
-        'search_form': search_form,
-        'tab': ('rereview_themes' if rereview else
-                'flagged_themes' if flagged else 'pending_themes'),
-    }))
+    return render(request, 'reviewers/themes/queue_list.html',
+                  context(request,
+                          **{'addons': pager.object_list,
+                             'flagged': flagged, 'pager':
+                             pager, 'rereview': rereview,
+                             'STATUS_CHOICES': amo.MKT_STATUS_CHOICES,
+                             'search_form': search_form,
+                             'tab': ('rereview_themes'
+                                     if rereview else 'flagged_themes'
+                                     if flagged else 'pending_themes')}))
 
 
 def _themes_queue(request, flagged=False, rereview=False):
@@ -86,19 +84,18 @@ def _themes_queue(request, flagged=False, rereview=False):
         initial=[{'theme': _rereview_to_theme(rereview, theme).id} for theme
                  in themes])
 
-    return jingo.render(request, 'reviewers/themes/queue.html', context(
-        request, **{
-        'actions': get_actions_json(),
-        'formset': formset,
-        'flagged': flagged,
-        'queue_counts': queue_counts(request),
-        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
-        'rereview': rereview,
-        'reviewable': True,
-        'theme_formsets': zip(themes, formset),
-        'theme_count': len(themes),
-        'tab': 'flagged' if flagged else 'rereview' if rereview else 'pending'
-    }))
+    return render(
+        request, 'reviewers/themes/queue.html',
+        context(request,
+                **{'actions': get_actions_json(), 'formset': formset,
+                   'flagged': flagged, 'queue_counts': queue_counts(request),
+                   'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+                   'rereview': rereview, 'reviewable': True,
+                   'theme_formsets': zip(themes, formset),
+                   'theme_count': len(themes),
+                   'tab': ('flagged'
+                           if flagged else 'rereview'
+                           if rereview else 'pending')}))
 
 
 def _get_themes(request, reviewer, flagged=False, rereview=False):
@@ -371,25 +368,27 @@ def themes_single(request, slug):
     request.session['theme_redirect_url'] = reverse('reviewers.themes.single',
                                                     args=[theme.addon.slug])
 
-    rereview = (theme.rereviewqueuetheme_set.all()[0] if
-        theme.rereviewqueuetheme_set.exists() else None)
-    return jingo.render(request, 'reviewers/themes/single.html', context(
-        request, **{
-        'formset': formset,
-        'theme': rereview if rereview else theme,
-        'theme_formsets': zip([rereview if rereview else theme], formset),
-        'theme_reviews': paginate(request, ActivityLog.objects.filter(
-            action=amo.LOG.THEME_REVIEW.id,
-            _arguments__contains=theme.addon.id)),
-        'actions': get_actions_json(),
-        'theme_count': 1,
-        'rereview': rereview,
-        'reviewable': reviewable,
-        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
-        'action_dict': rvw.REVIEW_ACTIONS,
-        'tab': ('flagged' if theme.addon.status == amo.STATUS_REVIEW_PENDING
-                else 'rereview' if rereview else 'pending')
-    }))
+    rereview = (theme.rereviewqueuetheme_set.all()[0]
+                if theme.rereviewqueuetheme_set.exists() else None)
+    return render(
+        request, 'reviewers/themes/single.html',
+        context(request,
+                **{'formset': formset,
+                   'theme': rereview if rereview else theme,
+                   'theme_formsets': zip([rereview if rereview else theme],
+                                         formset),
+                   'theme_reviews': paginate(
+                       request,
+                       ActivityLog.objects.filter(
+                           action=amo.LOG.THEME_REVIEW.id,
+                           _arguments__contains=theme.addon.id)),
+                   'actions': get_actions_json(), 'theme_count': 1,
+                   'rereview': rereview, 'reviewable': reviewable,
+                   'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+                   'action_dict': rvw.REVIEW_ACTIONS,
+                   'tab': ('flagged'
+                           if theme.addon.status == amo.STATUS_REVIEW_PENDING
+                           else 'rereview' if rereview else 'pending')}))
 
 
 @reviewer_required('persona')
@@ -421,7 +420,7 @@ def themes_logs(request):
     data = context(request, form=form, pager=pager,
                    ACTION_DICT=rvw.REVIEW_ACTIONS,
                    REJECT_REASONS=rvw.THEME_REJECT_REASONS, tab='themes')
-    return jingo.render(request, 'reviewers/themes/logs.html', data)
+    return render(request, 'reviewers/themes/logs.html', data)
 
 
 @admin_required(theme_reviewers=True)
@@ -446,12 +445,11 @@ def deleted_themes(request):
             deleted = deleted.filter(
                 Q(name__localized_string__icontains=term))
 
-    return jingo.render(request, 'reviewers/themes/deleted.html', {
-        'form': form,
-        'pager': paginate(request, deleted.order_by('-modified'), 30),
-        'queue_counts': queue_counts(request),
-        'tab': 'deleted'
-    })
+    return render(request, 'reviewers/themes/deleted.html',
+                  {'form': form, 'queue_counts': queue_counts(request),
+                   'pager': paginate(request, deleted.order_by('-modified'),
+                                     30),
+                   'tab': 'deleted'})
 
 
 @reviewer_required('persona')
@@ -459,15 +457,16 @@ def themes_history(request, username):
     if not username:
         username = request.amo_user.username
 
-    return jingo.render(request, 'reviewers/themes/history.html', context(
-        request, **{
-        'theme_reviews': paginate(request, ActivityLog.objects.filter(
-            action=amo.LOG.THEME_REVIEW.id, user__username=username), 20),
-        'user_history': True,
-        'username': username,
-        'reject_reasons': rvw.THEME_REJECT_REASONS,
-        'action_dict': rvw.REVIEW_ACTIONS,
-    }))
+    return render(
+        request, 'reviewers/themes/history.html',
+        context(request,
+                **{'user_history': True, 'action_dict': rvw.REVIEW_ACTIONS,
+                   'reject_reasons': rvw.THEME_REJECT_REASONS,
+                   'username': username,
+                   'theme_reviews': paginate(
+                       request, ActivityLog.objects.filter(
+                           action=amo.LOG.THEME_REVIEW.id,
+                           user__username=username), 20)}))
 
 
 def get_actions_json():

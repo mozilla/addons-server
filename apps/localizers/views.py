@@ -2,10 +2,9 @@ from itertools import groupby
 
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 import commonware.log
-import jingo
 from product_details import product_details
 
 import amo
@@ -68,7 +67,7 @@ def summary(request):
         'hidden_languages': settings.HIDDEN_LANGUAGES,
     }
 
-    return jingo.render(request, 'localizers/summary.html', data)
+    return render(request, 'localizers/summary.html', data)
 
 
 @locale_switcher
@@ -97,7 +96,7 @@ def locale_dashboard(request, locale_code):
         team_homepage = None
     data['team_homepage'] = team_homepage
 
-    return jingo.render(request, 'localizers/dashboard.html', data)
+    return render(request, 'localizers/dashboard.html', data)
 
 
 @locale_switcher
@@ -183,4 +182,4 @@ def categories(request, locale_code):
         'types': amo.ADDON_TYPE,
     }
 
-    return jingo.render(request, 'localizers/categories.html', data)
+    return render(request, 'localizers/categories.html', data)

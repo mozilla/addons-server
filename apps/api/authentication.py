@@ -1,10 +1,10 @@
 from functools import partial
 
 import commonware.log
-import jingo
 from piston.authentication.oauth import OAuthAuthentication, views
 
 from django.contrib.auth.models import AnonymousUser
+from django.shortcuts import render
 
 from access.middleware import ACLMiddleware
 from users.models import UserProfile
@@ -67,7 +67,7 @@ class AMOOAuthAuthentication(OAuthAuthentication):
         return rv
 
     def _challenge(self, request):
-        response = jingo.render(request, 'piston/oauth/challenge.html',
-                                status=401)
+        response = render(request, 'piston/oauth/challenge.html',
+                          status=401)
         response['WWW-Authenticate'] = 'OAuth realm="API"'
         return response

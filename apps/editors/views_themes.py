@@ -5,10 +5,9 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.forms.formsets import formset_factory
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.datastructures import MultiValueDictKeyError
 
-import jingo
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
@@ -38,7 +37,7 @@ def home(request):
         weekly_theme_counts=_weekly_theme_counts(),
         queue_counts=queue_counts_themes(request)
     )
-    return jingo.render(request, 'editors/themes/home.html', data)
+    return render(request, 'editors/themes/home.html', data)
 
 
 def queue_counts_themes(request):
@@ -87,7 +86,7 @@ def themes_list(request, flagged=False, rereview=False):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, themes, per_page)
 
-    return jingo.render(request, 'editors/themes/queue_list.html', context(
+    return render(request, 'editors/themes/queue_list.html', context(
         **{
         'addons': pager.object_list,
         'flagged': flagged,
@@ -112,7 +111,7 @@ def _themes_queue(request, flagged=False, rereview=False):
         initial=[{'theme': _rereview_to_theme(rereview, theme).id} for theme
                  in themes])
 
-    return jingo.render(request, 'editors/themes/queue.html', context(
+    return render(request, 'editors/themes/queue.html', context(
         **{
         'actions': get_actions_json(),
         'formset': formset,
@@ -399,7 +398,7 @@ def themes_single(request, slug):
 
     rereview = (theme.rereviewqueuetheme_set.all()[0] if
         theme.rereviewqueuetheme_set.exists() else None)
-    return jingo.render(request, 'editors/themes/single.html', context(
+    return render(request, 'editors/themes/single.html', context(
         **{
         'formset': formset,
         'theme': rereview if rereview else theme,
@@ -447,7 +446,7 @@ def themes_logs(request):
     data = context(form=form, pager=pager,
                    ACTION_DICT=rvw.REVIEW_ACTIONS,
                    REJECT_REASONS=rvw.THEME_REJECT_REASONS, tab='themes')
-    return jingo.render(request, 'editors/themes/logs.html', data)
+    return render(request, 'editors/themes/logs.html', data)
 
 
 @admin_required(theme_reviewers=True)
@@ -472,7 +471,7 @@ def deleted_themes(request):
             deleted = deleted.filter(
                 Q(name__localized_string__icontains=term))
 
-    return jingo.render(request, 'editors/themes/deleted.html', {
+    return render(request, 'editors/themes/deleted.html', {
         'form': form,
         'pager': paginate(request, deleted.order_by('-modified'), 30),
         'tab': 'deleted'
@@ -484,7 +483,7 @@ def themes_history(request, username):
     if not username:
         username = request.amo_user.username
 
-    return jingo.render(request, 'editors/themes/history.html', context(
+    return render(request, 'editors/themes/history.html', context(
         **{
         'theme_reviews': paginate(request, ActivityLog.objects.filter(
             action=amo.LOG.THEME_REVIEW.id, user__username=username), 20),

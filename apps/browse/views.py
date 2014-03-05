@@ -4,10 +4,9 @@ from django import http
 from django.conf import settings
 from django.http import (Http404, HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import cache_page
 
-import jingo
 from product_details import product_details
 from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
@@ -135,12 +134,11 @@ def language_tools(request, category=None):
     locales = _get_locales(addons)
     lang_addons = _get_locales(addons.filter(target_locale=request.LANG))
     addon_ids = addons.values_list('pk', flat=True)
-    return jingo.render(request, 'browse/language_tools.html',
-                        {'locales': list(locales),
-                         #pass keys separately so only IDs get cached
-                         'addons': addon_ids,
-                         'lang_addons': list(lang_addons),
-                         'search_cat': '%s,0' % amo.ADDON_DICT})
+    return render(request, 'browse/language_tools.html',
+                  {'locales': list(locales), 'lang_addons': list(lang_addons),
+                   #pass keys separately so only IDs get cached
+                   'addons': addon_ids,
+                   'search_cat': '%s,0' % amo.ADDON_DICT})
 
 
 def themes(request, category=None):
@@ -159,10 +157,10 @@ def themes(request, category=None):
         addons = addons.filter(categories__id=category.id)
 
     addons = amo.utils.paginate(request, addons, 16, count=addons.count())
-    return jingo.render(request, 'browse/themes.html',
-                {'section': 'themes', 'addon_type': TYPE, 'addons': addons,
-                 'category': category, 'filter': filter, 'sorting': sorting,
-                 'search_cat': '%s,0' % TYPE, 'src': src, 'dl_src': dl_src})
+    return render(request, 'browse/themes.html',
+                  {'section': 'themes', 'addon_type': TYPE, 'addons': addons,
+                   'category': category, 'filter': filter, 'sorting': sorting,
+                   'search_cat': '%s,0' % TYPE, 'src': src, 'dl_src': dl_src})
 
 
 @mobile_template('browse/{mobile/}extensions.html')
@@ -186,12 +184,12 @@ def extensions(request, category=None, template=None):
         addons = addons.filter(categories__id=category.id)
 
     addons = amo.utils.paginate(request, addons, count=addons.count())
-    return jingo.render(request, template,
-                        {'section': 'extensions', 'addon_type': TYPE,
-                         'category': category, 'addons': addons,
-                         'filter': filter, 'sorting': sorting,
-                         'sort_opts': filter.opts, 'src': src,
-                         'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
+    return render(request, template,
+                  {'section': 'extensions', 'addon_type': TYPE,
+                   'category': category, 'addons': addons,
+                   'filter': filter, 'sorting': sorting,
+                   'sort_opts': filter.opts, 'src': src,
+                   'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
 
 
 @mobile_template('browse/{mobile/}extensions.html')
@@ -218,12 +216,12 @@ def es_extensions(request, category=None, template=None):
         qs = qs.filter(category=category.id)
     addons = amo.utils.paginate(request, qs)
 
-    return jingo.render(request, template,
-                        {'section': 'extensions', 'addon_type': TYPE,
-                         'category': category, 'addons': addons,
-                         'filter': filter, 'sorting': sorting,
-                         'sort_opts': filter.opts, 'src': src,
-                         'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
+    return render(request, template,
+                  {'section': 'extensions', 'addon_type': TYPE,
+                   'category': category, 'addons': addons,
+                   'filter': filter, 'sorting': sorting,
+                   'sort_opts': filter.opts, 'src': src,
+                   'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
 
 
 class CategoryLandingFilter(BaseFilter):
@@ -257,11 +255,11 @@ def category_landing(request, category, addon_type=amo.ADDON_EXTENSION,
                 .exclude(type=amo.ADDON_PERSONA)
                 .filter(categories__id=category.id))
     filter = Filter(request, base, category, key='browse', default='featured')
-    return jingo.render(request, 'browse/impala/category_landing.html',
-                        {'section': amo.ADDON_SLUGS[addon_type],
-                         'addon_type': addon_type, 'category': category,
-                         'filter': filter, 'sorting': filter.field,
-                         'search_cat': '%s,0' % category.type})
+    return render(request, 'browse/impala/category_landing.html',
+                  {'section': amo.ADDON_SLUGS[addon_type],
+                   'addon_type': addon_type, 'category': category,
+                   'filter': filter, 'sorting': filter.field,
+                   'search_cat': '%s,0' % category.type})
 
 
 def es_category_landing(request, category):
@@ -270,9 +268,9 @@ def es_category_landing(request, category):
                                 is_disabled=False,
                                 status__in=amo.REVIEWED_STATUSES))
     filter = ESAddonFilter(request, qs, key='sort', default='popular')
-    return jingo.render(request, 'browse/impala/category_landing.html',
-                        {'category': category, 'filter': filter,
-                         'search_cat': '%s,0' % category.type})
+    return render(request, 'browse/impala/category_landing.html',
+                  {'category': category, 'filter': filter,
+                   'search_cat': '%s,0' % category.type})
 
 
 def creatured(request, category):
@@ -281,9 +279,9 @@ def creatured(request, category):
     category = get_object_or_404(q, slug=category)
     ids = AddonCategory.creatured_random(category, request.LANG)
     addons = manual_order(Addon.objects.public(), ids, pk_name='addons.id')
-    return jingo.render(request, 'browse/creatured.html',
-                        {'addons': addons, 'category': category,
-                         'sorting': 'featured'})
+    return render(request, 'browse/creatured.html',
+                  {'addons': addons, 'category': category,
+                   'sorting': 'featured'})
 
 
 class PersonasFilter(BaseFilter):
@@ -378,7 +376,7 @@ def personas(request, category=None, template=None):
            'filter': filter, 'sorting': filter.field, 'sort_opts': filter.opts,
            'featured': featured, 'search_cat': 'themes',
            'is_homepage': category is None and 'sort' not in request.GET}
-    return jingo.render(request, template, ctx)
+    return render(request, template, ctx)
 
 
 def legacy_theme_redirects(request, category=None, category_name=None):
@@ -512,10 +510,10 @@ def search_tools(request, category=None):
                          .filter(type=amo.ADDON_EXTENSION))
     sidebar_ext = SearchExtensionsFilter(request, base, 'sort', 'popular')
 
-    return jingo.render(request, 'browse/search_tools.html',
-                        {'categories': categories, 'category': category,
-                         'addons': addons, 'filter': filter,
-                         'search_extensions_filter': sidebar_ext})
+    return render(request, 'browse/search_tools.html',
+                  {'categories': categories, 'category': category,
+                   'addons': addons, 'filter': filter,
+                   'search_extensions_filter': sidebar_ext})
 
 
 def moreinfo_redirect(request):

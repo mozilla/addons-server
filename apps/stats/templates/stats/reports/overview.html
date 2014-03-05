@@ -5,11 +5,11 @@
 {% block stats %}
     <section class="island two-up">
       <div>
-        <a href="downloads/">{{ _('<b>{0}</b> Downloads')|f(addon.total_downloads|numberfmt)|safe }}</a>
+        <a href="downloads/">{{ _('<b>{0}</b> Downloads')|f(addon.total_downloads|numberfmt) }}</a>
         <small id="downloads-in-range">{{ _('Loading...') }}</small>
       </div>
       <div>
-        <a href="usage/">{{ _('<b>{0}</b> Average Daily Users')|f(addon.average_daily_users|numberfmt)|safe }}</a>
+        <a href="usage/">{{ _('<b>{0}</b> Average Daily Users')|f(addon.average_daily_users|numberfmt) }}</a>
         <small id="users-in-range">{{ _('Loading...') }}</small>
       </div>
     </section>

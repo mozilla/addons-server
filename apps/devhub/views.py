@@ -14,13 +14,12 @@ from django.conf import settings
 from django import forms as django_forms
 from django.db import transaction
 from django.db.models import Count
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.http import urlquote
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import jingo
 from PIL import Image
 from session_csrf import anonymous_csrf
 from tower import ugettext_lazy as _lazy, ugettext as _
@@ -115,7 +114,7 @@ def index(request):
             ctx['recent_addons'].append({'addon': addon,
                                          'position': get_position(addon)})
 
-    return jingo.render(request, 'devhub/index.html', ctx)
+    return render(request, 'devhub/index.html', ctx)
 
 
 @login_required
@@ -139,23 +138,23 @@ def dashboard(request, webapp=False, theme=False):
         data['sorting'] = data['filter'].field
         data['sort_opts'] = data['filter'].opts
 
-    return jingo.render(request, 'devhub/addons/dashboard.html', data)
+    return render(request, 'devhub/addons/dashboard.html', data)
 
 
 @dev_required
 def ajax_compat_status(request, addon_id, addon):
     if not (addon.accepts_compatible_apps() and addon.current_version):
         raise http.Http404()
-    return jingo.render(request, 'devhub/addons/ajax_compat_status.html',
-                        dict(addon=addon))
+    return render(request, 'devhub/addons/ajax_compat_status.html',
+                  dict(addon=addon))
 
 
 @dev_required
 def ajax_compat_error(request, addon_id, addon):
     if not (addon.accepts_compatible_apps() and addon.current_version):
         raise http.Http404()
-    return jingo.render(request, 'devhub/addons/ajax_compat_error.html',
-                        dict(addon=addon))
+    return render(request, 'devhub/addons/ajax_compat_error.html',
+                  dict(addon=addon))
 
 
 @dev_required
@@ -173,9 +172,8 @@ def ajax_compat_update(request, addon_id, addon, version_id):
             if (isinstance(form, forms.CompatForm) and
                 'max' in form.changed_data):
                 _log_max_version_change(addon, version, form.instance)
-    return jingo.render(request, 'devhub/addons/ajax_compat_update.html',
-                        dict(addon=addon, version=version,
-                             compat_form=compat_form))
+    return render(request, 'devhub/addons/ajax_compat_update.html',
+                  dict(addon=addon, version=version, compat_form=compat_form))
 
 
 def _get_addons(request, addons, addon_id, action):
@@ -295,7 +293,7 @@ def feed(request, addon_id=None):
     pager = amo.utils.paginate(request, items, 20)
     data = dict(addons=addon_items, pager=pager, activities=activities,
                 rss=rssurl, addon=addon)
-    return jingo.render(request, 'devhub/addons/activity.html', data)
+    return render(request, 'devhub/addons/activity.html', data)
 
 
 @dev_required(webapp=True)
@@ -317,7 +315,7 @@ def edit(request, addon_id, addon, webapp=False):
         acl.action_allowed(request, 'Addons', 'Configure')):
         data['admin_form'] = forms.AdminForm(instance=addon)
 
-    return jingo.render(request, 'devhub/addons/edit.html', data)
+    return render(request, 'devhub/addons/edit.html', data)
 
 
 @dev_required(theme=True)
@@ -340,12 +338,9 @@ def edit_theme(request, addon_id, addon, theme=False):
         else:
             messages.error(request, _('Please check the form for errors.'))
 
-    return jingo.render(request, 'devhub/personas/edit.html', {
-        'addon': addon,
-        'persona': addon.persona,
-        'form': form,
-        'owner_form': owner_form
-    })
+    return render(request, 'devhub/personas/edit.html', {
+        'addon': addon, 'persona': addon.persona, 'form': form,
+        'owner_form': owner_form})
 
 
 @dev_required(owner_for_post=True, webapp=True, theme=True)
@@ -459,7 +454,7 @@ def ownership(request, addon_id, addon, webapp=False):
         return redirect(addon.get_dev_url('owner'))
 
     ctx.update(addon=addon, webapp=webapp, user_form=user_form)
-    return jingo.render(request, 'devhub/addons/owner.html', ctx)
+    return render(request, 'devhub/addons/owner.html', ctx)
 
 
 @dev_required(owner_for_post=True, webapp=True)
@@ -480,9 +475,9 @@ def _premium(request, addon_id, addon, webapp=False):
         messages.success(request, _('Changes successfully saved.'))
         return redirect(addon.get_dev_url('payments'))
 
-    return jingo.render(request, 'devhub/payments/premium.html',
-                        dict(addon=addon, webapp=webapp, premium=addon.premium,
-                             form=premium_form))
+    return render(request, 'devhub/payments/premium.html',
+                  dict(addon=addon, webapp=webapp, premium=addon.premium,
+                       form=premium_form))
 
 
 def _voluntary(request, addon_id, addon, webapp):
@@ -512,7 +507,7 @@ def _voluntary(request, addon_id, addon, webapp):
     errors = charity_form.errors or contrib_form.errors or profile_form.errors
     if errors:
         messages.error(request, _('There were errors in your submission.'))
-    return jingo.render(request, 'devhub/payments/payments.html',
+    return render(request, 'devhub/payments/payments.html',
         dict(addon=addon, webapp=webapp, errors=errors,
              charity_form=charity_form, contrib_form=contrib_form,
              profile_form=profile_form))
@@ -579,12 +574,9 @@ def issue_refund(request, addon_id, addon, webapp=False):
             messages.success(request, _('Refund declined.'))
         return redirect(addon.get_dev_url('refunds'))
 
-    return jingo.render(request, 'devhub/payments/issue-refund.html',
-                        {'enabled': form_enabled,
-                         'contribution': contribution,
-                         'addon': addon,
-                         'webapp': webapp,
-                         'transaction_id': txn_id})
+    return render(request, 'devhub/payments/issue-refund.html',
+                  {'enabled': form_enabled, 'contribution': contribution,
+                   'addon': addon, 'webapp': webapp, 'transaction_id': txn_id})
 
 
 @waffle_switch('allow-refund')
@@ -601,7 +593,7 @@ def refunds(request, addon_id, addon, webapp=False):
     # For now set the limit to something stupid so this is stupid easy to QA.
     for status, refunds in queues.iteritems():
         ctx[status] = amo.utils.paginate(request, refunds, per_page=5)
-    return jingo.render(request, 'devhub/payments/refunds.html', ctx)
+    return render(request, 'devhub/payments/refunds.html', ctx)
 
 
 @dev_required
@@ -631,9 +623,8 @@ def profile(request, addon_id, addon, webapp=False):
         messages.success(request, _('Changes successfully saved.'))
         return redirect(addon.get_dev_url('profile'))
 
-    return jingo.render(request, 'devhub/addons/profile.html',
-                        dict(addon=addon, webapp=webapp,
-                             profile_form=profile_form))
+    return render(request, 'devhub/addons/profile.html',
+                  dict(addon=addon, webapp=webapp, profile_form=profile_form))
 
 
 @login_required
@@ -647,18 +638,18 @@ def compat_application_versions(request):
 
 @login_required
 def validate_addon(request):
-    return jingo.render(request, 'devhub/validate_addon.html',
-                        {'title': _('Validate Add-on'),
-                         'upload_url': reverse('devhub.standalone_upload')})
+    return render(request, 'devhub/validate_addon.html',
+                  {'title': _('Validate Add-on'),
+                   'upload_url': reverse('devhub.standalone_upload')})
 
 
 @login_required
 def check_addon_compatibility(request):
     form = CheckCompatibilityForm()
-    return jingo.render(request, 'devhub/validate_addon.html',
-                        {'appversion_form': form,
-                         'title': _('Check Add-on Compatibility'),
-                         'upload_url': reverse('devhub.standalone_upload')})
+    return render(request, 'devhub/validate_addon.html',
+                  {'appversion_form': form,
+                   'title': _('Check Add-on Compatibility'),
+                   'upload_url': reverse('devhub.standalone_upload')})
 
 
 @dev_required
@@ -712,16 +703,15 @@ def package_addon(request):
         return redirect('devhub.package_addon_success',
                         basic_data['package_name'])
 
-    return jingo.render(request, 'devhub/package_addon.html',
-                        {'basic_form': basic_form,
-                         'compat_forms': compat_forms,
-                         'features_form': features_form})
+    return render(request, 'devhub/package_addon.html',
+                  {'basic_form': basic_form, 'compat_forms': compat_forms,
+                   'features_form': features_form})
 
 
 def package_addon_success(request, package_name):
     """Return the success page for the add-on packager."""
-    return jingo.render(request, 'devhub/package_addon_success.html',
-                        {'package_name': package_name})
+    return render(request, 'devhub/package_addon_success.html',
+                  {'package_name': package_name})
 
 
 @json_view
@@ -894,10 +884,9 @@ def file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
 
     v = reverse('devhub.json_file_validation', args=[addon.slug, file.id])
-    return jingo.render(request, 'devhub/validation.html',
-                        dict(validate_url=v, filename=file.filename,
-                             timestamp=file.created,
-                             addon=addon))
+    return render(request, 'devhub/validation.html',
+                  dict(validate_url=v, filename=file.filename,
+                       timestamp=file.created, addon=addon))
 
 
 @dev_required(allow_editors=True)
@@ -927,16 +916,12 @@ def _compat_result(request, revalidate_url, target_app, target_version,
     for app, ver in ff_versions:
         major = ver.split('.')[0]  # 4.0b3 -> 4
         change_links['%s %s' % (amo.APP_IDS[app].guid, ver)] = tpl % major
-    return jingo.render(request, 'devhub/validation.html',
-                        dict(validate_url=revalidate_url,
-                             filename=validated_filename,
-                             timestamp=validated_ts,
-                             target_app=target_app,
-                             target_version=target_version,
-                             addon=for_addon,
-                             result_type='compat',
-                             app_trans=app_trans,
-                             version_change_links=change_links))
+    return render(request, 'devhub/validation.html',
+                  dict(validate_url=revalidate_url,
+                       filename=validated_filename, timestamp=validated_ts,
+                       target_app=target_app, target_version=target_version,
+                       addon=for_addon, result_type='compat',
+                       app_trans=app_trans, version_change_links=change_links))
 
 
 @json_view
@@ -1061,9 +1046,9 @@ def upload_detail(request, uuid, format='html'):
         return _compat_result(request, validate_url,
                               upload.compat_with_app,
                               upload.compat_with_appver)
-    return jingo.render(request, 'devhub/validation.html',
-                        dict(validate_url=validate_url, filename=upload.name,
-                             timestamp=upload.created))
+    return render(request, 'devhub/validation.html',
+                  dict(validate_url=validate_url, filename=upload.name,
+                       timestamp=upload.created))
 
 
 class AddonDependencySearch(BaseAjaxSearch):
@@ -1174,8 +1159,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'dependency_form': dependency_form,
             'valid_slug': valid_slug}
 
-    return jingo.render(request,
-                        'devhub/addons/edit/%s.html' % section, data)
+    return render(request, 'devhub/addons/edit/%s.html' % section, data)
 
 
 @never_cache
@@ -1315,7 +1299,7 @@ def version_edit(request, addon_id, addon, version_id):
 
     data.update(addon=addon, version=version, new_file_form=new_file_form,
                 file_history=file_history, is_admin=is_admin)
-    return jingo.render(request, 'devhub/versions/edit.html', data)
+    return render(request, 'devhub/versions/edit.html', data)
 
 
 def _log_max_version_change(addon, version, appversion):
@@ -1405,8 +1389,8 @@ def version_add_file(request, addon_id, addon, version_id):
     check_validation_override(request, form, addon, new_file.version)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
-    return jingo.render(request, 'devhub/includes/version_file.html',
-                        {'form': form[0], 'addon': addon})
+    return render(request, 'devhub/includes/version_file.html',
+                  {'form': form[0], 'addon': addon})
 
 
 @dev_required(webapp=True)
@@ -1423,7 +1407,7 @@ def version_list(request, addon_id, addon, webapp=False):
             'position': get_position(addon),
             'timestamp': int(time.time()),
             'is_admin': is_admin}
-    return jingo.render(request, 'devhub/versions/list.html', data)
+    return render(request, 'devhub/versions/list.html', data)
 
 
 @dev_required
@@ -1501,8 +1485,8 @@ def submit(request, step, webapp=False):
         response.set_cookie(DEV_AGREEMENT_COOKIE)
         return response
 
-    return jingo.render(request, 'devhub/addons/submit/start.html',
-                        {'step': step, 'webapp': webapp})
+    return render(request, 'devhub/addons/submit/start.html',
+                  {'step': step, 'webapp': webapp})
 
 
 @login_required
@@ -1532,9 +1516,9 @@ def submit_addon(request, step, webapp=False):
             return redirect(_step_url(3, webapp), addon.slug)
     template = 'upload_webapp.html' if webapp else 'upload.html'
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
-    return jingo.render(request, 'devhub/addons/submit/%s' % template,
-            {'step': step, 'webapp': webapp, 'new_addon_form': form,
-             'is_admin': is_admin})
+    return render(request, 'devhub/addons/submit/%s' % template,
+                  {'step': step, 'webapp': webapp, 'new_addon_form': form,
+                   'is_admin': is_admin})
 
 
 @dev_required(webapp=True)
@@ -1550,9 +1534,9 @@ def submit_describe(request, addon_id, addon, step, webapp=False):
         cat_form.save()
         SubmitStep.objects.filter(addon=addon).update(step=4)
         return redirect(_step_url(4, webapp), addon.slug)
-    return jingo.render(request, 'devhub/addons/submit/describe.html',
-                        {'form': form, 'cat_form': cat_form, 'addon': addon,
-                         'step': step, 'webapp': addon.is_webapp()})
+    return render(request, 'devhub/addons/submit/describe.html',
+                  {'form': form, 'cat_form': cat_form, 'addon': addon,
+                   'step': step, 'webapp': addon.is_webapp()})
 
 
 @dev_required(webapp=True)
@@ -1580,10 +1564,9 @@ def submit_media(request, addon_id, addon, step, webapp=False):
 
         return redirect(_step_url(5, webapp), addon.slug)
 
-    return jingo.render(request, 'devhub/addons/submit/media.html',
-                        {'form': form_icon, 'addon': addon, 'step': step,
-                         'preview_form': form_previews,
-                         'webapp': addon.is_webapp()})
+    return render(request, 'devhub/addons/submit/media.html',
+                  {'form': form_icon, 'addon': addon, 'step': step,
+                   'preview_form': form_previews, 'webapp': addon.is_webapp()})
 
 
 @dev_required(webapp=True)
@@ -1606,7 +1589,7 @@ def submit_license(request, addon_id, addon, step, webapp=False):
         return redirect('devhub.submit.6', addon.slug)
     ctx.update(addon=addon, policy_form=policy_form, step=step,
                webapp=addon.is_webapp())
-    return jingo.render(request, 'devhub/addons/submit/license.html', ctx)
+    return render(request, 'devhub/addons/submit/license.html', ctx)
 
 
 @dev_required
@@ -1624,9 +1607,9 @@ def submit_select_review(request, addon_id, addon, step):
         signals.submission_done.send(sender=addon)
         return redirect('devhub.submit.7', addon.slug)
 
-    return jingo.render(request, 'devhub/addons/submit/select-review.html',
-                        {'addon': addon, 'review_type_form': review_type_form,
-                         'step': step})
+    return render(request, 'devhub/addons/submit/select-review.html',
+                  {'addon': addon, 'review_type_form': review_type_form,
+                   'step': step})
 
 
 @dev_required(webapp=True)
@@ -1660,10 +1643,9 @@ def submit_done(request, addon_id, addon, step, webapp=False):
             }
             tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
-    return jingo.render(request, 'devhub/addons/submit/done.html',
-                        {'addon': addon, 'step': step,
-                         'webapp': addon.is_webapp(),
-                         'is_platform_specific': is_platform_specific})
+    return render(request, 'devhub/addons/submit/done.html',
+                  {'addon': addon, 'step': step, 'webapp': addon.is_webapp(),
+                   'is_platform_specific': is_platform_specific})
 
 
 @dev_required
@@ -1694,8 +1676,8 @@ def submit_bump(request, addon_id, addon, webapp=False):
             step = SubmitStep(addon=addon, step=new_step)
         step.save()
         return redirect(_step_url('bump', webapp), addon.slug)
-    return jingo.render(request, 'devhub/addons/submit/bump.html',
-                        dict(addon=addon, step=step))
+    return render(request, 'devhub/addons/submit/bump.html',
+                  dict(addon=addon, step=step))
 
 
 @login_required
@@ -1721,16 +1703,15 @@ def submit_theme(request):
             messages.error(request, _('Please check the form for errors.'))
             request.session['unsaved_data'] = data['unsaved_data']
 
-    return jingo.render(request, 'devhub/personas/submit.html',
-                        dict(form=form))
+    return render(request, 'devhub/personas/submit.html', dict(form=form))
 
 
 @dev_required(theme=True)
 def submit_theme_done(request, addon_id, addon, theme):
     if addon.is_public():
         return redirect(addon.get_url_path())
-    return jingo.render(request, 'devhub/personas/submit_done.html',
-                        dict(addon=addon))
+    return render(request, 'devhub/personas/submit_done.html',
+                  dict(addon=addon))
 
 
 @dev_required(theme=True)
@@ -1786,8 +1767,8 @@ def admin(request, addon):
     form = forms.AdminForm(request, request.POST or None, instance=addon)
     if form.is_valid():
         form.save()
-    return jingo.render(request, 'devhub/addons/edit/admin.html',
-                        {'addon': addon, 'admin_form': form})
+    return render(request, 'devhub/addons/edit/admin.html',
+                  {'addon': addon, 'admin_form': form})
 
 
 def docs(request, doc_name=None, doc_page=None):
@@ -1811,11 +1792,11 @@ def docs(request, doc_name=None, doc_page=None):
     if not filename:
         return redirect('devhub.index')
 
-    return jingo.render(request, 'devhub/docs/%s' % filename)
+    return render(request, 'devhub/docs/%s' % filename)
 
 
 def builder(request):
-    return jingo.render(request, 'devhub/builder.html')
+    return render(request, 'devhub/builder.html')
 
 
 @json_view
@@ -1834,4 +1815,4 @@ def check_paypal(request):
 
 def search(request):
     query = request.GET.get('q', '')
-    return jingo.render(request, 'devhub/devhub_search.html', {'query': query})
+    return render(request, 'devhub/devhub_search.html', {'query': query})

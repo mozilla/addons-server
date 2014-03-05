@@ -44,5 +44,5 @@ def progress(request, addon, step):
         completed = ['terms']
 
     c = dict(steps=steps, current=step, completed=completed)
-    t = env.get_template('submit/helpers/progress.html').render(**c)
+    t = env.get_template('submit/helpers/progress.html').render(c)
     return jinja2.Markup(t)

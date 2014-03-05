@@ -1,8 +1,8 @@
 import json
 from jinja2 import Markup
 
-import jingo
 from django.http import HttpResponsePermanentRedirect, HttpResponseNotFound
+from django.shortcuts import render
 from amo.utils import urlparams
 
 
@@ -179,7 +179,6 @@ def install(request):
     if 'hash' in addon:
         addon_params['Hash'] = addon['hash']
     referrers = ' || '.join(addon.get('referrers', default_referrers))
-    return jingo.render(request, 'services/install.html',
-                        {'referrers': referrers,
-                         'params': json.dumps({'name': addon_params}),
-                         'addon': addon})
+    return render(request, 'services/install.html',
+                  {'referrers': referrers, 'addon': addon,
+                   'params': json.dumps({'name': addon_params})})

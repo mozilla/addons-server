@@ -64,8 +64,8 @@
           <p>
           {# L10n: For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior #}
             {% set dt = _('%Y-%m-%d') %}
-            {{ _('by {0} on {1}')|f(users_list(addon.listed_authors) or persona.display_username,
-                                    addon.created|datetime(dt))|safe }}
+            {{ _('by {0} on {1}')|f(users_list(addon.listed_authors)|safe or persona.display_username|safe,
+                                    addon.created|datetime(dt)) }}
           </p>
           {% if addon.total_reviews %}
             <a href="{{ shared_url('reviews.list', addon) }}">
@@ -75,7 +75,7 @@
             <span>{{ _('Not yet rated') }}</span>
           {% endif %}
           <span class="users">
-            {{ _('<b>{0}</b> users')|f(addon.persona.popularity|numberfmt)|safe }}
+            {{ _('<b>{0}</b> users')|f(addon.persona.popularity|numberfmt) }}
           </span>
         </div>
       {% endif %}

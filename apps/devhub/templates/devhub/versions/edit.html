@@ -60,7 +60,7 @@
                 </table>
                 {% if check_addon_ownership(request, addon, dev=True) %}
                   <p class="add-app{% if not compat_form.extra_forms %} hide{% endif %}">
-                    <a href="#">{{ _('Add Another Application&hellip;')|safe }}</a>
+                    <a href="#">{{ _('Add Another Application&hellip;') }}</a>
                   </p>
                   <div class="new-apps"></div>
                 {% endif %}

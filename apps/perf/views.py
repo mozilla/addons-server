@@ -1,10 +1,9 @@
 from django import http
 from django.conf import settings
 from django.db.models import Avg
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_list_or_404, render
 from django.views.decorators.cache import cache_control
 
-import jingo
 import redisutils
 
 import amo
@@ -17,7 +16,7 @@ from .models import Performance, PerformanceOSVersion
 @cache_control(max_age=60 * 60 * 24)  # Cache for a day.
 def index(request):
     if settings.PERFORMANCE_NOTES == False:
-        return jingo.render(request, 'perf/index.html', {'addons': []})
+        return render(request, 'perf/index.html', {'addons': []})
     # By default don't show less than 25; bug 647398
     threshold = Performance.get_threshold()
 
@@ -39,4 +38,4 @@ def index(request):
             show_os=any(os_perf.values()),
         )
 
-    return jingo.render(request, 'perf/index.html', ctx)
+    return render(request, 'perf/index.html', ctx)
