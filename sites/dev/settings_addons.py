@@ -6,12 +6,12 @@ from settings_base import *
 
 import private_addons
 
-DOMAIN = 'addons-dev.allizom.org'
+DOMAIN = getattr(private_addons, 'DOMAIN', 'addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
 
-SITE_URL = 'https://addons-dev.allizom.org'
+SITE_URL = getattr(private_addons, 'SITE_URL', 'https://' + DOMAIN)
 SERVICES_URL = SITE_URL
-STATIC_URL = 'https://addons-dev-cdn.allizom.org/'
+STATIC_URL = getattr(private_addons, 'STATIC_URL', 'https://addons-dev-cdn.allizom.org/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = STATIC_URL + 'storage/public-staging'
 
