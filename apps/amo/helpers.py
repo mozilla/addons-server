@@ -12,10 +12,13 @@ from django.utils import translation
 from django.utils.encoding import smart_unicode
 from django.template import defaultfilters
 
-from babel.support import Format
 import caching.base as caching
 import jinja2
+import six
+from babel.support import Format
 from jingo import register, env
+# Needed to make sure our own |f filter overrides jingo's one.
+from jingo import helpers  # noqa
 from tower import ugettext as _, strip_whitespace
 
 import amo
@@ -602,3 +605,16 @@ def no_results_amo():
     # This prints a "No results found" message. That's all. Carry on.
     t = env.get_template('amo/no_results.html').render()
     return jinja2.Markup(t)
+
+
+@register.filter
+def f(string, *args, **kwargs):
+    """This overrides jingo.helpers.f to convert input to unicode if needed.
+
+    This is needed because of
+    https://github.com/jbalogh/jingo/pull/54#issuecomment-36728948
+
+    """
+    if not isinstance(string, six.text_type):
+        string = six.text_type(string)
+    return string.format(*args, **kwargs)
