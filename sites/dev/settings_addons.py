@@ -43,14 +43,14 @@ ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/addon-icons'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 
 
-CACHE_PREFIX = 'dev.%s' % CACHE_PREFIX
+CACHE_PREFIX = 'dev.olympia.%s' % CACHE_PREFIX
 KEY_PREFIX = CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-SYSLOG_TAG = "http_app_addons_dev"
-SYSLOG_TAG2 = "http_app_addons_dev_timer"
-SYSLOG_CSP = "http_app_addons_dev_csp"
+SYSLOG_TAG = "http_app_addons_olympia_dev"
+SYSLOG_TAG2 = "http_app_addons_olympia_dev_timer"
+SYSLOG_CSP = "http_app_addons_olympia_dev_csp"
 
 # sandbox
 PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
@@ -88,7 +88,7 @@ HEKA_CONF = {
         'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
         'port': private.HEKA_CONF_SENDER_PORT,
     },
-    'logger': 'addons-dev',
+    'logger': 'addons-olympia-dev',
 }
 
 HEKA = client_from_dict_config(HEKA_CONF)
@@ -99,4 +99,4 @@ USE_HEKA_FOR_TASTYPIE = False
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
 if NEWRELIC_ENABLE:
-    NEWRELIC_INI = '/etc/newrelic.d/addons-dev.allizom.org.ini'
+    NEWRELIC_INI = '/etc/newrelic.d/addons-olympia-dev.allizom.org.ini'
