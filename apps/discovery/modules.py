@@ -338,3 +338,8 @@ class Featured(CollectionPromo):
     title = _(u'Featured Add-ons')
     subtitle = _(u'Great add-ons for work, fun, privacy, productivity&hellip; '
                   'just about anything!')
+
+
+class AustralisContest(TemplatePromo):
+    slug = 'Australis Contest'
+    template = 'discovery/modules/australis-contest.html'

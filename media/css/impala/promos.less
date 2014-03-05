@@ -754,3 +754,61 @@
   font-style: normal;
   font-weight: 400;
 }
+@font-face {
+    font-family: 'MetaBlack';
+    src: url(../../css/impala/fonts/MetaWebPro-Black.woff) format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+#promos #australis-contest {
+    background: url(../../img/zamboni/discovery_pane/promos/australis-contest-bg.jpg) 50% 50% no-repeat;
+    .border-box();
+    color: #fff;
+    height: 271px;
+    text-align: center;
+
+    h2 {
+        color: #F6F29D;
+        font-size: 26px;
+        font-weight: normal;
+        margin-top: 54px;
+        text-shadow: none;
+    }
+
+    hgroup {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: #F6F29D;
+        margin: -80px -200px;  /* large click target */
+        padding: 80px 200px;
+        position: relative;
+        text-decoration: none;
+        text-shadow: none;
+
+        &:after {
+            content: " »";
+        }
+    }
+
+    p {
+        font-weight: bold;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 420px;
+        text-transform: uppercase;
+    }
+
+    p.subtitle {
+        font-family: MetaBlack;
+        font-size: 33px;
+        font-style: normal;
+        letter-spacing: 0.06em;
+        line-height: 1em;
+        margin-top: -2px;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    }
+}
