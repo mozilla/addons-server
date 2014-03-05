@@ -22,10 +22,12 @@ CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
 CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
 
 ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-        'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-        'img/uploads/previews/full/%s/%d.png?modified=%d')
+PREVIEW_THUMBNAIL_URL = (
+    STATIC_URL +
+    'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+PREVIEW_FULL_URL = (
+    STATIC_URL +
+    'img/uploads/previews/full/%s/%d.png?modified=%d')
 NEW_PERSONAS_IMAGE_URL = STATIC_URL + 'img/uploads/themes/%(id)d/%(file)s'
 
 # paths for uploaded extensions
@@ -65,9 +67,10 @@ PAYPAL_EMBEDDED_AUTH = {
     'PASSWORD': private_addons.PAYPAL_EMBEDDED_AUTH_PASSWORD,
     'SIGNATURE': private_addons.PAYPAL_EMBEDDED_AUTH_SIGNATURE,
 }
-PAYPAL_CGI_AUTH = { 'USER': private_addons.PAYPAL_CGI_AUTH_USER,
-                    'PASSWORD': private_addons.PAYPAL_CGI_AUTH_PASSWORD,
-                    'SIGNATURE': private_addons.PAYPAL_CGI_AUTH_SIGNATURE,
+PAYPAL_CGI_AUTH = {
+    'USER': private_addons.PAYPAL_CGI_AUTH_USER,
+    'PASSWORD': private_addons.PAYPAL_CGI_AUTH_PASSWORD,
+    'SIGNATURE': private_addons.PAYPAL_CGI_AUTH_SIGNATURE,
 }
 
 PAYPAL_CHAINS = (
@@ -81,8 +84,7 @@ LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 HEKA_CONF = {
-    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {}),
-        },
+    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {})},
     'stream': {
         'class': 'heka.streams.UdpStream',
         'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
