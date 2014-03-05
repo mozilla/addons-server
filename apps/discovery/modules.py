@@ -338,8 +338,3 @@ class Featured(CollectionPromo):
     title = _(u'Featured Add-ons')
     subtitle = _(u'Great add-ons for work, fun, privacy, productivity&hellip; '
                   'just about anything!')
-
-
-class AmpYourFirefoxWinner(CollectionPromo):
-    slug = 'Amp Your Firefox Best Overall Add-on'
-    template = 'discovery/modules/amp-your-firefox-winner.html'
