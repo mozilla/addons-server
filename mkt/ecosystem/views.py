@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 import basket
 import commonware.log
-import jingo
 from session_csrf import anonymous_csrf
 from tower import ugettext as _
 
@@ -61,50 +60,49 @@ def landing(request):
                 request, _('We apologize, but an error occurred in our '
                            'system. Please try again later.'))
 
-    return jingo.render(request, 'ecosystem/landing.html',
-        {'videos': videos, 'newsletter_form': form})
+    return render(request, 'ecosystem/landing.html',
+                  {'videos': videos, 'newsletter_form': form})
 
 
 def support(request):
     """Landing page for support."""
-    return jingo.render(request, 'ecosystem/support.html',
-        {'page': 'support', 'category': 'build'})
+    return render(request, 'ecosystem/support.html',
+                  {'page': 'support', 'category': 'build'})
 
 
 def partners(request):
     """Landing page for partners."""
-    return jingo.render(request, 'ecosystem/partners.html',
-        {'page': 'partners'})
+    return render(request, 'ecosystem/partners.html', {'page': 'partners'})
 
 
 def installation(request):
     """Landing page for installation."""
-    return jingo.render(request, 'ecosystem/installation.html',
-        {'page': 'installation', 'category': 'publish'})
+    return render(request, 'ecosystem/installation.html',
+                  {'page': 'installation', 'category': 'publish'})
 
 
 def dev_phone(request):
     """Landing page for the developer phone."""
-    return jingo.render(request, 'ecosystem/dev_phone.html',
-        {'page': 'dev_phone'})
+    return render(request, 'ecosystem/dev_phone.html',
+                  {'page': 'dev_phone'})
 
 
 def design_ui(request):
     """Design - UI Guidelines page."""
-    return jingo.render(request, 'ecosystem/design_ui.html',
-        {'page': 'design_ui', 'category': 'design'})
+    return render(request, 'ecosystem/design_ui.html',
+                  {'page': 'design_ui', 'category': 'design'})
 
 
 def publish_deploy(request):
     """Publish - Deploying your app page."""
-    return jingo.render(request, 'ecosystem/publish_deploy.html',
-        {'page': 'publish_deploy', 'category': 'publish'})
+    return render(request, 'ecosystem/publish_deploy.html',
+                  {'page': 'publish_deploy', 'category': 'publish'})
 
 
 def publish_badges(request):
     """Publish - Marketplace badges."""
-    return jingo.render(request, 'ecosystem/publish_badges.html',
-        {'page': 'badges', 'category': 'publish'})
+    return render(request, 'ecosystem/publish_badges.html',
+                  {'page': 'badges', 'category': 'publish'})
 
 
 def apps_documentation(request, page=None):
@@ -243,5 +241,4 @@ def apps_documentation(request, page=None):
         'custom_elements_libs': custom_elements_libs
     }
 
-    return jingo.render(request, ('ecosystem/reference_apps/%s.html' % page),
-           ctx)
+    return render(request, ('ecosystem/reference_apps/%s.html' % page), ctx)

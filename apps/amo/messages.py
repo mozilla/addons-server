@@ -17,7 +17,7 @@ def _make_message(title=None, message=None, title_safe=False,
                                             message_safe=False):
     c = {'title': title, 'message': message,
          'title_safe': title_safe, 'message_safe': message_safe}
-    t = env.get_template('message_content.html').render(**c)
+    t = env.get_template('message_content.html').render(c)
     return jinja2.Markup(t)
 
 

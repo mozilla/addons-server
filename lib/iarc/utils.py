@@ -31,7 +31,7 @@ def render_xml(template, context):
     context['platform'] = settings.IARC_PLATFORM
 
     template = env.get_template(template)
-    return template.render(**context)
+    return template.render(context)
 
 
 def get_iarc_app_title(app):

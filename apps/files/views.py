@@ -2,12 +2,12 @@ from urlparse import urljoin
 
 from django import http, shortcuts
 from django.conf import settings
+from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
 
 import commonware.log
-import jingo
 import waffle
 from cache_nuggets.lib import Message, Token
 
@@ -109,7 +109,7 @@ def browse(request, viewer, key=None, type='file'):
 
     tmpl = ('files/content.html' if type == 'fragment'
                                  else 'files/viewer.html')
-    return jingo.render(request, tmpl, data)
+    return render(request, tmpl, data)
 
 
 @never_cache
@@ -166,7 +166,7 @@ def compare(request, diff, key=None, type='file'):
 
     tmpl = ('files/content.html' if type == 'fragment'
                                  else 'files/viewer.html')
-    return jingo.render(request, tmpl, data)
+    return render(request, tmpl, data)
 
 
 @file_view

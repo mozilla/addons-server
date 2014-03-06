@@ -1,4 +1,5 @@
-import jingo
+from django.shortcuts import render
+
 import paypal
 
 
@@ -12,8 +13,8 @@ def handle_paypal_error(fn):
         except paypal.PaypalError:
             # This is specific handling for the submission step.
             dest = request.GET.get('dest')
-            return jingo.render(request, 'site/500_paypal.html',
-                                {'submission': dest == 'submission',
-                                 'addon': kw.get('addon', None)},
-                                status=500)
+            return render(request, 'site/500_paypal.html',
+                          {'submission': dest == 'submission',
+                           'addon': kw.get('addon', None)},
+                          status=500)
     return wrapper

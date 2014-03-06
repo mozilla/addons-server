@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.template import loader
 from django.template.response import SimpleTemplateResponse
 
@@ -18,7 +19,7 @@ def jinja_for_django(template_name, context=None, **kw):
     request = context_instance['request']
     for d in context_instance.dicts:
         context.update(d)
-    return jingo.render(request, template_name, context, **kw)
+    return render(request, template_name, context, **kw)
 
 
 # We monkeypatch SimpleTemplateResponse.rendered_content to use our jinja
@@ -38,6 +39,10 @@ def rendered_content(self):
         if 'media' in self.context_data:
             del self.context_data['media']
 
+    # ``render_to_string`` only accepts a Template instance or a template name,
+    # not a list.
+    if isinstance(template, (list, tuple)):
+        template = loader.select_template(template)
     return jingo.render_to_string(request, template, self.context_data)
 
 SimpleTemplateResponse.rendered_content = property(rendered_content)

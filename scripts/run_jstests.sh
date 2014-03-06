@@ -80,6 +80,9 @@ ADDONS_PATH = '/tmp/warez'
 INSTALLED_APPS += (
     'django_qunit',
 )
+JINGO_EXCLUDE_APPS += (
+    'qunit',
+)
 
 SETTINGS
 

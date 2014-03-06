@@ -1,11 +1,10 @@
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import Context, loader
 
 import commonware.log
-import jingo
 from tower import ugettext as _
 from mobility.decorators import mobile_template
 from waffle.decorators import waffle_switch
@@ -79,7 +78,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
         ctx['flags'] = get_flags(request, reviews.object_list)
     else:
         ctx['review_perms'] = {}
-    return jingo.render(request, template, ctx)
+    return render(request, template, ctx)
 
 
 def get_flags(request, reviews):
@@ -215,7 +214,7 @@ def reply(request, addon, review_id):
 
         return redirect(shared_url('reviews.detail', addon, review_id))
     ctx = dict(review=review, form=form, addon=addon)
-    return jingo.render(request, 'reviews/reply.html', ctx)
+    return render(request, 'reviews/reply.html', ctx)
 
 
 @addon_view
@@ -254,7 +253,7 @@ def add(request, addon, template=None):
                   emails, Context(data), 'new_review')
 
         return redirect(shared_url('reviews.list', addon))
-    return jingo.render(request, template, dict(addon=addon, form=form))
+    return render(request, template, dict(addon=addon, form=form))
 
 
 @addon_view
@@ -313,6 +312,5 @@ def spam(request):
                                              for review in bucket)
     for addon in Addon.objects.no_cache().filter(id__in=reviews):
         reviews[addon.id].addon = addon
-    return jingo.render(request, 'reviews/spam.html',
-                        dict(buckets=buckets,
-                             review_perms=dict(is_admin=True)))
+    return render(request, 'reviews/spam.html',
+                  dict(buckets=buckets, review_perms=dict(is_admin=True)))

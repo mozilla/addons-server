@@ -7,11 +7,9 @@ import time
 
 from django.core.cache import cache
 from django.db.models import Q, signals as db_signals
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.utils.cache import patch_cache_control
 from django.utils.encoding import smart_str
-
-import jingo
 
 from amo.utils import sorted_groupby
 from amo.tasks import flush_front_end_cache_urls
@@ -59,8 +57,8 @@ def _blocklist(request, apiver, app, appver):
     last_update = int(time.mktime(last_update.timetuple()) * 1000)
     data = dict(items=items, plugins=plugins, gfxs=gfxs, apiver=apiver,
                 appguid=app, appver=appver, last_update=last_update, cas=cas)
-    return jingo.render(request, 'blocklist/blocklist.xml', data,
-                        content_type='text/xml')
+    return render(request, 'blocklist/blocklist.xml', data,
+                  content_type='text/xml')
 
 
 def clear_blocklist(*args, **kw):
@@ -131,13 +129,11 @@ def blocked_list(request, apiver=3):
     app = request.APP.guid
     objs = get_items(apiver, app)[1].values() + get_plugins(apiver, app)
     items = sorted(objs, key=attrgetter('created'), reverse=True)
-    return jingo.render(request, 'blocklist/blocked_list.html',
-                        {'items': items})
+    return render(request, 'blocklist/blocked_list.html', {'items': items})
 
 
 # The id is prefixed with [ip] so we know which model to use.
 def blocked_detail(request, id):
     bltypes = dict((m._type, m) for m in (BlocklistItem, BlocklistPlugin))
     item = get_object_or_404(bltypes[id[0]], details=id[1:])
-    return jingo.render(request, 'blocklist/blocked_detail.html',
-                        {'item': item})
+    return render(request, 'blocklist/blocked_detail.html', {'item': item})

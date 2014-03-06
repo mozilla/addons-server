@@ -23,7 +23,7 @@ from versions.models import License
 
 def render(s, context={}):
     t = jingo.env.from_string(s)
-    return t.render(**context)
+    return t.render(context)
 
 
 def test_strip_html():
@@ -438,3 +438,9 @@ def test_timesince():
     month_ago = datetime.now() - timedelta(days=30)
     eq_(helpers.timesince(month_ago), u'1 month ago')
     eq_(helpers.timesince(None), u'')
+
+
+def test_f():
+    # This makes sure there's no UnicodeEncodeError when doing the string
+    # interpolation.
+    eq_(render(u'{{ "foo {0}"|f("baré") }}'), u'foo baré')
