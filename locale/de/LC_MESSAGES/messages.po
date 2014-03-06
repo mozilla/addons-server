@@ -15810,7 +15810,7 @@ msgstr "Sex"
 
 #: mkt/constants/ratingdescriptors.py:20 mkt/constants/ratingdescriptors.py:58 mkt/constants/ratingdescriptors.py:105
 msgid "Sexual Content"
-msgstr "Erotik/ sexuelle Inhalte"
+msgstr "Erotik / Sexuelle Inhalte"
 
 #: mkt/constants/ratingdescriptors.py:21
 msgid "Explicit Sex"
@@ -16015,15 +16015,15 @@ msgstr "Ängstigender Inhalt"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
-msgstr "Interaktion zwischen Nutzern"
+msgstr "Nutzerinteraktion"
 
 #: mkt/constants/ratinginteractives.py:15
 msgid "Shares Info"
-msgstr "Weitergabe von Daten"
+msgstr "Datenweitergabe"
 
 #: mkt/constants/ratinginteractives.py:18
 msgid "Shares Location"
-msgstr "Weitergabe des Standortes"
+msgstr "Standortweitergabe"
 
 #: mkt/constants/ratinginteractives.py:21
 msgid "Digital Purchases"
@@ -16073,23 +16073,23 @@ msgstr "Gremium für Selbstkontrolle von Unterhaltungs-Software"
 
 #: mkt/constants/ratingsbodies.py:217
 msgid "Everyone"
-msgstr "Alle"
+msgstr "ab 0 Jahren"
 
 #: mkt/constants/ratingsbodies.py:225
 msgid "Everyone 10+"
-msgstr "Alle über 10+"
+msgstr "ab 10 Jahren"
 
 #: mkt/constants/ratingsbodies.py:232
 msgid "Teen"
-msgstr "Jugendliche"
+msgstr "ab 12 Jahren"
 
 #: mkt/constants/ratingsbodies.py:239
 msgid "Mature 17+"
-msgstr "Ältere Jugendliche 17+"
+msgstr "ab 17 Jahren"
 
 #: mkt/constants/ratingsbodies.py:246
 msgid "Adults Only 18+"
-msgstr "Nur Erwachsene 18+"
+msgstr "ab 18 Jahren"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
