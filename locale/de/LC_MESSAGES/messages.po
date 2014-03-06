@@ -15986,7 +15986,7 @@ msgstr "Online"
 
 #: mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:88
 msgid "Fear"
-msgstr "�ngstigende Inhalte"
+msgstr "Ängstigende Inhalte"
 
 #: mkt/constants/ratingdescriptors.py:94
 msgid "Social Interaction Functionality"
@@ -16027,7 +16027,7 @@ msgstr "Standortweitergabe"
 
 #: mkt/constants/ratinginteractives.py:21
 msgid "Digital Purchases"
-msgstr "Onlinekäuf"
+msgstr "Onlinekäufe"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "General Audiences"
@@ -16053,7 +16053,7 @@ msgstr "Für alle Altersgruppen"
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:13
 msgid "For ages %d+"
-msgstr "Für Benutzer ab %d Jahren"
+msgstr "ab %d Jahren"
 
 #: mkt/constants/ratingsbodies.py:14
 msgid "Rating Rejected"
