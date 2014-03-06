@@ -168,7 +168,7 @@ class TestDecorators(amo.tests.TestCase):
     def get_request(self, url):
         self.request = RequestFactory().get(url)
 
-    @patch('jingo.render')
+    @patch('paypal.decorators.render')
     def test_caught(self, render):
         self.func.side_effect = PaypalError
         view = handle_paypal_error(self.func)
@@ -181,7 +181,7 @@ class TestDecorators(amo.tests.TestCase):
         view = handle_paypal_error(self.func)
         self.assertRaises(ZeroDivisionError, view, self.request)
 
-    @patch('jingo.render')
+    @patch('paypal.decorators.render')
     def test_submission(self, render):
         self.get_request('/?dest=submission')
         self.func.side_effect = PaypalError

@@ -1,8 +1,7 @@
 from collections import defaultdict
 
 from django.conf import settings
-
-import jingo
+from django.shortcuts import render
 
 from devhub.models import ActivityLog
 from users.models import UserProfile
@@ -62,4 +61,4 @@ def credits(request):
         'reviewers': reviewers,
     }
 
-    return jingo.render(request, 'pages/credits.html', context)
+    return render(request, 'pages/credits.html', context)

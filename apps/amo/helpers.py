@@ -12,10 +12,13 @@ from django.utils import translation
 from django.utils.encoding import smart_unicode
 from django.template import defaultfilters
 
-from babel.support import Format
 import caching.base as caching
 import jinja2
+import six
+from babel.support import Format
 from jingo import register, env
+# Needed to make sure our own |f filter overrides jingo's one.
+from jingo import helpers  # noqa
 from tower import ugettext as _, strip_whitespace
 
 import amo
@@ -142,20 +145,20 @@ def paginator(pager):
 @register.filter
 def impala_paginator(pager):
     t = env.get_template('amo/impala/paginator.html')
-    return jinja2.Markup(t.render(pager=pager))
+    return jinja2.Markup(t.render({'pager': pager}))
 
 
 @register.filter
 def mobile_paginator(pager):
     t = env.get_template('amo/mobile/paginator.html')
-    return jinja2.Markup(t.render(pager=pager))
+    return jinja2.Markup(t.render({'pager': pager}))
 
 
 @register.filter
 def mobile_impala_paginator(pager):
     # Impala-style paginator that is easier to mobilefy.
     t = env.get_template('amo/mobile/impala_paginator.html')
-    return jinja2.Markup(t.render(pager=pager))
+    return jinja2.Markup(t.render({'pager': pager}))
 
 
 @register.function
@@ -227,7 +230,7 @@ class Paginator(object):
     def render(self):
         c = {'pager': self.pager, 'num_pages': self.num_pages,
              'count': self.count}
-        t = env.get_template('amo/paginator.html').render(**c)
+        t = env.get_template('amo/paginator.html').render(c)
         return jinja2.Markup(t)
 
 
@@ -305,7 +308,7 @@ def breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
 
     crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
     c = {'breadcrumbs': crumbs}
-    t = env.get_template('amo/breadcrumbs.html').render(**c)
+    t = env.get_template('amo/breadcrumbs.html').render(c)
     return jinja2.Markup(t)
 
 
@@ -334,7 +337,7 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
 
     crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
     c = {'breadcrumbs': crumbs, 'has_home': add_default}
-    t = env.get_template('amo/impala/breadcrumbs.html').render(**c)
+    t = env.get_template('amo/impala/breadcrumbs.html').render(c)
     return jinja2.Markup(t)
 
 
@@ -409,7 +412,7 @@ def license_link(license):
     if not getattr(license, 'builtin', True):
         return _('Custom License')
 
-    t = env.get_template('amo/license_link.html').render(license=license)
+    t = env.get_template('amo/license_link.html').render({'license': license})
     return jinja2.Markup(t)
 
 
@@ -602,3 +605,16 @@ def no_results_amo():
     # This prints a "No results found" message. That's all. Carry on.
     t = env.get_template('amo/no_results.html').render()
     return jinja2.Markup(t)
+
+
+@register.filter
+def f(string, *args, **kwargs):
+    """This overrides jingo.helpers.f to convert input to unicode if needed.
+
+    This is needed because of
+    https://github.com/jbalogh/jingo/pull/54#issuecomment-36728948
+
+    """
+    if not isinstance(string, six.text_type):
+        string = six.text_type(string)
+    return string.format(*args, **kwargs)

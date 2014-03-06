@@ -198,7 +198,7 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
 
     crumbs = [(u, truncate(label, crumb_size)) for (u, label) in crumbs]
     t = env.get_template('site/helpers/breadcrumbs.html').render(
-        breadcrumbs=crumbs, cls=cls)
+        {'breadcrumbs': crumbs, 'cls': cls})
     return jinja2.Markup(t)
 
 
@@ -215,7 +215,7 @@ def form_field(field, label=None, tag='div', req=None, opt=False, hint=False,
              opt=opt, hint=hint, tooltip=tooltip, some_html=some_html,
              cc_startswith=cc_startswith, cc_for=cc_for,
              cc_maxlength=cc_maxlength, grid=grid, cls=cls, attrs=attrs)
-    t = env.get_template('site/helpers/simple_field.html').render(**c)
+    t = env.get_template('site/helpers/simple_field.html').render(c)
     return jinja2.Markup(t)
 
 
@@ -231,7 +231,7 @@ def grid_field(field, label=None, tag='div', req=None, opt=False, hint=False,
 @register.filter
 @jinja2.contextfilter
 def timelabel(context, time):
-    t = env.get_template('site/helpers/timelabel.html').render(time=time)
+    t = env.get_template('site/helpers/timelabel.html').render({'time': time})
     return jinja2.Markup(t)
 
 
@@ -293,7 +293,7 @@ def get_login_link(context, to=None):
 @register.filter
 def more_button(pager):
     t = env.get_template('site/paginator.html')
-    return jinja2.Markup(t.render(pager=pager))
+    return jinja2.Markup(t.render({'pager': pager}))
 
 
 @register.function

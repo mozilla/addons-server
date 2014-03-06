@@ -298,9 +298,31 @@ SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    #'jingo.Loader',
+    'lib.template_loader.Loader',
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+)
+
+# We don't want jingo's template loaded to pick up templates for third party
+# apps that don't use Jinja2. The Following is a list of prefixes for jingo to
+# ignore.
+JINGO_EXCLUDE_APPS = (
+    'djcelery',
+    'django_extensions',
+    'admin',
+    'browserid',
+    'toolbar_statsd',
+    'registration',
+    'debug_toolbar',
+    'waffle',
+)
+
+JINGO_EXCLUDE_PATHS = (
+    'webapps/dump',
+    'users/email',
+    'reviews/emails',
+    'editors/emails',
+    'amo/emails',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

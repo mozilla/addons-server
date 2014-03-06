@@ -75,8 +75,8 @@ if not settings.DEBUG:
 setup_environ(settings)
 
 # Hardcore monkeypatching action.
-import safe_django_forms
-safe_django_forms.monkeypatch()
+import jingo.monkey
+jingo.monkey.patch()
 
 import session_csrf
 session_csrf.monkeypatch()
