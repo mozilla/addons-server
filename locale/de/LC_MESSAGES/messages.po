@@ -15810,7 +15810,7 @@ msgstr "Sex"
 
 #: mkt/constants/ratingdescriptors.py:20 mkt/constants/ratingdescriptors.py:58 mkt/constants/ratingdescriptors.py:105
 msgid "Sexual Content"
-msgstr "Sexuelle Inhalte"
+msgstr "Erotik/ sexuelle Inhalte"
 
 #: mkt/constants/ratingdescriptors.py:21
 msgid "Explicit Sex"
@@ -15986,7 +15986,7 @@ msgstr "Online"
 
 #: mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:88
 msgid "Fear"
-msgstr "Angst"
+msgstr "�ngstigende Inhalte"
 
 #: mkt/constants/ratingdescriptors.py:94
 msgid "Social Interaction Functionality"
@@ -16007,7 +16007,7 @@ msgstr "Weitergabe von Standortdaten"
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:102
 msgid "Explicit Language"
-msgstr "Schimpfwörter"
+msgstr "Explizite Sprache"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Frightening Content"
@@ -16015,7 +16015,7 @@ msgstr "Ängstigender Inhalt"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
-msgstr "Benutzerinteraktion"
+msgstr "Interaktion zwischen Nutzern"
 
 #: mkt/constants/ratinginteractives.py:15
 msgid "Shares Info"
@@ -16023,11 +16023,11 @@ msgstr "Weitergabe von Daten"
 
 #: mkt/constants/ratinginteractives.py:18
 msgid "Shares Location"
-msgstr "Weitergabe des Standorts"
+msgstr "Weitergabe des Standortes"
 
 #: mkt/constants/ratinginteractives.py:21
 msgid "Digital Purchases"
-msgstr "Digitale Käufe"
+msgstr "Onlinekäuf"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "General Audiences"
@@ -16036,7 +16036,7 @@ msgstr "Allgemeines Publikum"
 #. L10n: %d is the age in years.
 #: mkt/constants/ratingsbodies.py:7
 msgid "Not recommended for users younger than %d years of age"
-msgstr "Nicht empfohlen für Benutzer unter %d Jahren"
+msgstr "ab %d Jahren"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rejected for All Audiences"
@@ -16044,7 +16044,7 @@ msgstr "Für alle Zielgruppen abgelehnt"
 
 #: mkt/constants/ratingsbodies.py:9 mkt/constants/ratingsbodies.py:15
 msgid "Rating Pending"
-msgstr "Bewertung steht aus"
+msgstr "Einstufung ausstehend"
 
 #: mkt/constants/ratingsbodies.py:11
 msgid "For all ages"
@@ -16057,7 +16057,7 @@ msgstr "Für Benutzer ab %d Jahren"
 
 #: mkt/constants/ratingsbodies.py:14
 msgid "Rating Rejected"
-msgstr "Bewertung abgelehnt"
+msgstr "Kein Kennzeichen"
 
 #: mkt/constants/ratingsbodies.py:99
 msgid "Department of Justice, Rating, Titles and Qualification"
