@@ -22,6 +22,7 @@ from addons.models import Addon, AddonUser
 from amo.signals import _connect, _disconnect
 from bandwagon.models import Collection
 from reviews.models import Review
+from translations.models import Translation
 from users.models import (BlacklistedEmailDomain, BlacklistedPassword,
                           BlacklistedUsername, get_hexdigest, UserEmailField,
                           UserProfile)
@@ -241,6 +242,15 @@ class TestUserProfile(amo.tests.TestCase):
 
         with UserProfile(username='yolo', lang='fr').activate_lang():
             eq_(translation.get_language(), 'fr')
+
+    def test_remove_locale(self):
+        u = UserProfile.objects.create()
+        u.bio = {'en-US': 'my bio', 'fr': 'ma bio'}
+        u.save()
+        u.remove_locale('fr')
+        qs = (Translation.objects.filter(localized_string__isnull=False)
+              .values_list('locale', flat=True))
+        eq_(sorted(qs.filter(id=u.bio_id)), ['en-US'])
 
 
 class TestPasswords(amo.tests.TestCase):

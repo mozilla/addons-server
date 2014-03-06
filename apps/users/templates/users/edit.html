@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="{{ media('css/zamboni/translations/trans.css') }}">
 {% endblock %}
 
+{% block bodyattrs %}
+data-default-locale="{{ request.LANG|lower }}"
+{% endblock %}
+
 {% block content %}
 {% include 'users/includes/navigation.html' %}
 <div id="user_edit" class="primary prettyform grid" role="main">
@@ -130,6 +134,7 @@
               This text will appear publicly on your user info page.
             {%- endtrans %}
           </p>
+          {{ l10n_menu(remove_locale_url=amouser.get_user_url('remove-locale')) }}
           <div class="formfields">
           {{ form.bio }}
           {{ some_html_tip(title=

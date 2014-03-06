@@ -33,6 +33,7 @@ import amo.models
 from access.models import Group, GroupUser
 from amo.urlresolvers import reverse
 from translations.fields import NoLinksField, save_signal
+from translations.models import Translation
 from translations.query import order_by_translation
 
 log = commonware.log.getLogger('z.users')
@@ -519,6 +520,10 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         tower.activate(lang)
         yield
         tower.activate(old)
+
+    def remove_locale(self, locale):
+        """Remove the given locale for the user."""
+        Translation.objects.remove_for(self, locale)
 
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,
