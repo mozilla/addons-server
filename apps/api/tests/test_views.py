@@ -61,7 +61,7 @@ class DRFMixin(object):
         This test makes sure that is it DRF that is running in this test suite.
         """
         response = self.client.get(self.test_module_url, follow=True)
-        self.assertTrue('rest_framework' in response.__module__)
+        self.assertTrue('rest_framework' in response.__module__, response)
 
 
 class UtilsTest(TestCase):
@@ -514,7 +514,7 @@ class APITest(TestCase):
             self.assertContains(response, needle)
 
     def test_slug(self):
-        Addon.objects.get(pk=5299).update(type=amo.ADDON_FREE)
+        Addon.objects.get(pk=5299).update(type=amo.ADDON_EXTENSION)
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<slug>%s</slug>' %
                             Addon.objects.get(pk=5299).slug)
@@ -707,6 +707,13 @@ class ListTest(TestCase):
 
     def test_unicode(self):
         make_call(u'list/featured/all/10/Linux/3.7a2prexec\xb6\u0153\xec\xb2')
+
+
+class DRFListTest(DRFMixin, ListTest):
+    """
+    Run all ListTest tests with DRF.
+    """
+    test_module_url = reverse('api.list', args=['1.5', 'featured'])
 
 
 class AddonFilterTest(TestCase):
@@ -1269,6 +1276,13 @@ class SearchTest(ESTestCase):
             '/en-US/firefox/api/%.1f/search_suggestions/?q=delicious' %
             api.CURRENT_VERSION)
         eq_(response.status_code, 503)
+
+
+class DRFSearchTest(DRFMixin, SearchTest):
+    """
+    Run all SearchTest tests with DRF.
+    """
+    test_module_url = reverse('api.search', args=['1.5', 'delicious'])
 
 
 class LanguagePacks(UploadTest):

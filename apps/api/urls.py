@@ -77,11 +77,11 @@ api_patterns = patterns('',
 
 for regexp in search_regexps:
     api_patterns += patterns('',
-        url(regexp + '/?$', class_view(views.SearchView), name='api.search'))
+        url(regexp + '/?$', SwitchToDRF('SearchView'), name='api.search'))
 
 for regexp in list_regexps:
     api_patterns += patterns('',
-            url(regexp + '/?$', class_view(views.ListView), name='api.list'))
+        url(regexp + '/?$', SwitchToDRF('ListView'), name='api.list'))
 
 ad = {'authentication': authentication.AMOOAuthAuthentication(two_legged=True)}
 user_resource = Resource(handler=handlers.UserHandler, **ad)
