@@ -79,8 +79,8 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
         ok_('operator' in res.json)
 
 
-class TestSearchView(ESTestCase):
-    fixtures = fixture('webapp_337141')
+class TestSearchView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
         super(TestSearchView, self).setUp()
