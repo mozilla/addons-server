@@ -209,7 +209,7 @@ class Reference(Provider):
 
     def account_create(self, user, form_data):
         user_seller = self.setup_seller(user)
-        form_data.update({'uuid': str(uuid.uuid4()), 'status': 'ACTIVE'})
+        form_data.update({'uuid': user_seller.uuid, 'status': 'ACTIVE'})
         name = form_data.pop('account_name')
         res = self.client.sellers.post(data=form_data)
         return self.setup_account(user=user,
