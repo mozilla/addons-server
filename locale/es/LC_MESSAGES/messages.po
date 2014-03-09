@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-23 20:09+0000\n"
+"PO-Revision-Date: 2014-03-09 21:29+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393186186.0\n"
+"X-POOTLE-MTIME: 1394400576.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -230,7 +230,7 @@ msgstr "Ver la política de privacidad"
 #: apps/addons/templates/addons/button.html:89 apps/addons/templates/addons/details_box.html:128 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Ver el acuerdo de licencia de usuario final"
 
 #: apps/addons/templates/addons/button.html:94 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -1844,6 +1844,8 @@ msgstr "Se ha enviado un mensaje de correo a los autores sobre la compatibilidad
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
 msgstr ""
+"Correo electrónico enviado al autor acerca de la compatibilidad del "
+"complemento."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -2392,7 +2394,7 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Describe tu colección (no se permiten enlaces)."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2404,7 +2406,7 @@ msgstr "Icono"
 
 #: apps/bandwagon/forms.py:152 apps/users/forms.py:340
 msgid "No links are allowed."
-msgstr ""
+msgstr "No se permiten enlaces."
 
 #: apps/bandwagon/forms.py:164
 msgid "This url is already in use by another collection"
@@ -13543,11 +13545,11 @@ msgstr "otros"
 
 #: apps/users/models.py:64
 msgid "algorithm"
-msgstr ""
+msgstr "algoritmo"
 
 #: apps/users/models.py:65
 msgid "salt"
-msgstr ""
+msgstr "sal"
 
 #: apps/users/models.py:66
 msgid "hash"
@@ -13873,7 +13875,7 @@ msgstr "Danos algo más de información sobre ti mismo. Todos estos campos son o
 
 #: apps/users/templates/users/edit.html:106
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Esta URL solo será visible si eres desarrollador."
 
 #: apps/users/templates/users/edit.html:115
 msgid "Choose Photo&hellip;"
@@ -15381,15 +15383,15 @@ msgstr "Zimbabue"
 
 #: mkt/constants/comm.py:28
 msgid "No action"
-msgstr ""
+msgstr "No hay acciones"
 
 #: mkt/constants/comm.py:35
 msgid "App resubmission"
-msgstr ""
+msgstr "Reenvío de la aplicación"
 
 #: mkt/constants/comm.py:36
 msgid "Approved but waiting to be made public"
-msgstr ""
+msgstr "Aprobada, pero aún no se ha hecho pública"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
@@ -16622,6 +16624,8 @@ msgstr "Operador"
 #: mkt/developers/views_payments.py:295
 msgid "A server error occurred when retrieving the application key."
 msgstr ""
+"Se ha producido un error en el servidor mientras se recuperaba la clave de "
+"la aplicación."
 
 #: mkt/developers/views_payments.py:302
 msgid "Secret was reset successfully."
@@ -16985,6 +16989,8 @@ msgstr "Esta aplicación es <b>pública</b>."
 #: mkt/developers/templates/developers/apps/status.html:47
 msgid "Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer."
 msgstr ""
+"La última versión está <b>pendiente de revisión</b> por parte de un revisor "
+"de Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
@@ -17108,6 +17114,8 @@ msgstr "Sube una nueva versión de esta aplicación empaquetada. Las versiones n
 #: mkt/developers/templates/developers/apps/status.html:269
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr ""
+"Acuérdate de actualizar la <a href=\"%(ratings_url)s\">clasificación de "
+"contenidos</a> de la aplicación si ha sufrido grandes cambios."
 
 #: mkt/developers/templates/developers/apps/status.html:294
 msgid "Blocklist App"
@@ -18362,7 +18370,7 @@ msgstr "Validador de aplicaciones"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:161
 msgid "App Manager"
-msgstr ""
+msgstr "Administrador de aplicaciones"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:169
 msgid "Firefox Developer Tools"
@@ -19734,11 +19742,11 @@ msgstr "Anulación de requisitos mínimos:"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "Archivos adjuntos"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28 mkt/reviewers/templates/reviewers/includes/review_history.html:98
 msgid "This version has not been reviewed"
-msgstr ""
+msgstr "No se ha revisado esta versión"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
