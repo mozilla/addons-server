@@ -151,6 +151,7 @@ class DevAgreementForm(happyforms.Form):
 
     def __init__(self, *args, **kw):
         self.instance = kw.pop('instance')
+        self.request = kw.pop('request')
         super(DevAgreementForm, self).__init__(*args, **kw)
 
     def save(self):
@@ -162,6 +163,8 @@ class DevAgreementForm(happyforms.Form):
             basket.subscribe(self.instance.email,
                              'app-dev',
                              format='H',
+                             country=self.request.REGION.slug,
+                             lang=self.request.LANG,
                              source_url=os.path.join(settings.SITE_URL,
                                                      'developers/submit'))
 
