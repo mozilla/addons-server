@@ -17,12 +17,12 @@ from receipts import certs
 
 from services.utils import settings
 setup_environ(settings)
-# Go configure the log.
-log_configure()
 
 from utils import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
                    CONTRIB_PURCHASE, CONTRIB_REFUND,
                    log_configure, log_exception, log_info, mypool)
+# Go configure the log.
+log_configure()
 
 # This has to be imported after the settings (utils).
 import receipts  # NOQA, used for patching in the tests
