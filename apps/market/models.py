@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import uuid
 from operator import itemgetter
 
 from django.core.cache import cache
@@ -224,10 +225,11 @@ def update_price_currency(sender, instance, **kw):
 
 class AddonPurchase(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon')
-    user = models.ForeignKey(UserProfile)
     type = models.PositiveIntegerField(default=amo.CONTRIB_PURCHASE,
                                        choices=do_dictsort(amo.CONTRIB_TYPES),
                                        db_index=True)
+    user = models.ForeignKey(UserProfile)
+    uuid = models.CharField(max_length=255, db_index=True, unique=True)
 
     class Meta:
         db_table = 'addon_purchase'
@@ -235,6 +237,15 @@ class AddonPurchase(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'%s: %s' % (self.addon, self.user)
+
+
+@receiver(models.signals.post_save, sender=AddonPurchase)
+def add_uuid(sender, **kw):
+    if not kw.get('raw'):
+        record = kw['instance']
+        if not record.uuid:
+            record.uuid = '{pk}-{u}'.format(pk=record.pk, u=str(uuid.uuid4()))
+            record.save()
 
 
 @write

@@ -3,6 +3,7 @@ import time
 from urllib import urlencode
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 
 import jwt
 from nose.tools import nottest
@@ -13,11 +14,32 @@ from amo.urlresolvers import reverse
 from lib.crypto.receipt import sign
 
 
-def create_receipt(installed, flavour=None):
-    assert flavour in [None, 'developer', 'reviewer'], (
-           'Invalid flavour: %s' % flavour)
+def get_uuid(app, user):
+    """
+    Returns a users uuid suitable for use in the receipt, by looking up
+    the purchase table. Otherwise it just returns 'none'.
 
-    webapp = installed.addon
+    :params app: the app record.
+    :params user: the UserProfile record.
+    """
+    try:
+        return app.addonpurchase_set.get(user=user).uuid
+    except ObjectDoesNotExist:
+        return 'none'
+
+
+def create_receipt(webapp, user, uuid, flavour=None):
+    """
+    Creates a receipt for use in payments.
+
+    :params app: the app record.
+    :params user: the UserProfile record.
+    :params uuid: a uuid placed in the user field for this purchase.
+    :params flavour: None, developer or reviewer, the flavour of receipt.
+    """
+    assert flavour in [None, 'developer', 'reviewer'], (
+        'Invalid flavour: %s' % flavour)
+
     time_ = calendar.timegm(time.gmtime())
     typ = 'purchase-receipt'
 
@@ -29,10 +51,10 @@ def create_receipt(installed, flavour=None):
     # Generate different receipts for reviewers or developers.
     expiry = time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS
     if flavour:
-        if not (acl.action_allowed_user(installed.user, 'Apps', 'Review') or
-                webapp.has_author(installed.user)):
+        if not (acl.action_allowed_user(user, 'Apps', 'Review') or
+                webapp.has_author(user)):
             raise ValueError('User %s is not a reviewer or developer' %
-                             installed.user.pk)
+                             user.pk)
 
         # Developer and reviewer receipts should expire after 24 hours.
         expiry = time_ + (60 * 60 * 24)
@@ -46,10 +68,10 @@ def create_receipt(installed, flavour=None):
                    iss=settings.SITE_URL, nbf=time_, product=product,
                    # TODO: This is temporary until detail pages get added.
                    detail=absolutify(reissue),  # Currently this is a 404.
-                   reissue=absolutify(reissue),  # Currently this is a 404.
+                   reissue=absolutify(reissue),
                    typ=typ,
                    user={'type': 'directed-identifier',
-                         'value': installed.uuid},
+                         'value': uuid},
                    verify=verify)
 
     if settings.SIGNING_SERVER_ACTIVE:

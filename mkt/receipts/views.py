@@ -12,7 +12,7 @@ from addons.decorators import addon_view_factory
 from addons.models import Addon
 import amo
 import amo.log
-from amo.decorators import json_view, login_required, post_required, write
+from amo.decorators import json_view, post_required, write
 from amo.urlresolvers import reverse
 from devhub.models import AppLog
 from editors.views import reviewer_required
@@ -21,15 +21,13 @@ from lib.crypto.receipt import SigningError
 from lib.cef_loggers import receipt_cef
 import mkt
 from mkt.constants import apps
-from mkt.receipts.utils import create_test_receipt
+from mkt.receipts import forms
+from mkt.receipts.utils import create_receipt, create_test_receipt, get_uuid
 from mkt.webapps.models import Installed, Webapp
 from services.verify import get_headers, Verify
 from stats.models import ClientData
 from users.models import UserProfile
 from zadmin.models import DownloadSource
-
-from . import forms
-from .utils import create_receipt
 
 log = commonware.log.getLogger('z.receipts')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
@@ -37,7 +35,6 @@ addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 
 
 def _record(request, addon):
-    # TODO(andym): we have an API now, replace this with that.
     logged = request.user.is_authenticated()
     premium = addon.is_premium()
 
@@ -89,10 +86,13 @@ def _record(request, addon):
             region=region)
         installed.update(client_data=client_data)
 
+        # Get a suitable uuid for this receipt.
+        uuid = get_uuid(addon, request.amo_user)
+
         error = ''
         receipt_cef.log(request, addon, 'sign', 'Receipt requested')
         try:
-            receipt = create_receipt(installed)
+            receipt = create_receipt(addon, request.amo_user, uuid)
         except SigningError:
             error = _('There was a problem installing the app.')
 

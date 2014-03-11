@@ -1,6 +1,5 @@
 import calendar
 import json
-
 from datetime import datetime
 from time import gmtime, time
 from urlparse import parse_qsl, urlparse
@@ -8,25 +7,25 @@ from wsgiref.handlers import format_date_time
 
 from django.core.management import setup_environ
 
-from utils import (log_configure, log_exception, log_info, mypool,
-                   ADDON_PREMIUM, CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
-                   CONTRIB_PURCHASE, CONTRIB_REFUND)
+import jwt
+from browserid.errors import ExpiredSignatureError
+from django_statsd.clients import statsd
+from lib.crypto.receipt import sign
+from lib.cef_loggers import receipt_cef
+from receipts import certs
+
 
 from services.utils import settings
 setup_environ(settings)
-
 # Go configure the log.
 log_configure()
 
-from browserid.errors import ExpiredSignatureError
-import jwt
-from lib.crypto.receipt import sign
-from lib.cef_loggers import receipt_cef
+from utils import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
+                   CONTRIB_PURCHASE, CONTRIB_REFUND,
+                   log_configure, log_exception, log_info, mypool)
 
 # This has to be imported after the settings (utils).
-import receipts  # used for patching in the tests
-from receipts import certs
-from django_statsd.clients import statsd
+import receipts  # NOQA, used for patching in the tests
 
 status_codes = {
     200: '200 OK',
@@ -60,7 +59,7 @@ class Verify:
         self.decoded = None
         self.addon_id = None
         self.user_id = None
-        self.premium = None
+        self.uuid = None
         # This is so the unit tests can override the connection.
         self.conn, self.cursor = None, None
 
@@ -82,10 +81,6 @@ class Verify:
             self.check_url(receipt_domain)
         except InvalidReceipt, err:
             return self.invalid(str(err))
-
-        if self.premium != ADDON_PREMIUM:
-            log_info('Valid receipt, not premium')
-            return self.ok_or_expired()
 
         try:
             self.check_purchase()
@@ -190,7 +185,7 @@ class Verify:
         self.setup_db()
         # Get the addon and user information from the installed table.
         try:
-            uuid = self.decoded['user']['value']
+            self.uuid = self.decoded['user']['value']
         except KeyError:
             # If somehow we got a valid receipt without a uuid
             # that's a problem. Log here.
@@ -205,28 +200,15 @@ class Verify:
             log_info('Invalid store data')
             raise InvalidReceipt('WRONG_STOREDATA')
 
-        sql = """SELECT id, user_id, premium_type FROM users_install
-                 WHERE addon_id = %(addon_id)s
-                 AND uuid = %(uuid)s LIMIT 1;"""
-        self.cursor.execute(sql, {'addon_id': self.addon_id,
-                                  'uuid': uuid})
-        result = self.cursor.fetchone()
-        if not result:
-            # We've got no record of this receipt being created.
-            log_info('No entry in users_install for uuid: %s' % uuid)
-            raise InvalidReceipt('WRONG_USER')
-
-        pk, self.user_id, self.premium = result
-
     def check_purchase(self):
         """
         Verifies that the app has been purchased.
         """
         sql = """SELECT id, type FROM addon_purchase
                  WHERE addon_id = %(addon_id)s
-                 AND user_id = %(user_id)s LIMIT 1;"""
+                 AND uuid = %(uuid)s LIMIT 1;"""
         self.cursor.execute(sql, {'addon_id': self.addon_id,
-                                  'user_id': self.user_id})
+                                  'uuid': self.uuid})
         result = self.cursor.fetchone()
         if not result:
             log_info('Invalid receipt, no purchase')
@@ -280,7 +262,7 @@ class Verify:
                         'Expired receipt')
         if settings.WEBAPPS_RECEIPT_EXPIRED_SEND:
             self.decoded['exp'] = (calendar.timegm(gmtime()) +
-                              settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS)
+                                   settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS)
             # Log that we are signing a new receipt as well.
             receipt_cef.log(self.environ, self.addon_id, 'sign',
                             'Expired signing request')
