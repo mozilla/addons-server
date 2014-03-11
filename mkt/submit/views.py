@@ -47,7 +47,7 @@ def proceed(request):
     if request.user.is_authenticated():
         return submit(request)
     agreement_form = forms.DevAgreementForm({'read_dev_agreement': True},
-                                            instance=None)
+                                            instance=None, request=request)
     return render(request, 'submit/terms.html',
                   {'step': 'terms', 'agreement_form': agreement_form,
                    'proceed': True})
@@ -63,7 +63,8 @@ def terms(request):
 
     agreement_form = forms.DevAgreementForm(
         request.POST or {'read_dev_agreement': True},
-        instance=request.amo_user)
+        instance=request.amo_user,
+        request=request)
     if request.POST and agreement_form.is_valid():
         agreement_form.save()
         return redirect('submit.app')

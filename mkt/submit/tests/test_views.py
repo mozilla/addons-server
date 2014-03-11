@@ -146,7 +146,10 @@ class TestTerms(TestSubmit):
         notes = UserNotification.objects.filter(user=self.user, enabled=True,
                                                 notification_id=app_surveys.id)
         eq_(notes.count(), 1, 'Expected to not be subscribed to newsletter')
-        assert subscribe_mock.called
+        subscribe_mock.assert_called_with(
+            self.user.email, 'app-dev', lang='en-US',
+            country='restofworld', format='H',
+            source_url='http://testserver/developers/submit')
 
     def test_disagree(self):
         r = self.client.post(self.url)
