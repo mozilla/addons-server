@@ -4,6 +4,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import mock
+from dateutil.tz import tzutc
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
@@ -363,7 +364,7 @@ class TestCacheHeadersMiddleware(amo.tests.TestCase):
             'must-revalidate, max-age=%s' % self.seconds)
         assert res.has_header('ETag'), 'Missing ETag header'
 
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now(tzutc())
 
         self.assertCloseToNow(res['Expires'],
             now=now + datetime.timedelta(seconds=self.seconds))
