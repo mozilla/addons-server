@@ -1543,3 +1543,6 @@ MONOLITH_MAX_DATE_RANGE = 365
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.
 WHITELISTED_CLIENTS_EMAIL_API = []
+
+# Allow URL style format override. eg. "?format=json"
+URL_FORMAT_OVERRIDE = 'format'
