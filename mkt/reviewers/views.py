@@ -341,17 +341,12 @@ def _review(request, addon, version):
         # Success message.
         if score:
             score = ReviewerScore.objects.filter(user=request.amo_user)[0]
-            rev_str = amo.REVIEWED_CHOICES[score.note_key]
-            try:
-                rev_str = str(unicode(rev_str))
-            except UnicodeEncodeError:
-                pass
             # L10N: {0} is the type of review. {1} is the points they earned.
             #       {2} is the points they now have total.
             success = _(
-                '"{0}" successfully processed (+{1} points, {2} total).'
-                .format(rev_str, score.score,
-                        ReviewerScore.get_total(request.amo_user)))
+               u'"{0}" successfully processed (+{1} points, {2} total).'
+                .format(unicode(amo.REVIEWED_CHOICES[score.note_key]),
+                        score.score, ReviewerScore.get_total(request.amo_user)))
         else:
             success = _('Review successfully processed.')
         messages.success(request, success)
