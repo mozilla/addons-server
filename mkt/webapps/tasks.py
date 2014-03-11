@@ -480,44 +480,6 @@ def zip_users(*args, **kw):
     return target_file
 
 
-def _update_developer_name(id):
-    try:
-        webapp = Webapp.objects.get(pk=id)
-    except Webapp.DoesNotExist:
-        _log(id, u'Webapp does not exist')
-        return
-
-    # Update developer_name all versions.
-
-    for version in webapp.versions.all():
-
-        # If the version already has a non-empty developer_name set, don't
-        # touch it and bail.
-        if version._developer_name:
-            _log(id, u'Webapp version:%s already has a non-empty '
-                     u'developer_name' % version.id)
-            continue
-
-        # Force refresh of manifest because we might have an old one.
-        if not webapp.is_packaged:
-            _update_manifest(webapp.pk, False, {})
-
-        data = version.manifest
-        if not 'developer' in data or not 'name' in data['developer']:
-            _log(id, u'Manifest does not contain developer name')
-            continue
-
-        max_len = version._meta.get_field_by_name(
-            '_developer_name')[0].max_length
-        version.update(_developer_name=data['developer']['name'][:max_len])
-
-
-@task
-def update_developer_name(ids, **kw):
-    for id in ids:
-        _update_developer_name(id)
-
-
 def _fix_missing_icons(id):
     try:
         webapp = Webapp.objects.get(pk=id)

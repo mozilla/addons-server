@@ -32,7 +32,6 @@ from mkt.webapps.tasks import (dump_app, dump_user_installs,
                                notify_developers_of_failure,
                                pre_generate_apk,
                                PreGenAPKError,
-                               update_developer_name,
                                update_manifests,
                                zip_apps)
 
@@ -587,97 +586,6 @@ class TestDumpUserInstalls(amo.tests.TestCase):
         eq_(len(data['installed_apps']), 1)
         installed = data['installed_apps'][0]
         eq_(installed['id'], self.app.id)
-
-
-class TestUpdateDeveloperName(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.app = Webapp.objects.get(pk=337141)
-
-    @mock.patch('mkt.webapps.tasks._update_developer_name')
-    def test_ignore_not_webapp(self, mock_):
-        self.app.update(type=amo.ADDON_EXTENSION)
-        call_command('process_addons', task='update_developer_name')
-        assert not mock_.called
-
-    @mock.patch('mkt.webapps.tasks._update_developer_name')
-    def test_pending(self, mock_):
-        self.app.update(status=amo.STATUS_PENDING)
-        call_command('process_addons', task='update_developer_name')
-        assert mock_.called
-
-    @mock.patch('mkt.webapps.tasks._update_developer_name')
-    def test_public_waiting(self, mock_):
-        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
-        call_command('process_addons', task='update_developer_name')
-        assert mock_.called
-
-    @mock.patch('mkt.webapps.tasks._update_developer_name')
-    def test_ignore_disabled(self, mock_):
-        self.app.update(status=amo.STATUS_DISABLED)
-        call_command('process_addons', task='update_developer_name')
-        assert not mock_.called
-
-    @mock.patch('mkt.webapps.tasks._update_manifest')
-    @mock.patch('versions.models.Version.manifest')
-    def test_ignore_no_current_version(self, manifest, _):
-        self.app.current_version.all_files[0].update(
-            status=amo.STATUS_DISABLED)
-        self.app.update_version()
-        update_developer_name(ids=(self.app.pk,))
-        assert not manifest.called
-
-    @mock.patch('mkt.webapps.tasks._update_manifest')
-    @mock.patch('versions.models.Version.manifest')
-    def test_ignore_if_existing_developer_name(self, manifest,
-                                               update_manifest):
-        version = self.app.current_version
-        version.update(_developer_name=u"Mï")
-        update_developer_name(ids=(self.app.pk,))
-        assert not manifest.called
-
-    @mock.patch('mkt.webapps.tasks._update_manifest')
-    @mock.patch('versions.models.Version.manifest')
-    def test_update_developer_name(self, manifest, update_manifest):
-        manifest.__get__ = mock.Mock(return_value={
-            'developer': {
-                'name': u'New Dêv'
-            }
-        })
-        self.app.current_version.update(_developer_name='')
-        update_developer_name(ids=(self.app.pk,))
-        version = self.app.current_version.reload()
-        eq_(version._developer_name, u'New Dêv')
-        eq_(version.developer_name, u'New Dêv')
-
-    @mock.patch('mkt.webapps.tasks._update_manifest')
-    @mock.patch('versions.models.Version.manifest')
-    def test_update_developer_name_latest_version(self, manifest,
-                                                  update_manifest):
-        manifest.__get__ = mock.Mock(return_value={
-            'developer': {
-                'name': u'New Dêv'
-            }
-        })
-        self.app.latest_version.update(_developer_name='')
-        update_developer_name(ids=(self.app.pk,))
-        version = self.app.latest_version.reload()
-        eq_(version._developer_name, u'New Dêv')
-        eq_(version.developer_name, u'New Dêv')
-
-    @mock.patch('mkt.webapps.tasks._update_manifest')
-    @mock.patch('versions.models.Version.manifest')
-    @mock.patch('mkt.webapps.tasks._log')
-    def test_update_developer_name_validation_error(self, _log, manifest,
-                                                    update_manifest):
-        manifest.__get__ = mock.Mock(return_value={})
-        self.app.current_version.update(_developer_name='')
-        update_developer_name(ids=(self.app.pk,))
-        assert _log.called_with(337141,
-                                u'Manifest does not contain developer name')
-        version = self.app.current_version.reload()
-        eq_(version._developer_name, '')
 
 
 class TestFixMissingIcons(amo.tests.TestCase):
