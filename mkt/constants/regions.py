@@ -272,10 +272,11 @@ REGIONS_CHOICES_NAME = ([(v.id, v.name) for v in BY_SLUG] +
 
 REGIONS_DICT = dict(REGIONS_CHOICES)
 REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
-# Provide a dict for looking up the region by slug that includes the deprecated
-# "worldwide" slug as an alias for RESTOFWORLD. See
-# https://bugzilla.mozilla.org/show_bug.cgi?id=940561 for more info.
-REGION_LOOKUP = dict(REGIONS_DICT.items() + [('worldwide', RESTOFWORLD)])
+# Provide a dict for looking up the region by slug that includes aliases:
+# - "worldwide" is an alias for RESTOFWORLD (bug 940561).
+# - "gb" is an alias for UK (bug 973883).
+REGION_LOOKUP = dict(REGIONS_DICT.items() +
+                     [('worldwide', RESTOFWORLD), ('gb', UK)])
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
 

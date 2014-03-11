@@ -273,7 +273,7 @@ Content ratings
 
 .. _content-ratings:
 
-.. http:post:: /api/v1/apps/(int:app_id)/content-ratings/
+.. http:post:: /api/v1/apps/app/(int:id|string:app_slug)/content_ratings/
 
     **Request**
 

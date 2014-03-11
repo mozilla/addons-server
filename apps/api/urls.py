@@ -1,10 +1,11 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 
+import waffle
 from piston.resource import Resource
 
 from addons.urls import ADDON_ID
-from api import authentication, handlers, views
+from api import authentication, handlers, views, views_drf
 
 API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
 
@@ -52,20 +53,35 @@ appendages.insert(0, '/(?P<list_type>[^/]+)')
 list_regexps = build_urls(base_list_regexp, appendages)
 
 
+class SwitchToDRF(object):
+    """
+    Waffle switch to move from Piston to DRF.
+    """
+    def __init__(self, view_name):
+        self.view_name = view_name
+
+    def __call__(self, *args, **kwargs):
+        if waffle.switch_is_active('drf'):
+            return (getattr(views_drf, self.view_name)
+                    .as_view()(*args, **kwargs))
+        else:
+            return class_view(getattr(views, self.view_name))(*args, **kwargs)
+
+
 api_patterns = patterns('',
     # Addon_details
-    url('addon/%s$' % ADDON_ID, class_view(views.AddonDetailView),
+    url('addon/%s$' % ADDON_ID, SwitchToDRF('AddonDetailView'),
         name='api.addon_detail'),
-    url(r'^get_language_packs$', class_view(views.LanguageView),
+    url(r'^get_language_packs$', SwitchToDRF('LanguageView'),
         name='api.language'),)
 
 for regexp in search_regexps:
     api_patterns += patterns('',
-        url(regexp + '/?$', class_view(views.SearchView), name='api.search'))
+        url(regexp + '/?$', SwitchToDRF('SearchView'), name='api.search'))
 
 for regexp in list_regexps:
     api_patterns += patterns('',
-            url(regexp + '/?$', class_view(views.ListView), name='api.list'))
+        url(regexp + '/?$', SwitchToDRF('ListView'), name='api.list'))
 
 ad = {'authentication': authentication.AMOOAuthAuthentication(two_legged=True)}
 user_resource = Resource(handler=handlers.UserHandler, **ad)

@@ -1091,6 +1091,9 @@ CELERY_ROUTES = {
 
     # AMO validator.
     'zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
+
+    # Comm.
+    'mkt.comm.tasks.migrate_activity_log': {'queue': 'limited'},
 }
 
 # This is just a place to store these values, you apply them in your

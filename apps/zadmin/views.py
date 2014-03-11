@@ -9,6 +9,7 @@ from django.contrib import admin
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
+from django.db.models import Sum
 from django.db.models.loading import cache as app_cache
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.encoding import smart_str
@@ -211,9 +212,9 @@ def validation(request, form=None):
         form = BulkValidationForm()
     jobs = ValidationJob.objects.order_by('-created')
     return render(request, 'zadmin/validation.html',
-                  {'form': form, 'validation_jobs': jobs,
-                   'success_form': NotifyForm(text='success'),
-                   'failure_form': NotifyForm(text='failure')})
+                  {'form': form,
+                   'notify_form': NotifyForm(text='validation'),
+                   'validation_jobs': jobs})
 
 
 def find_files(job):
@@ -271,13 +272,39 @@ def job_status(request):
     return all_stats
 
 
-def completed_versions_dirty(job):
-    """Given a job, calculate which unique versions could need updating."""
+def _completed_versions(job, prefix=''):
+    filter = dict(files__validation_results__validation_job=job,
+                  files__validation_results__completed__isnull=False)
+    if not prefix:
+        return filter
+
+    res = {}
+    for k, v in filter.iteritems():
+        res['%s__%s' % (prefix, k)] = v
+    return res
+
+
+def updated_versions(job):
     return (Version.objects
                    .filter(files__validation_results__validation_job=job,
                            files__validation_results__errors=0,
-                           files__validation_results__completed__isnull=False)
+                           files__validation_results__completed__isnull=False,
+                           apps__application=job.curr_max_version.application,
+                           apps__max__version_int__gte=
+                                job.curr_max_version.version_int,
+                           apps__max__version_int__lt=
+                                job.target_version.version_int)
+                   .exclude(files__validation_results__errors__gt=0)
                    .values_list('pk', flat=True).distinct())
+
+
+def completed_version_authors(job):
+    return (Version.objects
+                   .filter(**_completed_versions(job))
+                   # Prevent sorting by version creation date and
+                   # thereby breaking `.distinct()`
+                   .order_by('addon__authors__pk')
+                   .values_list('addon__authors__pk', flat=True).distinct())
 
 
 @any_permission_required([('Admin', '%'),
@@ -299,40 +326,54 @@ def notify_syntax(request):
                           ('ReviewerAdminTools', 'View'),
                           ('BulkValidationAdminTools', 'View')])
 @post_required
-def notify_failure(request, job):
+def notify(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
-    notify_form = NotifyForm(request.POST, text='failure')
+    notify_form = NotifyForm(request.POST, text='validation')
 
     if not notify_form.is_valid():
         messages.error(request, notify_form)
-
     else:
-        file_pks = job.result_failing().values_list('file_id', flat=True)
-        for chunk in chunked(file_pks, 100):
-            tasks.notify_failed.delay(chunk, job.pk, notify_form.cleaned_data)
-        messages.success(request, _('Notifying authors task started.'))
+        for chunk in chunked(updated_versions(job), 100):
+            tasks.update_maxversions.delay(chunk, job.pk,
+                                           notify_form.cleaned_data)
 
-    return redirect(reverse('zadmin.validation'))
+        updated_authors = completed_version_authors(job)
+        for chunk in chunked(updated_authors, 100):
+            # There are times when you want to punch django's ORM in
+            # the face. This may be one of those times.
+            # TODO: Offload most of this work to the task?
+            users_addons = list(
+                UserProfile.objects.filter(pk__in=chunk)
+                           .filter(**_completed_versions(job,
+                                                         'addons__versions'))
+                           .values_list('pk', 'addons__pk').distinct())
 
+            users = list(UserProfile.objects.filter(
+                             pk__in=set(u for u, a in users_addons)))
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
-@post_required
-def notify_success(request, job):
-    job = get_object_or_404(ValidationJob, pk=job)
-    notify_form = NotifyForm(request.POST, text='success')
+            # Annotate fails in tests when using cached results
+            addons = (Addon.objects.no_cache()
+                           .filter(**{
+                               'pk__in': set(a for u, a in users_addons),
+                               'versions__files__'
+                                    'validation_results__validation_job': job
+                           })
+                           .annotate(errors=Sum(
+                               'versions__files__validation_results__errors')))
+            addons = dict((a.id, a) for a in addons)
 
-    if not notify_form.is_valid():
-        messages.error(request, notify_form.errors)
+            users_addons = dict((u, [addons[a] for u, a in row])
+                                for u, row in sorted_groupby(users_addons,
+                                                             lambda k: k[0]))
 
-    else:
-        versions = completed_versions_dirty(job)
-        for chunk in chunked(versions, 100):
-            tasks.notify_success.delay(chunk, job.pk, notify_form.cleaned_data)
-        messages.success(request, _('Updating max version task and '
-                                    'notifying authors started.'))
+            for u in users:
+                addons = users_addons[u.pk]
+
+                u.passing_addons = [a for a in addons if a.errors == 0]
+                u.failing_addons = [a for a in addons if a.errors > 0]
+
+            tasks.notify_compatibility.delay(users, job,
+                                             notify_form.cleaned_data)
 
     return redirect(reverse('zadmin.validation'))
 
@@ -512,7 +553,7 @@ def es_collections_json(request):
     try:
         qs = qs.query(id__startswith=int(q))
     except ValueError:
-        qs = qs.query(name__text=q)
+        qs = qs.query(name__match=q)
     try:
         qs = qs.filter(app=int(app))
     except ValueError:

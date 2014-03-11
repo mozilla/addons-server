@@ -2,6 +2,7 @@ Jinja2==2.7.2
 MarkupSafe==0.18
 MySQL-python==1.2.5
 lxml==2.2.6
-PIL==1.1.7
+Pillow==2.3.0
+
 # For the addon validator, including C speedups.
 simplejson==2.3.2

@@ -31,6 +31,12 @@ DATABASES['slave'] = dj_database_url.parse(private.DATABASES_SLAVE_URL)
 DATABASES['slave']['ENGINE'] = 'mysql_pool'
 DATABASES['slave']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 
+DATABASE_POOL_ARGS = {
+    'max_overflow': 10,
+    'pool_size': 5,
+    'recycle': 300
+}
+
 SERVICES_DATABASE = dj_database_url.parse(private.SERVICES_DATABASE_URL)
 
 SLAVE_DATABASES = ['slave']

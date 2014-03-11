@@ -12,15 +12,6 @@ INSTALLED_APPS += (
     'django_qunit',
 )
 
-# We don't want jingo's template loaded to pick up templates for third party
-# apps that don't use Jinja2. The Following is a list of prefixes for jingo to
-# ignore.
-JINGO_EXCLUDE_APPS += (
-    'debug_toolbar',
-    'django_extensions',
-    'qunit',
-)
-
 # You want one of the caching backends.  Dummy won't do any caching, locmem is
 # cleared every time you restart the server, and memcached is what we run in
 # production.
@@ -96,6 +87,9 @@ APP_PURCHASE_KEY = 'localhost'
 APP_PURCHASE_AUD = 'localhost'
 APP_PURCHASE_TYP = 'mozilla-local/payments/pay/v1'
 APP_PURCHASE_SECRET = 'This secret must match your webpay SECRET'
+
+# If you want to skip pre-generation locally, disable it:
+PRE_GENERATE_APKS = False
 
 # Assuming you did `npm install` (and not `-g`) like you were supposed to,
 # this will be the path to the `stylus` and `lessc` executables.

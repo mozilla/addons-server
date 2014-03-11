@@ -46,13 +46,24 @@
   </ul>
 </div>
 
-<div id="editor-pitch" class="action-needed">
-  <h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
-  <p>
-    {{ _('Become an AMO Reviewer today and get your add-ons reviewed faster.') }}
-    <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
-      {{ _('Learn More') }}</a>
-  </p>
-</div>
+{% if not webapp %}
+  {# Disabled while we run the Autralis Contest Promo...
+  <div id="editor-pitch" class="action-needed">
+    <h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
+    <p>
+      {{ _('Become an AMO Reviewer today and get your add-ons reviewed faster.') }}
+      <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
+        {{ _('Learn More') }}</a>
+    </p>
+  </div>
+  #}
+  <div class="action-needed">
+    <h3>{{ _('Submit your add-on for the Add-ons for Australis contest') }}</h3>
+    <p>
+      {{ _('Win a Firefox OS phone and Mozilla gear!') }}
+      <a class="button learn-more" href="https://blog.mozilla.org/addons/australis-overview">{{ _('Learn more') }}</a>
+    </p>
+  </div>
+{% endif %}
 
 {% endblock %}

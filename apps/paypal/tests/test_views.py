@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import urllib
-from decimal import Decimal
 
 from django import http, test
 from django.conf import settings
@@ -8,12 +7,10 @@ from django.core import mail
 
 from mock import Mock, patch
 from nose.tools import eq_
-from test_utils import RequestFactory
 
 import amo.tests
 from addons.models import Addon
 from amo.urlresolvers import reverse
-from paypal import PaypalError, views
 from stats.models import Contribution
 from users.models import UserProfile
 

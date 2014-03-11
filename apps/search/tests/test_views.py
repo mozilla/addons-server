@@ -152,6 +152,10 @@ class TestESSearch(SearchBase):
         assert 'X-PJAX' in r['vary'].split(','), 'Expected "Vary: X-PJAX"'
         self.assertTemplateUsed(r, 'search/results.html')
 
+    def test_search_space(self):
+        r = self.client.get(urlparams(self.url, q='+'))
+        eq_(r.status_code, 200)
+
     @amo.tests.mobile_test
     def test_get_mobile(self):
         r = self.client.get(self.url)

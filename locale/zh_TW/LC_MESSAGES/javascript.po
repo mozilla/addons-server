@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 09:07-0700\n"
-"PO-Revision-Date: 2013-12-30 06:42+0000\n"
+"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"PO-Revision-Date: 2014-02-27 01:24+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1388385773.0\n"
+"X-POOTLE-MTIME: 1393464279.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -331,7 +331,7 @@ msgid "Warning: deleting payment account \"{0}\" will move that associated app t
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] "警告: 刪除付款帳號「{0}」將會使下列已關聯的應用程式進入未完成狀態，並將會被下架:"
 
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "錯誤"
@@ -370,45 +370,45 @@ msgstr[0] "還可以再輸入 {0} 個字元。"
 msgid "All tests passed successfully."
 msgstr "成功通過所有的測試。"
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr "這些測試沒有執行。"
 
-#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "測試"
 
-#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
 msgid "Warning"
 msgstr "警告"
 
-#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
 msgstr "相容性測試"
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
 msgid "App failed validation."
 msgstr "應用程式驗證失敗。"
 
-#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
 msgid "App passed validation."
 msgstr "應用程式通過驗證。"
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 個錯誤"
 
-#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
 msgstr "驗證工作無法完成或是完成時發生錯誤"
 
-#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "伺服器內部錯誤"
 
@@ -424,43 +424,43 @@ msgstr "已購買"
 msgid "Launch"
 msgstr "啟動"
 
-#: media/js/devreg/reviewers/editors.js:158 media/js/zamboni/editors.js:162
+#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
 msgstr "{name} 最先檢視此頁面。"
 
-#: media/js/devreg/reviewers/editors.js:208 media/js/zamboni/editors.js:212
+#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
 msgstr "應用程式已檢查收據。"
 
-#: media/js/devreg/reviewers/editors.js:210 media/js/zamboni/editors.js:214
+#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
 msgstr "應用程式未檢查收據。"
 
-#: media/js/devreg/reviewers/editors.js:281 media/js/zamboni/editors.js:285
+#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{name} 先檢視了這個附加元件。"
 
-#: media/js/devreg/reviewers/editors.js:292 media/js/zamboni/editors.js:296
+#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "載入中&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:297 media/js/zamboni/editors.js:301
+#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "版本資訊"
 
-#: media/js/devreg/reviewers/editors.js:302 media/js/zamboni/editors.js:306
+#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
-msgstr "給審核者的筆記"
+msgstr "給審查者的筆記"
 
-#: media/js/devreg/reviewers/editors.js:307 media/js/zamboni/editors.js:311
+#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "找不到版本紀錄"
 
-#: media/js/devreg/reviewers/editors.js:332 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "請先選擇一份申請書"
 
-#: media/js/devreg/reviewers/editors.js:396 media/js/zamboni/editors.js:486
+#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
 msgid "Error loading translation"
 msgstr "讀取翻譯錯誤"
 
@@ -488,71 +488,76 @@ msgstr "擱置"
 msgid "Payment failed. Try again later."
 msgstr "付款失敗。請稍後再試一次。"
 
-#: media/js/devreg/reviewers/reviewers.js:100
+#: media/js/devreg/reviewers/reviewers.js:104
 msgid "Packaged App"
 msgstr "已封裝的應用程式"
 
-#: media/js/devreg/reviewers/reviewers.js:104
+#: media/js/devreg/reviewers/reviewers.js:108
 msgid "Privileged App"
 msgstr "有權限的應用程式"
 
-#: media/js/devreg/reviewers/reviewers.js:107
+#: media/js/devreg/reviewers/reviewers.js:111
 msgid "More Information Requested"
 msgstr "已要求提供更多資訊"
 
-#: media/js/devreg/reviewers/reviewers.js:110
+#: media/js/devreg/reviewers/reviewers.js:114
 msgid "Contains Editor Comment"
 msgstr "含有編輯註解"
 
-#: media/js/devreg/reviewers/reviewers.js:114
+#: media/js/devreg/reviewers/reviewers.js:118
 msgid "Premium App"
 msgstr "收費應用程式"
 
-#: media/js/devreg/reviewers/reviewers.js:117
+#: media/js/devreg/reviewers/reviewers.js:121
 msgid "Escalated"
 msgstr "已向上呈報"
 
-#: media/js/devreg/reviewers/reviewers.js:122
+#: media/js/devreg/reviewers/reviewers.js:126
 msgid "Free"
 msgstr "免費版"
 
-#: media/js/devreg/reviewers/reviewers.js:230
+#: media/js/devreg/reviewers/reviewers.js:234
 msgid "Any"
 msgstr "任何"
 
-#: media/js/devreg/reviewers/reviewers.js:257
+#: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
 msgstr "已通過審查應用程式：{app}"
 
-#: media/js/devreg/reviewers/reviewers.js:260
+#: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
 msgstr "已拒絕應用程式：{app}"
 
-#: media/js/devreg/reviewers/reviewers.js:266
+#: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
 msgstr "審查錯誤應用程式：{app}"
 
-#: media/js/devreg/reviewers/reviewers.js:267
+#: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
 msgstr "拒絕錯誤應用程式：{app}"
 
-#: media/js/devreg/reviewers/themes_review.js:174
+#. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:49
+msgid "By {0} on {1}"
+msgstr "由 {0} 於 {1}"
+
+#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
 msgstr "已要求資訊"
 
-#: media/js/devreg/reviewers/themes_review.js:175
+#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
 msgid "Flagged"
 msgstr "已標記"
 
-#: media/js/devreg/reviewers/themes_review.js:176
+#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
 msgid "Duplicate"
 msgstr "重複"
 
-#: media/js/devreg/reviewers/themes_review.js:177
+#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
 msgid "Rejected"
 msgstr "已拒絕"
 
-#: media/js/devreg/reviewers/themes_review.js:178
+#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr "已核准"
 
@@ -617,7 +622,7 @@ msgstr "必填"
 msgid "Marked for deletion"
 msgstr "標示刪除"
 
-#: media/js/impala/search.js:104
+#: media/js/impala/search.js:114
 msgid "Updating results&hellip;"
 msgstr "正在更新搜尋結果&hellip;"
 
@@ -1143,16 +1148,15 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-#: media/js/zamboni/admin_validation.js:53
+#: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "把 {0} 個附加元件的最大版本設定為 {1} 並用電子郵件通知作者。"
 
-# 100%
-#: media/js/zamboni/admin_validation.js:59
-msgid "This will send emails to the authors of {0} file."
-msgid_plural "This will send emails to the authors of {0} files."
-msgstr[0] "這將會寄送電子郵件給 {0} 個檔案的作者。"
+#: media/js/zamboni/admin_validation.js:55
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] "通知 {2} 套未通過驗證的附加元件作者。"
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -1172,7 +1176,7 @@ msgstr "此系統不支援安裝應用程式。"
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr "管理員與審核者必須輸入密碼才能登入。"
+msgstr "管理員與審查者必須輸入密碼才能登入。"
 
 #: media/js/zamboni/browserid_support.js:42
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
@@ -1321,7 +1325,7 @@ msgstr[0] "{files} 個檔案"
 #: media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} 個審核"
+msgstr[0] "{reviews} 個審查"
 
 #: media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
@@ -1414,7 +1418,7 @@ msgstr "需要安裝 {0} 的較新版本"
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
-msgstr "尚未審核"
+msgstr "尚未審查"
 
 #: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
@@ -1448,7 +1452,7 @@ msgstr "購買中..."
 
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "此附加元件已經通過 Mozilla 初步審核。"
+msgstr "此附加元件已經通過 Mozilla 初步審查。"
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"

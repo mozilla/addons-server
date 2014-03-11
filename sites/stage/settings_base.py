@@ -5,7 +5,7 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
+from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING, HOSTNAME
 
 from .. import splitstrip
 import private_base as private
@@ -181,5 +181,10 @@ ALLOW_SELF_REVIEWS = True
 GEOIP_URL = 'http://geo.marketplace.allizom.org'
 
 API_THROTTLE = False
+
+NEWRELIC_WHITELIST = ['web19.stage.addons.phx1.mozilla.com',
+                      'web20.stage.addons.phx1.mozilla.com']
+
+NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST
 
 AES_KEYS = private.AES_KEYS

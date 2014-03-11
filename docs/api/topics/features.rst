@@ -18,6 +18,24 @@ Features List
 
     :status 200: successfully completed.
 
+    The response will be an object with each key representing a feature. The
+    following parameters will be set for each feature:
+
+    :param position: the position of the feature in the list
+    :type position: int
+    :param name: the feature name
+    :type name: string
+    :param description: the feature description
+    :type description: string
+
+    If a :ref:`feature profile <feature-profile-label>` is passed,
+    then each feature will also contain the following:
+
+    :param present: a boolean indicating whether the feature is present in the
+        profile passed to the request.
+    :type present: boolean
+
+
     Example:
 
     .. code-block:: json

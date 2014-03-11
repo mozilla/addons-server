@@ -25,8 +25,9 @@ import amo.tests
 import files
 import paypal
 from addons.models import Addon, AddonCategory, Category, Charity
-from amo.helpers import url as url_reverse
-from amo.helpers import absolutify
+
+from amo.helpers import absolutify, url as url_reverse
+
 from amo.tests import (addon_factory, assert_no_validation_errors, formset,
                        initial)
 from amo.tests.test_helpers import get_image_path
@@ -698,6 +699,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
         check_page(r)
         eq_(self.get_addon().wants_contributions, False)
 
+
 class TestDelete(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
@@ -744,9 +746,11 @@ class TestHome(amo.tests.TestCase):
         self.assertTemplateUsed(r, 'devhub/index.html')
 
     def test_editor_promo(self):
+        raise SkipTest('While Australis contest promo is up, see bug 979731')
         eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 1)
 
     def test_no_editor_promo(self):
+        raise SkipTest('While Australis contest promo is up, see bug 979731')
         Addon.objects.all().delete()
         # Regular users (non-devs) should not see this promo.
         eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 0)

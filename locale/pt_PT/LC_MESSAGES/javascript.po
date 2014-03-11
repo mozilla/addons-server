@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 09:07-0700\n"
+"POT-Creation-Date: 2014-02-26 09:03-0700\n"
 "PO-Revision-Date: 2012-05-15 13:04+0200\n"
 "Last-Translator: Carlos  <lloco73@gmail.com>\n"
 "Language-Team: \n"
@@ -337,7 +337,7 @@ msgid_plural "Warning: deleting payment account \"{0}\" will move those associat
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Erro"
@@ -377,47 +377,47 @@ msgstr[1] ""
 msgid "All tests passed successfully."
 msgstr "Todos os testes passaram com sucesso."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr "Estes testes não foram executados."
 
-#: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "Testes"
 
-#: media/js/devreg/validator.js:194 media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
 msgid "Warning"
 msgstr "Aviso"
 
-#: media/js/devreg/validator.js:281 media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
 msgstr "testes de compatibilidade"
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
 msgid "App failed validation."
 msgstr ""
 
-#: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
 msgid "App passed validation."
 msgstr ""
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} erro"
 msgstr[1] "{0} erros"
 
-#: media/js/devreg/validator.js:363 media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-#: media/js/devreg/validator.js:440 media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
 msgstr "A tarefa de validação não foi concluída ou foi concluída com erros"
 
-#: media/js/devreg/validator.js:458 media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "Erro interno do servidor"
 
@@ -433,43 +433,43 @@ msgstr ""
 msgid "Launch"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:158 media/js/zamboni/editors.js:162
+#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
 msgstr "{name} estava a ver esta página primeiro."
 
-#: media/js/devreg/reviewers/editors.js:208 media/js/zamboni/editors.js:212
+#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:210 media/js/zamboni/editors.js:214
+#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:281 media/js/zamboni/editors.js:285
+#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{name} estava a ver primeiro este extra."
 
-#: media/js/devreg/reviewers/editors.js:292 media/js/zamboni/editors.js:296
+#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "A carregar"
 
-#: media/js/devreg/reviewers/editors.js:297 media/js/zamboni/editors.js:301
+#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Notas da versão"
 
-#: media/js/devreg/reviewers/editors.js:302 media/js/zamboni/editors.js:306
+#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "Notas para os revisores"
 
-#: media/js/devreg/reviewers/editors.js:307 media/js/zamboni/editors.js:311
+#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "Nenhumas notas de versão encontradas"
 
-#: media/js/devreg/reviewers/editors.js:332 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Primeiro seleccione uma aplicação"
 
-#: media/js/devreg/reviewers/editors.js:396 media/js/zamboni/editors.js:486
+#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
 msgid "Error loading translation"
 msgstr ""
 
@@ -497,71 +497,76 @@ msgstr ""
 msgid "Payment failed. Try again later."
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:100
+#: media/js/devreg/reviewers/reviewers.js:104
 msgid "Packaged App"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:104
+#: media/js/devreg/reviewers/reviewers.js:108
 msgid "Privileged App"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:107
+#: media/js/devreg/reviewers/reviewers.js:111
 msgid "More Information Requested"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:110
+#: media/js/devreg/reviewers/reviewers.js:114
 msgid "Contains Editor Comment"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:114
+#: media/js/devreg/reviewers/reviewers.js:118
 msgid "Premium App"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:117
+#: media/js/devreg/reviewers/reviewers.js:121
 msgid "Escalated"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:122
+#: media/js/devreg/reviewers/reviewers.js:126
 msgid "Free"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:230
+#: media/js/devreg/reviewers/reviewers.js:234
 msgid "Any"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:257
+#: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:260
+#: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:266
+#: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:267
+#: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/themes_review.js:174
+#. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:49
+msgid "By {0} on {1}"
+msgstr ""
+
+#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
 msgstr ""
 
-#: media/js/devreg/reviewers/themes_review.js:175
+#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
 msgid "Flagged"
 msgstr ""
 
-#: media/js/devreg/reviewers/themes_review.js:176
+#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
 msgid "Duplicate"
 msgstr ""
 
-#: media/js/devreg/reviewers/themes_review.js:177
+#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
 msgid "Rejected"
 msgstr ""
 
-#: media/js/devreg/reviewers/themes_review.js:178
+#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr ""
 
@@ -626,7 +631,7 @@ msgstr "É necessária a sua entrada"
 msgid "Marked for deletion"
 msgstr "Marcado para eliminar"
 
-#: media/js/impala/search.js:104
+#: media/js/impala/search.js:114
 msgid "Updating results&hellip;"
 msgstr "A atualizar resultados:"
 
@@ -1152,17 +1157,17 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-#: media/js/zamboni/admin_validation.js:53
+#: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Definir o extra {0} para a versão máxima {1} e enviar mensagem ao autor."
 msgstr[1] "Definir os extras {0} para a versão máxima {1} e enviar mensagens aos autores."
 
-#: media/js/zamboni/admin_validation.js:59
-msgid "This will send emails to the authors of {0} file."
-msgid_plural "This will send emails to the authors of {0} files."
-msgstr[0] "Isto irá enviar mensagens de correio para os autores de {0} ficheiro."
-msgstr[1] "Isto irá enviar mensagens de correio para os autores de {0} ficheiros."
+#: media/js/zamboni/admin_validation.js:55
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] ""
+msgstr[1] ""
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."

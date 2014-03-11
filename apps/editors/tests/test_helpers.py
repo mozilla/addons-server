@@ -5,7 +5,7 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.conf import settings
 
-from mock import Mock, patch
+from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 

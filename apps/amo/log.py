@@ -357,6 +357,11 @@ class BULK_VALIDATION_EMAILED(_LOG):
     format = _(u'Authors emailed about compatibility of {version}.')
 
 
+class BULK_VALIDATION_USER_EMAILED(_LOG):
+    id = 130
+    format = _(u'Email sent to Author about add-on compatibility.')
+
+
 class CHANGE_PASSWORD(_LOG):
     id = 48
     format = _(u'Password changed.')

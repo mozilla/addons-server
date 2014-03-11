@@ -110,6 +110,8 @@ $(function() {
         $this.find('.i').remove();
         var em = $this.text().split('').reverse().join('');
         $this.prev('a').attr('href', 'mailto:' + em);
+        // Allows the email to be selected and pasted in webmails, see #919160.
+        $this.text(em).css('direction', 'ltr');
     });
 
     $('#page').delegate('.expando .toggle', 'click', _pd(function() {

@@ -2,6 +2,7 @@ from django import forms
 from django.conf import settings
 from django.forms.util import ErrorDict
 
+import happyforms
 from tower import ugettext_lazy as _lazy
 
 import amo
@@ -107,7 +108,7 @@ APP_SORT_CHOICES = (
 )
 
 
-class ESSearchForm(forms.Form):
+class ESSearchForm(happyforms.Form):
     q = forms.CharField(required=False)
     tag = forms.CharField(required=False)
     platform = forms.CharField(required=False)

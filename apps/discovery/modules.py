@@ -340,6 +340,6 @@ class Featured(CollectionPromo):
                   'just about anything!')
 
 
-class AmpYourFirefoxWinner(CollectionPromo):
-    slug = 'Amp Your Firefox Best Overall Add-on'
-    template = 'discovery/modules/amp-your-firefox-winner.html'
+class AustralisContest(TemplatePromo):
+    slug = 'Australis Contest'
+    template = 'discovery/modules/australis-contest.html'

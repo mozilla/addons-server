@@ -135,3 +135,6 @@ SQL_RESET_SEQUENCES = False
 
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 3
+
+# Ensure that exceptions aren't re-raised.
+DEBUG_PROPAGATE_EXCEPTIONS = False

@@ -70,8 +70,8 @@ def get_series(model, extra_field=None, **filters):
           .values_dict('date', 'count', *extra))[:365]
     for val in qs:
         # Convert the datetimes to a date.
-        date_ = date(*val['date'].timetuple()[:3])
-        rv = dict(count=val['count'], date=date_, end=date_)
+        date_ = date(*val['date'][0].timetuple()[:3])
+        rv = dict(count=val['count'][0], date=date_, end=date_)
         if extra_field:
             rv['data'] = extract(val[extra_field])
         yield rv
@@ -100,10 +100,39 @@ def extract(dicts):
 
     >>> extract([{'k': 'a', 'v': 1}, {'k': 'b', 'v': 2}])
     {'a': 1, 'b': 2}
+
+    >>> extract({'k': 'a', 'v': 1})
+    {'a': 1}
+
+    >>> extract([{'mykey': [{'k': 'a', 'v': 1}, {'k': 'b', 'v': 2}]}])
+    {'mykey': {'a': 1, 'b': 2}}
+
+    >>> extract({'mykey': [{'k': 'a', 'v': 1}, {'k': 'b', 'v': 2}]})
+    {'mykey': {'a': 1, 'b': 2}}
+
+    >>> extract([{'mykey': {'k': 'a', 'v': 1}}])
+    {'mykey': {'a': 1}}
+
+    >>> extract({'mykey': {'k': 'a', 'v': 1}})
+    {'mykey': {'a': 1}}
     """
+
+    def _extract_value(data):
+        # We are already dealing with a dict. If it has 'k' and 'v' keys,
+        # then we can just return that.
+        if 'k' in data and 'v' in data:
+            return ((data['k'], data['v']),)
+        # Otherwise re-extract the value.
+        return ((k, extract(v)) for k, v in data.items())
+
     if hasattr(dicts, 'items'):
-        return dict((k, extract(v)) for k, v in dicts.items())
-    return dict((d['k'], d['v']) for d in dicts)
+        # If it's already a dict, we just need to call extract_value which will
+        # iterate if necessary.
+        return dict(_extract_value(dicts))
+    extracted = {}
+    for d in dicts:
+        extracted.update(extract(d))
+    return extracted
 
 
 @addon_view
