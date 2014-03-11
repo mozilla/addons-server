@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-{% if error_level %}
-<error>{{_(msg)}}</error>
+{# Compatibility across both Piston and DRF on error messages/vars. #}
+{% if detail %}
+  <error>{{_(detail)}}</error>
 {% else %}
-<msg>{{_(msg)}} </msg>
+  {% if error_level %}
+    <error>{{_(msg)}}</error>
+  {% else %}
+    <msg>{{_(msg)}}</msg>
+  {% endif %}
 {% endif %}
