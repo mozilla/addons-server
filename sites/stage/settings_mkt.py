@@ -12,7 +12,7 @@ SERVER_EMAIL = 'zmarketplacestage@addons.mozilla.org'
 DOMAIN = "marketplace.allizom.org"
 SITE_URL = 'https://marketplace.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = 'https://marketplace-cdn.allizom.org/'
+STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-cdn.allizom.org/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
 
