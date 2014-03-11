@@ -86,11 +86,9 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         eq_(len(data['objects']), 1)
         self.assertApiUrlEqual(data['objects'][0]['app'], '/apps/app/337141/')
         eq_(data['objects'][0]['body'], rev.body)
-        eq_(data['objects'][0]['created'],
-            rev.created.replace(microsecond=0).isoformat())
+        self.assertCloseToNow(data['objects'][0]['created'], now=rev.created)
         eq_(data['objects'][0]['is_author'], True)
-        eq_(data['objects'][0]['modified'],
-            rev.modified.replace(microsecond=0).isoformat())
+        self.assertCloseToNow(data['objects'][0]['modified'], now=rev.modified)
         eq_(data['objects'][0]['rating'], rev.rating)
         eq_(data['objects'][0]['report_spam'],
             reverse('ratings-flag', kwargs={'pk': pk}))
