@@ -41,7 +41,7 @@ def get_build_id(repo):
 def get_imgurls(repo):
     imgurls_fn = os.path.join(settings.MEDIA_ROOT, repo, 'imgurls.txt')
     with storage.open(imgurls_fn) as fh:
-        return fh.readlines()
+        return list(set(fh.readlines()))
 
 
 def commonplace(request, repo, **kwargs):
