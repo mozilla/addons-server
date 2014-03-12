@@ -1,4 +1,7 @@
+from django.conf import settings
+
 import mock
+from nose import SkipTest
 from nose.tools import eq_
 
 import amo.tests
@@ -26,10 +29,16 @@ class TestCommonplace(amo.tests.TestCase):
 class TestAppcacheManifest(amo.tests.TestCase):
 
     def test_no_repo(self):
+        if 'fireplace' not in settings.COMMONPLACE_REPOS_APPCACHED:
+            raise SkipTest
+
         res = self.client.get(reverse('commonplace.appcache'))
         eq_(res.status_code, 404)
 
     def test_bad_repo(self):
+        if 'fireplace' not in settings.COMMONPLACE_REPOS_APPCACHED:
+            raise SkipTest
+
         res = self.client.get(reverse('commonplace.appcache'),
                               {'repo': 'rocketfuel'})
         eq_(res.status_code, 404)
@@ -37,6 +46,9 @@ class TestAppcacheManifest(amo.tests.TestCase):
     @mock.patch('mkt.commonplace.views.get_build_id', new=lambda x: 'p00p')
     @mock.patch('mkt.commonplace.views.get_imgurls')
     def test_good_repo(self, get_imgurls_mock):
+        if 'fireplace' not in settings.COMMONPLACE_REPOS_APPCACHED:
+            raise SkipTest
+
         img = '/media/img/icons/eggs/h1.gif'
         get_imgurls_mock.return_value = [img]
         res = self.client.get(reverse('commonplace.appcache'),
