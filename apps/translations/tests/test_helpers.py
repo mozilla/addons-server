@@ -7,6 +7,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
+from addons.models import Addon
 from translations import helpers
 from translations.fields import save_signal
 from translations.models import PurifiedTranslation
@@ -98,6 +99,21 @@ def test_no_links():
     s = 'some text <http://bad.markup.com'
     eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}),
         'some text')
+
+
+def test_l10n_menu():
+    # No remove_locale_url provided.
+    menu = helpers.l10n_menu({})
+    assert 'data-rm-locale=""' in menu, menu
+
+    # Specific remove_locale_url provided (eg for user).
+    menu = helpers.l10n_menu({}, remove_locale_url='/some/url/')
+    assert 'data-rm-locale="/some/url/"' in menu, menu
+
+    # Use the remove_locale_url taken from the addon in the context.
+    menu = helpers.l10n_menu({'addon': Addon()},
+                             remove_locale_url='some/url/')
+    assert 'data-rm-locale="/developers/addon/None/rmlocale"' in menu, menu
 
 
 @patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))

@@ -1472,10 +1472,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def remove_locale(self, locale):
         """NULLify strings in this locale for the add-on and versions."""
         for o in itertools.chain([self], self.versions.all()):
-            ids = [getattr(o, f.attname) for f in o._meta.translated_fields]
-            qs = Translation.objects.filter(id__in=filter(None, ids),
-                                            locale=locale)
-            qs.update(localized_string=None, localized_string_clean=None)
+            Translation.objects.remove_for(o, locale)
 
     def app_perf_results(self):
         """Generator of (AppVersion, [list of perf results contexts]).

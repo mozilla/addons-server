@@ -1,5 +1,3 @@
-import sys
-
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
 from django.utils import encoding
@@ -16,6 +14,16 @@ from . import utils
 log = commonware.log.getLogger('z.translations')
 
 
+class TranslationManager(amo.models.ManagerBase):
+
+    def remove_for(self, obj, locale):
+        """Remove a locale for the given object."""
+        ids = [getattr(obj, f.attname) for f in obj._meta.translated_fields]
+        qs = Translation.objects.filter(id__in=filter(None, ids),
+                                        locale=locale)
+        qs.update(localized_string=None, localized_string_clean=None)
+
+
 class Translation(amo.models.ModelBase):
     """
     Translation model.
@@ -29,6 +37,8 @@ class Translation(amo.models.ModelBase):
     locale = models.CharField(max_length=10)
     localized_string = models.TextField(null=True)
     localized_string_clean = models.TextField(null=True)
+
+    objects = TranslationManager()
 
     class Meta:
         db_table = 'translations'

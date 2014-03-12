@@ -23,6 +23,7 @@ detail_patterns = patterns('',
     url(r'^emailchange/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)$',
                         views.emailchange, name="users.emailchange"),
     url('^abuse', views.report_abuse, name='users.abuse'),
+    url('^rmlocale$', views.remove_locale, name='users.remove-locale'),
 )
 
 
