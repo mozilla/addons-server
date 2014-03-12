@@ -15,7 +15,4 @@ CACHE:
 {%- endfor %}
 
 NETWORK:
-https://login.persona.org/include.js
-https://ssl.google-analytics.com/ga.js
-https://www.google-analytics.com/analytics.js
 *

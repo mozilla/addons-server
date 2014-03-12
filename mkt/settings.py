@@ -321,7 +321,7 @@ LOGOUT_REDIRECT_URL = '/developers/'
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
                      'rocketfuel']
-COMMONPLACE_REPOS_APPCACHED = []  #['fireplace']
+COMMONPLACE_REPOS_APPCACHED = ['fireplace']
 
 # A list of the payment providers supported by the marketplace. Currently there
 # can be only one value, however we expect this to change in the future.
