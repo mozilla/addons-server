@@ -280,8 +280,8 @@ class TranslationTestCase(TestCase):
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m = FancyModel.objects.create(purified=s)
         eq_(m.purified.localized_string_clean,
-            '<a href="http://xxx.com" rel="nofollow">yay</a> '
-            '<i><a href="http://yyy.com" rel="nofollow">'
+            '<a rel="nofollow" href="http://xxx.com">yay</a> '
+            '<i><a rel="nofollow" href="http://yyy.com">'
             'http://yyy.com</a></i>')
         eq_(m.purified.localized_string, s)
 
@@ -289,8 +289,8 @@ class TranslationTestCase(TestCase):
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m = FancyModel.objects.create(linkified=s)
         eq_(m.linkified.localized_string_clean,
-            '<a href="http://xxx.com" rel="nofollow">yay</a> '
-            '&lt;i&gt;<a href="http://yyy.com" rel="nofollow">'
+            '<a rel="nofollow" href="http://xxx.com">yay</a> '
+            '&lt;i&gt;<a rel="nofollow" href="http://yyy.com">'
             'http://yyy.com</a>&lt;/i&gt;')
         eq_(m.linkified.localized_string, s)
 
@@ -300,8 +300,8 @@ class TranslationTestCase(TestCase):
         m.purified = s
         m.save()
         eq_(m.purified.localized_string_clean,
-            '<a href="http://xxx.com" rel="nofollow">yay</a> '
-            '<i><a href="http://yyy.com" rel="nofollow">'
+            '<a rel="nofollow" href="http://xxx.com">yay</a> '
+            '<i><a rel="nofollow" href="http://yyy.com">'
             'http://yyy.com</a></i>')
         eq_(m.purified.localized_string, s)
 
@@ -311,8 +311,8 @@ class TranslationTestCase(TestCase):
         m.linkified = s
         m.save()
         eq_(m.linkified.localized_string_clean,
-            '<a href="http://xxx.com" rel="nofollow">yay</a> '
-            '&lt;i&gt;<a href="http://yyy.com" rel="nofollow">'
+            '<a rel="nofollow" href="http://xxx.com">yay</a> '
+            '&lt;i&gt;<a rel="nofollow" href="http://yyy.com">'
             'http://yyy.com</a>&lt;/i&gt;')
         eq_(m.linkified.localized_string, s)
 
@@ -320,13 +320,13 @@ class TranslationTestCase(TestCase):
         m = FancyModel.objects.get(id=1)
         eq_(u'%s' % m.purified,
             '<i>x</i> '
-            '<a href="http://yyy.com" rel="nofollow">http://yyy.com</a>')
+            '<a rel="nofollow" href="http://yyy.com">http://yyy.com</a>')
 
     def test_linkified_field_str(self):
         m = FancyModel.objects.get(id=1)
         eq_(u'%s' % m.linkified,
             '&lt;i&gt;x&lt;/i&gt; '
-            '<a href="http://yyy.com" rel="nofollow">http://yyy.com</a>')
+            '<a rel="nofollow" href="http://yyy.com">http://yyy.com</a>')
 
     def test_purifed_linkified_fields_in_template(self):
         m = FancyModel.objects.get(id=1)
@@ -346,10 +346,10 @@ class TranslationTestCase(TestCase):
         s = 'I like http://example.org/awesomepage.html .'
         m = FancyModel.objects.create(linkified=s)
         eq_(m.linkified.localized_string_clean,
-            'I like <a href="http://example.com/'
+            'I like <a rel="nofollow" href="http://example.com/'
             '40979175e3ef6d7a9081085f3b99f2f05447b22ba790130517dd62b7ee59ef94/'
             'http%3A//example.org/'
-            'awesomepage.html" rel="nofollow">http://example.org/awesomepage'
+            'awesomepage.html">http://example.org/awesomepage'
             '.html</a> .')
         eq_(m.linkified.localized_string, s)
 
@@ -501,8 +501,8 @@ class PurifiedTranslationTest(TestCase):
         s = u'<b>markup</b> <a href="http://addons.mozilla.org/foo">bar</a>'
         x = PurifiedTranslation(localized_string=s)
         eq_(x.__html__(),
-            u'<b>markup</b> <a href="http://addons.mozilla.org/foo" '
-            u'rel="nofollow">bar</a>')
+            u'<b>markup</b> <a rel="nofollow" '
+            u'href="http://addons.mozilla.org/foo">bar</a>')
 
     @patch('amo.urlresolvers.get_outgoing_url')
     def test_external_link(self, get_outgoing_url_mock):
@@ -510,8 +510,8 @@ class PurifiedTranslationTest(TestCase):
         s = u'<b>markup</b> <a href="http://example.com">bar</a>'
         x = PurifiedTranslation(localized_string=s)
         eq_(x.__html__(),
-            u'<b>markup</b> <a href="http://external.url" '
-            u'rel="nofollow">bar</a>')
+            u'<b>markup</b> <a rel="nofollow" '
+            u'href="http://external.url">bar</a>')
 
     @patch('amo.urlresolvers.get_outgoing_url')
     def test_external_text_link(self, get_outgoing_url_mock):
@@ -519,8 +519,8 @@ class PurifiedTranslationTest(TestCase):
         s = u'<b>markup</b> http://example.com'
         x = PurifiedTranslation(localized_string=s)
         eq_(x.__html__(),
-            u'<b>markup</b> <a href="http://external.url" '
-            u'rel="nofollow">http://example.com</a>')
+            u'<b>markup</b> <a rel="nofollow" '
+            u'href="http://external.url">http://example.com</a>')
 
 
 class LinkifiedTranslationTest(TestCase):
@@ -531,7 +531,7 @@ class LinkifiedTranslationTest(TestCase):
         s = u'<a href="http://example.com">bar</a>'
         x = LinkifiedTranslation(localized_string=s)
         eq_(x.__html__(),
-            u'<a href="http://external.url" rel="nofollow">bar</a>')
+            u'<a rel="nofollow" href="http://external.url">bar</a>')
 
     def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script> <b>bold</b>'
@@ -554,9 +554,24 @@ class NoLinksTranslationTest(TestCase):
         eq_(x.__html__(), '&lt;script&gt;some naughty xss&lt;/script&gt;')
 
     def test_links_stripped(self):
-        s = u'<a href="http://example.com">bar</a> foo bar'
+        # Link with markup.
+        s = u'a <a href="http://example.com">link</a> with markup'
         x = NoLinksTranslation(localized_string=s)
-        eq_(x.__html__(), u'foo bar')
+        eq_(x.__html__(), u'a  with markup')
+
+        # Text link.
+        s = u'a text http://example.com link'
+        x = NoLinksTranslation(localized_string=s)
+        eq_(x.__html__(), u'a text  link')
+
+        # Text link, markup link, allowed tags, forbidden tags and bad markup.
+        s = (u'a <a href="http://example.com">link</a> with markup, a text '
+             u'http://example.com link, <b>with allowed tags</b>, '
+             u'<script>forbidden tags</script> and <http://bad.markup.com')
+        x = NoLinksTranslation(localized_string=s)
+        eq_(x.__html__(), u'a  with markup, a text  link, '
+                          u'<b>with allowed tags</b>, '
+                          u'&lt;script&gt;forbidden tags&lt;/script&gt; and')
 
 
 class NoLinksNoMarkupTranslationTest(TestCase):
@@ -569,9 +584,24 @@ class NoLinksNoMarkupTranslationTest(TestCase):
             '&lt;b&gt;bold&lt;/b&gt;')
 
     def test_links_stripped(self):
-        s = u'<a href="http://example.com">bar</a> foo bar'
+        # Link with markup.
+        s = u'a <a href="http://example.com">link</a> with markup'
         x = NoLinksNoMarkupTranslation(localized_string=s)
-        eq_(x.__html__(), u'foo bar')
+        eq_(x.__html__(), u'a  with markup')
+
+        # Text link.
+        s = u'a text http://example.com link'
+        x = NoLinksNoMarkupTranslation(localized_string=s)
+        eq_(x.__html__(), u'a text  link')
+
+        # Text link, markup link, forbidden tags and bad markup.
+        s = (u'a <a href="http://example.com">link</a> with markup, a text '
+             u'http://example.com link, <b>with forbidden tags</b>, '
+             u'<script>forbidden tags</script> and <http://bad.markup.com')
+        x = NoLinksNoMarkupTranslation(localized_string=s)
+        eq_(x.__html__(), u'a  with markup, a text  link, '
+                          u'&lt;b&gt;with forbidden tags&lt;/b&gt;, '
+                          u'&lt;script&gt;forbidden tags&lt;/script&gt; and')
 
 
 def test_translation_bool():

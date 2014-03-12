@@ -8,7 +8,7 @@ import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from amo.utils import clean_nl, remove_links, slug_validator, slugify
+from amo.utils import clean_nl, has_links, slug_validator, slugify
 from happyforms import Form, ModelForm
 from translations.widgets import TranslationTextInput, TranslationTextarea
 from users.models import UserProfile
@@ -147,7 +147,7 @@ class CollectionForm(ModelForm):
     def clean_description(self):
         description = self.cleaned_data['description']
         normalized = clean_nl(description)
-        if remove_links(normalized) != normalized:
+        if has_links(normalized):
             # There's some links, we don't want them.
             raise forms.ValidationError(_('No links are allowed.'))
         return description

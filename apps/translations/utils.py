@@ -1,49 +1,59 @@
+import copy
+
 from django.utils.encoding import force_unicode
 
-from bleach import NODE_TEXT
 import html5lib
 import jinja2
 
 
+def truncate_text(text, limit, killwords=False, end='...'):
+    """Return as many characters as possible without going over the limit.
+
+    Return the truncated text and the characters left before the limit, if any.
+
+    """
+    text = text.strip()
+    text_length = len(text)
+
+    if text_length < limit:
+        return text, limit - text_length
+
+    # Explicitly add "end" in any case, as Jinja can't know we're truncating
+    # for real here, even though we might be at the end of a word.
+    text = jinja2.filters.do_truncate(text, limit, killwords, end='')
+    return text + end, 0
+
+
 def trim(tree, limit, killwords, end):
     """Truncate the text of an html5lib tree."""
-    root = tree.cloneNode()
-    length = 0
-    for node in tree.childNodes:
-        # Stop if we have enough characters.
-        if length >= limit:
-            break
-
-        # We have a text node, so slurp up characters without going over.
-        if node.type == NODE_TEXT:
-            new = node.cloneNode()
-            root.appendChild(new)
-            text = new.value.strip()
-            if len(text) + length < limit:
-                length += len(text)
-            else:
-                # Don't let jinja add ``end`` because it doesn't know that
-                # we're truncating up here.
-                trunc = jinja2.filters.do_truncate(text, limit - length,
-                                                       killwords, end='')
-                new.value = trunc + end
-                length = limit
+    if tree.text:  # Root node's text.
+        tree.text, limit = truncate_text(tree.text, limit, killwords, end)
+    for child in tree:  # Immediate children.
+        if limit <= 0:
+            # We reached the limit, remove all remaining children.
+            tree.remove(child)
         else:
-            # Recurse on other non-text nodes.
-            child, child_len = trim(node, limit - length, killwords, end)
-            root.appendChild(child)
-            length += child_len
-    return root, length
+            # Recurse on the current child.
+            _parsed_tree, limit = trim(child, limit, killwords, end)
+    if tree.tail:  # Root node's tail text.
+        if limit <= 0:
+            tree.tail = ''
+        else:
+            tree.tail, limit = truncate_text(tree.tail, limit, killwords, end)
+    return tree, limit
 
 
 def text_length(tree):
     """Find the length of the text content, excluding markup."""
-    def walk(tree):
-        if tree.type == NODE_TEXT:
-            return len(tree.value.strip())
-        else:
-            return sum(walk(node) for node in tree.childNodes)
-    return walk(tree)
+    total = 0
+    for node in tree.getiterator():  # Traverse all the tree nodes.
+        # In etree, a node has a text and tail attribute.
+        # Eg: "<b>inner text</b> tail text <em>inner text</em>".
+        if node.text:
+            total += len(node.text.strip())
+        if node.tail:
+            total += len(node.tail.strip())
+    return total
 
 
 def truncate(html, length, killwords=False, end='...'):
@@ -54,12 +64,19 @@ def truncate(html, length, killwords=False, end='...'):
 
     ONLY USE FOR KNOWN-SAFE HTML.
     """
-    tree = html5lib.parseFragment(html, encoding='utf-8')
+    tree = html5lib.parseFragment(html)
     if text_length(tree) <= length:
         return jinja2.Markup(html)
     else:
+        # Get a truncated version of the tree.
         short, _ = trim(tree, length, killwords, end)
-        return jinja2.Markup(force_unicode(short.toxml()))
+
+        # Serialize the parsed tree back to html.
+        walker = html5lib.treewalkers.getTreeWalker('etree')
+        stream = walker(short)
+        serializer = html5lib.serializer.htmlserializer.HTMLSerializer(
+            quote_attr_values=True, omit_optional_tags=False)
+        return jinja2.Markup(force_unicode(serializer.render(stream)))
 
 
 def transfield_changed(field, initial, data):

@@ -195,9 +195,6 @@ class PurifiedTranslation(Translation):
 class LinkifiedTranslation(PurifiedTranslation):
     """Run the string through bleach to get a linkified version."""
     allowed_tags = ['a']
-    allowed_attributes = {
-        'a': ['href', 'title', 'rel'],
-    }
 
     class Meta:
         proxy = True
@@ -207,8 +204,18 @@ class NoLinksMixin(object):
     """Mixin used to remove links (URLs and text) from localized_string."""
 
     def clean_localized_string(self):
+        # First pass: bleach everything, but leave links untouched.
         cleaned = super(NoLinksMixin, self).clean_localized_string()
-        return amo.utils.remove_links(cleaned)
+
+        # Second pass: call linkify to empty the inner text of all links.
+        emptied_links = bleach.linkify(
+            cleaned, callbacks=[lambda attrs, new: {'_text': ''}])
+
+        # Third pass: now strip links (only links will be stripped, other
+        # forbidden tags are already bleached/escaped.
+        allowed_tags = self.allowed_tags[:]  # Make a copy.
+        allowed_tags.remove('a')
+        return bleach.clean(emptied_links, tags=allowed_tags, strip=True)
 
 
 class NoLinksTranslation(NoLinksMixin, PurifiedTranslation):
