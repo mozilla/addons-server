@@ -198,7 +198,7 @@ class PriceTierSerializer(ModelSerializer):
 
     class Meta:
         model = Price
-        fields = ['id', 'resource_uri', 'active', 'name', 'method', 'price']
+        fields = ['resource_uri', 'active', 'name', 'method', 'price']
 
 
 class PriceTierViewSet(generics.CreateAPIView,
