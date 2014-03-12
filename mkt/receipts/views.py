@@ -182,7 +182,8 @@ def issue(request, addon):
     receipt_cef.log(request, addon, 'sign', 'Receipt signing for %s' % flavour)
     receipt = None
     try:
-        receipt = create_receipt(installed, flavour=flavour)
+        receipt = create_receipt(addon, user, get_uuid(addon, user),
+                                 flavour=flavour)
     except SigningError:
         error = _('There was a problem installing the app.')
 
