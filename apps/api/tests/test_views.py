@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-from decimal import Decimal
 from textwrap import dedent
 
 from django.conf import settings

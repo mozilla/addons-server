@@ -42,7 +42,7 @@ class DRFView(APIView):
         context = super(DRFView, self).get_renderer_context()
         context.update({
             'amo': amo,
-            'api_version': self.api_version,
+            'api_version': getattr(self, 'api_version', 0),
         })
         return context
 

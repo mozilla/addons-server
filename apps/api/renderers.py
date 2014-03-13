@@ -2,8 +2,11 @@ from rest_framework.renderers import (JSONRenderer as BaseJSONRenderer,
                                       XMLRenderer)
 
 from amo.utils import JSONEncoder
+import commonware.log
 
 from .views import render_xml_to_string
+
+log = commonware.log.getLogger('z.api.rendereders')
 
 
 class JSONRenderer(BaseJSONRenderer):
@@ -21,8 +24,9 @@ class XMLTemplateRenderer(XMLRenderer):
         request = renderer_context.get('request', None)
         response = renderer_context.get('response', None)
         if not hasattr(self, 'template_name') and not response.template_name:
-            raise Exception('the Response object is missing a "template_name"'
-                            ' attribute.')
+            log.info('the Response object is missing a "template_name"'
+                     ' attribute.')
+            self.template_name = 'api/message.xml'
         template_name = response.template_name or self.template_name
         # Here `copy()` is prefered over the creation of a new RequestContext
         # because `render_xml_to_string()` below requires a dictionary.
