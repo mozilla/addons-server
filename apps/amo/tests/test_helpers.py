@@ -277,7 +277,7 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
 
 
 @patch('amo.helpers.urlresolvers.linkify_bounce_url_callback')
-def test_linkify_with_outgoing(mock_linkify_bounce_url_callback):
+def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
         return attrs
@@ -285,17 +285,42 @@ def test_linkify_with_outgoing(mock_linkify_bounce_url_callback):
     mock_linkify_bounce_url_callback.side_effect = side_effect
 
     # Without nofollow.
-    res = urlresolvers.linkify_with_outgoing('http://example.com',
+    res = urlresolvers.linkify_with_outgoing('a text http://example.com link',
                                              nofollow=False)
-    eq_(res, '<a href="bar">http://example.com</a>')
+    eq_(res, 'a text <a href="bar">http://example.com</a> link')
 
     # With nofollow (default).
-    res = urlresolvers.linkify_with_outgoing('http://example.com')
-    eq_(res, '<a href="bar" rel="nofollow">http://example.com</a>')
+    res = urlresolvers.linkify_with_outgoing('a text http://example.com link')
+    eq_(res, 'a text <a rel="nofollow" href="bar">http://example.com</a> link')
 
-    res = urlresolvers.linkify_with_outgoing('http://example.com',
+    res = urlresolvers.linkify_with_outgoing('a text http://example.com link',
                                              nofollow=True)
-    eq_(res, '<a href="bar" rel="nofollow">http://example.com</a>')
+    eq_(res, 'a text <a rel="nofollow" href="bar">http://example.com</a> link')
+
+
+@patch('amo.helpers.urlresolvers.linkify_bounce_url_callback')
+def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
+    def side_effect(attrs, new=False):
+        attrs['href'] = 'bar'
+        return attrs
+
+    mock_linkify_bounce_url_callback.side_effect = side_effect
+
+    # Without nofollow.
+    res = urlresolvers.linkify_with_outgoing(
+        'a markup <a href="http://example.com">link</a> with text',
+        nofollow=False)
+    eq_(res, 'a markup <a href="bar">link</a> with text')
+
+    # With nofollow (default).
+    res = urlresolvers.linkify_with_outgoing(
+        'a markup <a href="http://example.com">link</a> with text')
+    eq_(res, 'a markup <a rel="nofollow" href="bar">link</a> with text')
+
+    res = urlresolvers.linkify_with_outgoing(
+        'a markup <a href="http://example.com">link</a> with text',
+        nofollow=True)
+    eq_(res, 'a markup <a rel="nofollow" href="bar">link</a> with text')
 
 
 class TestLicenseLink(amo.tests.TestCase):

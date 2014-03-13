@@ -282,6 +282,22 @@ class TestEdit(UserViewBase):
         eq_(doc('#profile-misc').length, 1,
             'Collections options should be visible.')
 
+    def test_remove_locale_bad_request(self):
+        r = self.client.post(self.user.get_user_url('remove-locale'))
+        eq_(r.status_code, 400)
+
+    @patch.object(UserProfile, 'remove_locale')
+    def test_remove_locale(self, remove_locale_mock):
+        r = self.client.post(self.user.get_user_url('remove-locale'),
+                             {'locale': 'el'})
+        eq_(r.status_code, 200)
+        remove_locale_mock.assert_called_with('el')
+
+    def test_remove_locale_default_locale(self):
+        r = self.client.post(self.user.get_user_url('remove-locale'),
+                             {'locale': settings.LANGUAGE_CODE})
+        eq_(r.status_code, 400)
+
 
 class TestEditAdmin(UserViewBase):
     fixtures = ['base/users']

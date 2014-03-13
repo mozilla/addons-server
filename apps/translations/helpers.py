@@ -50,12 +50,15 @@ def truncate(s, length=255, killwords=True, end='...'):
 
 @jingo.register.inclusion_tag('translations/trans-menu.html')
 @jinja2.contextfunction
-def l10n_menu(context, default_locale='en-us'):
+def l10n_menu(context, default_locale='en-us', remove_locale_url=''):
     """Generates the locale menu for zamboni l10n."""
     default_locale = default_locale.lower()
     languages = dict((i.lower(), j) for i, j in settings.LANGUAGES.items())
     c = dict(context.items())
-    c.update({'languages': languages, 'default_locale': default_locale})
+    if 'addon' in c:
+        remove_locale_url = c['addon'].get_dev_url('remove-locale')
+    c.update({'languages': languages, 'default_locale': default_locale,
+              'remove_locale_url': remove_locale_url})
     return c
 
 

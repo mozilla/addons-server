@@ -14,10 +14,9 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from amo.utils import clean_nl, log_cef, remove_links, slug_validator
+from amo.utils import clean_nl, has_links, log_cef, slug_validator
 from .models import (UserProfile, UserNotification, BlacklistedUsername,
                      BlacklistedEmailDomain, BlacklistedPassword, DjangoUser)
-from translations.widgets import TranslationTextarea
 from .widgets import NotificationsSelectMultiple
 import users.notifications as email
 from . import tasks
@@ -251,9 +250,6 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
     password2 = forms.CharField(max_length=255, required=False,
                                 widget=forms.PasswordInput(render_value=False))
 
-    bio = forms.CharField(widget=TranslationTextarea(),
-                          max_length=200,
-                          required=False)
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
 
     notifications = forms.MultipleChoiceField(
@@ -335,7 +331,7 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
     def clean_bio(self):
         bio = self.cleaned_data['bio']
         normalized = clean_nl(unicode(bio))
-        if remove_links(normalized) != normalized:
+        if has_links(normalized):
             # There's some links, we don't want them.
             raise forms.ValidationError(_('No links are allowed.'))
         return bio

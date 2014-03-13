@@ -711,6 +711,17 @@ def report_abuse(request, user):
     return redirect(user.get_url_path())
 
 
+@post_required
+@user_view
+def remove_locale(request, user):
+    """Remove a locale from the user's translations."""
+    POST = request.POST
+    if 'locale' in POST and POST['locale'] != settings.LANGUAGE_CODE:
+        user.remove_locale(POST['locale'])
+        return http.HttpResponse()
+    return http.HttpResponseBadRequest()
+
+
 @never_cache
 def password_reset_confirm(request, uidb36=None, token=None):
     """

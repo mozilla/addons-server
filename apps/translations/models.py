@@ -1,5 +1,3 @@
-import sys
-
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
 from django.utils import encoding
@@ -16,6 +14,16 @@ from . import utils
 log = commonware.log.getLogger('z.translations')
 
 
+class TranslationManager(amo.models.ManagerBase):
+
+    def remove_for(self, obj, locale):
+        """Remove a locale for the given object."""
+        ids = [getattr(obj, f.attname) for f in obj._meta.translated_fields]
+        qs = Translation.objects.filter(id__in=filter(None, ids),
+                                        locale=locale)
+        qs.update(localized_string=None, localized_string_clean=None)
+
+
 class Translation(amo.models.ModelBase):
     """
     Translation model.
@@ -29,6 +37,8 @@ class Translation(amo.models.ModelBase):
     locale = models.CharField(max_length=10)
     localized_string = models.TextField(null=True)
     localized_string_clean = models.TextField(null=True)
+
+    objects = TranslationManager()
 
     class Meta:
         db_table = 'translations'
@@ -195,9 +205,6 @@ class PurifiedTranslation(Translation):
 class LinkifiedTranslation(PurifiedTranslation):
     """Run the string through bleach to get a linkified version."""
     allowed_tags = ['a']
-    allowed_attributes = {
-        'a': ['href', 'title', 'rel'],
-    }
 
     class Meta:
         proxy = True
@@ -207,8 +214,18 @@ class NoLinksMixin(object):
     """Mixin used to remove links (URLs and text) from localized_string."""
 
     def clean_localized_string(self):
+        # First pass: bleach everything, but leave links untouched.
         cleaned = super(NoLinksMixin, self).clean_localized_string()
-        return amo.utils.remove_links(cleaned)
+
+        # Second pass: call linkify to empty the inner text of all links.
+        emptied_links = bleach.linkify(
+            cleaned, callbacks=[lambda attrs, new: {'_text': ''}])
+
+        # Third pass: now strip links (only links will be stripped, other
+        # forbidden tags are already bleached/escaped.
+        allowed_tags = self.allowed_tags[:]  # Make a copy.
+        allowed_tags.remove('a')
+        return bleach.clean(emptied_links, tags=allowed_tags, strip=True)
 
 
 class NoLinksTranslation(NoLinksMixin, PurifiedTranslation):
