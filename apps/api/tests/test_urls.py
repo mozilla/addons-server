@@ -6,17 +6,20 @@ from django.contrib.auth.models import AnonymousUser
 
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
+from users.models import UserProfile
 
 from ..urls import SwitchToDRF
 
 
 class TestDRFSwitch(TestCase):
+    fixtures = ['base/addon_3615',]
 
     def setUp(self):
         self.factory = RequestFactory()
+        self.user = UserProfile.objects.get(email='del@icio.us')
 
     def test_responses(self):
-        view = SwitchToDRF('LanguageView')
+        view = SwitchToDRF('Language')
         request = self.factory.get(reverse('api.language', args=['1.5']))
         request.APP = Mock(id=1)
         request.user = AnonymousUser()
@@ -28,8 +31,22 @@ class TestDRFSwitch(TestCase):
         drf_response = view(request, api_version=1.5).render().content
         eq_(piston_response, drf_response)
 
+    def test_responses_with_handler(self):
+        view = SwitchToDRF('User', with_handler=True)
+        request = self.factory.get(reverse('api.language', args=['2']))
+        class App():
+            id = 1
+            def __str__(self):
+                return str(self.id)
+        request.APP = App()
+        request.user = AnonymousUser()
+        request.amo_user = self.user
+        eq_(view(request, api_version=2).__module__, 'django.http')
+        self.create_switch('drf', db=True)
+        eq_(view(request, api_version=2).__module__, 'rest_framework.response')
+
     def test_wrong_format_exceptions(self):
-        view = SwitchToDRF('LanguageView')
+        view = SwitchToDRF('Language')
         request = self.factory.get(reverse('api.language', args=['1.5']))
         request.APP = Mock(id=1)
         request.GET = {'format': 'foo'}

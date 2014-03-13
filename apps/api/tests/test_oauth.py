@@ -34,7 +34,6 @@ from django.test.client import (encode_multipart, Client, FakePayload,
 
 import oauth2 as oauth
 from mock import Mock, patch
-from nose import SkipTest
 from nose.tools import eq_
 from piston.models import Consumer
 
@@ -101,6 +100,7 @@ class OAuthClient(Client):
                                                  verifier=verifier))
         req.sign_request(self.signature_method, consumer, token)
         return super(OAuthClient, self).get(req.to_url(), HTTP_HOST='api',
+                                            HTTP_AUTHORIZATION='OAuth realm=""',
                                             **req)
 
     def delete(self, url, consumer=None, token=None, callback=False,
@@ -156,9 +156,8 @@ class OAuthClient(Client):
         response = self.request(**r)
         return response
 
-client = OAuthClient()
+oclient = OAuthClient()
 token_keys = ('oauth_token_secret', 'oauth_token',)
-
 
 def get_token_from_response(response):
     data = urlparse.parse_qs(response.content)
@@ -170,12 +169,12 @@ def get_token_from_response(response):
 
 
 def get_request_token(consumer, callback=False):
-    r = client.get('oauth.request_token', consumer, callback=callback)
+    r = oclient.get('oauth.request_token', consumer, callback=callback)
     return get_token_from_response(r)
 
 
 def get_access_token(consumer, token, authorize=True, verifier=None):
-    r = client.get('oauth.access_token', consumer, token, verifier=verifier)
+    r = oclient.get('oauth.access_token', consumer, token, verifier=verifier)
 
     if authorize:
         return get_token_from_response(r)
@@ -201,9 +200,6 @@ class BaseOAuth(TestCase):
         self.canceled_consumer = consumers[2]
         self.token = None
 
-    def _login(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-
 
 class TestBaseOAuth(BaseOAuth):
 
@@ -225,38 +221,8 @@ class TestBaseOAuth(BaseOAuth):
         c = Mock()
         c.key = 'yer'
         c.secret = 'mom'
-        r = client.get('oauth.request_token', c, callback=True)
+        r = oclient.get('oauth.request_token', c, callback=True)
         eq_(r.content, 'Invalid Consumer.')
-
-    def test_user(self):
-        r = client.get('api.user', self.accepted_consumer, self.token)
-        eq_(json.loads(r.content)['email'], 'editor@mozilla.com')
-
-    def test_user_lookup(self):
-        partner = User.objects.get(email='partner@mozilla.com')
-        c = Consumer(name='p', status='accepted',
-                     user=partner)
-        c.generate_random_codes()
-        c.save()
-        r = client.get('api.user', c, None,
-                       params={'email': 'admin@mozilla.com'})
-        eq_(r.status_code, 200)
-        eq_(json.loads(r.content)['email'], 'admin@mozilla.com')
-
-    def test_failed_user_lookup(self):
-        partner = User.objects.get(email='partner@mozilla.com')
-        c = Consumer(name='p', status='accepted',
-                     user=partner)
-        c.generate_random_codes()
-        c.save()
-        r = client.get('api.user', c, None,
-                       params={'email': 'not_a_user@mozilla.com'})
-        eq_(r.status_code, 404)
-
-    def test_forbidden_user_lookup(self):
-        r = client.get('api.user', self.accepted_consumer, self.token,
-                       params={'email': 'admin@mozilla.com'})
-        eq_(r.status_code, 401)
 
     @patch('piston.authentication.oauth.OAuthAuthentication.is_authenticated')
     def _test_auth(self, pk, is_authenticated, two_legged=True):
@@ -299,6 +265,47 @@ class TestBaseOAuth(BaseOAuth):
         eq_(self.admin, self._test_auth(pk, two_legged=False).user)
 
 
+class TestUser(BaseOAuth):
+
+    def test_user(self):
+        r = oclient.get('api.user', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['email'], 'editor@mozilla.com')
+
+    def test_user_lookup(self):
+        partner = User.objects.get(email='partner@mozilla.com')
+        c = Consumer(name='p', status='accepted', user=partner)
+        c.generate_random_codes()
+        c.save()
+        r = oclient.get('api.user', c, None,
+                        params={'email': 'admin@mozilla.com'})
+        eq_(r.status_code, 200)
+        eq_(json.loads(r.content)['email'], 'admin@mozilla.com')
+
+    def test_failed_user_lookup(self):
+        partner = User.objects.get(email='partner@mozilla.com')
+        c = Consumer(name='p', status='accepted', user=partner)
+        c.generate_random_codes()
+        c.save()
+        r = oclient.get('api.user', c, None,
+                        params={'email': 'not_a_user@mozilla.com'})
+        eq_(r.status_code, 404)
+
+    def test_forbidden_user_lookup(self, response_code=401):
+        r = oclient.get('api.user', self.accepted_consumer, self.token,
+                        params={'email': 'admin@mozilla.com'})
+        eq_(r.status_code, response_code)
+
+
+class TestDRFUser(TestUser):
+
+    def setUp(self):
+        super(TestDRFUser, self).setUp()
+        self.create_switch('drf')
+
+    def test_forbidden_user_lookup(self):
+        super(TestDRFUser, self).test_forbidden_user_lookup(response_code=403)
+
+
 def activitylog_count(type=None):
     qs = ActivityLog.objects
     if type:
@@ -330,7 +337,7 @@ class TestAddon(BaseOAuth):
                 )
 
     def make_create_request(self, data):
-        return client.post('api.addons', self.accepted_consumer, self.token,
+        return oclient.post('api.addons', self.accepted_consumer, self.token,
                            data=data)
 
     def create_addon(self):
@@ -421,7 +428,7 @@ class TestAddon(BaseOAuth):
         # Force it to be public so its guid gets blacklisted.
         Addon.objects.filter(id=id).update(highest_status=amo.STATUS_PUBLIC)
 
-        r = client.delete(('api.addon', id), self.accepted_consumer,
+        r = oclient.delete(('api.addon', id), self.accepted_consumer,
                           self.token)
         eq_(r.status_code, 204, r.content)
         eq_(Addon.objects.filter(pk=id).count(), 0, "Didn't delete.")
@@ -456,7 +463,7 @@ class TestAddon(BaseOAuth):
         )
 
         current_count = activitylog_count()
-        r = client.put(('api.addon', id), self.accepted_consumer, self.token,
+        r = oclient.put(('api.addon', id), self.accepted_consumer, self.token,
                        data=data)
         eq_(r.status_code, 200, r.content)
 
@@ -478,12 +485,12 @@ class TestAddon(BaseOAuth):
         data = self.create_addon()
         id = data['id']
         is_valid.return_value = False
-        r = client.put(('api.addon', id), self.accepted_consumer, self.token,
+        r = oclient.put(('api.addon', id), self.accepted_consumer, self.token,
                        data=data)
         eq_(r.status_code, 400, r.content)
 
     def test_update_nonexistant(self):
-        r = client.put(('api.addon', 0), self.accepted_consumer, self.token,
+        r = oclient.put(('api.addon', 0), self.accepted_consumer, self.token,
                        data={})
         eq_(r.status_code, 410, r.content)
 
@@ -525,7 +532,7 @@ class TestAddon(BaseOAuth):
         addon.save()
 
         # Upload new version of file
-        r = client.post(('api.versions', id,), self.accepted_consumer,
+        r = oclient.post(('api.versions', id,), self.accepted_consumer,
                         self.token, data=self.version_data)
         eq_(r.status_code, 400)
         eq_(r.content, 'Bad Request: Add-on did not validate: '
@@ -548,7 +555,7 @@ class TestAddon(BaseOAuth):
         log_count = activitylog_count()
 
         # Upload new version of file
-        r = client.post(('api.versions', id,), self.accepted_consumer,
+        r = oclient.post(('api.versions', id,), self.accepted_consumer,
                         self.token, data=self.version_data)
 
         eq_(r.status_code, 200, r.content)
@@ -571,7 +578,7 @@ class TestAddon(BaseOAuth):
         id = data['id']
         data = self.version_data.copy()
         data['builtin'] = 'fu'
-        r = client.post(('api.versions', id,), self.accepted_consumer,
+        r = oclient.post(('api.versions', id,), self.accepted_consumer,
                         self.token, data=data)
 
         eq_(r.status_code, 400, r.content)
@@ -581,7 +588,7 @@ class TestAddon(BaseOAuth):
         id = data['id']
         data = self.version_data.copy()
         del data['builtin']
-        r = client.post(('api.versions', id,), self.accepted_consumer,
+        r = oclient.post(('api.versions', id,), self.accepted_consumer,
                         self.token, data=data)
 
         eq_(r.status_code, 200, r.content)
@@ -605,7 +612,7 @@ class TestAddon(BaseOAuth):
                 platform='windows',
                 xpi=open(os.path.join(settings.ROOT, path)),
                 )
-        r = client.put(('api.version', a.id, v.id), self.accepted_consumer,
+        r = oclient.put(('api.version', a.id, v.id), self.accepted_consumer,
                        self.token, data=data, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 200, r.content)
         v = a.versions.get()
@@ -620,7 +627,7 @@ class TestAddon(BaseOAuth):
                 platform='windows',
                 xpi=open(os.path.join(settings.ROOT, path)),
                 )
-        r = client.put(('api.version', a.id, v.id), self.accepted_consumer,
+        r = oclient.put(('api.version', a.id, v.id), self.accepted_consumer,
                        self.token, data=data, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 400, r.content)
 
@@ -634,7 +641,7 @@ class TestAddon(BaseOAuth):
                 )
         log_count = activitylog_count()
         # upload new version
-        r = client.put(('api.version', a.id, v.id), self.accepted_consumer,
+        r = oclient.put(('api.version', a.id, v.id), self.accepted_consumer,
                        self.token, data=data, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 200, r.content[:1000])
 
@@ -662,26 +669,26 @@ class TestAddon(BaseOAuth):
                 )
 
         # upload new version
-        r = client.put(('api.version', id, v.id), self.accepted_consumer,
+        r = oclient.put(('api.version', id, v.id), self.accepted_consumer,
                        self.token, data=data, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 400)
 
     def test_update_version_bad_id(self):
-        r = client.put(('api.version', 0, 0), self.accepted_consumer,
+        r = oclient.put(('api.version', 0, 0), self.accepted_consumer,
                        self.token, data={}, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 410, r.content)
 
     def test_get_version(self):
         data = self.create_addon()
         a = Addon.objects.get(pk=data['id'])
-        r = client.get(('api.version', data['id'], a.versions.get().id),
+        r = oclient.get(('api.version', data['id'], a.versions.get().id),
                        self.accepted_consumer, self.token)
         eq_(r.status_code, 200)
 
     def test_get_version_statuses(self):
         data = self.create_addon()
         a = Addon.objects.get(pk=data['id'])
-        r = client.get(('api.version', data['id'], a.versions.get().id),
+        r = oclient.get(('api.version', data['id'], a.versions.get().id),
                        self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['statuses'],
             [[File.objects.all()[0].pk, 1]])
@@ -694,11 +701,11 @@ class TestAddon(BaseOAuth):
         v = a.versions.get()
         acl.return_value = False
 
-        r = client.put(('api.version', id, v.id), self.accepted_consumer,
+        r = oclient.put(('api.version', id, v.id), self.accepted_consumer,
                        self.token, data={}, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 401, r.content)
 
-        r = client.put(('api.addon', id), self.accepted_consumer, self.token,
+        r = oclient.put(('api.addon', id), self.accepted_consumer, self.token,
                        data=data)
         eq_(r.status_code, 401, r.content)
 
@@ -710,7 +717,7 @@ class TestAddon(BaseOAuth):
         v = a.versions.get()
 
         log_count = activitylog_count()
-        r = client.delete(('api.version', id, v.id), self.accepted_consumer,
+        r = oclient.delete(('api.version', id, v.id), self.accepted_consumer,
                           self.token)
         eq_(activitylog_count(), log_count + 1)
 
@@ -724,7 +731,7 @@ class TestAddon(BaseOAuth):
         a = Addon.objects.get(pk=id)
         v = a.versions.get()
 
-        r = client.get(('api.versions', id), self.accepted_consumer,
+        r = oclient.get(('api.versions', id), self.accepted_consumer,
                        self.token)
         eq_(r.status_code, 200, r.content)
         data = json.loads(r.content)
@@ -735,14 +742,14 @@ class TestAddon(BaseOAuth):
                 'Got "%s" was expecting "%s" for "%s".' % (val, expect, attr,))
 
     def test_no_addons(self):
-        r = client.get('api.addons', self.accepted_consumer, self.token)
+        r = oclient.get('api.addons', self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['count'], 0)
 
     def test_no_user(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(addon=addon, user=self.admin.get_profile(),
                                  role=amo.AUTHOR_ROLE_DEV)
-        r = client.get('api.addons', self.accepted_consumer, self.token)
+        r = oclient.get('api.addons', self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['count'], 0)
 
     def test_my_addons_only(self):
@@ -750,7 +757,7 @@ class TestAddon(BaseOAuth):
             addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
                                  role=amo.AUTHOR_ROLE_DEV)
-        r = client.get('api.addons', self.accepted_consumer, self.token,
+        r = oclient.get('api.addons', self.accepted_consumer, self.token,
                        params={'authenticate_as': self.editor.pk})
         j = json.loads(r.content)
         eq_(j['count'], 1)
@@ -760,7 +767,7 @@ class TestAddon(BaseOAuth):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
                                  role=amo.AUTHOR_ROLE_DEV)
-        r = client.get(('api.addon', addon.pk), self.accepted_consumer,
+        r = oclient.get(('api.addon', addon.pk), self.accepted_consumer,
                        self.token, params={'authenticate_as': self.editor.pk})
         eq_(json.loads(r.content)['id'], addon.pk)
 
@@ -768,7 +775,7 @@ class TestAddon(BaseOAuth):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
                                  role=amo.AUTHOR_ROLE_VIEWER)
-        r = client.get('api.addons', self.accepted_consumer, self.token)
+        r = oclient.get('api.addons', self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['count'], 0)
 
     def test_my_addons_disabled(self):
@@ -776,7 +783,7 @@ class TestAddon(BaseOAuth):
                                      status=amo.STATUS_DISABLED)
         AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
                                  role=amo.AUTHOR_ROLE_DEV)
-        r = client.get('api.addons', self.accepted_consumer, self.token)
+        r = oclient.get('api.addons', self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['count'], 0)
 
     def test_my_addons_deleted(self):
@@ -784,7 +791,7 @@ class TestAddon(BaseOAuth):
                                      status=amo.STATUS_DELETED)
         AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
                                  role=amo.AUTHOR_ROLE_DEV)
-        r = client.get('api.addons', self.accepted_consumer, self.token)
+        r = oclient.get('api.addons', self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['count'], 0)
 
 
@@ -803,7 +810,7 @@ class TestPerformanceAPI(BaseOAuth):
         }
 
     def make_create_request(self, data):
-        return client.post('api.performance.add', self.accepted_consumer,
+        return oclient.post('api.performance.add', self.accepted_consumer,
                            self.token, data=data)
 
     def test_form_fails(self):
