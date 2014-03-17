@@ -437,6 +437,15 @@ class TestUserRegisterForm(UserFormBase):
         self.assertFormError(r, 'form', 'username',
                              'This username cannot be used.')
 
+    def test_alldigit_username(self):
+        data = {'email': 'testo@example.com',
+                'password': 'xxxlonger',
+                'password2': 'xxxlonger',
+                'username': '8675309', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'username',
+                             'Usernames cannot contain only digits.')
+
     def test_blacklisted_password(self):
         BlacklistedPassword.objects.create(password='password')
         data = {'email': 'testo@example.com',
