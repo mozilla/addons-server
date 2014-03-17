@@ -158,6 +158,10 @@ class UsernameMixin:
 
     def clean_username(self):
         name = self.cleaned_data['username']
+        # All-digits usernames are disallowed since they can be
+        # confused for user IDs in URLs. (See bug 862121.)
+        if name.isdigit():
+            raise forms.ValidationError(_('Usernames cannot contain only digits.'))
         slug_validator(name, lower=False,
             message=_('Enter a valid username consisting of letters, numbers, '
                       'underscores or hyphens.'))
