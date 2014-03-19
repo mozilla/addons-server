@@ -119,6 +119,31 @@ class TranslationTestCase(TestCase):
         finally:
             translation.deactivate()
 
+    @patch.object(TranslatedModel, 'get_fallback', create=True)
+    def test_fetch_translation_prioritized(self, get_fallback):
+        """Fallback locale in following order: asked/fallback/en-us/random."""
+        get_model = lambda: TranslatedModel.objects.no_cache().get(id=1)
+
+        # Asked for DE, which exists.
+        with translation.override('de'):
+            o = get_model()
+            trans_eq(o.name, 'German!! (unst unst)', 'de')
+
+        # Asked for FR (doesn't exist):
+        with translation.override('fr'):
+            # Use fallback (DE) instead.
+            get_fallback.return_value = 'de'
+            o = get_model()
+            trans_eq(o.name, 'German!! (unst unst)', 'de')
+
+            # Fallback doesn't exist, use EN-US instead.
+            trans_eq(o.description, 'some description', 'en-US')
+
+            # Neither fallback nor EN-US exist, return a random locale.
+            get_fallback.return_value = 'fr'
+            o2 = TranslatedModel.objects.no_cache().get(id=5)
+            trans_eq(o2.name, 'Deutsch name', 'de')
+
     def test_create_translation(self):
         o = TranslatedModel.objects.create(name='english name')
         get_model = lambda: TranslatedModel.objects.get(id=o.id)
