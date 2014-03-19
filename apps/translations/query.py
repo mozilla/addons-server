@@ -3,24 +3,85 @@ import itertools
 from django.conf import settings
 from django.db import models
 
-from django.utils import translation as translation_utils
+from django.utils import translation
 
 import addons.query
+
+
+def get_locales(model, qn):
+    """Return the list of locale "strings" (to be used in an SQL) and the
+    params to provide for them.
+
+    ``qn`` is the "quote_name" you usually get using
+    ``connection.ops.quote_name``, and is used in the case the
+    ``get_fallback()`` method on the model returns a field. Its name will be
+    quoted to be inserted in the SQL generated.
+
+    Eg: ['%s', '`addons`.`default_fallback`', '%s'], ['fr', 'en-US']
+
+    It only adds a locale if it isn't present already, to avoid useless
+    lookups and joins.
+
+    """
+    # Get the locales in order.
+    # First choice.
+    locale_strings = ['%s']
+    params = [translation.get_language().lower()]
+
+    # Second choice: the model can define a fallback (which may be a Field).
+    if hasattr(model, 'get_fallback'):
+        fallback = model.get_fallback()
+        if isinstance(fallback, models.Field):
+            # If it's a field, match on the column directly. We can't be sure
+            # that the fallback field is loaded (eg if ".only()" was used), so
+            # it's not possible to avoid a join here, even if the fallback
+            # locale is already tested.
+            locale_strings.append('{0}.{1}'.format(qn(model._meta.db_table),
+                                                   qn(fallback.column)))
+        elif fallback not in params:
+            locale_strings.append('%s')
+            params.append(fallback)
+
+    # Third choice.
+    if settings.LANGUAGE_CODE.lower() not in params:
+        locale_strings.append('%s')
+        params.append(settings.LANGUAGE_CODE.lower())
+
+    return locale_strings, params
 
 
 def order_by_translation(qs, fieldname):
     """
     Order the QuerySet by the translated field, honoring the current and
-    fallback locales.  Returns a new QuerySet.
+    fallback locales. Returns a new QuerySet.
 
     The model being sorted needs a get_fallback() classmethod that describes
-    the fallback locale.  get_fallback() can return a string or a Field.
+    the fallback locale. get_fallback() can return a string or a Field.
+
+    We try to find a translation for locales in the following order:
+    1. The active language
+    2. The fallback locale if provided by the model via get_fallback()
+    3. settings.LANGUAGE_CODE
+
+    Only try a locale if it hasn't been tried before, to optimize the number of
+    joins.
+
+    Eg, if the active language is 'en-US' and there's no fallback locale for
+    the model (no ``get_fallback()`` method), then we're only doing one join
+    for 'en-US' (active language and settings.LANGUAGE_CODE).
+
+    This code is a bit like the one in translations.transformer.build_query,
+    but uses a different API.
+
+    Fun(?) project: see if it's possible to factorize the code, and/or use the
+    same API for both.
+
     """
     if fieldname.startswith('-'):
-        desc = True
+        direction = '-'
         fieldname = fieldname[1:]
     else:
-        desc = False
+        direction = ''
 
     qs = qs.all()
     model = qs.model
@@ -35,23 +96,37 @@ def order_by_translation(qs, fieldname):
     if not qs.query.tables:
         qs.query.get_initial_alias()
 
-    # Force two new (reuse is an empty set) LEFT OUTER JOINs against the
-    # translation table, without reusing any aliases. We'll hook up the
-    # language fallbacks later.
-    qs.query = qs.query.clone(TranslationQuery)
-    t1 = qs.query.join(connection, join_field=field,
-                       outer_if_first=True, reuse=set())
-    t2 = qs.query.join(connection, join_field=field,
-                       outer_if_first=True, reuse=set())
-    qs.query.translation_aliases = {field: (t1, t2)}
+    # We only need the number of locales, so fake the "quote_name" function.
+    locale_strings, _params = get_locales(model, lambda name: name)
 
-    f1, f2 = '%s.`localized_string`' % t1, '%s.`localized_string`' % t2
+    fields = []
+    ifnull = ifnull_tpl = 'IFNULL({field}.`localized_string`, {else_})'
+    for locale in locale_strings:
+        # Force new (reuse is an empty set) LEFT OUTER JOINs against the
+        # translation table for each locale we want to try, without reusing any
+        # aliases. We'll hook up the locales later.
+        field_str = qs.query.join(connection, join_field=field,
+                                  outer_if_first=True, reuse=set())
+        fields.append(field_str)
+
+        # Compute the "SELECT" clause, eg: "IFNULL(%s, IFNULL(%s, IFNULL(...".
+        # Inception: we need the "else" clause to be another "IFNULL" element.
+        ifnull = ifnull.format(field=field_str, else_=ifnull_tpl)
+    # End of the "inception" here for the "else" clause of the "IFNULL".
+    ifnull = ifnull.format(field=field_str,
+                           else_=field_str + '.`localized_string`')
+
+    # Compute the "WHERE" clause, eg: "%s IS NOT NULL OR %s IS NOT NULL OR...".
+    not_null = '{0}.`localized_string` IS NOT NULL'
+    where_ = ' OR '.join(not_null.format(field) for field in fields)
+
     name = 'translated_%s' % field.column
-    ifnull = 'IFNULL(%s, %s)' % (f1, f2)
-    prefix = '-' if desc else ''
+
+    qs.query = qs.query.clone(TranslationQuery)
+    qs.query.translation_aliases = {field: fields}
     return qs.extra(select={name: ifnull},
-                    where=['(%s IS NOT NULL OR %s IS NOT NULL)' % (f1, f2)],
-                    order_by=[prefix + name])
+                    where=['({0})'.format(where_)],
+                    order_by=[direction + name])
 
 
 class TranslationQuery(addons.query.IndexQuery):
@@ -84,26 +159,24 @@ class SQLCompiler(addons.query.IndexCompiler):
 
         joins, params = super(SQLCompiler, self).get_from_clause()
 
-        # fallback could be a string locale or a model field.
-        params.append(translation_utils.get_language())
-        if hasattr(self.query.model, 'get_fallback'):
-            fallback = self.query.model.get_fallback()
-        else:
-            fallback = settings.LANGUAGE_CODE
-        if not isinstance(fallback, models.Field):
-            params.append(fallback)
+        # Get the locales to try.
+        locale_strings, locale_params = get_locales(
+            self.query.model, self.quote_name_unless_alias)
 
-        # Add our locale-aware joins.  We're not respecting the table ordering
-        # Django had in query.tables, but that seems to be ok.
-        for field, aliases in self.query.translation_aliases.items():
-            t1, t2 = aliases
-            joins.append(self.join_with_locale(t1))
-            joins.append(self.join_with_locale(t2, fallback))
+        params.extend(locale_params)
+
+        # Add the joins.  We're not respecting the table ordering Django had in
+        # query.tables, but that seems to be ok.
+        for _field, aliases in self.query.translation_aliases.items():
+            # For each alias, add a join on the locale we want to try.
+            for alias, locale in zip(aliases, locale_strings):
+                joins.append(self.join_with_locale(alias, locale))
 
         self.query.tables = old_tables
         return joins, params
 
-    def join_with_locale(self, alias, fallback=None):
+    def join_with_locale(self, alias, locale):
+        """Join on the given locale."""
         # This is all lifted from the real sql.compiler.get_from_clause(),
         # except for the extra AND clause.  Fun project: fix Django to use Q
         # objects here instead of a bunch of strings.
@@ -116,13 +189,10 @@ class SQLCompiler(addons.query.IndexCompiler):
         rhs_col = join_cols
         alias_str = '' if alias == name else (' %s' % alias)
 
-        if isinstance(fallback, models.Field):
-            fallback_str = '%s.%s' % (qn(self.query.model._meta.db_table),
-                                      qn(fallback.column))
-        else:
-            fallback_str = '%s'
+        # Compute the "AND" clause.
+        and_ = 'AND %s.%s = %s' % (qn(alias), qn('locale'), locale)
 
-        return ('%s %s%s ON (%s.%s = %s.%s AND %s.%s = %s)' %
+        return ('%s %s%s ON (%s.%s = %s.%s %s)' %
                 (join_type, qn(name), alias_str,
                  qn(lhs), qn2(lhs_col), qn(alias), qn2(rhs_col),
-                 qn(alias), qn('locale'), fallback_str))
+                 and_))
