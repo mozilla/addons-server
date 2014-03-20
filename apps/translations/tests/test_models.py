@@ -179,7 +179,8 @@ class TranslationTestCase(TestCase):
         english = get_model()
         trans_eq(english.name, 'english name', 'en-US')
         english.debug = True
-        eq_(english.description, None)
+        # There's no english description, so return just any translation.
+        trans_eq(english.description, u'clöüserw description', 'de')
 
         english.description = 'english description'
         english.save()
@@ -281,7 +282,7 @@ class TranslationTestCase(TestCase):
     def test_sorting_mixed(self):
         translation.activate('de')
         q = TranslatedModel.objects.all()
-        expected = [1, 4, 3]
+        expected = [5, 1, 4, 3]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
@@ -292,7 +293,7 @@ class TranslationTestCase(TestCase):
 
         translation.activate('de')
         q = TranslatedModel.objects.all()
-        expected = [3, 1, 4]
+        expected = [5, 3, 1, 4]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
