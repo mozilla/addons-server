@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-01-27 23:42+0000\n"
+"PO-Revision-Date: 2014-03-20 22:15+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1390866170.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1395353747.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -224,7 +224,7 @@ msgstr "Informativa sulla privacy"
 #: apps/addons/templates/addons/button.html:89 apps/addons/templates/addons/details_box.html:128 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Visualizza la licenza con l’utente finale (EULA)"
 
 #: apps/addons/templates/addons/button.html:94 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -1840,6 +1840,8 @@ msgstr "È stato inviato un messaggio di posta agli autori riguardante la compat
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
 msgstr ""
+"È stata inviata una email informativa sullo stato di compatibilità "
+"all’autore del componente aggiuntivo."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -2388,7 +2390,7 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Descrivi la raccolta (non è consentito includere link)."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2400,7 +2402,7 @@ msgstr "Icona"
 
 #: apps/bandwagon/forms.py:152 apps/users/forms.py:340
 msgid "No links are allowed."
-msgstr ""
+msgstr "Non è consentito includere link."
 
 #: apps/bandwagon/forms.py:164
 msgid "This url is already in use by another collection"
@@ -4082,11 +4084,13 @@ msgstr "È necessario specificare il testo della licenza se hai scelto Altro."
 
 #: apps/devhub/forms.py:224
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Questo componente aggiuntivo ha una licenza con l’utente finale (EULA)"
 
 #: apps/devhub/forms.py:226
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
+"Specifica la licenza con l’utente finale (EULA) di questo componente "
+"aggiuntivo:"
 
 #: apps/devhub/forms.py:229
 msgid "This add-on has a Privacy Policy"
@@ -4556,12 +4560,19 @@ msgstr "Add-on SDK"
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
 msgstr ""
+"<strong>Add-on SDK</strong>: crea componenti aggiuntivi in modo facile e "
+"veloce"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"Add-on SDK mette a disposizione API robuste e strumenti che consentono agli "
+"sviluppatori di creare componenti aggiuntivi per Firefox utilizzando HTML, "
+"CSS e JavaScript. A lavoro completato, ti aiuteremo inoltre a diffondere il "
+"componente aggiuntivo a oltre 400 milioni di utenti Firefox in tutto il "
+"mondo."
 
 #: apps/devhub/templates/devhub/builder.html:32 mkt/developers/templates/developers/builder.html:70
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4693,6 +4704,10 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"I componenti aggiuntivi consentono a milioni di utenti Firefox di migliorare "
+"e personalizzare la propria esperienza di navigazione. Se sei uno "
+"sviluppatore e conosci HTML, JavaScript e CSS, disponi già di tutto il "
+"necessario per realizzare fantastici componenti aggiuntivi con Add-on SDK."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -6108,6 +6123,15 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
+"Se il componente aggiuntivo che stai sviluppando ha bisogno di più "
+"funzionalità rispetto alla semplice barra laterale vuota creata dal "
+"<em>Packager</em>, esistono diversi metodi con i quali, con un po’ di lavoro "
+"aggiuntivo, è possibile sviluppare le caratteristiche che ti interessano. "
+"Uno dei metodi più comuni per scoprire come implementare una funzionalità è "
+"controllare il codice di altre estensioni in cui essa è già stata "
+"implementata. Ricordati però di verificare la licenza dell’estensione da cui "
+"stai prendendo ispirazione: se non ti è permesso esplicitamente copiare il "
+"codice, significa che ciò non è possibile."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -13546,15 +13570,15 @@ msgstr "altri"
 
 #: apps/users/models.py:64
 msgid "algorithm"
-msgstr ""
+msgstr "Algoritmo"
 
 #: apps/users/models.py:65
 msgid "salt"
-msgstr ""
+msgstr "salt"
 
 #: apps/users/models.py:66
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: apps/users/models.py:124
 msgid "No user with that email."
@@ -13876,7 +13900,7 @@ msgstr "Fornisci qualche informazione in più su di te. Tutti i campi sono facol
 
 #: apps/users/templates/users/edit.html:106
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Questo URL è visibile ai soli sviluppatori."
 
 #: apps/users/templates/users/edit.html:115
 msgid "Choose Photo&hellip;"
@@ -13892,7 +13916,7 @@ msgstr "Se lo desideri, presentati alla comunità! Questo testo apparirà nella 
 
 #: apps/users/templates/users/edit.html:136
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Tag HTML consentiti: {0}. Non è consentito inserire link."
 
 #: apps/users/templates/users/edit.html:143
 msgid "Miscellaneous"
@@ -15384,23 +15408,25 @@ msgstr "Zimbabwe"
 
 #: mkt/constants/comm.py:28
 msgid "No action"
-msgstr ""
+msgstr "Nessuna azione"
 
 #: mkt/constants/comm.py:35
 msgid "App resubmission"
-msgstr ""
+msgstr "Invia nuovamente l'app"
 
 #: mkt/constants/comm.py:36
 msgid "Approved but waiting to be made public"
 msgstr ""
+"Questa app è stata approvata ma è in attesa di essere pubblicata sul "
+"Marketplace"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "In escalation a causa dell'alto numero di segnalazioni di abuso"
 
 #: mkt/constants/comm.py:39
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "In escalation a causa dell'alto numero di richieste di rimborso"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -16300,6 +16326,8 @@ msgstr "Formato del file non valido. Sono supportati solo i file %s."
 #: mkt/developers/forms.py:1049
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
+"Questo certificato IARC è già utilizzato da un’altra app. Crea un nuovo "
+"certificato di valutazione IARC."
 
 #: mkt/developers/forms.py:1062
 msgid "Please enter a valid submission ID."
@@ -16623,6 +16651,8 @@ msgstr "Operatore"
 #: mkt/developers/views_payments.py:295
 msgid "A server error occurred when retrieving the application key."
 msgstr ""
+"Si è verificato un errore del server durante la richiesta della chiave "
+"dell’applicazione."
 
 #: mkt/developers/views_payments.py:302
 msgid "Secret was reset successfully."
@@ -16986,6 +17016,8 @@ msgstr "Questa app è <b>pubblica</b>."
 #: mkt/developers/templates/developers/apps/status.html:47
 msgid "Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer."
 msgstr ""
+"L’ultima versione di quest’app è <b>in attesa di revisione</b> da parte di "
+"un revisore del Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
@@ -17109,6 +17141,9 @@ msgstr "Carica una nuova versione di questa app pacchettizzata. Prima di essere 
 #: mkt/developers/templates/developers/apps/status.html:269
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr ""
+"Ricordati di aggiornare <a href=\"%(ratings_url)s\">la valutazione dei "
+"contenuti</a> nel caso in cui ci siano delle modifiche sostanziali ai "
+"contenuti offerti dall’app."
 
 #: mkt/developers/templates/developers/apps/status.html:294
 msgid "Blocklist App"
@@ -18335,7 +18370,7 @@ msgstr "Validatore app"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:161
 msgid "App Manager"
-msgstr ""
+msgstr "Gestore app"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:169
 msgid "Firefox Developer Tools"
@@ -19702,11 +19737,11 @@ msgstr "Modifica forzata dei requisiti minimi:"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "Allegati"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28 mkt/reviewers/templates/reviewers/includes/review_history.html:98
 msgid "This version has not been reviewed"
-msgstr ""
+msgstr "Questa versione non è stata revisionata"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
