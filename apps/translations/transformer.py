@@ -5,76 +5,94 @@ from django.utils import translation
 from translations.models import Translation
 from translations.fields import TranslatedField
 
-isnull = """IF(!ISNULL({t1}.localized_string),
-               {t1}.{col},
-               IF(!ISNULL({t2}.localized_string),
-                  {t2}.{col},
-                  IF(!ISNULL(
-                     {t3}.localized_string), {t3}.{col}, {t4}.{col})))
-            AS {name}_{col}"""
-join = """LEFT OUTER JOIN translations {t}
-          ON ({t}.id={model}.{name} AND {t}.locale={locale})"""
-no_locale_join = """LEFT OUTER JOIN translations {t}
-                    ON {t}.id={model}.{name}"""
+isnull_tpl = """IF(!ISNULL({alias}.localized_string),
+                        {alias}.{col},
+                        {else_})"""
+join_tpl = """LEFT OUTER JOIN translations {alias}
+                        ON ({alias}.id={model}.{name} AND
+                            {alias}.locale={locale})"""
+no_locale_join_tpl = """LEFT OUTER JOIN translations {alias}
+                                  ON {alias}.id={model}.{name}"""
 
 trans_fields = [f.name for f in Translation._meta.fields]
 
 
 def build_query(model, connection):
+    """Build the query to retrieve translations for a given model.
+
+    We will try to find a translation for locales in the following order:
+    1. The active language
+    2. The fallback locale if provided by the model
+    3. settings.LANGUAGE_CODE
+    If none of those were found, return just any translation.
+
+    Only try a locale if it hasn't been tried before, to optimize the number of
+    joins.
+
+    Eg, if the active language is 'en-US' and there's no fallback locale for
+    the model (no ``get_fallback()`` method), then we're only doing two joins:
+    one for 'en-US' (active language and settings.LANGUAGE_CODE), and one for
+    the "last chance fallback" (which returns just any translation).
+
+    """
     qn = connection.ops.quote_name
     selects, joins, params = [], [], []
 
-    # We will try to find a translation for locales in the following order:
-    # 1. The activate language
-    # 2. The fallback locale if provided by the model
-    # 3. settings.LANGUAGE_CODE
-    # 4. Just any translation
-    locales = [translation.get_language()]
-
-    # The model can define a fallback locale (which may be a Field).
-    if hasattr(model, 'get_fallback'):
-        locales.append(model.get_fallback())
-    else:
-        locales.append(settings.LANGUAGE_CODE)
-    locales.append(settings.LANGUAGE_CODE)
-
+    # Populate the model._meta.translated_fields if needed.
     if not hasattr(model._meta, 'translated_fields'):
         model._meta.translated_fields = [f for f in model._meta.fields
                                          if isinstance(f, TranslatedField)]
 
+    locales = [translation.get_language()]  # First choice.
+
+    # Second choice: the model can define a fallback (which may be a Field).
+    fallback_field = None
+    if hasattr(model, 'get_fallback'):
+        fallback = model.get_fallback()
+        if isinstance(fallback, models.Field):
+            # If it's a field, match on the column directly. We can't be sure
+            # that the fallback field is loaded (eg if ".only()" was used), so
+            # it's not possible to avoid a join here, even if the fallback
+            # locale is already tested.
+            fallback_field = '{0}.{1}'.format(qn(model._meta.db_table),
+                                              qn(fallback.column))
+            locales.append(fallback_field)
+        elif fallback not in locales:
+            locales.append(fallback)
+
+    # Third choice.
+    if settings.LANGUAGE_CODE not in locales:
+        locales.append(settings.LANGUAGE_CODE)
+
     # Add the selects and joins for each translated field on the model.
     for field in model._meta.translated_fields:
-        #if isinstance(fallback, models.Field):
-        #    fallback_str = '%s.%s' % (qn(model._meta.db_table),
-        #                              qn(fallback.column))
-        #else:
-        #    fallback_str = '%s'
-
         name = field.column
         d = {'model': qn(model._meta.db_table), 'name': name}
-        for i, locale in enumerate(locales, start=1):
-            d['t{0}'.format(i)] = 't{0}_{1}'.format(i, name)
-            if isinstance(locale, models.Field):
-                joins.append(join.format(t=d['t{0}'.format(i)],
-                                         locale='{0}.{1}'.format(
-                                             qn(model._meta.db_table),
-                                             qn(locale.column)),
-                                         **d))
+
+        # Add the selects and joins for each locale to try, for this field.
+        isnull = isnull_tpl
+        for i, locale in enumerate(locales, start=0):
+            alias = 't{0}_{1}'.format(i, name)  # DB alias for the join.
+            # Inception: we need the "else" clause to be another "isnull"
+            # element. We replace {col} with itself, as we're not ready to fill
+            # that in yet, it'll be done when building the ``selects`` below.
+            isnull = isnull.format(alias=alias, else_=isnull_tpl, col='{col}')
+
+            if locale == fallback_field:
+                locale_str = fallback_field
             else:
-                joins.append(join.format(t=d['t{0}'.format(i)], locale='%s',
-                                         **d))
+                locale_str = '%s'
                 params.append(locale)
-        d['t4'] = 't4_{0}'.format(name)
-        joins.append(no_locale_join.format(t=d['t4'], **d))
+            joins.append(join_tpl.format(alias=alias, locale=locale_str, **d))
 
-        selects.extend(isnull.format(col=f, **d) for f in trans_fields)
+        # We now add the last fallback: return just any translation.
+        alias = 't{0}_{1}'.format(i + 1, name)
+        # End of the "inception" here for the else clause.
+        else_ = '{alias}.{col}'.format(alias=alias, col='{col}')
+        isnull = isnull.format(alias=alias, else_=else_, col='{col}')
+        joins.append(no_locale_join_tpl.format(alias=alias, **d))
 
-        #if field.require_locale:
-        #    joins.append(join.format(t=d['t2'], locale=fallback_str, **d))
-        #    if not isinstance(fallback, models.Field):
-        #        params.append(fallback)
-        #else:
-        #    joins.append(no_locale_join.format(t=d['t2'], **d))
+        selects.extend(isnull.format(col=f) for f in trans_fields)
 
     # ids will be added later on.
     sql = """SELECT {model}.{pk}, {selects} FROM {model} {joins}
