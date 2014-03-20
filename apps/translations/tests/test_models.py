@@ -274,7 +274,7 @@ class TranslationTestCase(TestCase):
 
     def test_sorting_en(self):
         q = TranslatedModel.objects.all()
-        expected = [4, 1, 3]
+        expected = [5, 4, 1, 3]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
@@ -283,6 +283,13 @@ class TranslationTestCase(TestCase):
         translation.activate('de')
         q = TranslatedModel.objects.all()
         expected = [5, 1, 4, 3]
+
+        eq_(ids(order_by_translation(q, 'name')), expected)
+        eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
+
+        translation.activate('fr')
+        q = TranslatedModel.objects.no_cache().all()
+        expected = [5, 3, 4, 1]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))

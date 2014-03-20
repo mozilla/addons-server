@@ -22,7 +22,7 @@ def build_query(model, connection):
 
     We will try to find a translation for locales in the following order:
     1. The active language
-    2. The fallback locale if provided by the model
+    2. The fallback locale if provided by the model via get_fallback()
     3. settings.LANGUAGE_CODE
     If none of those were found, return just any translation.
 
