@@ -34,8 +34,8 @@ class Review(amo.models.ModelBase):
                                  related_name='replies', db_column='reply_to')
 
     rating = models.PositiveSmallIntegerField(null=True)
-    title = TranslatedField(require_locale=False)
-    body = TranslatedField(require_locale=False)
+    title = TranslatedField()
+    body = TranslatedField()
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)

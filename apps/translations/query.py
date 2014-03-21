@@ -15,11 +15,12 @@ def get_locales(model, qn):
     ``qn`` is the "quote_name" you usually get using
     ``connection.ops.quote_name``.
 
-    Eg: ['%s', 'addons.default_fallback', '%s'], ['fr', 'en-US']
+    Eg: ['%s', '`addons`.`default_fallback`', '%s'], ['fr', 'en-US']
 
     """
     # Get the locales in order.
-    locale_strings = ['%s']  # First choice.
+    # First choice.
+    locale_strings = ['%s']
     params = [translation.get_language().lower()]
 
     # Second choice: the model can define a fallback (which may be a Field).

@@ -14,10 +14,6 @@ from .widgets import TransInput, TransTextarea
 class TranslatedField(models.ForeignKey):
     """
     A foreign key to the translations table.
-
-    If require_locale=False, the fallback join will not use a locale.  Instead,
-    we will look for 1) a translation in the current locale and 2) fallback
-    with any translation matching the foreign key.
     """
     to = Translation
 
@@ -28,7 +24,6 @@ class TranslatedField(models.ForeignKey):
                        on_delete=models.SET_NULL)
         kwargs.update(options)
         self.short = kwargs.pop('short', True)
-        self.require_locale = kwargs.pop('require_locale', True)
         super(TranslatedField, self).__init__(self.to, **kwargs)
 
     @property

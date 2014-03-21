@@ -386,12 +386,17 @@ class TranslationTestCase(TestCase):
             '.html</a> .')
         eq_(m.linkified.localized_string, s)
 
-    def test_require_locale(self):
+    def test_any_locale(self):
         obj = TranslatedModel.objects.get(id=1)
         eq_(unicode(obj.no_locale), 'blammo')
         eq_(obj.no_locale.locale, 'en-US')
 
         # Switch the translation to a locale we wouldn't pick up by default.
+        # Before, this field was declared using "require_locale=False". This is
+        # not the case anymore as all the translated fields will now return
+        # just any translation in last resort, if it didn't find one for the
+        # active language, the one from ``get_fallback()``, and
+        # settings.LANGUAGE_CODE.
         obj.no_locale.locale = 'fr'
         obj.no_locale.save()
 
