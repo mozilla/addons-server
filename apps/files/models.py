@@ -149,7 +149,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Size in bytes.
         f.size = storage.size(upload.path)
         data = cls.get_jetpack_metadata(upload.path)
-        f.jetpack_version = data['sdkVersion'][:10]
+        if 'sdkVersion' in data and data['sdkVersion']:
+            f.jetpack_version = data['sdkVersion'][:10]
         if f.jetpack_version:
             Tag(tag_text='jetpack').save_tag(version.addon)
         f.builder_version = data['builderVersion']
