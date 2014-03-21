@@ -1,9 +1,9 @@
-from django.conf import settings
-from django.db import connections, models, router
-from django.utils import translation
+from django.db import connections, router
 
-from translations.models import Translation
 from translations.fields import TranslatedField
+from translations.models import Translation
+from translations.query import get_locales
+
 
 isnull_tpl = """IF(!ISNULL({alias}.localized_string),
                         {alias}.{col},
@@ -34,6 +34,12 @@ def build_query(model, connection):
     one for 'en-US' (active language and settings.LANGUAGE_CODE), and one for
     the "last chance fallback" (which returns just any translation).
 
+    This code is a bit like the one in translations.query.order_by_translation,
+    but uses a different API.
+
+    Fun(?) project: see if it's possible to factorize the code, and/or use the
+    same API for both.
+
     """
     qn = connection.ops.quote_name
     selects, joins, params = [], [], []
@@ -43,26 +49,8 @@ def build_query(model, connection):
         model._meta.translated_fields = [f for f in model._meta.fields
                                          if isinstance(f, TranslatedField)]
 
-    locales = [translation.get_language()]  # First choice.
-
-    # Second choice: the model can define a fallback (which may be a Field).
-    fallback_field = None
-    if hasattr(model, 'get_fallback'):
-        fallback = model.get_fallback()
-        if isinstance(fallback, models.Field):
-            # If it's a field, match on the column directly. We can't be sure
-            # that the fallback field is loaded (eg if ".only()" was used), so
-            # it's not possible to avoid a join here, even if the fallback
-            # locale is already tested.
-            fallback_field = '{0}.{1}'.format(qn(model._meta.db_table),
-                                              qn(fallback.column))
-            locales.append(fallback_field)
-        elif fallback not in locales:
-            locales.append(fallback)
-
-    # Third choice.
-    if settings.LANGUAGE_CODE not in locales:
-        locales.append(settings.LANGUAGE_CODE)
+    # Get the locales to try.
+    locale_strings, locale_params = get_locales(model, qn)
 
     # Add the selects and joins for each translated field on the model.
     for field in model._meta.translated_fields:
@@ -71,19 +59,16 @@ def build_query(model, connection):
 
         # Add the selects and joins for each locale to try, for this field.
         isnull = isnull_tpl
-        for i, locale in enumerate(locales, start=0):
+        for i, locale in enumerate(locale_strings):
             alias = 't{0}_{1}'.format(i, name)  # DB alias for the join.
             # Inception: we need the "else" clause to be another "isnull"
             # element. We replace {col} with itself, as we're not ready to fill
             # that in yet, it'll be done when building the ``selects`` below.
             isnull = isnull.format(alias=alias, else_=isnull_tpl, col='{col}')
 
-            if locale == fallback_field:
-                locale_str = fallback_field
-            else:
-                locale_str = '%s'
-                params.append(locale)
-            joins.append(join_tpl.format(alias=alias, locale=locale_str, **d))
+            joins.append(join_tpl.format(alias=alias, locale=locale, **d))
+        # Append all the "locale params" for this run.
+        params.extend(locale_params)
 
         # We now add the last fallback: return just any translation.
         alias = 't{0}_{1}'.format(i + 1, name)
@@ -107,8 +92,8 @@ def get_trans(items):
         return
 
     model = items[0].__class__
-    # FIXME: if we knew which db the queryset we are transforming used, we could
-    # make sure we are re-using the same one.
+    # FIXME: if we knew which db the queryset we are transforming used,
+    # we could make sure we are re-using the same one.
     dbname = router.db_for_read(model)
     connection = connections[dbname]
     sql, params = build_query(model, connection)
