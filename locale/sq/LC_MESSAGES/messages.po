@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-19 19:53+0200\n"
+"PO-Revision-Date: 2014-03-23 01:44+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -12089,7 +12089,7 @@ msgstr "FAQ për Zhvillues Shtesash"
 
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the Mozilla Developer Center. The tutorial, <a href=\"%(url)s\">Building an Extension</a>, will help explain how to setup your work environment and move forward with creating an add-on. </p>"
-msgstr ""
+msgstr "<h3>Si ta ndërtoj një Shtesë?</h3> <p> Te Qendra e Zhvilluesve Mozilla, Mozilla ofron dokumentim se si të ndërtohet një shtesë. Përkujdesorja <a href=\"%(url)s\">Ndërtimi i nje Zgjerimi</a>, do t'ju ndihmojë me shpejgimin se si të rregulloni mjedisin e tuaj të programimit dhe të ecni përpara në krijimin e një shtese. </p>"
 
 #: apps/pages/templates/pages/dev_faq.html:58
 msgid "Other resources include:"
@@ -12101,7 +12101,7 @@ msgstr "Artikulli i Robert Nyman-it \"Si të zhvillohet një zgjerim Firefox-i\"
 
 #: apps/pages/templates/pages/dev_faq.html:69
 msgid "Myk Melez's video tutorial \"Video Tutorial - Extensions Bootcamp: Zero to 'Hello World' in 45 Minutes\""
-msgstr ""
+msgstr "Përkujdesorja video e Myk Melez-it \"Video Tutorial - Extensions Bootcamp: Zero to 'Hello World' in 45 Minutes\""
 
 #: apps/pages/templates/pages/dev_faq.html:73
 msgid "What tools do I need to be able to build an Add-on?"
@@ -12122,7 +12122,7 @@ msgstr "<li><a href=\"http://www.activestate.com/komodo_edit/\">Komodo Edit</a><
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "You can also learn more about setting up your development environment via the MDC article <a href=\"%(url)s\">Setting up extension development environment</a>"
-msgstr ""
+msgstr "Mbi rregullimin e mjedisit tuaj të programimit mund të mësoni më tepër edhe përmes artikullit të MDC-së <a href=\"%(url)s\">Rregullimi i një mjedisi zhvillimi zgjerimesh</a>"
 
 #: apps/pages/templates/pages/dev_faq.html:107
 msgid "Where can I find documentation on building add-ons?"
@@ -12130,7 +12130,7 @@ msgstr "Ku mund të gjej dokumentim mbi krijimin e shtesave?"
 
 #: apps/pages/templates/pages/dev_faq.html:109
 msgid "All Mozilla documentation on add-on development including tutorials and APIs can be found via the <a href=\"%(url)s\">Mozilla Developer Center</a>."
-msgstr ""
+msgstr "Krejt dokumentimi Mozilla mbi zhvillimin e shtesave, përfshi përkujdesore dhe API, mund të gjendet përmes <a href=\"%(url)s\">Qendrës së Zhvillimeve Mozilla</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:115
 msgid "What is a \".xpi\" file?"
@@ -12138,7 +12138,7 @@ msgstr "Ç'janë kartelat \".xpi\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:117
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr ""
+msgstr "Zgjerimet paketohen dhe shpërndahen si kartela ZIP ose Paketa, me zgjatim kartele XPI (të shqiptuar \"zipi\")."
 
 #: apps/pages/templates/pages/dev_faq.html:123
 msgid "What is XUL?"
@@ -12154,7 +12154,7 @@ msgstr "Përse përdoret kartela \"install.rdf\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:136
 msgid "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be updated, and so on. The format of the Install Manifest is RDF/XML."
-msgstr ""
+msgstr "Kjo kartelë, e quajtur një <a href=\"%(url)s\">Manifest Instalimi</a>, përdoret nga zbatime XUL, të përdorshme nga Përgjegjësi i Shtesave, për të përcaktuar të dhëna rreth një shtese, teksa fillon instalimi i saj. Në të përmbahen tejtëdhëna që identifikojnë shtesën, duke furnizuar informacion se kush e krijoi, ku mund të gjenden më tepër të dhëna rreth saj, cili version i cilit zbatim është i përputhshëm me të, si do të duhej përmirësuar ajo, e me radhë. Formati për Manifeste Instalimi është RDF/XML."
 
 #: apps/pages/templates/pages/dev_faq.html:147
 msgid "What does \"maxVersion\" mean?"
@@ -12162,23 +12162,24 @@ msgstr "Ç'do të thotë \"maxVersion\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:149
 msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
-msgstr ""
+msgstr "Kjo përcakton versionin maksimum të Firefox-it me të cilin thoni se do të punojë zgjerimi. Caktojeni jo më të ri se versioni më i ri i tanishëm!"
 
 #: apps/pages/templates/pages/dev_faq.html:156
 msgid "Can my add-on contain binary components?"
 msgstr "A mund të përmbajë shtesa ime përbërës dyorë?"
 
 #: apps/pages/templates/pages/dev_faq.html:158
+#, fuzzy
 msgid "Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
-msgstr ""
+msgstr "Po. Mund të përdorni <a href=\"%(url)s\">XPCOM component object model</a> të Mozilla-s për të zgjeruar shtesat tuaja. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
 
 #: apps/pages/templates/pages/dev_faq.html:165
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
-msgstr ""
+msgstr "A mund të përdor në ndërtimin e shtesë sime librari JavaScript, të tilla si jQuery, MooTools ose Prototype?"
 
 #: apps/pages/templates/pages/dev_faq.html:167
 msgid "Yes. It's possible, but some of the functionality provided by these libraries are available through XPCOM, XUL, and JS 1.8. In addition, authors should take care if libraries modify primitive object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
-msgstr ""
+msgstr "Po. Është e mundur, por disa nga funksionet e ofruara prej këtyre librarive mund t'i keni përmes XPCOM-it, XUL-it, dhe JS 1.8. Për më tepër, autorët duhet të bëjnë kujdes, nëse libraritë modifikojnë prototipe objektesh primitive (String.prototype, Date.prototype, etj.) dhe/ose përkufizojnë funksione globale (psh. funksionin $). Këta priren të shkaktojnë përplasje me shtesa të tjera, veçanërisht nëse shtesa të ndryshme përdorin versione të ndryshme të këtyre librarive, e me radhë. Zhvilluesit lypset të jenë shumë, shumë të kujdesshëm në përdorimin e tyre. Mozilla nuk ofron dokumentim mbi përdorimin e tyre në ndërtimin e shtesave."
 
 #: apps/pages/templates/pages/dev_faq.html:180
 msgid "How do I test my add-on?"
@@ -12186,15 +12187,15 @@ msgstr "Si ta testoj shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:182
 msgid "Details on testing your add-on are provided in the <a href=\"%(test_url)s\">Testing</a> &amp; <a href=\"%(debug_url)s\">Debugging Extensions</a> sections of the <a href=\"%(ext_url)s\">Building an Extension tutorial</a>."
-msgstr ""
+msgstr "Hollësi mbi vënien në provë të shtesës suaj jepen te ndarja <a href=\"%(test_url)s\">Vënie Në Provë</a> &amp; <a href=\"%(debug_url)s\">Diagnostikim Zgjerimesh</a> e <a href=\"%(ext_url)s\">përkujdesores mbi Krijimin e një Zgjerimi</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:191
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr ""
+msgstr "Si ta provoj për përputhshmëri me versionin më të ri të software-it Mozilla-s?"
 
 #: apps/pages/templates/pages/dev_faq.html:193
 msgid "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. It's best to follow the steps outlined in the <a href=\"%(ext_url)s\">Building an Extension</a> tutorial for <a href=\"%(test_url)s\">testing your add-on</a>. In many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
-msgstr ""
+msgstr "Për të siguruar përputhshmërinë me software-in më të ri të Mozilla-s, është e rëndësishme të shkarkohen përditësimet, teksa janë gati, dhe të vihet në provë shtesa juaj për t'u siguruar që punon ende ashtu si pritet. Më e mira për <a href=\"%(test_url)s\">vënien në provë të shtesës suaj</a> është të ndiqen hapat e përshkruar te përkujdesorja <a href=\"%(ext_url)s\">Krijimi i një Zgjerimi</a>. Në mjaft raste, versioni më i ri i software-it Mozilla mund të jetë një version beta. Ngaqë shpesh këto versione sjellin ndryshime arkitekturore që mund të ndikojnë në funksionimin e shtesës suaj, është e rëndësishme të merrni pjesë në proces, për të siguruar që përdoruesit e shtesës suaj të mos kenë pasoja negative kur të hidhet në qarkullim versioni përfundimtar i software-it Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:208
 msgid "What is leak testing?"
@@ -12202,7 +12203,7 @@ msgstr "Çfarë është testimi për rrjedhje?"
 
 #: apps/pages/templates/pages/dev_faq.html:210
 msgid "Memory leaks are typically bugs in the source code used to build applications which consume system memory without properly releasing it once the application has finished. Leak testing allows you to pinpoint which bit of code is causing the memory leak. The following is a good <a href=\"%(wiki_url)s\">guide to finding tools and strategies</a> that help manage leak testing. Mozilla's Carsten Book has also written an excellent HOW-TO article on the subject of <a href=\"%(leak_url)s\">leak testing in Firefox</a>."
-msgstr ""
+msgstr "Rrjedhjet në kujtesë zakonisht janë të meta në kodin burim të përdorur për ndërtim zbatimesh, të cilat konsumojnë kujtesë sistemi pa e rikthyer të lirë (siç do të duhej), pasi zbatimi ka përfunduar punën. Provat për rrjedhje ju lejojnë të përcaktoni me imtësi cila pjesë e kodit po shkakton rrjedhje kujtese. Sa vijon, është një <a href=\"%(wiki_url)s\">udhërrëfyes i mirë për të gjetur mjete dhe strategji</a> që ndihmojnë të administrohen prova për rrjedhje. Carsten Book i Mozilla-s ka shkruajtur gjithashtu një artikull të shkëlqyer Si-Të rreth temës së <a href=\"%(leak_url)s\">provave për rrjedhje në Firefox</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:223
 msgid "Can my add-on support multiple locales?"
@@ -12210,7 +12211,7 @@ msgstr "A mund të mbulojë shtesa ime shumë gjuhë?"
 
 #: apps/pages/templates/pages/dev_faq.html:225
 msgid "Yes. Details on localizing your add-on can be found in the <a href=\"%(ext_url)s\">Building an Extension</a> tutorial as well as the <a href=\"%(l10n_url)s\">Mozilla Developer Center Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a great resource for learning about localization and volunteering to help translate add-ons."
-msgstr ""
+msgstr "Po. Hollësi mbi përkthimin e shtesës suaj mund të gjeni te përkujdesorja <a href=\"%(ext_url)s\">Krijimi i një Zgjerimi</a>, si dhe te <a href=\"%(l10n_url)s\">faqja e Përkthimit të Qendrës së Zhvillimeve Mozilla</a>. <a href=\"%(bz_url)s\">Projekti BabelZilla</a> është gjithashtu një burim shumë i mirë për të mësuar rreth përkthimit dhe pjesëmarrjes vullnetare për të ndihmuar në përkthim shtesash."
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "I need some advice building my add-on. Where can I find help?"
