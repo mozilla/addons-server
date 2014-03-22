@@ -1,6 +1,5 @@
 import random
 
-from django.conf import settings
 from django.utils.encoding import smart_unicode
 
 import jinja2
@@ -42,7 +41,7 @@ def user_link(user):
 
 
 @register.function
-def users_list(users, size=None):
+def users_list(users, size=None, max_text_length=None):
     if not users:
         return ''
 
@@ -51,7 +50,12 @@ def users_list(users, size=None):
         users = users[:size]
         tail = [_('others', 'user_list_others')]
 
-    return jinja2.Markup(', '.join(map(_user_link, users) + tail))
+    if max_text_length:
+        user_list = [_user_link(user, max_text_length) for user in users]
+    else:
+        user_list = map(_user_link, users)
+
+    return jinja2.Markup(', '.join(user_list + tail))
 
 
 @register.inclusion_tag('users/helpers/addon_users_list.html')
@@ -62,11 +66,17 @@ def addon_users_list(context, addon):
     return ctx
 
 
-def _user_link(user):
+def _user_link(user, max_text_length=None):
     if isinstance(user, basestring):
         return user
-    return u'<a href="%s">%s</a>' % (
-        user.get_url_path(), jinja2.escape(smart_unicode(user.name)))
+
+    username = user.name
+    if max_text_length and len(user.name) > max_text_length:
+        username = user.name[:max_text_length].strip() + '...'
+
+    return u'<a href="%s" title="%s">%s</a>' % (
+        user.get_url_path(), user.name,
+        jinja2.escape(smart_unicode(username)))
 
 
 @register.filter
