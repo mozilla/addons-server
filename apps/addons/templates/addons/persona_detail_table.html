@@ -8,7 +8,7 @@
   </tr>
   <tr class="artist">
     <th>{{ _('Artist') }}</th>
-    <td>{{ users_list(addon.listed_authors) or
+    <td>{{ users_list(addon.listed_authors, max_text_length=20) or
       persona.display_username }}</td>
   </tr>
   <tr>
