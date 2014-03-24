@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-09 21:17+0000\n"
+"PO-Revision-Date: 2014-03-24 09:47+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1394399829.0\n"
+"X-POOTLE-MTIME: 1395654464.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1167,8 +1167,9 @@ msgstr[1] "Configura {0} complementos a una versión máxima de {1} envíale un 
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
+msgstr[0] "Enviar mensaje al autor de {2} complemento que falló la validación."
 msgstr[1] ""
+"Enviar mensaje a los autores de {2} complementos que fallaron la validación."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-09 21:29+0000\n"
+"PO-Revision-Date: 2014-03-24 09:47+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1394400576.0\n"
+"X-POOTLE-MTIME: 1395654464.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -1060,7 +1060,7 @@ msgstr "Mostrar las respuestas del desarrollador a esta valoración"
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Ver todas las valoraciones de este complemento"
-msgstr[1] "Ver todas las %(cnt)s valoraciones de este complemento"
+msgstr[1] "Ver las %(cnt)s valoraciones de este complemento"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -1316,7 +1316,7 @@ msgstr "traducir"
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Ver todas las valoraciones de los usuarios"
-msgstr[1] "Ver todas las %(cnt)s valoraciones de los usuarios"
+msgstr[1] "Ver las %(cnt)s valoraciones de los usuarios"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:48
 msgid "This app has not yet been reviewed."
@@ -4083,11 +4083,11 @@ msgstr "Cuando se elige Otro, el texto de la licencia es obligatorio."
 
 #: apps/devhub/forms.py:224
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Este complemento tiene una Licencia de Usuario Final"
 
 #: apps/devhub/forms.py:226
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Especifica la Licencia de Usuario Final de tu complemento:"
 
 #: apps/devhub/forms.py:229
 msgid "This add-on has a Privacy Policy"
@@ -4554,12 +4554,17 @@ msgstr "SDK de complementos"
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
 msgstr ""
+"<strong>SDK de complementos</strong> Crea complementos rápida y fácilmente"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"El SDK de complementos proporciona potentes API que permiten a los "
+"desarrolladores crear complementos para Firefox usando HTML, CSS y "
+"JavaScript. Cuando tu complemento esté listo, te facilitamos compartirlo con "
+"más de 400 millones de usuarios de Firefox en todo el mundo."
 
 #: apps/devhub/templates/devhub/builder.html:32 mkt/developers/templates/developers/builder.html:70
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4689,6 +4694,11 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"Los complementos permiten a millones de usuarios de Firefox mejorar y "
+"personalizar su experiencia de navegación. Si eres un desarrollador web y "
+"sabes HTML, JavaScript y CSS, ya tienes todo lo necesario para crear los "
+"mejores complementos con el SDK. Lo que es más, los complementos creados con "
+"el SDK, por defecto, no necesitan reiniciarse."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -6091,6 +6101,12 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
+"Si tu complemento necesita más funcionalidad que el panel lateral vacío que "
+"el empaquetador creó automáticamente, hay varias formas de descubrir cómo "
+"añadir la funcionalidad que quieres. Una de las maneras más comunes de "
+"aprender cómo hacer algo en una extensión es mirar lo que hacen otras "
+"extensiones. Pero ten presente que si la licencia de la otra extensión no te "
+"permite copiar su código fuente, no puedes hacerlo."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -6127,8 +6143,11 @@ msgid ""
 "Even entomologists don't like bugs in their software, so it's important to test your add-on thoroughly before it's ready for general consumption. At minimum, you should make sure your add-on works "
 "on all the platforms and applications it claims to support."
 msgstr ""
-"Ni siquiera a los entomólogos les gusta tener \"cucarachas\" en su software, así que es importante realizar un test completo tu complemento antes de que esté preparado para consumirse de forma "
-"generalizada. Como mínimo, deberías asegurarte de que funciona en todas las plataformas y aplicaciones para las que dice ser compatible."
+"Ni siquiera a los entomólogos les gusta tener \"bichos\" en su software, así "
+"que es importante realizar un test completo tu complemento antes de que esté "
+"preparado para consumirse de forma generalizada. Como mínimo, deberías "
+"asegurarte de que funciona en todas las plataformas y aplicaciones para las "
+"que dice ser compatible."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:97
 msgid ""
@@ -11560,8 +11579,11 @@ msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Sí, la <a href=\"%(p_url)s\">la política sobre complementos</a> de Mozilla describe qué se considera un envío aceptable, aunque está sujeta a cambios sin previo aviso. Además, el equipo editorial "
-"de AMO usa la <a href=\"%(g_url)s\">Guía de revisión para editores</a> que garantiza que tu complemento cumple las directrices específicas de funcionalidad y seguridad."
+"Sí, la <a href=\"%(p_url)s\">política sobre complementos</a> de Mozilla "
+"describe qué se considera un envío aceptable, aunque está sujeta a cambios "
+"sin previo aviso. Además, el equipo editorial de AMO usa la <a href=\"%"
+"(g_url)s\">Guía de revisión para editores</a> que garantiza que tu "
+"complemento cumple las directrices específicas de funcionalidad y seguridad."
 
 #: apps/pages/templates/pages/dev_faq.html:345
 msgid "How do I submit my add-on for review?"
@@ -12226,8 +12248,10 @@ msgid ""
 "Firefox recommends add-ons for you based on the add-ons you already have installed. If you have at least 3 add-ons installed, just visit the Get Add-ons area of the Add-ons Manager to see the "
 "\"Recommended for You\" box."
 msgstr ""
-"Firefox realiza sus recomendaciones de complementos en base a los que tienes ya instalados. Si tienes un mínimo de 3 complementos instalados, tan solo visita el área Obtener complementos en el "
-"Administrador de complementos y encontrarás la opción de «Recomendados para ti»."
+"Firefox realiza sus recomendaciones de complementos basándose en los que "
+"tienes ya instalados. Si tienes un mínimo de 3 complementos instalados, tan "
+"solo visita el área Obtener complementos en el Administrador de complementos "
+"y encontrarás la opción de «Recomendados para ti»."
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
@@ -12784,7 +12808,7 @@ msgstr "Leer más&nbsp;&raquo;"
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] "Ver todas las revisiones"
-msgstr[1] "Ver todas las %(cnt)s revisiones"
+msgstr[1] "Ver las %(cnt)s revisiones"
 
 #: apps/search/forms.py:12
 msgid "Most popular this week"
@@ -13553,7 +13577,7 @@ msgstr "sal"
 
 #: apps/users/models.py:66
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: apps/users/models.py:124
 msgid "No user with that email."
@@ -13891,7 +13915,7 @@ msgstr "¡Preséntate a ti mismo en la comunidad, si quieres! Este texto aparece
 
 #: apps/users/templates/users/edit.html:136
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "HTML permitido: {0}. Se prohíben enlaces."
 
 #: apps/users/templates/users/edit.html:143
 msgid "Miscellaneous"
@@ -15395,11 +15419,11 @@ msgstr "Aprobada, pero aún no se ha hecho pública"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Escalado debido a demasiados informes de abuso"
 
 #: mkt/constants/comm.py:39
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Escalado debido a demasiadas solicitudes de reembolso"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -16301,6 +16325,8 @@ msgstr "El tipo del archivo no es válido. Solamente los archivos %s son compati
 #: mkt/developers/forms.py:1049
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
+"Este certificado IARC ya está en uso por otra aplicación. Crea un nuevo "
+"certificado de clasificación IARC."
 
 #: mkt/developers/forms.py:1062
 msgid "Please enter a valid submission ID."
