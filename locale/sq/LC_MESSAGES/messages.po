@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-23 01:44+0200\n"
+"PO-Revision-Date: 2014-03-25 22:18+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -12215,7 +12215,7 @@ msgstr "Po. Hollësi mbi përkthimin e shtesës suaj mund të gjeni te përkujde
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "Më duhen ca këshilla për ndërtimin e shtesës sime. Ku mund të gjej ndihmë?"
 
 #: apps/pages/templates/pages/dev_faq.html:241
 msgid "Mozilla offers the following support options for add-on developers:"
@@ -12257,11 +12257,11 @@ msgstr "Jo."
 
 #: apps/pages/templates/pages/dev_faq.html:269
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr ""
+msgstr "A ka zhvillues nga palë të treta, të cilët mund t'i punësoj për të ndërtuar shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:271
 msgid "Yes. You may find 3rd party developers via the <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
-msgstr ""
+msgstr "Po. Mund të gjeni zhvillues palësh të treta përmes <a href=\"%(list_url)s\">listës mozilla.jobs</a>, <a href=\"%(mz_url)s\">forumeve te mozillaZine</a> ose <a href=\"%(wiki_url)s\">Wiki-it të Mozilla-s</a>. Ju lutemi, mbani shënim që Mozilla nuk ofron rekomandime mbi zhvillues."
 
 #: apps/pages/templates/pages/dev_faq.html:284
 msgid "Can I host my own add-on?"
@@ -12269,7 +12269,7 @@ msgstr "A mund ta strehoj shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:286
 msgid "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due to the large volume of visitors to the site. <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage source code, version control, bug tracking and documentation."
-msgstr ""
+msgstr "Po. Mjaft zhvillues i strehojnë vetë shtesat e tyre. Por, po të zgjidhni të strehoni shtesën tuaj te <a href=\"%(amo_url)s\">sajti i shtesave Mozilla</a>, ju krijohet mundësia për ekspozim më të madh të shtesës suaj para një vëllimi të madh vizitorësh të sajtit. <a href=\"%(md_url)s\">mozdev.org</a> ofron strehim falas për projekte zbatimesh dhe zgjerimesh Mozilla,  duke u furnizuar zhvilluesve mjete në ndihmë të administrimit të kodit burim, për kontroll versionesh, ndjekje të metash dhe dokumentim."
 
 #: apps/pages/templates/pages/dev_faq.html:298
 msgid "Can Mozilla host my add-on?"
@@ -12277,7 +12277,7 @@ msgstr "A mund ta strehojë Mozilla shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:300
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ""
+msgstr "Po. Shtesën tuaj mund ta strehoni te <a href=\"%(url)s\">sajti web i shtesave Mozilla</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:305
 msgid "What is AMO?"
@@ -12285,7 +12285,7 @@ msgstr "Ç'është AMO-ja?"
 
 #: apps/pages/templates/pages/dev_faq.html:307
 msgid "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr ""
+msgstr "AMO i Mozilla-s (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) është inkubatori që ndihmon zhvilluesit të ndërtojnë, shpërndajnë, dhe ofrojnë asistencë për produkte fantastike me bazë Mozilla. Ju furnizon mjetet dhe infrastrukturën e nevojshme për të administruar, strehuar dhe ekspozuar shtesat tuaja para një baze masive përdoruesish të Mozilla-s."
 
 #: apps/pages/templates/pages/dev_faq.html:316
 msgid "Does Mozilla keep my account information private?"
@@ -12293,7 +12293,7 @@ msgstr "A i mban Mozilla private të dhënat e llogarisë sime?"
 
 #: apps/pages/templates/pages/dev_faq.html:318
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
+msgstr "Po. <a href=\"%(url)s\">Rregullat tona të Privatësisë</a> përshkruajnë se si administrohen të dhënat tuaja nga Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:323
 msgid "What are the \"developer tools\" listed on AMO?"
@@ -12301,15 +12301,15 @@ msgstr "Cilat janë \"mjetet e zhvilluesit\" të radhitura te AMO?"
 
 #: apps/pages/templates/pages/dev_faq.html:325
 msgid "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on information, and review statistics."
-msgstr ""
+msgstr "Pulti \"Mjete Zhvilluesi\" është zona që ju ofron mjetet për të administruar me sukses shtesat tuaja. Aty keni funksionet e nevojshme për parashtrimin e shtesave tuaja te AMO, për administrim informacioni mbi shtesën, dhe për shqyrtim statistikash."
 
 #: apps/pages/templates/pages/dev_faq.html:333
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr ""
+msgstr "A ka Mozilla në fuqi ndonjë rregull se çfarë është një parashtrim i pranueshëm?"
 
 #: apps/pages/templates/pages/dev_faq.html:335
 msgid "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
+msgstr "Po. <a href=\"%(p_url)s\">Rregullat e Mozilla-s mbi Shtesat</a> përshkruajnë se cili do të ishte një parashtrim i pranueshëm. Këto rregulla janë subjekt ndryshimesh pa paralajmërim. Përveç kësaj, ekipi i redaktorëve të AMO-s përdor <a href=\"%(g_url)s\">Udhërrëfyesin për Redaktorët e Shqyrtimeve</a> për të kontrolluar që shtesa juaj pajtohet me udhëzimet specifike për funksionimin dhe sigurinë."
 
 #: apps/pages/templates/pages/dev_faq.html:345
 msgid "How do I submit my add-on for review?"
@@ -12317,7 +12317,7 @@ msgstr "Si ta parashtroj shtesën time për shqyrtim?"
 
 #: apps/pages/templates/pages/dev_faq.html:347
 msgid "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
-msgstr ""
+msgstr "Paneli i Mjeteve të Zhvilluesit do t'ju lejojë të ngarkoni dhe parashtroni shtesa te AMO. Lypset të jeni përdorues i regjistruar te AMO, përpara se të mundni të parashtroni një shtesë. Përpara parashtrimit të shtesës suaj sigurohuni se e keni lexuar <a href=\"%(url)s\">Udhërrëfyesin e Redaktorëve të Shtesave</a> të AMO-s, për t'u siguruar që shtesa juaj është në pajtim me udhëzimet e përdorura nga redaktorët gjatë shqyrtimit të shtesave."
 
 #: apps/pages/templates/pages/dev_faq.html:357
 msgid "What operating system do I choose for my add-on?"
@@ -12325,7 +12325,7 @@ msgstr "Cilin sistem operativ të zgjedh për shtesës time?"
 
 #: apps/pages/templates/pages/dev_faq.html:359
 msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr ""
+msgstr "Duhet të zgjidhni sistemet operative në të cilët shtesa juaj do të funksionojë me sukses."
 
 #: apps/pages/templates/pages/dev_faq.html:365
 msgid "What category do I choose for my add-on?"
@@ -12333,7 +12333,7 @@ msgstr "Cilën kategori të zgjedh për shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:367
 msgid "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
-msgstr ""
+msgstr "Zgjedhja e kategorisë varet nga lloji i publikut që keni në mendje dhe nga funksionet e shtesës suaj. Nëse jeni i pasigurt se në cilën kategori bie shtesa juaj, ju lutemi, zgjidhni \"Tjetër\". Ekipi i AMO-s mund ta rikategorizojë shtesën tuaj, nëse vendoset se i shkon më tepër një kategorie tjetër."
 
 #: apps/pages/templates/pages/dev_faq.html:376
 msgid "What does \"nominating\" my add-on mean?"
@@ -12341,7 +12341,7 @@ msgstr "Çfarë do të thotë \"kandidim\" i shtesës sime?"
 
 #: apps/pages/templates/pages/dev_faq.html:378
 msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
-msgstr ""
+msgstr "Shtesat e kandiduara janë shtesa të reja, të cilat autori i ka propozuar për t'u bërë publike përmes Mjeteve të Zhvilluesit."
 
 #: apps/pages/templates/pages/dev_faq.html:384
 msgid "Can I specify a license agreement for using my add-on?"
@@ -12349,7 +12349,7 @@ msgstr "A mund të përcaktoj një marrëveshje licence për përdorimin e shtes
 
 #: apps/pages/templates/pages/dev_faq.html:386
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
+msgstr "Po. Mund të caktoni një marrëveshje licence, gjatë parashtrimit të shtesës suaj. Përmes pultit të Mjeteve të Zhvilluesit mund të shtoni ose përditësoni një marrëveshje licence edhe pasi shtesa juaj të jetë parashtruar."
 
 #: apps/pages/templates/pages/dev_faq.html:393
 msgid "Can I include a privacy policy for my add-on?"
@@ -12357,7 +12357,7 @@ msgstr "A mund të përfshij rregulla privatësie për shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:395
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
+msgstr "Po. Mund të caktoni rregulla privatësie, gjatë parashtrimit të shtesës suaj. Përmes pultit të Mjeteve të Zhvilluesit mund të shtoni ose përditësoni rregulla privatësie edhe pasi shtesa juaj të jetë parashtruar."
 
 #: apps/pages/templates/pages/dev_faq.html:404
 msgid "Why must my add-on be reviewed?"
@@ -12365,7 +12365,7 @@ msgstr "Pse duhet shqyrtuar shtesa ime?"
 
 #: apps/pages/templates/pages/dev_faq.html:406
 msgid "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the <a href=\"%(url)s\">Editors Reviewing Guide</a>."
-msgstr ""
+msgstr "Krejt shtesat e parashtruara, të reja apo të përditësuara, shqyrtohen, që përdoruesve t'u bëhet e mundur  një punim i qëndrueshëm dhe i parrezik. Krejt parashtrimet e shtesave shqyrtohen duke përdorur udhëzimet e përcaktuara te <a href=\"%(url)s\">Udhërrëfyesi i Redaktorëve të Shqyrtimeve</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:414
 msgid "Who reviews my add-on?"
@@ -12373,7 +12373,7 @@ msgstr "Kush e shqyrton shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:416
 msgid "Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that you're add-on is setup correctly and follows the guidelines outlined in the <a href=\"%(url)s\">Editors Reviewing Guide</a>."
-msgstr ""
+msgstr "Shtesat shqyrtohen nga Redaktorët e AMO-s, një grup programuesish të talentuar, vullnetarë në ndihmë të projektit Mozilla që shqyrtojnë shtesat për t'u siguruar përdoruesve Mozilla një punim të qëndrueshëm dhe të parrezik. Kur komunikoni me redaktorët, ju lutemi, jini të sjellshëm, të duruar dhe me respekt, pasi ata punojnë fort për të siguruar që shtesa juaj të jetë rregulluar si duhet dhe se është në pajtim me udhëzimet e përcaktuara në <a href=\"%(url)s\">Udhërrëfyesin e Redaktorëve të Shtesave</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -12381,15 +12381,15 @@ msgstr "Cilat janë udhëzimet e përdorura për të shqyrtuar shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:429
 msgid "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process"
-msgstr ""
+msgstr "Ekipi redaktorial i Mozilla-s ndjek <a href=\"%(url)s\">Udhërrëfyesin e Redaktorëve të Shtesave</a>, kur provon një shtesë për pranim te AMO. Shqyrtimi i këtij udhërrëfyesi është me rëndësi për zhvilluesit e shtesave, për t'u siguruar që probleme të rëndomta të jenë trajtuar përpara parashtrimit të shtesës për shqyrtim. Kjo do të ndihmojë mjaft në përshpjetimin e procesit të shqyrtimit"
 
 #: apps/pages/templates/pages/dev_faq.html:439
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Sa kohë do të duhet për shqyrtimin e shtesës sime?"
 
 #: apps/pages/templates/pages/dev_faq.html:441
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr ""
+msgstr "Nuk japim dot përafërsisht një kohë se sa do të duhet përpara se një shtesë të jetë shqyrtuar. Ka shumë faktorë që ndikojnë, përfshi:"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:448
@@ -12408,23 +12408,23 @@ msgstr "numër zonash problematike të zbuluara"
 
 #: apps/pages/templates/pages/dev_faq.html:455
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
-msgstr ""
+msgstr "Kjo është arsyeja pse është me shumë rëndësi të lexohet <a href=\"%(g_url)s\">Udhërrëfyesi i Redaktorëve të Shqyrtimit</a>, për të siguruar që shtesa juaj është rregulluar ashtu siç pritet. Po ashtu, është ide e mirë të lexohet postimi në blog, <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> që ofron këndvështrim të shkëlqyer lidhur me bërjen të mundur të një shqyrtimi të rrjedhshëm të shtesës suaj."
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Si mund ta shoh se sa herë është shkarkuar shtesa ime?"
 
 #: apps/pages/templates/pages/dev_faq.html:469
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ""
+msgstr "Pulti i Statistikave te pulti Mjete Zhvilluesi ju ofron të dhëna që mund t'ju ndihmojnë të përcaktoni shkarkimet e shtesës suaj që nga parashtrimi i saj te AMO."
 
 #: apps/pages/templates/pages/dev_faq.html:476
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "Si mund të shoh se sa përdorues aktivë po e përdorin shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:478
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
+msgstr "Pulti i Statistikave që gjeni te pulti i Mjeteve të Zhvilluesit ofron informacion që mund t'ju ndihmojë të përcaktoni sa përdorues e kanë përdorur aktivisht shtesën tuaj që nga parashtrimi i saj te AMO."
 
 #: apps/pages/templates/pages/dev_faq.html:485
 msgid "How do I submit an update for my add-on?"
@@ -12432,15 +12432,15 @@ msgstr "Si të parashtroj një përditësim për shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:487
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
+msgstr "Për shtesën tuaj mund të parashtroni një përditësim përmes pultit të Mjeteve të Zhvilluesve, duke përzgjedhur mundësinë \"Ngarkoni një version të ri\" dhe duke ngarkuar një kartelë të re .xpi për shtesën tuaj."
 
 #: apps/pages/templates/pages/dev_faq.html:494
 msgid "Does my update need to be reviewed by editors?"
-msgstr ""
+msgstr "A lypset që përditësimi im të shqyrtohet nga redaktorët?"
 
 #: apps/pages/templates/pages/dev_faq.html:496
 msgid "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an editor."
-msgstr ""
+msgstr "Varet. Nëse thjesht po ndryshoni një përshkrim të shtesës suaj, ose po përditësoni \"maxVersion\" që të siguroni përputhshmërinë me një përditësim të ri të software-it Mozilla, shtesa juaj nuk ka nevojë të merret në shqyrtim sërish. Por, nëse parashtroni një kartelë të re të përditësuar, atëherë sh përditësimi i shtesës suaj do të lypë shqyrtim nga një redaktor."
 
 #: apps/pages/templates/pages/dev_faq.html:507
 msgid "What are the Recommended Lists?"
@@ -12448,7 +12448,7 @@ msgstr "Çfarë janë Listat e Këshilluara?"
 
 #: apps/pages/templates/pages/dev_faq.html:509
 msgid "The Recommended lists are an important part of exposing AMO visitors to useful and compelling add-ons within a small &amp; focused list. It allows us to feature add-ons that have done a good job of creating a unique and/or exciting enhancement to Mozilla software and increasing awareness of the thousands of add-ons hosted on AMO. The lists are broken down into two categories; Recommended and Category Recommended. The former is shown on the home page of AMO and is typically limited to 40 featured add-ons. The latter are lists of add-ons that are recommended at the category level. The only distinction between the two lists is that Category Recommended add-ons are not featured on the home page. Apart from that, both lists are meant to recognize the achievements of individual add-on authors and the work they’ve produced."
-msgstr ""
+msgstr "Listat e të Rekomanduarave janë pjesë e rëndësishme e paraqitjes për vizitorët e AMO-s  të shtesave me interes, brenda një liste të vogël &amp; të përqendruar mbi diçka. Kjo ju lejon të nxirrni në pah shtesa që kanë bërë një punë të mirë për krijimin e një zgjerimi unik dhe/ose mbresëlënës të software-it Mozilla dhe për rritjen e njohjes së mijëra shtesave  të strehuara te AMO. Lista ndahet në dy kategori; të Rekomanduara dhe të Rekomanduara sipas Kategorish. Të parat shfaqen te kreu i AMO-s dhe zakonisht kufizohet në 40 shtesa të zgjedhura. Të dytat janë lista shtesash që këshillohen sipas kategorish. Dallimi i vetëm mes dy listave është se shtesat e Rekomanduara sipas Kategorish nuk janë pjesë e të zgjedhurave të kreut. Tej kësaj, të dyja listat janë menduar si mirënjohje për arritjet e autorëve individualë të shtesave dhe të veprave që kanë prodhuar."
 
 #: apps/pages/templates/pages/dev_faq.html:526
 msgid "What is a Featured add-on?"
@@ -12456,7 +12456,7 @@ msgstr "Çfarë është një shtesë e Zgjedhur?"
 
 #: apps/pages/templates/pages/dev_faq.html:528
 msgid "The main page of AMO as well as the main page for each category contain three slots which are used to display a set of Featured Add-Ons. These add-ons are pulled from the Recommended and Category Recommended lists respectively and periodically rotated as described in the <a href=\"%(url)s\">Featured Add-ons FAQ</a> to allow recommended add-ons a chance for increased visibility to users. Featured add-ons are rotated regularly to prevent staleness."
-msgstr ""
+msgstr "Faqja kryesore e AMO-s, si dhe faqja kryesore për çdo kategori, përmban tre kanale që përdoren për të shfaqur një grup Shtesash të Zgjedhura. Këto shtesa merren përkatësisht nga listat e të Rekomanduarave dhe të Rekomanduarave sipas Kategorish dhe ciklohen periodikisht <a href=\"%(url)s\">FAQ mbi Shtesat e Zgjedhura</a>, për t'u dhënë shtesave të rekomanduara një shans të shihen më tepër nga përdoruesit. Shtesat e zgjedhura ciklohen rregullisht, për të shmangur bajatosjen."
 
 #: apps/pages/templates/pages/dev_faq.html:540
 msgid "How can my add-on be listed as Recommended?"
@@ -12465,7 +12465,7 @@ msgstr "Si mund të futet shtesa ime te të Këshilluarat?"
 #: apps/pages/templates/pages/dev_faq.html:542
 #: apps/pages/templates/pages/dev_faq.html:552
 msgid "<a href=\"%(url)s\">This page</a> describes the process by which the Recommended lists are managed."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Kjo faqe</a> përshkruan procesin sipas të cilit administrohen listat e të Rekomanduarave."
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -12473,15 +12473,15 @@ msgstr "A mund të paguaj për ta pasur shtesën time të futur te të Këshillu
 
 #: apps/pages/templates/pages/dev_faq.html:550
 msgid "Why is my add-on no longer listed as Recommended?"
-msgstr ""
+msgstr "Pse shtesa ime nuk është më te listat e të Rekomanduarave?"
 
 #: apps/pages/templates/pages/dev_faq.html:559
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr ""
+msgstr "Si t'i përgjigjem një përdoruesi që ka postuar një shqyrtim negativ të shtesës sime?"
 
 #: apps/pages/templates/pages/dev_faq.html:561
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr ""
+msgstr "Një zhvillues mund t'i përgjigjet cilitdo shqyrtim të postuar mbi shtesën e tyre, mjaft të kenë bërë hyrjen në AMO. Për më tepër, çdo shqyrtues mund t'i vërë shenjë një shqyrtimi si:"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:568
@@ -12508,7 +12508,7 @@ msgstr "Tjetër (ofron një fushë hapmbyll për informacion)"
 
 #: apps/pages/templates/pages/dev_faq.html:577
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
-msgstr ""
+msgstr "Hëpërhë, AMO nuk ofron ndonjë mekanizëm për komunikim të drejtpërdrejtë me një shqyrtues, por kjo veçori po merret në shqyrtim për një version të së ardhmes."
 
 #: apps/pages/templates/pages/dev_faq.html:584
 msgid "Can I request that a review be removed if the review is negative?"
@@ -12516,7 +12516,7 @@ msgstr "A mund të kërkoj heqjen e një shqyrtuesi, nëse shqyrtimi është neg
 
 #: apps/pages/templates/pages/dev_faq.html:586
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
+msgstr "Jo. Ne nuk i heqim shqyrtimet negative mbi një shtesë, veç në u gjetshin të rreme."
 
 #: apps/pages/templates/pages/dev_faq.html:592
 msgid "Can I request that a review be removed if the review is inaccurate?"
@@ -12524,27 +12524,27 @@ msgstr "A mund të kërkoj heqjen e një shqyrtuesi, nëse shqyrtimi është i p
 
 #: apps/pages/templates/pages/dev_faq.html:594
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr ""
+msgstr "Nëse një autor na kontakton dhe na kërkon që një shqyrtim të hiqet, sepse përmban informacion të rremë ose të pasaktë, do ta marrim në shqyrtim postimin dhe do të shohim edhe heqjen e tij."
 
 #: apps/pages/templates/pages/dev_faq.html:603
 msgid "Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither guarantees nor is responsible for the content of these sites or your reliance on such content."
-msgstr ""
+msgstr "Ju duhet më tepër informacion rreth licencash të ndryshme burimi të hapur? Jeni në mëdyshje se cilën licencë do të duhej të përzgjidhnit? Ç'të drejta akordon një licencë e caktuar? Ndërkohë që asgjë nuk mund të zëvendësojë leximin e kushteve të plota të një licence, më poshtë keni disa sajte që përmbajnë të dhëna mbi disa nga licencat e njohura të burimit të hapur, që mund t'ju ndihmojnë të kuptoni dallimet mes tyre. Këto sajte jepen këtu vetëm për t'ju lehtësuar punën dhe si referencë për përdorim personal. Këto burime nuk përbëjnë ndihmë ligjore, dhe as duhen përdorur në vend të një ndihme të tillë. Mozilla as garanton, dhe as mban përgjegjësi për lëndën e këtyre sajteve, dhe as për mbështetjen tuaj në lëndë të tillë."
 
 #: apps/pages/templates/pages/dev_faq.html:618
 msgid "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if you want to use or distribute code licensed under it."
-msgstr ""
+msgstr "Përtej tekstit të plotë të licencës Mozilla Public License(\"MPL\"), këtu jepet një version i komentuar i MPL-së dhe një ndarje <abbr title=\"Frequently Asked Questions\">FAQ</abbr>, për t'ju ndihmuar të përdorni ose shpërndani kod të licencuar sipas saj."
 
 #: apps/pages/templates/pages/dev_faq.html:632
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
-msgstr ""
+msgstr "Një tabelë që përmbledh dhe krahason se si disa prej licencave të njohura të burimit të hapur trajtojnë shpërndarjen, lidhjen te software pronësor, dhe rishpërndarjen e kodit me ndryshim."
 
 #: apps/pages/templates/pages/dev_faq.html:645
 msgid "Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and extended versions of the program to be free as well.)"
-msgstr ""
+msgstr "Free Software Foundation ofron përmbledhje të shkurtra të licencave të njohura të burimit të hapur, përfshi gjykimin nëse licenca kualifikohet si licencë software-i të lirë ose licencë copyleft. Po aty përfshihet një diskutim se çfarë e bën një licencë, licencë software-i të lirë apo  licencë copyleft (p.sh., një licencë copyleft është një metodë e përgjithshme për ta bërë të lirë një program ose një vepër, dhe që kërkon domosdoshmërisht që krejt versionet e ndryshuara dhe zgjeruara të programit të jenë edhe ato të lira.)"
 
 #: apps/pages/templates/pages/dev_faq.html:662
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr ""
+msgstr "Open Source Initiative ejp kushtet e disa prej licencave kryesore të burimit të hapur."
 
 #: apps/pages/templates/pages/dev_faq.html:672
 msgid "Wikipedia listing of known open source licenses."
@@ -12584,7 +12584,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">Zgjerime</a></strong> shtoni te %(app
 
 #: apps/pages/templates/pages/faq.html:55
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Temat e Plota</a></strong> ndryshojnë krejt pamjen në %(app_name)s, duke përfshirë zakonisht ikonat, ngjyrat, dialogët, dhe të tjerë elemente pamorë."
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
@@ -12853,15 +12853,15 @@ msgstr "Pyetje të Bëra Shpesh rreth Shqyrtimeve"
 
 #: apps/pages/templates/pages/review_guide.html:49
 msgid "Add-on reviews are a way for add-on site users to share their opinions about the add-ons that they have installed and used. Editors reserve the right to refuse or remove any review that does not comply with these guidelines."
-msgstr ""
+msgstr "Shqyrtimet e shtesave janë për përdoruesit e sajtit të shtesave një mjet për të ndarë me të tjerët  përshtypjet e tyre mbi shtesa që kanë instaluar dhe përdorur. Redaktorët kanë të drejtën të hedhin tej ose heqin çfarëdo shqyrtimi që nuk është një një vijë me këto udhëzime."
 
 #: apps/pages/templates/pages/review_guide.html:59
 msgid "Do:"
-msgstr ""
+msgstr "Po:"
 
 #: apps/pages/templates/pages/review_guide.html:62
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Shkruani sikur t'i tegonit një miku rreth përvojës tuaj me shtesën."
 
 #: apps/pages/templates/pages/review_guide.html:67
 msgid "Keep reviews concise and easy to understand."
@@ -12893,23 +12893,23 @@ msgstr "Do të vazhdoni ta përdorni këtë shtesë?"
 
 #: apps/pages/templates/pages/review_guide.html:79
 msgid "Take a moment to read your review before submitting it to avoid embarrassing typos or grammatical errors."
-msgstr ""
+msgstr "Lexojeni edhe vetë një herë shqyrtimin tuaj, para se ta parashtronit, për të shmangur gabime shkrimi apo gabime gramatikore."
 
 #: apps/pages/templates/pages/review_guide.html:86
 msgid "Avoid referring to topical or temporal references since reviews can remain on the site for a long time."
-msgstr ""
+msgstr "Shmangni referime ndaj gjërash të përkohshme apo të ngushta, ngaqë shqyrtimet mund të mbesin në sajt për një kohë të gjatë."
 
 #: apps/pages/templates/pages/review_guide.html:93
 msgid "Don’t:"
-msgstr ""
+msgstr "Jo:"
 
 #: apps/pages/templates/pages/review_guide.html:96
 msgid "Submit simple reviews such as \"Great!\", \"wonderful\", or \"bad\" with no further explanation."
-msgstr ""
+msgstr "Mos parashtroni shqyrtime të thjeshta si \"Madhështore!\", \"e mrekullusheshme\", ose \"e keqe\", pa shpjegime të mëtejshme."
 
 #: apps/pages/templates/pages/review_guide.html:102
 msgid "Post bug or problem reports in reviews. Use the available support options for each add-on."
-msgstr ""
+msgstr "Mos postoni te shqyrtimet njoftime të metash apo problemesh. Për secilën shtesë, për këtë përdorni mundësitë e ofruara për asistencë."
 
 #: apps/pages/templates/pages/review_guide.html:108
 msgid "Write reviews for add-ons which you have not personally used."
@@ -12917,55 +12917,55 @@ msgstr "Shkruani shqyrtime për shtesa të cilat nuk i keni përdorur ju vetë."
 
 #: apps/pages/templates/pages/review_guide.html:113
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
+msgstr "Mos përdorni fjalë të ndyra, gjuhë seksuale apo gjuhë që mund të merret si bartëse urrejtjeje."
 
 #: apps/pages/templates/pages/review_guide.html:119
 msgid "Include HTML, links to malware, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "Mos përfshini HTML, lidhje për te malware, te kod burim ose te copëza kodi. Shqyrtimet priten të jenë vetëm tekst."
 
 #: apps/pages/templates/pages/review_guide.html:125
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Mos bëni pohime të rreme, mos përçmoni autorë shtesash ose mos i fyeni ata personalisht."
 
 #: apps/pages/templates/pages/review_guide.html:131
 msgid "Use reviews as a way to request support for a specific Firefox (or other application) version."
-msgstr ""
+msgstr "Mos e përdorni shqyrtimin si një mjet për të kërkuar asistencë për një version të caktuar Firefox-i (ose tjetër zbatimi)."
 
 #: apps/pages/templates/pages/review_guide.html:137
 msgid "Include your own email, phone number, or other personal details."
-msgstr ""
+msgstr "Mos përfshini email-in tuaj, numrin tuaj të telefonit, ose të tjera hollësi personale."
 
 #: apps/pages/templates/pages/review_guide.html:142
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Mos postoni shqyrtime për një shtesë që e shkruat apo e përfaqësoni ju apo enti juaj."
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid "Add-ons ratings should be fair and give a good indication of overall quality and usefulness. Don't just give it 5 stars if you like it or 1 star if you hate it. Consistent grading is an important part of any review."
-msgstr ""
+msgstr "Vlerësimi i shtesave duhet të jetë i paanshëm dhe të jetë tregues i mirë mbi cilësinë dhe dobishmërinë e shtesës në përgjithësi. Jo thjesht t'i jepni 5 yje, nëse e pëlqeni, dhe 1 yll, nëse nuk e duroni dot. Vlerësimi i urtë është pjesë e rëndësishme e çdo shqyrtimi."
 
 #: apps/pages/templates/pages/review_guide.html:162
 msgid "<b>5 stars: Excellent.</b> Not only does everything it claims, but it is significantly more useful than many other add-ons. This add-on is likely to be one you use often and you highly recommend it."
-msgstr ""
+msgstr "<b>5 yje: Shkëlqyer.</b> Jo vetëm që kryen gjithçka që pretendon, por është, në mënyrë domethënëse, më e dobishme se mjaft shtesa të tjera. Kjo shtesë ka gjasa të jetë një nga ato që e përdorni shpesh dhe e rekomandoni me forcë."
 
 #: apps/pages/templates/pages/review_guide.html:170
 msgid "<b>4 stars: Good.</b> Useful and easy to use, though not necessarily special. This add-on is recommended but may be more suited for some people over others."
-msgstr ""
+msgstr "<b>4 yje: Mirë.</b> E dobishme dhe e lehtë në përdorim, por jo domosdoshmërisht speciale. Kjo shtesë është e këshillueshme, por mund të jetë më e përshtatshme për disa persona, dhe jo për disa të tjerë."
 
 #: apps/pages/templates/pages/review_guide.html:177
 msgid "<b>3 stars: Passable.</b> May have some design issues and/or some missing features. Any problems it has are not drastic enough to recommend against, and some people may still find it useful. Recommended for those who need it and are willing to give it a try."
-msgstr ""
+msgstr "<b>3 yje: Kaluese.</b> Mund të ketë ndonjë problem në konceptim dhe/ose veçori që i mungojnë. Çfarëdo qofshin problemet që ka, nuk janë dhe aq të rëndë sa të ndjellin rekomandimin kundër saj, dhe ndokujt prapë mund t'i duket e dobishme. E këshillueshme për ata që ia kanë nevojën dhe që janë gati ta provojnë."
 
 #: apps/pages/templates/pages/review_guide.html:185
 msgid "<b>2 stars: Poor.</b> Add-on is of low quality, usability, or just doesn't do what it says it should. You are recommending against this add-on, while noting that it might have some redeeming value for a few people."
-msgstr ""
+msgstr "<b>2 yje: Dobët.</b> Shtesa është e cilësisë së dobët, po ashtu edhe dobishmëria e saj, ose thjesht nuk kryen ato që pretendon. Po rekomandoni të mos përdoret kjo shtesë, teksa vini në dukje që mundet të ketë ndonjë vlerë për pak vetë."
 
 #: apps/pages/templates/pages/review_guide.html:193
 msgid "<b>1 star: Bad.</b> Add-on either doesn't work correctly or is utterly useless. You can't think of any significant reason why someone should give it a try and are recommending that it be avoided completely."
-msgstr ""
+msgstr "<b>1 star: Keq.</b> Shtesa ose nuk punon si duhet, ose është krejtësisht e padobishme. Nuk gjeni dot ndonjë arsye pse do të duhej ta provonte dikush dhe po këshilloni që të shmanget plotësisht."
 
 #: apps/pages/templates/pages/review_guide.html:203
 msgid "There's nothing wrong with giving an add-on a perfect or horrible review, just please indicate why you are doing so. The stars mean nothing if you don't tell us why."
-msgstr ""
+msgstr "S'ka asgjë të keqe t'i jepni një shtese shqyrtim të përkryer ose të tmerrshëm, thjesht tregoni pse po e bëni këtë. Yjet nuk kanë asnjë kuptim, nëse nuk na tregoni përsetë."
 
 #: apps/pages/templates/pages/review_guide.html:212
 msgid "How can I report a problematic review?"
@@ -12973,7 +12973,7 @@ msgstr "Si të njoftoj për një shqyrtim problematik?"
 
 #: apps/pages/templates/pages/review_guide.html:214
 msgid "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Editors will use the Review Guidelines to evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
+msgstr "Ju lutemi, na njoftoni ose i vini shenjë çdo shqyrtimi të dyshimtë, duke klikuar mbi \"Raportojeni këtë shqyrtim\" dhe do t'i parashtrohet sajtit për moderim. Për të vendosur nëse duhet fshirë apo jo shqyrtimi, apo nëse duhet rikthyer te sajti, redaktorët do të bazohen te Udhëzimet mbi Shqyrtimet."
 
 #: apps/pages/templates/pages/review_guide.html:222
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -12981,15 +12981,15 @@ msgstr "Jam autor shtese, a mundem t'u përgjigjem shqyrtimeve?"
 
 #: apps/pages/templates/pages/review_guide.html:224
 msgid "Yes, add-on authors can provide a single response to a review. Additional discussions or followup should be moved to a support forum or discussion group."
-msgstr ""
+msgstr "Po, autorët e shtesave mund të japin një përgjigje të vetme ndaj një shqyrtimi. Diskutimet apo tjerrjet e mëtejshme do të duhet të kalohen te një forum asistence ose një grup diskutimesh."
 
 #: apps/pages/templates/pages/review_guide.html:231
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "jam autor shtese, a mund të fshij shqyrtime apo vlerësime të pafavorshme?"
 
 #: apps/pages/templates/pages/review_guide.html:233
 msgid "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated by an editor. If a review included a complaint that is no longer valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
-msgstr ""
+msgstr "Përgjithësisht, jo. Por nëse shqyrtimi nuk përputhet me udhësimet e përcaktuara më sipër për shqyrtimet, mund të klikoni mbi \"Raportoni këtë shqyrtim\" dhe kështu të moderohet nga një redaktor. Nëse një shqyrtim përfshinte një ankesë që nuk është më e vlefshme, për shkak të hedhjes në qarkullim të një versioni të ri të shtesës suaj, mund të shohim mundësinë e fshirjes së shqyrtimit. Kërkesën tuaj të hollësishme parashtrojeni te amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -12997,11 +12997,11 @@ msgstr "Sunbird-i doli në pension"
 
 #: apps/pages/templates/pages/sunbird.html:29
 msgid "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have disabled our support for the add-ons."
-msgstr ""
+msgstr "Zhvillimi i projektit Sunbird është ndalur dhe hedhja përfundimtare në qarkullim qe më 30 Mars, 2010. Në këtë sajt i kemi strehuar me kënaqësi shtesat për Sunbird-in, por, meqë projekti nuk mirëbahet më, e kemi çaktivizuar asistencën tonë për këto shtesa."
 
 #: apps/pages/templates/pages/sunbird.html:38
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr ""
+msgstr "Këshillojmë të kaloni te <a href=\"%(tb_url)s\">Thunderbird</a>-i dhe <a href=\"%(lightning_url)s\">Lightning</a>."
 
 #: apps/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
@@ -13017,7 +13017,7 @@ msgstr "Pati një gabim me këtë monedhë."
 
 #: apps/paypal/__init__.py:67
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "Sasia është shumë e vogël për shndërrim në monedhën e marrësit."
 
 #: apps/paypal/__init__.py:69
 msgid "The buyer and seller must have different PayPal accounts."
@@ -13038,7 +13038,7 @@ msgstr "Ju lutemi, jepni një adresë email të vlefshme."
 
 #: apps/paypal/check.py:64
 msgid "You have not setup permissions for us to check this PayPal account."
-msgstr ""
+msgstr "Nuk keni rregulluar për ne leje që të përdorim këtë llogari PayPal."
 
 #: apps/perf/templates/perf/index.html:3
 msgid "Slow Performing Add-ons"
@@ -13131,7 +13131,7 @@ msgstr "Shtoni një shqyrtim për {0}"
 
 #: apps/reviews/templates/reviews/add.html:53
 msgid "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
-msgstr ""
+msgstr "<h2>Mbani në mendje këto këshilla:</h2> <ul> <li> Shkruani sikur t'i tregonit një miku mbi përvojën tuaj me shtesën. Jepni hollësi specifike dhe të hollësishme, të tilla si, ç'veçori ju pëlqyen dhe/ose nuk ju pëlqyen, sa e lehtë është ta përdorësh, dhe çfarëdo mangësish që ka. Shmangni gjuhën e përgjithshme, si, për shembull, quajtjen e saj \"Madhështore\" ose \"E dobët\", po qe se nuk jepni dot arsye se përse besoni se është kështu. </li> <li> Ju lutemi, mos postoni te shqyrtimet njoftime të metash. Ne nuk u japim zhvilluesve të shtesave adresat tuaja email, dhe atyre mund t'ju duhet të lidhen me ju për t'ju ndihur në zgjidhjen e problemit tuaj. Shihni <a href=\"%(support)s\">ndarjen e asistencës</a> që të mësoni se ku të merrni asistencë për një shtesë të dhënë. </li> <li>Ju lutemi, mbajini shqyrtimet të qarta, shmangni gjuhën e papërshtatshme dhe mos postoni të dhëna personale. </li> </ul> <p>Ju lutemi, lexoni <a href=\"%(guide)s\" target=\"_blank\">Udhëzimet mbi Shqyrtimet</a>, për më tepër hollësi lidhur me shqyrtime shtesash nga përdoruesit.</p>"
 
 #: apps/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -13476,8 +13476,8 @@ msgstr "Digg this!"
 #: apps/sharing/__init__.py:34
 msgid "{0} digg"
 msgid_plural "{0} diggs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} digg"
+msgstr[1] "{0} diggs"
 
 #: apps/sharing/__init__.py:40
 msgid "Post to Facebook"
@@ -13588,7 +13588,7 @@ msgstr "Ndajeni këtë Koleksion me të tjerët"
 #. L10n: the adddon name.
 #: apps/stats/models.py:225
 msgid "%s payment reversal"
-msgstr ""
+msgstr "rimbursim pagese për %s"
 
 #. L10n: the addon name.
 #: apps/stats/models.py:234
@@ -13919,7 +13919,7 @@ msgstr "Çfarë janë përdoruesit e përditshëm?"
 
 #: apps/stats/templates/stats/reports/usage.html:11
 msgid "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of people using your theme by day. </p>"
-msgstr ""
+msgstr "<h2>Ç'janë përdoruesit ditorë?</h2> <p> Temat e instaluara nga ky sajt kontrollojnë për përditësim një herë në ditë. Numri gjithseji këtyre sinjaleve ardhëse për përditësim njihet si Përdorues të Përditshëm Aktivë, ose numri gjithsej i njerëzve që përdorin temën tuaj në ditë. </p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken down by add-on version, operating system, add-on status, application, and locale. </p>"
@@ -14050,7 +14050,7 @@ msgstr "Foto Profili"
 
 #: apps/users/forms.py:396
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Për anonimizim, jepni një arsye për ndryshimin, por mos ndryshoni ndonjë fushë tjetër."
 
 #: apps/users/helpers.py:52
 msgctxt "user_list_others"
@@ -14063,7 +14063,7 @@ msgstr "algoritëm"
 
 #: apps/users/models.py:65
 msgid "salt"
-msgstr ""
+msgstr "kripë"
 
 #: apps/users/models.py:66
 msgid "hash"
@@ -14167,7 +14167,7 @@ msgstr "Nuk ka përdorues me atë adresë email."
 
 #: apps/users/views.py:104
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
-msgstr ""
+msgstr "Nuk ka përdorues me atë adresë email, ose përdoruesi nuk ka pranuar ende marrëveshjen e zhvilluesit."
 
 #: apps/users/views.py:122
 msgid "Invalid confirmation code!"
@@ -14249,7 +14249,7 @@ msgstr "Te adresa juaj {0} është dërguar me email një lidhje për aktivizimi
 
 #: apps/users/views.py:503
 msgid "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation message</a> to your email address mentioned above."
-msgstr ""
+msgstr "Nëse nuk e morët email-in e ripohimit, kontrolloni se mos shërbimi juaj email service e ka shënur si \"postë e pavlerë\" ose \"hedhurinë\". Nëse ju duhet, mund të na kërkoni <a href=\"%s\">të ridërgojmë mesazhin e ripohimit</a> te adresa juaj email e përmendur më sipër."
 
 #: apps/users/views.py:508
 msgid "Activation Email Sent"
@@ -14299,7 +14299,7 @@ msgstr "Nuk mund ta fshini llogarinë tuaj nëse jeni radhitur si <a href=\"%(li
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "Duke klikuar mbi \"fshije\" llogaria juaj <strong>do të fshihet përgjithmonë</strong>. Kjo do të thotë:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
@@ -14307,7 +14307,7 @@ msgstr "Nuk do të jeni më në gjendje të hyni te %(site)s."
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "Shqyrtimet dhe vlerësimet tuaja nuk do të fshihen, por nuk do t'i përshoqërohen më llogarisë suaj."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -14346,7 +14346,7 @@ msgstr "Llogaria Ime"
 
 #: apps/users/templates/users/edit.html:22
 msgid "Manage basic account information, such as username and email address."
-msgstr ""
+msgstr "Administroni të dhëna bazë llogarie, të tilla si emër përdoruesi dhe adresë email."
 
 #: apps/users/templates/users/edit.html:28
 #: apps/users/templates/users/register.html:48
@@ -14372,7 +14372,7 @@ msgstr "Ndryshoni Fjalëkalimin"
 
 #: apps/users/templates/users/edit.html:54
 msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr ""
+msgstr "Ndryshoni fjalëkalimin tuaj. Nëse e harruat fjalëkalimin tuaj, mund të <a href=\"%(reset_url)s\">përdorni formularin e ricaktimit</a>."
 
 #: apps/users/templates/users/edit.html:60
 msgid "Old Password"
