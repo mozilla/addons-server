@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-25 22:18+0200\n"
+"PO-Revision-Date: 2014-03-26 00:44+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -4946,7 +4946,7 @@ msgstr "Shqyrtim Paraprak"
 
 #: apps/devhub/forms.py:542
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "Ju lutemi, zgjidhni lloj kandidimi shqyrtimi"
 
 #: apps/devhub/forms.py:557
 #: mkt/submit/forms.py:204
@@ -17698,7 +17698,7 @@ msgstr "Paraqitja e zbatimit tuaj është çaktivizuar dhe ai nuk do të shfaqet
 
 #: mkt/developers/templates/developers/apps/status.html:169
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
-msgstr ""
+msgstr "Heqja e zbatimit tuaj nga lista do ta parandalojë shfaqjen e tij kudo në Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:189
 #: mkt/developers/templates/developers/apps/status.html:200
@@ -18325,7 +18325,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:82
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
+msgstr "Mënyra me pagesë lyp që zbatimi juaj të mbulojë vetëm:"
 
 #: mkt/developers/templates/developers/payments/premium.html:83
 #: mkt/developers/templates/developers/payments/premium.html:85
@@ -19354,7 +19354,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:53
 msgid "Stores local and remote notes on the client side."
-msgstr ""
+msgstr "Depoziton shënime vendore dhe të largëta në anën e klientit."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:61
 msgid "Enables the page and functionality to work offline."
@@ -20770,7 +20770,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:54
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
-msgstr ""
+msgstr "Shihni te <a href=\"%(url)s\">Parashtrimet e Mia</a> një listë të krejt parashtrimeve tuaja"
 
 #: mkt/submit/templates/submit/next_steps.html:63
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
@@ -21084,7 +21084,7 @@ msgstr "Shtoni veçori dhe stile ekstra për ta bërë këtë %(app)s tuajin."
 
 #: templates/impala/base.html:159
 msgid "On the go?"
-msgstr ""
+msgstr "Në lëvizje?"
 
 #: templates/impala/base.html:161
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
