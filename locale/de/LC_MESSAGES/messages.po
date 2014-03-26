@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:16-0700\n"
-"PO-Revision-Date: 2014-02-26 19:30+0000\n"
+"PO-Revision-Date: 2014-03-26 16:43+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393443053.0\n"
+"X-POOTLE-MTIME: 1395852216.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4260,12 +4260,12 @@ msgstr "Alle Add-ons anzeigen ►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:42
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "Add-ons für Australis erstellen"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:63 apps/devhub/templates/devhub/addons/submit/sidebar.html:43
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "Gewinnen Sie ein Firefox-OS-Handy und Mozilla-Fanartikel!"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -5163,7 +5163,7 @@ msgstr "Dieses Add-on wird automatisch nach einigen Tagen gelöscht, wenn der Ei
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:23
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Neueste Version:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5278,7 +5278,7 @@ msgstr "Sehen Sie sich die voraussichtlichen <a href=\"{0}\">Wartezeiten</a> in 
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:61
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "Reichen Sie Ihr Add-on für den Wettbewerb „Add-ons für Australis“"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -8870,11 +8870,11 @@ msgstr "Installation abbrechen"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "Erstellen Sie Add-ons für das neue Erscheinungsbild von Firefox"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "Details zum Wettbewerb"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -10931,6 +10931,13 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Add-ons werden von den AMO-Redakteuren bewertet, einer Gruppe talentierter "
+"Entwickler, die dem Mozilla-Projekt freiwillig helfen, indem sie Add-ons "
+"überprüfen, um ein stabiles und sicheres Erlebnis für Mozilla-Anwender "
+"sicherzustellen. Seien Sie bei der Kommunikation mit Redakteuren bitte "
+"höflich, geduldig und respektvoll, da sie hart daran arbeiten, dass Ihr Add-"
+"on korrekt eingerichtet ist und den Leitlinien im <a href=\"%"
+"(url)s\">Überprüfungsleitfaden für Redakteure</a> entspricht."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -12728,7 +12735,7 @@ msgstr "Falsches Passwort!"
 
 #: apps/users/forms.py:164
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Benutzernamen dürfen nicht nur aus Ziffern bestehen."
 
 #: apps/users/forms.py:166
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
