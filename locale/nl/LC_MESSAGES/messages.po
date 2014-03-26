@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:16-0700\n"
-"PO-Revision-Date: 2014-02-27 09:53+0000\n"
+"PO-Revision-Date: 2014-03-26 20:49+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393494799.0\n"
+"X-POOTLE-MTIME: 1395866996.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4258,12 +4258,12 @@ msgstr "Alle add-ons bekijken ►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:42
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "Add-ons voor Australis maken"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:63 apps/devhub/templates/devhub/addons/submit/sidebar.html:43
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "Win een Firefox OS-telefoon en Mozilla-promotiemateriaal!"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -5154,7 +5154,7 @@ msgstr "Deze add-on wordt automatisch na een paar dagen verwijderd als het indie
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:23
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Laatste versie:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5269,7 +5269,7 @@ msgstr "Bekijk bij benadering de <a href=\"{0}\">wachttijd</a> in de beoordeling
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:61
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "Dien uw add-on in voor Add-ons voor Australis-wedstrijd"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5486,7 +5486,8 @@ msgstr "Lees hoe StumbleUpon van start is gegaan met Firefox"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:63
 msgid "by <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon Jensen</a>"
-msgstr "door <a href=\"https://addons.mozilla.org/firefox/user/9\">Devon Jensen</a>"
+msgstr ""
+"door <a href=\"https://addons.mozilla.org/nl/firefox/user/9\">Devon Jensen</a>"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:67
 msgid "Easy Download Management with Download Statusbar"
@@ -6915,7 +6916,10 @@ msgstr "De volgende add-ons zijn niet toegestaan in wat voor vorm dan ook:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
-msgstr "Add-ons die bekende <a href=\"http://nl.wikipedia.org/wiki/Spyware\">spyware</a> of <a href=\"http://nl.wikipedia.org/wiki/Malware\">malware</a> bevatten."
+msgstr ""
+"Add-ons die bekende <a "
+"href=\"http://nl.wikipedia.org/wiki/Spyware\">spyware</a> of <a "
+"href=\"http://nl.wikipedia.org/wiki/Malware\">malware</a> bevatten"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
@@ -8829,11 +8833,11 @@ msgstr "Installatie annuleren"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "Maak add-ons voor het nieuwe uiterlijk van Firefox"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "Wedstrijddetails"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -10545,8 +10549,10 @@ msgid ""
 "<li><a href=\"http://www.activestate.com/komodo_edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus.sourceforge.net/uk/site.htm"
 "\">Notepad++</a></li> <li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
-"<li><a href=\"http://www.activestate.com/komodo_edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus.sourceforge.net/uk/site.htm"
-"\">Notepad++</a></li> <li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li> <li><a href=\"http://www.pspad.com/\">PSPad</a></li> <li><a href=\"http://www.geany.org/\">Geany</a></li>"
+"<li><a href=\"http://www.activestate.com/komodo_edit/\">Komodo Edit</a></li> "
+"<li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http"
+"://notepad-plus.sourceforge.net/uk/site.htm\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "You can also learn more about setting up your development environment via the MDC article <a href=\"%(url)s\">Setting up extension development environment</a>"
@@ -10882,6 +10888,13 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Add-ons worden beoordeeld door de AMO-editors, een groep getalenteerde "
+"ontwikkelaars die vrijwillig het Mozilla-project helpen door add-ons te "
+"beoordelen en zo te zorgen voor een stabiele en veilige ervaring voor "
+"Mozilla-gebruikers. Wees in de communicatie met editors vriendelijk, "
+"geduldig en respectvol, aangezien ze hard werken om ervoor te zorgen dat uw "
+"add-on juist is opgezet en de richtlijnen in de <a href=\"%"
+"(url)s\">Beoordelingsgids voor editors</a> volgt."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -12584,8 +12597,10 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
-"<h2>Wat zijn dagelijkse gebruikers?</h2> <p> Thema’s die vanaf deze website worden geïnstalleerd controleren dagelijks op updates. Het totale aantal van deze update-pings staat ook wel bekend als "
-"Actieve dagelijkse gebruikers, ofwel het totaal aantal personen per dag dat uw thema gebruikt."
+"<h2>Wat zijn dagelijkse gebruikers?</h2> <p> Thema’s die vanaf deze website "
+"worden geïnstalleerd controleren dagelijks op updates. Het totale aantal van "
+"deze update-pings staat ook wel bekend als Actieve dagelijkse gebruikers, "
+"ofwel het totaal aantal personen per dag dat uw thema gebruikt. </p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid ""
@@ -12673,7 +12688,7 @@ msgstr "Foutief wachtwoord ingegeven!"
 
 #: apps/users/forms.py:164
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Gebruikersnamen mogen niet alleen getallen bevatten."
 
 #: apps/users/forms.py:166
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
