@@ -13,9 +13,14 @@ def get_locales(model, qn):
     params to provide for them.
 
     ``qn`` is the "quote_name" you usually get using
-    ``connection.ops.quote_name``.
+    ``connection.ops.quote_name``, and is used in the case the
+    ``get_fallback()`` method on the model returns a field. Its name will be
+    quoted to be inserted in the SQL generated.
 
     Eg: ['%s', '`addons`.`default_fallback`', '%s'], ['fr', 'en-US']
+
+    It only adds a locale if it isn't present already, to avoid useless
+    lookups and joins.
 
     """
     # Get the locales in order.
@@ -53,11 +58,12 @@ def order_by_translation(qs, fieldname):
     The model being sorted needs a get_fallback() classmethod that describes
     the fallback locale. get_fallback() can return a string or a Field.
 
-    We will try to find a translation for locales in the following order:
+    We try to find a translation for locales in the following order:
     1. The active language
     2. The fallback locale if provided by the model via get_fallback()
     3. settings.LANGUAGE_CODE
-    If none of those were found, return just any translation.
+    If none of those are found, return just any translation regardless of its
+    locale.
 
     Only try a locale if it hasn't been tried before, to optimize the number of
     joins.
@@ -108,7 +114,7 @@ def order_by_translation(qs, fieldname):
         # Inception: we need the "else" clause to be another "IFNULL" element.
         ifnull = ifnull.format(field=field_str, else_=ifnull_tpl)
 
-    # We now add the last fallback: return just any translation.
+    # Add the last fallback: return any translation regardless of its locale.
     field_str = qs.query.join(connection, always_create=True, promote=True)
     fields.append(field_str)
     # End of the "inception" here for the "else" clause of the "IFNULL".
@@ -161,18 +167,22 @@ class SQLCompiler(addons.query.IndexCompiler):
         # Get the locales to try.
         locale_strings, locale_params = get_locales(
             self.query.model, self.quote_name_unless_alias)
+        # Add a "None" to the locale_strings: this "no locale" is the last
+        # chance fallback which returns just any translation regardless of its
+        # locale.
+        locale_strings.append(None)
 
         params.extend(locale_params)
 
-        # Add our locale-aware joins.  We're not respecting the table ordering
-        # Django had in query.tables, but that seems to be ok.
+        # Add the joins.  We're not respecting the table ordering Django had in
+        # query.tables, but that seems to be ok.
         for _field, aliases in self.query.translation_aliases.items():
-            # For each locale, we have a join we need to provide a "ON" clause.
-            for i, locale_str in enumerate(locale_strings):
-                joins.append(self.join_with_locale(aliases[i], locale_str))
-            # Finally, provide a "ON" clause without an "AND" for the last
-            # chance fallback which returns just any translation.
-            joins.append(self.join_with_locale(aliases[i + 1]))
+            # For each alias, add a join on the locale we want to try.
+            # For the last alias, provide a "ON" clause without an "AND" for
+            # the last chance fallback which returns just any translation
+            # regardless of its locale.
+            for alias, locale in zip(aliases, locale_strings):
+                joins.append(self.join_with_locale(alias, locale))
 
         self.query.tables = old_tables
         return joins, params

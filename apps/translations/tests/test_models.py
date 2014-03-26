@@ -139,7 +139,8 @@ class TranslationTestCase(TestCase):
             # Fallback doesn't exist, use EN-US instead.
             trans_eq(o.description, 'some description', 'en-US')
 
-            # Neither fallback nor EN-US exist, return a random locale.
+            # Neither fallback nor EN-US exist, return any translation
+            # regardless of locale.
             get_fallback.return_value = 'fr'
             o2 = TranslatedModel.objects.no_cache().get(id=5)
             trans_eq(o2.name, 'Deutsch name', 'de')
