@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"POT-Creation-Date: 2014-03-26 09:16-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -580,8 +580,8 @@ msgstr ""
 msgid "Error rejecting app: {app}"
 msgstr ""
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:49
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
 msgstr ""
 

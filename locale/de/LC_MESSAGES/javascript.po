@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"POT-Creation-Date: 2014-03-26 09:16-0700\n"
 "PO-Revision-Date: 2014-02-26 19:33+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -546,8 +546,8 @@ msgstr "Fehler beim Freischalten der App: {app}"
 msgid "Error rejecting app: {app}"
 msgstr "Fehler beim Ablehnen der App: {app}"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:49
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
 msgstr "Von {0} am {1}"
 
@@ -1167,12 +1167,8 @@ msgstr[1] "{0} Add-ons auf eine Max-Version von {1} setzen und Autoren per E-Mai
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-"Autor von {2} Add-on, deren Validierung fehlgeschlagen ist, per E-Mail "
-"benachrichtigen."
-msgstr[1] ""
-"Autoren von {2} Add-ons, deren Validierung fehlgeschlagen ist, per E-Mail "
-"benachrichtigen."
+msgstr[0] "Autor von {2} Add-on, deren Validierung fehlgeschlagen ist, per E-Mail benachrichtigen."
+msgstr[1] "Autoren von {2} Add-ons, deren Validierung fehlgeschlagen ist, per E-Mail benachrichtigen."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."

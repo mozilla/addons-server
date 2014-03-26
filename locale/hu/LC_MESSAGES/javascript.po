@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"POT-Creation-Date: 2014-03-26 09:16-0700\n"
 "PO-Revision-Date: 2014-02-27 16:18+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -548,8 +548,8 @@ msgstr "Hiba az app jóváhagyásakor: {app}"
 msgid "Error rejecting app: {app}"
 msgstr "Hiba az app elutasításakor: {app}"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:49
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
 msgstr "{0} által ekkor: {1}"
 
@@ -1169,12 +1169,8 @@ msgstr[1] "{0} kiegészítő beállítása {1} legmagasabb verzióra, és levél
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-"E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az "
-"ellenőrzésen."
-msgstr[1] ""
-"E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az "
-"ellenőrzésen."
+msgstr[0] "E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az ellenőrzésen."
+msgstr[1] "E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az ellenőrzésen."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
