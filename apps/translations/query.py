@@ -129,9 +129,10 @@ def order_by_translation(qs, fieldname):
 
     qs.query = qs.query.clone(TranslationQuery)
     qs.query.translation_aliases = {field: fields}
+    qs.query.group_by = [name]
     return qs.extra(select={name: ifnull},
                     where=['({0})'.format(where_)],
-                    order_by=[prefix + name]).distinct()
+                    order_by=[prefix + name])
 
 
 class TranslationQuery(addons.query.IndexQuery):
