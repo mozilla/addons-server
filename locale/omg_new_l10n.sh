@@ -15,10 +15,10 @@
 
 EMAIL_FROM="Marketplace Developers <dev-l10n-web@lists.mozilla.org>"
 EMAIL_TO="Awesome Localizers <dev-l10n-web@lists.mozilla.org>"
-EMAIL_SUBJECT="[Marketplace] .po files updated"
+EMAIL_SUBJECT="[AMO] .po files updated"
 
 # A link to the .po files
-EMAIL_SOURCE="https://github.com/mozilla/zamboni/tree/master/locale"
+EMAIL_SOURCE="https://github.com/mozilla/olympia/tree/master/locale"
 
 # gettext flags
 CLEAN_FLAGS="--no-obsolete --width=200"
