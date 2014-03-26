@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-26 19:35+0200\n"
+"PO-Revision-Date: 2014-03-26 23:30+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -14652,19 +14652,19 @@ msgstr "Dëshironi të parashtroni shqyrtime për shtesa"
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
+msgstr "Doni të ndiqni koleksionet tuaj të parapëlqyer të shtesave ose të krijoni vetë një të tillë"
 
 #: apps/users/templates/users/register.html:21
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
+msgstr "Jeni zhvillues shtesash dhe dëshironi të ngarkoni shtesën tuaj për strehim te AMO"
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr ""
+msgstr "Pas regjistrimit me sukses, te adresa që dhatë do t'ju dërgohet një email ripohimi. Ju lutemi, ndiqni udhëzimet e atjeshme që të ripohoni krijimin e llogarisë suaj."
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
-msgstr ""
+msgstr "Nëse doni, mund të lexoni <a href=\"%(legal)s\" title=\"Legal Notices\">Shënime Ligjore</a> dhe <a href=\"%(privacy)s\" title=\"Privacy Policy\">Rregulla Privatësie</a> tona."
 
 #: apps/users/templates/users/register.html:42
 #: apps/users/templates/users/register.html:96
@@ -14686,7 +14686,7 @@ msgstr "Raporto përdoruesin {0}"
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr ""
+msgstr "Fjalëkalimi për llogarinë tuaj duhet të përmbajë të paktën 8 shenja, përfshi shkronja dhe numra."
 
 #: apps/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
@@ -14718,7 +14718,7 @@ msgstr "Nuk ju çpajtuam dot"
 
 #: apps/users/templates/users/unsubscribe.html:30
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
+msgstr "Mjerisht, nuk qemë në gjendje t'ju çpajtonim. Lidhja që klikuat është e pavlefshme. Sido qoftë, mund të çpajtoheni që nga pjesa <a href=\"%(edit_url)s\">përpunoni profilin tuaj</a>."
 
 #: apps/users/templates/users/vcard.html:2
 msgid "Developer Information"
@@ -14891,7 +14891,7 @@ msgstr "Duhet të jetë kod gjashtëmbëdhjetësh ngjyrash i vlefshëm, p.sh. #F
 
 #: mkt/collections/serializers.py:221
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
-msgstr ""
+msgstr "Nuk mund të keni më shumë se një Raft Zbatimesh të Zgjedhura/Operatori për të njëjtën ndërthurje kategori/operator/rajon."
 
 #: mkt/comm/forms.py:21
 msgid "Note body is empty."
@@ -14920,7 +14920,7 @@ msgstr "Bashkëngjitja tejkalon madhësinë maksimum %s."
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
+msgstr "Firefox Marketplace-i është burimi zyrtar i zbatimeve për platformën web."
 
 #: mkt/constants/bango.py:17
 msgid "Afghanistan"
@@ -16485,7 +16485,7 @@ msgstr "Fjalim Urrejtjeje"
 
 #: mkt/constants/ratingdescriptors.py:46
 msgid "Intense Violence"
-msgstr ""
+msgstr "Dhunë e Thellë"
 
 #: mkt/constants/ratingdescriptors.py:49
 msgid "Mild Blood"
@@ -16663,7 +16663,7 @@ msgstr "Për këdo 10+"
 
 #: mkt/constants/ratingsbodies.py:232
 msgid "Teen"
-msgstr ""
+msgstr "Adoleshentë"
 
 #: mkt/constants/ratingsbodies.py:239
 msgid "Mature 17+"
@@ -16797,7 +16797,7 @@ msgstr "Duhet të ngarkoni të paktën një foto ekrani ose video."
 
 #: mkt/developers/forms.py:440
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr ""
+msgstr "Zbatimi i paketuar është shumë i madh për parashtrim. Paketat duhet të jenë më të vogla se %s."
 
 #: mkt/developers/forms.py:455
 msgid "Error extracting manifest from zip file."
@@ -16877,7 +16877,7 @@ msgstr "Lloj Transaksioni"
 
 #: mkt/developers/forms.py:1002
 msgid "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my app."
-msgstr ""
+msgstr "Ju lutemi, shiheni zbatimin si një kandidat për të qenë i parangarkuar në një pajisje Firefox OS. Pajtohem me termat dhe kushtet e përvijuara më sipër. E kuptoj që ky dokument nuk është një zotim për ta parangarkuar zbatimin tim."
 
 #: mkt/developers/forms.py:1009
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -16897,7 +16897,7 @@ msgstr "Lloj i pavlefshëm kartele. Mbulohen vetëm kartela %s."
 
 #: mkt/developers/forms.py:1049
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
-msgstr ""
+msgstr "Kjo dëshmi IARC është tashmë në përdorim për një zbatim tjetër. Ju lutemi, krijoni një Dëshmi të re Klasifikimesh IARC."
 
 #: mkt/developers/forms.py:1062
 msgid "Please enter a valid submission ID."
@@ -17162,7 +17162,7 @@ msgstr "Versioni i ri u shtua me sukses."
 
 #: mkt/developers/views.py:298
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr ""
+msgstr "Përgëzime, parashtrimi i zbatimit tuaj u plotësua dhe do të shqyrtohet së shpejti!"
 
 #: mkt/developers/views.py:300
 msgid "Content ratings successfully saved."
@@ -17288,17 +17288,17 @@ msgstr "Hëpërhë nuk keni kyç API."
 #: mkt/developers/templates/developers/base_impala.html:30
 #: mkt/developers/templates/developers/apps/status.html:34
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr ""
+msgstr "Duhe të rregulloni <a href=\"%(next_url)s\">%(next_step_name)s</a> përpara se zbatimi juaj të shqyrtohet ose botohet."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:37
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> or else your app will be disabled on %(pretty_date)s."
-msgstr ""
+msgstr "Duhet të rregulloni <a href=\"%(next_url)s\">%(next_step_name)s</a> ose përndryshe zbatimi juaj do të çaktivizohet më %(pretty_date)s."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "Duhet të rregulloni <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
 #: mkt/developers/templates/developers/builder.html:3
 msgid "Builder and SDK"
@@ -17323,7 +17323,7 @@ msgstr "Përkujdesore për Formuesit"
 
 #: mkt/developers/templates/developers/builder.html:32
 msgid "Add-on Builder and the Add-on SDK provide powerful APIs and tools that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 million Firefox users world wide."
-msgstr ""
+msgstr "Add-on Builder dhe Add-on SDK ju furnizojnë API dhe mjete të fuqishme që i lejojnë zhvilluesit të krijojë shtesa Firefox-i duke përdorur HTML, CSS dhe JavaScript. Kur shtesa juaj të jetë e plotë, jua bëjmë të lehtë ta ndani atë me mbi 400 milionë përdorues të  Firefox-it anembanë globit."
 
 #: mkt/developers/templates/developers/builder.html:42
 msgid "Choose Your Build Environment"
@@ -17335,7 +17335,7 @@ msgstr "Montues Shtesash"
 
 #: mkt/developers/templates/developers/builder.html:50
 msgid "The Add-on Builder is a web-based development environment that provides additional functionality for working with the Add-on SDK."
-msgstr ""
+msgstr "Add-on Builder ëhtë një mjedis programimi me bazë web që ofron funksione shtesë për punimin me Add-on SDK-në."
 
 #: mkt/developers/templates/developers/builder.html:56
 msgid "Edit code in a feature-rich environment"
@@ -17359,7 +17359,7 @@ msgstr "Nuk Ka Gjë Në Të"
 
 #: mkt/developers/templates/developers/builder.html:91
 msgid "If you know HTML, CSS and JavaScript, you can make add-ons. With Builder, you don't even need to set up a build environment. Just log in and go."
-msgstr ""
+msgstr "Nëse dini HTML, CSS dhe JavaScript, mund të ndërtoni shtesa. Me Builder-in, as që keni nevojë të rregulloni një mjedis ndërtimi. Thjesht bëni hyrjen dhe vazhdoni."
 
 #: mkt/developers/templates/developers/builder.html:99
 msgid "Great Developer Features"
@@ -17367,7 +17367,7 @@ msgstr "Veçori të Shkëlqyera për Programuesit"
 
 #: mkt/developers/templates/developers/builder.html:101
 msgid "All add-ons built with either tool are restartless by default. You also get access to a library of easy-to-implement APIs built by the Mozilla community."
-msgstr ""
+msgstr "Krejt shtesat e ndërtuara me secilin prej dy mjeteve, nuk lypin rinisje, si parazgjedhje. Ju jepet gjithashtu mundësi të përdorni një bibliotekë API-sh të ndërtuara nga bashkësia Mozilla dhe që sendërtohen lehtë brenda projekteve tuaja."
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
@@ -17497,7 +17497,7 @@ msgstr "Shumë"
 #: mkt/developers/templates/developers/validate_addon.html:3
 #: mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "Provoni Vlefshmërinë e Zbatimit"
 
 #: mkt/developers/templates/developers/validate_addon.html:17
 #: mkt/submit/templates/submit/manifest.html:57
@@ -17521,7 +17521,7 @@ msgstr "Mësoni më tepër mbi parashtrimin e një aplikimi."
 
 #: mkt/developers/templates/developers/validate_addon.html:69
 msgid "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
-msgstr ""
+msgstr "Vleftësuesi është një mjet i cili ju ndihmon ta provoni zbatimin për të zbuluar gabime, për t'i kontrolluar pajtueshmërinë me praktikat më të mira të programimit dhe përputhshmërinë me udhëzimet e Marketplace-it, përpara se ta parashtroni zbatimin tuaj për shqyrtim. Nëse ju intereson të mësoni se si funksionon ose nëse do të donit një kopje tuajën, kodin burim e keni <a href=\"%(repo)s\">në Github</a>."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:16
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
@@ -17602,7 +17602,7 @@ msgstr "Ky zbatim është <b>publik</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:47
 msgid "Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer."
-msgstr ""
+msgstr "Versioni më i ri për të <b>po pret të shqyrtohet</b> nga një shqyrtues i Firefox Marketplace-it."
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
@@ -17828,7 +17828,7 @@ msgstr "Mesazh banderole"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Exclusive message shown on the listing page, only in the selected regions."
-msgstr ""
+msgstr "Mesazh ekskluziv, i shfaqur në faqen përkatëse, vetëm në rajonet e përzgjedhur."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Regions to show banner in"
@@ -17900,7 +17900,7 @@ msgstr "Shënime Versioni"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:128
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
-msgstr ""
+msgstr "Informacion mbi ndryshime te hedhja e fundit në qarkullim, veçori të reja, të meta të njohura, dhe tjetë informacion i dobishëm që lidhet me këtë hedhje në qarkullim/version."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:149
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
@@ -18174,7 +18174,7 @@ msgstr "Parashtrojeni zbatimin tuaj për parangarkim"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid "You can submit your to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
-msgstr ""
+msgstr "Mund ta parashtroni zbatimin tuaj për t'u marrë në shqyrtim mundësia e <strong>parangarkimit të tij dhe shpërndarjes me pajisje FirefoxOS</strong> nga operatorët telefonikë. Për të shprehur dëshirën tuaj për parangarkim, mund të shkarkoni më poshtë një gjedhe prove prej nesh, ta provoni zbatimin tuaj, të plotësoni gjedhen dhe të na dërgoni përfundimet përmes <a href=\"%(submit_url)s\">formularit të parashtrimit të zbatimeve për parangarkim</a>. Përfundimet e provës suaj do t'i depozitojmë në shërbyesit tanë, prej ku do të shqyrtohen nga operatorët telefonikë të interesuar. Nëse keni pyetje të mëtejshme, mund të dërgoni një email te %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -18186,11 +18186,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
-msgstr ""
+msgstr "Që ta keni zbatimin tuaj të radhitur te Marketplace, duhet ta pajisni me një dëshmi International Age Rating Coalition (IARC). Klikimi mbi butonin më poshtë do të hapë një dritare të re, te e cila mund të plotësoni një pyetësor të shkurtër, të llojit po-ose-jo, mbi lëndën e zbatimit tuaj. Pasi ta plotësoni, dritarja do të mbyllet dhe zbatimi juaj do të ketë mandej një klasifikim moshash."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
-msgstr ""
+msgstr "Duke përdorur mjetin për dëshmi klasifikimesh IARC, shprehni miratimin tuaj se u bindeni <a href=\"%(privacy_url)s\">Rregullave të tyre të Privatësisë</a> dhe <a href=\"%(tos_url)s\">marrëveshjes mbi Kushtet e Shërbimit</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
@@ -18210,7 +18210,7 @@ msgstr "E keni Tashmë të Klasifikuar Zbatimin Tuaj?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
-msgstr ""
+msgstr "Nëse zbatimi juaj është klasifikuar tashmë përmes IARC Global Ratings Tool më sipër dhe keni tashmë një kod sigurie IARC, mund ta jepni atë dorazi këtu."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
@@ -18218,7 +18218,7 @@ msgstr "ID Parashtrimi"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
-msgstr ""
+msgstr "ID-ja e parashtrimit mund të gjendet te dëshmia që ju dërguan. Është një vlerë numerike, e tillë si &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
@@ -18226,7 +18226,7 @@ msgstr "Kod Sigurie"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
-msgstr ""
+msgstr "Kodi i sigurisë mund të gjendet te dëshmia që ju dërguan. Është një përzierje shkronjash dhe numrash, e tillë si &quot;AB12CD3&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
 msgid "Rating System"
@@ -18251,7 +18251,7 @@ msgstr "Elementë Ndërveprues"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid "Sorry, <b>payments are currently disabled</b> but are coming soon. If you would like users to be able to install your app, please, for the time being, <a href=\"%(payments_url)s\">make your app free</a>. You will be notified via email when payments are re-enabled. Thanks for your patience."
-msgstr ""
+msgstr "Na ndjeni, <b>pagesat hëpërhë janë çaktivizuar</b>, por do të rikthehen së shpejti. Nëse doni që përdoruesit të jenë në gjendje të instalojnë zbatimin tuaj, ju lutemi, hëpërhë, <a href=\"%(payments_url)s\">kalojeni zbatimin tuaj falas</a>. Do të njoftoheni me email, kur të jenë riaktivizuar pagesat. Ju faleminderit për durimin."
 
 #: mkt/developers/templates/developers/includes/macros.html:68
 #: mkt/developers/templates/developers/includes/macros.html:87
@@ -18270,11 +18270,11 @@ msgstr[1] "Kohë pritjeje e hamendësuar:</b> %(num)s ditë pune"
 
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
-msgstr ""
+msgstr "Shumica e zbatimeve shqyrtohen brenda një jave. Nëse shqyrtimi juaj ka zgjatur më shumë se kaq, mund të dërgoni një email te %(email)s që të kontrolloni se ç'bëhet."
 
 #: mkt/developers/templates/developers/includes/macros.html:123
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
-msgstr ""
+msgstr "U vini shenjë kutizave të veçorive të domosdoshme për funksionimin e duhur të zbatimit tuaj. Zbatimi juaj nuk do t'u shfaqet përdoruesve me pajisje që nuk e mbulojnë atë."
 
 #: mkt/developers/templates/developers/includes/macros.html:130
 msgid "Hide all"
@@ -18321,7 +18321,7 @@ msgstr "Kaloje të Lirë"
 
 #: mkt/developers/templates/developers/payments/premium.html:66
 msgid "Changing to Free will put your app back into review."
-msgstr ""
+msgstr "Kalimi te Falas do ta kalojë zbatimin tuaj sërish në shqyrtim."
 
 #: mkt/developers/templates/developers/payments/premium.html:82
 msgid "Paid mode requires that your app only supports:"
@@ -18339,7 +18339,7 @@ msgstr "Kaloje me Pagesë"
 
 #: mkt/developers/templates/developers/payments/premium.html:95
 msgid "Changing to Paid will put your app back into review."
-msgstr ""
+msgstr "Kalimi te Me Pagesë do ta kalojë zbatimin tuaj sërish në shqyrtim."
 
 #: mkt/developers/templates/developers/payments/premium.html:103
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
@@ -18384,7 +18384,7 @@ msgstr "Rajone të Mundshëm"
 
 #: mkt/developers/templates/developers/payments/premium.html:198
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
-msgstr ""
+msgstr "Kontrolloni te <a href=\"%(status_url)s\" target=\"_blank\">faqja e gjendjes</a> që të shihni se për cilat vende është e aktivizuar shitja."
 
 #: mkt/developers/templates/developers/payments/premium.html:205
 msgid "Your app will be available in the following selected regions:"
@@ -18420,11 +18420,11 @@ msgstr "Promovojeni si përmirësim të versionit falas"
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
-msgstr ""
+msgstr "Nëse keni një zbatim falas, mund ta lidhni dhe promovoni zbatimin tuaj me pagesë në krah të versionit falas këtu."
 
 #: mkt/developers/templates/developers/payments/premium.html:281
 msgid "Linking this app will promote your premium app next to the free version."
-msgstr ""
+msgstr "Lidhja e këtij zbatimi do të promovojë zbatimin tuaj me pagesë në krah të versionit falas."
 
 #: mkt/developers/templates/developers/payments/premium.html:288
 msgid "No free apps"
@@ -18467,7 +18467,7 @@ msgstr "Fshirje Llogarie Pagesash"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
-msgstr ""
+msgstr "Llogaria e tanishme e pagesave i është përshoqëruar zbatimit nga një pronar zbatimesh."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:13
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
@@ -18698,11 +18698,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
-msgstr ""
+msgstr "Pas mjaft pune të vështirë tok me ZTE-në, jemi krenarë që njoftojmë hedhjen në qarkullim të telefonit ZTE OPEN Firefox OS, një pajisje e fuqishme e menduar për zhvilluesit dhe adoptuesit e hershëm, kudo në botë. Këto pajisje mund të merren prej shitoreve të ZTE's US, atyre eBay UK dhe HK, me çmim $79.99/£59.99, dhe do të jenë të çkyçura dhe të hapura për testim dhe eksperimentim. <a href=\"%(zte_url)s\">Lexoni më tepër hollësi.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
-msgstr ""
+msgstr "SHËNIM: Pajisjet e reja ofrohen prej Hong Kong-u me qëllim uljen e shpenzimeve të postimit për përdorues nga Azia dhe Oqeania."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:77
 msgid "Peak"
@@ -18714,11 +18714,11 @@ msgstr "Geeksphone"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:82
 msgid "Mozilla, Geeksphone, and Telefónica worked together to create the Geeksphone Keon and Peak, respectively low-end and higher-end preview phones for developers wanting to start developing on real Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these devices are still very valid for developer testing, having full updates available to them."
-msgstr ""
+msgstr "Mozilla, Geeksphone, dhe Telefónica bashkëpunuan për të krijuar Geeksphone Keon dhe Peak, telefona përkatësisht bazë dhe të një niveli më të lartë, versione paraparje për zhvilluesit që duan të fillojnë të programojnë në pajisje reale Firefox OS. Kini parasysh që tani për tani nuk po prodhohen më telefona, edhe pse është planifikuar një tjetër parti për të ardhmen. Sidoqoftë do të ketë një farë numri në qarkullim, dhe këto pajisje janë prapëseprapë plotësisht të vlefshme për testime programuesi, duke u dhënë këtyre përditësime të plota."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:92
 msgid "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
-msgstr ""
+msgstr "<strong>Nëse sapo morët një Geeksphone Keon ose Peak, ka gjasa që ende xhiron versionin e vjetruar 1.0.1 të Firefox OS-it. Përpara se të bëni gjtihçka tjetër, do të duhej të përditësonit me një version të tanishëm të Firefox OS-it, siç përshkruhet te <a href=\"%(geeksphone_update_url)s\">udhërrëfyesi ynë për Rishkrimin e Kujtesës së Geeksphone-it tuaj</a>.</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
@@ -18726,7 +18726,7 @@ msgstr "Dokumentime dhe mjete"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:103
 msgid "If you already have a Firefox OS device and want some guidance and direction, you can <a href=\"%(devhub_url)s\">get started at the Firefox Marketplace Developer Hub</a>. The <a href=\"%(mdn_url)s\">Mozilla Developer Network</a> also provides a wealth of useful resources such as API documentation and further information on Open Web App development."
-msgstr ""
+msgstr "Nëse keni tashmë një pajisje Firefox OS dhe dëshironi ca udhëzime dhe drejtim, mund <a href=\"%(devhub_url)s\">t'ia filloni te Qendra e Zhvilluesve për Firefox Marketplace</a>. <a href=\"%(mdn_url)s\">Rrjeti i Zhvilluesve Mozilla</a> ofron gjithashtu një larmi burimesh të dobishme, të tilla si dokumentim API-sh dhe informacion të mëtejshmë mbi programim Zbatimesh të Hapura për Web."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
 msgid "If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
