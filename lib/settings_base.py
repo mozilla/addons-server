@@ -79,6 +79,8 @@ MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
 ABUSE_EMAIL = 'marketplace-staff+abuse@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
 
+CONN_MAX_AGE = 60
+
 DATABASES = {
     'default': {
         'NAME': 'zamboni',
@@ -385,6 +387,7 @@ MIDDLEWARE_CLASSES = (
 # Auth
 AUTHENTICATION_BACKENDS = (
     'users.backends.AmoUserBackend',
+    'django_browserid.auth.BrowserIDBackend'
 )
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 

@@ -498,6 +498,7 @@ class TestEditThemeForm(amo.tests.TestCase):
     def test_reupload(self, save_persona_image_mock,
                       create_persona_preview_images_mock,
                       make_checksum_mock):
+        make_checksum_mock.return_value = 'checksumbeforeyouwrecksome'
         data = self.get_dict(header_hash='y0l0', footer_hash='abab')
         self.form = EditThemeForm(data, request=self.request,
                                   instance=self.instance)

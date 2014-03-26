@@ -1,5 +1,20 @@
 from mock import Mock
 from nose.tools import eq_
+
+from amo.tests import TestCase
+
+from ..urls import SwitchToDRF
+
+
+class TestDRFSwitch(TestCase):
+
+    def test_piston_view(self):
+        view = SwitchToDRF('LanguageView')
+        eq_(view(Mock(), 1).__module__, 'django.http.response')
+        self.create_switch('drf', db=True)
+        eq_(view(Mock()).__module__, 'rest_framework.response')
+from mock import Mock
+from nose.tools import eq_
 from test_utils import RequestFactory
 
 from django.contrib.auth.models import AnonymousUser

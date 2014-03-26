@@ -178,10 +178,10 @@ class ThemeReviewTestMixin(object):
             eq_(themes[4].addon.reload().current_version.version,
                 str(float(old_version) + 1))
         else:
-            eq_(themes[0].addon.status, amo.STATUS_REVIEW_PENDING)
-            eq_(themes[1].addon.status, amo.STATUS_REVIEW_PENDING)
-            eq_(themes[2].addon.status, amo.STATUS_REJECTED)
-            eq_(themes[3].addon.status, amo.STATUS_REJECTED)
+            eq_(themes[0].addon.reload().status, amo.STATUS_REVIEW_PENDING)
+            eq_(themes[1].addon.reload().status, amo.STATUS_REVIEW_PENDING)
+            eq_(themes[2].addon.reload().status, amo.STATUS_REJECTED)
+            eq_(themes[3].addon.reload().status, amo.STATUS_REJECTED)
         eq_(themes[4].addon.reload().status, amo.STATUS_PUBLIC)
         eq_(ActivityLog.objects.count(), 4 if self.rereview else 5)
 

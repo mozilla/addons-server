@@ -126,7 +126,7 @@ class SearchBase(amo.tests.ESTestCase):
 
 
 class TestESSearch(SearchBase):
-    fixtures = ['base/apps', 'base/category', 'tags/tags']
+    fixtures = ['base/apps', 'base/category']
 
     @classmethod
     def setUpClass(cls):
@@ -1075,6 +1075,7 @@ class TestAjaxSearch(amo.tests.ESTestCase):
 
         eq_(len(data), len(addons))
         for got, expected in zip(data, addons):
+            expected.reload()
             eq_(int(got['id']), expected.id)
             eq_(got['name'], unicode(expected.name))
             expected_url = expected.get_url_path()

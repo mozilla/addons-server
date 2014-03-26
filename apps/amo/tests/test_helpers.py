@@ -456,7 +456,7 @@ def test_absolutify():
 
 def test_timesince():
     month_ago = datetime.now() - timedelta(days=30)
-    eq_(helpers.timesince(month_ago), u'1 month ago')
+    eq_(helpers.timesince(month_ago), u'1 month ago')
     eq_(helpers.timesince(None), u'')
 
 

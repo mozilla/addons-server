@@ -6,13 +6,10 @@ import re
 from time import time
 from wsgiref.handlers import format_date_time
 
-from django.core.management import setup_environ
-
 from constants import base
 from utils import log_configure, log_exception, mypool
 
 from services.utils import settings
-setup_environ(settings)
 
 # Configure the log.
 log_configure()

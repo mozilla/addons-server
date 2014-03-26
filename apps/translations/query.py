@@ -2,7 +2,6 @@ import itertools
 
 from django.conf import settings
 from django.db import models
-from django.db.models.sql import compiler
 
 from django.utils import translation as translation_utils
 
@@ -27,20 +26,23 @@ def order_by_translation(qs, fieldname):
     model = qs.model
     field = model._meta.get_field(fieldname)
 
-    # (lhs, rhs, lhs_col, rhs_col) => lhs.lhs_col = rhs.rhs_col
+    # connection is a tuple (lhs, table, join_cols)
     connection = (model._meta.db_table, field.rel.to._meta.db_table,
-                  field.column, field.rel.field_name)
+                  field.rel.field_name)
 
     # Doing the manual joins is flying under Django's radar, so we need to make
     # sure the initial alias (the main table) is set up.
     if not qs.query.tables:
         qs.query.get_initial_alias()
 
-    # Force two LEFT JOINs against the translation table.  We'll hook up the
+    # Force two new (reuse is an empty set) LEFT OUTER JOINs against the
+    # translation table, without reusing any aliases. We'll hook up the
     # language fallbacks later.
     qs.query = qs.query.clone(TranslationQuery)
-    t1 = qs.query.join(connection, always_create=True, promote=True)
-    t2 = qs.query.join(connection, always_create=True, promote=True)
+    t1 = qs.query.join(connection, join_field=field,
+                       outer_if_first=True, reuse=set())
+    t2 = qs.query.join(connection, join_field=field,
+                       outer_if_first=True, reuse=set())
     qs.query.translation_aliases = {field: (t1, t2)}
 
     f1, f2 = '%s.`localized_string`' % t1, '%s.`localized_string`' % t2
@@ -108,8 +110,11 @@ class SQLCompiler(addons.query.IndexCompiler):
         qn = self.quote_name_unless_alias
         qn2 = self.connection.ops.quote_name
         mapping = self.query.alias_map[alias]
-        name, alias, join_type, lhs, lhs_col, col, nullable = mapping
-        alias_str = (alias != name and ' %s' % alias or '')
+        # name, alias, join_type, lhs, lhs_col, col, nullable = mapping
+        name, alias, join_type, lhs, join_cols, _, join_field = mapping
+        lhs_col = join_field.column
+        rhs_col = join_cols
+        alias_str = '' if alias == name else (' %s' % alias)
 
         if isinstance(fallback, models.Field):
             fallback_str = '%s.%s' % (qn(self.query.model._meta.db_table),
@@ -119,5 +124,5 @@ class SQLCompiler(addons.query.IndexCompiler):
 
         return ('%s %s%s ON (%s.%s = %s.%s AND %s.%s = %s)' %
                 (join_type, qn(name), alias_str,
-                 qn(lhs), qn2(lhs_col), qn(alias), qn2(col),
+                 qn(lhs), qn2(lhs_col), qn(alias), qn2(rhs_col),
                  qn(alias), qn('locale'), fallback_str))
