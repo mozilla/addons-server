@@ -119,6 +119,32 @@ class TranslationTestCase(TestCase):
         finally:
             translation.deactivate()
 
+    @patch.object(TranslatedModel, 'get_fallback', create=True)
+    def test_fetch_translation_prioritized(self, get_fallback):
+        """Fallback locale in following order: asked/fallback/en-us/random."""
+        get_model = lambda: TranslatedModel.objects.no_cache().get(id=1)
+
+        # Asked for DE, which exists.
+        with translation.override('de'):
+            o = get_model()
+            trans_eq(o.name, 'German!! (unst unst)', 'de')
+
+        # Asked for FR (doesn't exist):
+        with translation.override('fr'):
+            # Use fallback (DE) instead.
+            get_fallback.return_value = 'de'
+            o = get_model()
+            trans_eq(o.name, 'German!! (unst unst)', 'de')
+
+            # Fallback doesn't exist, use EN-US instead.
+            trans_eq(o.description, 'some description', 'en-US')
+
+            # Neither fallback nor EN-US exist, return any translation
+            # regardless of locale.
+            get_fallback.return_value = 'fr'
+            o2 = TranslatedModel.objects.no_cache().get(id=5)
+            trans_eq(o2.name, 'Deutsch name', 'de')
+
     def test_create_translation(self):
         o = TranslatedModel.objects.create(name='english name')
         get_model = lambda: TranslatedModel.objects.get(id=o.id)
@@ -154,7 +180,8 @@ class TranslationTestCase(TestCase):
         english = get_model()
         trans_eq(english.name, 'english name', 'en-US')
         english.debug = True
-        eq_(english.description, None)
+        # There's no english description, so return just any translation.
+        trans_eq(english.description, u'clöüserw description', 'de')
 
         english.description = 'english description'
         english.save()
@@ -248,7 +275,7 @@ class TranslationTestCase(TestCase):
 
     def test_sorting_en(self):
         q = TranslatedModel.objects.all()
-        expected = [4, 1, 3]
+        expected = [5, 4, 1, 3]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
@@ -256,7 +283,14 @@ class TranslationTestCase(TestCase):
     def test_sorting_mixed(self):
         translation.activate('de')
         q = TranslatedModel.objects.all()
-        expected = [1, 4, 3]
+        expected = [5, 1, 4, 3]
+
+        eq_(ids(order_by_translation(q, 'name')), expected)
+        eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
+
+        translation.activate('fr')
+        q = TranslatedModel.objects.no_cache().all()
+        expected = [5, 3, 4, 1]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
@@ -267,7 +301,7 @@ class TranslationTestCase(TestCase):
 
         translation.activate('de')
         q = TranslatedModel.objects.all()
-        expected = [3, 1, 4]
+        expected = [5, 3, 1, 4]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
@@ -353,12 +387,17 @@ class TranslationTestCase(TestCase):
             '.html</a> .')
         eq_(m.linkified.localized_string, s)
 
-    def test_require_locale(self):
+    def test_any_locale(self):
         obj = TranslatedModel.objects.get(id=1)
         eq_(unicode(obj.no_locale), 'blammo')
         eq_(obj.no_locale.locale, 'en-US')
 
         # Switch the translation to a locale we wouldn't pick up by default.
+        # Before, this field was declared using "require_locale=False". This is
+        # not the case anymore as all the translated fields will now return
+        # just any translation in last resort, if it didn't find one for the
+        # active language, the one from ``get_fallback()``, and
+        # settings.LANGUAGE_CODE.
         obj.no_locale.locale = 'fr'
         obj.no_locale.save()
 

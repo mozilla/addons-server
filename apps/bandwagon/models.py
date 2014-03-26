@@ -100,13 +100,13 @@ class Collection(CollectionBase, amo.models.ModelBase):
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
 
     uuid = models.CharField(max_length=36, blank=True, unique=True)
-    name = TranslatedField(require_locale=False)
+    name = TranslatedField()
     # nickname is deprecated.  Use slug.
     nickname = models.CharField(max_length=30, blank=True, unique=True,
                                 null=True)
     slug = models.CharField(max_length=30, blank=True, null=True)
 
-    description = NoLinksNoMarkupField(require_locale=False)
+    description = NoLinksNoMarkupField()
     default_locale = models.CharField(max_length=10, default='en-US',
                                       db_column='defaultlocale')
     type = models.PositiveIntegerField(db_column='collection_type',

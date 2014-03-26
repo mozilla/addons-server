@@ -9,7 +9,7 @@ class TranslatedModel(amo.models.ModelBase):
     name = TranslatedField()
     description = TranslatedField()
     default_locale = models.CharField(max_length=10)
-    no_locale = TranslatedField(require_locale=False)
+    no_locale = TranslatedField()
 
 models.signals.pre_save.connect(save_signal, sender=TranslatedModel,
                                 dispatch_uid='testapp_translatedmodel')
