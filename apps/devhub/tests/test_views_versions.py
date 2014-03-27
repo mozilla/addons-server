@@ -43,23 +43,23 @@ class TestVersion(amo.tests.TestCase):
 
     def test_version_status_public(self):
         doc = self.get_doc()
-        assert doc('#version-status')
+        assert doc('.addon-status')
 
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=True)
         doc = self.get_doc()
-        assert doc('#version-status .status-admin-disabled')
-        eq_(doc('#version-status strong').text(),
-            'This add-on has been disabled by Mozilla .')
+        assert doc('.addon-status .status-admin-disabled')
+        eq_(doc('.addon-status .status-admin-disabled').text(),
+            'Disabled by Mozilla')
 
         self.addon.update(disabled_by_user=False)
         doc = self.get_doc()
-        eq_(doc('#version-status strong').text(),
-            'This add-on has been disabled by Mozilla .')
+        eq_(doc('.addon-status .status-admin-disabled').text(),
+            'Disabled by Mozilla')
 
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         doc = self.get_doc()
-        eq_(doc('#version-status strong').text(),
-            'You have disabled this add-on.')
+        eq_(doc('.addon-status .status-disabled').text(),
+            'You have disabled this add-on')
 
     def test_no_validation_results(self):
         doc = self.get_doc()

@@ -3,8 +3,93 @@
 {% set title = _('Status & Versions') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
-{% macro status(msg) %}
-<strong class="{{ status_class(addon) }}">{{ msg }}</strong>
+{% macro version_details(version, full_info=False) %}
+  <tr{% if version_disabled(version) %} class="version-disabled"{% endif %}>
+    <td>
+      <strong>
+        <a href="{{ url('devhub.versions.edit', addon.slug, version.id) }}"
+           title="{{ _('Edit this version') }}">
+          {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
+      </strong>
+      <span title="{{ version.created|isotime }}" class="note">
+        {{ version.created|datetime }}
+      </span>
+    </td>
+    <td class="file-status">
+      {% for count, status in dev_files_status(version.all_files, addon) %}
+          <div>
+            {# L10n: {0} is the number of files #}
+            {{ status }} ({{ ngettext('{0} file', '{0} files', count)|f(count) }})
+          </div>
+      {% else %}
+          {{ _('0 files') }}
+      {% endfor %}
+      {% if display_position %}
+        {% with position = get_position(addon) %}
+          {% if position.pos and position.total %}
+            <span class="note queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
+              {% trans pos=position.pos|numberfmt, total=position.total|numberfmt %}
+                Queue position: {{ pos }} of {{ total }}
+              {% endtrans %}
+            </li>
+          {% endif %}
+        {% endwith %}
+      {% endif %}
+    </td>
+    <td class="file-validation">
+      <ul>
+        {% for file in version.all_files %}
+          <li>{{ file.platform }}
+          <ul>
+          {% if file.has_been_validated %}
+            <li><a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
+              {{ summarize_validation(file.validation) }}</a></li>
+          {% else %}
+            <li>{{ _('Not validated.') }}
+              <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
+                  {{ _('Validate now.') }}</a>
+            </li>
+          {% endif %}
+          </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    </td>
+    {% if waffle.flag('perf-tests') %}
+      <td class="perf-tests">
+        {% include "devhub/addons/listing/perf_file_listing.html" %}
+      </td>
+    {% endif %}
+    <td class="version-delete">
+      <a href="#" class="remove" data-version="{{ version.id }}">x</a>
+    </td>
+  </tr>
+  {% set request_reviews=addon.can_request_review() %}
+  {% set days = addon.days_until_full_nomination() %}
+  {% set can_cancel=(not addon.is_disabled and addon.is_under_review) %}
+  {% if full_info and check_addon_ownership(request, addon, dev=True) and (request_reviews or days or can_cancel) %}
+    <tr>
+      <td colspan="0" class="version-status-actions item-actions">
+        {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
+                      amo.STATUS_LITE: _('Request Preliminary Review')} %}
+        {% for status in request_reviews %}
+          <form method="post"
+                action="{{ url('devhub.request-review', addon.slug, status) }}">
+            {{ csrf() }}
+            <button class="link" type="submit">{{ req[status] }}</button> &middot;
+          </form>
+        {% endfor %}
+        {% if days != 0 %}
+          <span class="warning">{{ ngettext('Full nomination will be available in {0} day',
+                                            'Full nomination will be available in {0} days',
+                                            days)|f(days) }}</span>
+        {% endif %}
+        {% if can_cancel %}
+          <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a>
+        {% endif %}
+      </td>
+    </tr>
+  {% endif %}
 {% endmacro %}
 
 {% block content %}
@@ -13,182 +98,78 @@
   <h2>{{ addon.name }}</h2>
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
-  <h3>{{ _('Current Status') }}</h3>
-  <div class="item" id="version-status">
-    <div>
-      {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-        {{ status(_('You have <b>disabled</b> this add-on.')) }}
-        {{ _("Your add-on's listing is disabled and is not showing anywhere in our gallery or update service. You may re-enable it at any time below.") }}
-      {% elif addon.status == amo.STATUS_NULL %}
-        {{ status(_('This add-on is <b>incomplete</b>.')) }}
-        <a href="{{ url('devhub.submit.resume', addon.slug) }}">
-          {{ _('Please complete your add-on.') -}}
-      {% elif addon.status == amo.STATUS_PENDING %}
-        {{ status(loc('This app is <b>awaiting review</b>.')|safe) }}
-        {{ loc('You will receive an email when the review is complete.') }}
-      {% elif addon.status == amo.STATUS_UNREVIEWED %}
-        {{ status(_('This add-on is <b>awaiting preliminary review</b>.')) }}
-        {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page.") }}
-      {% elif addon.status == amo.STATUS_NOMINATED %}
-        {{ status(_('This add-on is <b>awaiting full review</b>.')) }}
-        {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. ") }}
-      {% elif addon.status == amo.STATUS_PUBLIC %}
-        {{ status(_('This add-on has been <b>fully reviewed</b>.')) }}
-        {{ _("Your add-on is displayed in our gallery and users are receiving automatic updates.") }}
-      {% elif addon.status == amo.STATUS_DISABLED %}
-        {{ status(_('This add-on has been <b>disabled by Mozilla</b>.')) }}
-        {{ _("Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org.") }}
-      {% endif %}
-        {% if addon.status == amo.STATUS_LITE %}
-          {{ status(_('This add-on has been <b>preliminarily reviewed</b>.')) }}
-          {{ _("Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
-        {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
-          {{ status(_('This add-on has been <b>preliminarily reviewed</b> and is <i>awaiting full review</i>.')) }}
-          {{ _("You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
-        {% elif addon.status == amo.STATUS_PURGATORY %}
-          {{ status(_('Please select a review option.')) }}
-          {{ _("All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please select a review process from the choices below.") }}
-        {% endif %}
-        {% if not (addon.is_disabled or addon.is_incomplete()) %}
-          <a href="{{ remora_url('developers/docs/policies/reviews#selection') }}">
-            {{ _('Learn more') }}</a>
-        {% endif %}
-
-      <div class="version-status-actions item-actions">
-        {% if position %}
-          <span class="dark" title="{{ _('Queues are not reviewed strictly in order.') }}">
-            {% trans pos=position['pos'], total=position['total'] %}
-            Queue Position: {{ pos }} of {{ total }}
-            {% endtrans %}
-            &middot;
-          </span>
-        {% endif %}
-        {% if check_addon_ownership(request, addon, dev=True) %}
-          {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
-                        amo.STATUS_LITE: _('Request Preliminary Review')} %}
-          {% for status in addon.can_request_review() %}
-            <form method="post"
-                  action="{{ url('devhub.request-review', addon.slug, status) }}">
-              {{ csrf() }}
-              <button class="link" type="submit">{{ req[status] }}</button> &middot;
-            </form>
-          {% endfor %}
-          {% set days = addon.days_until_full_nomination() %}
-          {% if days != 0 %}
-            <span class="warning">{{ ngettext('Full nomination will be available in {0} day',
-                                              'Full nomination will be available in {0} days',
-                                              days)|f(days) }}</span>
-          {% endif %}
-          {% if not addon.is_disabled and addon.is_under_review %}
-            <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
-          {% endif %}
-        {% endif %}
-
-        {% if check_addon_ownership(request, addon, dev=True) %}
-          {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-            <a href="{{ addon.get_dev_url('enable') }}" class="enable-addon">
-              {{ _('Enable Add-on') }}</a>
-          {% elif not addon.is_disabled %}
-            <a href="#" class="disable-addon">
-              {{ _('Disable Add-on') }}</a>
-          {% endif %}
-        {% endif %}
-        {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
-            &middot; <a href="#" class="delete-addon">
-              {{ _('Delete Add-on') }}</a>
-        {% endif %}
-        {% set current = addon.current_version %}
-        {% if current %}
-          <span class="version-changed">
-          {{ _('Displayed version: {0}')|f(current.version) }}
-          </span>
-        {% endif %}
+  {% if addon.current_version %}
+    <div class="item" id="current-version-status">
+      <div class="item_wrapper">
+        <table>
+          <tr>
+            <th>{{ _('Currently on AMO') }}</th>
+            <th>{{ _('Status') }}</th>
+            <th>{{ _('Validation') }}</th>
+            {% if waffle.flag('perf-tests') %}
+              <th>{{ _('Performance') }}</th>
+            {% endif %}
+            <th class="version-delete">{{ _('Delete') }}</th>
+          </tr>
+          {{ version_details(addon.current_version,
+                             full_info=(not addon.latest_version
+                                        or addon.latest_version == addon.current_version)) }}
+        </table>
       </div>
     </div>
-  </div>
+  {% endif %}
 
-<h3>{{ _('Version History') }}</h3>
-<div class="item" id="version-list"
-     data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
-  <div class="item_wrapper">
-    <table>
-      <tr>
-        <th>{{ _('Version') }}</th>
-        <th>{{ _('Submitted') }}</th>
-        <th>{{ _('Status') }}</th>
-        <th>{{ _('Validation') }}</th>
-        {% if waffle.flag('perf-tests') %}
-          <th>{{ _('Performance') }}</th>
-        {% endif %}
-        <th class="version-delete">{{ _('Delete') }}</th>
-      </tr>
-      <tr>
-        <td colspan="0">
-          <a href="#" class="button version-upload">{{ _('Upload a New Version') }}</a>
-        </td>
-      </tr>
-      {% for version in versions.object_list %}
-      <tr>
-        <td>
-          <strong>
-            <a href="{{ url('devhub.versions.edit', addon.slug, version.id) }}"
-               title="{{ _('Edit this version') }}">
-              {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
-          </strong>
-        </td>
-        <td>
-          <span title="{{ version.created|isotime }}">
-            {{ version.created|datetime }}
-          </span>
-        </td>
-        <td class="file-status">
-          {% for count, status in dev_files_status(version.all_files, addon) %}
-          <div>
-            {# L10n: {0} is the number of files, {1} is the status #}
-            {{ ngettext('{0} file is {1}', '{0} files are {1}', count)|f(count, status) }}
-          </div>
-          {% else %}
-          {{ _('0 files') }}
-          {% endfor %}
-        </td>
-        <td class="file-validation">
-          <ul>
-            {% for file in version.all_files %}
-              <li>{{ file.platform }}
-              <ul>
-              {% if file.has_been_validated %}
-                <li><a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
-                  {{ summarize_validation(file.validation) }}</a></li>
-              {% else %}
-                <li>{{ _('Not validated.') }}
-                  <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
-                      {{ _('Validate now.') }}</a>
-                </li>
-              {% endif %}
-              </ul>
-              </li>
-            {% endfor %}
-          </ul>
-        </td>
-        {% if waffle.flag('perf-tests') %}
-          <td class="perf-tests">
-            {% include "devhub/addons/listing/perf_file_listing.html" %}
-          </td>
-        {% endif %}
-        <td class="version-delete">
-          <a href="#" class="remove" data-version="{{ version.id }}">x</a>
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
-  {% if versions.paginator.num_pages > 1 %}
-    <div class="listing-footer">
-      {{ versions|paginator }}
+  {% if addon.latest_version and addon.latest_version != addon.current_version %}
+    <div class="item" id="next-version-status">
+      <div class="item_wrapper">
+        <table>
+          <tr>
+            <th>{{ _('Next version of this add-on') }}</th>
+            <th>{{ _('Status') }}</th>
+            <th>{{ _('Validation') }}</th>
+            {% if waffle.flag('perf-tests') %}
+              <th>{{ _('Performance') }}</th>
+            {% endif %}
+            <th class="version-delete">{{ _('Delete') }}</th>
+          </tr>
+          {{ version_details(addon.latest_version, full_info=True) }}
+        </table>
+      </div>
     </div>
   {% endif %}
-</div>
 
+  <h3>{{ _('Older versions') }}</h3>
+  <div class="item" id="version-list"
+       data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
+    <div class="item_wrapper">
+      <table>
+        <tr>
+          <th>{{ _('Version') }}</th>
+          <th>{{ _('Status') }}</th>
+          <th>{{ _('Validation') }}</th>
+          {% if waffle.flag('perf-tests') %}
+            <th>{{ _('Performance') }}</th>
+          {% endif %}
+          <th class="version-delete">{{ _('Delete') }}</th>
+        </tr>
+        <tr>
+          <td colspan="0">
+            <a href="#" class="button version-upload">{{ _('Upload a New Version') }}</a>
+          </td>
+        </tr>
+        {% for version in versions.object_list %}
+          {% if version != addon.current_version and version != addon.latest_version %}
+            {{ version_details(version) }}
+          {% endif %}
+        {% endfor %}
+      </table>
+    </div>
+    {% if versions.paginator.num_pages > 1 %}
+      <div class="listing-footer">
+        {{ versions|paginator }}
+      </div>
+    {% endif %}
+  </div>
 
 </section>
 
