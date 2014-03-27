@@ -411,7 +411,6 @@ INSTALLED_APPS = (
     'extras',
     'files',
     'jingo_minify',
-    'market',
     'localizers',
     'lib.es',
     'pages',
