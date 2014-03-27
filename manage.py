@@ -31,8 +31,7 @@ sys.path[:0] = new_sys_path
 
 
 # No third-party imports until we've added all our sitedirs!
-from django.core.management import (call_command, execute_manager,
-                                    setup_environ)
+from django.core.management import call_command, execute_from_command_line
 
 # Figuring out what settings file to use.
 # 1. Look first for the command line setting.
@@ -70,14 +69,6 @@ os.environ['DJANGO_SETTINGS_MODULE'] = setting
 if not settings.DEBUG:
     warnings.simplefilter('ignore')
 
-# The first thing execute_manager does is call `setup_environ`.  Logging config
-# needs to access settings, so we'll setup the environ early.
-setup_environ(settings)
-
-# Hardcore monkeypatching action.
-import jingo.monkey
-jingo.monkey.patch()
-
 import session_csrf
 session_csrf.monkeypatch()
 
@@ -93,6 +84,9 @@ trans_log = logging.getLogger('z.trans')
 #imported before anything else imports waffle.
 import amo
 
+# Hardcore monkeypatching action.
+import jingo.monkey
+jingo.monkey.patch()
 
 def new(self, arg):
     try:
@@ -133,4 +127,4 @@ if __name__ == "__main__":
         call_command('update_product_details')
         product_details.__init__()  # reload the product details
 
-    execute_manager(settings)
+    execute_from_command_line()

@@ -163,8 +163,8 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     function.
     """
 
-    def get_query_set(self):
-        qs = super(ManagerBase, self).get_query_set()
+    def get_queryset(self):
+        qs = super(ManagerBase, self).get_queryset()
         if getattr(_locals, 'skip_cache', False):
             qs = qs.no_cache()
         return self._with_translations(qs)

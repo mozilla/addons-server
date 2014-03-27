@@ -822,7 +822,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             version_id = 0
 
         log.debug(u'Caching compat version %s => %s' % (cache_key, version_id))
-        cache.set(cache_key, version_id, 0)
+        cache.set(cache_key, version_id, None)
 
         return version
 
@@ -1213,7 +1213,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """Returns a tuple of developer tags and user tags for this addon."""
         tags = self.tags.not_blacklisted()
         if self.is_persona:
-            return models.query.EmptyQuerySet(), tags
+            return [], tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
@@ -1500,7 +1500,7 @@ dbsignals.pre_save.connect(save_signal, sender=Addon,
 
 
 class AddonDeviceType(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, db_constraint=False)
     device_type = models.PositiveIntegerField(
         default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
         db_index=True)

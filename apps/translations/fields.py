@@ -242,7 +242,11 @@ class _TransField(object):
 class LocaleValidationError(forms.ValidationError):
 
     def __init__(self, messages, code=None, params=None):
-        self.messages = messages
+        self.msgs = messages
+
+    @property
+    def messages(self):
+        return self.msgs
 
 
 class TransField(_TransField, forms.CharField):
