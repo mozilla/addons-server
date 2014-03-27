@@ -16,10 +16,19 @@
                 border-top: medium none;
             }
         }
+        tr.version-disabled {
+            opacity: 0.5;
+        }
         th {
-            padding-right: 20px;
+            color: #888;
+            font-size: 11px;
+            padding: 0 0 5px;
             vertical-align: top;
             width: 130px;
+            &.version-delete {
+                text-align: right;
+                width: 35px;
+            }
         }
         ul {
             margin: 0;
@@ -30,6 +39,10 @@
         .screenshot.thumbnail {
             width: 100px;
             height: 75px;
+        }
+        .note {
+            color: @note-gray;
+            display: block;
         }
     }
     table, tbody {

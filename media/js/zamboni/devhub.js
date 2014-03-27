@@ -78,7 +78,7 @@ $(document).ready(function() {
         $('.addon-upload-failure-dependant').attr('disabled', true);
     }
 
-    if ($(".version-upload").length) {
+    if ($(".add-file-modal").length) {
         $modal = $(".add-file-modal").modal(".version-upload", {
             width: '450px',
             hideme: false,
@@ -288,21 +288,31 @@ $(document).ready(function() {
 
     // hook up various links related to current version status
     $('#modal-cancel').modal('#cancel-review', {width: 400});
-    $('#modal-delete').modal('#delete-addon', {
-        width: 400,
-        callback: function(obj) {
-            return fixPasswordField(this);
+    if ($("#modal-delete").length) {
+        $('#modal-delete').modal('.delete-addon', {
+            width: 400,
+            callback: function(obj) {
+                return fixPasswordField(this);
+            }
+        });
+        if (window.location.hash === '#delete-addon') {
+            $modal.render();
         }
-    });
-    $('#modal-disable').modal('#disable-addon', {
-        width: 400,
-        callback: function(d){
-            $('.version_id', this).val($(d.click_target).attr('data-version'));
-            return true;
+    }
+    if ($("#modal-disable").length) {
+        $modal = $('#modal-disable').modal('.disable-addon', {
+            width: 400,
+            callback: function(d){
+                $('.version_id', this).val($(d.click_target).attr('data-version'));
+                return true;
+            }
+        });
+        if (window.location.hash === '#disable-addon') {
+            $modal.render();
         }
-    });
+    }
 
-    $('#enable-addon').bind('click', _pd(function() {
+    $('.enable-addon').bind('click', _pd(function() {
         $.ajax({
             'type': 'POST',
             'url': $(this).attr('href'),
