@@ -1,4 +1,4 @@
-{% from "devhub/addons/listing/macros.html" import dev_heading, dev_item_info, dev_item_actions %}
+{% from "devhub/addons/listing/macros.html" import dev_heading, dev_item_info %}
 {% set collection = collection or None %}
 {% set username = request.amo_user.username if request.user.is_authenticated() else '' %}
 {% for addon in addons %}
@@ -17,41 +17,43 @@
           {{ dev_item_info(addon, amo) }}
         </div>
         <ul class="item-details">
-          {% if addon.current_version %}
-            {% set link = url('devhub.versions.edit', addon.slug, addon.current_version.id) %}
-            {# L10n: {1} is a version number. #}
-            <li>{{ _('<strong>Latest version:</strong> <a href="{0}">{1}</a>')|
-                     f(link, addon.current_version) }}</li>
-          {% endif %}
-          {% if sorting == 'created' %}
-            {# L10n: {0} is a date. #}
-            <li class="date-created">{{ _('<strong>Created:</strong> {0}'|
-                   f(addon.created|datetime)) }}</li>
-          {% else %}
-            {# L10n: {0} is a date. #}
-            <li class="date-updated">{{ _('<strong>Last updated:</strong> {0}'|
-                   f(addon.last_updated|datetime)) }}</li>
-          {% endif %}
-          <li id="version-status-item">
-            <strong>{{ _('Status:') }}</strong>
-            <a{% if not addon.is_persona() %} href="{{ addon.get_dev_url('versions') }}"{% endif %}>
+          {% if addon.is_persona() %}
+            {% if addon.current_version %}
+              {% set link = url('devhub.versions.edit', addon.slug, addon.current_version.id) %}
+              {# L10n: {1} is a version number. #}
+              <li>{{ _('<strong>Latest version:</strong> <a href="{0}">{1}</a>')|
+                       f(link, addon.current_version) }}</li>
+            {% endif %}
+            {% if sorting == 'created' %}
+              {# L10n: {0} is a date. #}
+              <li class="date-created">{{ _('<strong>Created:</strong> {0}'|
+                     f(addon.created|datetime)) }}</li>
+            {% else %}
+              {# L10n: {0} is a date. #}
+              <li class="date-updated">{{ _('<strong>Last updated:</strong> {0}'|
+                     f(addon.last_updated|datetime)) }}</li>
+            {% endif %}
+            <li id="version-status-item">
+              <strong>{{ _('Status:') }}</strong>
               {% if addon.disabled_by_user %}
                 <span class="{{ status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
               {% else %}
                 <span class="{{ status_class(addon) }}">
                   <b>{{ amo.STATUS_CHOICES[addon.status] }}</b></span>
               {% endif %}
-            </a>
-          </li>
-          {% with position = get_position(addon) %}
-            {% if position.pos and position.total %}
-              <li class="queue-position">
-                {% trans pos=position.pos|numberfmt, total=position.total|numberfmt %}
-                  <b>Queue position:</b> {{ pos }} of {{ total }}
-                {% endtrans %}
-              </li>
-            {% endif %}
-          {% endwith %}
+            </li>
+            {% with position = get_position(addon) %}
+              {% if position.pos and position.total %}
+                <li class="queue-position">
+                  {% trans pos=position.pos|numberfmt, total=position.total|numberfmt %}
+                    <b>Queue position:</b> {{ pos }} of {{ total }}
+                  {% endtrans %}
+                </li>
+              {% endif %}
+            {% endwith %}
+          {% else %}
+            {% include "devhub/includes/addon_details.html" %}
+          {% endif %}
         </ul>
       {% endif %}
       <div class="item-actions">
