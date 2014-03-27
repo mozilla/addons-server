@@ -221,25 +221,25 @@ class TestVersion(amo.tests.TestCase):
         res = self.client.get(self.url)
         doc = pq(res.content)
         assert doc('#modal-disable')
-        assert doc('#disable-addon')
-        assert not doc('#enable-addon')
+        assert doc('.disable-addon')
+        assert not doc('.enable-addon')
 
     def test_not_show_disable(self):
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
         res = self.client.get(self.url)
         doc = pq(res.content)
         assert not doc('#modal-disable')
-        assert not doc('#disable-addon')
+        assert not doc('.disable-addon')
 
     def test_show_enable_button(self):
         self.addon.update(disabled_by_user=True)
         res = self.client.get(self.url)
         doc = pq(res.content)
-        a = doc('#enable-addon')
+        a = doc('.enable-addon')
         assert a, "Expected Enable addon link"
         eq_(a.attr('href'), self.enable_url)
         assert not doc('#modal-disable')
-        assert not doc('#disable-addon')
+        assert not doc('.disable-addon')
 
     def test_cancel_get(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
