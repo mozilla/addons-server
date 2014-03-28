@@ -2,16 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-26 09:16-0700\n"
-"PO-Revision-Date: 2013-05-08 22:47+0200\n"
-"Last-Translator: Fernando <fernandopsilveira@yahoo.com.br>\n"
+"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"PO-Revision-Date: 2014-03-28 00:16+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1395965803.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -90,8 +91,8 @@ msgstr "Validação de {0} concluída"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Seu complemento passou pela validação sem erros e com {0} mensagem."
+msgstr[1] "Seu complemento passou pela validação sem erros e com {0} mensagens."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -115,11 +116,11 @@ msgstr "As imagens devem ser PNG ou JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Os vídeos devem estar no formato WebM."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Seu aplicativo empacotado deve terminar com <code>.zip</code>."
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
@@ -130,12 +131,12 @@ msgstr[1] "Seu aplicativo falhou na validação com {0} erros."
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Seu aplicativo passou na validação sem erros e  {0} aviso."
+msgstr[1] "Seu aplicativo passou na validação sem erros e  {0} avisos."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Seu aplicativo passou na validação sem erros ou avisos."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -191,11 +192,11 @@ msgstr "Alterações salvas"
 
 #: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "Digite o endereço de e-mail de um novo membro da equipe"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
-msgstr ""
+msgstr "Atualizado"
 
 #: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
@@ -243,11 +244,11 @@ msgstr "O login com Persona falhou. O servidor está passando por problemas."
 
 #: media/js/devreg/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "Mostrar todos os resultados"
 
 #: media/js/devreg/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Mais de {0} resultados encontrados, considere refinar sua busca."
 
 #: media/js/devreg/manifest.js:46
 msgid "Requested Permissions:"
@@ -275,23 +276,23 @@ msgstr "OK"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Código bancário espanhol "
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Código bancário irlandês"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Código bancário belga"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Código bancário espanhol/francês/italiano/holandês"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Código bancário holandês/estadunidense"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
@@ -475,11 +476,11 @@ msgstr ""
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "mais..."
 
 #: media/js/devreg/reviewers/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "menos..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:6
 msgid "Keep review; remove flags"
@@ -487,7 +488,7 @@ msgstr ""
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "Apagar revisão"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
@@ -503,7 +504,7 @@ msgstr "Aplicativo empacotado"
 
 #: media/js/devreg/reviewers/reviewers.js:108
 msgid "Privileged App"
-msgstr ""
+msgstr "Aplicativo privilegiado"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "More Information Requested"
@@ -515,7 +516,7 @@ msgstr "Contém comentários do editor"
 
 #: media/js/devreg/reviewers/reviewers.js:118
 msgid "Premium App"
-msgstr ""
+msgstr "Aplicativo Premium"
 
 #: media/js/devreg/reviewers/reviewers.js:121
 msgid "Escalated"
@@ -531,24 +532,24 @@ msgstr "Qualquer"
 
 #: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Aplicativo aprovado: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Aplicativo rejeitado: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Erro ao aprovar o aplicativo: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Erro ao rejeitar o aplicativo: {app}"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+#. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:49
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Por {0} em {1}"
 
 #: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
