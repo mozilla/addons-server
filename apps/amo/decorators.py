@@ -154,6 +154,9 @@ class skip_cache(object):
     def __repr__(self):
         "<SkipCache %s>" % (self.f,)
 
+    def __get__(self, obj, typ=None):
+        return skip_cache(self.f.__get__(obj, typ))
+
 
 def use_master(f):
     @functools.wraps(f)
