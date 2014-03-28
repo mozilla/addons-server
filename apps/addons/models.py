@@ -610,10 +610,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
-                        SELECT 1 FROM versions as v2
-                        INNER JOIN files AS f2 ON (f2.version_id = v2.id)
-                        WHERE v2.id = versions.id
-                        AND f2.status NOT IN (%s))
+                        SELECT 1 FROM files AS f2
+                        WHERE f2.version_id = versions.id AND
+                              f2.status NOT IN (%s))
                     """ % status_list])[0]
 
         except (IndexError, Version.DoesNotExist):
