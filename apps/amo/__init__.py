@@ -76,7 +76,11 @@ class CachedProperty(object):
         if value is _missing:
             value = self.func(obj)
             if isinstance(value, CachingQuerySet):
-                value = list(value)
+                # Work around a bug in django-cache-machine that
+                # causes deadlock or infinite recursion if
+                # CachingQuerySets are cached before they run their
+                # query.
+                value._fetch_all()
             obj.__dict__[self.__name__] = value
         return value
 
