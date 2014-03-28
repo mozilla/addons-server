@@ -171,7 +171,7 @@ function initRecs() {
         if (datastore.addons !== undefined && datastore.addons.length) {
             var addon_item = template('<li class="panel addon-feature">' +
                 '<a href="{url}" target="_self">' +
-                '<img src="{icon}" width="32" height="32">' +
+                '<img src="{icon}" width="32" height="32" alt="">' +
                 '<h3 class="htruncate">{name}</h3>' +
                 '<p class="desc vtruncate">{summary}</p>' +
                 '</a></li>');

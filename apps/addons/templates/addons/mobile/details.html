@@ -17,7 +17,7 @@
   {% endif %}
 
   <div class="infobox item">
-    <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
+    <img class="icon" width="32" height="32" src="{{ addon.icon_url }}" alt="">
     <h3>{{ addon.name }}</h3>
     {# TODO: make this a secret link #}
     <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
@@ -45,7 +45,7 @@
         {% for preview in addon.all_previews -%}
           <li>
             <a href="{{ preview.image_url }}" title="{{ preview.caption }}">
-              <img src="{{ preview.thumbnail_url }}"></a>
+              <img src="{{ preview.thumbnail_url }}" alt=""></a>
           </li>
         {%- endfor %}
       </ul>

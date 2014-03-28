@@ -69,8 +69,8 @@ function PopcornObj() {
             var preload = $('<div>', {'id': 'preload-personas', 'css': {'display': 'none'}}).appendTo('body');
             $promo_addons.find('a[data-browsertheme]').each(function() {
                 var theme = $.parseJSON($(this).attr('data-browsertheme'));
-                preload.append($('<img>', {'src': theme['headerURL'].replace(/http:\/\//, 'https://')}));
-                preload.append($('<img>', {'src': theme['footerURL'].replace(/http:\/\//, 'https://')}));
+                preload.append($('<img>', {'src': theme['headerURL'].replace(/http:\/\//, 'https://'), 'alt': ''}));
+                preload.append($('<img>', {'src': theme['footerURL'].replace(/http:\/\//, 'https://'), 'alt': ''}));
             });
 
             // Save the original translation text

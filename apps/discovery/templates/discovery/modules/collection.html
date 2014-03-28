@@ -32,7 +32,7 @@
               <h3 class="htruncate">{{ addon.name }}</h3>
               {{ disco_persona_preview(addon.persona, linked=False) }}
             {% else %}
-              <img src="{{ addon.icon_url }}" width="32" height="32">
+              <img src="{{ addon.icon_url }}" width="32" height="32" alt="">
               <h3 class="htruncate">{{ addon.name }}</h3>
               <p class="desc vtruncate">{{ descriptions.get(addon.id, addon.summary|strip_html) }}</p>
             {% endif %}

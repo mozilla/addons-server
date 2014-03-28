@@ -7,7 +7,7 @@
         {% for dep in deps %}
           <li>
             <a href="{{ services_url('discovery.addons.detail', dep.slug, src='discovery-dependencies') }}">
-              <img src="{{ dep.icon }}">{{ dep.name }}</a>
+              <img src="{{ dep.icon }}" alt="">{{ dep.name }}</a>
           </li>
         {% endfor %}
       </ul>

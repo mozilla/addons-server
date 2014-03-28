@@ -39,7 +39,7 @@
             <h1 class="site-title">
               {% set appicon = 'firefox' if request.APP in (amo.MOBILE, amo.ANDROID) else request.APP.short %}
               <a href="{{ url('home') }}">
-                <img src="{{ media('img/zamboni/app_icons/' + appicon + '.png') }}">
+                <img src="{{ media('img/zamboni/app_icons/' + appicon + '.png') }}" alt="">
                 {# TODO(gkoberger): This is a temp change; fix properly #}
                 {% if settings.APP_PREVIEW %}
                   Mobile Apps

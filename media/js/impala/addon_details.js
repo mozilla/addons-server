@@ -12,7 +12,7 @@ $(function () {
             $caption = $("#lightbox .caption span"),
             $previews = $('.previews'),
             current, $strip,
-            lbImage = template('<img id="preview{0}" src="{1}">');
+            lbImage = template('<img id="preview{0}" src="{1}" alt="">');
         if (!$lightbox.length) return;
         function showLightbox() {
             $lightbox.show();
