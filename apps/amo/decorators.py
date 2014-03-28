@@ -142,12 +142,17 @@ json_view.error = lambda s: http.HttpResponseBadRequest(
     json.dumps(s), content_type='application/json')
 
 
-def skip_cache(f):
-    @functools.wraps(f)
-    def wrapper(*args, **kw):
+class skip_cache(object):
+    def __init__(self, f):
+        self.f = f
+        functools.update_wrapper(self, f)
+
+    def __call__(self, *args, **kw):
         with context.skip_cache():
-            return f(*args, **kw)
-    return wrapper
+            return self.f(*args, **kw)
+
+    def __repr__(self):
+        "<SkipCache %s>" % (self.f,)
 
 
 def use_master(f):
