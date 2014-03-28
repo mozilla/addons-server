@@ -20,7 +20,7 @@
   {% endwith %}
   <hgroup>
     <h2 class="collection" data-collectionid="{{ collection.id }}">
-      <img src="{{ c.icon_url }}" class="icon">
+      <img src="{{ c.icon_url }}" class="icon" alt="">
       <span>{{ c.name }}</span>
       {% if not c.listed %}
         <span class="private">{{ _('private') }}</span>

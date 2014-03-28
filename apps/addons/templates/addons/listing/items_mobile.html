@@ -7,7 +7,7 @@
         {% set dl_url = dl_url|urlparams(src=src) %}
       {% endif %}
       <a href="{{ dl_url }}">
-        <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
+        <img class="icon" width="32" height="32" src="{{ addon.icon_url }}" alt="">
         <h3>{{ addon.name }}</h3>
         <span class="desc">{{ addon.summary|striptags|truncate(200) }}</span>
       </a>

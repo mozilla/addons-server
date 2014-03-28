@@ -928,7 +928,7 @@ function initPayments(delegate) {
     ],
         media_url = $("body").attr("data-media-url"),
         to = false,
-        img = $("<img id='contribution-preview'/>");
+        img = $("<img id='contribution-preview' alt='' />");
         moz = $("input[value='moz']");
     img.hide().appendTo($("body"));
     moz.parent().after(

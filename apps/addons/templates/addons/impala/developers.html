@@ -93,7 +93,7 @@
     <section class="island c">
       <aside class="secondary user-avatar">
         <img class="avatar" src="{{ author.picture_url }}"
-             {% if not author.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
+             alt="{% if not author.picture_type %}{{ _('No Photo') }}{% endif %}">
       </aside>
       <section class="primary">
         <div class="vcard">

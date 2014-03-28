@@ -2,7 +2,7 @@
 {% for collection in collections %}
   <li class="item">
     <a href="{{ collection.get_url_path() }}">
-      <img class="icon" width="32" height="32" src="{{ collection.icon_url }}">
+      <img class="icon" width="32" height="32" src="{{ collection.icon_url }}" alt="">
       <h3>{{ collection.name }}</h3>
       <details>
         <span class="desc">{{ collection.description|strip_html()|truncate(250) }}</span>

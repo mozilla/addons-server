@@ -9,7 +9,7 @@
             {% set dl_url = dl_url|urlparams(src=dl_src) %}
           {% endif %}
           <a href="{{ dl_url }}">
-            <img src="{{ addon.icon_url }}">{{ addon.name }}</a>
+            <img src="{{ addon.icon_url }}" alt="">{{ addon.name }}</a>
           {% if addon.is_no_restart() %}
             <span class="no-restart">{{ _('No Restart') }}</span>
           {% endif %}
