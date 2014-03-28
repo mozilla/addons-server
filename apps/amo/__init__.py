@@ -6,6 +6,7 @@ import threading
 from django.conf import settings
 
 import commonware.log
+from caching.base import CachingQuerySet
 
 from product_details import product_details
 
@@ -74,6 +75,8 @@ class CachedProperty(object):
         value = obj.__dict__.get(self.__name__, _missing)
         if value is _missing:
             value = self.func(obj)
+            if isinstance(value, CachingQuerySet):
+                value = list(value)
             obj.__dict__[self.__name__] = value
         return value
 

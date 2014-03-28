@@ -296,7 +296,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         qs = self._reviews_all.filter(reply_to=None)
         # Force the query to occur immediately. Several
         # reviews-related tests hang if this isn't done.
-        list(qs)
         return qs
 
     def anonymize(self):

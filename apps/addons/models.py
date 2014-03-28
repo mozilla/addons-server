@@ -557,9 +557,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @amo.cached_property(writable=True)
     def listed_authors(self):
-        return list(UserProfile.objects.filter(
+        return UserProfile.objects.filter(
             addons=self,
-            addonuser__listed=True).order_by('addonuser__position'))
+            addonuser__listed=True).order_by('addonuser__position')
 
     @classmethod
     def get_fallback(cls):
