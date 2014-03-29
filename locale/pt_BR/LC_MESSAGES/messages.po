@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-29 01:21+0000\n"
+"PO-Revision-Date: 2014-03-29 22:53+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1396056072.0\n"
+"X-POOTLE-MTIME: 1396133590.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:188
@@ -2209,6 +2209,11 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Por favor insira <strong>ambas as palavras</strong> abaixo, <strong> "
+"separadas por um espaço</strong>. </p> <p> Se estiver difícil de ler, você "
+"pode <a href=\"#\" id=\"recaptcha_different\">tentar palavras diferentes</a> ou "
+"<a href=\"#\" id=\"recaptcha_audio\">tentar um tipo diferente de desafio</a> em "
+"vez disso. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
@@ -3681,7 +3686,7 @@ msgstr "Publicado"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr ""
+msgstr "Aprovado mas não publicado"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
@@ -4140,11 +4145,11 @@ msgstr "Você deve fornecer o texto da licença ao escolher Outro."
 
 #: apps/devhub/forms.py:224
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Este complemento tem uma Licença de Usuário Final"
 
 #: apps/devhub/forms.py:226
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Especifique a Licença de Usuário Final do seu complemento:"
 
 #: apps/devhub/forms.py:229
 msgid "This add-on has a Privacy Policy"

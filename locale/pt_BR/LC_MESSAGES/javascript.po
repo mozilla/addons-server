@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-29 01:13+0000\n"
+"PO-Revision-Date: 2014-03-29 22:48+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1396055609.0\n"
+"X-POOTLE-MTIME: 1396133302.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -338,7 +338,13 @@ msgstr "Detectado: {0}"
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
+"Aviso: a exclusão da conta de pagamento \"{0}\" vai passar esse aplicativo "
+"associado a um estado incompleto e que deixará de estar disponível para "
+"venda:"
 msgstr[1] ""
+"Aviso: a exclusão da conta de pagamento \"{0}\" vai passar esses aplicativos "
+"associados a um estado incompleto e que deixará de estar disponível para "
+"venda:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -1424,8 +1430,8 @@ msgstr "O complemento foi aprovado na validação."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} notícia"
+msgstr[1] "{0} notícias"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
