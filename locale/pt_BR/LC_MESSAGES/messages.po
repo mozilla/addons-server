@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-28 18:23+0000\n"
+"PO-Revision-Date: 2014-03-29 01:21+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1396030988.0\n"
+"X-POOTLE-MTIME: 1396056072.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:188
@@ -227,7 +227,7 @@ msgstr "Ver a política de privacidade"
 #: apps/addons/templates/addons/button.html:89 apps/addons/templates/addons/details_box.html:128 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Ver contrato de licença de usuário final"
 
 #: apps/addons/templates/addons/button.html:94 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -1325,7 +1325,7 @@ msgstr "link permanente"
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:34
 msgid "translate"
-msgstr ""
+msgstr "traduzir"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -1878,7 +1878,7 @@ msgstr "Os autores foram notificados por e-mail sobre a compatibilidade de {vers
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-mail enviado ao autor sobre a compatibilidade do complemento."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -2100,11 +2100,11 @@ msgstr "O usuário {0.name} - {0.id} foi removido pela ferramenta."
 
 #: apps/amo/log.py:643
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "classificação de conteúdo de {addon} alterado para Adulto."
 
 #: apps/amo/log.py:649
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "{addon} classificação de conteúdo alterado."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2428,7 +2428,7 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Descreva a sua coleção (não são permitidos links)."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2440,7 +2440,7 @@ msgstr "Ícone"
 
 #: apps/bandwagon/forms.py:152 apps/users/forms.py:340
 msgid "No links are allowed."
-msgstr ""
+msgstr "não são permitidos links"
 
 #: apps/bandwagon/forms.py:164
 msgid "This url is already in use by another collection"
@@ -3677,7 +3677,7 @@ msgstr "Bloqueado"
 
 #: apps/constants/base.py:49
 msgid "Published"
-msgstr ""
+msgstr "Publicado"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
@@ -3685,7 +3685,7 @@ msgstr ""
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
-msgstr ""
+msgstr "Obsoleto"
 
 #: apps/constants/base.py:144
 msgid "Full"
@@ -8880,7 +8880,7 @@ msgstr "Rodapé pendente"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Você pode atualizar o projeto do tema aqui, uma vez que foi aprovado."
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
@@ -16268,7 +16268,7 @@ msgstr "Já existe um aplicativo nesse domínio; somente um aplicativo por domí
 
 #: mkt/developers/forms.py:329
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Região(ões) selecionada(s) inválida(s)."
 
 #: mkt/developers/forms.py:399 mkt/webapps/models.py:448
 msgid "You must upload at least one screenshot or video."
@@ -16355,6 +16355,10 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
+"Por favor, considere meu aplicativo como um candidato a ser pré-carregado em "
+"um dispositivo Firefox OS. Eu concordo com os termos e condições descritos "
+"acima. Eu entendo que este documento não é um compromisso com o "
+"pré-carregamento do meu aplicativo."
 
 #: mkt/developers/forms.py:1009
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -16362,7 +16366,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:1018
 msgid "Test plan required."
-msgstr ""
+msgstr "É necessário o plano de teste."
 
 #: mkt/developers/forms.py:1025
 msgid "File too large. Keep size under %s. Current size %s."
@@ -16370,7 +16374,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:1031
 msgid "Invalid file type. Only %s files are supported."
-msgstr ""
+msgstr "Tipo de arquivo inválido. Somente os arquivos %s são suportadas."
 
 #: mkt/developers/forms.py:1049
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."

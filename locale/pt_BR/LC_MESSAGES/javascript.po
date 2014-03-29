@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-28 00:16+0000\n"
+"PO-Revision-Date: 2014-03-29 01:13+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395965803.0\n"
+"X-POOTLE-MTIME: 1396055609.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -173,8 +173,8 @@ msgstr "A instalação falhou. Por favor, tente mais tarde."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Seu aplicativo falhou na validação com {0} erro e {1} mensagem(s)"
+msgstr[1] "Seu aplicativo falhou na validação com {0} erros e {1} mensagem(s)"
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -296,40 +296,42 @@ msgstr "Código bancário holandês/estadunidense"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Número de trânsito canadense / código bancário alemão "
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Banco e filial coreano/código bancário Indonésio"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "HEBIC grego/código bancário Indonésio"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
 msgstr ""
+"Código bancário inglês/irlandês ou prefixo de conta neozelandês ou código "
+"BSB australiano"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Código bancário austriaco/suíço"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Código bancário dinamarquês/suíço"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Código bancário suíço/iraquiano"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "Código bancário iraquiano"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "Detectado: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:24
@@ -345,15 +347,15 @@ msgstr "Erro"
 
 #: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Houve um problema ao entrar em contato com o servidor de pagamento."
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
-msgstr ""
+msgstr "Erro de autenticação"
 
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "Você não possui qualquer conta de pagamento."
 
 #: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
@@ -472,7 +474,7 @@ msgstr "Selecione uma aplicação antes"
 
 #: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "Erro ao carregar tradução"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
