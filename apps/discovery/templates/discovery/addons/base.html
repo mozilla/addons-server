@@ -16,7 +16,7 @@
     <header>
       <p id="back"><a href="#" target="_self">{{ _('Back to Add-ons') }}</a></p>
       <h1 class="addon">
-        <img class="icon" src="{{ addon.icon_url }}">
+        <img class="icon" src="{{ addon.icon_url }}" alt="">
         {{ addon.name }}
         {% set version = addon.current_version %}
         {% if version %}

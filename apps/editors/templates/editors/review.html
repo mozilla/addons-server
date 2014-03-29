@@ -19,7 +19,7 @@
 
 <hgroup>
   <h2 class="addon"{{ addon.name|locale_html }}>
-    <img src="{{ addon.icon_url }}" class="icon"/>
+    <img src="{{ addon.icon_url }}" class="icon" alt="" />
     {# L10n: "Review [add-on name]" #}
     <span>
       {{ _('Review {0}')|f(addon.name) }}

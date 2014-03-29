@@ -11,7 +11,7 @@
     <li class="featured-addons" data-guid="{{ addon.guid }}">
       <a href="{{ services_url('discovery.addons.detail', addon.id, src=src) }}"
          target="_self" class="addon-title">
-        <img src="{{ addon.icon or addon.icon_url }}" width="32" height="32">
+        <img src="{{ addon.icon or addon.icon_url }}" width="32" height="32" alt="">
         {% if sidebar %}
           <span class="htruncate">{{ addon.name }}</span>
         {% else %}
