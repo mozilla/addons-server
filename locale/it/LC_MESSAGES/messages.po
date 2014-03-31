@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:16-0700\n"
-"PO-Revision-Date: 2014-03-20 22:15+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-03-31 12:08+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395353747.0\n"
+"X-POOTLE-MTIME: 1396267729.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -339,7 +339,10 @@ msgstr "Se apprezzi questo componente aggiuntivo, il suo sviluppatore ti chiede 
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla si dedica attivamente allo sviluppo di un ecosistema di sviluppatori energetico e sano.La tua donazione può contribuire alle evoluzioni future di questo componente aggiuntivo."
+msgstr ""
+"Mozilla si dedica attivamente allo sviluppo di un ecosistema di sviluppatori "
+"energetico e sano. La tua donazione può contribuire alle evoluzioni future "
+"di questo componente aggiuntivo."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
@@ -3590,7 +3593,7 @@ msgstr "Immagini di bassa qualità, deformate o vuote"
 
 #: apps/constants/editors.py:31
 msgid "Header image alignment problem"
-msgstr "Problema di allineamento con l'immagine della testata"
+msgstr "Problema di allineamento con l’immagine della testata"
 
 #: apps/constants/licenses.py:13
 msgid "All Rights Reserved"
@@ -4273,12 +4276,12 @@ msgstr "Visualizza tutti i componenti aggiuntivi ►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:42
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "Crea componenti aggiuntivi per Australis"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:63 apps/devhub/templates/devhub/addons/submit/sidebar.html:43
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "Vinci uno smartphone Firefox OS e una borsa di regali firmati Mozilla!"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -4629,8 +4632,10 @@ msgstr "Aggiorna compatibilità"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4 apps/devhub/templates/devhub/versions/edit.html:45
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
-"Se si modificano le informazioni relative alle applicazioni in questa sezione, gli utenti saranno in grado di completare l’installazione anche se il manifesto di installazione presente nel "
-"pacchetto indica che il componente aggiuntivo non è compatibile."
+"Modificando le informazioni del componente aggiuntivo in questa sezione gli "
+"utenti saranno in grado di completare l’installazione anche se nel file "
+"manifesto di installazione presente nel pacchetto è indicato che il "
+"componente aggiuntivo non è compatibile."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -4936,7 +4941,10 @@ msgstr "UUID"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:128
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr "Lo UUID del tuo componente aggiuntivo è specificato nel manifesto di installazione e lo identifica in maniera univoca. Non puoi cambiare il tuo UUID una volta inviato."
+msgstr ""
+"L’UUID del componente aggiuntivo è indicato nel file manifesto di "
+"installazione e lo identifica in maniera univoca. Non puoi cambiare il tuo "
+"UUID dopo la pubblicazione del componente aggiuntivo."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -5178,7 +5186,7 @@ msgstr "Questo componente aggiuntivo verrà cancellato automaticamente entro alc
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:23
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Ultima versione:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5294,6 +5302,8 @@ msgstr "Visualizza i <a href=\"{0}\">tempi di attesa stimati</a> per la coda di 
 #: apps/devhub/templates/devhub/addons/submit/done.html:61
 msgid "Submit your add-on for the Add-ons for Australis contest"
 msgstr ""
+"Proponi il tuo componente aggiuntivo per il concorso Componenti aggiuntivi "
+"per Australis"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5600,18 +5610,25 @@ msgid ""
 "Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to "
 "copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href=\"%(url)s\">Add-on Packager</a>!"
 msgstr ""
-"Una volta che hai preso confidenza con l’ambiente di sviluppo, è tempo di iniziare con il tuo primo componente aggiuntivo. Agli inizi questo significava mettersi alla disperata ricerca di un "
-"modello adeguato da cui copiare il manifesto d’installazione del tuo componente aggiuntivo. Per tua fortuna il Centro di sviluppo (questo sito!) ti mette a disposizione una rapida scorciatoia: <a "
-"href=\"%(url)s\">Add-on Packager</a>."
+"Una volta che hai preso confidenza con l’ambiente di sviluppo, è tempo di "
+"iniziare a creare il primo componente aggiuntivo. Agli inizi ciò significava "
+"mettersi alla disperata ricerca di un modello adeguato da cui copiare il "
+"file manifesto d’installazione del componente aggiuntivo. Fortunatamente il "
+"Centro di sviluppo (questo sito!) ti mette a disposizione una rapida "
+"scorciatoia: <a href=\"%(url)s\">Add-on Packager</a>."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:54
 msgid ""
 "Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your "
 "install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
 msgstr ""
-"Segui i passaggi inserendo il nome del tuo componente aggiuntivo, il numero di versione, le applicazioni supportate e altri dettagli, il sistema creerà automaticamente il pacchetto dell’estensione. "
-"Non solo verrà creato il manifesto di installazione, ma potrai anche scegliere alcuni elementi dell’interfaccia come barre degli strumenti, barre laterali e menu contestuali per realizzare lo "
-"scheletro della tua estensione. Praticamente scriviamo l’estensione al tuo posto!"
+"Segui i passaggi inserendo il nome del componente aggiuntivo, il numero di "
+"versione, le applicazioni supportate e altri dettagli, il sistema creerà "
+"automaticamente il pacchetto dell’estensione. Non solo verrà creato il file "
+"manifesto di installazione, ma potrai anche scegliere alcuni elementi "
+"dell’interfaccia come barre degli strumenti, barre laterali e menu "
+"contestuali per realizzare lo scheletro della tua estensione. Praticamente "
+"scriviamo l’estensione al tuo posto!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:60
 msgid "Take me to the Add-on Packager!"
@@ -5830,7 +5847,9 @@ msgstr "Localizzare le descrizioni di un’estensione"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:145
 msgid "Learn how to localize the names and descriptions in extension install manifests."
-msgstr "Scopri come localizzare nome e descrizione di un’estensione utilizzando i manifesti d’installazione."
+msgstr ""
+"Scopri come localizzare nome e descrizione di un’estensione nei file "
+"manifesto d’installazione."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:155
 msgid "Localization and Plurals"
@@ -5950,11 +5969,13 @@ msgstr "Scopri in che modo le estensioni vengono \"confezionate\" e installate."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:78
 msgid "Install Manifests"
-msgstr "Manifesti d’installazione"
+msgstr "File manifesto d’installazione"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:81
 msgid "This document explains install manifests \"install.rdf\" and all of properties available for use in your add-on."
-msgstr "Questo documento spiega i manifesti di installazione \"install.rdf\" e tutte le proprietà disponibili per il tuo componente aggiuntivo."
+msgstr ""
+"Questo documento descrive i file manifesto di installazione \"install.rdf\" e "
+"tutte le proprietà disponibili per un componente aggiuntivo."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:88
 msgid "Other Tutorials"
@@ -7844,14 +7865,16 @@ msgstr "<b>Scegli il colore del testo e dello sfondo delle schede</b> &mdash; pu
 #: apps/devhub/templates/devhub/docs/themes.html:229
 msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
 msgstr ""
-"<b>Visualizza l'anteprima del tuo tema</b> &mdash; ora puoi visualizzare l’anteprima del tema. Passa il mouse sull’immagine posta sopra il pulsante per l’invio e scopri in un istante come apparirà "
-"nel browser."
+"<b>Visualizza l’anteprima del tuo tema</b> &mdash; ora puoi visualizzare "
+"l’anteprima del tema. Passa il mouse sull’immagine posta sopra il pulsante "
+"per l’invio e scopri in un istante come apparirà nel browser."
 
 #: apps/devhub/templates/devhub/docs/themes.html:236
 msgid "<b>Submit your theme</b> &mdash; if everything looks right, click the Submit Theme button and you're done! You can see all the themes you've authored on your profile page."
 msgstr ""
-"<b>Invia il tuo tema</b> &mdash; se dopo aver guardato l’anteprima ti sembra tutto a posto, fai clic sul pulsante di invio e il gioco è fatto. Potrai accedere a tutti i temi di cui sei l'autore "
-"dalla pagina del tuo profilo."
+"<b>Invia il tuo tema</b> &mdash; se dopo aver guardato l’anteprima ti sembra "
+"tutto a posto, fai clic sul pulsante di invio e il gioco è fatto. Potrai "
+"accedere a tutti i temi di cui sei l’autore dalla pagina del tuo profilo."
 
 #: apps/devhub/templates/devhub/docs/themes.html:243
 msgid "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure it complies with the content guidelines and terms of service!"
@@ -7997,7 +8020,8 @@ msgstr "Invita gli utenti a supportare il tuo componente aggiuntivo attraverso i
 
 #: apps/devhub/templates/devhub/payments/payments.html:41
 msgid "Choose when and how users are asked to contribute"
-msgstr "Scegli quando e come viene richiesto all'utente di effettuare una donazione"
+msgstr ""
+"Scegli quando e come viene richiesto all’utente di effettuare una donazione"
 
 #: apps/devhub/templates/devhub/payments/payments.html:42
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
@@ -8601,7 +8625,10 @@ msgstr "<strong>Importante:</strong> a seguito dell’eliminazione di una versio
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
-msgstr "L’eliminazione di una versione che sia stata già sottoposta a revisione può causare un ritardo significativo nella revisione dell'aggiornamento successivo."
+msgstr ""
+"L’eliminazione di una versione che sia stata già sottoposta a revisione può "
+"causare un ritardo significativo nella revisione dell’aggiornamento "
+"successivo."
 
 #: apps/devhub/templates/devhub/versions/list.html:220
 msgid "Are you sure you wish to delete this version?"
@@ -8874,11 +8901,11 @@ msgstr "Annulla installazione"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "Crea un componente aggiuntivo per la nuova interfaccia di Firefox"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "Informazioni sul concorso"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -8912,7 +8939,9 @@ msgstr "Non perdere di vista le tue attività su eBay mentre navighi sul web, in
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
-msgstr "Visualizza l'intera collezione di componenti aggiuntivi dedicata allo shopping delle vacanze."
+msgstr ""
+"Visualizza l’intera raccolta di componenti aggiuntivi dedicata allo shopping "
+"delle vacanze."
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -10014,7 +10043,7 @@ msgstr "Si è verificato un errore durante l’accesso al file %s. %s."
 
 #: apps/files/tasks.py:53
 msgid "There was an error accessing file %s."
-msgstr "Si è verificato un errore durante l'accesso al file %s."
+msgstr "Si è verificato un errore durante l’accesso al file %s."
 
 #: apps/files/utils.py:186
 msgid "Could not parse uploaded file."
@@ -10673,10 +10702,15 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
-"Si, è possibile. Tuttavia alcune delle funzioni fornite da queste librerie sono già disponibili in XPCOM, XUL e JS 1.8. Inoltre l'autore deve fare attenzione poiché le librerie potrebbero "
-"modificare prototipi oggetto di base (String.prototype, Date.prototype, eString.prototype, Date.prototype, ecc.) o definire funzioni globali (es. la funzione $). Questi cambiamenti possono "
-"facilmente causare conflitti con altri componenti aggiuntivi, specialmente se componenti diversi usano diverse versioni di librerie ecc. Lo sviluppatore deve essere estremamente cauto quando le "
-"usa. Mozilla non fornisce documentazione su come usarle per sviluppare componenti aggiuntivi."
+"Si, è possibile. Tuttavia alcune delle funzioni fornite da queste librerie "
+"sono già disponibili in XPCOM, XUL e JS 1.8. Inoltre l’autore deve fare "
+"attenzione poiché le librerie potrebbero modificare prototipi oggetto di "
+"base (String.prototype, Date.prototype, eString.prototype, Date.prototype, "
+"ecc.) o definire funzioni globali (es. la funzione $). Questi cambiamenti "
+"possono facilmente causare conflitti con altri componenti aggiuntivi, "
+"specialmente se componenti diversi usano diverse versioni di librerie ecc. "
+"Lo sviluppatore deve essere estremamente cauto quando le usa. Mozilla non "
+"fornisce documentazione su come usarle per sviluppare componenti aggiuntivi."
 
 #: apps/pages/templates/pages/dev_faq.html:180
 msgid "How do I test my add-on?"
@@ -10687,8 +10721,10 @@ msgid ""
 "Details on testing your add-on are provided in the <a href=\"%(test_url)s\">Testing</a> &amp; <a href=\"%(debug_url)s\">Debugging Extensions</a> sections of the <a href=\"%(ext_url)s\">Building an "
 "Extension tutorial</a>."
 msgstr ""
-"I dettagli su come testare il proprio componente aggiuntivo si possono trovare nelle sezioni <a href=\"%(test_url)s\">Test</a> &amp; <a href=\"%(debug_url)s\"> Effettuare il debug sull'estensione</"
-"a> della guida <a href=\"%(ext_url)s\">Sviluppare un'estensione</a>."
+"I dettagli su come testare il proprio componente aggiuntivo si possono "
+"trovare nelle sezioni <a href=\"%(test_url)s\">Test</a> &amp; <a href=\"%"
+"(debug_url)s\"> Effettuare il debug sull’estensione</a> della guida <a href=\""
+"%(ext_url)s\">Sviluppare un’estensione</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:191
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -10813,15 +10849,19 @@ msgstr "Si. Puoi caricare il tuo componente aggiuntivo sul <a href=\"%(url)s\">s
 
 #: apps/pages/templates/pages/dev_faq.html:305
 msgid "What is AMO?"
-msgstr "Che cos'è AMO?"
+msgstr "Che cos’è AMO?"
 
 #: apps/pages/templates/pages/dev_faq.html:307
 msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
 msgstr ""
-"Mozilla AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) è l'incubatrice che aiuta gli sviluppatori a creare, distribuire e supportare fantastici prodotti di consumo "
-"sostenuti da Mozilla. Ti fornisce gli strumenti e l'infrastruttura necessaria per gestire, mettere in rete ed esporre i tuoi componenti aggiuntivi a un'ampia base di utenti Mozilla."
+"Mozilla AMO (<a "
+"href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) è "
+"l’incubatrice che aiuta gli sviluppatori a creare, distribuire e supportare "
+"fantastici prodotti di consumo sostenuti da Mozilla. Ti fornisce gli "
+"strumenti e l’infrastruttura necessaria per gestire, mettere in rete ed "
+"esporre i tuoi componenti aggiuntivi a un’ampia base di utenti Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:316
 msgid "Does Mozilla keep my account information private?"
@@ -10840,8 +10880,11 @@ msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
 msgstr ""
-"La dashboard \"Strumenti di sviluppo\" è l'area in cui si trovano gli strumenti che ti servono per gestire con successo le tue applicazioni. Comprende le funzionalità necessarie per inviare i tuoi "
-"componenti aggiuntivi ad AMO, gestire le informazioni del componente e analizzare le statistiche."
+"La dashboard \"Strumenti di sviluppo\" è l’area in cui si trovano gli "
+"strumenti che ti servono per gestire con successo le tue applicazioni. "
+"Comprende le funzionalità necessarie per inviare i tuoi componenti "
+"aggiuntivi ad AMO, gestire le informazioni del componente e analizzare le "
+"statistiche."
 
 #: apps/pages/templates/pages/dev_faq.html:333
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
@@ -10885,8 +10928,11 @@ msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
 "\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
-"La scelta della categoria dipende dal tipo di utenza a cui stai mirando e dalle funzionalità del tuo componente aggiuntivo. Se non sei sicuro a quale categoria appartenga il tuo componente "
-"aggiuntivo scegli \"Altro\". Il team di AMO potrà spostarlo sotto un'altra categoria qualora ritenga che sia ad essa più indicato."
+"La scelta della categoria dipende dal tipo di utenza a cui stai mirando e "
+"dalle funzionalità del tuo componente aggiuntivo. Se non sei sicuro a quale "
+"categoria appartenga il tuo componente aggiuntivo scegli \"Altro\". Il team di "
+"AMO potrà spostarlo sotto un’altra categoria qualora ritenga che sia ad "
+"essa più indicato."
 
 #: apps/pages/templates/pages/dev_faq.html:376
 msgid "What does \"nominating\" my add-on mean?"
@@ -10938,6 +10984,13 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"I componenti aggiuntivi vengono verificati dai revisori AMO, un gruppo di "
+"sviluppatori volontari e talentuosi che aiutano il progetto Mozilla "
+"verificando i componenti aggiuntivi per garantire agli utenti un’esperienza "
+"stabile e sicura. Quando comunichi con i revisori sii educato, paziente e "
+"rispettoso, perché stanno lavorando duramente per garantire che il tuo "
+"componente aggiuntivo sia configurato correttamente e segua le linee guida "
+"indicate nella <a href=\"%(url)s\">Guida per revisori</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -11010,8 +11063,9 @@ msgstr "Come carico un aggiornamento del mio componente aggiuntivo?"
 #: apps/pages/templates/pages/dev_faq.html:487
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
 msgstr ""
-"Puoi caricare un aggiornamento del tuo componente aggiuntivo tramite la dashboard Strumenti di sviluppo, selezionando l'opzione \"Carica una nuova versione\" e caricando un nuovo file .xpi per il "
-"tuo componente."
+"Puoi caricare un aggiornamento del tuo componente aggiuntivo tramite la "
+"dashboard Strumenti di sviluppo, selezionando l’opzione \"Carica una nuova "
+"versione\" e caricando un nuovo file .xpi per il tuo componente."
 
 #: apps/pages/templates/pages/dev_faq.html:494
 msgid "Does my update need to be reviewed by editors?"
@@ -12740,7 +12794,7 @@ msgstr "La password inserita non è corretta"
 
 #: apps/users/forms.py:164
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Il nome utente non può essere composto di soli numeri."
 
 #: apps/users/forms.py:166
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
@@ -13029,8 +13083,11 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Non puoi eliminare il tuo account se risulti come <a href=\"%(link)s\"> autore di un componente aggiuntivo</a>. Per eliminare il tuo account, chiedi ad un'altra persona nel tuo gruppo di sviluppo "
-"di eliminare il tuo utente dall'elenco degli autori. Dopo questa operazione potrai eliminare il tuo account in questa sezione."
+"Non puoi eliminare il tuo account se risulti come <a href=\"%(link)s\"> autore "
+"di un componente aggiuntivo</a>. Per eliminare il tuo account, chiedi ad "
+"un’altra persona nel tuo gruppo di sviluppo di eliminare il tuo utente "
+"dall’elenco degli autori. Dopo questa operazione potrai eliminare il tuo "
+"account in questa sezione."
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"

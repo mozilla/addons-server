@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:16-0700\n"
-"PO-Revision-Date: 2014-03-20 22:25+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-03-31 12:07+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -13,13 +13,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395354307.0\n"
+"X-POOTLE-MTIME: 1396267632.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} stella"
-msgstr[1] "{0} stelle "
+msgstr[1] "{0} stelle"
 
 #: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
@@ -145,7 +145,7 @@ msgstr "Non è possibile trovare il manifesto a questo indirizzo."
 
 #: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr "L’host dell'App non può essere raggiunto."
+msgstr "L’host dell’App non può essere raggiunto."
 
 #: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
@@ -153,11 +153,11 @@ msgstr "Il manifesto dell’app non è analizzabile."
 
 #: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr "Il manifesto dell'app non è valido."
+msgstr "Il manifesto dell’app non è valido."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr "L'app è già installata."
+msgstr "L’app è già installata."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
@@ -165,7 +165,7 @@ msgstr "Errore interno del server."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr "Errore interno del server durante l'installazione dell'app."
+msgstr "Errore interno del server durante l’installazione dell’app."
 
 #: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
@@ -174,18 +174,21 @@ msgstr "Installazione non riuscita. Riprovare più tardi."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "È fallito il processo di validazione dell'app con {0} errore e {1} messaggio."
-msgstr[1] "È fallito il processo di validazione dell'app con {0} errori e {1} messaggi."
+msgstr[0] ""
+"È fallito il processo di validazione dell’app con {0} errore e {1} "
+"messaggio."
+msgstr[1] ""
+"È fallito il processo di validazione dell’app con {0} errori e {1} messaggi."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "L'app ha superato i controlli senza errori e con {0} messaggio."
-msgstr[1] "L'app ha superato i controlli senza errori e con {0} messaggi."
+msgstr[0] "L’app ha superato i controlli senza errori e con {0} messaggio."
+msgstr[1] "L’app ha superato i controlli senza errori e con {0} messaggi."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
-msgstr "L'app ha superato i controlli senza errori e senza avvisi."
+msgstr "L’app ha superato i controlli senza errori e senza avvisi."
 
 #: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
@@ -221,7 +224,7 @@ msgstr "Per visualizzare questo video è necessario un browser che supporti i fo
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "oppure <a href=\"http://www.adobe.com/go/getflashplayer\"> il plugin "
+msgstr "oppure <a href=\"http://www.adobe.com/go/getflashplayer\"> il plugin"
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
@@ -336,8 +339,13 @@ msgstr "Rilevati: {0}"
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] "Importante: cancellando il conto pagamenti \"{0}\" l'app ad esso associata passerà a uno stato incompleto e non sarà più disponibile per la vendita:"
-msgstr[1] "Importante: cancellando il conto pagamenti \"{0}\" le app ad esso associate passeranno a uno stato incompleto e non saranno più disponibile per la vendita:"
+msgstr[0] ""
+"Importante: cancellando il conto pagamenti \"{0}\" l’app ad esso associata "
+"passerà a uno stato incompleto e non sarà più disponibile per la vendita:"
+msgstr[1] ""
+"Importante: cancellando il conto pagamenti \"{0}\" le app ad esso associate "
+"passeranno a uno stato incompleto e non saranno più disponibile per la "
+"vendita:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -350,7 +358,7 @@ msgstr "Si è verificato un errore durante la connessione al server per i pagame
 
 #: media/js/devreg/payments-manage.js:85
 msgid "Authentication error"
-msgstr "Errore durante l'autenticazione"
+msgstr "Si è verificato un errore durante l’autenticazione"
 
 #: media/js/devreg/payments-manage.js:131
 msgid "You do not currently have any payment accounts."
@@ -397,11 +405,11 @@ msgstr "Test di compatibilità"
 
 #: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
 msgid "App failed validation."
-msgstr "L'App non ha superato la convalida."
+msgstr "L’app non ha superato la convalida."
 
 #: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
 msgid "App passed validation."
-msgstr "L'App è stata convalidata con successo."
+msgstr "L’app è stata convalidata con successo."
 
 #: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
 msgid "{0} error"
@@ -469,7 +477,7 @@ msgstr "Note di versione non disponibili"
 
 #: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
 msgid "Select an application first"
-msgstr "Selezionare un'applicazione"
+msgstr "Selezionare un’applicazione"
 
 #: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
 msgid "Error loading translation"
@@ -513,7 +521,7 @@ msgstr "Richieste ulteriori informazioni"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Contains Editor Comment"
-msgstr "Sono presenti dei commenti da parte dell'editore"
+msgstr "Sono presenti dei commenti da parte dell’editore"
 
 #: media/js/devreg/reviewers/reviewers.js:118
 msgid "Premium App"
@@ -541,11 +549,14 @@ msgstr "App rifiutata: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr "Si è verificato un errore durante il processo di approvazione dell'app: {app}"
+msgstr ""
+"Si è verificato un errore durante il processo di approvazione dell’app: "
+"{app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr "Si è verificato un errore durante il processo di rifiuto dell'app: {app}"
+msgstr ""
+"Si è verificato un errore durante il processo di rifiuto dell’app: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
@@ -1165,8 +1176,12 @@ msgstr "Altro"
 #: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Imposta la maxversion del componente aggiuntivo {0} a {1} e invia email all'autore."
-msgstr[1] "Imposta la maxversion dei componenti aggiuntivi {0} a {1} e invia email agli autori."
+msgstr[0] ""
+"Imposta la maxversion del componente aggiuntivo {0} a {1} e invia email "
+"all’autore."
+msgstr[1] ""
+"Imposta la maxversion dei componenti aggiuntivi {0} a {1} e invia email agli "
+"autori."
 
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
@@ -1180,7 +1195,7 @@ msgstr "Installazione app non consentita."
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr "Il manifesto dell'app non è valido."
+msgstr "Il manifesto dell’app non è valido."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
@@ -1188,7 +1203,7 @@ msgstr "Installazione app non riuscita."
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr "Questo sistema non supporta l'installazione di app."
+msgstr "Questo sistema non supporta l’installazione di app."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
@@ -1331,7 +1346,7 @@ msgstr "Il browser in uso non supporta il tag video"
 
 #: media/js/zamboni/devhub.js:503
 msgid "Enter a new author's email address"
-msgstr "Inserire l'indirizzo email di un nuovo autore"
+msgstr "Inserire l’indirizzo email di un nuovo autore"
 
 #: media/js/zamboni/devhub.js:793
 msgid "{files} file"
@@ -1359,7 +1374,7 @@ msgstr "Errore interno del server"
 
 #: media/js/zamboni/devhub.js:1515
 msgid "Must be a valid e-mail address."
-msgstr "L'indirizzo email deve essere valido."
+msgstr "L’indirizzo email deve essere valido."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
