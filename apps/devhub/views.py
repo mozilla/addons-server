@@ -36,7 +36,7 @@ from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from amo import messages
-from amo.decorators import json_view, login_required, post_required
+from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import escape_all, HttpResponseSendFile, MenuItem
@@ -620,6 +620,7 @@ def package_addon_download(request, package_name):
 
 @login_required
 @post_required
+@write
 def upload(request, addon_slug=None, is_standalone=False):
     filedata = request.FILES['upload']
 
