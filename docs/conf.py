@@ -212,8 +212,3 @@ for key, val in intersphinx_mapping.items():
 
 # Root url where source files can be browsed online.
 src_base_url = 'http://github.com/mozilla/zamboni/tree/master/'
-
-import mdn_theme
-
-html_theme_path = [mdn_theme.get_theme_dir()]
-html_theme = 'mdn'
