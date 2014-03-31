@@ -1,6 +1,6 @@
 {% extends "editors/base.html" %}
 
-{% set types = ('addons', 'apps', 'themes') %}
+{% set types = ('addons', 'themes') %}
 
 {% block breadcrumbs %}
 {{ editors_breadcrumbs(items=[(None, _('Performance'))]) }}
@@ -70,7 +70,6 @@
         <tr>
           <th></th>
           <th>{{ _('Add-ons') }}</th>
-          <th>{{ _('Apps') }}</th>
           <th>{{ _('Themes') }}</th>
           <th>{{ _('Total') }}</th>
         </tr>
