@@ -41,8 +41,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'zamboni'
-copyright = u'2013, The Marketplace API Crew'
+project = u'olympia'
+copyright = u'2014, The Addons Crew'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -163,7 +163,7 @@ html_static_path = ['_static']
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'zambonidoc'
+htmlhelp_basename = 'olympiadoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -177,7 +177,7 @@ htmlhelp_basename = 'zambonidoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'zamboni.tex', u'zamboni Documentation',
+  ('index', 'olympia.tex', u'olympia Documentation',
    u'Jeff Balogh', 'manual'),
 ]
 
@@ -211,4 +211,4 @@ for key, val in intersphinx_mapping.items():
     intersphinx_mapping[key] = '_intersphinx/' + val
 
 # Root url where source files can be browsed online.
-src_base_url = 'http://github.com/mozilla/zamboni/tree/master/'
+src_base_url = 'http://github.com/mozilla/olympia/tree/master/'

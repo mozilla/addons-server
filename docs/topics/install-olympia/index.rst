@@ -1,5 +1,5 @@
 ===============
-Install Zamboni
+Install Olympia
 ===============
 
 .. toctree::

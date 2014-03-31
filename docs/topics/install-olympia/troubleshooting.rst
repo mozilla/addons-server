@@ -14,7 +14,7 @@ ____________________________
 
 First look for the following image serving settings::
 
-    SERVE_TMP_PATH = True  # maps /tmp to zamboni/tmp
+    SERVE_TMP_PATH = True  # maps /tmp to olympia/tmp
     PREVIEW_THUMBNAIL_URL = '/tmp/uploads/previews/thumbs/%s/%d.png?modified=%d'
     PREVIEW_FULL_URL = '/tmp/uploads/previews/full/%s/%d.png?modified=%d'
     USERPICS_URL = '/tmp/uploads/userpics/%s/%s/%s.png?modified=%d'

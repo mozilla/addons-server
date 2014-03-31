@@ -28,14 +28,14 @@ INSTALLED_APPS += (
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.locmem.LocMemCache',
-        'LOCATION': 'zamboni',
+        'LOCATION': 'olympia',
     }
 }
 # Caching is required for CSRF to work, please do not use the dummy cache.
 
 DATABASES = {
     'default': {
-        'NAME': 'zamboni',
+        'NAME': 'olympia',
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'root',
         'PASSWORD': '',

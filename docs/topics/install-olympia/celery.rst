@@ -46,9 +46,9 @@ Then run the following commands: ::
   sudo rabbitmq-server -detached
 
   # Setup rabitty things (sudo is required to read the cookie file)
-  sudo rabbitmqctl add_user zamboni zamboni
-  sudo rabbitmqctl add_vhost zamboni
-  sudo rabbitmqctl set_permissions -p zamboni zamboni ".*" ".*" ".*"
+  sudo rabbitmqctl add_user olympia olympia
+  sudo rabbitmqctl add_vhost olympia
+  sudo rabbitmqctl set_permissions -p olympia olympia ".*" ".*" ".*"
 
 Back in safe and happy django-land you should be able to run: ::
 
@@ -95,7 +95,7 @@ All the Addons with ids in ``pks`` will (eventually) have their
 Cron Jobs
 ~~~~~~~~~
 
-This is all good, but let's automate this.  In Zamboni we can create cron
+This is all good, but let's automate this. In Olympia we can create cron
 jobs like so: ::
 
   @cronjobs.register

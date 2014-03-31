@@ -4,7 +4,7 @@
 Style Guide
 ===================
 
-Writing code for zamboni? Awesome! Please help keep our code readable by,
+Writing code for olympia? Awesome! Please help keep our code readable by,
 whenever possible, adhering to these style conventions.
 
 

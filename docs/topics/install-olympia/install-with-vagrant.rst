@@ -3,7 +3,7 @@
 Installing In A VM With Vagrant
 ===============================
 
-Instead of :doc:`installing Zamboni piecemeal <installation>` you can set it up
+Instead of :doc:`installing Olympia piecemeal <installation>` you can set it up
 in a virtual machine. This is an ideal way to get up and running quickly and to
 keep your dev system clean. At the time of this writing there are a few
 outstanding Vagrant / VirtualBox bugs that have blocked some people. But if it
@@ -43,20 +43,20 @@ If you get stuck, see the Troubleshooting section below.
 Get The Source
 --------------
 
-Clone the Zamboni repository::
+Clone the Olympia repository::
 
     cd ~
-    git clone --recursive git://github.com/mozilla/zamboni.git
+    git clone --recursive git://github.com/mozilla/olympia.git
 
 This takes about a minute and puts the source code in a directory called
-``zamboni``.
+``olympia``.
 
 Build the VM
 ------------
 
 Change into the source code directory and start the VM with vagrant::
 
-    cd zamboni
+    cd olympia
     vagrant up
 
 After about 5-10 minutes, depending on your Internet connection, vagrant
@@ -88,7 +88,7 @@ Suspending/Resuming the VM
 
 To conserve system resources you can suspend the VM like::
 
-    cd zamboni
+    cd olympia
     vagrant suspend
 
 Then when you want to use it again just type::
@@ -98,12 +98,12 @@ Then when you want to use it again just type::
 This boots up the VM in the state it was left in but you still have to SSH in
 and start up the dev server with the command above.
 
-Updating Zamboni Code
+Updating Olympia Code
 ---------------------
 
 To sync your repository with upstream changes, just update the code using git::
 
-    cd zamboni
+    cd olympia
     git pull && git submodule sync --quiet && git submodule update --init --recursive
 
 Next, rebuild your VM so that any new requirements are installed and any new
@@ -116,7 +116,7 @@ You can re-run all installation steps with the reload command. If a package is
 already installed in the VM it will not be re-installed (so it's a bit faster).
 ::
 
-    cd zamboni
+    cd olympia
     vagrant reload
 
 However, it may not always work. To completely destroy your VM and start from
@@ -146,10 +146,10 @@ Your ``custom.pp`` file is ignored by git.
 Troubleshooting
 ---------------
 
-If you have already set up Zamboni with a custom ``settings_local.py`` file
+If you have already set up Olympia with a custom ``settings_local.py`` file
 then be sure your database credentials match the defaults::
 
-    'NAME': 'zamboni',
+    'NAME': 'olympia',
     'USER': 'root',
     'PASSWORD': '',
     ...

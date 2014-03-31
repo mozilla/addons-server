@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Django settings for zamboni project.
+# Django settings for olympia project.
 
 import logging
 import os
@@ -33,11 +33,11 @@ except ImportError:
 # jingo-minify: Style sheet media attribute default
 CSS_MEDIA_DEFAULT = 'all'
 
-# Make filepaths relative to the root of zamboni.
+# Make filepaths relative to the root of olympia.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 path = lambda *a: os.path.join(ROOT, *a)
 
-# We need to track this because hudson can't just call its checkout "zamboni".
+# We need to track this because hudson can't just call its checkout "olympia".
 # It puts it in a dir called "workspace".  Way to be, hudson.
 ROOT_PACKAGE = os.path.basename(ROOT)
 
@@ -83,7 +83,7 @@ CONN_MAX_AGE = 60
 
 DATABASES = {
     'default': {
-        'NAME': 'zamboni',
+        'NAME': 'olympia',
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '',
         'PORT': '',
@@ -99,7 +99,7 @@ DATABASES = {
 # The settings can be copied from DATABASES, but since its not a full Django
 # database connection, only some values are supported.
 SERVICES_DATABASE = {
-    'NAME': 'zamboni',
+    'NAME': 'olympia',
     'USER': '',
     'PASSWORD': '',
     'HOST': '',
@@ -1049,7 +1049,7 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
 
 
 ## Celery
-BROKER_URL = 'amqp://zamboni:zamboni@localhost:5672/zamboni'
+BROKER_URL = 'amqp://olympia:olympia@localhost:5672/olympia'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
@@ -1169,7 +1169,7 @@ LOGGING = {
 
 
 HEKA_CONF = {
-    'logger': 'zamboni',
+    'logger': 'olympia',
     'plugins': {
         'cef': ('heka_cef.cef_plugin:config_plugin', {
             'syslog_facility': 'LOCAL4',
