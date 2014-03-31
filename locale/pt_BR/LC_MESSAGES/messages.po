@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:21-0700\n"
-"PO-Revision-Date: 2014-03-30 20:37+0000\n"
+"PO-Revision-Date: 2014-03-31 10:53+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1396211836.0\n"
+"X-POOTLE-MTIME: 1396263197.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -2791,6 +2791,11 @@ msgid ""
 "behalf.</li> <li> Learning personal information about you, such as your "
 "username and email address (but not your password). </li> </ul>"
 msgstr ""
+"<p> %(consumer)s quer ser autorizado a agir em seu nome. Isto pode incluir: "
+"</p><ul><li>Enviar, alterar ou remover complementos em seu nome.</li> "
+"<li>Enviar, alterar ou remover versões de complementos em seu nome.</li> "
+"<li> Saber informações pessoais sobre você, como seu nome de usuário e "
+"endereço de e-mail (mas não sua senha).</li></ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
@@ -4858,7 +4863,7 @@ msgstr "Análise preliminar"
 
 #: apps/devhub/forms.py:494
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "Por favor, escolha um tipo de nomeação para revisão"
 
 #: apps/devhub/forms.py:509
 msgid "Version %s already exists"
@@ -11217,7 +11222,7 @@ msgstr "Selecione a plataforma alvo para este arquivo."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Para que tipo de revisão gostaria de nomear?"
 
 # %s is the version number.
 #: apps/devhub/templates/devhub/versions/edit.html:5
@@ -13486,10 +13491,16 @@ msgid ""
 "application works. Take a look around and explore the thousands of ways to "
 "customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, vulgarmente conhecido como \"AMO\", é o site oficial da "
+"Mozilla de complementos para os aplicativos da Mozilla, como o Firefox, "
+"Thunderbird e SeaMonkey. Complementos permitem adicionar novos recursos e "
+"mudar a forma do seu navegador ou aplicativo funciona. Dê uma olhada ao "
+"redor e explore as milhares de formas de personalizar a sua experiência "
+"online."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Quem cria estes complementos?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
@@ -13499,43 +13510,57 @@ msgid ""
 "released. Add-ons marked as Experimental have not been reviewed and should "
 "only be installed with caution."
 msgstr ""
+"Os complementos listados aqui foram criados por milhares de desenvolvedores "
+"de nossa comunidade, que vão desde amadores a grandes corporações. Todos os "
+"complementos de capital aberto são analisados ​​por uma equipe de editores "
+"antes de serem liberados. Complementos marcados como experimental não foram "
+"revisados e só deve ser instalado com cautela."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Como faço para acompanhar o que está acontecendo na AMO?"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid ""
 "There are several ways to find out the latest news from the world of add-"
 "ons:"
 msgstr ""
+"Existem várias maneiras de descobrir as últimas notícias do mundo dos "
+"complementos:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid ""
 "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information "
 "for both add-on enthusiasts and developers."
 msgstr ""
+"Nosso <a href=\"%(url)s\">blog de complementos</a> é atualizado regularmente "
+"com informações sobre os complementos tanto para entusiastas como "
+"desenvolvedores."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid ""
 "We often post news, tips, and tricks to our Twitter account, <a href=\"%"
 "(url)s\">mozamo</a>"
 msgstr ""
+"Muitas vezes postamos notícias, dicas e truques na nossa conta do Twitter, "
+"<a href=\"%(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid ""
 "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-"
 "ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Nossos <a href=\"%(url)s\">fórum</a> são um bom lugar para interagir com a "
+"comunidade de complementos e discutir futuras alterações na AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Isto soa muito bem! Como posso me envolver?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Há muitas maneiras de se envolver. Se você tem habilidades técnicas:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid ""
