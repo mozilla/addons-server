@@ -41,7 +41,7 @@ def validator(upload_id, **kw):
     if not settings.VALIDATE_ADDONS:
         return None
     log.info('VALIDATING: %s' % upload_id)
-    upload = FileUpload.objects.get(pk=upload_id)
+    upload = FileUpload.objects.using('default').get(pk=upload_id)
     try:
         result = run_validator(upload.path)
         upload.validation = result
