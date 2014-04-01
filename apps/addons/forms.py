@@ -5,6 +5,7 @@ import re
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.db import transaction
 from django.forms.formsets import formset_factory
 
 import commonware.log
@@ -323,6 +324,7 @@ class AddonFormMedia(AddonFormBase):
             destination = os.path.join(dirname, '%s' % addon.id)
 
             remove_icons(destination)
+            transaction.commit()
             devhub_tasks.resize_icon.delay(upload_path, destination,
                                            amo.ADDON_ICON_SIZES,
                                            set_modified_on=[addon])

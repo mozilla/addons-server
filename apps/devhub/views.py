@@ -630,6 +630,7 @@ def upload(request, addon_slug=None, is_standalone=False):
     if request.user.is_authenticated():
         fu.user = request.amo_user
         fu.save()
+    transaction.commit()
     if request.POST.get('app_id') and request.POST.get('version_id'):
         app = get_object_or_404(Application, pk=request.POST['app_id'])
         ver = get_object_or_404(AppVersion, pk=request.POST['version_id'])
