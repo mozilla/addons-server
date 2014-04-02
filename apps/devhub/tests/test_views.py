@@ -232,7 +232,7 @@ class TestDashboard(HubTest):
         d = doc('.item-details .date-created')
         eq_(d.length, 1)
         eq_(d.remove('strong').text(),
-            strip_whitespace(datetime_filter(addon.created, '%b %e, %Y')))
+            datetime_filter(addon.created, '%b %e, %Y'))
 
     def test_sort_updated_filter(self):
         a_pk = self.clone_addon(1)[0]
