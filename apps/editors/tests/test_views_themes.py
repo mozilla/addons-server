@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 
 import mock
+import tower
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -149,8 +150,11 @@ class ThemeReviewTestMixin(object):
                                               footer='')
 
         # Commit.
-        res = self.client.post(reverse('editors.themes.commit'), form_data)
-        self.assert3xx(res, reverse('editors.themes.queue_themes'))
+        # Activate another locale than en-US, and make sure emails to theme
+        # authors are NOT translated, but the message to the review IS.
+        with self.activate(locale='fr'):
+            res = self.client.post(reverse('editors.themes.commit'), form_data)
+            self.assert3xx(res, reverse('editors.themes.queue_themes'))
 
         if self.rereview:
             # Original design of reuploaded themes should stay public.
@@ -253,8 +257,8 @@ class ThemeReviewTestMixin(object):
             eq_(send_mail_jinja_mock.call_args_list[4], expected_calls[4])
 
             eq_(message_mock.call_args_list[0][0][1],
-                '5 theme reviews successfully processed '
-                '(+15 points, 15 total).')
+                u'5 validation de thèmes réalisées avec succès '
+                u'(+15 points, 15 au total).')
 
         # Reviewer points accrual.
         assert ReviewerScore.objects.all()[0].score > 0
