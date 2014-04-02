@@ -1,6 +1,5 @@
 Jinja2==2.7.2
 MarkupSafe==0.18
-MySQL-python==1.2.5
 lxml==2.2.6
 Pillow==2.3.0
 
