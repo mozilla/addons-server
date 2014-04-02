@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:21-0700\n"
-"PO-Revision-Date: 2014-03-31 10:53+0000\n"
+"PO-Revision-Date: 2014-04-02 12:59+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1396263197.0\n"
+"X-POOTLE-MTIME: 1396443543.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -7199,6 +7199,11 @@ msgid ""
 "Just remember that if the other extension's license doesn't allow you to "
 "copy its source, you can't."
 msgstr ""
+"Se você precisar adicionar mais funcionalidades ao painel, existem várias "
+"maneiras de descobrir como adicionar a funcionalidade desejada. Uma das "
+"maneiras mais comuns para aprender a fazer alguma coisa em uma área é olhar "
+"as outras extensões. Mas tenha em mente que se a outra extensão não permite "
+"a copia do código-fonte, você não pode fazê-lo."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -13567,6 +13572,9 @@ msgid ""
 "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and "
 "update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Faça o seu próprio complemento</a>. Nós fornecemos os "
+"serviços de hospedagem e atualização gratuita e podemos te ajudar a atingir "
+"uma grande audiência de usuários."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid ""
@@ -13574,6 +13582,10 @@ msgid ""
 "editor</a>! Our editors are add-on fans with a technical background who "
 "review add-ons for code quality and stability."
 msgstr ""
+"Se você tem experiência de desenvolvimento de complementos, <a href=\"%(url)s"
+"\">tornar-se um editor</a>! Nossos editores são fãs de complementos com uma "
+"formação técnica que permite revisar complementos e comprovar a qualidade do "
+"código e estabilidade."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid ""
@@ -13581,6 +13593,9 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current "
 "bugs."
 msgstr ""
+"Ajude a melhorar este website. É open source, e você pode registrar os erros "
+"e enviar patches. <a href=\"%(url)s\">Bugzilla</a> contém todos os nossos "
+"bugs atuais."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid ""
@@ -13603,6 +13618,9 @@ msgid ""
 "Review add-ons on the site. Add-on authors are more likely to improve their "
 "add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Analise complementos no site. Autores de complementos são mais propensos a "
+"melhorar os seus complementos e escrever novos quando conhecem o que as "
+"pessoas apreciam no seu trabalho."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
@@ -17527,26 +17545,31 @@ msgid ""
 "Registration on AMO is <strong>not required</strong> if you simply want to "
 "download and install public add-ons."
 msgstr ""
+"<strong>Não é necessário</strong> o registro na AMO se você simplesmente "
+"deseja instalar complementos públicos."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Você só precisa se registrar:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Você deseja enviar revisões sobre os complementos"
 
 #: apps/users/templates/users/register.html:20
 msgid ""
 "You want to keep track of your favorite add-on collections or create one "
 "yourself"
 msgstr ""
+"Você quer acompanhar as suas coleções favoritas de complementos ou criar uma "
+"você mesmo"
 
 #: apps/users/templates/users/register.html:21
 msgid ""
 "You are an add-on developer and want to upload your add-on for hosting on "
 "AMO"
 msgstr ""
+"Você é um desenvolvedor e deseja enviar o complemento para hospedagem no AMO"
 
 #: apps/users/templates/users/register.html:24
 msgid ""
@@ -17554,6 +17577,9 @@ msgid ""
 "address you provided. Please follow the instructions there to confirm your "
 "account."
 msgstr ""
+"Após o registo bem sucedido, será enviado um email de confirmação para o "
+"endereço que você forneceu. Por favor, siga as instruções para confirmar sua "
+"conta."
 
 #: apps/users/templates/users/register.html:31
 msgid ""
@@ -17561,6 +17587,9 @@ msgid ""
 "Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy "
 "Policy\">Privacy Policy</a>."
 msgstr ""
+"Se deseja, você pode ler os nossos <a href=\"%(legal)s\" title=\"Legal "
+"Notices\">Avisos Legais</a> e a nossa <a href=\"%(privacy)s\" title=\"Privacy "
+"Policy\">Política de Privacidade</a>"
 
 #: apps/users/templates/users/register.html:42
 #: apps/users/templates/users/register.html:96
@@ -17642,11 +17671,11 @@ msgstr "Usuário desde"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
-msgstr ""
+msgstr "Hora do último acesso"
 
 #: apps/users/templates/users/vcard.html:46
 msgid "IP address of last login"
-msgstr ""
+msgstr "Endereço IP do último acesso"
 
 #: apps/users/templates/users/vcard.html:53
 msgid "Number of add-ons developed"
