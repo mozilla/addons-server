@@ -53,7 +53,13 @@ def test_user_link_xss():
                     display_name='<script>alert(1)</script>', pk=1)
     html = "&lt;script&gt;alert(1)&lt;/script&gt;"
     eq_(user_link(u), '<a href="%s" title="%s">%s</a>' % (u.get_url_path(),
-                                                          u.name, html))
+                                                          html, html))
+
+    u = UserProfile(username='jconnor',
+                    display_name="""xss"'><iframe onload=alert(3)>""", pk=1)
+    html = """xss&#34;&#39;&gt;&lt;iframe onload=alert(3)&gt;"""
+    eq_(user_link(u), '<a href="%s" title="%s">%s</a>' % (u.get_url_path(),
+                                                          html, html))
 
 
 def test_users_list():
