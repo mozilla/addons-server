@@ -14,7 +14,7 @@ def sharing_widget(context, obj, condensed=False):
 
     counts = {}
     for service in services:
-        short = encoding.smart_str(service.shortname)
+        short = str(encoding.smart_str(service.shortname))
         counts[short] = service.count_term(obj.share_counts[short])
 
     c.update({
