@@ -224,7 +224,7 @@ class ThemeReviewTestMixin(object):
             mock.call(
                 'A problem with your Theme submission',
                 'editors/themes/emails/reject.html',
-                {'reason': mock.ANY,
+                {'reason': u'Sexual or pornographic content',
                  'comment': u'reject',
                  'theme': themes[3],
                  'base_url': 'http://testserver'},

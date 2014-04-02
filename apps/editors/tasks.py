@@ -96,9 +96,10 @@ def send_mail(cleaned_data, theme_lock):
             template = 'editors/themes/emails/moreinfo.html'
             context['reviewer_email'] = theme_lock.reviewer.email
 
-    send_mail_jinja(subject, template, context,
-                    recipient_list=emails, from_email=settings.ADDONS_EMAIL,
-                    headers={'Reply-To': settings.THEMES_EMAIL})
+        send_mail_jinja(subject, template, context,
+                        recipient_list=emails,
+                        from_email=settings.ADDONS_EMAIL,
+                        headers={'Reply-To': settings.THEMES_EMAIL})
 
 
 @task
