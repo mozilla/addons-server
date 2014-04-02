@@ -737,7 +737,7 @@ def password_reset_confirm(request, uidb64=None, token=None):
     except (ValueError, UserProfile.DoesNotExist):
         pass
 
-    if user is not None and default_token_generator.check_token(user, token):
+    if user is not None and default_token_generator.check_token(user.user, token):
         validlink = True
         if request.method == 'POST':
             form = forms.SetPasswordForm(user, request.POST)
