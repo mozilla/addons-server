@@ -43,6 +43,11 @@ PACKAGER_PATH = _polite_tmpdir()
 REVIEWER_ATTACHMENTS_PATH = _polite_tmpdir()
 DUMPED_APPS_PATH = _polite_tmpdir()
 
+# Don't call out to persona in tests.
+AUTHENTICATION_BACKENDS = (
+    'users.backends.AmoUserBackend',
+)
+
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
 

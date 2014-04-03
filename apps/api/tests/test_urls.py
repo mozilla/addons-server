@@ -35,7 +35,7 @@ class TestDRFSwitch(TestCase):
         request = self.factory.get(reverse('api.language', args=['1.5']))
         request.APP = Mock(id=1)
         request.user = AnonymousUser()
-        eq_(view(request, api_version=1.5).__module__, 'django.http')
+        eq_(view(request, api_version=1.5).__module__, 'django.http.response')
         piston_response = view(request, api_version=1.5).content
         self.create_switch('drf', db=True)
         eq_(view(request, api_version=1.5).__module__,
