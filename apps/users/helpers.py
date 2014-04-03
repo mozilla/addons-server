@@ -75,7 +75,7 @@ def _user_link(user, max_text_length=None):
         username = user.name[:max_text_length].strip() + '...'
 
     return u'<a href="%s" title="%s">%s</a>' % (
-        user.get_url_path(), user.name,
+        user.get_url_path(), jinja2.escape(user.name),
         jinja2.escape(smart_unicode(username)))
 
 
