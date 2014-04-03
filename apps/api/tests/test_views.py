@@ -930,7 +930,7 @@ class SearchTest(ESTestCase):
     fixtures = ('base/apps', 'base/platforms', 'base/appversion',
                 'base/addon_6113', 'base/addon_40', 'base/addon_3615',
                 'base/addon_6704_grapple', 'base/addon_4664_twitterbar',
-                'base/addon_10423_youtubesearch')
+                'base/addon_10423_youtubesearch', 'base/featured')
 
     no_results = """<searchresults total_results="0">"""
 
@@ -1028,12 +1028,12 @@ class SearchTest(ESTestCase):
 
     def test_total_results(self):
         """
-        The search for firefox should result in 2 total addons, even though we
+        The search for firefox should result in 3 total addons, even though we
         limit (and therefore show) only 1.
         """
         response = self.client.get(
                 "/en-US/firefox/api/1.2/search/firefox/all/1")
-        self.assertContains(response, """<searchresults total_results="2">""")
+        self.assertContains(response, """<searchresults total_results="3">""")
         self.assertContains(response, "</addon>", 1)
 
     def test_compat_mode_url(self):
@@ -1229,6 +1229,17 @@ class SearchTest(ESTestCase):
 
         assert not response.has_header('Access-Control-Allow-Origin')
         assert not response.has_header('Access-Control-Allow-Methods')
+
+    def test_persona_search(self):
+        self.defaults.update(query='lady')
+        # Personas aren't returned in a standard API search.
+        response = self.client.get(self.url % self.defaults)
+        self.assertNotContains(response, 'Lady Gaga')
+
+        # But they are if you specifically ask for Personas (type=9).
+        self.defaults.update(type='9')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Lady Gaga')
 
     def test_suggestions(self):
         response = self.client.get(

@@ -337,9 +337,13 @@ class SearchView(APIView):
         # Opts may get overridden by query string filters.
         opts = {
             'addon_type': addon_type,
-            'platform': platform,
             'version': version,
         }
+        # Specific case for Personas (bug 990768): if we search providing the
+        # Persona addon type (9), don't filter on the platform as Personas
+        # don't have compatible platforms to filter on.
+        if addon_type != '9':
+            opts['platform'] = platform
 
         if self.version < 1.5:
             # Fix doubly encoded query strings.
@@ -368,7 +372,10 @@ class SearchView(APIView):
                                                       params['version'],
                                                       params['platform'],
                                                       compat_mode)
-            if compat_version:
+            # Specific case for Personas (bug 990768): if we search providing
+            # the Persona addon type (9), then don't look for a compatible
+            # version.
+            if compat_version or addon_type == '9':
                 addon.compat_version = compat_version
                 results.append(addon)
                 if len(results) == limit:
