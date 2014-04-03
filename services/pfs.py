@@ -110,7 +110,7 @@ def get_output(data):
                 needsRestart='false',
                 InstallerShowsUI='true',
                 version='13.0.0.182',
-                InstallerHash='sha256:f9a421fcf764f198d3bb428952e3472ae8f69f09fee089b689e44ba77a9f8ef8',
+                InstallerHash='sha256:56dfbc8bb670abe418989707d31e68463f72078e824608e71f96004a86a5ceee',
                 InstallerLocation='http://download.macromedia.com/pub/flashplayer/pdc/fp_pl_pfs_installer.exe')
 
     elif (g['mimetype'] == 'application/x-director' and
