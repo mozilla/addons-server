@@ -122,7 +122,7 @@ csp = 'csp.middleware.CSPMiddleware'
 
 RESPONSYS_ID = private.RESPONSYS_ID
 
-CRONJOB_LOCK_PREFIX = 'addons-olympia-dev'
+CRONJOB_LOCK_PREFIX = 'addons-dev'
 
 BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
 BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-versions/"
@@ -130,7 +130,7 @@ BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-ver
 
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ES_INDEXES = dict((k, '%s_olympia_dev' % v) for k, v in ES_INDEXES.items())
+ES_INDEXES = dict((k, '%s_dev' % v) for k, v in ES_INDEXES.items())
 
 BUILDER_UPGRADE_URL = "https://builder-addons-dev.allizom.org/repackage/rebuild/"
 
