@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:16-0700\n"
-"PO-Revision-Date: 2014-03-04 03:13+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2014-04-04 02:02+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393902785.0\n"
+"X-POOTLE-MTIME: 1396576962.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4186,12 +4186,12 @@ msgstr "查看所有附加组件►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:42
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "为 Australis 创建附加组件"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:63 apps/devhub/templates/devhub/addons/submit/sidebar.html:43
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "赢取 Firefox OS 手机和 Mozilla 礼包！"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -5059,7 +5059,7 @@ msgstr "如果几天后提交流程仍未完成，此附加组件将被自动删
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:23
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>最新版本：</strong><a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5173,7 +5173,7 @@ msgstr "查看相似审核队列的<a href=\"{0}\">等待时间</a>。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:61
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "提交您的作品参加 Australis 附加组件挑战赛"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -8542,11 +8542,11 @@ msgstr "放弃安装"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "为 Firefox 的新外观创建附加组件"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "比赛详情"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -10531,6 +10531,9 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"附加组件由 AMO 编辑审核，他们是帮助 Mozilla 项目的一群优秀开发者，工作是审核附加组件确保 Mozilla "
+"用户获得稳定和安全的体验。与编辑沟通时，请保持礼貌、耐心和尊重，他们认真工作是为了确保您的附加组件能够正常运行并且遵循了<a href=\"%"
+"(url)s\">编辑审核指南</a>中描述的各项要求。"
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -12241,7 +12244,7 @@ msgstr "输入了错误的密码！"
 
 #: apps/users/forms.py:164
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "用户名不能仅包含数字。"
 
 #: apps/users/forms.py:166
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
