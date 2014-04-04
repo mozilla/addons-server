@@ -359,7 +359,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     _get_localepicker = re.compile('^locale browser ([\w\-_]+) (.*)$', re.M)
 
-    @memoize(prefix='localepicker', time=0)
+    @memoize(prefix='localepicker', time=None)
     def get_localepicker(self):
         """
         For a file that is part of a language pack, extract
