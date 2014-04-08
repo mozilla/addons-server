@@ -746,11 +746,9 @@ class TestHome(amo.tests.TestCase):
         self.assertTemplateUsed(r, 'devhub/index.html')
 
     def test_editor_promo(self):
-        raise SkipTest('While Australis contest promo is up, see bug 979731')
         eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 1)
 
     def test_no_editor_promo(self):
-        raise SkipTest('While Australis contest promo is up, see bug 979731')
         Addon.objects.all().delete()
         # Regular users (non-devs) should not see this promo.
         eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 0)
