@@ -1077,6 +1077,11 @@ class TestLogout(UserViewBase):
         r = self.client.get(url, follow=True)
         self.assertRedirects(r, '/en-US/about', status_code=302)
 
+    def test_session_cookie_should_be_http_only(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        r = self.client.get(reverse('users.logout'))
+        self.assertIn('httponly', str(r.cookies[settings.SESSION_COOKIE_NAME]))
+
 
 class TestRegistration(UserViewBase):
 
