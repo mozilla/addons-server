@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2014-03-26 20:49+0000\n"
+"PO-Revision-Date: 2014-04-09 18:44+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395866996.0\n"
+"X-POOTLE-MTIME: 1397069069.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3856,7 +3856,10 @@ msgstr "Voer uw initiële versienummer is. Afhankelijk van het aantal releases e
 
 #: apps/devhub/forms.py:717
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
-msgstr "Elke add-on vereist een unieke ID in de vorm van een UUID of een e-mailadres, zoals addon-naam@ontwikkelaar.com. Het e-mailadres hoeft niet geldig te zijn."
+msgstr ""
+"Elke add-on vereist een uniek kenmerk in de vorm van een UUID of een "
+"e-mailadres, zoals addon-naam@ontwikkelaar.com. Het e-mailadres hoeft niet "
+"geldig te zijn."
 
 #: apps/devhub/forms.py:722
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
@@ -4259,15 +4262,17 @@ msgstr "Alle add-ons bekijken ►"
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO-beoordelaars"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Neem een voorsprong! Word vandaag nog AMO-beoordelaar en krijg uw add-ons "
+"sneller beoordeeld."
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Een AMO-beoordelaar worden"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
@@ -5273,11 +5278,12 @@ msgstr "Bekijk bij benadering de <a href=\"{0}\">wachttijd</a> in de beoordeling
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "Sluit vooraan aan in de beoordelingswachtrij!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Word vandaag nog een AMO-beoordelaar en krijg uw add-ons sneller beoordeeld."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -7835,11 +7841,13 @@ msgstr "Nu uw thema indienen"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "U hebt deze add-on uitgeschakeld"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
 msgstr ""
+"Uw add-on is uitgeschakeld en wordt niet weergegeven in onze galerij of "
+"updateservice."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -7847,7 +7855,7 @@ msgstr "Voltooi uw add-on."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:28
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "U ontvangt een e-mailbericht als de beoordeling is afgerond."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:33 apps/devhub/templates/devhub/includes/addon_details.html:40
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
@@ -7876,39 +7884,46 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
 msgstr ""
+"Alle add-ons in onze galerij dienen nu door een editor te worden beoordeeld. "
+"Als u uw add-on nog steeds wilt laten hosten, klik dan om een "
+"beoordelingsproces te selecteren."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
-msgstr ""
+msgstr "Huidige versie:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
+"Dit is de versie van de add-on die wordt geïnstalleerd als iemand op "
+"addons.mozilla.org op de knop Installeren klikt."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 msgid "Created:"
-msgstr ""
+msgstr "Gemaakt:"
 
 #. {0} is a date.
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%e %b %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
-msgstr ""
+msgstr "Laatst bijgewerkt:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
 msgid "Next Version:"
-msgstr ""
+msgstr "Volgende versie:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
+"Dit is de laatste geüploade versie, maar deze is nog niet live op de "
+"website."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Wachtrijen worden niet op strikte volgorde beoordeeld"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -7948,7 +7963,7 @@ msgstr "Door uw gebruikers te vertellen wat er aan zit te komen geeft u ze iets 
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:22
 msgid "View All"
-msgstr ""
+msgstr "Alles bekijken"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:34
 msgid "Enable Add-on"
@@ -8486,8 +8501,8 @@ msgstr "Versie {0}"
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} bestand"
+msgstr[1] "{0} bestanden"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -8495,7 +8510,7 @@ msgstr "0 bestanden"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Positie in wachtrij: %(pos)s van %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -8525,7 +8540,7 @@ msgstr "Beoordelingsverzoek annuleren"
 
 #: apps/devhub/templates/devhub/versions/list.html:106
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Momenteel op AMO"
 
 #: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
@@ -8545,11 +8560,11 @@ msgstr "Prestaties"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Volgende versie van deze add-on"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
-msgstr ""
+msgstr "Oudere versies"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
