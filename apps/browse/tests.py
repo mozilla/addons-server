@@ -269,6 +269,14 @@ class TestListing(amo.tests.TestCase):
                 '%s weekly download%s' % (numberfmt(adu),
                                           's' if adu != 1 else ''))
 
+    def test_seeall_link_should_have_a_sort(self):
+        category = Category.objects.get(pk=1)
+        url = reverse('browse.extensions', kwargs={'category': category.slug})
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, "browse/impala/category_landing.html")
+        doc = pq(response.content)
+        assert "sort=popular" in doc('.seeall a').attr('href')
+
 
 class TestLanguageTools(amo.tests.TestCase):
     fixtures = ['browse/test_views']
