@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2014-01-31 09:29+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2014-04-09 17:52+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391160553.0\n"
+"X-POOTLE-MTIME: 1397065954.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -219,7 +219,7 @@ msgstr "Zobrazit zásady ochrany soukromí"
 #: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:124 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Zobrazit Licenční smlouvu pro koncové uživatele"
 
 #: apps/addons/templates/addons/button.html:92 apps/addons/templates/addons/impala/button.html:54
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -1692,7 +1692,7 @@ msgstr "Autorům byl zaslán e-mail ohledně kompatibility s verzí {version}."
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-mail autorovi o kompatibilitě doplňku byl odeslán."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -2168,7 +2168,7 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Popište svou sbírku (odkazy nejsou povoleny)."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2180,7 +2180,7 @@ msgstr "Ikona"
 
 #: apps/bandwagon/forms.py:152 apps/users/forms.py:340
 msgid "No links are allowed."
-msgstr ""
+msgstr "Odkazy nejsou povoleny."
 
 #: apps/bandwagon/forms.py:164
 msgid "This url is already in use by another collection"
@@ -3754,11 +3754,11 @@ msgstr "Pokud zvolíte vlastní licenci, musíte zadat její text."
 
 #: apps/devhub/forms.py:209
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Tento doplněk má Licenční smlouvu pro koncové uživatele."
 
 #: apps/devhub/forms.py:211
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Vyplňte prosím Licenční smlouvu pro koncové uživatele vašeho doplňku:"
 
 #: apps/devhub/forms.py:214
 msgid "This add-on has a Privacy Policy"
@@ -4170,13 +4170,17 @@ msgstr "Add-on SDK"
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr ""
+msgstr "<strong>Add-on SDK:</strong> Vytvářejte doplňky snadno a rychle"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"Add-on SDK poskytuje výkonné API, které umožňuje vývojářům vytvářet doplňky "
+"pro Firefox za pomoci HTML, CSS a JavaScriptu. Jakmile budete mít svůj "
+"doplněk hotový, můžete jej snadno sdílet s více než 400 miliony uživatelů "
+"Firefoxu po celém světě."
 
 #: apps/devhub/templates/devhub/builder.html:32
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4301,6 +4305,11 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"Doplňky umožňují milionům uživatelů Firefoxu vylepšovat a upravovat svůj "
+"prohlížeč a tím i zážitek z jeho používání. Pokud jste webový vývojář a "
+"znáte HTML, JavaScript a CSS, znáte vše potřebné pro to, abyste mohli začít "
+"vytvářet skvělé doplňky pomocí Add-on SDK. A navíc, doplňky vytvořené pomoci "
+"SDK nepotřebují při instalaci restart prohlížeče."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -5181,7 +5190,7 @@ msgstr "Pokud nebude proces přidání doplňku dokončen během několika dní,
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Nejnovější verze:</strong><a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5624,6 +5633,11 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
+"Pokud váš doplněk potřebuje více funkcí než vám předpřipravený prázdný "
+"postranní panel nabízí, je zde několik způsobů, jak požadované funkce "
+"přidat. Nejčastější cestou, jak se to naučit, je podívat se na ostatní "
+"doplňky, jak podobné věci dělají. Nezapomínejte však, že pokud to licence "
+"daného doplňku nepovoluje, nesmíte kopírovat jeho zdrojový kód."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -7870,15 +7884,17 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
-msgstr ""
+msgstr "Naposledy aktualizován:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
 msgid "Next Version:"
-msgstr ""
+msgstr "Příští verze:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
+"Toto je nejnovější nahraná veze, nicméně zatím nebyla na stránkách "
+"uveřejněna."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
@@ -7922,7 +7938,7 @@ msgstr "Řekněte svým uživatelům, co se v brzké době chystá a na co se mo
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:22
 msgid "View All"
-msgstr ""
+msgstr "Zobrazit vše"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:34
 msgid "Enable Add-on"
@@ -8460,9 +8476,9 @@ msgstr "Verze {0}"
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} soubor"
+msgstr[1] "{0} soubory"
+msgstr[2] "{0} souborů"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -8501,7 +8517,7 @@ msgstr "Zrušit žádost o kontrolu"
 
 #: apps/devhub/templates/devhub/versions/list.html:106
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Aktuálně na AMO"
 
 #: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
@@ -8521,7 +8537,7 @@ msgstr "Výkon"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Příští verze tohoto doplňku"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
@@ -12646,7 +12662,7 @@ msgstr "Vloženo chybné heslo!"
 
 #: apps/users/forms.py:164
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Uživatelské jméno nesmí obsahovat pouze číslice."
 
 #: apps/users/forms.py:166
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
@@ -12703,11 +12719,11 @@ msgstr ""
 
 #: apps/users/models.py:66
 msgid "salt"
-msgstr ""
+msgstr "salt"
 
 #: apps/users/models.py:67
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: apps/users/models.py:125
 msgid "No user with that email."
@@ -13025,7 +13041,7 @@ msgstr "Poskytněte o sobě více informací. Všechna tato pole jsou volitelná
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Tato URL bude viditelná pouze pokud jste vývojář."
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
@@ -13041,7 +13057,7 @@ msgstr "Pokud chcete, představte se komunitě! Tento text bude zobrazen veřejn
 
 #: apps/users/templates/users/edit.html:141
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Povolené HTML: {0}. Odkazy nejsou povoleny."
 
 #: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
