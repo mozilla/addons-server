@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-26 09:16-0700\n"
+"POT-Creation-Date: 2014-04-09 09:16-0700\n"
 "PO-Revision-Date: 2014-03-31 12:07+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -174,11 +174,8 @@ msgstr "Installazione non riuscita. Riprovare più tardi."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-"È fallito il processo di validazione dell’app con {0} errore e {1} "
-"messaggio."
-msgstr[1] ""
-"È fallito il processo di validazione dell’app con {0} errori e {1} messaggi."
+msgstr[0] "È fallito il processo di validazione dell’app con {0} errore e {1} messaggio."
+msgstr[1] "È fallito il processo di validazione dell’app con {0} errori e {1} messaggi."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -190,7 +187,7 @@ msgstr[1] "L’app ha superato i controlli senza errori e con {0} messaggi."
 msgid "Your app passed validation with no errors or messages."
 msgstr "L’app ha superato i controlli senza errori e senza avvisi."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
 msgid "Changes Saved"
 msgstr "Modifiche salvate"
 
@@ -202,19 +199,19 @@ msgstr "Inserisci un indirizzo email per un nuovo membro del team di sviluppo"
 msgid "Refreshed"
 msgstr "Ricaricata"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
 msgid "There was an error uploading your file."
 msgstr "Si è verificato un errore durante il caricamento del file."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
 msgid "Learn more"
 msgstr "Ulteriori informazioni"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
 msgid "Example"
 msgstr "Esempio"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
 msgid "Image changes being processed"
 msgstr "Elaborazione in corso delle modifiche alle immagini"
 
@@ -339,13 +336,8 @@ msgstr "Rilevati: {0}"
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
-"Importante: cancellando il conto pagamenti \"{0}\" l’app ad esso associata "
-"passerà a uno stato incompleto e non sarà più disponibile per la vendita:"
-msgstr[1] ""
-"Importante: cancellando il conto pagamenti \"{0}\" le app ad esso associate "
-"passeranno a uno stato incompleto e non saranno più disponibile per la "
-"vendita:"
+msgstr[0] "Importante: cancellando il conto pagamenti \"{0}\" l’app ad esso associata passerà a uno stato incompleto e non sarà più disponibile per la vendita:"
+msgstr[1] "Importante: cancellando il conto pagamenti \"{0}\" le app ad esso associate passeranno a uno stato incompleto e non saranno più disponibile per la vendita:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -475,7 +467,7 @@ msgstr "Note per i revisori"
 msgid "No version notes found"
 msgstr "Note di versione non disponibili"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Selezionare un’applicazione"
 
@@ -549,14 +541,11 @@ msgstr "App rifiutata: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr ""
-"Si è verificato un errore durante il processo di approvazione dell’app: "
-"{app}"
+msgstr "Si è verificato un errore durante il processo di approvazione dell’app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr ""
-"Si è verificato un errore durante il processo di rifiuto dell’app: {app}"
+msgstr "Si è verificato un errore durante il processo di rifiuto dell’app: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
@@ -1176,12 +1165,8 @@ msgstr "Altro"
 #: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"Imposta la maxversion del componente aggiuntivo {0} a {1} e invia email "
-"all’autore."
-msgstr[1] ""
-"Imposta la maxversion dei componenti aggiuntivi {0} a {1} e invia email agli "
-"autori."
+msgstr[0] "Imposta la maxversion del componente aggiuntivo {0} a {1} e invia email all’autore."
+msgstr[1] "Imposta la maxversion dei componenti aggiuntivi {0} a {1} e invia email agli autori."
 
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
@@ -1344,35 +1329,35 @@ msgstr "Installa app"
 msgid "Your browser does not support the video tag"
 msgstr "Il browser in uso non supporta il tag video"
 
-#: media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub.js:513
 msgid "Enter a new author's email address"
 msgstr "Inserire l’indirizzo email di un nuovo autore"
 
-#: media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub.js:803
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} file"
 msgstr[1] "{files} file"
 
-#: media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub.js:806
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} recensione"
 msgstr[1] "{reviews} recensioni"
 
-#: media/js/zamboni/devhub.js:1466
+#: media/js/zamboni/devhub.js:1476
 msgid "Starting tests..."
 msgstr "Inizio test…"
 
-#: media/js/zamboni/devhub.js:1473
+#: media/js/zamboni/devhub.js:1483
 msgid "Waiting for test results..."
 msgstr "In attesa dei risultati…"
 
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
 msgid "Internal Server Error"
 msgstr "Errore interno del server"
 
-#: media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub.js:1525
 msgid "Must be a valid e-mail address."
 msgstr "L’indirizzo email deve essere valido."
 

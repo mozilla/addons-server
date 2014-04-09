@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-26 09:16-0700\n"
+"POT-Creation-Date: 2014-04-09 09:16-0700\n"
 "PO-Revision-Date: 2013-09-24 12:31+0000\n"
 "Last-Translator: Milos <mdinic@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -194,7 +194,7 @@ msgstr[2] "Ваша апликацијa је прошла проверу без 
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ваша апликацијa је прошла проверу без грешака или порука."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
 msgid "Changes Saved"
 msgstr "Измене сачуване"
 
@@ -206,19 +206,19 @@ msgstr "Унесите адресу е-поште новог члана тима
 msgid "Refreshed"
 msgstr "Освежено"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
 msgid "There was an error uploading your file."
 msgstr "Дошло је до грешке приликом отпремања Ваше датотеке."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
 msgid "Learn more"
 msgstr "Сазнајте више"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
 msgid "Image changes being processed"
 msgstr "Измене на слици се обрађују"
 
@@ -478,7 +478,7 @@ msgstr "Белешке за рецензенте"
 msgid "No version notes found"
 msgstr "Није нађена ни једна белешка о верзији"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Прво изаберите апликацију"
 
@@ -1339,37 +1339,37 @@ msgstr "Инсталирај апликацију"
 msgid "Your browser does not support the video tag"
 msgstr "Ваш прегледач не подржава ознаке видео снимака"
 
-#: media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub.js:513
 msgid "Enter a new author's email address"
 msgstr "Унесите адресу е-поште новог аутора"
 
-#: media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub.js:803
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} датотека"
 msgstr[1] "{files} датотеке"
 msgstr[2] "{files} датотека"
 
-#: media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub.js:806
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} рецензија"
 msgstr[1] "{reviews} рецензије"
 msgstr[2] "{reviews} рецензија"
 
-#: media/js/zamboni/devhub.js:1466
+#: media/js/zamboni/devhub.js:1476
 msgid "Starting tests..."
 msgstr "Покрећем тестова..."
 
-#: media/js/zamboni/devhub.js:1473
+#: media/js/zamboni/devhub.js:1483
 msgid "Waiting for test results..."
 msgstr "Чекам резултате тестова..."
 
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
 msgid "Internal Server Error"
 msgstr "Серверска грешка"
 
-#: media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub.js:1525
 msgid "Must be a valid e-mail address."
 msgstr "Адреса е-поште мора бити исправна."
 

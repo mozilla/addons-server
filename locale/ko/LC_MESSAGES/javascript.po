@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-26 09:16-0700\n"
+"POT-Creation-Date: 2014-04-09 09:16-0700\n"
 "PO-Revision-Date: 2013-12-01 22:48+0000\n"
 "Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,7 +178,7 @@ msgstr[0] "앱이 오류 없이 메시지 {0}개와 함께 유효성 검사를 �
 msgid "Your app passed validation with no errors or messages."
 msgstr "앱이 아무런 오류나 메시지 없이 유효성 검사를 통과했습니다."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
@@ -190,19 +190,19 @@ msgstr "새 팀 멤버의 이메일 주소를 입력하세요"
 msgid "Refreshed"
 msgstr "새로고침 완료"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
 msgid "Example"
 msgstr "예"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
@@ -454,7 +454,7 @@ msgstr "심사자의 메모"
 msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
 
@@ -1311,33 +1311,33 @@ msgstr "앱 설치"
 msgid "Your browser does not support the video tag"
 msgstr "이 웹 브라우저는 비디오 태그를 지원하지 않습니다"
 
-#: media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub.js:513
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
-#: media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub.js:803
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "파일 {files}개"
 
-#: media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub.js:806
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "평가 {reviews}개"
 
-#: media/js/zamboni/devhub.js:1466
+#: media/js/zamboni/devhub.js:1476
 msgid "Starting tests..."
 msgstr "시험 시작..."
 
-#: media/js/zamboni/devhub.js:1473
+#: media/js/zamboni/devhub.js:1483
 msgid "Waiting for test results..."
 msgstr "시험 결과 산출 대기중..."
 
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
 msgid "Internal Server Error"
 msgstr "내부 서버 오류 발생"
 
-#: media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub.js:1525
 msgid "Must be a valid e-mail address."
 msgstr "올바른 이메일 주소를 입력해야 합니다."
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-26 09:16-0700\n"
+"POT-Creation-Date: 2014-04-09 09:16-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -208,7 +208,7 @@ msgstr[4] ""
 msgid "Your app passed validation with no errors or messages."
 msgstr ""
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
 msgid "Changes Saved"
 msgstr "Sábháladh na hAthruithe"
 
@@ -220,19 +220,19 @@ msgstr "Cuir seoladh ríomhphoist an bhaill nua isteach"
 msgid "Refreshed"
 msgstr "Athnuaite"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
 msgid "There was an error uploading your file."
 msgstr "Tharla earráid agus do chomhad á uasluchtú."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
 msgid "Learn more"
 msgstr "Tuilleadh eolais"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
 msgid "Example"
 msgstr "Sampla"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
 msgid "Image changes being processed"
 msgstr ""
 
@@ -500,7 +500,7 @@ msgstr ""
 msgid "No version notes found"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Roghnaigh feidhmchlár i dtosach báire"
 
@@ -1365,11 +1365,11 @@ msgstr "Suiteáil an Aip"
 msgid "Your browser does not support the video tag"
 msgstr "Ní thacaíonn do bhrabhsálaí leis an gclib 'video'"
 
-#: media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub.js:513
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub.js:803
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} chomhad"
@@ -1378,7 +1378,7 @@ msgstr[2] "{files} chomhad"
 msgstr[3] "{files} gcomhad"
 msgstr[4] "{files} comhad"
 
-#: media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub.js:806
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} léirmheas"
@@ -1387,19 +1387,19 @@ msgstr[2] "{reviews} léirmheas"
 msgstr[3] "{reviews} léirmheas"
 msgstr[4] "{reviews} léirmheas"
 
-#: media/js/zamboni/devhub.js:1466
+#: media/js/zamboni/devhub.js:1476
 msgid "Starting tests..."
 msgstr "Tástálacha á dtosú..."
 
-#: media/js/zamboni/devhub.js:1473
+#: media/js/zamboni/devhub.js:1483
 msgid "Waiting for test results..."
 msgstr "Ag fanacht leis na torthaí..."
 
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
 msgid "Internal Server Error"
 msgstr ""
 
-#: media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub.js:1525
 msgid "Must be a valid e-mail address."
 msgstr ""
 
