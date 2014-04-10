@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Translate Toolkit 1.9.0\n"
 "X-POOTLE-MTIME: 1393464279.0\n"
 
 #: media/js/common/ratingwidget.js:31
@@ -19,11 +19,14 @@ msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} 顆星"
 
-#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-addon.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "連線到伺服器時發生問題。"
 
-#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
+#: media/js/common/upload-addon.js:52
+#: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
 msgstr "選擇一個檔案..."
 
@@ -32,24 +35,29 @@ msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "您的附加元件應該以 .xpi、.jar 或 .xml 為副檔名"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
+#: media/js/common/upload-addon.js:87
+#: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
 msgstr "已完成 {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
+#: media/js/common/upload-addon.js:90
+#: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
+#: media/js/common/upload-addon.js:120
+#: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "取消"
 
-#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
+#: media/js/common/upload-addon.js:142
+#: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
 msgstr "正在上傳 {0}"
 
-#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
+#: media/js/common/upload-addon.js:169
+#: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
 msgstr "{0} 發生錯誤"
 
@@ -58,30 +66,39 @@ msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "您的附加元件未通過驗證，有 {0} 個錯誤。"
 
-#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-addon.js:188
+#: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;還有 {0} 個"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-addon.js:202
+#: media/js/common/upload-addon.js:329
+#: media/js/common/upload-packaged-app.js:197
+#: media/js/common/upload-packaged-app.js:323
+#: media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
 msgid "See full validation report"
 msgstr "檢視完整的驗證報告"
 
-#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-addon.js:214
+#: media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
 msgstr "{0} 驗證中"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252
+#: media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "從伺服器收到一個空白的回覆; 狀態:{0}"
 
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263
+#: media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "在驗證時發生了不可預見的伺服器錯誤。"
 
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301
+#: media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "已完成驗證 {0}"
 
@@ -108,7 +125,8 @@ msgstr "無法辨識您上傳的檔案格式。"
 msgid "You cancelled the upload."
 msgstr "您已經取消上傳了。"
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
+#: media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "圖片必須是 PNG 或 JPG 格式。"
 
@@ -120,7 +138,9 @@ msgstr "影片必須為 WebM 格式。"
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "您已封裝的應用程式之副檔名應為<code>.zip</code>。"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:181
+#: media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "您的應用程式沒有通過驗證，有 {0} 個錯誤。"
@@ -138,15 +158,18 @@ msgstr "您的應用程式通過驗證，沒有錯誤或警告。"
 msgid "The manifest could not be found at the given location."
 msgstr "無法於所指定的位置找到安裝資訊檔。"
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
+#: media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr "無法連絡應用程式主機。"
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
+#: media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr "無法剖析應用程式資訊檔。"
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
+#: media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr "無效的應用程式資訊檔。"
 
@@ -162,7 +185,8 @@ msgstr "伺服器內部錯誤。"
 msgid "Internal server error on app installation."
 msgstr "安裝應用程式時發生伺服器內部錯誤。"
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
+#: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr "安裝失敗。請稍後再試一次。"
 
@@ -171,16 +195,19 @@ msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "您的應用程式驗證失敗，有 {0} 筆錯誤與 {1} 筆訊息。"
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200
+#: media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "您的應用程式通過驗證，沒有錯誤與 {0} 個訊息。"
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205
+#: media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "您的應用程式通過驗證，沒有錯誤或訊息。"
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
+#: media/js/devreg/devhub.js:419
+#: media/js/zamboni/devhub.js:497
 msgid "Changes Saved"
 msgstr "修改已儲存"
 
@@ -192,19 +219,23 @@ msgstr "請輸入新成員的電子郵件信箱地址"
 msgid "Refreshed"
 msgstr "已重新整理"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
+#: media/js/devreg/devhub.js:616
+#: media/js/zamboni/devhub.js:660
 msgid "There was an error uploading your file."
 msgstr "上傳您的檔案時發生錯誤。"
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
+#: media/js/devreg/devhub.js:886
+#: media/js/zamboni/devhub.js:935
 msgid "Learn more"
 msgstr "了解詳情"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
+#: media/js/devreg/devhub.js:890
+#: media/js/zamboni/devhub.js:939
 msgid "Example"
 msgstr "範例"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
+#: media/js/devreg/devhub.js:1192
+#: media/js/zamboni/devhub.js:1295
 msgid "Image changes being processed"
 msgstr "正在處理圖片更改"
 
@@ -220,16 +251,22 @@ msgstr "或者透過 <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>。"
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+#: media/js/devreg/init.js:35
+#: media/js/zamboni/init.js:32
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
 msgstr "我們正在維護網站，這個功能暫時無法使用。請您稍後再試。"
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
+#: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "移除此語系"
 
 #: media/js/devreg/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
 msgstr "Persona 登入失敗。或許您並沒有使用此電子郵件地址作為帳號?"
 
 #: media/js/devreg/login.js:78
@@ -327,16 +364,29 @@ msgstr "偵測到: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:24
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
+msgid ""
+"Warning: deleting payment account \"{0}\" will move that associated app to an "
+"incomplete status and it will no longer be available for sale:"
+msgid_plural ""
+"Warning: deleting payment account \"{0}\" will move those associated apps to "
+"an incomplete status and they will no longer be available for sale:"
 msgstr[0] "警告: 刪除付款帳號「{0}」將會使下列已關聯的應用程式進入未完成狀態，並將會被下架:"
 
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/payments-manage.js:58
+#: media/js/devreg/payments-manage.js:107
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/zamboni/validator.js:194
+#: media/js/zamboni/validator.js:449
+#: media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "錯誤"
 
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
+#: media/js/devreg/payments-manage.js:59
+#: media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
 msgstr "與付款伺服器連線時發生錯誤。"
 
@@ -348,15 +398,18 @@ msgstr "驗證錯誤"
 msgid "You do not currently have any payment accounts."
 msgstr "你目前沒有任何付款帳號。"
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
+#: media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr "搜尋符合<b>{0}</b>的佈景主題"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
+#: media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr "搜尋含有 <b>{0}</b>的應用程式"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
+#: media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "搜尋含有 <b>{0}</b> 的附加元件"
 
@@ -366,49 +419,64 @@ msgid "{0} character left."
 msgid_plural "{0} characters left."
 msgstr[0] "還可以再輸入 {0} 個字元。"
 
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71
+#: media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
 msgstr "成功通過所有的測試。"
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
+#: media/js/zamboni/validator.js:74
+#: media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr "這些測試沒有執行。"
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
+#: media/js/zamboni/validator.js:120
+#: media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "測試"
 
-#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:192
+#: media/js/zamboni/validator.js:195
 msgid "Warning"
 msgstr "警告"
 
-#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:279
+#: media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
 msgstr "相容性測試"
 
-#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:327
+#: media/js/zamboni/validator.js:331
 msgid "App failed validation."
 msgstr "應用程式驗證失敗。"
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:329
+#: media/js/zamboni/validator.js:333
 msgid "App passed validation."
 msgstr "應用程式通過驗證。"
 
-#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:359
+#: media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 個錯誤"
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:361
+#: media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:439
+#: media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
 msgstr "驗證工作無法完成或是完成時發生錯誤"
 
-#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:457
+#: media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "伺服器內部錯誤"
 
@@ -424,43 +492,55 @@ msgstr "已購買"
 msgid "Launch"
 msgstr "啟動"
 
-#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
+#: media/js/devreg/reviewers/editors.js:141
+#: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
 msgstr "{name} 最先檢視此頁面。"
 
-#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
+#: media/js/devreg/reviewers/editors.js:191
+#: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
 msgstr "應用程式已檢查收據。"
 
-#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
+#: media/js/devreg/reviewers/editors.js:193
+#: media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
 msgstr "應用程式未檢查收據。"
 
-#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
+#: media/js/devreg/reviewers/editors.js:264
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{name} 先檢視了這個附加元件。"
 
-#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
+#: media/js/devreg/reviewers/editors.js:275
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "載入中&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
+#: media/js/devreg/reviewers/editors.js:280
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "版本資訊"
 
-#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
+#: media/js/devreg/reviewers/editors.js:285
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "給審查者的筆記"
 
-#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
+#: media/js/devreg/reviewers/editors.js:290
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "找不到版本紀錄"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315
+#: media/js/zamboni/admin_validation.js:24
+#: media/js/zamboni/devhub.js:1448
+#: media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "請先選擇一份申請書"
 
-#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
+#: media/js/devreg/reviewers/editors.js:379
+#: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
 msgstr "讀取翻譯錯誤"
 
@@ -541,27 +621,33 @@ msgstr "拒絕錯誤應用程式：{app}"
 msgid "By {0} on {1}"
 msgstr "由 {0} 於 {1}"
 
-#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
+#: media/js/devreg/reviewers/themes_review.js:174
+#: media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
 msgstr "已要求資訊"
 
-#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
+#: media/js/devreg/reviewers/themes_review.js:175
+#: media/js/zamboni/themes_review.js:177
 msgid "Flagged"
 msgstr "已標記"
 
-#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
+#: media/js/devreg/reviewers/themes_review.js:176
+#: media/js/zamboni/themes_review.js:178
 msgid "Duplicate"
 msgstr "重複"
 
-#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
+#: media/js/devreg/reviewers/themes_review.js:177
+#: media/js/zamboni/themes_review.js:179
 msgid "Rejected"
 msgstr "已拒絕"
 
-#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
+#: media/js/devreg/reviewers/themes_review.js:178
+#: media/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr "已核准"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10
+#: media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
 msgstr "追蹤這個收藏集"
 
@@ -574,7 +660,8 @@ msgid "Following"
 msgstr "訂閱中"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:17
+#: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "這個佈景主題與您所使用的 {0} 版本不相容"
 
@@ -610,15 +697,18 @@ msgstr "Creative Commons 姓名標示-相同方式分享 3.0"
 msgid "Your Theme's Name"
 msgstr "您的佈景主題名稱"
 
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23
+#: media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "評論已被標記"
 
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40
+#: media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "必填"
 
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133
+#: media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "標示刪除"
 
@@ -626,7 +716,8 @@ msgstr "標示刪除"
 msgid "Updating results&hellip;"
 msgstr "正在更新搜尋結果&hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
+#: media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
 msgstr "分類"
 
@@ -670,11 +761,15 @@ msgstr "{0} 筆退費"
 msgid "{0} installs"
 msgstr "{0} 個安裝數"
 
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
+#: media/js/impala/stats/chart.js:369
+#: media/js/impala/stats/csv_keys.js:3
+#: media/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
 msgstr "下載數"
 
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
+#: media/js/impala/stats/chart.js:379
+#: media/js/impala/stats/csv_keys.js:6
+#: media/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
 msgstr "每日使用者"
 
@@ -682,7 +777,8 @@ msgstr "每日使用者"
 msgid "Amount, in USD"
 msgstr "金額，以美元計價"
 
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97
+#: media/js/impala/stats/chart.js:421
+#: media/js/impala/stats/csv_keys.js:97
 msgid "Number of Contributions"
 msgstr "捐款次數"
 
@@ -731,11 +827,13 @@ msgstr "訂閱者"
 msgid "Ratings"
 msgstr "評分"
 
-#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107
+#: media/js/impala/stats/csv_keys.js:36
+#: media/js/impala/stats/csv_keys.js:107
 msgid "Sales"
 msgstr "銷售"
 
-#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106
+#: media/js/impala/stats/csv_keys.js:39
+#: media/js/impala/stats/csv_keys.js:106
 msgid "Installs"
 msgstr "安裝數"
 
@@ -751,15 +849,19 @@ msgstr "附加元件管理員"
 msgid "Search Results"
 msgstr "搜尋結果"
 
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47
+#: media/js/impala/stats/csv_keys.js:45
+#: media/js/impala/stats/csv_keys.js:46
+#: media/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
 msgstr "首頁促銷"
 
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49
+#: media/js/impala/stats/csv_keys.js:48
+#: media/js/impala/stats/csv_keys.js:49
 msgid "Homepage Featured"
 msgstr "首頁精選"
 
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
+#: media/js/impala/stats/csv_keys.js:50
+#: media/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
 msgstr "首頁嶄露頭角"
 
@@ -767,11 +869,13 @@ msgstr "首頁嶄露頭角"
 msgid "Homepage Most Popular"
 msgstr "首頁最熱門"
 
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55
+#: media/js/impala/stats/csv_keys.js:53
+#: media/js/impala/stats/csv_keys.js:55
 msgid "Detail Page"
 msgstr "詳細資訊頁面"
 
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56
+#: media/js/impala/stats/csv_keys.js:54
+#: media/js/impala/stats/csv_keys.js:56
 msgid "Detail Page (bottom)"
 msgstr "詳細資訊頁面 (底端)"
 
@@ -779,19 +883,24 @@ msgstr "詳細資訊頁面 (底端)"
 msgid "Detail Page (Development Channel)"
 msgstr "詳細資訊頁面 (開發頻道)"
 
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
+#: media/js/impala/stats/csv_keys.js:58
+#: media/js/impala/stats/csv_keys.js:59
+#: media/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
 msgstr "常與以下元件混用"
 
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62
+#: media/js/impala/stats/csv_keys.js:61
+#: media/js/impala/stats/csv_keys.js:62
 msgid "Others By Author"
 msgstr "由我建立的元件"
 
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64
+#: media/js/impala/stats/csv_keys.js:63
+#: media/js/impala/stats/csv_keys.js:64
 msgid "Dependencies"
 msgstr "相依性"
 
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66
+#: media/js/impala/stats/csv_keys.js:65
+#: media/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
 msgstr "付費升級"
 
@@ -807,51 +916,63 @@ msgstr "類別頁面"
 msgid "Collections"
 msgstr "收藏集"
 
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72
+#: media/js/impala/stats/csv_keys.js:71
+#: media/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
 msgstr "分類 Landing 精選旋轉木馬"
 
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74
+#: media/js/impala/stats/csv_keys.js:73
+#: media/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
 msgstr "分類 Landing 評分最高"
 
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76
+#: media/js/impala/stats/csv_keys.js:75
+#: media/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
 msgstr "分類 Landing 最熱門"
 
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78
+#: media/js/impala/stats/csv_keys.js:77
+#: media/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
 msgstr "分類 Landing 最近新增"
 
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80
+#: media/js/impala/stats/csv_keys.js:79
+#: media/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
 msgstr "瀏覽頁面精選類別"
 
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82
+#: media/js/impala/stats/csv_keys.js:81
+#: media/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
 msgstr "瀏覽頁面使用者類別"
 
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84
+#: media/js/impala/stats/csv_keys.js:83
+#: media/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
 msgstr "瀏覽頁面評分類別"
 
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86
+#: media/js/impala/stats/csv_keys.js:85
+#: media/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
 msgstr "瀏覽頁面 Created 類別"
 
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88
+#: media/js/impala/stats/csv_keys.js:87
+#: media/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
 msgstr "瀏覽頁面名稱類別"
 
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90
+#: media/js/impala/stats/csv_keys.js:89
+#: media/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
 msgstr "瀏覽頁面熱門類別"
 
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92
+#: media/js/impala/stats/csv_keys.js:91
+#: media/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
 msgstr "瀏覽頁面已更新類別"
 
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94
+#: media/js/impala/stats/csv_keys.js:93
+#: media/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
 msgstr "瀏覽頁面嶄露頭角類別"
 
@@ -1127,7 +1248,8 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "最近 {1} 天有 <b>{0}</b> 個"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269
+#: media/js/impala/stats/csv_keys.js:263
+#: media/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "從 {1} 至 {2} 的 <b>{0}</b>"
 
@@ -1179,7 +1301,9 @@ msgid "Admins and editors must provide a password to log in."
 msgstr "管理員與審查者必須輸入密碼才能登入。"
 
 #: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
 msgstr "BrowserID 登入失敗。或許您並沒有使用該電子郵件帳號來註冊帳號?"
 
 #. L10n: {0} is an app name like Firefox.
@@ -1204,7 +1328,8 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "您必須使用 Firefox 10.0 或更新版本。"
 
 #: media/js/zamboni/buttons.js:171
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla 已將此版本標示為與您的 Firefox 版本不相容。"
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -1221,7 +1346,8 @@ msgid "Not available for your platform"
 msgstr "與您的作業系統不相容"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+#: media/js/zamboni/buttons.js:317
+#: media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
 msgstr "無法使用於 {0} {1}"
 
@@ -1233,8 +1359,11 @@ msgstr "可於 {app} {min} - {max} 使用"
 msgid "View other versions"
 msgstr "檢視其他版本"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+#: media/js/zamboni/buttons.js:597
+#: media/js/zamboni/mobile/buttons.js:39
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
 msgstr "抱歉，您需要 Mozilla 系列的瀏覽器 (像是 Firefox) 才能安裝此搜尋外掛。"
 
 #: media/js/zamboni/collections.js:193
@@ -1273,7 +1402,8 @@ msgstr "意見"
 msgid "Remove this add-on from the collection"
 msgstr "從收藏集中移除此附加元件"
 
-#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
+#: media/js/zamboni/collections.js:439
+#: media/js/zamboni/collections.js:468
 msgid "Remove"
 msgstr "移除"
 
@@ -1335,7 +1465,8 @@ msgstr "開始測試..."
 msgid "Waiting for test results..."
 msgstr "正在等待測試結果出爐..."
 
-#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1485
+#: media/js/zamboni/devhub.js:1490
 msgid "Internal Server Error"
 msgstr "內部伺服器錯誤"
 
@@ -1348,7 +1479,9 @@ msgid "No results found."
 msgstr "找不到結果。"
 
 #: media/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr "抱歉，我們無法給您任何好建議。<br>請蒞臨 <a href=\"{0}\">附加元件網站</a> 以搜尋哪套附加元件適合您。"
 
 #: media/js/zamboni/discovery_pane.js:247
@@ -1391,7 +1524,8 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "至少還需要再輸入 {0} 個字元。"
 
-#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
+#: media/js/zamboni/perf.js:29
+#: media/js/zamboni/perf.js:42
 msgid "All"
 msgstr "全部"
 
@@ -1426,7 +1560,8 @@ msgstr "實驗中 <span>(更多資訊)</span>"
 
 # 80%
 # 100%
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79
+#: media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "無法使用於 {0}"
 
