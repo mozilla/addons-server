@@ -108,7 +108,6 @@ class ViewQueue(RawSQLModel):
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
-    is_version_specific = False
 
     def base_query(self):
         return {
@@ -132,6 +131,12 @@ class ViewQueue(RawSQLModel):
                 ('is_restartless', 'MAX(files.no_restart)'),
                 ('_application_ids', """GROUP_CONCAT(DISTINCT
                                         apps.application_id)"""),
+                ('waiting_time_days',
+                    'TIMESTAMPDIFF(DAY, MAX(versions.nomination), NOW())'),
+                ('waiting_time_hours',
+                    'TIMESTAMPDIFF(HOUR, MAX(versions.nomination), NOW())'),
+                ('waiting_time_min',
+                    'TIMESTAMPDIFF(MINUTE, MAX(versions.nomination), NOW())'),
             ]),
             'from': [
                 'addons',
@@ -181,14 +186,6 @@ class ViewFullReviewQueue(ViewQueue):
 
     def base_query(self):
         q = super(ViewFullReviewQueue, self).base_query()
-        q['select'].update({
-            'waiting_time_days':
-                'TIMESTAMPDIFF(DAY, MAX(versions.nomination), NOW())',
-            'waiting_time_hours':
-                'TIMESTAMPDIFF(HOUR, MAX(versions.nomination), NOW())',
-            'waiting_time_min':
-                'TIMESTAMPDIFF(MINUTE, MAX(versions.nomination), NOW())',
-        })
         q['where'].extend(['files.status <> %s' % amo.STATUS_BETA,
                            'addons.status IN (%s, %s)' % (
                                amo.STATUS_NOMINATED,
@@ -196,23 +193,7 @@ class ViewFullReviewQueue(ViewQueue):
         return q
 
 
-class VersionSpecificQueue(ViewQueue):
-    is_version_specific = True
-
-    def base_query(self):
-        q = copy.deepcopy(super(VersionSpecificQueue, self).base_query())
-        q['select'].update({
-            'waiting_time_days':
-                'TIMESTAMPDIFF(DAY, MAX(files.created), NOW())',
-            'waiting_time_hours':
-                'TIMESTAMPDIFF(HOUR, MAX(files.created), NOW())',
-            'waiting_time_min':
-                'TIMESTAMPDIFF(MINUTE, MAX(files.created), NOW())',
-        })
-        return q
-
-
-class ViewPendingQueue(VersionSpecificQueue):
+class ViewPendingQueue(ViewQueue):
 
     def base_query(self):
         q = super(ViewPendingQueue, self).base_query()
@@ -221,7 +202,7 @@ class ViewPendingQueue(VersionSpecificQueue):
         return q
 
 
-class ViewPreliminaryQueue(VersionSpecificQueue):
+class ViewPreliminaryQueue(ViewQueue):
 
     def base_query(self):
         q = super(ViewPreliminaryQueue, self).base_query()
@@ -232,7 +213,7 @@ class ViewPreliminaryQueue(VersionSpecificQueue):
         return q
 
 
-class ViewFastTrackQueue(VersionSpecificQueue):
+class ViewFastTrackQueue(ViewQueue):
 
     def base_query(self):
         q = super(ViewFastTrackQueue, self).base_query()

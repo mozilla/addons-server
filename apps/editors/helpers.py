@@ -1,7 +1,4 @@
 import datetime
-import math
-
-from django.db import connection
 
 import commonware.log
 import django_tables as tables
@@ -19,11 +16,10 @@ from addons.models import Addon
 from amo.helpers import absolutify, breadcrumbs, page_title
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
-from editors.models import (EscalationQueue, ReviewerScore, ViewFastTrackQueue,
+from editors.models import (ReviewerScore, ViewFastTrackQueue,
                             ViewFullReviewQueue, ViewPendingQueue,
                             ViewPreliminaryQueue)
 from editors.sql_table import SQLTable
-from versions.models import Version
 
 
 @register.function

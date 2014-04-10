@@ -365,7 +365,7 @@ def enable(request, addon_id, addon):
 @dev_required(owner_for_post=True)
 @post_required
 def cancel(request, addon_id, addon):
-    if addon.status in amo.STATUS_UNDER_REVIEW:
+    if addon.status in amo.UNDER_REVIEW_STATUSES:
         if addon.status == amo.STATUS_LITE_AND_NOMINATED:
             addon.update(status=amo.STATUS_LITE)
         else:
