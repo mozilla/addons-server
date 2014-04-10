@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2014-04-09 17:52+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2014-04-10 13:18+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397065954.0\n"
+"X-POOTLE-MTIME: 1397135881.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4286,15 +4286,17 @@ msgstr "Zobrazit všechny doplňky ►"
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Redaktoři AMO"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Zapojte se! Staňte se redaktorem na AMO ještě dnes a pomozte s rychlejší "
+"kontrolou doplňků."
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Stát se redaktorem na AMO"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
@@ -5311,6 +5313,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Staňte se redaktorem na AMO ještě dnes a pomozte s rychlejší kontrolou "
+"doplňků."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -7823,11 +7827,13 @@ msgstr "Přidání nového motivu"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Zakázal(a) jste tento doplněk"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
 msgstr ""
+"Stránka vašeho doplňku je zakázána a není tak k dispozici kdekoliv v naší "
+"galerii či aktualizační službě."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -7835,7 +7841,7 @@ msgstr "Dokončete prosím svůj doplněk."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:28
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Po dokončení kontroly obdržíte e-mail."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:33 apps/devhub/templates/devhub/includes/addon_details.html:40
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
@@ -7864,23 +7870,28 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
 msgstr ""
+"Všechny doplňky hostované v naší galerii musí projít kontrolou redaktora. "
+"Pokud si přejete pokračovat v hostování svého doplňku, zvolte klepnutím typ "
+"procesu kontroly."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
-msgstr ""
+msgstr "Aktuální verze:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
+"Toto je verze vašeho doplňku, který bude nainstalován, pokud někdo klepne na "
+"webu addons.mozilla.org na tlačítko pro instalaci."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 msgid "Created:"
-msgstr ""
+msgstr "Vytvořeno:"
 
 #. {0} is a date.
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%b. %e %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
@@ -7898,7 +7909,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Fronty nejsou striktně procházeny dle pořadí"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -8486,7 +8497,7 @@ msgstr "0 souborů"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Pozice ve frontě: %(pos)s z %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -8541,7 +8552,7 @@ msgstr "Příští verze tohoto doplňku"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
-msgstr ""
+msgstr "Staré verze"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
@@ -10882,6 +10893,13 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Doplňky jsou kontrolovány týmem redaktorů AMO. Jedná se o skupinu "
+"talentovaných vývojářů, kteří dobrovolně pomáhají projektu Mozilla s "
+"kontrolou doplňků. Kontrolují, že jsou stabilní a bezpečné, aby je uživatelé "
+"mohli bez problémů používat. Když komunikujete s redaktory, buďte slušní, "
+"trpěliví a respektujte prosím, že pracují ve svém volném čase na tom, aby "
+"zkontrolovali, že váš doplněk odpovídá pravidlům uvedených v <a href=\"%"
+"(url)s\">Editors Reviewing Guide</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -12715,7 +12733,7 @@ msgstr "ostatní"
 
 #: apps/users/models.py:65
 msgid "algorithm"
-msgstr ""
+msgstr "algoritmus"
 
 #: apps/users/models.py:66
 msgid "salt"
