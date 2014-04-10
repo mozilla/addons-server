@@ -1,11 +1,19 @@
 from datetime import datetime
 import traceback
+import unicodedata as unidata
 
 from django.core.management.base import BaseCommand
 from django.db import connection, transaction
 
 
 MAX_DUPS = 16
+
+def strip_diacritics(s):
+    if not isinstance(s, unicode):
+        s = s.decode('utf-8')
+
+    return u''.join(c for c in unidata.normalize('NFKD', s)
+                    if not unidata.combining(c))
 
 class Command(BaseCommand):
     """
@@ -55,7 +63,7 @@ class Command(BaseCommand):
             # conflicts.
             cursor.execute('''
                 CREATE TEMPORARY TABLE usernames (
-                    username varchar(255) PRIMARY KEY,
+                    username varchar(255) PRIMARY KEY COLLATE utf8_general_ci,
                     user_id int(11) UNSIGNED
                 ) DEFAULT CHARSET = utf8
             ''')
@@ -111,7 +119,7 @@ class Command(BaseCommand):
                 patterns)
             self.log('%d rows returned' % cursor.rowcount)
 
-            usernames = [r[0] for r in cursor]
+            usernames = [strip_diacritics(r[0]) for r in cursor]
 
         finally:
             cursor.execute('DROP TEMPORARY TABLE usernames')
@@ -132,6 +140,7 @@ class Command(BaseCommand):
         new_name = None
         for id, username, lower in rows:
             try:
+                lower = strip_diacritics(lower)
                 new_name = unique_username(username, lower)
                 self.log('Renaming %d "%s" -> "%s"' % (id, username, new_name))
 
