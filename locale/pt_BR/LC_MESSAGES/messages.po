@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2014-04-02 12:59+0000\n"
+"PO-Revision-Date: 2014-04-13 22:03+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1396443543.0\n"
+"X-POOTLE-MTIME: 1397426582.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -7908,11 +7908,13 @@ msgstr "Enviar seu tema agora"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Você desabilitou este complemento"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
 msgstr ""
+"A sua lista de complementos está desativada e não está em qualquer lugar em "
+"nossa galeria ou serviço de atualização."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -7949,14 +7951,19 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
 msgstr ""
+"Todos os complementos hospedados em nossa galeria agora deve ser revisado "
+"por um editor. Se você quiser continuar hospedando o seu complemento, por "
+"favor, clique para selecionar um processo de revisão."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
-msgstr ""
+msgstr "Versão atual:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
+"Esta é a versão do seu complemento que será instalado se alguém clicar no "
+"botão Instalar em addons.mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 msgid "Created:"
@@ -7965,23 +7972,25 @@ msgstr "Criação:"
 #. {0} is a date.
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%b %e, %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
-msgstr ""
+msgstr "Última Atualização:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
 msgid "Next Version:"
-msgstr ""
+msgstr "Próxima versão:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
+"Esta é a versão mais nova enviada, no entanto, não está disponível no site "
+"ainda."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Filas não são revisadas de forma rigorosa"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -8021,7 +8030,7 @@ msgstr "Informar o que virá nas próximas versões faz com que seus usuários t
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:22
 msgid "View All"
-msgstr ""
+msgstr "Ver todos"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:34
 msgid "Enable Add-on"
@@ -8571,8 +8580,8 @@ msgstr "Versão {0}"
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} arquivo"
+msgstr[1] "{0} arquivos"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -8580,7 +8589,7 @@ msgstr "0 arquivos"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Posição da fila: %(pos)s de %(total)s"
 
 # Button text (verb)
 #: apps/devhub/templates/devhub/versions/list.html:48
@@ -8612,7 +8621,7 @@ msgstr "Cancelar solicitação de análise"
 
 #: apps/devhub/templates/devhub/versions/list.html:106
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Atualmente no AMO"
 
 # 85%
 # 100%
@@ -8634,11 +8643,11 @@ msgstr "Desempenho"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Próxima versão do complemento"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
-msgstr ""
+msgstr "Versões antigas"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
