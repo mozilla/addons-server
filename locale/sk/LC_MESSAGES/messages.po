@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2013-09-15 17:59+0000\n"
+"PO-Revision-Date: 2014-04-13 17:14+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -14,9 +14,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1379267947.0\n"
+"X-POOTLE-MTIME: 1397409295.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1738,18 +1738,16 @@ msgid "Escalation cleared"
 msgstr "Zrušena nutnost kontroly administrátorem"
 
 #: apps/amo/log.py:416
-#, fuzzy
 msgid "App disabled"
-msgstr "Aplikace zakázána"
+msgstr "Aplikácia zakázaná"
 
 #: apps/amo/log.py:423
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr "Doplnok {addon} bol eskalovaný na kontrolu, pretože bolo zaregistrované väčšie množstvo hlásení o zneužití."
 
 #: apps/amo/log.py:424
-#, fuzzy
 msgid "High Abuse Reports"
-msgstr "Frekventovaná hlášení o zneužití"
+msgstr "Časté hlásenia o zneužití"
 
 #: apps/amo/log.py:431
 msgid "{addon} escalated by reviewer."
@@ -4146,15 +4144,13 @@ msgid "Images cannot be animated."
 msgstr "Obrázky nesmú byť animované."
 
 #: apps/devhub/views.py:1107
-#, fuzzy
 msgid "Images cannot be larger than %dKB."
-msgstr "Obrázky nemohou být větší než %d kb."
+msgstr ""
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: apps/devhub/views.py:1117
-#, fuzzy
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Obrázek musí být přesně {0} pixelů široký a {1} pixelů vysoký."
+msgstr "Obrázok musí mať rozmery {0}x{1} bodov."
 
 #: apps/devhub/views.py:1121
 msgid "There was an error uploading your preview."
@@ -4221,14 +4217,12 @@ msgid "Download the Add-on SDK"
 msgstr "Stáhnout Add-on SDK"
 
 #: apps/devhub/templates/devhub/builder.html:49
-#, fuzzy
 msgid "Help is at Hand!"
-msgstr "Získejte pomocnou ruku!"
+msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:51
-#, fuzzy
 msgid "Need some support building your add-on? We have <a href=\"%(url_docs)s\">extensive documentation</a> and a massive developer community to make sure you're never on your own."
-msgstr "Potřebujete pomoci s vytvářením doplňku? Je tu k dispozici <a href=\"%(url_docs)s\">rozsáhlá dokumentace</a> a široká komunita vývojářů, takže na to nikdy nejste sami."
+msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:60
 msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
@@ -4261,19 +4255,16 @@ msgid "Please enter some search terms."
 msgstr "Prosím, zadajte hľadané výrazy."
 
 #: apps/devhub/templates/devhub/devhub_search.html:21
-#, fuzzy
 msgid "Loading results&hellip;"
-msgstr "Načítání výsledků&hellip;"
+msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:23
-#, fuzzy
 msgid "Calling All Add-ons!"
-msgstr "Hledáme doplňky!"
+msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:25
-#, fuzzy
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "Neexistuje lepší způsob distribuce vašeho doplňku než je jeho hostování na serveru Doplňky Mozilly."
+msgstr ""
 
 # 82%
 #: apps/devhub/templates/devhub/index.html:29 apps/devhub/templates/devhub/index.html:34
@@ -4295,9 +4286,8 @@ msgid "Latest Version:"
 msgstr "Posledná verzia:"
 
 #: apps/devhub/templates/devhub/index.html:63 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
-#, fuzzy
 msgid "Queue Position:"
-msgstr "Pozice ve frontě:"
+msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:64 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
 #, fuzzy
@@ -4309,9 +4299,8 @@ msgid "Upload New Version"
 msgstr "Odoslať novú verziu"
 
 #: apps/devhub/templates/devhub/index.html:80
-#, fuzzy
 msgid "View all add-ons ►"
-msgstr "Zobrazit všechny doplňky ►"
+msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
@@ -4326,9 +4315,8 @@ msgid "Become an AMO Reviewer"
 msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:96
-#, fuzzy
 msgid "Firefox Add-ons Made Easy"
-msgstr "Doplňky pro Firefox snadno"
+msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:98
 msgid ""
@@ -4342,9 +4330,8 @@ msgid "Start Making Add-ons"
 msgstr "Začať s tvorbou doplnkov"
 
 #: apps/devhub/templates/devhub/index.html:113
-#, fuzzy
 msgid "Learn &amp; Explore"
-msgstr "Učte se a zkoumejte"
+msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:119 apps/devhub/templates/devhub/nav.html:41 apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:6 apps/devhub/templates/devhub/docs/how-to-other-addons.html:6 apps/devhub/templates/devhub/docs/how-to-theme-development.html:6
@@ -4375,18 +4362,16 @@ msgid "Start-to-finish success stories. See how add-on developers made magic wit
 msgstr "Úspešné príbehy od začiatku až po koniec. Pozrite sa, ako vývojári kúzlia s Mozillou."
 
 #: apps/devhub/templates/devhub/index.html:159
-#, fuzzy
 msgid "Create &amp; Connect"
-msgstr "Vytvářejte a propojujte"
+msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:165
 msgid "Developer Forums"
 msgstr "Fórum pre vývojárov"
 
 #: apps/devhub/templates/devhub/index.html:167
-#, fuzzy
 msgid "Discuss development, brainstorm ideas, and make connections in the world of add-ons."
-msgstr "Diskutujte o vývoji, sdílejte své nápady a sbírejte kontakty ve světě doplňků."
+msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:178 apps/devhub/templates/devhub/nav.html:52 apps/devhub/templates/devhub/package_addon.html:4 apps/devhub/templates/devhub/package_addon_success.html:3
 msgid "Add-on Packager"

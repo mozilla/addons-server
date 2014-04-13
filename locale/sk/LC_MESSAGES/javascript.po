@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2013-10-21 12:44+0000\n"
+"PO-Revision-Date: 2014-04-13 17:14+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1382359477.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1397409295.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -53,7 +53,7 @@ msgstr "Odosiela sa {0}"
 
 #: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr "Chyba pre {0}"
+msgstr ""
 
 #: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
@@ -94,9 +94,9 @@ msgstr "Ukončené overovanie {0}"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Váš doplnok prešiel kontrolou bez chyby a s {0} správou."
+msgstr[1] "Váš doplnok prešiel kontrolou bez chyby a s {0} správami."
+msgstr[2] "Váš doplnok prešiel kontrolou bez chyby a s {0} správami."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -544,24 +544,24 @@ msgstr "Nezáleží"
 
 #: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Schválená aplikácia: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Zamietnutá aplikácia: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Chyba pri schvaľovaní aplikácie: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Chyba pri zamietnutí aplikácie: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Od {0} dňa {1}"
 
 #: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1440,9 +1440,9 @@ msgstr "Doplnok prešiel overením."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} upozornenie"
+msgstr[1] "{0} upozornenia"
+msgstr[2] "{0} upozornení"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
