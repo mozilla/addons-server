@@ -1,4 +1,4 @@
-Welcome to Olympia!  This is the future version of `addons.mozilla.org`_.
+Welcome to Olympia!  This is `addons.mozilla.org`_.
 
 We have some good `install docs`_ if you want to try it out.  We'd love
 your help!  You can come talk to us on `irc://irc.mozilla.org/amo` if you
