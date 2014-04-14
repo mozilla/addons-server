@@ -60,7 +60,7 @@ Launch the Elasticsearch service. If you used homebrew, ``brew info
 elasticsearch`` will show you the commands to launch. If you used aptitude,
 Elasticsearch will come with a start-stop daemon in /etc/init.d.
 
-Zamboni has commands that sets up mappings and indexes objects such as add-ons
+Olympia has commands that sets up mappings and indexes objects such as add-ons
 and apps for you. Setting up the mappings is analagous to defining the
 structure of a table, indexing is analagous to storing rows.
 
@@ -84,7 +84,7 @@ If you need to use another settings file and add arguments::
 Indexing
 --------
 
-Zamboni has other indexing commands. It is worth noting that the index is
+Olympia has other indexing commands. It is worth noting that the index is
 maintained incrementally through post_save and post_delete hooks::
 
     ./manage.py cron reindex_addons  # Index all the add-ons.

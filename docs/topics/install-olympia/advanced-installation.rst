@@ -71,7 +71,7 @@ Redis
 -----
 
 On OS X the package is called ``redis``.  Get it running with the ``launchctl``
-script included in homebrew.  To let zamboni know about Redis, add this to
+script included in homebrew.  To let olympia know about Redis, add this to
 ``settings_local.py``::
 
     CACHE_MACHINE_USE_REDIS = True
@@ -117,7 +117,7 @@ Stylus CSS
 
 Learn about Stylus at http://learnboost.github.com/stylus/ ::
 
-    cd zamboni
+    cd olympia
     npm install
 
 In your ``settings_local.py`` (or ``settings_local_mkt.py``) ensure you are

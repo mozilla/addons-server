@@ -1,7 +1,7 @@
 .. _installation:
 
 ==================
-Installing Zamboni
+Installing Olympia
 ==================
 
 We're going to use all the hottest tools to set up a nice environment.  Skip
@@ -9,10 +9,10 @@ steps at your own peril. Here we go!
 
 .. note::
 
-    For less manual work, you can build Zamboni in a
+    It was once possible to build Olympia in a
     :doc:`virtual machine using vagrant <install-with-vagrant>`
     but that has known bugs at the time of this writing.
-    For best results, install manually.
+    For best results, install manually or contribute to 956815!
 
 
 Requirements
@@ -54,7 +54,7 @@ On OS X
 ~~~~~~~
 The best solution for installing UNIX tools on OS X is Homebrew_.
 
-The following packages will get you set for zamboni::
+The following packages will get you set for olympia::
 
     brew install python libxml2 mysql libmemcached openssl swig jpeg
 
@@ -68,12 +68,12 @@ You'll probably need to :ref:`configure MySQL after install <configure-mysql>`
 Use the Source
 --------------
 
-Grab zamboni from github with::
+Grab olympia from github with::
 
-    git clone --recursive git://github.com/mozilla/zamboni.git
-    cd zamboni
+    git clone --recursive git://github.com/mozilla/olympia.git
+    cd olympia
 
-``zamboni.git`` is all the source code.  :ref:`updating` is detailed later on.
+``olympia.git`` is all the source code.  :ref:`updating` is detailed later on.
 
 If at any point you realize you forgot to clone with the recursive
 flag, you can fix that by running::
@@ -85,7 +85,7 @@ virtualenv and virtualenvwrapper
 --------------------------------
 
 `virtualenv`_ is a tool to create
-isolated Python environments. This will let you put all of Zamboni's
+isolated Python environments. This will let you put all of Olympia's
 dependencies in a single directory rather than your global Python directory.
 For ultimate convenience, we'll also use `virtualenvwrapper`_
 which adds commands to your shell.
@@ -109,8 +109,8 @@ virtualenvwrapper Hooks (optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 virtualenvwrapper lets you run hooks when creating, activating, and deleting
-virtual environments.  These hooks can change settings, the shell environment,
-or anything else you want to do from a shell script.  For complete hook
+virtual environments. These hooks can change settings, the shell environment,
+or anything else you want to do from a shell script. For complete hook
 documentation, see
 http://www.doughellmann.com/docs/virtualenvwrapper/hooks.html.
 
@@ -122,29 +122,29 @@ above), and ``premkvirtualenv`` should be made executable.
 Getting Packages
 ----------------
 
-Now we're ready to go, so create an environment for zamboni::
+Now we're ready to go, so create an environment for olympia::
 
-    mkvirtualenv --python=python2.6 zamboni
+    mkvirtualenv --python=python2.6 olympia
 
-That creates a clean environment named zamboni using Python 2.6. You can get
+That creates a clean environment named olympia using Python 2.6. You can get
 out of the environment by restarting your shell or calling ``deactivate``.
 
-To get back into the zamboni environment later, type::
+To get back into the olympia environment later, type::
 
-    workon zamboni  # requires virtualenvwrapper
+    workon olympia  # requires virtualenvwrapper
 
-.. note:: Zamboni requires at least Python 2.6.1, production is using
+.. note:: Olympia requires at least Python 2.6.1, production is using
           Python 2.6.6. Python 2.7 is not supported.
 
 .. note:: If you want to use a different Python binary, pass the name (if it is
           on your path) or the full path to mkvirtualenv with ``--python``::
 
-            mkvirtualenv --python=/usr/local/bin/python2.6 zamboni
+            mkvirtualenv --python=/usr/local/bin/python2.6 olympia
 
 .. note:: If you are using an older version of virtualenv that defaults to
           using system packages you might need to pass ``--no-site-packages``::
 
-            mkvirtualenv --python=python2.6 --no-site-packages zamboni
+            mkvirtualenv --python=python2.6 --no-site-packages olympia
 
 Finish the install
 ~~~~~~~~~~~~~~~~~~
@@ -202,15 +202,10 @@ Settings
 
 .. note::
 
-    Also see the Multiple Sites section below for using settings files to run
-    the Add-ons and Marketplace sites side by side.
-
-.. note::
-
     There is a :doc:`settings-changelog`, this can be useful for people who are already
     setup but want to know what has recently changed.
 
-Most of zamboni is already configured in ``settings.py``, but there's some
+Most of olympia is already configured in ``settings.py``, but there's some
 things you need to configure locally.  All your local settings go into
 ``settings_local.py``.  The settings template for
 developers, included below, is at :src:`docs/settings/settings_local.dev.py`.
@@ -237,7 +232,7 @@ https://landfill.addons.allizom.org/db/
 There is a management command that download and install the landfill
 database. You have to create the database first using the following
 command filling in the database name from your ``settings_local.py``
-(Defaults to ``zamboni``)::
+(Defaults to ``olympia``)::
 
     mysqladmin -uroot create $DB_NAME
 
@@ -250,8 +245,8 @@ base landfill database::
 Here are the shell commands to pull down and set up the latest
 snapshot manually (ie without the management command)::
 
-    export DB_NAME=zamboni
-    export DB_USER=zamboni
+    export DB_NAME=olympia
+    export DB_USER=olympia
     mysqladmin -uroot create $DB_NAME
     mysql -uroot -B -e'GRANT ALL PRIVILEGES ON $DB_NAME.* TO $DB_USER@localhost'
     wget --no-check-certificate -P /tmp https://landfill.addons.allizom.org/db/landfill-`date +%Y-%m-%d`.sql.gz
@@ -282,47 +277,16 @@ migrations like this::
 More info on schematic: https://github.com/mozilla/schematic
 
 
-Multiple sites
---------------
-
-We now run multiple sites off the zamboni code base. The current sites are:
-
-- *default* the Add-ons site at https://addons.mozilla.org/
-
-- *mkt* the Firefox Marketplace at https://marketplace.firefox.com/
-
-There are modules in zamboni for each of these base settings to make minor
-modifications to settings, url, templates and so on. Start by copying the
-template from ``docs/settings/settings_local.dev.py`` into a custom file.
-
-To run the Add-ons site, make a ``settings_local_amo.py`` file with this import
-header::
-
-    from default.settings import *
-
-Or to run the Marketplace site, make a ``settings_local_mkt.py`` file with
-these imports::
-
-    from mkt.settings import *
-
-
 Run the Server
 --------------
 
-If you've gotten the system requirements, downloaded ``zamboni`` and
+If you've gotten the system requirements, downloaded ``olympia`` and
 ``zamboni-lib``, set up your virtualenv with the compiled packages, and
 configured your settings and database, you're good to go.
 
-To choose which site you want to run, use the `settings` command line
-argument to pass in a local settings file you created above.
-
-
-Run The Add-ons Server
-~~~~~~~~~~~~~~~~~~~~~~
-
 ::
 
-    ./manage.py runserver --settings=settings_local_amo 0.0.0.0:8000
+    ./manage.py runserver --settings=settings_local 0.0.0.0:8000
 
 .. note::
 
@@ -337,15 +301,6 @@ Run The Add-ons Server
    Be aware, however, that this will make the site VERY slow, as a huge amount
    of LESS files will be served to your browser on EACH request, and each of
    those will be compiled on the fly by the LESS javascript compiler.
-
-
-Run The Marketplace Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-::
-
-    ./manage.py runserver --settings=settings_local_mkt 0.0.0.0:8000
-
 
 
 Persona
@@ -389,34 +344,13 @@ on the login screen then go back to the shell you started your dev server in.
 You'll see the email message with the password reset link in stdout.
 
 
-Setting Up the Front End
-------------------------
-
-To add the code from all front-end dependencies, you can simply run::
-
-    commonplace fiddle
-
-Commonplace is a set of CLI tools that will handle cloning and updating front-
-end dependencies. This is done automatically if you use the ``make update_mkt``
-command. More information on how this command works is available in the
-`Commonplace wiki <https://github.com/mozilla/commonplace/wiki/CLI-Tools#fiddle>`_
-
-Each of our front-end projects live in their own repositories. These are
-single-page apps that talk to the APIs in Zamboni. Commonplace serves as the
-glue which brings theem together and keeps them running in sync.
-
-
 Testing
 -------
 
 The :ref:`testing` page has more info, but here's the quick way to run
-zamboni's marketplace tests::
+olympia's tests::
 
-    ./manage.py test --settings=settings_local_mkt
-
-Or to run AMO's tests::
-
-    ./manage.py test --settings=settings_local_amo
+    ./manage.py test --settings=settings_local
 
 There are a few useful makefile targets that you can use, the simplest one
 being::
@@ -432,7 +366,7 @@ the other available targets.
 Updating
 --------
 
-To run a full update of zamboni (including source files, pip requirements and
+To run a full update of olympia (including source files, pip requirements and
 database migrations)::
 
     make update
@@ -444,7 +378,7 @@ landfill::
 
 If you want to do it manually, then check the following steps:
 
-This updates zamboni::
+This updates olympia::
 
     git checkout master && git pull && git submodule update --init --recursive
 
