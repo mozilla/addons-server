@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2014-04-15 10:02+0000\n"
+"PO-Revision-Date: 2014-04-15 19:55+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397556161.0\n"
+"X-POOTLE-MTIME: 1397591716.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12319,7 +12319,7 @@ msgstr "localservice1"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:80
 msgid "Post to localservice1"
-msgstr "Post to localservice1"
+msgstr "Publicar en localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:82
@@ -12330,8 +12330,8 @@ msgstr "http://localservice1/?url={url}&title={title}"
 #: apps/sharing/__init__.py:87
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
-msgstr[0] "{0} post on localservice1"
-msgstr[1] "{0} post on localservice1"
+msgstr[0] "{0} artículo en localservice1"
+msgstr[1] "{0} artículos en localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:93
@@ -12341,7 +12341,7 @@ msgstr "localservice2"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:95
 msgid "Post to localservice2"
-msgstr "Post to localservice2"
+msgstr "Publicar en localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:97
@@ -12352,8 +12352,8 @@ msgstr "http://localservice2/?url={url}&title={title}"
 #: apps/sharing/__init__.py:102
 msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
-msgstr[0] "{0} post on localservice2"
-msgstr[1] "{0} post on localservice2"
+msgstr[0] "{0} artículo en localservice2"
+msgstr[1] "{0} artículos en localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:108
@@ -12363,7 +12363,7 @@ msgstr "localservice3"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:110
 msgid "Post to localservice3"
-msgstr "Post to localservice3"
+msgstr "Publicar en localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:112
@@ -12374,8 +12374,8 @@ msgstr "http://localservice3/?url={url}&title={title}"
 #: apps/sharing/__init__.py:117
 msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
-msgstr[0] "{0} post on localservice3"
-msgstr[1] "{0} post on localservice3"
+msgstr[0] "{0} artículo en localservice3"
+msgstr[1] "{0} artículos en localservice3"
 
 #: apps/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this Add-on"
