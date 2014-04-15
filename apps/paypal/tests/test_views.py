@@ -146,11 +146,8 @@ class TestPaypal(PaypalTest):
         urlopen.return_value = self.urlopener('VERIFIED')
         add = Addon.objects.create(type=amo.ADDON_EXTENSION)
         con = Contribution.objects.create(addon_id=add.pk,
-                         transaction_id=sample_contribution['tracking_id'],
-                         user=UserProfile.objects.all()[0])
+                         transaction_id=sample_contribution['tracking_id'])
 
-        for type_ in [amo.CONTRIB_VOLUNTARY, amo.CONTRIB_PURCHASE]:
-            con.update(type=type_)
-            response = self.client.post(self.url, sample_contribution)
-            eq_(response.status_code, 200)
-            eq_(response.content, 'Transaction already processed')
+        response = self.client.post(self.url, sample_contribution)
+        eq_(response.status_code, 200)
+        eq_(response.content, 'Transaction already processed')

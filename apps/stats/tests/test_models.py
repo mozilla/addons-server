@@ -37,28 +37,6 @@ class TestStatsDictField(amo.tests.TestCase):
         eq_(StatsDictField().to_python(json.dumps(val)), val)
 
 
-class TestContributionModel(amo.tests.TestCase):
-    fixtures = ['stats/test_models.json']
-
-    def setUp(self):
-        user = UserProfile.objects.create(username='t@t.com')
-        self.con = Contribution.objects.get(pk=1)
-        self.con.update(type=amo.CONTRIB_PURCHASE, user=user)
-
-    def test_related_protected(self):
-        user = UserProfile.objects.create(username='foo@bar.com')
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        payment = Contribution.objects.create(user=user, addon=addon)
-        Contribution.objects.create(user=user, addon=addon, related=payment)
-        self.assertRaises(models.ProtectedError, payment.delete)
-
-    def test_locale(self):
-        translation.activate('en_US')
-        eq_(Contribution.objects.all()[0].get_amount_locale(), u'$1.99')
-        translation.activate('fr')
-        eq_(Contribution.objects.all()[0].get_amount_locale(), u'1,99\xa0$US')
-
-
 class TestEmail(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -66,9 +44,8 @@ class TestEmail(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.user = UserProfile.objects.get(pk=999)
 
-    def make_contribution(self, amount, locale, type):
-        return Contribution.objects.create(type=type, addon=self.addon,
-                                           user=self.user, amount=amount,
+    def make_contribution(self, amount, locale):
+        return Contribution.objects.create(addon=self.addon, amount=amount,
                                            source_locale=locale)
 
     def test_thankyou_note(self):
@@ -76,7 +53,7 @@ class TestEmail(amo.tests.TestCase):
         self.addon.thankyou_note = u'Thank "quoted". <script>'
         self.addon.name = u'Test'
         self.addon.save()
-        cont = self.make_contribution('10', 'en-US', amo.CONTRIB_PURCHASE)
+        cont = self.make_contribution('10', 'en-US')
         cont.update(transaction_id='yo',
                     post_data={'payer_email': 'test@tester.com'})
 

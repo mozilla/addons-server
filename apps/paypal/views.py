@@ -68,26 +68,6 @@ def _log_error_with_data(msg, post):
     paypal_log.error("[%s] PayPal Data: %s" % (id, logme))
 
 
-def _log_unmatched(post):
-    key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib',
-                       post['item_number'])
-    count = cache.get(key, 0) + 1
-
-    paypal_log.warning('Contribution not found: %s, #%s, %s'
-                       % (post['item_number'], count,
-                          post.get('txn_id', '')))
-
-    if count > 10:
-        msg = ("PayPal sent a transaction that we don't know "
-                   "about and we're giving up on it.")
-        _log_error_with_data(msg, post)
-        cache.delete(key)
-        return http.HttpResponse('Transaction not found; skipping.')
-
-    cache.set(key, count, 1209600)  # This is 2 weeks.
-    return http.HttpResponseServerError('Contribution not found')
-
-
 number = re.compile('transaction\[(?P<number>\d+)\]\.(?P<name>\w+)')
 currency = re.compile('(?P<currency>\w+) (?P<amount>[\d.,]+)')
 
@@ -201,14 +181,6 @@ def paypal_completed(request, transaction_id, serialize=None, amount=None):
     update = {'transaction_id': transaction_id,
               'uuid': None, 'post_data': data}
 
-    if original.type == amo.CONTRIB_PENDING:
-        # This is a purchase that has failed to hit the completed page.
-        # But this ok, this IPN means that it all went through.
-        update['type'] = amo.CONTRIB_PURCHASE
-        # If they failed to hit the completed page, they also failed
-        # to get it logged properly. This will add the log in.
-        amo.log(amo.LOG.PURCHASE_ADDON, original.addon)
-
     if amount:
         update['amount'] = _parse_currency(amount)['amount']
 
@@ -221,7 +193,7 @@ def paypal_completed(request, transaction_id, serialize=None, amount=None):
         paypal_log.error('Thankyou note email failed with error: %s' % e)
 
     paypal_log_cef(request, original.addon, transaction_id,
-                   'Purchase', 'PURCHASE',
-                   'A user purchased or contributed to an addon')
+                   'Contribution', 'CONTRIBUTION',
+                   'A user contributed to an addon')
     paypal_log.info('Completed successfully processed')
     return http.HttpResponse('Success!')

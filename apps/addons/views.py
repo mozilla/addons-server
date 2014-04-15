@@ -484,7 +484,6 @@ def contribute(request, addon):
     if not amount:
         amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
 
-    # This is all going to get shoved into solitude. Temporary.
     form = ContributionForm({'amount': amount})
     if not form.is_valid():
         return http.HttpResponse(json.dumps({'error': 'Invalid data.',
