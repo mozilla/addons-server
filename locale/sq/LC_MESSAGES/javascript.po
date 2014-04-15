@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2013-10-24 11:34+0200\n"
+"PO-Revision-Date: 2014-04-15 14:16+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -23,11 +23,14 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} yll"
 msgstr[1] "{0} yje"
 
-#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-addon.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Pati një problem gjatë kontaktimit me shërbyesin."
 
-#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
+#: media/js/common/upload-addon.js:52
+#: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
 msgstr "Përzgjidhni një kartelë..."
 
@@ -36,24 +39,29 @@ msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Shtesa juaj do të duhej të përfundonte me .xpi, .jar ose .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
+#: media/js/common/upload-addon.js:87
+#: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
 msgstr "Plotësuar {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
+#: media/js/common/upload-addon.js:90
+#: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
 msgstr "{0} nga {1}"
 
-#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
+#: media/js/common/upload-addon.js:120
+#: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "Anuloje"
 
-#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
+#: media/js/common/upload-addon.js:142
+#: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
 msgstr "Po ngarkohet {0}"
 
-#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
+#: media/js/common/upload-addon.js:169
+#: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
 msgstr "Gabim me {0}"
 
@@ -63,39 +71,48 @@ msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Vleftësimi i shtesës suaj dështoi për shkak të {0} gabimi."
 msgstr[1] "Vleftësimi i shtesës suaj dështoi për shkak të {0} gabimeve."
 
-#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-addon.js:188
+#: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dhe {0} tjetër"
 msgstr[1] "&hellip;dhe {0} të tjerë"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-addon.js:202
+#: media/js/common/upload-addon.js:329
+#: media/js/common/upload-packaged-app.js:197
+#: media/js/common/upload-packaged-app.js:323
+#: media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:162
 msgid "See full validation report"
 msgstr "Shihni raportin e plotë të vleftësimit"
 
-#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-addon.js:214
+#: media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
 msgstr "Po vleftësohet {0}"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252
+#: media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prej shërbyesit u mor një përgjigje e zbrazët, me gjendjen: {0}"
 
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263
+#: media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "Gabim i papritur shërbyesi gjatë vleftësimit."
 
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301
+#: media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "Po përfundohet vleftësimi i {0}"
 
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Shtesa juaj e kaloi vleftësimin pa gabime dhe me {0} mesazh."
+msgstr[1] "Shtesa juaj e kaloi vleftësimin pa gabime dhe me {0} mesazhe."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -113,7 +130,8 @@ msgstr "Lloji i kartelës që ngarkuat nuk është i pranueshëm."
 msgid "You cancelled the upload."
 msgstr "E anuluat ngarkimin."
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
+#: media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "Pamjet duhet të jenë ose PNG, ose JPG."
 
@@ -125,7 +143,9 @@ msgstr "Videot duhet të jenë në formatin WebM."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Zbatimi juaj i paketuar do të duhej të përfundonte me <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:181
+#: media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Vleftësimi i shtesës suaj dështoi për shkak të {0} gabimi."
@@ -145,15 +165,18 @@ msgstr "Zbatimi juaj e kaloi vleftësimin pa gabime ose sinjalizime."
 msgid "The manifest could not be found at the given location."
 msgstr "Manifesti nuk u gjet dot në vendin e treguar."
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
+#: media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr "Nuk u kap dot streha e zbatimit."
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
+#: media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr "Manifesti i zbatimit është i papërtypshëm."
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
+#: media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr "Manifesti i zbatimit është i pavlefshëm."
 
@@ -169,7 +192,8 @@ msgstr "Gabim i brendshëm shërbyesi"
 msgid "Internal server error on app installation."
 msgstr "Gabim i brendshëm shërbyesi gjatë instalimit të zbatimit"
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
+#: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr "Instalimi dështoi. Ju lutemi, riprovoni më vonë."
 
@@ -179,17 +203,20 @@ msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Zbatimi juaj dështoi në vleftësim me {0} gabim dhe {1} mesazh(e)."
 msgstr[1] "Zbatimi juaj dështoi në vleftësim me {0} gabime dhe {1} mesazh(e)."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200
+#: media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Shtesa juaj e kaloi procesin e vleftësimit pa gabime dhe {0} sinjalizim."
 msgstr[1] "Shtesa juaj e kaloi procesin e vleftësimit pa gabime dhe {0} sinjalizime."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205
+#: media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "Shtesa juaj e kaloi pa gabime ose sinjalizime procesin e vleftësimit."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
+#: media/js/devreg/devhub.js:419
+#: media/js/zamboni/devhub.js:497
 msgid "Changes Saved"
 msgstr "Ndryshimet u Ruajtën"
 
@@ -201,19 +228,23 @@ msgstr "Jepni adresën email të një anëtari të ri të ekipit"
 msgid "Refreshed"
 msgstr "U rifreskua"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
+#: media/js/devreg/devhub.js:616
+#: media/js/zamboni/devhub.js:660
 msgid "There was an error uploading your file."
 msgstr "Pati një gabim gjatë ngarkimit të kartelës suaj."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
+#: media/js/devreg/devhub.js:886
+#: media/js/zamboni/devhub.js:935
 msgid "Learn more"
 msgstr "Mësoni më tepër"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
+#: media/js/devreg/devhub.js:890
+#: media/js/zamboni/devhub.js:939
 msgid "Example"
 msgstr "Shembull"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
+#: media/js/devreg/devhub.js:1192
+#: media/js/zamboni/devhub.js:1295
 msgid "Image changes being processed"
 msgstr "Po përpunohen ndryshimet e figurës"
 
@@ -229,11 +260,13 @@ msgstr "ose <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
+#: media/js/devreg/init.js:35
+#: media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e \"site\"-it web. Ju lutemi, riprovoni pas pak."
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
+#: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Hiqe këtë përkthim"
 
@@ -259,15 +292,15 @@ msgstr "Lejet e Kërkuara: përdoruesi"
 
 #: media/js/devreg/manifest.js:54
 msgid "Certified"
-msgstr ""
+msgstr "E dëshmuar"
 
 #: media/js/devreg/manifest.js:57
 msgid "Privileged"
-msgstr ""
+msgstr "E privilegjuar"
 
 #: media/js/devreg/manifest.js:60
 msgid "Unprivileged"
-msgstr ""
+msgstr "E paprivilegjuar"
 
 #: media/js/devreg/manifest.js:66
 msgid "No reason given"
@@ -341,12 +374,21 @@ msgid_plural "Warning: deleting payment account \"{0}\" will move those associat
 msgstr[0] "Kujdes: fshirja e llogarisë së pagesave \"{0}\" do t'ia kalojë gjendjen zbatimit të përshoqëruar si jo i plotë dhe nuk do të jetë më i gatshëm për shitje:"
 msgstr[1] "Kujdes: fshirja e llogarisë së pagesave \"{0}\" do t'ua kalojë gjendjen zbatimeve të përshoqëruar si jo të plotë dhe nuk do të jenë më të gatshëm për shitje:"
 
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/payments-manage.js:58
+#: media/js/devreg/payments-manage.js:107
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/zamboni/validator.js:194
+#: media/js/zamboni/validator.js:449
+#: media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Gabim"
 
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
+#: media/js/devreg/payments-manage.js:59
+#: media/js/devreg/payments-manage.js:108
 msgid "There was a problem contacting the payment server."
 msgstr "Pati një problem gjatë lidhjes me shërbyesin e pagesave."
 
@@ -358,15 +400,18 @@ msgstr "Gabim mirëfilltësimi"
 msgid "You do not currently have any payment accounts."
 msgstr "Hëpërhë nuk keni ndonjë llogari pagesash"
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
+#: media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr "Kërkoni tema për <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
+#: media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr "Kërkoni zbatime për <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
+#: media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Kërkoni shtesa për <b>{0}</b>"
 
@@ -377,51 +422,66 @@ msgid_plural "{0} characters left."
 msgstr[0] "edhe {0} shenjë."
 msgstr[1] "edhe {0} shenja."
 
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71
+#: media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
 msgstr "Krejt provat u kaluan me sukses."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
+#: media/js/zamboni/validator.js:74
+#: media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr "Këto prova nuk u xhiruan."
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
+#: media/js/zamboni/validator.js:120
+#: media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "Prova"
 
-#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:192
+#: media/js/zamboni/validator.js:195
 msgid "Warning"
 msgstr "Sinjalizim"
 
-#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:279
+#: media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
 msgstr "Prova Përputhshmërie"
 
-#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:327
+#: media/js/zamboni/validator.js:331
 msgid "App failed validation."
 msgstr "Vleftësimi i zbatimit dështoi."
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:329
+#: media/js/zamboni/validator.js:333
 msgid "App passed validation."
 msgstr "Zbatimi e kaloi vleftësimin."
 
-#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:359
+#: media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} gabim"
 msgstr[1] "{0} gabime"
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:361
+#: media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
-#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:439
+#: media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
 msgstr "Akti i vleftësimit nuk u plotësua dot ose u plotësua me gabime"
 
-#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:457
+#: media/js/zamboni/validator.js:469
 msgid "Internal server error"
 msgstr "Gabim i brendshëm shërbyesi"
 
@@ -437,45 +497,57 @@ msgstr "Të blera"
 msgid "Launch"
 msgstr "Nise"
 
-#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
+#: media/js/devreg/reviewers/editors.js:141
+#: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
 msgstr "{name} po e shihte së pari këtë faqe."
 
-#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
+#: media/js/devreg/reviewers/editors.js:191
+#: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
 msgstr "Dëftesa u kontrollua nga zbatimi."
 
-#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
+#: media/js/devreg/reviewers/editors.js:193
+#: media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
 msgstr "Dëftesa nuk qe kontrolluar nga zbatimi."
 
-#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
+#: media/js/devreg/reviewers/editors.js:264
+#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{name} po e shihte i pari këtë shtesë."
 
-#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
+#: media/js/devreg/reviewers/editors.js:275
+#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "Po ngarkohet&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
+#: media/js/devreg/reviewers/editors.js:280
+#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Shënime Versioni"
 
-#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
+#: media/js/devreg/reviewers/editors.js:285
+#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "Shënime për Shqyrtuesit"
 
-#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
+#: media/js/devreg/reviewers/editors.js:290
+#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "S'u gjetën shënime versioni"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315
+#: media/js/zamboni/admin_validation.js:24
+#: media/js/zamboni/devhub.js:1448
+#: media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një zbatim"
 
-#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
+#: media/js/devreg/reviewers/editors.js:379
+#: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "Gabim gjatë ngarkimit të përkthimit"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
@@ -535,46 +607,52 @@ msgstr "Çfarëdo"
 
 #: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Zbatim i miratuar: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Zbatim i hedhur poshtë: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Gabim në miratimin e zbatimit: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Gabim në hedhjen poshtë të zbatimit: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Nga {0} më {1}"
 
-#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
+#: media/js/devreg/reviewers/themes_review.js:174
+#: media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
 msgstr "Të dhëna të Domosdoshme"
 
-#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
+#: media/js/devreg/reviewers/themes_review.js:175
+#: media/js/zamboni/themes_review.js:177
 msgid "Flagged"
 msgstr ""
 
-#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
+#: media/js/devreg/reviewers/themes_review.js:176
+#: media/js/zamboni/themes_review.js:178
 msgid "Duplicate"
 msgstr ""
 
-#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
+#: media/js/devreg/reviewers/themes_review.js:177
+#: media/js/zamboni/themes_review.js:179
 msgid "Rejected"
 msgstr "Hedhur tej"
 
-#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
+#: media/js/devreg/reviewers/themes_review.js:178
+#: media/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr "Miratuar"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10
+#: media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
 msgstr "Ndiqe këtë Koleksion"
 
@@ -587,7 +665,8 @@ msgid "Following"
 msgstr "Po e Ndiqni"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:17
+#: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Kjo temë është e papërputhshme me versionin tuaj të {0}"
 
@@ -623,15 +702,18 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 msgid "Your Theme's Name"
 msgstr "Emri i Temës Suaj"
 
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23
+#: media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "Me shenjë për shqyrtim"
 
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40
+#: media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "Lypset dora juaj"
 
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133
+#: media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "Shënuar për fshirje"
 
@@ -639,7 +721,8 @@ msgstr "Shënuar për fshirje"
 msgid "Updating results&hellip;"
 msgstr "Po përditësohen përfundimet&hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
+#: media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
 msgstr "Kategori"
 
@@ -683,11 +766,15 @@ msgstr "{0} rimbursime"
 msgid "{0} installs"
 msgstr "{0} instalime"
 
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
+#: media/js/impala/stats/chart.js:369
+#: media/js/impala/stats/csv_keys.js:3
+#: media/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
 msgstr "Shkarkime"
 
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
+#: media/js/impala/stats/chart.js:379
+#: media/js/impala/stats/csv_keys.js:6
+#: media/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
 msgstr "Përdorues të Përditshëm"
 
@@ -695,7 +782,8 @@ msgstr "Përdorues të Përditshëm"
 msgid "Amount, in USD"
 msgstr "Vleftë, në USD"
 
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97
+#: media/js/impala/stats/chart.js:421
+#: media/js/impala/stats/csv_keys.js:97
 msgid "Number of Contributions"
 msgstr "Numër Kontributesh"
 
@@ -744,11 +832,13 @@ msgstr "Pajtimtarë"
 msgid "Ratings"
 msgstr "Vlerësime"
 
-#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107
+#: media/js/impala/stats/csv_keys.js:36
+#: media/js/impala/stats/csv_keys.js:107
 msgid "Sales"
 msgstr "Shitje"
 
-#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106
+#: media/js/impala/stats/csv_keys.js:39
+#: media/js/impala/stats/csv_keys.js:106
 msgid "Installs"
 msgstr "Instalime"
 
@@ -764,15 +854,19 @@ msgstr "Përgjegjës  Shtesash"
 msgid "Search Results"
 msgstr "Përfundime Kërkimi"
 
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47
+#: media/js/impala/stats/csv_keys.js:45
+#: media/js/impala/stats/csv_keys.js:46
+#: media/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49
+#: media/js/impala/stats/csv_keys.js:48
+#: media/js/impala/stats/csv_keys.js:49
 msgid "Homepage Featured"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
+#: media/js/impala/stats/csv_keys.js:50
+#: media/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
 msgstr ""
 
@@ -780,11 +874,13 @@ msgstr ""
 msgid "Homepage Most Popular"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55
+#: media/js/impala/stats/csv_keys.js:53
+#: media/js/impala/stats/csv_keys.js:55
 msgid "Detail Page"
 msgstr "Faqe Hollësish"
 
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56
+#: media/js/impala/stats/csv_keys.js:54
+#: media/js/impala/stats/csv_keys.js:56
 msgid "Detail Page (bottom)"
 msgstr "Faqe Hollësish (fundi)"
 
@@ -792,19 +888,24 @@ msgstr "Faqe Hollësish (fundi)"
 msgid "Detail Page (Development Channel)"
 msgstr "Faqe Hollësish (Kanali i Zhvillimeve)"
 
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
+#: media/js/impala/stats/csv_keys.js:58
+#: media/js/impala/stats/csv_keys.js:59
+#: media/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
 msgstr "Përdorur Shpesh Me"
 
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62
+#: media/js/impala/stats/csv_keys.js:61
+#: media/js/impala/stats/csv_keys.js:62
 msgid "Others By Author"
 msgstr "Të tjera Nga Autori"
 
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64
+#: media/js/impala/stats/csv_keys.js:63
+#: media/js/impala/stats/csv_keys.js:64
 msgid "Dependencies"
 msgstr "Varësi"
 
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66
+#: media/js/impala/stats/csv_keys.js:65
+#: media/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
 msgstr ""
 
@@ -820,51 +921,63 @@ msgstr "Faqe Kategorish"
 msgid "Collections"
 msgstr "Koleksione"
 
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72
+#: media/js/impala/stats/csv_keys.js:71
+#: media/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74
+#: media/js/impala/stats/csv_keys.js:73
+#: media/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76
+#: media/js/impala/stats/csv_keys.js:75
+#: media/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78
+#: media/js/impala/stats/csv_keys.js:77
+#: media/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80
+#: media/js/impala/stats/csv_keys.js:79
+#: media/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82
+#: media/js/impala/stats/csv_keys.js:81
+#: media/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84
+#: media/js/impala/stats/csv_keys.js:83
+#: media/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86
+#: media/js/impala/stats/csv_keys.js:85
+#: media/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88
+#: media/js/impala/stats/csv_keys.js:87
+#: media/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90
+#: media/js/impala/stats/csv_keys.js:89
+#: media/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92
+#: media/js/impala/stats/csv_keys.js:91
+#: media/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94
+#: media/js/impala/stats/csv_keys.js:93
+#: media/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
@@ -1140,7 +1253,8 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> në {1} ditët e fundit"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269
+#: media/js/impala/stats/csv_keys.js:263
+#: media/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> nga {1} te {2}"
 
@@ -1170,8 +1284,8 @@ msgstr[1] "Caktoji {0} shtesave versionin maksimal {1} dhe dërgoji email autor�
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Dërgojini email autorit të {2} shtese që nuk e kaloi vleftësimin."
+msgstr[1] "Dërgojini email autorit të {2} shtesave që nuk e kaluan vleftësimin."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -1236,7 +1350,8 @@ msgid "Not available for your platform"
 msgstr "Jo i passhëm për platformën tuaj"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+#: media/js/zamboni/buttons.js:317
+#: media/js/zamboni/buttons.js:354
 msgid "Not available for {0} {1}"
 msgstr "Jo i passhëm për {0} {1}"
 
@@ -1248,7 +1363,8 @@ msgstr "Funksionon me {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Shihni versione të tjera"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+#: media/js/zamboni/buttons.js:597
+#: media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues me bazë Mozilla (si Firefox-i)."
 
@@ -1288,7 +1404,8 @@ msgstr "Koment"
 msgid "Remove this add-on from the collection"
 msgstr "Hiqe këtë shtesë prej koleksionit"
 
-#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
+#: media/js/zamboni/collections.js:439
+#: media/js/zamboni/collections.js:468
 msgid "Remove"
 msgstr "Hiqe"
 
@@ -1352,7 +1469,8 @@ msgstr "Po fillohen provat..."
 msgid "Waiting for test results..."
 msgstr "Po pritet për përfundimet e provave..."
 
-#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1485
+#: media/js/zamboni/devhub.js:1490
 msgid "Internal Server Error"
 msgstr "Gabim i Brendshëm Shërbyesi"
 
@@ -1410,7 +1528,8 @@ msgid_plural "At least {0} characters left."
 msgstr[0] "Të paktën edhe <b>{0}</b> shenjë."
 msgstr[1] "Të paktën edhe <b>{0}</b> shenja."
 
-#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
+#: media/js/zamboni/perf.js:29
+#: media/js/zamboni/perf.js:42
 msgid "All"
 msgstr "Krejt"
 
@@ -1425,8 +1544,8 @@ msgstr "Shtesa e kaloi provën e vleftësimit."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} njoftim"
+msgstr[1] "{0} njoftime"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
@@ -1444,7 +1563,8 @@ msgstr "Të pashqyrtuara"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Eksperimentale <span>(Mësoni Më Tepër)</span>"
 
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79
+#: media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "Jo i Passhëm për {0}"
 
@@ -1483,3 +1603,4 @@ msgstr "Po e provoni!"
 #: media/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "U shtua te Firefox-i"
+
