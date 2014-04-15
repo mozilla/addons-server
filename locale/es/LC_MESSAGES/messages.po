@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2014-03-24 09:47+0000\n"
+"PO-Revision-Date: 2014-04-15 10:02+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395654464.0\n"
+"X-POOTLE-MTIME: 1397556161.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -876,8 +876,9 @@ msgstr "Código QR para el complemento"
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
-"¿Quieres tener {0} en Firefox de tu dispositivo móvil? Escanea este código QR para instalarla directamente en tu móvil o celular (necesitas un lector QR; busca en la tienda de tu dispositivo si no "
-"tienes uno)."
+"¿Quieres tener {0} en Firefox de tu dispositivo móvil? Escanea este código "
+"QR para instalarlo directamente en tu móvil o celular (necesitas un lector "
+"QR; busca en la tienda de tu dispositivo si no tienes uno)."
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:329
@@ -1458,11 +1459,11 @@ msgstr "Propiedades de {addon} editadas."
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr "descripción de {addon} editada."
+msgstr "Descripción de {addon} editada."
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr "Categorías editadas para {addon}."
+msgstr "Categorías de {addon} editadas."
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
@@ -1658,7 +1659,7 @@ msgstr "Icono de {addon} cambiado."
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
-msgstr "aprobada {review} de {addon}."
+msgstr "{review} de {addon} aprobada."
 
 #: apps/amo/log.py:335
 msgid "{user} approved {review} for {addon}."
@@ -4268,15 +4269,17 @@ msgstr "Ver todos los complementos ►"
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Revisores de AMO"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"¡Adelántate! Conviértete en revisor de AMO hoy mismo y tus complementos "
+"tendrán preferencia en las revisiones."
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Hazte revisor de AMO"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
@@ -5169,7 +5172,7 @@ msgstr "Este complemento será borrado automáticamente después de unos días s
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Última versión:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5284,11 +5287,13 @@ msgstr "Ver los <a href=\"{0}\">tiempos de espera</a> aproximados de la cola de 
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "¡Adelántate en la Lista de revisión!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Conviértete en revisor de AMO hoy mismo y tus complementos tendrán "
+"preferencia en las revisiones."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5681,9 +5686,14 @@ msgid ""
 "time to submit your add-on to <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. With over <em>1.5 billion</em> add-on downloads served, it's the best place to let your new creation live. "
 "Before you submit it, there are a few things to go over."
 msgstr ""
-"¡Guau! ¿Ya has terminado tu complemento? Sólo para que lo sepas, <a href=\"http://labs.mozilla.com/\">Mozilla Labs</a> está contratando gente. Muy bien, si has probado tu complemento y está libre "
-"de problemas, es el momento de enviar tu complemento a <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. Con más de <em>1.500 millones</em> de descargas de complementos, es el mejor sitio "
-"para permitir que tu nueva creación cobre vida. Antes de que los envíes, hay unas pocas cosas para tener en cuenta."
+"¡Guau! ¿Ya has terminado tu complemento? Sólo para que lo sepas, <a "
+"href=\"http://labs.mozilla.com/\">Mozilla Labs</a> está contratando gente. Muy "
+"bien, si has probado tu complemento y está libre de problemas, es el "
+"momento de enviar tu complemento a <a "
+"href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. Con más de <em>1.500 "
+"millones</em> de descargas de complementos, es el mejor sitio para permitir "
+"que tu nueva creación cobre vida. Antes de que lo envíes, hay unas pocas "
+"cosas para tener en cuenta."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:115
 msgid ""
@@ -6987,12 +6997,20 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p>Cada vez que un complemento incluye cualquier característica inesperada* que </p> <ul> <li>compromete la privacidad del usuario o la seguridad (como el envío de datos a terceros),</li> <li>camba "
-"la configuración predeterminada como la página de inicio o un motor de búsqueda, o </li> <li>cambia la configuración de otros complementos o los desactiva</li> </ul> <p>las características deben "
-"reunir los siguientes requisitos:</p> <ul> <li>La descripción del complemento debe ser clara respecto a lo que hace.</li> <li>Todos los cambios deben ser opcionales, lo que el usuario debe realizar "
-"acciones diferentes a las por defecto para activar esos cambios.</li> <li>La ventana de opciones debe mostrar de manera clara el nombre del complemento que solicita el cambio.</li> <li>Al "
-"desinstalar el complemento se restauran las opciones originales del usuario, en caso de haberse cambiado.</li> </ul> <p>*Características inesperadas son aquellas no relacionadas con la función "
-"principal del complemento.</p>"
+"<p>Cada vez que un complemento incluye cualquier característica inesperada* "
+"que </p> <ul> <li>compromete la privacidad del usuario o la seguridad (como "
+"el envío de datos a terceros),</li> <li>cambia la configuración "
+"predeterminada como la página de inicio o un motor de búsqueda, o</li> "
+"<li>cambia la configuración de otros complementos o los desactiva</li> </ul> "
+"<p>las características deben reunir los siguientes requisitos:</p> <ul> "
+"<li>La descripción del complemento debe ser clara respecto a lo que "
+"hace.</li> <li>Todos los cambios deben ser opcionales, lo que significa que "
+"el usuario debe realizar acciones explícitas para activar esos cambios.</li> "
+"<li>La ventana de opciones debe mostrar de manera clara el nombre del "
+"complemento que solicita el cambio.</li> <li>Al desinstalar el complemento "
+"se restauran las opciones originales del usuario, en caso de haberse "
+"cambiado.</li> </ul> <p>*Características inesperadas son aquellas no "
+"relacionadas con la función principal del complemento.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -7402,8 +7420,10 @@ msgstr "Introducción a DOM"
 #: apps/devhub/templates/devhub/docs/reference.html:265
 msgid "The Document Object Model (DOM) is an API for HTML and XML documents. It provides a structural representation of the document, enabling you to modify its content and visual presentation."
 msgstr ""
-"El Modelo en Objetos para la representación de Documentos (Document Object Model (DOM)) es una API para documentos HTML y XML. Proporciona una representación de la estructura del documento, lo que "
-"te permite modificar su contenido y presentación visual."
+"El Modelo en Objetos para la representación de Documentos (Document Object "
+"Model, DOM) es una API para documentos HTML y XML. Proporciona una "
+"representación de la estructura del documento, lo que te permite modificar "
+"su contenido y presentación visual."
 
 #: apps/devhub/templates/devhub/docs/reference.html:273
 msgid "Gecko DOM Reference"
@@ -7839,7 +7859,10 @@ msgstr "<b>Sube tus imágenes</b>: ¡asegúrate de que su peso no excede los 300
 
 #: apps/devhub/templates/devhub/docs/themes.html:222
 msgid "<b>Select text and tab colors</b> &mdash; you can choose the tab (\"background\") color and foreground text color that work best with your header image."
-msgstr "<b>Selecciona el texto y color para las pestañas</b>: puedes eligir el color (\"de fondo\") de las pestañas y el color principal del texto que le vaya mejor a tu imagen de encabezado."
+msgstr ""
+"<b>Selecciona el texto y color para las pestañas</b>: puedes elegir el color "
+"(\"de fondo\") de las pestañas y el color principal del texto que le vaya "
+"mejor a tu imagen de encabezado."
 
 #: apps/devhub/templates/devhub/docs/themes.html:229
 msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
@@ -7853,7 +7876,10 @@ msgstr "<b>Envía tu tema</b>: si todo se ve correctamente, haz clic en el botó
 
 #: apps/devhub/templates/devhub/docs/themes.html:243
 msgid "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure it complies with the content guidelines and terms of service!"
-msgstr "<b>Consejo:</b>Para asegurarte de que tu tema obtiene la aprobación para publicarse en la galería, comprueba que cumple con las pautas sobre contenidos y términos de servicio."
+msgstr ""
+"<b>Consejo:</b> para asegurarte de que tu tema obtiene la aprobación para "
+"publicarse en la galería, comprueba que cumple con las pautas sobre "
+"contenidos y términos de servicio."
 
 #: apps/devhub/templates/devhub/docs/themes.html:254
 msgid "Submit Your Theme Now"
@@ -7861,11 +7887,13 @@ msgstr "Enviar tu tema ahora"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Has deshabilitado este complemento"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
 msgstr ""
+"Tus complementos listados están deshabilitados y no se mostrarán en ningún "
+"lugar de nuestra galería o servicio de actualización."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -7873,7 +7901,7 @@ msgstr "Por favor, completa tu complemento."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:28
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Recibirás un correo electrónico cuando se complete la revisión."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:33 apps/devhub/templates/devhub/includes/addon_details.html:40
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
@@ -7904,39 +7932,46 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
 msgstr ""
+"Todos los complementos alojados en nuestra galería deben ser revisados ahora "
+"por un editor. Si deseas continuar alojando tu complemento, por favor haz "
+"clic para seleccionar un proceso de revisión."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
-msgstr ""
+msgstr "Versión actual:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
+"Esta es la versión de tu complemento que se instalará si alguien hace clic "
+"en el botón Instalar en addons.mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 msgid "Created:"
-msgstr ""
+msgstr "Creado:"
 
 #. {0} is a date.
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%b %e, %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
-msgstr ""
+msgstr "Última actualización:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
 msgid "Next Version:"
-msgstr ""
+msgstr "Próxima versión:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
+"Esta es la última versión subida; sin embargo, aún no se muestra en el "
+"sitio."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Las colas no son revisadas en orden estricto"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -7976,7 +8011,7 @@ msgstr "Contarle a tus usuarios qué es lo que viene los hará esperar entusiasm
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:22
 msgid "View All"
-msgstr ""
+msgstr "Ver todo"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:34
 msgid "Enable Add-on"
@@ -8530,8 +8565,8 @@ msgstr "Versión {0}"
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} archivo"
+msgstr[1] "{0} archivos"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -8539,7 +8574,7 @@ msgstr "0 archivos"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Posición en la cola: %(pos)s de %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -8569,7 +8604,7 @@ msgstr "Cancelar la petición de valoración"
 
 #: apps/devhub/templates/devhub/versions/list.html:106
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Actualmente en AMO"
 
 #: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
@@ -8589,11 +8624,11 @@ msgstr "Rendimiento"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Próxima versión de este complemento"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
-msgstr ""
+msgstr "Versiones antiguas"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
@@ -9337,7 +9372,7 @@ msgstr "Atrasado (Más de 10 días)"
 
 #: apps/editors/views.py:453
 msgid "An unknown error occurred"
-msgstr "Ha sucedido un error desconocido."
+msgstr "Ha sucedido un error desconocido"
 
 #: apps/editors/views.py:489
 msgid "Self-reviews are not allowed."
@@ -9508,7 +9543,7 @@ msgstr "Nuevos editores"
 
 #: apps/editors/templates/editors/home.html:80 apps/editors/templates/editors/home.html:95
 msgid "You're #{0} with {1} reviews"
-msgstr "Eres el n. º {0} con {1} valoraciones"
+msgstr "Eres el nº {0} con {1} valoraciones"
 
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:125
@@ -10416,17 +10451,23 @@ msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
-"Cuando comiences a navegar y a usar los complementos, presta especial atención a todo aquello que sea diferente respecto a la última vez que usaste la extensión. Estas diferencias pueden ser un "
-"error de visualización (como la ausencia de un elemento del menú) o algo más serio (como que el complemento no funcione o muestre errores)."
+"Cuando comiences a navegar y a usar los complementos, presta especial "
+"atención a todo aquello que sea diferente respecto a la última vez que "
+"usaste la extensión. Estas diferencias pueden ser un error de visualización, "
+"como la ausencia de un elemento del menú, o algo más serio, como que el "
+"complemento no funcione o muestre errores."
 
 #: apps/pages/templates/pages/acr_firstrun.html:49
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
-"Una vez que sepas si un complemento en concreto funciona bien o tiene problemas, abre el Administrador de complementos y haz clic en el botón Compatibilidad situado junto al complemento. De esta "
-"forma Mozilla sabrá que encontraste un error al hacer el testeo. Al enviar un informe, nos ayudarás a hacer saber al desarrollador si su complemento funciona bien en esta versión o podría necesitar "
-"algunos ajustes."
+"Una vez que sepas si un complemento en concreto funciona bien o tiene "
+"problemas, abre el Administrador de complementos y haz clic en el botón "
+"Compatibilidad situado junto al complemento. De esta forma Mozilla sabrá que "
+"encontraste un error al hacer las pruebas. Al enviar un informe, nos "
+"ayudarás a hacer saber al desarrollador si su complemento funciona bien en "
+"esta versión o podría necesitar algunos ajustes."
 
 #: apps/pages/templates/pages/acr_firstrun.html:61
 msgid ""
@@ -10939,6 +10980,13 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Los complementos los revisan los editores AMO, un grupo de desarrolladores "
+"con talento que voluntariamente ayudan al proyecto Mozilla revisando "
+"complementos y garantizando que los usuarios de Mozilla disfruten de una "
+"experiencia estable y segura. Al comunicarte con los editores, intenta ser "
+"educado, paciente y respetuoso mientras dedican sus esfuerzos a revisar que "
+"tu complemento está configurado correctamente y cumple las directrices "
+"detalladas en la <a href=\"%(url)s\">Guía de revisión para editores</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -10949,9 +10997,12 @@ msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process"
 msgstr ""
-"El equipo editorial de Mozilla sigue la <a href=\"%(url)s\">Guía de revisión para editores</a> para comprobar si un complemento se acepta en AMO. Es importante que los desarrolladores de "
-"complementos revisen esta guía para asegurarse de que se abordan los aspectos más problemáticos antes de enviar su complemento a revisión. Esto ayudará en gran medida a acelerar el proceso de "
-"revisión."
+"El equipo editorial de Mozilla sigue la <a href=\"%(url)s\">Guía de revisión "
+"para editores</a> para comprobar si un complemento se acepta en AMO. Es "
+"importante que los desarrolladores de complementos revisen esta guía para "
+"asegurarse de que se abordan los aspectos más problemáticos antes de enviar "
+"su complemento a revisión. Esto ayudará en gran medida a acelerar el proceso "
+"de revisión"
 
 #: apps/pages/templates/pages/dev_faq.html:439
 msgid "How long will it take for my add-on to be reviewed?"
@@ -11157,10 +11208,14 @@ msgid ""
 "discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
 "extended versions of the program to be free as well.)"
 msgstr ""
-"La Fundación para el Software Libre (Free Software Foundation) proporciona breves resúmenes sobre las licencias de código abierto más relevantes, incluyendo información sobre si cierto tipo de "
-"licencia se encuentra clasificada como software libre o copyleft. Asimismo, contiene debates sobre qué constituye licencia de software libre y licencia de copyleft (por ejemplo, una licencia de "
-"copyleft es uno de los métodos generales para distribuir un programa o cualquier otro tipo de trabajo gratuitamente. Asimismo, requiere que todas las versiones modificadas o extendidas del programa "
-"también lo sean)."
+"La Fundación para el Software Libre (Free Software Foundation) proporciona "
+"resúmenes breves sobre las licencias de código abierto más relevantes, "
+"incluyendo información sobre si una licencia se encuentra clasificada como "
+"software libre o copyleft. Asimismo, contiene debates sobre qué constituye "
+"una licencia de software libre o una licencia de copyleft (por ejemplo, una "
+"licencia de copyleft es un método general para distribuir un programa o "
+"cualquier otro tipo de trabajo gratuitamente y obligar a que todas las "
+"versiones modificadas o extendidas del programa también lo sean)."
 
 #: apps/pages/templates/pages/dev_faq.html:662
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
@@ -12740,7 +12795,7 @@ msgstr "¡Se ha introducido una contraseña errónea!"
 
 #: apps/users/forms.py:164
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Los nombres de usuario no pueden contener solo dígitos."
 
 #: apps/users/forms.py:166
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
@@ -12962,7 +13017,7 @@ msgstr "A partir de ahora, usa {0} para conectarte."
 
 #: apps/users/views.py:325
 msgid "Persona authentication failure."
-msgstr "Error al intentar autenticarte con Mozilla Persona."
+msgstr "Error al iniciar sesión con Mozilla Persona."
 
 #: apps/users/views.py:350
 msgid "Please use the verified email for this account."
