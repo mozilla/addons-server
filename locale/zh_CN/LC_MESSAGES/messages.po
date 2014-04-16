@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:16-0700\n"
-"PO-Revision-Date: 2014-04-04 02:02+0000\n"
+"PO-Revision-Date: 2014-04-16 14:52+0000\n"
 "Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1396576962.0\n"
+"X-POOTLE-MTIME: 1397659933.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4187,15 +4187,15 @@ msgstr "查看所有附加组件►"
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO 审核者"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "来吧！今天就成为 AMO 审核者让您的附加组件更快地完成审核。"
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "成为 AMO 审核者"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
@@ -5177,11 +5177,11 @@ msgstr "查看相似审核队列的<a href=\"{0}\">等待时间</a>。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "缩短审核队列！"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "今天就成为 AMO 审核者让您的附加组件能更快完成审核。"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -7568,11 +7568,11 @@ msgstr "现在就提交您的主题"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "您禁用了这个附加组件"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr ""
+msgstr "已停止列出您的附加组件，他不会显示在画廊或更新服务中。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -7580,7 +7580,7 @@ msgstr "请完成您的附加组件。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:28
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "审核完成时您会收到邮件。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:33 apps/devhub/templates/devhub/includes/addon_details.html:40
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
@@ -7606,40 +7606,40 @@ msgstr "在全面审核完成后您会收到一封电子邮件通知。在此期
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
-msgstr ""
+msgstr "存放在我们的画廊中的全部附加组件现在都要通过编辑审核。如果您希望继续存放您的附加组件，请点击选择审核流程。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
-msgstr ""
+msgstr "当前版本："
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "这是用户在 addons.mozilla.org 上点击您的附加组件的安装按钮时将要安装的版本。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 msgid "Created:"
-msgstr ""
+msgstr "创建于："
 
 #. {0} is a date.
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%Y-%b-%e"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
-msgstr ""
+msgstr "最近更新："
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
 msgid "Next Version:"
-msgstr ""
+msgstr "下一个版本："
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "这是最新上传的版本，但尚未在网站上出现。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "审核时并不会严格按照进入队列的先后顺序进行"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -7678,7 +7678,7 @@ msgstr "告诉您的用户下一步将带给他们期待的哪些功能或特性
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:22
 msgid "View All"
-msgstr ""
+msgstr "查看全部"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:34
 msgid "Enable Add-on"
@@ -8207,7 +8207,7 @@ msgstr "版本 {0}"
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
+msgstr[0] "{0} 个文件"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -8215,7 +8215,7 @@ msgstr "0 个文件"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "审核队列位置：%(pos)s of %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -8244,7 +8244,7 @@ msgstr "撤回审核请求"
 
 #: apps/devhub/templates/devhub/versions/list.html:106
 msgid "Currently on AMO"
-msgstr ""
+msgstr "目前在 AMO"
 
 #: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
@@ -8264,11 +8264,11 @@ msgstr "性能"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "这个附加组件的下一个版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
-msgstr ""
+msgstr "旧版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
