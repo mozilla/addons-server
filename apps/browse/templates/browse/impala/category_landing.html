@@ -29,7 +29,7 @@
   {% set link = request.get_full_path()|urlparams(sort=key) %}
   {% set hc_src = 'cb-hc-' + src_dict[key] %}
   {% set dl_src = 'cb-dl-' + src_dict[key] %}
-  {% set vital = ('adu', 'rating') if key == popular else ('rating', 'adu') %}
+  {% set vital = ('adu', 'rating') if key == 'popular' else ('rating', 'adu') %}
   <div class="island c">
     <h2>
       {{ filter.opts_dict[key] }}
@@ -39,7 +39,7 @@
                          vital_summary=vital[0], vital_more=vital[1]) }}
   </div>
   {% endfor %}
-  <h2 class="seeall"><a href="{{ request.get_full_path()|urlparams(sort=popular) }}">
+  <h2 class="seeall"><a href="{{ request.get_full_path()|urlparams(sort='popular') }}">
     {% if section == 'extensions' %}
       {% trans cnt = category.count, name = category.name %}
         See the {{ cnt }} extension in {{ name }} &raquo;
