@@ -1,13 +1,16 @@
-DROP TABLE prices;
-DROP TABLE price_currency;
-DROP TABLE addon_purchase;
-DROP TABLE addons_premium;
 DROP TABLE refunds;
+DROP TABLE price_currency;
+DROP TABLE addons_premium;
+DROP TABLE inapp_products;
+DROP TABLE addon_purchase;
 DROP TABLE addon_payment_data;
 DROP TABLE paypal_checkstatus;
-
 ALTER TABLE stats_contributions
-    DROP COLUMN user,
-    DROP COLUMN type,
-    DROP COLUMN price_tier,
-    DROP COLUMN related;
+    DROP FOREIGN KEY price_tier_id_refs,
+    DROP FOREIGN KEY user_id_refs,
+    DROP COLUMN price_tier_id,
+    DROP COLUMN related_id,
+    DROP COLUMN user_id,
+    DROP COLUMN type;
+DROP TABLE prices;
+
