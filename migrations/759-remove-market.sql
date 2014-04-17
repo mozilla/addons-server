@@ -1,3 +1,5 @@
+SET foreign_key_checks = 0;
+
 DROP TABLE refunds;
 DROP TABLE price_currency;
 DROP TABLE addons_premium;
@@ -13,4 +15,4 @@ ALTER TABLE stats_contributions
     DROP COLUMN user_id,
     DROP COLUMN type;
 DROP TABLE prices;
-
+SET foreign_key_checks = 1;
