@@ -289,7 +289,7 @@ $(document).ready(function() {
     // hook up various links related to current version status
     $('#modal-cancel').modal('#cancel-review', {width: 400});
     if ($("#modal-delete").length) {
-        $('#modal-delete').modal('.delete-addon', {
+        $modal = $('#modal-delete').modal('.delete-addon', {
             width: 400,
             callback: function(obj) {
                 return fixPasswordField(this);
