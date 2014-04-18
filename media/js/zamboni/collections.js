@@ -535,11 +535,14 @@ if ($('body.collections-contributors')) {
 $(document).ready(function() {
 
     $('#remove_icon').click(function(){
-      $.post($(this).attr('href'), {}, function(d){
-                    $('#icon_upload .icon_preview img').attr('src', d.icon);
-                  });
-      $(this).hide();
-      return false;
+        $.ajax({
+            url: $(this).attr('href'),
+            headers: {"X-CSRFToken": $.cookie('csrftoken')},
+            type: "POST",
+            success: function(d) { $('#icon_upload .icon_preview img').attr('src', d.icon); }
+        });
+        $(this).hide();
+        return false;
     });
 
 });
