@@ -21,7 +21,7 @@ class zamboni {
 
     exec { "fetch_landfill_sql":
         cwd => "$PROJ_DIR",
-        command => "wget --no-check-certificate -P /tmp https://landfill.addons.allizom.org/db/landfill-`date +%Y-%m-%d`.sql.gz",
+        command => "wget -P /tmp https://landfill-addons.allizom.org/db_data/landfill-`date +%Y-%m-%d`.sql.gz",
         require => [
             Package["wget"],
             Exec["grant_mysql_database"]

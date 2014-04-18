@@ -44,7 +44,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kw):
         filename = date.today().strftime('landfill-%Y-%m-%d.sql.gz')
         file_location = '/tmp/%s' % filename
-        file_url = 'https://landfill.addons.allizom.org/db_data/%s' % filename
+        file_url = 'https://landfill-addons.allizom.org/db_data/%s' % filename
 
         write_dump = 'mysql -u%(db_user)s %(db_name)s' % {
             'db_user': settings.DATABASES['default']['USER'],

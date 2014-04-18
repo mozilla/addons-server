@@ -227,7 +227,7 @@ Database
 Instead of running ``manage.py syncdb`` your best bet is to grab a snapshot of
 our production DB which has been redacted and pruned for development use.
 Development snapshots are hosted over at
-https://landfill.addons.allizom.org/db/
+https://landfill-addons.allizom.org/db/
 
 There is a management command that download and install the landfill
 database. You have to create the database first using the following
@@ -249,7 +249,7 @@ snapshot manually (ie without the management command)::
     export DB_USER=olympia
     mysqladmin -uroot create $DB_NAME
     mysql -uroot -B -e'GRANT ALL PRIVILEGES ON $DB_NAME.* TO $DB_USER@localhost'
-    wget --no-check-certificate -P /tmp https://landfill.addons.allizom.org/db/landfill-`date +%Y-%m-%d`.sql.gz
+    wget -P /tmp https://landfill-addons.allizom.org/db_data/landfill-`date +%Y-%m-%d`.sql.gz
     zcat /tmp/landfill-`date +%Y-%m-%d`.sql.gz | mysql -u$DB_USER $DB_NAME
     # Optionally, you can remove the landfill site notice:
     mysql -uroot -e"delete from config where \`key\`='site_notice'" $DB_NAME
