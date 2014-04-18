@@ -1,4 +1,8 @@
 $(document).ready(function() {
+
+    // Modals
+    var $modalFile, $modalDelete, $modalDisable;
+
     // Edit Add-on
     $("#edit-addon").exists(initEditAddon);
 
@@ -79,7 +83,7 @@ $(document).ready(function() {
     }
 
     if ($(".add-file-modal").length) {
-        $modal = $(".add-file-modal").modal(".version-upload", {
+        $modalFile = $(".add-file-modal").modal(".version-upload", {
             width: '450px',
             hideme: false,
             callback: function() {
@@ -88,7 +92,7 @@ $(document).ready(function() {
             }
         });
 
-        $('.upload-file-cancel').click(_pd($modal.hideMe));
+        $('.upload-file-cancel').click(_pd($modalFile.hideMe));
         $('#upload-file').submit(_pd(function(e) {
             $.ajax({
                 url: $(this).attr('action'),
@@ -104,12 +108,12 @@ $(document).ready(function() {
                     $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
                     $('#upload-file-finish').attr('disabled', false);
-                    $modal.setPos();
+                    $modalFile.setPos();
                 }
             });
         }));
         if (window.location.hash === '#version-upload') {
-            $modal.render();
+            $modalFile.render();
         }
     }
 
@@ -289,18 +293,18 @@ $(document).ready(function() {
     // hook up various links related to current version status
     $('#modal-cancel').modal('#cancel-review', {width: 400});
     if ($("#modal-delete").length) {
-        $modal = $('#modal-delete').modal('.delete-addon', {
+        $modalDelete = $('#modal-delete').modal('.delete-addon', {
             width: 400,
             callback: function(obj) {
                 return fixPasswordField(this);
             }
         });
         if (window.location.hash === '#delete-addon') {
-            $modal.render();
+            $modalDelete.render();
         }
     }
     if ($("#modal-disable").length) {
-        $modal = $('#modal-disable').modal('.disable-addon', {
+        $modalDisable = $('#modal-disable').modal('.disable-addon', {
             width: 400,
             callback: function(d){
                 $('.version_id', this).val($(d.click_target).attr('data-version'));
@@ -308,7 +312,7 @@ $(document).ready(function() {
             }
         });
         if (window.location.hash === '#disable-addon') {
-            $modal.render();
+            $modalDisable.render();
         }
     }
 
@@ -851,7 +855,7 @@ function generateErrorList(o) {
 function initEditVersions() {
     if (z.noEdit) return;
     // Modal box
-    $modal = $(".add-file-modal").modal(".add-file", {
+    var $modal = $(".add-file-modal").modal(".add-file", {
         width: '450px',
         hideme: false,
         callback: function() {
