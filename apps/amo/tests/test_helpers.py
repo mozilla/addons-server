@@ -11,7 +11,7 @@ from django.utils import encoding
 import jingo
 import test_utils
 from mock import Mock, patch
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from pyquery import PyQuery
 
 import amo
@@ -464,3 +464,11 @@ def test_f():
     # This makes sure there's no UnicodeEncodeError when doing the string
     # interpolation.
     eq_(render(u'{{ "foo {0}"|f("baré") }}'), u'foo baré')
+
+
+def test_inline_css():
+    jingo.load_helpers()
+    env = jingo.env
+    t = env.from_string("{{ inline_css('zamboni/mobile', debug=True) }}")
+    s = t.render()
+    ok_('background-image: url(/media/img/icons/stars.png);' in s)
