@@ -45,7 +45,6 @@ function initAdminValidation(doc) {
         callback: function(obj) {
             var $ct = $(obj.click_target),
                 msg = '',
-                form = '';
             // L10n: {0} is the number of add-ons, {1} is a version like 4.0
             msg = ngettext('Set {0} add-on to a max version of {1} and email the author.',
                            'Set {0} add-ons to a max version of {1} and email the authors.',
@@ -56,11 +55,9 @@ function initAdminValidation(doc) {
 
             msg = format(msg, [$ct.attr('data-job-count-passing'), $ct.attr('data-job-version'),
                                $ct.attr('data-job-count-failing')]);
-            form = $('#notify-form').html();
             $(this).find('p.error').text('');  // clear any existing errors.
             $(this).find('p').eq(0).text(msg);
             $(this).children('form').attr('action', $ct.attr('data-job-url'));
-            $(this).find('div').eq(1).html(form); // note eq(0) is the csrf hidden div
             return { pointTo: $ct };
         }
     });
