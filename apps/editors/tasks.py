@@ -55,27 +55,27 @@ def send_mail(cleaned_data, theme_lock):
     """
     Send emails out for respective review actions taken on themes.
     """
-    theme = cleaned_data['theme']
-    action = cleaned_data['action']
-    comment = cleaned_data['comment']
-    reject_reason = cleaned_data['reject_reason']
+    with override('en-US'):  # Make sure the email is always sent in english.
+        theme = cleaned_data['theme']
+        action = cleaned_data['action']
+        comment = cleaned_data['comment']
+        reject_reason = cleaned_data['reject_reason']
 
-    reason = None
-    if reject_reason:
-        reason = rvw.THEME_REJECT_REASONS[reject_reason]
-    elif action == rvw.ACTION_DUPLICATE:
-        reason = _('Duplicate Submission')
+        reason = None
+        if reject_reason:
+            reason = rvw.THEME_REJECT_REASONS[reject_reason]
+        elif action == rvw.ACTION_DUPLICATE:
+            reason = _('Duplicate Submission')
 
-    emails = set(theme.addon.authors.values_list('email', flat=True))
-    context = {
-        'theme': theme,
-        'base_url': settings.SITE_URL,
-        'reason': reason,
-        'comment': comment
-    }
+        emails = set(theme.addon.authors.values_list('email', flat=True))
+        context = {
+            'theme': theme,
+            'base_url': settings.SITE_URL,
+            'reason': reason,
+            'comment': comment
+        }
 
-    subject = None
-    with override('en-US'):
+        subject = None
         if action == rvw.ACTION_APPROVE:
             subject = _('Thanks for submitting your Theme')
             template = 'editors/themes/emails/approve.html'

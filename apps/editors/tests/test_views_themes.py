@@ -214,7 +214,7 @@ class ThemeReviewTestMixin(object):
             mock.call(
                 'A problem with your Theme submission',
                 'editors/themes/emails/reject.html',
-                {'reason': mock.ANY,
+                {'reason': u'Duplicate Submission',
                  'comment': u'duplicate',
                  'theme': themes[2],
                  'base_url': 'http://testserver'},
