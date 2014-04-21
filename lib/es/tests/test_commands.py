@@ -27,6 +27,7 @@ class TestIndexCommand(amo.tests.ESTestCase):
         self.indices = call_es('_status').json()['indices'].keys()
 
     def tearDown(self):
+        super(TestIndexCommand, self).tearDown()
         current_indices = call_es('_status').json()['indices'].keys()
         for index in current_indices:
             if index not in self.indices:
@@ -101,9 +102,9 @@ class TestIndexCommand(amo.tests.ESTestCase):
             amo.search.get_es().refresh()
             self.check_results(wanted)
 
-        if len(wanted) == old_addons_count:
-            raise AssertionError('Could not index objects in foreground while '
-                                 'reindexing in the background.')
+        if len(wanted) < old_addons_count + 3:
+            raise AssertionError('Could not index enough objects in foreground'
+                                 ' while reindexing in the background.')
 
         t.join()  # Wait for the thread to finish.
         t.stdout.seek(0)
