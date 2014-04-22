@@ -369,7 +369,7 @@ Updating
 To run a full update of olympia (including source files, pip requirements and
 database migrations)::
 
-    make update
+    make full_update
 
 Use the following if you also wish to prefill your database with the data from
 landfill::
