@@ -3,5 +3,4 @@
 -r prod.txt
 
 psutil==0.2.0
-jstestnetlib==0.3
 nose-blockage==0.1.2
