@@ -122,7 +122,7 @@ class TestEdit(UserViewBase):
         self.url = reverse('users.edit')
         self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
                      'oldpassword': 'foo', 'password': 'longenough',
-                     'password2': 'longenough'}
+                     'password2': 'longenough', 'lang': 'en-US'}
 
     def test_password_logs(self):
         res = self.client.post(self.url, self.data)
@@ -136,7 +136,7 @@ class TestEdit(UserViewBase):
         admingroup.save()
         GroupUser.objects.create(group=admingroup, user=self.user)
         homepage = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                    'homepage': 'http://cbc.ca'}
+                    'homepage': 'http://cbc.ca', 'lang': 'en-US'}
         res = self.client.post(self.url, homepage)
         eq_(res.status_code, 302)
 
@@ -162,7 +162,8 @@ class TestEdit(UserViewBase):
     def test_email_change_mail_sent(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
-                'display_name': 'DJ SurfNTurf'}
+                'display_name': 'DJ SurfNTurf',
+                'lang': 'en-US'}
 
         r = self.client.post(self.url, data, follow=True)
         self.assertRedirects(r, self.url)
@@ -181,7 +182,8 @@ class TestEdit(UserViewBase):
     def test_email_change_mail_send_even_with_fake_email(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
-                'display_name': 'DJ SurfNTurf'}
+                'display_name': 'DJ SurfNTurf',
+                'lang': 'en-US'}
 
         self.client.post(self.url, data, follow=True)
         eq_(len(mail.outbox), 1)
@@ -191,7 +193,8 @@ class TestEdit(UserViewBase):
     def test_email_cant_change(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
-                'display_name': 'DJ SurfNTurf', }
+                'display_name': 'DJ SurfNTurf',
+                'lang': 'en-US'}
 
         res = self.client.post(self.url, data, follow=True)
         eq_(res.status_code, 200)
@@ -203,7 +206,8 @@ class TestEdit(UserViewBase):
 
         data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
-                'bio': 'xxx unst unst'}
+                'bio': 'xxx unst unst',
+                'lang': 'en-US'}
 
         r = self.client.post(self.url, data, follow=True)
         self.assertRedirects(r, self.url)
@@ -259,7 +263,7 @@ class TestEdit(UserViewBase):
         eq_(UserNotification.objects.count(), len(email.NOTIFICATIONS))
         eq_(UserNotification.objects.filter(enabled=True).count(), total)
 
-        doc = pq(self.client.get(self.url, self.data).content)
+        doc = pq(self.client.get(self.url).content)
         eq_(doc('input[name=notifications]:checked').length, total)
 
         eq_(doc('.more-none').length, len(email.NOTIFICATION_GROUPS))
@@ -388,7 +392,7 @@ class TestPasswordAdmin(UserViewBase):
         self.correct = {'username': 'editor',
                         'email': 'editor@mozilla.com',
                         'oldpassword': 'password', 'password': 'longenough',
-                        'password2': 'longenough'}
+                        'password2': 'longenough', 'lang': 'en-US'}
 
     def test_password_admin(self):
         res = self.client.post(self.url, self.correct, follow=False)
@@ -1102,6 +1106,17 @@ class TestRegistration(UserViewBase):
         # URL has the right confirmation code now.
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'An email has been sent to your address')
+
+    def test_default_lang(self):
+        """When a user registers, set its lang to the current locale."""
+        with self.activate('fr'):
+            url = reverse('users.register')
+            self.client.post(url, data={'email': 'new@example.com',
+                                        'username': 'new',
+                                        'password': 'foobarbaz',
+                                        'password2': 'foobarbaz'})
+            user = UserProfile.objects.get(email='new@example.com')
+            eq_(user.lang, 'fr')
 
 
 class TestProfileView(UserViewBase):

@@ -15,12 +15,15 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+import users.notifications as email
 from amo.utils import clean_nl, has_links, log_cef, slug_validator
+from translations import LOCALES
+
+from . import tasks
 from .models import (UserProfile, UserNotification, BlacklistedUsername,
                      BlacklistedEmailDomain, BlacklistedPassword)
 from .widgets import NotificationsSelectMultiple
-import users.notifications as email
-from . import tasks
+
 
 log = commonware.log.getLogger('z.users')
 admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
@@ -310,9 +313,15 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
             initial=email.NOTIFICATIONS_DEFAULT,
             required=False)
 
+    lang = forms.TypedChoiceField(label=_lazy(u'Default locale'),
+                                  choices=LOCALES)
+
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(UserEditForm, self).__init__(*args, **kwargs)
+
+        if not self.instance.lang:
+            self.initial['lang'] = self.request.LANG
 
         if self.instance:
             default = dict((i, n.default_checked) for i, n
