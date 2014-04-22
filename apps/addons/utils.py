@@ -24,8 +24,8 @@ def reverse_name_lookup(key):
     values = list(qs.distinct().values_list('id', flat=True))
     if values:
         if len(values) > 1:
-            rnlog.warning('Multiple returned for [%s:%s]: %s' % (addon_type,
-                                                                 key, values))
+            rnlog.warning('Multiple returned for [addon:%s]: %s' % (key,
+                                                                    values))
         return values[0]
     return None  # Explicitly return None for no results
 
