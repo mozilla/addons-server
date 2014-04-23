@@ -122,10 +122,6 @@ class NotifyForm(happyforms.Form):
             Template(data).render(Context({}))
         except TemplateSyntaxError, err:
             raise forms.ValidationError(err)
-        for name in varname.findall(data):
-            if name not in self.variable_names:
-                raise forms.ValidationError(
-                            u'Variable {{%s}} is not a valid variable' % name)
         return data
 
     def clean_text(self):
