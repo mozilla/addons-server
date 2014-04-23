@@ -40,11 +40,6 @@ def groupuser_post_save(sender, instance, **kw):
         return
 
     amo.log(amo.LOG.GROUP_USER_ADDED, instance.group, instance.user)
-
-    if (instance.user.user and
-        instance.user.groups.filter(rules='*:*').exists()):
-        instance.user.user.is_superuser = instance.user.user.is_staff = True
-        instance.user.user.save()
     log.info('Added %s to %s' % (instance.user, instance.group))
 
 
@@ -55,9 +50,4 @@ def groupuser_post_delete(sender, instance, **kw):
         return
 
     amo.log(amo.LOG.GROUP_USER_REMOVED, instance.group, instance.user)
-
-    if (instance.user.user and
-        not instance.user.groups.filter(rules='*:*').exists()):
-        instance.user.user.is_superuser = instance.user.user.is_staff = False
-        instance.user.user.save()
     log.info('Removed %s from %s' % (instance.user, instance.group))

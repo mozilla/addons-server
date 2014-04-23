@@ -1,24 +1,6 @@
 [
     {
         "pk": 4043307,
-        "model": "auth.user",
-        "fields": {
-            "username": "jbalogh@m.com",
-            "first_name": "Jeff",
-            "last_name": "Balogh",
-            "is_active": true,
-            "is_superuser": true,
-            "is_staff": true,
-            "last_login": "2010-05-18 11:52:06",
-            "groups": [],
-            "user_permissions": [],
-            "password": "",
-            "email": "jbalogh@m.com",
-            "date_joined": "2009-02-02 11:50:31"
-        }
-    },
-    {
-        "pk": 4043307,
         "model": "users.userprofile",
         "fields": {
             "display_collections_fav": true,
@@ -34,7 +16,6 @@
             "bio": null,
             "deleted": false,
             "emailhidden": false,
-            "user": 4043307,
             "password": "",
             "username": "jbalogh",
             "display_name": "jbalogh \u0627\u0644\u062a\u0637\u0628",
@@ -43,7 +24,8 @@
             "created": "2009-02-02 11:50:31",
             "notes": null,
             "modified": "2010-02-02 22:33:40",
-            "notifyevents": true
+            "notifyevents": true,
+            "last_login": "2010-02-02 22:33:40"
         }
     }
 ]

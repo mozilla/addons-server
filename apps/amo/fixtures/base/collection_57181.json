@@ -16,7 +16,6 @@
             "bio": null,
             "deleted": false,
             "emailhidden": true,
-            "user": null,
             "password": "",
             "username": "dsmailin",
             "resetcode_expires": null,

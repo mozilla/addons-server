@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
 from django.utils.http import urlsafe_base64_encode
@@ -24,8 +23,7 @@ class UserFormBase(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
-        self.user = User.objects.get(id='4043307')
-        self.user_profile = self.user.get_profile()
+        self.user = self.user_profile = UserProfile.objects.get(id='4043307')
         self.uidb64 = urlsafe_base64_encode(str(self.user.id))
         self.token = default_token_generator.make_token(self.user)
 
@@ -80,7 +78,7 @@ class TestSetPasswordForm(UserFormBase):
         self.client.post(url, {'new_password1': 'testlonger',
                                'new_password2': 'testlonger'})
 
-        self.user_profile = User.objects.get(id='4043307').get_profile()
+        self.user_profile = UserProfile.objects.get(id='4043307')
 
         assert self.user_profile.check_password('testlonger')
         eq_(self.user_profile.userlog_set
@@ -143,30 +141,6 @@ class TestUserDeleteForm(UserFormBase):
         data = {'password': 'foo', 'confirm': True, }
         r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
         self.assertContains(r, 'You cannot delete your account')
-
-
-class TestUserAdminForm(UserFormBase):
-
-    def test_long_hash(self):
-        self.client.login(username='fligtar@gmail.com', password='foo')
-        data = {'password': 'sha512$32e15df727a054aa56cf69accc142d1573372641a176aab9b0f1458e27dc6f3b$5bd3bd7811569776a07fbbb5e50156aa6ebdd0bec9267249b57da065340f0324190f1ad0d5f609dca19179a86c64807e22f789d118e6f7109c95b9c64ae8f619',
-                'username': 'alice',
-                'last_login': '2010-07-03 23:03:11',
-                'date_joined': '2010-07-03 23:03:11'}
-        r = self.client.post(reverse('admin:auth_user_change',
-                                     args=[self.user.id]),
-                             data)
-        eq_(pq(r.content)('#user_form div.password .errorlist').text(), None)
-
-    def test_toolong_hash(self):
-        self.client.login(username='fligtar@gmail.com', password='foo')
-        data = {'password': 'sha512$32e15df727a054aa56cf69accc142d1573372641a176aab9b0f1458e27dc6f3b$5bd3bd7811569776a07fbbb5e50156aa6ebdd0bec9267249b57da065340f0324190f1ad0d5f609dca19179a86c64807e22f789d118e6f7109c95b9c64ae8f6190000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-                'username': 'alice'}
-        r = self.client.post(reverse('admin:auth_user_change',
-                                     args=[self.user.id]),
-                             data)
-        eq_(pq(r.content)('#id_password strong').text(),
-            'algorithm salt hash')
 
 
 class TestUserEditForm(UserFormBase):
@@ -350,8 +324,7 @@ class TestUserLoginForm(UserFormBase):
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
         self.assertNotContains(r, "Welcome, Jeff")
-        self.assertContains(r, 'Please enter a correct username and password. '
-                               'Note that both fields may be case-sensitive.')
+        self.assertContains(r, 'Wrong email address or password')
 
     def test_successful_login_logging(self):
         t = datetime.now()
@@ -509,7 +482,7 @@ class TestUserRegisterForm(UserFormBase):
 
         self.assertContains(r, "Congratulations!")
 
-        u = User.objects.get(email='john.connor@sky.net').get_profile()
+        u = UserProfile.objects.get(email='john.connor@sky.net')
 
         assert u.confirmationcode
         eq_(len(mail.outbox), 1)

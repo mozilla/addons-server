@@ -21,19 +21,9 @@ class ACLMiddleware(object):
 
         # figure out our list of groups...
         if request.user.is_authenticated():
-            try:
-                amo_user = RequestUser.objects.get(pk=request.user.pk)
-            except RequestUser.DoesNotExist:
-                log.info('No RequestUser found for: %s' % request.user.pk)
-                request.amo_user = None
-                return
-
-            amo.set_user(amo_user)
-            request.user._profile_cache = request.amo_user = amo_user
-            request.groups = request.amo_user.groups.all()
-
-            if acl.action_allowed(request, 'Admin', '%'):
-                request.user.is_staff = True
+            amo.set_user(request.user)
+            request.groups = request.user.groups.all()
+            request.amo_user = request.user
         else:
             request.amo_user = None
 

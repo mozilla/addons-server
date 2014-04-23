@@ -124,24 +124,6 @@
     },
     {
         "pk": 9873,
-        "model": "auth.user",
-        "fields": {
-            "username": "team@cooliris.com",
-            "first_name": "The Cooliris",
-            "last_name": "Team",
-            "is_active": true,
-            "is_superuser": false,
-            "is_staff": false,
-            "last_login": "2010-05-21 21:44:51",
-            "groups": [],
-            "user_permissions": [],
-            "password": "",
-            "email": "team@cooliris.com",
-            "date_joined": "2007-03-05 13:09:37"
-        }
-    },
-    {
-        "pk": 9873,
         "model": "users.userprofile",
         "fields": {
             "display_collections_fav": false,
@@ -157,7 +139,6 @@
             "bio": null,
             "deleted": false,
             "emailhidden": false,
-            "user": 9873,
             "password": "",
             "username": "9873",
             "display_name": "9873 \u0627\u0644\u062a\u0637\u0628",
@@ -166,7 +147,8 @@
             "created": "2007-03-05 13:09:37",
             "notes": null,
             "modified": "2010-05-07 14:42:58",
-            "notifyevents": true
+            "notifyevents": true,
+            "last_login": "2010-05-07 14:42:58"
         }
     }
 ]

@@ -3,7 +3,6 @@ import datetime
 import json
 
 from django.conf import settings
-from django.contrib.auth.models import User
 
 import mock
 import tower
@@ -37,9 +36,7 @@ class ThemeReviewTestMixin(object):
         """Login as new reviewer with unique username."""
         username = 'reviewer%s' % self.reviewer_count
         email = username + '@mozilla.com'
-        reviewer = User.objects.create(username=email, email=email,
-                                       is_active=True, is_superuser=True)
-        user = UserProfile.objects.create(user=reviewer, email=email,
+        user = UserProfile.objects.create(email=email,
                                           username=username)
         user.set_password('password')
         user.save()

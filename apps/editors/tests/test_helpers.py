@@ -165,7 +165,7 @@ class TestReviewHelper(amo.tests.TestCase):
     def setUp(self):
         class FakeRequest:
             amo_user = UserProfile.objects.get(pk=10482)
-            user = amo_user.user
+            user = amo_user
 
         self.request = FakeRequest()
         self.addon = Addon.objects.get(pk=3615)
