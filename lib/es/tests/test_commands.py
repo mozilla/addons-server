@@ -119,4 +119,4 @@ class TestIndexCommand(amo.tests.ESTestCase):
         # New indices have been created, and aliases now point to them.
         new_indices = self.get_indices_aliases()
         eq_(len(old_indices), len(new_indices), (old_indices, new_indices))
-        assert old_indices != new_indices, (old_indices, new_indices)
+        assert old_indices != new_indices, (stdout, old_indices, new_indices)
