@@ -109,8 +109,8 @@ def get_output(data):
                 iconUrl='http://fpdownload2.macromedia.com/pub/flashplayer/current/fp_win_installer.ico',
                 needsRestart='false',
                 InstallerShowsUI='true',
-                version='13.0.0.182',
-                InstallerHash='sha256:56dfbc8bb670abe418989707d31e68463f72078e824608e71f96004a86a5ceee',
+                version='13.0.0.206',
+                InstallerHash='sha256:24f9cab08008c359fb1e3656c247cdc9dd1307e51dfad0b9d891634998eaca80',
                 InstallerLocation='http://download.macromedia.com/pub/flashplayer/pdc/fp_pl_pfs_installer.exe')
 
     elif (g['mimetype'] == 'application/x-director' and
