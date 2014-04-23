@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: 2014-02-28 01:55+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1146,12 +1146,12 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-#: media/js/zamboni/admin_validation.js:52
+#: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "将 {0} 个附加组件的最大版本号设置为 {1} 并用电子邮件通知作者。"
 
-#: media/js/zamboni/admin_validation.js:55
+#: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "邮件通知 {2} 个未通过验证的附加组件作者。"

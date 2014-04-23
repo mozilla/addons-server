@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: 2014-04-16 14:52+0000\n"
 "Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -150,16 +150,16 @@ msgstr "热门"
 msgid "Recently Added"
 msgstr "最近添加"
 
-#: apps/addons/views.py:323 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:96
+#: apps/addons/views.py:323 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr "最近更新"
 
 # %1 is an add-on name.
-#: apps/addons/views.py:505
+#: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr "捐款给 {0}"
 
-#: apps/addons/views.py:593
+#: apps/addons/views.py:592
 msgid "Abuse reported."
 msgstr "已报告滥用。"
 
@@ -545,7 +545,7 @@ msgstr "返回 {0}..."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:252
+#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
 msgstr "{0} 附加组件"
 
@@ -706,7 +706,7 @@ msgstr "等待审核"
 msgid "Rejected"
 msgstr "已被退回"
 
-#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157 apps/constants/payments.py:89
+#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157
 msgid "Approved"
 msgstr "已核准"
 
@@ -869,7 +869,7 @@ msgstr "发送报告"
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:56 apps/devhub/templates/devhub/versions/edit.html:128
 #: apps/devhub/templates/devhub/versions/list.html:210 apps/devhub/templates/devhub/versions/list.html:243 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:103
+#: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "取消"
 
@@ -1033,7 +1033,7 @@ msgstr "信息"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "在 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 下发布"
 
-#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:400 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "自定义许可协议"
@@ -1157,7 +1157,7 @@ msgstr "更多"
 msgid "Add to collection"
 msgstr "添加到收藏集"
 
-#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/nav.html:14
+#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:38 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "我的附加组件"
 
@@ -1215,7 +1215,7 @@ msgstr "详细了解"
 msgid "Users"
 msgstr "用户量"
 
-#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:94 apps/search/forms.py:102
+#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:94
 msgid "Weekly Downloads"
 msgstr "周下载量"
 
@@ -1269,7 +1269,7 @@ msgstr "您需要使用 Firefox 才能安装附加组件。<a href=\"http://mozi
 msgid "Return to the {0} Add-ons homepage"
 msgstr "返回 {0} 附加组件主页"
 
-#: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:254 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
+#: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
 #: templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:47
 msgid "Add-ons"
@@ -1307,7 +1307,7 @@ msgid "Highest Rated"
 msgstr "最受好评"
 
 #: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:87
-#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91 apps/search/forms.py:107
+#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91
 msgid "Newest"
 msgstr "最新的"
 
@@ -1381,7 +1381,7 @@ msgstr "这里必须是一个有效的十六进制颜色代码，例如 #000000�
 msgid "Enter at least one value."
 msgstr "至少输入一个值。"
 
-#: apps/amo/helpers.py:179 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
+#: apps/amo/helpers.py:181 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
@@ -1391,12 +1391,12 @@ msgstr "至少输入一个值。"
 msgid "Collections"
 msgstr "收藏集"
 
-#: apps/amo/helpers.py:188 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
+#: apps/amo/helpers.py:190 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "字典及语言包"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:430
+#: apps/amo/helpers.py:432
 msgid "{0} ago"
 msgstr "{0} 前"
 
@@ -1893,7 +1893,7 @@ msgstr ""
 "\"recaptcha_audio\">尝试不同类型的挑战</a>。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
-#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90 apps/search/forms.py:103
+#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90
 msgid "Top Rated"
 msgstr "评分最高"
 
@@ -2171,7 +2171,7 @@ msgstr "从收藏夹中移除"
 
 #: apps/bandwagon/views.py:88 apps/bandwagon/views.py:174 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:439 apps/devhub/views.py:70
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
-#: apps/search/forms.py:93 apps/search/forms.py:106 apps/users/templates/users/vcard.html:5
+#: apps/search/forms.py:93 apps/users/templates/users/vcard.html:5
 msgid "Name"
 msgstr "名称"
 
@@ -2624,7 +2624,7 @@ msgstr "输入要加入的附加组件名称"
 msgid "Add to Collection"
 msgstr "添加到收藏集"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:86 apps/editors/helpers.py:783 apps/editors/helpers.py:803
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:783 apps/editors/helpers.py:803
 msgid "Pending"
 msgstr "等待中"
 
@@ -2734,7 +2734,7 @@ msgid "Most Users"
 msgstr "用户最多"
 
 #: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:285 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:97
+#: apps/search/forms.py:96
 msgid "Up & Coming"
 msgstr "崭露头角"
 
@@ -3025,7 +3025,7 @@ msgstr "二进制"
 msgid "Non-binary"
 msgstr "非二进制"
 
-#: apps/compat/views.py:84 apps/constants/base.py:358 apps/constants/payments.py:52 apps/devhub/forms.py:145
+#: apps/compat/views.py:84 apps/constants/base.py:358 apps/devhub/forms.py:145
 msgid "Other"
 msgstr "其他"
 
@@ -3540,50 +3540,6 @@ msgstr "知识共享“署名-禁止演绎 3.0”"
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "知识共享“署名-相同方式共享 3.0”"
-
-#: apps/constants/payments.py:51
-msgid "Chargeback"
-msgstr "退单"
-
-#: apps/constants/payments.py:53
-msgid "Purchase"
-msgstr "购买"
-
-#: apps/constants/payments.py:54
-msgid "Refund"
-msgstr "退还"
-
-#: apps/constants/payments.py:55
-msgid "Voluntary"
-msgstr "自愿"
-
-#: apps/constants/payments.py:92
-msgid "Approved Instantly"
-msgstr "立即批准"
-
-#: apps/constants/payments.py:95
-msgid "Declined"
-msgstr "拒绝"
-
-#: apps/constants/payments.py:98
-msgid "Failed"
-msgstr "失败"
-
-#: apps/constants/payments.py:102 apps/constants/payments.py:103
-msgid "The payment was received, but not completed."
-msgstr "已收到付款，但尚未完成流程。"
-
-#: apps/constants/payments.py:104
-msgid "The payment failed."
-msgstr "付款失败。"
-
-#: apps/constants/payments.py:105
-msgid "The reversal failed."
-msgstr "撤回失败。"
-
-#: apps/constants/payments.py:106
-msgid "The payment was received, but not completed and is awaiting processing."
-msgstr "已收到付款，但尚未完成流程，等待处理中。"
 
 #: apps/constants/platforms.py:19
 msgid "All Platforms"
@@ -4155,10 +4111,6 @@ msgstr "把您的附加组件放到 Mozilla 附加组件网站上托管是最好
 #: apps/devhub/templates/devhub/index.html:29 apps/devhub/templates/devhub/index.html:34
 msgid "Submit an Add-on"
 msgstr "提交附加组件"
-
-#: apps/devhub/templates/devhub/index.html:38
-msgid "My Addons"
-msgstr "我的附加组件"
 
 #: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:37 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
@@ -8962,7 +8914,7 @@ msgstr "要求更多信息"
 msgid "Contains Editor Comment"
 msgstr "包含审核员意见"
 
-#: apps/editors/tasks.py:67
+#: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
 msgstr "重复的提交"
 
@@ -9914,11 +9866,6 @@ msgstr "语言代码"
 #: apps/localizers/templates/localizers/summary.html:28
 msgid "Locale name"
 msgstr "语言名称"
-
-#. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:78
-msgid "Tier %s"
-msgstr "%s 等级"
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
@@ -11609,7 +11556,7 @@ msgstr "搜索应用"
 msgid "Sort By"
 msgstr "排序依据"
 
-#: apps/search/forms.py:88 apps/search/forms.py:101
+#: apps/search/forms.py:88
 msgid "Relevance"
 msgstr "相关性"
 
@@ -11841,7 +11788,7 @@ msgstr "分享这个附加组件"
 msgid "Share this Collection"
 msgstr "分享收藏集"
 
-#: apps/stats/models.py:243
+#: apps/stats/models.py:227
 msgid "Thanks for contributing to {addon_name}"
 msgstr "感谢您捐款给 {addon_name}"
 

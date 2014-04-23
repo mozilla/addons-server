@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: 2014-02-16 20:52+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
@@ -163,16 +163,16 @@ msgstr "Popularno"
 msgid "Recently Added"
 msgstr "Nedavno dodato"
 
-#: apps/addons/views.py:323 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:96
+#: apps/addons/views.py:323 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr "Nedavno ažurirano"
 
 # %1 is an add-on name.
-#: apps/addons/views.py:505
+#: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr "Doprinosi za {0}"
 
-#: apps/addons/views.py:593
+#: apps/addons/views.py:592
 msgid "Abuse reported."
 msgstr "Zlostavljanje je prijavljeno."
 
@@ -570,7 +570,7 @@ msgstr "Nazad na {0}…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:252
+#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
 msgstr "Dodaci za {0}"
 
@@ -739,7 +739,7 @@ msgstr "Čekam ocenu"
 msgid "Rejected"
 msgstr "Odbijeno"
 
-#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157 apps/constants/payments.py:89
+#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157
 msgid "Approved"
 msgstr "Odobreno"
 
@@ -908,7 +908,7 @@ msgstr "Pošalji prijavu"
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:56 apps/devhub/templates/devhub/versions/edit.html:128
 #: apps/devhub/templates/devhub/versions/list.html:210 apps/devhub/templates/devhub/versions/list.html:243 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:103
+#: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "Otkaži"
 
@@ -1078,7 +1078,7 @@ msgstr "Informacije"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Objavljen pod <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:400 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Prilagođena licenca"
@@ -1208,7 +1208,7 @@ msgstr "Još"
 msgid "Add to collection"
 msgstr "Dodaj u kolekciju"
 
-#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/nav.html:14
+#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:38 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "My Add-ons"
 
@@ -1268,7 +1268,7 @@ msgstr "Pročitaj više"
 msgid "Users"
 msgstr "Korisnici"
 
-#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:94 apps/search/forms.py:102
+#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:94
 msgid "Weekly Downloads"
 msgstr "Sedmična preuzimanja"
 
@@ -1322,7 +1322,7 @@ msgstr "Potreban Vam je Firefox kako biste instalirali dodatke. <a href=\"http:/
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Vratite se na početnu stranicu {0} dodataka"
 
-#: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:254 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
+#: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
 #: templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:47
 msgid "Add-ons"
@@ -1362,7 +1362,7 @@ msgid "Highest Rated"
 msgstr "Najbolje ocenjene"
 
 #: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:87
-#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91 apps/search/forms.py:107
+#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91
 msgid "Newest"
 msgstr "Najnovije"
 
@@ -1436,7 +1436,7 @@ msgstr "Morate uneti ispravnu heksadecimalnu šifru boje, kao što je #000000."
 msgid "Enter at least one value."
 msgstr "Unesite bar jednu vrednost."
 
-#: apps/amo/helpers.py:179 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
+#: apps/amo/helpers.py:181 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
@@ -1446,12 +1446,12 @@ msgstr "Unesite bar jednu vrednost."
 msgid "Collections"
 msgstr "Kolekcije"
 
-#: apps/amo/helpers.py:188 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
+#: apps/amo/helpers.py:190 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "Rečnici i jezički paketi"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:430
+#: apps/amo/helpers.py:432
 msgid "{0} ago"
 msgstr "pre {0}"
 
@@ -1950,7 +1950,7 @@ msgstr ""
 "rečima</a> ili da <a href=\"#\" id=\"recaptcha_audio\">isprobate drugačiji izazov</a> od ovog. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
-#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90 apps/search/forms.py:103
+#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90
 msgid "Top Rated"
 msgstr "Najbolje ocenjeno"
 
@@ -2232,7 +2232,7 @@ msgstr "Ukloni iz omiljenih"
 
 #: apps/bandwagon/views.py:88 apps/bandwagon/views.py:174 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:439 apps/devhub/views.py:70
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
-#: apps/search/forms.py:93 apps/search/forms.py:106 apps/users/templates/users/vcard.html:5
+#: apps/search/forms.py:93 apps/users/templates/users/vcard.html:5
 msgid "Name"
 msgstr "Ime"
 
@@ -2706,7 +2706,7 @@ msgstr "Unesite naziv dodatka da biste da dodali"
 msgid "Add to Collection"
 msgstr "Dodaj u kolekciju"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:86 apps/editors/helpers.py:783 apps/editors/helpers.py:803
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:783 apps/editors/helpers.py:803
 msgid "Pending"
 msgstr "U toku"
 
@@ -2816,7 +2816,7 @@ msgid "Most Users"
 msgstr "Većina korisnika"
 
 #: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:285 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:97
+#: apps/search/forms.py:96
 msgid "Up & Coming"
 msgstr "Nadolazeće"
 
@@ -3111,7 +3111,7 @@ msgstr "Binarno"
 msgid "Non-binary"
 msgstr "Ne-binarno"
 
-#: apps/compat/views.py:84 apps/constants/base.py:358 apps/constants/payments.py:52 apps/devhub/forms.py:145
+#: apps/compat/views.py:84 apps/constants/base.py:358 apps/devhub/forms.py:145
 msgid "Other"
 msgstr "Drugo"
 
@@ -3632,50 +3632,6 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-#: apps/constants/payments.py:51
-msgid "Chargeback"
-msgstr "Povraćaj novca"
-
-#: apps/constants/payments.py:53
-msgid "Purchase"
-msgstr "Kupi"
-
-#: apps/constants/payments.py:54
-msgid "Refund"
-msgstr "Vraćanje novca"
-
-#: apps/constants/payments.py:55
-msgid "Voluntary"
-msgstr "Dobrovoljno"
-
-#: apps/constants/payments.py:92
-msgid "Approved Instantly"
-msgstr "Odmah odobreno"
-
-#: apps/constants/payments.py:95
-msgid "Declined"
-msgstr "Odbijeno"
-
-#: apps/constants/payments.py:98
-msgid "Failed"
-msgstr "Neuspelo"
-
-#: apps/constants/payments.py:102 apps/constants/payments.py:103
-msgid "The payment was received, but not completed."
-msgstr "Uplata je primljena, ali nije završena."
-
-#: apps/constants/payments.py:104
-msgid "The payment failed."
-msgstr "Uplata je neuspela."
-
-#: apps/constants/payments.py:105
-msgid "The reversal failed."
-msgstr "Povraćaj neuspeo."
-
-#: apps/constants/payments.py:106
-msgid "The payment was received, but not completed and is awaiting processing."
-msgstr "Uplata je primljena, ali nije završena i čeka na obradu."
 
 #: apps/constants/platforms.py:19
 msgid "All Platforms"
@@ -4251,10 +4207,6 @@ msgstr "Ne postoji bolji način da podelite Vaš dodatak od njegovog hostovanja 
 #: apps/devhub/templates/devhub/index.html:29 apps/devhub/templates/devhub/index.html:34
 msgid "Submit an Add-on"
 msgstr "Podnesi dodatak"
-
-#: apps/devhub/templates/devhub/index.html:38
-msgid "My Addons"
-msgstr "Moji dodaci"
 
 #: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:37 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
@@ -9004,7 +8956,7 @@ msgstr "Zahtevane dodatne informacije"
 msgid "Contains Editor Comment"
 msgstr ""
 
-#: apps/editors/tasks.py:67
+#: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
 msgstr ""
 
@@ -9979,11 +9931,6 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/summary.html:28
 msgid "Locale name"
-msgstr ""
-
-#. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:78
-msgid "Tier %s"
 msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
@@ -11592,7 +11539,7 @@ msgstr ""
 msgid "Sort By"
 msgstr "Poređaj po"
 
-#: apps/search/forms.py:88 apps/search/forms.py:101
+#: apps/search/forms.py:88
 msgid "Relevance"
 msgstr ""
 
@@ -11840,7 +11787,7 @@ msgstr "Deli ovaj dodatak sa ostalima"
 msgid "Share this Collection"
 msgstr "Podeli ovu kolekciju"
 
-#: apps/stats/models.py:243
+#: apps/stats/models.py:227
 msgid "Thanks for contributing to {addon_name}"
 msgstr ""
 

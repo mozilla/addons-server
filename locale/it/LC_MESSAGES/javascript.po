@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: 2014-03-31 12:07+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -1162,13 +1162,13 @@ msgstr "Data"
 msgid "Other"
 msgstr "Altro"
 
-#: media/js/zamboni/admin_validation.js:52
+#: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Imposta la maxversion del componente aggiuntivo {0} a {1} e invia email all’autore."
 msgstr[1] "Imposta la maxversion dei componenti aggiuntivi {0} a {1} e invia email agli autori."
 
-#: media/js/zamboni/admin_validation.js:55
+#: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Invia una email all’autore del componente aggiuntivo {2} che non ha superato la validazione."

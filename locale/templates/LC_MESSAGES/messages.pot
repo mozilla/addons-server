@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,15 +180,15 @@ msgstr ""
 #: apps/browse/views.py:59
 #: apps/browse/views.py:70
 #: apps/search/forms.py:18
-#: apps/search/forms.py:96
+#: apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr ""
 
-#: apps/addons/views.py:505
+#: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr ""
 
-#: apps/addons/views.py:593
+#: apps/addons/views.py:592
 msgid "Abuse reported."
 msgstr ""
 
@@ -700,7 +700,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/home.html:3
 #: apps/addons/templates/addons/mobile/home.html:3
-#: apps/amo/helpers.py:252
+#: apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
 msgstr ""
 
@@ -926,7 +926,6 @@ msgstr ""
 
 #: apps/addons/templates/addons/persona_preview.html:16
 #: apps/amo/log.py:157
-#: apps/constants/payments.py:89
 msgid "Approved"
 msgstr ""
 
@@ -1151,7 +1150,7 @@ msgstr ""
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:103
+#: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr ""
 
@@ -1356,7 +1355,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:207
 #: apps/addons/templates/addons/impala/details.html:212
-#: apps/amo/helpers.py:400
+#: apps/amo/helpers.py:402
 #: apps/devhub/forms.py:124
 #: apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40
@@ -1506,6 +1505,7 @@ msgid "Add to collection"
 msgstr ""
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:4
+#: apps/devhub/templates/devhub/index.html:38
 #: apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr ""
@@ -1573,7 +1573,6 @@ msgstr ""
 #: apps/browse/views.py:58
 #: apps/browse/views.py:69
 #: apps/search/forms.py:94
-#: apps/search/forms.py:102
 msgid "Weekly Downloads"
 msgstr ""
 
@@ -1637,7 +1636,7 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr ""
 
 #: apps/addons/templates/addons/mobile/home.html:17
-#: apps/amo/helpers.py:254
+#: apps/amo/helpers.py:256
 #: apps/bandwagon/templates/bandwagon/edit.html:34
 #: apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21
@@ -1698,7 +1697,6 @@ msgstr ""
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:65
 #: apps/search/forms.py:17
 #: apps/search/forms.py:91
-#: apps/search/forms.py:107
 msgid "Newest"
 msgstr ""
 
@@ -1800,7 +1798,7 @@ msgstr ""
 msgid "Enter at least one value."
 msgstr ""
 
-#: apps/amo/helpers.py:179
+#: apps/amo/helpers.py:181
 #: apps/amo/templates/amo/site_nav.html:59
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:15
@@ -1822,14 +1820,14 @@ msgstr ""
 msgid "Collections"
 msgstr ""
 
-#: apps/amo/helpers.py:188
+#: apps/amo/helpers.py:190
 #: apps/amo/templates/amo/site_nav.html:83
 #: apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr ""
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:430
+#: apps/amo/helpers.py:432
 msgid "{0} ago"
 msgstr ""
 
@@ -2371,7 +2369,6 @@ msgstr ""
 #: apps/browse/views.py:231
 #: apps/browse/views.py:288
 #: apps/search/forms.py:90
-#: apps/search/forms.py:103
 msgid "Top Rated"
 msgstr ""
 
@@ -2717,7 +2714,6 @@ msgstr ""
 #: apps/editors/templates/editors/themes/queue_list.html:48
 #: apps/search/forms.py:19
 #: apps/search/forms.py:93
-#: apps/search/forms.py:106
 #: apps/users/templates/users/vcard.html:5
 msgid "Name"
 msgstr ""
@@ -3268,7 +3264,6 @@ msgid "Add to Collection"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45
-#: apps/constants/payments.py:86
 #: apps/editors/helpers.py:783
 #: apps/editors/helpers.py:803
 msgid "Pending"
@@ -3398,7 +3393,7 @@ msgstr ""
 #: apps/browse/views.py:285
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:63
 #: apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:97
+#: apps/search/forms.py:96
 msgid "Up & Coming"
 msgstr ""
 
@@ -3746,7 +3741,6 @@ msgstr ""
 
 #: apps/compat/views.py:84
 #: apps/constants/base.py:358
-#: apps/constants/payments.py:52
 #: apps/devhub/forms.py:145
 msgid "Other"
 msgstr ""
@@ -4294,51 +4288,6 @@ msgstr ""
 
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-#: apps/constants/payments.py:51
-msgid "Chargeback"
-msgstr ""
-
-#: apps/constants/payments.py:53
-msgid "Purchase"
-msgstr ""
-
-#: apps/constants/payments.py:54
-msgid "Refund"
-msgstr ""
-
-#: apps/constants/payments.py:55
-msgid "Voluntary"
-msgstr ""
-
-#: apps/constants/payments.py:92
-msgid "Approved Instantly"
-msgstr ""
-
-#: apps/constants/payments.py:95
-msgid "Declined"
-msgstr ""
-
-#: apps/constants/payments.py:98
-msgid "Failed"
-msgstr ""
-
-#: apps/constants/payments.py:102
-#: apps/constants/payments.py:103
-msgid "The payment was received, but not completed."
-msgstr ""
-
-#: apps/constants/payments.py:104
-msgid "The payment failed."
-msgstr ""
-
-#: apps/constants/payments.py:105
-msgid "The reversal failed."
-msgstr ""
-
-#: apps/constants/payments.py:106
-msgid "The payment was received, but not completed and is awaiting processing."
 msgstr ""
 
 #: apps/constants/platforms.py:19
@@ -4985,10 +4934,6 @@ msgstr ""
 #: apps/devhub/templates/devhub/index.html:29
 #: apps/devhub/templates/devhub/index.html:34
 msgid "Submit an Add-on"
-msgstr ""
-
-#: apps/devhub/templates/devhub/index.html:38
-msgid "My Addons"
 msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:49
@@ -10762,7 +10707,7 @@ msgstr ""
 msgid "Contains Editor Comment"
 msgstr ""
 
-#: apps/editors/tasks.py:67
+#: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
 msgstr ""
 
@@ -11796,11 +11741,6 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/summary.html:28
 msgid "Locale name"
-msgstr ""
-
-#. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:78
-msgid "Tier %s"
 msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:3
@@ -13792,7 +13732,6 @@ msgid "Sort By"
 msgstr ""
 
 #: apps/search/forms.py:88
-#: apps/search/forms.py:101
 msgid "Relevance"
 msgstr ""
 
@@ -14022,7 +13961,7 @@ msgstr ""
 msgid "Share this Collection"
 msgstr ""
 
-#: apps/stats/models.py:243
+#: apps/stats/models.py:227
 msgid "Thanks for contributing to {addon_name}"
 msgstr ""
 

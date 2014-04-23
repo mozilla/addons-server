@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: 2013-11-08 06:01+0000\n"
 "Last-Translator: earthx2 <fujiko.doramon71@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1146,12 +1146,12 @@ msgstr "วันที่"
 msgid "Other"
 msgstr "อื่น ๆ"
 
-#: media/js/zamboni/admin_validation.js:52
+#: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 
-#: media/js/zamboni/admin_validation.js:55
+#: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""

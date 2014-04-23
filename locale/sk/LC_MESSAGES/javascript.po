@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: 2014-04-13 17:14+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1170,14 +1170,14 @@ msgstr "Dátum"
 msgid "Other"
 msgstr "Iný"
 
-#: media/js/zamboni/admin_validation.js:52
+#: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnok a odoslať e-mailovú správu autorom."
 msgstr[1] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnky a odoslať e-mailovú správu autorom."
 msgstr[2] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnkov a odoslať e-mailovú správu autorom."
 
-#: media/js/zamboni/admin_validation.js:55
+#: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: 2014-03-24 09:47+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1158,13 +1158,13 @@ msgstr "Fecha"
 msgid "Other"
 msgstr "Otros"
 
-#: media/js/zamboni/admin_validation.js:52
+#: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Configura {0} complemento a una versión máxima de {1} envíale un correo electrónico al autor."
 msgstr[1] "Configura {0} complementos a una versión máxima de {1} envíale un correo electrónico a los autores."
 
-#: media/js/zamboni/admin_validation.js:55
+#: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Enviar mensaje al autor de {2} complemento que falló la validación."

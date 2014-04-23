@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: 2014-01-12 18:36-0500\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -155,16 +155,16 @@ msgstr "人気"
 msgid "Recently Added"
 msgstr "新着"
 
-#: apps/addons/views.py:323 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:96
+#: apps/addons/views.py:323 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr "最近更新"
 
 # {0} is an add-on name.
-#: apps/addons/views.py:505
+#: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr "{0} への寄付"
 
-#: apps/addons/views.py:593
+#: apps/addons/views.py:592
 msgid "Abuse reported."
 msgstr "不正報告が送信されました。"
 
@@ -558,7 +558,7 @@ msgstr "{0} のページへ戻る"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:252
+#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
 msgstr "Add-ons for {0}"
 
@@ -719,7 +719,7 @@ msgstr "審査待ち"
 msgid "Rejected"
 msgstr "却下済み"
 
-#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157 apps/constants/payments.py:89
+#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157
 msgid "Approved"
 msgstr "承認済み"
 
@@ -886,7 +886,7 @@ msgstr "レポートを送信"
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:56 apps/devhub/templates/devhub/versions/edit.html:128
 #: apps/devhub/templates/devhub/versions/list.html:210 apps/devhub/templates/devhub/versions/list.html:243 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:103
+#: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -1051,7 +1051,7 @@ msgstr "情報"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> の下で公開されています"
 
-#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:400 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "独自ライセンス"
@@ -1178,7 +1178,7 @@ msgstr "その他"
 msgid "Add to collection"
 msgstr "コレクションへ追加"
 
-#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/nav.html:14
+#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:38 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "自分のアドオン"
 
@@ -1236,7 +1236,7 @@ msgstr "続きを読む"
 msgid "Users"
 msgstr "ユーザ"
 
-#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:94 apps/search/forms.py:102
+#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:94
 msgid "Weekly Downloads"
 msgstr "週間ダウンロード数"
 
@@ -1290,7 +1290,7 @@ msgstr "アドオンをインストールするには Firefox が必要です。
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} Add-ons のホームページへ戻る"
 
-#: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:254 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
+#: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
 #: templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:47
 msgid "Add-ons"
@@ -1330,7 +1330,7 @@ msgid "Highest Rated"
 msgstr "高評価"
 
 #: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:87
-#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91 apps/search/forms.py:107
+#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91
 msgid "Newest"
 msgstr "新着"
 
@@ -1404,7 +1404,7 @@ msgstr "#000000 のような 16 進数のカラーコードを入力してくだ
 msgid "Enter at least one value."
 msgstr "少なくともひとつ値を入力してください。"
 
-#: apps/amo/helpers.py:179 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
+#: apps/amo/helpers.py:181 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
@@ -1414,12 +1414,12 @@ msgstr "少なくともひとつ値を入力してください。"
 msgid "Collections"
 msgstr "コレクション"
 
-#: apps/amo/helpers.py:188 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
+#: apps/amo/helpers.py:190 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "スペルチェック辞書と言語パック"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:430
+#: apps/amo/helpers.py:432
 msgid "{0} ago"
 msgstr "{0} 前"
 
@@ -1918,7 +1918,7 @@ msgstr ""
 "りに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
-#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90 apps/search/forms.py:103
+#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90
 msgid "Top Rated"
 msgstr "高評価"
 
@@ -2198,7 +2198,7 @@ msgstr "お気に入りから削除"
 
 #: apps/bandwagon/views.py:88 apps/bandwagon/views.py:174 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:439 apps/devhub/views.py:70
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
-#: apps/search/forms.py:93 apps/search/forms.py:106 apps/users/templates/users/vcard.html:5
+#: apps/search/forms.py:93 apps/users/templates/users/vcard.html:5
 msgid "Name"
 msgstr "タイトル"
 
@@ -2657,7 +2657,7 @@ msgstr "追加するアドオンの名前を入力してください"
 msgid "Add to Collection"
 msgstr "コレクションへ追加"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:86 apps/editors/helpers.py:783 apps/editors/helpers.py:803
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:783 apps/editors/helpers.py:803
 msgid "Pending"
 msgstr "保留中"
 
@@ -2767,7 +2767,7 @@ msgid "Most Users"
 msgstr "人気"
 
 #: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:285 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:97
+#: apps/search/forms.py:96
 msgid "Up & Coming"
 msgstr "注目"
 
@@ -3062,7 +3062,7 @@ msgstr "バイナリ"
 msgid "Non-binary"
 msgstr "非バイナリ"
 
-#: apps/compat/views.py:84 apps/constants/base.py:358 apps/constants/payments.py:52 apps/devhub/forms.py:145
+#: apps/compat/views.py:84 apps/constants/base.py:358 apps/devhub/forms.py:145
 msgid "Other"
 msgstr "その他"
 
@@ -3579,50 +3579,6 @@ msgstr "Creative Commons 表示-改変禁止 3.0"
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons 表示-継承 3.0"
-
-#: apps/constants/payments.py:51
-msgid "Chargeback"
-msgstr "支払い拒否"
-
-#: apps/constants/payments.py:53
-msgid "Purchase"
-msgstr "購入"
-
-#: apps/constants/payments.py:54
-msgid "Refund"
-msgstr "返品"
-
-#: apps/constants/payments.py:55
-msgid "Voluntary"
-msgstr "任意"
-
-#: apps/constants/payments.py:92
-msgid "Approved Instantly"
-msgstr "即時承認"
-
-#: apps/constants/payments.py:95
-msgid "Declined"
-msgstr "拒否"
-
-#: apps/constants/payments.py:98
-msgid "Failed"
-msgstr "失敗"
-
-#: apps/constants/payments.py:102 apps/constants/payments.py:103
-msgid "The payment was received, but not completed."
-msgstr "決済は受け付けられましたが完了していません。"
-
-#: apps/constants/payments.py:104
-msgid "The payment failed."
-msgstr "決済に失敗しました。"
-
-#: apps/constants/payments.py:105
-msgid "The reversal failed."
-msgstr "破棄に失敗しました。"
-
-#: apps/constants/payments.py:106
-msgid "The payment was received, but not completed and is awaiting processing."
-msgstr "決済は受け付けられましたが完了しておらず、処理待ちの状態です。"
 
 #: apps/constants/platforms.py:19
 msgid "All Platforms"
@@ -4197,10 +4153,6 @@ msgstr "Mozilla Add-ons サイトへの掲載は最良のアドオン配布手�
 #: apps/devhub/templates/devhub/index.html:29 apps/devhub/templates/devhub/index.html:34
 msgid "Submit an Add-on"
 msgstr "アドオンを登録"
-
-#: apps/devhub/templates/devhub/index.html:38
-msgid "My Addons"
-msgstr "自分のアドオン"
 
 #: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:37 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
@@ -8925,7 +8877,7 @@ msgstr "詳しい情報が求められています"
 msgid "Contains Editor Comment"
 msgstr "エディタのコメントがあります"
 
-#: apps/editors/tasks.py:67
+#: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
 msgstr "重複登録"
 
@@ -9877,11 +9829,6 @@ msgstr "ロケールコード"
 #: apps/localizers/templates/localizers/summary.html:28
 msgid "Locale name"
 msgstr "ロケール名"
-
-#. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:78
-msgid "Tier %s"
-msgstr "価格帯 %s"
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
@@ -11496,7 +11443,7 @@ msgstr "アプリを検索"
 msgid "Sort By"
 msgstr "並べ替え"
 
-#: apps/search/forms.py:88 apps/search/forms.py:101
+#: apps/search/forms.py:88
 msgid "Relevance"
 msgstr "関連度"
 
@@ -11729,7 +11676,7 @@ msgstr "このアドオンを共有"
 msgid "Share this Collection"
 msgstr "このコレクションを共有"
 
-#: apps/stats/models.py:243
+#: apps/stats/models.py:227
 msgid "Thanks for contributing to {addon_name}"
 msgstr "{addon_name} へ貢献いただきありがとうございます"
 

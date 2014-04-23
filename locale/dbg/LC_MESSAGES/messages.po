@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,15 +186,15 @@ msgstr "Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 #: apps/browse/views.py:59
 #: apps/browse/views.py:70
 #: apps/search/forms.py:18
-#: apps/search/forms.py:96
+#: apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr "Řḗƈḗƞŧŀẏ Ŭƥḓȧŧḗḓ"
 
-#: apps/addons/views.py:505
+#: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr "Ƈǿƞŧřīƀŭŧīǿƞ ƒǿř {0}"
 
-#: apps/addons/views.py:593
+#: apps/addons/views.py:592
 msgid "Abuse reported."
 msgstr "Ȧƀŭşḗ řḗƥǿřŧḗḓ."
 
@@ -746,7 +746,7 @@ msgstr "Ɓȧƈķ ŧǿ {0}…"
 
 #: apps/addons/templates/addons/home.html:3
 #: apps/addons/templates/addons/mobile/home.html:3
-#: apps/amo/helpers.py:252
+#: apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
 msgstr "Ȧḓḓ-ǿƞş ƒǿř {0}"
 
@@ -976,7 +976,6 @@ msgstr "Řḗĵḗƈŧḗḓ"
 
 #: apps/addons/templates/addons/persona_preview.html:16
 #: apps/amo/log.py:157
-#: apps/constants/payments.py:89
 msgid "Approved"
 msgstr "Ȧƥƥřǿṽḗḓ"
 
@@ -1229,7 +1228,7 @@ msgstr "Şḗƞḓ Řḗƥǿřŧ"
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:103
+#: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "Ƈȧƞƈḗŀ"
 
@@ -1447,7 +1446,7 @@ msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">
 
 #: apps/addons/templates/addons/impala/details.html:207
 #: apps/addons/templates/addons/impala/details.html:212
-#: apps/amo/helpers.py:400
+#: apps/amo/helpers.py:402
 #: apps/devhub/forms.py:124
 #: apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40
@@ -1606,6 +1605,7 @@ msgid "Add to collection"
 msgstr "Ȧḓḓ ŧǿ ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:4
+#: apps/devhub/templates/devhub/index.html:38
 #: apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "Ḿẏ Ȧḓḓ-ǿƞş"
@@ -1673,7 +1673,6 @@ msgstr "Ŭşḗřş"
 #: apps/browse/views.py:58
 #: apps/browse/views.py:69
 #: apps/search/forms.py:94
-#: apps/search/forms.py:102
 msgid "Weekly Downloads"
 msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
 
@@ -1741,7 +1740,7 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ {0} Ȧḓḓ-ǿƞş ħǿḿḗƥȧɠḗ"
 
 #: apps/addons/templates/addons/mobile/home.html:17
-#: apps/amo/helpers.py:254
+#: apps/amo/helpers.py:256
 #: apps/bandwagon/templates/bandwagon/edit.html:34
 #: apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21
@@ -1805,7 +1804,6 @@ msgstr "Ħīɠħḗşŧ Řȧŧḗḓ"
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:65
 #: apps/search/forms.py:17
 #: apps/search/forms.py:91
-#: apps/search/forms.py:107
 msgid "Newest"
 msgstr "Ƞḗẇḗşŧ"
 
@@ -1907,7 +1905,7 @@ msgstr "Ŧħīş ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ħḗẋ ƈǿŀǿř ƈǿḓḗ,
 msgid "Enter at least one value."
 msgstr "Ḗƞŧḗř ȧŧ ŀḗȧşŧ ǿƞḗ ṽȧŀŭḗ."
 
-#: apps/amo/helpers.py:179
+#: apps/amo/helpers.py:181
 #: apps/amo/templates/amo/site_nav.html:59
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:15
@@ -1929,14 +1927,14 @@ msgstr "Ḗƞŧḗř ȧŧ ŀḗȧşŧ ǿƞḗ ṽȧŀŭḗ."
 msgid "Collections"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
-#: apps/amo/helpers.py:188
+#: apps/amo/helpers.py:190
 #: apps/amo/templates/amo/site_nav.html:83
 #: apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "Ḓīƈŧīǿƞȧřīḗş & Ŀȧƞɠŭȧɠḗ Ƥȧƈķş"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:430
+#: apps/amo/helpers.py:432
 msgid "{0} ago"
 msgstr "{0} ȧɠǿ"
 
@@ -2509,7 +2507,6 @@ msgstr ""
 #: apps/browse/views.py:231
 #: apps/browse/views.py:288
 #: apps/search/forms.py:90
-#: apps/search/forms.py:103
 msgid "Top Rated"
 msgstr "Ŧǿƥ Řȧŧḗḓ"
 
@@ -2875,7 +2872,6 @@ msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 #: apps/editors/templates/editors/themes/queue_list.html:48
 #: apps/search/forms.py:19
 #: apps/search/forms.py:93
-#: apps/search/forms.py:106
 #: apps/users/templates/users/vcard.html:5
 msgid "Name"
 msgstr "Ƞȧḿḗ"
@@ -3454,7 +3450,6 @@ msgid "Add to Collection"
 msgstr "Ȧḓḓ ŧǿ Ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45
-#: apps/constants/payments.py:86
 #: apps/editors/helpers.py:783
 #: apps/editors/helpers.py:803
 msgid "Pending"
@@ -3596,7 +3591,7 @@ msgstr "Ḿǿşŧ Ŭşḗřş"
 #: apps/browse/views.py:285
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:63
 #: apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:97
+#: apps/search/forms.py:96
 msgid "Up & Coming"
 msgstr "Ŭƥ & Ƈǿḿīƞɠ"
 
@@ -3959,7 +3954,6 @@ msgstr "Ƞǿƞ-ƀīƞȧřẏ"
 
 #: apps/compat/views.py:84
 #: apps/constants/base.py:358
-#: apps/constants/payments.py:52
 #: apps/devhub/forms.py:145
 msgid "Other"
 msgstr "Ǿŧħḗř"
@@ -4512,51 +4506,6 @@ msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ȠǿḒḗř
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ŞħȧřḗȦŀīķḗ 3.0"
-
-#: apps/constants/payments.py:51
-msgid "Chargeback"
-msgstr "Ƈħȧřɠḗƀȧƈķ"
-
-#: apps/constants/payments.py:53
-msgid "Purchase"
-msgstr "Ƥŭřƈħȧşḗ"
-
-#: apps/constants/payments.py:54
-msgid "Refund"
-msgstr "Řḗƒŭƞḓ"
-
-#: apps/constants/payments.py:55
-msgid "Voluntary"
-msgstr "Ṽǿŀŭƞŧȧřẏ"
-
-#: apps/constants/payments.py:92
-msgid "Approved Instantly"
-msgstr "Ȧƥƥřǿṽḗḓ Īƞşŧȧƞŧŀẏ"
-
-#: apps/constants/payments.py:95
-msgid "Declined"
-msgstr "Ḓḗƈŀīƞḗḓ"
-
-#: apps/constants/payments.py:98
-msgid "Failed"
-msgstr "Ƒȧīŀḗḓ"
-
-#: apps/constants/payments.py:102
-#: apps/constants/payments.py:103
-msgid "The payment was received, but not completed."
-msgstr "Ŧħḗ ƥȧẏḿḗƞŧ ẇȧş řḗƈḗīṽḗḓ, ƀŭŧ ƞǿŧ ƈǿḿƥŀḗŧḗḓ."
-
-#: apps/constants/payments.py:104
-msgid "The payment failed."
-msgstr "Ŧħḗ ƥȧẏḿḗƞŧ ƒȧīŀḗḓ."
-
-#: apps/constants/payments.py:105
-msgid "The reversal failed."
-msgstr "Ŧħḗ řḗṽḗřşȧŀ ƒȧīŀḗḓ."
-
-#: apps/constants/payments.py:106
-msgid "The payment was received, but not completed and is awaiting processing."
-msgstr "Ŧħḗ ƥȧẏḿḗƞŧ ẇȧş řḗƈḗīṽḗḓ, ƀŭŧ ƞǿŧ ƈǿḿƥŀḗŧḗḓ ȧƞḓ īş ȧẇȧīŧīƞɠ ƥřǿƈḗşşīƞɠ."
 
 #: apps/constants/platforms.py:19
 msgid "All Platforms"
@@ -5238,10 +5187,6 @@ msgstr ""
 #: apps/devhub/templates/devhub/index.html:34
 msgid "Submit an Add-on"
 msgstr "Şŭƀḿīŧ ȧƞ Ȧḓḓ-ǿƞ"
-
-#: apps/devhub/templates/devhub/index.html:38
-msgid "My Addons"
-msgstr "Ḿẏ Ȧḓḓǿƞş"
 
 #: apps/devhub/templates/devhub/index.html:49
 #: apps/devhub/templates/devhub/addons/listing/items.html:37
@@ -12078,7 +12023,7 @@ msgstr "Ḿǿřḗ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧḗḓ"
 msgid "Contains Editor Comment"
 msgstr "Ƈǿƞŧȧīƞş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
 
-#: apps/editors/tasks.py:67
+#: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
 msgstr "Ḓŭƥŀīƈȧŧḗ Şŭƀḿīşşīǿƞ"
 
@@ -13132,11 +13077,6 @@ msgstr "Ŀǿƈȧŀḗ ƈǿḓḗ"
 #: apps/localizers/templates/localizers/summary.html:28
 msgid "Locale name"
 msgstr "Ŀǿƈȧŀḗ ƞȧḿḗ"
-
-#. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:78
-msgid "Tier %s"
-msgstr "Ŧīḗř %s"
 
 #: apps/pages/templates/pages/about.lhtml:3
 #: apps/pages/templates/pages/about.lhtml:10
@@ -15662,7 +15602,6 @@ msgid "Sort By"
 msgstr "Şǿřŧ Ɓẏ"
 
 #: apps/search/forms.py:88
-#: apps/search/forms.py:101
 msgid "Relevance"
 msgstr "Řḗŀḗṽȧƞƈḗ"
 
@@ -15895,7 +15834,7 @@ msgstr "Şħȧřḗ ŧħīş Ȧḓḓ-ǿƞ"
 msgid "Share this Collection"
 msgstr "Şħȧřḗ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
 
-#: apps/stats/models.py:243
+#: apps/stats/models.py:227
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Ŧħȧƞķş ƒǿř ƈǿƞŧřīƀŭŧīƞɠ ŧǿ {ȧḓḓǿƞ_ƞȧḿḗ}"
 

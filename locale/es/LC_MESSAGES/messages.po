@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:16-0700\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
 "PO-Revision-Date: 2014-04-15 19:55+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -166,16 +166,16 @@ msgid "Recently Added"
 msgstr "Agregados recientemente"
 
 # Acortado para que salga completo el texto en la web
-#: apps/addons/views.py:323 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:96
+#: apps/addons/views.py:323 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr "Actualizados recientemente"
 
 # %1 is an add-on name.
-#: apps/addons/views.py:505
+#: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr "Colaboración para {0}"
 
-#: apps/addons/views.py:593
+#: apps/addons/views.py:592
 msgid "Abuse reported."
 msgstr "Informe de abuso enviado."
 
@@ -570,7 +570,7 @@ msgstr "Volver a {0}…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:252
+#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
 msgstr "Complementos para {0}"
 
@@ -735,7 +735,7 @@ msgstr "Esperando revisión"
 msgid "Rejected"
 msgstr "Rechazado"
 
-#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157 apps/constants/payments.py:89
+#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157
 msgid "Approved"
 msgstr "Aprobado"
 
@@ -876,9 +876,8 @@ msgstr "Código QR para el complemento"
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
-"¿Quieres tener {0} en Firefox de tu dispositivo móvil? Escanea este código "
-"QR para instalarlo directamente en tu móvil o celular (necesitas un lector "
-"QR; busca en la tienda de tu dispositivo si no tienes uno)."
+"¿Quieres tener {0} en Firefox de tu dispositivo móvil? Escanea este código QR para instalarlo directamente en tu móvil o celular (necesitas un lector QR; busca en la tienda de tu dispositivo si no "
+"tienes uno)."
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:329
@@ -904,7 +903,7 @@ msgstr "Enviar informe"
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:56 apps/devhub/templates/devhub/versions/edit.html:128
 #: apps/devhub/templates/devhub/versions/list.html:210 apps/devhub/templates/devhub/versions/list.html:243 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:103
+#: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1073,7 +1072,7 @@ msgstr "Información"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Publicado bajo <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:400 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Licencia personalizada"
@@ -1201,7 +1200,7 @@ msgstr "Más"
 msgid "Add to collection"
 msgstr "Agregar a una colección"
 
-#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/nav.html:14
+#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:38 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "Mis complementos"
 
@@ -1260,7 +1259,7 @@ msgstr "Leer más"
 msgid "Users"
 msgstr "Usuarios"
 
-#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:94 apps/search/forms.py:102
+#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:94
 msgid "Weekly Downloads"
 msgstr "Descargas semanales"
 
@@ -1314,7 +1313,7 @@ msgstr "Necesitas Firefox para instalar complementos. <a href=\"http://mozilla.c
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Volver a la página de inicio de Complementos para {0}"
 
-#: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:254 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
+#: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
 #: templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:47
 msgid "Add-ons"
@@ -1356,7 +1355,7 @@ msgid "Highest Rated"
 msgstr "Mejor puntuados"
 
 #: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:87
-#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91 apps/search/forms.py:107
+#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91
 msgid "Newest"
 msgstr "Más recientes"
 
@@ -1430,7 +1429,7 @@ msgstr "Esto debe ser un código de color hexadecimal válido, tal como #000000.
 msgid "Enter at least one value."
 msgstr "Escribe al menos un valor."
 
-#: apps/amo/helpers.py:179 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
+#: apps/amo/helpers.py:181 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
@@ -1440,12 +1439,12 @@ msgstr "Escribe al menos un valor."
 msgid "Collections"
 msgstr "Colecciones"
 
-#: apps/amo/helpers.py:188 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
+#: apps/amo/helpers.py:190 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "Diccionarios y paquetes de idioma"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:430
+#: apps/amo/helpers.py:432
 msgid "{0} ago"
 msgstr "hace {0}"
 
@@ -1944,7 +1943,7 @@ msgstr ""
 "\"recaptcha_different\">intentar con palabras diferentes</a> o <a href=\"#\" id=\"recaptcha_audio\">intentar un desafío diferente</a> en su lugar. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
-#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90 apps/search/forms.py:103
+#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90
 msgid "Top Rated"
 msgstr "Mejor puntuados"
 
@@ -2228,7 +2227,7 @@ msgstr "Eliminar de favoritos"
 
 #: apps/bandwagon/views.py:88 apps/bandwagon/views.py:174 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:439 apps/devhub/views.py:70
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
-#: apps/search/forms.py:93 apps/search/forms.py:106 apps/users/templates/users/vcard.html:5
+#: apps/search/forms.py:93 apps/users/templates/users/vcard.html:5
 msgid "Name"
 msgstr "Nombre"
 
@@ -2695,7 +2694,7 @@ msgstr "Introduce el nombre del complemento que vas a incluir"
 msgid "Add to Collection"
 msgstr "Agregar a colección"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/constants/payments.py:86 apps/editors/helpers.py:783 apps/editors/helpers.py:803
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:783 apps/editors/helpers.py:803
 msgid "Pending"
 msgstr "Pendiente"
 
@@ -2805,7 +2804,7 @@ msgid "Most Users"
 msgstr "Con más usuarios"
 
 #: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:285 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:97
+#: apps/search/forms.py:96
 msgid "Up & Coming"
 msgstr "Disponibles próximamente"
 
@@ -3100,7 +3099,7 @@ msgstr "Binario"
 msgid "Non-binary"
 msgstr "No binario"
 
-#: apps/compat/views.py:84 apps/constants/base.py:358 apps/constants/payments.py:52 apps/devhub/forms.py:145
+#: apps/compat/views.py:84 apps/constants/base.py:358 apps/devhub/forms.py:145
 msgid "Other"
 msgstr "Otro"
 
@@ -3619,50 +3618,6 @@ msgstr "Creative Commons Reconocimiento-No Derivadas 3.0"
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Reconocimiento-Compartir Igual 3.0"
-
-#: apps/constants/payments.py:51
-msgid "Chargeback"
-msgstr "Pedir devolución de cargo"
-
-#: apps/constants/payments.py:53
-msgid "Purchase"
-msgstr "Adquirir"
-
-#: apps/constants/payments.py:54
-msgid "Refund"
-msgstr "Reembolsar"
-
-#: apps/constants/payments.py:55
-msgid "Voluntary"
-msgstr "Voluntario"
-
-#: apps/constants/payments.py:92
-msgid "Approved Instantly"
-msgstr "Aprobado inmediatamente"
-
-#: apps/constants/payments.py:95
-msgid "Declined"
-msgstr "Rechazado"
-
-#: apps/constants/payments.py:98
-msgid "Failed"
-msgstr "Fallido"
-
-#: apps/constants/payments.py:102 apps/constants/payments.py:103
-msgid "The payment was received, but not completed."
-msgstr "El pago ha sido recibido, pero no completado."
-
-#: apps/constants/payments.py:104
-msgid "The payment failed."
-msgstr "El pago ha fallado."
-
-#: apps/constants/payments.py:105
-msgid "The reversal failed."
-msgstr "La cancelación ha fallado."
-
-#: apps/constants/payments.py:106
-msgid "The payment was received, but not completed and is awaiting processing."
-msgstr "El pago ha sido recibido, pero no completado y está a la espera de ser procesado."
 
 #: apps/constants/platforms.py:19
 msgid "All Platforms"
@@ -4238,10 +4193,6 @@ msgstr "No hay mejor forma de distribuir tu complemento que alojándolo en Mozil
 msgid "Submit an Add-on"
 msgstr "Enviar un complemento"
 
-#: apps/devhub/templates/devhub/index.html:38
-msgid "My Addons"
-msgstr "Mis complementos"
-
 #: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:37 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
@@ -4273,9 +4224,7 @@ msgstr "Revisores de AMO"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
-"¡Adelántate! Conviértete en revisor de AMO hoy mismo y tus complementos "
-"tendrán preferencia en las revisiones."
+msgstr "¡Adelántate! Conviértete en revisor de AMO hoy mismo y tus complementos tendrán preferencia en las revisiones."
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
@@ -5291,9 +5240,7 @@ msgstr "¡Adelántate en la Lista de revisión!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
-"Conviértete en revisor de AMO hoy mismo y tus complementos tendrán "
-"preferencia en las revisiones."
+msgstr "Conviértete en revisor de AMO hoy mismo y tus complementos tendrán preferencia en las revisiones."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5686,14 +5633,9 @@ msgid ""
 "time to submit your add-on to <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. With over <em>1.5 billion</em> add-on downloads served, it's the best place to let your new creation live. "
 "Before you submit it, there are a few things to go over."
 msgstr ""
-"¡Guau! ¿Ya has terminado tu complemento? Sólo para que lo sepas, <a "
-"href=\"http://labs.mozilla.com/\">Mozilla Labs</a> está contratando gente. Muy "
-"bien, si has probado tu complemento y está libre de problemas, es el "
-"momento de enviar tu complemento a <a "
-"href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. Con más de <em>1.500 "
-"millones</em> de descargas de complementos, es el mejor sitio para permitir "
-"que tu nueva creación cobre vida. Antes de que lo envíes, hay unas pocas "
-"cosas para tener en cuenta."
+"¡Guau! ¿Ya has terminado tu complemento? Sólo para que lo sepas, <a href=\"http://labs.mozilla.com/\">Mozilla Labs</a> está contratando gente. Muy bien, si has probado tu complemento y está libre "
+"de problemas, es el momento de enviar tu complemento a <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. Con más de <em>1.500 millones</em> de descargas de complementos, es el mejor sitio "
+"para permitir que tu nueva creación cobre vida. Antes de que lo envíes, hay unas pocas cosas para tener en cuenta."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:115
 msgid ""
@@ -6997,20 +6939,12 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p>Cada vez que un complemento incluye cualquier característica inesperada* "
-"que </p> <ul> <li>compromete la privacidad del usuario o la seguridad (como "
-"el envío de datos a terceros),</li> <li>cambia la configuración "
-"predeterminada como la página de inicio o un motor de búsqueda, o</li> "
-"<li>cambia la configuración de otros complementos o los desactiva</li> </ul> "
-"<p>las características deben reunir los siguientes requisitos:</p> <ul> "
-"<li>La descripción del complemento debe ser clara respecto a lo que "
-"hace.</li> <li>Todos los cambios deben ser opcionales, lo que significa que "
-"el usuario debe realizar acciones explícitas para activar esos cambios.</li> "
-"<li>La ventana de opciones debe mostrar de manera clara el nombre del "
-"complemento que solicita el cambio.</li> <li>Al desinstalar el complemento "
-"se restauran las opciones originales del usuario, en caso de haberse "
-"cambiado.</li> </ul> <p>*Características inesperadas son aquellas no "
-"relacionadas con la función principal del complemento.</p>"
+"<p>Cada vez que un complemento incluye cualquier característica inesperada* que </p> <ul> <li>compromete la privacidad del usuario o la seguridad (como el envío de datos a terceros),</li> "
+"<li>cambia la configuración predeterminada como la página de inicio o un motor de búsqueda, o</li> <li>cambia la configuración de otros complementos o los desactiva</li> </ul> <p>las "
+"características deben reunir los siguientes requisitos:</p> <ul> <li>La descripción del complemento debe ser clara respecto a lo que hace.</li> <li>Todos los cambios deben ser opcionales, lo que "
+"significa que el usuario debe realizar acciones explícitas para activar esos cambios.</li> <li>La ventana de opciones debe mostrar de manera clara el nombre del complemento que solicita el cambio.</"
+"li> <li>Al desinstalar el complemento se restauran las opciones originales del usuario, en caso de haberse cambiado.</li> </ul> <p>*Características inesperadas son aquellas no relacionadas con la "
+"función principal del complemento.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -7420,10 +7354,8 @@ msgstr "Introducción a DOM"
 #: apps/devhub/templates/devhub/docs/reference.html:265
 msgid "The Document Object Model (DOM) is an API for HTML and XML documents. It provides a structural representation of the document, enabling you to modify its content and visual presentation."
 msgstr ""
-"El Modelo en Objetos para la representación de Documentos (Document Object "
-"Model, DOM) es una API para documentos HTML y XML. Proporciona una "
-"representación de la estructura del documento, lo que te permite modificar "
-"su contenido y presentación visual."
+"El Modelo en Objetos para la representación de Documentos (Document Object Model, DOM) es una API para documentos HTML y XML. Proporciona una representación de la estructura del documento, lo que "
+"te permite modificar su contenido y presentación visual."
 
 #: apps/devhub/templates/devhub/docs/reference.html:273
 msgid "Gecko DOM Reference"
@@ -7859,10 +7791,7 @@ msgstr "<b>Sube tus imágenes</b>: ¡asegúrate de que su peso no excede los 300
 
 #: apps/devhub/templates/devhub/docs/themes.html:222
 msgid "<b>Select text and tab colors</b> &mdash; you can choose the tab (\"background\") color and foreground text color that work best with your header image."
-msgstr ""
-"<b>Selecciona el texto y color para las pestañas</b>: puedes elegir el color "
-"(\"de fondo\") de las pestañas y el color principal del texto que le vaya "
-"mejor a tu imagen de encabezado."
+msgstr "<b>Selecciona el texto y color para las pestañas</b>: puedes elegir el color (\"de fondo\") de las pestañas y el color principal del texto que le vaya mejor a tu imagen de encabezado."
 
 #: apps/devhub/templates/devhub/docs/themes.html:229
 msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
@@ -7876,10 +7805,7 @@ msgstr "<b>Envía tu tema</b>: si todo se ve correctamente, haz clic en el botó
 
 #: apps/devhub/templates/devhub/docs/themes.html:243
 msgid "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure it complies with the content guidelines and terms of service!"
-msgstr ""
-"<b>Consejo:</b> para asegurarte de que tu tema obtiene la aprobación para "
-"publicarse en la galería, comprueba que cumple con las pautas sobre "
-"contenidos y términos de servicio."
+msgstr "<b>Consejo:</b> para asegurarte de que tu tema obtiene la aprobación para publicarse en la galería, comprueba que cumple con las pautas sobre contenidos y términos de servicio."
 
 #: apps/devhub/templates/devhub/docs/themes.html:254
 msgid "Submit Your Theme Now"
@@ -7891,9 +7817,7 @@ msgstr "Has deshabilitado este complemento"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr ""
-"Tus complementos listados están deshabilitados y no se mostrarán en ningún "
-"lugar de nuestra galería o servicio de actualización."
+msgstr "Tus complementos listados están deshabilitados y no se mostrarán en ningún lugar de nuestra galería o servicio de actualización."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -7932,9 +7856,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
 msgstr ""
-"Todos los complementos alojados en nuestra galería deben ser revisados ahora "
-"por un editor. Si deseas continuar alojando tu complemento, por favor haz "
-"clic para seleccionar un proceso de revisión."
+"Todos los complementos alojados en nuestra galería deben ser revisados ahora por un editor. Si deseas continuar alojando tu complemento, por favor haz clic para seleccionar un proceso de revisión."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
@@ -7942,9 +7864,7 @@ msgstr "Versión actual:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
-"Esta es la versión de tu complemento que se instalará si alguien hace clic "
-"en el botón Instalar en addons.mozilla.org."
+msgstr "Esta es la versión de tu complemento que se instalará si alguien hace clic en el botón Instalar en addons.mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 msgid "Created:"
@@ -7965,9 +7885,7 @@ msgstr "Próxima versión:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
-"Esta es la última versión subida; sin embargo, aún no se muestra en el "
-"sitio."
+msgstr "Esta es la última versión subida; sin embargo, aún no se muestra en el sitio."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
@@ -9338,7 +9256,7 @@ msgstr "Se ha solicitado más información"
 msgid "Contains Editor Comment"
 msgstr "Contiene un comentario del editor"
 
-#: apps/editors/tasks.py:67
+#: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
 msgstr "Envío repetido"
 
@@ -10310,11 +10228,6 @@ msgstr "Código del idioma"
 msgid "Locale name"
 msgstr "Nombre del idioma"
 
-#. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:78
-msgid "Tier %s"
-msgstr "Nivel %s"
-
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
 msgstr "Acerca de Mozilla Add-ons"
@@ -10451,23 +10364,17 @@ msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
-"Cuando comiences a navegar y a usar los complementos, presta especial "
-"atención a todo aquello que sea diferente respecto a la última vez que "
-"usaste la extensión. Estas diferencias pueden ser un error de visualización, "
-"como la ausencia de un elemento del menú, o algo más serio, como que el "
-"complemento no funcione o muestre errores."
+"Cuando comiences a navegar y a usar los complementos, presta especial atención a todo aquello que sea diferente respecto a la última vez que usaste la extensión. Estas diferencias pueden ser un "
+"error de visualización, como la ausencia de un elemento del menú, o algo más serio, como que el complemento no funcione o muestre errores."
 
 #: apps/pages/templates/pages/acr_firstrun.html:49
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
-"Una vez que sepas si un complemento en concreto funciona bien o tiene "
-"problemas, abre el Administrador de complementos y haz clic en el botón "
-"Compatibilidad situado junto al complemento. De esta forma Mozilla sabrá que "
-"encontraste un error al hacer las pruebas. Al enviar un informe, nos "
-"ayudarás a hacer saber al desarrollador si su complemento funciona bien en "
-"esta versión o podría necesitar algunos ajustes."
+"Una vez que sepas si un complemento en concreto funciona bien o tiene problemas, abre el Administrador de complementos y haz clic en el botón Compatibilidad situado junto al complemento. De esta "
+"forma Mozilla sabrá que encontraste un error al hacer las pruebas. Al enviar un informe, nos ayudarás a hacer saber al desarrollador si su complemento funciona bien en esta versión o podría "
+"necesitar algunos ajustes."
 
 #: apps/pages/templates/pages/acr_firstrun.html:61
 msgid ""
@@ -10980,13 +10887,9 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"Los complementos los revisan los editores AMO, un grupo de desarrolladores "
-"con talento que voluntariamente ayudan al proyecto Mozilla revisando "
-"complementos y garantizando que los usuarios de Mozilla disfruten de una "
-"experiencia estable y segura. Al comunicarte con los editores, intenta ser "
-"educado, paciente y respetuoso mientras dedican sus esfuerzos a revisar que "
-"tu complemento está configurado correctamente y cumple las directrices "
-"detalladas en la <a href=\"%(url)s\">Guía de revisión para editores</a>."
+"Los complementos los revisan los editores AMO, un grupo de desarrolladores con talento que voluntariamente ayudan al proyecto Mozilla revisando complementos y garantizando que los usuarios de "
+"Mozilla disfruten de una experiencia estable y segura. Al comunicarte con los editores, intenta ser educado, paciente y respetuoso mientras dedican sus esfuerzos a revisar que tu complemento está "
+"configurado correctamente y cumple las directrices detalladas en la <a href=\"%(url)s\">Guía de revisión para editores</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -10997,12 +10900,9 @@ msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process"
 msgstr ""
-"El equipo editorial de Mozilla sigue la <a href=\"%(url)s\">Guía de revisión "
-"para editores</a> para comprobar si un complemento se acepta en AMO. Es "
-"importante que los desarrolladores de complementos revisen esta guía para "
-"asegurarse de que se abordan los aspectos más problemáticos antes de enviar "
-"su complemento a revisión. Esto ayudará en gran medida a acelerar el proceso "
-"de revisión"
+"El equipo editorial de Mozilla sigue la <a href=\"%(url)s\">Guía de revisión para editores</a> para comprobar si un complemento se acepta en AMO. Es importante que los desarrolladores de "
+"complementos revisen esta guía para asegurarse de que se abordan los aspectos más problemáticos antes de enviar su complemento a revisión. Esto ayudará en gran medida a acelerar el proceso de "
+"revisión"
 
 #: apps/pages/templates/pages/dev_faq.html:439
 msgid "How long will it take for my add-on to be reviewed?"
@@ -11208,14 +11108,9 @@ msgid ""
 "discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
 "extended versions of the program to be free as well.)"
 msgstr ""
-"La Fundación para el Software Libre (Free Software Foundation) proporciona "
-"resúmenes breves sobre las licencias de código abierto más relevantes, "
-"incluyendo información sobre si una licencia se encuentra clasificada como "
-"software libre o copyleft. Asimismo, contiene debates sobre qué constituye "
-"una licencia de software libre o una licencia de copyleft (por ejemplo, una "
-"licencia de copyleft es un método general para distribuir un programa o "
-"cualquier otro tipo de trabajo gratuitamente y obligar a que todas las "
-"versiones modificadas o extendidas del programa también lo sean)."
+"La Fundación para el Software Libre (Free Software Foundation) proporciona resúmenes breves sobre las licencias de código abierto más relevantes, incluyendo información sobre si una licencia se "
+"encuentra clasificada como software libre o copyleft. Asimismo, contiene debates sobre qué constituye una licencia de software libre o una licencia de copyleft (por ejemplo, una licencia de "
+"copyleft es un método general para distribuir un programa o cualquier otro tipo de trabajo gratuitamente y obligar a que todas las versiones modificadas o extendidas del programa también lo sean)."
 
 #: apps/pages/templates/pages/dev_faq.html:662
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
@@ -12145,7 +12040,7 @@ msgstr "buscar aplicaciones"
 msgid "Sort By"
 msgstr "Ordenar por"
 
-#: apps/search/forms.py:88 apps/search/forms.py:101
+#: apps/search/forms.py:88
 msgid "Relevance"
 msgstr "Relevancia"
 
@@ -12385,7 +12280,7 @@ msgstr "Compartir este complemento"
 msgid "Share this Collection"
 msgstr "Compartir esta colección"
 
-#: apps/stats/models.py:243
+#: apps/stats/models.py:227
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Gracias por colaborar con {addon_name}"
 
