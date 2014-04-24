@@ -532,11 +532,11 @@ class TestBulkUpdate(BulkValidationTest):
         self.client.post(self.update_url,
                          {'text': '{{ PASSING_ADDONS.0.links }}',
                           'subject': '..'})
-        links = mail.outbox[0].body.split(' ')
-        for result in results:
-            assert any(ln.endswith(reverse('devhub.bulk_compat_result',
-                                           args=(self.addon.slug, result.pk)))
-                       for ln in links), ('Expected links: %s' % links)
+        body = mail.outbox[0].body
+        assert all((reverse('devhub.bulk_compat_result',
+                           args=(self.addon.slug, result.pk))
+                    in body)
+                   for result in results)
 
     def test_notify_mail_preview(self):
         self.create_result(self.job, self.create_file(self.version))
@@ -706,26 +706,6 @@ class TestBulkNotify(BulkValidationTest):
                                                    'subject': '..'})
             eq_(r.status_code, 200)
             eq_(json.loads(r.content)['valid'], res)
-
-    def test_undeclared_variables(self):
-        for text, res in (['{{NOT_DECLARED}}', False],
-                          ['{{ NOT_DECLARED }}', False],
-                          ["""
-                                {{FAILING_ADDONS.0.name}}
-                                {{NOT_DECLARED}}
-                           """, False],
-                          ['{{FAILING_ADDONS.0.name}} {{NOT_DECLARED}}',
-                           False],
-                          ['{{FAILING_ADDONS.0.name}}', True]):
-            r = self.client.post(self.syntax_url, {'text': text,
-                                                   'subject': '..'})
-            eq_(r.status_code, 200)
-            assert json.loads(r.content)['valid'] == res, (
-                        'Text %r unexpectedly resulted in %r' % (text, res))
-
-    def test_undeclared_variable_form_submit(self):
-        f = forms.NotifyForm({'text': '{{ UNDECLARED }}', 'subject': '...'})
-        eq_(f.is_valid(), False)
 
 
 class TestBulkValidationTask(BulkValidationTest):
