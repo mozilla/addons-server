@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS addon_purchase;
 DROP TABLE IF EXISTS addon_payment_data;
 DROP TABLE IF EXISTS paypal_checkstatus;
 ALTER TABLE stats_contributions
+    DROP FOREIGN KEY related_id_refs,
     DROP FOREIGN KEY price_tier_id_refs,
     DROP FOREIGN KEY user_id_refs,
     DROP COLUMN price_tier_id,
