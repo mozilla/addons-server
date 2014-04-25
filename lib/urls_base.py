@@ -1,3 +1,5 @@
+import os
+
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
@@ -182,10 +184,23 @@ urlpatterns += patterns('piston.authentication.oauth.views',
 if settings.TEMPLATE_DEBUG:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
+
+    if 'debug_toolbar' in settings.INSTALLED_APPS:
+        # We're not using the staticfiles app, like every good Django citizen
+        # should, so we have to cope with this weirdness.
+        import debug_toolbar
+        ddt_folder = os.path.dirname(debug_toolbar.__file__)
+        ddt_static_path = os.path.join(ddt_folder, 'static')
+        urlpatterns += patterns('',
+            (r'^%s/(?P<path>debug_toolbar/.*)$' % media_url,
+             'django.views.static.serve',
+             {'document_root': ddt_static_path}))
+
     urlpatterns += patterns('',
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
+
 
 if settings.SERVE_TMP_PATH and settings.DEBUG:
     urlpatterns += patterns('',
