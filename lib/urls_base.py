@@ -225,15 +225,20 @@ if settings.TEMPLATE_DEBUG:
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
 
     if 'debug_toolbar' in settings.INSTALLED_APPS:
+        import debug_toolbar
+        urlpatterns += patterns('',
+            url(r'^__debug__/', include(debug_toolbar.urls)),
+        )
+
         # We're not using the staticfiles app, like every good Django citizen
         # should, so we have to cope with this weirdness.
-        import debug_toolbar
         ddt_folder = os.path.dirname(debug_toolbar.__file__)
         ddt_static_path = os.path.join(ddt_folder, 'static')
         urlpatterns += patterns('',
             (r'^%s/(?P<path>debug_toolbar/.*)$' % media_url,
              'django.views.static.serve',
-             {'document_root': ddt_static_path}))
+             {'document_root': ddt_static_path}),
+        )
 
     urlpatterns += patterns('',
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',

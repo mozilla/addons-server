@@ -18,12 +18,12 @@ import amo
 
 from . import logger_log as log
 
-# Get a pointer to Django's reverse because we're going to hijack it after we
-# define our own.
+# Get a pointer to Django's reverse and resolve because we're going to hijack
+# them after we define our own.
+# As we're using a url prefixer to automatically add the locale and the app to
+# URLs, we're not compatible with Django's default reverse and resolve, and
+# thus need to monkeypatch them.
 django_reverse = urlresolvers.reverse
-
-# Get a pointer to Django's resolve because we're going to hijack it after we
-# define our own.
 django_resolve = urlresolvers.resolve
 
 
