@@ -22,6 +22,10 @@ from . import logger_log as log
 # define our own.
 django_reverse = urlresolvers.reverse
 
+# Get a pointer to Django's resolve because we're going to hijack it after we
+# define our own.
+django_resolve = urlresolvers.resolve
+
 
 # Thread-local storage for URL prefixes.  Access with {get,set}_url_prefix.
 _local = local()
@@ -69,6 +73,18 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
 
 # Replace Django's reverse with our own.
 urlresolvers.reverse = reverse
+
+
+def resolve(path, urlconf=None):
+    """Wraps django's resolve to remove the locale and app from the path."""
+    prefixer = get_url_prefix()
+    if prefixer:
+        _lang, _platform, path_fragment = prefixer.split_path(path)
+        path = '/%s' % path_fragment
+    return django_resolve(path, urlconf)
+
+# Replace Django's resolve with our own.
+urlresolvers.resolve = resolve
 
 
 class Prefixer(object):
