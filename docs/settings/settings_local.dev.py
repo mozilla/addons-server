@@ -9,7 +9,6 @@ INSTALLED_APPS += (
     'debug_toolbar',
     'django_extensions',
     'fixture_magic',
-    'django_qunit',
 )
 
 # You want one of the caching backends.  Dummy won't do any caching, locmem is
