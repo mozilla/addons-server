@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:15-0700\n"
-"PO-Revision-Date: 2014-04-11 06:25+0000\n"
+"PO-Revision-Date: 2014-04-26 07:46+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397197528.0\n"
+"X-POOTLE-MTIME: 1398498383.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -11487,7 +11487,7 @@ msgstr "Houd beoordelingen bondig en eenvoudig te begrijpen."
 
 #: apps/pages/templates/pages/review_guide.html:68
 msgid "Give specific and helpful details. For example:"
-msgstr "Geef specifieke en behulpzame details. Bijvoorbeeld: "
+msgstr "Geef specifieke en behulpzame details. Bijvoorbeeld:"
 
 #: apps/pages/templates/pages/review_guide.html:70
 msgid "Did the add-on work as you expected it to?"
