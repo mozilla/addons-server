@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:15-0700\n"
-"PO-Revision-Date: 2014-02-16 20:52+0000\n"
-"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
+"PO-Revision-Date: 2014-04-23 18:21+0000\n"
+"Last-Translator: Marko <smrzlicm@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1392583939.0\n"
+"X-POOTLE-MTIME: 1398277263.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -216,7 +217,7 @@ msgstr "Види полису о приватности"
 #: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:124 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Погледајте Уговор о лиценци софтвера за крајњег корисника"
 
 #: apps/addons/templates/addons/button.html:92 apps/addons/templates/addons/impala/button.html:54
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -7258,10 +7259,15 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:70
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
 msgstr ""
+"Потпуне теме трансформишу изглед Вашег прегледача са стиловима за оквир "
+"прозора, адресну траку,  дугмиће, језичке, и меније."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:76
 msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
 msgstr ""
+"Позадинске теме мењају само пределе заглавља и подножја Вашег прегледача. "
+"Можете у трену погледати дизајн и инсталирати га само једним кликом без "
+"потребе за поновним покретањем прегледача."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:90
 msgid ""
@@ -8441,11 +8447,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:288
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Инсталирајте ове додатке за фитнес да бисте остали активни и здрави."
 
 #: apps/discovery/modules.py:296
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Ново и актуелно"
 
 #: apps/discovery/modules.py:297
 msgid "Get the latest, must-have add-ons of the moment."
@@ -8453,27 +8459,32 @@ msgstr ""
 
 #: apps/discovery/modules.py:329
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Безбрижно прегледање"
 
 #: apps/discovery/modules.py:330
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Заштитите Вашу приватност на интернету са додацима из ове колекције."
 
 #: apps/discovery/modules.py:339
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
+"Одлични додаци за посао, забаву, приватност, продуктивност&hellip; малтене "
+"за све!"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Откријте додатке"
 
 #: apps/discovery/templates/discovery/pane.html:29
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
+"Додаци су апликације које Вам омогућавају да персонализујете %(app)s са "
+"додатним функцијама или стилом. Испробајте неку од трака за уштеду времена, "
+" додатак за обеваштавање о времену, или тематски изглед за %(app)s."
 
 #: apps/discovery/templates/discovery/pane.html:63
 msgid "Recommended for You"
-msgstr ""
+msgstr "Препоручено за Вас"
 
 #: apps/discovery/templates/discovery/pane.html:66
 msgid "What is this?"
@@ -8481,7 +8492,7 @@ msgstr "Шта је ово?"
 
 #: apps/discovery/templates/discovery/pane.html:85
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Сазнајте више о додацима"
 
 #: apps/discovery/templates/discovery/pane.html:89 apps/discovery/templates/discovery/pane.html:96
 msgid "See all"
@@ -8489,40 +8500,42 @@ msgstr "Погледајте све"
 
 #: apps/discovery/templates/discovery/pane.html:102
 msgid "More ways to customize"
-msgstr ""
+msgstr "Више начина за прилагођавање"
 
 #: apps/discovery/templates/discovery/pane.html:105
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "Погледајте све додатке"
 
 #: apps/discovery/templates/discovery/pane.html:108
 msgid "See all complete themes"
-msgstr ""
+msgstr "Погледајте све потпуне теме"
 
 #: apps/discovery/templates/discovery/pane.html:114
 msgid "Close Video"
-msgstr ""
+msgstr "Затвори видео"
 
 #: apps/discovery/templates/discovery/pane.html:117
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Док видео ради, споменути додаци ће бити приказани овде."
 
 #. {0} is the user's login name.
 #: apps/discovery/templates/discovery/pane_account.html:6
 msgid "Hi, {0}"
-msgstr ""
+msgstr "Здраво, {0}"
 
 #: apps/discovery/templates/discovery/pane_account.html:17
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
 msgstr ""
+"Хвала што користите %(app)s и подржавате <a href=\"%(url)s\">Mozilla-ину "
+"мисију</a>!"
 
 #: apps/discovery/templates/discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "Преузети додаци:"
 
 #: apps/discovery/templates/discovery/addons/detail.html:71
 msgid "Active Users"
-msgstr ""
+msgstr "Активни корисници"
 
 #: apps/discovery/templates/discovery/addons/detail.html:75
 msgid "Last Updated"
@@ -8534,11 +8547,14 @@ msgstr "Откажи инсталацију"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
-msgstr ""
+msgstr "Набавите додатке у покрету"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:8
 msgid "Visit <a href=\"%(url)s\">firefox.com/m</a> to get Firefox on your phone and personalize your browser anytime, anywhere. Easily discover and install add-ons from the mobile Add-ons Manager."
 msgstr ""
+"Посетите <a href=\"%(url)s\">firefox.com/m</a> да бисте набавили Firefox на "
+"Вашем телефону и персонализовали Ваше прегледање у било код трену, било где. "
+"Лако откријте и инсталирајте додатке са мобилног Управљача додацима."
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
@@ -8546,7 +8562,7 @@ msgstr "Додаци за мобилни"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
-msgstr ""
+msgstr "Купујте паметно ових празника"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
@@ -8555,30 +8571,34 @@ msgstr ""
 #: apps/discovery/templates/discovery/modules/holiday.html:13
 msgid "Install the Amazon Browser Apps and receive special Amazon features right at your fingertips."
 msgstr ""
+"Инсталирајте Amazon Browser апликације и примите специјалхе Amazon функције "
+"на дохват руке."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
 msgid "Keep an eye on your eBay activity wherever you are on the web when you install the eBay Sidebar for Firefox."
 msgstr ""
+"Припазите на Вашу активност на eBay-у кад год сте на вебу када инсталирате "
+"eBay Sidebar за Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
-msgstr ""
+msgstr "Погледајте читају колекцију додатака за празнични шопинг."
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Mozilla-ин избор месеца!"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
-msgstr ""
+msgstr "Прилагодите Firefox<br>са заставом Ваше државе"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
-msgstr ""
+msgstr "Придружите нам се у слављу глобалног духа заједнице."
 
 #: apps/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
-msgstr ""
+msgstr "Покажите Вашу подршку"
 
 #: apps/editors/forms.py:31
 msgid "Approved reviews"
@@ -8590,11 +8610,11 @@ msgstr "Обрисане критике"
 
 #: apps/editors/forms.py:40 apps/editors/forms.py:59
 msgid "View entries between"
-msgstr ""
+msgstr "Погледај уносе између"
 
 #: apps/editors/forms.py:42 apps/editors/forms.py:60
 msgid "and"
-msgstr ""
+msgstr "и"
 
 #: apps/editors/forms.py:44
 msgid "Filter by type/action"
@@ -8602,26 +8622,26 @@ msgstr "Filter by type/action"
 
 #: apps/editors/forms.py:61
 msgid "containing"
-msgstr ""
+msgstr "који садрже"
 
 #. L10n: start, as in "start date"
 #: apps/editors/forms.py:67
 msgid "start"
-msgstr ""
+msgstr "почетак"
 
 #. L10n: end, as in "end date"
 #: apps/editors/forms.py:71
 msgid "end"
-msgstr ""
+msgstr "крај"
 
 #. L10n: Description of what can be searched for
 #: apps/editors/forms.py:74
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "додатак, уредник или коментар"
 
 #: apps/editors/forms.py:90
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Претражи по називу додатка / е-пошти аутора"
 
 #: apps/editors/forms.py:95
 msgid "yes"
@@ -8654,11 +8674,11 @@ msgstr "Платформе"
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: apps/editors/forms.py:230
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr ""
+msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
 #: apps/editors/forms.py:243 apps/files/templates/files/viewer.html:50
 msgid "Files:"
-msgstr ""
+msgstr "Датотеке:"
 
 #: apps/editors/forms.py:246
 msgid "Comments:"
@@ -8666,7 +8686,7 @@ msgstr "Коментари:"
 
 #: apps/editors/forms.py:250
 msgid "Operating systems:"
-msgstr ""
+msgstr "Оперативни системи:"
 
 #: apps/editors/forms.py:252
 msgid "Applications:"
@@ -8678,15 +8698,15 @@ msgstr "Notify me the next time this add-on is updated. (Subsequent updates will
 
 #: apps/editors/forms.py:259
 msgid "Clear Admin Review Flag"
-msgstr ""
+msgstr "Уклони ознакуза рецензију администратора"
 
 #: apps/editors/forms.py:278
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Изабери готов одговор..."
 
 #: apps/editors/forms.py:307
 msgid "You must select some files."
-msgstr ""
+msgstr "Морате изабрати датотеке."
 
 #: apps/editors/forms.py:313
 msgid "File %s is not pending review."
@@ -8695,16 +8715,16 @@ msgstr ""
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:336
 msgid "theme name"
-msgstr ""
+msgstr "назив теме"
 
 #: apps/editors/forms.py:362
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Неко други прегледава ову тему."
 
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:459
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "апликација, рецензент, или коментар"
 
 #: apps/editors/helpers.py:47
 msgid "Pending Preliminary Review"
@@ -8716,15 +8736,15 @@ msgstr "Чекање пуне рецензије"
 
 #: apps/editors/helpers.py:58
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Одбијено или непрегледано"
 
 #: apps/editors/helpers.py:112
 msgid "Queue"
-msgstr ""
+msgstr "На чекању"
 
 #: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:51
 msgid "Pending Updates"
-msgstr ""
+msgstr "Ажурирања на чекању"
 
 #: apps/editors/helpers.py:114 apps/editors/templates/editors/base.html:49
 msgid "Full Reviews"
@@ -8744,15 +8764,15 @@ msgstr ""
 
 #: apps/editors/helpers.py:119
 msgid "Pending Themes"
-msgstr ""
+msgstr "Теме на чекању"
 
 #: apps/editors/helpers.py:120 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Означене теме"
 
 #: apps/editors/helpers.py:121
 msgid "Update Themes"
-msgstr ""
+msgstr "Ажурирај теме"
 
 #: apps/editors/helpers.py:147
 msgid "Fast Track ({0})"
@@ -8764,16 +8784,16 @@ msgstr[2] ""
 #: apps/editors/helpers.py:151
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "({0}) пуна рецензија"
+msgstr[1] "({0}) пуне рецензије"
+msgstr[2] "({0}) пуних рецензија"
 
 #: apps/editors/helpers.py:155
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "({0}) ажурирање на чекању"
+msgstr[1] "({0}) ажурирања на чекању"
+msgstr[2] "({0}) ажурирања на чекању"
 
 #: apps/editors/helpers.py:159
 msgid "Preliminary Review ({0})"
@@ -8795,15 +8815,15 @@ msgstr "Додатак"
 
 #: apps/editors/helpers.py:196 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: apps/editors/helpers.py:197
 msgid "Waiting Time"
-msgstr ""
+msgstr "Време чекања"
 
 #: apps/editors/helpers.py:198 apps/editors/templates/editors/review.html:278
 msgid "Flags"
-msgstr ""
+msgstr "Ознаке"
 
 #: apps/editors/helpers.py:199
 msgid "Applications"
@@ -8811,7 +8831,7 @@ msgstr "Апликације"
 
 #: apps/editors/helpers.py:204
 msgid "Additional"
-msgstr ""
+msgstr "Додатно"
 
 #: apps/editors/helpers.py:221
 msgid "Site Specific"
@@ -8819,39 +8839,39 @@ msgstr "Посебно за сајт"
 
 #: apps/editors/helpers.py:223
 msgid "Requires External Software"
-msgstr ""
+msgstr "Захтева спољни софтвер"
 
 #: apps/editors/helpers.py:225
 msgid "Binary Components"
-msgstr ""
+msgstr "Бинарне компоненте"
 
 #: apps/editors/helpers.py:249
 msgid "moments ago"
-msgstr ""
+msgstr "пре неколико момената"
 
 #. L10n: first argument is number of minutes
 #: apps/editors/helpers.py:252
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} минут"
+msgstr[1] "{0} минута"
+msgstr[2] "{0} минута"
 
 #. L10n: first argument is number of hours
 #: apps/editors/helpers.py:256
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} сат"
+msgstr[1] "{0} сата"
+msgstr[2] "{0} сати"
 
 #. L10n: first argument is number of days
 #: apps/editors/helpers.py:260
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} дан"
+msgstr[1] "{0} дана"
+msgstr[2] "{0} дана"
 
 #: apps/editors/helpers.py:401
 msgid "Push to public"
@@ -8871,17 +8891,23 @@ msgstr ""
 
 #: apps/editors/helpers.py:425
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "Ово ће означити датотеке као прелиминарно прегледане."
 
 #: apps/editors/helpers.py:427
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr ""
+"Користите ову форму да бисте захтевали више информација од аутора. Примиће "
+"е-пошту и биће у могућности овде да одговори. Бићете обавештени путем "
+"е-поште када одговори."
 
 #: apps/editors/helpers.py:431
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr ""
+"Ако бринете о безбедности овог додатка, о његовим ауторским правима, или "
+"неким другим стварима које би администратор требао да погледа, унесите Ваш "
+"коментар у поље испод. Биће послат администраторима, не аутору."
 
 #: apps/editors/helpers.py:437
 msgid "This will reject the add-on and remove it from the review queue."
@@ -8889,27 +8915,33 @@ msgstr ""
 
 #: apps/editors/helpers.py:439
 msgid "Make a comment on this version. The author won't be able to see this."
-msgstr ""
+msgstr "Коментаришите ову верзију. Аутор неће бити у могућности да га види."
 
 #: apps/editors/helpers.py:443
 msgid "This will reject the files and remove them from the review queue."
-msgstr ""
+msgstr "Ово ће одбити датотеке и уклонити их са чекања рецензије."
 
 #: apps/editors/helpers.py:447
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
+"Ово ће означити додатак као прелиминарно прегледан. Будуће верзије ће проћи "
+"кроз прелиминарни преглед."
 
 #: apps/editors/helpers.py:452
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
+"Ово ће означити датотеке као прелиминарно прегледане. Будуће верзије ће "
+"проћи кроз прелиминарни преглед."
 
 #: apps/editors/helpers.py:457
 msgid "Retain preliminary review"
-msgstr ""
+msgstr "Задржи прелиминарну рецензију"
 
 #: apps/editors/helpers.py:458
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
+"Ово ће задржати додатке као прелиминарно прегледане. Будуће верзије ће проћи "
+"кроз прелиминарни преглед."
 
 #: apps/editors/helpers.py:463
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
@@ -8922,6 +8954,9 @@ msgstr ""
 #: apps/editors/helpers.py:469
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr ""
+"Ово ће означити додатак и његове скорашње верзије и датотеке као јавне. "
+"Будуће верзије ће отићи у заштићено окружење док не буду прегледане од "
+"стране уредника."
 
 #: apps/editors/helpers.py:537
 msgid "add-on"
@@ -8929,7 +8964,7 @@ msgstr "додатак"
 
 #: apps/editors/helpers.py:787 apps/editors/helpers.py:807
 msgid "Flagged"
-msgstr ""
+msgstr "Означено"
 
 #: apps/editors/helpers.py:791 apps/editors/helpers.py:810
 msgid "Updates"
@@ -8937,15 +8972,15 @@ msgstr "Ажурирања"
 
 #: apps/editors/models.py:168
 msgid "Admin Review"
-msgstr ""
+msgstr "Рецензија администратора"
 
 #: apps/editors/models.py:169
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Jetpack додатак"
 
 #: apps/editors/models.py:171
 msgid "Restartless Add-on"
-msgstr ""
+msgstr "Додатак без поновног покретања"
 
 #: apps/editors/models.py:172
 msgid "More Information Requested"
@@ -8981,15 +9016,15 @@ msgstr ""
 
 #: apps/editors/views.py:123
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Пролазно (5 до 10 дана)"
 
 #: apps/editors/views.py:124
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "Истекао рок (више од 10 дана)"
 
 #: apps/editors/views.py:453
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Појавила се непозната грешка"
 
 #: apps/editors/views.py:489
 msgid "Self-reviews are not allowed."
@@ -9001,11 +9036,11 @@ msgstr "Review successfully processed."
 
 #: apps/editors/views.py:699
 msgid "was approved"
-msgstr ""
+msgstr "је одобрено"
 
 #: apps/editors/views.py:700
 msgid "given preliminary review"
-msgstr ""
+msgstr "је дата прелиминарна рецензија"
 
 #: apps/editors/views.py:701
 msgid "rejected"
@@ -9027,9 +9062,9 @@ msgstr ""
 #: apps/editors/views_themes.py:328
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} рецензија теме је успешно обрађена (+{1} поен(а), {2} укупно)."
+msgstr[1] "{0} рецензије теме су успешно обрађене (+{1} поен(а), {2} укупно)."
+msgstr[2] "{0} рецензија теме су успешно обрађене (+{1} поен(а), {2} укупно)."
 
 #: apps/editors/views_themes.py:343
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
@@ -9037,11 +9072,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Извештаји злостављања"
 
 #: apps/editors/templates/editors/abuse_reports.html:12
 msgid "Abuse Reports for {addon} ({num})"
-msgstr ""
+msgstr "Извештаји о злостављању за {addon} ({num})"
 
 #: apps/editors/templates/editors/abuse_reports.html:18
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -9049,11 +9084,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/abuse_reports.html:22
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>анонимно</i>дана %(date)s [%(ip_address)s]"
 
 #: apps/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
-msgstr ""
+msgstr "Врати се на почетну страну Алатке уредника"
 
 #: apps/editors/templates/editors/base.html:43 apps/editors/templates/editors/themes/base.html:14 apps/editors/templates/editors/themes/base.html:28
 #: apps/editors/templates/editors/themes/queue.html:25
@@ -9062,11 +9097,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/base.html:63 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
-msgstr ""
+msgstr "Дневници"
 
 #: apps/editors/templates/editors/base.html:66 apps/editors/templates/editors/reviewlog.html:4
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Дневник рецензија додатка"
 
 #: apps/editors/templates/editors/base.html:68 apps/editors/templates/editors/eventlog.html:4 apps/editors/templates/editors/eventlog.html:8 apps/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
@@ -9074,12 +9109,12 @@ msgstr ""
 
 #: apps/editors/templates/editors/base.html:72 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
-msgstr ""
+msgstr "Саопштење"
 
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/eventlog.html:24 apps/editors/templates/editors/themes/macros.html:45 apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
-msgstr ""
+msgstr "Филтрирај"
 
 #: apps/editors/templates/editors/eventlog.html:30 apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
@@ -9087,11 +9122,11 @@ msgstr "Date"
 
 #: apps/editors/templates/editors/eventlog.html:31 apps/editors/templates/editors/reviewlog.html:35
 msgid "Event"
-msgstr ""
+msgstr "Догађај"
 
 #: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:134
 msgid "More details."
-msgstr ""
+msgstr "Више детаља."
 
 #: apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
@@ -9099,39 +9134,39 @@ msgstr "Нема пронађених догађаја за овај перио�
 
 #: apps/editors/templates/editors/eventlog_detail.html:5
 msgid "Log Details"
-msgstr ""
+msgstr "Детаљи дневника"
 
 #: apps/editors/templates/editors/eventlog_detail.html:11
 msgid "Log details"
-msgstr ""
+msgstr "Детаљи дневника"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "({num}) пуна рецензија"
+msgstr[1] "({num}) пуне рецензије"
+msgstr[2] "({num}) пуних рецензија"
 
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "({num}) надоградња на чекању"
+msgstr[1] "({num}) надоградње на чекању"
+msgstr[2] "({num}) надоградњи на чекању"
 
 #: apps/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "({num}) прелиминарна рецензија"
+msgstr[1] "({num}) прелиминарне рецензије"
+msgstr[2] "({num}) прелиминарних рецензија"
 
 #: apps/editors/templates/editors/home.html:36
 msgid "{c} unreviewed submissions."
 msgid_plural "{c} unreviewed submissions."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{c} непрегледана достава."
+msgstr[1] "{c} непрегледане доставе."
+msgstr[2] "{c} непрегледаних достава."
 
 #: apps/editors/templates/editors/home.html:41
 msgid "Current waiting times:"
@@ -9168,9 +9203,9 @@ msgstr ""
 #: apps/editors/templates/editors/home.html:125
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "({num}) уређена рецензија"
+msgstr[1] "({num}) уређене рецензије"
+msgstr[2] "({num}) уређених рецензија"
 
 #: apps/editors/templates/editors/leaderboard.html:3 apps/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
@@ -9182,19 +9217,19 @@ msgstr ""
 
 #: apps/editors/templates/editors/leaderboard.html:23 apps/perf/templates/perf/index.html:54
 msgid "Rank"
-msgstr ""
+msgstr "Позиција"
 
 #: apps/editors/templates/editors/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Резултат"
 
 #: apps/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Порука дана"
 
 #: apps/editors/templates/editors/motd.html:12
 msgid "Update message of the day"
-msgstr ""
+msgstr "Ажурирај поруку дана"
 
 #: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:224
 msgid "Save"
@@ -9203,39 +9238,39 @@ msgstr "Save"
 #: apps/editors/templates/editors/performance.html:10
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Перформансе Уредника додатка"
 
 #: apps/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
-msgstr ""
+msgstr "Погледај статистику за корисника"
 
 #: apps/editors/templates/editors/performance.html:29
 msgid "Range"
-msgstr ""
+msgstr "Распон"
 
 #: apps/editors/templates/editors/performance.html:32
 msgid "Your Reviews"
-msgstr ""
+msgstr "Ваше рецензије"
 
 #: apps/editors/templates/editors/performance.html:34
 msgid "By {user_name}"
-msgstr ""
+msgstr "Од корисника {user_name}"
 
 #: apps/editors/templates/editors/performance.html:39
 msgid "Active Contributors"
-msgstr ""
+msgstr "Активни сарадници"
 
 #: apps/editors/templates/editors/performance.html:42
 msgid "This Month"
-msgstr ""
+msgstr "Овог месеца"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "Ове године"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Месечне перформансе"
 
 #: apps/editors/templates/editors/performance.html:67
 msgid "All-time Point Breakdown by Type"
@@ -9243,11 +9278,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:74
 msgid "Total"
-msgstr ""
+msgstr "Укупно"
 
 #: apps/editors/templates/editors/performance.html:79
 msgid "Month"
-msgstr ""
+msgstr "Месец"
 
 #: apps/editors/templates/editors/performance.html:86
 msgid "Year"
@@ -9263,7 +9298,7 @@ msgstr "Напредна претрага"
 
 #: apps/editors/templates/editors/queue.html:30
 msgid "clear search"
-msgstr ""
+msgstr "очисти претрагу"
 
 #: apps/editors/templates/editors/queue.html:72 apps/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
@@ -9283,11 +9318,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Све рецензије су уређене. Свака част!"
 
 #: apps/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
-msgstr ""
+msgstr "Белешке о верзији / Белешке за рецензента"
 
 # %1 is the queue mode
 #: apps/editors/templates/editors/queue.html:169
@@ -9296,7 +9331,7 @@ msgstr "There are currently no add-ons of this type to review."
 
 #: apps/editors/templates/editors/queue.html:181 apps/editors/templates/editors/themes/queue_list.html:91
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Корисне везе:"
 
 #: apps/editors/templates/editors/queue.html:182
 msgid "Add-on Policy"
@@ -9309,15 +9344,17 @@ msgstr "Савети уредника"
 #. "Review [add-on name]"
 #: apps/editors/templates/editors/review.html:25
 msgid "Review {0}"
-msgstr ""
+msgstr "Прегледај {0}"
 
 #: apps/editors/templates/editors/review.html:40 apps/editors/templates/editors/review.html:259
 msgid "Add-on History"
-msgstr ""
+msgstr "Историјат додатка"
 
 #: apps/editors/templates/editors/review.html:52
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
+"Верзија %(version)s &middot; %(created)s <span class=\"light\">&middot; %"
+"(version_status)s</span>"
 
 #: apps/editors/templates/editors/review.html:61
 msgid "Files in this version:"
@@ -9325,15 +9362,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:73
 msgid "Contents"
-msgstr ""
+msgstr "Садржаји"
 
 #: apps/editors/templates/editors/review.html:76
 msgid "Compare"
-msgstr ""
+msgstr "Упореди"
 
 #: apps/editors/templates/editors/review.html:84
 msgid "Compatibility:"
-msgstr ""
+msgstr "Компатибилност"
 
 #: apps/editors/templates/editors/review.html:125
 msgid "This version has not been reviewed."
@@ -9345,54 +9382,58 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:162
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Унеси готов одговор..."
 
 #: apps/editors/templates/editors/review.html:182
 msgid "Notice: Only review more than one file if you have tested <strong>every</strong> file you select."
 msgstr ""
+"Саопштење: Прегледајте више од једне датотеке само ако сте тестирали "
+"<strong>сваку</strong> датотеку коју изаберете."
 
 #: apps/editors/templates/editors/review.html:190
 msgid "Tested on:"
-msgstr ""
+msgstr "Тестирано:"
 
 #: apps/editors/templates/editors/review.html:220
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
+"<strong>Упозорење!</strong> Други корисник је прегледавао ову страницу пре "
+"Вас."
 
 #: apps/editors/templates/editors/review.html:239
 msgid "%(current)s of %(total)s"
-msgstr ""
+msgstr "%(current)s од %(total)s"
 
 #: apps/editors/templates/editors/review.html:250 apps/editors/templates/editors/review.html:251
 msgid "(admin)"
-msgstr ""
+msgstr "(администратор)"
 
 #: apps/editors/templates/editors/review.html:251
 msgid "Admin Page"
-msgstr ""
+msgstr "Админ страница"
 
 #: apps/editors/templates/editors/review.html:256
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Прегледај овај додатак"
 
 #: apps/editors/templates/editors/review.html:258
 msgid "More Information"
-msgstr ""
+msgstr "Више информација"
 
 #: apps/editors/templates/editors/review.html:260
 msgid "Resolution"
-msgstr ""
+msgstr "Резолуција"
 
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/reviewlog.html:21
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Filter"
-msgstr ""
+msgstr "Филтрирај"
 
 #: apps/editors/templates/editors/reviewlog.html:27
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Дневник рецензије додатка"
 
 #: apps/editors/templates/editors/reviewlog.html:34
 msgctxt "editorcp_reviewlog_column_date"
@@ -9405,7 +9446,7 @@ msgstr "Уредник"
 
 #: apps/editors/templates/editors/reviewlog.html:56
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Додатак је избрисан."
 
 #: apps/editors/templates/editors/reviewlog.html:61 apps/editors/templates/editors/themes/logs.html:36
 msgid "Show Comments"
@@ -9421,11 +9462,11 @@ msgstr "No reviews found for this period."
 
 #: apps/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Одбаци ову најаву"
 
 #: apps/editors/templates/editors/includes/history.html:6
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Од %(user)s дана %(date)s</div>"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
