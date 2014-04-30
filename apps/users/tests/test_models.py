@@ -221,11 +221,13 @@ class TestPasswords(amo.tests.TestCase):
     def test_invalid_old_password(self):
         u = UserProfile(password=self.utf)
         assert u.check_password(self.utf) is False
+        assert u.has_usable_password() is True
 
     def test_invalid_new_password(self):
         u = UserProfile()
         u.set_password(self.utf)
         assert u.check_password('wrong') is False
+        assert u.has_usable_password() is True
 
     def test_valid_old_password(self):
         hsh = hashlib.md5(encoding.smart_str(self.utf)).hexdigest()
@@ -235,11 +237,13 @@ class TestPasswords(amo.tests.TestCase):
         algo, salt, hsh = u.password.split('$')
         eq_(algo, 'sha512')
         eq_(hsh, get_hexdigest(algo, salt, self.utf))
+        assert u.has_usable_password() is True
 
     def test_valid_new_password(self):
         u = UserProfile()
         u.set_password(self.utf)
         assert u.check_password(self.utf) is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_md5(self):
         md5 = hashlib.md5('password').hexdigest()
@@ -247,18 +251,21 @@ class TestPasswords(amo.tests.TestCase):
         u = UserProfile(password='sha512+MD5$%s$%s' %
                         (self.bytes_, hsh))
         assert u.check_password('password') is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_base64(self):
         hsh = hashlib.sha512(self.bytes_ + 'password').hexdigest()
         u = UserProfile(password='sha512+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password('password') is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_base64_maybe_utf8(self):
         hsh = hashlib.sha512(self.bytes_ + self.utf.encode('utf8')).hexdigest()
         u = UserProfile(password='sha512+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password(self.utf) is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_base64_maybe_latin1(self):
         passwd = u'fo\xf3'
@@ -266,6 +273,7 @@ class TestPasswords(amo.tests.TestCase):
         u = UserProfile(password='sha512+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password(passwd) is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_base64_maybe_not_latin1(self):
         passwd = u'fo\xf3'
@@ -273,6 +281,7 @@ class TestPasswords(amo.tests.TestCase):
         u = UserProfile(password='sha512+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password(self.utf) is False
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_md5_base64(self):
         md5 = hashlib.md5('password').hexdigest()
@@ -280,10 +289,12 @@ class TestPasswords(amo.tests.TestCase):
         u = UserProfile(password='sha512+MD5+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password('password') is True
+        assert u.has_usable_password() is True
 
     def test_browserid_password(self):
         u = UserProfile(password=self.utf, source=amo.LOGIN_SOURCE_UNKNOWN)
         assert not u.check_password('foo')
+        assert u.has_usable_password() is True
 
     @patch('access.acl.action_allowed_user')
     def test_needs_tougher_password(self, action_allowed_user):
@@ -311,6 +322,12 @@ class TestPasswords(amo.tests.TestCase):
         self.assertTrue(is_password_usable(blank_encoded))
         self.assertTrue(check_password('', blank_encoded))
         self.assertFalse(check_password(' ', blank_encoded))
+
+    def test_empty_password(self):
+        profile = UserProfile(password=None)
+        assert profile.has_usable_password() is False
+        profile = UserProfile(password='')
+        assert profile.has_usable_password() is False
 
 
 class TestBlacklistedUsername(amo.tests.TestCase):

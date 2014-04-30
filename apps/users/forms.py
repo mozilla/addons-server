@@ -80,6 +80,11 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
                   further information. If you do not receive an email then
                   please confirm you have entered the same email address used
                   during account registration."""))
+        user = self.users_cache[0]
+        if not user.has_usable_password():
+            raise forms.ValidationError(
+                _("We can't reset this account's password, please contact the "
+                  "support."))
         return email
 
     def save(self, **kw):
