@@ -1146,6 +1146,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                 amo.STATUS_LITE_AND_NOMINATED,
                                 amo.STATUS_DELETED) or
                 not self.latest_version or
+                self.latest_version.failed_full_review or
                 not self.latest_version.files.exclude(
                     status=amo.STATUS_DISABLED)):
             return ()
