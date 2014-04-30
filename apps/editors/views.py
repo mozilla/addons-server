@@ -547,7 +547,13 @@ def review(request, addon):
     user_changes_log = AddonLog.objects.filter(
         activity_log__action__in=user_changes_actions,
         addon=addon).order_by('id')
-    ctx = context(version=version, addon=addon,
+    review_types = {
+        'nominated': _('Nominated'),
+        'preliminary': _('Preliminary'),
+        'pending': _('Full Update'),
+    }
+
+    ctx = context(version=version, addon=addon, review_types=review_types,
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
                   form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
