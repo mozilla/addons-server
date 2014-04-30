@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:15-0700\n"
+"POT-Creation-Date: 2014-04-30 09:08-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,7 +140,7 @@ msgstr "Ƞǿŧ Řḗṽīḗẇḗḓ"
 
 #: apps/addons/helpers.py:34
 #: apps/addons/views.py:320
-#: apps/addons/templates/addons/impala/details.html:117
+#: apps/addons/templates/addons/impala/details.html:118
 #: apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36
 #: apps/amo/templates/amo/side_nav.html:6
@@ -614,7 +614,7 @@ msgstr "Ȧƀŭşḗ Řḗƥǿřŧş"
 #: apps/addons/templates/addons/privacy.html:19
 #: apps/addons/templates/addons/privacy.html:23
 #: apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:308
+#: apps/addons/templates/addons/impala/details.html:309
 #: apps/devhub/templates/devhub/includes/policy_form.html:19
 #: templates/mobile/base_addons.html:82
 #: templates/mobile/base_apps.html:71
@@ -645,7 +645,7 @@ msgid "Developer Comments"
 msgstr "Ḓḗṽḗŀǿƥḗř Ƈǿḿḿḗƞŧş"
 
 #: apps/addons/templates/addons/details_box.html:190
-#: apps/addons/templates/addons/impala/details.html:265
+#: apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
 msgstr "Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ"
 
@@ -661,7 +661,7 @@ msgstr ""
 "ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ, ẏǿŭ ẇīŀŀ ƈǿƞŧīƞŭḗ ŧǿ ɠḗŧ ŭƥḓȧŧḗş ƒřǿḿ ŧħīş ƈħȧƞƞḗŀ."
 
 #: apps/addons/templates/addons/details_box.html:198
-#: apps/addons/templates/addons/impala/details.html:275
+#: apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
 msgstr "Īƞşŧȧŀŀ ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ"
 
@@ -680,7 +680,7 @@ msgstr ""
 "ȧƀǿṽḗ."
 
 #: apps/addons/templates/addons/details_box.html:211
-#: apps/addons/templates/addons/impala/details.html:284
+#: apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
 msgstr "Ṽḗřşīǿƞ {0}:"
 
@@ -695,7 +695,7 @@ msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
 #: apps/addons/templates/addons/disabled.html:17
 #: apps/addons/templates/addons/persona_detail.html:19
-#: apps/addons/templates/addons/impala/details.html:109
+#: apps/addons/templates/addons/impala/details.html:110
 #: apps/addons/templates/addons/mobile/details.html:23
 #: apps/addons/templates/addons/mobile/persona_detail.html:21
 #: apps/discovery/templates/discovery/addons/base.html:27
@@ -724,7 +724,7 @@ msgstr "Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ ƒǿř {0}"
 #: apps/addons/templates/addons/eula.html:17
 #: apps/addons/templates/addons/eula.html:21
 #: apps/addons/templates/addons/impala/button.html:48
-#: apps/addons/templates/addons/impala/details.html:317
+#: apps/addons/templates/addons/impala/details.html:318
 #: apps/devhub/templates/devhub/includes/policy_form.html:3
 #: apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
@@ -843,7 +843,7 @@ msgstr[1] "%(num)s ŭşḗřş"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53
-#: apps/addons/templates/addons/impala/details.html:63
+#: apps/addons/templates/addons/impala/details.html:64
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} ẇḗḗķŀẏ ḓǿẇƞŀǿȧḓ"
@@ -851,7 +851,7 @@ msgstr[1] "{0} ẇḗḗķŀẏ ḓǿẇƞŀǿȧḓş"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61
-#: apps/addons/templates/addons/impala/details.html:56
+#: apps/addons/templates/addons/impala/details.html:57
 #: apps/compat/templates/compat/index.html:71
 #: apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
@@ -1010,7 +1010,6 @@ msgstr "Ȧḓḓ"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:9
 #: apps/devhub/templates/devhub/addons/submit/describe.html:29
 #: apps/editors/templates/editors/review.html:250
-#: templates/qunit/qunit.html:755
 msgid "Edit"
 msgstr "Ḗḓīŧ"
 
@@ -1188,7 +1187,7 @@ msgstr ""
 #: apps/addons/templates/addons/report_abuse.html:6
 #: apps/addons/templates/addons/report_abuse_full.html:11
 #: apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:330
 msgid "Report Abuse"
 msgstr "Řḗƥǿřŧ Ȧƀŭşḗ"
 
@@ -1390,62 +1389,62 @@ msgstr "Ǿƒŧḗƞ ŭşḗḓ ẇīŧħ&hellip;"
 msgid "Part of these Collections"
 msgstr "Ƥȧřŧ ǿƒ ŧħḗşḗ Ƈǿŀŀḗƈŧīǿƞş"
 
-#: apps/addons/templates/addons/impala/details.html:43
+#: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> ŭşḗř řḗṽīḗẇ"
 msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> ŭşḗř řḗṽīḗẇş"
 
-#: apps/addons/templates/addons/impala/details.html:71
+#: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
 msgstr "Ṽīḗẇ şŧȧŧīşŧīƈş"
 
-#: apps/addons/templates/addons/impala/details.html:88
+#: apps/addons/templates/addons/impala/details.html:89
 msgid "Manage"
 msgstr "Ḿȧƞȧɠḗ"
 
-#: apps/addons/templates/addons/impala/details.html:106
+#: apps/addons/templates/addons/impala/details.html:107
 #: apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
 msgstr "Ƞǿ Řḗşŧȧřŧ"
 
-#: apps/addons/templates/addons/impala/details.html:134
+#: apps/addons/templates/addons/impala/details.html:135
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Ḿḗḗŧ ŧħḗ Ḓḗṽḗŀǿƥḗř: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Ḿḗḗŧ ŧħḗ Ḓḗṽḗŀǿƥḗřş</a>"
 
-#: apps/addons/templates/addons/impala/details.html:144
+#: apps/addons/templates/addons/impala/details.html:145
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "Ŀḗȧřƞ ẇħẏ {0} ẇȧş ƈřḗȧŧḗḓ ȧƞḓ ƒīƞḓ ǿŭŧ ẇħȧŧ'ş ƞḗẋŧ ƒǿř ŧħīş ȧḓḓ-ǿƞ."
 
-#: apps/addons/templates/addons/impala/details.html:188
+#: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
 msgstr "Ȧḓḓ-ǿƞ ħǿḿḗ ƥȧɠḗ"
 
-#: apps/addons/templates/addons/impala/details.html:191
+#: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
 msgstr "Şŭƥƥǿřŧ şīŧḗ"
 
-#: apps/addons/templates/addons/impala/details.html:195
+#: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
 msgstr "Şŭƥƥǿřŧ Ḗ-ḿȧīŀ"
 
-#: apps/addons/templates/addons/impala/details.html:200
+#: apps/addons/templates/addons/impala/details.html:201
 #: apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "Ṽḗřşīǿƞ {0}"
 
-#: apps/addons/templates/addons/impala/details.html:200
+#: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
 msgstr "Īƞƒǿ"
 
-#: apps/addons/templates/addons/impala/details.html:206
+#: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:207
-#: apps/addons/templates/addons/impala/details.html:212
+#: apps/addons/templates/addons/impala/details.html:208
+#: apps/addons/templates/addons/impala/details.html:213
 #: apps/amo/helpers.py:402
 #: apps/devhub/forms.py:124
 #: apps/devhub/forms.py:154
@@ -1454,27 +1453,27 @@ msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">
 msgid "Custom License"
 msgstr "Ƈŭşŧǿḿ Ŀīƈḗƞşḗ"
 
-#: apps/addons/templates/addons/impala/details.html:211
+#: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:223
+#: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
 msgstr "Ȧƀǿŭŧ ŧħīş Ȧḓḓ-ǿƞ"
 
-#: apps/addons/templates/addons/impala/details.html:239
+#: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
 msgstr "Ḓḗṽḗŀǿƥḗř’ş Ƈǿḿḿḗƞŧş"
 
-#: apps/addons/templates/addons/impala/details.html:249
+#: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
 msgstr "Ṽḗřşīǿƞ Īƞƒǿřḿȧŧīǿƞ"
 
-#: apps/addons/templates/addons/impala/details.html:256
+#: apps/addons/templates/addons/impala/details.html:257
 msgid "See complete version history"
 msgstr "Şḗḗ ƈǿḿƥŀḗŧḗ ṽḗřşīǿƞ ħīşŧǿřẏ"
 
-#: apps/addons/templates/addons/impala/details.html:268
+#: apps/addons/templates/addons/impala/details.html:269
 msgid ""
 "The Development Channel lets you test an experimental new version of this "
 "add-on before it's released to the general public. Once you install the "
@@ -1488,7 +1487,7 @@ msgstr ""
 "şŧǿƥ řḗƈḗīṽīƞɠ ḓḗṽḗŀǿƥḿḗƞŧ ŭƥḓȧŧḗş, řḗīƞşŧȧŀŀ ŧħḗ ḓḗƒȧŭŀŧ ṽḗřşīǿƞ ƒřǿḿ ŧħḗ "
 "ŀīƞķ ȧƀǿṽḗ."
 
-#: apps/addons/templates/addons/impala/details.html:279
+#: apps/addons/templates/addons/impala/details.html:280
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
@@ -1496,9 +1495,9 @@ msgstr ""
 "<strong>Ƈȧŭŧīǿƞ:</strong> Ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞş ǿƒ ŧħīş ȧḓḓ-ǿƞ ħȧṽḗ ƞǿŧ ƀḗḗƞ "
 "řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ."
 
-#: apps/addons/templates/addons/impala/details.html:307
-#: apps/addons/templates/addons/impala/details.html:316
-#: apps/addons/templates/addons/impala/details.html:328
+#: apps/addons/templates/addons/impala/details.html:308
+#: apps/addons/templates/addons/impala/details.html:317
+#: apps/addons/templates/addons/impala/details.html:329
 #: apps/addons/templates/addons/impala/review_add_box.html:5
 #: apps/stats/templates/stats/popup.html:2
 #: apps/stats/templates/stats/popup.html:8

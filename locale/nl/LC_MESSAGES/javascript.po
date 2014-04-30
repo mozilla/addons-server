@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:15-0700\n"
+"POT-Creation-Date: 2014-04-30 09:08-0700\n"
 "PO-Revision-Date: 2014-02-27 10:01+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -636,7 +636,7 @@ msgstr "Gemarkeerd voor verwijdering"
 msgid "Updating results&hellip;"
 msgstr "Resultaten bijwerken…"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Categorie"
 

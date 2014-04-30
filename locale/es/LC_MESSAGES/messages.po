@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:15-0700\n"
+"POT-Creation-Date: 2014-04-30 09:08-0700\n"
 "PO-Revision-Date: 2014-04-15 19:55+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -137,7 +137,7 @@ msgstr "Escribe la dirección de correo de un nuevo autor"
 msgid "Not Reviewed"
 msgstr "Sin valoraciones"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:320 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:320 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:85 apps/browse/views.py:53 apps/browse/views.py:67 apps/browse/views.py:229 apps/browse/views.py:438
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
@@ -473,7 +473,7 @@ msgstr "Informes de abuso"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:308 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:82 templates/mobile/base_apps.html:71
+#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:82 templates/mobile/base_apps.html:71
 msgid "Privacy Policy"
 msgstr "Política de privacidad"
 
@@ -498,7 +498,7 @@ msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "Comentarios del desarrollador"
 
-#: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:265
+#: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
 msgstr "Canal de Desarrollo"
 
@@ -510,7 +510,7 @@ msgstr ""
 "El canal de desarrollo te permite probar una nueva versión experimental de este complemento antes de que sea público. Una vez instalada la versión de desarrollo, recibirás las actualizaciones de "
 "este canal."
 
-#: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:275
+#: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
 msgstr "Instalar la versión de desarrollo"
 
@@ -522,7 +522,7 @@ msgstr ""
 "<strong>Atención:</strong> las versiones de pruebas de este complemento no han sido revisadas por Mozilla. Una vez instales la versión de desarrollo, continuarás recibiendo actualizaciones de "
 "desarrollo. Para dejar de recibirlas, reinstala la versión por defecto desde el siguiente enlace."
 
-#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:284
+#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
 msgstr "Versión {0}:"
 
@@ -535,7 +535,7 @@ msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr "Notas de la versión"
 
-#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:109
+#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:110
 #: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
 #: apps/editors/templates/editors/review.html:31 apps/perf/templates/perf/index.html:78
 msgid "by"
@@ -555,7 +555,7 @@ msgstr "Este complemento ha sido deshabilitado por un administrador."
 msgid "End-User License Agreement for {0}"
 msgstr "Acuerdo de licencia final de usuario por {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:317
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "Acuerdo de licencia final de usuario"
@@ -641,14 +641,14 @@ msgstr[0] "%(num)s usuario"
 msgstr[1] "%(num)s usuarios"
 
 #. {0} is the number of downloads.
-#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:63
+#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:64
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} descarga semanal"
 msgstr[1] "{0} descargas semanales"
 
 #. {0} is the number of users.
-#: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:56 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
+#: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:57 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} usuario"
@@ -757,7 +757,7 @@ msgstr "Agregar"
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:250 templates/qunit/qunit.html:755
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:250
 msgid "Edit"
 msgstr "Editar"
 
@@ -880,7 +880,7 @@ msgstr ""
 "tienes uno)."
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:330
 msgid "Report Abuse"
 msgstr "Informar de abuso"
 
@@ -1019,85 +1019,85 @@ msgstr "Usado frecuentemente con&hellip;"
 msgid "Part of these Collections"
 msgstr "Parte de estas colecciones"
 
-#: apps/addons/templates/addons/impala/details.html:43
+#: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> valoración de los usuarios"
 msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> valoraciones de los usuarios"
 
-#: apps/addons/templates/addons/impala/details.html:71
+#: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
 msgstr "Ver estadísticas"
 
-#: apps/addons/templates/addons/impala/details.html:88
+#: apps/addons/templates/addons/impala/details.html:89
 msgid "Manage"
 msgstr "Gestionar"
 
-#: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
+#: apps/addons/templates/addons/impala/details.html:107 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
 msgstr "Sin reiniciar"
 
-#: apps/addons/templates/addons/impala/details.html:134
+#: apps/addons/templates/addons/impala/details.html:135
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Conoce al desarrollador: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Conoce a los desarrolladores</a>"
 
 # {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:144
+#: apps/addons/templates/addons/impala/details.html:145
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "Descubre por qué se creó {0} y cuál es el futuro de este complemento."
 
-#: apps/addons/templates/addons/impala/details.html:188
+#: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
 msgstr "Página principal de los complementos"
 
-#: apps/addons/templates/addons/impala/details.html:191
+#: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
 msgstr "Sitio de asistencia"
 
-#: apps/addons/templates/addons/impala/details.html:195
+#: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
 msgstr "Correo de soporte"
 
-#: apps/addons/templates/addons/impala/details.html:200 apps/devhub/models.py:369
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "Versión {0}"
 
-#: apps/addons/templates/addons/impala/details.html:200
+#: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
 msgstr "Información"
 
-#: apps/addons/templates/addons/impala/details.html:206
+#: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Publicado bajo <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Licencia personalizada"
 
-#: apps/addons/templates/addons/impala/details.html:211
+#: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Publicado bajo <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:223
+#: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
 msgstr "Acerca de este complemento"
 
-#: apps/addons/templates/addons/impala/details.html:239
+#: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
 msgstr "Comentarios de los desarrolladores"
 
-#: apps/addons/templates/addons/impala/details.html:249
+#: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
 msgstr "Información de la versión"
 
-#: apps/addons/templates/addons/impala/details.html:256
+#: apps/addons/templates/addons/impala/details.html:257
 msgid "See complete version history"
 msgstr "Ver el historial completo de versiones"
 
-#: apps/addons/templates/addons/impala/details.html:268
+#: apps/addons/templates/addons/impala/details.html:269
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
@@ -1105,11 +1105,11 @@ msgstr ""
 "El Canal de desarrollo te permite probar una nueva versión experimental de este complemento antes de su lanzamiento al público en general. Una vez que instales la versión de desarrollo, seguirás "
 "recibiendo actualizaciones de este canal. Para dejar de recibir actualizaciones de desarrollo, reinstala la versión predeterminada desde el enlace anterior."
 
-#: apps/addons/templates/addons/impala/details.html:279
+#: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>Atención:</strong> las versiones de desarrollo de este complemento no han sido valoradas por Mozilla."
 
-#: apps/addons/templates/addons/impala/details.html:307 apps/addons/templates/addons/impala/details.html:316 apps/addons/templates/addons/impala/details.html:328
+#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"

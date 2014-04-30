@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:15-0700\n"
+"POT-Creation-Date: 2014-04-30 09:08-0700\n"
 "PO-Revision-Date: 2014-02-27 16:18+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -638,7 +638,7 @@ msgstr "Törlésre jelölve"
 msgid "Updating results&hellip;"
 msgstr "Eredmény frissítése&hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Kategória"
 

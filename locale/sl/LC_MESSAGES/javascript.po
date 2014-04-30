@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:15-0700\n"
+"POT-Creation-Date: 2014-04-30 09:08-0700\n"
 "PO-Revision-Date: 2014-03-19 20:14+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
@@ -661,7 +661,7 @@ msgstr ""
 msgid "Updating results&hellip;"
 msgstr ""
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr ""
 

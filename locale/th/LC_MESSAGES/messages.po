@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:15-0700\n"
+"POT-Creation-Date: 2014-04-30 09:08-0700\n"
 "PO-Revision-Date: 2013-11-08 06:31+0000\n"
 "Last-Translator: earthx2 <fujiko.doramon71@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -126,7 +126,7 @@ msgstr "ใส่ที่อยู่อีเมลใหม่ของผู
 msgid "Not Reviewed"
 msgstr "ยังไม่ถูกตรวจสอบ"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:320 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:320 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:85 apps/browse/views.py:53 apps/browse/views.py:67 apps/browse/views.py:229 apps/browse/views.py:438
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
@@ -452,7 +452,7 @@ msgstr "รายงานการละเมิด"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:308 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:82 templates/mobile/base_apps.html:71
+#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:82 templates/mobile/base_apps.html:71
 msgid "Privacy Policy"
 msgstr "นโยบายความเป็นส่วนตัว"
 
@@ -477,7 +477,7 @@ msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "ความคิดเห็นของนักพัฒนา"
 
-#: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:265
+#: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
 msgstr "ช่องการพัฒนา"
 
@@ -487,7 +487,7 @@ msgid ""
 "updates from this channel."
 msgstr "ช่องการพัฒนาเชิญชวนให้คุณทดสอบรุ่นทดลองใหม่ของส่วนเสริมนี้ก่อนจะถูกปล่อยสู่สาธารณะทั่วไป เมื่อคุณติดตั้งรุ่นพัฒนา คุณจะยังคงได้รับการปรับปรุงจากช่องนี้"
 
-#: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:275
+#: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
 msgstr "ติดตั้งรุ่นพัฒนา"
 
@@ -497,7 +497,7 @@ msgid ""
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr "<strong>คำเตือน:</strong> รุ่นพัฒนาของส่วนเสริมนี้ยังไม่ถูกตรวจสอบโดย Mozilla เมื่อคุณติดตั้งรุ่นพัฒนาคุณจะยังคงได้รับการปรับปรุงเป็นรุ่นพัฒนาจากนักพัฒนานี้ เพื่อหยุดการปรับปรุงเป็นรุ่นพัฒนา ติดตั้งรุ่นเริ่มต้นใหม่จากลิงก์ด้านบน"
 
-#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:284
+#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
 msgstr "รุ่น {0}:"
 
@@ -510,7 +510,7 @@ msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr "บันทึกประจำรุ่น"
 
-#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:109
+#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:110
 #: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
 #: apps/editors/templates/editors/review.html:31 apps/perf/templates/perf/index.html:78
 msgid "by"
@@ -530,7 +530,7 @@ msgstr "ส่วนเสริมนี้ถูกปิดการใช้
 msgid "End-User License Agreement for {0}"
 msgstr "ข้อตกลงใบอนุญาตสำหรับผู้ใช้ทั่วไปของ {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:317
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "ข้อตกลงใบอนุญาตสำหรับผู้ใช้ทั่วไป"
@@ -612,13 +612,13 @@ msgid_plural "%(num)s users"
 msgstr[0] "%(num)s ผู้ใช้"
 
 #. {0} is the number of downloads.
-#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:63
+#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:64
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} ดาวน์โหลดต่อสัปดาห์"
 
 #. {0} is the number of users.
-#: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:56 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
+#: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:57 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} ผู้ใช้"
@@ -725,7 +725,7 @@ msgstr ""
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:250 templates/qunit/qunit.html:755
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:250
 msgid "Edit"
 msgstr "แก้ไข"
 
@@ -844,7 +844,7 @@ msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to
 msgstr "ต้องการ {0} ใน Firefox บนมือถือของคุณ? สแกน QR code นี้เพื่อติดตั้งโดยตรงบนมือถือของคุณ (คุณจำเป็นต้องมีตัวอ่าน QR ค้นหาในร้านค้าแอพบนมือถือของคุณถ้าคุณไม่มี)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:330
 msgid "Report Abuse"
 msgstr "รายงานการละเมิด"
 
@@ -978,92 +978,92 @@ msgstr "มักจะใช้กับ&hellip;"
 msgid "Part of these Collections"
 msgstr "บางส่วนของชุดสะสมเหล่านี้"
 
-#: apps/addons/templates/addons/impala/details.html:43
+#: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> การวิจารณ์ของผู้ใช้"
 
-#: apps/addons/templates/addons/impala/details.html:71
+#: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
 msgstr "ดูสถิติ"
 
-#: apps/addons/templates/addons/impala/details.html:88
+#: apps/addons/templates/addons/impala/details.html:89
 msgid "Manage"
 msgstr "จัดการ"
 
-#: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
+#: apps/addons/templates/addons/impala/details.html:107 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
 msgstr "ไม่ต้องเริ่มใหม่"
 
-#: apps/addons/templates/addons/impala/details.html:134
+#: apps/addons/templates/addons/impala/details.html:135
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "พบกับนักพัฒนา: <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:144
+#: apps/addons/templates/addons/impala/details.html:145
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "เรียนรู้ว่าทำไม {0} จึงถูกสร้างขึ้นและค้นหาว่ามีอะไรต่อไปสำหรับส่วนเสริมนี้"
 
-#: apps/addons/templates/addons/impala/details.html:188
+#: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
 msgstr "หน้าแรกของส่วนเสริม"
 
-#: apps/addons/templates/addons/impala/details.html:191
+#: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
 msgstr "เว็บไซต์การสนับสนุน"
 
-#: apps/addons/templates/addons/impala/details.html:195
+#: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
 msgstr "อีเมลการสนับสนุน"
 
-#: apps/addons/templates/addons/impala/details.html:200 apps/devhub/models.py:369
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "รุ่น {0}"
 
-#: apps/addons/templates/addons/impala/details.html:200
+#: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
 msgstr "ข้อมูล"
 
-#: apps/addons/templates/addons/impala/details.html:206
+#: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "ออกภายใต้ <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:207 apps/addons/templates/addons/impala/details.html:212 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "ใบอนุญาตที่กำหนดเอง"
 
-#: apps/addons/templates/addons/impala/details.html:211
+#: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "ออกภายใต้ <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:223
+#: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
 msgstr "เกี่ยวกับส่วนเสริมนี้"
 
-#: apps/addons/templates/addons/impala/details.html:239
+#: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
 msgstr "ความคิดเห็นของนักพัฒนา"
 
-#: apps/addons/templates/addons/impala/details.html:249
+#: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
 msgstr "ข้อมูลของรุ่น"
 
-#: apps/addons/templates/addons/impala/details.html:256
+#: apps/addons/templates/addons/impala/details.html:257
 msgid "See complete version history"
 msgstr "ดูประวัติของรุ่นแบบเต็ม"
 
-#: apps/addons/templates/addons/impala/details.html:268
+#: apps/addons/templates/addons/impala/details.html:269
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr "ช่องการพัฒนาเชิญชวนให้คุณทดสอบรุ่นทดลองใหม่ของส่วนเสริมนี้ก่อนจะถูกปล่อยสู่สาธารณะ เมื่อคุณติดตั้งรุ่นพัฒนา คุณจะยังคงได้รับการปรับปรุงจากช่องนี้ เพื่อหยุดการปรับปรุงเป็นรุ่นพัฒนา ให้ติดตั้งรุ่นปกติจากลิงก์ด้านบน"
 
-#: apps/addons/templates/addons/impala/details.html:279
+#: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>คำเตือน:</strong> รุ่นพัฒนาของส่วนเสริมนี้ยังไม่ถูกตรวจสอบโดย Mozilla"
 
-#: apps/addons/templates/addons/impala/details.html:307 apps/addons/templates/addons/impala/details.html:316 apps/addons/templates/addons/impala/details.html:328
+#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:15-0700\n"
+"POT-Creation-Date: 2014-04-30 09:08-0700\n"
 "PO-Revision-Date: 2012-06-22 09:07+0200\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -635,7 +635,7 @@ msgstr "Marcat per eliminar"
 msgid "Updating results&hellip;"
 msgstr "S'estan actualitzant els resultats&hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Categoria"
 
