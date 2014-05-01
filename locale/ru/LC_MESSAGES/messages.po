@@ -10,15 +10,17 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-30 09:08-0700\n"
-"PO-Revision-Date: 2014-03-27 13:19+0400\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2014-05-01 18:11+0000\n"
+"Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1398967889.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -469,7 +471,7 @@ msgstr "Просмотреть статистику"
 
 #: apps/addons/templates/addons/details_box.html:89
 msgid "Average Daily Users"
-msgstr "Среднее кол-во активных ежедневных пользователей"
+msgstr "Среднее число активных ежедневных пользователей"
 
 #: apps/addons/templates/addons/details_box.html:101
 msgid "Abuse Reports"
@@ -727,7 +729,7 @@ msgstr "Художник"
 
 #: apps/addons/templates/addons/persona_detail_table.html:19 apps/addons/templates/addons/mobile/persona_detail_table.html:14 apps/stats/templates/stats/addon_report_menu.html:17
 msgid "Daily Users"
-msgstr "Ежедневных пользователей"
+msgstr "Ежедневные пользователи"
 
 #. The License for this add-on.
 #: apps/addons/templates/addons/persona_detail_table.html:26 apps/addons/templates/addons/impala/license.html:17 apps/addons/templates/addons/mobile/persona_detail_table.html:21
@@ -12740,28 +12742,31 @@ msgstr "Подписчиков, по дате"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr "Ежедневных пользователей по дате"
+msgstr "Ежедневные пользователи по дате"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
 msgstr "Что такое ежедневные пользователи?"
 
 #: apps/stats/templates/stats/reports/usage.html:11
-#, fuzzy
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
-"< h2 > Каковы ежедневных пользователей? < / h2 >< p > тем, установленных с этого сайта проверка обновлений раз в день. Общее число этих обновление пингует известен как активных пользователей в "
-"день, или общее количество людей, использующих вашу тему в день. < /p >"
+"<h2>Что такое ежедневные пользователи?</h2> <p> Темы, установленные с этого "
+"сайта, проверяют наличие обновлений один раз в день. Общее число таких "
+"проверок на обновления известно как Активные Ежедневные Пользователи, или "
+"общее число людей, использующих вашу тему за день. </p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>Что такое ежедневные пользователи?</h2> <p> Дополнения, загруженные с этого сайта, проверяют наличие обновлений один раз в день. Общее число таких проверок на обновления известно как Активные "
-"Ежедневные Пользователи. Ежедневные пользователи могут быть разбиты по версии дополнения, операционной системе, статусу дополнения, приложению и локали. </p>"
+"<h2>Что такое ежедневные пользователи?</h2> <p> Темы, установленные с этого "
+"сайта, проверяют наличие обновлений один раз в день. Общее число таких "
+"проверок на обновления известно как Активные Ежедневные Пользователи, или "
+"общее число людей, использующих вашу тему за день. </p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
