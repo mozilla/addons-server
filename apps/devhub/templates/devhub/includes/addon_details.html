@@ -93,13 +93,13 @@
 {% if sorting == 'created' %}
   <li class="date-created">
     <strong>{{ _('Created:') }}</strong>
-      {# L10n: {0} is a date. #}
+      {# L10n: {0} is a date. dennis-ignore: E201 #}
       {{ addon.created|datetime(_('%b %e, %Y')) }}
   </li>
 {% else %}
   <li class="date-updated">
     <strong>{{ _('Last Updated:') }}</strong>
-      {# L10n: {0} is a date. #}
+      {# L10n: {0} is a date. dennis-ignore: E201 #}
       {{ addon.last_updated|datetime(_('%b %e, %Y')) }}
   </li>
 {% endif %}
