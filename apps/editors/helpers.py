@@ -518,7 +518,7 @@ class ReviewBase(object):
         if self.version:
             details['version'] = self.version.version
 
-        amo.log(action, self.addon, self.version, user=self.user.get_profile(),
+        amo.log(action, self.addon, self.version, user=self.user,
                 created=datetime.datetime.now(), details=details)
 
     def notify_email(self, template, subject):
@@ -542,7 +542,7 @@ class ReviewBase(object):
     def get_context_data(self):
         return {'name': self.addon.name,
                 'number': self.version.version,
-                'reviewer': (self.request.user.get_profile().display_name),
+                'reviewer': (self.request.user.display_name),
                 'addon_url': absolutify(
                     self.addon.get_url_path(add_prefix=False)),
                 'review_url': absolutify(reverse('editors.review',

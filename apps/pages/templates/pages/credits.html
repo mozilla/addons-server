@@ -41,7 +41,7 @@
       </h3>
       <p>
       {% for user in users %}
-        <a href="{{ url('users.profile', user.user__username) }}">{{ user.user__display_name }}</a>{% if not loop.last %}, {% endif %}
+        <a href="{{ url('users.profile', user.username) }}">{{ user.display_name }}</a>{% if not loop.last %}, {% endif %}
       {% endfor %}
       </p>
     {% endif %}

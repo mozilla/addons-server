@@ -55,9 +55,9 @@ def global_settings(request):
     tools_title = _('Tools')
     is_reviewer = False
 
-    if request.user.is_authenticated() and hasattr(request, 'amo_user'):
+    if request.user.is_authenticated():
         amo_user = request.amo_user
-        profile = request.user.get_profile()
+        profile = request.user
         is_reviewer = acl.check_reviewer(request)
 
         account_links.append({'text': _('My Profile'),

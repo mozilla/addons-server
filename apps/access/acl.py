@@ -98,7 +98,7 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     # Support can do support.
     elif support:
         roles += (amo.AUTHOR_ROLE_SUPPORT,)
-    return addon.authors.filter(user=request.amo_user,
+    return addon.authors.filter(pk=request.amo_user.pk,
                                 addonuser__role__in=roles).exists()
 
 

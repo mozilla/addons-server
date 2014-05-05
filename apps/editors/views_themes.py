@@ -302,7 +302,6 @@ def _get_rereview_themes(reviewer):
 @post_required
 @reviewer_required('persona')
 def themes_commit(request):
-    reviewer = request.user.get_profile()
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
     formset = ThemeReviewFormset(request.POST)
 
@@ -311,7 +310,7 @@ def themes_commit(request):
         try:
             lock = ThemeLock.objects.filter(
                 theme_id=form.data[form.prefix + '-theme'],
-                reviewer=reviewer)
+                reviewer=request.user)
         except MultiValueDictKeyError:
             # Address off-by-one error caused by management form.
             continue
@@ -337,7 +336,7 @@ def themes_commit(request):
 
 @reviewer_required('persona')
 def release_locks(request):
-    ThemeLock.objects.filter(reviewer=request.user.get_profile()).delete()
+    ThemeLock.objects.filter(reviewer=request.user).delete()
     amo.messages.success(
         request,
         _('Your theme locks have successfully been released. '
@@ -353,7 +352,7 @@ def themes_single(request, slug):
     Like a detail page, manually review a single theme if it is pending
     and isn't locked.
     """
-    reviewer = request.user.get_profile()
+    reviewer = request.user
     reviewable = True
 
     # Don't review an already reviewed theme.

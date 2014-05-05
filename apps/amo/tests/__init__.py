@@ -669,8 +669,8 @@ def req_factory_factory(url, user=None, post=False, data=None):
         req = req.get(url, data or {})
     if user:
         req.amo_user = RequestUser.objects.get(id=user.id)
-        req.user = user.user
-        req.groups = req.user.get_profile().groups.all()
+        req.user = user
+        req.groups = user.groups.all()
     req.APP = None
     req.check_ownership = partial(check_ownership, req)
     return req

@@ -1,29 +1,10 @@
 from django.contrib import admin, messages
-from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
-from django.contrib.auth.models import User
-from django.core.validators import MaxLengthValidator
 from django.db.utils import IntegrityError
 from django.shortcuts import render
 
 from access.admin import GroupUserInline
 from .models import UserProfile, BlacklistedUsername, BlacklistedEmailDomain
 from . import forms
-
-
-class BetterDjangoUserAdmin(DjangoUserAdmin):
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        """
-        Override password field to allow AMO's longer hashed passwords.
-        """
-        f = DjangoUserAdmin.formfield_for_dbfield(self, db_field, **kwargs)
-        if db_field.name == 'password':
-            f.max_length = 255
-            f.validators = [MaxLengthValidator(255)]
-            db_field.validators = [MaxLengthValidator(255)]
-        return f
-
-admin.site.unregister(User)
-admin.site.register(User, BetterDjangoUserAdmin)
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -34,10 +15,9 @@ class UserAdmin(admin.ModelAdmin):
     inlines = (GroupUserInline,)
 
     # XXX TODO: Ability to edit the picture
-    # XXX TODO: Ability to change the password (use AdminPasswordChangeForm)
     fieldsets = (
         (None, {
-            'fields': ('email', 'username', 'display_name', 'password',
+            'fields': ('email', 'username', 'display_name',
                        'bio', 'homepage', 'location', 'occupation'),
         }),
         ('Registration', {

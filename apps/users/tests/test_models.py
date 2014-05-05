@@ -8,7 +8,6 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.hashers import (is_password_usable,
     check_password, make_password, load_hashers, identify_hasher)
-from django.contrib.auth.models import User
 from django.core import mail
 from django.utils import encoding, translation
 
@@ -34,21 +33,14 @@ class TestUserProfile(amo.tests.TestCase):
                 'users/test_backends', 'base/apps',)
 
     def test_anonymize(self):
-        u = User.objects.get(id='4043307').get_profile()
+        u = UserProfile.objects.get(id='4043307')
         eq_(u.email, 'jbalogh@mozilla.com')
         u.anonymize()
         x = UserProfile.objects.get(id='4043307')
         eq_(x.email, None)
 
-    def test_delete(self):
-        """Setting profile to delete should delete related User."""
-        u = User.objects.get(id='4043307').get_profile()
-        u.deleted = True
-        u.save()
-        eq_(len(User.objects.filter(id='4043307')), 0)
-
     def test_email_confirmation_code(self):
-        u = User.objects.get(id='4043307').get_profile()
+        u = UserProfile.objects.get(id='4043307')
         u.confirmationcode = 'blah'
         u.email_confirmation_code()
 
@@ -59,7 +51,7 @@ class TestUserProfile(amo.tests.TestCase):
 
     @patch.object(settings, 'SEND_REAL_EMAIL', False)
     def test_email_confirmation_code_even_with_fake_email(self):
-        u = User.objects.get(id='4043307').get_profile()
+        u = UserProfile.objects.get(id='4043307')
         u.confirmationcode = 'blah'
         u.email_confirmation_code()
 
@@ -75,15 +67,14 @@ class TestUserProfile(amo.tests.TestCase):
         eq_(u3.welcome_name, '')
 
     def test_add_admin_powers(self):
-        Group.objects.create(name='Admins', rules='*:*')
         u = UserProfile.objects.get(username='jbalogh')
 
-        assert not u.user.is_staff
-        assert not u.user.is_superuser
+        assert not u.is_staff
+        assert not u.is_superuser
         GroupUser.objects.create(group=Group.objects.get(name='Admins'),
                                  user=u)
-        assert u.user.is_staff
-        assert u.user.is_superuser
+        assert u.is_staff
+        assert u.is_superuser
 
     def test_dont_add_admin_powers(self):
         Group.objects.create(name='API', rules='API.Users:*')
@@ -91,23 +82,17 @@ class TestUserProfile(amo.tests.TestCase):
 
         GroupUser.objects.create(group=Group.objects.get(name='API'),
                                  user=u)
-        assert not u.user.is_staff
-        assert not u.user.is_superuser
+        assert not u.is_staff
+        assert not u.is_superuser
 
     def test_remove_admin_powers(self):
         Group.objects.create(name='Admins', rules='*:*')
         u = UserProfile.objects.get(username='jbalogh')
-        g = GroupUser.objects.create(group=Group.objects.get(name='Admins'),
+        g = GroupUser.objects.create(group=Group.objects.filter(name='Admins')[0],
                                      user=u)
         g.delete()
-        assert not u.user.is_staff
-        assert not u.user.is_superuser
-
-    def test_create_django_user(self):
-        u = UserProfile.objects.create(email='yoyoyo@yo.yo', username='yoyo')
-        assert u.user is None
-        u.create_django_user()
-        eq_(u.user.username, 'uid-%d' % u.id)
+        assert not u.is_staff
+        assert not u.is_superuser
 
     def test_resetcode_expires(self):
         """

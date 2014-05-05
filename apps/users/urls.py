@@ -10,10 +10,6 @@ from .models import UserProfile
 USER_ID = r"""(?P<user_id>[^/<>"']+)"""
 
 
-# We need Django to use our User model.
-auth_views.User = UserProfile
-
-
 # These will all start with /user/<user_id>/
 detail_patterns = patterns('',
     url('^$', views.profile, name='users.profile'),

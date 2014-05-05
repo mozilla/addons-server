@@ -6,6 +6,7 @@ from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.contrib.auth import forms as auth_forms
+from django.contrib.auth.tokens import default_token_generator
 from django.forms.util import ErrorList
 
 import captcha.fields
@@ -16,7 +17,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 import amo
 from amo.utils import clean_nl, has_links, log_cef, slug_validator
 from .models import (UserProfile, UserNotification, BlacklistedUsername,
-                     BlacklistedEmailDomain, BlacklistedPassword, DjangoUser)
+                     BlacklistedEmailDomain, BlacklistedPassword)
 from .widgets import NotificationsSelectMultiple
 import users.notifications as email
 from . import tasks
@@ -97,9 +98,60 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
         try:
             # Django calls send_mail() directly and has no option to pass
             # in fail_silently, so we have to catch the SMTP error ourselves
-            super(PasswordResetForm, self).save(**kw)
+            self.base_save(**kw)
         except SMTPException, e:
             log.error("Failed to send mail for (%s): %s" % (user, e))
+
+    #copypaste from superclass
+    def base_save(
+            self, domain_override=None,
+            subject_template_name='registration/password_reset_subject.txt',
+            email_template_name='registration/password_reset_email.html',
+            use_https=False, token_generator=default_token_generator,
+            from_email=None, request=None):
+        """
+        Generates a one-use only link for resetting password and sends to the
+        user.
+        """
+        from django.contrib.auth import get_user_model
+        from django.contrib.sites.models import get_current_site
+        from django.core.mail import send_mail
+        from django.template import loader
+        from django.utils.encoding import force_bytes
+        from django.utils.http import urlsafe_base64_encode
+
+        UserModel = get_user_model()
+        email = self.cleaned_data["email"]
+        active_users = UserModel._default_manager.filter(
+            email__iexact=email,
+            # we use "deleted" instead of "is_active"
+            deleted=False)
+
+        for user in active_users:
+            # Make sure that no email is sent to a user that actually has
+            # a password marked as unusable
+            if not user.has_usable_password():
+                continue
+            if not domain_override:
+                current_site = get_current_site(request)
+                site_name = current_site.name
+                domain = current_site.domain
+            else:
+                site_name = domain = domain_override
+            c = {
+                'email': user.email,
+                'domain': domain,
+                'site_name': site_name,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'user': user,
+                'token': token_generator.make_token(user),
+                'protocol': 'https' if use_https else 'http',
+            }
+            subject = loader.render_to_string(subject_template_name, c)
+            # Email subject *must not* contain newlines
+            subject = ''.join(subject.splitlines())
+            email = loader.render_to_string(email_template_name, c)
+            send_mail(subject, email, from_email, [user.email])
 
 
 class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
@@ -111,10 +163,6 @@ class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(SetPasswordForm, self).__init__(*args, **kwargs)
-        # We store our password in the users table, not auth_user like
-        # Django expects.
-        if isinstance(self.user, DjangoUser):
-            self.user = self.user.get_profile()
 
     def clean_new_password1(self):
         return self.clean_password(field='new_password1', instance='user')
@@ -140,12 +188,12 @@ class UserDeleteForm(forms.Form):
 
     def clean_password(self):
         data = self.cleaned_data
-        amouser = self.request.user.get_profile()
+        amouser = self.request.user
         if not amouser.check_password(data["password"]):
             raise forms.ValidationError(_("Wrong password entered!"))
 
     def clean(self):
-        amouser = self.request.user.get_profile()
+        amouser = self.request.user
         if amouser.is_developer:
             # This is tampering because the form isn't shown on the page if the
             # user is a developer
@@ -296,11 +344,11 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
     class Meta:
         model = UserProfile
-        exclude = ('password', 'picture_type')
+        exclude = ('password', 'picture_type', 'last_login')
 
     def clean(self):
         data = self.cleaned_data
-        amouser = self.request.user.get_profile()
+        amouser = self.request.user
 
         # Passwords
         p1 = data.get("password")

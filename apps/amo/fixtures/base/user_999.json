@@ -1,23 +1,5 @@
 [
     {
-        "pk": 999,
-        "model": "auth.user",
-        "fields": {
-            "username": "regular@mozilla.com",
-            "first_name": "Regular",
-            "last_name": "User",
-            "is_active": 1,
-            "is_superuser": 0,
-            "is_staff": 0,
-            "last_login": "2010-04-23 10:33:53",
-            "groups": [],
-            "user_permissions": [],
-            "password": "sha1$a04e0$0512298efb3e6e7dbace3976474151d396078fdd",
-            "email": "regular@mozilla.com",
-            "date_joined": "2007-03-05 13:09:38"
-        }
-    },
-    {
         "fields": {
             "display_collections_fav": 1,
             "display_collections": 1,
@@ -41,8 +23,7 @@
             "notes": "",
             "modified": "2010-01-12 17:01:41",
             "notifyevents": 1,
-            "read_dev_agreement": "2012-08-20 00:00:00",
-            "user": 999
+            "read_dev_agreement": "2012-08-20 00:00:00"
         },
         "model": "users.userprofile",
         "pk": 999

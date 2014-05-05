@@ -67,17 +67,3 @@ class TestAutoCreateUsername(amo.tests.TestCase):
                                                       .next_call()
                                                       .returns(0))
         eq_(autocreate_username('existingname'), 'existingname3')
-
-    @fudge.patch('users.utils.DjangoUser.objects.filter')
-    @fudge.patch('users.utils.UserProfile.objects.filter')
-    def test_duplicate_django_username_counter(self, du, up):
-        up = up.expects_call().returns_fake().expects('count').returns(0)
-        du = (du.expects_call().returns_fake().expects('count')
-                                              .returns(1)
-                                              .next_call()
-                                              .returns(1)
-                                              .next_call()
-                                              .returns(1)
-                                              .next_call()
-                                              .returns(0))
-        eq_(autocreate_username('existingname'), 'existingname4')

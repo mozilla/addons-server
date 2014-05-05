@@ -35,10 +35,10 @@
       <td>{{ profile.created|datetime }}</td>
     </tr>
     {% if own_profile or edit_any_user %}
-      {% if profile.user.last_login %}
+      {% if profile.last_login %}
         <tr class="last-login-time">
           <th>{{ _('Time of last login') }}</th>
-          <td>{{ profile.user.last_login|datetime('%B %e, %Y %H:%M:%S') }}</td>
+          <td>{{ profile.last_login|datetime('%B %e, %Y %H:%M:%S') }}</td>
         </tr>
       {% endif %}
       {% if profile.last_login_ip %}

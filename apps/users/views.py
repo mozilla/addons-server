@@ -337,11 +337,6 @@ def browserid_authenticate(request, assertion, is_mobile=False,
         profile = None
 
     if profile:
-        # Added due to bug 905984. It's possible to have a UserProfile
-        # that has no corresponding User object.
-        if profile.user is None:
-            profile.create_django_user(
-                backend='django_browserid.auth.BrowserIDBackend')
         if profile.is_verified and not verified:
             # An attempt to log in to a verified address with an unverified
             # assertion is a very bad thing. Don't let that happen.
@@ -352,11 +347,6 @@ def browserid_authenticate(request, assertion, is_mobile=False,
             profile.is_verified = verified
             profile.save()
 
-        backend = 'django_browserid.auth.BrowserIDBackend'
-        if getattr(profile.user, 'backend', None) != backend:
-            profile.user.backend = backend
-            profile.user.save()
-
         return profile, None
 
     username = autocreate_username(email.partition('@')[0])
@@ -364,8 +354,6 @@ def browserid_authenticate(request, assertion, is_mobile=False,
     profile = UserProfile.objects.create(username=username, email=email,
                                          source=source, display_name=username,
                                          is_verified=verified)
-    profile.create_django_user(
-        backend='django_browserid.auth.BrowserIDBackend')
     log_cef('New Account', 5, request, username=username,
             signature='AUTHNOTICE',
             msg='User created a new account (from Persona)')
@@ -392,7 +380,7 @@ def browserid_login(request, browserid_audience=None):
                 is_mobile=is_mobile,
                 browserid_audience=browserid_audience or get_audience(request))
         if profile is not None:
-            auth.login(request, profile.user)
+            auth.login(request, profile)
             profile.log_login_attempt(True)
             return http.HttpResponse(status=200)
     else:
@@ -518,7 +506,6 @@ def _login(request, template=None, data=None, dont_redirect=False):
 
 
 def logout(request):
-    # Not using get_profile() becuase user could be anonymous
     user = request.user
     if not user.is_anonymous():
         log.debug(u"User (%s) logged out" % user)
@@ -647,7 +634,6 @@ def register(request):
                 u.set_password(form.cleaned_data['password'])
                 u.generate_confirmationcode()
                 u.save()
-                u.create_django_user()
                 log.info(u'Registered new account for user (%s)', u)
                 log_cef('New Account', 5, request, username=u.username,
                         signature='AUTHNOTICE',
@@ -737,7 +723,7 @@ def password_reset_confirm(request, uidb64=None, token=None):
     except (ValueError, UserProfile.DoesNotExist):
         pass
 
-    if user is not None and default_token_generator.check_token(user.user, token):
+    if user is not None and default_token_generator.check_token(user, token):
         validlink = True
         if request.method == 'POST':
             form = forms.SetPasswordForm(user, request.POST)
