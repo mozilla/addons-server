@@ -318,30 +318,19 @@ example::
 Create an Admin User
 --------------------
 
-To log into your dev site, you can click the login / register link and login
-with Persona just like on the live site.
+To connect to the site, you first need to register a new user "the standard
+way" by filling in the registration form.
 
-If, however, you don't have Persona enabled on your site, you can register a
-new user "the old way" by filling in the registration form. Remember to
-activate this user using the link in the confirmation email sent: it's
-displayed in the console, check your server logs.
+Once this is done, you can either activate this user using the link in the
+confirmation email sent (it's displayed in the console, check your server
+logs), or use the following handy management command::
 
-In any case, if you want to grant yourself admin privileges there are some
-additional steps. After registering, find your user record::
+    ./manage.py activate_user <email of your user>
 
-    mysql> select * from auth_user order by date_joined desc limit 1\G
+If you want to grant yourself admin privileges, pass in the ``--set-admin``
+option::
 
-Then make yourself a superuser like this::
-
-    mysql> update auth_user set is_superuser=1, is_staff=1 where id=<id from above>;
-
-Additionally, add yourself to the admin group::
-
-    mysql> insert into groups_users (group_id, user_id) values (1, <id from above>);
-
-Next, you'll need to set a password. Do that by clicking "I forgot my password"
-on the login screen then go back to the shell you started your dev server in.
-You'll see the email message with the password reset link in stdout.
+    ./manage.py activate_user --set-admin <email of your user>
 
 
 Testing
