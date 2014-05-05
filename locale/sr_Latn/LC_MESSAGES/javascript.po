@@ -2,17 +2,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:08-0700\n"
-"PO-Revision-Date: 2013-09-24 12:31+0000\n"
-"Last-Translator: Milos <mdinic@mozilla.com>\n"
+"POT-Creation-Date: 2014-04-23 09:15-0700\n"
+"PO-Revision-Date: 2014-04-30 12:07+0000\n"
+"Last-Translator: Marko <smrzlicm@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1380025907.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1398859654.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -561,7 +562,7 @@ msgstr "Greška prilikom odbijanja aplikacije: {app} "
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Od {0} dana {1}"
 
 #: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -648,7 +649,7 @@ msgstr "Obeleženo za brisanje"
 msgid "Updating results&hellip;"
 msgstr "Ažuriram rezultate&hellip;"
 
-#: media/js/impala/site_suggestions.js:46
+#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
 msgstr "Kategorija"
 
@@ -1180,9 +1181,9 @@ msgstr[2] "Podesite {0} dodataka na maksimalnu verziju od {1} i pošalji e-pošt
 #: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Autor e-pošte ima {2} dodatak koji nije prošao proveru valjanosti."
+msgstr[1] "Autor e-pošte ima {2} dodatka koji nisu prošli proveru valjanosti."
+msgstr[2] "Autor e-pošte ima {2} dodatka koji nisu prošli proveru valjanosti."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
