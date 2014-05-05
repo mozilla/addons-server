@@ -23,9 +23,6 @@ HOME=/tmp
 #every 3 hours
 20 */3 * * * %(z_cron)s compatibility_report
 
-#every 4 hours
-40 */4 * * * %(django)s clean_redis
-
 #twice per day
 # Use system python to use an older version of sqlalchemy than what is in our venv
 # Add slugs after we get all the new personas.
