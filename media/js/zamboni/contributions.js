@@ -249,7 +249,7 @@ var contributions = {
                         dgFlow.startFlow(json.url);
                         $self.find('span.cancel a').click();
                     } else {
-                        $self.find('#paypal-error').show();
+                        $self.find('#paypal-error').text(json.error).show();
                     }
                 }
             });
