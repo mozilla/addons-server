@@ -3,8 +3,6 @@ Miscellaneous helpers that make Django compatible with AMO.
 """
 import threading
 
-from django.conf import settings
-
 import commonware.log
 from caching.base import CachingQuerySet
 
@@ -147,22 +145,7 @@ else:
     DEFAULT_MINVER = '13.0'
 
 
-# Waffle and amo form an import cycle because amo patches waffle and
-# waffle loads the user model, so we have to make sure waffle gets
-# loaded after everything else in amo, Hence, this is at the bottom of
-# the file.
-def patch_waffle():
-    import waffle
-    if getattr(waffle, '_PATCHED', None):
-        return
-    suffix = getattr(settings, 'WAFFLE_TABLE_SUFFIX', None)
-    if suffix:
-        for m in [waffle.Flag, waffle.Switch, waffle.Sample]:
-            m._meta.db_table = '%s_%s' % (m._meta.db_table, suffix)
-        waffle.Flag.users.through._meta.db_table = '%s_users' % (
-            waffle.Flag._meta.db_table,)
-        waffle.Flag.groups.through._meta.db_table = '%s_groups' % (
-            waffle.Flag._meta.db_table,)
-    waffle._PATCHED = True
-
-patch_waffle()
+# We need to import waffle here to avoid a circular import with jingo which
+# loads all INSTALLED_APPS looking for helpers.py files, but some of those apps
+# import jingo.
+import waffle

@@ -15,7 +15,6 @@ ALLOWED_HOSTS = [
     '.mozilla.net',
 ]
 
-WAFFLE_TABLE_SUFFIX = 'amo'
 LOG_TABLE_SUFFIX = ''
 EVENT_TABLE_SUFFIX = ''
 
