@@ -240,6 +240,10 @@ class TestActivityLogCount(amo.tests.TestCase):
         self.user = UserProfile.objects.get()
         amo.set_user(self.user)
 
+    def add_approve_logs(self, count):
+        for x in range(0, count):
+            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+
     def test_not_review_count(self):
         amo.log(amo.LOG['EDIT_VERSION'], Addon.objects.get())
         eq_(len(ActivityLog.objects.monthly_reviews()), 0)
@@ -252,8 +256,7 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(result[0]['user'], self.user.pk)
 
     def test_review_count_few(self):
-        for x in range(0, 5):
-            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        self.add_approve_logs(5)
         result = ActivityLog.objects.monthly_reviews()
         eq_(len(result), 1)
         eq_(result[0]['approval_count'], 5)
@@ -268,8 +271,7 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(len(ActivityLog.objects.total_reviews()), 0)
 
     def test_total_few(self):
-        for x in range(0, 5):
-            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        self.add_approve_logs(5)
         result = ActivityLog.objects.total_reviews()
         eq_(len(result), 1)
         eq_(result[0]['approval_count'], 5)
@@ -283,8 +285,7 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(result[0]['user'], self.user.pk)
 
     def test_total_reviews_user_position(self):
-        for x in range(0, 5):
-            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        self.add_approve_logs(5)
         result = ActivityLog.objects.total_reviews_user_position(self.user)
         eq_(result, 1)
         user = UserProfile.objects.create(email="no@mozil.la")
@@ -292,13 +293,32 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(result, None)
 
     def test_monthly_reviews_user_position(self):
-        for x in range(0, 5):
-            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        self.add_approve_logs(5)
         result = ActivityLog.objects.monthly_reviews_user_position(self.user)
         eq_(result, 1)
         user = UserProfile.objects.create(email="no@mozil.la")
         result = ActivityLog.objects.monthly_reviews_user_position(user)
         eq_(result, None)
+
+    def test_user_approve_reviews(self):
+        self.add_approve_logs(3)
+        other = UserProfile.objects.create(email="no@mozil.la", username="o")
+        amo.set_user(other)
+        self.add_approve_logs(2)
+        result = ActivityLog.objects.user_approve_reviews(self.user).count()
+        eq_(result, 3)
+        result = ActivityLog.objects.user_approve_reviews(other).count()
+        eq_(result, 2)
+        another = UserProfile.objects.create(email="no@mtrala.la", username="a")
+        result = ActivityLog.objects.user_approve_reviews(another).count()
+        eq_(result, 0)
+
+    def test_current_month_user_approve_reviews(self):
+        self.add_approve_logs(3)
+        ActivityLog.objects.update(created=self.days_ago(40))
+        self.add_approve_logs(2)
+        result = ActivityLog.objects.current_month_user_approve_reviews(self.user).count()
+        eq_(result, 2)
 
     def test_log_admin(self):
         amo.log(amo.LOG['OBJECT_EDITED'], Addon.objects.get())

@@ -309,8 +309,8 @@ class TestHome(EditorTest):
         amo.set_user(self.user)
 
     def approve_reviews(self):
+        amo.set_user(self.user)
         for addon in Addon.objects.all():
-            amo.set_user(self.user)
             amo.log(amo.LOG['APPROVE_VERSION'], addon, addon.current_version)
 
     def test_approved_review(self):
@@ -371,11 +371,11 @@ class TestHome(EditorTest):
     def test_stats_user_position_ranked(self):
         self.approve_reviews()
         doc = pq(self.client.get(self.url).content)
-        p = doc('#editors-stats .editor-stats-table p:eq(0)')
-        eq_(p.text(), "You're #1 with 1 reviews",
+        el = doc('#editors-stats .editor-stats-table').eq(0)('div:last-child')
+        eq_(el.text(), "You're #1 with 2 reviews",
             'Total reviews should show position')
-        p = doc('#editors-stats .editor-stats-table p:eq(1)')
-        eq_(p.text(), "You're #1 with 1 reviews",
+        el = doc('#editors-stats .editor-stats-table').eq(1)('div:last-child')
+        eq_(el.text(), "You're #1 with 2 reviews",
             'Monthly reviews should show position')
 
     def test_stats_user_position_unranked(self):

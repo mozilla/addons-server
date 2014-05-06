@@ -1,16 +1,11 @@
 from copy import copy
 from datetime import datetime
-import imghdr
 import json
-import os.path
 import string
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils.safestring import mark_safe
 
-import bleach
 import commonware.log
 import jinja2
 from tower import ugettext as _
@@ -198,8 +193,8 @@ class ActivityLogManager(amo.models.ManagerBase):
                   .exclude(user__id=settings.TASK_USER_ID))
 
     def total_reviews(self, theme=False):
-        qs = self._by_type()
         """Return the top users, and their # of reviews."""
+        qs = self._by_type()
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(action__in=([amo.LOG.THEME_REVIEW.id] if theme
                                       else amo.LOG_REVIEW_QUEUE))
@@ -219,6 +214,15 @@ class ActivityLogManager(amo.models.ManagerBase):
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
+
+    def user_approve_reviews(self, user):
+        qs = self._by_type()
+        return qs.filter(action__in=amo.LOG_REVIEW_QUEUE, user__id=user.id)
+
+    def current_month_user_approve_reviews(self, user):
+        now = datetime.now()
+        ago = datetime(now.year, now.month, 1)
+        return self.user_approve_reviews(user).filter(created__gte=ago)
 
     def user_position(self, values_qs, user):
         try:
