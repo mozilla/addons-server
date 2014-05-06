@@ -951,9 +951,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not versions.exists():
             status = amo.STATUS_NULL
             logit('no versions')
-        elif not (versions.filter(files__isnull=False).exists()):
+        elif not versions.filter(files__status__in=amo.VALID_STATUSES).exists():
             status = amo.STATUS_NULL
-            logit('no versions with files')
+            logit('no version with valid file')
         elif (self.status == amo.STATUS_PUBLIC and
               not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
             if versions.filter(files__status=amo.STATUS_LITE).exists():
