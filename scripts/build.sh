@@ -89,6 +89,7 @@ ES_HOSTS = ['${ES_HOST}:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ADDONS_PATH = '/tmp/warez'
 STATIC_URL = ''
+RUNNING_IN_JENKINS = True
 
 SETTINGS
 
