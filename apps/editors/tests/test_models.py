@@ -13,7 +13,7 @@ from addons.models import Addon
 from versions.models import Version, version_uploaded, ApplicationsVersions
 from files.models import Platform, File
 from applications.models import Application, AppVersion
-from editors.models import (EditorSubscription, RereviewQueue, RereviewQueueTheme,
+from editors.models import (EditorSubscription, RereviewQueueTheme,
                             ReviewerScore, send_notifications,
                             ViewFastTrackQueue, ViewFullReviewQueue,
                             ViewPendingQueue, ViewPreliminaryQueue)

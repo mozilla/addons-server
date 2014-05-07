@@ -1167,7 +1167,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def is_under_review(self):
-        return self.status in amo.STATUS_UNDER_REVIEW
+        return self.status in amo.UNDER_REVIEW_STATUSES
 
     def is_unreviewed(self):
         return self.status in amo.UNREVIEWED_STATUSES
@@ -1183,6 +1183,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def is_rejected(self):
         return self.status == amo.STATUS_REJECTED
+
     def can_be_deleted(self):
         return not self.is_deleted
 
@@ -1495,6 +1496,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                          viewer=(not require_owner),
                                          ignore_disabled=ignore_disabled)
 
+    def reset_nomination_time(self, force=False):
+        if self.latest_version:
+            self.latest_version.reset_nomination_time(force=force)
+
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
 
@@ -1536,7 +1541,6 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
                  sender=None, **kw):
     """Set nomination date if self.status asks for full review.
 
-    The nomination date will only be set when the status of the addon changes.
     The nomination date cannot be reset, say, when a developer cancels their
     request for full review and re-requests full review.
 
@@ -1544,17 +1548,24 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
     new version.
     """
     new_status = new_attr.get('status')
+    old_status = old_attr.get('status')
     if not new_status:
         return
     addon = instance
-    stati = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
-    if new_status in stati and old_attr['status'] != new_status:
-        try:
-            latest = addon.versions.latest()
-            if not latest.nomination:
-                latest.update(nomination=datetime.now())
-        except Version.DoesNotExist:
-            pass
+
+    def is_new_in_queue():
+        return (new_status in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES
+                and not old_status in amo.UNDER_REVIEW_STATUSES
+                and old_status != new_status)
+
+    def is_updating_addon():
+        return (new_status in amo.REVIEWED_STATUSES
+                and addon.latest_version
+                and addon.latest_version.has_files)
+
+    if is_new_in_queue() or is_updating_addon():
+        # Will reset nomination only if it's None.
+        addon.reset_nomination_time(force=False)
 
 
 @Addon.on_change

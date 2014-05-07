@@ -659,7 +659,9 @@ class TestQueueBasics(QueueTest):
         days, widths, under_7 = data
 
         f = addon.versions.all()[0].all_files[0]
-        f.update(created=datetime.now() - timedelta(days=days))
+        d = datetime.now() - timedelta(days=days)
+        f.update(created=d)
+        addon.versions.latest().update(nomination=d)
 
         # For pending, we must reset the add-on status after saving version.
         if reset_status:
@@ -1400,7 +1402,7 @@ class TestQueueSearchVersionSpecific(SearchTest):
 
     def update_beiber(self, days):
         new_created = datetime.now() - timedelta(days=days)
-        self.bieber.update(created=new_created)
+        self.bieber.update(created=new_created, nomination=new_created)
         self.bieber[0].files.update(created=new_created)
 
     def test_age_of_submission(self):
@@ -2193,7 +2195,7 @@ class TestStatusFile(ReviewBase):
 
     def test_status_full_reviewed(self):
         self.get_file().update(status=amo.STATUS_PUBLIC)
-        for status in set(amo.STATUS_UNDER_REVIEW + amo.LITE_STATUSES):
+        for status in set(amo.UNDER_REVIEW_STATUSES + amo.LITE_STATUSES):
             self.addon.update(status=status)
             self.check_status('Fully Reviewed')
 

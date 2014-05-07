@@ -438,6 +438,13 @@ class Version(amo.models.ModelBase):
     def developer_name(self):
         return self._developer_name
 
+    def reset_nomination_time(self, force=False):
+        if not self.nomination or force:
+            # We need signal=False not to call update_status (which calls us).
+            self.update(nomination=datetime.datetime.now(), _signal=False)
+            # But we need the cache to be flushed.
+            Version.objects.invalidate(self)
+
 
 @use_master
 def update_status(sender, instance, **kw):
@@ -460,9 +467,8 @@ def inherit_nomination(sender, instance, **kw):
         return
     addon = instance.addon
     if (instance.nomination is None
-        and addon.status in (amo.STATUS_NOMINATED,
-                             amo.STATUS_LITE_AND_NOMINATED)
-        and not instance.is_beta):
+            and addon.status in amo.UNDER_REVIEW_STATUSES
+            and not instance.is_beta):
         last_ver = (Version.objects.filter(addon=addon)
                     .exclude(nomination=None).order_by('-nomination'))
         if last_ver.exists():
