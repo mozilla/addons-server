@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-04-18 11:42+0000\n"
-"Last-Translator: Channy <channy@mozilla.or.kr>\n"
+"PO-Revision-Date: 2014-05-07 18:38+0000\n"
+"Last-Translator: Sung-Wook <arbi316@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397821371.0\n"
+"X-POOTLE-MTIME: 1399487885.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -923,7 +923,7 @@ msgstr "이 부가 기능에 대한 지원은 <a href=\"%(support)s\">기술 지
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:47
 msgid "Review Guidelines"
-msgstr "평가 가이드라인"
+msgstr "평가 지침"
 
 #: apps/addons/templates/addons/review_add_box.html:41 apps/addons/templates/addons/impala/review_add_box.html:45
 msgid "Detailed Review"
@@ -1711,11 +1711,11 @@ msgstr "다량의 권리 침해 신고"
 
 #: apps/amo/log.py:431
 msgid "{addon} escalated by reviewer."
-msgstr "{addon}이(가) 심사자에 의해 검토 대상이 되었습니다."
+msgstr "{addon}이(가) 심사원에 의해 검토 대상이 되었습니다."
 
 #: apps/amo/log.py:432
 msgid "Reviewer escalation"
-msgstr "심사자 검토 대상"
+msgstr "심사원 검토 대상"
 
 #: apps/amo/log.py:440
 msgid "Video removed from {addon} because of a problem with the video."
@@ -1735,11 +1735,11 @@ msgstr "장치가 추가됨"
 
 #: apps/amo/log.py:455
 msgid "{addon} device support manually changed by reviewer."
-msgstr "{addon}의 장치 지원 내역을 심사자가 직접 변경했습니다."
+msgstr "{addon}의 장치 지원 내역을 심사원이 직접 변경했습니다."
 
 #: apps/amo/log.py:456
 msgid "Device(s) Changed by Reviewer"
-msgstr "심사자가 장치를 변경함"
+msgstr "심사원이 장치를 변경함"
 
 #: apps/amo/log.py:473
 msgid "Created: {0}."
@@ -1787,11 +1787,11 @@ msgstr "사용자 {0.name}님이 {group}에서 제명됐습니다."
 
 #: apps/amo/log.py:543
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "{addon}의 최소 요구 사항이 심사자에 의해 수동으로 변경됐습니다."
+msgstr "{addon}의 최소 요구 사항이 심사원에 의해 수동으로 변경됐습니다."
 
 #: apps/amo/log.py:544
 msgid "Requirements Changed by Reviewer"
-msgstr "심사자에 의해 요구사항 변경됨"
+msgstr "심사원에 의해 요구사항 변경됨"
 
 #: apps/amo/log.py:551
 msgid "{addon} minimum requirements manually changed."
@@ -1912,6 +1912,9 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> <strong>공백으로 구분되어 있는 두 단어</strong>를 입력해 주세요.</p> <p> 식별이 어렵다면 <a "
+"href=\"#\" id=\"recaptcha_different\">다른 단어로 해보시거나</a> <a href=\"#\" "
+"id=\"recaptcha_audio\">다른 방식으로 시도해 보세요.</a> </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90
@@ -2128,7 +2131,7 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "모음집에 대한 설명을 입력해주세요. (링크 첨부 금지)"
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2140,7 +2143,7 @@ msgstr "아이콘"
 
 #: apps/bandwagon/forms.py:152 apps/users/forms.py:393
 msgid "No links are allowed."
-msgstr ""
+msgstr "링크는 넣을 수 없습니다."
 
 #: apps/bandwagon/forms.py:164
 msgid "This url is already in use by another collection"
@@ -3651,11 +3654,11 @@ msgstr "기타를 선택할 경우 라이센스 내용을 입력하셔야 합니
 
 #: apps/devhub/forms.py:209
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "이 부가 기능은 최종 사용자 라이선스 동의서를 보유하고 있습니다."
 
 #: apps/devhub/forms.py:211
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "부가 기능의 최종 사용자 라이선스 동의서를 명시해 주세요:"
 
 #: apps/devhub/forms.py:214
 msgid "This add-on has a Privacy Policy"
@@ -3731,7 +3734,7 @@ msgstr "예비 심사"
 
 #: apps/devhub/forms.py:498
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "받고자 하는 심사의 종류를 선택하세요"
 
 #: apps/devhub/forms.py:513
 msgid "Version %s already exists"
@@ -4038,7 +4041,7 @@ msgstr "미리보기 업로드 도중 오류가 있었습니다."
 
 #: apps/devhub/views.py:1215
 msgid "Version %s disabled."
-msgstr ""
+msgstr "%s 버전이 사용 불가 상태가 되었습니다."
 
 #: apps/devhub/views.py:1218
 msgid "Version %s deleted."
@@ -4067,13 +4070,15 @@ msgstr "부가 기능 SDK"
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr ""
+msgstr "<strong>부가 기능 SDK:</strong> 부가 기능을 쉽고 빠르게 개발합시다"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"부가 기능 SDK는 강력한 API를 제공하여 개발자가 HTML, CSS, 자바스크립트를 사용해 Firefox용 부가 기능을 개발할 수 "
+"있습니다. 완성된 부가 기능은 저희가 전세계 4억명이 넘는 이용자들과 쉽게 공유할 수 있도록 만들어 드리겠습니다."
 
 #: apps/devhub/templates/devhub/builder.html:32
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4175,15 +4180,15 @@ msgstr "전체 부가 기능 보기 ►"
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO 심사원"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "출세의 지름길! AMO 심사원이 되서 내 부가 기능을 빠르게 심사합시다."
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "AMO 심사원 되기"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
@@ -4194,6 +4199,9 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"부가 기능은 수억명의 Firefox 사용자들의 웹 서핑 경험을 향상시키고 개인화 할 수 있게 만들어 줍니다. 만약 당신이 웹 개발자에 "
+"HTML, 자바스크립트, CSS를 알고 있다면 SDK로 대단한 부가 기능을 만들 수 있는 능력도 이미 갖추고 계시겠네요. 뿐만 아니라 "
+"SDK로 개발된 부가 기능은 설치시 재시작할 필요도 없어요."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -5062,7 +5070,7 @@ msgstr "이 부가 기능은  등록 과정이 완료되지 않을 시 몇일 �
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>최신 버전:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5176,11 +5184,11 @@ msgstr "대략적인 심사 <a href=\"{0}\">대기 시간</a>을 조회해 보�
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "심사 대기시간을 줄이세요!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "AMO 심사원이 되서 부가 기능 심사를 더 빠르게 받아봅시다."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5503,6 +5511,9 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
+"패키져가 생성한 비어있는 사이드 바 보다 더 많은 기능을 부가 기능에 넣고 싶다면 다양한 경로를 통해 기능을 추가하는 방법을 배울 수 "
+"있습니다. 가장 흔한 방법이라면 역시 다른 확장 기능이 이미 구현해 놓은 것들을 그대로 따라서 해보는 것이겠지요. 단, 참고할 확장기능의 "
+"라이선스가 소스 복제를 허용하지 않을 시에는 따라해선 안됩니다."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -6697,8 +6708,9 @@ msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
-"특정 사이트에 특화된 부가 기능의 경우 심사 과정에서 이용 가능한 테스트 계정을 제공하는 것이 좋습니다. 추가로 테스트 방침에 관한 것도 적어놓는다면 편집자가 부가 기능이 작동되는 원리를 보다 잘 이해하"
-"고 테스트를 빠르게 마칠 수 있을겁니다. 이러한 정보는 개발자 허브에서 버전 편집시 심사자에게 적는 메모란에 기입하시면 됩니다."
+"특정 사이트에 특화된 부가 기능의 경우 심사 과정에서 이용 가능한 테스트 계정을 제공하는 것이 좋습니다. 추가로 테스트 방침에 관한 것도 "
+"적어놓는다면 편집자가 부가 기능이 작동되는 원리를 보다 잘 이해하고 테스트를 빠르게 마칠 수 있을겁니다. 이러한 정보는 개발자 허브에서 "
+"버전 편집시 심사원에게 남기는 메모란에 기입하시면 됩니다."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
@@ -6938,10 +6950,12 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
-"<strong>부가 기능이 제대로 검사됐고 치명적인 결점이 확실히 없습니까?</strong> 부가 기능의 공개적 접근 여부를 고려할 때 가장 중요하게 생각하는 것은 심사 보고서로써 시험용 기간동안 테스팅을 거쳐 웹 브"
-"라우저에 심각한 문제나 부정적 충돌 현상이 일어나지 않았는지 등을 표시하고 있습니다. 심사자가 부가 기능을 사용해보고 높은 수준의 문제점, 충돌, 빈번한 문제 발생 및 오류 콘솔의 메시지 도배현상 등을 보"
-"고했다면 이 보고서를 명심하고 최선을 다해 다시 작업한 후 재심을 요청해야 합니다. 완벽한 최적화나 버그 박멸을 기대하는 것이 아닙니다 &mdash; Firefox도 이러한 과정속에 꾸준한 발전을 거쳐왔죠 &mdash; "
-"다만 이러한 것들을 최소화하려는 확실한 노력을 보여주고 그래도 남아있는 문제가 있을시엔 사용자에게 명확하게 사실 여부를 알려주는 걸 저희는 희망하고 있습니다."
+"<strong>부가 기능이 제대로 검사됐고 치명적인 결점이 확실히 없습니까?</strong> 부가 기능의 공개적 접근 여부를 고려할 때 "
+"가장 중요하게 생각하는 것은 심사 보고서로써 시험용 기간동안 테스팅을 거쳐 웹 브라우저에 심각한 문제나 부정적 충돌 현상이 일어나지 "
+"않았는지 등을 표시하고 있습니다. 심사원이 부가 기능을 사용해보고 높은 수준의 문제점, 충돌, 빈번한 문제 발생 및 오류 콘솔의 메시지 "
+"도배현상 등을 보고했다면 이 보고서를 명심하고 최선을 다해 다시 작업한 후 재심을 요청해야 합니다. 완벽한 최적화나 버그 박멸을 기대하는 "
+"것이 아닙니다 &mdash; Firefox도 이러한 과정속에 꾸준한 발전을 거쳐왔죠 &mdash; 다만 이러한 것들을 최소화하려는 "
+"확실한 노력을 보여주고 그래도 남아있는 문제가 있을시엔 사용자에게 명확하게 사실 여부를 알려주는 걸 저희는 희망하고 있습니다."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:43
 msgid ""
@@ -7618,13 +7632,15 @@ msgid ""
 "<b>Pick a category and tags</b> &mdash; select a category and enter some tags that best describe your theme. Keep in mind that a reviewer may reject your theme if it is obvious that your category "
 "and/or tags are unrelated to your theme."
 msgstr ""
-"<b>분류와 태그 설정</b> &mdash; 분류를 선택하고 테마를 가장 잘 설명할 수 있는 태그 이름을 입력하십시오. 분류가 확실하지 않거나 테마와 관련이 없는 태그 입력시 심사자가 테마 승인을 거부할 수도 있습니"
-"다."
+"<b>분류와 태그 설정</b> &mdash; 분류를 선택하고 테마를 가장 잘 설명할 수 있는 태그 이름을 입력하십시오. 분류가 확실하지 "
+"않거나 테마와 관련이 없는 태그 입력시 심사원이 테마 승인을 거부할 수도 있습니다."
 
 #: apps/devhub/templates/devhub/docs/themes.html:194
 msgid ""
 "<b>Describe your theme</b> &mdash; write a short description of your theme. Keep in mind that a reviewer may reject your theme if your description is not an accurate representation of your theme."
-msgstr "<b>테마 설명 작성</b> &mdash; 테마의 짤막한 설명을 작성합니다. 설명이 테마를 제대로 나타내지 못하는 경우엔 심사자가 테마 승인을 거부할 수도 있습니다."
+msgstr ""
+"<b>테마 설명 작성</b> &mdash; 테마의 짤막한 설명을 작성합니다. 설명이 테마를 제대로 나타내지 못하는 경우엔 심사원이 테마 "
+"승인을 거부할 수도 있습니다."
 
 #: apps/devhub/templates/devhub/docs/themes.html:201
 msgid "<b>Select a license for your theme</b> &mdash; decide on a copyright license for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative Common licenses.</a>"
@@ -7660,11 +7676,11 @@ msgstr "이제 테마를 올려봅시다"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "사용 불가 상태인 부가 기능이 있습니다"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr ""
+msgstr "부가 기능이 목록에 노출되지 않으며 갤러리 및 업데이트 서비스 어느곳에서도 보이지 않습니다."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -7672,7 +7688,7 @@ msgstr "부가 기능을 마무리 해 주세요."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:28
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "심사가 완료되면 이메일을 받게 됩니다."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:33 apps/devhub/templates/devhub/includes/addon_details.html:40
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
@@ -7699,39 +7715,41 @@ msgstr "전체 심사가 완료되면 이메일을 받아볼 수 있습니다. �
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
 msgstr ""
+"저희 갤러리에서 호스팅 중인 모든 부가 기능은 편집자에 의해 심사를 받아야 합니다. 호스팅 작업을 계속 하고 싶다면 심사 절차 선택을 "
+"위해 클릭해주세요."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
-msgstr ""
+msgstr "현재 버전:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "addons.mozilla.org에서 설치 버튼을 클릭시 설치될 버전입니다."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 msgid "Created:"
-msgstr ""
+msgstr "제작일:"
 
 #. {0} is a date. dennis-ignore: E201
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%Y년 %b월 %e일"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
-msgstr ""
+msgstr "마지막 업데이트:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
 msgid "Next Version:"
-msgstr ""
+msgstr "다음 버전:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "이 버전이 최신이지만 아직 사이트 상에 올라가지는 않았습니다."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "대기열 순서를 정확하게 지켜가며 심사되지는 않습니다."
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -7771,7 +7789,7 @@ msgstr "사람들에게 앞으로 어떤 기능이 추가되는지 말해준다�
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:22
 msgid "View All"
-msgstr ""
+msgstr "전부 보기"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:34
 msgid "Enable Add-on"
@@ -8151,8 +8169,8 @@ msgid ""
 "By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
 "href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
 msgstr ""
-"테마를 업로드하려면 <a href=\"%(tos_url)s\" target=\"_blank\">테마 이용 약관</a>에 동의해야 합니다. 테마는 <a href=\"%(guidelines_url)s\" target=\"_blank\">심사 가이드라인</a> 내에 설정된 기준에 따"
-"라 승급됩니다."
+"테마를 업로드하려면 <a href=\"%(tos_url)s\" target=\"_blank\">테마 이용 약관</a>에 동의해야 합니다. 테마는 "
+"<a href=\"%(guidelines_url)s\" target=\"_blank\">심사 지침</a> 내에 설정된 기준에 따라 승급됩니다."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8226,7 +8244,7 @@ msgstr "이 파일을 쓸 플랫폼을 선택하세요"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "어떤 심사를 받길 원하십니까?"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -8266,7 +8284,7 @@ msgstr "승인 상태"
 
 #: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:109
 msgid "Notes for Reviewers"
-msgstr "심사자 주의 사항"
+msgstr "심사원 주의 사항"
 
 #: apps/devhub/templates/devhub/versions/edit.html:114
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
@@ -8313,7 +8331,7 @@ msgstr "버전 {0}"
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
+msgstr[0] "파일 {0}개"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -8321,7 +8339,7 @@ msgstr "파일 0개"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "대기열 위치: %(pos) / %(total)"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -8351,7 +8369,7 @@ msgstr "심사 요청 취소"
 
 #: apps/devhub/templates/devhub/versions/list.html:106
 msgid "Currently on AMO"
-msgstr ""
+msgstr "AMO상의 버전"
 
 #: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
@@ -8371,11 +8389,11 @@ msgstr "성능 향상"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "이 부가 기능의 차기 버전"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
-msgstr ""
+msgstr "구버전"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
@@ -8391,11 +8409,11 @@ msgstr "삭제하면 이 버전은 다시는 복구할 수 없습니다:"
 
 #: apps/devhub/templates/devhub/versions/list.html:193
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>중요:</strong> 버전을 삭제하면 같은 버전 넘버로는 다시 올릴 수 없습니다."
 
 #: apps/devhub/templates/devhub/versions/list.html:198
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
-msgstr ""
+msgstr "이미 심사가 끝난 버전을 삭제하면 다음 업데이트 심사가 상당히 지연될 수 있습니다."
 
 #: apps/devhub/templates/devhub/versions/list.html:201
 msgid "Are you sure you wish to delete this version?"
@@ -8407,7 +8425,7 @@ msgstr "버전 삭제"
 
 #: apps/devhub/templates/devhub/versions/list.html:208
 msgid "Disable Version"
-msgstr ""
+msgstr "버전 사용 불가 상태 만들기"
 
 #: apps/devhub/templates/devhub/versions/list.html:215
 msgid "Add a new Version"
@@ -8829,7 +8847,7 @@ msgstr "%s 파일이 심사 대기열에 없습니다."
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:336
 msgid "theme name"
-msgstr ""
+msgstr "테마 이름"
 
 #: apps/editors/forms.py:362
 msgid "Someone else is reviewing this theme."
@@ -8838,7 +8856,7 @@ msgstr "다른 사람이 이 테마를 심사중입니다."
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:459
 msgid "app, reviewer, or comment"
-msgstr "앱, 심사자, 코멘트"
+msgstr "앱, 심사원, 코멘트"
 
 #: apps/editors/helpers.py:43
 msgid "Pending Preliminary Review"
@@ -8878,15 +8896,15 @@ msgstr "고속 심사"
 
 #: apps/editors/helpers.py:115
 msgid "Pending Themes"
-msgstr ""
+msgstr "대기중인 테마"
 
 #: apps/editors/helpers.py:116 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "표시된 테마"
 
 #: apps/editors/helpers.py:117
 msgid "Update Themes"
-msgstr ""
+msgstr "테마 업데이트"
 
 #: apps/editors/helpers.py:143
 msgid "Fast Track ({0})"
@@ -9047,7 +9065,7 @@ msgstr "부가 기능"
 
 #: apps/editors/helpers.py:783 apps/editors/helpers.py:803
 msgid "Flagged"
-msgstr ""
+msgstr "표시됨"
 
 # 85%
 #: apps/editors/helpers.py:787 apps/editors/helpers.py:806
@@ -9076,7 +9094,7 @@ msgstr "편집자 코멘트 있음"
 
 #: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "제출 양식 복사하기"
 
 #: apps/editors/tasks.py:80
 msgid "Thanks for submitting your Theme"
@@ -9148,11 +9166,13 @@ msgstr "상급 심사 필요"
 #: apps/editors/views_themes.py:327
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
+msgstr[0] "테마 심사 {0}건이 처리되었습니다. (+{1} 포인트, 총 {2}건)"
 
 #: apps/editors/views_themes.py:342
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
+"테마 잠금 상태가 해제되었습니다. 이제 다른 심사원이 해금된 테마를 심사합니다. 본 페이지를 새로고침하면 아래 테이블에 변경 내역이 "
+"반영됩니다."
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
@@ -9281,7 +9301,7 @@ msgstr "새 편집자"
 
 #: apps/editors/templates/editors/home.html:80 apps/editors/templates/editors/home.html:95
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "당신은 {0}번이며 {1}개의 심사가 있습니다"
 
 # 87%
 # 100%
@@ -9293,7 +9313,7 @@ msgstr[0] "조정중인 심사 ({num})"
 
 #: apps/editors/templates/editors/leaderboard.html:3 apps/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr "심사자 현황판"
+msgstr "심사원 현황판"
 
 # 75%
 #: apps/editors/templates/editors/leaderboard.html:18 apps/editors/templates/editors/performance.html:65
@@ -9353,7 +9373,7 @@ msgstr "이번달"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "올해"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -9409,7 +9429,7 @@ msgstr "모든 심사가 처리되었습니다. 수고하셨습니다!"
 
 #: apps/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
-msgstr "버전 기록서 / 심사자 메모"
+msgstr "버전 기록서 / 심사원에게 남기는 메모"
 
 # %1 is the queue mode
 #: apps/editors/templates/editors/queue.html:169
@@ -9426,7 +9446,7 @@ msgstr "부가 기능 정책"
 
 #: apps/editors/templates/editors/queue.html:184
 msgid "Editors' Guide"
-msgstr "편집 가이드"
+msgstr "편집자 지침"
 
 #. "Review [add-on name]"
 #: apps/editors/templates/editors/review.html:25
@@ -9585,19 +9605,19 @@ msgstr "<span>{0}</span> 포인트가 있습니다."
 #: apps/editors/templates/editors/includes/search_results_themes.html:6 apps/editors/templates/editors/themes/history_table.html:7 apps/editors/templates/editors/themes/logs.html:19
 #: apps/editors/templates/editors/themes/queue_list.html:49 apps/editors/templates/editors/themes/single.html:26 apps/editors/templates/editors/themes/themes.html:45
 msgid "Reviewer"
-msgstr "심사자"
+msgstr "심사원"
 
 #: apps/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "삭제된 테마"
 
 #: apps/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "날짜 삭제됨"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "해당 기간 동안 삭제된 테마가 없습니다."
 
 #: apps/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
@@ -9622,22 +9642,22 @@ msgstr "심사중인 테마가 없습니다."
 #: apps/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
+msgstr[0] "대기중인 테마 심사 {num}건"
 
 #: apps/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
+msgstr[0] "표시된 심사 {num}건"
 
 #: apps/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
+msgstr[0] "업데이트 {num}건"
 
 #: apps/editors/templates/editors/themes/home.html:49
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
-msgstr[0] ""
+msgstr[0] "이번 주에 심사되지 않은 테마가 {num}건 있습니다."
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
@@ -9677,7 +9697,7 @@ msgstr "당신의 심사 기록"
 
 #: apps/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "심사 완료하기"
 
 #: apps/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
@@ -9697,11 +9717,11 @@ msgstr "검색 내역 초기화"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "내 테마 잠금 해제하기"
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "테마 대기열 상호작용"
 
 #: apps/editors/templates/editors/themes/queue_list.html:79
 msgid "There are currently no items of this type to review."
@@ -9709,7 +9729,7 @@ msgstr "이 장치에선 현재 심사 대상이 없습니다."
 
 #: apps/editors/templates/editors/themes/queue_list.html:92
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "심사원 지침사항"
 
 #: apps/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
@@ -9717,23 +9737,23 @@ msgstr "{0}의 테마 심사"
 
 #: apps/editors/templates/editors/themes/themes.html:16
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(제출 양식 복제 가능)"
 
 #: apps/editors/templates/editors/themes/themes.html:66
 msgid "Past Review Notes"
-msgstr ""
+msgstr "과거의 심사 메모"
 
 #: apps/editors/templates/editors/themes/themes.html:72
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "추가 정보 제공 요청: {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:74
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "표시됨: {0}건"
 
 #: apps/editors/templates/editors/themes/themes.html:95
 msgid "Approve Theme"
-msgstr ""
+msgstr "테마 승인"
 
 #: apps/editors/templates/editors/themes/themes.html:102
 msgid "Field required"
@@ -10053,107 +10073,128 @@ msgstr "지역명"
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla 부가 기능 소개"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "이 웹 사이트는 어떤 곳인가요?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"흔히 \"AMO\"로 통하는 addons.mozilla.org는 Firefox, Thunderbird, SeaMonkey 등과 같은 "
+"Mozilla 소프트웨어의 부가 기능을 관리하는 공식 사이트입니다. 부가 기능은 웹 브라우저나 애플리케이션에 새 기능을 추가하고 구동 "
+"방식을 바꿀 수 있습니다. 한번 둘러보시고 온라인을 통한 수천가지 개인화 방법들을 탐구해 보시기 바랍니다."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "누가 이런 부가 기능들을 만들고 있나요?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"이곳에 등재된 부가 기능들은 저희 커뮤니티에 있는 수천명의 개발자가 제작한 것들로써, 개인적인 취미 활동부터 거대 기업들까지 그 영역은 "
+"광범위합니다. 모든 공개 부가 기능은 출시에 앞서 편집자 팀에 의해 심사를 받습니다. 시험용으로 표시된 부가 기능은 심사를 받지 "
+"않았으므로 설치시 주의해야 합니다."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "AMO에 대한 소식을 계속 받아볼 수 있을까요?"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "부가 기능 세계의 최신 뉴스를 볼 수 있는 여러 방법들이 있습니다:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "<a href=\"%(url)s\">부가 기능 블로그</a>에 정기적으로 부가 기능 열성 팬과 개발자에 관한 정보가 올라옵니다."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "트위터 계정 <a href=\"%(url)s\">mozamo</a>에 뉴스, 팁, 트릭 등이 자주 올라옵니다."
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
 msgstr ""
+"<a href=\"%(url)s\">포럼</a>은 부가 기능 커뮤니티와 교류하고 AMO의 향후 변경 사항에 관해 토론할 수 있는 최적의 "
+"장소입니다."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "멋지군요! 저도 참여하고 싶은데 어떻게 해야죠?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "참여할 수 있는 매우 다양한 방법들이 있습니다. 기술적 지식이 있다면:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">나만의 부가 기능을 만들어 보세요</a>. 무료 호스팅과 업데이트 서비스를 제공하고 있으며 사용자에게 "
+"쉽게 다가갈 수 있도록 도와드리겠습니다."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
 msgstr ""
+"부가 기능 개발 경험이 있다면 <a href=\"%(url)s\">편집자가 되어보세요</a>! 저희 편집자들은 기술적 배경 지식은 가진 부가 "
+"기능 팬 집단으로 부가 기능의 코드 품질과 안정성을 심사합니다."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
 msgstr ""
+"웹사이트가 개선될 수 있도록 도와주세요. 오픈소스로 제작되었기 때문에 버그를 수집해서 패치를 올릴 수도 있습니다. <a href=\"%"
+"(url)s\">Bugzilla</a>에 현재 발견된 버그들이 모두 올라와 있습니다."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "부가 기능에 관심이 있긴 하지만 기술적 지식이 많지 않을 경우에도, 여전히 도울 방법은 있습니다:"
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "친구들에게 알려주세요! 사람들에게 어떤 부가 기능을 사용하는지 알려주세요."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "<a href=\"%(url)s\">포럼</a>에도 참여해 보세요."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"부가 기능에 평가를 적어주세요. 제작자들은 사람들이 자기 작품을 쓰면서 기뻐한다는 걸 알면 좀 더 개선하거나 새 작품을 만들려고 "
+"하니까요."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
-msgstr ""
+msgstr "질문이 있어요"
 
 #: apps/pages/templates/pages/about.lhtml:67
 msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
 msgstr ""
+"먼저 <a href=\"%(faq_url)s\"><abbr title=\"자주 묻는 질문\">FAQ</abbr></a>에서 시작하는게 좋겠네요. "
+"저기에서 원하는 답을 찾지 못했다면 <a href=\"%(forum_url)s\">포럼에 물어보세요</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"정말 Mozilla 팀원과 연락을 취하고 싶다면 <a href=\"%(url)s\">연락처 정보</a> 페이지를 참고하시기 바랍니다."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
-msgstr ""
+msgstr "누가 이 사이트를 운영하나요?"
 
 #: apps/pages/templates/pages/about.lhtml:77
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"커뮤니티에서 오신 자원 봉사자들과 헌신적인 AMO팀을 포함한 많은 사람들이 여러해 동안 이곳 웹사이트에 공헌해 주셨습니다. 전체 공헌자 "
+"명단은 <a href=\"%(url)s\">사이트 공헌자</a> 페이지에서 확인하실 수 있습니다."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -10222,7 +10263,7 @@ msgstr "번역자"
 
 #: apps/pages/templates/pages/credits.html:34
 msgid "Reviewers"
-msgstr "심사자"
+msgstr "심사원"
 
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
@@ -10600,8 +10641,9 @@ msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"예. Mozilla의 <a href=\"%(p_url)s\">부가 기능 정책</a>에 어떤 것이 용인되는지 서술되어 있습니다. 이 정책은 별도의 고지 없이 변경됩니다. 여기에 추가로 AMO 편집자 팀에선 <a href=\"%(g_url)s\">편집자 "
-"심사 가이드</a>를 사용해 부가 기능이 정해진 가이드라인에 기능이나 보안 유지가 부합하는지도 검사합니다."
+"예. Mozilla의 <a href=\"%(p_url)s\">부가 기능 정책</a>에 어떤 것이 용인되는지 서술되어 있습니다. 이 정책은 "
+"별도의 고지 없이 변경됩니다. 여기에 추가로 AMO 편집자 팀에선 <a href=\"%(g_url)s\">편집자 심사 지침</a>을 사용해 "
+"기능이나 보안 유지가 지침에 부합하는지도 검사합니다."
 
 #: apps/pages/templates/pages/dev_faq.html:345
 msgid "How do I submit my add-on for review?"
@@ -10612,8 +10654,9 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
-"개발자 도구 대시보드에서 부가 기능을 업로드하면 AMO에 제출됩니다. 부가 기능을 제출하기 전에 AMO에 등록해야 합니다. 부가 기능을 제출하기 전에 AMO <a href=\"%(url)s\">편집자 심사 가이드</a>를 읽어보"
-"고 편집자의 가이드라인에 부합하는지 여부도 확인해 보시기 바랍니다."
+"개발자 도구 대시보드에서 부가 기능을 업로드하면 AMO에 제출됩니다. 부가 기능을 제출하기 전에 AMO에 등록해야 합니다. 부가 기능을 "
+"제출하기 전에 AMO <a href=\"%(url)s\">편집자 심사 지침</a>을 읽어보고 편집자 지침에 부합하는지 여부도 확인해 보시기 "
+"바랍니다."
 
 #: apps/pages/templates/pages/dev_faq.html:357
 msgid "What operating system do I choose for my add-on?"
@@ -10681,18 +10724,23 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"부가 기능은 AMO 편집자에 의해 심사를 받습니다. 편집자들은 Mozilla 사용자들에게 안정성을 확보하고 제대로 된 사용 경험을 "
+"유지하기 위한 부가 기능 심사 프로젝트를 돕기 위해 선발된 유능한 개발자로 이루어진 자원 봉사자 조직입니다. 편집자들과 소통시엔 예의를 "
+"지켜서 말씀해 주시기 바랍니다. 이 분들은 당신의 부가 기능이 정확하게 설정되어 있는지, <a href=\"%(url)s\">편집자 심사 "
+"지침</a>에서 밑줄 친 사항을 잘 따르고 있는지를 가려내기 위해 열심히 일하는 중이니까요."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
-msgstr "부가 기능 심사에 쓰이는 가이드라인이 뭔가요?"
+msgstr "부가 기능 심사에 쓰이는 지침이 뭔가요?"
 
 #: apps/pages/templates/pages/dev_faq.html:429
 msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process"
 msgstr ""
-"Mozilla 편집자 팀은 AMO에 적합한 부가 기능인지 테스트할 때 <a href=\"%(url)s\">편집자 심사 가이드</a>를 따르게 됩니다. 부가 기능 개발자는 제출하기 전에 이 가이드를 보고 일반적 문제 부분에 나와있는 "
-"내용을 준수하고 있는지 점검해 보는 것이 중요합니다. 사전 점검 작업은 심사 과정의 신속한 처리에 대단히 큰 도움이 될 것입니다."
+"Mozilla 편집자 팀은 AMO에 적합한 부가 기능인지 테스트할 때 <a href=\"%(url)s\">편집자 심사 지침</a>을 따르게 "
+"됩니다. 부가 기능 개발자는 제출하기 전에 이 지침을 보고 일반적 문제 부분에 나와있는 내용을 준수하고 있는지 점검해 보는 것이 "
+"중요합니다. 사전 점검 작업은 심사 과정의 신속한 처리에 대단히 큰 도움이 될 것입니다."
 
 #: apps/pages/templates/pages/dev_faq.html:439
 msgid "How long will it take for my add-on to be reviewed?"
@@ -10722,8 +10770,9 @@ msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
 "\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"이러한 이유로 <a href=\"%(g_url)s\">편집자 심사 가이드</a>를 읽어보고 부가 기능이 의도한 대로 설정되었는지 확인하는 작업이 매우 중요하다는 것입니다. <a href=\"%(blog_url)s\">성공적인 부가 기능 심사"
-"</a>와 같은 블로그 글을 읽고 원만한 부가 기능 심사 통과에 대한 이해를 높이는 것도 좋은 생각입니다."
+"이러한 이유로 <a href=\"%(g_url)s\">편집자 심사 지침</a>을 읽어보고 부가 기능이 의도한 대로 설정되었는지 확인하는 "
+"작업이 매우 중요하다는 것입니다. <a href=\"%(blog_url)s\">성공적인 부가 기능 심사</a>와 같은 블로그 글을 읽고 "
+"원만한 부가 기능 심사 통과에 대한 이해를 높이는 것도 좋은 생각입니다."
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -10838,7 +10887,8 @@ msgstr "기타 (세부 사항을 묻는 팝업창이 뜹니다)"
 
 #: apps/pages/templates/pages/dev_faq.html:577
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
-msgstr "현재 AMO에선 심사자와 직접 연결해주는 메커니즘을 제공하고 있지 않지만 이러한 기능은 향후 업데이트를 통해 개발을 고려중에 있습니다."
+msgstr ""
+"현재 AMO에선 심사원과 직접 연결해주는 메커니즘을 제공하고 있지 않지만 이러한 기능은 향후 업데이트를 통해 개발을 고려중에 있습니다."
 
 #: apps/pages/templates/pages/dev_faq.html:584
 msgid "Can I request that a review be removed if the review is negative?"
@@ -11287,7 +11337,7 @@ msgstr "훌륭한 평가를 쓰기 위한 몇 가지 팁"
 
 #: apps/pages/templates/pages/review_guide.html:39 apps/pages/templates/pages/review_guide.html:149
 msgid "Guidelines for rating add-ons"
-msgstr "부가 기능 평가 가이드라인"
+msgstr "부가 기능 평가에 관한 지침"
 
 #: apps/pages/templates/pages/review_guide.html:42 apps/pages/templates/pages/review_guide.html:210
 msgid "Frequently Asked Questions about Reviews"
@@ -11298,8 +11348,8 @@ msgid ""
 "Add-on reviews are a way for add-on site users to share their opinions about the add-ons that they have installed and used. Editors reserve the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
-"부가 기능 평가는 사이트 이용자들이 설치하고 사용중인 부가 기능에 대한 자신의 견해를 공유할 수 있는 창구입니다. 편집자는 다음의 가이드라인을 준수하지 않은 평가에 대해 거부나 삭제할 권리를 가지고 있습"
-"니다."
+"부가 기능 평가는 사이트 이용자들이 설치하고 사용중인 부가 기능에 대한 자신의 견해를 공유할 수 있는 창구입니다. 편집자는 다음의 지침을 "
+"준수하지 않은 평가에 대해 거부나 삭제할 권리를 가지고 있습니다."
 
 #: apps/pages/templates/pages/review_guide.html:59
 msgid "Do:"
@@ -11437,8 +11487,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Editors will use the Review Guidelines to evaluate whether "
 "or not to delete the review or restore it back to the site."
 msgstr ""
-"\"평가 신고하기\"를 클릭해서 의문시되는 평가를 신고하거나 플래그를 달아주세요. 그러면 중재를 위해 사이트에 내용이 제출됩니다. 편집자는 평가 가이드라인에 의거하여 삭제해야 하는지 사이트에 복귀시켜야 "
-"하는지를 감정하게 됩니다."
+"\"평가 신고하기\"를 클릭해서 의문시되는 평가를 신고하거나 플래그를 달아주세요. 그러면 중재를 위해 사이트에 내용이 제출됩니다. 편집자는 "
+"평가 지침에 의거하여 삭제해야 하는지 사이트에 복귀시켜야 하는지를 감정하게 됩니다."
 
 #: apps/pages/templates/pages/review_guide.html:222
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -11457,8 +11507,9 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated by an editor. If a review included a complaint that "
 "is no longer valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"일반적인 상황에선 안됩니다. 하지만 평가 가이드라인을 준수하지 않은 평가는 \"평가 신고하기\"를 클릭해서 편집자의 중재를 요구할 수 있습니다. 불만 사항이 적혀있는 평가 중 새 버전 출시로 인해 더이상 불"
-"만 사항이 적합하지 않게 되었을 경우라면 평가 삭제를 고려하게 됩니다. amo-editors@mozilla.org로 자세한 요구 사항을 적어서 보내주세요."
+"일반적인 상황에선 안됩니다. 하지만 평가 지침을 준수하지 않은 평가는 \"평가 신고하기\"를 클릭해서 편집자의 중재를 요구할 수 있습니다. "
+"불만 사항이 적혀있는 평가 중 새 버전 출시로 인해 더이상 불만 사항이 적합하지 않게 되었을 경우라면 평가 삭제를 고려하게 됩니다. "
+"amo-editors@mozilla.org로 자세한 요구 사항을 적어서 보내주세요."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -11602,11 +11653,14 @@ msgid ""
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
 "ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>다음 사항을 지켜주세요:</h2> <ul> <li> 친구에게 이 부가 기능을 사용했던 경험을 얘기하듯 적어주세요. 어떤 기능을 좋아하고 좋아하지 않는지, 사용하기는 편한지, 단점은 무엇인지 같은 명확하고 도움이 "
-"될만한 자세한 정보를 제공해 주시기 바랍니다. \"죽인다\" \"비추천\" 같은 일반적인 단어보다는 왜 그렇게 생각하는지 이유를 적어주세요. </li> <li> 평가엔 버그 리포트를 올리지 마세요. 저희는 부가 기능 개"
-"발자가 여러분의 이메일 주소를 사용하는 것을 허용하지 않는데, 이메일 주소가 올라와 있으면 개발자가 문제 해결을 돕기위해 직접 연락을 하려 들 수 있기 때문입니다. 부가 기능 개발을 돕고 싶다면 <a href="
-"\"%(support)s\">기술 지원 항목</a>을 살펴보시기 바랍니다. </li> <li>건전한 평가를 만들어주세요. 부적절한 언어 사용을 자제하시고 어떠한 개인 정보도 올리지 마세요. </li> </ul> <p>보다 자세한 사항은 "
-"<a href=\"%(guide)s\" target=\"_blank\">평가 가이드라인</a>을 읽어주시기 바랍니다.</p>"
+"<h2>다음 사항을 지켜주세요:</h2> <ul> <li> 친구에게 이 부가 기능을 사용했던 경험을 얘기하듯 적어주세요. 어떤 기능을 "
+"좋아하고 좋아하지 않는지, 사용하기는 편한지, 단점은 무엇인지 같은 명확하고 도움이 될만한 자세한 정보를 제공해 주시기 바랍니다. "
+"\"죽인다\" \"비추천\" 같은 일반적인 단어보다는 왜 그렇게 생각하는지 이유를 적어주세요. </li> <li> 평가엔 버그 리포트를 올리지 "
+"마세요. 저희는 부가 기능 개발자가 여러분의 이메일 주소를 사용하는 것을 허용하지 않는데, 이메일 주소가 올라와 있으면 개발자가 문제 "
+"해결을 돕기위해 직접 연락을 하려 들 수 있기 때문입니다. 부가 기능 개발을 돕고 싶다면 <a href=\"%(support)s\">기술 "
+"지원 항목</a>을 살펴보시기 바랍니다. </li> <li>건전한 평가를 만들어주세요. 부적절한 언어 사용을 자제하시고 어떠한 개인 "
+"정보도 올리지 마세요. </li> </ul> <p>보다 자세한 사항은 <a href=\"%(guide)s\" "
+"target=\"_blank\">평가 지침</a>을 읽어주시기 바랍니다.</p>"
 
 #: apps/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -12437,7 +12491,7 @@ msgstr "입력하신 계정으로 자세한 정보가 첨부된 이메일이 전
 
 #: apps/users/forms.py:86
 msgid "We can't reset this account's password, please contact the support."
-msgstr ""
+msgstr "본 계정의 비밀번호를 초기화 할 수 없습니다. 기술 지원팀에 문의해 보세요."
 
 #: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
@@ -12449,7 +12503,7 @@ msgstr "잘못된 비밀번호입니다!"
 
 #: apps/users/forms.py:217
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "사용자 이름은 숫자로만 만들 수 없습니다."
 
 #: apps/users/forms.py:219
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
@@ -12502,15 +12556,15 @@ msgstr "그 외 여러명"
 
 #: apps/users/models.py:66
 msgid "algorithm"
-msgstr ""
+msgstr "알고리즘"
 
 #: apps/users/models.py:67
 msgid "salt"
-msgstr ""
+msgstr "salt"
 
 #: apps/users/models.py:68
 msgid "hash"
-msgstr ""
+msgstr "hash 값"
 
 #: apps/users/models.py:126
 msgid "No user with that email."
@@ -12673,7 +12727,7 @@ msgstr "Persona 인증이 실패했습니다."
 
 #: apps/users/views.py:345
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "이 계정에는 인증된 이메일 주소를 사용해 주세요."
 
 #: apps/users/views.py:456
 msgid "Wrong email address or password!"
@@ -12741,15 +12795,15 @@ msgstr ""
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "\"삭제\"를 클릭하면 당신의 계정은 <strong>영원히 삭제</strong>됩니다. 이는:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "더이상 %(site)s에 로그인 할 수 없게 됩니다."
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "당신이 작성한 평가와 별점은 삭제되지는 않지만 권한을 잃게 됩니다."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -12826,7 +12880,7 @@ msgstr "당신에 관한 정보를 조금은 공개해 주세요. 다음 항목�
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "이 URL은 개발자에게만 노출됩니다."
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
@@ -12842,7 +12896,7 @@ msgstr "자기소개 하길 좋아한다면, 커뮤니티에 한번 해보세요
 
 #: apps/users/templates/users/edit.html:141
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "허용된 HTML: {0}. 링크는 사용 불가입니다."
 
 #: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
@@ -12910,7 +12964,7 @@ msgstr "이메일 주소"
 
 #: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:59
 msgid "Remember me on this device"
-msgstr ""
+msgstr "이 장치에서 계정 이름 저장"
 
 #: apps/users/templates/users/login_form.html:54 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
 msgid "Log in"
@@ -13048,31 +13102,33 @@ msgstr "계정을 만들어야 하는 이유가 있나요?"
 
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
-msgstr ""
+msgstr "단순히 공개 부가 기능을 다운받고 설치하는 정도라면 AMO에 <strong>가입할 필요는 없습니다</strong>."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "다음의 경우에만 가입이 필요합니다:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "부가 기능 평가를 쓰고 싶을 경우"
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
+msgstr "부가 기능 모음집을 즐겨찾기 하거나 나만의 모음집을 만들고 싶을 때"
 
 #: apps/users/templates/users/register.html:21
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
+msgstr "부가 기능 개발자로 AMO에 부가 기능을 올려서 호스팅을 받길 원할 때"
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr ""
+msgstr "가입이 완료되면 입력한 이메일 주소로 확인용 메일을 받게 됩니다. 메일에 적힌 절차에 따라 계정을 확인해 주세요."
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
 msgstr ""
+"원하신다면 저희의 <a href=\"%(legal)s\" title=\"법적 고지\">법적 고지</a>와 <a href=\"%(privacy)s\" "
+"title=\"개인 정보 보호 정책\">개인 정보 보호 정책</a>을 읽어보실 수 있습니다."
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
 msgid "Register"
@@ -13359,7 +13415,7 @@ msgstr "Firefox 소개"
 
 #: templates/menu_links.html:23
 msgid "Join Mozilla"
-msgstr ""
+msgstr "Mozilla에 공헌하기"
 
 #: templates/menu_links.html:24
 msgid "Participate"
@@ -13367,11 +13423,11 @@ msgstr "참여하기"
 
 #: templates/menu_links.html:26
 msgid "Press Center"
-msgstr ""
+msgstr "보도자료"
 
 #: templates/menu_links.html:27
 msgid "Brand Toolkit"
-msgstr ""
+msgstr "브랜드 툴킷"
 
 #: templates/menu_links.html:28
 msgid "Careers"
