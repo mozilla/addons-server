@@ -152,7 +152,7 @@ Finish the install
 First make sure you have a recent `pip`_ for security reasons.
 From inside your activated virtualenv, install the required python packages::
 
-    make update
+    make full_update
 
 This runs a command like this::
 
