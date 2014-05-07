@@ -3,3 +3,4 @@
 
 django-debug-toolbar==1.2
 django-fixture-magic==0.0.4
+sqlparse
