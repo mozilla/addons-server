@@ -20,6 +20,11 @@ handler404 = 'amo.views.handler404'
 handler500 = 'amo.views.handler500'
 
 
+# Hardcore monkeypatching action.
+import jingo.monkey
+jingo.monkey.patch()
+
+
 urlpatterns = patterns('',
     # Discovery pane is first for undetectable efficiency wins.
     ('^discovery/', include('discovery.urls')),
