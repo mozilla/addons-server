@@ -1781,7 +1781,7 @@ msgstr "Kreirano: {0}."
 
 #: apps/amo/log.py:479
 msgid "Edited field: {2} set to: {0}."
-msgstr "Izmenjeno polje: 2} podešeno na: {0}."
+msgstr "Izmenjeno polje: {2} podešeno na: {0}."
 
 #: apps/amo/log.py:485
 msgid "Deleted: {1}."
