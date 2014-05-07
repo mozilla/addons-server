@@ -306,7 +306,7 @@
                     upload_progress_outside.attr('class', 'bar-success');
                     upload_progress_inside.fadeOut();
 
-                    $('footer.listing-footer').removeClass('hidden')
+                    $('.listing-footer').removeClass('hidden')
                         .siblings('#upload-webapp-features').removeClass('hidden');
                     $('button.upload-file-submit').removeAttr('disabled').focus();
 
@@ -324,7 +324,7 @@
                     }
 
                     // Uncheck all existing features checkboxes since it's a new upload.
-                    // We have to avoid has_qhd since it's not dependent on the feature 
+                    // We have to avoid has_qhd since it's not dependent on the feature
                     // profile returned by the validator.
                     $webapp_features.find('input:checked:not(#id_has_qhd)').prop('checked', false).trigger('change');
 

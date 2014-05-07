@@ -62,7 +62,7 @@ $(document).ready(function() {
         $validate_form = $('#validate-field'),
         $validate_button = $('#validate_app'),
         $webapp_features = $('#upload-webapp-features'),
-        $submit_footer = $upload_form.find('footer');
+        $submit_footer = $upload_form.find('.listing-footer');
 
     // Handlers for buchet requirements.
     $(document.body).on('change', '.feature-choices input', function() {
