@@ -1,6 +1,17 @@
 Settings Changelog
 ==================
 
+2014-04-25
+----------
+
+* Added ``'django.contrib.staticfiles'`` to the ``INSTALLED_APPS``, as it's
+  needed by the latest versions of DDT.
+* Added ``DEBUG_TOOLBAR_PATCH_SETTINGS = False`` to prevent DDT from patching
+  the settings on its own (it would create an import loop).
+* Removed ``DEBUG_TOOLBAR_CONFIG`` as it's not used anymore with the latest
+  versions of DDT.
+
+
 2014-01-22
 ----------
 

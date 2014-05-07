@@ -7,9 +7,13 @@ DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
 # These apps are great during development.
 INSTALLED_APPS += (
     'debug_toolbar',
+    'django.contrib.staticfiles',  # Needed by the latest versions of DDT.
     'django_extensions',
     'fixture_magic',
 )
+# Prevent DDT from patching the settings automatically: this would result in
+# circular imports for us. See DDT docs for more information.
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 # You want one of the caching backends.  Dummy won't do any caching, locmem is
 # cleared every time you restart the server, and memcached is what we run in
@@ -54,10 +58,6 @@ HAS_SYSLOG = False
 if DEBUG:
     INTERNAL_IPS = ('127.0.0.1',)
     MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-    DEBUG_TOOLBAR_CONFIG = {
-        'HIDE_DJANGO_SQL': False,
-        'INTERCEPT_REDIRECTS': False,
-    }
 
 # If you're not running on SSL you'll want this to be False.
 SESSION_COOKIE_SECURE = False
