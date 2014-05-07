@@ -16,6 +16,7 @@ from django.db import transaction
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.http import urlquote
+from django.utils.timezone import now
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
@@ -25,11 +26,9 @@ from PIL import Image
 from session_csrf import anonymous_csrf
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
-from waffle.decorators import waffle_switch
 
 import amo
 import amo.utils
-import paypal
 from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view
@@ -49,7 +48,6 @@ from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from search.views import BaseAjaxSearch
-from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import Version
@@ -1352,6 +1350,7 @@ def _step_url(step):
 @submit_step(1)
 def submit(request, step):
     if request.method == 'POST':
+        request.user.update(read_dev_agreement=now())
         response = redirect(_step_url(2))
         response.set_cookie(DEV_AGREEMENT_COOKIE)
         return response
