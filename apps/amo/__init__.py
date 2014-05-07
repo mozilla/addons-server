@@ -143,9 +143,3 @@ else:
     COMPAT = {}
     NIGHTLY_VERSION = '17.0'
     DEFAULT_MINVER = '13.0'
-
-
-# We need to import waffle here to avoid a circular import with jingo which
-# loads all INSTALLED_APPS looking for helpers.py files, but some of those apps
-# import jingo.
-import waffle
