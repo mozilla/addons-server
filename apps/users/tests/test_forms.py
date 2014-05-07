@@ -1,3 +1,4 @@
+import hashlib
 from datetime import datetime
 
 from django.contrib.auth.tokens import default_token_generator
@@ -90,7 +91,7 @@ class TestPasswordResetForm(UserFormBase):
 
     def test_request_fail(self):
         r = self.client.post('/en-US/firefox/users/pwreset',
-                            {'email': 'someemail@somedomain.com'})
+                             {'email': 'someemail@somedomain.com'})
 
         eq_(len(mail.outbox), 0)
         self.assertFormError(r, 'form', 'email',
@@ -101,7 +102,22 @@ class TestPasswordResetForm(UserFormBase):
 
     def test_request_success(self):
         self.client.post('/en-US/firefox/users/pwreset',
-                        {'email': self.user.email})
+                         {'email': self.user.email})
+
+        eq_(len(mail.outbox), 1)
+        assert mail.outbox[0].subject.find('Password reset') == 0
+        assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
+
+    def test_request_success_getpersona_password(self):
+        """Email is sent even if the user has no password and the profile has
+        an "unusable" password according to django's AbstractBaseUser."""
+        bytes_ = '\xb1\x98og\x88\x87\x08q'
+        md5 = hashlib.md5('password').hexdigest()
+        hsh = hashlib.sha512(bytes_ + md5).hexdigest()
+        self.user.password = 'sha512+MD5$%s$%s' % (bytes, hsh)
+        self.user.save()
+        self.client.post('/en-US/firefox/users/pwreset',
+                         {'email': self.user.email})
 
         eq_(len(mail.outbox), 1)
         assert mail.outbox[0].subject.find('Password reset') == 0

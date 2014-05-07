@@ -365,6 +365,14 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
             self.resetcode_expires = datetime.now()
         super(UserProfile, self).save(force_insert, force_update, using, **kwargs)
 
+    def has_usable_password(self):
+        """Override AbstractBaseUser.has_usable_password."""
+        # We also override the check_password method, and don't rely on
+        # settings.PASSWORD_HASHERS, and don't use "set_unusable_password", so
+        # we want to bypass most of AbstractBaseUser.has_usable_password
+        # checks.
+        return bool(self.password)  # Not None and not empty.
+
     def check_password(self, raw_password):
         if '$' not in self.password:
             valid = (get_hexdigest('md5', '', raw_password) == self.password)
