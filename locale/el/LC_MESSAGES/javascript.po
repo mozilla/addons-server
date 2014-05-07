@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:08-0700\n"
+"POT-Creation-Date: 2014-05-07 09:34-0700\n"
 "PO-Revision-Date: 2012-03-08 05:44+0200\n"
 "Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -66,7 +66,7 @@ msgstr[0] "&hellip;και {0} περισσότερο"
 msgstr[1] "&hellip;και {0} περισσότερα"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:162
+#: media/js/zamboni/devhub.js:166
 msgid "See full validation report"
 msgstr "Δείτε την αναλυτική αναφορά επικύρωσης"
 
@@ -121,7 +121,7 @@ msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Η κατάληξη της τυποποιημένης σας εφαρμογής θα πρέπει να είναι <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:173
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Η εφαρμογή σας απέτυχε στην αξιολόγηση με {0} σφάλμα."
@@ -175,17 +175,17 @@ msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Η εφαρμογή σας απέτυχε κατά την επικύρωση με {0} σφάλμα και {1} ειδοποίηση(εις)."
 msgstr[1] "Η εφαρμογή σας απέτυχε κατά την επικύρωση με {0} σφάλματα και {1} ειδοποίηση(εις)."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:187
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Η εφαρμογή σας πέρασε την αξιολόγηση χωρίς σφάλματα και με {0} ειδοποίηση"
 msgstr[1] "Η εφαρμογή σας πέρασε την αξιολόγηση χωρίς σφάλματα και με {0} ειδοποιήσεις"
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:192
 msgid "Your app passed validation with no errors or messages."
 msgstr "Η εφαρμογή σας πέρασε την αξιολόγηση χωρίς σφάλματα ή ειδοποιήσεις."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:501
 msgid "Changes Saved"
 msgstr "Οι αλλαγές αποθηκεύτηκαν"
 
@@ -197,19 +197,19 @@ msgstr "Εισάγετε τη διεύθυνση email ενός νέου μέλ�
 msgid "Refreshed"
 msgstr "Ανανεωμένο"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:664
 msgid "There was an error uploading your file."
 msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:939
 msgid "Learn more"
 msgstr "Μάθετε περισσότερα"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:943
 msgid "Example"
 msgstr "Παράδειγμα"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1299
 msgid "Image changes being processed"
 msgstr "Επεξεργάζονται οι αλλαγές εικόνων"
 
@@ -465,7 +465,7 @@ msgstr "Σημειώσεις για αξιολογητές"
 msgid "No version notes found"
 msgstr "Δεν βρέθηκαν σημειώσεις έκδοσης"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1452 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Επιλέξτε πρώτα εφαρμογή"
 
@@ -1320,39 +1320,39 @@ msgstr "Διακοπή παρακολούθησης"
 msgid "Install App"
 msgstr "Εγκατάσταση εφαρμογής"
 
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub.js:246
 msgid "Your browser does not support the video tag"
 msgstr "Ο περιηγητής σας δεν υποστηρίζει την οδηγία video."
 
-#: media/js/zamboni/devhub.js:513
+#: media/js/zamboni/devhub.js:517
 msgid "Enter a new author's email address"
 msgstr "Εισάγετε τη διεύθυνση νέου συντάκτη"
 
-#: media/js/zamboni/devhub.js:803
+#: media/js/zamboni/devhub.js:807
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} αρχείο"
 msgstr[1] "{files} αρχεία"
 
-#: media/js/zamboni/devhub.js:806
+#: media/js/zamboni/devhub.js:810
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} αξιολόγηση"
 msgstr[1] "{reviews} αξιολογήσεις"
 
-#: media/js/zamboni/devhub.js:1476
+#: media/js/zamboni/devhub.js:1480
 msgid "Starting tests..."
 msgstr "Έναρξη ελέγχων..."
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:1487
 msgid "Waiting for test results..."
 msgstr "Αναμονή αποτελεσμάτων ελέγχων..."
 
-#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1489 media/js/zamboni/devhub.js:1494
 msgid "Internal Server Error"
 msgstr "Εσωτερικό σφάλμα διακομιστή"
 
-#: media/js/zamboni/devhub.js:1525
+#: media/js/zamboni/devhub.js:1529
 msgid "Must be a valid e-mail address."
 msgstr "Η διεύθυνση email πρέπει να είναι έγκυρη."
 

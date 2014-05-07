@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:08-0700\n"
+"POT-Creation-Date: 2014-05-07 09:34-0700\n"
 "PO-Revision-Date: 2014-04-13 17:14+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -70,7 +70,7 @@ msgstr[1] "&hellip; a {0} ďalšie"
 msgstr[2] "&hellip; a {0} ďalších"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:162
+#: media/js/zamboni/devhub.js:166
 msgid "See full validation report"
 msgstr "Zobraziť celú správu o overení"
 
@@ -126,7 +126,7 @@ msgstr "Videá musia byť vo formáte WebM."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Balíček s aplikáciou musí mať koncovku <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:173
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Overenie vašej aplikácie zlyhalo s {0} chybou."
@@ -183,18 +183,18 @@ msgstr[0] "Overenie vašej aplikácie zlyhalo s {0} chybou a upozorneniami ({1})
 msgstr[1] "Overenie vašej aplikácie zlyhalo s {0} chybami a upozorneniami ({1})."
 msgstr[2] "Overenie vašej aplikácie zlyhalo s {0} chybami a upozorneniami ({1})."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:187
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozornením."
 msgstr[1] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozorneniami."
 msgstr[2] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozorneniami."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:192
 msgid "Your app passed validation with no errors or messages."
 msgstr "Overenie vašej aplikácie bolo úspešné bez chýb a upozornení."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:501
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
 
@@ -206,19 +206,19 @@ msgstr "Zadajte e-mailovú adresu nového člena tímu"
 msgid "Refreshed"
 msgstr "Obnovené"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:664
 msgid "There was an error uploading your file."
 msgstr "Pri odosielaní súboru sa vyskytla chyba."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:939
 msgid "Learn more"
 msgstr "Ďalšie informácie"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:943
 msgid "Example"
 msgstr "Príklad"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1299
 msgid "Image changes being processed"
 msgstr "Zmeny obrázkov sa práve spracovávajú"
 
@@ -478,7 +478,7 @@ msgstr "Poznámky ku kontrole"
 msgid "No version notes found"
 msgstr "Neboli nájdené poznámky k verzii"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1452 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Najskôr zvoľte aplikáciu"
 
@@ -1335,41 +1335,41 @@ msgstr "Zastaviť odber"
 msgid "Install App"
 msgstr "Inštalácia aplikácie"
 
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub.js:246
 msgid "Your browser does not support the video tag"
 msgstr "Váš prehliadač nepodporuje HTML značku video"
 
-#: media/js/zamboni/devhub.js:513
+#: media/js/zamboni/devhub.js:517
 msgid "Enter a new author's email address"
 msgstr "Zadajte e-mailovú adresu nového autora"
 
-#: media/js/zamboni/devhub.js:803
+#: media/js/zamboni/devhub.js:807
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} súbor"
 msgstr[1] "{files} súbory"
 msgstr[2] "{files} súborov"
 
-#: media/js/zamboni/devhub.js:806
+#: media/js/zamboni/devhub.js:810
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} recenzia"
 msgstr[1] "{reviews} recenzie"
 msgstr[2] "{reviews} recenzií"
 
-#: media/js/zamboni/devhub.js:1476
+#: media/js/zamboni/devhub.js:1480
 msgid "Starting tests..."
 msgstr "Spúšťajú sa testy..."
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:1487
 msgid "Waiting for test results..."
 msgstr "Čaká sa na výsledky testov..."
 
-#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1489 media/js/zamboni/devhub.js:1494
 msgid "Internal Server Error"
 msgstr "Vnútorná chyba servera"
 
-#: media/js/zamboni/devhub.js:1525
+#: media/js/zamboni/devhub.js:1529
 msgid "Must be a valid e-mail address."
 msgstr "Musí to byť platná e-mailová adresa."
 

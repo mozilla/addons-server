@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:08-0700\n"
+"POT-Creation-Date: 2014-05-07 09:34-0700\n"
 "PO-Revision-Date: 2014-02-26 19:33+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgstr[0] "&hellip; und {0} weiterer"
 msgstr[1] "&hellip; und {0} weitere"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:162
+#: media/js/zamboni/devhub.js:166
 msgid "See full validation report"
 msgstr "Vollständigen Überprüfungsbericht lesen"
 
@@ -122,7 +122,7 @@ msgstr "Videos müssen im WebM-Format sein."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Ihre gepackte App sollte auf <code>.zip</code> enden."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:173
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ihre App ist bei der Überprüfung mit {0} Fehler durchgefallen."
@@ -176,17 +176,17 @@ msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Ihre App ist mit {0} Fehler und {1} Nachricht(en) durch die Überprüfung gefallen."
 msgstr[1] "Ihre App ist mit {0} Fehlern und {1} Nachricht(en) durch die Überprüfung gefallen."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:187
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Hinweis bestanden."
 msgstr[1] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Hinweisen bestanden."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:192
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ihre App hat die Überprüfung mit null Fehlern und Hinweisen bestanden."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:501
 msgid "Changes Saved"
 msgstr "Änderungen gespeichert"
 
@@ -198,19 +198,19 @@ msgstr "Geben Sie die E-Mail-Adresse eines neuen Team-Mitglieds ein"
 msgid "Refreshed"
 msgstr "Aktualisiert"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:664
 msgid "There was an error uploading your file."
 msgstr "Beim Hochladen Ihrer Datei ist ein Fehler aufgetreten."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:939
 msgid "Learn more"
 msgstr "Erfahren Sie mehr"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:943
 msgid "Example"
 msgstr "Beispiel"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1299
 msgid "Image changes being processed"
 msgstr "Grafikänderungen werden angewendet"
 
@@ -466,7 +466,7 @@ msgstr "Hinweise für Überprüfer"
 msgid "No version notes found"
 msgstr "Keine Kommentare zur Version gefunden"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1452 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Wählen Sie zuerst eine Anwendung aus"
 
@@ -1321,39 +1321,39 @@ msgstr "Nicht mehr folgen"
 msgid "Install App"
 msgstr "App installieren"
 
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub.js:246
 msgid "Your browser does not support the video tag"
 msgstr "Ihr Browser unterstützt den Video-Tag nicht"
 
-#: media/js/zamboni/devhub.js:513
+#: media/js/zamboni/devhub.js:517
 msgid "Enter a new author's email address"
 msgstr "Geben Sie eine neue E-Mail-Adresse des Autors ein"
 
-#: media/js/zamboni/devhub.js:803
+#: media/js/zamboni/devhub.js:807
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} Datei"
 msgstr[1] "{files} Dateien"
 
-#: media/js/zamboni/devhub.js:806
+#: media/js/zamboni/devhub.js:810
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} Bewertung"
 msgstr[1] "{reviews} Bewertungen"
 
-#: media/js/zamboni/devhub.js:1476
+#: media/js/zamboni/devhub.js:1480
 msgid "Starting tests..."
 msgstr "Tests werden gestartet …"
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:1487
 msgid "Waiting for test results..."
 msgstr "Warten auf Testergebnisse …"
 
-#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1489 media/js/zamboni/devhub.js:1494
 msgid "Internal Server Error"
 msgstr "Interner Server-Fehler"
 
-#: media/js/zamboni/devhub.js:1525
+#: media/js/zamboni/devhub.js:1529
 msgid "Must be a valid e-mail address."
 msgstr "Muss eine gültige E-Mail-Adresse sein."
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:08-0700\n"
+"POT-Creation-Date: 2014-05-07 09:34-0700\n"
 "PO-Revision-Date: 2013-12-07 19:48-5000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -64,7 +64,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "... その他 {0} 個"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:162
+#: media/js/zamboni/devhub.js:166
 msgid "See full validation report"
 msgstr "検証レポートの詳細を見る"
 
@@ -118,7 +118,7 @@ msgstr "動画は WebM 形式でなければなりません。"
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "パッケージ型アプリのファイル拡張子は <code>zip</code> でなければなりません。"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:173
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "アプリは検証に失敗しました。{0} 個のエラーがあります。"
@@ -169,16 +169,16 @@ msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "アプリは検証に失敗しました。{0} 個のエラーと {1} 個のメッセージがあります。"
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:187
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "アプリは検証に合格しました。エラーなし、{0} 個のメッセージがあります。"
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:192
 msgid "Your app passed validation with no errors or messages."
 msgstr "アプリは検証に合格しました。エラーやメッセージはありません。"
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:497
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:501
 msgid "Changes Saved"
 msgstr "変更が保存されました"
 
@@ -190,19 +190,19 @@ msgstr "新しいチームメンバーのメールアドレスを入力してく
 msgid "Refreshed"
 msgstr "更新されました"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:660
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:664
 msgid "There was an error uploading your file."
 msgstr "ファイルのアップロード中にエラーが発生しました。"
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:935
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:939
 msgid "Learn more"
 msgstr "詳細"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:939
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:943
 msgid "Example"
 msgstr "例"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1295
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1299
 msgid "Image changes being processed"
 msgstr "画像の変換処理を行っています"
 
@@ -454,7 +454,7 @@ msgstr "審査担当者へのメモ"
 msgid "No version notes found"
 msgstr "リリースノートはありません"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1448 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1452 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "まずアプリケーションを選択してください"
 
@@ -1307,37 +1307,37 @@ msgstr "フォローをやめる"
 msgid "Install App"
 msgstr "アプリをインストール"
 
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub.js:246
 msgid "Your browser does not support the video tag"
 msgstr "お使いのブラウザは video タグに対応していません"
 
-#: media/js/zamboni/devhub.js:513
+#: media/js/zamboni/devhub.js:517
 msgid "Enter a new author's email address"
 msgstr "新しい作者のメールアドレスを入力してください"
 
-#: media/js/zamboni/devhub.js:803
+#: media/js/zamboni/devhub.js:807
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個のファイル"
 
-#: media/js/zamboni/devhub.js:806
+#: media/js/zamboni/devhub.js:810
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} 件のレビュー"
 
-#: media/js/zamboni/devhub.js:1476
+#: media/js/zamboni/devhub.js:1480
 msgid "Starting tests..."
 msgstr "テストを開始します..."
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:1487
 msgid "Waiting for test results..."
 msgstr "テスト結果が出るまで待機しています..."
 
-#: media/js/zamboni/devhub.js:1485 media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1489 media/js/zamboni/devhub.js:1494
 msgid "Internal Server Error"
 msgstr "内部サーバエラー"
 
-#: media/js/zamboni/devhub.js:1525
+#: media/js/zamboni/devhub.js:1529
 msgid "Must be a valid e-mail address."
 msgstr "正しいメールアドレスを入力してください。"
 

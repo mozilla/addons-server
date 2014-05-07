@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:08-0700\n"
+"POT-Creation-Date: 2014-05-07 09:34-0700\n"
 "PO-Revision-Date: 2014-05-01 18:11+0000\n"
 "Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -155,7 +155,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Пользователей всегда будут просить в менеджере дополнений (Firefox 4 и выше)"
 
 # Column name in a table.
-#: apps/addons/models.py:1870
+#: apps/addons/models.py:1881
 msgid "Listed"
 msgstr "В списке"
 
@@ -276,7 +276,7 @@ msgstr "<strong>Более 5000 бесплатных дополнений</stron
 #: apps/browse/templates/browse/personas/grid.html:7 apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:166 apps/devhub/templates/devhub/nav.html:45
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7 apps/devhub/templates/devhub/docs/themes.html:28
-#: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:97 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
+#: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
 #: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Темы"
@@ -740,7 +740,7 @@ msgstr "Лицензия"
 msgid "Awaiting Review"
 msgstr "Ожидает проверки"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:54
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:50
 msgid "Rejected"
 msgstr "Отклонено"
 
@@ -960,7 +960,7 @@ msgstr "Чем следует руководствоваться при напи
 msgid "Detailed Review"
 msgstr "Подробный отзыв"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:768 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:764 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Отзывы"
@@ -1422,7 +1422,7 @@ msgstr "Представить новую тему"
 msgid "Developer Hub"
 msgstr "Центр разработчика"
 
-#: apps/amo/context_processors.py:100 apps/editors/helpers.py:74 apps/editors/helpers.py:94 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:100 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Инструменты редактора"
 
@@ -1604,7 +1604,7 @@ msgstr "Запрошена суперрецензия"
 msgid "Comment on {addon} {version}."
 msgstr "Коментарий о {addon} {version}."
 
-#: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:416
+#: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:412
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Комментарий"
@@ -1989,7 +1989,7 @@ msgid "Collections I'm Following"
 msgstr "Подборки, за которыми я слежу"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:458
+#: apps/users/models.py:444
 msgid "My Favorite Add-ons"
 msgstr "Мои любимые дополнения"
 
@@ -2185,7 +2185,7 @@ msgstr "Приватность:"
 msgid "Icon"
 msgstr "Значок"
 
-#: apps/bandwagon/forms.py:152 apps/users/forms.py:340
+#: apps/bandwagon/forms.py:152 apps/users/forms.py:393
 msgid "No links are allowed."
 msgstr "Ссылки не разрешены."
 
@@ -2197,7 +2197,7 @@ msgstr "Эта ссылка уже используется другой под�
 msgid "Icons must be either PNG or JPG."
 msgstr "Значки могут быть либо в PNG либо в JPG."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1104 apps/users/forms.py:331
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1104 apps/users/forms.py:384
 msgid "Please use images smaller than %dMB."
 msgstr "Пожалуйста, используйте изображения менее %dМБ."
 
@@ -2715,7 +2715,7 @@ msgstr "Введите имя включаемого дополнения"
 msgid "Add to Collection"
 msgstr "Добавить в подборку"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:783 apps/editors/helpers.py:803
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:779 apps/editors/helpers.py:799
 msgid "Pending"
 msgstr "В ожидании"
 
@@ -3338,7 +3338,7 @@ msgstr "Предварительно проверено и ожидает пол
 msgid "Pending a review choice"
 msgstr "Ожидает выбора типа проверки"
 
-#: apps/constants/base.py:37 apps/editors/helpers.py:771 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:37 apps/editors/helpers.py:767 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Удалено"
 
@@ -3574,7 +3574,7 @@ msgstr "Флаг"
 msgid "Duplicate"
 msgstr "Дубликат"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:407 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92
+#: apps/constants/editors.py:17 apps/editors/helpers.py:403 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92
 msgid "Reject"
 msgstr "Отклонить"
 
@@ -4086,7 +4086,7 @@ msgstr "В процессе представления произошла оши
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Проверки создается слишком много ошибок и предупреждений, %s сообщения, были усечены. После устранения видимых сообщений, вы сможете увидеть другие."
 
-#: apps/devhub/views.py:1088 apps/users/forms.py:326
+#: apps/devhub/views.py:1088 apps/users/forms.py:379
 msgid "Images must be either PNG or JPG."
 msgstr "Изображения могут быть либо в PNG либо в JPG."
 
@@ -4788,7 +4788,7 @@ msgstr "Локаль по умолчанию"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "Информация о вашем дополнении отображается на этом языке, если вы не замените её переводом на другой язык."
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:200 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:253 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Домашняя страница"
@@ -7945,7 +7945,7 @@ msgstr ""
 msgid "Created:"
 msgstr ""
 
-#. {0} is a date.
+#. {0} is a date. dennis-ignore: E201
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
 msgstr ""
@@ -9042,7 +9042,7 @@ msgstr "Дней с момента представления"
 msgid "Add-on Types"
 msgstr "Типы дополнений"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:201
+#: apps/editors/forms.py:118 apps/editors/helpers.py:197
 msgid "Platforms"
 msgstr "Платформы"
 
@@ -9102,131 +9102,131 @@ msgstr "Кто изучает эту тему."
 msgid "app, reviewer, or comment"
 msgstr "дополнение, оставивший отзыв или комментарий"
 
-#: apps/editors/helpers.py:47
+#: apps/editors/helpers.py:43
 msgid "Pending Preliminary Review"
 msgstr "Ожидает предварительного одобрения"
 
-#: apps/editors/helpers.py:51
+#: apps/editors/helpers.py:47
 msgid "Pending Full Review"
 msgstr "Ожидает полного одобрения"
 
-#: apps/editors/helpers.py:58
+#: apps/editors/helpers.py:54
 msgid "Rejected or Unreviewed"
 msgstr "Отклонено или не проверено"
 
-#: apps/editors/helpers.py:112
+#: apps/editors/helpers.py:108
 msgid "Queue"
 msgstr "Очередь"
 
-#: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:51
+#: apps/editors/helpers.py:109 apps/editors/templates/editors/base.html:51
 msgid "Pending Updates"
 msgstr "Ждущие обновления"
 
-#: apps/editors/helpers.py:114 apps/editors/templates/editors/base.html:49
+#: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:49
 msgid "Full Reviews"
 msgstr "Полные проверки"
 
-#: apps/editors/helpers.py:115 apps/editors/templates/editors/base.html:53
+#: apps/editors/helpers.py:111 apps/editors/templates/editors/base.html:53
 msgid "Preliminary Reviews"
 msgstr "Предварительные проверки"
 
-#: apps/editors/helpers.py:116 apps/editors/templates/editors/base.html:55
+#: apps/editors/helpers.py:112 apps/editors/templates/editors/base.html:55
 msgid "Moderated Reviews"
 msgstr "Модерируемые проверки"
 
-#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:47
+#: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:47
 msgid "Fast Track"
 msgstr "Быстрое отслеживание"
 
-#: apps/editors/helpers.py:119
+#: apps/editors/helpers.py:115
 msgid "Pending Themes"
 msgstr "Ожидающие темы"
 
-#: apps/editors/helpers.py:120 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:116 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "Отмеченные темы"
 
-#: apps/editors/helpers.py:121
+#: apps/editors/helpers.py:117
 msgid "Update Themes"
 msgstr "Обновить темы"
 
-#: apps/editors/helpers.py:147
+#: apps/editors/helpers.py:143
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "Быстрое отслеживание ({0})"
 msgstr[1] "Быстрое отслеживание ({0})"
 msgstr[2] "Быстрое отслеживание ({0})"
 
-#: apps/editors/helpers.py:151
+#: apps/editors/helpers.py:147
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Полная проверка ({0})"
 msgstr[1] "Полные проверки ({0})"
 msgstr[2] "Полные проверки ({0})"
 
-#: apps/editors/helpers.py:155
+#: apps/editors/helpers.py:151
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "Ожидающее обновление ({0})"
 msgstr[1] "Ожидающие обновления ({0})"
 msgstr[2] "Ожидающих обновлений ({0})"
 
-#: apps/editors/helpers.py:159
+#: apps/editors/helpers.py:155
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "Предварительная проверка ({0})"
 msgstr[1] "Предварительные проверки ({0})"
 msgstr[2] "Предварительные проверки ({0})"
 
-#: apps/editors/helpers.py:164
+#: apps/editors/helpers.py:160
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Модерируемая проверка ({0})"
 msgstr[1] "Модерируемые проверки ({0})"
 msgstr[2] "Модерируемые проверки ({0})"
 
-#: apps/editors/helpers.py:195
+#: apps/editors/helpers.py:191
 msgid "Addon"
 msgstr "Дополнение"
 
-#: apps/editors/helpers.py:196 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:192 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "Тип"
 
-#: apps/editors/helpers.py:197
+#: apps/editors/helpers.py:193
 msgid "Waiting Time"
 msgstr "Время ожидания"
 
-#: apps/editors/helpers.py:198 apps/editors/templates/editors/review.html:278
+#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:278
 msgid "Flags"
 msgstr "Флаги"
 
-#: apps/editors/helpers.py:199
+#: apps/editors/helpers.py:195
 msgid "Applications"
 msgstr "Приложения"
 
-#: apps/editors/helpers.py:204
+#: apps/editors/helpers.py:200
 msgid "Additional"
 msgstr "Дополнительно"
 
-#: apps/editors/helpers.py:221
+#: apps/editors/helpers.py:217
 msgid "Site Specific"
 msgstr "Специфичные для сайта"
 
-#: apps/editors/helpers.py:223
+#: apps/editors/helpers.py:219
 msgid "Requires External Software"
 msgstr "Требует стороннего ПО"
 
-#: apps/editors/helpers.py:225
+#: apps/editors/helpers.py:221
 msgid "Binary Components"
 msgstr "Бинарные компоненты"
 
-#: apps/editors/helpers.py:249
+#: apps/editors/helpers.py:245
 msgid "moments ago"
 msgstr "мгновения назад "
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:252
+#: apps/editors/helpers.py:248
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} минута"
@@ -9234,7 +9234,7 @@ msgstr[1] "{0} минуты"
 msgstr[2] "{0} минут"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:256
+#: apps/editors/helpers.py:252
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} час"
@@ -9242,38 +9242,38 @@ msgstr[1] "{0} часа"
 msgstr[2] "{0} часов"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:260
+#: apps/editors/helpers.py:256
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} день"
 msgstr[1] "{0} дня"
 msgstr[2] "{0} дней"
 
-#: apps/editors/helpers.py:401
+#: apps/editors/helpers.py:397
 msgid "Push to public"
 msgstr "Поместить в общий доступ"
 
-#: apps/editors/helpers.py:410
+#: apps/editors/helpers.py:406
 msgid "Request more information"
 msgstr "Запросить дополнительную информацию"
 
-#: apps/editors/helpers.py:413
+#: apps/editors/helpers.py:409
 msgid "Request super-review"
 msgstr "Запросить суперрецензию"
 
-#: apps/editors/helpers.py:424
+#: apps/editors/helpers.py:420
 msgid "Grant preliminary review"
 msgstr "Дать предварительное одобрение"
 
-#: apps/editors/helpers.py:425
+#: apps/editors/helpers.py:421
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "Это отметит файлы как предварительно проверенные."
 
-#: apps/editors/helpers.py:427
+#: apps/editors/helpers.py:423
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "Используйте эту форму, чтобы запросить у авторов более подробную информацию. Они получат письмо по эл. почте и смогут тут ответить. Когда они ответят, вас уведомят по эл. почте."
 
-#: apps/editors/helpers.py:431
+#: apps/editors/helpers.py:427
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -9281,75 +9281,75 @@ msgstr ""
 "Если у вас есть сомнения насчет безопасности этого дополнения, проблем с авторскими правами или других проблем, требующих изучения администратора, введите ваши комментарии в расположенное ниже "
 "поле. Они будут отосланы администраторам, а не автору."
 
-#: apps/editors/helpers.py:437
+#: apps/editors/helpers.py:433
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Это отклонит дополнение и удалить его из очереди проверки."
 
-#: apps/editors/helpers.py:439
+#: apps/editors/helpers.py:435
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "Прокомментируйте эту версию. Автор не сможет это увидеть."
 
-#: apps/editors/helpers.py:443
+#: apps/editors/helpers.py:439
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Это отклонит файлы и удалить их из очереди проверки."
 
-#: apps/editors/helpers.py:447
+#: apps/editors/helpers.py:443
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Это отметит дополнение как предварительно проверенное. Будущие версии будут подвергаться предварительной проверке."
 
-#: apps/editors/helpers.py:452
+#: apps/editors/helpers.py:448
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Это отметит файлы как предварительно проверенные. Будущие версии будут подвергаться предварительной проверке."
 
-#: apps/editors/helpers.py:457
+#: apps/editors/helpers.py:453
 msgid "Retain preliminary review"
 msgstr "Оставить предварительное одобрение"
 
-#: apps/editors/helpers.py:458
+#: apps/editors/helpers.py:454
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Это оставит дополнение в статусе предварительно проверенного. Будущие версии будут подвергаться предварительной проверке."
 
-#: apps/editors/helpers.py:463
+#: apps/editors/helpers.py:459
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Это одобрит размещённую в «песочнице» версию публичного дополнения, которая появится в общем доступе."
 
-#: apps/editors/helpers.py:466
+#: apps/editors/helpers.py:462
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "Это отвергнет версию публичного дополнения и удалит его из очереди."
 
-#: apps/editors/helpers.py:469
+#: apps/editors/helpers.py:465
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "Это пометит дополнение и его самую последнюю версию и файлы как общедоступные. Будущие версии будут попадать в «песочницу», пока они не будут проверены редактором."
 
-#: apps/editors/helpers.py:537
+#: apps/editors/helpers.py:533
 msgid "add-on"
 msgstr "дополнение"
 
-#: apps/editors/helpers.py:787 apps/editors/helpers.py:807
+#: apps/editors/helpers.py:783 apps/editors/helpers.py:803
 msgid "Flagged"
 msgstr "Отмечено"
 
-#: apps/editors/helpers.py:791 apps/editors/helpers.py:810
+#: apps/editors/helpers.py:787 apps/editors/helpers.py:806
 msgid "Updates"
 msgstr "Обновления"
 
-#: apps/editors/models.py:168
+#: apps/editors/models.py:173
 msgid "Admin Review"
 msgstr "Рецензия админа"
 
-#: apps/editors/models.py:169
+#: apps/editors/models.py:174
 msgid "Jetpack Add-on"
 msgstr "Jetpack-дополнение"
 
-#: apps/editors/models.py:171
+#: apps/editors/models.py:176
 msgid "Restartless Add-on"
 msgstr "Дополнение без перезапуска"
 
-#: apps/editors/models.py:172
+#: apps/editors/models.py:177
 msgid "More Information Requested"
 msgstr "Запрошено больше информации"
 
-#: apps/editors/models.py:173
+#: apps/editors/models.py:178
 msgid "Contains Editor Comment"
 msgstr "Содержит комментарий редактора"
 
@@ -9423,14 +9423,14 @@ msgstr "необходимо больше информации"
 msgid "needs super review"
 msgstr "необходимо super review"
 
-#: apps/editors/views_themes.py:328
+#: apps/editors/views_themes.py:327
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: apps/editors/views_themes.py:343
+#: apps/editors/views_themes.py:342
 #, fuzzy
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr "Ваша тема замки успешно были освобождены. Другие отзывы теперь может рассмотреть эти выпущенные темы. Возможно, вам придется обновить страницу и увидеть изменения, отраженные в таблице ниже."
@@ -12813,78 +12813,82 @@ msgstr "Вы уверены что вы хотите удалить все <b>{0
 msgid "Delete Locale"
 msgstr "Удалить локаль"
 
-#: apps/users/forms.py:30
+#: apps/users/forms.py:31
 msgid "Must be %s characters or more."
 msgstr "Должно быть не менее %s символов."
 
-#: apps/users/forms.py:47
+#: apps/users/forms.py:48
 msgid "Letters and numbers required."
 msgstr "Требуются буквы и цифры."
 
-#: apps/users/forms.py:50
+#: apps/users/forms.py:51
 msgid "That password is not allowed."
 msgstr "Этот пароль не разрешён."
 
-#: apps/users/forms.py:78
+#: apps/users/forms.py:79
 msgid ""
 "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
 msgstr ""
 "На запрошенную учетную запись было отправлено электронное письмо с дополнительной информацией. Если вы не получили письмо, то пожалуйста, подтвердите, что вы ввели тот же адрес электронной почты, "
 "который был указан при регистрации."
 
-#: apps/users/forms.py:106 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:86
+msgid "We can't reset this account's password, please contact the support."
+msgstr ""
+
+#: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "Новый пароль"
 
-#: apps/users/forms.py:145 apps/users/forms.py:311
+#: apps/users/forms.py:198 apps/users/forms.py:364
 msgid "Wrong password entered!"
 msgstr "Введён неверный пароль!"
 
-#: apps/users/forms.py:164
+#: apps/users/forms.py:217
 msgid "Usernames cannot contain only digits."
 msgstr "Имена пользователей не могут содержать только цифры."
 
-#: apps/users/forms.py:166
+#: apps/users/forms.py:219
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Введите корректное имя пользователя, состоящее из букв, цифр, подчеркиваний или дефисов."
 
-#: apps/users/forms.py:169
+#: apps/users/forms.py:222
 msgid "This username cannot be used."
 msgstr "Это имя пользователя не может быть использовано."
 
-#: apps/users/forms.py:175
+#: apps/users/forms.py:228
 msgid "This username is already in use."
 msgstr "Это имя пользователя уже используется."
 
-#: apps/users/forms.py:186 apps/users/templates/users/edit.html:93
+#: apps/users/forms.py:239 apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "Отображаемое имя"
 
-#: apps/users/forms.py:188 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:241 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Местонахождение"
 
-#: apps/users/forms.py:190 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:243 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Род деятельности"
 
-#: apps/users/forms.py:214
+#: apps/users/forms.py:267
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Этот URL имеет неверный формат. Правильные URL имеют вид http://example.com/my_page."
 
-#: apps/users/forms.py:222
+#: apps/users/forms.py:275
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Пожалуйста, используйте адрес электронной почты от другого провайдера, чтобы завершить вашу регистрацию."
 
-#: apps/users/forms.py:238
+#: apps/users/forms.py:291
 msgid "The passwords did not match."
 msgstr "Пароли не совпадают."
 
-#: apps/users/forms.py:257 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:310 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Фото профиля"
 
-#: apps/users/forms.py:396
+#: apps/users/forms.py:449
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Для анонимизации, введите причину изменения, но не изменяйте никакое другое поле."
 
@@ -12893,31 +12897,31 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr "другие"
 
-#: apps/users/models.py:65
+#: apps/users/models.py:66
 msgid "algorithm"
 msgstr "алгоритм"
 
-#: apps/users/models.py:66
+#: apps/users/models.py:67
 msgid "salt"
 msgstr "соль"
 
-#: apps/users/models.py:67
+#: apps/users/models.py:68
 msgid "hash"
 msgstr "хэш"
 
-#: apps/users/models.py:125
+#: apps/users/models.py:126
 msgid "No user with that email."
 msgstr "Нет пользователя с таким почтовым адресом."
 
-#: apps/users/models.py:323
+#: apps/users/models.py:346
 msgid "Your account has been restricted"
 msgstr "Ваша учётная запись была ограничена"
 
-#: apps/users/models.py:395
+#: apps/users/models.py:416
 msgid "Please confirm your email address"
 msgstr "Пожалуйста, подтвердите свой адрес электронной почты"
 
-#: apps/users/models.py:453
+#: apps/users/models.py:439
 msgid "My Mobile Add-ons"
 msgstr "Мои мобильные дополнения"
 
@@ -13011,11 +13015,11 @@ msgid "Successfully verified!"
 msgstr "Проверка успешно завершена!"
 
 # %1 is the user's email address
-#: apps/users/views.py:132 apps/users/views.py:662
+#: apps/users/views.py:132 apps/users/views.py:648
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Для подтверждения создания учётной записи по адресу {0} было отправлено письмо. Перед тем как войти, вы должны активировать учётную запись, щёлкнув по ссылке, находящейся в этом письме."
 
-#: apps/users/views.py:136 apps/users/views.py:666
+#: apps/users/views.py:136 apps/users/views.py:652
 msgid "Confirmation Email Sent"
 msgstr "Отправлено письмо для подтверждения"
 
@@ -13067,20 +13071,20 @@ msgstr "С этого момента используйте для входа {0
 msgid "Persona authentication failure."
 msgstr "Ошибка аутентификации в Persona."
 
-#: apps/users/views.py:350
+#: apps/users/views.py:345
 #, fuzzy
 msgid "Please use the verified email for this account."
 msgstr "Пожалуйста, используйте адрес электронной почты для этой учетной записи."
 
-#: apps/users/views.py:468
+#: apps/users/views.py:456
 msgid "Wrong email address or password!"
 msgstr "Неверный почтовый адрес или пароль!"
 
-#: apps/users/views.py:480
+#: apps/users/views.py:468
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "Ссылка для активации вашей учётной записи была отправлена по почте на ваш адрес {0}. Вы должны щёлкнуть по ней перед тем, как сможете войти на сайт."
 
-#: apps/users/views.py:485
+#: apps/users/views.py:473
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -13088,35 +13092,35 @@ msgstr ""
 "Если вы не получили письмо с подтверждением, убедитесь, что ваша почтовая служба не пометила его как \"нежелательная почта\" или \"спам\". Если нужно, мы можем <a href=\"%s\">повторно послать "
 "сообщение с подтверждением</a> на ваш адрес эл. почты, упомянутый выше."
 
-#: apps/users/views.py:490
+#: apps/users/views.py:478
 msgid "Activation Email Sent"
 msgstr "Отправлено письмо для активации"
 
-#: apps/users/views.py:491
+#: apps/users/views.py:479
 msgid "Having Trouble?"
 msgstr "Есть проблемы?"
 
-#: apps/users/views.py:636
+#: apps/users/views.py:623
 msgid "You are already logged in to an account."
 msgstr "Вы уже вошли под этой учётной записью."
 
-#: apps/users/views.py:658
+#: apps/users/views.py:644
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Поздравляем! Ваша учётная запись успешно создана."
 
-#: apps/users/views.py:682
+#: apps/users/views.py:668
 msgid "You already have an account."
 msgstr "У вас уже есть учётная запись."
 
-#: apps/users/views.py:692
+#: apps/users/views.py:678
 msgid "There are errors in this form"
 msgstr "В этой форме имеются ошибки "
 
-#: apps/users/views.py:693
+#: apps/users/views.py:679
 msgid "Please correct them and resubmit."
 msgstr "Пожалуйста, исправьте их и отправьте снова."
 
-#: apps/users/views.py:708
+#: apps/users/views.py:694
 msgid "User reported."
 msgstr "О пользователе сообщено."
 
@@ -13313,7 +13317,7 @@ msgstr "Адрес эл. почты"
 msgid "Remember me on this device"
 msgstr "Запомнить меня на этом устройстве"
 
-#: apps/users/templates/users/login_form.html:55 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
+#: apps/users/templates/users/login_form.html:54 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
 msgid "Log in"
 msgstr "Войти"
 
@@ -13598,7 +13602,7 @@ msgstr "Дополнение содержит бинарные компонен�
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Дополнение выбрала в строгой совместимости проверки."
 
-#: apps/versions/models.py:608
+#: apps/versions/models.py:614
 msgid "{app} {min} and later"
 msgstr "{app} {min} и выше"
 

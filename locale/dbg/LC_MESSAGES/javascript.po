@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:08-0700\n"
+"POT-Creation-Date: 2014-05-07 09:34-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Translate Toolkit 1.11.0-rc1\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -77,7 +77,7 @@ msgstr[1] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 #: media/js/common/upload-packaged-app.js:197
 #: media/js/common/upload-packaged-app.js:323
 #: media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:162
+#: media/js/zamboni/devhub.js:166
 msgid "See full validation report"
 msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
 
@@ -139,7 +139,7 @@ msgstr "Ẏǿŭř ƥȧƈķȧɠḗḓ ȧƥƥ şħǿŭŀḓ ḗƞḓ ẇīŧħ <co
 
 #: media/js/common/upload-packaged-app.js:169
 #: media/js/devreg/devhub.js:181
-#: media/js/zamboni/devhub.js:169
+#: media/js/zamboni/devhub.js:173
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿř."
@@ -198,19 +198,19 @@ msgstr[0] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} 
 msgstr[1] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿřş ȧƞḓ {1} ḿḗşşȧɠḗ(ş)."
 
 #: media/js/devreg/devhub.js:200
-#: media/js/zamboni/devhub.js:183
+#: media/js/zamboni/devhub.js:187
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗ."
 msgstr[1] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗş."
 
 #: media/js/devreg/devhub.js:205
-#: media/js/zamboni/devhub.js:188
+#: media/js/zamboni/devhub.js:192
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ǿř ḿḗşşȧɠḗş."
 
 #: media/js/devreg/devhub.js:419
-#: media/js/zamboni/devhub.js:497
+#: media/js/zamboni/devhub.js:501
 msgid "Changes Saved"
 msgstr "Ƈħȧƞɠḗş Şȧṽḗḓ"
 
@@ -223,22 +223,22 @@ msgid "Refreshed"
 msgstr "Řḗƒřḗşħḗḓ"
 
 #: media/js/devreg/devhub.js:616
-#: media/js/zamboni/devhub.js:660
+#: media/js/zamboni/devhub.js:664
 msgid "There was an error uploading your file."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
 
 #: media/js/devreg/devhub.js:886
-#: media/js/zamboni/devhub.js:935
+#: media/js/zamboni/devhub.js:939
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
 
 #: media/js/devreg/devhub.js:890
-#: media/js/zamboni/devhub.js:939
+#: media/js/zamboni/devhub.js:943
 msgid "Example"
 msgstr "Ḗẋȧḿƥŀḗ"
 
 #: media/js/devreg/devhub.js:1192
-#: media/js/zamboni/devhub.js:1295
+#: media/js/zamboni/devhub.js:1299
 msgid "Image changes being processed"
 msgstr "Īḿȧɠḗ ƈħȧƞɠḗş ƀḗīƞɠ ƥřǿƈḗşşḗḓ"
 
@@ -372,14 +372,14 @@ msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:24
 msgid ""
-"Warning: deleting payment account \"{0}\" will move that associated app to an "
-"incomplete status and it will no longer be available for sale:"
+"Warning: deleting payment account \"{0}\" will move that associated app to "
+"an incomplete status and it will no longer be available for sale:"
 msgid_plural ""
 "Warning: deleting payment account \"{0}\" will move those associated apps to "
 "an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
-"Ẇȧřƞīƞɠ: ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ ḿǿṽḗ ŧħȧŧ ȧşşǿƈīȧŧḗḓ ȧƥƥ ŧǿ ȧƞ "
-"īƞƈǿḿƥŀḗŧḗ şŧȧŧŭş ȧƞḓ īŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ:"
+"Ẇȧřƞīƞɠ: ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ ḿǿṽḗ ŧħȧŧ ȧşşǿƈīȧŧḗḓ ȧƥƥ ŧǿ "
+"ȧƞ īƞƈǿḿƥŀḗŧḗ şŧȧŧŭş ȧƞḓ īŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ:"
 msgstr[1] ""
 "Ẇȧřƞīƞɠ: ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ ḿǿṽḗ ŧħǿşḗ ȧşşǿƈīȧŧḗḓ ȧƥƥş ŧǿ "
 "ȧƞ īƞƈǿḿƥŀḗŧḗ şŧȧŧŭş ȧƞḓ ŧħḗẏ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ:"
@@ -549,7 +549,7 @@ msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
 
 #: media/js/devreg/reviewers/editors.js:315
 #: media/js/zamboni/admin_validation.js:24
-#: media/js/zamboni/devhub.js:1448
+#: media/js/zamboni/devhub.js:1452
 #: media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
@@ -1460,40 +1460,40 @@ msgstr "Şŧǿƥ ƒǿŀŀǿẇīƞɠ"
 msgid "Install App"
 msgstr "Īƞşŧȧŀŀ Ȧƥƥ"
 
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub.js:246
 msgid "Your browser does not support the video tag"
 msgstr "Ẏǿŭř ƀřǿẇşḗř ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ŧħḗ ṽīḓḗǿ ŧȧɠ"
 
-#: media/js/zamboni/devhub.js:513
+#: media/js/zamboni/devhub.js:517
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: media/js/zamboni/devhub.js:803
+#: media/js/zamboni/devhub.js:807
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{ƒīŀḗş} ƒīŀḗ"
 msgstr[1] "{ƒīŀḗş} ƒīŀḗş"
 
-#: media/js/zamboni/devhub.js:806
+#: media/js/zamboni/devhub.js:810
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{řḗṽīḗẇş} řḗṽīḗẇ"
 msgstr[1] "{řḗṽīḗẇş} řḗṽīḗẇş"
 
-#: media/js/zamboni/devhub.js:1476
+#: media/js/zamboni/devhub.js:1480
 msgid "Starting tests..."
 msgstr "Şŧȧřŧīƞɠ ŧḗşŧş..."
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:1487
 msgid "Waiting for test results..."
 msgstr "Ẇȧīŧīƞɠ ƒǿř ŧḗşŧ řḗşŭŀŧş..."
 
-#: media/js/zamboni/devhub.js:1485
-#: media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1489
+#: media/js/zamboni/devhub.js:1494
 msgid "Internal Server Error"
 msgstr "Īƞŧḗřƞȧŀ Şḗřṽḗř Ḗřřǿř"
 
-#: media/js/zamboni/devhub.js:1525
+#: media/js/zamboni/devhub.js:1529
 msgid "Must be a valid e-mail address."
 msgstr "Ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ḗ-ḿȧīŀ ȧḓḓřḗşş."
 

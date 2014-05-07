@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:08-0700\n"
+"POT-Creation-Date: 2014-05-07 09:34-0700\n"
 "PO-Revision-Date: 2014-04-10 17:37+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -138,7 +138,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "在附加元件管理員中詢問使用者(包含 Firefox 4 或更新的版本)"
 
 # Column name in a table.
-#: apps/addons/models.py:1870
+#: apps/addons/models.py:1881
 msgid "Listed"
 msgstr "顯示"
 
@@ -253,7 +253,7 @@ msgstr "<strong>超過五千個免費的小工具</strong> 讓您自訂並擴充
 #: apps/browse/templates/browse/personas/grid.html:7 apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:166 apps/devhub/templates/devhub/nav.html:45
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7 apps/devhub/templates/devhub/docs/themes.html:28
-#: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:97 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
+#: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
 #: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "佈景主題"
@@ -701,7 +701,7 @@ msgstr "授權"
 msgid "Awaiting Review"
 msgstr "等待審查"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:54
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:50
 msgid "Rejected"
 msgstr "已被退回"
 
@@ -914,7 +914,7 @@ msgstr "審查指南"
 msgid "Detailed Review"
 msgstr "填寫詳細評論"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:768 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:764 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "評論"
@@ -1362,7 +1362,7 @@ msgstr "提交一個新的佈景主題"
 msgid "Developer Hub"
 msgstr "開發者交流中心"
 
-#: apps/amo/context_processors.py:100 apps/editors/helpers.py:74 apps/editors/helpers.py:94 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:100 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "審查者工具"
 
@@ -1547,7 +1547,7 @@ msgstr "已要求超級審核者進行審核"
 msgid "Comment on {addon} {version}."
 msgstr "在 {addon} {version} 上的意見。"
 
-#: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:416
+#: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:412
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "意見"
@@ -1929,7 +1929,7 @@ msgid "Collections I'm Following"
 msgstr "我訂閱的收藏集"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:458
+#: apps/users/models.py:444
 msgid "My Favorite Add-ons"
 msgstr "我最愛的附加元件"
 
@@ -2122,7 +2122,7 @@ msgstr "隱私權政策："
 msgid "Icon"
 msgstr "圖示"
 
-#: apps/bandwagon/forms.py:152 apps/users/forms.py:340
+#: apps/bandwagon/forms.py:152 apps/users/forms.py:393
 msgid "No links are allowed."
 msgstr "不允許加入鏈結。"
 
@@ -2134,7 +2134,7 @@ msgstr "這個網址已被其他的收藏集使用"
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1104 apps/users/forms.py:331
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1104 apps/users/forms.py:384
 msgid "Please use images smaller than %dMB."
 msgstr "請使用小於 %dMB 的圖片。"
 
@@ -2631,7 +2631,7 @@ msgstr "輸入您要加入的附加元件名稱"
 msgid "Add to Collection"
 msgstr "加入收藏集"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:783 apps/editors/helpers.py:803
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:779 apps/editors/helpers.py:799
 msgid "Pending"
 msgstr "等待中"
 
@@ -3240,7 +3240,7 @@ msgstr "已初步審核並等待完整審核"
 msgid "Pending a review choice"
 msgstr "等待審核選擇"
 
-#: apps/constants/base.py:37 apps/editors/helpers.py:771 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:37 apps/editors/helpers.py:767 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "已刪除"
 
@@ -3476,7 +3476,7 @@ msgstr "標示"
 msgid "Duplicate"
 msgstr "重製"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:407 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92
+#: apps/constants/editors.py:17 apps/editors/helpers.py:403 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92
 msgid "Reject"
 msgstr "退回"
 
@@ -3989,7 +3989,7 @@ msgstr "提交時發生錯誤。"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "驗證過程中產生太多錯誤或警告訊息，所以已審略了 %s 比訊息。在處理完這些訊息所提到的問題後，您將可以看到其他的錯誤或警告訊息。"
 
-#: apps/devhub/views.py:1088 apps/users/forms.py:326
+#: apps/devhub/views.py:1088 apps/users/forms.py:379
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
@@ -4664,7 +4664,7 @@ msgstr "預設地區"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "除非您輸入其他語系版本的翻譯，否則關於您的附加元件的資訊會使用這個語系顯示。"
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:200 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:253 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "首頁"
@@ -7587,7 +7587,7 @@ msgstr "這是當某人在 addons.mozilla.org 點擊安裝按鈕時，將會安�
 msgid "Created:"
 msgstr "建立於:"
 
-#. {0} is a date.
+#. {0} is a date. dennis-ignore: E201
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
 msgstr "%Y/%b/%e"
@@ -8644,7 +8644,7 @@ msgstr "已等待的時間"
 msgid "Add-on Types"
 msgstr "附加元件類型"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:201
+#: apps/editors/forms.py:118 apps/editors/helpers.py:197
 msgid "Platforms"
 msgstr "平台"
 
@@ -8707,241 +8707,241 @@ msgstr "應用程式，審核者或評論"
 
 # 81%
 # 100%
-#: apps/editors/helpers.py:47
+#: apps/editors/helpers.py:43
 msgid "Pending Preliminary Review"
 msgstr "等待初步審核"
 
 # 75%
 # 100%
-#: apps/editors/helpers.py:51
+#: apps/editors/helpers.py:47
 msgid "Pending Full Review"
 msgstr "等待完整審核"
 
-#: apps/editors/helpers.py:58
+#: apps/editors/helpers.py:54
 msgid "Rejected or Unreviewed"
 msgstr "被退回或未審核"
 
 # 83%
 # 100%
-#: apps/editors/helpers.py:112
+#: apps/editors/helpers.py:108
 msgid "Queue"
 msgstr "等待審核區"
 
-#: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:51
+#: apps/editors/helpers.py:109 apps/editors/templates/editors/base.html:51
 msgid "Pending Updates"
 msgstr "等待更新"
 
-#: apps/editors/helpers.py:114 apps/editors/templates/editors/base.html:49
+#: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:49
 msgid "Full Reviews"
 msgstr "完整審核"
 
-#: apps/editors/helpers.py:115 apps/editors/templates/editors/base.html:53
+#: apps/editors/helpers.py:111 apps/editors/templates/editors/base.html:53
 msgid "Preliminary Reviews"
 msgstr "初步審核"
 
-#: apps/editors/helpers.py:116 apps/editors/templates/editors/base.html:55
+#: apps/editors/helpers.py:112 apps/editors/templates/editors/base.html:55
 msgid "Moderated Reviews"
 msgstr "有問題的評論"
 
-#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:47
+#: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:47
 msgid "Fast Track"
 msgstr "快速審核"
 
-#: apps/editors/helpers.py:119
+#: apps/editors/helpers.py:115
 msgid "Pending Themes"
 msgstr "審核中的佈景主題"
 
-#: apps/editors/helpers.py:120 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:116 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "已標記的佈景主題"
 
-#: apps/editors/helpers.py:121
+#: apps/editors/helpers.py:117
 msgid "Update Themes"
 msgstr "佈景主題更新"
 
-#: apps/editors/helpers.py:147
+#: apps/editors/helpers.py:143
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "快速審核 ({0})"
 
-#: apps/editors/helpers.py:151
+#: apps/editors/helpers.py:147
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "完整審核 ({0})"
 
-#: apps/editors/helpers.py:155
+#: apps/editors/helpers.py:151
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "等待更新 ({0})"
 
-#: apps/editors/helpers.py:159
+#: apps/editors/helpers.py:155
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "初步審核 ({0})"
 
-#: apps/editors/helpers.py:164
+#: apps/editors/helpers.py:160
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "有問題的評論 ({0})"
 
-#: apps/editors/helpers.py:195
+#: apps/editors/helpers.py:191
 msgid "Addon"
 msgstr "附加元件"
 
-#: apps/editors/helpers.py:196 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:192 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "類型"
 
-#: apps/editors/helpers.py:197
+#: apps/editors/helpers.py:193
 msgid "Waiting Time"
 msgstr "等待時間"
 
-#: apps/editors/helpers.py:198 apps/editors/templates/editors/review.html:278
+#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:278
 msgid "Flags"
 msgstr "標記"
 
-#: apps/editors/helpers.py:199
+#: apps/editors/helpers.py:195
 msgid "Applications"
 msgstr "應用程式"
 
-#: apps/editors/helpers.py:204
+#: apps/editors/helpers.py:200
 msgid "Additional"
 msgstr "額外資訊"
 
-#: apps/editors/helpers.py:221
+#: apps/editors/helpers.py:217
 msgid "Site Specific"
 msgstr "特定網站"
 
-#: apps/editors/helpers.py:223
+#: apps/editors/helpers.py:219
 msgid "Requires External Software"
 msgstr "需要外部的軟體"
 
-#: apps/editors/helpers.py:225
+#: apps/editors/helpers.py:221
 msgid "Binary Components"
 msgstr "可執行元件"
 
-#: apps/editors/helpers.py:249
+#: apps/editors/helpers.py:245
 msgid "moments ago"
 msgstr "不久前"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:252
+#: apps/editors/helpers.py:248
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} 分鐘"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:256
+#: apps/editors/helpers.py:252
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} 小時"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:260
+#: apps/editors/helpers.py:256
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 天"
 
-#: apps/editors/helpers.py:401
+#: apps/editors/helpers.py:397
 msgid "Push to public"
 msgstr "發佈為公開"
 
-#: apps/editors/helpers.py:410
+#: apps/editors/helpers.py:406
 msgid "Request more information"
 msgstr "要求更多資訊"
 
-#: apps/editors/helpers.py:413
+#: apps/editors/helpers.py:409
 msgid "Request super-review"
 msgstr "要求超級審核"
 
-#: apps/editors/helpers.py:424
+#: apps/editors/helpers.py:420
 msgid "Grant preliminary review"
 msgstr "通過初步審核"
 
-#: apps/editors/helpers.py:425
+#: apps/editors/helpers.py:421
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "這會將檔案標示為已通過初步審核。"
 
-#: apps/editors/helpers.py:427
+#: apps/editors/helpers.py:423
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "使用此表格向開發者要求更多資訊。他們會收到電子郵件通知而且能夠在此回覆。當開發者回覆時您會收到通知。"
 
-#: apps/editors/helpers.py:431
+#: apps/editors/helpers.py:427
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr "如果您認為此附加元件可能有安全性或著作權爭議的問題，或其他需要管理員調查的事項，請在此區域輸入您的意見。意見將會傳送至管理員，不會傳送至開發者。"
 
-#: apps/editors/helpers.py:437
+#: apps/editors/helpers.py:433
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "這將會退回附加元件並從等待審核區移除。"
 
-#: apps/editors/helpers.py:439
+#: apps/editors/helpers.py:435
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "對這個版本提出意見。作者是看不到您的意見的。"
 
-#: apps/editors/helpers.py:443
+#: apps/editors/helpers.py:439
 msgid "This will reject the files and remove them from the review queue."
 msgstr "這將會退回檔案並從等待審核區移除。"
 
-#: apps/editors/helpers.py:447
+#: apps/editors/helpers.py:443
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "這將會把附加元件標示為已經過初步審核。未來版本將將會進行初步審核。"
 
-#: apps/editors/helpers.py:452
+#: apps/editors/helpers.py:448
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "這會標記檔案為通過初步審核。未來的版本將會進行初步審核。"
 
-#: apps/editors/helpers.py:457
+#: apps/editors/helpers.py:453
 msgid "Retain preliminary review"
 msgstr "保留初步審核"
 
-#: apps/editors/helpers.py:458
+#: apps/editors/helpers.py:454
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "這當會把附加元件保持為通過初步審核。未來的版本將會進行初步審核。"
 
-#: apps/editors/helpers.py:463
+#: apps/editors/helpers.py:459
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "這將會於公開處先通過一個公開附加元件的沙盒版本。"
 
-#: apps/editors/helpers.py:466
+#: apps/editors/helpers.py:462
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "這將會退回一個版本的公開附加元件，並將其從審核等待區移除。"
 
-#: apps/editors/helpers.py:469
+#: apps/editors/helpers.py:465
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "這將會把附加元件與其最新的版本標示為公開。未來的版本在被審核者審核之前將會先被放到沙盒之中。"
 
-#: apps/editors/helpers.py:537
+#: apps/editors/helpers.py:533
 msgid "add-on"
 msgstr "附加元件"
 
-#: apps/editors/helpers.py:787 apps/editors/helpers.py:807
+#: apps/editors/helpers.py:783 apps/editors/helpers.py:803
 msgid "Flagged"
 msgstr "已標記"
 
 # 85%
-#: apps/editors/helpers.py:791 apps/editors/helpers.py:810
+#: apps/editors/helpers.py:787 apps/editors/helpers.py:806
 msgid "Updates"
 msgstr "更新"
 
-#: apps/editors/models.py:168
+#: apps/editors/models.py:173
 msgid "Admin Review"
 msgstr "管理員意見"
 
-#: apps/editors/models.py:169
+#: apps/editors/models.py:174
 msgid "Jetpack Add-on"
 msgstr "Jetpack 附加元件"
 
-#: apps/editors/models.py:171
+#: apps/editors/models.py:176
 msgid "Restartless Add-on"
 msgstr "無須重新啟動的附加元件"
 
-#: apps/editors/models.py:172
+#: apps/editors/models.py:177
 msgid "More Information Requested"
 msgstr "被要求提供更多資訊"
 
-#: apps/editors/models.py:173
+#: apps/editors/models.py:178
 msgid "Contains Editor Comment"
 msgstr "含有審核者的意見"
 
@@ -9018,12 +9018,12 @@ msgstr "需要更多資訊"
 msgid "needs super review"
 msgstr "需要超級審核"
 
-#: apps/editors/views_themes.py:328
+#: apps/editors/views_themes.py:327
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} 佈景主題審查成功（+{1} 點數，共 {2} 點）。{0} 佈景主題審查成功（+{1} 點數，共 {2} 點）。"
 
-#: apps/editors/views_themes.py:343
+#: apps/editors/views_themes.py:342
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr "您的佈景主題鎖已經發佈成功。現在其他審查者已可以看到您的佈景主題。您可以重新整理頁面，觀看更新後的內容。"
 
@@ -12204,76 +12204,80 @@ msgstr "您確定要移除所有的 <b>{0}</b> 翻譯? 此動作無法復原。"
 msgid "Delete Locale"
 msgstr "刪除語系"
 
-#: apps/users/forms.py:30
+#: apps/users/forms.py:31
 msgid "Must be %s characters or more."
 msgstr "至少需要 %s 個字元以上。"
 
-#: apps/users/forms.py:47
+#: apps/users/forms.py:48
 msgid "Letters and numbers required."
 msgstr "密碼應含有英文字母與數字。"
 
-#: apps/users/forms.py:50
+#: apps/users/forms.py:51
 msgid "That password is not allowed."
 msgstr "您不能使用這組密碼。"
 
-#: apps/users/forms.py:78
+#: apps/users/forms.py:79
 msgid ""
 "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
 msgstr "更多資訊已經透過電子郵件寄發到做出要求的帳號。若您沒有收到 email 的話請確定您正確輸入了註冊帳號時的 email 地址。"
 
-#: apps/users/forms.py:106 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:86
+msgid "We can't reset this account's password, please contact the support."
+msgstr ""
+
+#: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "新密碼"
 
-#: apps/users/forms.py:145 apps/users/forms.py:311
+#: apps/users/forms.py:198 apps/users/forms.py:364
 msgid "Wrong password entered!"
 msgstr "輸入的密碼錯誤！"
 
-#: apps/users/forms.py:164
+#: apps/users/forms.py:217
 msgid "Usernames cannot contain only digits."
 msgstr "使用者名稱不能只有數字。"
 
-#: apps/users/forms.py:166
+#: apps/users/forms.py:219
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "請輸入有效的使用者名稱，當中只能有字母、數字、底線或連字號。"
 
-#: apps/users/forms.py:169
+#: apps/users/forms.py:222
 msgid "This username cannot be used."
 msgstr "無法使用此使用者名稱。"
 
-#: apps/users/forms.py:175
+#: apps/users/forms.py:228
 msgid "This username is already in use."
 msgstr "這個使用者名稱已經有人使用。"
 
-#: apps/users/forms.py:186 apps/users/templates/users/edit.html:93
+#: apps/users/forms.py:239 apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "顯示名稱"
 
-#: apps/users/forms.py:188 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:241 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "地點"
 
-#: apps/users/forms.py:190 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:243 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "職業"
 
-#: apps/users/forms.py:214
+#: apps/users/forms.py:267
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "URL 格式無效，有效的 URL 像這樣: http://example.com/my_page。"
 
-#: apps/users/forms.py:222
+#: apps/users/forms.py:275
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "請使用一個來自不同提供者的電子郵件地址完成你的註冊。"
 
-#: apps/users/forms.py:238
+#: apps/users/forms.py:291
 msgid "The passwords did not match."
 msgstr "密碼不符。"
 
-#: apps/users/forms.py:257 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:310 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "個人檔案照片"
 
-#: apps/users/forms.py:396
+#: apps/users/forms.py:449
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "如果您要匿名化，請輸入更改的原因，但請勿更改其他欄位。"
 
@@ -12282,31 +12286,31 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr "其他"
 
-#: apps/users/models.py:65
+#: apps/users/models.py:66
 msgid "algorithm"
 msgstr "演算法"
 
-#: apps/users/models.py:66
+#: apps/users/models.py:67
 msgid "salt"
 msgstr "salt"
 
-#: apps/users/models.py:67
+#: apps/users/models.py:68
 msgid "hash"
 msgstr "hash"
 
-#: apps/users/models.py:125
+#: apps/users/models.py:126
 msgid "No user with that email."
 msgstr "無使用者使用此信箱。"
 
-#: apps/users/models.py:323
+#: apps/users/models.py:346
 msgid "Your account has been restricted"
 msgstr "您的帳號已被限制"
 
-#: apps/users/models.py:395
+#: apps/users/models.py:416
 msgid "Please confirm your email address"
 msgstr "請確認您的電子郵件"
 
-#: apps/users/models.py:453
+#: apps/users/models.py:439
 msgid "My Mobile Add-ons"
 msgstr "我的 Mobile 附加元件"
 
@@ -12399,11 +12403,11 @@ msgid "Successfully verified!"
 msgstr "驗證成功！"
 
 # %1 is the user's email address
-#: apps/users/views.py:132 apps/users/views.py:662
+#: apps/users/views.py:132 apps/users/views.py:648
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "我們已經寄出一封信到您的 Email 位址 {0} 以確認帳號。在您登入前必須按下該鏈結啟用您的帳號。"
 
-#: apps/users/views.py:136 apps/users/views.py:666
+#: apps/users/views.py:136 apps/users/views.py:652
 msgid "Confirmation Email Sent"
 msgstr "確認信已寄出"
 
@@ -12453,53 +12457,53 @@ msgstr "從現在開始，請使用 {0} 登入。"
 msgid "Persona authentication failure."
 msgstr "Persona 驗證失敗。"
 
-#: apps/users/views.py:350
+#: apps/users/views.py:345
 msgid "Please use the verified email for this account."
 msgstr "請使用已確認的電子郵件信箱。"
 
-#: apps/users/views.py:468
+#: apps/users/views.py:456
 msgid "Wrong email address or password!"
 msgstr "錯誤的電子郵件地址或密碼！"
 
-#: apps/users/views.py:480
+#: apps/users/views.py:468
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "啟用您帳號的連結已經寄到您的電子信箱 {0} 了。您必須啟用帳號才能登入。"
 
-#: apps/users/views.py:485
+#: apps/users/views.py:473
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 msgstr "如果您仍未收到確認信，請您確定郵件服務提供者並未將其標為「垃圾郵件」。您可以要求我們 <a href=\"%s\">再次重新傳送確認信</a> 至您剛剛所提及之電子郵件信箱。"
 
-#: apps/users/views.py:490
+#: apps/users/views.py:478
 msgid "Activation Email Sent"
 msgstr "確認信已寄出"
 
-#: apps/users/views.py:491
+#: apps/users/views.py:479
 msgid "Having Trouble?"
 msgstr "遇到麻煩了？"
 
-#: apps/users/views.py:636
+#: apps/users/views.py:623
 msgid "You are already logged in to an account."
 msgstr "您已經使用帳號登入。"
 
-#: apps/users/views.py:658
+#: apps/users/views.py:644
 msgid "Congratulations! Your user account was successfully created."
 msgstr "恭喜您！您的使用者帳號已成功建立。"
 
-#: apps/users/views.py:682
+#: apps/users/views.py:668
 msgid "You already have an account."
 msgstr "您已經有帳號了。"
 
-#: apps/users/views.py:692
+#: apps/users/views.py:678
 msgid "There are errors in this form"
 msgstr "這個表單發生了錯誤"
 
-#: apps/users/views.py:693
+#: apps/users/views.py:679
 msgid "Please correct them and resubmit."
 msgstr "請更正並重新送出。"
 
-#: apps/users/views.py:708
+#: apps/users/views.py:694
 msgid "User reported."
 msgstr "使用者回報。"
 
@@ -12690,7 +12694,7 @@ msgstr "電子郵件地址"
 msgid "Remember me on this device"
 msgstr "在此裝置上記住我"
 
-#: apps/users/templates/users/login_form.html:55 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
+#: apps/users/templates/users/login_form.html:54 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
 msgid "Log in"
 msgstr "登入"
 
@@ -12962,7 +12966,7 @@ msgstr "使用二進位元件的附加元件。"
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加元件已要求進行嚴格的相容性檢測。"
 
-#: apps/versions/models.py:608
+#: apps/versions/models.py:614
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新版"
 
