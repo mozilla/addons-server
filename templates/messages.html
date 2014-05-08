@@ -1,8 +1,8 @@
 {% if messages %}
   {% for message in messages %}
     <div class="notification-box {{ message.tags }}">
-      {# The message is actually formatted inside of message_content.html #}
-      {{ message|safe }}
+      {# The message is actually formatted inside of message_content.html if coming from olympia code, but not if coming from django views (eg: admin) #}
+      {{ message.message }}
     </div>
   {% endfor %}
 {% endif %}

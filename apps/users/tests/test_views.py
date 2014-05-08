@@ -375,6 +375,14 @@ class TestEditAdmin(UserViewBase):
         eq_(res.count(), 1)
         eq_(res[0].details['password'][0], u'****')
 
+    def test_delete_user_display_name_xss(self):
+        # This is to test for bug 835827.
+        self.regular.display_name = '"><img src=a onerror=alert(1)><a a="'
+        self.regular.save()
+        delete_url = reverse('admin:users_userprofile_delete',
+                             args=(self.regular.pk,))
+        res = self.client.post(delete_url, {'post': 'yes'}, follow=True)
+        assert self.regular.display_name not in res.content
 
 FakeResponse = collections.namedtuple("FakeResponse", "status_code content")
 

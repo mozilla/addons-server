@@ -3,6 +3,7 @@ import django.contrib.messages as django_messages
 from django.contrib.messages.storage import default_storage
 from django.http import HttpRequest
 
+from jingo import env
 from nose.tools import eq_
 from tower import ugettext as _
 
@@ -69,3 +70,19 @@ def test_unicode_dups():
     storage = django_messages.get_messages(request)
     eq_(len(storage), 2, 'Too few or too many messages recorded.')
 
+
+def test_html_rendered_properly():
+    """Html markup is properly displayed in final template."""
+    request = HttpRequest()
+    setattr(request, '_messages', default_storage(request))
+
+    # This will call _file_message, which in turn calls _make_message, which in
+    # turn renders the message_content.html template, which adds html markup.
+    # We want to make sure this markup reaches the final rendering unescaped.
+    info(request, 'Title', 'Body')
+
+    messages = django_messages.get_messages(request)
+
+    template = env.get_template('messages.html')
+    html = template.render({'messages': messages})
+    assert "<h2>" in html  # The html from _make_message is not escaped.
