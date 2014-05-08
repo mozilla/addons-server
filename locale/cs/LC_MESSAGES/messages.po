@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-04-12 15:56+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2014-05-08 07:54+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397318213.0\n"
+"X-POOTLE-MTIME: 1399535669.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12594,7 +12594,7 @@ msgstr "K zadanému účtu byl zaslán e-mail s dalšími informacemi. Pokud neo
 
 #: apps/users/forms.py:86
 msgid "We can't reset this account's password, please contact the support."
-msgstr ""
+msgstr "U tohoto účtu nemůžeme obnovit heslo. Kontaktujte prosím podporu."
 
 #: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
