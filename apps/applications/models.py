@@ -28,6 +28,7 @@ class AppVersion(amo.models.ModelBase):
     class Meta:
         db_table = 'appversions'
         ordering = ['-version_int']
+        unique_together = ['application', 'version']
 
     def save(self, *args, **kw):
         if not self.version_int:
