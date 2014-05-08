@@ -417,7 +417,7 @@ $('#addon-ac').keydown(function(e) {
 $('#addon-select').click(function(e) {
     e.preventDefault();
     var id = $('#addon-ac').attr('data-id');
-    var name = $('#addon-ac').val();
+    var name = _.escape($('#addon-ac').val());
     var icon = $('#addon-ac').attr('data-icon');
 
     // Verify that we aren't listed already
@@ -445,7 +445,7 @@ $('#addon-select').click(function(e) {
     $('#addon-ac').val('');
 });
 
-var table = $('#addon-ac').closest('table')
+var table = $('#addon-ac').closest('table');
 table.delegate(".remove", "click", function() {
     $(this).closest('tr').remove();
 })
