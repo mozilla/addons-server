@@ -1,7 +1,6 @@
 import json
 
 from django.core.management import call_command
-from django.db import IntegrityError
 from nose.tools import eq_
 
 import amo
@@ -36,14 +35,6 @@ class TestAppVersion(amo.tests.TestCase):
         eq_(v.minor1, None)
         eq_(v.minor2, None)
         eq_(v.minor3, None)
-
-    def test_unique_together_application_version(self):
-        """Check that one can't add duplicate application-version pairs."""
-        app = Application.objects.create(guid='foobar')
-        AppVersion.objects.create(application=app, version='123')
-
-        with self.assertRaises(IntegrityError):
-            AppVersion.objects.create(application=app, version='123')
 
 
 class TestApplication(amo.tests.TestCase):
