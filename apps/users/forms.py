@@ -64,6 +64,12 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
         if not use_recaptcha or not settings.RECAPTCHA_PRIVATE_KEY:
             del self.fields['recaptcha']
 
+    def clean(self):
+        """Only clean the form (username and password) if recaptcha is ok."""
+        if 'recaptcha' in self.errors:
+            return {}
+        return super(AuthenticationForm, self).clean()
+
 
 class PasswordResetForm(auth_forms.PasswordResetForm):
 

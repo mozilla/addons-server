@@ -17,7 +17,7 @@ from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import get_uploaded_file
 from users.models import BlacklistedPassword, UserProfile
-from users.forms import UserEditForm
+from users.forms import AuthenticationForm, UserEditForm
 
 
 class UserFormBase(amo.tests.TestCase):
@@ -369,6 +369,23 @@ class TestUserLoginForm(UserFormBase):
         eq_(u.last_login_attempt_ip, '127.0.0.1')
         assert u.last_login_ip != '127.0.0.1'
         assert u.last_login_attempt == t or u.last_login_attempt > t
+
+    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    def test_recaptcha_errors_only(self):
+        """Only recaptcha errors should be returned if validation fails.
+
+        We don't want any information on the username/password returned if the
+        captcha is incorrect.
+
+        """
+        form = AuthenticationForm(data={'username': 'foo',
+                                        'password': 'bar',
+                                        'recaptcha': ''},
+                                  use_recaptcha=True)
+        form.is_valid()
+
+        assert len(form.errors) == 1
+        assert 'recaptcha' in form.errors
 
 
 class TestUserRegisterForm(UserFormBase):
