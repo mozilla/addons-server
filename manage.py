@@ -84,6 +84,10 @@ trans_log = logging.getLogger('z.trans')
 #imported before anything else imports waffle.
 import amo
 
+# Hardcore monkeypatching action.
+import jingo.monkey
+jingo.monkey.patch()
+
 def new(self, arg):
     try:
         return mod(self, arg)
