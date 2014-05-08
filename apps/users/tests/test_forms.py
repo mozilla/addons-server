@@ -89,20 +89,20 @@ class TestSetPasswordForm(UserFormBase):
 
 class TestPasswordResetForm(UserFormBase):
 
-    def test_request_fail(self):
-        r = self.client.post('/en-US/firefox/users/pwreset',
-                             {'email': 'someemail@somedomain.com'})
+    def test_request_with_unkown_email(self):
+        r = self.client.post(
+            reverse('password_reset_form'),
+            {'email': 'someemail@somedomain.com'}
+        )
 
         eq_(len(mail.outbox), 0)
-        self.assertFormError(r, 'form', 'email',
-            ("An email has been sent to the requested account with further "
-             "information. If you do not receive an email then please confirm "
-             "you have entered the same email address used during "
-             "account registration."))
+        self.assertRedirects(r, reverse('password_reset_done'))
 
     def test_request_success(self):
-        self.client.post('/en-US/firefox/users/pwreset',
-                         {'email': self.user.email})
+        self.client.post(
+            reverse('password_reset_form'),
+            {'email': self.user.email}
+        )
 
         eq_(len(mail.outbox), 1)
         assert mail.outbox[0].subject.find('Password reset') == 0
@@ -116,8 +116,10 @@ class TestPasswordResetForm(UserFormBase):
         hsh = hashlib.sha512(bytes_ + md5).hexdigest()
         self.user.password = 'sha512+MD5$%s$%s' % (bytes, hsh)
         self.user.save()
-        self.client.post('/en-US/firefox/users/pwreset',
-                         {'email': self.user.email})
+        self.client.post(
+            reverse('password_reset_form'),
+            {'email': self.user.email}
+        )
 
         eq_(len(mail.outbox), 1)
         assert mail.outbox[0].subject.find('Password reset') == 0

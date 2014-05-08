@@ -74,20 +74,12 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         self.users_cache = UserProfile.objects.filter(email__iexact=email)
-        if not self.users_cache:
-            raise forms.ValidationError(
-                _("""An email has been sent to the requested account with
-                  further information. If you do not receive an email then
-                  please confirm you have entered the same email address used
-                  during account registration."""))
-        user = self.users_cache[0]
-        if not user.has_usable_password():
-            raise forms.ValidationError(
-                _("We can't reset this account's password, please contact the "
-                  "support."))
         return email
 
     def save(self, **kw):
+        if not self.users_cache:
+            log.info("Unknown email used for password reset: {email}".format(**self.cleaned_data))
+            return
         for user in self.users_cache:
             log.info(u'Password reset email sent for user (%s)' % user)
             if user.needs_tougher_password:
