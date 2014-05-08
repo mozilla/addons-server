@@ -7,6 +7,8 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_protect
 
 import caching.base as caching
 import commonware.log
@@ -536,10 +538,12 @@ def delete(request, username, slug):
     return render_cat(request, 'bandwagon/delete.html', data)
 
 
+@require_POST
 @write
 @login_required
 @owner_required
 @json_view
+@csrf_protect
 def delete_icon(request, collection, username, slug):
     log.debug(u"User deleted collection (%s) icon " % slug)
     tasks.delete_icon(os.path.join(collection.get_img_dir(),
