@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-04-16 14:52+0000\n"
+"PO-Revision-Date: 2014-05-08 01:18+0000\n"
 "Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397659933.0\n"
+"X-POOTLE-MTIME: 1399511929.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12185,7 +12185,7 @@ msgstr "更多信息已通过电子邮件发送到了提出请求的帐号。如
 
 #: apps/users/forms.py:86
 msgid "We can't reset this account's password, please contact the support."
-msgstr ""
+msgstr "无法重置这个账户的密码，请联系技术支持。"
 
 #: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
