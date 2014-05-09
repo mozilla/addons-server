@@ -1411,9 +1411,29 @@ class TestAddonModels(amo.tests.TestCase):
 
         # Now create a new version with an attached file, and update status.
         version = Version.objects.create(addon=addon, version="0.2")
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
         assert version.nomination is None
-        addon.update(status=amo.STATUS_LITE)
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        new_nomination = addon.versions.latest().nomination
+        assert new_nomination
+        assert_not_equal(new_nomination, old_nomination)
+
+    def test_new_version_of_fully_reviewed_addon_should_reset_nomination(self):
+        addon = Addon.objects.create(type=1)
+        version = Version.objects.create(addon=addon)
+        File.objects.create(status=amo.STATUS_PUBLIC, version=version)
+        # The addon has been fully reviewed.
+        addon.update(status=amo.STATUS_PUBLIC)
+        # Cheating to make sure we don't have a date on the same second
+        # of the running code.
+        past = self.days_ago(1)
+        version.update(nomination=past, created=past, modified=past)
+        old_nomination = addon.versions.latest().nomination
+        assert old_nomination
+
+        # Now create a new version with an attached file, and update status.
+        version = Version.objects.create(addon=addon, version="0.2")
+        assert version.nomination is None
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
         new_nomination = addon.versions.latest().nomination
         assert new_nomination
         assert_not_equal(new_nomination, old_nomination)
