@@ -103,11 +103,14 @@ def _retrieve_translation(text, language):
     return translated, r
 
 
-def translate_review(request, review, language):
+@addon_view
+@waffle_switch('reviews-translate')
+def translate(request, addon, review_id, language):
     """
-    Shared view splitted from the translate() views below for reusability
-    purposes (This is shared with mkt.reviewers).
+    Use the Google Translate API for ajax, redirect to Google Translate for
+    non ajax calls.
     """
+    review = get_object_or_404(Review, pk=review_id, addon=addon)
     if '-' in language:
         language = language.split('-')[0]
 
@@ -118,18 +121,7 @@ def translate_review(request, review, language):
                                  status=r.status_code)
     else:
         return redirect(settings.GOOGLE_TRANSLATE_REDIRECT_URL.format(
-            lang=language, text=review.body))
-
-
-@addon_view
-@waffle_switch('reviews-translate')
-def translate(request, addon, review_id, language):
-    """
-    Use the Google Translate API for ajax, redirect to Google Translate for
-    non ajax calls.
-    """
-    review = get_object_or_404(Review, pk=review_id, addon=addon)
-    return translate_review(request, review, language)
+            lang=language, text=review.body).decode('utf-8'))
 
 
 @addon_view
