@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="{{ addon.get_icon_url(64)|absolutify }}">
   <meta property="og:url" content="{{ addon.get_url_path()|absolutify }}">
-  <meta property="og:description" content="{{ addon.summary }}">
+  <meta property="og:description" content="{{ addon.summary|striptags }}">
 {% endblock %}
 
 {% block content %}
