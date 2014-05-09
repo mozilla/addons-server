@@ -327,6 +327,40 @@
                         upload_results.append($("<a>", {'href': results.full_report_url,
                                                         'target': '_blank',
                                                         'text': gettext('See full validation report')}));
+                        upload_results.append($("<h4>", {'text': gettext('Add-on submission checklist.')}));
+                        upload_results.append($("<p>", {'text': gettext('Please verify the following points before finalizing your submission. ' +
+                                                                        'This will minimize delays or misunderstanding during the review process:')}));
+                        var $messageList = $("<ul>");
+                        $messageList.append($("<li>", {'text': gettext('Include detailed version notes.')}));
+                        $messageList.append($("<li>", {'text': gettext('If your add-on requires an account to a website ' +
+                                                                       'in order to be fully tested, include a test ' +
+                                                                       'username and password in the Notes to Reviewer.')}));
+
+                        // Don't show for updates
+                        $messageList.append($("<li>", {'text': gettext('If your add-on is intended for a limited audience, if it is in its initial ' +
+                                                                       'stages or just an experiment, you should choose Preliminary Review instead ' +
+                                                                       'of Full Review.')}));
+
+                        // If the add-on has binaries
+                        var $listItem = $("<li>", {'text': gettext('The sources for all included binaries should be sent to ' +
+                                                                    'amo-admin-reviews@mozilla.org. For more information, please read our binary ' +
+                                                                    'add-on policies:')});
+                        $listItem.append($("<a>", {'href': 'https://addons.mozilla.org/en-US/developers/docs/policies/reviews#section-binary',
+                                                   'target': '_blank',
+                                                   'text': gettext('Binary add-on policies')}));
+                        $messageList.append($listItem);
+
+                        // If there are script injection warnings, show the warning message once
+                        // If there are namespacing warnings, show the warning message once
+                        // If there are innerHTML warnings, show the warning message once
+                        // If there are eval warnings, show the warning message once
+
+                        upload_results.append($messageList);
+
+                        upload_results.append($("<p>", {'text': gettext('If you are unfamiliar with the add-ons review process, you can read about it here:')}));
+                        upload_results.append($("<a>", {'href': 'http://blog.mozilla.com/addons/2011/02/04/overview-amo-review-process/',
+                                                        'target': '_blank',
+                                                        'text': gettext('An overview of the AMO review process')}));
                     }
 
                     $(".platform ul.error").empty();
