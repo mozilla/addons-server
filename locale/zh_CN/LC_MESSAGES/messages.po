@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-05-08 01:18+0000\n"
-"Last-Translator: Shen <steekid@icloud.com>\n"
+"PO-Revision-Date: 2014-05-11 14:27+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399511929.0\n"
+"X-POOTLE-MTIME: 1399818435.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -10906,7 +10906,7 @@ msgstr "购买附加组件是什么价格？"
 
 #: apps/pages/templates/pages/faq.html:208
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr "如果没有其他明示标记则附加组件可以免费保存在我们的画廊中。"
+msgstr "除非另有明确标识，否则所有托管在我们这里的附加组件都是免费的。"
 
 #: apps/pages/templates/pages/faq.html:211
 msgid "What does it mean when an add-on asks for contributions?"
@@ -12221,7 +12221,7 @@ msgstr "位置"
 
 #: apps/users/forms.py:243 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
-msgstr "占用"
+msgstr "职业"
 
 #: apps/users/forms.py:267
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
