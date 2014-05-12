@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-04-18 11:41+0000\n"
-"Last-Translator: Channy <channy@mozilla.or.kr>\n"
+"PO-Revision-Date: 2014-05-08 06:27+0000\n"
+"Last-Translator: Sung-wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397821260.0\n"
+"X-POOTLE-MTIME: 1399530454.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -715,7 +715,7 @@ msgstr "업데이트한 부가 기능"
 
 #: media/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr "리뷰 달린 부가 기능"
+msgstr "평가가 있는 부가 기능"
 
 #: media/js/impala/stats/csv_keys.js:27
 msgid "User Signups"

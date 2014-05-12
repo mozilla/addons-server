@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-05-07 18:38+0000\n"
-"Last-Translator: Sung-Wook <arbi316@gmail.com>\n"
+"PO-Revision-Date: 2014-05-12 07:06+0000\n"
+"Last-Translator: Channy <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399487885.0\n"
+"X-POOTLE-MTIME: 1399878382.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -166,7 +166,7 @@ msgstr "{0}에 기부하기"
 
 #: apps/addons/views.py:592
 msgid "Abuse reported."
-msgstr "위반 사실을 신고했습니다."
+msgstr "정책 위반을 신고했습니다."
 
 #: apps/addons/widgets.py:49
 msgid "My add-on doesn't fit into any of the categories"
@@ -826,7 +826,9 @@ msgstr "이 페르소나는 %(app)s %(new_version)s을(를) 필요로 합니다.
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>주의:</strong> 이 부가 기능은 Mozilla의 심사를 받지 않았습니다. 써드파티 소프트웨어를 설치할 경우 컴퓨터에 문제가 발생할 수도 있으니 주의하시기 바랍니다."
+msgstr ""
+"<strong>주의:</strong> 이 부가 기능은 Mozilla의 심사를 받지 않았습니다. 서드파티 소프트웨어를 설치할 경우 컴퓨터에 "
+"문제가 발생할 수도 있으니 주의하시기 바랍니다."
 
 #: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -2712,8 +2714,9 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Mozilla에선 부가 기능, 플러그인, 기타 써드파티 소프트웨어에서 %(app)s에 심각한 보안, 안정성, 성능 저하 문제를 초래하는 것이 있을 경우 <a href=\"%(criteria)s\">규정</a>에 의거, 해당 소프트웨어를 일반"
-"적인 사용을 할 수 없도록 차단하게 됩니다. 보다 자세한 정보를 보시려면 <a href=\"%(support)s\">다음의 도움말</a>을 읽어보시기 바랍니다."
+"Mozilla에선 부가 기능, 플러그인, 기타 서드파티 소프트웨어에서 %(app)s에 심각한 보안, 안정성, 성능 저하 문제를 초래하는 "
+"것이 있을 경우 <a href=\"%(criteria)s\">규정</a>에 의거, 해당 소프트웨어를 일반적인 사용을 할 수 없도록 차단하게 "
+"됩니다. 보다 자세한 정보를 보시려면 <a href=\"%(support)s\">다음의 도움말</a>을 읽어보시기 바랍니다."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -3200,7 +3203,7 @@ msgstr "모바일"
 
 #: apps/constants/applications.py:104
 msgid "Firefox for Android"
-msgstr "Firefox 안드로이드용"
+msgstr "Firefox 안드로이드"
 
 #: apps/constants/applications.py:139
 msgid "Mozilla"
@@ -3432,7 +3435,7 @@ msgstr "업데이트된 언어팩 심사"
 
 #: apps/constants/base.py:414
 msgid "Theme Review"
-msgstr "테마 리뷰"
+msgstr "테마 심사"
 
 #: apps/constants/base.py:415
 msgid "Full Search Provider Review"
@@ -3606,7 +3609,7 @@ msgstr "Solaris"
 
 #: apps/constants/platforms.py:68
 msgid "Android"
-msgstr "Android"
+msgstr "안드로이드"
 
 #: apps/constants/platforms.py:75
 msgid "Maemo"
@@ -6376,7 +6379,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
 "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
-msgstr "추천 부가 기능은, 후보 부가 기능들에 리뷰와 투표를 자원하는 Mozilla 커뮤니티의 부가 기능 개발자와 팬으로 구성된 작은 그룹인 추천 부가 기능 자문 위원회에서 선택합니다."
+msgstr ""
+"추천 부가 기능 자문 위원회가 추천할 부가 기능을 선정합니다. 자문회는 Mozilla 커뮤니티의 부가 기능 개발자와 팬으로 이루어진 "
+"소규모 조직으로, 후보의 심사와 투표를 자원하신 분들입니다."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
@@ -6669,7 +6674,7 @@ msgstr "이진 콤포넌트 또는 실행 가능한 파일"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:109
 msgid "inclusion of third-party software"
-msgstr "써드파티 소프트웨어의 포함"
+msgstr "서드파티 소프트웨어 포함"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:110
 msgid "errors generated in the Error Console"
@@ -6845,11 +6850,14 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p> 부가 기능이 사전에 고려하지 않은* 기능을 포함하고 있을시, 즉 </p> <ul> <li>사용자 개인정보나 보안에 대한 타협 (써드파티에 데이터 전송과 같은),</li> <li>홈페이지나 검색 엔진과 같은 기본 설정 변"
-"경, 또는</li> <li>다른 부가 기능의 설정 및 기능을 변경하거나 완전한 무력화</li> </ul> <p>기능은 다음 요구 사항에 반드시 부합해야 합니다:</p> <ul> <li>부가 기능이 어떤 사항을 변경하는지 명확하게 설명"
-"에 명시되어 있어야 합니다.</li> <li>모든 변경 사항은 기본 외 작업을 통한 변경을 사용자가 경험하게 된다는 것을 의미한다는 사실에 대한 사전 동의가 반드시 필요합니다.</li> <li>사전 동의를 묻는 대화창"
-"은 특정 부가 기능의 이름이 변경을 요청하고 있다는 사실을 명확하게 명시하고 있어야 합니다.</li> <li>부가 기능 삭제시 그동안 변경한 사용자의 기본 설정이 복구되야 합니다.</li> </ul> <p>*사전에 고려하"
-"지 않은 기능이란 부가 기능의 주요 기능과 관련이 없는 기능을 의미합니다.</p>"
+"<p> 부가 기능이 사전에 고려하지 않은* 기능을 포함하고 있을시, 즉 </p> <ul> <li>사용자 개인정보나 보안에 대한 타협 "
+"(서드파티에 데이터 전송과 같은),</li> <li>홈페이지나 검색 엔진과 같은 기본 설정 변경, 또는</li> <li>다른 부가 기능의 "
+"설정 및 기능을 변경하거나 완전한 무력화</li> </ul> <p>기능은 다음 요구 사항에 반드시 부합해야 합니다:</p> <ul> "
+"<li>부가 기능이 어떤 사항을 변경하는지 명확하게 설명에 명시되어 있어야 합니다.</li> <li>모든 변경 사항은 기본 외 작업을 "
+"통한 변경을 사용자가 경험하게 된다는 것을 의미한다는 사실에 대한 사전 동의가 반드시 필요합니다.</li> <li>사전 동의를 묻는 "
+"대화창은 특정 부가 기능의 이름이 변경을 요청하고 있다는 사실을 명확하게 명시하고 있어야 합니다.</li> <li>부가 기능 삭제시 "
+"그동안 변경한 사용자의 기본 설정이 복구되야 합니다.</li> </ul> <p>*사전에 고려하지 않은 기능이란 부가 기능의 주요 기능과 "
+"관련이 없는 기능을 의미합니다.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -10569,15 +10577,16 @@ msgstr "아니오."
 
 #: apps/pages/templates/pages/dev_faq.html:269
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr "부가 기능 제작에 고용할 써드파티 개발자가 있을까요?"
+msgstr "부가 기능 제작에 고용할 서드파티 개발자가 있을까요?"
 
 #: apps/pages/templates/pages/dev_faq.html:271
 msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please "
 "note that Mozilla does not offer developer recommendations."
 msgstr ""
-"예. <a href=\"%(list_url)s\">Mozilla 구직 리스트</a>, <a href=\"%(mz_url)s\">mozillaZine 포럼</a> 또는 <a href=\"%(wiki_url)s\">Mozilla 위키</a>를 통해 써드파티 개발자를 만나볼 수 있을겁니다. 개발"
-"자 추천은 따로 하지 않으니 이점 양지하세요."
+"예. <a href=\"%(list_url)s\">Mozilla 구직 리스트</a>, <a href=\"%"
+"(mz_url)s\">mozillaZine 포럼</a> 또는 <a href=\"%(wiki_url)s\">Mozilla 위키</a>를 통해 "
+"서드파티 개발자를 만나볼 수 있을겁니다. 개발자 추천은 따로 하지 않으니 이점 양지하세요."
 
 #: apps/pages/templates/pages/dev_faq.html:284
 msgid "Can I host my own add-on?"
@@ -11056,9 +11065,10 @@ msgid ""
 "add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
 "\">Learn more about our approval process</a>"
 msgstr ""
-"극히 일부 예외를 제외하고, 이 갤러리에 등재된 부가 기능은 Mozilla 편집자 팀에 의해 검사 및 승인된 것으로 설치하셔도 안전합니다. 승인된 부가 기능만 설치하는 것을 권장합니다. 승인되지 않은 부가 기능이"
-"나 써드파티 웹사이트에 있는 부가 기능을 설치하실 경우엔 해당 부가 기능이 컴퓨터에 문제를 야기할 수 있거나 개인 정보를 침해할 수 있다는 사실에 주의하시기 바랍니다. <a href=\"%(learnmore_url)s\">승인 "
-"절차에 대해 자세히 알아보기</a>"
+"극히 일부 예외를 제외하고, 이 갤러리에 등재된 부가 기능은 Mozilla 편집자 팀에 의해 검사 및 승인된 것으로 설치하셔도 "
+"안전합니다. 승인된 부가 기능만 설치하는 것을 권장합니다. 승인되지 않은 부가 기능이나 서드파티 웹사이트에 있는 부가 기능을 설치하실 "
+"경우엔 해당 부가 기능이 컴퓨터에 문제를 야기할 수 있거나 개인 정보를 침해할 수 있다는 사실에 주의하시기 바랍니다. <a href=\"%"
+"(learnmore_url)s\">승인 절차에 대해 자세히 알아보기</a>"
 
 #: apps/pages/templates/pages/faq.html:133
 msgid "Can add-ons make %(app_name)s slower?"
@@ -11096,9 +11106,10 @@ msgid ""
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
 msgstr ""
-"부가 기능은 세계 각지의 써드파티 개발자들에 의해 제작되고 있습니다. 그러므로 부가 기능 사용에 대한 도움을 받고자 한다면 해당 부가 기능의 홈페이지에 있는 기술 지원 링크를 들어가 보거나 개발자와 직접 "
-"연락하는 방법이 가장 좋습니다. %(app_name)s에 문제가 발생했을 경우, 일단 설치해놓은 부가 기능을 먼저 의심해 보도록 하십시오. 문제 해결에 관한 팁을 찾아보시려면 <a href=\"%(troubleshooting_url)s\">다"
-"음의 기술 지원 게시물을 읽어보시기 바랍니다</a>."
+"부가 기능은 세계 각지의 서드파티 개발자들에 의해 제작되고 있습니다. 그러므로 부가 기능 사용에 대한 도움을 받고자 한다면 해당 부가 "
+"기능의 홈페이지에 있는 기술 지원 링크를 들어가 보거나 개발자와 직접 연락하는 방법이 가장 좋습니다. %(app_name)s에 문제가 "
+"발생했을 경우, 일단 설치해놓은 부가 기능을 먼저 의심해 보도록 하십시오. 문제 해결에 관한 팁을 찾아보시려면 <a href=\"%"
+"(troubleshooting_url)s\">다음의 기술 지원 게시물을 읽어보시기 바랍니다</a>."
 
 #: apps/pages/templates/pages/faq.html:170
 msgid "Add-on Gallery"
@@ -11169,8 +11180,8 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-"부가 기능 제작자들 중 일부는 금전 기부를 통해 개발 지원을 돕는 사용자를 필요로 하고 있습니다. 기부를 원하는 사람은 Mozilla 재단과 같이 비영리 써드파티를 표방하는 개발자가 아닌 이상 어떤 개발자든 즉"
-"시 기부금을 보탤 수 있습니다."
+"부가 기능 제작자들 중 일부는 금전 기부를 통해 개발 지원을 돕는 사용자를 필요로 하고 있습니다. 기부를 원하는 사람은 Mozilla "
+"재단과 같이 비영리 서드파티를 표방하는 개발자가 아닌 이상 어떤 개발자든 즉시 기부금을 보탤 수 있습니다."
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
@@ -13480,7 +13491,7 @@ msgstr "<a class=\"mobile-link\" href=\"#\">모바일 부가 기능 사이트</a
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
-msgstr "Android용 부가 기능"
+msgstr "안드로이드용 부가 기능"
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
