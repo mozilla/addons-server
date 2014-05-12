@@ -12,7 +12,7 @@
                     (collection.get_url_path(), collection.name),
                     (None, _('Delete')),]) }}
 
-    <h2>{{ _('Delete {0}')|f(collection.name) }}</h2>
+    <h2>{{ _('Delete {0}')|fe(collection.name) }}</h2>
   </header>
 
   <form method="post" action="{{ url('collections.delete', username, slug) }}">
