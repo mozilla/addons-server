@@ -241,6 +241,26 @@
                     }
                     if(errors.length > 0) {
                         $upload_field.trigger("upload_errors", [file, errors, json]);
+                        var url = JSON.parse($.cookie('last-upload-url'));
+                        if (url) {
+                            $('#upload_errors').append(
+                                $('<a href="#" class="verify-upload">' +
+                                gettext('Try again') + '</a>')
+                            ).bind('click', '.verify-upload', function (e) {
+                                e.preventDefault();
+                                $('#upload-status-results').empty();
+                                $('#upload-file .upload-status').addClass('ajax-loading');
+                                $.get(url).done(function (data, textStatus, jqXHR) {
+                                    $upload_field.trigger(
+                                        "upload_onreadystatechange",
+                                        [file, jqXHR, false]);
+                                }).fail(function (jqXHR, textStatus, errorThrown) {
+                                    $upload_field.trigger(
+                                        "upload_onreadystatechange",
+                                        [file, jqXHR, false]);
+                                });
+                            });
+                        }
                     } else {
                         $upload_field.trigger("upload_success", [file, json]);
                         $upload_field.trigger("upload_progress", [file, 100]);
