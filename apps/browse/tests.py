@@ -1260,9 +1260,24 @@ class TestMobileExtensions(TestMobile):
         eq_(r.context['category'], None)
         eq_(pq(r.content)('.addon-listing .listview').length, 1)
 
-    def test_category(self):
+    def test_category_default_sort(self):
         cat = Category.objects.all()[0]
-        r = self.client.get(reverse('browse.extensions', args=[cat.slug]))
+        url = reverse('browse.extensions', args=[cat.slug])
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
+        self.assertTemplateUsed(r, 'addons/listing/items_mobile.html')
+        eq_(r.context['sorting'], 'rating')
+        eq_(r.context['category'], cat)
+        doc = pq(r.content)
+        eq_(doc('.addon-listing .listview').length, 1)
+        eq_(doc('.addon-listing .listview li.item').length, 1)
+
+    def test_category_sort_by_featured(self):
+        cat = Category.objects.all()[0]
+        url = reverse('browse.extensions', args=[cat.slug])
+        url = "{0}?sort=featured".format(url)
+        r = self.client.get(url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
         self.assertTemplateNotUsed(r, 'addons/listing/items_mobile.html')
