@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-05-04 11:08+0000\n"
-"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
+"PO-Revision-Date: 2014-05-14 20:02+0000\n"
+"Last-Translator: Aneta <lushateta@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399201722.0\n"
+"X-POOTLE-MTIME: 1400097770.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4134,6 +4135,10 @@ msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"SDK за додатке обезбеђује моћне АПИ-е који омогућавају програмерима да "
+"креирају додатке за Firefox користећи HTML, CSS и JavaScript. Када је Ваш "
+"додатак завршен, ми Вам олакшавамо да га поделите са преко 400 милиона "
+"Firefox корисника широм света."
 
 #: apps/devhub/templates/devhub/builder.html:32
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4235,7 +4240,7 @@ msgstr "Погледајте све додатке ►"
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO рецензенти"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
@@ -4254,6 +4259,11 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"Додаци пуштају милионе Firefox корисника да побољшају и прилагоде своје "
+"искуство прегледања. Ако сте веб програмер и знате HTML, JavaScript и CSS, "
+"већ имате шта је потребно да направите одличне додатке са SDK-ом за додатке. "
+"Шта више, додаци изграђени са SDK-ом не захтевају поновно покретање "
+"прегледача."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -5152,31 +5162,31 @@ msgstr[2] "<strong>{0}</strong> корисника"
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:6
 msgid "No test results."
-msgstr ""
+msgstr "Нема резултата теста."
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:8 apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
 msgid "Start performance tests"
-msgstr ""
+msgstr "Започните тестирање перформанси"
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
 msgid "This file is not eligible for performance testing."
-msgstr ""
+msgstr "Ова датотека не испуњава услове за тестирање перформанси."
 
 #: apps/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
-msgstr ""
+msgstr "Пошаљи додатак"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:4
 msgid "Step 3"
-msgstr ""
+msgstr "Корак 3"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:7
 msgid "Step 3. Describe"
-msgstr ""
+msgstr "Корак 3. Опис"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:11
 msgid "Name and version:"
-msgstr ""
+msgstr "Име и верзија:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:20
 msgid "The detail page will be:"
