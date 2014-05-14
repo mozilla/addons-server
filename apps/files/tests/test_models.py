@@ -438,6 +438,19 @@ class TestParseXpi(amo.tests.TestCase):
         result = self.parse(filename='strict-compat.xpi')
         eq_(result['strict_compatibility'], True)
 
+    def test_unsupported_version_only(self):
+        guid = '{aa3c5121-dab2-40e2-81ca-7ea25febc110}'
+        android = Application.objects.get(guid=guid)
+        # Make sure supported application and version exist.
+        AppVersion.objects.create(application=android, version="30.0")
+        AppVersion.objects.create(application=android, version="32.0")
+        android.update(supported=True)
+        result = self.parse(filename='unsupported_version_only.xpi')
+        eq_(result['apps'][0].appdata.guid, guid)
+        android.update(supported=False)
+        result = self.parse(filename='unsupported_version_only.xpi')
+        eq_(result['apps'], [])
+
 
 class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
     # This install.rdf is completely different from our other xpis.
