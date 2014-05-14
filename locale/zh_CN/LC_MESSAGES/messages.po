@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-05-11 21:14+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2014-05-14 08:43+0000\n"
+"Last-Translator: 文科 <wenketel@live.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399842865.0\n"
+"X-POOTLE-MTIME: 1400057025.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1058,11 +1058,14 @@ msgstr "版本信息"
 msgid "See complete version history"
 msgstr "查看完整的版本历史"
 
+# 本项译文为用户“wenke”提交，因操作方面的原因导致用户名记录为我的名下，致歉。
 #: apps/addons/templates/addons/impala/details.html:269
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "在此附加组件发布给所有公众之前，您可以通过开发频道测试此附加组件的实验性新版本。一旦您安装开发版，您就会持续得到来自这个频道的更新。要停止接受开发版的更新，请从上面的链接重新安装默认版。"
+msgstr ""
+"在此附加组件发布给所有公众之前，您可以通过开发通道测试此附加组件的实验性新版本。一旦您安装开发版，您就会持续得到来自这个通道的更新。要停止接受开发版的更"
+"新，请从上面的链接重新安装默认版。"
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
@@ -10746,7 +10749,9 @@ msgstr "<a href=\"%(browse_url)s\">完整主题</a></strong>更改 %(app_name)s 
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">主题</a></strong>是一种轻量级的主题，试用背景图片定制您的 %(app_name)s 工具栏。"
+msgstr ""
+"<strong><a href=\"%(browse_url)s\">主题</a></strong>完整主题的简化版，使用背景图片定制您的 %"
+"(app_name)s 工具栏。"
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
@@ -10795,8 +10800,10 @@ msgid ""
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
 "\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"附加组件，与插件不同，会每天自动检查一次更新。在 Firefox 中，默认自动安装更新。版本大于4的 Firefox （以及其他应用程序）在有可用的附加组件更新时会提醒您。<a href=\"%(plugin_url)s\">插件</a>目前不会自"
-"动检查更新，因此要确保定期访问<a href=\"%(plugincheck_url)s\">插件</a>检查页面以保证版本更新。"
+"附加组件，与插件不同，会每天自动检查一次更新。在 Firefox 中，默认自动安装更新。版本大于4的 Firefox "
+"（以及其他应用程序）在有可用的附加组件更新时会提醒您。<a href=\"%"
+"(plugin_url)s\">插件</a>目前不会自动检查更新，因此要确保定期访问<a href=\"%"
+"(plugincheck_url)s\">插件检查</a>页面以保证版本更新。"
 
 #: apps/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
@@ -12282,7 +12289,7 @@ msgstr "一名附加组件开发者感谢了我的捐款"
 
 #: apps/users/notifications.py:26
 msgid "an add-on developer replies to my review"
-msgstr "一名附加组件的开发者回复了我的评论"
+msgstr "一名附加组件开发者回复了我的评论"
 
 #: apps/users/notifications.py:34
 msgid "an app developer replies to my review"
@@ -12290,7 +12297,7 @@ msgstr "一个应用开发者回复了我的评论"
 
 #: apps/users/notifications.py:41
 msgid "new add-ons or Firefox features are available"
-msgstr "新附加组件或 Firefox 特性现在可用"
+msgstr "有新的附加组件或者 Firefox 特性现在可用"
 
 #: apps/users/notifications.py:50
 msgid "my add-on's compatibility is upgraded successfully"
@@ -12538,7 +12545,7 @@ msgstr "电子邮件地址"
 
 #: apps/users/templates/users/edit.html:44 apps/users/templates/users/register.html:70
 msgid "Hide email address from other users"
-msgstr "隐藏来自其他用户的电子邮件地址"
+msgstr "对其他用户隐藏我的电子邮件地址"
 
 #: apps/users/templates/users/edit.html:50
 msgid "Change Password"
@@ -12610,7 +12617,7 @@ msgstr "通知"
 
 #: apps/users/templates/users/edit.html:175
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "有时候 Mozilla 可能会向您发送电子邮件，内容是有关即将发布和附加组件事件。请选择您感兴趣的话题。"
+msgstr "Mozilla 可能会不时向您寄送电子邮件，内容是有关即将发布的版本和附加组件事件。请选择您感兴趣的话题。"
 
 #: apps/users/templates/users/edit.html:185
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
@@ -12906,7 +12913,7 @@ msgstr[0] "%(num)s 个附加组件"
 
 #: apps/users/templates/users/vcard.html:81
 msgid "Average rating of developer's add-ons"
-msgstr "开发者的附加组件的平均评分"
+msgstr "开发的附加组件平均得分"
 
 #: apps/users/templates/users/mobile/login.html:38
 msgid "Log in with BrowserID"
@@ -13188,7 +13195,7 @@ msgstr "移动版主页"
 
 #: templates/mobile/base_addons.html:80 templates/mobile/base_apps.html:69
 msgid "View full site"
-msgstr "查看完整网址"
+msgstr "查看完整网站"
 
 #: templates/mobile/base_addons.html:83 templates/mobile/base_apps.html:72
 msgid "Legal Notices"
