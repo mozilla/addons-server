@@ -1854,6 +1854,9 @@ class TestUploadDetail(BaseUploadTest):
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
         eq_(data['full_report_url'],
             reverse('devhub.upload_detail', args=[upload.uuid]))
+        eq_(r['location'],
+            'http://testserver' +
+            reverse('devhub.upload_detail', args=[upload.uuid]))
         # We must have tiers
         assert len(data['validation']['messages'])
         msg = data['validation']['messages'][0]
