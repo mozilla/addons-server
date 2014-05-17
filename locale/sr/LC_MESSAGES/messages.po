@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-05-14 20:02+0000\n"
-"Last-Translator: Aneta <lushateta@gmail.com>\n"
+"PO-Revision-Date: 2014-05-17 13:18+0000\n"
+"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400097770.0\n"
+"X-POOTLE-MTIME: 1400332692.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4245,10 +4245,12 @@ msgstr "AMO рецензенти"
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Преузмите вођство! Постаните AMO прегледач данас и Ваши додаци ће бити "
+"прегледани брже."
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Постаните AMO рецензент"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
@@ -5142,7 +5144,7 @@ msgstr "Овај додатак ће се аутоматски обрисати 
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Последња верзија:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5190,7 +5192,7 @@ msgstr "Име и верзија:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:20
 msgid "The detail page will be:"
-msgstr ""
+msgstr "Страница са детаљима ће бити:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:24 apps/devhub/templates/devhub/personas/edit.html:89 apps/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
@@ -5222,35 +5224,43 @@ msgstr "Готови сте!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:11
 msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr ""
+msgstr "Ваш додатак је поднет реду за прелиминарну рецензију."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:15
 msgid "Your add-on has been submitted to the Full Review queue."
-msgstr ""
+msgstr "Ваш додатак је достављен на чекању пуне рецензије."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:21
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
 msgstr ""
+"Примићете е-пошту након што га уредник прегледа. У међувремену, Ви и Ваши "
+"пријатељи га можете инсталирати директно са странице са детаљима:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:32 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
-msgstr ""
+msgstr "Следећи кораци:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:37
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr ""
+"<a href=\"{0}\">Отпреми</a> још једну платформски-специфичну датотеку овој "
+"верзији."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:40
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr ""
+msgstr "Обезбедите још детаља <a href=\"{0}\">мењајући његову листу</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
 msgstr ""
+"Реците својим корисницима зашто сте направили ово у Вашем <a "
+"href=\"{0}\">профилу за програмере</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:44
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr ""
+"Погледајте и претплатите се на <a href=\"{0}\">страницу активности</a> Вашег "
+"додатка да бисте остали у току са рецензијама, колекцијама, и осталом."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:45
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
@@ -5258,19 +5268,20 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "Будите корак напред у реду за прегледавање!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Постаните АМО рецензент још данас и Ваши додаци ће бити брже прегледани."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
-msgstr ""
+msgstr "Корак 5"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:7
 msgid "Step 5. Select a License"
-msgstr ""
+msgstr "Корак 5. Изаберите лиценсу"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:9
 msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
@@ -5278,11 +5289,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:18
 msgid "Select a license for your add-on:"
-msgstr ""
+msgstr "Изаберите лиценцу за Ваш додатак:"
 
 #: apps/devhub/templates/devhub/addons/submit/media.html:3
 msgid "Step 4"
-msgstr ""
+msgstr "Корак 4"
 
 #: apps/devhub/templates/devhub/addons/submit/media.html:6
 msgid "Step 4. Add Images"
@@ -5330,43 +5341,45 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:39
 msgid "Choose Full Review"
-msgstr ""
+msgstr "Изаберите пуну рецензију"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:48
 msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
+"Бржи преглед изворног кода Вашег додатка за било који главни проблем. <a "
+"href=\"%(url)s\">Сазнајте више&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:54
 msgid "Appropriate for experimental add-ons"
-msgstr ""
+msgstr "Прикладно за експерименталне додатке"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:55
 msgid "Review should take place within 3 days"
-msgstr ""
+msgstr "Преглед треба бити одрађен у року од 3 дана"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:56
 msgid "Some feature limitations"
-msgstr ""
+msgstr "Неки лимити функције"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:57
 msgid "Binary and obfuscated add-ons ineligible"
-msgstr ""
+msgstr "Бинарни и сумњиви додаци су неквалификовани"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:58
 msgid "Cannot request Full Review for 10 days"
-msgstr ""
+msgstr "Не можете захтевати комплетни преглед за 10 дана"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:62
 msgid "Choose Preliminary Review"
-msgstr ""
+msgstr "Одаберите прелиминарну рецензију"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:5
 msgid "Upload your add-on"
-msgstr ""
+msgstr "Поставите Ваш додатак"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Add images"
-msgstr ""
+msgstr "Додајте слике"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:8
 msgid "Select a license"
@@ -5407,23 +5420,23 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:37
 msgid "Additional Add-on Policies"
-msgstr ""
+msgstr "Додатне полисе додатка"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:43
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "Прихватам овај уговор"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:45
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "или <a href=\"{0}\">Откажи</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:3
 msgid "Step 2"
-msgstr ""
+msgstr "Корак 2"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:9
 msgid "Step 2. Upload Your Add-on"
-msgstr ""
+msgstr "Корак 2. Поставите додатак"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
