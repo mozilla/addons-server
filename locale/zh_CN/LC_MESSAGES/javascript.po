@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-05-14 00:32+0000\n"
-"Last-Translator: 文科 <wenketel@live.com>\n"
+"PO-Revision-Date: 2014-05-15 10:21+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400027556.0\n"
+"X-POOTLE-MTIME: 1400149285.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1408,7 +1408,7 @@ msgstr[0] "{0} 个提醒{0} 个提醒"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
-msgstr "{0} {1} 未被更新"
+msgstr "未为 {0} {1} 更新"
 
 #: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-05-14 08:43+0000\n"
-"Last-Translator: 文科 <wenketel@live.com>\n"
+"PO-Revision-Date: 2014-05-18 21:11+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400057025.0\n"
+"X-POOTLE-MTIME: 1400447497.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1892,8 +1892,9 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> 请输入下面的两个<strong>单词</strong>，<strong>以空格分隔</strong>。 </p> <p> 如果真的很难读出，你可以<a href=\"#\" id=\"recaptcha_different\">再换一组单词</a>或者<a href=\"#\" id="
-"\"recaptcha_audio\">尝试不同类型的挑战</a>。</p>"
+"<p> 请输入下面的两个<strong>单词</strong>，<strong>以空格分隔</strong>。 </p> <p> "
+"如果您觉得这两个单词太难辨认，可以<a href=\"#\" id=\"recaptcha_different\">再换一组单词</a>或者<a "
+"href=\"#\" id=\"recaptcha_audio\">尝试其他挑战方式</a>。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90
@@ -10755,7 +10756,9 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr "<strong><a href=\"%(browse_url)s\">搜索引擎提供商</a> </strong> 给搜索栏的下拉菜单中增加附加的搜索引擎选项。有了它们您就可以快速地搜索特定网站。"
+msgstr ""
+"<strong><a href=\"%(browse_url)s\">搜索引擎提供者</a> </strong> "
+"可向搜索栏的下拉菜单中添加新的搜索引擎，这可以帮助您更加便捷地搜索您需要的信息。"
 
 #: apps/pages/templates/pages/faq.html:72
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
@@ -10787,8 +10790,9 @@ msgid ""
 "In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
 "\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
-"在 Firefox 中，标记为“无需重新启动”的附加组件，安装后不需要重新启动 Firefox。这些附加组件使用<a href=\"%(sdk_url)s\">附加组件 SDK</a>或者<a href=\"%(bootstrap_url)s\">bootstrapping</a>技术创建。其他"
-"附加组件需要重新启动 Firefox 后才能使用。"
+"在 Firefox 中，标记为“无需重启”的附加组件，安装后不需要重新启动 Firefox。这些附加组件使用<a href=\"%"
+"(sdk_url)s\">附加组件 SDK</a>或者<a href=\"%"
+"(bootstrap_url)s\">bootstrapping</a>技术创建。其他附加组件需要重新启动 Firefox 后才能使用。"
 
 #: apps/pages/templates/pages/faq.html:110
 msgid "How do I keep add-ons up-to-date?"
@@ -11098,7 +11102,7 @@ msgstr "做到："
 
 #: apps/pages/templates/pages/review_guide.html:62
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "就像您想告诉您朋友那样的写您对该附加组件的体验。"
+msgstr "就像您想告诉您朋友那样写下您对该附加组件的体验。"
 
 #: apps/pages/templates/pages/review_guide.html:67
 msgid "Keep reviews concise and easy to understand."
@@ -11146,7 +11150,7 @@ msgstr "提交简单的评论，像是“太棒了！”、“非常好”、“
 
 #: apps/pages/templates/pages/review_guide.html:102
 msgid "Post bug or problem reports in reviews. Use the available support options for each add-on."
-msgstr "在评论中发布缺陷或问题的报告。应该使用每个附加组件的支持选项。"
+msgstr "在评论中发出缺陷或问题的报告。您应该使用每个附加组件的支持选项。"
 
 #: apps/pages/templates/pages/review_guide.html:108
 msgid "Write reviews for add-ons which you have not personally used."
@@ -11154,19 +11158,19 @@ msgstr "您还没有亲自试用该附加组件就进行评论。"
 
 #: apps/pages/templates/pages/review_guide.html:113
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "使用亵渎，色情的语言或者可能构成伤害的语言。"
+msgstr "使用亵渎、性意味或其他可能构成伤害的言语。"
 
 #: apps/pages/templates/pages/review_guide.html:119
 msgid "Include HTML, links to malware, source code or code snippets. Reviews are meant to be text only."
-msgstr "包含HTML语法、到恶意软件的链接、源代码或代码片段。评论意味着应该只是文字。"
+msgstr "包含 HTML 语法，到恶意软件的链接，源代码或代码片段。“评论”意味着应该只是文字叙述。"
 
 #: apps/pages/templates/pages/review_guide.html:125
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "作出虚假的陈述，贬低或侮辱附加组件的作者。"
+msgstr "作出虚假的陈述、贬低或者侮辱附加组件的作者或任何个体。"
 
 #: apps/pages/templates/pages/review_guide.html:131
 msgid "Use reviews as a way to request support for a specific Firefox (or other application) version."
-msgstr "使用评论对特定的某个 Firefox（或其他应用程序）版本进行请求支持。"
+msgstr "使用评论对特定的某个 Firefox（或其他应用程序）版本进行支持请求。"
 
 #: apps/pages/templates/pages/review_guide.html:137
 msgid "Include your own email, phone number, or other personal details."
@@ -11180,34 +11184,37 @@ msgstr "为附加组件投递您或您的组织撰写或表述的评论。"
 msgid ""
 "Add-ons ratings should be fair and give a good indication of overall quality and usefulness. Don't just give it 5 stars if you like it or 1 star if you hate it. Consistent grading is an important "
 "part of any review."
-msgstr "附加组件评分应该是公平的表现和提供出一个良好的整体质量和实用性的评分。不要只是因为您喜欢它就给它5颗星，也不要因为您恨它就给它1颗星。始终如一的评分是任何评的重要部分。"
+msgstr ""
+"附加组件评分应该是公平的表现和提供出一个良好的整体质量和实用性的评分。不要只是因为您喜欢它就给它5颗星，也不要因为您恨它就给它1颗星。始终如一的评分是任"
+"何评论的重要部分。"
 
 #: apps/pages/templates/pages/review_guide.html:162
 msgid ""
 "<b>5 stars: Excellent.</b> Not only does everything it claims, but it is significantly more useful than many other add-ons. This add-on is likely to be one you use often and you highly recommend it."
-msgstr "<b>5星：非常棒。</b> 不仅能做到它所声称的事情，还比大多数附加组件有用得多。此附加组件很可能您会经常使用，并且您极力推荐它。"
+msgstr "<b>5星：超棒！</b>它不仅能做到所声称的事情，还比大多数的附加组件有用得多。您很可能会经常使用此附加组件，并且您极力推荐它。"
 
 #: apps/pages/templates/pages/review_guide.html:170
 msgid "<b>4 stars: Good.</b> Useful and easy to use, though not necessarily special. This add-on is recommended but may be more suited for some people over others."
-msgstr "<b>4星：很棒。</b> 非常有用且易于使用，虽然不一定很特别。我推荐这个附加组件，虽然它可能只适合部分人。"
+msgstr "<b>4星：很棒。</b>非常有用且易于使用，虽然不一定很特别。我推荐这个附加组件，虽然它可能只适合部分人群。"
 
 #: apps/pages/templates/pages/review_guide.html:177
 msgid ""
 "<b>3 stars: Passable.</b> May have some design issues and/or some missing features. Any problems it has are not drastic enough to recommend against, and some people may still find it useful. "
 "Recommended for those who need it and are willing to give it a try."
-msgstr "<b>3星：勉勉强强</b> 可能缺少一些功能或者有一些设计上的问题。有一些不太严重的问题，有些人可能仍然觉得它有点用。那些需要它的人可以试试。"
+msgstr "<b>3星：还行。</b>可能缺少一些功能或者有一些设计上的问题。有一些不太严重的问题，有些人可能仍然觉得它有点用。那些需要它的人可以试试。"
 
 #: apps/pages/templates/pages/review_guide.html:185
 msgid ""
 "<b>2 stars: Poor.</b> Add-on is of low quality, usability, or just doesn't do what it says it should. You are recommending against this add-on, while noting that it might have some redeeming value "
 "for a few people."
-msgstr "<b>2星：很差</b> 附加组件的质量、可用性很差，没能做到它所描述的事情。您不推荐这个附加组件，但也指出，它对极少数人还可能有点用。"
+msgstr ""
+"<b>2星：很差。</b>附加组件的质量、可用性很差，或者只是没能做到它所描述的事情。您不推荐使用这个附加组件，但也表示它可能对少数人还有点作用。"
 
 #: apps/pages/templates/pages/review_guide.html:193
 msgid ""
 "<b>1 star: Bad.</b> Add-on either doesn't work correctly or is utterly useless. You can't think of any significant reason why someone should give it a try and are recommending that it be avoided "
 "completely."
-msgstr "<b>1星：非常糟糕</b> 附加组件不能正常工作，或者完全无用。您无法理解为什么有人会使用或推荐它，完全没有必要去尝试。"
+msgstr "<b>1星：非常糟糕。</b>附加组件不能正常地工作，或者完全无用。您无法理解为什么有人会使用或推荐它，完全没有必要去尝试。"
 
 #: apps/pages/templates/pages/review_guide.html:203
 msgid "There's nothing wrong with giving an add-on a perfect or horrible review, just please indicate why you are doing so. The stars mean nothing if you don't tell us why."
@@ -11221,7 +11228,7 @@ msgstr "我该怎么报告有问题的评论？"
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Editors will use the Review Guidelines to evaluate whether "
 "or not to delete the review or restore it back to the site."
-msgstr "请通过点击“报告此评论”来报告或标记任何有问题评论，它将会被提交给网站仲裁。审核员会依照评论指南来评估是否删除还是恢复此评论。"
+msgstr "请通过点击“报告此评论”来报告或标记任何有问题的评论，它将被提交给网站仲裁。审核员会依照本篇“评论指南”来评估是否应该删除或者恢复该评论。"
 
 #: apps/pages/templates/pages/review_guide.html:222
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -12253,7 +12260,7 @@ msgstr "如果您要匿名，请输入更改的原因，但不要更改其他字
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
 msgid "others"
-msgstr "其他"
+msgstr "等"
 
 #: apps/users/models.py:66
 msgid "algorithm"
