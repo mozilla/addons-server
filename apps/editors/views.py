@@ -128,8 +128,8 @@ def home(request):
     reviews_total = ActivityLog.objects.total_reviews()[:reviews_max_display]
     reviews_monthly = (
         ActivityLog.objects.monthly_reviews()[:reviews_max_display])
-    reviews_total_count = ActivityLog.objects.total_reviews().count()
-    reviews_monthly_count = ActivityLog.objects.total_reviews().count()
+    reviews_total_count = ActivityLog.objects.user_approve_reviews(request.user).count()
+    reviews_monthly_count = ActivityLog.objects.current_month_user_approve_reviews(request.user).count()
 
     # Try to read user position from retrieved reviews.
     # If not available, query for it.

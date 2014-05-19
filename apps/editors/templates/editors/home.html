@@ -77,7 +77,7 @@
             </table>
           </div>
           {% if reviews_total_position > reviews_max_display %}
-            <p>{{ _("You're #{0} with {1} reviews")|f(reviews_total_position, reviews_total_count) }}</p>
+            <div>{{ _("You're #{0} with {1} reviews")|f(reviews_total_position, reviews_total_count) }}</div>
           {% endif %}
         </div>
         <div class="editor-stats-table">
@@ -92,7 +92,7 @@
             </table>
           </div>
           {% if reviews_monthly_position > reviews_max_display %}
-            <p>{{ _("You're #{0} with {1} reviews")|f(reviews_monthly_position, reviews_monthly_count) }}</p>
+            <div>{{ _("You're #{0} with {1} reviews")|f(reviews_monthly_position, reviews_monthly_count) }}</div>
           {% endif %}
         </div>
         <div class="editor-stats-table">
