@@ -76,8 +76,9 @@ class ESAddonFilter(ESBaseFilter):
     extras = AddonFilter.extras
 
 
-def addon_listing(request, addon_types, filter_=AddonFilter,
-                  default='featured'):
+def addon_listing(request, addon_types, filter_=AddonFilter, default=None):
+    if default is None:
+        default = 'rating' if request.MOBILE else 'featured'
     # Set up the queryset and filtering for themes & extension listing pages.
     if amo.ADDON_PERSONA in addon_types:
         qs = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
