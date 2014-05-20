@@ -4,6 +4,13 @@ import amo.models
 from versions import compare
 
 
+class ApplicationManager(amo.models.ManagerBase):
+
+    def supported(self):
+        """Exclude unsupported apps."""
+        return self.exclude(supported=False)
+
+
 class Application(amo.models.ModelBase):
 
     guid = models.CharField(max_length=255, default='')
@@ -11,6 +18,8 @@ class Application(amo.models.ModelBase):
     # We never reference these translated fields, so stop loading them.
     # name = TranslatedField()
     # shortname = TranslatedField()
+
+    objects = ApplicationManager()
 
     class Meta:
         db_table = 'applications'

@@ -381,6 +381,9 @@
                             });
                             if (excluded) {
                                 var msg = gettext('Some platforms are not available for this type of add-on.');
+                                if ($('.platform input[type=checkbox]').length === $('.platform input[type=checkbox]:disabled').length) {
+                                    msg = gettext('Sorry, no supported platform has been found.');
+                                }
                                 $('.platform').prepend(
                                     format('<ul class="errorlist"><li>{0}</li></ul>',
                                            msg));
