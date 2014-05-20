@@ -799,7 +799,9 @@ function initVersions() {
         {width: 400,
          callback: function(d){
             /* This sucks because of ngettext. */
-            var version = versions[$(d.click_target).attr('data-version')],
+            var el = $(d.click_target),
+                version = versions[el.data('version')],
+                is_current = el.data('is-current') === 1,
                 header = $('h3', this),
                 files = $('#del-files', this),
                 reviews = $('#del-reviews', this);
@@ -811,6 +813,7 @@ function initVersions() {
                                          version.reviews),
                                 version));
             $('.version_id', this).val(version.id);
+            $('.current-version-warning', this).toggle(is_current);
             return true;
         }});
 

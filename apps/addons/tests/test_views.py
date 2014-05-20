@@ -1141,57 +1141,6 @@ class TestStatus(amo.tests.TestCase):
         self.addon.update(disabled_by_user=True)
         eq_(self.client.get(self.url).status_code, 404)
 
-    def new_version(self, status):
-        v = Version.objects.create(addon=self.addon)
-        File.objects.create(version=v, status=status)
-        return v
-
-    def test_public_new_lite_version(self):
-        self.new_version(amo.STATUS_LITE)
-        eq_(self.addon.get_version(), self.version)
-
-    def test_public_new_nominated_version(self):
-        self.new_version(amo.STATUS_NOMINATED)
-        eq_(self.addon.get_version(), self.version)
-
-    def test_public_new_public_version(self):
-        v = self.new_version(amo.STATUS_PUBLIC)
-        eq_(self.addon.get_version(), v)
-
-    def test_public_new_unreviewed_version(self):
-        self.new_version(amo.STATUS_UNREVIEWED)
-        eq_(self.addon.get_version(), self.version)
-
-    def test_lite_new_unreviewed_version(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        self.new_version(amo.STATUS_UNREVIEWED)
-        eq_(self.addon.get_version(), self.version)
-
-    def test_lite_new_lan_version(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        v = self.new_version(amo.STATUS_LITE_AND_NOMINATED)
-        eq_(self.addon.get_version(), v)
-
-    def test_lite_new_lite_version(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        v = self.new_version(amo.STATUS_LITE)
-        eq_(self.addon.get_version(), v)
-
-    def test_lite_new_full_version(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        v = self.new_version(amo.STATUS_PUBLIC)
-        eq_(self.addon.get_version(), v)
-
-    def test_lan_new_lite_version(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        v = self.new_version(amo.STATUS_LITE)
-        eq_(self.addon.get_version(), v)
-
-    def test_lan_new_full_version(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        v = self.new_version(amo.STATUS_PUBLIC)
-        eq_(self.addon.get_version(), v)
-
     def test_persona(self):
         for status in amo.STATUS_CHOICES.keys():
             if status == amo.STATUS_DELETED:

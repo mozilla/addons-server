@@ -1,7 +1,6 @@
 import functools
 
 from django import http
-from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 
 import commonware.log
