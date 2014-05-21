@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-09 06:27+0000\n"
+"PO-Revision-Date: 2014-05-21 21:22+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399616858.0\n"
+"X-POOTLE-MTIME: 1400707346.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1025,7 +1025,7 @@ msgstr "Beheren"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:101
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Pictogram van {0}"
 
 #: apps/addons/templates/addons/impala/details.html:108 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
@@ -1045,7 +1045,7 @@ msgstr "Lees waarom {0} is gemaakt en ontdek wat de toekomst biedt voor deze add
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:165
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Schermafbeelding add-on nr. {0}"
 
 #: apps/addons/templates/addons/impala/details.html:191
 msgid "Add-on home page"
@@ -6505,7 +6505,7 @@ msgstr "De add-on dient uitstekende gebruikersbeoordelingen te hebben en eventue
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "De add-on dient ten minste 2000 gebruikers te hebben."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
@@ -6538,6 +6538,8 @@ msgstr "de add-on-naam, URL, en of u de ontwikkelaar bent"
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
 msgstr ""
+"een korte uitleg waarom de add-on een breed publiek aanspreekt en zou moeten "
+"worden aanbevolen"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
@@ -6548,6 +6550,12 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"Add-on-nominaties worden maandelijks door de Adviesraad beoordeeld (elk "
+"kwartaal voor nominaties van volledige thema’s). Veel voorkomende redenen "
+"van afwijzing zijn de afwezigheid van een breed publiek, een suboptimale "
+"gebruikerservaring, kwaliteits- of beveiligingsproblemen, incompatibiliteit "
+"en gelijkaardigheid met een andere aanbevolen add-on. Afgewezen add-ons "
+"kunnen niet binnen drie maanden opnieuw worden genomineerd."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8516,6 +8524,9 @@ msgstr "Versie {version} verwijderen"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"U staat op het punt om de huidige versie van uw add-on te verwijderen. "
+"Hierdoor kan de status van uw add-on wijzigen of, als dit de enige publieke "
+"versie van uw add-on is, de zichtbaarheid voor het publiek kan verdwijnen."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
