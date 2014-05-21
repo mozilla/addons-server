@@ -2252,35 +2252,10 @@ form .error .note.error {
     color: #235;
 }
 
-.secondary ul.refinements {
-    border-bottom: 1px dotted #94bfce;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
-}
-
 #refine-results div:last-child ul.refinements {
     border-bottom: 0;
     margin-bottom: 0;
     padding-bottom: 0;
-}
-
-.secondary ul.refinements li a {
-    color: #3d6db5;
-    padding: 0 0 0 10px;
-    font-weight: bold;
-    font-size: .923em;
-}
-
-.html-rtl .secondary ul.refinements li a {
-    padding: 0 10px 0 0;
-}
-
-.secondary ul.refinements li.selected a {
-    background: transparent url("../../img/zamboni/arrow-right-blue.png") 0 .5em no-repeat;
-}
-
-.html-rtl .secondary ul.refinements li.selected a {
-    background: transparent url("../../img/zamboni/arrow-left-blue.png") 100% .5em no-repeat;
 }
 
 /** =Report abuse form *********/

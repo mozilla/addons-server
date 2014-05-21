@@ -6,14 +6,12 @@ import time
 import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
-from decimal import Decimal
 from functools import partial, wraps
-from urlparse import SplitResult, urlsplit, urlunsplit
+from urlparse import urlsplit, urlunsplit
 
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
@@ -292,14 +290,14 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         if locale:
             rf = test_utils.RequestFactory()
             prefixer = Prefixer(rf.get('/%s/' % (locale,)))
-            translation.activate(locale)
+            tower.activate(locale)
         if app:
             prefixer.app = app
         set_url_prefix(prefixer)
         yield
         old_prefix.app = old_app
         set_url_prefix(old_prefix)
-        translation.activate(old_locale)
+        tower.activate(old_locale)
 
     def assertNoFormErrors(self, response):
         """Asserts that no form in the context has errors.
@@ -671,8 +669,8 @@ def req_factory_factory(url, user=None, post=False, data=None):
         req = req.get(url, data or {})
     if user:
         req.amo_user = RequestUser.objects.get(id=user.id)
-        req.user = user.user
-        req.groups = req.user.get_profile().groups.all()
+        req.user = user
+        req.groups = user.groups.all()
     req.APP = None
     req.check_ownership = partial(check_ownership, req)
     return req

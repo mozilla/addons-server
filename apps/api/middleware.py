@@ -71,7 +71,7 @@ class RestOAuthMiddleware(object):
                 'user_id', flat=True)[0]
         request.amo_user = UserProfile.objects.select_related(
             'user').get(pk=uid)
-        request.user = request.amo_user.user
+        request.user = request.amo_user
 
         # But you cannot have one of these roles.
         denied_groups = set(['Admins'])

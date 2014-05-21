@@ -457,6 +457,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
+            self._reviews.all().delete()
             self.update(status=amo.STATUS_DELETED,
                         slug=None, app_slug=None, app_domain=None,
                         _current_version=None)
@@ -609,10 +610,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
-                        SELECT 1 FROM versions as v2
-                        INNER JOIN files AS f2 ON (f2.version_id = v2.id)
-                        WHERE v2.id = versions.id
-                        AND f2.status NOT IN (%s))
+                        SELECT 1 FROM files AS f2
+                        WHERE f2.version_id = versions.id AND
+                              f2.status NOT IN (%s))
                     """ % status_list])[0]
 
         except (IndexError, Version.DoesNotExist):
@@ -822,7 +822,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             version_id = 0
 
         log.debug(u'Caching compat version %s => %s' % (cache_key, version_id))
-        cache.set(cache_key, version_id, 0)
+        cache.set(cache_key, version_id, None)
 
         return version
 
@@ -947,20 +947,33 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
         versions = self.versions.all()
+        status = None
         if not versions.exists():
-            self.update(status=amo.STATUS_NULL)
+            status = amo.STATUS_NULL
             logit('no versions')
-        elif not (versions.filter(files__isnull=False).exists()):
-            self.update(status=amo.STATUS_NULL)
-            logit('no versions with files')
+        elif not versions.filter(files__status__in=amo.VALID_STATUSES).exists():
+            status = amo.STATUS_NULL
+            logit('no version with valid file')
         elif (self.status == amo.STATUS_PUBLIC and
               not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
             if versions.filter(files__status=amo.STATUS_LITE).exists():
-                self.update(status=amo.STATUS_LITE)
+                status = amo.STATUS_LITE
                 logit('only lite files')
             else:
-                self.update(status=amo.STATUS_UNREVIEWED)
+                status = amo.STATUS_UNREVIEWED
                 logit('no reviewed files')
+        elif (self.status in amo.REVIEWED_STATUSES
+              and self.latest_version
+              and self.latest_version.has_files
+              and (self.latest_version.all_files[0].status
+                   in amo.UNDER_REVIEW_STATUSES)):
+            # Addon is public, but its latest file is not (it's the case on a
+            # new file upload). So, call update, to trigger watch_status, which
+            # takes care of setting nomination time when needed.
+            status = self.status
+
+        if status is not None:
+            self.update(status=status)
 
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):
@@ -1167,7 +1180,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def is_under_review(self):
-        return self.status in amo.STATUS_UNDER_REVIEW
+        return self.status in amo.UNDER_REVIEW_STATUSES
 
     def is_unreviewed(self):
         return self.status in amo.UNREVIEWED_STATUSES
@@ -1183,6 +1196,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def is_rejected(self):
         return self.status == amo.STATUS_REJECTED
+
     def can_be_deleted(self):
         return not self.is_deleted
 
@@ -1213,7 +1227,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """Returns a tuple of developer tags and user tags for this addon."""
         tags = self.tags.not_blacklisted()
         if self.is_persona:
-            return models.query.EmptyQuerySet(), tags
+            return [], tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
@@ -1495,12 +1509,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                          viewer=(not require_owner),
                                          ignore_disabled=ignore_disabled)
 
+    def reset_nomination_time(self, force=False):
+        if self.latest_version:
+            self.latest_version.reset_nomination_time(force=force)
+
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
 
 
 class AddonDeviceType(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, db_constraint=False)
     device_type = models.PositiveIntegerField(
         default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
         db_index=True)
@@ -1536,7 +1554,6 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
                  sender=None, **kw):
     """Set nomination date if self.status asks for full review.
 
-    The nomination date will only be set when the status of the addon changes.
     The nomination date cannot be reset, say, when a developer cancels their
     request for full review and re-requests full review.
 
@@ -1544,17 +1561,24 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
     new version.
     """
     new_status = new_attr.get('status')
+    old_status = old_attr.get('status')
     if not new_status:
         return
     addon = instance
-    stati = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
-    if new_status in stati and old_attr['status'] != new_status:
-        try:
-            latest = addon.versions.latest()
-            if not latest.nomination:
-                latest.update(nomination=datetime.now())
-        except Version.DoesNotExist:
-            pass
+
+    def is_new_in_queue():
+        return (new_status in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES
+                and not old_status in amo.UNDER_REVIEW_STATUSES
+                and old_status != new_status)
+
+    def is_updating_addon():
+        return (new_status in amo.REVIEWED_STATUSES
+                and addon.latest_version
+                and addon.latest_version.has_files)
+
+    if is_new_in_queue() or is_updating_addon():
+        # Will reset nomination only if it's None.
+        addon.reset_nomination_time(force=False)
 
 
 @Addon.on_change

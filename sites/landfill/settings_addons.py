@@ -8,18 +8,15 @@ import private_addons
 
 SERVER_EMAIL = 'zlandfill@addons.mozilla.org'
 
-DOMAIN = "landfill.addons.allizom.org"
-SITE_URL = 'https://landfill.addons.allizom.org'
+DOMAIN = "landfill-addons.allizom.org"
+SITE_URL = 'https://landfill-addons.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = SITE_URL + '/'
+STATIC_URL = 'https://landfill-addons-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = STATIC_URL + 'storage/public-staging'
 
-CSP_STATIC_URL = STATIC_URL[:-1]
-CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
-CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
-CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
+CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://sandbox.paypal.com",)
+CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
 
 ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +

@@ -8,7 +8,7 @@
         <a href="{{ addon.get_url_path() }}">
           <div class="persona-preview">
             <img {{ 'src' if first_page else 'data-defer-src' }}="{{ addon.persona.thumb_url }}"
-                 data-browsertheme="{{ addon.persona.json_data }}">
+                 data-browsertheme="{{ addon.persona.json_data }}" alt="">
           </div>
           <h3>{{ addon.name }}</h3>
         </a>

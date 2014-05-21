@@ -50,17 +50,15 @@
           {{ recaptcha(form) }}
         {% endif %}
       </ul>
-      <footer class="listing-footer c">
-        <div>
-          <button id="login-submit" type="submit">{{ _('Log in') }}</button>
-          {% if waffle.switch('browserid-login') %}
-            <a href="#" class="browserid-login browserid-login-alt button premium"
-               data-url="{{ url('users.browserid_login') }}">
-              {{ loc('Use BrowserID') }}
-            </a>
-          {% endif %}
-        </div>
-      </footer>
+      <div class="listing-footer footer c">
+        <button id="login-submit" type="submit">{{ _('Log in') }}</button>
+        {% if waffle.switch('browserid-login') %}
+          <a href="#" class="browserid-login browserid-login-alt button premium"
+             data-url="{{ url('users.browserid_login') }}">
+            {{ loc('Use BrowserID') }}
+          </a>
+        {% endif %}
+      </div>
     </fieldset>
   </div>
 </form>

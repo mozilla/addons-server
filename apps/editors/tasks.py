@@ -1,19 +1,17 @@
-import json
 
 from django.conf import settings
+from django.utils.translation import override
 
 import commonware.log
 from celeryutils import task
 from tower import ugettext as _
 
-import amo
 import constants.editors as rvw
 from addons.tasks import create_persona_preview_images
 from amo.decorators import write
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.utils import LocalFileStorage, send_mail_jinja
 from devhub.models import ActivityLog, CommentLog, VersionLog
-from editors.models import ReviewerScore
 from versions.models import Version
 
 
@@ -24,7 +22,6 @@ log = commonware.log.getLogger('z.task')
 def add_commentlog(items, **kw):
     log.info('[%s@%s] Adding CommentLog starting with ActivityLog: %s' %
              (len(items), add_commentlog.rate_limit, items[0]))
-
 
     for al in ActivityLog.objects.filter(pk__in=items):
         # Delete existing entries:
@@ -58,49 +55,51 @@ def send_mail(cleaned_data, theme_lock):
     """
     Send emails out for respective review actions taken on themes.
     """
-    theme = cleaned_data['theme']
-    action = cleaned_data['action']
-    comment = cleaned_data['comment']
-    reject_reason = cleaned_data['reject_reason']
+    with override('en-US'):  # Make sure the email is always sent in english.
+        theme = cleaned_data['theme']
+        action = cleaned_data['action']
+        comment = cleaned_data['comment']
+        reject_reason = cleaned_data['reject_reason']
 
-    reason = None
-    if reject_reason:
-        reason = rvw.THEME_REJECT_REASONS[reject_reason]
-    elif action == rvw.ACTION_DUPLICATE:
-        reason = _('Duplicate Submission')
+        reason = None
+        if reject_reason:
+            reason = rvw.THEME_REJECT_REASONS[reject_reason]
+        elif action == rvw.ACTION_DUPLICATE:
+            reason = _('Duplicate Submission')
 
-    emails = set(theme.addon.authors.values_list('email', flat=True))
-    context = {
-        'theme': theme,
-        'base_url': settings.SITE_URL,
-        'reason': reason,
-        'comment': comment
-    }
+        emails = set(theme.addon.authors.values_list('email', flat=True))
+        context = {
+            'theme': theme,
+            'base_url': settings.SITE_URL,
+            'reason': reason,
+            'comment': comment
+        }
 
-    subject = None
-    if action == rvw.ACTION_APPROVE:
-        subject = _('Thanks for submitting your Theme')
-        template = 'editors/themes/emails/approve.html'
+        subject = None
+        if action == rvw.ACTION_APPROVE:
+            subject = _('Thanks for submitting your Theme')
+            template = 'editors/themes/emails/approve.html'
 
-    elif action in (rvw.ACTION_REJECT, rvw.ACTION_DUPLICATE):
-        subject = _('A problem with your Theme submission')
-        template = 'editors/themes/emails/reject.html'
+        elif action in (rvw.ACTION_REJECT, rvw.ACTION_DUPLICATE):
+            subject = _('A problem with your Theme submission')
+            template = 'editors/themes/emails/reject.html'
 
-    elif action == rvw.ACTION_FLAG:
-        subject = _('Theme submission flagged for review')
-        template = 'editors/themes/emails/flag_reviewer.html'
+        elif action == rvw.ACTION_FLAG:
+            subject = _('Theme submission flagged for review')
+            template = 'editors/themes/emails/flag_reviewer.html'
 
-        # Send the flagged email to themes email.
-        emails = [settings.THEMES_EMAIL]
+            # Send the flagged email to themes email.
+            emails = [settings.THEMES_EMAIL]
 
-    elif action == rvw.ACTION_MOREINFO:
-        subject = _('A question about your Theme submission')
-        template = 'editors/themes/emails/moreinfo.html'
-        context['reviewer_email'] = theme_lock.reviewer.email
+        elif action == rvw.ACTION_MOREINFO:
+            subject = _('A question about your Theme submission')
+            template = 'editors/themes/emails/moreinfo.html'
+            context['reviewer_email'] = theme_lock.reviewer.email
 
-    send_mail_jinja(subject, template, context,
-                    recipient_list=emails, from_email=settings.ADDONS_EMAIL,
-                    headers={'Reply-To': settings.THEMES_EMAIL})
+        send_mail_jinja(subject, template, context,
+                        recipient_list=emails,
+                        from_email=settings.ADDONS_EMAIL,
+                        headers={'Reply-To': settings.THEMES_EMAIL})
 
 
 @task

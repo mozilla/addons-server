@@ -30,17 +30,17 @@ def setup():
         product_id int(11) not null references sql_model_test_product (id)
     );
     insert into sql_model_test_product (id, name, created)
-                            values (1, 'defilbrilator', NOW());
+                            values (1, 'defilbrilator', UTC_TIMESTAMP());
     insert into sql_model_test_cat (id, name)
                             values (1, 'safety');
     insert into sql_model_test_product_cat (product_id, cat_id)
                             values (1, 1);
     insert into sql_model_test_product (id, name, created)
-                            values (2, 'life jacket', NOW());
+                            values (2, 'life jacket', UTC_TIMESTAMP());
     insert into sql_model_test_product_cat (product_id, cat_id)
                             values (2, 1);
     insert into sql_model_test_product (id, name, created)
-                            values (3, 'snake skin jacket', NOW());
+                            values (3, 'snake skin jacket', UTC_TIMESTAMP());
     insert into sql_model_test_cat (id, name)
                             values (2, 'apparel');
     insert into sql_model_test_product_cat (product_id, cat_id)
@@ -274,4 +274,4 @@ class TestSQLModel(unittest.TestCase):
         eq_(row.category, 'apparel')
         eq_(row.total, 1)
         eq_(row.latest_product_date.timetuple()[0:3],
-            datetime.now().timetuple()[0:3])
+            datetime.utcnow().timetuple()[0:3])

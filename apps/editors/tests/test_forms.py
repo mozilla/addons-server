@@ -19,7 +19,7 @@ class TestReviewActions(amo.tests.TestCase):
         self.version = self.addon.versions.all()[0]
 
         class FakeRequest:
-            user = UserProfile.objects.get(pk=10482).user
+            user = UserProfile.objects.get(pk=10482)
 
         self.request = FakeRequest()
         self.file = self.version.files.all()[0]

@@ -21,7 +21,7 @@
 
   <div class="island swagger theme-info c">
     <div class="addon-name-and-icon c">
-      <img class="addon-icon" src="{{ addon.icon_url }}">
+      <img class="addon-icon" src="{{ addon.icon_url }}" alt="">
       <h2 class="addon-name">{{ addon.name }}</h2>
       <h3 class="author">
         {{ _('by {0}')|f(users_list(addon.listed_authors)|safe or persona.display_username|safe) }}
@@ -243,11 +243,11 @@
               <ul class="rereview-preview">
                 <li id="persona-header" class="row">
                   <h3>{{ _('Pending Header') }}</h3>
-                  <img class="preview loaded" src="{{ rereview[0].header_url }}">
+                  <img class="preview loaded" src="{{ rereview[0].header_url }}" alt="">
                 </li>
                 <li id="persona-footer" class="row">
                   <h3>{{ _('Pending Footer') }}</h3>
-                  <img class="preview loaded" src="{{ rereview[0].footer_url }}">
+                  <img class="preview loaded" src="{{ rereview[0].footer_url }}" alt="">
                 </li>
               </ul>
             {% endif %}
@@ -260,11 +260,11 @@
         <ul class="theme-preview">
           <li id="persona-header" class="row">
             <h3>{{ _('Header') }}</h3>
-            <img class="preview loaded" src="{{ persona.header_url }}">
+            <img class="preview loaded" src="{{ persona.header_url }}" alt="">
           </li>
           <li id="persona-footer" class="row">
             <h3>{{ _('Footer') }}</h3>
-            <img class="preview loaded" src="{{ persona.footer_url }}">
+            <img class="preview loaded" src="{{ persona.footer_url }}" alt="">
           </li>
         </ul>
         <h3 class="colors">{{ _('Select colors for your Theme.') }}</h3>

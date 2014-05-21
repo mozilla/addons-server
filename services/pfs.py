@@ -6,7 +6,6 @@ import sys
 from time import time
 from urlparse import parse_qsl
 
-from django.core.management import setup_environ
 
 import commonware.log
 import jinja2
@@ -14,7 +13,6 @@ import jinja2
 from utils import log_configure
 
 import settings_local as settings
-setup_environ(settings)
 
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
@@ -111,8 +109,8 @@ def get_output(data):
                 iconUrl='http://fpdownload2.macromedia.com/pub/flashplayer/current/fp_win_installer.ico',
                 needsRestart='false',
                 InstallerShowsUI='true',
-                version='12.0.0.77',
-                InstallerHash='sha256:a0bedf54c87bbcdf085e759ac4a3ee9670ece92d307bc9a2de8606fe6f7b7a32',
+                version='13.0.0.214',
+                InstallerHash='sha256:3429f62b63ea7e06298231be7a2cf80b15745ba09442a952cbf23942e1aeba42',
                 InstallerLocation='http://download.macromedia.com/pub/flashplayer/pdc/fp_pl_pfs_installer.exe')
 
     elif (g['mimetype'] == 'application/x-director' and
@@ -133,8 +131,8 @@ def get_output(data):
         plugin.update(
             guid='{45f2a22c-4029-4209-8b3d-1421b989633f}',
             XPILocation='',
-            version='12.0.9.150',
-            InstallerHash='sha256:b86c539ca783b27d6adf6f3cc65e562c54c7ec19f3f675faced9e4ab494a5585',
+            version='12.1.1.151',
+            InstallerHash='sha256:22105e72f390b72ee6120f43d83eec3d85f38df32d3a5d6b3d18dcf0cc46dbf7',
             InstallerLocation='http://fpdownload.macromedia.com/pub/shockwave/default/english/win95nt/latest/Shockwave_Installer_FF.exe',
             manualInstallationURL='http://get.adobe.com/shockwave/otherversions',
             needsRestart='false',

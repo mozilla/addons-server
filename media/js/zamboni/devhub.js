@@ -1,4 +1,8 @@
 $(document).ready(function() {
+
+    // Modals
+    var $modalFile, $modalDelete, $modalDisable;
+
     // Edit Add-on
     $("#edit-addon").exists(initEditAddon);
 
@@ -78,8 +82,8 @@ $(document).ready(function() {
         $('.addon-upload-failure-dependant').attr('disabled', true);
     }
 
-    if ($(".version-upload").length) {
-        $modal = $(".add-file-modal").modal(".version-upload", {
+    if ($(".add-file-modal").length) {
+        $modalFile = $(".add-file-modal").modal(".version-upload", {
             width: '450px',
             hideme: false,
             callback: function() {
@@ -88,7 +92,7 @@ $(document).ready(function() {
             }
         });
 
-        $('.upload-file-cancel').click(_pd($modal.hideMe));
+        $('.upload-file-cancel').click(_pd($modalFile.hideMe));
         $('#upload-file').submit(_pd(function(e) {
             $.ajax({
                 url: $(this).attr('action'),
@@ -104,12 +108,12 @@ $(document).ready(function() {
                     $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
                     $('#upload-file-finish').attr('disabled', false);
-                    $modal.setPos();
+                    $modalFile.setPos();
                 }
             });
         }));
         if (window.location.hash === '#version-upload') {
-            $modal.render();
+            $modalFile.render();
         }
     }
 
@@ -288,21 +292,31 @@ $(document).ready(function() {
 
     // hook up various links related to current version status
     $('#modal-cancel').modal('#cancel-review', {width: 400});
-    $('#modal-delete').modal('#delete-addon', {
-        width: 400,
-        callback: function(obj) {
-            return fixPasswordField(this);
+    if ($("#modal-delete").length) {
+        $modalDelete = $('#modal-delete').modal('.delete-addon', {
+            width: 400,
+            callback: function(obj) {
+                return fixPasswordField(this);
+            }
+        });
+        if (window.location.hash === '#delete-addon') {
+            $modalDelete.render();
         }
-    });
-    $('#modal-disable').modal('#disable-addon', {
-        width: 400,
-        callback: function(d){
-            $('.version_id', this).val($(d.click_target).attr('data-version'));
-            return true;
+    }
+    if ($("#modal-disable").length) {
+        $modalDisable = $('#modal-disable').modal('.disable-addon', {
+            width: 400,
+            callback: function(d){
+                $('.version_id', this).val($(d.click_target).attr('data-version'));
+                return true;
+            }
+        });
+        if (window.location.hash === '#disable-addon') {
+            $modalDisable.render();
         }
-    });
+    }
 
-    $('#enable-addon').bind('click', _pd(function() {
+    $('.enable-addon').bind('click', _pd(function() {
         $.ajax({
             'type': 'POST',
             'url': $(this).attr('href'),
@@ -785,7 +799,9 @@ function initVersions() {
         {width: 400,
          callback: function(d){
             /* This sucks because of ngettext. */
-            var version = versions[$(d.click_target).attr('data-version')],
+            var el = $(d.click_target),
+                version = versions[el.data('version')],
+                is_current = el.data('is-current') === 1,
                 header = $('h3', this),
                 files = $('#del-files', this),
                 reviews = $('#del-reviews', this);
@@ -797,6 +813,7 @@ function initVersions() {
                                          version.reviews),
                                 version));
             $('.version_id', this).val(version.id);
+            $('.current-version-warning', this).toggle(is_current);
             return true;
         }});
 
@@ -841,7 +858,7 @@ function generateErrorList(o) {
 function initEditVersions() {
     if (z.noEdit) return;
     // Modal box
-    $modal = $(".add-file-modal").modal(".add-file", {
+    var $modal = $(".add-file-modal").modal(".add-file", {
         width: '450px',
         hideme: false,
         callback: function() {
@@ -918,7 +935,7 @@ function initPayments(delegate) {
     ],
         media_url = $("body").attr("data-media-url"),
         to = false,
-        img = $("<img id='contribution-preview'/>");
+        img = $("<img id='contribution-preview' alt='' />");
         moz = $("input[value='moz']");
     img.hide().appendTo($("body"));
     moz.parent().after(

@@ -18,6 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="{{ addon.get_icon_url(64)|absolutify }}">
   <meta property="og:url" content="{{ addon.get_url_path()|absolutify }}">
+  <meta property="og:description" content="{{ addon.summary|striptags }}">
 {% endblock %}
 
 {% block content %}
@@ -96,7 +97,8 @@
 <section class="primary">
   <div id="addon" class="island c" role="main" data-id="{{ addon.id }}">
     <hgroup>
-      <img id="addon-icon" itemprop="image" src="{{ addon.get_icon_url(64) }}" class="icon">
+      {# L10n: {0} is an add-on name. #}
+      <img id="addon-icon" itemprop="image" src="{{ addon.get_icon_url(64) }}" class="icon" alt="{{ _('Icon of {0}')|f(addon.name) }}">
       <h1 class="addon"{{ addon.name|locale_html }}>
         <span itemprop="name">{{ addon.name }}</span>
         {% if version %}
@@ -139,7 +141,7 @@
             <a href="{{ url }}">Meet the Developers</a>
           {% endtrans %}
         </h3>
-        <img class="avatar" alt="{{ single_dev.name }}" height="64"
+        <img class="avatar" alt="{{ single_dev.name }}" height="64" alt=""
              width="64" src="{{ single_dev.picture_url }}"/>
         <p>{{ _("Learn why {0} was created and find out what's next for this "
                 'add-on.')|f(addon.name) }}</p>
@@ -159,7 +161,8 @@
             <li class="panel">
               <a class="screenshot thumbnail" rel="jquery-lightbox"
                  href="{{ preview.image_url }}" title="{{ preview.caption }}">
-                <img src="{{ preview.thumbnail_url }}">
+                {# L10n: {0} is an index. #}
+                <img src="{{ preview.thumbnail_url }}" alt="{{ _('Add-on screenshot #{0}')|f(loop.index) }}">
               </a>
             </li>
           {%- endfor -%}

@@ -76,8 +76,9 @@ class ESAddonFilter(ESBaseFilter):
     extras = AddonFilter.extras
 
 
-def addon_listing(request, addon_types, filter_=AddonFilter,
-                  default='featured'):
+def addon_listing(request, addon_types, filter_=AddonFilter, default=None):
+    if default is None:
+        default = 'rating' if request.MOBILE else 'featured'
     # Set up the queryset and filtering for themes & extension listing pages.
     if amo.ADDON_PERSONA in addon_types:
         qs = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
@@ -290,17 +291,13 @@ class PersonasFilter(BaseFilter):
     def _filter(self, field):
         qs = Addon.objects
         if field == 'created':
-            return (qs.order_by('-created')
-                    .with_index(addons='created_type_idx'))
+            return qs.order_by('-created')
         elif field == 'popular':
-            return (qs.order_by('-persona__popularity')
-                    .with_index(personas='personas_popularity_idx'))
+            return qs.order_by('-persona__popularity')
         elif field == 'rating':
-            return (qs.order_by('-bayesian_rating')
-                    .with_index(addons='rating_type_idx'))
+            return qs.order_by('-bayesian_rating')
         else:
-            return (qs.order_by('-persona__movers')
-                    .with_index(personas='personas_movers_idx'))
+            return qs.order_by('-persona__movers')
 
 
 def personas_listing(request, category_slug=None):

@@ -23,9 +23,6 @@ HOME=/tmp
 #every 3 hours
 20 */3 * * * %(z_cron)s compatibility_report
 
-#every 4 hours
-40 */4 * * * %(django)s clean_redis
-
 #twice per day
 # Use system python to use an older version of sqlalchemy than what is in our venv
 # Add slugs after we get all the new personas.
@@ -37,16 +34,8 @@ HOME=/tmp
 25 17,5 * * * %(z_cron)s hide_disabled_files
 
 #once per day
-05 8 * * * %(z_cron)s email_daily_ratings --settings=settings_local_mkt
-15 8 * * * %(z_cron)s process_iarc_changes --settings=settings_local_mkt
-30 8 * * * %(z_cron)s dump_user_installs_cron --settings=settings_local_mkt
-00 9 * * * %(z_cron)s update_app_downloads --settings=settings_local_mkt
 30 9 * * * %(z_cron)s update_user_ratings
 50 9 * * * %(z_cron)s gc
-45 9 * * * %(z_cron)s mkt_gc --settings=settings_local_mkt
-45 9 * * * %(z_cron)s clean_old_signed --settings=settings_local_mkt
-45 10 * * * %(django)s process_addons --task=update_manifests --settings=settings_local_mkt
-45 11 * * * %(django)s process_addons --task=dump_apps --settings=settings_local_mkt
 30 12 * * * %(z_cron)s cleanup_synced_collections
 30 13 * * * %(z_cron)s expired_resetcode
 30 14 * * * %(z_cron)s category_totals
@@ -59,7 +48,7 @@ HOME=/tmp
 45 7 * * * %(django)s dump_apps
 
 # Collect visitor stats from Google Analytics once per day.
-50 10 * * * %(z_cron)s update_google_analytics --settings=settings_local_mkt
+50 10 * * * %(z_cron)s update_google_analytics
 
 #Once per day after 2100 PST (after metrics is done)
 35 5 * * * %(z_cron)s update_addon_download_totals

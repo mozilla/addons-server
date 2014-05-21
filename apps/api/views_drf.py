@@ -142,6 +142,9 @@ class SearchView(DRFView):
         limit = min(MAX_LIMIT, int(limit))
         app_id = self.request.APP.id
 
+        # We currently filter for status=PUBLIC for all versions. If
+        # that changes, the contract for API version 1.5 requires
+        # that we continue filtering for it there.
         filters = {
             'app': app_id,
             'status': amo.STATUS_PUBLIC,
@@ -152,14 +155,15 @@ class SearchView(DRFView):
         # Opts may get overridden by query string filters.
         opts = {
             'addon_type': addon_type,
-            'platform': platform,
             'version': version,
         }
+        # Specific case for Personas (bug 990768): if we search providing the
+        # Persona addon type (9), don't filter on the platform as Personas
+        # don't have compatible platforms to filter on.
+        if addon_type != '9':
+            opts['platform'] = platform
 
         if self.api_version < 1.5:
-            # By default we show public addons only for api_version < 1.5.
-            filters['status__in'] = [amo.STATUS_PUBLIC]
-
             # Fix doubly encoded query strings.
             try:
                 query = urllib.unquote(query.encode('ascii'))
@@ -167,7 +171,8 @@ class SearchView(DRFView):
                 # This fails if the string is already UTF-8.
                 pass
 
-        query, qs_filters = extract_filters(query, filters['app'], opts)
+        query, qs_filters, params = extract_filters(query, filters['app'],
+                                                    opts)
 
         qs = Addon.search().query(or_=name_query(query))
         filters.update(qs_filters)
@@ -176,20 +181,19 @@ class SearchView(DRFView):
             filters['type__in'] = list(amo.ADDON_SEARCH_TYPES)
         qs = qs.filter(**filters)
 
-        if qs_filters.get('platform__in', []):
-            # More than one platform, pluck it out.
-            platforms = qs_filters.get('platform__in')[:]
-            platforms.remove(1)  # ALL is already queried in compat SQL.
-            if platforms:
-                platform = amo.PLATFORMS[platforms[0]].api_name
-
+        qs = qs[:limit]
         total = qs.count()
 
         results = []
         for addon in qs:
-            compat_version = addon.compatible_version(app_id, version,
-                                                      platform, compat_mode)
-            if compat_version:
+            compat_version = addon.compatible_version(app_id,
+                                                      params['version'],
+                                                      params['platform'],
+                                                      compat_mode)
+            # Specific case for Personas (bug 990768): if we search providing
+            # the Persona addon type (9), then don't look for a compatible
+            # version.
+            if compat_version or addon_type == '9':
                 addon.compat_version = compat_version
                 results.append(addon)
                 if len(results) == limit:

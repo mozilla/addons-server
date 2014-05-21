@@ -2,7 +2,6 @@ from urlparse import urlparse, parse_qs
 
 from django import test
 from django.conf import settings
-from django.contrib.auth.models import User as DjangoUser
 from django.utils import translation, encoding
 
 from mock import Mock, patch
@@ -18,13 +17,14 @@ from sharing.forms import ShareForm
 from sharing.helpers import sharing_box
 from sharing import DIGG, FACEBOOK
 
+from users.models import UserProfile
 
 class SharingHelpersTestCase(test.TestCase):
     fixtures = ['base/addon_3615']
 
     def test_sharing_box(self):
         request = Mock()
-        request.user = DjangoUser()
+        request.user = UserProfile()
         request.APP = amo.FIREFOX
         ctx = {'request': request,
                'APP': request.APP,

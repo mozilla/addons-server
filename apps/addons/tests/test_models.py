@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
 import itertools
-import json
 import os
-import tempfile
 import time
-from contextlib import nested
 from datetime import datetime, timedelta
 from urlparse import urlparse
 
 from django import forms
-from django.contrib.auth.models import AnonymousUser
 from django.conf import settings
 from django.core import mail
 from django.core.exceptions import ValidationError
@@ -17,7 +13,7 @@ from django.db import IntegrityError
 from django.utils import translation
 
 from mock import Mock, patch
-from nose.tools import assert_not_equal, eq_, ok_, raises
+from nose.tools import assert_not_equal, eq_, ok_
 
 import amo
 import amo.tests
@@ -26,7 +22,7 @@ from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonDeviceType, AddonRecommendation, AddonType,
-                           AddonUpsell, AddonUser, AppSupport, BlacklistedGuid,
+                           AddonUser, AppSupport, BlacklistedGuid,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
@@ -37,7 +33,7 @@ from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
-from reviews.models import Review
+from reviews.models import Review, ReviewFlag
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
@@ -1299,8 +1295,8 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_set_nomination(self):
         a = Addon.objects.get(id=3615)
-        a.update(status=amo.STATUS_NULL)
         for s in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED):
+            a.update(status=amo.STATUS_NULL)
             a.versions.latest().update(nomination=None)
             a.update(status=s)
             assert a.versions.latest().nomination
@@ -1335,7 +1331,7 @@ class TestAddonModels(amo.tests.TestCase):
         v = Version.objects.create(addon=a, version='1.0')
         eq_(v.nomination, None)
 
-    def test_reviwed_addon_does_not_inherit_nomination(self):
+    def test_reviewed_addon_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
         ver = 10
         for st in (amo.STATUS_PUBLIC, amo.STATUS_BETA, amo.STATUS_NULL):
@@ -1356,6 +1352,91 @@ class TestAddonModels(amo.tests.TestCase):
         addon.versions.latest().update(nomination=earlier)
         addon.update(status=amo.STATUS_NOMINATED)
         eq_(addon.versions.latest().nomination.date(), earlier.date())
+
+    def test_new_version_of_under_review_addon_does_not_reset_nomination(self):
+        addon = Addon.objects.create(type=1)
+        version = Version.objects.create(addon=addon)
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        # Cheating date to make sure we don't have a date on the same second
+        # the code we test is running.
+        past = self.days_ago(1)
+        version.update(nomination=past, created=past, modified=past)
+        # This is a preliminary review.
+        addon.update(status=amo.STATUS_UNREVIEWED)
+        current_nomination = addon.versions.latest().nomination
+        assert current_nomination
+        version = Version.objects.create(addon=addon)
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        eq_(addon.versions.latest().nomination, current_nomination)
+
+    def test_nomination_not_reset_if_changing_review_process_under_review(self):
+        """
+        When under review, adding a new version should not reset nomination.
+        """
+        addon = Addon.objects.create(type=1)
+        version = Version.objects.create(addon=addon)
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        # Cheating date to make sure we don't have a date on the same second
+        # the code we test is running.
+        past = self.days_ago(1)
+        version.update(nomination=past, created=past, modified=past)
+        # This is a preliminary review.
+        addon.update(status=amo.STATUS_UNREVIEWED)
+        current_nomination = addon.versions.latest().nomination
+        assert current_nomination
+        # Now switch to a full review.
+        addon.update(status=amo.STATUS_NOMINATED)
+        eq_(addon.versions.latest().nomination, current_nomination)
+        # Then again to a preliminary.
+        addon.update(status=amo.STATUS_UNREVIEWED)
+        eq_(addon.versions.latest().nomination, current_nomination)
+
+    def test_new_version_of_public_addon_should_reset_nomination(self):
+        addon = Addon.objects.create(type=1)
+        version = Version.objects.create(addon=addon)
+        File.objects.create(status=amo.STATUS_LITE, version=version)
+        # The addon has been prelimarily reviewed.
+        addon.update(status=amo.STATUS_LITE)
+        # Cheating to make sure we don't have a date on the same second
+        # of the running code.
+        past = self.days_ago(1)
+        version.update(nomination=past, created=past, modified=past)
+        old_nomination = addon.versions.latest().nomination
+        assert old_nomination
+
+        # Update again, but without a new version.
+        addon.update(status=amo.STATUS_LITE)
+        # Check that nomination has been reset.
+        eq_(addon.versions.latest().nomination, old_nomination)
+
+        # Now create a new version with an attached file, and update status.
+        version = Version.objects.create(addon=addon, version="0.2")
+        assert version.nomination is None
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        new_nomination = addon.versions.latest().nomination
+        assert new_nomination
+        assert_not_equal(new_nomination, old_nomination)
+
+    def test_new_version_of_fully_reviewed_addon_should_reset_nomination(self):
+        addon = Addon.objects.create(type=1)
+        version = Version.objects.create(addon=addon)
+        File.objects.create(status=amo.STATUS_PUBLIC, version=version)
+        # The addon has been fully reviewed.
+        addon.update(status=amo.STATUS_PUBLIC)
+        # Cheating to make sure we don't have a date on the same second
+        # of the running code.
+        past = self.days_ago(1)
+        version.update(nomination=past, created=past, modified=past)
+        old_nomination = addon.versions.latest().nomination
+        assert old_nomination
+
+        # Now create a new version with an attached file, and update status.
+        version = Version.objects.create(addon=addon, version="0.2")
+        assert version.nomination is None
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        new_nomination = addon.versions.latest().nomination
+        assert new_nomination
+        assert_not_equal(new_nomination, old_nomination)
 
     def test_category_transform(self):
         addon = Addon.objects.get(id=3615)
@@ -1405,6 +1486,108 @@ class TestAddonDelete(amo.tests.TestCase):
 
         # This should not throw any FK errors if all the cascades work.
         addon.delete()
+
+    def test_review_delete(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                     status=amo.STATUS_PUBLIC,
+                                     highest_status=amo.STATUS_PUBLIC)
+
+        review = Review.objects.create(addon=addon, rating=1, body='foo',
+                                       user=UserProfile.objects.create())
+
+        flag = ReviewFlag(review=review)
+
+        addon.delete()
+
+        eq_(Addon.with_deleted.filter(pk=addon.pk).exists(), True)
+        eq_(Review.objects.filter(pk=review.pk).exists(), False)
+        eq_(ReviewFlag.objects.filter(pk=flag.pk).exists(), False)
+
+
+class TestUpdateStatus(amo.tests.TestCase):
+    fixtures = ['base/platforms', ]
+
+    def test_no_file_ends_with_NULL(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        addon.status = amo.STATUS_UNREVIEWED
+        addon.save()
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_UNREVIEWED)
+        Version.objects.create(addon=addon)
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
+
+    def test_no_valid_file_ends_with_NULL(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        version = Version.objects.create(addon=addon)
+        f = File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        addon.status = amo.STATUS_UNREVIEWED
+        addon.save()
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_UNREVIEWED)
+        f.status = amo.STATUS_DISABLED
+        f.save()
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
+
+
+class TestGetVersion(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', ]
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.version = self.addon.current_version
+
+    def new_version(self, status):
+        version = Version.objects.create(addon=self.addon)
+        File.objects.create(version=version, status=status)
+        return version
+
+    def test_public_new_lite_version(self):
+        self.new_version(amo.STATUS_LITE)
+        eq_(self.addon.get_version(), self.version)
+
+    def test_public_new_nominated_version(self):
+        self.new_version(amo.STATUS_NOMINATED)
+        eq_(self.addon.get_version(), self.version)
+
+    def test_public_new_public_version(self):
+        v = self.new_version(amo.STATUS_PUBLIC)
+        eq_(self.addon.get_version(), v)
+
+    def test_public_new_unreviewed_version(self):
+        self.new_version(amo.STATUS_UNREVIEWED)
+        eq_(self.addon.get_version(), self.version)
+
+    def test_lite_new_unreviewed_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        self.new_version(amo.STATUS_UNREVIEWED)
+        eq_(self.addon.get_version(), self.version)
+
+    def test_lite_new_lan_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_LITE_AND_NOMINATED)
+        eq_(self.addon.get_version(), v)
+
+    def test_lite_new_lite_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_LITE)
+        eq_(self.addon.get_version(), v)
+
+    def test_lite_new_full_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_PUBLIC)
+        eq_(self.addon.get_version(), v)
+
+    def test_lan_new_lite_version(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        v = self.new_version(amo.STATUS_LITE)
+        eq_(self.addon.get_version(), v)
+
+    def test_lan_new_full_version(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        v = self.new_version(amo.STATUS_PUBLIC)
+        eq_(self.addon.get_version(), v)
+
+    def test_should_promote_previous_valid_version_if_latest_is_disabled(self):
+        self.new_version(amo.STATUS_DISABLED)
+        eq_(self.addon.get_version(), self.version)
 
 
 class TestAddonGetURLPath(amo.tests.TestCase):
@@ -2051,29 +2234,32 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_extract(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'))
-        assert self.addon.get_localepicker()
+                            filename=self.xpi_path('langpack-localepicker'),
+                            status=amo.STATUS_PUBLIC)
+        assert self.addon.reload().get_localepicker()
         assert 'title=Select a language' in self.addon.get_localepicker()
 
     def test_extract_no_file(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack'))
-        eq_(self.addon.get_localepicker(), '')
+                            filename=self.xpi_path('langpack'), status=amo.STATUS_PUBLIC)
+        eq_(self.addon.reload().get_localepicker(), '')
 
     def test_extract_no_files(self):
         eq_(self.addon.get_localepicker(), '')
 
     def test_extract_not_language_pack(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'))
-        assert self.addon.get_localepicker()
+                            filename=self.xpi_path('langpack-localepicker'),
+                            status=amo.STATUS_PUBLIC)
+        assert self.addon.reload().get_localepicker()
         self.addon.update(type=amo.ADDON_EXTENSION)
         eq_(self.addon.get_localepicker(), '')
 
     def test_extract_not_platform_mobile(self):
         File.objects.create(platform=self.platform_all, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'))
-        eq_(self.addon.get_localepicker(), '')
+                            filename=self.xpi_path('langpack-localepicker'),
+                            status=amo.STATUS_PUBLIC)
+        eq_(self.addon.reload().get_localepicker(), '')
 
 
 class TestCompatOverride(amo.tests.TestCase):

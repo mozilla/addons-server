@@ -309,8 +309,8 @@ class TestHome(EditorTest):
         amo.set_user(self.user)
 
     def approve_reviews(self):
+        amo.set_user(self.user)
         for addon in Addon.objects.all():
-            amo.set_user(self.user)
             amo.log(amo.LOG['APPROVE_VERSION'], addon, addon.current_version)
 
     def test_approved_review(self):
@@ -371,11 +371,11 @@ class TestHome(EditorTest):
     def test_stats_user_position_ranked(self):
         self.approve_reviews()
         doc = pq(self.client.get(self.url).content)
-        p = doc('#editors-stats .editor-stats-table p:eq(0)')
-        eq_(p.text(), "You're #1 with 1 reviews",
+        el = doc('#editors-stats .editor-stats-table').eq(0)('div:last-child')
+        eq_(el.text(), "You're #1 with 2 reviews",
             'Total reviews should show position')
-        p = doc('#editors-stats .editor-stats-table p:eq(1)')
-        eq_(p.text(), "You're #1 with 1 reviews",
+        el = doc('#editors-stats .editor-stats-table').eq(1)('div:last-child')
+        eq_(el.text(), "You're #1 with 2 reviews",
             'Monthly reviews should show position')
 
     def test_stats_user_position_unranked(self):
@@ -659,7 +659,9 @@ class TestQueueBasics(QueueTest):
         days, widths, under_7 = data
 
         f = addon.versions.all()[0].all_files[0]
-        f.update(created=datetime.now() - timedelta(days=days))
+        d = datetime.now() - timedelta(days=days)
+        f.update(created=d)
+        addon.versions.latest().update(nomination=d)
 
         # For pending, we must reset the add-on status after saving version.
         if reset_status:
@@ -1400,7 +1402,7 @@ class TestQueueSearchVersionSpecific(SearchTest):
 
     def update_beiber(self, days):
         new_created = datetime.now() - timedelta(days=days)
-        self.bieber.update(created=new_created)
+        self.bieber.update(created=new_created, nomination=new_created)
         self.bieber[0].files.update(created=new_created)
 
     def test_age_of_submission(self):
@@ -2193,7 +2195,7 @@ class TestStatusFile(ReviewBase):
 
     def test_status_full_reviewed(self):
         self.get_file().update(status=amo.STATUS_PUBLIC)
-        for status in set(amo.STATUS_UNDER_REVIEW + amo.LITE_STATUSES):
+        for status in set(amo.UNDER_REVIEW_STATUSES + amo.LITE_STATUSES):
             self.addon.update(status=status)
             self.check_status('Fully Reviewed')
 

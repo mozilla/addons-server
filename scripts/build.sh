@@ -74,7 +74,7 @@ LOG_LEVEL = logging.ERROR
 DATABASES['default']['NAME'] = 'zamboni_$1'
 DATABASES['default']['HOST'] = 'localhost'
 DATABASES['default']['USER'] = 'hudson'
-DATABASES['default']['ENGINE'] = 'mysql_pool'
+DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
 DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
@@ -89,6 +89,7 @@ ES_HOSTS = ['${ES_HOST}:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ADDONS_PATH = '/tmp/warez'
 STATIC_URL = ''
+RUNNING_IN_JENKINS = True
 
 SETTINGS
 

@@ -1,24 +1,6 @@
 [
     {
         "pk": 56,
-        "model": "auth.user",
-        "fields": {
-            "username": "senior_persona_reviewer",
-            "first_name": "",
-            "last_name": "",
-            "is_active": true,
-            "is_superuser": false,
-            "is_staff": false,
-            "last_login": "2012-05-22 14:59:28",
-            "groups": [],
-            "user_permissions": [],
-            "password": "sha1$a04e0$0512298efb3e6e7dbace3976474151d396078fdd",
-            "email": "senior_persona_reviewer@mozilla.com",
-            "date_joined": "2012-03-22 15:58:36"
-        }
-    },
-    {
-        "pk": 56,
         "model": "users.userprofile",
         "fields": {
             "display_collections_fav": false,
@@ -48,7 +30,7 @@
             "modified": "2012-05-22 14:59:28",
             "last_login_ip": "127.0.0.1",
             "notifyevents": true,
-            "user": 56
+            "last_login": "2012-05-22 14:59:28"
         }
     },
     {

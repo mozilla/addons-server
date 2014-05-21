@@ -1,9 +1,9 @@
 ===================================
-Welcome to Zamboni's documentation!
+Welcome to Olympia's documentation!
 ===================================
 
-Zamboni is the codebase for https://addons.mozilla.org/ and
-https://marketplace.firefox.com/ ; the source lives at https://github.com/mozilla/zamboni
+Olympia is the codebase for https://addons.mozilla.org/ ;
+the source lives at https://github.com/mozilla/olympia
 
 If you want to build a completely different site with all the same Django
 optimizations for security, scalability, L10n, and ease of use, check out
@@ -12,7 +12,7 @@ Mozilla's `Playdoh starter kit <http://playdoh.readthedocs.org/>`_.
 
 Installation
 ------------
-What are you waiting for?! :ref:`Install Zamboni! <installation>`
+What are you waiting for?! :ref:`Install Olympia! <installation>`
 
 
 Contents
@@ -21,7 +21,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   topics/install-zamboni/index
+   topics/install-olympia/index
    topics/hacking/index
 
 .. toctree::

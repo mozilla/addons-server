@@ -6,10 +6,9 @@ from urlparse import urlparse
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
-from django.utils.http import int_to_base36
+from django.utils.http import urlsafe_base64_encode
 
 from mock import ANY, Mock, patch
 from nose.tools import eq_
@@ -60,8 +59,7 @@ class UserViewBase(amo.tests.TestCase):
     def setUp(self):
         self.client = amo.tests.TestClient()
         self.client.get('/')
-        self.user = User.objects.get(id='4043307')
-        self.user_profile = self.user.get_profile()
+        self.user = UserProfile.objects.get(id='4043307')
 
     def get_profile(self):
         return UserProfile.objects.get(id=self.user.id)
@@ -85,12 +83,12 @@ class TestAjax(UserViewBase):
                    'name': u'Justin Scott \u0627\u0644\u062a\u0637\u0628'})
 
     def test_ajax_xss(self):
-        self.user_profile.display_name = '<script>alert("xss")</script>'
-        self.user_profile.save()
-        assert '<script>' in self.user_profile.display_name, (
+        self.user.display_name = '<script>alert("xss")</script>'
+        self.user.save()
+        assert '<script>' in self.user.display_name, (
             'Expected <script> to be in display name')
         r = self.client.get(reverse('users.ajax'),
-                            {'q': self.user_profile.email, 'dev': 0})
+                            {'q': self.user.email, 'dev': 0})
         assert '<script>' not in r.content
         assert '&lt;script&gt;' in r.content
 
@@ -171,7 +169,7 @@ class TestEdit(UserViewBase):
         self.assertContains(r, 'An email has been sent to %s' % data['email'])
 
         # The email shouldn't change until they confirm, but the name should
-        u = User.objects.get(id='4043307').get_profile()
+        u = UserProfile.objects.get(id='4043307')
         self.assertEquals(u.name, 'DJ SurfNTurf')
         self.assertEquals(u.email, 'jbalogh@mozilla.com')
 
@@ -377,6 +375,14 @@ class TestEditAdmin(UserViewBase):
         eq_(res.count(), 1)
         eq_(res[0].details['password'][0], u'****')
 
+    def test_delete_user_display_name_xss(self):
+        # This is to test for bug 835827.
+        self.regular.display_name = '"><img src=a onerror=alert(1)><a a="'
+        self.regular.save()
+        delete_url = reverse('admin:users_userprofile_delete',
+                             args=(self.regular.pk,))
+        res = self.client.post(delete_url, {'post': 'yes'}, follow=True)
+        assert self.regular.display_name not in res.content
 
 FakeResponse = collections.namedtuple("FakeResponse", "status_code content")
 
@@ -430,12 +436,12 @@ class TestEmailChange(UserViewBase):
         eq_(r.status_code, 400)
 
     def test_success(self):
-        self.assertEqual(self.user_profile.email, 'jbalogh@mozilla.com')
+        self.assertEqual(self.user.email, 'jbalogh@mozilla.com')
         url = reverse('users.emailchange', args=[self.user.id, self.token,
                                                  self.hash])
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 200)
-        u = User.objects.get(id=self.user.id).get_profile()
+        u = UserProfile.objects.get(id=self.user.id)
         self.assertEqual(u.email, 'nobody@mozilla.org')
 
 
@@ -540,11 +546,10 @@ class TestLogin(UserViewBase):
         assert res.context['form'].errors['__all__'][0].startswith(text)
 
     def test_login_pwd(self):
-        user = User.objects.get(email='jbalogh@mozilla.com')
-        profile = user.get_profile()
-        profile.source = amo.LOGIN_SOURCE_BROWSERID
-        profile.password = ''
-        profile.save()
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        user.source = amo.LOGIN_SOURCE_BROWSERID
+        user.password = ''
+        user.save()
 
         self.client.get(self.url)
         eq_(self.client.post(self.url, data=self.data).status_code, 200)
@@ -594,7 +599,6 @@ class TestLogin(UserViewBase):
         profile = UserProfile.objects.create(username='login_test',
                                              email='bob@example.com')
         profile.set_password('baz')
-        profile.create_django_user()
         profile.email = 'charlie@example.com'
         profile.save()
         profile2 = UserProfile.objects.create(username='login_test2',
@@ -621,7 +625,6 @@ class TestLogin(UserViewBase):
         profile = UserProfile.objects.create(username='login_test',
                                              email='bob@example.com')
         profile.set_password('baz')
-        profile.create_django_user()
         profile.email = 'charlie@example.com'
         profile.save()
 
@@ -672,16 +675,16 @@ class TestPersonaLogin(UserViewBase):
         res = self.client.post(self.url, {'assertion': 'fake-assertion',
                                           'audience': 'fakeamo.org'})
         eq_(res.status_code, 401)
-        eq_(self.user_profile.reload().is_verified, True)
+        eq_(self.user.reload().is_verified, True)
 
         # A completely unverified address should be able to log in.
-        self.user_profile.update(is_verified=False)
+        self.user.update(is_verified=False)
         http_request.return_value = FakeResponse(200, json.dumps(
             {'status': 'okay', 'unverified-email': 'unverified@example.org'}))
         res = self.client.post(self.url, {'assertion': 'fake-assertion',
                                           'audience': 'fakeamo.org'})
         eq_(res.status_code, 200)
-        eq_(self.user_profile.reload().is_verified, False)
+        eq_(self.user.reload().is_verified, False)
 
         # If the user is already logged in, then we return fast.
         eq_(self.client.post(self.url).status_code, 200)
@@ -701,9 +704,9 @@ class TestPersonaLogin(UserViewBase):
         """
         Create a user with at least one admin privilege.
         """
-        p = UserProfile(username='admin', email=email,
-                        password='hunter2', created=datetime.now(), pk=998)
-        p.create_django_user()
+        p = UserProfile.objects.create(
+            username='admin', email=email,
+            password='hunter2', created=datetime.now(), pk=998)
         admingroup = Group.objects.create(rules='Users:Edit')
         GroupUser.objects.create(group=admingroup, user=p)
 
@@ -752,7 +755,6 @@ class TestPersonaLogin(UserViewBase):
         url = reverse('users.browserid_login')
         profile = UserProfile.objects.create(username='login_test',
                                              email='bob@example.com')
-        profile.create_django_user()
         profile.email = 'charlie@example.com'
         profile.save()
         http_request.return_value = FakeResponse(200, json.dumps(
@@ -951,14 +953,13 @@ class TestUnsubscribe(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.user = User.objects.get(email='editor@mozilla.com')
-        self.user_profile = self.user.get_profile()
+        self.user = UserProfile.objects.get(email='editor@mozilla.com')
 
     def test_correct_url_update_notification(self):
         # Make sure the user is subscribed
         perm_setting = email.NOTIFICATIONS[0]
         un = UserNotification.objects.create(notification_id=perm_setting.id,
-                                             user=self.user_profile,
+                                             user=self.user,
                                              enabled=True)
 
         # Create a URL
@@ -1023,8 +1024,8 @@ class TestReset(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
-        user = User.objects.get(email='editor@mozilla.com').get_profile()
-        self.token = [int_to_base36(user.id),
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.token = [urlsafe_base64_encode(str(user.id)),
                       default_token_generator.make_token(user)]
 
     def test_reset_msg(self):
@@ -1077,6 +1078,11 @@ class TestLogout(UserViewBase):
         r = self.client.get(url, follow=True)
         self.assertRedirects(r, '/en-US/about', status_code=302)
 
+    def test_session_cookie_should_be_http_only(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        r = self.client.get(reverse('users.logout'))
+        self.assertIn('httponly', str(r.cookies[settings.SESSION_COOKIE_NAME]))
+
 
 class TestRegistration(UserViewBase):
 
@@ -1087,7 +1093,7 @@ class TestRegistration(UserViewBase):
         is_anonymous = pq(r.content)('body').attr('data-anonymous')
         eq_(json.loads(is_anonymous), True)
 
-        self.user_profile.update(confirmationcode='code')
+        self.user.update(confirmationcode='code')
 
         # URL has the wrong confirmation code.
         url = reverse('users.confirm', args=[self.user.id, 'blah'])
@@ -1104,7 +1110,7 @@ class TestRegistration(UserViewBase):
         url = reverse('users.confirm.resend', args=[self.user.id])
         r = self.client.get(url, follow=True)
 
-        self.user_profile.update(confirmationcode='code')
+        self.user.update(confirmationcode='code')
 
         # URL has the right confirmation code now.
         r = self.client.get(url, follow=True)
@@ -1114,21 +1120,19 @@ class TestRegistration(UserViewBase):
 class TestProfileView(UserViewBase):
 
     def setUp(self):
-        self.user = User.objects.create()
-        UserProfile.objects.create(user=self.user,
-                                   homepage='http://example.com')
+        self.user = UserProfile.objects.create(homepage='http://example.com')
         self.url = reverse('users.profile', args=[self.user.id])
 
     def test_non_developer_homepage_url(self):
         """Don't display homepage url if the user is not a developer."""
         r = self.client.get(self.url)
-        self.assertNotContains(r, self.user.get_profile().homepage)
+        self.assertNotContains(r, self.user.homepage)
 
     @patch.object(UserProfile, 'is_developer', True)
     def test_developer_homepage_url(self):
         """Display homepage url for a developer user."""
         r = self.client.get(self.url)
-        self.assertContains(r, self.user.get_profile().homepage)
+        self.assertContains(r, self.user.homepage)
 
 
 class TestProfileLinks(UserViewBase):
@@ -1166,7 +1170,7 @@ class TestProfileLinks(UserViewBase):
         # Admin, someone else's profile.
         admingroup = Group(rules='Users:Edit')
         admingroup.save()
-        GroupUser.objects.create(group=admingroup, user=self.user_profile)
+        GroupUser.objects.create(group=admingroup, user=self.user)
         cache.clear()
 
         # Admin, own profile.
@@ -1183,9 +1187,9 @@ class TestProfileLinks(UserViewBase):
         response = self.client.get(reverse('home'))
         request = response.context['request']
         assert hasattr(request.amo_user, 'mobile_addons')
-        assert hasattr(request.user.get_profile(), 'mobile_addons')
+        assert hasattr(request.user, 'mobile_addons')
         assert hasattr(request.amo_user, 'favorite_addons')
-        assert hasattr(request.user.get_profile(), 'favorite_addons')
+        assert hasattr(request.user, 'favorite_addons')
 
 
 class TestProfileSections(amo.tests.TestCase):

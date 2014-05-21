@@ -10,10 +10,6 @@ from .models import UserProfile
 USER_ID = r"""(?P<user_id>[^/<>"']+)"""
 
 
-# We need Django to use our User model.
-auth_views.User = UserProfile
-
-
 # These will all start with /user/<user_id>/
 detail_patterns = patterns('',
     url('^$', views.profile, name='users.profile'),
@@ -44,11 +40,11 @@ users_patterns = patterns('',
                         {'template_name': 'users/pwreset_request.html',
                          'email_template_name': 'users/email/pwreset.ltxt',
                          'password_reset_form': forms.PasswordResetForm,
-                        }, name="users.pwreset"),
+                        }, name='password_reset_form'),
     url(r'^pwresetsent$', auth_views.password_reset_done,
                         {'template_name': 'users/pwreset_sent.html'},
-                        name="users.pwreset_sent"),
-    url(r'^pwreset/(?P<uidb36>\w{1,13})/(?P<token>\w{1,13}-\w{1,20})$',
+                        name="password_reset_done"),
+    url(r'^pwreset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})',
                         views.password_reset_confirm,
                         name="users.pwreset_confirm"),
     url(r'^pwresetcomplete$', auth_views.password_reset_complete,

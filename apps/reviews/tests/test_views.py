@@ -1,5 +1,4 @@
-from django.core import mail
-
+# -*- coding: utf-8 -*-
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -406,6 +405,15 @@ class TestTranslate(ReviewTest):
         r = self.client.get(url)
         eq_(r.status_code, 302)
         eq_(r.get('Location'), 'https://translate.google.com/#auto/fr/yes')
+
+    def test_unicode_call(self):
+        review = Review.objects.create(addon=self.addon, user=self.user,
+                                       title='or', body=u'héhé')
+        url = shared_url('reviews.translate', review.addon, review.id, 'fr')
+        r = self.client.get(url)
+        eq_(r.status_code, 302)
+        eq_(r.get('Location'),
+            'https://translate.google.com/#auto/fr/h%C3%A9h%C3%A9')
 
     @mock.patch('reviews.views.requests')
     def test_ajax_call(self, requests):

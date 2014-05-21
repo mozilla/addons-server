@@ -262,9 +262,6 @@ class BaseCategoryFormSet(BaseFormSet):
             cats = dict(self.addon.app_categories).get(app, [])
             self.initial.append({'categories': [c.id for c in cats]})
 
-        # Reconstruct the forms according to the initial data.
-        self._construct_forms()
-
         for app, form in zip(apps, self.forms):
             key = app.id if app else None
             form.request = self.request
@@ -476,8 +473,17 @@ class ThemeForm(ThemeFormBase):
     header_hash = forms.CharField(widget=forms.HiddenInput)
     footer = forms.FileField(required=False)
     footer_hash = forms.CharField(widget=forms.HiddenInput)
-    accentcolor = ColorField(required=False)
-    textcolor = ColorField(required=False)
+    # Native color picker doesn't allow real time tracking of user input
+    # and empty values, thus force the JavaScript color picker for now.
+    # See bugs 1005206 and 1003575.
+    accentcolor = ColorField(
+        required=False,
+        widget=forms.HiddenInput(attrs={'class': 'color-picker'}),
+    )
+    textcolor = ColorField(
+        required=False,
+        widget=forms.HiddenInput(attrs={'class': 'color-picker'}),
+    )
     agreed = forms.BooleanField()
     # This lets us POST the data URIs of the unsaved previews so we can still
     # show them if there were form errors. It's really clever.
@@ -540,8 +546,14 @@ class EditThemeForm(AddonFormBase):
         widget=TransTextarea(attrs={'rows': 4}),
         max_length=500, required=False, label=_lazy('Describe your Theme.'))
     tags = forms.CharField(required=False)
-    accentcolor = ColorField(required=False)
-    textcolor = ColorField(required=False)
+    accentcolor = ColorField(
+        required=False,
+        widget=forms.HiddenInput(attrs={'class': 'color-picker'}),
+    )
+    textcolor = ColorField(
+        required=False,
+        widget=forms.HiddenInput(attrs={'class': 'color-picker'}),
+    )
     license = forms.TypedChoiceField(
         choices=amo.PERSONA_LICENSES_CHOICES, coerce=int, empty_value=None,
         widget=forms.HiddenInput,

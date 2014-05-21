@@ -118,7 +118,7 @@ $(function() {
             $content = $("#lightbox .content"),
             $caption = $("#lightbox .caption"),
             current, $strip,
-            lbImage = template('<img id="preview{0}" src="{1}">');
+            lbImage = template('<img id="preview{0}" src="{1}" alt="">');
         if (!$lightbox.length) return;
         function posLightbox() {
             $lightbox.css({

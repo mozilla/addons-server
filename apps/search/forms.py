@@ -92,21 +92,9 @@ SORT_CHOICES = (
     # --
     ('name', _lazy(u'Name')),
     ('downloads', _lazy(u'Weekly Downloads')),
-    #('price', helpers.loc(u'Price')),
     ('updated', _lazy(u'Recently Updated')),
     ('hotness', _lazy(u'Up & Coming')),
 )
-
-APP_SORT_CHOICES = (
-    (None, _lazy(u'Relevance')),
-    ('downloads', _lazy(u'Weekly Downloads')),
-    ('rating', _lazy(u'Top Rated')),
-    ('price', helpers.loc(u'Price')),
-    # --
-    ('name', _lazy(u'Name')),
-    ('created', _lazy(u'Newest')),
-)
-
 
 class ESSearchForm(happyforms.Form):
     q = forms.CharField(required=False)

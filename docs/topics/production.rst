@@ -1,16 +1,16 @@
 .. _production:
 
 =====================
-Zamboni in Production
+Olympia in Production
 =====================
 
 
 Getting Requirements
 --------------------
 
-Grab zamboni from github with ::
+Grab olympia from github with ::
 
-    git clone git://github.com/mozilla/zamboni.git
+    git clone git://github.com/mozilla/olympia.git
     git submodule update --init
 
 You're going to need virtualenv and pip, but I'll let you figure that one out.
@@ -43,7 +43,8 @@ https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/
 
 http://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide
 
-Here's a basic httpd.conf snippet that I used to get zamboni running on my Mac::
+Here's a basic httpd.conf snippet that I used to get olympia running on my Mac
+(don't forget to replace ``/Users/jeff`` with what is relevant for your install)::
 
     # WSGI
     LoadModule wsgi_module modules/mod_wsgi.so
@@ -53,13 +54,13 @@ Here's a basic httpd.conf snippet that I used to get zamboni running on my Mac::
 
     <VirtualHost *:80>  #*
         ServerName 127.0.0.1
-        WSGIScriptAlias / /Users/jeff/dev/zamboni/wsgi/zamboni.wsgi
+        WSGIScriptAlias / /Users/jeff/dev/olympia/wsgi/olympia.wsgi
 
-        WSGIDaemonProcess zamboni processes=8 threads=1 \
-            python-path=/Users/jeff/.virtualenvs/zamboni/lib/python2.6/site-packages
-        WSGIProcessGroup zamboni
+        WSGIDaemonProcess olympia processes=8 threads=1 \
+            python-path=/Users/jeff/.virtualenvs/olympia/lib/python2.6/site-packages
+        WSGIProcessGroup olympia
 
-        <Directory /Users/jeff/dev/zamboni/wsgi>
+        <Directory /Users/jeff/dev/olympia/wsgi>
             Order allow,deny
             Allow from all
         </Directory>
@@ -69,11 +70,11 @@ Here's a basic httpd.conf snippet that I used to get zamboni running on my Mac::
 ``WSGIPythonHome`` points at a pristine virtual environment.  That came from
 http://code.google.com/p/modwsgi/wiki/VirtualEnvironments.
 
-``WSGIScriptAlias`` points to ``/wsgi/zamboni.wsgi`` in the zamboni checkout.
+``WSGIScriptAlias`` points to ``/wsgi/olympia.wsgi`` in the olympia checkout.
 
 ``WSGIDaemonProcess`` creates 8 processes and 10 threads.  Those numbers are
 completely arbitrary.  I'll update it when we know what works in production.
 The ``python-path`` argument points to the site-packages directory of our
-zamboni virtualenv.
+olympia virtualenv.
 
 .. note:: This doesn't include media or admin media yet.

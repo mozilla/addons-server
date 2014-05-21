@@ -35,13 +35,13 @@
     <p><a href="{{ url('devhub.themes.submit') }}" class="button">
       {{ _('Submit a New Theme') }}</a></p>
     <div id="my-addons" class="item">
-      <h3>{{ _('My Addons') }}</h3>
+      <h3>{{ _('My Add-ons') }}</h3>
       {% for item in recent_addons %}
         <div class="addon-item">
           <div class="addon-details">
             <p>
               <a class="addon-name" href="{{ item.addon.get_dev_url('edit') }}">
-                <img class="addon-icon" src="{{ item.addon.icon_url }}">
+                <img class="addon-icon" src="{{ item.addon.icon_url }}" alt="">
                 <strong>{{ item.addon.name }}</strong>
               </a>
             </p>
@@ -79,7 +79,6 @@
       {% endfor %}
       <p><a id="link-view-all" href="{{ url('devhub.addons') }}">{{ _('View all add-ons ►') }}</a></p>
     </div>
-    {# Disabled while we run the Amp Your Firefox Promo...
     <div id="editor-promo" class="item">
       <h3>{{ _('AMO Reviewers') }}</h3>
       <p>
@@ -87,12 +86,6 @@
       </p>
       <p><a href="https://wiki.mozilla.org/AMO:Editors" class="button">
         {{ _('Become an AMO Reviewer') }}</a></p>
-    </div>
-    #}
-    <div id="autralis-contest-promo" class="item">
-      <h3>{{ _('Create Add-ons for Australis') }}</h3>
-      <p>{{ _('Win a Firefox OS phone and Mozilla gear!') }}</p>
-      <p><a href="https://blog.mozilla.org/addons/australis-overview">{{ _('Learn more') }}</a></p>
     </div>
   {% endif %}
   {% include "devhub/includes/blog_posts.html" %}

@@ -4,7 +4,7 @@
   <form>
     <fieldset>
       {{ field(form.name, _('Name:')) }}
-      {% set slug_base = url('collections.user', user.get_profile().username, add_prefix=False) %}
+      {% set slug_base = url('collections.user', user.username, add_prefix=False) %}
       <p id="collection-form-slug">
         {{ form.errors['slug'] }}
         <label>{{ form.slug.label }}</label>

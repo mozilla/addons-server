@@ -55,9 +55,9 @@ function PopcornObj() {
             $promos.addClass('show-video');
             video = $('<div>', {'class': 'promo-video'});
             video_el = $('<video>', {'controls': 'controls', 'tabindex': 0, 'id': 'promo-video', 'text': 'Your browser does not support the video tag'});
-            video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': 'https://videos-cdn.mozilla.net/addons/fds0fo.mov'});
-            video_el_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"', 'src': 'https://videos-cdn.mozilla.net/addons/vuue2y.webm'});
-            video_el_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis"', 'src': 'https://videos-cdn.mozilla.net/addons/b85p03.ogv'});
+            video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': 'https://videos.cdn.mozilla.net/addons/fds0fo.mov'});
+            video_el_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"', 'src': 'https://videos.cdn.mozilla.net/addons/vuue2y.webm'});
+            video_el_ogv = $('<source>', {'type': 'video/ogg; codecs="theora, vorbis"', 'src': 'https://videos.cdn.mozilla.net/addons/b85p03.ogv'});
             $video_details = $('#video-details');
 
             video_el.append(video_el_mp4, video_el_webm, video_el_ogv);
@@ -69,8 +69,8 @@ function PopcornObj() {
             var preload = $('<div>', {'id': 'preload-personas', 'css': {'display': 'none'}}).appendTo('body');
             $promo_addons.find('a[data-browsertheme]').each(function() {
                 var theme = $.parseJSON($(this).attr('data-browsertheme'));
-                preload.append($('<img>', {'src': theme['headerURL'].replace(/http:\/\//, 'https://')}));
-                preload.append($('<img>', {'src': theme['footerURL'].replace(/http:\/\//, 'https://')}));
+                preload.append($('<img>', {'src': theme['headerURL'].replace(/http:\/\//, 'https://'), 'alt': ''}));
+                preload.append($('<img>', {'src': theme['footerURL'].replace(/http:\/\//, 'https://'), 'alt': ''}));
             });
 
             // Save the original translation text

@@ -20,7 +20,6 @@ import jinja2
 import commonware.log
 import session_csrf
 from tower import ugettext as _, ugettext_lazy as _lazy
-import waffle
 from mobility.decorators import mobilized, mobile_template
 
 import amo
@@ -86,7 +85,6 @@ def addon_detail(request, addon):
         else:
             if not addon.current_version:
                 raise http.Http404
-
             return extension_detail(request, addon)
     else:
         # Redirect to an app that supports this type.
@@ -484,7 +482,6 @@ def contribute(request, addon):
     if not amount:
         amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
 
-    # This is all going to get shoved into solitude. Temporary.
     form = ContributionForm({'amount': amount})
     if not form.is_valid():
         return http.HttpResponse(json.dumps({'error': 'Invalid data.',

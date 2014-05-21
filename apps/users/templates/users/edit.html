@@ -55,7 +55,7 @@ data-default-locale="{{ request.LANG|lower }}"
         <fieldset id="acct-password">
           <legend>{{ _('Password') }}</legend>
           <p class="sub_legend">
-            {% trans reset_url=url('users.pwreset') -%}
+            {% trans reset_url=url('password_reset_form') -%}
             Change your password.  If you forgot your password, you can <a href="{{ reset_url }}">use the reset form</a>.
             {%- endtrans %}
           </p>

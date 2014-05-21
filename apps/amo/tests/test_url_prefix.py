@@ -176,6 +176,16 @@ class TestPrefixer:
         client.get('/')
         eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
 
+    def test_resolve(self):
+        func, args, kwargs = urlresolvers.resolve('/')
+        eq_(func.__name__, 'home')
+
+        # With a request with locale and app prefixes, it still works.
+        client = test.Client()
+        client.get('/')
+        func, args, kwargs = urlresolvers.resolve('/en-US/firefox/')
+        eq_(func.__name__, 'home')
+
     def test_script_name(self):
         rf = test_utils.RequestFactory()
         request = rf.get('/foo', SCRIPT_NAME='/oremj')

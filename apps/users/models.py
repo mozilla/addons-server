@@ -11,7 +11,7 @@ from datetime import datetime
 from django import dispatch, forms
 from django.conf import settings
 from django.contrib.auth.hashers import BasePasswordHasher, mask_hash
-from django.contrib.auth.models import User as DjangoUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core import validators
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
@@ -27,6 +27,7 @@ import commonware.log
 import tower
 from cache_nuggets.lib import memoize
 from tower import ugettext as _
+import waffle
 
 import amo
 import amo.models
@@ -129,13 +130,17 @@ class UserEmailField(forms.EmailField):
         return {'class': 'email-autocomplete',
                 'data-src': lazy_reverse('users.ajax')}
 
+class UserManager(BaseUserManager, amo.models.ManagerBase):
+    pass
 
-class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
+AbstractBaseUser._meta.get_field('password').max_length = 255
+class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUser):
+    objects = UserManager()
+    USERNAME_FIELD = 'username'
     username = models.CharField(max_length=255, default='', unique=True)
     display_name = models.CharField(max_length=255, default='', null=True,
                                     blank=True)
 
-    password = models.CharField(max_length=255, default='')
     email = models.EmailField(unique=True, null=True)
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
@@ -167,7 +172,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                                                         editable=False)
     source = models.PositiveIntegerField(default=amo.LOGIN_SOURCE_UNKNOWN,
                                          editable=False, db_index=True)
-    user = models.ForeignKey(DjangoUser, null=True, editable=False, blank=True)
+
     is_verified = models.BooleanField(default=True)
     region = models.CharField(max_length=11, null=True, blank=True,
                               editable=False)
@@ -184,6 +189,32 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.display_name or self.username)
+
+    @property
+    def is_superuser(self):
+        return self.groups.filter(rules='*:*').exists()
+
+    @property
+    def is_staff(self):
+        from access import acl
+        return acl.action_allowed_user(self, 'Admin', '%')
+
+    def has_perm(self, perm, obj=None):
+        return self.is_superuser
+
+    def has_module_perms(self, app_label):
+        return self.is_superuser
+
+    def get_backend(self):
+        if waffle.switch_is_active('browserid-login'):
+            return 'django_browserid.auth.BrowserIDBackend'
+        else:
+            return 'users.backends.AmoUserBackend'
+
+    def set_backend(self, val):
+        pass
+
+    backend = property(get_backend, set_backend)
 
     def is_anonymous(self):
         return False
@@ -282,18 +313,13 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     welcome_name = name
 
-    @property
-    def last_login(self):
-        """Make UserProfile look more like auth.User."""
-        # Django expects this to be non-null, so fake a login attempt.
-        if not self.last_login_attempt:
-            self.update(last_login_attempt=datetime.now())
-        return self.last_login_attempt
-
     @amo.cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
-        return self._reviews_all.filter(reply_to=None)
+        qs = self._reviews_all.filter(reply_to=None)
+        # Force the query to occur immediately. Several
+        # reviews-related tests hang if this isn't done.
+        return qs
 
     def anonymize(self):
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
@@ -333,21 +359,19 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                                                           string.digits, 60))
         return self.confirmationcode
 
-    def save(self, force_insert=False, force_update=False, using=None):
+    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
         # we have to fix stupid things that we defined poorly in remora
         if not self.resetcode_expires:
             self.resetcode_expires = datetime.now()
+        super(UserProfile, self).save(force_insert, force_update, using, **kwargs)
 
-        delete_user = None
-        if self.deleted and self.user:
-            delete_user = self.user
-            self.user = None
-            # Delete user after saving this profile.
-
-        super(UserProfile, self).save(force_insert, force_update, using)
-
-        if self.deleted and delete_user:
-            delete_user.delete()
+    def has_usable_password(self):
+        """Override AbstractBaseUser.has_usable_password."""
+        # We also override the check_password method, and don't rely on
+        # settings.PASSWORD_HASHERS, and don't use "set_unusable_password", so
+        # we want to bypass most of AbstractBaseUser.has_usable_password
+        # checks.
+        return bool(self.password)  # Not None and not empty.
 
     def check_password(self, raw_password):
         if '$' not in self.password:
@@ -408,41 +432,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                 self.failed_login_attempts += 1
 
         self.save()
-
-    def create_django_user(self, **kw):
-        """Make a django.contrib.auth.User for this UserProfile."""
-        # Due to situations like bug 905984 and similar, a django user
-        # for this email may already exist. Let's try to find it first
-        # before creating a new one.
-        try:
-            self.user = DjangoUser.objects.get(email=self.email)
-            for k, v in kw.iteritems():
-                setattr(self.user, k, v)
-            self.save()
-            return self.user
-        except DjangoUser.DoesNotExist:
-            pass
-
-        # Reusing the id will make our life easier, because we can use the
-        # OneToOneField as pk for Profile linked back to the auth.user
-        # in the future.
-        self.user = DjangoUser(id=self.pk)
-        self.user.first_name = ''
-        self.user.last_name = ''
-        self.user.username = 'uid-%d' % self.pk
-        self.user.email = self.email
-        self.user.password = self.password
-        self.user.date_joined = self.created
-
-        for k, v in kw.iteritems():
-            setattr(self.user, k, v)
-
-        if self.groups.filter(rules='*:*').count():
-            self.user.is_superuser = self.user.is_staff = True
-
-        self.user.save()
-        self.save()
-        return self.user
 
     def mobile_collection(self):
         return self.special_collection(amo.COLLECTION_MOBILE,

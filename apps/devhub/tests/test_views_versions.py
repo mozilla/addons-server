@@ -43,23 +43,23 @@ class TestVersion(amo.tests.TestCase):
 
     def test_version_status_public(self):
         doc = self.get_doc()
-        assert doc('#version-status')
+        assert doc('.addon-status')
 
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=True)
         doc = self.get_doc()
-        assert doc('#version-status .status-admin-disabled')
-        eq_(doc('#version-status strong').text(),
-            'This add-on has been disabled by Mozilla .')
+        assert doc('.addon-status .status-admin-disabled')
+        eq_(doc('.addon-status .status-admin-disabled').text(),
+            'Disabled by Mozilla')
 
         self.addon.update(disabled_by_user=False)
         doc = self.get_doc()
-        eq_(doc('#version-status strong').text(),
-            'This add-on has been disabled by Mozilla .')
+        eq_(doc('.addon-status .status-admin-disabled').text(),
+            'Disabled by Mozilla')
 
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         doc = self.get_doc()
-        eq_(doc('#version-status strong').text(),
-            'You have disabled this add-on.')
+        eq_(doc('.addon-status .status-disabled').text(),
+            'You have disabled this add-on')
 
     def test_no_validation_results(self):
         doc = self.get_doc()
@@ -221,25 +221,25 @@ class TestVersion(amo.tests.TestCase):
         res = self.client.get(self.url)
         doc = pq(res.content)
         assert doc('#modal-disable')
-        assert doc('#disable-addon')
-        assert not doc('#enable-addon')
+        assert doc('.disable-addon')
+        assert not doc('.enable-addon')
 
     def test_not_show_disable(self):
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
         res = self.client.get(self.url)
         doc = pq(res.content)
         assert not doc('#modal-disable')
-        assert not doc('#disable-addon')
+        assert not doc('.disable-addon')
 
     def test_show_enable_button(self):
         self.addon.update(disabled_by_user=True)
         res = self.client.get(self.url)
         doc = pq(res.content)
-        a = doc('#enable-addon')
+        a = doc('.enable-addon')
         assert a, "Expected Enable addon link"
         eq_(a.attr('href'), self.enable_url)
         assert not doc('#modal-disable')
-        assert not doc('#disable-addon')
+        assert not doc('.disable-addon')
 
     def test_cancel_get(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
@@ -248,7 +248,7 @@ class TestVersion(amo.tests.TestCase):
     def test_cancel_wrong_status(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
         for status in amo.STATUS_CHOICES:
-            if status in amo.STATUS_UNDER_REVIEW + (amo.STATUS_DELETED,):
+            if status in amo.UNDER_REVIEW_STATUSES + (amo.STATUS_DELETED,):
                 continue
 
             self.addon.update(status=status)
@@ -276,7 +276,7 @@ class TestVersion(amo.tests.TestCase):
 
     def test_cancel_button(self):
         for status in amo.STATUS_CHOICES:
-            if status not in amo.STATUS_UNDER_REVIEW:
+            if status not in amo.UNDER_REVIEW_STATUSES:
                 continue
 
             self.addon.update(status=status)
@@ -287,7 +287,7 @@ class TestVersion(amo.tests.TestCase):
 
     def test_not_cancel_button(self):
         for status in amo.STATUS_CHOICES:
-            if status in amo.STATUS_UNDER_REVIEW:
+            if status in amo.UNDER_REVIEW_STATUSES:
                 continue
 
             self.addon.update(status=status)

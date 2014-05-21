@@ -23,5 +23,5 @@ but to use a merge commit if you have multiple commits that form a cohesive unit
 
 Here are some tips on `Using topic branches and interactive rebasing effectively <http://blog.mozilla.com/webdev/2011/11/21/git-using-topic-branches-and-interactive-rebasing-effectively/>`_.
 
-.. _master: http://github.com/mozilla/zamboni/tree/master
+.. _master: http://github.com/mozilla/olympia/tree/master
 .. _waffle: https://github.com/jsocol/django-waffle

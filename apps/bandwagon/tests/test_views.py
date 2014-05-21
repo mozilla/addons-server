@@ -204,6 +204,36 @@ class TestViews(amo.tests.TestCase):
         # All markup is escaped, all links are stripped.
         self.assertContains(response, '&lt;b&gt;foo&lt;/b&gt; some text')
 
+    def test_delete_icon(self):
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        collection = user.favorites_collection()
+        edit_url = collection.edit_url()
+
+        # User not logged in: redirect to login page.
+        res = self.client.post(collection.delete_icon_url())
+        eq_(res.status_code, 302)
+        assert res.url != edit_url
+
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+
+        res = self.client.post(collection.delete_icon_url())
+        eq_(res.status_code, 302)
+        eq_(res.url, 'http://testserver%s' % edit_url)
+
+    def test_delete_icon_csrf_protected(self):
+        """The delete icon view only accepts POSTs and is csrf protected."""
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        collection = user.favorites_collection()
+        client = django.test.Client(enforce_csrf_checks=True)
+
+        client.login(username='jbalogh@mozilla.com', password='foo')
+
+        res = client.get(collection.delete_icon_url())
+        eq_(res.status_code, 405)  # Only POSTs are allowed.
+
+        res = client.post(collection.delete_icon_url())
+        eq_(res.status_code, 403)  # The view is csrf protected.
+
 
 class TestPrivacy(amo.tests.TestCase):
     fixtures = ['users/test_backends']

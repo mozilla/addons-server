@@ -1,6 +1,7 @@
 from functools import partial
 
 from django.contrib import messages as django_messages
+from django.utils import safestring
 
 import jinja2
 from jingo import env
@@ -13,12 +14,27 @@ except it will take a 3rd argument as message content (the second is the message
 title).
 """
 
+
+class DoubleSafe(safestring.SafeData, jinja2.Markup):
+    """Double safe all the way: marks safe for django and jinja2.
+
+    Even though we're using jinja2 for most of the template rendering, we may
+    have places where it's Django deciding whether the data is safe or not. An
+    example is the messaging framework. If we add a new message that is marked
+    safe for jinja2 (using a Markup object), it's not persisted that way by
+    Django, and we thus loose the "safeness" of the message.
+
+    This serves to give us the best of both worlds.
+
+    """
+
+
 def _make_message(title=None, message=None, title_safe=False,
-                                            message_safe=False):
+                  message_safe=False):
     c = {'title': title, 'message': message,
          'title_safe': title_safe, 'message_safe': message_safe}
     t = env.get_template('message_content.html').render(c)
-    return jinja2.Markup(t)
+    return DoubleSafe(t)
 
 
 def _is_dupe(msg, request):

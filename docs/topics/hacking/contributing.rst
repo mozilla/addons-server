@@ -16,16 +16,16 @@ The Perfect Git Configuration
 
 We're going to talk about two git repositories:
 
-* *origin* will be the main zamboni repo at http://github.com/mozilla/zamboni.
-* *mine* will be your fork at http://github.com/:user/zamboni.
+* *origin* will be the main olympia repo at http://github.com/mozilla/olympia.
+* *mine* will be your fork at http://github.com/:user/olympia.
 
 There should be something like this in your ``.git/config`` already::
 
     [remote "origin"]
-        url = git://github.com/mozilla/zamboni.git
+        url = git://github.com/mozilla/olympia.git
         fetch = +refs/heads/*:refs/remotes/origin/*
 
-Now we'll set up your master to pull directly from the upstream zamboni::
+Now we'll set up your master to pull directly from the upstream olympia::
 
     [branch "master"]
         remote = origin
@@ -38,7 +38,7 @@ often easier.
 
 After you've forked the repository on github, tell git about your new repo::
 
-    git remote add -f mine git@github.com:user/zamboni.git
+    git remote add -f mine git@github.com:user/olympia.git
 
 Make sure to replace *user* with your name.
 

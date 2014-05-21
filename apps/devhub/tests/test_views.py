@@ -232,7 +232,7 @@ class TestDashboard(HubTest):
         d = doc('.item-details .date-created')
         eq_(d.length, 1)
         eq_(d.remove('strong').text(),
-            strip_whitespace(datetime_filter(addon.created)))
+            datetime_filter(addon.created, '%b %e, %Y'))
 
     def test_sort_updated_filter(self):
         a_pk = self.clone_addon(1)[0]
@@ -746,11 +746,9 @@ class TestHome(amo.tests.TestCase):
         self.assertTemplateUsed(r, 'devhub/index.html')
 
     def test_editor_promo(self):
-        raise SkipTest('While Australis contest promo is up, see bug 979731')
         eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 1)
 
     def test_no_editor_promo(self):
-        raise SkipTest('While Australis contest promo is up, see bug 979731')
         Addon.objects.all().delete()
         # Regular users (non-devs) should not see this promo.
         eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 0)
@@ -1856,6 +1854,9 @@ class TestUploadDetail(BaseUploadTest):
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
         eq_(data['full_report_url'],
             reverse('devhub.upload_detail', args=[upload.uuid]))
+        eq_(r['location'],
+            'http://testserver' +
+            reverse('devhub.upload_detail', args=[upload.uuid]))
         # We must have tiers
         assert len(data['validation']['messages'])
         msg = data['validation']['messages'][0]
@@ -1987,9 +1988,9 @@ class TestQueuePosition(UploadTest):
             r = self.client.get(self.addon.get_dev_url('versions'))
             doc = pq(r.content)
 
-            span = doc('.version-status-actions .dark')
+            span = doc('.queue-position')
 
-            eq_(span.length, 1)
+            assert span.length
             assert "Queue Position: 1 of 1" in span.text()
 
 
@@ -2454,12 +2455,15 @@ class TestAddVersionValidation(AddVersionTest):
 class TestVersionXSS(UploadTest):
 
     def test_unique_version_num(self):
+        # Can't use a "/" to close the tag, as we're doing a get_url_path on
+        # it, which uses addons.versions, which consumes up to the first "/"
+        # encountered.
         self.version.update(
-            version='<script>alert("Happy XSS-Xmas");</script>')
+            version='<script>alert("Happy XSS-Xmas");<script>')
         r = self.client.get(reverse('devhub.addons'))
         eq_(r.status_code, 200)
         assert '<script>alert' not in r.content
-        assert '&lt;script&gt;alert' in r.content
+        assert '&amp;lt;script&amp;gt;alert' in r.content
 
 
 class UploadAddon(object):

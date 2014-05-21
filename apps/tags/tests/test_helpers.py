@@ -28,7 +28,7 @@ class TestHelpers(test.TestCase):
         addon = Addon.objects.get(id=3615)
 
         request = Mock()
-        request.user = addon.authors.all()[0].create_django_user()
+        request.user = addon.authors.all()[0]
         request.groups = ()
 
         tags = addon.tags.not_blacklisted()

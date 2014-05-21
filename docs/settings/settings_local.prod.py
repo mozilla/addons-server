@@ -6,7 +6,7 @@ TEMPLATE_DEBUG = False
 # The default database should point to the master.
 DATABASES = {
     'default': {
-        'NAME': 'zamboni',
+        'NAME': 'olympia',
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '',
         'PORT': '',
@@ -15,7 +15,7 @@ DATABASES = {
         'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
     },
     'slave': {
-        'NAME': 'zamboni',
+        'NAME': 'olympia',
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '',
         'PORT': '',
@@ -49,7 +49,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
 # lib/settings_base.py.
 
 # HEKA_CONF = {
-#     'logger': 'zamboni',
+#     'logger': 'olympia',
 #     'stream': {
 #         'class': 'heka.streams.UdpStream',
 #         'host': ['10.0.1.5', '10.0.1.10']

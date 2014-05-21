@@ -20,14 +20,11 @@ from cef import log_cef as _log_cef
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
 
-from django.core.management import setup_environ
 import commonware.log
 
 from django.utils import importlib
 settings = importlib.import_module(settingmodule)
 
-# Pyflakes will complain about these, but they are required for setup.
-setup_environ(settings)
 from lib.log_settings_base import formatters, handlers, loggers
 
 # Ugh. But this avoids any zamboni or django imports at all.
@@ -38,8 +35,6 @@ from constants.platforms import PLATFORMS
 from constants.base import (ADDON_PREMIUM, STATUS_PUBLIC, STATUS_DISABLED,
                             STATUS_BETA, STATUS_LITE,
                             STATUS_LITE_AND_NOMINATED)
-from constants.payments import (CONTRIB_CHARGEBACK, CONTRIB_PURCHASE,
-                                CONTRIB_NO_CHARGE, CONTRIB_REFUND)
 
 APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
 PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])

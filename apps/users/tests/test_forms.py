@@ -1,9 +1,9 @@
+import hashlib
 from datetime import datetime
 
-from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
-from django.utils.http import int_to_base36
+from django.utils.http import urlsafe_base64_encode
 
 from django.conf import settings
 from mock import Mock, patch
@@ -17,30 +17,30 @@ from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import get_uploaded_file
 from users.models import BlacklistedPassword, UserProfile
-from users.forms import UserEditForm
+from users.forms import AuthenticationForm, UserEditForm
 
 
 class UserFormBase(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
-        self.user = User.objects.get(id='4043307')
-        self.user_profile = self.user.get_profile()
-        self.uidb36 = int_to_base36(self.user.id)
+        self.user = self.user_profile = UserProfile.objects.get(id='4043307')
+        self.uidb64 = urlsafe_base64_encode(str(self.user.id))
         self.token = default_token_generator.make_token(self.user)
 
 
 class TestSetPasswordForm(UserFormBase):
 
     def _get_reset_url(self):
-        return "/en-US/firefox/users/pwreset/%s/%s" % (self.uidb36, self.token)
+        return "/en-US/firefox/users/pwreset/%s/%s" % (self.uidb64, self.token)
 
     def test_url_fail(self):
         r = self.client.get('/users/pwreset/junk/', follow=True)
         eq_(r.status_code, 404)
 
         r = self.client.get('/en-US/firefox/users/pwreset/%s/12-345' %
-                                                                self.uidb36)
+                                                                self.uidb64
+)
         self.assertContains(r, "Password reset unsuccessful")
 
     def test_set_fail(self):
@@ -79,7 +79,7 @@ class TestSetPasswordForm(UserFormBase):
         self.client.post(url, {'new_password1': 'testlonger',
                                'new_password2': 'testlonger'})
 
-        self.user_profile = User.objects.get(id='4043307').get_profile()
+        self.user_profile = UserProfile.objects.get(id='4043307')
 
         assert self.user_profile.check_password('testlonger')
         eq_(self.user_profile.userlog_set
@@ -89,32 +89,41 @@ class TestSetPasswordForm(UserFormBase):
 
 class TestPasswordResetForm(UserFormBase):
 
-    def test_request_fail(self):
-        r = self.client.post('/en-US/firefox/users/pwreset',
-                            {'email': 'someemail@somedomain.com'})
+    def test_request_with_unkown_email(self):
+        r = self.client.post(
+            reverse('password_reset_form'),
+            {'email': 'someemail@somedomain.com'}
+        )
 
         eq_(len(mail.outbox), 0)
-        self.assertFormError(r, 'form', 'email',
-            ("An email has been sent to the requested account with further "
-             "information. If you do not receive an email then please confirm "
-             "you have entered the same email address used during "
-             "account registration."))
+        self.assertRedirects(r, reverse('password_reset_done'))
 
     def test_request_success(self):
-        self.client.post('/en-US/firefox/users/pwreset',
-                        {'email': self.user.email})
+        self.client.post(
+            reverse('password_reset_form'),
+            {'email': self.user.email}
+        )
 
         eq_(len(mail.outbox), 1)
         assert mail.outbox[0].subject.find('Password reset') == 0
-        assert mail.outbox[0].body.find('pwreset/%s' % self.uidb36) > 0
+        assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
 
-    def test_amo_user_but_no_django_user(self):
-        # Password reset should work without a Django user.
-        self.user_profile.update(user=None, _signal=True)
-        self.user.delete()
-        self.client.post('/en-US/firefox/users/pwreset',
-                        {'email': self.user.email})
+    def test_request_success_getpersona_password(self):
+        """Email is sent even if the user has no password and the profile has
+        an "unusable" password according to django's AbstractBaseUser."""
+        bytes_ = '\xb1\x98og\x88\x87\x08q'
+        md5 = hashlib.md5('password').hexdigest()
+        hsh = hashlib.sha512(bytes_ + md5).hexdigest()
+        self.user.password = 'sha512+MD5$%s$%s' % (bytes, hsh)
+        self.user.save()
+        self.client.post(
+            reverse('password_reset_form'),
+            {'email': self.user.email}
+        )
+
         eq_(len(mail.outbox), 1)
+        assert mail.outbox[0].subject.find('Password reset') == 0
+        assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
 
 
 class TestUserDeleteForm(UserFormBase):
@@ -150,30 +159,6 @@ class TestUserDeleteForm(UserFormBase):
         data = {'password': 'foo', 'confirm': True, }
         r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
         self.assertContains(r, 'You cannot delete your account')
-
-
-class TestUserAdminForm(UserFormBase):
-
-    def test_long_hash(self):
-        self.client.login(username='fligtar@gmail.com', password='foo')
-        data = {'password': 'sha512$32e15df727a054aa56cf69accc142d1573372641a176aab9b0f1458e27dc6f3b$5bd3bd7811569776a07fbbb5e50156aa6ebdd0bec9267249b57da065340f0324190f1ad0d5f609dca19179a86c64807e22f789d118e6f7109c95b9c64ae8f619',
-                'username': 'alice',
-                'last_login': '2010-07-03 23:03:11',
-                'date_joined': '2010-07-03 23:03:11'}
-        r = self.client.post(reverse('admin:auth_user_change',
-                                     args=[self.user.id]),
-                             data)
-        eq_(pq(r.content)('#user_form div.password .errorlist').text(), None)
-
-    def test_toolong_hash(self):
-        self.client.login(username='fligtar@gmail.com', password='foo')
-        data = {'password': 'sha512$32e15df727a054aa56cf69accc142d1573372641a176aab9b0f1458e27dc6f3b$5bd3bd7811569776a07fbbb5e50156aa6ebdd0bec9267249b57da065340f0324190f1ad0d5f609dca19179a86c64807e22f789d118e6f7109c95b9c64ae8f6190000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-                'username': 'alice'}
-        r = self.client.post(reverse('admin:auth_user_change',
-                                     args=[self.user.id]),
-                             data)
-        eq_(pq(r.content)('#id_password strong').text(),
-            'algorithm salt hash')
 
 
 class TestUserEditForm(UserFormBase):
@@ -280,7 +265,7 @@ class TestUserLoginForm(UserFormBase):
                                    'password': 'wrongpassword'})
         self.assertFormError(r, 'form', '', ("Please enter a correct username "
                                              "and password. Note that both "
-                                             "fields are case-sensitive."))
+                                             "fields may be case-sensitive."))
 
     def test_credential_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
@@ -357,8 +342,7 @@ class TestUserLoginForm(UserFormBase):
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
         self.assertNotContains(r, "Welcome, Jeff")
-        self.assertContains(r, 'Please enter a correct username and password. '
-                               'Note that both fields are case-sensitive.')
+        self.assertContains(r, 'Wrong email address or password')
 
     def test_successful_login_logging(self):
         t = datetime.now()
@@ -385,6 +369,23 @@ class TestUserLoginForm(UserFormBase):
         eq_(u.last_login_attempt_ip, '127.0.0.1')
         assert u.last_login_ip != '127.0.0.1'
         assert u.last_login_attempt == t or u.last_login_attempt > t
+
+    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    def test_recaptcha_errors_only(self):
+        """Only recaptcha errors should be returned if validation fails.
+
+        We don't want any information on the username/password returned if the
+        captcha is incorrect.
+
+        """
+        form = AuthenticationForm(data={'username': 'foo',
+                                        'password': 'bar',
+                                        'recaptcha': ''},
+                                  use_recaptcha=True)
+        form.is_valid()
+
+        assert len(form.errors) == 1
+        assert 'recaptcha' in form.errors
 
 
 class TestUserRegisterForm(UserFormBase):
@@ -436,6 +437,15 @@ class TestUserRegisterForm(UserFormBase):
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'username',
                              'This username cannot be used.')
+
+    def test_alldigit_username(self):
+        data = {'email': 'testo@example.com',
+                'password': 'xxxlonger',
+                'password2': 'xxxlonger',
+                'username': '8675309', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'username',
+                             'Usernames cannot contain only digits.')
 
     def test_blacklisted_password(self):
         BlacklistedPassword.objects.create(password='password')
@@ -507,7 +517,7 @@ class TestUserRegisterForm(UserFormBase):
 
         self.assertContains(r, "Congratulations!")
 
-        u = User.objects.get(email='john.connor@sky.net').get_profile()
+        u = UserProfile.objects.get(email='john.connor@sky.net')
 
         assert u.confirmationcode
         eq_(len(mail.outbox), 1)

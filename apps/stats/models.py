@@ -142,16 +142,6 @@ class Contribution(amo.models.ModelBase):
     suggested_amount = DecimalCharField(max_digits=254, decimal_places=2,
                                         nullify_invalid=True, null=True)
 
-    # Marketplace specific.
-    # TODO(andym): figure out what to do when we delete the user.
-    user = models.ForeignKey('users.UserProfile', blank=True, null=True)
-    type = models.PositiveIntegerField(default=amo.CONTRIB_TYPE_DEFAULT,
-                                       choices=do_dictsort(amo.CONTRIB_TYPES))
-    price_tier = models.ForeignKey('market.Price', blank=True, null=True,
-                                   on_delete=models.PROTECT)
-    # If this is a refund or a chargeback, which charge did it relate to.
-    related = models.ForeignKey('self', blank=True, null=True,
-                                on_delete=models.PROTECT)
 
     class Meta:
         db_table = 'stats_contributions'
@@ -192,12 +182,6 @@ class Contribution(amo.models.ModelBase):
             lang = self.addon.default_locale
         tower.activate(lang)
         return Locale(translation.to_locale(lang))
-
-    def _mail(self, template, subject, context):
-        template = env.get_template(template)
-        body = template.render(context)
-        send_mail(subject, body, settings.MARKETPLACE_EMAIL,
-                  [self.user.email], fail_silently=True)
 
     def mail_thankyou(self, request=None):
         """

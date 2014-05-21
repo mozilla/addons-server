@@ -3,6 +3,8 @@ import time
 
 from django.db import models
 
+from users.models import UserProfile
+
 
 KEY_SIZE = 18
 SECRET_SIZE = 32
@@ -27,7 +29,7 @@ class Access(models.Model):
 
     status = models.CharField(max_length=16, choices=CONSUMER_STATES,
                               default='pending')
-    user = models.ForeignKey('auth.User', null=True, blank=True,
+    user = models.ForeignKey(UserProfile, null=True, blank=True,
                              related_name='drf_consumers')
 
     class Meta:
@@ -42,7 +44,7 @@ class Token(models.Model):
     timestamp = models.IntegerField(default=long(time.time()))
     is_approved = models.BooleanField(default=False)
 
-    user = models.ForeignKey('auth.User', null=True, blank=True,
+    user = models.ForeignKey(UserProfile, null=True, blank=True,
                              related_name='drf_tokens')
     consumer = models.ForeignKey(Access)
 

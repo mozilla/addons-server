@@ -64,7 +64,7 @@ class AMOOAuthAuthentication(OAuthAuthentication):
                     return False
 
                 log.info('Authenticating as: %s' % pk)
-                request.user = profile.user
+                request.user = profile
 
             # If that worked and request.user got set, setup AMO specific bits.
             ACLMiddleware().process_request(request)

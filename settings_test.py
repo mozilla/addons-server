@@ -43,6 +43,11 @@ PACKAGER_PATH = _polite_tmpdir()
 REVIEWER_ATTACHMENTS_PATH = _polite_tmpdir()
 DUMPED_APPS_PATH = _polite_tmpdir()
 
+# Don't call out to persona in tests.
+AUTHENTICATION_BACKENDS = (
+    'users.backends.AmoUserBackend',
+)
+
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
 
@@ -79,7 +84,7 @@ CACHES = {
 
 # COUNT() caching can't be invalidated, it just expires after x seconds. This
 # is just too annoying for tests, so disable it.
-CACHE_COUNT_TIMEOUT = None
+CACHE_COUNT_TIMEOUT = -1
 
 # No more failures!
 APP_PREVIEW = False
@@ -127,8 +132,8 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 TASK_USER_ID = '4043307'
 
 PASSWORD_HASHERS = (
-    'users.models.SHA512PasswordHasher',
     'django.contrib.auth.hashers.MD5PasswordHasher',
+    'users.models.SHA512PasswordHasher',
 )
 
 SQL_RESET_SEQUENCES = False

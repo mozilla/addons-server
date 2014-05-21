@@ -79,7 +79,7 @@
     <h2>{{ _('Login Problems?') }}</h2>
     <ul class="listview">
       {% if not settings.APP_PREVIEW %}<li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>{% endif %}
-      <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
+      <li><a href="{{ url('password_reset_form') }}">{{ _("I forgot my password.") }}</a></li>
     </ul>
   </div>
   {% endif %}

@@ -19,6 +19,8 @@ from babel.support import Format
 from jingo import register, env
 # Needed to make sure our own |f filter overrides jingo's one.
 from jingo import helpers  # noqa
+from jingo_minify.helpers import (_build_html, _get_compiled_css_url, get_path,
+                                  is_external)
 from tower import ugettext as _, strip_whitespace
 
 import amo
@@ -600,3 +602,54 @@ def f(string, *args, **kwargs):
     if not isinstance(string, six.text_type):
         string = six.text_type(string)
     return string.format(*args, **kwargs)
+
+
+def _relative_to_absolute(url):
+    """
+    Prepends relative URLs with MEDIA_URL to turn those inline-able.
+    This method is intended to be used as a ``replace`` parameter of
+    ``re.sub``.
+    """
+    url = url.group(1).strip('"\'')
+    if not url.startswith(('data:', 'http:', 'https:', '//')):
+        url = url.replace('../../', settings.MEDIA_URL)
+    return 'url(%s)' % url
+
+
+@register.function
+def inline_css(bundle, media=False, debug=None):
+    """
+    If we are in debug mode, just output a single style tag for each css file.
+    If we are not in debug mode, return a style that contains bundle-min.css.
+    Forces a regular css() call for external URLs (no inline allowed).
+
+    Extracted from jingo-minify and re-registered, see:
+    https://github.com/jsocol/jingo-minify/pull/41
+    Added: turns relative links to absolute ones using MEDIA_URL.
+    """
+    if debug is None:
+        debug = getattr(settings, 'TEMPLATE_DEBUG', False)
+
+    if debug:
+        items = [_get_compiled_css_url(i)
+                 for i in settings.MINIFY_BUNDLES['css'][bundle]]
+    else:
+        items = ['css/%s-min.css' % bundle]
+
+    if not media:
+        media = getattr(settings, 'CSS_MEDIA_DEFAULT', 'screen,projection,tv')
+
+    contents = []
+    for css in items:
+        if is_external(css):
+            return _build_html([css], '<link rel="stylesheet" media="%s" '
+                                      'href="%%s" />' % media)
+        with open(get_path(css), 'r') as f:
+            css_content = f.read()
+            css_parsed = re.sub(r'url\(([^)]*?)\)',
+                                _relative_to_absolute,
+                                css_content)
+            contents.append(css_parsed)
+
+    return _build_html(contents, '<style type="text/css" media="%s">%%s'
+                                 '</style>' % media)

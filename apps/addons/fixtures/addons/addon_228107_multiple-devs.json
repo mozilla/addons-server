@@ -175,42 +175,6 @@
         }
     },
     {
-        "pk": 54686910,
-        "model": "auth.user",
-        "fields": {
-            "username": "the-author1@nowehere.com",
-            "first_name": "",
-            "last_name": "",
-            "is_active": true,
-            "is_superuser": false,
-            "is_staff": false,
-            "last_login": "2010-09-12 21:57:18",
-            "groups": [],
-            "user_permissions": [],
-            "password": "nope",
-            "email": "the-author1@nowehere.com",
-            "date_joined": "2010-09-12 07:19:31"
-        }
-    },
-    {
-        "pk": 54686911,
-        "model": "auth.user",
-        "fields": {
-            "username": "the-author2@nowehere.com",
-            "first_name": "",
-            "last_name": "",
-            "is_active": true,
-            "is_superuser": false,
-            "is_staff": false,
-            "last_login": "2010-09-12 21:57:18",
-            "groups": [],
-            "user_permissions": [],
-            "password": "nope",
-            "email": "the-author2@nowehere.com",
-            "date_joined": "2010-09-12 07:19:31"
-        }
-    },
-    {
         "pk": 1399511,
         "model": "translations.translation",
         "fields": {
@@ -264,7 +228,7 @@
             "modified": "2010-09-12 07:34:47",
             "last_login_ip": "",
             "notifyevents": false,
-            "user": 54686910
+            "last_login": "2010-09-12 07:34:47"
         }
     },
     {
@@ -297,7 +261,7 @@
             "modified": "2010-09-12 07:34:47",
             "last_login_ip": "",
             "notifyevents": false,
-            "user": 54686911
+            "last_login": "2010-09-12 07:34:47"
         }
     },
     {

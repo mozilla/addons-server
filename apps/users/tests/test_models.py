@@ -7,8 +7,7 @@ from urlparse import urlparse
 from django import forms
 from django.conf import settings
 from django.contrib.auth.hashers import (is_password_usable,
-                                         check_password, make_password)
-from django.contrib.auth.models import User
+    check_password, make_password, load_hashers, identify_hasher)
 from django.core import mail
 from django.utils import encoding, translation
 
@@ -34,21 +33,14 @@ class TestUserProfile(amo.tests.TestCase):
                 'users/test_backends', 'base/apps',)
 
     def test_anonymize(self):
-        u = User.objects.get(id='4043307').get_profile()
+        u = UserProfile.objects.get(id='4043307')
         eq_(u.email, 'jbalogh@mozilla.com')
         u.anonymize()
         x = UserProfile.objects.get(id='4043307')
         eq_(x.email, None)
 
-    def test_delete(self):
-        """Setting profile to delete should delete related User."""
-        u = User.objects.get(id='4043307').get_profile()
-        u.deleted = True
-        u.save()
-        eq_(len(User.objects.filter(id='4043307')), 0)
-
     def test_email_confirmation_code(self):
-        u = User.objects.get(id='4043307').get_profile()
+        u = UserProfile.objects.get(id='4043307')
         u.confirmationcode = 'blah'
         u.email_confirmation_code()
 
@@ -59,7 +51,7 @@ class TestUserProfile(amo.tests.TestCase):
 
     @patch.object(settings, 'SEND_REAL_EMAIL', False)
     def test_email_confirmation_code_even_with_fake_email(self):
-        u = User.objects.get(id='4043307').get_profile()
+        u = UserProfile.objects.get(id='4043307')
         u.confirmationcode = 'blah'
         u.email_confirmation_code()
 
@@ -75,15 +67,14 @@ class TestUserProfile(amo.tests.TestCase):
         eq_(u3.welcome_name, '')
 
     def test_add_admin_powers(self):
-        Group.objects.create(name='Admins', rules='*:*')
         u = UserProfile.objects.get(username='jbalogh')
 
-        assert not u.user.is_staff
-        assert not u.user.is_superuser
+        assert not u.is_staff
+        assert not u.is_superuser
         GroupUser.objects.create(group=Group.objects.get(name='Admins'),
                                  user=u)
-        assert u.user.is_staff
-        assert u.user.is_superuser
+        assert u.is_staff
+        assert u.is_superuser
 
     def test_dont_add_admin_powers(self):
         Group.objects.create(name='API', rules='API.Users:*')
@@ -91,23 +82,17 @@ class TestUserProfile(amo.tests.TestCase):
 
         GroupUser.objects.create(group=Group.objects.get(name='API'),
                                  user=u)
-        assert not u.user.is_staff
-        assert not u.user.is_superuser
+        assert not u.is_staff
+        assert not u.is_superuser
 
     def test_remove_admin_powers(self):
         Group.objects.create(name='Admins', rules='*:*')
         u = UserProfile.objects.get(username='jbalogh')
-        g = GroupUser.objects.create(group=Group.objects.get(name='Admins'),
+        g = GroupUser.objects.create(group=Group.objects.filter(name='Admins')[0],
                                      user=u)
         g.delete()
-        assert not u.user.is_staff
-        assert not u.user.is_superuser
-
-    def test_create_django_user(self):
-        u = UserProfile.objects.create(email='yoyoyo@yo.yo', username='yoyo')
-        assert u.user is None
-        u.create_django_user()
-        eq_(u.user.username, 'uid-%d' % u.id)
+        assert not u.is_staff
+        assert not u.is_superuser
 
     def test_resetcode_expires(self):
         """
@@ -236,11 +221,13 @@ class TestPasswords(amo.tests.TestCase):
     def test_invalid_old_password(self):
         u = UserProfile(password=self.utf)
         assert u.check_password(self.utf) is False
+        assert u.has_usable_password() is True
 
     def test_invalid_new_password(self):
         u = UserProfile()
         u.set_password(self.utf)
         assert u.check_password('wrong') is False
+        assert u.has_usable_password() is True
 
     def test_valid_old_password(self):
         hsh = hashlib.md5(encoding.smart_str(self.utf)).hexdigest()
@@ -250,11 +237,13 @@ class TestPasswords(amo.tests.TestCase):
         algo, salt, hsh = u.password.split('$')
         eq_(algo, 'sha512')
         eq_(hsh, get_hexdigest(algo, salt, self.utf))
+        assert u.has_usable_password() is True
 
     def test_valid_new_password(self):
         u = UserProfile()
         u.set_password(self.utf)
         assert u.check_password(self.utf) is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_md5(self):
         md5 = hashlib.md5('password').hexdigest()
@@ -262,18 +251,21 @@ class TestPasswords(amo.tests.TestCase):
         u = UserProfile(password='sha512+MD5$%s$%s' %
                         (self.bytes_, hsh))
         assert u.check_password('password') is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_base64(self):
         hsh = hashlib.sha512(self.bytes_ + 'password').hexdigest()
         u = UserProfile(password='sha512+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password('password') is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_base64_maybe_utf8(self):
         hsh = hashlib.sha512(self.bytes_ + self.utf.encode('utf8')).hexdigest()
         u = UserProfile(password='sha512+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password(self.utf) is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_base64_maybe_latin1(self):
         passwd = u'fo\xf3'
@@ -281,6 +273,7 @@ class TestPasswords(amo.tests.TestCase):
         u = UserProfile(password='sha512+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password(passwd) is True
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_base64_maybe_not_latin1(self):
         passwd = u'fo\xf3'
@@ -288,6 +281,7 @@ class TestPasswords(amo.tests.TestCase):
         u = UserProfile(password='sha512+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password(self.utf) is False
+        assert u.has_usable_password() is True
 
     def test_persona_sha512_md5_base64(self):
         md5 = hashlib.md5('password').hexdigest()
@@ -295,10 +289,12 @@ class TestPasswords(amo.tests.TestCase):
         u = UserProfile(password='sha512+MD5+base64$%s$%s' %
                         (encodestring(self.bytes_), hsh))
         assert u.check_password('password') is True
+        assert u.has_usable_password() is True
 
     def test_browserid_password(self):
         u = UserProfile(password=self.utf, source=amo.LOGIN_SOURCE_UNKNOWN)
         assert not u.check_password('foo')
+        assert u.has_usable_password() is True
 
     @patch('access.acl.action_allowed_user')
     def test_needs_tougher_password(self, action_allowed_user):
@@ -319,6 +315,19 @@ class TestPasswords(amo.tests.TestCase):
         self.assertTrue(is_password_usable(encoded))
         self.assertTrue(check_password('lètmein', encoded))
         self.assertFalse(check_password('lètmeinz', encoded))
+        self.assertEqual(identify_hasher(encoded).algorithm, "sha512")
+        # Blank passwords
+        blank_encoded = make_password('', 'seasalt', 'sha512')
+        self.assertTrue(blank_encoded.startswith('sha512$'))
+        self.assertTrue(is_password_usable(blank_encoded))
+        self.assertTrue(check_password('', blank_encoded))
+        self.assertFalse(check_password(' ', blank_encoded))
+
+    def test_empty_password(self):
+        profile = UserProfile(password=None)
+        assert profile.has_usable_password() is False
+        profile = UserProfile(password='')
+        assert profile.has_usable_password() is False
 
 
 class TestBlacklistedUsername(amo.tests.TestCase):

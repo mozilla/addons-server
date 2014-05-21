@@ -1,7 +1,4 @@
 import datetime
-import math
-
-from django.db import connection
 
 import commonware.log
 import django_tables as tables
@@ -19,11 +16,10 @@ from addons.models import Addon
 from amo.helpers import absolutify, breadcrumbs, page_title
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
-from editors.models import (EscalationQueue, ReviewerScore, ViewFastTrackQueue,
+from editors.models import (ReviewerScore, ViewFastTrackQueue,
                             ViewFullReviewQueue, ViewPendingQueue,
                             ViewPreliminaryQueue)
 from editors.sql_table import SQLTable
-from versions.models import Version
 
 
 @register.function
@@ -518,7 +514,7 @@ class ReviewBase(object):
         if self.version:
             details['version'] = self.version.version
 
-        amo.log(action, self.addon, self.version, user=self.user.get_profile(),
+        amo.log(action, self.addon, self.version, user=self.user,
                 created=datetime.datetime.now(), details=details)
 
     def notify_email(self, template, subject):
@@ -542,7 +538,7 @@ class ReviewBase(object):
     def get_context_data(self):
         return {'name': self.addon.name,
                 'number': self.version.version,
-                'reviewer': (self.request.user.get_profile().display_name),
+                'reviewer': (self.request.user.display_name),
                 'addon_url': absolutify(
                     self.addon.get_url_path(add_prefix=False)),
                 'review_url': absolutify(reverse('editors.review',
@@ -582,7 +578,7 @@ class ReviewAddon(ReviewBase):
     def __init__(self, *args, **kwargs):
         super(ReviewAddon, self).__init__(*args, **kwargs)
 
-        self.is_upgrade = (self.addon.status is amo.STATUS_LITE_AND_NOMINATED
+        self.is_upgrade = (self.addon.status == amo.STATUS_LITE_AND_NOMINATED
                            and self.review_type == 'nominated')
 
     def set_data(self, data):

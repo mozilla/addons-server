@@ -108,24 +108,6 @@
     },
     {
         "pk": 9250,
-        "model": "auth.user",
-        "fields": {
-            "username": "laurent.querel@yoono.com",
-            "first_name": "Yoono",
-            "last_name": "",
-            "is_active": true,
-            "is_superuser": false,
-            "is_staff": false,
-            "last_login": "2010-05-21 05:09:18",
-            "groups": [],
-            "user_permissions": [],
-            "password": "sha512$308d46cdaf22e72f733811461a8ec6f99b6f5ff61f000096f4183009923fecd8$0b7d13e659492aca20eaada963bd2f77152ab83da9bbee750dee1f5b8789059e97a0db57e7ec13840e275932614fad8f805e76cc8411d6c847bcdb6a9e142fb8",
-            "email": "laurent.querel@yoono.com",
-            "date_joined": "2007-03-05 13:09:37"
-        }
-    },
-    {
-        "pk": 9250,
         "model": "users.userprofile",
         "fields": {
             "display_collections_fav": false,
@@ -154,7 +136,7 @@
             "modified": "2010-05-12 16:10:49",
             "last_login_ip": "",
             "notifyevents": true,
-            "user": 9250
+            "last_login": "2010-05-12 16:10:49"
         }
     },
     {

@@ -18,9 +18,9 @@ if not config['HOST'] or config['HOST'].endswith('.sock'):
 s = 'mysql --silent {NAME} -h{HOST} -u{USER}'
 
 if config['PASSWORD']:
-    s += ' -p{PASSWORD}'
-else:
+    os.environ['MYSQL_PWD'] = config['PASSWORD']
     del config['PASSWORD']
+
 if config['PORT']:
     s += ' -P{PORT}'
 else:

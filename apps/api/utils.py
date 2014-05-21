@@ -114,6 +114,7 @@ def extract_filters(term, app_id=amo.FIREFOX.id, opts=None):
 
     opts = opts or {}
     filters = {}
+    params = {}
 
     # Type filters.
     term, addon_type = extract_from_query(term, 'type', '\w+')
@@ -132,19 +133,11 @@ def extract_filters(term, app_id=amo.FIREFOX.id, opts=None):
 
     # Platform filters.
     term, platform = extract_from_query(term, 'platform', '\w+')
-    platform = platform or opts.get('platform')
-    if platform:
-        platform = [amo.PLATFORM_DICT.get(platform.lower(),
-                                          amo.PLATFORM_ALL).id]
-        if amo.PLATFORM_ALL.id not in platform:
-            platform.append(amo.PLATFORM_ALL.id)
-        filters['platform__in'] = platform
+    params['platform'] = platform or opts.get('platform')
 
     # Version filters.
     term, version = extract_from_query(term, 'version', '[0-9.]+')
-    version = version or opts.get('version')
-    if version:
-        filters.update(filter_version(version, app_id))
+    params['version'] = version or opts.get('version')
 
     # Category filters.
     term, category = extract_from_query(term, 'category', '\w+')
@@ -163,7 +156,7 @@ def extract_filters(term, app_id=amo.FIREFOX.id, opts=None):
         if tag:
             filters['tags__in'] = list(tag)
 
-    return (term, filters)
+    return (term, filters, params)
 
 
 def filter_version(version, app_id):

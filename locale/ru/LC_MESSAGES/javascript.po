@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-02-28 17:54+0000\n"
+"POT-Creation-Date: 2014-05-07 09:34-0700\n"
+"PO-Revision-Date: 2014-05-11 13:10+0000\n"
 "Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393610079.0\n"
+"X-POOTLE-MTIME: 1399813808.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -71,7 +71,7 @@ msgstr[1] "&hellip;и ещё {0}"
 msgstr[2] "&hellip;и ещё {0}"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:162
+#: media/js/zamboni/devhub.js:166
 msgid "See full validation report"
 msgstr "Прочесть весь отчёт о валидации"
 
@@ -127,7 +127,7 @@ msgstr "Видео должно быть в формате WebM."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Ваше упакованное приложение должно заканчиваться на <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:173
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ваше приложение не смогло пройти валидацию, в нём найдена {0} ошибка."
@@ -184,18 +184,18 @@ msgstr[0] "Ваше дополнение не прошло проверку с {
 msgstr[1] "Ваше дополнение не прошло проверку с {0} ошибками и {1} сообщением(ями)."
 msgstr[2] "Ваше дополнение не прошло проверку с {0} ошибками и {1} сообщением(ями)."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:187
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ваше приложение прошло валидацию без ошибок и с {0} сообщением."
 msgstr[1] "Ваше приложение прошло валидацию без ошибок и с {0} сообщениями."
 msgstr[2] "Ваше приложение прошло валидацию без ошибок и с {0} сообщениями."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:192
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ваше приложение прошло валидацию без ошибок или сообщений."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:501
 msgid "Changes Saved"
 msgstr "Изменения сохранены"
 
@@ -207,19 +207,19 @@ msgstr "Введите адрес эл. почты нового члена ко�
 msgid "Refreshed"
 msgstr "Обновлено"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:664
 msgid "There was an error uploading your file."
 msgstr "При загрузке вашего файла произошла ошибка."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:939
 msgid "Learn more"
 msgstr "Подробнее"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:943
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1299
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
 
@@ -479,7 +479,7 @@ msgstr "Примечания для проверяющих"
 msgid "No version notes found"
 msgstr "Примечаний к версии не найдено"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1452 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Сначала выберите приложение"
 
@@ -559,10 +559,10 @@ msgstr "Ошибка при одобрении приложения: {app}"
 msgid "Error rejecting app: {app}"
 msgstr "Ошибка при отклонении приложения: {app}"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:49
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "От {0} {1}"
 
 #: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -649,7 +649,7 @@ msgstr "Помечено для удаления"
 msgid "Updating results&hellip;"
 msgstr "Обновление результатов по&hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Категория"
 
@@ -699,7 +699,7 @@ msgstr "Загрузки"
 
 #: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
-msgstr "Ежедневных пользователей"
+msgstr "Ежедневные пользователи"
 
 #: media/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
@@ -1171,14 +1171,14 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Другое"
 
-#: media/js/zamboni/admin_validation.js:52
+#: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Установить для {0} дополнения максимальную версию {1} и отправить письмо автору."
 msgstr[1] "Установить для {0} дополнений максимальную версию {1} и отправить письмо авторам."
 msgstr[2] "Установить для {0} дополнений максимальную версию {1} и отправить письмо авторам."
 
-#: media/js/zamboni/admin_validation.js:55
+#: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
@@ -1336,41 +1336,41 @@ msgstr "Перестать следовать"
 msgid "Install App"
 msgstr "Установить приложение"
 
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub.js:246
 msgid "Your browser does not support the video tag"
 msgstr "Ваш браузер не поддерживает тег видео"
 
-#: media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub.js:517
 msgid "Enter a new author's email address"
 msgstr "Введите новый адрес эл. почты автора"
 
-#: media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub.js:807
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} файл"
 msgstr[1] "{files} файла"
 msgstr[2] "{files} файлов"
 
-#: media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub.js:810
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} отзыв"
 msgstr[1] "{reviews} отзыва"
 msgstr[2] "{reviews} отзывов"
 
-#: media/js/zamboni/devhub.js:1466
+#: media/js/zamboni/devhub.js:1480
 msgid "Starting tests..."
 msgstr "Начинаю тесты..."
 
-#: media/js/zamboni/devhub.js:1473
+#: media/js/zamboni/devhub.js:1487
 msgid "Waiting for test results..."
 msgstr "Жду результаты теста..."
 
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1489 media/js/zamboni/devhub.js:1494
 msgid "Internal Server Error"
 msgstr "Внутренняя ошибка сервера"
 
-#: media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub.js:1529
 msgid "Must be a valid e-mail address."
 msgstr "Должен быть корректным адресом эл. почты."
 

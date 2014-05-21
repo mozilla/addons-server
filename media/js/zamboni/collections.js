@@ -246,7 +246,7 @@ collections.hijack_favorite_button = function() {
             /* The listing page doesn't have an inline image, detail page does. */
             if (fav_button.find('img').length) {
                 var img = c[kind + '_img'];
-                fav_button.html('<img src="' + img + '"/>' + text);
+                fav_button.html('<img src="' + img + '" alt="" />' + text);
             } else {
                 fav_button.html(text);
             }
@@ -402,7 +402,7 @@ if (addon_ac.length) {
         if (!$("#addons-list input[value=" + item.id + "]").length) {
             return $('<li>')
                 .data('item.autocomplete', item)
-                .append('<a><img src="' + item.icons['32'] + '">' + item.name + '</a>')
+                .append('<a><img src="' + item.icons['32'] + '" alt="">' + item.name + '</a>')
                 .appendTo(ul);
         }
     };
@@ -417,7 +417,7 @@ $('#addon-ac').keydown(function(e) {
 $('#addon-select').click(function(e) {
     e.preventDefault();
     var id = $('#addon-ac').attr('data-id');
-    var name = $('#addon-ac').val();
+    var name = _.escape($('#addon-ac').val());
     var icon = $('#addon-ac').attr('data-icon');
 
     // Verify that we aren't listed already
@@ -430,7 +430,7 @@ $('#addon-select').click(function(e) {
         var tr = template('<tr>' +
             '<td class="item">' +
             '<input name="addon" value="{id}" type="hidden">' +
-            '<img src="{icon}"><h3>{name}</h3>' +
+            '<img src="{icon}" alt=""><h3>{name}</h3>' +
             '<p class="comments">' +
             '<textarea name="addon_comment"></textarea>' +
             '</p></td>' +
@@ -445,7 +445,7 @@ $('#addon-select').click(function(e) {
     $('#addon-ac').val('');
 });
 
-var table = $('#addon-ac').closest('table')
+var table = $('#addon-ac').closest('table');
 table.delegate(".remove", "click", function() {
     $(this).closest('tr').remove();
 })
@@ -535,11 +535,14 @@ if ($('body.collections-contributors')) {
 $(document).ready(function() {
 
     $('#remove_icon').click(function(){
-      $.post($(this).attr('href'), {}, function(d){
-                    $('#icon_upload .icon_preview img').attr('src', d.icon);
-                  });
-      $(this).hide();
-      return false;
+        $.ajax({
+            url: $(this).attr('href'),
+            headers: {"X-CSRFToken": $.cookie('csrftoken')},
+            type: "POST",
+            success: function(d) { $('#icon_upload .icon_preview img').attr('src', d.icon); }
+        });
+        $(this).hide();
+        return false;
     });
 
 });

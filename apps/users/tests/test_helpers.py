@@ -40,7 +40,9 @@ def test_emaillink():
 
 def test_user_link():
     u = UserProfile(username='jconnor', display_name='John Connor', pk=1)
-    eq_(user_link(u), '<a href="%s">John Connor</a>' % u.get_url_path())
+    eq_(user_link(u),
+        '<a href="%s" title="%s">John Connor</a>' % (u.get_url_path(),
+                                                     u.name))
 
     # handle None gracefully
     eq_(user_link(None), '')
@@ -50,7 +52,14 @@ def test_user_link_xss():
     u = UserProfile(username='jconnor',
                     display_name='<script>alert(1)</script>', pk=1)
     html = "&lt;script&gt;alert(1)&lt;/script&gt;"
-    eq_(user_link(u), '<a href="%s">%s</a>' % (u.get_url_path(), html))
+    eq_(user_link(u), '<a href="%s" title="%s">%s</a>' % (u.get_url_path(),
+                                                          html, html))
+
+    u = UserProfile(username='jconnor',
+                    display_name="""xss"'><iframe onload=alert(3)>""", pk=1)
+    html = """xss&#34;&#39;&gt;&lt;iframe onload=alert(3)&gt;"""
+    eq_(user_link(u), '<a href="%s" title="%s">%s</a>' % (u.get_url_path(),
+                                                          html, html))
 
 
 def test_users_list():
@@ -72,14 +81,26 @@ def test_short_users_list():
     eq_(shortlist, ', '.join((user_link(u1), user_link(u2))) + ', others')
 
 
+def test_users_list_truncate_display_name():
+    u = UserProfile(username='oscar',
+                    display_name='Some Very Long Display Name', pk=1)
+    truncated_list = users_list([u], None, 10)
+    eq_(truncated_list,
+        u'<a href="%s" title="%s">Some Very...</a>' % (u.get_url_path(),
+                                                       u.name))
+
+
 def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""
     u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller', pk=1)
-    eq_(user_link(u), u'<a href="%s">Jürgen Müller</a>' % u.get_url_path())
+    eq_(user_link(u),
+        u'<a href="%s" title="%s">Jürgen Müller</a>' % (u.get_url_path(),
+                                                        u.name))
 
     u = UserProfile(username='\xe5\xaf\x92\xe6\x98\x9f', pk=1)
     eq_(user_link(u),
-        u'<a href="%s">%s</a>' % (u.get_url_path(), u.username))
+        u'<a href="%s" title="%s">%s</a>' % (u.get_url_path(), u.name,
+                                             u.username))
 
 
 class TestAddonUsersList(TestPersonas, amo.tests.TestCase):

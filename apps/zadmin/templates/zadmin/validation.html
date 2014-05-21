@@ -98,14 +98,12 @@
             <p>{# placeholder for form text #}</p>
             <p>Available variables: {{ ', '.join(notify_form.variables) }}</p>
             <p class="js-hidden error"></p>
-            <div>{# placeholder for the form #}</div>
+            <div>
+                {{ notify_form.as_p() }}
+            </div>
             <button type="submit">Continue</button>
             <span class="cancel"><a href="#">{{ _('Cancel') }}</a></span>
         </form>
     </div>
-</div>
-
-<div class="hidden" id="notify-form">
-    {{ notify_form.as_p() }}
 </div>
 {% endblock %}

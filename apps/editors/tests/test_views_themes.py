@@ -3,9 +3,9 @@ import datetime
 import json
 
 from django.conf import settings
-from django.contrib.auth.models import User
 
 import mock
+import tower
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -36,9 +36,7 @@ class ThemeReviewTestMixin(object):
         """Login as new reviewer with unique username."""
         username = 'reviewer%s' % self.reviewer_count
         email = username + '@mozilla.com'
-        reviewer = User.objects.create(username=email, email=email,
-                                       is_active=True, is_superuser=True)
-        user = UserProfile.objects.create(user=reviewer, email=email,
+        user = UserProfile.objects.create(email=email,
                                           username=username)
         user.set_password('password')
         user.save()
@@ -149,8 +147,11 @@ class ThemeReviewTestMixin(object):
                                               footer='')
 
         # Commit.
-        res = self.client.post(reverse('editors.themes.commit'), form_data)
-        self.assert3xx(res, reverse('editors.themes.queue_themes'))
+        # Activate another locale than en-US, and make sure emails to theme
+        # authors are NOT translated, but the message to the review IS.
+        with self.activate(locale='fr'):
+            res = self.client.post(reverse('editors.themes.commit'), form_data)
+            self.assert3xx(res, reverse('editors.themes.queue_themes'))
 
         if self.rereview:
             # Original design of reuploaded themes should stay public.
@@ -178,10 +179,10 @@ class ThemeReviewTestMixin(object):
             eq_(themes[4].addon.reload().current_version.version,
                 str(float(old_version) + 1))
         else:
-            eq_(themes[0].addon.status, amo.STATUS_REVIEW_PENDING)
-            eq_(themes[1].addon.status, amo.STATUS_REVIEW_PENDING)
-            eq_(themes[2].addon.status, amo.STATUS_REJECTED)
-            eq_(themes[3].addon.status, amo.STATUS_REJECTED)
+            eq_(themes[0].addon.reload().status, amo.STATUS_REVIEW_PENDING)
+            eq_(themes[1].addon.reload().status, amo.STATUS_REVIEW_PENDING)
+            eq_(themes[2].addon.reload().status, amo.STATUS_REJECTED)
+            eq_(themes[3].addon.reload().status, amo.STATUS_REJECTED)
         eq_(themes[4].addon.reload().status, amo.STATUS_PUBLIC)
         eq_(ActivityLog.objects.count(), 4 if self.rereview else 5)
 
@@ -210,7 +211,7 @@ class ThemeReviewTestMixin(object):
             mock.call(
                 'A problem with your Theme submission',
                 'editors/themes/emails/reject.html',
-                {'reason': mock.ANY,
+                {'reason': u'Duplicate Submission',
                  'comment': u'duplicate',
                  'theme': themes[2],
                  'base_url': 'http://testserver'},
@@ -220,7 +221,7 @@ class ThemeReviewTestMixin(object):
             mock.call(
                 'A problem with your Theme submission',
                 'editors/themes/emails/reject.html',
-                {'reason': mock.ANY,
+                {'reason': u'Sexual or pornographic content',
                  'comment': u'reject',
                  'theme': themes[3],
                  'base_url': 'http://testserver'},
@@ -253,8 +254,8 @@ class ThemeReviewTestMixin(object):
             eq_(send_mail_jinja_mock.call_args_list[4], expected_calls[4])
 
             eq_(message_mock.call_args_list[0][0][1],
-                '5 theme reviews successfully processed '
-                '(+15 points, 15 total).')
+                u'5 validation de thèmes réalisées avec succès '
+                u'(+15 points, 15 au total).')
 
         # Reviewer points accrual.
         assert ReviewerScore.objects.all()[0].score > 0

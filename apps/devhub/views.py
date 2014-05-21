@@ -36,7 +36,7 @@ from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from amo import messages
-from amo.decorators import json_view, login_required, post_required
+from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import escape_all, HttpResponseSendFile, MenuItem
@@ -80,7 +80,8 @@ def addon_listing(request, default='name', theme=False):
         qs = request.amo_user.addons.filter(type=amo.ADDON_PERSONA)
         model = Addon
     else:
-        qs = request.amo_user.addons.exclude(type=amo.ADDON_PERSONA)
+        qs = request.amo_user.addons.exclude(type__in=[amo.ADDON_WEBAPP,
+                                                       amo.ADDON_PERSONA])
         model = Addon
     filter = AddonFilter(request, qs, 'sort', default, model=model)
     return filter.qs, filter
@@ -364,7 +365,7 @@ def enable(request, addon_id, addon):
 @dev_required(owner_for_post=True)
 @post_required
 def cancel(request, addon_id, addon):
-    if addon.status in amo.STATUS_UNDER_REVIEW:
+    if addon.status in amo.UNDER_REVIEW_STATUSES:
         if addon.status == amo.STATUS_LITE_AND_NOMINATED:
             addon.update(status=amo.STATUS_LITE)
         else:
@@ -620,6 +621,7 @@ def package_addon_download(request, package_name):
 
 @login_required
 @post_required
+@write
 def upload(request, addon_slug=None, is_standalone=False):
     filedata = request.FILES['upload']
 
@@ -635,12 +637,14 @@ def upload(request, addon_slug=None, is_standalone=False):
     else:
         tasks.validator.delay(fu.pk)
     if addon_slug:
-        return redirect('devhub.upload_detail_for_addon',
-                        addon_slug, fu.pk)
+        response = redirect('devhub.upload_detail_for_addon',
+                            addon_slug, fu.pk)
     elif is_standalone:
-        return redirect('devhub.standalone_upload_detail', fu.pk)
+        response = redirect('devhub.standalone_upload_detail', fu.pk)
     else:
-        return redirect('devhub.upload_detail', fu.pk, 'json')
+        response = redirect('devhub.upload_detail', fu.pk, 'json')
+    response.set_cookie('last-upload-url', response['location'])
+    return response
 
 
 @login_required

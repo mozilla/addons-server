@@ -27,7 +27,6 @@ import urlparse
 
 from django import forms
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.core import mail
 from django.test.client import (encode_multipart, Client, FakePayload,
                                 BOUNDARY, MULTIPART_CONTENT)
@@ -49,6 +48,7 @@ from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
 from test_utils import RequestFactory
 from translations.models import Translation
+from users.models import UserProfile
 from versions.models import AppVersion, Version
 
 
@@ -187,8 +187,8 @@ class BaseOAuth(TestCase):
                 'base/licenses']
 
     def setUp(self):
-        self.editor = User.objects.get(email='editor@mozilla.com')
-        self.admin = User.objects.get(email='admin@mozilla.com')
+        self.editor = UserProfile.objects.get(email='editor@mozilla.com')
+        self.admin = UserProfile.objects.get(email='admin@mozilla.com')
         consumers = []
         for status in ('accepted', 'pending', 'canceled', ):
             c = Consumer(name='a', status=status, user=self.editor)
@@ -247,21 +247,21 @@ class TestBaseOAuth(BaseOAuth):
     def test_login_deleted(self):
         # If _test_auth returns self.admin, that means the user was
         # not altered to the user set in authenticate_as.
-        self.editor.get_profile().update(deleted=True)
-        pk = self.editor.get_profile().pk
+        self.editor.update(deleted=True)
+        pk = self.editor.pk
         eq_(self.admin, self._test_auth(pk).user)
 
     def test_login_unconfirmed(self):
-        self.editor.get_profile().update(confirmationcode='something')
-        pk = self.editor.get_profile().pk
+        self.editor.update(confirmationcode='something')
+        pk = self.editor.pk
         eq_(self.admin, self._test_auth(pk).user)
 
     def test_login_works(self):
-        pk = self.editor.get_profile().pk
+        pk = self.editor.pk
         eq_(self.editor, self._test_auth(pk).user)
 
     def test_login_three_legged(self):
-        pk = self.editor.get_profile().pk
+        pk = self.editor.pk
         eq_(self.admin, self._test_auth(pk, two_legged=False).user)
 
 
@@ -272,7 +272,7 @@ class TestUser(BaseOAuth):
         eq_(json.loads(r.content)['email'], 'editor@mozilla.com')
 
     def test_user_lookup(self):
-        partner = User.objects.get(email='partner@mozilla.com')
+        partner = UserProfile.objects.get(email='partner@mozilla.com')
         c = Consumer(name='p', status='accepted', user=partner)
         c.generate_random_codes()
         c.save()
@@ -282,7 +282,7 @@ class TestUser(BaseOAuth):
         eq_(json.loads(r.content)['email'], 'admin@mozilla.com')
 
     def test_failed_user_lookup(self):
-        partner = User.objects.get(email='partner@mozilla.com')
+        partner = UserProfile.objects.get(email='partner@mozilla.com')
         c = Consumer(name='p', status='accepted', user=partner)
         c.generate_random_codes()
         c.save()
@@ -358,14 +358,14 @@ class TestAddon(BaseOAuth):
 
     def test_create_user_altered(self):
         data = self.create_data
-        data['authenticate_as'] = self.editor.get_profile().pk
+        data['authenticate_as'] = self.editor.pk
         r = self.make_create_request(data)
         eq_(r.status_code, 200)
 
         id = json.loads(r.content)['id']
         ad = Addon.objects.get(pk=id)
         eq_(len(ad.authors.all()), 1)
-        eq_(ad.authors.all()[0].pk, self.editor.get_profile().pk)
+        eq_(ad.authors.all()[0].pk, self.editor.pk)
 
     def test_create(self):
         # License (req'd): MIT, GPLv2, GPLv3, LGPLv2.1, LGPLv3, MIT, BSD, Other
@@ -747,7 +747,7 @@ class TestAddon(BaseOAuth):
 
     def test_no_user(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(addon=addon, user=self.admin.get_profile(),
+        AddonUser.objects.create(addon=addon, user=self.admin,
                                  role=amo.AUTHOR_ROLE_DEV)
         r = oclient.get('api.addons', self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['count'], 0)
@@ -755,7 +755,7 @@ class TestAddon(BaseOAuth):
     def test_my_addons_only(self):
         for num in range(0, 2):
             addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+        AddonUser.objects.create(addon=addon, user=self.editor,
                                  role=amo.AUTHOR_ROLE_DEV)
         r = oclient.get('api.addons', self.accepted_consumer, self.token,
                        params={'authenticate_as': self.editor.pk})
@@ -765,7 +765,7 @@ class TestAddon(BaseOAuth):
 
     def test_one_addon(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+        AddonUser.objects.create(addon=addon, user=self.editor,
                                  role=amo.AUTHOR_ROLE_DEV)
         r = oclient.get(('api.addon', addon.pk), self.accepted_consumer,
                        self.token, params={'authenticate_as': self.editor.pk})
@@ -773,7 +773,7 @@ class TestAddon(BaseOAuth):
 
     def test_my_addons_role(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+        AddonUser.objects.create(addon=addon, user=self.editor,
                                  role=amo.AUTHOR_ROLE_VIEWER)
         r = oclient.get('api.addons', self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['count'], 0)
@@ -781,7 +781,7 @@ class TestAddon(BaseOAuth):
     def test_my_addons_disabled(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                      status=amo.STATUS_DISABLED)
-        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+        AddonUser.objects.create(addon=addon, user=self.editor,
                                  role=amo.AUTHOR_ROLE_DEV)
         r = oclient.get('api.addons', self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['count'], 0)
@@ -789,7 +789,7 @@ class TestAddon(BaseOAuth):
     def test_my_addons_deleted(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                      status=amo.STATUS_DELETED)
-        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+        AddonUser.objects.create(addon=addon, user=self.editor,
                                  role=amo.AUTHOR_ROLE_DEV)
         r = oclient.get('api.addons', self.accepted_consumer, self.token)
         eq_(json.loads(r.content)['count'], 0)

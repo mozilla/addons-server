@@ -17,7 +17,8 @@ class IconWidgetRenderer(forms.RadioSelect.renderer):
         for w in self:
             value = w.choice_value
             if value.split('/')[0] == 'icon' or value == '':
-                o = (("<li><a href='#' class='%s'><img src='%s/%s-32.png'>"
+                o = (("<li><a href='#' class='%s'>"
+                      "<img src='%s/%s-32.png' alt=''>"
                       "</a>%s</li>") %
                      ('active' if self.value == w.choice_value else '',
                       settings.ADDON_ICONS_DEFAULT_URL, w.choice_label, w))

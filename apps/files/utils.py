@@ -1,7 +1,6 @@
 import collections
 import glob
 import hashlib
-import json
 import logging
 import os
 import re
@@ -20,15 +19,14 @@ from zipfile import BadZipfile, ZipFile
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.translation import trans_real as translation
 from django.core.files.storage import default_storage as storage
 
 import rdflib
 from tower import ugettext as _
 
 import amo
-from amo.utils import rm_local_tmp_dir, strip_bom, to_language
-from applications.models import AppVersion
+from amo.utils import rm_local_tmp_dir
+from applications.models import AppVersion, Application
 from versions.compare import version_int as vint
 
 
@@ -42,12 +40,14 @@ class ParseError(forms.ValidationError):
 VERSION_RE = re.compile('^[-+*.\w]{,32}$')
 SIGNED_RE = re.compile('^META\-INF/(\w+)\.(rsa|sf)$')
 # The default update URL.
-default = ('https://versioncheck.addons.mozilla.org/update/VersionCheck.php?'
+default = (
+    'https://versioncheck.addons.mozilla.org/update/VersionCheck.php?'
     'reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&'
     'maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID=%APP_ID%&'
     'appVersion=%APP_VERSION%&appOS=%APP_OS%&appABI=%APP_ABI%&'
     'locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&'
-    'updateType=%UPDATE_TYPE%')
+    'updateType=%UPDATE_TYPE%'
+)
 
 
 def get_filepath(fileorpath):
@@ -155,6 +155,8 @@ class Extractor(object):
         for ctx in self.rdf.objects(None, self.uri('targetApplication')):
             app = amo.APP_GUIDS.get(self.find('id', ctx))
             if not app:
+                continue
+            if not Application.objects.supported().filter(guid=app.guid).exists():
                 continue
             try:
                 qs = AppVersion.objects.filter(application=app.id)

@@ -120,10 +120,11 @@ def run_aliases_actions(actions, stdout=sys.stdout):
     post_data = json.dumps({'actions': dump})
 
     # now call the server
-    log('Rebuilding aliases', stdout=stdout)
+    log('Rebuilding aliases with actions: %s' % dump, stdout=stdout)
     try:
         call_es('_aliases', post_data, method='POST')
     except CommandError, e:
+        log('Initial command error: %s' % e, stdout=stdout)
         # XXX Did not find a better way to extract the info
         error = e.json['error']
         res = re.search('(Invalid alias name \[)(?P<index>.*?)(\])', error)

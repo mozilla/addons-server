@@ -195,7 +195,7 @@ $.zAutoFormset = function(o) {
             }
         }).data('autocomplete')._renderItem = function(ul, item) {
             if (!findItem(item).visible) {
-                var $a = $(format('<a><img src="{0}">{1}</a>',
+                var $a = $(format('<a><img src="{0}" alt="">{1}</a>',
                                   [item.icons['32'], item.name]));
                 return $('<li>').data('item.autocomplete', item)
                                 .append($a).appendTo(ul);

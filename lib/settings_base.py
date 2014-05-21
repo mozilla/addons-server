@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Django settings for zamboni project.
+# Django settings for olympia project.
 
 import logging
 import os
@@ -15,7 +15,6 @@ ALLOWED_HOSTS = [
     '.mozilla.net',
 ]
 
-WAFFLE_TABLE_SUFFIX = 'amo'
 LOG_TABLE_SUFFIX = ''
 EVENT_TABLE_SUFFIX = ''
 
@@ -33,11 +32,11 @@ except ImportError:
 # jingo-minify: Style sheet media attribute default
 CSS_MEDIA_DEFAULT = 'all'
 
-# Make filepaths relative to the root of zamboni.
+# Make filepaths relative to the root of olympia.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 path = lambda *a: os.path.join(ROOT, *a)
 
-# We need to track this because hudson can't just call its checkout "zamboni".
+# We need to track this because hudson can't just call its checkout "olympia".
 # It puts it in a dir called "workspace".  Way to be, hudson.
 ROOT_PACKAGE = os.path.basename(ROOT)
 
@@ -81,7 +80,7 @@ NOBODY_EMAIL = 'nobody@mozilla.org'
 
 DATABASES = {
     'default': {
-        'NAME': 'zamboni',
+        'NAME': 'olympia',
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '',
         'PORT': '',
@@ -97,7 +96,7 @@ DATABASES = {
 # The settings can be copied from DATABASES, but since its not a full Django
 # database connection, only some values are supported.
 SERVICES_DATABASE = {
-    'NAME': 'zamboni',
+    'NAME': 'olympia',
     'USER': '',
     'PASSWORD': '',
     'HOST': '',
@@ -266,12 +265,14 @@ SUPPORTED_NONAPPS = ('about', 'admin', 'apps', 'blocklist', 'credits',
                      'developer_agreement', 'developer_faq', 'developers',
                      'editors', 'faq', 'google1f3e37b7351799a5.html', 'img',
                      'jsi18n', 'localizers', 'media', 'review_guide',
-                     'robots.txt', 'statistics', 'services', 'sunbird')
+                     'robots.txt', 'statistics', 'services', 'sunbird',
+                     '__debug__')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
 SUPPORTED_NONLOCALES = ('google1f3e37b7351799a5.html', 'img', 'media',
-                        'robots.txt', 'services', 'downloads', 'blocklist')
+                        'robots.txt', 'services', 'downloads', 'blocklist',
+                        '__debug__')
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'
@@ -386,13 +387,17 @@ MIDDLEWARE_CLASSES = (
 # Auth
 AUTHENTICATION_BACKENDS = (
     'users.backends.AmoUserBackend',
+    'django_browserid.auth.BrowserIDBackend'
 )
-AUTH_PROFILE_MODULE = 'users.UserProfile'
+AUTH_USER_MODEL = 'users.UserProfile'
 
 # Override this in the site settings.
 ROOT_URLCONF = 'lib.urls_base'
 
 INSTALLED_APPS = (
+    #import ordering issues ahoy
+    'djcelery',
+
     'amo',  # amo comes first so it always takes precedence.
     'abuse',
     'access',
@@ -408,10 +413,8 @@ INSTALLED_APPS = (
     'devhub',
     'discovery',
     'editors',
-    'extras',
     'files',
     'jingo_minify',
-    'market',
     'localizers',
     'lib.es',
     'pages',
@@ -429,7 +432,6 @@ INSTALLED_APPS = (
     'zadmin',
 
     # Third party apps
-    'djcelery',
     'django_extensions',
     'django_nose',
     'gunicorn',
@@ -1047,7 +1049,7 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
 
 
 ## Celery
-BROKER_URL = 'amqp://zamboni:zamboni@localhost:5672/zamboni'
+BROKER_URL = 'amqp://olympia:olympia@localhost:5672/olympia'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
@@ -1167,7 +1169,7 @@ LOGGING = {
 
 
 HEKA_CONF = {
-    'logger': 'zamboni',
+    'logger': 'olympia',
     'plugins': {
         'cef': ('heka_cef.cef_plugin:config_plugin', {
             'syslog_facility': 'LOCAL4',
@@ -1197,47 +1199,17 @@ CEF_PRODUCT = "amo"
 
 # CSP Settings
 CSP_REPORT_URI = '/services/csp/report'
-CSP_POLICY_URI = '/services/csp/policy?build=%s' % build_id
 CSP_REPORT_ONLY = True
 
-CSP_ALLOW = ("'self'",)
-CSP_IMG_SRC = ("'self'", SITE_URL,
-               "https://www.google.com",  # Recaptcha comes from google
-               "https://mozorg.cdn.mozilla.net",  # Tabzilla.
-               "http://mozorg.cdn.mozilla.net",
-               "https://www.getpersonas.com",
-               "https://ssl.google-analytics.com",
-               "http://www.google-analytics.com",
-               "data:"
-              )
-CSP_SCRIPT_SRC = ("'self'", SITE_URL,
+CSP_DEFAULT_SRC = ("*", "data:")
+CSP_SCRIPT_SRC = ("'self'",
                   "https://www.google.com",  # Recaptcha
                   "https://mozorg.cdn.mozilla.net",  # Tabzilla.
-                  "http://mozorg.cdn.mozilla.net",
-                  "https://login.persona.org",
-                  "https://firefoxos.persona.org",
                   "https://www.paypalobjects.com",
                   "https://ssl.google-analytics.com",
-                  "http://www.google-analytics.com",
                   )
-CSP_STYLE_SRC = ("'self'", SITE_URL,
-                 "https://mozorg.cdn.mozilla.net",  # Tabzilla.
-                 "http://mozorg.cdn.mozilla.net",
-                 "http://raw.github.com",
-                 "https://raw.github.com",
-                )
 CSP_OBJECT_SRC = ("'none'",)
-CSP_MEDIA_SRC = ("'none'",)
-CSP_FRAME_SRC = ("https://s3.amazonaws.com",
-                 "https://ssl.google-analytics.com",
-                 "https://login.persona.org",
-                 "https://firefoxos.persona.org",
-                 "https://www.youtube.com",
-                )
-CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org",)
-# self is needed for paypal which sends x-frame-options:allow when needed.
-# x-frame-options:DENY is sent the rest of the time.
-CSP_FRAME_ANCESTORS = ("'self'",)
+CSP_FRAME_SRC = ("https://ssl.google-analytics.com",)
 
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
@@ -1298,9 +1270,6 @@ PERFORMANCE_NOTES = False
 PERF_THRESHOLD = 25
 
 REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
-
-# Directory of JavaScript test files for django_qunit to run
-QUNIT_TEST_DIRECTORY = os.path.join(MEDIA_ROOT, 'js', 'zamboni', 'tests')
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
 # binary.  It must be a version compatible with amo-validator

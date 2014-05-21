@@ -16,8 +16,8 @@ Configuration
 Configuration for your unit tests is mostly handled automatically.  The only
 thing you'll need to ensure is that the database credentials in your
 ``settings_local.py`` has full permissions to modify a database with ``test-``
-prepended to it.  For example, if my database name were ``zamboni`` this
-database would be ``test-zamboni``.
+prepended to it.  For example, if my database name were ``olympia`` this
+database would be ``test_olympia``.
 
 Running Tests
 -------------
@@ -58,7 +58,7 @@ To fail and stop running tests on the first failure::
 If you wish to add arguments, or run a specific test, overload the variables
 (check the Makefile for more information)::
 
-    make SETTINGS=settings_mkt ARGS='--verbosity 2 zamboni.apps.amo.tests.test_url_prefix:MiddlewareTest.test_get_app' test
+    make SETTINGS=settings_test ARGS='--verbosity 2 olympia.apps.amo.tests.test_url_prefix:MiddlewareTest.test_get_app' test
 
 Those targets include some useful options, like the ``--with-id`` which allows
 you to re-run only the tests failed from the previous run::
@@ -117,68 +117,9 @@ need to recompile the .mo files manually, for example::
 
     msgfmt --check-format -o django.mo django.po
 
-.. _`javascript-testing`:
-
-
-API Tests
----------
-
-To run all Marketplace API tests, pass an additional `--config` flag to the test
-runner::
-
-  ./manage.py test --config=mkt/api/tests/nose.cfg
-
-If adding new test modules related to the API, ensure that you add them to the
-list at `mkt/api/tests/nose.cfg`.
-
-
-JavaScript Tests
-----------------
-
-Frontend JavaScript is currently tested with QUnit_, a simple set of
-functions for test setup/teardown and assertions.
-
-Running JavaScript Tests
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-You can run the tests a few different ways but during development you
-probably want to run them in a web browser by opening this page:
-http://127.0.0.1:8000/en-US/firefox/qunit/
-
-Before you can load that page, you'll need to adjust your settings_local.py
-file so it includes django-qunit:
-
-.. code-block:: python
-
-  INSTALLED_APPS += (
-      # ...
-      'django_qunit',
-  )
-
-Writing JavaScript Tests
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-QUnit_ tests for the HTML page above are discovered automatically.  Just add
-some_test.js to ``media/js/zamboni/tests/`` and it will run in the suite.  If
-you need to include a library file to test against, edit
-``media/js/zamboni/tests/suite.json``.
-
-QUnit_ has some good examples for writing tests.  Here are a few
-additional tips:
-
-* Any HTML required for your test should go in a sandbox using
-  ``tests.createSandbox('#your-template')``.
-  See js/zamboni/tests.js for details.
-* To make a useful test based on an actual production template, you can create
-  a snippet and include that in ``templates/qunit.html`` assigned to its own
-  div.  During test setup, reference the div in createSandbox()
-* You can use `$.mockjax`_ to test how your code handles server responses,
-  errors, and timeouts.
 
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing
 .. _`Selenium repository`: https://github.com/mozilla/Addon-Tests/
 .. _`the docs`: http://docs.djangoproject.com/en/dev/topics/testing#id1
-.. _Qunit: http://docs.jquery.com/Qunit
-.. _`$.mockjax`: http://enterprisejquery.com/2010/07/mock-your-ajax-requests-with-mockjax-for-rapid-development/
 .. _mock: http://pypi.python.org/pypi/mock
 .. _`nose-blockage`: https://github.com/andymckay/nose-blockage

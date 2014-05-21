@@ -50,6 +50,17 @@ class TestApplication(amo.tests.TestCase):
             eq_(unicode(model_app), unicode(static_app.pretty))
 
 
+class TestApplicationManager(amo.tests.TestCase):
+    fixtures = ['applications/all_apps.json']
+
+    def test_default_manager(self):
+        eq_(Application.objects.count(), 6)
+
+    def test_supported(self):
+        Application.objects.latest('pk').update(supported=False)
+        eq_(Application.objects.supported().count(), 5)
+
+
 class TestViews(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/appversion']
 

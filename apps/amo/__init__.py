@@ -3,9 +3,8 @@ Miscellaneous helpers that make Django compatible with AMO.
 """
 import threading
 
-from django.conf import settings
-
 import commonware.log
+from caching.base import CachingQuerySet
 
 from product_details import product_details
 
@@ -74,6 +73,12 @@ class CachedProperty(object):
         value = obj.__dict__.get(self.__name__, _missing)
         if value is _missing:
             value = self.func(obj)
+            if isinstance(value, CachingQuerySet):
+                # Work around a bug in django-cache-machine that
+                # causes deadlock or infinite recursion if
+                # CachingQuerySets are cached before they run their
+                # query.
+                value._fetch_all()
             obj.__dict__[self.__name__] = value
         return value
 
@@ -140,22 +145,7 @@ else:
     DEFAULT_MINVER = '13.0'
 
 
-# Waffle and amo form an import cycle because amo patches waffle and
-# waffle loads the user model, so we have to make sure waffle gets
-# loaded after everything else in amo, Hence, this is at the bottom of
-# the file.
-def patch_waffle():
-    import waffle
-    if getattr(waffle, '_PATCHED', None):
-        return
-    suffix = getattr(settings, 'WAFFLE_TABLE_SUFFIX', None)
-    if suffix:
-        for m in [waffle.Flag, waffle.Switch, waffle.Sample]:
-            m._meta.db_table = '%s_%s' % (m._meta.db_table, suffix)
-        waffle.Flag.users.through._meta.db_table = '%s_users' % (
-            waffle.Flag._meta.db_table,)
-        waffle.Flag.groups.through._meta.db_table = '%s_groups' % (
-            waffle.Flag._meta.db_table,)
-    waffle._PATCHED = True
-
-patch_waffle()
+# We need to import waffle here to avoid a circular import with jingo which
+# loads all INSTALLED_APPS looking for helpers.py files, but some of those apps
+# import jingo.
+import waffle

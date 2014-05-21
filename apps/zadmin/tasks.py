@@ -145,7 +145,7 @@ def add_validation_jobs(pks, job_pk, **kw):
     job = ValidationJob.objects.get(pk=job_pk)
     curr_ver = job.curr_max_version.version_int
     target_ver = job.target_version.version_int
-    prelim_app = list(amo.STATUS_UNDER_REVIEW) + [amo.STATUS_BETA]
+    prelim_app = list(amo.UNDER_REVIEW_STATUSES) + [amo.STATUS_BETA]
     for addon in Addon.objects.filter(pk__in=pks):
         ids = []
         base = addon.versions.filter(apps__application=job.application.id,
@@ -286,46 +286,59 @@ def notify_compatibility(users, job, data, **kw):
     for user in users:
         stats['processed'] += 1
 
-        for a in chain(user.passing_addons, user.failing_addons):
-            results = job.result_set.filter(file__version__addon=a)
+        try:
+            for a in chain(user.passing_addons, user.failing_addons):
+                try:
+                    results = job.result_set.filter(file__version__addon=a)
 
-            a.links = ' '.join(absolutify(reverse('devhub.bulk_compat_result',
+                    a.links = [absolutify(reverse('devhub.bulk_compat_result',
                                                   args=[a.slug, r.pk]))
-                               for r in results)
+                               for r in results]
 
-            a.compat_link = absolutify(reverse('devhub.versions.edit',
-                                               args=[a.pk,
-                                                     a.current_version.pk]))
+                    v = a.current_version or a.latest_version
+                    a.compat_link = absolutify(reverse('devhub.versions.edit',
+                                                       args=[a.pk, v.pk]))
+                except:
+                    task_error = sys.exc_info()
+                    log.error(u'Bulk validation email error for user %s, '
+                              u'addon %s: %s: %s'
+                              % (user.email, a.slug,
+                                 task_error[0], task_error[1]), exc_info=False)
 
 
-        context = Context({
-            'APPLICATION': str(job.application),
-            'VERSION': job.target_version.version,
-            'PASSING_ADDONS': user.passing_addons,
-            'FAILING_ADDONS': user.failing_addons,
-        })
+            context = Context({
+                'APPLICATION': str(job.application),
+                'VERSION': job.target_version.version,
+                'PASSING_ADDONS': user.passing_addons,
+                'FAILING_ADDONS': user.failing_addons,
+            })
 
-        log.info(u'Emailing %s%s for %d addons about '
-                 'bulk validation job %s'
-                 % (user.email,
-                    ' [PREVIEW]' if dry_run else '',
-                    len(user.passing_addons) + len(user.failing_addons),
-                    job.pk))
-        args = (Template(data['subject']).render(context),
-                Template(data['text']).render(context))
-        kwargs = dict(from_email=settings.DEFAULT_FROM_EMAIL,
-                      recipient_list=[user.email])
-        if dry_run:
-            job.preview_notify_mail(*args, **kwargs)
-        else:
-            stats['author_emailed'] += 1
-            send_mail(*args, **kwargs)
-            amo.log(amo.LOG.BULK_VALIDATION_USER_EMAILED,
-                    user,
-                    details={'passing': [a.id for a in user.passing_addons],
-                             'failing': [a.id for a in user.failing_addons],
-                             'target': job.target_version.version,
-                             'application': app_id})
+            log.info(u'Emailing %s%s for %d addons about '
+                     'bulk validation job %s'
+                     % (user.email,
+                        ' [PREVIEW]' if dry_run else '',
+                        len(user.passing_addons) + len(user.failing_addons),
+                        job.pk))
+            args = (Template(data['subject']).render(context),
+                    Template(data['text']).render(context))
+            kwargs = dict(from_email=settings.DEFAULT_FROM_EMAIL,
+                          recipient_list=[user.email])
+            if dry_run:
+                job.preview_notify_mail(*args, **kwargs)
+            else:
+                stats['author_emailed'] += 1
+                send_mail(*args, **kwargs)
+                amo.log(amo.LOG.BULK_VALIDATION_USER_EMAILED,
+                        user,
+                        details={'passing': [a.id for a in user.passing_addons],
+                                 'failing': [a.id for a in user.failing_addons],
+                                 'target': job.target_version.version,
+                                 'application': app_id})
+        except:
+            task_error = sys.exc_info()
+            log.error(u'Bulk validation email error for user %s: %s: %s'
+                      % (user.email,
+                         task_error[0], task_error[1]), exc_info=False)
 
     log.info('[%s@%s] bulk email stats for job %s: {%s}'
              % (len(users), notify_compatibility.rate_limit, job.pk,

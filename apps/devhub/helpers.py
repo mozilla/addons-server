@@ -217,3 +217,11 @@ def display_url(url):
 def get_compat_counts(addon):
     """Get counts for add-on compatibility reports."""
     return CompatReport.get_counts(addon.guid)
+
+
+@register.function
+def version_disabled(version):
+    """Return True if all the files are disabled."""
+    disabled = [status == amo.STATUS_DISABLED
+                for _id, status in version.statuses]
+    return all(disabled)

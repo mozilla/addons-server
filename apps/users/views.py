@@ -13,6 +13,7 @@ from django.template import Context, loader
 from django.utils.http import base36_to_int, is_safe_url
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.http import urlsafe_base64_decode, is_safe_url
 
 import commonware.log
 import waffle
@@ -336,11 +337,6 @@ def browserid_authenticate(request, assertion, is_mobile=False,
         profile = None
 
     if profile:
-        # Added due to bug 905984. It's possible to have a UserProfile
-        # that has no corresponding User object.
-        if profile.user is None:
-            profile.create_django_user(
-                backend='django_browserid.auth.BrowserIDBackend')
         if profile.is_verified and not verified:
             # An attempt to log in to a verified address with an unverified
             # assertion is a very bad thing. Don't let that happen.
@@ -351,11 +347,6 @@ def browserid_authenticate(request, assertion, is_mobile=False,
             profile.is_verified = verified
             profile.save()
 
-        backend = 'django_browserid.auth.BrowserIDBackend'
-        if getattr(profile.user, 'backend', None) != backend:
-            profile.user.backend = backend
-            profile.user.save()
-
         return profile, None
 
     username = autocreate_username(email.partition('@')[0])
@@ -363,8 +354,6 @@ def browserid_authenticate(request, assertion, is_mobile=False,
     profile = UserProfile.objects.create(username=username, email=email,
                                          source=source, display_name=username,
                                          is_verified=verified)
-    profile.create_django_user(
-        backend='django_browserid.auth.BrowserIDBackend')
     log_cef('New Account', 5, request, username=username,
             signature='AUTHNOTICE',
             msg='User created a new account (from Persona)')
@@ -391,7 +380,7 @@ def browserid_login(request, browserid_audience=None):
                 is_mobile=is_mobile,
                 browserid_audience=browserid_audience or get_audience(request))
         if profile is not None:
-            auth.login(request, profile.user)
+            auth.login(request, profile)
             profile.log_login_attempt(True)
             return http.HttpResponse(status=200)
     else:
@@ -517,7 +506,6 @@ def _login(request, template=None, data=None, dont_redirect=False):
 
 
 def logout(request):
-    # Not using get_profile() becuase user could be anonymous
     user = request.user
     if not user.is_anonymous():
         log.debug(u"User (%s) logged out" % user)
@@ -646,7 +634,6 @@ def register(request):
                 u.set_password(form.cleaned_data['password'])
                 u.generate_confirmationcode()
                 u.save()
-                u.create_django_user()
                 log.info(u'Registered new account for user (%s)', u)
                 log_cef('New Account', 5, request, username=u.username,
                         signature='AUTHNOTICE',
@@ -723,15 +710,15 @@ def remove_locale(request, user):
 
 
 @never_cache
-def password_reset_confirm(request, uidb36=None, token=None):
+def password_reset_confirm(request, uidb64=None, token=None):
     """
     Pulled from django contrib so that we can add user into the form
     so then we can show relevant messages about the user.
     """
-    assert uidb36 is not None and token is not None
+    assert uidb64 is not None and token is not None
     user = None
     try:
-        uid_int = base36_to_int(uidb36)
+        uid_int = urlsafe_base64_decode(uidb64)
         user = UserProfile.objects.get(id=uid_int)
     except (ValueError, UserProfile.DoesNotExist):
         pass

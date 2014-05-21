@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.http import HttpRequest
 
 import mock
@@ -202,8 +201,6 @@ class TestCheckReviewer(TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.get()
-        self.user.user = User.objects.get()
-        self.user.save()
 
     def test_no_perm(self):
         req = req_factory_factory('noop', user=self.user)
