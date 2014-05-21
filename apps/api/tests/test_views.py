@@ -1340,17 +1340,3 @@ class DRFLanguagePacks(DRFMixin, LanguagePacks):
     Run all LanguagePack tests with DRF.
     """
     test_module_url = reverse('api.language', args=['1.5'])
-
-
-class DRFUserTest(DRFMixin, TestCase):
-    """
-    Run all UserTest tests with DRF.
-
-    The UserTest class is not defined yet given that it requires OAuth
-    authentication which is part of a future iteration of the migration.
-    """
-    test_module_url = reverse('api.user')
-
-    def test_default(self):
-        response = make_call('user/', version=2)
-        self.assertContains(response, '"email": ""', 1)

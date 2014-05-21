@@ -4,7 +4,7 @@ from django.contrib.auth.models import AnonymousUser
 import commonware.log
 import waffle
 
-from users.models import UserProfile
+from users.models import RequestUser
 
 from .models import Access
 from .oauth import OAuthServer
@@ -64,13 +64,16 @@ class RestOAuthMiddleware(object):
             return
         if not valid:
             log.error(u'Cannot find APIAccess token with that key: %s'
-                      % oauth.attempted_key)
+                      % oauth_request._params[u'oauth_consumer_key'])
             return
         uid = Access.objects.filter(
             key=oauth_request.client_key).values_list(
                 'user_id', flat=True)[0]
-        request.amo_user = UserProfile.objects.select_related(
-            'user').get(pk=uid)
+        if not uid:
+            log.error(u'Cannot find Access with that key: %s'
+                      % oauth_request.client_key)
+            return
+        request.amo_user = RequestUser.objects.get(pk=uid)
         request.user = request.amo_user
 
         # But you cannot have one of these roles.

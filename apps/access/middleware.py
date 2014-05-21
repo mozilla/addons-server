@@ -23,7 +23,7 @@ class ACLMiddleware(object):
         if request.user.is_authenticated():
             amo.set_user(request.user)
             request.groups = request.user.groups.all()
-            request.amo_user = request.user
+            request.amo_user = RequestUser.objects.get(pk=request.user.pk)
         else:
             request.amo_user = None
 

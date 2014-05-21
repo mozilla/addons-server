@@ -6,28 +6,40 @@ import urllib
 from datetime import date, timedelta
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.utils import encoding
 
+import commonware.log
 from caching.base import cached_with
 from rest_framework.generics import RetrieveAPIView, get_object_or_404
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
 import amo
-from addons.models import Addon
+from addons.forms import AddonForm
+from addons.models import Addon, AddonUser
 from amo.decorators import allow_cross_site_request
 from amo.models import manual_order
+from amo.utils import paginate
 import api
+from devhub.forms import LicenseForm
 from search.views import name_query
 from users.models import UserProfile
+from versions.forms import XPIForm
 
 from .authentication import RestOAuthAuthentication
+from .authorization import AllowAppOwner, AnyOf, ByHttpMethod
+from .handlers import _form_error, _xpi_form_error
 from .permissions import GroupPermission
 from .renderers import JSONRenderer, XMLTemplateRenderer
-from .serializers import UserSerializer
+from .serializers import AddonSerializer, UserSerializer
 from .utils import addon_to_dict, extract_filters
 from .views import (BUFFER, ERROR, MAX_LIMIT, NEW_DAYS, OUT_OF_DATE,
                     addon_filter)
+
+log = commonware.log.getLogger('z.api')
 
 
 class DRFView(APIView):
@@ -51,15 +63,21 @@ class DRFView(APIView):
         })
         return context
 
-    def create_response(self, results):
+    def create_response(self, results, **kwargs):
         """
         Creates a different Response object given the format type.
         """
         if self.format == 'xml':
             return Response(self.serialize_to_xml(results),
-                            template_name=self.template_name)
+                            template_name=self.template_name, **kwargs)
         else:
-            return Response(self.serialize_to_json(results))
+            return Response(self.serialize_to_json(results), **kwargs)
+
+    def serialize_to_xml(self, results):
+        return {'addons': results}
+
+    def serialize_to_json(self, results):
+        return addon_to_dict(results)
 
 
 class AddonDetailView(DRFView):
@@ -91,9 +109,6 @@ class AddonDetailView(DRFView):
 
     def serialize_to_xml(self, results):
         return {'addon': results}
-
-    def serialize_to_json(self, results):
-        return addon_to_dict(results)
 
 
 class LanguageView(DRFView):
@@ -256,9 +271,6 @@ class ListView(DRFView):
         response.addons = addons
         return response
 
-    def serialize_to_xml(self, results):
-        return {'addons': results}
-
     def serialize_to_json(self, results):
         return [addon_to_dict(a) for a in results]
 
@@ -304,3 +316,91 @@ class UserView(RetrieveAPIView, DRFView):
         else:
             return self.request.amo_user
 
+
+class AddonsViewSet(DRFView, ModelViewSet):
+    serializer_class = AddonSerializer
+    queryset = Addon.objects.all()
+    authentication_classes = [RestOAuthAuthentication,]
+    permission_classes = [ByHttpMethod({
+        'options': AllowAny,  # Needed for CORS.
+        'get': AllowAny,
+        'post': IsAuthenticated,
+        'put': AnyOf(AllowAppOwner,
+                     GroupPermission('Addons', 'Edit')),
+        'delete': AnyOf(AllowAppOwner,
+                        GroupPermission('Addons', 'Edit')),
+    })]
+    lookup_url_kwarg = 'addon_id'
+
+    def create(self, request):
+        new_file_form = XPIForm(request, request.POST, request.FILES)
+
+        if not new_file_form.is_valid():
+            return _xpi_form_error(new_file_form, request)
+
+        # License can be optional.
+        license = None
+        if 'builtin' in request.POST:
+            license_form = LicenseForm(request.POST)
+            if not license_form.is_valid():
+                return _form_error(license_form)
+            license = license_form.save()
+
+        addon = new_file_form.create_addon(license=license)
+        if not license:
+            # If there is no license, we push you to step
+            # 5 so that you can pick one.
+            addon.submitstep_set.create(step=5)
+
+        serializer = self.serializer_class(addon)
+        return Response(serializer.data, **{
+            'status': 201,
+            'headers': {
+                'Location': reverse('api.addon', kwargs={'addon_id': addon.id})
+            }
+        })
+
+    def delete(self, request, addon_id):
+        addon = self.get_object()
+        addon.delete(msg='Deleted via API')
+        return Response(status=204)
+
+    def retrieve(self, request, addon_id=None):
+        """
+        Returns authors who can update an addon (not Viewer role) for addons
+        that have not been admin disabled. Optionally provide an addon id.
+        """
+        ids = (AddonUser.objects.values_list('addon_id', flat=True)
+                                .filter(user=request.amo_user,
+                                        role__in=[amo.AUTHOR_ROLE_DEV,
+                                                  amo.AUTHOR_ROLE_OWNER]))
+        qs = (Addon.objects.filter(id__in=ids)
+                           .exclude(status=amo.STATUS_DISABLED)
+                           .no_transforms())
+        if addon_id:
+            try:
+                addon = qs.get(id=addon_id)
+            except Addon.DoesNotExist:
+                return Response(status=404)
+            serializer = self.serializer_class(addon)
+            return Response(serializer.data)
+
+        paginator = paginate(request, qs)
+        serializer = self.serializer_class(paginator.object_list, many=True)
+        return Response({
+            'objects': serializer.data,
+            'num_pages': paginator.paginator.num_pages,
+            'count': paginator.paginator.count
+        })
+
+    def update(self, request, addon_id):
+        addon = self.get_object_or_none()
+        if addon is None:
+            return Response(status=410)
+
+        form = AddonForm(request.DATA, instance=addon)
+        if not form.is_valid():
+            return _form_error(form)
+
+        serializer = self.serializer_class(form.save())
+        return Response(serializer.data)
