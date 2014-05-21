@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-17 13:18+0000\n"
+"PO-Revision-Date: 2014-05-21 21:26+0000\n"
 "Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400332692.0\n"
+"X-POOTLE-MTIME: 1400707570.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5279,6 +5280,8 @@ msgstr "Корак 5. Изаберите лиценсу"
 #: apps/devhub/templates/devhub/addons/submit/license.html:9
 msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
 msgstr ""
+"Захтевамо да сви додаци указују на услове под којима је њихов изворни код "
+"лиценциран. Молимо изаберите лиценцу из листе испод или унесите властиту."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:18
 msgid "Select a license for your add-on:"
@@ -5290,21 +5293,24 @@ msgstr "Корак 4"
 
 #: apps/devhub/templates/devhub/addons/submit/media.html:6
 msgid "Step 4. Add Images"
-msgstr ""
+msgstr "Корак 4. Додајте слике"
 
 #: apps/devhub/templates/devhub/addons/submit/media.html:9
 msgid ""
 "Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
 "appear."
 msgstr ""
+"Властите иконице и слике екрана привлаче пажњу и помажу корисницима да "
+"разумеју шта ради. Топло препоручујемо да поставите властиту иконицу, пошто "
+"у неким деловима вебсајта, само иконица и име ће бити приказани."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:5
 msgid "Step 6"
-msgstr ""
+msgstr "Корак 6"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:8
 msgid "Step 6. Select a Review Process"
-msgstr ""
+msgstr "Корак 6. Изаберите процес прегледа"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:10
 msgid ""
@@ -5315,14 +5321,16 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
+"Комплетан преглед извора и функционалности Вашег додатка. <a href=\"%"
+"(url)s\">Сазнајте више&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:32
 msgid "Appropriate for polished add-ons"
-msgstr ""
+msgstr "Прикладно за уређене додатке"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Review should take place within 10 days"
-msgstr ""
+msgstr "Рецензија би требала да се изврши у року од 10 дана"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review of subsequent versions within 5 days"
