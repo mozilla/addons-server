@@ -53,7 +53,7 @@ class PasswordMixin:
 
 
 class AuthenticationForm(auth_forms.AuthenticationForm):
-    username = forms.CharField(max_length=50)
+    username = forms.CharField(max_length=75)
     rememberme = forms.BooleanField(required=False)
     recaptcha = captcha.fields.ReCaptchaField()
     recaptcha_shown = forms.BooleanField(widget=forms.HiddenInput,
@@ -63,6 +63,12 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
         super(AuthenticationForm, self).__init__(*args, **kw)
         if not use_recaptcha or not settings.RECAPTCHA_PRIVATE_KEY:
             del self.fields['recaptcha']
+
+    def clean(self):
+        """Only clean the form (username and password) if recaptcha is ok."""
+        if 'recaptcha' in self.errors:
+            return {}
+        return super(AuthenticationForm, self).clean()
 
 
 class PasswordResetForm(auth_forms.PasswordResetForm):
@@ -74,20 +80,12 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         self.users_cache = UserProfile.objects.filter(email__iexact=email)
-        if not self.users_cache:
-            raise forms.ValidationError(
-                _("""An email has been sent to the requested account with
-                  further information. If you do not receive an email then
-                  please confirm you have entered the same email address used
-                  during account registration."""))
-        user = self.users_cache[0]
-        if not user.has_usable_password():
-            raise forms.ValidationError(
-                _("We can't reset this account's password, please contact the "
-                  "support."))
         return email
 
     def save(self, **kw):
+        if not self.users_cache:
+            log.info("Unknown email used for password reset: {email}".format(**self.cleaned_data))
+            return
         for user in self.users_cache:
             log.info(u'Password reset email sent for user (%s)' % user)
             if user.needs_tougher_password:

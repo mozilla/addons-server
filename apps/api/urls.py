@@ -51,45 +51,50 @@ search_regexps = build_urls(base_search_regexp, appendages)
 base_list_regexp = r'list'
 appendages.insert(0, '/(?P<list_type>[^/]+)')
 list_regexps = build_urls(base_list_regexp, appendages)
+ad = {'authentication': authentication.AMOOAuthAuthentication(two_legged=True)}
 
 
 class SwitchToDRF(object):
     """
     Waffle switch to move from Piston to DRF.
     """
-    def __init__(self, view_name):
-        self.view_name = view_name
+    def __init__(self, resource_name, with_handler=False):
+        self.resource_name = resource_name
+        self.with_handler = with_handler
 
     def __call__(self, *args, **kwargs):
         if waffle.switch_is_active('drf'):
-            return (getattr(views_drf, self.view_name)
+            return (getattr(views_drf, self.resource_name + 'View')
                     .as_view()(*args, **kwargs))
         else:
-            return class_view(getattr(views, self.view_name))(*args, **kwargs)
+            if self.with_handler:
+                handler = getattr(handlers, self.resource_name + 'Handler')
+                return Resource(handler=handler, **ad)(*args, **kwargs)
+            else:
+                return (class_view(getattr(views, self.resource_name + 'View'))
+                        (*args, **kwargs))
 
 
 api_patterns = patterns('',
     # Addon_details
-    url('addon/%s$' % ADDON_ID, SwitchToDRF('AddonDetailView'),
+    url('addon/%s$' % ADDON_ID, SwitchToDRF('AddonDetail'),
         name='api.addon_detail'),
-    url(r'^get_language_packs$', SwitchToDRF('LanguageView'),
+    url(r'^get_language_packs$', SwitchToDRF('Language'),
         name='api.language'),)
 
 for regexp in search_regexps:
     api_patterns += patterns('',
-        url(regexp + '/?$', SwitchToDRF('SearchView'), name='api.search'))
+        url(regexp + '/?$', SwitchToDRF('Search'), name='api.search'))
 
 for regexp in list_regexps:
     api_patterns += patterns('',
-        url(regexp + '/?$', SwitchToDRF('ListView'), name='api.list'))
+        url(regexp + '/?$', SwitchToDRF('List'), name='api.list'))
 
-ad = {'authentication': authentication.AMOOAuthAuthentication(two_legged=True)}
-user_resource = Resource(handler=handlers.UserHandler, **ad)
 addons_resource = Resource(handler=handlers.AddonsHandler, **ad)
 version_resource = Resource(handler=handlers.VersionsHandler, **ad)
 
 piston_patterns = patterns('',
-    url(r'^user/$', user_resource, name='api.user'),
+    url(r'^user/$', SwitchToDRF('User', with_handler=True), name='api.user'),
     url(r'^addons/$', addons_resource, name='api.addons'),
     url(r'^addon/%s$' % ADDON_ID, addons_resource, name='api.addon'),
     url(r'^addon/%s/versions$' % ADDON_ID, version_resource,

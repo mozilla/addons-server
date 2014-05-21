@@ -375,6 +375,14 @@ class TestEditAdmin(UserViewBase):
         eq_(res.count(), 1)
         eq_(res[0].details['password'][0], u'****')
 
+    def test_delete_user_display_name_xss(self):
+        # This is to test for bug 835827.
+        self.regular.display_name = '"><img src=a onerror=alert(1)><a a="'
+        self.regular.save()
+        delete_url = reverse('admin:users_userprofile_delete',
+                             args=(self.regular.pk,))
+        res = self.client.post(delete_url, {'post': 'yes'}, follow=True)
+        assert self.regular.display_name not in res.content
 
 FakeResponse = collections.namedtuple("FakeResponse", "status_code content")
 
@@ -1069,6 +1077,11 @@ class TestLogout(UserViewBase):
                         domain='http://evil.com')
         r = self.client.get(url, follow=True)
         self.assertRedirects(r, '/en-US/about', status_code=302)
+
+    def test_session_cookie_should_be_http_only(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        r = self.client.get(reverse('users.logout'))
+        self.assertIn('httponly', str(r.cookies[settings.SESSION_COOKIE_NAME]))
 
 
 class TestRegistration(UserViewBase):

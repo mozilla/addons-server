@@ -1411,9 +1411,29 @@ class TestAddonModels(amo.tests.TestCase):
 
         # Now create a new version with an attached file, and update status.
         version = Version.objects.create(addon=addon, version="0.2")
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
         assert version.nomination is None
-        addon.update(status=amo.STATUS_LITE)
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        new_nomination = addon.versions.latest().nomination
+        assert new_nomination
+        assert_not_equal(new_nomination, old_nomination)
+
+    def test_new_version_of_fully_reviewed_addon_should_reset_nomination(self):
+        addon = Addon.objects.create(type=1)
+        version = Version.objects.create(addon=addon)
+        File.objects.create(status=amo.STATUS_PUBLIC, version=version)
+        # The addon has been fully reviewed.
+        addon.update(status=amo.STATUS_PUBLIC)
+        # Cheating to make sure we don't have a date on the same second
+        # of the running code.
+        past = self.days_ago(1)
+        version.update(nomination=past, created=past, modified=past)
+        old_nomination = addon.versions.latest().nomination
+        assert old_nomination
+
+        # Now create a new version with an attached file, and update status.
+        version = Version.objects.create(addon=addon, version="0.2")
+        assert version.nomination is None
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
         new_nomination = addon.versions.latest().nomination
         assert new_nomination
         assert_not_equal(new_nomination, old_nomination)
@@ -1482,6 +1502,92 @@ class TestAddonDelete(amo.tests.TestCase):
         eq_(Addon.with_deleted.filter(pk=addon.pk).exists(), True)
         eq_(Review.objects.filter(pk=review.pk).exists(), False)
         eq_(ReviewFlag.objects.filter(pk=flag.pk).exists(), False)
+
+
+class TestUpdateStatus(amo.tests.TestCase):
+    fixtures = ['base/platforms', ]
+
+    def test_no_file_ends_with_NULL(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        addon.status = amo.STATUS_UNREVIEWED
+        addon.save()
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_UNREVIEWED)
+        Version.objects.create(addon=addon)
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
+
+    def test_no_valid_file_ends_with_NULL(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        version = Version.objects.create(addon=addon)
+        f = File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        addon.status = amo.STATUS_UNREVIEWED
+        addon.save()
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_UNREVIEWED)
+        f.status = amo.STATUS_DISABLED
+        f.save()
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
+
+
+class TestGetVersion(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', ]
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.version = self.addon.current_version
+
+    def new_version(self, status):
+        version = Version.objects.create(addon=self.addon)
+        File.objects.create(version=version, status=status)
+        return version
+
+    def test_public_new_lite_version(self):
+        self.new_version(amo.STATUS_LITE)
+        eq_(self.addon.get_version(), self.version)
+
+    def test_public_new_nominated_version(self):
+        self.new_version(amo.STATUS_NOMINATED)
+        eq_(self.addon.get_version(), self.version)
+
+    def test_public_new_public_version(self):
+        v = self.new_version(amo.STATUS_PUBLIC)
+        eq_(self.addon.get_version(), v)
+
+    def test_public_new_unreviewed_version(self):
+        self.new_version(amo.STATUS_UNREVIEWED)
+        eq_(self.addon.get_version(), self.version)
+
+    def test_lite_new_unreviewed_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        self.new_version(amo.STATUS_UNREVIEWED)
+        eq_(self.addon.get_version(), self.version)
+
+    def test_lite_new_lan_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_LITE_AND_NOMINATED)
+        eq_(self.addon.get_version(), v)
+
+    def test_lite_new_lite_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_LITE)
+        eq_(self.addon.get_version(), v)
+
+    def test_lite_new_full_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_PUBLIC)
+        eq_(self.addon.get_version(), v)
+
+    def test_lan_new_lite_version(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        v = self.new_version(amo.STATUS_LITE)
+        eq_(self.addon.get_version(), v)
+
+    def test_lan_new_full_version(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        v = self.new_version(amo.STATUS_PUBLIC)
+        eq_(self.addon.get_version(), v)
+
+    def test_should_promote_previous_valid_version_if_latest_is_disabled(self):
+        self.new_version(amo.STATUS_DISABLED)
+        eq_(self.addon.get_version(), self.version)
 
 
 class TestAddonGetURLPath(amo.tests.TestCase):

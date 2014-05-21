@@ -17,7 +17,7 @@ from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import get_uploaded_file
 from users.models import BlacklistedPassword, UserProfile
-from users.forms import UserEditForm
+from users.forms import AuthenticationForm, UserEditForm
 
 
 class UserFormBase(amo.tests.TestCase):
@@ -89,20 +89,20 @@ class TestSetPasswordForm(UserFormBase):
 
 class TestPasswordResetForm(UserFormBase):
 
-    def test_request_fail(self):
-        r = self.client.post('/en-US/firefox/users/pwreset',
-                             {'email': 'someemail@somedomain.com'})
+    def test_request_with_unkown_email(self):
+        r = self.client.post(
+            reverse('password_reset_form'),
+            {'email': 'someemail@somedomain.com'}
+        )
 
         eq_(len(mail.outbox), 0)
-        self.assertFormError(r, 'form', 'email',
-            ("An email has been sent to the requested account with further "
-             "information. If you do not receive an email then please confirm "
-             "you have entered the same email address used during "
-             "account registration."))
+        self.assertRedirects(r, reverse('password_reset_done'))
 
     def test_request_success(self):
-        self.client.post('/en-US/firefox/users/pwreset',
-                         {'email': self.user.email})
+        self.client.post(
+            reverse('password_reset_form'),
+            {'email': self.user.email}
+        )
 
         eq_(len(mail.outbox), 1)
         assert mail.outbox[0].subject.find('Password reset') == 0
@@ -116,8 +116,10 @@ class TestPasswordResetForm(UserFormBase):
         hsh = hashlib.sha512(bytes_ + md5).hexdigest()
         self.user.password = 'sha512+MD5$%s$%s' % (bytes, hsh)
         self.user.save()
-        self.client.post('/en-US/firefox/users/pwreset',
-                         {'email': self.user.email})
+        self.client.post(
+            reverse('password_reset_form'),
+            {'email': self.user.email}
+        )
 
         eq_(len(mail.outbox), 1)
         assert mail.outbox[0].subject.find('Password reset') == 0
@@ -367,6 +369,23 @@ class TestUserLoginForm(UserFormBase):
         eq_(u.last_login_attempt_ip, '127.0.0.1')
         assert u.last_login_ip != '127.0.0.1'
         assert u.last_login_attempt == t or u.last_login_attempt > t
+
+    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    def test_recaptcha_errors_only(self):
+        """Only recaptcha errors should be returned if validation fails.
+
+        We don't want any information on the username/password returned if the
+        captcha is incorrect.
+
+        """
+        form = AuthenticationForm(data={'username': 'foo',
+                                        'password': 'bar',
+                                        'recaptcha': ''},
+                                  use_recaptcha=True)
+        form.is_valid()
+
+        assert len(form.errors) == 1
+        assert 'recaptcha' in form.errors
 
 
 class TestUserRegisterForm(UserFormBase):

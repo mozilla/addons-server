@@ -947,20 +947,33 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
         versions = self.versions.all()
+        status = None
         if not versions.exists():
-            self.update(status=amo.STATUS_NULL)
+            status = amo.STATUS_NULL
             logit('no versions')
-        elif not (versions.filter(files__isnull=False).exists()):
-            self.update(status=amo.STATUS_NULL)
-            logit('no versions with files')
+        elif not versions.filter(files__status__in=amo.VALID_STATUSES).exists():
+            status = amo.STATUS_NULL
+            logit('no version with valid file')
         elif (self.status == amo.STATUS_PUBLIC and
               not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
             if versions.filter(files__status=amo.STATUS_LITE).exists():
-                self.update(status=amo.STATUS_LITE)
+                status = amo.STATUS_LITE
                 logit('only lite files')
             else:
-                self.update(status=amo.STATUS_UNREVIEWED)
+                status = amo.STATUS_UNREVIEWED
                 logit('no reviewed files')
+        elif (self.status in amo.REVIEWED_STATUSES
+              and self.latest_version
+              and self.latest_version.has_files
+              and (self.latest_version.all_files[0].status
+                   in amo.UNDER_REVIEW_STATUSES)):
+            # Addon is public, but its latest file is not (it's the case on a
+            # new file upload). So, call update, to trigger watch_status, which
+            # takes care of setting nomination time when needed.
+            status = self.status
+
+        if status is not None:
+            self.update(status=status)
 
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):

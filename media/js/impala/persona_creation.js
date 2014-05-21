@@ -311,7 +311,7 @@
             });
         }
 
-        var $color = $('#submit-persona input[type=color]');
+        var $color = $('#submit-persona input.color-picker');
         $color.change(function() {
             var $this = $(this),
                 val = $this.val();

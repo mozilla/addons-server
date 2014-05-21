@@ -377,6 +377,7 @@ MIDDLEWARE_CLASSES = (
     'apps.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
 
+    'api.middleware.RestOAuthMiddleware',
     # This should come after authentication middleware
     'access.middleware.ACLMiddleware',
 
@@ -1198,47 +1199,17 @@ CEF_PRODUCT = "amo"
 
 # CSP Settings
 CSP_REPORT_URI = '/services/csp/report'
-CSP_POLICY_URI = '/services/csp/policy?build=%s' % build_id
 CSP_REPORT_ONLY = True
 
-CSP_ALLOW = ("'self'",)
-CSP_IMG_SRC = ("'self'", SITE_URL,
-               "https://www.google.com",  # Recaptcha comes from google
-               "https://mozorg.cdn.mozilla.net",  # Tabzilla.
-               "http://mozorg.cdn.mozilla.net",
-               "https://www.getpersonas.com",
-               "https://ssl.google-analytics.com",
-               "http://www.google-analytics.com",
-               "data:"
-              )
-CSP_SCRIPT_SRC = ("'self'", SITE_URL,
+CSP_DEFAULT_SRC = ("*", "data:")
+CSP_SCRIPT_SRC = ("'self'",
                   "https://www.google.com",  # Recaptcha
                   "https://mozorg.cdn.mozilla.net",  # Tabzilla.
-                  "http://mozorg.cdn.mozilla.net",
-                  "https://login.persona.org",
-                  "https://firefoxos.persona.org",
                   "https://www.paypalobjects.com",
                   "https://ssl.google-analytics.com",
-                  "http://www.google-analytics.com",
                   )
-CSP_STYLE_SRC = ("'self'", SITE_URL,
-                 "https://mozorg.cdn.mozilla.net",  # Tabzilla.
-                 "http://mozorg.cdn.mozilla.net",
-                 "http://raw.github.com",
-                 "https://raw.github.com",
-                )
 CSP_OBJECT_SRC = ("'none'",)
-CSP_MEDIA_SRC = ("'none'",)
-CSP_FRAME_SRC = ("https://s3.amazonaws.com",
-                 "https://ssl.google-analytics.com",
-                 "https://login.persona.org",
-                 "https://firefoxos.persona.org",
-                 "https://www.youtube.com",
-                )
-CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org",)
-# self is needed for paypal which sends x-frame-options:allow when needed.
-# x-frame-options:DENY is sent the rest of the time.
-CSP_FRAME_ANCESTORS = ("'self'",)
+CSP_FRAME_SRC = ("https://ssl.google-analytics.com",)
 
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we

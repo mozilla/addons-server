@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-02-28 01:55+0000\n"
+"PO-Revision-Date: 2014-05-15 10:21+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393552553.0\n"
+"X-POOTLE-MTIME: 1400149285.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -220,7 +220,7 @@ msgstr "Flash Player</a>。"
 
 #: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "由于我们正在进行网站维护，比此功能暂时无法使用。请您稍后再试。"
+msgstr "由于我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1408,7 +1408,7 @@ msgstr[0] "{0} 个提醒{0} 个提醒"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
-msgstr "{0} {1} 未被更新"
+msgstr "未为 {0} {1} 更新"
 
 #: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"

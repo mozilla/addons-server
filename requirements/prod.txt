@@ -16,14 +16,14 @@ cssutils==0.9.7b3
 curling==0.2.6
 defusedxml==0.4.1
 dennis==0.4
-Django==1.6.4
+Django==1.6.2
 dj-database-url==0.2.2
 django-aesfield==0.1.2
 django-browserid==0.8
 django-cache-nuggets==0.1.1
 django-celery==3.0.23
 django-cronjobs==0.2.3
-django_csp==1.0.2
+django_csp==2.0.3
 django-extensions==1.2.5
 django-filter==0.7
 django-memcached-pool==0.4.1
@@ -82,7 +82,7 @@ python-dateutil==1.5
 python-gflags==2.0
 python-memcached==1.53
 pytz==2013.8
-raven==4.0.3
+raven==4.2.3
 rdflib==3.0.0
 recaptcha-client==1.0.6
 receipts==0.2.9
@@ -97,7 +97,7 @@ statsd==2.0.3
 suds==0.4
 
 ## Not on pypi.
--e git+https://github.com/mozilla/amo-validator.git@0acfa344cac090c52618dc1539f759ea1b1e318e#egg=amo-validator
+-e git+https://github.com/mozilla/amo-validator.git@71670d04e84408f616ca94cca69c8a51b9a46bd6#egg=amo-validator
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
@@ -111,9 +111,9 @@ suds==0.4
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 -e git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
 ## Forked.
--e git+https://github.com/washort/django-piston-oauth2.git@5de8ea9e6f156c4e483ae38e25a8b1755842f6bd#egg=django-piston-oauth2
+-e git+https://github.com/washort/django-piston-oauth2.git@c89afee6f98241eb7ef6df57d3d5156fabbfa759#egg=django-piston-oauth2
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
--e git+https://github.com/washort/django-mysql-pool.git@47b7bc35a7b00a9798d4fe4792764ab00bfcb5b6#egg=django-mysql-pool
+-e git+https://github.com/washort/django-mysql-pool.git@76ed372bb9888d46833345ae6c40a39d41b5ba62#egg=django-mysql-pool
 
 
 ## Out of date or not sure on pypi.

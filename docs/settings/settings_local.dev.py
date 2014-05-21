@@ -20,7 +20,7 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 # production.
 #CACHES = {
 #    'default': {
-#        'BACKEND': 'django.core.cache.backends.memcached.Memcached',
+#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
 #        'LOCATION': 'localhost:11211',
 #    }
 #}

@@ -9,6 +9,7 @@ from django.conf import settings
 from django.utils import encoding
 
 from caching.base import cached_with
+from rest_framework.generics import RetrieveAPIView, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -18,8 +19,12 @@ from amo.decorators import allow_cross_site_request
 from amo.models import manual_order
 import api
 from search.views import name_query
+from users.models import UserProfile
 
+from .authentication import RestOAuthAuthentication
+from .permissions import GroupPermission
 from .renderers import JSONRenderer, XMLTemplateRenderer
+from .serializers import UserSerializer
 from .utils import addon_to_dict, extract_filters
 from .views import (BUFFER, ERROR, MAX_LIMIT, NEW_DAYS, OUT_OF_DATE,
                     addon_filter)
@@ -36,7 +41,7 @@ class DRFView(APIView):
         # https://github.com/tomchristie/django-rest-framework/blob/master/rest_framework/negotiation.py#L39
         self.format = kwargs.get('format', None) or request.QUERY_PARAMS.get(
             getattr(settings, 'URL_FORMAT_OVERRIDE'), 'xml')
-        self.api_version = float(kwargs['api_version'])
+        self.api_version = float(kwargs.get('api_version', 2))
 
     def get_renderer_context(self):
         context = super(DRFView, self).get_renderer_context()
@@ -265,3 +270,37 @@ class ListView(DRFView):
                                                            args, kwargs)
         return cached_with(response.addons, lambda: response.render(),
                            map(encoding.smart_str, args))
+
+
+class UserView(RetrieveAPIView, DRFView):
+
+    serializer_class = UserSerializer
+    lookup_param = 'email'
+    model = UserProfile
+    permission_classes = [GroupPermission('API.Users', 'View'),]
+    authentication_classes = [RestOAuthAuthentication,]
+
+    def check_permissions(self, request):
+        """
+        Do not check permissions in case the user requests his own information.
+        """
+        lookup = self.kwargs.get(self.lookup_field, None)
+        if lookup:
+            return super(UserView, self).check_permissions(request)
+        else:
+            return True
+
+    def get_object(self, queryset=None):
+        lookup = self.request.QUERY_PARAMS.get(self.lookup_param, None)
+        if lookup:
+            queryset = self.filter_queryset(self.get_queryset())
+            # Not worth a dedicated DRF filter class given that it's only
+            # used for UserProfiles.
+            queryset = queryset.filter(deleted=False)
+            filter_kwargs = {self.lookup_param: lookup}
+            obj = get_object_or_404(queryset, **filter_kwargs)
+            self.check_object_permissions(self.request, obj)
+            return obj
+        else:
+            return self.request.amo_user
+

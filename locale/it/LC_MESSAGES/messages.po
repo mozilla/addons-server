@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:34-0700\n"
-"PO-Revision-Date: 2014-04-14 22:10+0000\n"
+"PO-Revision-Date: 2014-05-16 14:05+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397513450.0\n"
+"X-POOTLE-MTIME: 1400249112.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12685,6 +12685,8 @@ msgstr "Una email con ulteriori informazioni è stata inviata all’account rich
 #: apps/users/forms.py:86
 msgid "We can't reset this account's password, please contact the support."
 msgstr ""
+"Non è possibile ripristinare la password di questo account, contatta il "
+"supporto tecnico per risolvere il problema."
 
 #: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
