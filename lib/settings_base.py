@@ -377,6 +377,7 @@ MIDDLEWARE_CLASSES = (
     'apps.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
 
+    'api.middleware.RestOAuthMiddleware',
     # This should come after authentication middleware
     'access.middleware.ACLMiddleware',
 

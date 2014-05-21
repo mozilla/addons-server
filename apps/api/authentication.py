@@ -2,6 +2,7 @@ from functools import partial
 
 import commonware.log
 from piston.authentication.oauth import OAuthAuthentication, views
+from rest_framework.authentication import BaseAuthentication
 
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import render
@@ -18,6 +19,16 @@ views.render_to_response = jfd
 
 
 log = commonware.log.getLogger('z.api')
+
+
+class RestOAuthAuthentication(BaseAuthentication):
+
+    def authenticate(self, request):
+        # Most of the work here is in the RestOAuthMiddleware.
+        if (getattr(request._request, 'user', None) and
+            'RestOAuth' in getattr(request._request, 'authed_from', [])):
+            request.user = request._request.user
+            return request.user, None
 
 
 class AMOOAuthAuthentication(OAuthAuthentication):
