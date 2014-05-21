@@ -12616,9 +12616,7 @@ msgstr ""
 
 #: apps/users/forms.py:86
 msgid "We can't reset this account's password, please contact the support."
-msgstr ""
-"We kunnen het wachtwoord van deze account niet herinitialiseren, neem "
-"contact op met de klantenservice."
+msgstr "We kunnen het wachtwoord van deze account niet herinitialiseren, neem contact op met de klantenservice."
 
 #: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"

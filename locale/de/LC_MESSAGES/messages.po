@@ -12671,9 +12671,7 @@ msgstr ""
 
 #: apps/users/forms.py:86
 msgid "We can't reset this account's password, please contact the support."
-msgstr ""
-"Wir können das Passwort für dieses Konto nicht zurücksetzen, wenn Sie sich "
-"bitte an die Hilfe."
+msgstr "Wir können das Passwort für dieses Konto nicht zurücksetzen, wenn Sie sich bitte an die Hilfe."
 
 #: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"

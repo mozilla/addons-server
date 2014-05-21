@@ -12684,9 +12684,7 @@ msgstr "Una email con ulteriori informazioni è stata inviata all’account rich
 
 #: apps/users/forms.py:86
 msgid "We can't reset this account's password, please contact the support."
-msgstr ""
-"Non è possibile ripristinare la password di questo account, contatta il "
-"supporto tecnico per risolvere il problema."
+msgstr "Non è possibile ripristinare la password di questo account, contatta il supporto tecnico per risolvere il problema."
 
 #: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"

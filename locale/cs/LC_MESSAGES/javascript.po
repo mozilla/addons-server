@@ -1173,15 +1173,9 @@ msgstr "Jiné"
 #: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"Nastavit u {0} doplňku podporu pro maximální verzi aplikace {1} a poslat "
-"e-mail autorovi."
-msgstr[1] ""
-"Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat "
-"e-mail autorům."
-msgstr[2] ""
-"Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat "
-"e-mail autorům."
+msgstr[0] "Nastavit u {0} doplňku podporu pro maximální verzi aplikace {1} a poslat e-mail autorovi."
+msgstr[1] "Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat e-mail autorům."
+msgstr[2] "Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat e-mail autorům."
 
 #: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."

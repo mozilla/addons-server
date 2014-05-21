@@ -826,9 +826,7 @@ msgstr "이 페르소나는 %(app)s %(new_version)s을(를) 필요로 합니다.
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr ""
-"<strong>주의:</strong> 이 부가 기능은 Mozilla의 심사를 받지 않았습니다. 서드파티 소프트웨어를 설치할 경우 컴퓨터에 "
-"문제가 발생할 수도 있으니 주의하시기 바랍니다."
+msgstr "<strong>주의:</strong> 이 부가 기능은 Mozilla의 심사를 받지 않았습니다. 서드파티 소프트웨어를 설치할 경우 컴퓨터에 문제가 발생할 수도 있으니 주의하시기 바랍니다."
 
 #: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1914,9 +1912,8 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> <strong>공백으로 구분되어 있는 두 단어</strong>를 입력해 주세요.</p> <p> 식별이 어렵다면 <a "
-"href=\"#\" id=\"recaptcha_different\">다른 단어로 해보시거나</a> <a href=\"#\" "
-"id=\"recaptcha_audio\">다른 방식으로 시도해 보세요.</a> </p>"
+"<p> <strong>공백으로 구분되어 있는 두 단어</strong>를 입력해 주세요.</p> <p> 식별이 어렵다면 <a href=\"#\" id=\"recaptcha_different\">다른 단어로 해보시거나</a> <a href=\"#\" id=\"recaptcha_audio\">"
+"다른 방식으로 시도해 보세요.</a> </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90
@@ -2243,9 +2240,7 @@ msgstr "제작"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24 apps/bandwagon/templates/bandwagon/ajax_new.html:28
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
-"저희 <a href=\"%(legal)s\">법적 고지</a>에 언급된 바와 같이 각 모음집의 고유 구성 방식은 크리에이티브 커먼즈 "
-"저작자표시-동일조건변경허락 라이선스 하에 있습니다"
+msgstr "저희 <a href=\"%(legal)s\">법적 고지</a>에 언급된 바와 같이 각 모음집의 고유 구성 방식은 크리에이티브 커먼즈 저작자표시-동일조건변경허락 라이선스 하에 있습니다"
 
 #: apps/bandwagon/templates/bandwagon/add.html:33 apps/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
@@ -2716,9 +2711,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Mozilla에선 부가 기능, 플러그인, 기타 서드파티 소프트웨어에서 %(app)s에 심각한 보안, 안정성, 성능 저하 문제를 초래하는 "
-"것이 있을 경우 <a href=\"%(criteria)s\">규정</a>에 의거, 해당 소프트웨어를 일반적인 사용을 할 수 없도록 차단하게 "
-"됩니다. 보다 자세한 정보를 보시려면 <a href=\"%(support)s\">다음의 도움말</a>을 읽어보시기 바랍니다."
+"Mozilla에선 부가 기능, 플러그인, 기타 서드파티 소프트웨어에서 %(app)s에 심각한 보안, 안정성, 성능 저하 문제를 초래하는 것이 있을 경우 <a href=\"%(criteria)s\">규정</a>에 의거, 해당 소프트웨어를 일반"
+"적인 사용을 할 수 없도록 차단하게 됩니다. 보다 자세한 정보를 보시려면 <a href=\"%(support)s\">다음의 도움말</a>을 읽어보시기 바랍니다."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -4082,8 +4076,8 @@ msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
-"부가 기능 SDK는 강력한 API를 제공하여 개발자가 HTML, CSS, 자바스크립트를 사용해 Firefox용 부가 기능을 개발할 수 "
-"있습니다. 완성된 부가 기능은 저희가 전세계 4억명이 넘는 이용자들과 쉽게 공유할 수 있도록 만들어 드리겠습니다."
+"부가 기능 SDK는 강력한 API를 제공하여 개발자가 HTML, CSS, 자바스크립트를 사용해 Firefox용 부가 기능을 개발할 수 있습니다. 완성된 부가 기능은 저희가 전세계 4억명이 넘는 이용자들과 쉽게 공유할 수 있도"
+"록 만들어 드리겠습니다."
 
 #: apps/devhub/templates/devhub/builder.html:32
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4204,9 +4198,8 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
-"부가 기능은 수억명의 Firefox 사용자들의 웹 서핑 경험을 향상시키고 개인화 할 수 있게 만들어 줍니다. 만약 당신이 웹 개발자에 "
-"HTML, 자바스크립트, CSS를 알고 있다면 SDK로 대단한 부가 기능을 만들 수 있는 능력도 이미 갖추고 계시겠네요. 뿐만 아니라 "
-"SDK로 개발된 부가 기능은 설치시 재시작할 필요도 없어요."
+"부가 기능은 수억명의 Firefox 사용자들의 웹 서핑 경험을 향상시키고 개인화 할 수 있게 만들어 줍니다. 만약 당신이 웹 개발자에 HTML, 자바스크립트, CSS를 알고 있다면 SDK로 대단한 부가 기능을 만들 수 있"
+"는 능력도 이미 갖추고 계시겠네요. 뿐만 아니라 SDK로 개발된 부가 기능은 설치시 재시작할 필요도 없어요."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -5205,9 +5198,7 @@ msgstr "5단계. 라이선스 선택"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:9
 msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
-msgstr ""
-"모든 부가 기능은 라이선스가 있는 소스 코드임을 알려야 합니다. 아래 목록의 라이선스 중 하나를 선택하시거나 사용자 정의 라이선스를 "
-"입력해 주세요."
+msgstr "모든 부가 기능은 라이선스가 있는 소스 코드임을 알려야 합니다. 아래 목록의 라이선스 중 하나를 선택하시거나 사용자 정의 라이선스를 입력해 주세요."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:18
 msgid "Select a license for your add-on:"
@@ -5518,9 +5509,8 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
-"패키져가 생성한 비어있는 사이드 바 보다 더 많은 기능을 부가 기능에 넣고 싶다면 다양한 경로를 통해 기능을 추가하는 방법을 배울 수 "
-"있습니다. 가장 흔한 방법이라면 역시 다른 확장 기능이 이미 구현해 놓은 것들을 그대로 따라서 해보는 것이겠지요. 단, 참고할 확장기능의 "
-"라이선스가 소스 복제를 허용하지 않을 시에는 따라해선 안됩니다."
+"패키져가 생성한 비어있는 사이드 바 보다 더 많은 기능을 부가 기능에 넣고 싶다면 다양한 경로를 통해 기능을 추가하는 방법을 배울 수 있습니다. 가장 흔한 방법이라면 역시 다른 확장 기능이 이미 구현해 놓"
+"은 것들을 그대로 따라서 해보는 것이겠지요. 단, 참고할 확장기능의 라이선스가 소스 복제를 허용하지 않을 시에는 따라해선 안됩니다."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -6353,18 +6343,16 @@ msgid ""
 "Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains "
 "copyright of their work unless otherwise noted in the add-on's license."
 msgstr ""
-"많은 부가 기능이 소스 코드를 열람할 수 있도록 허용하고 있습니다. 이는 소스 코드가 오픈 소스라던지 다른 부가 기능에도 사용할 수 "
-"있다는 뜻은 아닙니다. 부가 기능의 원 제작자는 부가 기능의 라이선스에서 따로 고지하지 않는 한 자신의 저작물에 대한 저작권을 보유하고 "
-"있습니다."
+"많은 부가 기능이 소스 코드를 열람할 수 있도록 허용하고 있습니다. 이는 소스 코드가 오픈 소스라던지 다른 부가 기능에도 사용할 수 있다는 뜻은 아닙니다. 부가 기능의 원 제작자는 부가 기능의 라이선스에서 "
+"따로 고지하지 않는 한 자신의 저작물에 대한 저작권을 보유하고 있습니다."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
 msgstr ""
-"저작권이나 라이선스 위반이 신고되었을 땐, 상황을 검토하고 실제 위반 사실이 발생할 경우 판단을 내릴 단계를 거치게 될 것입니다. 위반 "
-"사실이 있다고 판단할 경우, 해당 부가 기능은 삭제되며 제작자에게 연락이 취해질 것입니다. 침해한 코드가 포함된 새 부가 기능이 제출되면 "
-"(업데이트 포함) 공개 상태 승인 과정에서 거부될 것입니다."
+"저작권이나 라이선스 위반이 신고되었을 땐, 상황을 검토하고 실제 위반 사실이 발생할 경우 판단을 내릴 단계를 거치게 될 것입니다. 위반 사실이 있다고 판단할 경우, 해당 부가 기능은 삭제되며 제작자에게 연"
+"락이 취해질 것입니다. 침해한 코드가 포함된 새 부가 기능이 제출되면 (업데이트 포함) 공개 상태 승인 과정에서 거부될 것입니다."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
@@ -6385,9 +6373,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
 "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
-msgstr ""
-"추천 부가 기능 자문 위원회가 추천할 부가 기능을 선정합니다. 자문회는 Mozilla 커뮤니티의 부가 기능 개발자와 팬으로 이루어진 "
-"소규모 조직으로, 후보의 심사와 투표를 자원하신 분들입니다."
+msgstr "추천 부가 기능 자문 위원회가 추천할 부가 기능을 선정합니다. 자문회는 Mozilla 커뮤니티의 부가 기능 개발자와 팬으로 이루어진 소규모 조직으로, 후보의 심사와 투표를 자원하신 분들입니다."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
@@ -6719,9 +6705,8 @@ msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
-"특정 사이트에 특화된 부가 기능의 경우 심사 과정에서 이용 가능한 테스트 계정을 제공하는 것이 좋습니다. 추가로 테스트 방침에 관한 것도 "
-"적어놓는다면 편집자가 부가 기능이 작동되는 원리를 보다 잘 이해하고 테스트를 빠르게 마칠 수 있을겁니다. 이러한 정보는 개발자 허브에서 "
-"버전 편집시 심사원에게 남기는 메모란에 기입하시면 됩니다."
+"특정 사이트에 특화된 부가 기능의 경우 심사 과정에서 이용 가능한 테스트 계정을 제공하는 것이 좋습니다. 추가로 테스트 방침에 관한 것도 적어놓는다면 편집자가 부가 기능이 작동되는 원리를 보다 잘 이해하"
+"고 테스트를 빠르게 마칠 수 있을겁니다. 이러한 정보는 개발자 허브에서 버전 편집시 심사원에게 남기는 메모란에 기입하시면 됩니다."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
@@ -6856,14 +6841,11 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p> 부가 기능이 사전에 고려하지 않은* 기능을 포함하고 있을시, 즉 </p> <ul> <li>사용자 개인정보나 보안에 대한 타협 "
-"(서드파티에 데이터 전송과 같은),</li> <li>홈페이지나 검색 엔진과 같은 기본 설정 변경, 또는</li> <li>다른 부가 기능의 "
-"설정 및 기능을 변경하거나 완전한 무력화</li> </ul> <p>기능은 다음 요구 사항에 반드시 부합해야 합니다:</p> <ul> "
-"<li>부가 기능이 어떤 사항을 변경하는지 명확하게 설명에 명시되어 있어야 합니다.</li> <li>모든 변경 사항은 기본 외 작업을 "
-"통한 변경을 사용자가 경험하게 된다는 것을 의미한다는 사실에 대한 사전 동의가 반드시 필요합니다.</li> <li>사전 동의를 묻는 "
-"대화창은 특정 부가 기능의 이름이 변경을 요청하고 있다는 사실을 명확하게 명시하고 있어야 합니다.</li> <li>부가 기능 삭제시 "
-"그동안 변경한 사용자의 기본 설정이 복구되야 합니다.</li> </ul> <p>*사전에 고려하지 않은 기능이란 부가 기능의 주요 기능과 "
-"관련이 없는 기능을 의미합니다.</p>"
+"<p> 부가 기능이 사전에 고려하지 않은* 기능을 포함하고 있을시, 즉 </p> <ul> <li>사용자 개인정보나 보안에 대한 타협 (서드파티에 데이터 전송과 같은),</li> <li>홈페이지나 검색 엔진과 같은 기본 설정 변"
+"경, 또는</li> <li>다른 부가 기능의 설정 및 기능을 변경하거나 완전한 무력화</li> </ul> <p>기능은 다음 요구 사항에 반드시 부합해야 합니다:</p> <ul> <li>부가 기능이 어떤 사항을 변경하는지 명확하게 설명"
+"에 명시되어 있어야 합니다.</li> <li>모든 변경 사항은 기본 외 작업을 통한 변경을 사용자가 경험하게 된다는 것을 의미한다는 사실에 대한 사전 동의가 반드시 필요합니다.</li> <li>사전 동의를 묻는 대화창"
+"은 특정 부가 기능의 이름이 변경을 요청하고 있다는 사실을 명확하게 명시하고 있어야 합니다.</li> <li>부가 기능 삭제시 그동안 변경한 사용자의 기본 설정이 복구되야 합니다.</li> </ul> <p>*사전에 고려하"
+"지 않은 기능이란 부가 기능의 주요 기능과 관련이 없는 기능을 의미합니다.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -6964,12 +6946,10 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
-"<strong>부가 기능이 제대로 검사됐고 치명적인 결점이 확실히 없습니까?</strong> 부가 기능의 공개적 접근 여부를 고려할 때 "
-"가장 중요하게 생각하는 것은 심사 보고서로써 시험용 기간동안 테스팅을 거쳐 웹 브라우저에 심각한 문제나 부정적 충돌 현상이 일어나지 "
-"않았는지 등을 표시하고 있습니다. 심사원이 부가 기능을 사용해보고 높은 수준의 문제점, 충돌, 빈번한 문제 발생 및 오류 콘솔의 메시지 "
-"도배현상 등을 보고했다면 이 보고서를 명심하고 최선을 다해 다시 작업한 후 재심을 요청해야 합니다. 완벽한 최적화나 버그 박멸을 기대하는 "
-"것이 아닙니다 &mdash; Firefox도 이러한 과정속에 꾸준한 발전을 거쳐왔죠 &mdash; 다만 이러한 것들을 최소화하려는 "
-"확실한 노력을 보여주고 그래도 남아있는 문제가 있을시엔 사용자에게 명확하게 사실 여부를 알려주는 걸 저희는 희망하고 있습니다."
+"<strong>부가 기능이 제대로 검사됐고 치명적인 결점이 확실히 없습니까?</strong> 부가 기능의 공개적 접근 여부를 고려할 때 가장 중요하게 생각하는 것은 심사 보고서로써 시험용 기간동안 테스팅을 거쳐 웹 브"
+"라우저에 심각한 문제나 부정적 충돌 현상이 일어나지 않았는지 등을 표시하고 있습니다. 심사원이 부가 기능을 사용해보고 높은 수준의 문제점, 충돌, 빈번한 문제 발생 및 오류 콘솔의 메시지 도배현상 등을 보"
+"고했다면 이 보고서를 명심하고 최선을 다해 다시 작업한 후 재심을 요청해야 합니다. 완벽한 최적화나 버그 박멸을 기대하는 것이 아닙니다 &mdash; Firefox도 이러한 과정속에 꾸준한 발전을 거쳐왔죠 &mdash; "
+"다만 이러한 것들을 최소화하려는 확실한 노력을 보여주고 그래도 남아있는 문제가 있을시엔 사용자에게 명확하게 사실 여부를 알려주는 걸 저희는 희망하고 있습니다."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:43
 msgid ""
@@ -7021,10 +7001,9 @@ msgid ""
 "source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
 "just because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
-"다른 부가 기능의 소스 코드 재사용에 관해, 제작자가 당신의 저작물에 자신의 코드 사용 허락에 있어 태도가 분명치 않다면 &mdash; "
-"오픈 소스 라이선스 하에 있는 것이라도 &mdash; 그것을 사용할 권리는 없다고 생각해야 합니다. 권리를 찾기 위해 제작자에게 연락을 "
-"취할 수 있지만, 사이트에 명시된 사항이 이미 있고 제작자가 당신의 요구에 응답하지 않을 수도 있으므로 저희는 어떠한 특별 권리도 "
-"당신에게 제공할 수 없습니다."
+"다른 부가 기능의 소스 코드 재사용에 관해, 제작자가 당신의 저작물에 자신의 코드 사용 허락에 있어 태도가 분명치 않다면 &mdash; 오픈 소스 라이선스 하에 있는 것이라도 &mdash; 그것을 사용할 권리는 없다"
+"고 생각해야 합니다. 권리를 찾기 위해 제작자에게 연락을 취할 수 있지만, 사이트에 명시된 사항이 이미 있고 제작자가 당신의 요구에 응답하지 않을 수도 있으므로 저희는 어떠한 특별 권리도 당신에게 제공할 "
+"수 없습니다."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:79
 msgid ""
@@ -7043,18 +7022,15 @@ msgstr "라이센싱"
 msgid ""
 "Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
 "intellectual property."
-msgstr ""
-"부가 기능에 적합한 라이선스를 선택하는 것은 제출 과정에서 매우 중요한 단계입니다. 라이선스는 소스 코드에 부여된 권리를 설명하고 있으며 "
-"당신의 지적 재산권 보호에 있어 매우 중요합니다."
+msgstr "부가 기능에 적합한 라이선스를 선택하는 것은 제출 과정에서 매우 중요한 단계입니다. 라이선스는 소스 코드에 부여된 권리를 설명하고 있으며 당신의 지적 재산권 보호에 있어 매우 중요합니다."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:92
 msgid ""
 "During the add-on submission process, you will be presented with a list of popular licenses to choose from, as well as the ability to specify your own license. It is best to consult with a legal "
 "professional about which license option is best for you. Choosing the right license for your source code will help to prevent confusion and code conflicts in the future."
 msgstr ""
-"부가 기능 제출 과정 도중에, 선택한 라이선스의 인기 목록을 제공받게 될 것이며 거기엔 자신이 고른 라이선스의 기능이 열거되어 있을 "
-"것입니다. 어떤 라이선스 옵션이 자신에게 맞는지는 법률 전문가와 상담하는 것이 가장 좋습니다. 소스 코드의 권리 라이선스 선택은 훗날 "
-"혼동 및 코드 분쟁을 방지하는데 도움이 될 것입니다."
+"부가 기능 제출 과정 도중에, 선택한 라이선스의 인기 목록을 제공받게 될 것이며 거기엔 자신이 고른 라이선스의 기능이 열거되어 있을 것입니다. 어떤 라이선스 옵션이 자신에게 맞는지는 법률 전문가와 상담하"
+"는 것이 가장 좋습니다. 소스 코드의 권리 라이선스 선택은 훗날 혼동 및 코드 분쟁을 방지하는데 도움이 될 것입니다."
 
 #: apps/devhub/templates/devhub/docs/policies.html:12 apps/devhub/templates/devhub/docs/policies.html:52
 msgid "Add-on Submission"
@@ -7650,15 +7626,13 @@ msgid ""
 "<b>Pick a category and tags</b> &mdash; select a category and enter some tags that best describe your theme. Keep in mind that a reviewer may reject your theme if it is obvious that your category "
 "and/or tags are unrelated to your theme."
 msgstr ""
-"<b>분류와 태그 설정</b> &mdash; 분류를 선택하고 테마를 가장 잘 설명할 수 있는 태그 이름을 입력하십시오. 분류가 확실하지 "
-"않거나 테마와 관련이 없는 태그 입력시 심사원이 테마 승인을 거부할 수도 있습니다."
+"<b>분류와 태그 설정</b> &mdash; 분류를 선택하고 테마를 가장 잘 설명할 수 있는 태그 이름을 입력하십시오. 분류가 확실하지 않거나 테마와 관련이 없는 태그 입력시 심사원이 테마 승인을 거부할 수도 있습니"
+"다."
 
 #: apps/devhub/templates/devhub/docs/themes.html:194
 msgid ""
 "<b>Describe your theme</b> &mdash; write a short description of your theme. Keep in mind that a reviewer may reject your theme if your description is not an accurate representation of your theme."
-msgstr ""
-"<b>테마 설명 작성</b> &mdash; 테마의 짤막한 설명을 작성합니다. 설명이 테마를 제대로 나타내지 못하는 경우엔 심사원이 테마 "
-"승인을 거부할 수도 있습니다."
+msgstr "<b>테마 설명 작성</b> &mdash; 테마의 짤막한 설명을 작성합니다. 설명이 테마를 제대로 나타내지 못하는 경우엔 심사원이 테마 승인을 거부할 수도 있습니다."
 
 #: apps/devhub/templates/devhub/docs/themes.html:201
 msgid "<b>Select a license for your theme</b> &mdash; decide on a copyright license for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative Common licenses.</a>"
@@ -7732,9 +7706,7 @@ msgstr "전체 심사가 완료되면 이메일을 받아볼 수 있습니다. �
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
-msgstr ""
-"저희 갤러리에서 호스팅 중인 모든 부가 기능은 편집자에 의해 심사를 받아야 합니다. 호스팅 작업을 계속 하고 싶다면 심사 절차 선택을 "
-"위해 클릭해주세요."
+msgstr "저희 갤러리에서 호스팅 중인 모든 부가 기능은 편집자에 의해 심사를 받아야 합니다. 호스팅 작업을 계속 하고 싶다면 심사 절차 선택을 위해 클릭해주세요."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
@@ -7870,9 +7842,8 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL."
 msgstr ""
-"사용자들은 이 부가 기능을 설치하기에 앞서 다음의 최종 사용자 라이선스 동의서 (EULA)에 동의가 필요하게 됩니다. EULA의 존재는 "
-"부가 기능의 다운로드 횟수가 많아질 수록 큰 영향력을 가지게 됩니다. EULA는 GPL이나 MPL과 같은 코드 라이선스와 같은 개념이 "
-"아니라는 것을 양지해 주십시오."
+"사용자들은 이 부가 기능을 설치하기에 앞서 다음의 최종 사용자 라이선스 동의서 (EULA)에 동의가 필요하게 됩니다. EULA의 존재는 부가 기능의 다운로드 횟수가 많아질 수록 큰 영향력을 가지게 됩니다. EULA는 "
+"GPL이나 MPL과 같은 코드 라이선스와 같은 개념이 아니라는 것을 양지해 주십시오."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:20
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
@@ -8188,8 +8159,8 @@ msgid ""
 "By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
 "href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
 msgstr ""
-"테마를 업로드하려면 <a href=\"%(tos_url)s\" target=\"_blank\">테마 이용 약관</a>에 동의해야 합니다. 테마는 "
-"<a href=\"%(guidelines_url)s\" target=\"_blank\">심사 지침</a> 내에 설정된 기준에 따라 승급됩니다."
+"테마를 업로드하려면 <a href=\"%(tos_url)s\" target=\"_blank\">테마 이용 약관</a>에 동의해야 합니다. 테마는 <a href=\"%(guidelines_url)s\" target=\"_blank\">심사 지침</a> 내에 설정된 기준에 따라 승급"
+"됩니다."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -9189,9 +9160,7 @@ msgstr[0] "테마 심사 {0}건이 처리되었습니다. (+{1} 포인트, 총 {
 
 #: apps/editors/views_themes.py:342
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-"테마 잠금 상태가 해제되었습니다. 이제 다른 심사원이 해금된 테마를 심사합니다. 본 페이지를 새로고침하면 아래 테이블에 변경 내역이 "
-"반영됩니다."
+msgstr "테마 잠금 상태가 해제되었습니다. 이제 다른 심사원이 해금된 테마를 심사합니다. 본 페이지를 새로고침하면 아래 테이블에 변경 내역이 반영됩니다."
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
@@ -10103,9 +10072,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"흔히 \"AMO\"로 통하는 addons.mozilla.org는 Firefox, Thunderbird, SeaMonkey 등과 같은 "
-"Mozilla 소프트웨어의 부가 기능을 관리하는 공식 사이트입니다. 부가 기능은 웹 브라우저나 애플리케이션에 새 기능을 추가하고 구동 "
-"방식을 바꿀 수 있습니다. 한번 둘러보시고 온라인을 통한 수천가지 개인화 방법들을 탐구해 보시기 바랍니다."
+"흔히 \"AMO\"로 통하는 addons.mozilla.org는 Firefox, Thunderbird, SeaMonkey 등과 같은 Mozilla 소프트웨어의 부가 기능을 관리하는 공식 사이트입니다. 부가 기능은 웹 브라우저나 애플리케이션에 새 기능을 "
+"추가하고 구동 방식을 바꿀 수 있습니다. 한번 둘러보시고 온라인을 통한 수천가지 개인화 방법들을 탐구해 보시기 바랍니다."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -10116,9 +10084,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"이곳에 등재된 부가 기능들은 저희 커뮤니티에 있는 수천명의 개발자가 제작한 것들로써, 개인적인 취미 활동부터 거대 기업들까지 그 영역은 "
-"광범위합니다. 모든 공개 부가 기능은 출시에 앞서 편집자 팀에 의해 심사를 받습니다. 시험용으로 표시된 부가 기능은 심사를 받지 "
-"않았으므로 설치시 주의해야 합니다."
+"이곳에 등재된 부가 기능들은 저희 커뮤니티에 있는 수천명의 개발자가 제작한 것들로써, 개인적인 취미 활동부터 거대 기업들까지 그 영역은 광범위합니다. 모든 공개 부가 기능은 출시에 앞서 편집자 팀에 의해 "
+"심사를 받습니다. 시험용으로 표시된 부가 기능은 심사를 받지 않았으므로 설치시 주의해야 합니다."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
@@ -10138,9 +10105,7 @@ msgstr "트위터 계정 <a href=\"%(url)s\">mozamo</a>에 뉴스, 팁, 트릭 �
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
-"<a href=\"%(url)s\">포럼</a>은 부가 기능 커뮤니티와 교류하고 AMO의 향후 변경 사항에 관해 토론할 수 있는 최적의 "
-"장소입니다."
+msgstr "<a href=\"%(url)s\">포럼</a>은 부가 기능 커뮤니티와 교류하고 AMO의 향후 변경 사항에 관해 토론할 수 있는 최적의 장소입니다."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
@@ -10152,21 +10117,15 @@ msgstr "참여할 수 있는 매우 다양한 방법들이 있습니다. 기술�
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
-"<a href=\"%(url)s\">나만의 부가 기능을 만들어 보세요</a>. 무료 호스팅과 업데이트 서비스를 제공하고 있으며 사용자에게 "
-"쉽게 다가갈 수 있도록 도와드리겠습니다."
+msgstr "<a href=\"%(url)s\">나만의 부가 기능을 만들어 보세요</a>. 무료 호스팅과 업데이트 서비스를 제공하고 있으며 사용자에게 쉽게 다가갈 수 있도록 도와드리겠습니다."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
-msgstr ""
-"부가 기능 개발 경험이 있다면 <a href=\"%(url)s\">편집자가 되어보세요</a>! 저희 편집자들은 기술적 배경 지식은 가진 부가 "
-"기능 팬 집단으로 부가 기능의 코드 품질과 안정성을 심사합니다."
+msgstr "부가 기능 개발 경험이 있다면 <a href=\"%(url)s\">편집자가 되어보세요</a>! 저희 편집자들은 기술적 배경 지식은 가진 부가 기능 팬 집단으로 부가 기능의 코드 품질과 안정성을 심사합니다."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
-msgstr ""
-"웹사이트가 개선될 수 있도록 도와주세요. 오픈소스로 제작되었기 때문에 버그를 수집해서 패치를 올릴 수도 있습니다. <a href=\"%"
-"(url)s\">Bugzilla</a>에 현재 발견된 버그들이 모두 올라와 있습니다."
+msgstr "웹사이트가 개선될 수 있도록 도와주세요. 오픈소스로 제작되었기 때문에 버그를 수집해서 패치를 올릴 수도 있습니다. <a href=\"%(url)s\">Bugzilla</a>에 현재 발견된 버그들이 모두 올라와 있습니다."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -10182,9 +10141,7 @@ msgstr "<a href=\"%(url)s\">포럼</a>에도 참여해 보세요."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
-"부가 기능에 평가를 적어주세요. 제작자들은 사람들이 자기 작품을 쓰면서 기뻐한다는 걸 알면 좀 더 개선하거나 새 작품을 만들려고 "
-"하니까요."
+msgstr "부가 기능에 평가를 적어주세요. 제작자들은 사람들이 자기 작품을 쓰면서 기뻐한다는 걸 알면 좀 더 개선하거나 새 작품을 만들려고 하니까요."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
@@ -10194,14 +10151,11 @@ msgstr "질문이 있어요"
 msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
-msgstr ""
-"먼저 <a href=\"%(faq_url)s\"><abbr title=\"자주 묻는 질문\">FAQ</abbr></a>에서 시작하는게 좋겠네요. "
-"저기에서 원하는 답을 찾지 못했다면 <a href=\"%(forum_url)s\">포럼에 물어보세요</a>."
+msgstr "먼저 <a href=\"%(faq_url)s\"><abbr title=\"자주 묻는 질문\">FAQ</abbr></a>에서 시작하는게 좋겠네요. 저기에서 원하는 답을 찾지 못했다면 <a href=\"%(forum_url)s\">포럼에 물어보세요</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
-"정말 Mozilla 팀원과 연락을 취하고 싶다면 <a href=\"%(url)s\">연락처 정보</a> 페이지를 참고하시기 바랍니다."
+msgstr "정말 Mozilla 팀원과 연락을 취하고 싶다면 <a href=\"%(url)s\">연락처 정보</a> 페이지를 참고하시기 바랍니다."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
@@ -10212,8 +10166,8 @@ msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
 msgstr ""
-"커뮤니티에서 오신 자원 봉사자들과 헌신적인 AMO팀을 포함한 많은 사람들이 여러해 동안 이곳 웹사이트에 공헌해 주셨습니다. 전체 공헌자 "
-"명단은 <a href=\"%(url)s\">사이트 공헌자</a> 페이지에서 확인하실 수 있습니다."
+"커뮤니티에서 오신 자원 봉사자들과 헌신적인 AMO팀을 포함한 많은 사람들이 여러해 동안 이곳 웹사이트에 공헌해 주셨습니다. 전체 공헌자 명단은 <a href=\"%(url)s\">사이트 공헌자</a> 페이지에서 확인하실 "
+"수 있습니다."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -10595,9 +10549,8 @@ msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please "
 "note that Mozilla does not offer developer recommendations."
 msgstr ""
-"예. <a href=\"%(list_url)s\">Mozilla 구직 리스트</a>, <a href=\"%"
-"(mz_url)s\">mozillaZine 포럼</a> 또는 <a href=\"%(wiki_url)s\">Mozilla 위키</a>를 통해 "
-"서드파티 개발자를 만나볼 수 있을겁니다. 개발자 추천은 따로 하지 않으니 이점 양지하세요."
+"예. <a href=\"%(list_url)s\">Mozilla 구직 리스트</a>, <a href=\"%(mz_url)s\">mozillaZine 포럼</a> 또는 <a href=\"%(wiki_url)s\">Mozilla 위키</a>를 통해 서드파티 개발자를 만나볼 수 있을겁니다. 개발"
+"자 추천은 따로 하지 않으니 이점 양지하세요."
 
 #: apps/pages/templates/pages/dev_faq.html:284
 msgid "Can I host my own add-on?"
@@ -10661,9 +10614,8 @@ msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"예. Mozilla의 <a href=\"%(p_url)s\">부가 기능 정책</a>에 어떤 것이 용인되는지 서술되어 있습니다. 이 정책은 "
-"별도의 고지 없이 변경됩니다. 여기에 추가로 AMO 편집자 팀에선 <a href=\"%(g_url)s\">편집자 심사 지침</a>을 사용해 "
-"기능이나 보안 유지가 지침에 부합하는지도 검사합니다."
+"예. Mozilla의 <a href=\"%(p_url)s\">부가 기능 정책</a>에 어떤 것이 용인되는지 서술되어 있습니다. 이 정책은 별도의 고지 없이 변경됩니다. 여기에 추가로 AMO 편집자 팀에선 <a href=\"%(g_url)s\">편집자 "
+"심사 지침</a>을 사용해 기능이나 보안 유지가 지침에 부합하는지도 검사합니다."
 
 #: apps/pages/templates/pages/dev_faq.html:345
 msgid "How do I submit my add-on for review?"
@@ -10674,9 +10626,8 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
-"개발자 도구 대시보드에서 부가 기능을 업로드하면 AMO에 제출됩니다. 부가 기능을 제출하기 전에 AMO에 등록해야 합니다. 부가 기능을 "
-"제출하기 전에 AMO <a href=\"%(url)s\">편집자 심사 지침</a>을 읽어보고 편집자 지침에 부합하는지 여부도 확인해 보시기 "
-"바랍니다."
+"개발자 도구 대시보드에서 부가 기능을 업로드하면 AMO에 제출됩니다. 부가 기능을 제출하기 전에 AMO에 등록해야 합니다. 부가 기능을 제출하기 전에 AMO <a href=\"%(url)s\">편집자 심사 지침</a>을 읽어보고 "
+"편집자 지침에 부합하는지 여부도 확인해 보시기 바랍니다."
 
 #: apps/pages/templates/pages/dev_faq.html:357
 msgid "What operating system do I choose for my add-on?"
@@ -10712,9 +10663,7 @@ msgstr "부가 기능 사용시 라이선스 동의서를 표시하게 수 있�
 
 #: apps/pages/templates/pages/dev_faq.html:386
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
-"예. 부가 기능 제출시 라이선스 동의서를 넣을 수 있습니다. 부가 기능 제출 후에도 언제든 개발자 도구를 통해 라이선스 동의서를 "
-"추가하거나 갱신할 수 있습니다."
+msgstr "예. 부가 기능 제출시 라이선스 동의서를 넣을 수 있습니다. 부가 기능 제출 후에도 언제든 개발자 도구를 통해 라이선스 동의서를 추가하거나 갱신할 수 있습니다."
 
 #: apps/pages/templates/pages/dev_faq.html:393
 msgid "Can I include a privacy policy for my add-on?"
@@ -10746,10 +10695,9 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"부가 기능은 AMO 편집자에 의해 심사를 받습니다. 편집자들은 Mozilla 사용자들에게 안정성을 확보하고 제대로 된 사용 경험을 "
-"유지하기 위한 부가 기능 심사 프로젝트를 돕기 위해 선발된 유능한 개발자로 이루어진 자원 봉사자 조직입니다. 편집자들과 소통시엔 예의를 "
-"지켜서 말씀해 주시기 바랍니다. 이 분들은 당신의 부가 기능이 정확하게 설정되어 있는지, <a href=\"%(url)s\">편집자 심사 "
-"지침</a>에서 밑줄 친 사항을 잘 따르고 있는지를 가려내기 위해 열심히 일하는 중이니까요."
+"부가 기능은 AMO 편집자에 의해 심사를 받습니다. 편집자들은 Mozilla 사용자들에게 안정성을 확보하고 제대로 된 사용 경험을 유지하기 위한 부가 기능 심사 프로젝트를 돕기 위해 선발된 유능한 개발자로 이루어"
+"진 자원 봉사자 조직입니다. 편집자들과 소통시엔 예의를 지켜서 말씀해 주시기 바랍니다. 이 분들은 당신의 부가 기능이 정확하게 설정되어 있는지, <a href=\"%(url)s\">편집자 심사 지침</a>에서 밑줄 친 사항"
+"을 잘 따르고 있는지를 가려내기 위해 열심히 일하는 중이니까요."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -10760,9 +10708,8 @@ msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process"
 msgstr ""
-"Mozilla 편집자 팀은 AMO에 적합한 부가 기능인지 테스트할 때 <a href=\"%(url)s\">편집자 심사 지침</a>을 따르게 "
-"됩니다. 부가 기능 개발자는 제출하기 전에 이 지침을 보고 일반적 문제 부분에 나와있는 내용을 준수하고 있는지 점검해 보는 것이 "
-"중요합니다. 사전 점검 작업은 심사 과정의 신속한 처리에 대단히 큰 도움이 될 것입니다."
+"Mozilla 편집자 팀은 AMO에 적합한 부가 기능인지 테스트할 때 <a href=\"%(url)s\">편집자 심사 지침</a>을 따르게 됩니다. 부가 기능 개발자는 제출하기 전에 이 지침을 보고 일반적 문제 부분에 나와있는 내용"
+"을 준수하고 있는지 점검해 보는 것이 중요합니다. 사전 점검 작업은 심사 과정의 신속한 처리에 대단히 큰 도움이 될 것입니다."
 
 #: apps/pages/templates/pages/dev_faq.html:439
 msgid "How long will it take for my add-on to be reviewed?"
@@ -10792,9 +10739,8 @@ msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
 "\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"이러한 이유로 <a href=\"%(g_url)s\">편집자 심사 지침</a>을 읽어보고 부가 기능이 의도한 대로 설정되었는지 확인하는 "
-"작업이 매우 중요하다는 것입니다. <a href=\"%(blog_url)s\">성공적인 부가 기능 심사</a>와 같은 블로그 글을 읽고 "
-"원만한 부가 기능 심사 통과에 대한 이해를 높이는 것도 좋은 생각입니다."
+"이러한 이유로 <a href=\"%(g_url)s\">편집자 심사 지침</a>을 읽어보고 부가 기능이 의도한 대로 설정되었는지 확인하는 작업이 매우 중요하다는 것입니다. <a href=\"%(blog_url)s\">성공적인 부가 기능 심사</"
+"a>와 같은 블로그 글을 읽고 원만한 부가 기능 심사 통과에 대한 이해를 높이는 것도 좋은 생각입니다."
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -10909,8 +10855,7 @@ msgstr "기타 (세부 사항을 묻는 팝업창이 뜹니다)"
 
 #: apps/pages/templates/pages/dev_faq.html:577
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
-msgstr ""
-"현재 AMO에선 심사원과 직접 연결해주는 메커니즘을 제공하고 있지 않지만 이러한 기능은 향후 업데이트를 통해 개발을 고려중에 있습니다."
+msgstr "현재 AMO에선 심사원과 직접 연결해주는 메커니즘을 제공하고 있지 않지만 이러한 기능은 향후 업데이트를 통해 개발을 고려중에 있습니다."
 
 #: apps/pages/templates/pages/dev_faq.html:584
 msgid "Can I request that a review be removed if the review is negative?"
@@ -10935,9 +10880,8 @@ msgid ""
 "are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
 "neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
-"다양한 오픈소스 라이선스에 대한 정보가 필요하십니까? 어떤 라이선스를 선택해야 할지 궁금하신가요? 전체 라이선스 내용을 확인하지 않더라도 "
-"아래 사이트에서 각종 라이선스 정보를 비교해 드립니다. 그러나, 이 정보들은 개인적인 용도 및 정보의 역할만 하는 것이고 법적인 정보는 "
-"아닙니다. Mozilla는 이들 정보에 대해 책임을 지거나 정보의 신뢰성에 대한 보장을 하지 않습니다. "
+"다양한 오픈소스 라이선스에 대한 정보가 필요하십니까? 어떤 라이선스를 선택해야 할지 궁금하신가요? 전체 라이선스 내용을 확인하지 않더라도 아래 사이트에서 각종 라이선스 정보를 비교해 드립니다. 그러나, "
+"이 정보들은 개인적인 용도 및 정보의 역할만 하는 것이고 법적인 정보는 아닙니다. Mozilla는 이들 정보에 대해 책임을 지거나 정보의 신뢰성에 대한 보장을 하지 않습니다. "
 
 #: apps/pages/templates/pages/dev_faq.html:618
 msgid ""
@@ -10954,9 +10898,7 @@ msgid ""
 "Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a "
 "discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
 "extended versions of the program to be free as well.)"
-msgstr ""
-"자유소프트웨어재단은 주요 오픈 소스 라이선스에 대한 간단한 요약 및 카피레프트나 자유 SW 라이선스에 대한 정보와 이에 대한 토론 정보를 "
-"제공합니다."
+msgstr "자유소프트웨어재단은 주요 오픈 소스 라이선스에 대한 간단한 요약 및 카피레프트나 자유 SW 라이선스에 대한 정보와 이에 대한 토론 정보를 제공합니다."
 
 #: apps/pages/templates/pages/dev_faq.html:662
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
@@ -11081,10 +11023,9 @@ msgid ""
 "add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
 "\">Learn more about our approval process</a>"
 msgstr ""
-"극히 일부 예외를 제외하고, 이 갤러리에 등재된 부가 기능은 Mozilla 편집자 팀에 의해 검사 및 승인된 것으로 설치하셔도 "
-"안전합니다. 승인된 부가 기능만 설치하는 것을 권장합니다. 승인되지 않은 부가 기능이나 서드파티 웹사이트에 있는 부가 기능을 설치하실 "
-"경우엔 해당 부가 기능이 컴퓨터에 문제를 야기할 수 있거나 개인 정보를 침해할 수 있다는 사실에 주의하시기 바랍니다. <a href=\"%"
-"(learnmore_url)s\">승인 절차에 대해 자세히 알아보기</a>"
+"극히 일부 예외를 제외하고, 이 갤러리에 등재된 부가 기능은 Mozilla 편집자 팀에 의해 검사 및 승인된 것으로 설치하셔도 안전합니다. 승인된 부가 기능만 설치하는 것을 권장합니다. 승인되지 않은 부가 기능이"
+"나 서드파티 웹사이트에 있는 부가 기능을 설치하실 경우엔 해당 부가 기능이 컴퓨터에 문제를 야기할 수 있거나 개인 정보를 침해할 수 있다는 사실에 주의하시기 바랍니다. <a href=\"%(learnmore_url)s\">승인 "
+"절차에 대해 자세히 알아보기</a>"
 
 #: apps/pages/templates/pages/faq.html:133
 msgid "Can add-ons make %(app_name)s slower?"
@@ -11122,10 +11063,9 @@ msgid ""
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
 msgstr ""
-"부가 기능은 세계 각지의 서드파티 개발자들에 의해 제작되고 있습니다. 그러므로 부가 기능 사용에 대한 도움을 받고자 한다면 해당 부가 "
-"기능의 홈페이지에 있는 기술 지원 링크를 들어가 보거나 개발자와 직접 연락하는 방법이 가장 좋습니다. %(app_name)s에 문제가 "
-"발생했을 경우, 일단 설치해놓은 부가 기능을 먼저 의심해 보도록 하십시오. 문제 해결에 관한 팁을 찾아보시려면 <a href=\"%"
-"(troubleshooting_url)s\">다음의 기술 지원 게시물을 읽어보시기 바랍니다</a>."
+"부가 기능은 세계 각지의 서드파티 개발자들에 의해 제작되고 있습니다. 그러므로 부가 기능 사용에 대한 도움을 받고자 한다면 해당 부가 기능의 홈페이지에 있는 기술 지원 링크를 들어가 보거나 개발자와 직접 "
+"연락하는 방법이 가장 좋습니다. %(app_name)s에 문제가 발생했을 경우, 일단 설치해놓은 부가 기능을 먼저 의심해 보도록 하십시오. 문제 해결에 관한 팁을 찾아보시려면 <a href=\"%(troubleshooting_url)s\">다"
+"음의 기술 지원 게시물을 읽어보시기 바랍니다</a>."
 
 #: apps/pages/templates/pages/faq.html:170
 msgid "Add-on Gallery"
@@ -11196,8 +11136,8 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-"부가 기능 제작자들 중 일부는 금전 기부를 통해 개발 지원을 돕는 사용자를 필요로 하고 있습니다. 기부를 원하는 사람은 Mozilla "
-"재단과 같이 비영리 서드파티를 표방하는 개발자가 아닌 이상 어떤 개발자든 즉시 기부금을 보탤 수 있습니다."
+"부가 기능 제작자들 중 일부는 금전 기부를 통해 개발 지원을 돕는 사용자를 필요로 하고 있습니다. 기부를 원하는 사람은 Mozilla 재단과 같이 비영리 서드파티를 표방하는 개발자가 아닌 이상 어떤 개발자든 즉"
+"시 기부금을 보탤 수 있습니다."
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
@@ -11261,10 +11201,9 @@ msgid ""
 "\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
 "the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"부가 기능 제작시 소스 코드는 제작자의 배타적 저작권 내지는 적어도 소스 코드에 라이선스가 있다는 선언 정도는 해야 합니다. 이곳 "
-"사이트의 여러 부가 기능이 <a href=\"%(url)s\" lang=\"en\">오픈 소스 라이선스</a>를 가지고 있으며 이는 소스 코드를 "
-"공개해서 복제 및 재사용이 가능하다는 제작자의 의지가 반영된 상태로 제작되었음을 의미합니다. 많은 제작자들이 자체 라이선스를 제작히기 "
-"보다는 널리 알려진 GPL이나 BSD 라이선스를 채용하고 있습니다."
+"부가 기능 제작시 소스 코드는 제작자의 배타적 저작권 내지는 적어도 소스 코드에 라이선스가 있다는 선언 정도는 해야 합니다. 이곳 사이트의 여러 부가 기능이 <a href=\"%(url)s\" lang=\"en\">오픈 소스 라이"
+"선스</a>를 가지고 있으며 이는 소스 코드를 공개해서 복제 및 재사용이 가능하다는 제작자의 의지가 반영된 상태로 제작되었음을 의미합니다. 많은 제작자들이 자체 라이선스를 제작히기 보다는 널리 알려진 GPL"
+"이나 BSD 라이선스를 채용하고 있습니다."
 
 #: apps/pages/templates/pages/faq.html:259
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
@@ -11376,8 +11315,7 @@ msgid ""
 "Add-on reviews are a way for add-on site users to share their opinions about the add-ons that they have installed and used. Editors reserve the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
-"부가 기능 평가는 사이트 이용자들이 설치하고 사용중인 부가 기능에 대한 자신의 견해를 공유할 수 있는 창구입니다. 편집자는 다음의 지침을 "
-"준수하지 않은 평가에 대해 거부나 삭제할 권리를 가지고 있습니다."
+"부가 기능 평가는 사이트 이용자들이 설치하고 사용중인 부가 기능에 대한 자신의 견해를 공유할 수 있는 창구입니다. 편집자는 다음의 지침을 준수하지 않은 평가에 대해 거부나 삭제할 권리를 가지고 있습니다."
 
 #: apps/pages/templates/pages/review_guide.html:59
 msgid "Do:"
@@ -11515,8 +11453,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Editors will use the Review Guidelines to evaluate whether "
 "or not to delete the review or restore it back to the site."
 msgstr ""
-"\"평가 신고하기\"를 클릭해서 의문시되는 평가를 신고하거나 플래그를 달아주세요. 그러면 중재를 위해 사이트에 내용이 제출됩니다. 편집자는 "
-"평가 지침에 의거하여 삭제해야 하는지 사이트에 복귀시켜야 하는지를 감정하게 됩니다."
+"\"평가 신고하기\"를 클릭해서 의문시되는 평가를 신고하거나 플래그를 달아주세요. 그러면 중재를 위해 사이트에 내용이 제출됩니다. 편집자는 평가 지침에 의거하여 삭제해야 하는지 사이트에 복귀시켜야 하는지"
+"를 감정하게 됩니다."
 
 #: apps/pages/templates/pages/review_guide.html:222
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -11535,9 +11473,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated by an editor. If a review included a complaint that "
 "is no longer valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"일반적인 상황에선 안됩니다. 하지만 평가 지침을 준수하지 않은 평가는 \"평가 신고하기\"를 클릭해서 편집자의 중재를 요구할 수 있습니다. "
-"불만 사항이 적혀있는 평가 중 새 버전 출시로 인해 더이상 불만 사항이 적합하지 않게 되었을 경우라면 평가 삭제를 고려하게 됩니다. "
-"amo-editors@mozilla.org로 자세한 요구 사항을 적어서 보내주세요."
+"일반적인 상황에선 안됩니다. 하지만 평가 지침을 준수하지 않은 평가는 \"평가 신고하기\"를 클릭해서 편집자의 중재를 요구할 수 있습니다. 불만 사항이 적혀있는 평가 중 새 버전 출시로 인해 더이상 불만 사항"
+"이 적합하지 않게 되었을 경우라면 평가 삭제를 고려하게 됩니다. amo-editors@mozilla.org로 자세한 요구 사항을 적어서 보내주세요."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -11681,14 +11618,11 @@ msgid ""
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
 "ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>다음 사항을 지켜주세요:</h2> <ul> <li> 친구에게 이 부가 기능을 사용했던 경험을 얘기하듯 적어주세요. 어떤 기능을 "
-"좋아하고 좋아하지 않는지, 사용하기는 편한지, 단점은 무엇인지 같은 명확하고 도움이 될만한 자세한 정보를 제공해 주시기 바랍니다. "
-"\"죽인다\" \"비추천\" 같은 일반적인 단어보다는 왜 그렇게 생각하는지 이유를 적어주세요. </li> <li> 평가엔 버그 리포트를 올리지 "
-"마세요. 저희는 부가 기능 개발자가 여러분의 이메일 주소를 사용하는 것을 허용하지 않는데, 이메일 주소가 올라와 있으면 개발자가 문제 "
-"해결을 돕기위해 직접 연락을 하려 들 수 있기 때문입니다. 부가 기능 개발을 돕고 싶다면 <a href=\"%(support)s\">기술 "
-"지원 항목</a>을 살펴보시기 바랍니다. </li> <li>건전한 평가를 만들어주세요. 부적절한 언어 사용을 자제하시고 어떠한 개인 "
-"정보도 올리지 마세요. </li> </ul> <p>보다 자세한 사항은 <a href=\"%(guide)s\" "
-"target=\"_blank\">평가 지침</a>을 읽어주시기 바랍니다.</p>"
+"<h2>다음 사항을 지켜주세요:</h2> <ul> <li> 친구에게 이 부가 기능을 사용했던 경험을 얘기하듯 적어주세요. 어떤 기능을 좋아하고 좋아하지 않는지, 사용하기는 편한지, 단점은 무엇인지 같은 명확하고 도움이 "
+"될만한 자세한 정보를 제공해 주시기 바랍니다. \"죽인다\" \"비추천\" 같은 일반적인 단어보다는 왜 그렇게 생각하는지 이유를 적어주세요. </li> <li> 평가엔 버그 리포트를 올리지 마세요. 저희는 부가 기능 개"
+"발자가 여러분의 이메일 주소를 사용하는 것을 허용하지 않는데, 이메일 주소가 올라와 있으면 개발자가 문제 해결을 돕기위해 직접 연락을 하려 들 수 있기 때문입니다. 부가 기능 개발을 돕고 싶다면 <a href="
+"\"%(support)s\">기술 지원 항목</a>을 살펴보시기 바랍니다. </li> <li>건전한 평가를 만들어주세요. 부적절한 언어 사용을 자제하시고 어떠한 개인 정보도 올리지 마세요. </li> </ul> <p>보다 자세한 사항은 "
+"<a href=\"%(guide)s\" target=\"_blank\">평가 지침</a>을 읽어주시기 바랍니다.</p>"
 
 #: apps/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -13154,9 +13088,7 @@ msgstr "가입이 완료되면 입력한 이메일 주소로 확인용 메일을
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
-msgstr ""
-"원하신다면 저희의 <a href=\"%(legal)s\" title=\"법적 고지\">법적 고지</a>와 <a href=\"%(privacy)s\" "
-"title=\"개인 정보 보호 정책\">개인 정보 보호 정책</a>을 읽어보실 수 있습니다."
+msgstr "원하신다면 저희의 <a href=\"%(legal)s\" title=\"법적 고지\">법적 고지</a>와 <a href=\"%(privacy)s\" title=\"개인 정보 보호 정책\">개인 정보 보호 정책</a>을 읽어보실 수 있습니다."
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
 msgid "Register"

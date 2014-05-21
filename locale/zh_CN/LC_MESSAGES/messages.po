@@ -1063,9 +1063,7 @@ msgstr "查看完整的版本历史"
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"在此附加组件发布给所有公众之前，您可以通过开发通道测试此附加组件的实验性新版本。一旦您安装开发版，您就会持续得到来自这个通道的更新。要停止接受开发版的更"
-"新，请从上面的链接重新安装默认版。"
+msgstr "在此附加组件发布给所有公众之前，您可以通过开发通道测试此附加组件的实验性新版本。一旦您安装开发版，您就会持续得到来自这个通道的更新。要停止接受开发版的更新，请从上面的链接重新安装默认版。"
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
@@ -1892,9 +1890,8 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> 请输入下面的两个<strong>单词</strong>，<strong>以空格分隔</strong>。 </p> <p> "
-"如果您觉得这两个单词太难辨认，可以<a href=\"#\" id=\"recaptcha_different\">再换一组单词</a>或者<a "
-"href=\"#\" id=\"recaptcha_audio\">尝试其他挑战方式</a>。</p>"
+"<p> 请输入下面的两个<strong>单词</strong>，<strong>以空格分隔</strong>。 </p> <p> 如果您觉得这两个单词太难辨认，可以<a href=\"#\" id=\"recaptcha_different\">再换一组单词</a>或者<a href=\"#\" id="
+"\"recaptcha_audio\">尝试其他挑战方式</a>。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90
@@ -10750,15 +10747,11 @@ msgstr "<a href=\"%(browse_url)s\">完整主题</a></strong>更改 %(app_name)s 
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">主题</a></strong>完整主题的简化版，使用背景图片定制您的 %"
-"(app_name)s 工具栏。"
+msgstr "<strong><a href=\"%(browse_url)s\">主题</a></strong>完整主题的简化版，使用背景图片定制您的 %(app_name)s 工具栏。"
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">搜索引擎提供者</a> </strong> "
-"可向搜索栏的下拉菜单中添加新的搜索引擎，这可以帮助您更加便捷地搜索您需要的信息。"
+msgstr "<strong><a href=\"%(browse_url)s\">搜索引擎提供者</a> </strong> 可向搜索栏的下拉菜单中添加新的搜索引擎，这可以帮助您更加便捷地搜索您需要的信息。"
 
 #: apps/pages/templates/pages/faq.html:72
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
@@ -10790,9 +10783,8 @@ msgid ""
 "In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
 "\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
-"在 Firefox 中，标记为“无需重启”的附加组件，安装后不需要重新启动 Firefox。这些附加组件使用<a href=\"%"
-"(sdk_url)s\">附加组件 SDK</a>或者<a href=\"%"
-"(bootstrap_url)s\">bootstrapping</a>技术创建。其他附加组件需要重新启动 Firefox 后才能使用。"
+"在 Firefox 中，标记为“无需重启”的附加组件，安装后不需要重新启动 Firefox。这些附加组件使用<a href=\"%(sdk_url)s\">附加组件 SDK</a>或者<a href=\"%(bootstrap_url)s\">bootstrapping</a>技术创建。其他附加"
+"组件需要重新启动 Firefox 后才能使用。"
 
 #: apps/pages/templates/pages/faq.html:110
 msgid "How do I keep add-ons up-to-date?"
@@ -10804,10 +10796,8 @@ msgid ""
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
 "\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"附加组件，与插件不同，会每天自动检查一次更新。在 Firefox 中，默认自动安装更新。版本大于4的 Firefox "
-"（以及其他应用程序）在有可用的附加组件更新时会提醒您。<a href=\"%"
-"(plugin_url)s\">插件</a>目前不会自动检查更新，因此要确保定期访问<a href=\"%"
-"(plugincheck_url)s\">插件检查</a>页面以保证版本更新。"
+"附加组件，与插件不同，会每天自动检查一次更新。在 Firefox 中，默认自动安装更新。版本大于4的 Firefox （以及其他应用程序）在有可用的附加组件更新时会提醒您。<a href=\"%(plugin_url)s\">插件</a>目前不会自"
+"动检查更新，因此要确保定期访问<a href=\"%(plugincheck_url)s\">插件检查</a>页面以保证版本更新。"
 
 #: apps/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
@@ -11184,9 +11174,7 @@ msgstr "为附加组件投递您或您的组织撰写或表述的评论。"
 msgid ""
 "Add-ons ratings should be fair and give a good indication of overall quality and usefulness. Don't just give it 5 stars if you like it or 1 star if you hate it. Consistent grading is an important "
 "part of any review."
-msgstr ""
-"附加组件评分应该是公平的表现和提供出一个良好的整体质量和实用性的评分。不要只是因为您喜欢它就给它5颗星，也不要因为您恨它就给它1颗星。始终如一的评分是任"
-"何评论的重要部分。"
+msgstr "附加组件评分应该是公平的表现和提供出一个良好的整体质量和实用性的评分。不要只是因为您喜欢它就给它5颗星，也不要因为您恨它就给它1颗星。始终如一的评分是任何评论的重要部分。"
 
 #: apps/pages/templates/pages/review_guide.html:162
 msgid ""
@@ -11207,8 +11195,7 @@ msgstr "<b>3星：还行。</b>可能缺少一些功能或者有一些设计上�
 msgid ""
 "<b>2 stars: Poor.</b> Add-on is of low quality, usability, or just doesn't do what it says it should. You are recommending against this add-on, while noting that it might have some redeeming value "
 "for a few people."
-msgstr ""
-"<b>2星：很差。</b>附加组件的质量、可用性很差，或者只是没能做到它所描述的事情。您不推荐使用这个附加组件，但也表示它可能对少数人还有点作用。"
+msgstr "<b>2星：很差。</b>附加组件的质量、可用性很差，或者只是没能做到它所描述的事情。您不推荐使用这个附加组件，但也表示它可能对少数人还有点作用。"
 
 #: apps/pages/templates/pages/review_guide.html:193
 msgid ""
