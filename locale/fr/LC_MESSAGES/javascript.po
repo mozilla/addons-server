@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 09:34-0700\n"
+"POT-Creation-Date: 2014-05-21 09:44-0700\n"
 "PO-Revision-Date: 2013-12-01 17:10+0100\n"
 "Last-Translator: Alexandre Lissy <lissyx@mozfr.org>\n"
 "Language-Team: français <>\n"
@@ -71,7 +71,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; et {0} plus"
 msgstr[1] "&hellip; et {0} plus"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:349 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:166
 msgid "See full validation report"
 msgstr "Voir le rapport de validation complet"
@@ -80,32 +80,40 @@ msgstr "Voir le rapport de validation complet"
 msgid "Validating {0}"
 msgstr "Validation {0}"
 
+#: media/js/common/upload-addon.js:248
+msgid "Try again"
+msgstr ""
+
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Réception d'une réponse vide depuis le serveur ; statut : {0}"
 
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:283 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "Erreur serveur inattendue pendant la validation."
 
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:321 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "Validation finie {0}"
 
-#: media/js/common/upload-addon.js:307
+#: media/js/common/upload-addon.js:327
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Votre modula a passé la validation sans erreur et avec {0} message."
 msgstr[1] "Votre modula a passé la validation sans erreur et avec {0} messages."
 
-#: media/js/common/upload-addon.js:312
+#: media/js/common/upload-addon.js:332
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Votre module a passé les étapes de validation sans erreur ni avertissement."
 
-#: media/js/common/upload-addon.js:363
+#: media/js/common/upload-addon.js:383
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Certaines plateformes ne sont pas disponibles pour ce type de module."
+
+#: media/js/common/upload-addon.js:385
+msgid "Sorry, no supported platform has been found."
+msgstr ""
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -207,15 +215,15 @@ msgstr "Rechargé"
 msgid "There was an error uploading your file."
 msgstr "Une erreur est survenue pendant l'envoi de votre fichier."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:939
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:942
 msgid "Learn more"
 msgstr "En savoir plus"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:943
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:946
 msgid "Example"
 msgstr "Exemple"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1299
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1302
 msgid "Image changes being processed"
 msgstr "Changements d'images en cours"
 
@@ -471,7 +479,7 @@ msgstr "Notes aux testeurs"
 msgid "No version notes found"
 msgstr "Pas de note de version"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1452 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1455 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Sélectionnez d'abord une application"
 
@@ -576,7 +584,7 @@ msgstr "Rejeté"
 msgid "Approved"
 msgstr "Approuvé"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:728
 msgid "Follow this Collection"
 msgstr "Suivre cette collection"
 
@@ -1310,15 +1318,15 @@ msgstr "Vous ne pouvez pas vous rajouter comme contributeur."
 msgid "You have already added that user."
 msgstr "Vous avez déjà ajouté cet utilisateur."
 
-#: media/js/zamboni/collections.js:703
+#: media/js/zamboni/collections.js:706
 msgid "Add to favorites"
 msgstr "Ajouter aux favoris"
 
-#: media/js/zamboni/collections.js:707
+#: media/js/zamboni/collections.js:710
 msgid "Remove from favorites"
 msgstr "Supprimer des favoris"
 
-#: media/js/zamboni/collections.js:734
+#: media/js/zamboni/collections.js:737
 msgid "Stop following"
 msgstr "Ne plus suivre"
 
@@ -1334,31 +1342,31 @@ msgstr "Votre navigateur ne supporte pas la balise vidéo"
 msgid "Enter a new author's email address"
 msgstr "Entrer l'adresse courriel d'un nouvel auteur"
 
-#: media/js/zamboni/devhub.js:807
+#: media/js/zamboni/devhub.js:809
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} fichier"
 msgstr[1] "{files} fichiers"
 
-#: media/js/zamboni/devhub.js:810
+#: media/js/zamboni/devhub.js:812
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} revue"
 msgstr[1] "{reviews} revues"
 
-#: media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1483
 msgid "Starting tests..."
 msgstr "Démarrage des tests ..."
 
-#: media/js/zamboni/devhub.js:1487
+#: media/js/zamboni/devhub.js:1490
 msgid "Waiting for test results..."
 msgstr "Attente des résultats des tests ..."
 
-#: media/js/zamboni/devhub.js:1489 media/js/zamboni/devhub.js:1494
+#: media/js/zamboni/devhub.js:1492 media/js/zamboni/devhub.js:1497
 msgid "Internal Server Error"
 msgstr "Erreur interne du serveur"
 
-#: media/js/zamboni/devhub.js:1529
+#: media/js/zamboni/devhub.js:1532
 msgid "Must be a valid e-mail address."
 msgstr "Doit être une adresse courriel valide."
 

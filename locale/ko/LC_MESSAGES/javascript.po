@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 09:34-0700\n"
+"POT-Creation-Date: 2014-05-21 09:44-0700\n"
 "PO-Revision-Date: 2014-05-08 06:27+0000\n"
 "Last-Translator: Sung-wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;추가 오류 {0}개"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:349 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:166
 msgid "See full validation report"
 msgstr "전체 검사 보고서 보기"
@@ -72,31 +72,39 @@ msgstr "전체 검사 보고서 보기"
 msgid "Validating {0}"
 msgstr "{0} 검사중"
 
+#: media/js/common/upload-addon.js:248
+msgid "Try again"
+msgstr ""
+
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "서버로부터 공백의 응답을 받았습니다; 상태: {0}"
 
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:283 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "검사 도중 예상치 못한 오류가 발생했습니다."
 
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:321 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "{0} 검사 완료"
 
-#: media/js/common/upload-addon.js:307
+#: media/js/common/upload-addon.js:327
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "부가 기능이 오류 없이 {0}개의 메시지와 함께 유효성 검사를 통과했습니다."
 
-#: media/js/common/upload-addon.js:312
+#: media/js/common/upload-addon.js:332
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "부가 기능이 오류와 경고 없이 검사를 통과했습니다."
 
-#: media/js/common/upload-addon.js:363
+#: media/js/common/upload-addon.js:383
 msgid "Some platforms are not available for this type of add-on."
 msgstr "이러한 부가 기능 형태는 일부 플랫폼에선 사용할 수 없습니다."
+
+#: media/js/common/upload-addon.js:385
+msgid "Sorry, no supported platform has been found."
+msgstr ""
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -194,15 +202,15 @@ msgstr "새로고침 완료"
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:939
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:942
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:943
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:946
 msgid "Example"
 msgstr "예"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1299
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1302
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
@@ -454,7 +462,7 @@ msgstr "심사자의 메모"
 msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1452 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1455 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
 
@@ -559,7 +567,7 @@ msgstr "거부됨"
 msgid "Approved"
 msgstr "승인됨"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:728
 msgid "Follow this Collection"
 msgstr "이 모음집 팔로우 하기"
 
@@ -1291,15 +1299,15 @@ msgstr "자신의 계정은 기여자로 추가할 수 없습니다."
 msgid "You have already added that user."
 msgstr "이미 추가된 사용자입니다."
 
-#: media/js/zamboni/collections.js:703
+#: media/js/zamboni/collections.js:706
 msgid "Add to favorites"
 msgstr "선호 목록에 추가"
 
-#: media/js/zamboni/collections.js:707
+#: media/js/zamboni/collections.js:710
 msgid "Remove from favorites"
 msgstr "선호 목록에서 삭제"
 
-#: media/js/zamboni/collections.js:734
+#: media/js/zamboni/collections.js:737
 msgid "Stop following"
 msgstr "팔로우 중단"
 
@@ -1315,29 +1323,29 @@ msgstr "이 웹 브라우저는 비디오 태그를 지원하지 않습니다"
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
-#: media/js/zamboni/devhub.js:807
+#: media/js/zamboni/devhub.js:809
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "파일 {files}개"
 
-#: media/js/zamboni/devhub.js:810
+#: media/js/zamboni/devhub.js:812
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "평가 {reviews}개"
 
-#: media/js/zamboni/devhub.js:1480
+#: media/js/zamboni/devhub.js:1483
 msgid "Starting tests..."
 msgstr "시험 시작..."
 
-#: media/js/zamboni/devhub.js:1487
+#: media/js/zamboni/devhub.js:1490
 msgid "Waiting for test results..."
 msgstr "시험 결과 산출 대기중..."
 
-#: media/js/zamboni/devhub.js:1489 media/js/zamboni/devhub.js:1494
+#: media/js/zamboni/devhub.js:1492 media/js/zamboni/devhub.js:1497
 msgid "Internal Server Error"
 msgstr "내부 서버 오류 발생"
 
-#: media/js/zamboni/devhub.js:1529
+#: media/js/zamboni/devhub.js:1532
 msgid "Must be a valid e-mail address."
 msgstr "올바른 이메일 주소를 입력해야 합니다."
 

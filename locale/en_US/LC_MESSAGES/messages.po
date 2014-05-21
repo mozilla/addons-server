@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 09:34-0700\n"
+"POT-Creation-Date: 2014-05-21 09:44-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -110,19 +110,19 @@ msgstr "The miscellaneous category cannot be combined with additional categories
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 
-#: apps/addons/forms.py:471 apps/addons/forms.py:545
+#: apps/addons/forms.py:471 apps/addons/forms.py:560
 msgid "A license must be selected."
 msgstr "A license must be selected."
 
-#: apps/addons/forms.py:532
+#: apps/addons/forms.py:541
 msgid "Give Your Theme a Name."
 msgstr "Give Your Theme a Name."
 
-#: apps/addons/forms.py:538 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:547 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Describe your Theme."
 
-#: apps/addons/forms.py:673
+#: apps/addons/forms.py:688
 msgid "Enter a new author's email address"
 msgstr "Enter a new author's email address"
 
@@ -130,9 +130,9 @@ msgstr "Enter a new author's email address"
 msgid "Not Reviewed"
 msgstr "Not Reviewed"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:320 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:318 apps/addons/templates/addons/impala/details.html:119 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
-#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:85 apps/browse/views.py:53 apps/browse/views.py:67 apps/browse/views.py:229 apps/browse/views.py:438
+#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:53 apps/browse/views.py:67 apps/browse/views.py:230 apps/browse/views.py:439
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "Featured"
@@ -146,28 +146,28 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 
 # Column name in a table.
-#: apps/addons/models.py:1881
+#: apps/addons/models.py:1894
 msgid "Listed"
 msgstr "Listed"
 
-#: apps/addons/views.py:321 apps/browse/templates/browse/personas/mobile/category_landing.html:27
+#: apps/addons/views.py:319 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "Popular"
 
-#: apps/addons/views.py:322 apps/browse/views.py:232 apps/browse/views.py:286 apps/browse/views.py:463
+#: apps/addons/views.py:320 apps/browse/views.py:233 apps/browse/views.py:287 apps/browse/views.py:464
 msgid "Recently Added"
 msgstr "Recently Added"
 
-#: apps/addons/views.py:323 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:95
+#: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr "Recently Updated"
 
 # %1 is an add-on name.
-#: apps/addons/views.py:504
+#: apps/addons/views.py:502
 msgid "Contribution for {0}"
 msgstr "Contribution for {0}"
 
-#: apps/addons/views.py:592
+#: apps/addons/views.py:590
 msgid "Abuse reported."
 msgstr "Abuse reported."
 
@@ -313,8 +313,8 @@ msgstr "Contribute"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84 apps/devhub/templates/devhub/addons/edit/support.html:66
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/edit.html:127 apps/devhub/templates/devhub/versions/list.html:210
-#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:276 apps/reviews/templates/reviews/edit_review.html:16
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/edit.html:127 apps/devhub/templates/devhub/versions/list.html:211
+#: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "or"
@@ -423,7 +423,7 @@ msgid "Add-on Information for {0}"
 msgstr "Add-on Information for {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:440 apps/devhub/views.py:71
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:441 apps/devhub/views.py:71
 msgid "Updated"
 msgstr "Updated"
 
@@ -466,7 +466,7 @@ msgstr "Abuse Reports"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:82 templates/mobile/base_apps.html:71
+#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:82 templates/mobile/base_apps.html:71
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
@@ -491,7 +491,7 @@ msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "Developer Comments"
 
-#: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:266
+#: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:268
 msgid "Development Channel"
 msgstr "Development Channel"
 
@@ -503,7 +503,7 @@ msgstr ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 
-#: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
+#: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:278
 msgid "Install development version"
 msgstr "Install development version"
 
@@ -515,7 +515,7 @@ msgstr ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 
-#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
 msgstr "Version {0}:"
 
@@ -528,7 +528,7 @@ msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr "Version Notes"
 
-#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:110
+#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:111
 #: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
 #: apps/editors/templates/editors/review.html:31 apps/perf/templates/perf/index.html:78
 msgid "by"
@@ -548,7 +548,7 @@ msgstr "This add-on has been disabled by an administrator."
 msgid "End-User License Agreement for {0}"
 msgstr "End-User License Agreement for {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
@@ -576,7 +576,7 @@ msgid "Popular Extensions"
 msgstr "Popular Extensions"
 
 #: apps/addons/templates/addons/home.html:42 apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:11 apps/amo/templates/amo/site_nav.html:3
-#: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:230 apps/browse/views.py:287 apps/browse/views.py:462
+#: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:231 apps/browse/views.py:288 apps/browse/views.py:463
 msgid "Most Popular"
 msgstr "Most Popular"
 
@@ -871,7 +871,7 @@ msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to
 msgstr "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "Report Abuse"
 
@@ -892,7 +892,7 @@ msgstr "Send Report"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:154 apps/devhub/templates/devhub/addons/edit/details.html:87 apps/devhub/templates/devhub/addons/edit/support.html:69
 #: apps/devhub/templates/devhub/addons/edit/technical.html:145 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:56 apps/devhub/templates/devhub/versions/edit.html:128
-#: apps/devhub/templates/devhub/versions/list.html:210 apps/devhub/templates/devhub/versions/list.html:243 apps/localizers/templates/localizers/sidebar_motd.html:9
+#: apps/devhub/templates/devhub/versions/list.html:211 apps/devhub/templates/devhub/versions/list.html:244 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
@@ -1022,71 +1022,81 @@ msgstr "View statistics"
 msgid "Manage"
 msgstr "Manage"
 
-#: apps/addons/templates/addons/impala/details.html:107 apps/addons/templates/addons/impala/listing/items.html:14
+#. {0} is an add-on name.
+#: apps/addons/templates/addons/impala/details.html:101
+msgid "Icon of {0}"
+msgstr "Icon of {0}"
+
+#: apps/addons/templates/addons/impala/details.html:108 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
 msgstr "No Restart"
 
-#: apps/addons/templates/addons/impala/details.html:135
+#: apps/addons/templates/addons/impala/details.html:136
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Meet the Developers</a>"
 
 # {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:145
+#: apps/addons/templates/addons/impala/details.html:146
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "Learn why {0} was created and find out what's next for this add-on."
 
-#: apps/addons/templates/addons/impala/details.html:189
+#. {0} is an index.
+#: apps/addons/templates/addons/impala/details.html:165
+msgid "Add-on screenshot #{0}"
+msgstr "Add-on screenshot #{0}"
+
+#: apps/addons/templates/addons/impala/details.html:191
 msgid "Add-on home page"
 msgstr "Add-on home page"
 
-#: apps/addons/templates/addons/impala/details.html:192
+#: apps/addons/templates/addons/impala/details.html:194
 msgid "Support site"
 msgstr "Support site"
 
-#: apps/addons/templates/addons/impala/details.html:196
+#: apps/addons/templates/addons/impala/details.html:198
 msgid "Support E-mail"
 msgstr "Support E-mail"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
+#: apps/addons/templates/addons/impala/details.html:203 apps/devhub/models.py:373
 msgid "Version {0}"
 msgstr "Version {0}"
 
-#: apps/addons/templates/addons/impala/details.html:201
+#: apps/addons/templates/addons/impala/details.html:203
 msgid "Info"
 msgstr "Info"
 
-#: apps/addons/templates/addons/impala/details.html:207
+#: apps/addons/templates/addons/impala/details.html:209
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:210 apps/addons/templates/addons/impala/details.html:215 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Custom License"
 
-#: apps/addons/templates/addons/impala/details.html:212
+#: apps/addons/templates/addons/impala/details.html:214
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Released under <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:224
+#: apps/addons/templates/addons/impala/details.html:226
 msgid "About this Add-on"
 msgstr "About this Add-on"
 
-#: apps/addons/templates/addons/impala/details.html:240
+#: apps/addons/templates/addons/impala/details.html:242
 msgid "Developer’s Comments"
 msgstr "Developer’s Comments"
 
-#: apps/addons/templates/addons/impala/details.html:250
+#: apps/addons/templates/addons/impala/details.html:252
 msgid "Version Information"
 msgstr "Version Information"
 
-#: apps/addons/templates/addons/impala/details.html:257
+#: apps/addons/templates/addons/impala/details.html:259
 msgid "See complete version history"
 msgstr "See complete version history"
 
-#: apps/addons/templates/addons/impala/details.html:269
+#: apps/addons/templates/addons/impala/details.html:271
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
@@ -1094,11 +1104,11 @@ msgstr ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 
-#: apps/addons/templates/addons/impala/details.html:280
+#: apps/addons/templates/addons/impala/details.html:282
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 
-#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -1341,7 +1351,7 @@ msgstr "More Add-ons"
 msgid "Highest Rated"
 msgstr "Highest Rated"
 
-#: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:87
+#: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:89
 #: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91
 msgid "Newest"
 msgstr "Newest"
@@ -1930,7 +1940,7 @@ msgstr ""
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
-#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:288 apps/search/forms.py:90
+#: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:90
 msgid "Top Rated"
 msgstr "Top Rated"
 
@@ -1948,7 +1958,7 @@ msgstr "Extensions"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Want more customization? Try <b>Complete Themes</b>"
 
-#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:86
+#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:88
 msgid "Most Followers"
 msgstr "Most Followers"
 
@@ -2005,20 +2015,20 @@ msgstr[1] "Page {n}"
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
 msgstr "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
 
-#: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53 apps/reviews/templates/reviews/add.html:56 apps/reviews/templates/reviews/edit_review.html:8
+#: apps/amo/tests/test_messages.py:53 apps/amo/tests/test_messages.py:54 apps/reviews/templates/reviews/add.html:56 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
 msgid "Title"
 msgstr "Title"
 
-#: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53
+#: apps/amo/tests/test_messages.py:53 apps/amo/tests/test_messages.py:54
 msgid "Body"
 msgstr "Body"
 
-#: apps/amo/tests/test_messages.py:54
+#: apps/amo/tests/test_messages.py:55
 msgid "Another Title"
 msgstr "Another Title"
 
-#: apps/amo/tests/test_messages.py:54
+#: apps/amo/tests/test_messages.py:55
 msgid "Another Body"
 msgstr "Another Body"
 
@@ -2155,7 +2165,7 @@ msgstr "Privacy:"
 msgid "Icon"
 msgstr "Icon"
 
-#: apps/bandwagon/forms.py:152 apps/users/forms.py:393
+#: apps/bandwagon/forms.py:152 apps/users/forms.py:391
 msgid "No links are allowed."
 msgstr "No links are allowed."
 
@@ -2163,11 +2173,11 @@ msgstr "No links are allowed."
 msgid "This url is already in use by another collection"
 msgstr "This url is already in use by another collection"
 
-#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1086
+#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1088
 msgid "Icons must be either PNG or JPG."
 msgstr "Icons must be either PNG or JPG."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1104 apps/users/forms.py:384
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1106 apps/users/forms.py:382
 msgid "Please use images smaller than %dMB."
 msgstr "Please use images smaller than %dMB."
 
@@ -2207,41 +2217,41 @@ msgstr "Favorite"
 msgid "Remove from favorites"
 msgstr "Remove from favorites"
 
-#: apps/bandwagon/views.py:88 apps/bandwagon/views.py:174 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:439 apps/devhub/views.py:70
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:70
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
 #: apps/search/forms.py:93 apps/users/templates/users/vcard.html:5
 msgid "Name"
 msgstr "Name"
 
-#: apps/bandwagon/views.py:90
+#: apps/bandwagon/views.py:92
 msgid "Recently Popular"
 msgstr "Recently Popular"
 
-#: apps/bandwagon/views.py:172 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
+#: apps/bandwagon/views.py:174 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
 msgstr "Added"
 
-#: apps/bandwagon/views.py:173
+#: apps/bandwagon/views.py:175
 msgid "Popularity"
 msgstr "Popularity"
 
-#: apps/bandwagon/views.py:295
+#: apps/bandwagon/views.py:297
 msgid "Collection created!"
 msgstr "Collection created!"
 
-#: apps/bandwagon/views.py:296
+#: apps/bandwagon/views.py:298
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
 msgstr "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
 
-#: apps/bandwagon/views.py:300
+#: apps/bandwagon/views.py:302
 msgid "Collection updated!"
 msgstr "Collection updated!"
 
-#: apps/bandwagon/views.py:301
+#: apps/bandwagon/views.py:303
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">View your collection</a> to see the changes."
 
-#: apps/bandwagon/views.py:554
+#: apps/bandwagon/views.py:558
 msgid "Icon Deleted"
 msgstr "Icon Deleted"
 
@@ -2783,20 +2793,20 @@ msgstr "Search tools"
 msgid "Most Users"
 msgstr "Most Users"
 
-#: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:285 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
+#: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:286 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:96
 msgid "Up & Coming"
 msgstr "Up & Coming"
 
-#: apps/browse/views.py:441 apps/devhub/views.py:72
+#: apps/browse/views.py:442 apps/devhub/views.py:72
 msgid "Created"
 msgstr "Created"
 
-#: apps/browse/views.py:442 apps/devhub/views.py:73 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:443 apps/devhub/views.py:73 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Downloads"
 
-#: apps/browse/views.py:443 apps/devhub/views.py:74 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:444 apps/devhub/views.py:74 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Rating"
@@ -3945,7 +3955,7 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
-#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:370 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Review"
 
@@ -3985,11 +3995,11 @@ msgstr "User Collections"
 msgid "User Reviews"
 msgstr "User Reviews"
 
-#: apps/devhub/views.py:316 apps/devhub/views.py:320 apps/devhub/views.py:430 apps/devhub/views.py:459 apps/devhub/views.py:510 apps/devhub/views.py:1176
+#: apps/devhub/views.py:316 apps/devhub/views.py:320 apps/devhub/views.py:430 apps/devhub/views.py:459 apps/devhub/views.py:510 apps/devhub/views.py:1178
 msgid "Changes successfully saved."
 msgstr "Changes successfully saved."
 
-#: apps/devhub/views.py:323 apps/devhub/views.py:1560
+#: apps/devhub/views.py:323 apps/devhub/views.py:1562
 msgid "Please check the form for errors."
 msgstr "Please check the form for errors."
 
@@ -4025,56 +4035,56 @@ msgstr "Validate Add-on"
 msgid "Check Add-on Compatibility"
 msgstr "Check Add-on Compatibility"
 
-#: apps/devhub/views.py:658
+#: apps/devhub/views.py:660
 msgid "There was an error with the submission."
 msgstr "There was an error with the submission."
 
-#: apps/devhub/views.py:752
+#: apps/devhub/views.py:754
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 
-#: apps/devhub/views.py:1088 apps/users/forms.py:379
+#: apps/devhub/views.py:1090 apps/users/forms.py:377
 msgid "Images must be either PNG or JPG."
 msgstr "Images must be either PNG or JPG."
 
-#: apps/devhub/views.py:1092
+#: apps/devhub/views.py:1094
 msgid "Icons cannot be animated."
 msgstr "Icons cannot be animated."
 
-#: apps/devhub/views.py:1094
+#: apps/devhub/views.py:1096
 msgid "Images cannot be animated."
 msgstr "Images cannot be animated."
 
-#: apps/devhub/views.py:1107
+#: apps/devhub/views.py:1109
 msgid "Images cannot be larger than %dKB."
 msgstr "Images cannot be larger than %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1117
+#: apps/devhub/views.py:1119
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
 
-#: apps/devhub/views.py:1121
+#: apps/devhub/views.py:1123
 msgid "There was an error uploading your preview."
 msgstr "There was an error uploading your preview."
 
-#: apps/devhub/views.py:1215
+#: apps/devhub/views.py:1217
 msgid "Version %s disabled."
 msgstr "Version %s disabled."
 
-#: apps/devhub/views.py:1218
+#: apps/devhub/views.py:1220
 msgid "Version %s deleted."
 msgstr "Version %s deleted."
 
-#: apps/devhub/views.py:1228
+#: apps/devhub/views.py:1230
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 
-#: apps/devhub/views.py:1606
+#: apps/devhub/views.py:1608
 msgid "Preliminary Review Requested."
 msgstr "Preliminary Review Requested."
 
-#: apps/devhub/views.py:1607
+#: apps/devhub/views.py:1609
 msgid "Full Review Requested."
 msgstr "Full Review Requested."
 
@@ -4565,7 +4575,7 @@ msgid "Add Another Application&hellip;"
 msgstr "Add Another Application&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:276 apps/devhub/templates/devhub/versions/list.html:278 templates/impala/base.html:123 templates/impala/base.html:141 templates/impala/base.html:151
+#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:279 templates/impala/base.html:123 templates/impala/base.html:141 templates/impala/base.html:151
 msgid "Close"
 msgstr "Close"
 
@@ -4725,7 +4735,7 @@ msgstr "Default Locale"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:253 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:251 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Homepage"
@@ -6454,10 +6464,14 @@ msgid "The add-on must have excellent user reviews and any problems or support r
 msgstr "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
+msgid "The add-on must have a minimum of 2,000 users."
+msgstr "The add-on must have a minimum of 2,000 users."
+
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
 msgstr "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:50
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:51
 msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
@@ -6465,43 +6479,37 @@ msgstr ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:53
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
 msgstr "Nominating an Add-on"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:56
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "amo-featured at mozilla dot org"
 msgstr "amo-featured at mozilla dot org"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:56
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "If you wish to nominate an add-on to be featured and it meets the criteria above, send an email to %(mail_featured)s with:"
 msgstr "If you wish to nominate an add-on to be featured and it meets the criteria above, send an email to %(mail_featured)s with:"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:61
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
 msgstr "the add-on name, URL, and whether you are its developer"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:62
-msgid "an explanation of why the add-on has wide appeal and should be featured"
-msgstr "an explanation of why the add-on has wide appeal and should be featured"
-
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
+msgid "a short explanation of why the add-on has wide appeal and should be featured"
+msgstr "a short explanation of why the add-on has wide appeal and should be featured"
+
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
 msgstr "optionally, links to any external reviews or articles mentioning the add-on"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:64
-msgid "optionally, a video overview/demo/tutorial of the add-on not more than 5 minutes long"
-msgstr "optionally, a video overview/demo/tutorial of the add-on not more than 5 minutes long"
-
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
-"Extension nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations), and you will receive an email regarding the decision and any suggestions "
-"for improvement. Common reasons for rejection include lacking wide appeal to consumers, a suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured "
-"add-on. Rejected add-ons cannot be re-nominated within 3 months."
+"Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
+"suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Extension nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations), and you will receive an email regarding the decision and any suggestions "
-"for improvement. Common reasons for rejection include lacking wide appeal to consumers, a suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured "
-"add-on. Rejected add-ons cannot be re-nominated within 3 months."
+"Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
+"suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -6548,14 +6556,10 @@ msgid "commit to trying all the nominations submitted, giving their feedback, an
 msgstr "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
-msgid "join a monthly conference call to go through the votes and select the next month's featured add-ons (featured complete themes will be discussed on every third call)"
-msgstr "join a monthly conference call to go through the votes and select the next month's featured add-ons (featured complete themes will be discussed on every third call)"
-
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:111
 msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
 msgstr "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:115
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
 "feature."
@@ -6563,7 +6567,7 @@ msgstr ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
 "feature."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:121
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:120
 msgid ""
 "This featured policy only applies to the addons.mozilla.org global list of featured add-ons. Add-ons featured in other locations are often pulled from this list, but Mozilla may feature any add-on "
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
@@ -6573,11 +6577,11 @@ msgstr ""
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
 "features may not appear in that locale."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:127
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:126
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
 msgstr "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:132
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
 msgstr "Last updated: January 31, 2013"
 
@@ -7842,7 +7846,7 @@ msgstr "View All"
 msgid "Enable Add-on"
 msgstr "Enable Add-on"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:36 apps/devhub/templates/devhub/versions/list.html:223 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:36 apps/devhub/templates/devhub/versions/list.html:224 apps/devhub/templates/devhub/versions/list.html:242
 msgid "Disable Add-on"
 msgstr "Disable Add-on"
 
@@ -8407,7 +8411,7 @@ msgid_plural "Full nomination will be available in {0} days"
 msgstr[0] "Full nomination will be available in {0} day"
 msgstr[1] "Full nomination will be available in {0} days"
 
-#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:252 apps/devhub/templates/devhub/versions/list.html:275
+#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:253 apps/devhub/templates/devhub/versions/list.html:276
 msgid "Cancel Review Request"
 msgstr "Cancel Review Request"
 
@@ -8448,54 +8452,60 @@ msgid "Delete Version {version}"
 msgstr "Delete Version {version}"
 
 #: apps/devhub/templates/devhub/versions/list.html:187
+msgid ""
+"You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
+msgstr ""
+"You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
+
+#: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
 msgstr "Deleting this version will permanently delete:"
 
-#: apps/devhub/templates/devhub/versions/list.html:193
+#: apps/devhub/templates/devhub/versions/list.html:194
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 
-#: apps/devhub/templates/devhub/versions/list.html:198
+#: apps/devhub/templates/devhub/versions/list.html:199
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 msgstr "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 
-#: apps/devhub/templates/devhub/versions/list.html:201
+#: apps/devhub/templates/devhub/versions/list.html:202
 msgid "Are you sure you wish to delete this version?"
 msgstr "Are you sure you wish to delete this version?"
 
-#: apps/devhub/templates/devhub/versions/list.html:206
+#: apps/devhub/templates/devhub/versions/list.html:207
 msgid "Delete Version"
 msgstr "Delete Version"
 
-#: apps/devhub/templates/devhub/versions/list.html:208
+#: apps/devhub/templates/devhub/versions/list.html:209
 msgid "Disable Version"
 msgstr "Disable Version"
 
-#: apps/devhub/templates/devhub/versions/list.html:215
+#: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Add a new Version"
 msgstr "Add a new Version"
 
-#: apps/devhub/templates/devhub/versions/list.html:217
+#: apps/devhub/templates/devhub/versions/list.html:218
 msgid "Add Version"
 msgstr "Add Version"
 
-#: apps/devhub/templates/devhub/versions/list.html:226
+#: apps/devhub/templates/devhub/versions/list.html:227
 msgid "Disabling your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr "Disabling your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 
-#: apps/devhub/templates/devhub/versions/list.html:232
+#: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to disable your add-on?"
 msgstr "Are you sure you wish to disable your add-on?"
 
-#: apps/devhub/templates/devhub/versions/list.html:255
+#: apps/devhub/templates/devhub/versions/list.html:256
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr "Canceling your review request will leave your add-on as preliminarily reviewed."
 
-#: apps/devhub/templates/devhub/versions/list.html:260
+#: apps/devhub/templates/devhub/versions/list.html:261
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 
-#: apps/devhub/templates/devhub/versions/list.html:268
+#: apps/devhub/templates/devhub/versions/list.html:269
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Are you sure you wish to cancel your review request?"
 
@@ -9852,47 +9862,47 @@ msgstr "There was an error accessing file %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "There was an error accessing file %s."
 
-#: apps/files/utils.py:186
+#: apps/files/utils.py:188
 msgid "Could not parse uploaded file."
 msgstr "Could not parse uploaded file."
 
-#: apps/files/utils.py:223
+#: apps/files/utils.py:225
 msgid "Invalid file name in archive: {0}"
 msgstr "Invalid file name in archive: {0}"
 
-#: apps/files/utils.py:231
+#: apps/files/utils.py:233
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File exceeding size limit in archive: {0}"
 
-#: apps/files/utils.py:281
+#: apps/files/utils.py:283
 msgid "Invalid archive."
 msgstr "Invalid archive."
 
-#: apps/files/utils.py:371 apps/files/utils.py:374
+#: apps/files/utils.py:373 apps/files/utils.py:376
 msgid "Could not parse install.rdf."
 msgstr "Could not parse install.rdf."
 
-#: apps/files/utils.py:384
+#: apps/files/utils.py:386
 msgid "Could not find a UUID."
 msgstr "Could not find a UUID."
 
-#: apps/files/utils.py:386
+#: apps/files/utils.py:388
 msgid "UUID doesn't match add-on."
 msgstr "UUID doesn't match add-on."
 
-#: apps/files/utils.py:390
+#: apps/files/utils.py:392
 msgid "Duplicate UUID found."
 msgstr "Duplicate UUID found."
 
-#: apps/files/utils.py:393
+#: apps/files/utils.py:395
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Version numbers should have fewer than 32 characters."
 
-#: apps/files/utils.py:396
+#: apps/files/utils.py:398
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 
-#: apps/files/utils.py:413
+#: apps/files/utils.py:415
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> doesn't match add-on"
 
@@ -11671,7 +11681,7 @@ msgstr "Delete review"
 msgid "Other (please specify)"
 msgstr "Other (please specify)"
 
-#: apps/reviews/views.py:153
+#: apps/reviews/views.py:145
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Thanks; this review has been flagged for editor approval."
 
@@ -12511,69 +12521,59 @@ msgstr "Letters and numbers required."
 msgid "That password is not allowed."
 msgstr "That password is not allowed."
 
-#: apps/users/forms.py:79
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-
-#: apps/users/forms.py:86
-msgid "We can't reset this account's password, please contact the support."
-msgstr "We can't reset this account's password, please contact the support."
-
-#: apps/users/forms.py:163 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:161 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "New password"
 
-#: apps/users/forms.py:198 apps/users/forms.py:364
+#: apps/users/forms.py:196 apps/users/forms.py:362
 msgid "Wrong password entered!"
 msgstr "Wrong password entered!"
 
-#: apps/users/forms.py:217
+#: apps/users/forms.py:215
 msgid "Usernames cannot contain only digits."
 msgstr "Usernames cannot contain only digits."
 
-#: apps/users/forms.py:219
+#: apps/users/forms.py:217
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 
-#: apps/users/forms.py:222
+#: apps/users/forms.py:220
 msgid "This username cannot be used."
 msgstr "This username cannot be used."
 
-#: apps/users/forms.py:228
+#: apps/users/forms.py:226
 msgid "This username is already in use."
 msgstr "This username is already in use."
 
-#: apps/users/forms.py:239 apps/users/templates/users/edit.html:93
+#: apps/users/forms.py:237 apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "Display Name"
 
-#: apps/users/forms.py:241 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:239 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Location"
 
-#: apps/users/forms.py:243 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:241 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Occupation"
 
-#: apps/users/forms.py:267
+#: apps/users/forms.py:265
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 
-#: apps/users/forms.py:275
+#: apps/users/forms.py:273
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Please use an email address from a different provider to complete your registration."
 
-#: apps/users/forms.py:291
+#: apps/users/forms.py:289
 msgid "The passwords did not match."
 msgstr "The passwords did not match."
 
-#: apps/users/forms.py:310 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:308 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Profile Photo"
 
-#: apps/users/forms.py:449
+#: apps/users/forms.py:447
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "To anonymize, enter a reason for the change but do not change any other field."
 
@@ -13119,8 +13119,10 @@ msgid "Send password reset link"
 msgstr "Send password reset link"
 
 #: apps/users/templates/users/pwreset_sent.html:10
-msgid "The password reset link was sent to your email address."
-msgstr "The password reset link was sent to your email address."
+msgid ""
+"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
+msgstr ""
+"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
 
 #: apps/users/templates/users/register.html:4
 msgid "New User Registration"

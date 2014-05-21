@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 09:34-0700\n"
+"POT-Creation-Date: 2014-05-21 09:44-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,20 +117,20 @@ msgstr ""
 "ḓḗşƈřīƥŧīǿƞ īƞ ŧħȧŧ ŀǿƈȧŀḗ. Ẏǿŭ ȧřḗ ḿīşşīƞɠ %s."
 
 #: apps/addons/forms.py:471
-#: apps/addons/forms.py:545
+#: apps/addons/forms.py:560
 msgid "A license must be selected."
 msgstr "Ȧ ŀīƈḗƞşḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
-#: apps/addons/forms.py:532
+#: apps/addons/forms.py:541
 msgid "Give Your Theme a Name."
 msgstr "Ɠīṽḗ Ẏǿŭř Ŧħḗḿḗ ȧ Ƞȧḿḗ."
 
-#: apps/addons/forms.py:538
+#: apps/addons/forms.py:547
 #: apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Ḓḗşƈřīƀḗ ẏǿŭř Ŧħḗḿḗ."
 
-#: apps/addons/forms.py:673
+#: apps/addons/forms.py:688
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
@@ -139,19 +139,19 @@ msgid "Not Reviewed"
 msgstr "Ƞǿŧ Řḗṽīḗẇḗḓ"
 
 #: apps/addons/helpers.py:34
-#: apps/addons/views.py:320
-#: apps/addons/templates/addons/impala/details.html:118
+#: apps/addons/views.py:318
+#: apps/addons/templates/addons/impala/details.html:119
 #: apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36
 #: apps/amo/templates/amo/side_nav.html:6
 #: apps/amo/templates/amo/side_nav.html:10
 #: apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53
-#: apps/bandwagon/views.py:85
+#: apps/bandwagon/views.py:87
 #: apps/browse/views.py:53
 #: apps/browse/views.py:67
-#: apps/browse/views.py:229
-#: apps/browse/views.py:438
+#: apps/browse/views.py:230
+#: apps/browse/views.py:439
 #: apps/browse/templates/browse/impala/category_landing.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
@@ -165,24 +165,24 @@ msgstr "Ŭşḗřş ħȧṽḗ ŧħḗ ǿƥŧīǿƞ ǿƒ ƈǿƞŧřīƀŭŧīƞ�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ƀḗ ȧşķḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř (Ƒīřḗƒǿẋ 4 ȧƞḓ ȧƀǿṽḗ)"
 
-#: apps/addons/models.py:1881
+#: apps/addons/models.py:1894
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
-#: apps/addons/views.py:321
+#: apps/addons/views.py:319
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "Ƥǿƥŭŀȧř"
 
-#: apps/addons/views.py:322
-#: apps/browse/views.py:232
-#: apps/browse/views.py:286
-#: apps/browse/views.py:463
+#: apps/addons/views.py:320
+#: apps/browse/views.py:233
+#: apps/browse/views.py:287
+#: apps/browse/views.py:464
 msgid "Recently Added"
 msgstr "Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 
-#: apps/addons/views.py:323
-#: apps/bandwagon/views.py:89
+#: apps/addons/views.py:321
+#: apps/bandwagon/views.py:91
 #: apps/browse/views.py:59
 #: apps/browse/views.py:70
 #: apps/search/forms.py:18
@@ -190,11 +190,11 @@ msgstr "Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 msgid "Recently Updated"
 msgstr "Řḗƈḗƞŧŀẏ Ŭƥḓȧŧḗḓ"
 
-#: apps/addons/views.py:504
+#: apps/addons/views.py:502
 msgid "Contribution for {0}"
 msgstr "Ƈǿƞŧřīƀŭŧīǿƞ ƒǿř {0}"
 
-#: apps/addons/views.py:592
+#: apps/addons/views.py:590
 msgid "Abuse reported."
 msgstr "Ȧƀŭşḗ řḗƥǿřŧḗḓ."
 
@@ -263,8 +263,8 @@ msgid ""
 "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">"
 "Learn more</a>"
 msgstr ""
-"Ŧħīş ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ. <a href=\"%"
-"(url)s\">Ŀḗȧřƞ ḿǿřḗ</a>"
+"Ŧħīş ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ. <a href=\"%(url)s\">"
+"Ŀḗȧřƞ ḿǿřḗ</a>"
 
 #: apps/addons/templates/addons/collections_sidebar.html:11
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
@@ -410,9 +410,9 @@ msgstr "Ƈǿƞŧřīƀŭŧḗ"
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:55
 #: apps/devhub/templates/devhub/versions/edit.html:127
-#: apps/devhub/templates/devhub/versions/list.html:210
-#: apps/devhub/templates/devhub/versions/list.html:243
-#: apps/devhub/templates/devhub/versions/list.html:276
+#: apps/devhub/templates/devhub/versions/list.html:211
+#: apps/devhub/templates/devhub/versions/list.html:244
+#: apps/devhub/templates/devhub/versions/list.html:277
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62
@@ -443,8 +443,8 @@ msgid ""
 "enjoy using it."
 msgstr ""
 "Ŧħḗ ḓḗṽḗŀǿƥḗř ǿƒ ŧħīş ȧḓḓ-ǿƞ ẇǿŭŀḓ ŀīķḗ ẏǿŭ ŧǿ ƈǿƞşīḓḗř ḿȧķīƞɠ ȧ şḿȧŀŀ "
-"ƈǿƞŧřīƀŭŧīǿƞ ŧǿ <a href=\"%(charity_url)s\">%(charity_name)s</a> īƒ ẏǿŭ ḗƞĵǿẏ "
-"ŭşīƞɠ īŧ."
+"ƈǿƞŧřīƀŭŧīǿƞ ŧǿ <a href=\"%(charity_url)s\">%(charity_name)s</a> īƒ ẏǿŭ "
+"ḗƞĵǿẏ ŭşīƞɠ īŧ."
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid ""
@@ -485,8 +485,8 @@ msgid ""
 " through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
 "Ŧǿ şħǿẇ ẏǿŭř şŭƥƥǿřŧ ƒǿř <b>%(addon_name)s</b>, ŧħḗ ḓḗṽḗŀǿƥḗř ȧşķş ŧħȧŧ ẏǿŭ "
-"ḿȧķḗ ȧ şḿȧŀŀ ƈǿƞŧřīƀŭŧīǿƞ ŧǿ <a href=\"%(charity_url)s\">%(charity_name)s</a> "
-"ŧħřǿŭɠħ <a href=\"%(paypal_url)s\">ƤȧẏƤȧŀ</a>."
+"ḿȧķḗ ȧ şḿȧŀŀ ƈǿƞŧřīƀŭŧīǿƞ ŧǿ <a href=\"%(charity_url)s\">%(charity_name)s</a>"
+" ŧħřǿŭɠħ <a href=\"%(paypal_url)s\">ƤȧẏƤȧŀ</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -558,7 +558,7 @@ msgstr "Ȧḓḓ-ǿƞ Īƞƒǿřḿȧŧīǿƞ ƒǿř {0}"
 #: apps/addons/templates/addons/persona_detail_table.html:3
 #: apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
-#: apps/browse/views.py:440
+#: apps/browse/views.py:441
 #: apps/devhub/views.py:71
 msgid "Updated"
 msgstr "Ŭƥḓȧŧḗḓ"
@@ -614,7 +614,7 @@ msgstr "Ȧƀŭşḗ Řḗƥǿřŧş"
 #: apps/addons/templates/addons/privacy.html:19
 #: apps/addons/templates/addons/privacy.html:23
 #: apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309
+#: apps/addons/templates/addons/impala/details.html:311
 #: apps/devhub/templates/devhub/includes/policy_form.html:19
 #: templates/mobile/base_addons.html:82
 #: templates/mobile/base_apps.html:71
@@ -645,7 +645,7 @@ msgid "Developer Comments"
 msgstr "Ḓḗṽḗŀǿƥḗř Ƈǿḿḿḗƞŧş"
 
 #: apps/addons/templates/addons/details_box.html:190
-#: apps/addons/templates/addons/impala/details.html:266
+#: apps/addons/templates/addons/impala/details.html:268
 msgid "Development Channel"
 msgstr "Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ"
 
@@ -661,7 +661,7 @@ msgstr ""
 "ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ, ẏǿŭ ẇīŀŀ ƈǿƞŧīƞŭḗ ŧǿ ɠḗŧ ŭƥḓȧŧḗş ƒřǿḿ ŧħīş ƈħȧƞƞḗŀ."
 
 #: apps/addons/templates/addons/details_box.html:198
-#: apps/addons/templates/addons/impala/details.html:276
+#: apps/addons/templates/addons/impala/details.html:278
 msgid "Install development version"
 msgstr "Īƞşŧȧŀŀ ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ"
 
@@ -680,7 +680,7 @@ msgstr ""
 "ȧƀǿṽḗ."
 
 #: apps/addons/templates/addons/details_box.html:211
-#: apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
 msgstr "Ṽḗřşīǿƞ {0}:"
 
@@ -695,7 +695,7 @@ msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
 #: apps/addons/templates/addons/disabled.html:17
 #: apps/addons/templates/addons/persona_detail.html:19
-#: apps/addons/templates/addons/impala/details.html:110
+#: apps/addons/templates/addons/impala/details.html:111
 #: apps/addons/templates/addons/mobile/details.html:23
 #: apps/addons/templates/addons/mobile/persona_detail.html:21
 #: apps/discovery/templates/discovery/addons/base.html:27
@@ -724,7 +724,7 @@ msgstr "Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ ƒǿř {0}"
 #: apps/addons/templates/addons/eula.html:17
 #: apps/addons/templates/addons/eula.html:21
 #: apps/addons/templates/addons/impala/button.html:48
-#: apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3
 #: apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
@@ -765,9 +765,9 @@ msgstr "Ƥǿƥŭŀȧř Ḗẋŧḗƞşīǿƞş"
 #: apps/amo/templates/amo/side_nav.html:11
 #: apps/amo/templates/amo/site_nav.html:3
 #: apps/amo/templates/amo/site_nav.html:25
-#: apps/browse/views.py:230
-#: apps/browse/views.py:287
-#: apps/browse/views.py:462
+#: apps/browse/views.py:231
+#: apps/browse/views.py:288
+#: apps/browse/views.py:463
 msgid "Most Popular"
 msgstr "Ḿǿşŧ Ƥǿƥŭŀȧř"
 
@@ -905,8 +905,8 @@ msgid ""
 "Installing this add-on can slow down Firefox's start-up by "
 "<b>%(amount)s%%</b>."
 msgstr ""
-"Īƞşŧȧŀŀīƞɠ ŧħīş ȧḓḓ-ǿƞ ƈȧƞ şŀǿẇ ḓǿẇƞ Ƒīřḗƒǿẋ'ş şŧȧřŧ-ŭƥ ƀẏ <b>%(amount)s%%"
-"</b>."
+"Īƞşŧȧŀŀīƞɠ ŧħīş ȧḓḓ-ǿƞ ƈȧƞ şŀǿẇ ḓǿẇƞ Ƒīřḗƒǿẋ'ş şŧȧřŧ-ŭƥ ƀẏ "
+"<b>%(amount)s%%</b>."
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
@@ -1062,8 +1062,8 @@ msgstr ""
 "<strong>Ħǿẇ ŧǿ Īƞşŧȧŀŀ īƞ Ŧħŭƞḓḗřƀīřḓ</strong> <ol> <li>Ḓǿẇƞŀǿȧḓ ȧƞḓ şȧṽḗ "
 "ŧħḗ ƒīŀḗ ŧǿ ẏǿŭř ħȧřḓ ḓīşķ.</li> <li>Īƞ Ḿǿzīŀŀȧ Ŧħŭƞḓḗřƀīřḓ, ǿƥḗƞ Ȧḓḓ-ǿƞş "
 "ƒřǿḿ ŧħḗ Ŧǿǿŀş ḿḗƞŭ.</li> <li>Ƒřǿḿ ŧħḗ ǿƥŧīǿƞş ƀŭŧŧǿƞ ƞḗẋŧ ŧǿ ŧħḗ ȧḓḓ-ǿƞ "
-"şḗȧřƈħ ƒīḗŀḓ, şḗŀḗƈŧ \"Īƞşŧȧŀŀ Ȧḓḓ-ǿƞ Ƒřǿḿ Ƒīŀḗ...\" ȧƞḓ ŀǿƈȧŧḗ ŧħḗ ḓǿẇƞŀǿȧḓḗḓ "
-"ȧḓḓ-ǿƞ.</li> </ol>"
+"şḗȧřƈħ ƒīḗŀḓ, şḗŀḗƈŧ \"Īƞşŧȧŀŀ Ȧḓḓ-ǿƞ Ƒřǿḿ Ƒīŀḗ...\" ȧƞḓ ŀǿƈȧŧḗ ŧħḗ "
+"ḓǿẇƞŀǿȧḓḗḓ ȧḓḓ-ǿƞ.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid ""
@@ -1128,8 +1128,8 @@ msgid ""
 "This Persona requires %(app)s %(new_version)s. You are currently using %(app)"
 "s {old_version}."
 msgstr ""
-"Ŧħīş Ƥḗřşǿƞȧ řḗɋŭīřḗş %(app)s %(new_version)s. Ẏǿŭ ȧřḗ ƈŭřřḗƞŧŀẏ ŭşīƞɠ %"
-"(app)s {ǿŀḓ_ṽḗřşīǿƞ}."
+"Ŧħīş Ƥḗřşǿƞȧ řḗɋŭīřḗş %(app)s %(new_version)s. Ẏǿŭ ȧřḗ ƈŭřřḗƞŧŀẏ ŭşīƞɠ %(app)"
+"s {ǿŀḓ_ṽḗřşīǿƞ}."
 
 #: apps/addons/templates/addons/popups.html:109
 msgid ""
@@ -1187,7 +1187,7 @@ msgstr ""
 #: apps/addons/templates/addons/report_abuse.html:6
 #: apps/addons/templates/addons/report_abuse_full.html:11
 #: apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "Řḗƥǿřŧ Ȧƀŭşḗ"
 
@@ -1221,8 +1221,8 @@ msgstr "Şḗƞḓ Řḗƥǿřŧ"
 #: apps/devhub/templates/devhub/personas/edit.html:222
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:56
 #: apps/devhub/templates/devhub/versions/edit.html:128
-#: apps/devhub/templates/devhub/versions/list.html:210
-#: apps/devhub/templates/devhub/versions/list.html:243
+#: apps/devhub/templates/devhub/versions/list.html:211
+#: apps/devhub/templates/devhub/versions/list.html:244
 #: apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
@@ -1352,8 +1352,8 @@ msgid ""
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
 "Ŧħḗ <a href=\"%(meet_url)s\">ḓḗṽḗŀǿƥḗř ǿƒ ŧħīş ȧḓḓ-ǿƞ</a> ȧşķş ŧħȧŧ ẏǿŭ şħǿẇ "
-"ẏǿŭř şŭƥƥǿřŧ ƀẏ ḿȧķīƞɠ ȧ ḓǿƞȧŧīǿƞ ŧǿ ŧħḗ <a href=\"%(charity_url)s\">%"
-"(charity_name)s</a>."
+"ẏǿŭř şŭƥƥǿřŧ ƀẏ ḿȧķīƞɠ ȧ ḓǿƞȧŧīǿƞ ŧǿ ŧħḗ <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:53
 msgid ""
@@ -1362,8 +1362,8 @@ msgid ""
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
 "Ŧħḗ <a href=\"%(meet_url)s\">ḓḗṽḗŀǿƥḗř ǿƒ ŧħīş ȧḓḓ-ǿƞ</a> ȧşķş ŧħȧŧ ẏǿŭ şħǿẇ "
-"ẏǿŭř şŭƥƥǿřŧ ƀẏ ḿȧķīƞɠ ȧ şḿȧŀŀ ƈǿƞŧřīƀŭŧīǿƞ ŧǿ <a href=\"%(charity_url)s\">%"
-"(charity_name)s</a>."
+"ẏǿŭř şŭƥƥǿřŧ ƀẏ ḿȧķīƞɠ ȧ şḿȧŀŀ ƈǿƞŧřīƀŭŧīǿƞ ŧǿ <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:4
 msgid "This add-on requires the following add-ons to work properly:"
@@ -1403,48 +1403,58 @@ msgstr "Ṽīḗẇ şŧȧŧīşŧīƈş"
 msgid "Manage"
 msgstr "Ḿȧƞȧɠḗ"
 
-#: apps/addons/templates/addons/impala/details.html:107
+#. {0} is an add-on name.
+#: apps/addons/templates/addons/impala/details.html:101
+msgid "Icon of {0}"
+msgstr "Īƈǿƞ ǿƒ {0}"
+
+#: apps/addons/templates/addons/impala/details.html:108
 #: apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
 msgstr "Ƞǿ Řḗşŧȧřŧ"
 
-#: apps/addons/templates/addons/impala/details.html:135
+#: apps/addons/templates/addons/impala/details.html:136
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Ḿḗḗŧ ŧħḗ Ḓḗṽḗŀǿƥḗř: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Ḿḗḗŧ ŧħḗ Ḓḗṽḗŀǿƥḗřş</a>"
 
-#: apps/addons/templates/addons/impala/details.html:145
+#: apps/addons/templates/addons/impala/details.html:146
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "Ŀḗȧřƞ ẇħẏ {0} ẇȧş ƈřḗȧŧḗḓ ȧƞḓ ƒīƞḓ ǿŭŧ ẇħȧŧ'ş ƞḗẋŧ ƒǿř ŧħīş ȧḓḓ-ǿƞ."
 
-#: apps/addons/templates/addons/impala/details.html:189
+#. {0} is an index.
+#: apps/addons/templates/addons/impala/details.html:165
+msgid "Add-on screenshot #{0}"
+msgstr "Ȧḓḓ-ǿƞ şƈřḗḗƞşħǿŧ #{0}"
+
+#: apps/addons/templates/addons/impala/details.html:191
 msgid "Add-on home page"
 msgstr "Ȧḓḓ-ǿƞ ħǿḿḗ ƥȧɠḗ"
 
-#: apps/addons/templates/addons/impala/details.html:192
+#: apps/addons/templates/addons/impala/details.html:194
 msgid "Support site"
 msgstr "Şŭƥƥǿřŧ şīŧḗ"
 
-#: apps/addons/templates/addons/impala/details.html:196
+#: apps/addons/templates/addons/impala/details.html:198
 msgid "Support E-mail"
 msgstr "Şŭƥƥǿřŧ Ḗ-ḿȧīŀ"
 
-#: apps/addons/templates/addons/impala/details.html:201
-#: apps/devhub/models.py:369
+#: apps/addons/templates/addons/impala/details.html:203
+#: apps/devhub/models.py:373
 msgid "Version {0}"
 msgstr "Ṽḗřşīǿƞ {0}"
 
-#: apps/addons/templates/addons/impala/details.html:201
+#: apps/addons/templates/addons/impala/details.html:203
 msgid "Info"
 msgstr "Īƞƒǿ"
 
-#: apps/addons/templates/addons/impala/details.html:207
+#: apps/addons/templates/addons/impala/details.html:209
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208
-#: apps/addons/templates/addons/impala/details.html:213
+#: apps/addons/templates/addons/impala/details.html:210
+#: apps/addons/templates/addons/impala/details.html:215
 #: apps/amo/helpers.py:402
 #: apps/devhub/forms.py:124
 #: apps/devhub/forms.py:154
@@ -1453,27 +1463,27 @@ msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">
 msgid "Custom License"
 msgstr "Ƈŭşŧǿḿ Ŀīƈḗƞşḗ"
 
-#: apps/addons/templates/addons/impala/details.html:212
+#: apps/addons/templates/addons/impala/details.html:214
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:224
+#: apps/addons/templates/addons/impala/details.html:226
 msgid "About this Add-on"
 msgstr "Ȧƀǿŭŧ ŧħīş Ȧḓḓ-ǿƞ"
 
-#: apps/addons/templates/addons/impala/details.html:240
+#: apps/addons/templates/addons/impala/details.html:242
 msgid "Developer’s Comments"
 msgstr "Ḓḗṽḗŀǿƥḗř’ş Ƈǿḿḿḗƞŧş"
 
-#: apps/addons/templates/addons/impala/details.html:250
+#: apps/addons/templates/addons/impala/details.html:252
 msgid "Version Information"
 msgstr "Ṽḗřşīǿƞ Īƞƒǿřḿȧŧīǿƞ"
 
-#: apps/addons/templates/addons/impala/details.html:257
+#: apps/addons/templates/addons/impala/details.html:259
 msgid "See complete version history"
 msgstr "Şḗḗ ƈǿḿƥŀḗŧḗ ṽḗřşīǿƞ ħīşŧǿřẏ"
 
-#: apps/addons/templates/addons/impala/details.html:269
+#: apps/addons/templates/addons/impala/details.html:271
 msgid ""
 "The Development Channel lets you test an experimental new version of this "
 "add-on before it's released to the general public. Once you install the "
@@ -1487,7 +1497,7 @@ msgstr ""
 "şŧǿƥ řḗƈḗīṽīƞɠ ḓḗṽḗŀǿƥḿḗƞŧ ŭƥḓȧŧḗş, řḗīƞşŧȧŀŀ ŧħḗ ḓḗƒȧŭŀŧ ṽḗřşīǿƞ ƒřǿḿ ŧħḗ "
 "ŀīƞķ ȧƀǿṽḗ."
 
-#: apps/addons/templates/addons/impala/details.html:280
+#: apps/addons/templates/addons/impala/details.html:282
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
@@ -1495,9 +1505,9 @@ msgstr ""
 "<strong>Ƈȧŭŧīǿƞ:</strong> Ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞş ǿƒ ŧħīş ȧḓḓ-ǿƞ ħȧṽḗ ƞǿŧ ƀḗḗƞ "
 "řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ."
 
-#: apps/addons/templates/addons/impala/details.html:308
-#: apps/addons/templates/addons/impala/details.html:317
-#: apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:310
+#: apps/addons/templates/addons/impala/details.html:319
+#: apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5
 #: apps/stats/templates/stats/popup.html:2
 #: apps/stats/templates/stats/popup.html:8
@@ -1729,8 +1739,8 @@ msgid ""
 "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">"
 "Learn More&nbsp;&raquo;</a>"
 msgstr ""
-"Ẏǿŭ ƞḗḗḓ Ƒīřḗƒǿẋ ŧǿ īƞşŧȧŀŀ ȧḓḓ-ǿƞş. <a "
-"href=\"http://mozilla.com/mobile\">Ŀḗȧřƞ Ḿǿřḗ&nbsp;&raquo;</a>"
+"Ẏǿŭ ƞḗḗḓ Ƒīřḗƒǿẋ ŧǿ īƞşŧȧŀŀ ȧḓḓ-ǿƞş. <a href=\"http://mozilla.com/mobile\">"
+"Ŀḗȧřƞ Ḿǿřḗ&nbsp;&raquo;</a>"
 
 #: apps/addons/templates/addons/mobile/home.html:15
 #: templates/header_title.html:4
@@ -1797,7 +1807,7 @@ msgstr "Ħīɠħḗşŧ Řȧŧḗḓ"
 #: apps/amo/templates/amo/side_nav.html:5
 #: apps/amo/templates/amo/site_nav.html:27
 #: apps/amo/templates/amo/site_nav.html:55
-#: apps/bandwagon/views.py:87
+#: apps/bandwagon/views.py:89
 #: apps/browse/views.py:56
 #: apps/browse/views.py:66
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:65
@@ -2355,8 +2365,7 @@ msgstr ""
 msgid ""
 "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr ""
-"<p>Ŧřẏ ɠǿīƞɠ ƀȧƈķ ŧǿ ŧħḗ ƥřḗṽīǿŭş ƥȧɠḗ, řḗƒřḗşħīƞɠ ȧƞḓ ŧħḗƞ ŧřẏīƞɠ "
-"ȧɠȧīƞ.</p>"
+"<p>Ŧřẏ ɠǿīƞɠ ƀȧƈķ ŧǿ ŧħḗ ƥřḗṽīǿŭş ƥȧɠḗ, řḗƒřḗşħīƞɠ ȧƞḓ ŧħḗƞ ŧřẏīƞɠ ȧɠȧīƞ.</p>"
 
 #: apps/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -2382,17 +2391,17 @@ msgstr ""
 "<h1>Ẇḗ'řḗ şǿřřẏ, ƀŭŧ ẇḗ ƈȧƞ'ŧ ƒīƞḓ ẇħȧŧ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř.</h1> <p> Ŧħḗ "
 "ƥȧɠḗ ǿř ƒīŀḗ ẏǿŭ řḗɋŭḗşŧḗḓ ẇȧşƞ'ŧ ƒǿŭƞḓ ǿƞ ǿŭř şīŧḗ. Īŧ'ş ƥǿşşīƀŀḗ ŧħȧŧ ẏǿŭ "
 "ƈŀīƈķḗḓ ȧ ŀīƞķ ŧħȧŧ'ş ǿŭŧ ǿƒ ḓȧŧḗ, ǿř ŧẏƥḗḓ īƞ ŧħḗ ȧḓḓřḗşş īƞƈǿřřḗƈŧŀẏ. </p> "
-"<ul> <li>Īƒ ẏǿŭ ŧẏƥḗḓ īƞ ŧħḗ ȧḓḓřḗşş, ƥŀḗȧşḗ ḓǿŭƀŀḗ ƈħḗƈķ ŧħḗ "
-"şƥḗŀŀīƞɠ.</li> <li> Īƒ ẏǿŭ ƒǿŀŀǿẇḗḓ ȧ ŀīƞķ ƒřǿḿ şǿḿḗẇħḗřḗ, ƥŀḗȧşḗ ŀḗŧ ŭş "
-"ķƞǿẇ ȧŧ <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. "
-"Ŧḗŀŀ ŭş ẇħḗřḗ ẏǿŭ ƈȧḿḗ ƒřǿḿ ȧƞḓ ẇħȧŧ ẏǿŭ ẇḗřḗ ŀǿǿķīƞɠ ƒǿř, ȧƞḓ ẇḗ'ŀŀ ḓǿ ǿŭř "
-"ƀḗşŧ ŧǿ ƒīẋ īŧ. </li> </ul> <p>Ǿř ẏǿŭ ƈȧƞ ĵŭşŧ ĵŭḿƥ ǿṽḗř ŧǿ şǿḿḗ ǿƒ ŧħḗ "
-"ƥǿƥŭŀȧř ƥȧɠḗş ǿƞ ǿŭř ẇḗƀşīŧḗ.</p> <ul> <li>Ȧřḗ ẏǿŭ īƞŧḗřḗşŧḗḓ īƞ ȧ <a href=\""
-"%(rec)s\">ŀīşŧ ǿƒ ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş</a>?</li> <li> Ḓǿ ẏǿŭ ẇȧƞŧ ŧǿ <a href=\"%"
-"(search)s\">şḗȧřƈħ ƒǿř ȧḓḓ-ǿƞş</a>? Ẏǿŭ ḿȧẏ ɠǿ ŧǿ ŧħḗ <a href=\"%"
-"(search)s\">şḗȧřƈħ ƥȧɠḗ</a> ǿř ĵŭşŧ ŭşḗ ŧħḗ şḗȧřƈħ ƒīḗŀḓ ȧƀǿṽḗ. </li> <li> Īƒ "
-"ẏǿŭ ƥřḗƒḗř ŧǿ şŧȧřŧ ǿṽḗř, ĵŭşŧ ɠǿ ŧǿ ŧħḗ <a href=\"%(home)s\">ȧḓḓ-ǿƞş ƒřǿƞŧ "
-"ƥȧɠḗ</a>. </li> </ul>"
+"<ul> <li>Īƒ ẏǿŭ ŧẏƥḗḓ īƞ ŧħḗ ȧḓḓřḗşş, ƥŀḗȧşḗ ḓǿŭƀŀḗ ƈħḗƈķ ŧħḗ şƥḗŀŀīƞɠ.</li> "
+"<li> Īƒ ẏǿŭ ƒǿŀŀǿẇḗḓ ȧ ŀīƞķ ƒřǿḿ şǿḿḗẇħḗřḗ, ƥŀḗȧşḗ ŀḗŧ ŭş ķƞǿẇ ȧŧ <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Ŧḗŀŀ ŭş "
+"ẇħḗřḗ ẏǿŭ ƈȧḿḗ ƒřǿḿ ȧƞḓ ẇħȧŧ ẏǿŭ ẇḗřḗ ŀǿǿķīƞɠ ƒǿř, ȧƞḓ ẇḗ'ŀŀ ḓǿ ǿŭř ƀḗşŧ ŧǿ "
+"ƒīẋ īŧ. </li> </ul> <p>Ǿř ẏǿŭ ƈȧƞ ĵŭşŧ ĵŭḿƥ ǿṽḗř ŧǿ şǿḿḗ ǿƒ ŧħḗ ƥǿƥŭŀȧř "
+"ƥȧɠḗş ǿƞ ǿŭř ẇḗƀşīŧḗ.</p> <ul> <li>Ȧřḗ ẏǿŭ īƞŧḗřḗşŧḗḓ īƞ ȧ <a "
+"href=\"%(rec)s\">ŀīşŧ ǿƒ ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş</a>?</li> <li> Ḓǿ ẏǿŭ ẇȧƞŧ ŧǿ <a "
+"href=\"%(search)s\">şḗȧřƈħ ƒǿř ȧḓḓ-ǿƞş</a>? Ẏǿŭ ḿȧẏ ɠǿ ŧǿ ŧħḗ <a "
+"href=\"%(search)s\">şḗȧřƈħ ƥȧɠḗ</a> ǿř ĵŭşŧ ŭşḗ ŧħḗ şḗȧřƈħ ƒīḗŀḓ ȧƀǿṽḗ. </li>"
+" <li> Īƒ ẏǿŭ ƥřḗƒḗř ŧǿ şŧȧřŧ ǿṽḗř, ĵŭşŧ ɠǿ ŧǿ ŧħḗ <a href=\"%(home)s\">ȧḓḓ-"
+"ǿƞş ƒřǿƞŧ ƥȧɠḗ</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -2405,8 +2414,8 @@ msgid ""
 "\">Add-ons homepage</a>. </p>"
 msgstr ""
 "<h1>Ǿǿƥş! Ẇḗ ħȧḓ ȧƞ ḗřřǿř.</h1> <p>Ẇḗ'ŀŀ ɠḗŧ ŧǿ ƒīẋīƞɠ ŧħȧŧ şǿǿƞ.</p> <p> "
-"Ẏǿŭ ƈȧƞ ŧřẏ řḗƒřḗşħīƞɠ ŧħḗ ƥȧɠḗ, ǿř ħḗȧḓ ƀȧƈķ ŧǿ ŧħḗ <a href=\"%"
-"(home)s\">Ȧḓḓ-ǿƞş ħǿḿḗƥȧɠḗ</a>. </p>"
+"Ẏǿŭ ƈȧƞ ŧřẏ řḗƒřḗşħīƞɠ ŧħḗ ƥȧɠḗ, ǿř ħḗȧḓ ƀȧƈķ ŧǿ ŧħḗ <a "
+"href=\"%(home)s\">Ȧḓḓ-ǿƞş ħǿḿḗƥȧɠḗ</a>. </p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
@@ -2502,8 +2511,8 @@ msgstr ""
 #: apps/amo/templates/amo/site_nav.html:26
 #: apps/browse/views.py:55
 #: apps/browse/views.py:65
-#: apps/browse/views.py:231
-#: apps/browse/views.py:288
+#: apps/browse/views.py:232
+#: apps/browse/views.py:289
 #: apps/search/forms.py:90
 msgid "Top Rated"
 msgstr "Ŧǿƥ Řȧŧḗḓ"
@@ -2530,7 +2539,7 @@ msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Ẇȧƞŧ ḿǿřḗ ƈŭşŧǿḿīzȧŧīǿƞ? Ŧřẏ <b>Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54
-#: apps/bandwagon/views.py:86
+#: apps/bandwagon/views.py:88
 msgid "Most Followers"
 msgstr "Ḿǿşŧ Ƒǿŀŀǿẇḗřş"
 
@@ -2573,8 +2582,8 @@ msgid ""
 "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a "
 "href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr ""
-"Ƥȧɠḗ <a href=\"%(current_pg_url)s\">%(current_pg)s</a> ǿƒ <a href=\"%"
-"(last_pg_url)s\">%(last_pg)s</a>"
+"Ƥȧɠḗ <a href=\"%(current_pg_url)s\">%(current_pg)s</a> ǿƒ <a "
+"href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #: apps/amo/templates/amo/impala/paginator.html:16
 #: apps/amo/templates/amo/mobile/impala_paginator.html:6
@@ -2612,24 +2621,24 @@ msgstr ""
 "Īƒ ẏǿŭ ȧřḗ ƞǿŧ ƥřǿḿƥŧḗḓ ŧǿ īƞşŧȧŀŀ %(addon_name)s īƞ ȧ ḿǿḿḗƞŧ, ƥŀḗȧşḗ <a "
 "href=\"%(addon_xpi)s\">ƈŀīƈķ ħḗřḗ</a>."
 
-#: apps/amo/tests/test_messages.py:52
 #: apps/amo/tests/test_messages.py:53
+#: apps/amo/tests/test_messages.py:54
 #: apps/reviews/templates/reviews/add.html:56
 #: apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
 msgid "Title"
 msgstr "Ŧīŧŀḗ"
 
-#: apps/amo/tests/test_messages.py:52
 #: apps/amo/tests/test_messages.py:53
+#: apps/amo/tests/test_messages.py:54
 msgid "Body"
 msgstr "Ɓǿḓẏ"
 
-#: apps/amo/tests/test_messages.py:54
+#: apps/amo/tests/test_messages.py:55
 msgid "Another Title"
 msgstr "Ȧƞǿŧħḗř Ŧīŧŀḗ"
 
-#: apps/amo/tests/test_messages.py:54
+#: apps/amo/tests/test_messages.py:55
 msgid "Another Body"
 msgstr "Ȧƞǿŧħḗř Ɓǿḓẏ"
 
@@ -2753,8 +2762,8 @@ msgid ""
 "href=\"%(url)s\">here</a>."
 msgstr ""
 "Īƒ ẏǿŭř şŭƥƥǿřŧḗḓ ȧƥƥŀīƈȧŧīǿƞ ḓǿḗş ƞǿŧ řḗɋŭīřḗ ȧƞ īƞşŧȧŀŀ.řḓƒ ƒīŀḗ, ẏǿŭ "
-"şŧīŀŀ ḿŭşŧ īƞƈŀŭḓḗ ǿƞḗ ẇīŧħ ŧħḗ řḗɋŭīřḗḓ ƥřǿƥḗřŧīḗş ȧş şƥḗƈīƒīḗḓ <a href=\"%"
-"(url)s\">ħḗřḗ</a>."
+"şŧīŀŀ ḿŭşŧ īƞƈŀŭḓḗ ǿƞḗ ẇīŧħ ŧħḗ řḗɋŭīřḗḓ ƥřǿƥḗřŧīḗş ȧş şƥḗƈīƒīḗḓ <a "
+"href=\"%(url)s\">ħḗřḗ</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
@@ -2802,7 +2811,7 @@ msgid "Icon"
 msgstr "Īƈǿƞ"
 
 #: apps/bandwagon/forms.py:152
-#: apps/users/forms.py:393
+#: apps/users/forms.py:391
 msgid "No links are allowed."
 msgstr "Ƞǿ ŀīƞķş ȧřḗ ȧŀŀǿẇḗḓ."
 
@@ -2811,13 +2820,13 @@ msgid "This url is already in use by another collection"
 msgstr "Ŧħīş ŭřŀ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/bandwagon/forms.py:174
-#: apps/devhub/views.py:1086
+#: apps/devhub/views.py:1088
 msgid "Icons must be either PNG or JPG."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
 #: apps/bandwagon/forms.py:179
-#: apps/devhub/views.py:1104
-#: apps/users/forms.py:384
+#: apps/devhub/views.py:1106
+#: apps/users/forms.py:382
 msgid "Please use images smaller than %dMB."
 msgstr "Ƥŀḗȧşḗ ŭşḗ īḿȧɠḗş şḿȧŀŀḗř ŧħȧƞ %dḾƁ."
 
@@ -2859,11 +2868,11 @@ msgstr "Ƒȧṽǿřīŧḗ"
 msgid "Remove from favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 
-#: apps/bandwagon/views.py:88
-#: apps/bandwagon/views.py:174
+#: apps/bandwagon/views.py:90
+#: apps/bandwagon/views.py:176
 #: apps/browse/views.py:57
 #: apps/browse/views.py:68
-#: apps/browse/views.py:439
+#: apps/browse/views.py:440
 #: apps/devhub/views.py:70
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20
 #: apps/editors/templates/editors/leaderboard.html:24
@@ -2874,24 +2883,24 @@ msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 msgid "Name"
 msgstr "Ƞȧḿḗ"
 
-#: apps/bandwagon/views.py:90
+#: apps/bandwagon/views.py:92
 msgid "Recently Popular"
 msgstr "Řḗƈḗƞŧŀẏ Ƥǿƥŭŀȧř"
 
-#: apps/bandwagon/views.py:172
+#: apps/bandwagon/views.py:174
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
 msgstr "Ȧḓḓḗḓ"
 
-#: apps/bandwagon/views.py:173
+#: apps/bandwagon/views.py:175
 msgid "Popularity"
 msgstr "Ƥǿƥŭŀȧřīŧẏ"
 
-#: apps/bandwagon/views.py:295
+#: apps/bandwagon/views.py:297
 msgid "Collection created!"
 msgstr "Ƈǿŀŀḗƈŧīǿƞ ƈřḗȧŧḗḓ!"
 
-#: apps/bandwagon/views.py:296
+#: apps/bandwagon/views.py:298
 msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
@@ -2899,15 +2908,15 @@ msgstr ""
 "Ẏǿŭř ƞḗẇ ƈǿŀŀḗƈŧīǿƞ īş şħǿẇƞ ƀḗŀǿẇ. Ẏǿŭ ƈȧƞ <a href=\"%(url)s\">ḗḓīŧ "
 "ȧḓḓīŧīǿƞȧŀ şḗŧŧīƞɠş</a> īƒ ẏǿŭ'ḓ ŀīķḗ."
 
-#: apps/bandwagon/views.py:300
+#: apps/bandwagon/views.py:302
 msgid "Collection updated!"
 msgstr "Ƈǿŀŀḗƈŧīǿƞ ŭƥḓȧŧḗḓ!"
 
-#: apps/bandwagon/views.py:301
+#: apps/bandwagon/views.py:303
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Ṽīḗẇ ẏǿŭř ƈǿŀŀḗƈŧīǿƞ</a> ŧǿ şḗḗ ŧħḗ ƈħȧƞɠḗş."
 
-#: apps/bandwagon/views.py:554
+#: apps/bandwagon/views.py:558
 msgid "Icon Deleted"
 msgstr "Īƈǿƞ Ḓḗŀḗŧḗḓ"
 
@@ -2929,9 +2938,9 @@ msgid ""
 "collection arrangements are governed by the Creative Commons Attribution "
 "Share-Alike License"
 msgstr ""
-"Ȧş ƞǿŧḗḓ īƞ ǿŭř <a href=\"%(legal)s\">Ŀḗɠȧŀ Ƞǿŧīƈḗş</a>, īƞḓīṽīḓŭȧŀ ƈǿŀŀḗƈŧīǿƞ "
-"ȧřřȧƞɠḗḿḗƞŧş ȧřḗ ɠǿṽḗřƞḗḓ ƀẏ ŧħḗ Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ Şħȧřḗ-Ȧŀīķḗ "
-"Ŀīƈḗƞşḗ"
+"Ȧş ƞǿŧḗḓ īƞ ǿŭř <a href=\"%(legal)s\">Ŀḗɠȧŀ Ƞǿŧīƈḗş</a>, īƞḓīṽīḓŭȧŀ "
+"ƈǿŀŀḗƈŧīǿƞ ȧřřȧƞɠḗḿḗƞŧş ȧřḗ ɠǿṽḗřƞḗḓ ƀẏ ŧħḗ Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ "
+"Şħȧřḗ-Ȧŀīķḗ Ŀīƈḗƞşḗ"
 
 #: apps/bandwagon/templates/bandwagon/add.html:33
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:38
@@ -3093,8 +3102,8 @@ msgid ""
 msgstr ""
 "Ȧḓḓ-ǿƞş ŧħȧŧ ẏǿŭ ḿȧřķ ȧş ƒȧṽǿřīŧḗş ŭşīƞɠ ŧħḗ <b>Ȧḓḓ ŧǿ Ƒȧṽǿřīŧḗş</b> ƒḗȧŧŭřḗ "
 "ȧƥƥḗȧř ƀḗŀǿẇ. Ŧħīş ƈǿŀŀḗƈŧīǿƞ īş ƈŭřřḗƞŧŀẏ <b>ƥřīṽȧŧḗ</b>, ẇħīƈħ ḿḗȧƞş ǿƞŀẏ "
-"ẏǿŭ ƈȧƞ şḗḗ īŧ. Īƒ ẏǿŭ ẇǿŭŀḓ ŀīķḗ ḗṽḗřẏǿƞḗ ŧǿ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ẏǿŭř "
-"ƒȧṽǿřīŧḗş, ƈŀīƈķ ŧħḗ ƀŭŧŧǿƞ ƀḗŀǿẇ ŧǿ ḿȧķḗ īŧ ƥŭƀŀīƈ."
+"ẏǿŭ ƈȧƞ şḗḗ īŧ. Īƒ ẏǿŭ ẇǿŭŀḓ ŀīķḗ ḗṽḗřẏǿƞḗ ŧǿ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ẏǿŭř ƒȧṽǿřīŧḗş, "
+"ƈŀīƈķ ŧħḗ ƀŭŧŧǿƞ ƀḗŀǿẇ ŧǿ ḿȧķḗ īŧ ƥŭƀŀīƈ."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
@@ -3132,8 +3141,8 @@ msgid ""
 "your own</a>."
 msgstr ""
 "Ƈǿŀŀḗƈŧīǿƞş ȧřḗ ɠřǿŭƥş ǿƒ řḗŀȧŧḗḓ ȧḓḓ-ǿƞş ŧħȧŧ ȧƞẏǿƞḗ ƈȧƞ ƈřḗȧŧḗ ȧƞḓ şħȧřḗ. "
-"Ḗẋƥŀǿřḗ ƈǿŀŀḗƈŧīǿƞş ƈřḗȧŧḗḓ ƀẏ ǿŧħḗř ŭşḗřş ǿř <a href=\"%(url)s\">ƈřḗȧŧḗ ẏǿŭř "
-"ǿẇƞ</a>."
+"Ḗẋƥŀǿřḗ ƈǿŀŀḗƈŧīǿƞş ƈřḗȧŧḗḓ ƀẏ ǿŧħḗř ŭşḗřş ǿř <a href=\"%(url)s\">ƈřḗȧŧḗ "
+"ẏǿŭř ǿẇƞ</a>."
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -3326,8 +3335,7 @@ msgid ""
 "be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr ""
 "<b>Ẇȧřƞīƞɠ:</b> Ɓẏ ƈħȧƞɠīƞɠ ŧħḗ ǿẇƞḗř ǿƒ ŧħīş ƈǿŀŀḗƈŧīǿƞ, ẏǿŭ ẇīŀŀ ƞǿ ŀǿƞɠḗř "
-"ƀḗ ȧƀŀḗ ŧǿ ḗḓīŧ īŧ. Ẏǿŭ ẇīŀŀ ǿƞŀẏ ƀḗ ȧƀŀḗ ŧǿ ȧḓḓ ȧƞḓ řḗḿǿṽḗ ȧḓḓ-ǿƞş ƒřǿḿ "
-"īŧ."
+"ƀḗ ȧƀŀḗ ŧǿ ḗḓīŧ īŧ. Ẏǿŭ ẇīŀŀ ǿƞŀẏ ƀḗ ȧƀŀḗ ŧǿ ȧḓḓ ȧƞḓ řḗḿǿṽḗ ȧḓḓ-ǿƞş ƒřǿḿ īŧ."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:156
@@ -3523,8 +3531,8 @@ msgstr ""
 "Ẇħḗƞ Ḿǿzīŀŀȧ ƀḗƈǿḿḗş ȧẇȧřḗ ǿƒ ȧḓḓ-ǿƞş, ƥŀŭɠīƞş, ǿř ǿŧħḗř ŧħīřḓ-ƥȧřŧẏ "
 "şǿƒŧẇȧřḗ ŧħȧŧ şḗřīǿŭşŀẏ ƈǿḿƥřǿḿīşḗş %(app)s şḗƈŭřīŧẏ, şŧȧƀīŀīŧẏ, ǿř "
 "ƥḗřƒǿřḿȧƞƈḗ ȧƞḓ ḿḗḗŧş <a href=\"%(criteria)s\">ƈḗřŧȧīƞ ƈřīŧḗřīȧ</a>, ŧħḗ "
-"şǿƒŧẇȧřḗ ḿȧẏ ƀḗ ƀŀǿƈķḗḓ ƒřǿḿ ɠḗƞḗřȧŀ ŭşḗ. Ƒǿř ḿǿřḗ īƞƒǿřḿȧŧīǿƞ, ƥŀḗȧşḗ řḗȧḓ "
-"<a href=\"%(support)s\">ŧħīş şŭƥƥǿřŧ ȧřŧīƈŀḗ</a>."
+"şǿƒŧẇȧřḗ ḿȧẏ ƀḗ ƀŀǿƈķḗḓ ƒřǿḿ ɠḗƞḗřȧŀ ŭşḗ. Ƒǿř ḿǿřḗ īƞƒǿřḿȧŧīǿƞ, ƥŀḗȧşḗ řḗȧḓ <"
+"a href=\"%(support)s\">ŧħīş şŭƥƥǿřŧ ȧřŧīƈŀḗ</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -3585,26 +3593,26 @@ msgstr "Ḿǿşŧ Ŭşḗřş"
 
 #: apps/browse/views.py:60
 #: apps/browse/views.py:71
-#: apps/browse/views.py:285
+#: apps/browse/views.py:286
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:63
 #: apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:96
 msgid "Up & Coming"
 msgstr "Ŭƥ & Ƈǿḿīƞɠ"
 
-#: apps/browse/views.py:441
+#: apps/browse/views.py:442
 #: apps/devhub/views.py:72
 msgid "Created"
 msgstr "Ƈřḗȧŧḗḓ"
 
-#: apps/browse/views.py:442
+#: apps/browse/views.py:443
 #: apps/devhub/views.py:73
 #: apps/stats/templates/stats/addon_report_menu.html:8
 #: apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Ḓǿẇƞŀǿȧḓş"
 
-#: apps/browse/views.py:443
+#: apps/browse/views.py:444
 #: apps/devhub/views.py:74
 #: apps/discovery/templates/discovery/addons/detail.html:67
 #: apps/reviews/templates/reviews/add.html:57
@@ -3644,8 +3652,8 @@ msgid ""
 "Here's a few of our favorite add-ons to help you get started customizing "
 "%(app)s."
 msgstr ""
-"Ħḗřḗ'ş ȧ ƒḗẇ ǿƒ ǿŭř ƒȧṽǿřīŧḗ ȧḓḓ-ǿƞş ŧǿ ħḗŀƥ ẏǿŭ ɠḗŧ şŧȧřŧḗḓ ƈŭşŧǿḿīzīƞɠ %"
-"(app)s."
+"Ħḗřḗ'ş ȧ ƒḗẇ ǿƒ ǿŭř ƒȧṽǿřīŧḗ ȧḓḓ-ǿƞş ŧǿ ħḗŀƥ ẏǿŭ ɠḗŧ şŧȧřŧḗḓ ƈŭşŧǿḿīzīƞɠ "
+"%(app)s."
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
@@ -3734,8 +3742,8 @@ msgid ""
 "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">"
 "search bar</a> in {0}"
 msgstr ""
-"Ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ ŧħḗ <a "
-"href=\"http://support.mozilla.com/kb/Search+bar\">şḗȧřƈħ ƀȧř</a> īƞ {0}"
+"Ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ ŧħḗ <a href=\"http://support.mozilla.com/kb/Search+bar\">"
+"şḗȧřƈħ ƀȧř</a> īƞ {0}"
 
 #: apps/browse/templates/browse/search_tools.html:94
 msgid ""
@@ -3752,8 +3760,8 @@ msgid ""
 "Mozilla Developer Center</a>"
 msgstr ""
 "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Fi"
-"refox\">Ḿȧķḗ ẏǿŭř ǿẇƞ</a> ȧŧ ŧħḗ <a "
-"href=\"https://developer.mozilla.org/\">Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř</a>"
+"refox\">Ḿȧķḗ ẏǿŭř ǿẇƞ</a> ȧŧ ŧħḗ <a href=\"https://developer.mozilla.org/\">"
+"Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř</a>"
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9
@@ -3904,8 +3912,8 @@ msgid ""
 "class=\"more-info\">Start exploring</a>"
 msgstr ""
 "Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş ŧřȧƞşƒǿřḿ ŧħḗ ŀǿǿķ ǿƒ ẏǿŭř ƀřǿẇşḗř ẇīŧħ şŧẏŀḗş ƒǿř ŧħḗ "
-"ẇīƞḓǿẇ ƒřȧḿḗ, ȧḓḓřḗşş ƀȧř, ƀŭŧŧǿƞş, ŧȧƀş, ȧƞḓ ḿḗƞŭş. <a href=\"%(url)s\" class"
-"=\"more-info\">Şŧȧřŧ ḗẋƥŀǿřīƞɠ</a>"
+"ẇīƞḓǿẇ ƒřȧḿḗ, ȧḓḓřḗşş ƀȧř, ƀŭŧŧǿƞş, ŧȧƀş, ȧƞḓ ḿḗƞŭş. <a href=\"%(url)s\" "
+"class=\"more-info\">Şŧȧřŧ ḗẋƥŀǿřīƞɠ</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
@@ -4744,8 +4752,7 @@ msgid ""
 "short form of its name (for example, Test Extension might be test_extension)."
 msgstr ""
 "Ŧħḗ ƥȧƈķȧɠḗ ƞȧḿḗ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ ŭşḗḓ ẇīŧħīƞ ŧħḗ ƀřǿẇşḗř. Ŧħīş şħǿŭŀḓ ƀḗ ȧ "
-"şħǿřŧ ƒǿřḿ ǿƒ īŧş ƞȧḿḗ (ƒǿř ḗẋȧḿƥŀḗ, Ŧḗşŧ Ḗẋŧḗƞşīǿƞ ḿīɠħŧ ƀḗ "
-"ŧḗşŧ_ḗẋŧḗƞşīǿƞ)."
+"şħǿřŧ ƒǿřḿ ǿƒ īŧş ƞȧḿḗ (ƒǿř ḗẋȧḿƥŀḗ, Ŧḗşŧ Ḗẋŧḗƞşīǿƞ ḿīɠħŧ ƀḗ ŧḗşŧ_ḗẋŧḗƞşīǿƞ)."
 
 #: apps/devhub/forms.py:727
 msgid ""
@@ -4896,7 +4903,7 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-#: apps/devhub/models.py:366
+#: apps/devhub/models.py:370
 #: apps/reviews/templates/reviews/add.html:58
 #: apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
@@ -4946,12 +4953,12 @@ msgstr "Ŭşḗř Řḗṽīḗẇş"
 #: apps/devhub/views.py:430
 #: apps/devhub/views.py:459
 #: apps/devhub/views.py:510
-#: apps/devhub/views.py:1176
+#: apps/devhub/views.py:1178
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
 #: apps/devhub/views.py:323
-#: apps/devhub/views.py:1560
+#: apps/devhub/views.py:1562
 msgid "Please check the form for errors."
 msgstr "Ƥŀḗȧşḗ ƈħḗƈķ ŧħḗ ƒǿřḿ ƒǿř ḗřřǿřş."
 
@@ -4987,11 +4994,11 @@ msgstr "Ṽȧŀīḓȧŧḗ Ȧḓḓ-ǿƞ"
 msgid "Check Add-on Compatibility"
 msgstr "Ƈħḗƈķ Ȧḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ"
 
-#: apps/devhub/views.py:658
+#: apps/devhub/views.py:660
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:752
+#: apps/devhub/views.py:754
 msgid ""
 "Validation generated too many errors/warnings so %s messages were truncated. "
 "After addressing the visible messages, you'll be able to see the others."
@@ -4999,41 +5006,41 @@ msgstr ""
 "Ṽȧŀīḓȧŧīǿƞ ɠḗƞḗřȧŧḗḓ ŧǿǿ ḿȧƞẏ ḗřřǿřş/warnings şǿ %s ḿḗşşȧɠḗş ẇḗřḗ ŧřŭƞƈȧŧḗḓ. "
 "Ȧƒŧḗř ȧḓḓřḗşşīƞɠ ŧħḗ ṽīşīƀŀḗ ḿḗşşȧɠḗş, ẏǿŭ'ŀŀ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ŧħḗ ǿŧħḗřş."
 
-#: apps/devhub/views.py:1088
-#: apps/users/forms.py:379
+#: apps/devhub/views.py:1090
+#: apps/users/forms.py:377
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
-#: apps/devhub/views.py:1092
+#: apps/devhub/views.py:1094
 msgid "Icons cannot be animated."
 msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1094
+#: apps/devhub/views.py:1096
 msgid "Images cannot be animated."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1107
+#: apps/devhub/views.py:1109
 msgid "Images cannot be larger than %dKB."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ŀȧřɠḗř ŧħȧƞ %dĶƁ."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1117
+#: apps/devhub/views.py:1119
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Īḿȧɠḗ ḿŭşŧ ƀḗ ḗẋȧƈŧŀẏ {0} ƥīẋḗŀş ẇīḓḗ ȧƞḓ {1} ƥīẋḗŀş ŧȧŀŀ."
 
-#: apps/devhub/views.py:1121
+#: apps/devhub/views.py:1123
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: apps/devhub/views.py:1215
+#: apps/devhub/views.py:1217
 msgid "Version %s disabled."
 msgstr "Ṽḗřşīǿƞ %s ḓīşȧƀŀḗḓ."
 
-#: apps/devhub/views.py:1218
+#: apps/devhub/views.py:1220
 msgid "Version %s deleted."
 msgstr "Ṽḗřşīǿƞ %s ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:1228
+#: apps/devhub/views.py:1230
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
@@ -5041,11 +5048,11 @@ msgstr ""
 "Ŧħīş ŭƥŀǿȧḓ ħȧş ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ, ȧƞḓ ḿȧẏ ŀȧƈķ ƈǿḿƥŀḗŧḗ ṽȧŀīḓȧŧīǿƞ řḗşŭŀŧş. "
 "Ƥŀḗȧşḗ ŧȧķḗ ḓŭḗ ƈȧřḗ ẇħḗƞ řḗṽīḗẇīƞɠ īŧ."
 
-#: apps/devhub/views.py:1606
+#: apps/devhub/views.py:1608
 msgid "Preliminary Review Requested."
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
-#: apps/devhub/views.py:1607
+#: apps/devhub/views.py:1609
 msgid "Full Review Requested."
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
@@ -5072,8 +5079,8 @@ msgid ""
 "complete, we make it easy to share it with over 400 million Firefox users "
 "world wide."
 msgstr ""
-"Ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ ƥřǿṽīḓḗş ƥǿẇḗřƒŭŀ ȦƤĪş ŧħȧŧ ȧŀŀǿẇ ḓḗṽḗŀǿƥḗřş ŧǿ ƈřḗȧŧḗ "
-"ȧḓḓ-ǿƞş ƒǿř Ƒīřḗƒǿẋ ŭşīƞɠ ĦŦḾĿ, ƇŞŞ ȧƞḓ ĴȧṽȧŞƈřīƥŧ. Ẇħḗƞ ẏǿŭř ȧḓḓ-ǿƞ īş "
+"Ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ ƥřǿṽīḓḗş ƥǿẇḗřƒŭŀ ȦƤĪş ŧħȧŧ ȧŀŀǿẇ ḓḗṽḗŀǿƥḗřş ŧǿ ƈřḗȧŧḗ ȧḓḓ-"
+"ǿƞş ƒǿř Ƒīřḗƒǿẋ ŭşīƞɠ ĦŦḾĿ, ƇŞŞ ȧƞḓ ĴȧṽȧŞƈřīƥŧ. Ẇħḗƞ ẏǿŭř ȧḓḓ-ǿƞ īş "
 "ƈǿḿƥŀḗŧḗ, ẇḗ ḿȧķḗ īŧ ḗȧşẏ ŧǿ şħȧřḗ īŧ ẇīŧħ ǿṽḗř 400 ḿīŀŀīǿƞ Ƒīřḗƒǿẋ ŭşḗřş "
 "ẇǿřŀḓ ẇīḓḗ."
 
@@ -5111,9 +5118,9 @@ msgid ""
 "extensive documentation</a> and a massive developer community to make sure "
 "you're never on your own."
 msgstr ""
-"Ƞḗḗḓ şǿḿḗ şŭƥƥǿřŧ ƀŭīŀḓīƞɠ ẏǿŭř ȧḓḓ-ǿƞ? Ẇḗ ħȧṽḗ <a href=\"%"
-"(url_docs)s\">ḗẋŧḗƞşīṽḗ ḓǿƈŭḿḗƞŧȧŧīǿƞ</a> ȧƞḓ ȧ ḿȧşşīṽḗ ḓḗṽḗŀǿƥḗř ƈǿḿḿŭƞīŧẏ "
-"ŧǿ ḿȧķḗ şŭřḗ ẏǿŭ'řḗ ƞḗṽḗř ǿƞ ẏǿŭř ǿẇƞ."
+"Ƞḗḗḓ şǿḿḗ şŭƥƥǿřŧ ƀŭīŀḓīƞɠ ẏǿŭř ȧḓḓ-ǿƞ? Ẇḗ ħȧṽḗ <a href=\"%(url_docs)s\">"
+"ḗẋŧḗƞşīṽḗ ḓǿƈŭḿḗƞŧȧŧīǿƞ</a> ȧƞḓ ȧ ḿȧşşīṽḗ ḓḗṽḗŀǿƥḗř ƈǿḿḿŭƞīŧẏ ŧǿ ḿȧķḗ şŭřḗ "
+"ẏǿŭ'řḗ ƞḗṽḗř ǿƞ ẏǿŭř ǿẇƞ."
 
 #: apps/devhub/templates/devhub/builder.html:60
 msgid ""
@@ -5224,8 +5231,7 @@ msgstr "ȦḾǾ Řḗṽīḗẇḗřş"
 msgid ""
 "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
-"Ɠḗŧ ȧħḗȧḓ! Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř ŧǿḓȧẏ ȧƞḓ ɠḗŧ ẏǿŭř ȧḓḓ-ǿƞş řḗṽīḗẇḗḓ "
-"ƒȧşŧḗř."
+"Ɠḗŧ ȧħḗȧḓ! Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř ŧǿḓȧẏ ȧƞḓ ɠḗŧ ẏǿŭř ȧḓḓ-ǿƞş řḗṽīḗẇḗḓ ƒȧşŧḗř."
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
@@ -5244,8 +5250,8 @@ msgid ""
 msgstr ""
 "Ȧḓḓ-ǿƞş ŀḗŧ ḿīŀŀīǿƞş ǿƒ Ƒīřḗƒǿẋ ŭşḗřş ḗƞħȧƞƈḗ ȧƞḓ ƈŭşŧǿḿīzḗ ŧħḗīř ƀřǿẇşīƞɠ "
 "ḗẋƥḗřīḗƞƈḗ. Īƒ ẏǿŭ'řḗ ȧ Ẇḗƀ ḓḗṽḗŀǿƥḗř ȧƞḓ ķƞǿẇ ĦŦḾĿ, ĴȧṽȧŞƈřīƥŧ ȧƞḓ ƇŞŞ, ẏǿŭ "
-"ȧŀřḗȧḓẏ ħȧṽḗ ẇħȧŧ īŧ ŧȧķḗş ŧǿ ḿȧķḗ ɠřḗȧŧ ȧḓḓ-ǿƞş ẇīŧħ ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ. "
-"Ẇħȧŧ'ş ḿǿřḗ, ȧḓḓ-ǿƞş ƀŭīŀŧ ẇīŧħ ŧħḗ ŞḒĶ ȧřḗ řḗşŧȧřŧŀḗşş ƀẏ ḓḗƒȧŭŀŧ."
+"ȧŀřḗȧḓẏ ħȧṽḗ ẇħȧŧ īŧ ŧȧķḗş ŧǿ ḿȧķḗ ɠřḗȧŧ ȧḓḓ-ǿƞş ẇīŧħ ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ. Ẇħȧŧ'ş "
+"ḿǿřḗ, ȧḓḓ-ǿƞş ƀŭīŀŧ ẇīŧħ ŧħḗ ŞḒĶ ȧřḗ řḗşŧȧřŧŀḗşş ƀẏ ḓḗƒȧŭŀŧ."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -5580,7 +5586,8 @@ msgstr ""
 "Ƞǿẇ ŧħȧŧ ẏǿŭ'ṽḗ ɠǿŧ ȧƞ ḗẋŧḗƞşīǿƞ şķḗŀḗŧǿƞ, ŧħḗ ƒŭƞ ƥȧřŧ ƀḗɠīƞş: ħȧƈķīƞɠ ǿƞ "
 "ŧħḗ ḗẋŧḗƞşīǿƞ ŧǿ ḿȧķḗ īŧ ḓǿ ẇħȧŧ ẏǿŭ ẇȧƞŧ. Īƒ ẏǿŭ ƞḗḗḓ şǿḿḗ ħḗŀƥ, ƈħḗƈķ ǿŭŧ "
 "ǿŭř <a href=\"%(gs_url)s\">Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ</a> ƥȧɠḗ ƒǿř ŧħḗ ƀȧşīƈş, ǿř ṽīşīŧ "
-"ŧħḗ <a href=\"%(ht_url)s\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a> ƒǿř ŧŭŧǿřīȧŀş ȧƞḓ ḓǿƈŭḿḗƞŧȧŧīǿƞ."
+"ŧħḗ <a href=\"%(ht_url)s\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a> ƒǿř ŧŭŧǿřīȧŀş ȧƞḓ "
+"ḓǿƈŭḿḗƞŧȧŧīǿƞ."
 
 #: apps/devhub/templates/devhub/search.html:7
 msgid "Search Developer Docs"
@@ -5642,7 +5649,8 @@ msgstr "Řḗƈḗƞŧ Ȧƈŧīṽīŧẏ ƒǿř {0}"
 #: apps/devhub/templates/devhub/addons/activity.html:36
 msgid ""
 "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> ƀẏ %(user)s"
+msgstr ""
+"<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> ƀẏ %(user)s"
 
 #: apps/devhub/templates/devhub/addons/activity.html:59
 msgid "Refine Activity"
@@ -5677,10 +5685,10 @@ msgid ""
 "href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a "
 "href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%"
-"(update_url)s\">Ŭƥḓȧŧḗ Ƈǿḿƥȧŧīƀīŀīŧẏ</a> <a href=\"%(version_url)s\" "
-"class=\"button\">Ŭƥŀǿȧḓ Ƞḗẇ Ṽḗřşīǿƞ</a> ǿř <a href=\"#\" "
-"class=\"close\">Īɠƞǿřḗ</a>"
+"<a href=\"#\" class=\"button compat-update\" data-"
+"updateurl=\"%(update_url)s\">Ŭƥḓȧŧḗ Ƈǿḿƥȧŧīƀīŀīŧẏ</a> <a "
+"href=\"%(version_url)s\" class=\"button\">Ŭƥŀǿȧḓ Ƞḗẇ Ṽḗřşīǿƞ</a> ǿř <a "
+"href=\"#\" class=\"close\">Īɠƞǿřḗ</a>"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:5
 msgid "View and update application compatibility ranges."
@@ -5702,9 +5710,9 @@ msgid ""
 "on even if the install manifest in the package indicates that the add-on is "
 "incompatible."
 msgstr ""
-"Ȧḓĵŭşŧīƞɠ ȧƥƥŀīƈȧŧīǿƞ īƞƒǿřḿȧŧīǿƞ ħḗřḗ ẇīŀŀ ȧŀŀǿẇ ŭşḗřş ŧǿ īƞşŧȧŀŀ ẏǿŭř "
-"ȧḓḓ-ǿƞ ḗṽḗƞ īƒ ŧħḗ īƞşŧȧŀŀ ḿȧƞīƒḗşŧ īƞ ŧħḗ ƥȧƈķȧɠḗ īƞḓīƈȧŧḗş ŧħȧŧ ŧħḗ ȧḓḓ-ǿƞ "
-"īş īƞƈǿḿƥȧŧīƀŀḗ."
+"Ȧḓĵŭşŧīƞɠ ȧƥƥŀīƈȧŧīǿƞ īƞƒǿřḿȧŧīǿƞ ħḗřḗ ẇīŀŀ ȧŀŀǿẇ ŭşḗřş ŧǿ īƞşŧȧŀŀ ẏǿŭř ȧḓḓ-"
+"ǿƞ ḗṽḗƞ īƒ ŧħḗ īƞşŧȧŀŀ ḿȧƞīƒḗşŧ īƞ ŧħḗ ƥȧƈķȧɠḗ īƞḓīƈȧŧḗş ŧħȧŧ ŧħḗ ȧḓḓ-ǿƞ īş "
+"īƞƈǿḿƥȧŧīƀŀḗ."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -5718,8 +5726,8 @@ msgstr "Ȧḓḓ Ȧƞǿŧħḗř Ȧƥƥŀīƈȧŧīǿƞ&hellip;"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38
 #: apps/devhub/templates/devhub/addons/owner.html:86
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:276
-#: apps/devhub/templates/devhub/versions/list.html:278
+#: apps/devhub/templates/devhub/versions/list.html:277
+#: apps/devhub/templates/devhub/versions/list.html:279
 #: templates/impala/base.html:123
 #: templates/impala/base.html:141
 #: templates/impala/base.html:151
@@ -5879,8 +5887,8 @@ msgid ""
 "there is a reason you need to modify your categories."
 msgstr ""
 "Ƈȧŧḗɠǿřīḗş ƈȧƞƞǿŧ ƀḗ ƈħȧƞɠḗḓ ẇħīŀḗ ẏǿŭř ȧḓḓ-ǿƞ īş ƒḗȧŧŭřḗḓ ƒǿř ŧħīş "
-"ȧƥƥŀīƈȧŧīǿƞ. Ƥŀḗȧşḗ ḗḿȧīŀ <a href=\"mailto:%(email)s\">%(email)s</a> īƒ ŧħḗřḗ "
-"īş ȧ řḗȧşǿƞ ẏǿŭ ƞḗḗḓ ŧǿ ḿǿḓīƒẏ ẏǿŭř ƈȧŧḗɠǿřīḗş."
+"ȧƥƥŀīƈȧŧīǿƞ. Ƥŀḗȧşḗ ḗḿȧīŀ <a href=\"mailto:%(email)s\">%(email)s</a> īƒ "
+"ŧħḗřḗ īş ȧ řḗȧşǿƞ ẏǿŭ ƞḗḗḓ ŧǿ ḿǿḓīƒẏ ẏǿŭř ƈȧŧḗɠǿřīḗş."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
@@ -5944,7 +5952,7 @@ msgstr ""
 "ǿṽḗřřīḓḗ īŧ ẇīŧħ ȧ ŀǿƈȧŀḗ-şƥḗƈīƒīƈ ŧřȧƞşŀȧŧīǿƞ."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:60
-#: apps/users/forms.py:253
+#: apps/users/forms.py:251
 #: apps/users/templates/users/edit.html:108
 #: apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -5958,8 +5966,8 @@ msgid ""
 "added."
 msgstr ""
 "Īƒ ẏǿŭř ȧḓḓ-ǿƞ ħȧş ȧƞǿŧħḗř ħǿḿḗƥȧɠḗ, ḗƞŧḗř īŧş ȧḓḓřḗşş ħḗřḗ. Īƒ ẏǿŭř ẇḗƀşīŧḗ "
-"īş ŀǿƈȧŀīzḗḓ īƞŧǿ ǿŧħḗř ŀȧƞɠŭȧɠḗş ḿŭŀŧīƥŀḗ ŧřȧƞşŀȧŧīǿƞş ǿƒ ŧħīş ƒīḗŀḓ ƈȧƞ "
-"ƀḗ ȧḓḓḗḓ."
+"īş ŀǿƈȧŀīzḗḓ īƞŧǿ ǿŧħḗř ŀȧƞɠŭȧɠḗş ḿŭŀŧīƥŀḗ ŧřȧƞşŀȧŧīǿƞş ǿƒ ŧħīş ƒīḗŀḓ ƈȧƞ ƀḗ "
+"ȧḓḓḗḓ."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -6093,8 +6101,7 @@ msgstr ""
 msgid ""
 "This add-on will be automatically upgraded to new versions of the Add-on SDK."
 msgstr ""
-"Ŧħīş ȧḓḓ-ǿƞ ẇīŀŀ ƀḗ ȧŭŧǿḿȧŧīƈȧŀŀẏ ŭƥɠřȧḓḗḓ ŧǿ ƞḗẇ ṽḗřşīǿƞş ǿƒ ŧħḗ Ȧḓḓ-ǿƞ "
-"ŞḒĶ."
+"Ŧħīş ȧḓḓ-ǿƞ ẇīŀŀ ƀḗ ȧŭŧǿḿȧŧīƈȧŀŀẏ ŭƥɠřȧḓḗḓ ŧǿ ƞḗẇ ṽḗřşīǿƞş ǿƒ ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:119
 msgid "No, this add-on will be upgraded manually."
@@ -6484,8 +6491,7 @@ msgid ""
 "meantime, you and your friends can install it directly from its details page:"
 msgstr ""
 "Ẏǿŭ'ŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ řḗṽīḗẇḗḓ ƀẏ ȧƞ ḗḓīŧǿř. Īƞ ŧħḗ "
-"ḿḗȧƞŧīḿḗ, ẏǿŭ ȧƞḓ ẏǿŭř ƒřīḗƞḓş ƈȧƞ īƞşŧȧŀŀ īŧ ḓīřḗƈŧŀẏ ƒřǿḿ īŧş ḓḗŧȧīŀş "
-"ƥȧɠḗ:"
+"ḿḗȧƞŧīḿḗ, ẏǿŭ ȧƞḓ ẏǿŭř ƒřīḗƞḓş ƈȧƞ īƞşŧȧŀŀ īŧ ḓīřḗƈŧŀẏ ƒřǿḿ īŧş ḓḗŧȧīŀş ƥȧɠḗ:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:32
 #: apps/devhub/templates/devhub/personas/submit_done.html:16
@@ -6515,8 +6521,8 @@ msgid ""
 "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to "
 "stay updated on reviews, collections, and more."
 msgstr ""
-"Ṽīḗẇ ȧƞḓ şŭƀşƈřīƀḗ ŧǿ ẏǿŭř ȧḓḓ-ǿƞ'ş <a href=\"{0}\">ȧƈŧīṽīŧẏ ƒḗḗḓ</a> ŧǿ şŧȧẏ "
-"ŭƥḓȧŧḗḓ ǿƞ řḗṽīḗẇş, ƈǿŀŀḗƈŧīǿƞş, ȧƞḓ ḿǿřḗ."
+"Ṽīḗẇ ȧƞḓ şŭƀşƈřīƀḗ ŧǿ ẏǿŭř ȧḓḓ-ǿƞ'ş <a href=\"{0}\">ȧƈŧīṽīŧẏ ƒḗḗḓ</a> ŧǿ "
+"şŧȧẏ ŭƥḓȧŧḗḓ ǿƞ řḗṽīḗẇş, ƈǿŀŀḗƈŧīǿƞş, ȧƞḓ ḿǿřḗ."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:45
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
@@ -6586,17 +6592,17 @@ msgid ""
 "process below that best fits your add-on."
 msgstr ""
 "Ȧŀŀ ȧḓḓ-ǿƞş ħǿşŧḗḓ īƞ ǿŭř ɠȧŀŀḗřẏ ḿŭşŧ ƀḗ řḗṽīḗẇḗḓ ƀẏ ȧƞ ḗḓīŧǿř ƀḗƒǿřḗ ŧħḗẏ "
-"ȧƥƥḗȧř īƞ ƈȧŧḗɠǿřīḗş ǿř şḗȧřƈħ řḗşŭŀŧş. Ẇħīŀḗ ẇȧīŧīƞɠ ƒǿř řḗṽīḗẇ, ẏǿŭř "
-"ȧḓḓ-ǿƞ ƈȧƞ şŧīŀŀ ƀḗ ȧƈƈḗşşḗḓ ŧħřǿŭɠħ īŧş ḓīřḗƈŧ ŬŘĿ. Ƥŀḗȧşḗ ƈħǿǿşḗ ŧħḗ "
-"řḗṽīḗẇ ƥřǿƈḗşş ƀḗŀǿẇ ŧħȧŧ ƀḗşŧ ƒīŧş ẏǿŭř ȧḓḓ-ǿƞ."
+"ȧƥƥḗȧř īƞ ƈȧŧḗɠǿřīḗş ǿř şḗȧřƈħ řḗşŭŀŧş. Ẇħīŀḗ ẇȧīŧīƞɠ ƒǿř řḗṽīḗẇ, ẏǿŭř ȧḓḓ-"
+"ǿƞ ƈȧƞ şŧīŀŀ ƀḗ ȧƈƈḗşşḗḓ ŧħřǿŭɠħ īŧş ḓīřḗƈŧ ŬŘĿ. Ƥŀḗȧşḗ ƈħǿǿşḗ ŧħḗ řḗṽīḗẇ "
+"ƥřǿƈḗşş ƀḗŀǿẇ ŧħȧŧ ƀḗşŧ ƒīŧş ẏǿŭř ȧḓḓ-ǿƞ."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
 msgid ""
 "A complete review of your add-on's source and functionality. <a "
 "href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
-"Ȧ ƈǿḿƥŀḗŧḗ řḗṽīḗẇ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ'ş şǿŭřƈḗ ȧƞḓ ƒŭƞƈŧīǿƞȧŀīŧẏ. <a href=\"%"
-"(url)s\">Ŀḗȧřƞ ḿǿřḗ&hellip;</a>"
+"Ȧ ƈǿḿƥŀḗŧḗ řḗṽīḗẇ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ'ş şǿŭřƈḗ ȧƞḓ ƒŭƞƈŧīǿƞȧŀīŧẏ. <a "
+"href=\"%(url)s\">Ŀḗȧřƞ ḿǿřḗ&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:32
 msgid "Appropriate for polished add-ons"
@@ -6623,8 +6629,8 @@ msgid ""
 "A faster review of your add-on's source for any major problems. <a "
 "href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
-"Ȧ ƒȧşŧḗř řḗṽīḗẇ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ'ş şǿŭřƈḗ ƒǿř ȧƞẏ ḿȧĵǿř ƥřǿƀŀḗḿş. <a href=\"%"
-"(url)s\">Ŀḗȧřƞ ḿǿřḗ&hellip;</a>"
+"Ȧ ƒȧşŧḗř řḗṽīḗẇ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ'ş şǿŭřƈḗ ƒǿř ȧƞẏ ḿȧĵǿř ƥřǿƀŀḗḿş. <a "
+"href=\"%(url)s\">Ŀḗȧřƞ ḿǿřḗ&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:54
 msgid "Appropriate for experimental add-ons"
@@ -6874,19 +6880,19 @@ msgid ""
 "technologies used in extensions and walks through the creation of several "
 "basic extensions."
 msgstr ""
-"Ŧħḗ ḗȧşīḗşŧ ẇȧẏ ŧǿ ḓǿ ŧħȧŧ īş ŧǿ ƒǿŀŀǿẇ ȧŀǿƞɠ ẇīŧħ ŧħḗ <a href=\"https://deve"
-"loper.mozilla.org/En/Firefox_addons_developer_guide\">Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş "
-"Ḓḗṽḗŀǿƥḗř Ɠŭīḓḗ</a> ȧş īŧ ḗẋƥŀȧīƞş īƞ ḓḗŧȧīŀ ŧħḗ ŧḗƈħƞǿŀǿɠīḗş ŭşḗḓ īƞ "
-"ḗẋŧḗƞşīǿƞş ȧƞḓ ẇȧŀķş ŧħřǿŭɠħ ŧħḗ ƈřḗȧŧīǿƞ ǿƒ şḗṽḗřȧŀ ƀȧşīƈ ḗẋŧḗƞşīǿƞş."
+"Ŧħḗ ḗȧşīḗşŧ ẇȧẏ ŧǿ ḓǿ ŧħȧŧ īş ŧǿ ƒǿŀŀǿẇ ȧŀǿƞɠ ẇīŧħ ŧħḗ <a "
+"href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">"
+"Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş Ḓḗṽḗŀǿƥḗř Ɠŭīḓḗ</a> ȧş īŧ ḗẋƥŀȧīƞş īƞ ḓḗŧȧīŀ ŧħḗ "
+"ŧḗƈħƞǿŀǿɠīḗş ŭşḗḓ īƞ ḗẋŧḗƞşīǿƞş ȧƞḓ ẇȧŀķş ŧħřǿŭɠħ ŧħḗ ƈřḗȧŧīǿƞ ǿƒ şḗṽḗřȧŀ "
+"ƀȧşīƈ ḗẋŧḗƞşīǿƞş."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:32
 msgid ""
 "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">"
 "Visit the Firefox Add-ons Developer Guide</a>"
 msgstr ""
-"<a "
-"href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Ṽīşīŧ "
-"ŧħḗ Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş Ḓḗṽḗŀǿƥḗř Ɠŭīḓḗ</a>"
+"<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">"
+"Ṽīşīŧ ŧħḗ Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş Ḓḗṽḗŀǿƥḗř Ɠŭīḓḗ</a>"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:38
 msgid ""
@@ -6900,8 +6906,8 @@ msgid ""
 msgstr ""
 "Īƒ ẏǿŭ'ḓ řȧŧħḗř ḓīṽḗ řīɠħŧ īƞ, ŧħḗřḗ ȧřḗ şḗṽḗřȧŀ ǿŧħḗř ŧŭŧǿřīȧŀş īƞ ǿŭř <a "
 "href=\"%(base_docs)show-to/getting-started\">Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ şḗƈŧīǿƞ</a> ǿƒ "
-"ŧħḗ <a href=\"%(base_docs)show-to\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a> ŧħȧŧ ĵŭḿƥ şŧřȧīɠħŧ īƞŧǿ "
-"ƈǿḓḗ. Ȧƞḓ īƒ ẏǿŭ ħȧṽḗ şǿḿḗ ŧīḿḗ ŧǿ şƥȧřḗ, ẏǿŭ ḿȧẏ ƥřḗƒḗř ȧ ṽīḓḗǿ "
+"ŧħḗ <a href=\"%(base_docs)show-to\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a> ŧħȧŧ ĵŭḿƥ şŧřȧīɠħŧ "
+"īƞŧǿ ƈǿḓḗ. Ȧƞḓ īƒ ẏǿŭ ħȧṽḗ şǿḿḗ ŧīḿḗ ŧǿ şƥȧřḗ, ẏǿŭ ḿȧẏ ƥřḗƒḗř ȧ ṽīḓḗǿ "
 "ẇȧŀķŧħřǿŭɠħ ǿƒ ḗẋŧḗƞşīǿƞ ƀȧşīƈş: <a href=\"http://design-"
 "challenge.mozilla.com/resources/#extension_bootcamp\">Ḗẋŧḗƞşīǿƞ Ɓǿǿŧƈȧḿƥ: "
 "Ẑḗřǿ ŧǿ Ħḗŀŀǿ Ẇǿřŀḓ! īƞ 45 Ḿīƞŭŧḗş</a>."
@@ -6923,8 +6929,8 @@ msgstr ""
 "ŧǿ şŧȧřŧ ǿƞ ẏǿŭř ƒīřşŧ ȧḓḓ-ǿƞ. Ɓȧƈķ īƞ ŧħḗ ḓȧẏ, ŧħīş ḿḗȧƞŧ ƈŀīḿƀīƞɠ ŭƥ ȧ "
 "ħīŀŀ īƞ ŧħḗ şƞǿẇ ŧǿ ƒīƞḓ ȧ şŭīŧȧƀŀḗ ŧḗḿƥŀȧŧḗ ŧǿ ƈǿƥẏ ƒǿř ẏǿŭř ȧḓḓ-ǿƞ'ş "
 "īƞşŧȧŀŀ ḿȧƞīƒḗşŧ. Ƒǿřŧŭƞȧŧḗŀẏ, ŧħḗ Ȧḓḓ-ǿƞ Ḓḗṽḗŀǿƥḗř Ħŭƀ (ŧħȧŧ'ş ŧħīş!) "
-"īƞŧřǿḓŭƈḗş ŧħḗ şƞǿẇḿǿƀīŀḗ ǿƒ ḗẋŧḗƞşīǿƞ ƥȧƈķȧɠīƞɠ: ŧħḗ <a href=\"%"
-"(url)s\">Ȧḓḓ-ǿƞ Ƥȧƈķȧɠḗř</a>!"
+"īƞŧřǿḓŭƈḗş ŧħḗ şƞǿẇḿǿƀīŀḗ ǿƒ ḗẋŧḗƞşīǿƞ ƥȧƈķȧɠīƞɠ: ŧħḗ <a "
+"href=\"%(url)s\">Ȧḓḓ-ǿƞ Ƥȧƈķȧɠḗř</a>!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:54
 msgid ""
@@ -6936,8 +6942,8 @@ msgid ""
 "extension for you!"
 msgstr ""
 "Ĵŭşŧ ƒǿŀŀǿẇ ŧħḗ şŧḗƥş ŧǿ ḗƞŧḗř ẏǿŭř ȧḓḓ-ǿƞ'ş ƞȧḿḗ, ṽḗřşīǿƞ ƞŭḿƀḗř, şŭƥƥǿřŧḗḓ "
-"ȧƥƥŀīƈȧŧīǿƞş, ȧƞḓ ǿŧħḗř ḓḗŧȧīŀş, ȧƞḓ īŧ ẇīŀŀ ḿȧķḗ ẏǿŭř ḗẋŧḗƞşīǿƞ ƥȧƈķȧɠḗ "
-"ƒǿř ḓǿẇƞŀǿȧḓ. Ƞǿŧ ǿƞŀẏ ḓǿḗş īŧ ɠḗƞḗřȧŧḗ ẏǿŭř īƞşŧȧŀŀ ḿȧƞīƒḗşŧ, ƀŭŧ ẏǿŭ ƈȧƞ "
+"ȧƥƥŀīƈȧŧīǿƞş, ȧƞḓ ǿŧħḗř ḓḗŧȧīŀş, ȧƞḓ īŧ ẇīŀŀ ḿȧķḗ ẏǿŭř ḗẋŧḗƞşīǿƞ ƥȧƈķȧɠḗ ƒǿř "
+"ḓǿẇƞŀǿȧḓ. Ƞǿŧ ǿƞŀẏ ḓǿḗş īŧ ɠḗƞḗřȧŧḗ ẏǿŭř īƞşŧȧŀŀ ḿȧƞīƒḗşŧ, ƀŭŧ ẏǿŭ ƈȧƞ "
 "şḗŀḗƈŧ ƈǿḿḿǿƞ īƞŧḗřƒȧƈḗ ḗŀḗḿḗƞŧş ŀīķḗ ŧǿǿŀƀȧřş, şīḓḗƀȧřş, ȧƞḓ ƈǿƞŧḗẋŧ ḿḗƞŭş "
 "ŧǿ ḿȧķḗ ȧ ẇǿřķīƞɠ ḗẋŧḗƞşīǿƞ şķḗŀḗŧǿƞ. Ẇḗ'řḗ ƥřȧƈŧīƈȧŀŀẏ ẇřīŧīƞɠ ẏǿŭř "
 "ḗẋŧḗƞşīǿƞ ƒǿř ẏǿŭ!"
@@ -6975,12 +6981,12 @@ msgid ""
 "\">How-to Library</a> is full of tutorials, walkthroughs, videos, and "
 "articles written by smart people on extension development and best practices."
 msgstr ""
-"Ẇḗ ȧŀşǿ ħȧṽḗ ŧẇǿ ȧřḗȧş ħḗřḗ īƞ ŧħḗ Ħŭƀ ŧħȧŧ ḿȧẏ ħḗŀƥ ẏǿŭ ǿŭŧ: ŧħḗ <a href=\"%"
-"(base_docs)sreference\">ȦƤĪ &amp; Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗş</a> ƥȧɠḗ ħȧş ŀīƞķş ŧǿ "
-"ǿƒƒīƈīȧŀ ḓǿƈŭḿḗƞŧȧŧīǿƞ ƒǿř ḗẋŧḗƞşīǿƞ ŀȧƞɠŭȧɠḗş ȧƞḓ ȦƤĪş ŀīķḗ ĴȧṽȧŞƈřīƥŧ, "
-"ẊŬĿ, ẊƤƇǾḾ, ȧƞḓ ƑŬḖĿ. Şḗƈǿƞḓŀẏ, ŧħḗ <a href=\"%(base_docs)show-to\">Ħǿẇ-ŧǿ "
-"Ŀīƀřȧřẏ</a> īş ƒŭŀŀ ǿƒ ŧŭŧǿřīȧŀş, ẇȧŀķŧħřǿŭɠħş, ṽīḓḗǿş, ȧƞḓ ȧřŧīƈŀḗş ẇřīŧŧḗƞ "
-"ƀẏ şḿȧřŧ ƥḗǿƥŀḗ ǿƞ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ȧƞḓ ƀḗşŧ ƥřȧƈŧīƈḗş."
+"Ẇḗ ȧŀşǿ ħȧṽḗ ŧẇǿ ȧřḗȧş ħḗřḗ īƞ ŧħḗ Ħŭƀ ŧħȧŧ ḿȧẏ ħḗŀƥ ẏǿŭ ǿŭŧ: ŧħḗ <a "
+"href=\"%(base_docs)sreference\">ȦƤĪ &amp; Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗş</a> ƥȧɠḗ ħȧş "
+"ŀīƞķş ŧǿ ǿƒƒīƈīȧŀ ḓǿƈŭḿḗƞŧȧŧīǿƞ ƒǿř ḗẋŧḗƞşīǿƞ ŀȧƞɠŭȧɠḗş ȧƞḓ ȦƤĪş ŀīķḗ "
+"ĴȧṽȧŞƈřīƥŧ, ẊŬĿ, ẊƤƇǾḾ, ȧƞḓ ƑŬḖĿ. Şḗƈǿƞḓŀẏ, ŧħḗ <a href=\"%(base_docs)show-"
+"to\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a> īş ƒŭŀŀ ǿƒ ŧŭŧǿřīȧŀş, ẇȧŀķŧħřǿŭɠħş, ṽīḓḗǿş, ȧƞḓ "
+"ȧřŧīƈŀḗş ẇřīŧŧḗƞ ƀẏ şḿȧřŧ ƥḗǿƥŀḗ ǿƞ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ȧƞḓ ƀḗşŧ ƥřȧƈŧīƈḗş."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:78
 msgid "View the References"
@@ -6999,9 +7005,9 @@ msgid ""
 "href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
 msgstr ""
 "Īƒ ẏǿŭ ȧŀřḗȧḓẏ ķƞǿẇ ẇħȧŧ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř, ĵŭşŧ <a href=\"/en-"
-"US/developers/search\">şḗȧřƈħ ƒǿř īŧ!</a> Ǿŭř şḗȧřƈħ ẇīŀŀ şƈǿŭř ŧħḗ ƀḗşŧ "
-"ȧḓḓ-ǿƞ řḗşǿŭřƈḗş ŧǿ ƒīƞḓ ŧħȧŧ ḿīşşīƞɠ īƞŧḗřƒȧƈḗ ǿř ƈǿḿḿǿƞ ƥřǿƀŀḗḿ ẏǿŭ'řḗ "
-"ħȧṽīƞɠ. Īƒ şḗȧřƈħ īşƞ'ŧ ƈŭŧŧīƞɠ īŧ, ƒḗḗŀ ƒřḗḗ ŧǿ <a "
+"US/developers/search\">şḗȧřƈħ ƒǿř īŧ!</a> Ǿŭř şḗȧřƈħ ẇīŀŀ şƈǿŭř ŧħḗ ƀḗşŧ ȧḓḓ-"
+"ǿƞ řḗşǿŭřƈḗş ŧǿ ƒīƞḓ ŧħȧŧ ḿīşşīƞɠ īƞŧḗřƒȧƈḗ ǿř ƈǿḿḿǿƞ ƥřǿƀŀḗḿ ẏǿŭ'řḗ ħȧṽīƞɠ. "
+"Īƒ şḗȧřƈħ īşƞ'ŧ ƈŭŧŧīƞɠ īŧ, ƒḗḗŀ ƒřḗḗ ŧǿ <a "
 "href=\"https://forums.addons.mozilla.org\">ȧşķ ƒǿř ħḗŀƥ</a> īƞ ǿŭř ƒǿřŭḿş."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:89
@@ -7106,9 +7112,9 @@ msgid ""
 "the circle of life."
 msgstr ""
 "Īƒ ẏǿŭ'řḗ ƒḗḗŀīƞɠ ŧȧŀķȧŧīṽḗ, ẇḗ'ḓ ŀǿṽḗ ŧǿ <a "
-"href=\"https://forums.addons.mozilla.org\">ħḗȧř ẏǿŭř ƒḗḗḓƀȧƈķ</a> ǿƞ ħǿẇ ẏǿŭř "
-"ḗẋƥḗřīḗƞƈḗ ƈřḗȧŧīƞɠ ȧƞ ȧḓḓ-ǿƞ ẇȧş. Ħḗȧřīƞɠ ẇħȧŧ ƞḗẇ ḓḗṽḗŀǿƥḗřş şŧřŭɠɠŀḗ ẇīŧħ "
-"ħḗŀƥş ŭş ḿȧķḗ ŧħḗ ḗẋƥḗřīḗƞƈḗ ƀḗŧŧḗř ƒǿř ƒŭŧŭřḗ ɠḗƞḗřȧŧīǿƞş ǿƒ ȧḓḓ-ǿƞ "
+"href=\"https://forums.addons.mozilla.org\">ħḗȧř ẏǿŭř ƒḗḗḓƀȧƈķ</a> ǿƞ ħǿẇ "
+"ẏǿŭř ḗẋƥḗřīḗƞƈḗ ƈřḗȧŧīƞɠ ȧƞ ȧḓḓ-ǿƞ ẇȧş. Ħḗȧřīƞɠ ẇħȧŧ ƞḗẇ ḓḗṽḗŀǿƥḗřş şŧřŭɠɠŀḗ "
+"ẇīŧħ ħḗŀƥş ŭş ḿȧķḗ ŧħḗ ḗẋƥḗřīḗƞƈḗ ƀḗŧŧḗř ƒǿř ƒŭŧŭřḗ ɠḗƞḗřȧŧīǿƞş ǿƒ ȧḓḓ-ǿƞ "
 "īƞƞǿṽȧŧǿřş. Ẇħḗŧħḗř ẏǿŭ ẇȧƞŧ ŧǿ ƈǿḿḿḗƞŧ ǿƞ ŧħḗ ƥŀȧŧƒǿřḿ, ŧħḗ ḓǿƈŭḿḗƞŧȧŧīǿƞ, "
 "ǿř ŧħḗ ẇḗƀşīŧḗ, ẇḗ'ŀŀ ŀīşŧḗƞ. Ɓḗŧŧḗř ẏḗŧ, şīƞƈḗ Ḿǿzīŀŀȧ īş ǿƥḗƞ, ẏǿŭ ḿīɠħŧ "
 "ḗṽḗƞ ƀḗ ȧƀŀḗ ŧǿ ƒīẋ ŧħȧŧ ƀŭɠ ǿř ŀȧƈķ ǿƒ ḓǿƈŭḿḗƞŧȧŧīǿƞ ẏǿŭřşḗŀƒ! Īŧ'ş ŀīķḗ "
@@ -7386,8 +7392,8 @@ msgid ""
 "and helpful development tools."
 msgstr ""
 "Ŧħīş ȧřŧīƈŀḗ ɠīṽḗş şŭɠɠḗşŧīǿƞş ǿƞ ħǿẇ ŧǿ şḗŧ ŭƥ ẏǿŭř Ḿǿzīŀŀȧ ȧƥƥŀīƈȧŧīǿƞ ƒǿř "
-"ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ, īƞƈŀŭḓīƞɠ şḗŧŧīƞɠ ŭƥ ȧ ƥřǿƒīŀḗ, ƈħȧƞɠīƞɠ "
-"ƥřḗƒḗřḗƞƈḗş, ȧƞḓ ħḗŀƥƒŭŀ ḓḗṽḗŀǿƥḿḗƞŧ ŧǿǿŀş."
+"ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ, īƞƈŀŭḓīƞɠ şḗŧŧīƞɠ ŭƥ ȧ ƥřǿƒīŀḗ, ƈħȧƞɠīƞɠ ƥřḗƒḗřḗƞƈḗş, "
+"ȧƞḓ ħḗŀƥƒŭŀ ḓḗṽḗŀǿƥḿḗƞŧ ŧǿǿŀş."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
 msgid "Building an Extension"
@@ -7420,8 +7426,8 @@ msgid ""
 "This document explains install manifests \"install.rdf\" and all of "
 "properties available for use in your add-on."
 msgstr ""
-"Ŧħīş ḓǿƈŭḿḗƞŧ ḗẋƥŀȧīƞş īƞşŧȧŀŀ ḿȧƞīƒḗşŧş \"īƞşŧȧŀŀ.řḓƒ\" ȧƞḓ ȧŀŀ ǿƒ ƥřǿƥḗřŧīḗş "
-"ȧṽȧīŀȧƀŀḗ ƒǿř ŭşḗ īƞ ẏǿŭř ȧḓḓ-ǿƞ."
+"Ŧħīş ḓǿƈŭḿḗƞŧ ḗẋƥŀȧīƞş īƞşŧȧŀŀ ḿȧƞīƒḗşŧş \"īƞşŧȧŀŀ.řḓƒ\" ȧƞḓ ȧŀŀ ǿƒ "
+"ƥřǿƥḗřŧīḗş ȧṽȧīŀȧƀŀḗ ƒǿř ŭşḗ īƞ ẏǿŭř ȧḓḓ-ǿƞ."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:88
 msgid "Other Tutorials"
@@ -7542,8 +7548,8 @@ msgid ""
 "Find information on Search Plug-ins, Jetpack, Themes, and other types of add-"
 "ons here."
 msgstr ""
-"Ƒīƞḓ īƞƒǿřḿȧŧīǿƞ ǿƞ Şḗȧřƈħ Ƥŀŭɠ-īƞş, Ĵḗŧƥȧƈķ, Ŧħḗḿḗş, ȧƞḓ ǿŧħḗř ŧẏƥḗş ǿƒ "
-"ȧḓḓ-ǿƞş ħḗřḗ."
+"Ƒīƞḓ īƞƒǿřḿȧŧīǿƞ ǿƞ Şḗȧřƈħ Ƥŀŭɠ-īƞş, Ĵḗŧƥȧƈķ, Ŧħḗḿḗş, ȧƞḓ ǿŧħḗř ŧẏƥḗş ǿƒ ȧḓḓ-"
+"ǿƞş ħḗřḗ."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:17
 msgid "Jetpack"
@@ -7727,8 +7733,8 @@ msgid ""
 "containing the text \"Hello, World!\""
 msgstr ""
 "Ŧħīş ŧŭŧǿřīȧŀ ẇīŀŀ ŧȧķḗ ẏǿŭ ŧħřǿŭɠħ ŧħḗ şŧḗƥş řḗɋŭīřḗḓ ŧǿ ƀŭīŀḓ ȧ ṽḗřẏ ƀȧşīƈ "
-"ḗẋŧḗƞşīǿƞ - ǿƞḗ ẇħīƈħ ȧḓḓş ȧ şŧȧŧŭş ƀȧř ƥȧƞḗŀ ŧǿ ŧħḗ Ŧħŭƞḓḗřƀīřḓ Ḿȧīŀ "
-"Ƈŀīḗƞŧ ƈǿƞŧȧīƞīƞɠ ŧħḗ ŧḗẋŧ \"Ħḗŀŀǿ, Ẇǿřŀḓ!\""
+"ḗẋŧḗƞşīǿƞ - ǿƞḗ ẇħīƈħ ȧḓḓş ȧ şŧȧŧŭş ƀȧř ƥȧƞḗŀ ŧǿ ŧħḗ Ŧħŭƞḓḗřƀīřḓ Ḿȧīŀ Ƈŀīḗƞŧ "
+"ƈǿƞŧȧīƞīƞɠ ŧħḗ ŧḗẋŧ \"Ħḗŀŀǿ, Ẇǿřŀḓ!\""
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:37
 msgid "An Overview of Thunderbird Components"
@@ -7843,8 +7849,8 @@ msgid ""
 "Browse through <a href=\"%(link_reference)s\">API & Language References</a> "
 "to find that interface you hope exists"
 msgstr ""
-"Ɓřǿẇşḗ ŧħřǿŭɠħ <a href=\"%(link_reference)s\">ȦƤĪ & Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗş</a> ŧǿ "
-"ƒīƞḓ ŧħȧŧ īƞŧḗřƒȧƈḗ ẏǿŭ ħǿƥḗ ḗẋīşŧş"
+"Ɓřǿẇşḗ ŧħřǿŭɠħ <a href=\"%(link_reference)s\">ȦƤĪ & Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗş</a> "
+"ŧǿ ƒīƞḓ ŧħȧŧ īƞŧḗřƒȧƈḗ ẏǿŭ ħǿƥḗ ḗẋīşŧş"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:48
 #: apps/devhub/templates/devhub/docs/reference.html:318
@@ -7915,9 +7921,9 @@ msgid ""
 "listing page."
 msgstr ""
 "Īƒ ẏǿŭ ħȧṽḗ ȧ şŭƥƥǿřŧ ɋŭḗşŧīǿƞ ȧƀǿŭŧ ȧ ƥȧřŧīƈŭŀȧř ȧḓḓ-ǿƞ, şŭƈħ ȧş \"ħǿẇ ḓǿ Ī "
-"ŭşḗ ŧħīş ȧḓḓ-ǿƞ?\" ǿř \"ẇħẏ ḓǿḗşƞ'ŧ ŧħīş ẇǿřķ ƥřǿƥḗřŀẏ?\", ƥŀḗȧşḗ ƈǿƞŧȧƈŧ ŧħȧŧ "
-"ȧḓḓ-ǿƞ'ş ȧŭŧħǿř ŧħřǿŭɠħ ŧħḗ şŭƥƥǿřŧ ƈħȧƞƞḗŀş ŀīşŧḗḓ ǿƞ ŧħḗ ȧḓḓ-ǿƞ'ş ŀīşŧīƞɠ "
-"ƥȧɠḗ."
+"ŭşḗ ŧħīş ȧḓḓ-ǿƞ?\" ǿř \"ẇħẏ ḓǿḗşƞ'ŧ ŧħīş ẇǿřķ ƥřǿƥḗřŀẏ?\", ƥŀḗȧşḗ ƈǿƞŧȧƈŧ "
+"ŧħȧŧ ȧḓḓ-ǿƞ'ş ȧŭŧħǿř ŧħřǿŭɠħ ŧħḗ şŭƥƥǿřŧ ƈħȧƞƞḗŀş ŀīşŧḗḓ ǿƞ ŧħḗ ȧḓḓ-ǿƞ'ş "
+"ŀīşŧīƞɠ ƥȧɠḗ."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
@@ -7938,8 +7944,8 @@ msgstr ""
 "Īƒ ẏǿŭ ħȧṽḗ ȧ ɋŭḗşŧīǿƞ ȧƀǿŭŧ ȧƞ Ḗḓīŧǿř'ş řḗṽīḗẇ ǿƒ ȧƞ ȧḓḓ-ǿƞ ǿř ẇȧƞŧ ŧǿ "
 "řḗƥǿřŧ ȧ ƥǿŀīƈẏ ṽīǿŀȧŧīǿƞ, ƥŀḗȧşḗ ḗḿȧīŀ %(mail_editors)s. <strong>Ȧŀḿǿşŧ ȧŀŀ "
 "ȧḓḓ-ǿƞ řḗƥǿřŧş ƒȧŀŀ ŭƞḓḗř ŧħīş ƈȧŧḗɠǿřẏ.</strong> Ƥŀḗȧşḗ ƀḗ şŭřḗ ŧǿ īƞƈŀŭḓḗ "
-"ȧ ŀīƞķ ŧǿ ŧħḗ ȧḓḓ-ǿƞ īƞ ɋŭḗşŧīǿƞ ȧƞḓ ȧ ḓḗŧȧīŀḗḓ ḓḗşƈřīƥŧīǿƞ ǿƒ ẏǿŭř "
-"ɋŭḗşŧīǿƞ ǿř ƈǿḿḿḗƞŧ."
+"ȧ ŀīƞķ ŧǿ ŧħḗ ȧḓḓ-ǿƞ īƞ ɋŭḗşŧīǿƞ ȧƞḓ ȧ ḓḗŧȧīŀḗḓ ḓḗşƈřīƥŧīǿƞ ǿƒ ẏǿŭř ɋŭḗşŧīǿƞ "
+"ǿř ƈǿḿḿḗƞŧ."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
@@ -7964,8 +7970,8 @@ msgstr ""
 "ẇīŧħ ŧħḗ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗř ŧǿ ƈǿřřḗƈŧ ŧħḗ īşşŭḗ ȧş şǿǿƞ ȧş ƥǿşşīƀŀḗ. Ȧḓḓ-ǿƞ "
 "şḗƈŭřīŧẏ īşşŭḗş ƈȧƞ ƀḗ řḗƥǿřŧḗḓ <a "
 "href=\"http://www.mozilla.org/projects/security/security-bugs-"
-"policy.html\">ƈǿƞƒīḓḗƞŧīȧŀŀẏ</a> īƞ <a href=\"%(link_bugzilla)s\">Ɓŭɠzīŀŀȧ</a> "
-"ǿř ƀẏ ḗḿȧīŀīƞɠ %(mail_admins)s."
+"policy.html\">ƈǿƞƒīḓḗƞŧīȧŀŀẏ</a> īƞ <a "
+"href=\"%(link_bugzilla)s\">Ɓŭɠzīŀŀȧ</a> ǿř ƀẏ ḗḿȧīŀīƞɠ %(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
@@ -7978,9 +7984,9 @@ msgid ""
 "file a bug report</a> in Bugzilla, including the location of the problem and "
 "how you encountered it."
 msgstr ""
-"Īƒ ẏǿŭ'ṽḗ ƒǿŭƞḓ ȧ ƥřǿƀŀḗḿ ẇīŧħ ŧħḗ şīŧḗ, ẇḗ'ḓ ŀǿṽḗ ŧǿ ƒīẋ īŧ. Ƥŀḗȧşḗ <a href"
-"=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">ƒīŀ"
-"ḗ ȧ ƀŭɠ řḗƥǿřŧ</a> īƞ Ɓŭɠzīŀŀȧ, īƞƈŀŭḓīƞɠ ŧħḗ ŀǿƈȧŧīǿƞ ǿƒ ŧħḗ ƥřǿƀŀḗḿ ȧƞḓ "
+"Īƒ ẏǿŭ'ṽḗ ƒǿŭƞḓ ȧ ƥřǿƀŀḗḿ ẇīŧħ ŧħḗ şīŧḗ, ẇḗ'ḓ ŀǿṽḗ ŧǿ ƒīẋ īŧ. Ƥŀḗȧşḗ <a href="
+"\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">"
+"ƒīŀḗ ȧ ƀŭɠ řḗƥǿřŧ</a> īƞ Ɓŭɠzīŀŀȧ, īƞƈŀŭḓīƞɠ ŧħḗ ŀǿƈȧŧīǿƞ ǿƒ ŧħḗ ƥřǿƀŀḗḿ ȧƞḓ "
 "ħǿẇ ẏǿŭ ḗƞƈǿŭƞŧḗřḗḓ īŧ."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3
@@ -8065,11 +8071,11 @@ msgid ""
 "and not version number, so users will always get the most recent channel "
 "update regardless of any kind of alphabetical sorting."
 msgstr ""
-"Ẇħīŀḗ ẇḗ ƈȧŀŀ ŧħḗşḗ \"Ɓḗŧȧ ṽḗřşīǿƞş\", ẏǿŭ ƈȧƞ ŭşḗ ŧħīş ƈħȧƞƞḗŀ ƒǿř ƞīɠħŧŀīḗş, "
-"ǿř ȧŀƥħȧş, ǿř ƥřḗřḗŀḗȧşḗ ṽḗřşīǿƞş ȧş ẏǿŭ ẇīşħ. Ƥŀḗȧşḗ ƞǿŧḗ ŧħȧŧ ŧħḗřḗ īş "
-"ǿƞŀẏ ǿƞḗ ƈħȧƞƞḗŀ ƒǿř ŧħīş ƥŭřƥǿşḗ ȧƞḓ ȧŀŀ ǿƒ ẏǿŭř ŭşḗřş ǿƞ ŧħīş ƈħȧƞƞḗŀ ẇīŀŀ "
-"řḗƈḗīṽḗ ŧħḗ ŀȧŧḗşŧ ȧḓḓ-ǿƞş şŭƀḿīŧŧḗḓ. Ƒǿř īƞşŧȧƞƈḗ, īƒ ẏǿŭ ŭƥŀǿȧḓ "
-"<code>1.0ƀḗŧȧ1</code> ŧǿ ŧħḗ řḗŀḗȧşḗ ƈħȧƞƞḗŀ ȧƞḓ ŧħḗƞ ŭƥŀǿȧḓ "
+"Ẇħīŀḗ ẇḗ ƈȧŀŀ ŧħḗşḗ \"Ɓḗŧȧ ṽḗřşīǿƞş\", ẏǿŭ ƈȧƞ ŭşḗ ŧħīş ƈħȧƞƞḗŀ ƒǿř "
+"ƞīɠħŧŀīḗş, ǿř ȧŀƥħȧş, ǿř ƥřḗřḗŀḗȧşḗ ṽḗřşīǿƞş ȧş ẏǿŭ ẇīşħ. Ƥŀḗȧşḗ ƞǿŧḗ ŧħȧŧ "
+"ŧħḗřḗ īş ǿƞŀẏ ǿƞḗ ƈħȧƞƞḗŀ ƒǿř ŧħīş ƥŭřƥǿşḗ ȧƞḓ ȧŀŀ ǿƒ ẏǿŭř ŭşḗřş ǿƞ ŧħīş "
+"ƈħȧƞƞḗŀ ẇīŀŀ řḗƈḗīṽḗ ŧħḗ ŀȧŧḗşŧ ȧḓḓ-ǿƞş şŭƀḿīŧŧḗḓ. Ƒǿř īƞşŧȧƞƈḗ, īƒ ẏǿŭ "
+"ŭƥŀǿȧḓ <code>1.0ƀḗŧȧ1</code> ŧǿ ŧħḗ řḗŀḗȧşḗ ƈħȧƞƞḗŀ ȧƞḓ ŧħḗƞ ŭƥŀǿȧḓ "
 "<code>1.1ȧŀƥħȧ1</code>, ȧŀŀ ŭşḗřş ǿƒ <code>1.0ƀḗŧȧ1</code> ẇīŀŀ ƀḗ ǿƒƒḗřḗḓ "
 "ȧƞ ŭƥɠřȧḓḗ ŧǿ <code>1.1ȧŀƥħȧ1</code>. Ŭƥḓȧŧḗş ȧřḗ ƥŭşħḗḓ ƀẏ şŭƀḿīşşīǿƞ ḓȧŧḗ "
 "ȧƞḓ ƞǿŧ ṽḗřşīǿƞ ƞŭḿƀḗř, şǿ ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ɠḗŧ ŧħḗ ḿǿşŧ řḗƈḗƞŧ ƈħȧƞƞḗŀ "
@@ -8122,8 +8128,8 @@ msgid ""
 "current owner."
 msgstr ""
 "Ḿǿzīŀŀȧ ƈȧƞ ȧşşīşŧ ẇīŧħ ɠřȧƞŧīƞɠ ȧḓḓīŧīǿƞȧŀ ƥḗřḿīşşīǿƞş ǿƒ ȧƞ ȧḓḓ-ǿƞ'ş "
-"ŀīşŧīƞɠ īƒ <a href=\"%(link_contact)s\">ƈǿƞŧȧƈŧḗḓ</a> ƀẏ ŧħḗ ȧḓḓ-ǿƞ'ş ƈŭřřḗƞŧ "
-"ǿẇƞḗř."
+"ŀīşŧīƞɠ īƒ <a href=\"%(link_contact)s\">ƈǿƞŧȧƈŧḗḓ</a> ƀẏ ŧħḗ ȧḓḓ-ǿƞ'ş "
+"ƈŭřřḗƞŧ ǿẇƞḗř."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid ""
@@ -8144,8 +8150,8 @@ msgid ""
 "but negative reviews will not be removed unless they provide false "
 "information."
 msgstr ""
-"Řḗṽīḗẇş ḿŭşŧ ƒǿŀŀǿẇ ŧħḗ <a href=\"%(link_guidelines)s\">řḗṽīḗẇ ɠŭīḓḗŀīƞḗş</a>. "
-"Řḗṽīḗẇş ŧħȧŧ ḓǿ ƞǿŧ ḿḗḗŧ ŧħḗşḗ ɠŭīḓḗŀīƞḗş ḿȧẏ ƀḗ ƒŀȧɠɠḗḓ ƒǿř ḿǿḓḗřȧŧīǿƞ, "
+"Řḗṽīḗẇş ḿŭşŧ ƒǿŀŀǿẇ ŧħḗ <a href=\"%(link_guidelines)s\">řḗṽīḗẇ ɠŭīḓḗŀīƞḗş</a>"
+". Řḗṽīḗẇş ŧħȧŧ ḓǿ ƞǿŧ ḿḗḗŧ ŧħḗşḗ ɠŭīḓḗŀīƞḗş ḿȧẏ ƀḗ ƒŀȧɠɠḗḓ ƒǿř ḿǿḓḗřȧŧīǿƞ, "
 "ƀŭŧ ƞḗɠȧŧīṽḗ řḗṽīḗẇş ẇīŀŀ ƞǿŧ ƀḗ řḗḿǿṽḗḓ ŭƞŀḗşş ŧħḗẏ ƥřǿṽīḓḗ ƒȧŀşḗ "
 "īƞƒǿřḿȧŧīǿƞ."
 
@@ -8215,9 +8221,9 @@ msgid ""
 "customization and are useful to a wide audience."
 msgstr ""
 "Ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş ȧřḗ ŧǿƥ-ɋŭȧŀīŧẏ ḗẋŧḗƞşīǿƞş ȧƞḓ ŧħḗḿḗş ħīɠħŀīɠħŧḗḓ ǿƞ <a "
-"href=\"%(link_gallery)s\">ȦḾǾ</a>, Ƒīřḗƒǿẋ'ş Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř, ȧƞḓ ȧƈřǿşş ǿŧħḗř "
-"Ḿǿzīŀŀȧ ẇḗƀşīŧḗş. Ŧħḗşḗ ȧḓḓ-ǿƞş şħǿẇƈȧşḗ ŧħḗ ƥǿẇḗř ǿƒ Ƒīřḗƒǿẋ ƈŭşŧǿḿīzȧŧīǿƞ "
-"ȧƞḓ ȧřḗ ŭşḗƒŭŀ ŧǿ ȧ ẇīḓḗ ȧŭḓīḗƞƈḗ."
+"href=\"%(link_gallery)s\">ȦḾǾ</a>, Ƒīřḗƒǿẋ'ş Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř, ȧƞḓ ȧƈřǿşş "
+"ǿŧħḗř Ḿǿzīŀŀȧ ẇḗƀşīŧḗş. Ŧħḗşḗ ȧḓḓ-ǿƞş şħǿẇƈȧşḗ ŧħḗ ƥǿẇḗř ǿƒ Ƒīřḗƒǿẋ "
+"ƈŭşŧǿḿīzȧŧīǿƞ ȧƞḓ ȧřḗ ŭşḗƒŭŀ ŧǿ ȧ ẇīḓḗ ȧŭḓīḗƞƈḗ."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
@@ -8235,9 +8241,9 @@ msgid ""
 "month, and <a href=\"%(link_themes)s\">featured complete themes</a> are "
 "chosen every quarter."
 msgstr ""
-"<a href=\"%(link_featured)s\">Ƒḗȧŧŭřḗḓ ḗẋŧḗƞşīǿƞş</a> ȧřḗ ƈħǿşḗƞ ḗṽḗřẏ ḿǿƞŧħ, "
-"ȧƞḓ <a href=\"%(link_themes)s\">ƒḗȧŧŭřḗḓ ƈǿḿƥŀḗŧḗ ŧħḗḿḗş</a> ȧřḗ ƈħǿşḗƞ ḗṽḗřẏ "
-"ɋŭȧřŧḗř."
+"<a href=\"%(link_featured)s\">Ƒḗȧŧŭřḗḓ ḗẋŧḗƞşīǿƞş</a> ȧřḗ ƈħǿşḗƞ ḗṽḗřẏ "
+"ḿǿƞŧħ, ȧƞḓ <a href=\"%(link_themes)s\">ƒḗȧŧŭřḗḓ ƈǿḿƥŀḗŧḗ ŧħḗḿḗş</a> ȧřḗ "
+"ƈħǿşḗƞ ḗṽḗřẏ ɋŭȧřŧḗř."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
@@ -8292,6 +8298,10 @@ msgstr ""
 "řḗɋŭḗşŧş ḿŭşŧ ƀḗ ƥřǿḿƥŧŀẏ ȧḓḓřḗşşḗḓ ƀẏ ŧħḗ ḓḗṽḗŀǿƥḗř."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
+msgid "The add-on must have a minimum of 2,000 users."
+msgstr "Ŧħḗ ȧḓḓ-ǿƞ ḿŭşŧ ħȧṽḗ ȧ ḿīƞīḿŭḿ ǿƒ 2,000 ŭşḗřş."
+
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid ""
 "The add-on must be compatible with the latest release of Firefox and must be "
 "compatible with beta versions 4 weeks before their final release."
@@ -8299,7 +8309,7 @@ msgstr ""
 "Ŧħḗ ȧḓḓ-ǿƞ ḿŭşŧ ƀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ŧħḗ ŀȧŧḗşŧ řḗŀḗȧşḗ ǿƒ Ƒīřḗƒǿẋ ȧƞḓ ḿŭşŧ ƀḗ "
 "ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ƀḗŧȧ ṽḗřşīǿƞş 4 ẇḗḗķş ƀḗƒǿřḗ ŧħḗīř ƒīƞȧŀ řḗŀḗȧşḗ."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:50
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:51
 msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal "
 "to Firefox's users and be outstanding in nearly every way: user experience, "
@@ -8311,15 +8321,15 @@ msgstr ""
 "ƥḗřƒǿřḿȧƞƈḗ, şḗƈŭřīŧẏ, ȧƞḓ ŭşḗƒŭŀƞḗşş ǿř ḗƞŧḗřŧȧīƞḿḗƞŧ ṽȧŀŭḗ. Ƒḗȧŧŭřḗḓ "
 "ƈǿḿƥŀḗŧḗ ŧħḗḿḗş ḿŭşŧ ȧŀşǿ ƀḗ ṽīşŭȧŀŀẏ ȧƥƥḗȧŀīƞɠ."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:53
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
 msgstr "Ƞǿḿīƞȧŧīƞɠ ȧƞ Ȧḓḓ-ǿƞ"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:56
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "amo-featured at mozilla dot org"
 msgstr "ȧḿǿ-ƒḗȧŧŭřḗḓ ȧŧ ḿǿzīŀŀȧ ḓǿŧ ǿřɠ"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:56
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid ""
 "If you wish to nominate an add-on to be featured and it meets the criteria "
 "above, send an email to %(mail_featured)s with:"
@@ -8327,45 +8337,35 @@ msgstr ""
 "Īƒ ẏǿŭ ẇīşħ ŧǿ ƞǿḿīƞȧŧḗ ȧƞ ȧḓḓ-ǿƞ ŧǿ ƀḗ ƒḗȧŧŭřḗḓ ȧƞḓ īŧ ḿḗḗŧş ŧħḗ ƈřīŧḗřīȧ "
 "ȧƀǿṽḗ, şḗƞḓ ȧƞ ḗḿȧīŀ ŧǿ %(mail_featured)s ẇīŧħ:"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:61
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
 msgstr "ŧħḗ ȧḓḓ-ǿƞ ƞȧḿḗ, ŬŘĿ, ȧƞḓ ẇħḗŧħḗř ẏǿŭ ȧřḗ īŧş ḓḗṽḗŀǿƥḗř"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:62
-msgid "an explanation of why the add-on has wide appeal and should be featured"
-msgstr "ȧƞ ḗẋƥŀȧƞȧŧīǿƞ ǿƒ ẇħẏ ŧħḗ ȧḓḓ-ǿƞ ħȧş ẇīḓḗ ȧƥƥḗȧŀ ȧƞḓ şħǿŭŀḓ ƀḗ ƒḗȧŧŭřḗḓ"
-
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
+msgid ""
+"a short explanation of why the add-on has wide appeal and should be featured"
+msgstr ""
+"ȧ şħǿřŧ ḗẋƥŀȧƞȧŧīǿƞ ǿƒ ẇħẏ ŧħḗ ȧḓḓ-ǿƞ ħȧş ẇīḓḗ ȧƥƥḗȧŀ ȧƞḓ şħǿŭŀḓ ƀḗ ƒḗȧŧŭřḗḓ"
+
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid ""
 "optionally, links to any external reviews or articles mentioning the add-on"
 msgstr ""
 "ǿƥŧīǿƞȧŀŀẏ, ŀīƞķş ŧǿ ȧƞẏ ḗẋŧḗřƞȧŀ řḗṽīḗẇş ǿř ȧřŧīƈŀḗş ḿḗƞŧīǿƞīƞɠ ŧħḗ ȧḓḓ-ǿƞ"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:64
-msgid ""
-"optionally, a video overview/demo/tutorial of the add-on not more than 5 "
-"minutes long"
-msgstr ""
-"ǿƥŧīǿƞȧŀŀẏ, ȧ ṽīḓḗǿ ǿṽḗřṽīḗẇ/demo/tutorial ǿƒ ŧħḗ ȧḓḓ-ǿƞ ƞǿŧ ḿǿřḗ ŧħȧƞ 5 "
-"ḿīƞŭŧḗş ŀǿƞɠ"
-
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
-"Extension nominations are reviewed by the Advisory Board once a month (once "
-"every 3 months for complete theme nominations), and you will receive an "
-"email regarding the decision and any suggestions for improvement. Common "
-"reasons for rejection include lacking wide appeal to consumers, a suboptimal "
-"user experience, quality or security issues, incompatibility, and similarity "
-"to another featured add-on. Rejected add-ons cannot be re-nominated within 3 "
-"months."
+"Add-on nominations are reviewed by the Advisory Board once a month (once "
+"every 3 months for complete theme nominations). Common reasons for rejection "
+"include lacking wide appeal to consumers, a suboptimal user experience, "
+"quality or security issues, incompatibility, and similarity to another "
+"featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Ḗẋŧḗƞşīǿƞ ƞǿḿīƞȧŧīǿƞş ȧřḗ řḗṽīḗẇḗḓ ƀẏ ŧħḗ Ȧḓṽīşǿřẏ Ɓǿȧřḓ ǿƞƈḗ ȧ ḿǿƞŧħ (ǿƞƈḗ "
-"ḗṽḗřẏ 3 ḿǿƞŧħş ƒǿř ƈǿḿƥŀḗŧḗ ŧħḗḿḗ ƞǿḿīƞȧŧīǿƞş), ȧƞḓ ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ "
-"ḗḿȧīŀ řḗɠȧřḓīƞɠ ŧħḗ ḓḗƈīşīǿƞ ȧƞḓ ȧƞẏ şŭɠɠḗşŧīǿƞş ƒǿř īḿƥřǿṽḗḿḗƞŧ. Ƈǿḿḿǿƞ "
-"řḗȧşǿƞş ƒǿř řḗĵḗƈŧīǿƞ īƞƈŀŭḓḗ ŀȧƈķīƞɠ ẇīḓḗ ȧƥƥḗȧŀ ŧǿ ƈǿƞşŭḿḗřş, ȧ şŭƀǿƥŧīḿȧŀ "
-"ŭşḗř ḗẋƥḗřīḗƞƈḗ, ɋŭȧŀīŧẏ ǿř şḗƈŭřīŧẏ īşşŭḗş, īƞƈǿḿƥȧŧīƀīŀīŧẏ, ȧƞḓ "
-"şīḿīŀȧřīŧẏ ŧǿ ȧƞǿŧħḗř ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞ. Řḗĵḗƈŧḗḓ ȧḓḓ-ǿƞş ƈȧƞƞǿŧ ƀḗ "
-"řḗ-ƞǿḿīƞȧŧḗḓ ẇīŧħīƞ 3 ḿǿƞŧħş."
+"Ȧḓḓ-ǿƞ ƞǿḿīƞȧŧīǿƞş ȧřḗ řḗṽīḗẇḗḓ ƀẏ ŧħḗ Ȧḓṽīşǿřẏ Ɓǿȧřḓ ǿƞƈḗ ȧ ḿǿƞŧħ (ǿƞƈḗ "
+"ḗṽḗřẏ 3 ḿǿƞŧħş ƒǿř ƈǿḿƥŀḗŧḗ ŧħḗḿḗ ƞǿḿīƞȧŧīǿƞş). Ƈǿḿḿǿƞ řḗȧşǿƞş ƒǿř řḗĵḗƈŧīǿƞ "
+"īƞƈŀŭḓḗ ŀȧƈķīƞɠ ẇīḓḗ ȧƥƥḗȧŀ ŧǿ ƈǿƞşŭḿḗřş, ȧ şŭƀǿƥŧīḿȧŀ ŭşḗř ḗẋƥḗřīḗƞƈḗ, "
+"ɋŭȧŀīŧẏ ǿř şḗƈŭřīŧẏ īşşŭḗş, īƞƈǿḿƥȧŧīƀīŀīŧẏ, ȧƞḓ şīḿīŀȧřīŧẏ ŧǿ ȧƞǿŧħḗř "
+"ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞ. Řḗĵḗƈŧḗḓ ȧḓḓ-ǿƞş ƈȧƞƞǿŧ ƀḗ řḗ-ƞǿḿīƞȧŧḗḓ ẇīŧħīƞ 3 ḿǿƞŧħş."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8390,8 +8390,8 @@ msgid ""
 msgstr ""
 "Ŀȧƈķ ǿƒ ɠřǿẇŧħ &mdash; Ȧḓḓ-ǿƞş ŧħȧŧ ȧřḗ ƒḗȧŧŭřḗḓ ŧẏƥīƈȧŀŀẏ ḗẋƥḗřīḗƞƈḗ ȧ "
 "şŭƀşŧȧƞŧīȧŀ ɠȧīƞ īƞ ƀǿŧħ ḓǿẇƞŀǿȧḓş ȧƞḓ ȧƈŧīṽḗ ŭşḗřş. Īƒ ȧƞ ȧḓḓ-ǿƞ īş ƞǿŧ "
-"ḓḗḿǿƞşŧřȧŧīƞɠ ɠřǿẇŧħ īƞ ȧƞẏ şŭƀşŧȧƞŧīȧŀ ẇȧẏ, ŧħȧŧ'ş ȧ ɠǿǿḓ īƞḓīƈȧŧǿř ŧħḗ "
-"ȧḓḓ-ǿƞ ḿȧẏ ƞǿŧ ƀḗ ṽḗřẏ ŭşḗƒŭŀ ŧǿ ǿŭř ŭşḗřş."
+"ḓḗḿǿƞşŧřȧŧīƞɠ ɠřǿẇŧħ īƞ ȧƞẏ şŭƀşŧȧƞŧīȧŀ ẇȧẏ, ŧħȧŧ'ş ȧ ɠǿǿḓ īƞḓīƈȧŧǿř ŧħḗ ȧḓḓ-"
+"ǿƞ ḿȧẏ ƞǿŧ ƀḗ ṽḗřẏ ŭşḗƒŭŀ ŧǿ ǿŭř ŭşḗřş."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid ""
@@ -8443,23 +8443,13 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid ""
-"join a monthly conference call to go through the votes and select the next "
-"month's featured add-ons (featured complete themes will be discussed on "
-"every third call)"
-msgstr ""
-"ĵǿīƞ ȧ ḿǿƞŧħŀẏ ƈǿƞƒḗřḗƞƈḗ ƈȧŀŀ ŧǿ ɠǿ ŧħřǿŭɠħ ŧħḗ ṽǿŧḗş ȧƞḓ şḗŀḗƈŧ ŧħḗ ƞḗẋŧ "
-"ḿǿƞŧħ'ş ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş (ƒḗȧŧŭřḗḓ ƈǿḿƥŀḗŧḗ ŧħḗḿḗş ẇīŀŀ ƀḗ ḓīşƈŭşşḗḓ ǿƞ "
-"ḗṽḗřẏ ŧħīřḓ ƈȧŀŀ)"
-
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:111
-msgid ""
 "abstain from voting on add-ons that they have any business or personal "
 "affiliations with, as well as direct competitors of any such add-ons"
 msgstr ""
 "ȧƀşŧȧīƞ ƒřǿḿ ṽǿŧīƞɠ ǿƞ ȧḓḓ-ǿƞş ŧħȧŧ ŧħḗẏ ħȧṽḗ ȧƞẏ ƀŭşīƞḗşş ǿř ƥḗřşǿƞȧŀ "
 "ȧƒƒīŀīȧŧīǿƞş ẇīŧħ, ȧş ẇḗŀŀ ȧş ḓīřḗƈŧ ƈǿḿƥḗŧīŧǿřş ǿƒ ȧƞẏ şŭƈħ ȧḓḓ-ǿƞş"
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:115
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because "
 "of security, privacy, compatibility, or any other reason, but in general it "
@@ -8469,7 +8459,7 @@ msgstr ""
 "ǿƒ şḗƈŭřīŧẏ, ƥřīṽȧƈẏ, ƈǿḿƥȧŧīƀīŀīŧẏ, ǿř ȧƞẏ ǿŧħḗř řḗȧşǿƞ, ƀŭŧ īƞ ɠḗƞḗřȧŀ īŧ "
 "īş ŭƥ ŧǿ ŧħḗ Ɓǿȧřḓ ŧǿ şḗŀḗƈŧ ȧḓḓ-ǿƞş ŧǿ ƒḗȧŧŭřḗ."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:121
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:120
 msgid ""
 "This featured policy only applies to the addons.mozilla.org global list of "
 "featured add-ons. Add-ons featured in other locations are often pulled from "
@@ -8485,17 +8475,17 @@ msgstr ""
 "ḓḗƒȧŭŀŧş, şǿ īƒ ȧ ŀǿƈȧŀḗ ħȧş ǿƥŧḗḓ ŧǿ şḗŀḗƈŧ īŧş ǿẇƞ ƒḗȧŧŭřḗş, şǿḿḗ ǿř ȧŀŀ "
 "ǿƒ ŧħḗ ɠŀǿƀȧŀ ƒḗȧŧŭřḗş ḿȧẏ ƞǿŧ ȧƥƥḗȧř īƞ ŧħȧŧ ŀǿƈȧŀḗ."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:127
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:126
 msgid ""
 "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a "
 "href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next "
 "application period opens."
 msgstr ""
-"Ƒǿŀŀǿẇ ŧħḗ <a href=\"%(link_blog)s\">Ȧḓḓ-ǿƞş Ɓŀǿɠ</a> ǿř <a href=\"%"
-"(link_twitter)s\">@ḿǿzȧḿǿ</a> ǿƞ Ŧẇīŧŧḗř ŧǿ ŀḗȧřƞ ẇħḗƞ ŧħḗ ƞḗẋŧ ȧƥƥŀīƈȧŧīǿƞ "
-"ƥḗřīǿḓ ǿƥḗƞş."
+"Ƒǿŀŀǿẇ ŧħḗ <a href=\"%(link_blog)s\">Ȧḓḓ-ǿƞş Ɓŀǿɠ</a> ǿř <a "
+"href=\"%(link_twitter)s\">@ḿǿzȧḿǿ</a> ǿƞ Ŧẇīŧŧḗř ŧǿ ŀḗȧřƞ ẇħḗƞ ŧħḗ ƞḗẋŧ "
+"ȧƥƥŀīƈȧŧīǿƞ ƥḗřīǿḓ ǿƥḗƞş."
 
-#: apps/devhub/templates/devhub/docs/policies-recommended.html:132
+#: apps/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
 msgstr "Ŀȧşŧ ŭƥḓȧŧḗḓ: Ĵȧƞŭȧřẏ 31, 2013"
 
@@ -8527,8 +8517,7 @@ msgid ""
 msgstr ""
 "<strong><a href=\"#full\">Ƒŭŀŀ Řḗṽīḗẇ</a></strong> &mdash; ȧ ŧħǿřǿŭɠħ "
 "ƒŭƞƈŧīǿƞȧŀ ȧƞḓ ƈǿḓḗ řḗṽīḗẇ ǿƒ ŧħḗ ȧḓḓ-ǿƞ, ȧƥƥřǿƥřīȧŧḗ ƒǿř ȧḓḓ-ǿƞş řḗȧḓẏ ƒǿř "
-"ḓīşŧřīƀŭŧīǿƞ ŧǿ ŧħḗ ḿȧşşḗş. Ȧŀŀ şīŧḗ ƒḗȧŧŭřḗş ȧřḗ ȧṽȧīŀȧƀŀḗ ŧǿ ŧħḗşḗ "
-"ȧḓḓ-ǿƞş."
+"ḓīşŧřīƀŭŧīǿƞ ŧǿ ŧħḗ ḿȧşşḗş. Ȧŀŀ şīŧḗ ƒḗȧŧŭřḗş ȧřḗ ȧṽȧīŀȧƀŀḗ ŧǿ ŧħḗşḗ ȧḓḓ-ǿƞş."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:24
 msgid ""
@@ -8699,9 +8688,10 @@ msgid ""
 "binary or obfuscated code, are allowed under certain conditions outlined "
 "below."
 msgstr ""
-"Ƒǿř īƞƒǿřḿȧŧīǿƞ ǿƞ ħǿẇ ŧǿ ȧṽǿīḓ ŧħḗşḗ ƥřǿƀŀḗḿş, ƥŀḗȧşḗ şḗḗ ǿŭř <a href=\"%"
-"(link_howto)s\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a>. Şǿḿḗ ǿƒ ŧħḗşḗ ƥřȧƈŧīƈḗş, şŭƈħ ȧş ƀīƞȧřẏ "
-"ǿř ǿƀƒŭşƈȧŧḗḓ ƈǿḓḗ, ȧřḗ ȧŀŀǿẇḗḓ ŭƞḓḗř ƈḗřŧȧīƞ ƈǿƞḓīŧīǿƞş ǿŭŧŀīƞḗḓ ƀḗŀǿẇ."
+"Ƒǿř īƞƒǿřḿȧŧīǿƞ ǿƞ ħǿẇ ŧǿ ȧṽǿīḓ ŧħḗşḗ ƥřǿƀŀḗḿş, ƥŀḗȧşḗ şḗḗ ǿŭř <a "
+"href=\"%(link_howto)s\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a>. Şǿḿḗ ǿƒ ŧħḗşḗ ƥřȧƈŧīƈḗş, şŭƈħ ȧş "
+"ƀīƞȧřẏ ǿř ǿƀƒŭşƈȧŧḗḓ ƈǿḓḗ, ȧřḗ ȧŀŀǿẇḗḓ ŭƞḓḗř ƈḗřŧȧīƞ ƈǿƞḓīŧīǿƞş ǿŭŧŀīƞḗḓ "
+"ƀḗŀǿẇ."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:123
 msgid ""
@@ -8726,8 +8716,8 @@ msgid ""
 msgstr ""
 "Īƒ ŧħḗ ȧḓḓ-ǿƞ īş şīŧḗ-şƥḗƈīƒīƈ, īŧ īş řḗƈǿḿḿḗƞḓḗḓ ŧħȧŧ ȧ ŧḗşŧ ȧƈƈǿŭƞŧ īş "
 "ƥřǿṽīḓḗḓ ƒǿř ŭşḗ ḓŭřīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş. Ȧḓḓīŧīǿƞȧŀŀẏ, īƞƈŀŭḓīƞɠ ḓḗŧȧīŀḗḓ "
-"ŧḗşŧīƞɠ īƞşŧřŭƈŧīǿƞş ẇīŀŀ ȧŀŀǿẇ ȧƞ ḗḓīŧǿř ŧǿ ƀḗŧŧḗř ŭƞḓḗřşŧȧƞḓ ħǿẇ ŧħḗ "
-"ȧḓḓ-ǿƞ ƒŭƞƈŧīǿƞş ȧƞḓ ḗẋƥḗḓīŧḗ ŧħḗ ŧḗşŧīƞɠ ƥřǿƈḗşş. Ŧħīş īƞƒǿřḿȧŧīǿƞ ƈȧƞ ƀḗ "
+"ŧḗşŧīƞɠ īƞşŧřŭƈŧīǿƞş ẇīŀŀ ȧŀŀǿẇ ȧƞ ḗḓīŧǿř ŧǿ ƀḗŧŧḗř ŭƞḓḗřşŧȧƞḓ ħǿẇ ŧħḗ ȧḓḓ-"
+"ǿƞ ƒŭƞƈŧīǿƞş ȧƞḓ ḗẋƥḗḓīŧḗ ŧħḗ ŧḗşŧīƞɠ ƥřǿƈḗşş. Ŧħīş īƞƒǿřḿȧŧīǿƞ ƈȧƞ ƀḗ "
 "ƥŀȧƈḗḓ īƞ ŧħḗ Ƞǿŧḗş ŧǿ Řḗṽīḗẇḗř ƒīḗŀḓ ẇħḗƞ ḗḓīŧīƞɠ ȧ ṽḗřşīǿƞ īƞ ŧħḗ "
 "Ḓḗṽḗŀǿƥḗř Ħŭƀ."
 
@@ -8872,9 +8862,9 @@ msgid ""
 "download and directory assistants, child pornography finders, etc."
 msgstr ""
 "Īŀŀḗɠȧŀ ȧƞḓ ƈřīḿīƞȧŀ ȧḓḓ-ǿƞş, şŭƈħ ȧş <a "
-"href=\"http://en.wikipedia.org/wiki/Click_fraud\">ƈŀīƈķ ƒřȧŭḓ</a> ɠḗƞḗřȧŧǿřş, "
-"<a href=\"http://en.wikipedia.org/wiki/Warez\">ẇȧřḗz</a> ḓǿẇƞŀǿȧḓ ȧƞḓ "
-"ḓīřḗƈŧǿřẏ ȧşşīşŧȧƞŧş, ƈħīŀḓ ƥǿřƞǿɠřȧƥħẏ ƒīƞḓḗřş, ḗŧƈ."
+"href=\"http://en.wikipedia.org/wiki/Click_fraud\">ƈŀīƈķ ƒřȧŭḓ</a> "
+"ɠḗƞḗřȧŧǿřş, <a href=\"http://en.wikipedia.org/wiki/Warez\">ẇȧřḗz</a> "
+"ḓǿẇƞŀǿȧḓ ȧƞḓ ḓīřḗƈŧǿřẏ ȧşşīşŧȧƞŧş, ƈħīŀḓ ƥǿřƞǿɠřȧƥħẏ ƒīƞḓḗřş, ḗŧƈ."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid ""
@@ -8889,8 +8879,8 @@ msgid ""
 "Add-ons that, upon installation, auto-install or launch installers of non-"
 "Firefox software"
 msgstr ""
-"Ȧḓḓ-ǿƞş ŧħȧŧ, ŭƥǿƞ īƞşŧȧŀŀȧŧīǿƞ, ȧŭŧǿ-īƞşŧȧŀŀ ǿř ŀȧŭƞƈħ īƞşŧȧŀŀḗřş ǿƒ "
-"ƞǿƞ-Ƒīřḗƒǿẋ şǿƒŧẇȧřḗ"
+"Ȧḓḓ-ǿƞş ŧħȧŧ, ŭƥǿƞ īƞşŧȧŀŀȧŧīǿƞ, ȧŭŧǿ-īƞşŧȧŀŀ ǿř ŀȧŭƞƈħ īƞşŧȧŀŀḗřş ǿƒ ƞǿƞ-"
+"Ƒīřḗƒǿẋ şǿƒŧẇȧřḗ"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid ""
@@ -8949,16 +8939,16 @@ msgid ""
 "settings if they were changed.</li> </ul> <p>*Unexpected features are those "
 "that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p> Ẇħḗƞḗṽḗř ȧƞ ȧḓḓ-ǿƞ īƞƈŀŭḓḗş ȧƞẏ ŭƞḗẋƥḗƈŧḗḓ* ƒḗȧŧŭřḗ ŧħȧŧ </p> <ul> "
-"<li>ƈǿḿƥřǿḿīşḗş ŭşḗř ƥřīṽȧƈẏ ǿř şḗƈŭřīŧẏ (ŀīķḗ şḗƞḓīƞɠ ḓȧŧȧ ŧǿ ŧħīřḓ "
+"<p> Ẇħḗƞḗṽḗř ȧƞ ȧḓḓ-ǿƞ īƞƈŀŭḓḗş ȧƞẏ ŭƞḗẋƥḗƈŧḗḓ* ƒḗȧŧŭřḗ ŧħȧŧ </p> <ul> <li>"
+"ƈǿḿƥřǿḿīşḗş ŭşḗř ƥřīṽȧƈẏ ǿř şḗƈŭřīŧẏ (ŀīķḗ şḗƞḓīƞɠ ḓȧŧȧ ŧǿ ŧħīřḓ "
 "ƥȧřŧīḗş),</li> <li>ƈħȧƞɠḗş ḓḗƒȧŭŀŧ şḗŧŧīƞɠş ŀīķḗ ŧħḗ ħǿḿḗƥȧɠḗ ǿř şḗȧřƈħ "
 "ḗƞɠīƞḗ, ǿř</li> <li>ƈħȧƞɠḗş şḗŧŧīƞɠş ǿř ƒḗȧŧŭřḗş īƞ ǿŧħḗř ȧḓḓ-ǿƞş ǿř "
 "ḓḗȧƈŧīṽȧŧḗş ŧħḗḿ ȧŀŧǿɠḗŧħḗř</li> </ul> <p>ŧħḗ ƒḗȧŧŭřḗş ḿŭşŧ ȧḓħḗřḗ ŧǿ ŧħḗ "
 "ƒǿŀŀǿẇīƞɠ řḗɋŭīřḗḿḗƞŧş:</p> <ul> <li>Ŧħḗ ȧḓḓ-ǿƞ ḓḗşƈřīƥŧīǿƞ ḿŭşŧ ƈŀḗȧřŀẏ "
 "şŧȧŧḗ ẇħȧŧ ƈħȧƞɠḗş ŧħḗ ȧḓḓ-ǿƞ ḿȧķḗş.</li> <li>Ȧŀŀ ƈħȧƞɠḗş ḿŭşŧ ƀḗ ǿƥŧ-īƞ, "
-"ḿḗȧƞīƞɠ ŧħḗ ŭşḗř ḿŭşŧ ŧȧķḗ ƞǿƞ-ḓḗƒȧŭŀŧ ȧƈŧīǿƞ ŧǿ ḗƞȧƈŧ ŧħḗ ƈħȧƞɠḗ.</li> "
-"<li>Ŧħḗ ǿƥŧ-īƞ ḓīȧŀǿɠ ḿŭşŧ ƈŀḗȧřŀẏ şŧȧŧḗ ŧħḗ ƞȧḿḗ ǿƒ ŧħḗ ȧḓḓ-ǿƞ řḗɋŭḗşŧīƞɠ "
-"ŧħḗ ƈħȧƞɠḗ.</li> <li>Ŭƞīƞşŧȧŀŀīƞɠ ŧħḗ ȧḓḓ-ǿƞ řḗşŧǿřḗş ŧħḗ ŭşḗř'ş ǿřīɠīƞȧŀ "
+"ḿḗȧƞīƞɠ ŧħḗ ŭşḗř ḿŭşŧ ŧȧķḗ ƞǿƞ-ḓḗƒȧŭŀŧ ȧƈŧīǿƞ ŧǿ ḗƞȧƈŧ ŧħḗ ƈħȧƞɠḗ.</li> <li>"
+"Ŧħḗ ǿƥŧ-īƞ ḓīȧŀǿɠ ḿŭşŧ ƈŀḗȧřŀẏ şŧȧŧḗ ŧħḗ ƞȧḿḗ ǿƒ ŧħḗ ȧḓḓ-ǿƞ řḗɋŭḗşŧīƞɠ ŧħḗ "
+"ƈħȧƞɠḗ.</li> <li>Ŭƞīƞşŧȧŀŀīƞɠ ŧħḗ ȧḓḓ-ǿƞ řḗşŧǿřḗş ŧħḗ ŭşḗř'ş ǿřīɠīƞȧŀ "
 "şḗŧŧīƞɠş īƒ ŧħḗẏ ẇḗřḗ ƈħȧƞɠḗḓ.</li> </ul> <p>*Ŭƞḗẋƥḗƈŧḗḓ ƒḗȧŧŭřḗş ȧřḗ ŧħǿşḗ "
 "ŧħȧŧ ȧřḗ ŭƞřḗŀȧŧḗḓ ŧǿ ŧħḗ ȧḓḓ-ǿƞ'ş ƥřīḿȧřẏ ƒŭƞƈŧīǿƞ.</p>"
 
@@ -8992,11 +8982,11 @@ msgid ""
 "data can be written to disk, and all of this data must be cleared when "
 "Firefox quits or the Private Browsing session ends."
 msgstr ""
-"Ȧḓḓ-ǿƞş ŧħȧŧ şŧǿřḗ ǿř ǿŧħḗřẇīşḗ ħȧƞḓŀḗ ƀřǿẇşīƞɠ ḓȧŧȧ ḿŭşŧ şŭƥƥǿřŧ <a href=\"h"
-"ttps://developer.mozilla.org/En/Supporting_private_browsing_mode\">Ƥřīṽȧŧḗ "
-"Ɓřǿẇşīƞɠ Ḿǿḓḗ</a>. Ḓŭřīƞɠ ȧ Ƥřīṽȧŧḗ Ɓřǿẇşīƞɠ şḗşşīǿƞ, ƞǿ ƀřǿẇşīƞɠ ḓȧŧȧ ƈȧƞ "
-"ƀḗ ẇřīŧŧḗƞ ŧǿ ḓīşķ, ȧƞḓ ȧŀŀ ǿƒ ŧħīş ḓȧŧȧ ḿŭşŧ ƀḗ ƈŀḗȧřḗḓ ẇħḗƞ Ƒīřḗƒǿẋ ɋŭīŧş "
-"ǿř ŧħḗ Ƥřīṽȧŧḗ Ɓřǿẇşīƞɠ şḗşşīǿƞ ḗƞḓş."
+"Ȧḓḓ-ǿƞş ŧħȧŧ şŧǿřḗ ǿř ǿŧħḗřẇīşḗ ħȧƞḓŀḗ ƀřǿẇşīƞɠ ḓȧŧȧ ḿŭşŧ şŭƥƥǿřŧ <a "
+"href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">"
+"Ƥřīṽȧŧḗ Ɓřǿẇşīƞɠ Ḿǿḓḗ</a>. Ḓŭřīƞɠ ȧ Ƥřīṽȧŧḗ Ɓřǿẇşīƞɠ şḗşşīǿƞ, ƞǿ ƀřǿẇşīƞɠ "
+"ḓȧŧȧ ƈȧƞ ƀḗ ẇřīŧŧḗƞ ŧǿ ḓīşķ, ȧƞḓ ȧŀŀ ǿƒ ŧħīş ḓȧŧȧ ḿŭşŧ ƀḗ ƈŀḗȧřḗḓ ẇħḗƞ "
+"Ƒīřḗƒǿẋ ɋŭīŧş ǿř ŧħḗ Ƥřīṽȧŧḗ Ɓřǿẇşīƞɠ şḗşşīǿƞ ḗƞḓş."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
@@ -9065,8 +9055,8 @@ msgid ""
 msgstr ""
 "<strong>Ȧřḗ ẏǿŭ řḗşƥǿƞşīṽḗ?</strong> Ẇḗ ḗẋƥḗƈŧ ŧħȧŧ ȧƞ ȧŭŧħǿř ẇħǿ īş "
 "ƥřǿḿǿŧīƞɠ ŧħḗīř ȧḓḓ-ǿƞ ŧǿ ǿŭř ȧƥƥŀīƈȧŧīǿƞş' ḿȧƞẏ ŭşḗřş īş řḗşƥǿƞşīṽḗ ŧǿ "
-"ƥřǿƀŀḗḿ řḗƥǿřŧş, ḿȧīƞŧȧīƞş ŧħḗīř ƈǿƞŧȧƈŧ īƞƒǿřḿȧŧīǿƞ, ȧƞḓ ŭƥḓȧŧḗş ŧħḗīř "
-"ȧḓḓ-ǿƞ ƥřǿḿƥŧŀẏ ŧǿ ķḗḗƥ ƈŭřřḗƞŧ ẇīŧħ Ƒīřḗƒǿẋ řḗŀḗȧşḗş ȧƞḓ ƈħȧƞɠḗş īƞ ǿŭř "
+"ƥřǿƀŀḗḿ řḗƥǿřŧş, ḿȧīƞŧȧīƞş ŧħḗīř ƈǿƞŧȧƈŧ īƞƒǿřḿȧŧīǿƞ, ȧƞḓ ŭƥḓȧŧḗş ŧħḗīř ȧḓḓ-"
+"ǿƞ ƥřǿḿƥŧŀẏ ŧǿ ķḗḗƥ ƈŭřřḗƞŧ ẇīŧħ Ƒīřḗƒǿẋ řḗŀḗȧşḗş ȧƞḓ ƈħȧƞɠḗş īƞ ǿŭř "
 "ƥǿŀīƈīḗş. Ŧħīş ḓǿḗşƞ'ŧ ḿḗȧƞ ŧħȧŧ ẏǿŭ ħȧṽḗ ŧǿ řḗƥŀẏ ŧǿ ḗṽḗřẏ ɋŭḗşŧīǿƞ ŧħȧŧ "
 "şǿḿḗǿƞḗ ƥǿşŧş īƞ ŧħḗ ḓīşƈŭşşīǿƞş, ǿř ŧħȧŧ ẏǿŭ ḗṽḗƞ ƞḗḗḓ ŧǿ ƒīẋ ḗṽḗřẏ ƀŭɠ, "
 "ƀŭŧ ẇḗ ḓǿ ḗẋƥḗƈŧ ŧħȧŧ ẏǿŭ ẇīŀŀ řḗşƥǿƞḓ ŧǿ īşşŭḗş īƞ ȧ ḿȧƞƞḗř ŧħȧŧ'ş "
@@ -9090,18 +9080,17 @@ msgid ""
 msgstr ""
 "<strong>Īş ŧħḗ ȧḓḓ-ǿƞ ƈŀḗȧřŀẏ ȧƞḓ ȧƈƈŭřȧŧḗŀẏ ḓḗşƈřīƀḗḓ?</strong> Īŧ'ş ǿƒ ŧħḗ "
 "ŭŧḿǿşŧ īḿƥǿřŧȧƞƈḗ ŧǿ ŭş ŧħȧŧ ŭşḗřş ɠḗŧ ẇħȧŧ ŧħḗẏ ḗẋƥḗƈŧ ẇħḗƞ ŧħḗẏ ŧřẏ ȧ ƞḗẇ "
-"ȧḓḓ-ǿƞ. Ẏǿŭř ȧḓḓ-ǿƞ ƞȧḿḗ şħǿŭŀḓ ƀḗ ƈŀḗȧř ȧƞḓ ƈǿƞƈīşḗ, ȧƞḓ ẏǿŭ şħǿŭŀḓ "
-"řḗƒřȧīƞ ƒřǿḿ ŭşīƞɠ şƥḗƈīȧŀ ƈħȧřȧƈŧḗřş ǿř ƞŭḿƀḗřş ŧǿ ɠḗŧ ħīɠħḗř şḗȧřƈħ "
-"řȧƞķīƞɠş ǿř ƒǿř ḓḗƈǿřȧŧīṽḗ ƥŭřƥǿşḗş. Ẏǿŭř ḓḗşƈřīƥŧīǿƞ şħǿŭŀḓ ƥřǿṽīḓḗ ḓḗŧȧīŀş "
-"ȧƀǿŭŧ ẇħȧŧ ŧħḗ ȧḓḓ-ǿƞ ḓǿḗş, ħǿẇ ȧ ŭşḗř şħǿŭŀḓ ŧȧķḗ ȧḓṽȧƞŧȧɠḗ ǿƒ īŧ, ȧƞḓ "
-"ẇħȧŧ ŧħḗ ŭşḗř şħǿŭŀḓ ḗẋƥḗƈŧ ẇħḗƞ ŧħḗẏ īƞşŧȧŀŀ īŧ. Ŀīƞķş ŧǿ ḗẋŧḗřƞȧŀ "
-"ḓǿƈŭḿḗƞŧş ƒǿř ḓḗŧȧīŀḗḓ īƞşŧřŭƈŧīǿƞş ȧřḗ ƒīƞḗ, ƀŭŧ ŧħḗ ḓḗşƈřīƥŧīǿƞ īŧşḗŀƒ "
-"şħǿŭŀḓ ƈǿṽḗř ŧħḗ ƀȧşīƈş ȧƞḓ ŀḗȧṽḗ ŭşḗřş ƈǿƞƒīḓḗƞŧ ŧħȧŧ ŧħḗẏ ķƞǿẇ ẇħȧŧ "
-"ŧħḗẏ'ŀŀ ɠḗŧ. Ȧŀşǿ, īŧ īş īḿƥǿřŧȧƞŧ ŧħȧŧ ẏǿŭ ḿȧīƞŧȧīƞ ṽḗřşīǿƞ ƞǿŧḗş "
-"ȧƥƥřǿƥřīȧŧḗŀẏ ȧş ẏǿŭ īḿƥřǿṽḗ ȧƞḓ ƈħȧƞɠḗ ẏǿŭř ȧḓḓ-ǿƞ. Ŭşḗřş şħǿŭŀḓ ƀḗ ȧƀŀḗ ŧǿ "
-"şḗḗ ẇħȧŧ'ş ƞḗẇ īƞ ȧƞ ȧḓḓ-ǿƞ ŧħḗẏ ḿȧẏ ħȧṽḗ ŧřīḗḓ ƥřḗṽīǿŭşŀẏ, ȧƞḓ şħǿŭŀḓ ƀḗ "
-"ḿȧḓḗ ȧẇȧřḗ ǿƒ ƈħȧƞɠḗş ŧħȧŧ ḿīɠħŧ ȧƒƒḗƈŧ ŧħḗīř ƈŭřřḗƞŧ ŭşḗ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ẇħḗƞ "
-"ŧħḗẏ ŭƥḓȧŧḗ."
+"ȧḓḓ-ǿƞ. Ẏǿŭř ȧḓḓ-ǿƞ ƞȧḿḗ şħǿŭŀḓ ƀḗ ƈŀḗȧř ȧƞḓ ƈǿƞƈīşḗ, ȧƞḓ ẏǿŭ şħǿŭŀḓ řḗƒřȧīƞ "
+"ƒřǿḿ ŭşīƞɠ şƥḗƈīȧŀ ƈħȧřȧƈŧḗřş ǿř ƞŭḿƀḗřş ŧǿ ɠḗŧ ħīɠħḗř şḗȧřƈħ řȧƞķīƞɠş ǿř "
+"ƒǿř ḓḗƈǿřȧŧīṽḗ ƥŭřƥǿşḗş. Ẏǿŭř ḓḗşƈřīƥŧīǿƞ şħǿŭŀḓ ƥřǿṽīḓḗ ḓḗŧȧīŀş ȧƀǿŭŧ ẇħȧŧ "
+"ŧħḗ ȧḓḓ-ǿƞ ḓǿḗş, ħǿẇ ȧ ŭşḗř şħǿŭŀḓ ŧȧķḗ ȧḓṽȧƞŧȧɠḗ ǿƒ īŧ, ȧƞḓ ẇħȧŧ ŧħḗ ŭşḗř "
+"şħǿŭŀḓ ḗẋƥḗƈŧ ẇħḗƞ ŧħḗẏ īƞşŧȧŀŀ īŧ. Ŀīƞķş ŧǿ ḗẋŧḗřƞȧŀ ḓǿƈŭḿḗƞŧş ƒǿř ḓḗŧȧīŀḗḓ "
+"īƞşŧřŭƈŧīǿƞş ȧřḗ ƒīƞḗ, ƀŭŧ ŧħḗ ḓḗşƈřīƥŧīǿƞ īŧşḗŀƒ şħǿŭŀḓ ƈǿṽḗř ŧħḗ ƀȧşīƈş "
+"ȧƞḓ ŀḗȧṽḗ ŭşḗřş ƈǿƞƒīḓḗƞŧ ŧħȧŧ ŧħḗẏ ķƞǿẇ ẇħȧŧ ŧħḗẏ'ŀŀ ɠḗŧ. Ȧŀşǿ, īŧ īş "
+"īḿƥǿřŧȧƞŧ ŧħȧŧ ẏǿŭ ḿȧīƞŧȧīƞ ṽḗřşīǿƞ ƞǿŧḗş ȧƥƥřǿƥřīȧŧḗŀẏ ȧş ẏǿŭ īḿƥřǿṽḗ ȧƞḓ "
+"ƈħȧƞɠḗ ẏǿŭř ȧḓḓ-ǿƞ. Ŭşḗřş şħǿŭŀḓ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ẇħȧŧ'ş ƞḗẇ īƞ ȧƞ ȧḓḓ-ǿƞ ŧħḗẏ "
+"ḿȧẏ ħȧṽḗ ŧřīḗḓ ƥřḗṽīǿŭşŀẏ, ȧƞḓ şħǿŭŀḓ ƀḗ ḿȧḓḗ ȧẇȧřḗ ǿƒ ƈħȧƞɠḗş ŧħȧŧ ḿīɠħŧ "
+"ȧƒƒḗƈŧ ŧħḗīř ƈŭřřḗƞŧ ŭşḗ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ẇħḗƞ ŧħḗẏ ŭƥḓȧŧḗ."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:31
 msgid ""
@@ -9115,11 +9104,11 @@ msgid ""
 msgstr ""
 "<strong>Ȧřḗ ȧŀŀ ƥřīṽȧƈẏ ȧƞḓ şḗƈŭřīŧẏ ƈǿƞƈḗřƞş ƈŀḗȧřŀẏ şƥḗŀŀḗḓ ǿŭŧ?</strong> "
 "Ŧħīş īş ȧƞ ȧşƥḗƈŧ ǿƒ ȧ ƈŀḗȧř ȧƞḓ ȧƈƈŭřȧŧḗ ḓḗşƈřīƥŧīǿƞ, ƀŭŧ şŭƈħ ȧƞ īḿƥǿřŧȧƞŧ "
-"ǿƞḗ ŧħȧŧ ẇḗ ƒḗḗŀ īŧ ḓḗşḗřṽḗş şƥḗƈīƒīƈ ḿḗƞŧīǿƞ. Ḿȧƞẏ ṽḗřẏ ŭşḗƒŭŀ ȧƞḓ "
-"ẇḗŀŀ-ẇřīŧŧḗƞ ȧḓḓ-ǿƞş ḿȧƞīƥŭŀȧŧḗ şǿḿḗ ƒǿřḿ ǿƒ ŭşḗř ḓȧŧȧ, ǿř ƈȧƞ ƥřḗşḗƞŧ "
-"şḗƈŭřīŧẏ ħȧzȧřḓş īƒ ḿīşŭşḗḓ; ŧħḗẏ ȧřḗ ẇḗŀƈǿḿḗ ǿƞ ŧħḗ şīŧḗ, ƀŭŧ ŧħḗẏ ḿŭşŧ "
-"ḿȧķḗ īŧ ṽḗřẏ ƈŀḗȧř ŧǿ ŭşḗřş ẇħȧŧ řīşķş ŧħḗẏ ḿīɠħŧ ḗƞƈǿŭƞŧḗř, ȧƞḓ ẇħȧŧ ŧħḗẏ "
-"ƈȧƞ ḓǿ ŧǿ ƥřǿŧḗƈŧ ŧħḗḿşḗŀṽḗş."
+"ǿƞḗ ŧħȧŧ ẇḗ ƒḗḗŀ īŧ ḓḗşḗřṽḗş şƥḗƈīƒīƈ ḿḗƞŧīǿƞ. Ḿȧƞẏ ṽḗřẏ ŭşḗƒŭŀ ȧƞḓ ẇḗŀŀ-"
+"ẇřīŧŧḗƞ ȧḓḓ-ǿƞş ḿȧƞīƥŭŀȧŧḗ şǿḿḗ ƒǿřḿ ǿƒ ŭşḗř ḓȧŧȧ, ǿř ƈȧƞ ƥřḗşḗƞŧ şḗƈŭřīŧẏ "
+"ħȧzȧřḓş īƒ ḿīşŭşḗḓ; ŧħḗẏ ȧřḗ ẇḗŀƈǿḿḗ ǿƞ ŧħḗ şīŧḗ, ƀŭŧ ŧħḗẏ ḿŭşŧ ḿȧķḗ īŧ ṽḗřẏ "
+"ƈŀḗȧř ŧǿ ŭşḗřş ẇħȧŧ řīşķş ŧħḗẏ ḿīɠħŧ ḗƞƈǿŭƞŧḗř, ȧƞḓ ẇħȧŧ ŧħḗẏ ƈȧƞ ḓǿ ŧǿ "
+"ƥřǿŧḗƈŧ ŧħḗḿşḗŀṽḗş."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:37
 msgid ""
@@ -9227,9 +9216,9 @@ msgstr ""
 "Ŧħǿŭɠħ ẏǿŭ ḿȧẏ ḿḗȧƞ ƞǿ ħȧřḿ ŧǿ ŧħḗ ħǿŀḓḗř ǿƒ ȧ ŧřȧḓḗḿȧřķ, ǿř ŧħḗ ǿẇƞḗř ǿƒ ȧ "
 "ƈǿƥẏřīɠħŧḗḓ ẇǿřķ, ẇḗ ƈȧƞ'ŧ ħǿşŧ ȧḓḓ-ǿƞş ŧħȧŧ īƞƒřīƞɠḗ ǿƞ ŧřȧḓḗḿȧřķş ǿř "
 "ƈǿƥẏřīɠħŧş. Īƒ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ƥḗřḿīşşīǿƞ ŧǿ ŭşḗ ȧ ŧřȧḓḗḿȧřķḗḓ ƞȧḿḗ ǿř īḿȧɠḗ, "
-"ƥŀḗȧşḗ ḓǿ ƞǿŧ şŭƀḿīŧ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ŭş. Īƒ ẏǿŭř ȧḓḓ-ǿƞ īƞƈŀŭḓḗş ƈǿḓḗ ŧħȧŧ "
-"īş ƈǿƥẏřīɠħŧḗḓ ƀẏ şǿḿḗǿƞḗ ḗŀşḗ, ȧƞḓ īş ƞǿŧ ŀīƈḗƞşḗḓ ŧǿ ẏǿŭ ŧǿ ŭşḗ īƞ ẏǿŭř "
-"ȧḓḓ-ǿƞ, ƥŀḗȧşḗ ḓǿ ƞǿŧ şŭƀḿīŧ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ŭş."
+"ƥŀḗȧşḗ ḓǿ ƞǿŧ şŭƀḿīŧ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ŭş. Īƒ ẏǿŭř ȧḓḓ-ǿƞ īƞƈŀŭḓḗş ƈǿḓḗ ŧħȧŧ īş "
+"ƈǿƥẏřīɠħŧḗḓ ƀẏ şǿḿḗǿƞḗ ḗŀşḗ, ȧƞḓ īş ƞǿŧ ŀīƈḗƞşḗḓ ŧǿ ẏǿŭ ŧǿ ŭşḗ īƞ ẏǿŭř ȧḓḓ-"
+"ǿƞ, ƥŀḗȧşḗ ḓǿ ƞǿŧ şŭƀḿīŧ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ŭş."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:73
 msgid ""
@@ -9259,11 +9248,11 @@ msgid ""
 "assets of the Mozilla Foundation."
 msgstr ""
 "Ŧħīş ȧƥƥŀīḗş ŧǿ ŧħḗ Ḿǿzīŀŀȧ Ƒǿŭƞḓȧŧīǿƞ'ş ŧřȧḓḗḿȧřķş ȧş ẇḗŀŀ, īƞƈŀŭḓīƞɠ "
-"\"Ḿǿzīŀŀȧ\", \"Ƒīřḗƒǿẋ\", ȧƞḓ \"Ŧħŭƞḓḗřƀīřḓ\". Ŧħḗ Ḿǿzīŀŀȧ ƥǿŀīƈẏ ǿƞ ŧřȧḓḗḿȧřķ ŭşḗ "
-"īş ḓḗşīɠƞḗḓ ŧǿ ƥřǿŧḗƈŧ ȧɠȧīƞşŧ ƈǿƞƒŭşīǿƞ, ȧƞḓ ƥřḗṽḗƞŧ ŧħḗ ŧřȧḓḗḿȧřķş ƒřǿḿ "
-"ƀḗīƞɠ ǿṽḗřŧŭřƞḗḓ ḓŭḗ ŧǿ ŀȧƈķ ǿƒ ƥřǿŧḗƈŧīǿƞ; ƥŀḗȧşḗ řḗşƥḗƈŧ ŧħḗ ƞḗḗḓ ƒǿř şŭƈħ "
-"ƥřǿŧḗƈŧīǿƞ, ȧƞḓ ħḗŀƥ ŭş ƥřḗşḗřṽḗ şǿḿḗ ǿƒ ŧħḗ ḿǿşŧ ṽȧŀŭȧƀŀḗ ȧşşḗŧş ǿƒ ŧħḗ "
-"Ḿǿzīŀŀȧ Ƒǿŭƞḓȧŧīǿƞ."
+"\"Ḿǿzīŀŀȧ\", \"Ƒīřḗƒǿẋ\", ȧƞḓ \"Ŧħŭƞḓḗřƀīřḓ\". Ŧħḗ Ḿǿzīŀŀȧ ƥǿŀīƈẏ ǿƞ "
+"ŧřȧḓḗḿȧřķ ŭşḗ īş ḓḗşīɠƞḗḓ ŧǿ ƥřǿŧḗƈŧ ȧɠȧīƞşŧ ƈǿƞƒŭşīǿƞ, ȧƞḓ ƥřḗṽḗƞŧ ŧħḗ "
+"ŧřȧḓḗḿȧřķş ƒřǿḿ ƀḗīƞɠ ǿṽḗřŧŭřƞḗḓ ḓŭḗ ŧǿ ŀȧƈķ ǿƒ ƥřǿŧḗƈŧīǿƞ; ƥŀḗȧşḗ řḗşƥḗƈŧ "
+"ŧħḗ ƞḗḗḓ ƒǿř şŭƈħ ƥřǿŧḗƈŧīǿƞ, ȧƞḓ ħḗŀƥ ŭş ƥřḗşḗřṽḗ şǿḿḗ ǿƒ ŧħḗ ḿǿşŧ ṽȧŀŭȧƀŀḗ "
+"ȧşşḗŧş ǿƒ ŧħḗ Ḿǿzīŀŀȧ Ƒǿŭƞḓȧŧīǿƞ."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
@@ -9290,8 +9279,8 @@ msgstr ""
 "Ḓŭřīƞɠ ŧħḗ ȧḓḓ-ǿƞ şŭƀḿīşşīǿƞ ƥřǿƈḗşş, ẏǿŭ ẇīŀŀ ƀḗ ƥřḗşḗƞŧḗḓ ẇīŧħ ȧ ŀīşŧ ǿƒ "
 "ƥǿƥŭŀȧř ŀīƈḗƞşḗş ŧǿ ƈħǿǿşḗ ƒřǿḿ, ȧş ẇḗŀŀ ȧş ŧħḗ ȧƀīŀīŧẏ ŧǿ şƥḗƈīƒẏ ẏǿŭř ǿẇƞ "
 "ŀīƈḗƞşḗ. Īŧ īş ƀḗşŧ ŧǿ ƈǿƞşŭŀŧ ẇīŧħ ȧ ŀḗɠȧŀ ƥřǿƒḗşşīǿƞȧŀ ȧƀǿŭŧ ẇħīƈħ ŀīƈḗƞşḗ "
-"ǿƥŧīǿƞ īş ƀḗşŧ ƒǿř ẏǿŭ. Ƈħǿǿşīƞɠ ŧħḗ řīɠħŧ ŀīƈḗƞşḗ ƒǿř ẏǿŭř şǿŭřƈḗ ƈǿḓḗ "
-"ẇīŀŀ ħḗŀƥ ŧǿ ƥřḗṽḗƞŧ ƈǿƞƒŭşīǿƞ ȧƞḓ ƈǿḓḗ ƈǿƞƒŀīƈŧş īƞ ŧħḗ ƒŭŧŭřḗ."
+"ǿƥŧīǿƞ īş ƀḗşŧ ƒǿř ẏǿŭ. Ƈħǿǿşīƞɠ ŧħḗ řīɠħŧ ŀīƈḗƞşḗ ƒǿř ẏǿŭř şǿŭřƈḗ ƈǿḓḗ ẇīŀŀ "
+"ħḗŀƥ ŧǿ ƥřḗṽḗƞŧ ƈǿƞƒŭşīǿƞ ȧƞḓ ƈǿḓḗ ƈǿƞƒŀīƈŧş īƞ ŧħḗ ƒŭŧŭřḗ."
 
 #: apps/devhub/templates/devhub/docs/policies.html:12
 #: apps/devhub/templates/devhub/docs/policies.html:52
@@ -9480,8 +9469,8 @@ msgid ""
 "based application's user interface."
 msgstr ""
 "Ƈȧşƈȧḓīƞɠ Şŧẏŀḗ Şħḗḗŧş (ƇŞŞ) īş ȧ şŧẏŀḗşħḗḗŧ ŀȧƞɠŭȧɠḗ ŭşḗḓ ŧǿ ḓḗşƈřīƀḗ ŧħḗ "
-"ƥřḗşḗƞŧȧŧīǿƞ ǿƒ ȧ ḓǿƈŭḿḗƞŧ ẇřīŧŧḗƞ īƞ ĦŦḾĿ ǿř ẊḾĿ ȧƞḓ īş ŭşḗḓ ŧǿ şŧẏŀḗ ȧ "
-"ẊŬĿ-ƀȧşḗḓ ȧƥƥŀīƈȧŧīǿƞ'ş ŭşḗř īƞŧḗřƒȧƈḗ."
+"ƥřḗşḗƞŧȧŧīǿƞ ǿƒ ȧ ḓǿƈŭḿḗƞŧ ẇřīŧŧḗƞ īƞ ĦŦḾĿ ǿř ẊḾĿ ȧƞḓ īş ŭşḗḓ ŧǿ şŧẏŀḗ ȧ ẊŬĿ-"
+"ƀȧşḗḓ ȧƥƥŀīƈȧŧīǿƞ'ş ŭşḗř īƞŧḗřƒȧƈḗ."
 
 #: apps/devhub/templates/devhub/docs/reference.html:140
 msgid "Gecko CSS Reference"
@@ -9532,8 +9521,8 @@ msgid ""
 "STEEL is the Scriptable Thunderbird Easy Extension Library. It is a FUEL-"
 "like set of interfaces to facilitate Thunderbird extension development."
 msgstr ""
-"ŞŦḖḖĿ īş ŧħḗ Şƈřīƥŧȧƀŀḗ Ŧħŭƞḓḗřƀīřḓ Ḗȧşẏ Ḗẋŧḗƞşīǿƞ Ŀīƀřȧřẏ. Īŧ īş ȧ "
-"ƑŬḖĿ-ŀīķḗ şḗŧ ǿƒ īƞŧḗřƒȧƈḗş ŧǿ ƒȧƈīŀīŧȧŧḗ Ŧħŭƞḓḗřƀīřḓ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ."
+"ŞŦḖḖĿ īş ŧħḗ Şƈřīƥŧȧƀŀḗ Ŧħŭƞḓḗřƀīřḓ Ḗȧşẏ Ḗẋŧḗƞşīǿƞ Ŀīƀřȧřẏ. Īŧ īş ȧ ƑŬḖĿ-"
+"ŀīķḗ şḗŧ ǿƒ īƞŧḗřƒȧƈḗş ŧǿ ƒȧƈīŀīŧȧŧḗ Ŧħŭƞḓḗřƀīřḓ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ."
 
 #: apps/devhub/templates/devhub/docs/reference.html:203
 msgid "SMILE API"
@@ -9636,8 +9625,8 @@ msgid ""
 "Learn how to use these APIs and more in our <a href=\"%(link_howto)s\">How-"
 "to Library</a>"
 msgstr ""
-"Ŀḗȧřƞ ħǿẇ ŧǿ ŭşḗ ŧħḗşḗ ȦƤĪş ȧƞḓ ḿǿřḗ īƞ ǿŭř <a href=\"%(link_howto)s\">Ħǿẇ-ŧǿ "
-"Ŀīƀřȧřẏ</a>"
+"Ŀḗȧřƞ ħǿẇ ŧǿ ŭşḗ ŧħḗşḗ ȦƤĪş ȧƞḓ ḿǿřḗ īƞ ǿŭř <a href=\"%(link_howto)s\">Ħǿẇ-"
+"ŧǿ Ŀīƀřȧřẏ</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:3
 #: apps/devhub/templates/devhub/docs/themes.html:18
@@ -9755,8 +9744,8 @@ msgid ""
 "style.</a>"
 msgstr ""
 "Ɓȧƈķɠřǿŭƞḓ ŧħḗḿḗş ȧřḗ ḗȧşẏ-ŧǿ-īƞşŧȧŀŀ, ḗȧşẏ-ŧǿ-ŭşḗ şķīƞş ŧħȧŧ ƈħȧƞɠḗ ŧħḗ "
-"ŀǿǿķ ǿƒ ẏǿŭř Ƒīřḗƒǿẋ ẇḗƀ ƀřǿẇşḗř. Ŧħḗřḗ ȧřḗ ħŭƞḓřḗḓş ǿƒ ŧħǿŭşȧƞḓş "
-"ƈǿḿḿŭƞīŧẏ-ḓḗşīɠƞḗḓ ŧħḗḿḗş ŧǿ ƈħǿǿşḗ ƒřǿḿ, ẇīŧħ ḿǿřḗ ȧḓḓḗḓ ḗṽḗřẏ ḓȧẏ. <a "
+"ŀǿǿķ ǿƒ ẏǿŭř Ƒīřḗƒǿẋ ẇḗƀ ƀřǿẇşḗř. Ŧħḗřḗ ȧřḗ ħŭƞḓřḗḓş ǿƒ ŧħǿŭşȧƞḓş ƈǿḿḿŭƞīŧẏ-"
+"ḓḗşīɠƞḗḓ ŧħḗḿḗş ŧǿ ƈħǿǿşḗ ƒřǿḿ, ẇīŧħ ḿǿřḗ ȧḓḓḗḓ ḗṽḗřẏ ḓȧẏ. <a "
 "href=\"%(browse_url)s\">Şŧȧřŧ ŀǿǿķīƞɠ ħḗřḗ ƒǿř ḓḗşīɠƞş ŧħȧŧ ƒīŧ ẏǿŭř "
 "şŧẏŀḗ.</a>"
 
@@ -9817,8 +9806,8 @@ msgid ""
 "Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite "
 "theme, and click on your choice to instantly change the look of your browser."
 msgstr ""
-"Ṽīşīŧ ŧħḗ <a href=\"%(gallery_url)s\">ɠȧŀŀḗřẏ</a>, ƈħǿǿşḗ ẏǿŭř ƒȧṽǿřīŧḗ ŧħḗḿḗ, "
-"ȧƞḓ ƈŀīƈķ ǿƞ ẏǿŭř ƈħǿīƈḗ ŧǿ īƞşŧȧƞŧŀẏ ƈħȧƞɠḗ ŧħḗ ŀǿǿķ ǿƒ ẏǿŭř ƀřǿẇşḗř."
+"Ṽīşīŧ ŧħḗ <a href=\"%(gallery_url)s\">ɠȧŀŀḗřẏ</a>, ƈħǿǿşḗ ẏǿŭř ƒȧṽǿřīŧḗ "
+"ŧħḗḿḗ, ȧƞḓ ƈŀīƈķ ǿƞ ẏǿŭř ƈħǿīƈḗ ŧǿ īƞşŧȧƞŧŀẏ ƈħȧƞɠḗ ŧħḗ ŀǿǿķ ǿƒ ẏǿŭř ƀřǿẇşḗř."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:130
 msgid ""
@@ -9827,8 +9816,8 @@ msgid ""
 "<code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
 msgstr ""
 "Ǿƞƈḗ ȧ ŧħḗḿḗ īş īƞşŧȧŀŀḗḓ, īŧ īş şȧṽḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř, ẇħḗřḗ ẏǿŭ ƈȧƞ "
-"ḗƞȧƀŀḗ ǿř ḓīşȧƀŀḗ ŧħḗḿ ȧş ẏǿŭ ẇīşħ. Şīḿƥŀẏ ɠǿ ŧǿ ŧħḗ <code>Ŧǿǿŀş</code> "
-"&gt; <code>Ȧḓḓ-ǿƞş</code> ḿḗƞŭ ȧƞḓ ƈŀīƈķ ǿƞ ŧħḗ <code>Ȧƥƥḗȧřȧƞƈḗ</code> ŧȧƀ."
+"ḗƞȧƀŀḗ ǿř ḓīşȧƀŀḗ ŧħḗḿ ȧş ẏǿŭ ẇīşħ. Şīḿƥŀẏ ɠǿ ŧǿ ŧħḗ <code>Ŧǿǿŀş</code> &gt; "
+"<code>Ȧḓḓ-ǿƞş</code> ḿḗƞŭ ȧƞḓ ƈŀīƈķ ǿƞ ŧħḗ <code>Ȧƥƥḗȧřȧƞƈḗ</code> ŧȧƀ."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:142
 msgid ""
@@ -9877,8 +9866,8 @@ msgid ""
 "href=\"%(tutorial_url)s\">read more about how to create a theme</a>."
 msgstr ""
 "Ȧƀşǿŀŭŧḗŀẏ! Ȧŀŀ ẏǿŭ ƞḗḗḓ ŧǿ ḓǿ īş ƈřḗȧŧḗ ŧẇǿ ɠřȧƥħīƈş ƒīŀḗş īƞ ẏǿŭř ƒȧṽǿřīŧḗ "
-"ɠřȧƥħīƈş ḗḓīŧīƞɠ ƥřǿɠřȧḿ (ḗ.ɠ., Ƥħǿŧǿşħǿƥ). Ŧǿ ɠḗŧ şŧȧřŧḗḓ <a href=\"%"
-"(tutorial_url)s\">řḗȧḓ ḿǿřḗ ȧƀǿŭŧ ħǿẇ ŧǿ ƈřḗȧŧḗ ȧ ŧħḗḿḗ</a>."
+"ɠřȧƥħīƈş ḗḓīŧīƞɠ ƥřǿɠřȧḿ (ḗ.ɠ., Ƥħǿŧǿşħǿƥ). Ŧǿ ɠḗŧ şŧȧřŧḗḓ <a "
+"href=\"%(tutorial_url)s\">řḗȧḓ ḿǿřḗ ȧƀǿŭŧ ħǿẇ ŧǿ ƈřḗȧŧḗ ȧ ŧħḗḿḗ</a>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:186
 msgid ""
@@ -9890,8 +9879,8 @@ msgid ""
 msgstr ""
 "Ẏḗş. Ẇḗ ȧřḗ ƀīɠ ƒȧƞş ǿƒ ƈřḗȧŧīṽīŧẏ, ƀŭŧ ẇȧƞŧ ŧǿ ḗƞşŭřḗ ŧħȧŧ ŧħḗ ȧřŧ "
 "ḓīşƥŀȧẏḗḓ īƞ ŧħḗ Ŧħḗḿḗş ɠȧŀŀḗřẏ ḿḗḗŧş ȧ ƀȧşīƈ şḗŧ ǿƒ ɠŭīḓḗŀīƞḗş. Ƥŀḗȧşḗ "
-"řḗṽīḗẇ ŧħḗ <a href=\"%(tos_url)s\">Ŧḗřḿş ǿƒ Şḗřṽīƈḗ</a> ƒǿř ȧŭŧħǿřīŧȧŧīṽḗ ȧƞḓ "
-"ƈǿḿƥŀḗŧḗ ŀȧƞɠŭȧɠḗ, ƀŭŧ ŧħḗ ƒǿŀŀǿẇīƞɠ ɠīṽḗş ẏǿŭ ȧƞ ǿṽḗřṽīḗẇ ǿƒ ŧħḗ "
+"řḗṽīḗẇ ŧħḗ <a href=\"%(tos_url)s\">Ŧḗřḿş ǿƒ Şḗřṽīƈḗ</a> ƒǿř ȧŭŧħǿřīŧȧŧīṽḗ "
+"ȧƞḓ ƈǿḿƥŀḗŧḗ ŀȧƞɠŭȧɠḗ, ƀŭŧ ŧħḗ ƒǿŀŀǿẇīƞɠ ɠīṽḗş ẏǿŭ ȧƞ ǿṽḗřṽīḗẇ ǿƒ ŧħḗ "
 "řḗɋŭīřḗḿḗƞŧş:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:196
@@ -9975,10 +9964,10 @@ msgid ""
 "design's settings."
 msgstr ""
 "Ẏḗş. Īƒ ȧŧ ȧƞẏ ƥǿīƞŧ ẏǿŭ ƞḗḗḓ ŧǿ ḗḓīŧ ǿř ḓḗŀḗŧḗ ẏǿŭř ŧħḗḿḗ ḓḗşīɠƞ ȧƒŧḗř īŧ "
-"ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ ɠȧŀŀḗřẏ, ẏǿŭ ƈȧƞ ȧƈƈḗşş īŧ ƒřǿḿ ŧħḗ <a href=\"%"
-"(dashboard_url)s\">Şŭƀḿīşşīǿƞş ḓȧşħƀǿȧřḓ</a>. Ƒřǿḿ ŧħḗřḗ, ẏǿŭ ƈȧƞ ṽīḗẇ ẏǿŭř "
-"ƈŭřřḗƞŧ ḓḗşīɠƞş. Ɓẏ ƈŀīƈķīƞɠ ǿƞ ḗȧƈħ, ẏǿŭ ƈȧƞ ḿȧķḗ ƈħȧƞɠḗş ŧǿ ḗȧƈħ ḓḗşīɠƞ'ş "
-"şḗŧŧīƞɠş."
+"ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ ɠȧŀŀḗřẏ, ẏǿŭ ƈȧƞ ȧƈƈḗşş īŧ ƒřǿḿ ŧħḗ <a "
+"href=\"%(dashboard_url)s\">Şŭƀḿīşşīǿƞş ḓȧşħƀǿȧřḓ</a>. Ƒřǿḿ ŧħḗřḗ, ẏǿŭ ƈȧƞ "
+"ṽīḗẇ ẏǿŭř ƈŭřřḗƞŧ ḓḗşīɠƞş. Ɓẏ ƈŀīƈķīƞɠ ǿƞ ḗȧƈħ, ẏǿŭ ƈȧƞ ḿȧķḗ ƈħȧƞɠḗş ŧǿ ḗȧƈħ "
+"ḓḗşīɠƞ'ş şḗŧŧīƞɠş."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:268
 msgid ""
@@ -9993,8 +9982,8 @@ msgid ""
 "Couldn't find the answer you're looking for? Consider visiting the <a "
 "href=\"%(support_url)s\">Firefox support</a> website for more help."
 msgstr ""
-"Ƈǿŭŀḓƞ'ŧ ƒīƞḓ ŧħḗ ȧƞşẇḗř ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř? Ƈǿƞşīḓḗř ṽīşīŧīƞɠ ŧħḗ <a href=\""
-"%(support_url)s\">Ƒīřḗƒǿẋ şŭƥƥǿřŧ</a> ẇḗƀşīŧḗ ƒǿř ḿǿřḗ ħḗŀƥ."
+"Ƈǿŭŀḓƞ'ŧ ƒīƞḓ ŧħḗ ȧƞşẇḗř ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř? Ƈǿƞşīḓḗř ṽīşīŧīƞɠ ŧħḗ <a "
+"href=\"%(support_url)s\">Ƒīřḗƒǿẋ şŭƥƥǿřŧ</a> ẇḗƀşīŧḗ ƒǿř ḿǿřḗ ħḗŀƥ."
 
 #: apps/devhub/templates/devhub/docs/themes.html:3
 msgid "How to Create Your Own Background Theme"
@@ -10116,8 +10105,8 @@ msgid ""
 "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Tweak, rotate and touch "
 "up photos with Photoshop&reg; Express, a free online photo editor."
 msgstr ""
-"<a href=\"%(photoshop_url)s\">Ƥħǿŧǿşħǿƥ</a> &mdash; Ŧẇḗȧķ, řǿŧȧŧḗ ȧƞḓ ŧǿŭƈħ ŭƥ "
-"ƥħǿŧǿş ẇīŧħ Ƥħǿŧǿşħǿƥ&reg; Ḗẋƥřḗşş, ȧ ƒřḗḗ ǿƞŀīƞḗ ƥħǿŧǿ ḗḓīŧǿř."
+"<a href=\"%(photoshop_url)s\">Ƥħǿŧǿşħǿƥ</a> &mdash; Ŧẇḗȧķ, řǿŧȧŧḗ ȧƞḓ ŧǿŭƈħ "
+"ŭƥ ƥħǿŧǿş ẇīŧħ Ƥħǿŧǿşħǿƥ&reg; Ḗẋƥřḗşş, ȧ ƒřḗḗ ǿƞŀīƞḗ ƥħǿŧǿ ḗḓīŧǿř."
 
 #: apps/devhub/templates/devhub/docs/themes.html:118
 msgid "Creating a Theme Footer Image"
@@ -10130,8 +10119,8 @@ msgid ""
 "left corner of the browser window."
 msgstr ""
 "Ŧħḗ ƒǿǿŧḗř īḿȧɠḗ īş ḓīşƥŀȧẏḗḓ ȧş ŧħḗ ƀȧƈķɠřǿŭƞḓ ǿƒ ŧħḗ ƀǿŧŧǿḿ ǿƒ ŧħḗ ƀřǿẇşḗř "
-"ẇīƞḓǿẇ, ƀḗħīƞḓ ŧħḗ ȧḓḓ-ǿƞ ȧƞḓ ƒīƞḓ ƀȧřş. Īŧ ẇīŀŀ ƀḗ ȧƞƈħǿřḗḓ ŧǿ ŧħḗ "
-"ƀǿŧŧǿḿ-ŀḗƒŧ ƈǿřƞḗř ǿƒ ŧħḗ ƀřǿẇşḗř ẇīƞḓǿẇ."
+"ẇīƞḓǿẇ, ƀḗħīƞḓ ŧħḗ ȧḓḓ-ǿƞ ȧƞḓ ƒīƞḓ ƀȧřş. Īŧ ẇīŀŀ ƀḗ ȧƞƈħǿřḗḓ ŧǿ ŧħḗ ƀǿŧŧǿḿ-"
+"ŀḗƒŧ ƈǿřƞḗř ǿƒ ŧħḗ ƀřǿẇşḗř ẇīƞḓǿẇ."
 
 #: apps/devhub/templates/devhub/docs/themes.html:128
 msgid "View a sample Theme Footer here."
@@ -10294,8 +10283,8 @@ msgid ""
 "on is not listed in our gallery but can be accessed directly from its "
 "details page."
 msgstr ""
-"Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ẇħḗƞ ŧħḗ řḗṽīḗẇ īş ƈǿḿƥŀḗŧḗ. Ŭƞŧīŀ ŧħḗƞ, ẏǿŭř "
-"ȧḓḓ-ǿƞ īş ƞǿŧ ŀīşŧḗḓ īƞ ǿŭř ɠȧŀŀḗřẏ ƀŭŧ ƈȧƞ ƀḗ ȧƈƈḗşşḗḓ ḓīřḗƈŧŀẏ ƒřǿḿ īŧş "
+"Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ẇħḗƞ ŧħḗ řḗṽīḗẇ īş ƈǿḿƥŀḗŧḗ. Ŭƞŧīŀ ŧħḗƞ, ẏǿŭř ȧḓḓ-"
+"ǿƞ īş ƞǿŧ ŀīşŧḗḓ īƞ ǿŭř ɠȧŀŀḗřẏ ƀŭŧ ƈȧƞ ƀḗ ȧƈƈḗşşḗḓ ḓīřḗƈŧŀẏ ƒřǿḿ īŧş "
 "ḓḗŧȧīŀş ƥȧɠḗ."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:47
@@ -10442,8 +10431,8 @@ msgid "Enable Add-on"
 msgstr "Ḗƞȧƀŀḗ Ȧḓḓ-ǿƞ"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:36
-#: apps/devhub/templates/devhub/versions/list.html:223
-#: apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/list.html:224
+#: apps/devhub/templates/devhub/versions/list.html:242
 msgid "Disable Add-on"
 msgstr "Ḓīşȧƀŀḗ Ȧḓḓ-ǿƞ"
 
@@ -10581,8 +10570,8 @@ msgid ""
 "Contributions are only available for add-ons with a <a href=\"%(url)s\">"
 "completed developer profile</a>."
 msgstr ""
-"Ƈǿƞŧřīƀŭŧīǿƞş ȧřḗ ǿƞŀẏ ȧṽȧīŀȧƀŀḗ ƒǿř ȧḓḓ-ǿƞş ẇīŧħ ȧ <a href=\"%"
-"(url)s\">ƈǿḿƥŀḗŧḗḓ ḓḗṽḗŀǿƥḗř ƥřǿƒīŀḗ</a>."
+"Ƈǿƞŧřīƀŭŧīǿƞş ȧřḗ ǿƞŀẏ ȧṽȧīŀȧƀŀḗ ƒǿř ȧḓḓ-ǿƞş ẇīŧħ ȧ <a href=\"%(url)s\">"
+"ƈǿḿƥŀḗŧḗḓ ḓḗṽḗŀǿƥḗř ƥřǿƒīŀḗ</a>."
 
 #: apps/devhub/templates/devhub/payments/payments.html:52
 msgid "Contributions are only available for fully reviewed add-ons."
@@ -10796,8 +10785,7 @@ msgid ""
 "same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 "Ŧħḗ ŀīƈḗƞşǿř ƥḗřḿīŧş ǿŧħḗřş ŧǿ ḓīşŧřīƀŭŧḗ ḓḗřīṽȧŧīṽḗẇǿřķş ǿƞŀẏ ŭƞḓḗř ŧħḗ "
-"şȧḿḗ ŀīƈḗƞşḗ ǿř ǿƞḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ŧħḗ ǿƞḗ ŧħȧŧ ɠǿṽḗřƞş ŧħḗ ŀīƈḗƞşǿř'ş "
-"ẇǿřķ."
+"şȧḿḗ ŀīƈḗƞşḗ ǿř ǿƞḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ŧħḗ ǿƞḗ ŧħȧŧ ɠǿṽḗřƞş ŧħḗ ŀīƈḗƞşǿř'ş ẇǿřķ."
 
 #: apps/devhub/templates/devhub/personas/edit.html:192
 #: apps/devhub/templates/devhub/personas/submit.html:138
@@ -10932,8 +10920,8 @@ msgid ""
 msgstr ""
 "Ɓẏ şŭƀḿīŧŧīƞɠ ẏǿŭř Ŧħḗḿḗ, ẏǿŭ ȧɠřḗḗ ŧǿ ŧħḗ <a href=\"%(tos_url)s\" "
 "target=\"_blank\">Ŧħḗḿḗş Ŧḗřḿş ǿƒ Şḗřṽīƈḗ</a>. Ẏǿŭř Ŧħḗḿḗ īş şŭƀĵḗƈŧ ŧǿ "
-"ȧƥƥřǿṽȧŀ ȧƈƈǿřḓīƞɠ ŧǿ ŧħḗ şŧȧƞḓȧřḓş ḗşŧȧƀŀīşħḗḓ īƞ ŧħḗ <a href=\"%"
-"(guidelines_url)s\" target=\"_blank\">Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş</a>."
+"ȧƥƥřǿṽȧŀ ȧƈƈǿřḓīƞɠ ŧǿ ŧħḗ şŧȧƞḓȧřḓş ḗşŧȧƀŀīşħḗḓ īƞ ŧħḗ <a "
+"href=\"%(guidelines_url)s\" target=\"_blank\">Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -10952,16 +10940,16 @@ msgid ""
 "Provide more details about your theme by <a href=\"%(edit_url)s\">editing "
 "its listing</a>."
 msgstr ""
-"Ƥřǿṽīḓḗ ḿǿřḗ ḓḗŧȧīŀş ȧƀǿŭŧ ẏǿŭř ŧħḗḿḗ ƀẏ <a href=\"%(edit_url)s\">ḗḓīŧīƞɠ īŧş "
-"ŀīşŧīƞɠ</a>."
+"Ƥřǿṽīḓḗ ḿǿřḗ ḓḗŧȧīŀş ȧƀǿŭŧ ẏǿŭř ŧħḗḿḗ ƀẏ <a href=\"%(edit_url)s\">ḗḓīŧīƞɠ "
+"īŧş ŀīşŧīƞɠ</a>."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid ""
 "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a>"
 " to stay updated on reviews, collections, and more."
 msgstr ""
-"Ṽīḗẇ ȧƞḓ şŭƀşƈřīƀḗ ŧǿ ẏǿŭř ŧħḗḿḗ'ş <a href=\"%(feed_url)s\">ȧƈŧīṽīŧẏ ƒḗḗḓ</a> "
-"ŧǿ şŧȧẏ ŭƥḓȧŧḗḓ ǿƞ řḗṽīḗẇş, ƈǿŀŀḗƈŧīǿƞş, ȧƞḓ ḿǿřḗ."
+"Ṽīḗẇ ȧƞḓ şŭƀşƈřīƀḗ ŧǿ ẏǿŭř ŧħḗḿḗ'ş <a href=\"%(feed_url)s\">ȧƈŧīṽīŧẏ ƒḗḗḓ</a>"
+" ŧǿ şŧȧẏ ŭƥḓȧŧḗḓ ǿƞ řḗṽīḗẇş, ƈǿŀŀḗƈŧīǿƞş, ȧƞḓ ḿǿřḗ."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
@@ -11156,8 +11144,8 @@ msgstr[0] "Ƒŭŀŀ ƞǿḿīƞȧŧīǿƞ ẇīŀŀ ƀḗ ȧṽȧīŀȧƀŀḗ �
 msgstr[1] "Ƒŭŀŀ ƞǿḿīƞȧŧīǿƞ ẇīŀŀ ƀḗ ȧṽȧīŀȧƀŀḗ īƞ {0} ḓȧẏş"
 
 #: apps/devhub/templates/devhub/versions/list.html:88
-#: apps/devhub/templates/devhub/versions/list.html:252
-#: apps/devhub/templates/devhub/versions/list.html:275
+#: apps/devhub/templates/devhub/versions/list.html:253
+#: apps/devhub/templates/devhub/versions/list.html:276
 msgid "Cancel Review Request"
 msgstr "Ƈȧƞƈḗŀ Řḗṽīḗẇ Řḗɋŭḗşŧ"
 
@@ -11205,10 +11193,20 @@ msgid "Delete Version {version}"
 msgstr "Ḓḗŀḗŧḗ Ṽḗřşīǿƞ {ṽḗřşīǿƞ}"
 
 #: apps/devhub/templates/devhub/versions/list.html:187
+msgid ""
+"You are about to delete the current version of your add-on. This may cause "
+"your add-on status to change, or your listing to lose public visibility, if "
+"this is the only public version of your add-on."
+msgstr ""
+"Ẏǿŭ ȧřḗ ȧƀǿŭŧ ŧǿ ḓḗŀḗŧḗ ŧħḗ ƈŭřřḗƞŧ ṽḗřşīǿƞ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ. Ŧħīş ḿȧẏ ƈȧŭşḗ "
+"ẏǿŭř ȧḓḓ-ǿƞ şŧȧŧŭş ŧǿ ƈħȧƞɠḗ, ǿř ẏǿŭř ŀīşŧīƞɠ ŧǿ ŀǿşḗ ƥŭƀŀīƈ ṽīşīƀīŀīŧẏ, īƒ "
+"ŧħīş īş ŧħḗ ǿƞŀẏ ƥŭƀŀīƈ ṽḗřşīǿƞ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ."
+
+#: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
 msgstr "Ḓḗŀḗŧīƞɠ ŧħīş ṽḗřşīǿƞ ẇīŀŀ ƥḗřḿȧƞḗƞŧŀẏ ḓḗŀḗŧḗ:"
 
-#: apps/devhub/templates/devhub/versions/list.html:193
+#: apps/devhub/templates/devhub/versions/list.html:194
 msgid ""
 "<strong>Important:</strong> Once a version has been deleted, you may not "
 "upload a new version with the same version number."
@@ -11216,7 +11214,7 @@ msgstr ""
 "<strong>Īḿƥǿřŧȧƞŧ:</strong> Ǿƞƈḗ ȧ ṽḗřşīǿƞ ħȧş ƀḗḗƞ ḓḗŀḗŧḗḓ, ẏǿŭ ḿȧẏ ƞǿŧ "
 "ŭƥŀǿȧḓ ȧ ƞḗẇ ṽḗřşīǿƞ ẇīŧħ ŧħḗ şȧḿḗ ṽḗřşīǿƞ ƞŭḿƀḗř."
 
-#: apps/devhub/templates/devhub/versions/list.html:198
+#: apps/devhub/templates/devhub/versions/list.html:199
 msgid ""
 "Deleting a version which has already been reviewed may also cause a "
 "significant delay in the review of your next update."
@@ -11224,27 +11222,27 @@ msgstr ""
 "Ḓḗŀḗŧīƞɠ ȧ ṽḗřşīǿƞ ẇħīƈħ ħȧş ȧŀřḗȧḓẏ ƀḗḗƞ řḗṽīḗẇḗḓ ḿȧẏ ȧŀşǿ ƈȧŭşḗ ȧ "
 "şīɠƞīƒīƈȧƞŧ ḓḗŀȧẏ īƞ ŧħḗ řḗṽīḗẇ ǿƒ ẏǿŭř ƞḗẋŧ ŭƥḓȧŧḗ."
 
-#: apps/devhub/templates/devhub/versions/list.html:201
+#: apps/devhub/templates/devhub/versions/list.html:202
 msgid "Are you sure you wish to delete this version?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ḓḗŀḗŧḗ ŧħīş ṽḗřşīǿƞ?"
 
-#: apps/devhub/templates/devhub/versions/list.html:206
+#: apps/devhub/templates/devhub/versions/list.html:207
 msgid "Delete Version"
 msgstr "Ḓḗŀḗŧḗ Ṽḗřşīǿƞ"
 
-#: apps/devhub/templates/devhub/versions/list.html:208
+#: apps/devhub/templates/devhub/versions/list.html:209
 msgid "Disable Version"
 msgstr "Ḓīşȧƀŀḗ Ṽḗřşīǿƞ"
 
-#: apps/devhub/templates/devhub/versions/list.html:215
+#: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Add a new Version"
 msgstr "Ȧḓḓ ȧ ƞḗẇ Ṽḗřşīǿƞ"
 
-#: apps/devhub/templates/devhub/versions/list.html:217
+#: apps/devhub/templates/devhub/versions/list.html:218
 msgid "Add Version"
 msgstr "Ȧḓḓ Ṽḗřşīǿƞ"
 
-#: apps/devhub/templates/devhub/versions/list.html:226
+#: apps/devhub/templates/devhub/versions/list.html:227
 msgid ""
 "Disabling your add-on will prevent it from appearing anywhere in our gallery "
 "and will stop users from receiving automatic updates."
@@ -11252,11 +11250,11 @@ msgstr ""
 "Ḓīşȧƀŀīƞɠ ẏǿŭř ȧḓḓ-ǿƞ ẇīŀŀ ƥřḗṽḗƞŧ īŧ ƒřǿḿ ȧƥƥḗȧřīƞɠ ȧƞẏẇħḗřḗ īƞ ǿŭř ɠȧŀŀḗřẏ "
 "ȧƞḓ ẇīŀŀ şŧǿƥ ŭşḗřş ƒřǿḿ řḗƈḗīṽīƞɠ ȧŭŧǿḿȧŧīƈ ŭƥḓȧŧḗş."
 
-#: apps/devhub/templates/devhub/versions/list.html:232
+#: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to disable your add-on?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ḓīşȧƀŀḗ ẏǿŭř ȧḓḓ-ǿƞ?"
 
-#: apps/devhub/templates/devhub/versions/list.html:255
+#: apps/devhub/templates/devhub/versions/list.html:256
 msgid ""
 "Canceling your review request will leave your add-on as preliminarily "
 "reviewed."
@@ -11264,7 +11262,7 @@ msgstr ""
 "Ƈȧƞƈḗŀīƞɠ ẏǿŭř řḗṽīḗẇ řḗɋŭḗşŧ ẇīŀŀ ŀḗȧṽḗ ẏǿŭř ȧḓḓ-ǿƞ ȧş ƥřḗŀīḿīƞȧřīŀẏ "
 "řḗṽīḗẇḗḓ."
 
-#: apps/devhub/templates/devhub/versions/list.html:260
+#: apps/devhub/templates/devhub/versions/list.html:261
 msgid ""
 "Canceling your review request will mark your add-on incomplete. If you do "
 "not complete your add-on after several days by re-requesting review, it will "
@@ -11274,7 +11272,7 @@ msgstr ""
 "ƞǿŧ ƈǿḿƥŀḗŧḗ ẏǿŭř ȧḓḓ-ǿƞ ȧƒŧḗř şḗṽḗřȧŀ ḓȧẏş ƀẏ řḗ-řḗɋŭḗşŧīƞɠ řḗṽīḗẇ, īŧ ẇīŀŀ "
 "ƀḗ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/templates/devhub/versions/list.html:268
+#: apps/devhub/templates/devhub/versions/list.html:269
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ƈȧƞƈḗŀ ẏǿŭř řḗṽīḗẇ řḗɋŭḗşŧ?"
 
@@ -11547,8 +11545,8 @@ msgid ""
 "ons from the mobile Add-ons Manager."
 msgstr ""
 "Ṽīşīŧ <a href=\"%(url)s\">ƒīřḗƒǿẋ.ƈǿḿ/ḿ</a> ŧǿ ɠḗŧ Ƒīřḗƒǿẋ ǿƞ ẏǿŭř ƥħǿƞḗ ȧƞḓ "
-"ƥḗřşǿƞȧŀīzḗ ẏǿŭř ƀřǿẇşḗř ȧƞẏŧīḿḗ, ȧƞẏẇħḗřḗ. Ḗȧşīŀẏ ḓīşƈǿṽḗř ȧƞḓ īƞşŧȧŀŀ "
-"ȧḓḓ-ǿƞş ƒřǿḿ ŧħḗ ḿǿƀīŀḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř."
+"ƥḗřşǿƞȧŀīzḗ ẏǿŭř ƀřǿẇşḗř ȧƞẏŧīḿḗ, ȧƞẏẇħḗřḗ. Ḗȧşīŀẏ ḓīşƈǿṽḗř ȧƞḓ īƞşŧȧŀŀ ȧḓḓ-"
+"ǿƞş ƒřǿḿ ŧħḗ ḿǿƀīŀḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř."
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
@@ -11906,8 +11904,8 @@ msgid ""
 "reply."
 msgstr ""
 "Ŭşḗ ŧħīş ƒǿřḿ ŧǿ řḗɋŭḗşŧ ḿǿřḗ īƞƒǿřḿȧŧīǿƞ ƒřǿḿ ŧħḗ ȧŭŧħǿř. Ŧħḗẏ ẇīŀŀ řḗƈḗīṽḗ "
-"ȧƞ ḗḿȧīŀ ȧƞḓ ƀḗ ȧƀŀḗ ŧǿ ȧƞşẇḗř ħḗřḗ. Ẏǿŭ ẇīŀŀ ƀḗ ƞǿŧīƒīḗḓ ƀẏ ḗḿȧīŀ ẇħḗƞ "
-"ŧħḗẏ řḗƥŀẏ."
+"ȧƞ ḗḿȧīŀ ȧƞḓ ƀḗ ȧƀŀḗ ŧǿ ȧƞşẇḗř ħḗřḗ. Ẏǿŭ ẇīŀŀ ƀḗ ƞǿŧīƒīḗḓ ƀẏ ḗḿȧīŀ ẇħḗƞ ŧħḗẏ "
+"řḗƥŀẏ."
 
 #: apps/editors/helpers.py:427
 msgid ""
@@ -12366,8 +12364,8 @@ msgid ""
 "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
 "%(date)s</span>"
 msgstr ""
-"<strong>%(reason)s</strong> <span class=\"light\">Ƒŀȧɠɠḗḓ ƀẏ %(user)s ǿƞ %"
-"(date)s</span>"
+"<strong>%(reason)s</strong> <span class=\"light\">Ƒŀȧɠɠḗḓ ƀẏ %(user)s ǿƞ "
+"%(date)s</span>"
 
 #: apps/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated. Good work!"
@@ -12409,8 +12407,8 @@ msgid ""
 "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
 "%(version_status)s</span>"
 msgstr ""
-"Ṽḗřşīǿƞ %(version)s &middot; %(created)s <span class=\"light\">&middot; %"
-"(version_status)s</span>"
+"Ṽḗřşīǿƞ %(version)s &middot; %(created)s <span class=\"light\">&middot; "
+"%(version_status)s</span>"
 
 #: apps/editors/templates/editors/review.html:61
 msgid "Files in this version:"
@@ -12790,44 +12788,44 @@ msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s. 
 msgid "There was an error accessing file %s."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s."
 
-#: apps/files/utils.py:186
+#: apps/files/utils.py:188
 msgid "Could not parse uploaded file."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŭƥŀǿȧḓḗḓ ƒīŀḗ."
 
-#: apps/files/utils.py:223
+#: apps/files/utils.py:225
 msgid "Invalid file name in archive: {0}"
 msgstr "Īƞṽȧŀīḓ ƒīŀḗ ƞȧḿḗ īƞ ȧřƈħīṽḗ: {0}"
 
-#: apps/files/utils.py:231
+#: apps/files/utils.py:233
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ƒīŀḗ ḗẋƈḗḗḓīƞɠ şīzḗ ŀīḿīŧ īƞ ȧřƈħīṽḗ: {0}"
 
-#: apps/files/utils.py:281
+#: apps/files/utils.py:283
 msgid "Invalid archive."
 msgstr "Īƞṽȧŀīḓ ȧřƈħīṽḗ."
 
-#: apps/files/utils.py:371
-#: apps/files/utils.py:374
+#: apps/files/utils.py:373
+#: apps/files/utils.py:376
 msgid "Could not parse install.rdf."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ īƞşŧȧŀŀ.řḓƒ."
 
-#: apps/files/utils.py:384
+#: apps/files/utils.py:386
 msgid "Could not find a UUID."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƒīƞḓ ȧ ŬŬĪḒ."
 
-#: apps/files/utils.py:386
+#: apps/files/utils.py:388
 msgid "UUID doesn't match add-on."
 msgstr "ŬŬĪḒ ḓǿḗşƞ'ŧ ḿȧŧƈħ ȧḓḓ-ǿƞ."
 
-#: apps/files/utils.py:390
+#: apps/files/utils.py:392
 msgid "Duplicate UUID found."
 msgstr "Ḓŭƥŀīƈȧŧḗ ŬŬĪḒ ƒǿŭƞḓ."
 
-#: apps/files/utils.py:393
+#: apps/files/utils.py:395
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ħȧṽḗ ƒḗẇḗř ŧħȧƞ 32 ƈħȧřȧƈŧḗřş."
 
-#: apps/files/utils.py:396
+#: apps/files/utils.py:398
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
@@ -12835,7 +12833,7 @@ msgstr ""
 "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ǿƞŀẏ ƈǿƞŧȧīƞ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ȧƞḓ ŧħḗşḗ ƥŭƞƈŧŭȧŧīǿƞ "
 "ƈħȧřȧƈŧḗřş: +*.-_."
 
-#: apps/files/utils.py:413
+#: apps/files/utils.py:415
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> ḓǿḗşƞ'ŧ ḿȧŧƈħ ȧḓḓ-ǿƞ"
 
@@ -13089,11 +13087,11 @@ msgid ""
 "or application works. Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
-"ȧḓḓǿƞş.ḿǿzīŀŀȧ.ǿřɠ, ƈǿḿḿǿƞŀẏ ķƞǿẇƞ ȧş \"ȦḾǾ\", īş Ḿǿzīŀŀȧ'ş ǿƒƒīƈīȧŀ şīŧḗ ƒǿř "
-"ȧḓḓ-ǿƞş ŧǿ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ, şŭƈħ ȧş Ƒīřḗƒǿẋ, Ŧħŭƞḓḗřƀīřḓ, ȧƞḓ ŞḗȧḾǿƞķḗẏ. "
-"Ȧḓḓ-ǿƞş ŀḗŧ ẏǿŭ ȧḓḓ ƞḗẇ ƒḗȧŧŭřḗş ȧƞḓ ƈħȧƞɠḗ ŧħḗ ẇȧẏ ẏǿŭř ƀřǿẇşḗř ǿř "
-"ȧƥƥŀīƈȧŧīǿƞ ẇǿřķş. Ŧȧķḗ ȧ ŀǿǿķ ȧřǿŭƞḓ ȧƞḓ ḗẋƥŀǿřḗ ŧħḗ ŧħǿŭşȧƞḓş ǿƒ ẇȧẏş ŧǿ "
-"ƈŭşŧǿḿīzḗ ŧħḗ ẇȧẏ ẏǿŭ ḓǿ ŧħīƞɠş ǿƞŀīƞḗ."
+"ȧḓḓǿƞş.ḿǿzīŀŀȧ.ǿřɠ, ƈǿḿḿǿƞŀẏ ķƞǿẇƞ ȧş \"ȦḾǾ\", īş Ḿǿzīŀŀȧ'ş ǿƒƒīƈīȧŀ şīŧḗ "
+"ƒǿř ȧḓḓ-ǿƞş ŧǿ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ, şŭƈħ ȧş Ƒīřḗƒǿẋ, Ŧħŭƞḓḗřƀīřḓ, ȧƞḓ "
+"ŞḗȧḾǿƞķḗẏ. Ȧḓḓ-ǿƞş ŀḗŧ ẏǿŭ ȧḓḓ ƞḗẇ ƒḗȧŧŭřḗş ȧƞḓ ƈħȧƞɠḗ ŧħḗ ẇȧẏ ẏǿŭř ƀřǿẇşḗř "
+"ǿř ȧƥƥŀīƈȧŧīǿƞ ẇǿřķş. Ŧȧķḗ ȧ ŀǿǿķ ȧřǿŭƞḓ ȧƞḓ ḗẋƥŀǿřḗ ŧħḗ ŧħǿŭşȧƞḓş ǿƒ ẇȧẏş "
+"ŧǿ ƈŭşŧǿḿīzḗ ŧħḗ ẇȧẏ ẏǿŭ ḓǿ ŧħīƞɠş ǿƞŀīƞḗ."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -13121,32 +13119,31 @@ msgstr "Ħǿẇ ḓǿ Ī ķḗḗƥ ŭƥ ẇīŧħ ẇħȧŧ'ş ħȧƥƥḗƞī�
 msgid ""
 "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
-"Ŧħḗřḗ ȧřḗ şḗṽḗřȧŀ ẇȧẏş ŧǿ ƒīƞḓ ǿŭŧ ŧħḗ ŀȧŧḗşŧ ƞḗẇş ƒřǿḿ ŧħḗ ẇǿřŀḓ ǿƒ "
-"ȧḓḓ-ǿƞş:"
+"Ŧħḗřḗ ȧřḗ şḗṽḗřȧŀ ẇȧẏş ŧǿ ƒīƞḓ ǿŭŧ ŧħḗ ŀȧŧḗşŧ ƞḗẇş ƒřǿḿ ŧħḗ ẇǿřŀḓ ǿƒ ȧḓḓ-ǿƞş:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid ""
 "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with "
 "information for both add-on enthusiasts and developers."
 msgstr ""
-"Ǿŭř <a href=\"%(url)s\">Ȧḓḓ-ǿƞş Ɓŀǿɠ</a> īş řḗɠŭŀȧřŀẏ ŭƥḓȧŧḗḓ ẇīŧħ īƞƒǿřḿȧŧīǿƞ "
-"ƒǿř ƀǿŧħ ȧḓḓ-ǿƞ ḗƞŧħŭşīȧşŧş ȧƞḓ ḓḗṽḗŀǿƥḗřş."
+"Ǿŭř <a href=\"%(url)s\">Ȧḓḓ-ǿƞş Ɓŀǿɠ</a> īş řḗɠŭŀȧřŀẏ ŭƥḓȧŧḗḓ ẇīŧħ "
+"īƞƒǿřḿȧŧīǿƞ ƒǿř ƀǿŧħ ȧḓḓ-ǿƞ ḗƞŧħŭşīȧşŧş ȧƞḓ ḓḗṽḗŀǿƥḗřş."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid ""
 "We often post news, tips, and tricks to our Twitter account, <a "
 "href=\"%(url)s\">mozamo</a>"
 msgstr ""
-"Ẇḗ ǿƒŧḗƞ ƥǿşŧ ƞḗẇş, ŧīƥş, ȧƞḓ ŧřīƈķş ŧǿ ǿŭř Ŧẇīŧŧḗř ȧƈƈǿŭƞŧ, <a href=\"%"
-"(url)s\">ḿǿzȧḿǿ</a>"
+"Ẇḗ ǿƒŧḗƞ ƥǿşŧ ƞḗẇş, ŧīƥş, ȧƞḓ ŧřīƈķş ŧǿ ǿŭř Ŧẇīŧŧḗř ȧƈƈǿŭƞŧ, <a "
+"href=\"%(url)s\">ḿǿzȧḿǿ</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid ""
 "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-"
 "ons community and discuss upcoming changes to AMO."
 msgstr ""
-"Ǿŭř <a href=\"%(url)s\">ƒǿřŭḿş</a> ȧřḗ ȧ ɠǿǿḓ ƥŀȧƈḗ ŧǿ īƞŧḗřȧƈŧ ẇīŧħ ŧħḗ "
-"ȧḓḓ-ǿƞş ƈǿḿḿŭƞīŧẏ ȧƞḓ ḓīşƈŭşş ŭƥƈǿḿīƞɠ ƈħȧƞɠḗş ŧǿ ȦḾǾ."
+"Ǿŭř <a href=\"%(url)s\">ƒǿřŭḿş</a> ȧřḗ ȧ ɠǿǿḓ ƥŀȧƈḗ ŧǿ īƞŧḗřȧƈŧ ẇīŧħ ŧħḗ ȧḓḓ-"
+"ǿƞş ƈǿḿḿŭƞīŧẏ ȧƞḓ ḓīşƈŭşş ŭƥƈǿḿīƞɠ ƈħȧƞɠḗş ŧǿ ȦḾǾ."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
@@ -13183,8 +13180,8 @@ msgid ""
 "current bugs."
 msgstr ""
 "Ħḗŀƥ īḿƥřǿṽḗ ŧħīş ẇḗƀşīŧḗ. Īŧ'ş ǿƥḗƞ şǿŭřƈḗ, ȧƞḓ ẏǿŭ ƈȧƞ ƒīŀḗ ƀŭɠş ȧƞḓ "
-"şŭƀḿīŧ ƥȧŧƈħḗş. <a href=\"%(url)s\"> Ɓŭɠzīŀŀȧ</a> ƈǿƞŧȧīƞş ȧŀŀ ǿƒ ǿŭř ƈŭřřḗƞŧ "
-"ƀŭɠş."
+"şŭƀḿīŧ ƥȧŧƈħḗş. <a href=\"%(url)s\"> Ɓŭɠzīŀŀȧ</a> ƈǿƞŧȧīƞş ȧŀŀ ǿƒ ǿŭř "
+"ƈŭřřḗƞŧ ƀŭɠş."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid ""
@@ -13220,17 +13217,17 @@ msgid ""
 "Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer "
 "there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
-"Ȧ ɠǿǿḓ ƥŀȧƈḗ ŧǿ şŧȧřŧ īş ǿŭř <a href=\"%(faq_url)s\"><abbr title=\"Frequently "
-"Asked Questions\">ƑȦɊ</abbr></a>. Īƒ ẏǿŭ ḓǿƞ'ŧ ƒīƞḓ ȧƞ ȧƞşẇḗř ŧħḗřḗ, ẏǿŭ ƈȧƞ "
-"<a href=\"%(forum_url)s\"> ȧşķ ǿƞ ǿŭř ƒǿřŭḿş</a>."
+"Ȧ ɠǿǿḓ ƥŀȧƈḗ ŧǿ şŧȧřŧ īş ǿŭř <a href=\"%(faq_url)s\"><abbr title=\""
+"Frequently Asked Questions\">ƑȦɊ</abbr></a>. Īƒ ẏǿŭ ḓǿƞ'ŧ ƒīƞḓ ȧƞ ȧƞşẇḗř "
+"ŧħḗřḗ, ẏǿŭ ƈȧƞ <a href=\"%(forum_url)s\"> ȧşķ ǿƞ ǿŭř ƒǿřŭḿş</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid ""
 "If you really need to contact someone from the Mozilla team, please see our <"
 "a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
-"Īƒ ẏǿŭ řḗȧŀŀẏ ƞḗḗḓ ŧǿ ƈǿƞŧȧƈŧ şǿḿḗǿƞḗ ƒřǿḿ ŧħḗ Ḿǿzīŀŀȧ ŧḗȧḿ, ƥŀḗȧşḗ şḗḗ ǿŭř "
-"<a href=\"%(url)s\"> ƈǿƞŧȧƈŧ īƞƒǿřḿȧŧīǿƞ</a> ƥȧɠḗ."
+"Īƒ ẏǿŭ řḗȧŀŀẏ ƞḗḗḓ ŧǿ ƈǿƞŧȧƈŧ şǿḿḗǿƞḗ ƒřǿḿ ŧħḗ Ḿǿzīŀŀȧ ŧḗȧḿ, ƥŀḗȧşḗ şḗḗ ǿŭř <"
+"a href=\"%(url)s\"> ƈǿƞŧȧƈŧ īƞƒǿřḿȧŧīǿƞ</a> ƥȧɠḗ."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
@@ -13369,10 +13366,9 @@ msgid ""
 "Creative Commons Attribution 2.5 License</a>."
 msgstr ""
 "Şǿḿḗ īƈǿƞş ŭşḗḓ ȧřḗ ƒřǿḿ ŧħḗ <a "
-"href=\"http://www.famfamfam.com/lab/icons/silk/\">ƒȧḿƒȧḿƒȧḿ Şīŀķ Īƈǿƞ Şḗŧ</a>, "
-"ŀīƈḗƞşḗḓ ŭƞḓḗř ȧ <a "
-"href=\"http://creativecommons.org/licenses/by/2.5/\">Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş "
-"Ȧŧŧřīƀŭŧīǿƞ 2.5 Ŀīƈḗƞşḗ</a>."
+"href=\"http://www.famfamfam.com/lab/icons/silk/\">ƒȧḿƒȧḿƒȧḿ Şīŀķ Īƈǿƞ Şḗŧ</a>"
+", ŀīƈḗƞşḗḓ ŭƞḓḗř ȧ <a href=\"http://creativecommons.org/licenses/by/2.5/\">"
+"Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ 2.5 Ŀīƈḗƞşḗ</a>."
 
 #: apps/pages/templates/pages/credits.html:60
 msgid ""
@@ -13381,8 +13377,8 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
 "Attribution 3.0 License</a>."
 msgstr ""
-"Şǿḿḗ īƈǿƞş ŭşḗḓ ȧřḗ ƒřǿḿ ŧħḗ <a href=\"http://www.fatcow.com/free-"
-"icons/\">ƑȧŧƇǿẇ Ƒȧřḿ-Ƒřḗşħ Ẇḗƀ Īƈǿƞş Şḗŧ</a>, ŀīƈḗƞşḗḓ ŭƞḓḗř ȧ <a "
+"Şǿḿḗ īƈǿƞş ŭşḗḓ ȧřḗ ƒřǿḿ ŧħḗ <a href=\"http://www.fatcow.com/free-icons/\">"
+"ƑȧŧƇǿẇ Ƒȧřḿ-Ƒřḗşħ Ẇḗƀ Īƈǿƞş Şḗŧ</a>, ŀīƈḗƞşḗḓ ŭƞḓḗř ȧ <a "
 "href=\"http://creativecommons.org/licenses/by/3.0/us/\">Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş "
 "Ȧŧŧřīƀŭŧīǿƞ 3.0 Ŀīƈḗƞşḗ</a>."
 
@@ -13581,9 +13577,9 @@ msgid ""
 msgstr ""
 "Ŧħīş ƒīŀḗ, ƈȧŀŀḗḓ ȧƞ <a href=\"%(url)s\">Īƞşŧȧŀŀ Ḿȧƞīƒḗşŧ</a>, īş ŭşḗḓ ƀẏ "
 "Ȧḓḓ-ǿƞ Ḿȧƞȧɠḗř-ḗƞȧƀŀḗḓ ẊŬĿ ȧƥƥŀīƈȧŧīǿƞş ŧǿ ḓḗŧḗřḿīƞḗ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ȧƞ "
-"ȧḓḓ-ǿƞ ȧş īŧ īş ƀḗīƞɠ īƞşŧȧŀŀḗḓ. Īŧ ƈǿƞŧȧīƞş ḿḗŧȧḓȧŧȧ īḓḗƞŧīƒẏīƞɠ ŧħḗ "
-"ȧḓḓ-ǿƞ, ƥřǿṽīḓīƞɠ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ẇħǿ ƈřḗȧŧḗḓ īŧ, ẇħḗřḗ ḿǿřḗ īƞƒǿřḿȧŧīǿƞ "
-"ƈȧƞ ƀḗ ƒǿŭƞḓ ȧƀǿŭŧ īŧ, ẇħīƈħ ṽḗřşīǿƞş ǿƒ ẇħȧŧ ȧƥƥŀīƈȧŧīǿƞş īŧ īş ƈǿḿƥȧŧīƀŀḗ "
+"ȧḓḓ-ǿƞ ȧş īŧ īş ƀḗīƞɠ īƞşŧȧŀŀḗḓ. Īŧ ƈǿƞŧȧīƞş ḿḗŧȧḓȧŧȧ īḓḗƞŧīƒẏīƞɠ ŧħḗ ȧḓḓ-"
+"ǿƞ, ƥřǿṽīḓīƞɠ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ẇħǿ ƈřḗȧŧḗḓ īŧ, ẇħḗřḗ ḿǿřḗ īƞƒǿřḿȧŧīǿƞ ƈȧƞ "
+"ƀḗ ƒǿŭƞḓ ȧƀǿŭŧ īŧ, ẇħīƈħ ṽḗřşīǿƞş ǿƒ ẇħȧŧ ȧƥƥŀīƈȧŧīǿƞş īŧ īş ƈǿḿƥȧŧīƀŀḗ "
 "ẇīŧħ, ħǿẇ īŧ şħǿŭŀḓ ƀḗ ŭƥḓȧŧḗḓ, ȧƞḓ şǿ ǿƞ. Ŧħḗ ƒǿřḿȧŧ ǿƒ ŧħḗ Īƞşŧȧŀŀ "
 "Ḿȧƞīƒḗşŧ īş ŘḒƑ/XML."
 
@@ -13636,8 +13632,8 @@ msgid ""
 msgstr ""
 "Ẏḗş. Īŧ'ş ƥǿşşīƀŀḗ, ƀŭŧ şǿḿḗ ǿƒ ŧħḗ ƒŭƞƈŧīǿƞȧŀīŧẏ ƥřǿṽīḓḗḓ ƀẏ ŧħḗşḗ "
 "ŀīƀřȧřīḗş ȧřḗ ȧṽȧīŀȧƀŀḗ ŧħřǿŭɠħ ẊƤƇǾḾ, ẊŬĿ, ȧƞḓ ĴŞ 1.8. Īƞ ȧḓḓīŧīǿƞ, ȧŭŧħǿřş "
-"şħǿŭŀḓ ŧȧķḗ ƈȧřḗ īƒ ŀīƀřȧřīḗş ḿǿḓīƒẏ ƥřīḿīŧīṽḗ ǿƀĵḗƈŧ ƥřǿŧǿŧẏƥḗş "
-"(Şŧřīƞɠ.ƥřǿŧǿŧẏƥḗ, Ḓȧŧḗ.ƥřǿŧǿŧẏƥḗ, ḗŧƈ.) ȧƞḓ/ǿř ḓḗƒīƞḗ ɠŀǿƀȧŀ ƒŭƞƈŧīǿƞş (ḗɠ. "
+"şħǿŭŀḓ ŧȧķḗ ƈȧřḗ īƒ ŀīƀřȧřīḗş ḿǿḓīƒẏ ƥřīḿīŧīṽḗ ǿƀĵḗƈŧ ƥřǿŧǿŧẏƥḗş ("
+"Şŧřīƞɠ.ƥřǿŧǿŧẏƥḗ, Ḓȧŧḗ.ƥřǿŧǿŧẏƥḗ, ḗŧƈ.) ȧƞḓ/ǿř ḓḗƒīƞḗ ɠŀǿƀȧŀ ƒŭƞƈŧīǿƞş (ḗɠ. "
 "ŧħḗ $ ƒŭƞƈŧīǿƞ). Ŧħḗşḗ ȧřḗ ƥřǿƞḗ ŧǿ ƈȧŭşḗ ƈǿƞƒŀīƈŧ ẇīŧħ ǿŧħḗř ȧḓḓ-ǿƞş, īƞ "
 "ƥȧřŧīƈŭŀȧř īƒ ḓīƒƒḗřḗƞŧ ȧḓḓ-ǿƞş ŭşḗ ḓīƒƒḗřḗƞŧ ṽḗřşīǿƞş ǿƒ ŀīƀřȧřīḗş ȧƞḓ şǿ "
 "ǿƞ. Ḓḗṽḗŀǿƥḗřş ƞḗḗḓ ŧǿ ƀḗ ṽḗřẏ, ṽḗřẏ ƈȧřḗƒŭŀ ẇīŧħ ŭşīƞɠ ŧħḗḿ. Ḿǿzīŀŀȧ ḓǿḗş "
@@ -13654,8 +13650,8 @@ msgid ""
 "Extensions</a> sections of the <a href=\"%(ext_url)s\">Building an Extension "
 "tutorial</a>."
 msgstr ""
-"Ḓḗŧȧīŀş ǿƞ ŧḗşŧīƞɠ ẏǿŭř ȧḓḓ-ǿƞ ȧřḗ ƥřǿṽīḓḗḓ īƞ ŧħḗ <a href=\"%"
-"(test_url)s\">Ŧḗşŧīƞɠ</a> &amp; <a href=\"%(debug_url)s\">Ḓḗƀŭɠɠīƞɠ "
+"Ḓḗŧȧīŀş ǿƞ ŧḗşŧīƞɠ ẏǿŭř ȧḓḓ-ǿƞ ȧřḗ ƥřǿṽīḓḗḓ īƞ ŧħḗ <a "
+"href=\"%(test_url)s\">Ŧḗşŧīƞɠ</a> &amp; <a href=\"%(debug_url)s\">Ḓḗƀŭɠɠīƞɠ "
 "Ḗẋŧḗƞşīǿƞş</a> şḗƈŧīǿƞş ǿƒ ŧħḗ <a href=\"%(ext_url)s\">Ɓŭīŀḓīƞɠ ȧƞ Ḗẋŧḗƞşīǿƞ "
 "ŧŭŧǿřīȧŀ</a>."
 
@@ -13681,13 +13677,13 @@ msgstr ""
 "Ŧǿ ḗƞşŭřḗ ƈǿḿƥȧŧīƀīŀīŧẏ ẇīŧħ ŧħḗ ŀȧŧḗşŧ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ, īŧ'ş īḿƥǿřŧȧƞŧ ŧǿ "
 "ḓǿẇƞŀǿȧḓ ŭƥḓȧŧḗş ȧş ŧħḗẏ ƀḗƈǿḿḗ ȧṽȧīŀȧƀŀḗ ȧƞḓ ŧḗşŧ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ḗƞşŭřḗ "
 "ŧħȧŧ īŧ īş şŧīŀŀ ƒŭƞƈŧīǿƞīƞɠ ȧş ḗẋƥḗƈŧḗḓ. Īŧ'ş ƀḗşŧ ŧǿ ƒǿŀŀǿẇ ŧħḗ şŧḗƥş "
-"ǿŭŧŀīƞḗḓ īƞ ŧħḗ <a href=\"%(ext_url)s\">Ɓŭīŀḓīƞɠ ȧƞ Ḗẋŧḗƞşīǿƞ</a> ŧŭŧǿřīȧŀ ƒǿř "
-"<a href=\"%(test_url)s\">ŧḗşŧīƞɠ ẏǿŭř ȧḓḓ-ǿƞ</a>. Īƞ ḿȧƞẏ ƈȧşḗş, ŧħḗ ŀȧŧḗşŧ "
-"ṽḗřşīǿƞ ǿƒ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ ḿȧẏ ƀḗ ȧ ƀḗŧȧ řḗŀḗȧşḗ. Şīƞƈḗ ŧħḗşḗ řḗŀḗȧşḗş ȧŧ "
-"ŧīḿḗş īƞŧřǿḓŭƈḗ ȧřƈħīŧḗƈŧŭřȧŀ ƈħȧƞɠḗş ŧħȧŧ ḿȧẏ īḿƥȧƈŧ ŧħḗ ƒŭƞƈŧīǿƞȧŀīŧẏ ǿƒ "
-"ẏǿŭř ȧḓḓ-ǿƞ, īŧ'ş īḿƥǿřŧȧƞŧ ŧǿ ƀḗ ȧƈŧīṽḗŀẏ īƞṽǿŀṽḗḓ īƞ ŧħḗ ƀḗŧȧ ƥřǿƈḗşş ŧǿ "
-"ḗƞşŭřḗ ŧħȧŧ ẏǿŭ'řḗ ȧḓḓ-ǿƞ ŭşḗřş ȧřḗ ƞǿŧ ƞḗɠȧŧīṽḗŀẏ īḿƥȧƈŧḗḓ ŭƥǿƞ ƒīƞȧŀ "
-"řḗŀḗȧşḗ ǿƒ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ."
+"ǿŭŧŀīƞḗḓ īƞ ŧħḗ <a href=\"%(ext_url)s\">Ɓŭīŀḓīƞɠ ȧƞ Ḗẋŧḗƞşīǿƞ</a> ŧŭŧǿřīȧŀ "
+"ƒǿř <a href=\"%(test_url)s\">ŧḗşŧīƞɠ ẏǿŭř ȧḓḓ-ǿƞ</a>. Īƞ ḿȧƞẏ ƈȧşḗş, ŧħḗ "
+"ŀȧŧḗşŧ ṽḗřşīǿƞ ǿƒ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ ḿȧẏ ƀḗ ȧ ƀḗŧȧ řḗŀḗȧşḗ. Şīƞƈḗ ŧħḗşḗ "
+"řḗŀḗȧşḗş ȧŧ ŧīḿḗş īƞŧřǿḓŭƈḗ ȧřƈħīŧḗƈŧŭřȧŀ ƈħȧƞɠḗş ŧħȧŧ ḿȧẏ īḿƥȧƈŧ ŧħḗ "
+"ƒŭƞƈŧīǿƞȧŀīŧẏ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ, īŧ'ş īḿƥǿřŧȧƞŧ ŧǿ ƀḗ ȧƈŧīṽḗŀẏ īƞṽǿŀṽḗḓ īƞ ŧħḗ "
+"ƀḗŧȧ ƥřǿƈḗşş ŧǿ ḗƞşŭřḗ ŧħȧŧ ẏǿŭ'řḗ ȧḓḓ-ǿƞ ŭşḗřş ȧřḗ ƞǿŧ ƞḗɠȧŧīṽḗŀẏ īḿƥȧƈŧḗḓ "
+"ŭƥǿƞ ƒīƞȧŀ řḗŀḗȧşḗ ǿƒ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ."
 
 #: apps/pages/templates/pages/dev_faq.html:208
 msgid "What is leak testing?"
@@ -13707,10 +13703,10 @@ msgstr ""
 "Ḿḗḿǿřẏ ŀḗȧķş ȧřḗ ŧẏƥīƈȧŀŀẏ ƀŭɠş īƞ ŧħḗ şǿŭřƈḗ ƈǿḓḗ ŭşḗḓ ŧǿ ƀŭīŀḓ "
 "ȧƥƥŀīƈȧŧīǿƞş ẇħīƈħ ƈǿƞşŭḿḗ şẏşŧḗḿ ḿḗḿǿřẏ ẇīŧħǿŭŧ ƥřǿƥḗřŀẏ řḗŀḗȧşīƞɠ īŧ ǿƞƈḗ "
 "ŧħḗ ȧƥƥŀīƈȧŧīǿƞ ħȧş ƒīƞīşħḗḓ. Ŀḗȧķ ŧḗşŧīƞɠ ȧŀŀǿẇş ẏǿŭ ŧǿ ƥīƞƥǿīƞŧ ẇħīƈħ ƀīŧ "
-"ǿƒ ƈǿḓḗ īş ƈȧŭşīƞɠ ŧħḗ ḿḗḿǿřẏ ŀḗȧķ. Ŧħḗ ƒǿŀŀǿẇīƞɠ īş ȧ ɠǿǿḓ <a href=\"%"
-"(wiki_url)s\">ɠŭīḓḗ ŧǿ ƒīƞḓīƞɠ ŧǿǿŀş ȧƞḓ şŧřȧŧḗɠīḗş</a> ŧħȧŧ ħḗŀƥ ḿȧƞȧɠḗ ŀḗȧķ "
-"ŧḗşŧīƞɠ. Ḿǿzīŀŀȧ'ş Ƈȧřşŧḗƞ Ɓǿǿķ ħȧş ȧŀşǿ ẇřīŧŧḗƞ ȧƞ ḗẋƈḗŀŀḗƞŧ ĦǾẆ-ŦǾ "
-"ȧřŧīƈŀḗ ǿƞ ŧħḗ şŭƀĵḗƈŧ ǿƒ <a href=\"%(leak_url)s\">ŀḗȧķ ŧḗşŧīƞɠ īƞ "
+"ǿƒ ƈǿḓḗ īş ƈȧŭşīƞɠ ŧħḗ ḿḗḿǿřẏ ŀḗȧķ. Ŧħḗ ƒǿŀŀǿẇīƞɠ īş ȧ ɠǿǿḓ <a "
+"href=\"%(wiki_url)s\">ɠŭīḓḗ ŧǿ ƒīƞḓīƞɠ ŧǿǿŀş ȧƞḓ şŧřȧŧḗɠīḗş</a> ŧħȧŧ ħḗŀƥ "
+"ḿȧƞȧɠḗ ŀḗȧķ ŧḗşŧīƞɠ. Ḿǿzīŀŀȧ'ş Ƈȧřşŧḗƞ Ɓǿǿķ ħȧş ȧŀşǿ ẇřīŧŧḗƞ ȧƞ ḗẋƈḗŀŀḗƞŧ "
+"ĦǾẆ-ŦǾ ȧřŧīƈŀḗ ǿƞ ŧħḗ şŭƀĵḗƈŧ ǿƒ <a href=\"%(leak_url)s\">ŀḗȧķ ŧḗşŧīƞɠ īƞ "
 "Ƒīřḗƒǿẋ</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:223
@@ -13725,11 +13721,11 @@ msgid ""
 "href=\"%(bz_url)s\">The BabelZilla project</a> is also a great resource for "
 "learning about localization and volunteering to help translate add-ons."
 msgstr ""
-"Ẏḗş. Ḓḗŧȧīŀş ǿƞ ŀǿƈȧŀīzīƞɠ ẏǿŭř ȧḓḓ-ǿƞ ƈȧƞ ƀḗ ƒǿŭƞḓ īƞ ŧħḗ <a href=\"%"
-"(ext_url)s\">Ɓŭīŀḓīƞɠ ȧƞ Ḗẋŧḗƞşīǿƞ</a> ŧŭŧǿřīȧŀ ȧş ẇḗŀŀ ȧş ŧħḗ <a href=\"%"
-"(l10n_url)s\">Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř Ŀǿƈȧŀīzȧŧīǿƞ ƥȧɠḗ</a>. <a href=\"%"
-"(bz_url)s\">Ŧħḗ ƁȧƀḗŀẐīŀŀȧ ƥřǿĵḗƈŧ</a> īş ȧŀşǿ ȧ ɠřḗȧŧ řḗşǿŭřƈḗ ƒǿř ŀḗȧřƞīƞɠ "
-"ȧƀǿŭŧ ŀǿƈȧŀīzȧŧīǿƞ ȧƞḓ ṽǿŀŭƞŧḗḗřīƞɠ ŧǿ ħḗŀƥ ŧřȧƞşŀȧŧḗ ȧḓḓ-ǿƞş."
+"Ẏḗş. Ḓḗŧȧīŀş ǿƞ ŀǿƈȧŀīzīƞɠ ẏǿŭř ȧḓḓ-ǿƞ ƈȧƞ ƀḗ ƒǿŭƞḓ īƞ ŧħḗ <a "
+"href=\"%(ext_url)s\">Ɓŭīŀḓīƞɠ ȧƞ Ḗẋŧḗƞşīǿƞ</a> ŧŭŧǿřīȧŀ ȧş ẇḗŀŀ ȧş ŧħḗ <a "
+"href=\"%(l10n_url)s\">Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř Ŀǿƈȧŀīzȧŧīǿƞ ƥȧɠḗ</a>. <a "
+"href=\"%(bz_url)s\">Ŧħḗ ƁȧƀḗŀẐīŀŀȧ ƥřǿĵḗƈŧ</a> īş ȧŀşǿ ȧ ɠřḗȧŧ řḗşǿŭřƈḗ ƒǿř "
+"ŀḗȧřƞīƞɠ ȧƀǿŭŧ ŀǿƈȧŀīzȧŧīǿƞ ȧƞḓ ṽǿŀŭƞŧḗḗřīƞɠ ŧǿ ħḗŀƥ ŧřȧƞşŀȧŧḗ ȧḓḓ-ǿƞş."
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -13784,10 +13780,10 @@ msgid ""
 "href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does "
 "not offer developer recommendations."
 msgstr ""
-"Ẏḗş. Ẏǿŭ ḿȧẏ ƒīƞḓ 3řḓ ƥȧřŧẏ ḓḗṽḗŀǿƥḗřş ṽīȧ ŧħḗ <a href=\"%"
-"(list_url)s\">ḿǿzīŀŀȧ.ĵǿƀş ŀīşŧ</a>, <a href=\"%(mz_url)s\">ḿǿzīŀŀȧẐīƞḗ "
-"ƒǿřŭḿş</a> ǿř <a href=\"%(wiki_url)s\">ŧħḗ Ḿǿzīŀŀȧ Ẇīķī</a>. Ƥŀḗȧşḗ ƞǿŧḗ ŧħȧŧ "
-"Ḿǿzīŀŀȧ ḓǿḗş ƞǿŧ ǿƒƒḗř ḓḗṽḗŀǿƥḗř řḗƈǿḿḿḗƞḓȧŧīǿƞş."
+"Ẏḗş. Ẏǿŭ ḿȧẏ ƒīƞḓ 3řḓ ƥȧřŧẏ ḓḗṽḗŀǿƥḗřş ṽīȧ ŧħḗ <a href=\"%(list_url)s\">"
+"ḿǿzīŀŀȧ.ĵǿƀş ŀīşŧ</a>, <a href=\"%(mz_url)s\">ḿǿzīŀŀȧẐīƞḗ ƒǿřŭḿş</a> ǿř <a "
+"href=\"%(wiki_url)s\">ŧħḗ Ḿǿzīŀŀȧ Ẇīķī</a>. Ƥŀḗȧşḗ ƞǿŧḗ ŧħȧŧ Ḿǿzīŀŀȧ ḓǿḗş "
+"ƞǿŧ ǿƒƒḗř ḓḗṽḗŀǿƥḗř řḗƈǿḿḿḗƞḓȧŧīǿƞş."
 
 #: apps/pages/templates/pages/dev_faq.html:284
 msgid "Can I host my own add-on?"
@@ -13852,8 +13848,8 @@ msgid ""
 "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your "
 "information is managed by Mozilla."
 msgstr ""
-"Ẏḗş. Ǿŭř <a href=\"%(url)s\">Ƥřīṽȧƈẏ Ƥǿŀīƈẏ</a> ḓḗşƈřīƀḗş ħǿẇ ẏǿŭř īƞƒǿřḿȧŧīǿƞ "
-"īş ḿȧƞȧɠḗḓ ƀẏ Ḿǿzīŀŀȧ."
+"Ẏḗş. Ǿŭř <a href=\"%(url)s\">Ƥřīṽȧƈẏ Ƥǿŀīƈẏ</a> ḓḗşƈřīƀḗş ħǿẇ ẏǿŭř "
+"īƞƒǿřḿȧŧīǿƞ īş ḿȧƞȧɠḗḓ ƀẏ Ḿǿzīŀŀȧ."
 
 #: apps/pages/templates/pages/dev_faq.html:323
 msgid "What are the \"developer tools\" listed on AMO?"
@@ -13867,8 +13863,7 @@ msgid ""
 msgstr ""
 "Ŧħḗ \"Ḓḗṽḗŀǿƥḗř Ŧǿǿŀş\" ḓȧşħƀǿȧřḓ īş ŧħḗ ȧřḗȧ ŧħȧŧ ƥřǿṽīḓḗş ẏǿŭ ŧħḗ ŧǿǿŀş ŧǿ "
 "şŭƈƈḗşşƒŭŀŀẏ ḿȧƞȧɠḗ ẏǿŭř ȧḓḓ-ǿƞş. Īŧ ƥřǿṽīḓḗş ŧħḗ ƒŭƞƈŧīǿƞȧŀīŧẏ ƞḗƈḗşşȧřẏ ŧǿ "
-"şŭƀḿīŧ ẏǿŭř ȧḓḓ-ǿƞş ŧǿ ȦḾǾ, ḿȧƞȧɠḗ ȧḓḓ-ǿƞ īƞƒǿřḿȧŧīǿƞ, ȧƞḓ řḗṽīḗẇ "
-"şŧȧŧīşŧīƈş."
+"şŭƀḿīŧ ẏǿŭř ȧḓḓ-ǿƞş ŧǿ ȦḾǾ, ḿȧƞȧɠḗ ȧḓḓ-ǿƞ īƞƒǿřḿȧŧīǿƞ, ȧƞḓ řḗṽīḗẇ şŧȧŧīşŧīƈş."
 
 #: apps/pages/templates/pages/dev_faq.html:333
 msgid ""
@@ -13904,9 +13899,9 @@ msgid ""
 msgstr ""
 "Ŧħḗ Ḓḗṽḗŀǿƥḗř Ŧǿǿŀş ḓȧşħƀǿȧřḓ ẇīŀŀ ȧŀŀǿẇ ẏǿŭ ŧǿ ŭƥŀǿȧḓ ȧƞḓ şŭƀḿīŧ ȧḓḓ-ǿƞş ŧǿ "
 "ȦḾǾ. Ẏǿŭ ḿŭşŧ ƀḗ ȧ řḗɠīşŧḗřḗḓ ȦḾǾ ŭşḗřş ƀḗƒǿřḗ ẏǿŭ ƈȧƞ şŭƀḿīŧ ȧƞ ȧḓḓ-ǿƞ. "
-"Ɓḗƒǿřḗ şŭƀḿīŧŧīƞɠ ẏǿŭř ȧḓḓ-ǿƞ ƀḗ şŭřḗ ŧǿ ẏǿŭ ħȧṽḗ řḗȧḓ ŧħḗ ȦḾǾ <a href=\"%"
-"(url)s\">Ḗḓīŧǿřş Řḗṽīḗẇīƞɠ Ɠŭīḓḗ</a> ŧǿ ḗƞşŭřḗ ŧħȧŧ ẏǿŭř ȧḓḓ-ǿƞ ħȧş ḿḗŧ ŧħḗ "
-"ɠŭīḓḗŀīƞḗş ŭşḗḓ ƀẏ ḗḓīŧǿřş ŧǿ řḗṽīḗẇ ȧḓḓ-ǿƞş."
+"Ɓḗƒǿřḗ şŭƀḿīŧŧīƞɠ ẏǿŭř ȧḓḓ-ǿƞ ƀḗ şŭřḗ ŧǿ ẏǿŭ ħȧṽḗ řḗȧḓ ŧħḗ ȦḾǾ <a "
+"href=\"%(url)s\">Ḗḓīŧǿřş Řḗṽīḗẇīƞɠ Ɠŭīḓḗ</a> ŧǿ ḗƞşŭřḗ ŧħȧŧ ẏǿŭř ȧḓḓ-ǿƞ ħȧş "
+"ḿḗŧ ŧħḗ ɠŭīḓḗŀīƞḗş ŭşḗḓ ƀẏ ḗḓīŧǿřş ŧǿ řḗṽīḗẇ ȧḓḓ-ǿƞş."
 
 #: apps/pages/templates/pages/dev_faq.html:357
 msgid "What operating system do I choose for my add-on?"
@@ -14029,8 +14024,8 @@ msgstr ""
 "Ŧħḗ Ḿǿzīŀŀȧ ḗḓīŧǿřīȧŀ ŧḗȧḿ ƒǿŀŀǿẇş ŧħḗ <a href=\"%(url)s\">Ḗḓīŧǿřş Řḗṽīḗẇīƞɠ "
 "Ɠŭīḓḗ</a> ẇħḗƞ ŧḗşŧīƞɠ ȧƞ ȧḓḓ-ǿƞ ƒǿř ȧƈƈḗƥŧȧƞƈḗ ǿƞŧǿ ȦḾǾ. Īŧ īş īḿƥǿřŧȧƞŧ "
 "ŧħȧŧ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗřş řḗṽīḗẇ ŧħīş ɠŭīḓḗ ŧǿ ḗƞşŭřḗ ŧħȧŧ ƈǿḿḿǿƞ ƥřǿƀŀḗḿ ȧřḗȧş "
-"ȧřḗ ȧḓḓřḗşşḗḓ ƥřīǿř ŧǿ şŭƀḿīŧŧīƞɠ ŧħḗīř ȧḓḓ-ǿƞ ƒǿř řḗṽīḗẇ. Ŧħīş ẇīŀŀ "
-"ɠřḗȧŧŀẏ ȧşşīşŧ īƞ ḗẋƥḗḓīŧīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş"
+"ȧřḗ ȧḓḓřḗşşḗḓ ƥřīǿř ŧǿ şŭƀḿīŧŧīƞɠ ŧħḗīř ȧḓḓ-ǿƞ ƒǿř řḗṽīḗẇ. Ŧħīş ẇīŀŀ ɠřḗȧŧŀẏ "
+"ȧşşīşŧ īƞ ḗẋƥḗḓīŧīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş"
 
 #: apps/pages/templates/pages/dev_faq.html:439
 msgid "How long will it take for my add-on to be reviewed?"
@@ -14069,9 +14064,9 @@ msgid ""
 msgstr ""
 "Ŧħīş īş ẇħẏ īŧ'ş ṽḗřẏ īḿƥǿřŧȧƞŧ ŧǿ řḗȧḓ ŧħḗ <a href=\"%(g_url)s\">Ḗḓīŧǿřş "
 "Řḗṽīḗẇīƞɠ Ɠŭīḓḗ</a> ŧǿ ḗƞşŭřḗ ŧħȧŧ ẏǿŭř ȧḓḓ-ǿƞ īş şḗŧŭƥ ȧş ḗẋƥḗƈŧḗḓ. Īŧ'ş "
-"ȧŀşǿ ȧ ɠǿǿḓ īḓḗȧ ŧǿ řḗȧḓ ŧħḗ ƀŀǿɠ ƥǿşŧ, <a href=\"%(blog_url)s\">Şŭƈƈḗşşƒŭŀŀẏ "
-"Ɠḗŧŧīƞɠ ẏǿŭř Ȧḓḓ-ǿƞ Řḗṽīḗẇḗḓ</a> ẇħīƈħ ƥřǿṽīḓḗş ḗẋƈḗŀŀḗƞŧ īƞşīɠħŧ īƞŧǿ "
-"ḗƞşŭřīƞɠ ȧ şḿǿǿŧħ řḗṽīḗẇ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ."
+"ȧŀşǿ ȧ ɠǿǿḓ īḓḗȧ ŧǿ řḗȧḓ ŧħḗ ƀŀǿɠ ƥǿşŧ, <a href=\"%(blog_url)s\">"
+"Şŭƈƈḗşşƒŭŀŀẏ Ɠḗŧŧīƞɠ ẏǿŭř Ȧḓḓ-ǿƞ Řḗṽīḗẇḗḓ</a> ẇħīƈħ ƥřǿṽīḓḗş ḗẋƈḗŀŀḗƞŧ "
+"īƞşīɠħŧ īƞŧǿ ḗƞşŭřīƞɠ ȧ şḿǿǿŧħ řḗṽīḗẇ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ."
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -14112,8 +14107,8 @@ msgid ""
 "file for your add-on."
 msgstr ""
 "Ẏǿŭ ƈȧƞ şŭƀḿīŧ ȧƞ ŭƥḓȧŧḗ ƒǿř ẏǿŭř ȧḓḓ-ǿƞ ṽīȧ ŧħḗ Ḓḗṽḗŀǿƥḗř Ŧǿǿŀş ḓȧşħƀǿȧřḓ "
-"ƀẏ ƈħǿǿşīƞɠ ŧħḗ ǿƥŧīǿƞ \"Ŭƥŀǿȧḓ ȧ ƞḗẇ ṽḗřşīǿƞ\" ȧƞḓ ŭƥŀǿȧḓīƞɠ ȧ ƞḗẇ .ẋƥī ƒīŀḗ "
-"ƒǿř ẏǿŭř ȧḓḓ-ǿƞ."
+"ƀẏ ƈħǿǿşīƞɠ ŧħḗ ǿƥŧīǿƞ \"Ŭƥŀǿȧḓ ȧ ƞḗẇ ṽḗřşīǿƞ\" ȧƞḓ ŭƥŀǿȧḓīƞɠ ȧ ƞḗẇ .ẋƥī "
+"ƒīŀḗ ƒǿř ẏǿŭř ȧḓḓ-ǿƞ."
 
 #: apps/pages/templates/pages/dev_faq.html:494
 msgid "Does my update need to be reviewed by editors?"
@@ -14128,10 +14123,10 @@ msgid ""
 "be reviewed by an editor."
 msgstr ""
 "Ŧħȧŧ ḓḗƥḗƞḓş. Īƒ ẏǿŭ ȧřḗ şīḿƥŀẏ ƈħȧƞɠīƞɠ ȧ ḓḗşƈřīƥŧīǿƞ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ ǿř "
-"ŭƥḓȧŧīƞɠ ȧ \"ḿȧẋṼḗřşīǿƞ\" ŧǿ ḗƞşŭřḗ ƈǿḿƥȧŧīƀīŀīŧẏ ẇīŧħ ȧ ƞḗẇ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ "
-"ŭƥḓȧŧḗ, ŧħḗƞ ẏǿŭř ȧḓḓ-ǿƞ ḓǿḗş ƞǿŧ ƞḗḗḓ ŧǿ ƀḗ řḗṽīḗẇḗḓ ȧɠȧīƞ. Īƒ, ħǿẇḗṽḗř, "
-"ẏǿŭ şŭƀḿīŧ ȧ ƞḗẇ ŭƥḓȧŧḗḓ ƒīŀḗ, ŧħḗƞ ẏǿŭř ȧḓḓ-ǿƞ ŭƥḓȧŧḗ ẇīŀŀ ƞḗḗḓ ŧǿ ƀḗ "
-"řḗṽīḗẇḗḓ ƀẏ ȧƞ ḗḓīŧǿř."
+"ŭƥḓȧŧīƞɠ ȧ \"ḿȧẋṼḗřşīǿƞ\" ŧǿ ḗƞşŭřḗ ƈǿḿƥȧŧīƀīŀīŧẏ ẇīŧħ ȧ ƞḗẇ Ḿǿzīŀŀȧ "
+"şǿƒŧẇȧřḗ ŭƥḓȧŧḗ, ŧħḗƞ ẏǿŭř ȧḓḓ-ǿƞ ḓǿḗş ƞǿŧ ƞḗḗḓ ŧǿ ƀḗ řḗṽīḗẇḗḓ ȧɠȧīƞ. Īƒ, "
+"ħǿẇḗṽḗř, ẏǿŭ şŭƀḿīŧ ȧ ƞḗẇ ŭƥḓȧŧḗḓ ƒīŀḗ, ŧħḗƞ ẏǿŭř ȧḓḓ-ǿƞ ŭƥḓȧŧḗ ẇīŀŀ ƞḗḗḓ ŧǿ "
+"ƀḗ řḗṽīḗẇḗḓ ƀẏ ȧƞ ḗḓīŧǿř."
 
 #: apps/pages/templates/pages/dev_faq.html:507
 msgid "What are the Recommended Lists?"
@@ -14158,10 +14153,10 @@ msgstr ""
 "ḗẋƈīŧīƞɠ ḗƞħȧƞƈḗḿḗƞŧ ŧǿ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ ȧƞḓ īƞƈřḗȧşīƞɠ ȧẇȧřḗƞḗşş ǿƒ ŧħḗ "
 "ŧħǿŭşȧƞḓş ǿƒ ȧḓḓ-ǿƞş ħǿşŧḗḓ ǿƞ ȦḾǾ. Ŧħḗ ŀīşŧş ȧřḗ ƀřǿķḗƞ ḓǿẇƞ īƞŧǿ ŧẇǿ "
 "ƈȧŧḗɠǿřīḗş; Řḗƈǿḿḿḗƞḓḗḓ ȧƞḓ Ƈȧŧḗɠǿřẏ Řḗƈǿḿḿḗƞḓḗḓ. Ŧħḗ ƒǿřḿḗř īş şħǿẇƞ ǿƞ ŧħḗ "
-"ħǿḿḗ ƥȧɠḗ ǿƒ ȦḾǾ ȧƞḓ īş ŧẏƥīƈȧŀŀẏ ŀīḿīŧḗḓ ŧǿ 40 ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş. Ŧħḗ "
-"ŀȧŧŧḗř ȧřḗ ŀīşŧş ǿƒ ȧḓḓ-ǿƞş ŧħȧŧ ȧřḗ řḗƈǿḿḿḗƞḓḗḓ ȧŧ ŧħḗ ƈȧŧḗɠǿřẏ ŀḗṽḗŀ. Ŧħḗ "
-"ǿƞŀẏ ḓīşŧīƞƈŧīǿƞ ƀḗŧẇḗḗƞ ŧħḗ ŧẇǿ ŀīşŧş īş ŧħȧŧ Ƈȧŧḗɠǿřẏ Řḗƈǿḿḿḗƞḓḗḓ ȧḓḓ-ǿƞş "
-"ȧřḗ ƞǿŧ ƒḗȧŧŭřḗḓ ǿƞ ŧħḗ ħǿḿḗ ƥȧɠḗ. Ȧƥȧřŧ ƒřǿḿ ŧħȧŧ, ƀǿŧħ ŀīşŧş ȧřḗ ḿḗȧƞŧ ŧǿ "
+"ħǿḿḗ ƥȧɠḗ ǿƒ ȦḾǾ ȧƞḓ īş ŧẏƥīƈȧŀŀẏ ŀīḿīŧḗḓ ŧǿ 40 ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş. Ŧħḗ ŀȧŧŧḗř "
+"ȧřḗ ŀīşŧş ǿƒ ȧḓḓ-ǿƞş ŧħȧŧ ȧřḗ řḗƈǿḿḿḗƞḓḗḓ ȧŧ ŧħḗ ƈȧŧḗɠǿřẏ ŀḗṽḗŀ. Ŧħḗ ǿƞŀẏ "
+"ḓīşŧīƞƈŧīǿƞ ƀḗŧẇḗḗƞ ŧħḗ ŧẇǿ ŀīşŧş īş ŧħȧŧ Ƈȧŧḗɠǿřẏ Řḗƈǿḿḿḗƞḓḗḓ ȧḓḓ-ǿƞş ȧřḗ "
+"ƞǿŧ ƒḗȧŧŭřḗḓ ǿƞ ŧħḗ ħǿḿḗ ƥȧɠḗ. Ȧƥȧřŧ ƒřǿḿ ŧħȧŧ, ƀǿŧħ ŀīşŧş ȧřḗ ḿḗȧƞŧ ŧǿ "
 "řḗƈǿɠƞīzḗ ŧħḗ ȧƈħīḗṽḗḿḗƞŧş ǿƒ īƞḓīṽīḓŭȧŀ ȧḓḓ-ǿƞ ȧŭŧħǿřş ȧƞḓ ŧħḗ ẇǿřķ ŧħḗẏ’ṽḗ "
 "ƥřǿḓŭƈḗḓ."
 
@@ -14180,12 +14175,12 @@ msgid ""
 "regularly to prevent staleness."
 msgstr ""
 "Ŧħḗ ḿȧīƞ ƥȧɠḗ ǿƒ ȦḾǾ ȧş ẇḗŀŀ ȧş ŧħḗ ḿȧīƞ ƥȧɠḗ ƒǿř ḗȧƈħ ƈȧŧḗɠǿřẏ ƈǿƞŧȧīƞ "
-"ŧħřḗḗ şŀǿŧş ẇħīƈħ ȧřḗ ŭşḗḓ ŧǿ ḓīşƥŀȧẏ ȧ şḗŧ ǿƒ Ƒḗȧŧŭřḗḓ Ȧḓḓ-Ǿƞş. Ŧħḗşḗ "
-"ȧḓḓ-ǿƞş ȧřḗ ƥŭŀŀḗḓ ƒřǿḿ ŧħḗ Řḗƈǿḿḿḗƞḓḗḓ ȧƞḓ Ƈȧŧḗɠǿřẏ Řḗƈǿḿḿḗƞḓḗḓ ŀīşŧş "
-"řḗşƥḗƈŧīṽḗŀẏ ȧƞḓ ƥḗřīǿḓīƈȧŀŀẏ řǿŧȧŧḗḓ ȧş ḓḗşƈřīƀḗḓ īƞ ŧħḗ <a href=\"%"
-"(url)s\">Ƒḗȧŧŭřḗḓ Ȧḓḓ-ǿƞş ƑȦɊ</a> ŧǿ ȧŀŀǿẇ řḗƈǿḿḿḗƞḓḗḓ ȧḓḓ-ǿƞş ȧ ƈħȧƞƈḗ ƒǿř "
-"īƞƈřḗȧşḗḓ ṽīşīƀīŀīŧẏ ŧǿ ŭşḗřş. Ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş ȧřḗ řǿŧȧŧḗḓ řḗɠŭŀȧřŀẏ ŧǿ "
-"ƥřḗṽḗƞŧ şŧȧŀḗƞḗşş."
+"ŧħřḗḗ şŀǿŧş ẇħīƈħ ȧřḗ ŭşḗḓ ŧǿ ḓīşƥŀȧẏ ȧ şḗŧ ǿƒ Ƒḗȧŧŭřḗḓ Ȧḓḓ-Ǿƞş. Ŧħḗşḗ ȧḓḓ-"
+"ǿƞş ȧřḗ ƥŭŀŀḗḓ ƒřǿḿ ŧħḗ Řḗƈǿḿḿḗƞḓḗḓ ȧƞḓ Ƈȧŧḗɠǿřẏ Řḗƈǿḿḿḗƞḓḗḓ ŀīşŧş "
+"řḗşƥḗƈŧīṽḗŀẏ ȧƞḓ ƥḗřīǿḓīƈȧŀŀẏ řǿŧȧŧḗḓ ȧş ḓḗşƈřīƀḗḓ īƞ ŧħḗ <a "
+"href=\"%(url)s\">Ƒḗȧŧŭřḗḓ Ȧḓḓ-ǿƞş ƑȦɊ</a> ŧǿ ȧŀŀǿẇ řḗƈǿḿḿḗƞḓḗḓ ȧḓḓ-ǿƞş ȧ "
+"ƈħȧƞƈḗ ƒǿř īƞƈřḗȧşḗḓ ṽīşīƀīŀīŧẏ ŧǿ ŭşḗřş. Ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş ȧřḗ řǿŧȧŧḗḓ "
+"řḗɠŭŀȧřŀẏ ŧǿ ƥřḗṽḗƞŧ şŧȧŀḗƞḗşş."
 
 #: apps/pages/templates/pages/dev_faq.html:540
 msgid "How can my add-on be listed as Recommended?"
@@ -14310,10 +14305,10 @@ msgid ""
 "Frequently Asked Questions\">FAQ</abbr> to help you if you want to use or "
 "distribute code licensed under it."
 msgstr ""
-"Īƞ ȧḓḓīŧīǿƞ ŧǿ ŧħḗ ƒŭŀŀ ŧḗẋŧ ǿƒ ŧħḗ Ḿǿzīŀŀȧ Ƥŭƀŀīƈ Ŀīƈḗƞşḗ(\"ḾƤĿ\"), ŧħīş ȧŀşǿ "
-"ƥřǿṽīḓḗş ȧƞ ȧƞƞǿŧȧŧḗḓ ṽḗřşīǿƞ ǿƒ ŧħḗ ḾƤĿ ȧƞḓ ȧƞ <abbr title=\"Frequently "
-"Asked Questions\">ƑȦɊ</abbr> ŧǿ ħḗŀƥ ẏǿŭ īƒ ẏǿŭ ẇȧƞŧ ŧǿ ŭşḗ ǿř ḓīşŧřīƀŭŧḗ "
-"ƈǿḓḗ ŀīƈḗƞşḗḓ ŭƞḓḗř īŧ."
+"Īƞ ȧḓḓīŧīǿƞ ŧǿ ŧħḗ ƒŭŀŀ ŧḗẋŧ ǿƒ ŧħḗ Ḿǿzīŀŀȧ Ƥŭƀŀīƈ Ŀīƈḗƞşḗ(\"ḾƤĿ\"), ŧħīş "
+"ȧŀşǿ ƥřǿṽīḓḗş ȧƞ ȧƞƞǿŧȧŧḗḓ ṽḗřşīǿƞ ǿƒ ŧħḗ ḾƤĿ ȧƞḓ ȧƞ <abbr title=\""
+"Frequently Asked Questions\">ƑȦɊ</abbr> ŧǿ ħḗŀƥ ẏǿŭ īƒ ẏǿŭ ẇȧƞŧ ŧǿ ŭşḗ ǿř "
+"ḓīşŧřīƀŭŧḗ ƈǿḓḗ ŀīƈḗƞşḗḓ ŭƞḓḗř īŧ."
 
 #: apps/pages/templates/pages/dev_faq.html:632
 msgid ""
@@ -14336,8 +14331,8 @@ msgid ""
 msgstr ""
 "Ƒřḗḗ Şǿƒŧẇȧřḗ Ƒǿŭƞḓȧŧīǿƞ ƥřǿṽīḓḗş şħǿřŧ şŭḿḿȧřīḗş ǿƒ ŧħḗ ķḗẏ ǿƥḗƞ şǿŭřƈḗ "
 "ŀīƈḗƞşḗş, īƞƈŀŭḓīƞɠ ẇħḗŧħḗř ŧħḗ ŀīƈḗƞşḗ ɋŭȧŀīƒīḗş ȧş ȧ ƒřḗḗ şǿƒŧẇȧřḗ ŀīƈḗƞşḗ "
-"ǿř ȧ ƈǿƥẏŀḗƒŧ ŀīƈḗƞşḗ. Ȧŀşǿ īƞƈŀŭḓḗş ȧ ḓīşƈŭşşīǿƞ ǿƒ ẇħȧŧ ƈǿƞşŧīŧŭŧḗş ȧ "
-"ƒřḗḗ şǿƒŧẇȧřḗ ŀīƈḗƞşḗ ǿř ȧ ƈǿƥẏŀḗƒŧ ŀīƈḗƞşḗ (ḗ.ɠ., ȧ Ƈǿƥẏŀḗƒŧ ŀīƈḗƞşḗ īş ȧ "
+"ǿř ȧ ƈǿƥẏŀḗƒŧ ŀīƈḗƞşḗ. Ȧŀşǿ īƞƈŀŭḓḗş ȧ ḓīşƈŭşşīǿƞ ǿƒ ẇħȧŧ ƈǿƞşŧīŧŭŧḗş ȧ ƒřḗḗ "
+"şǿƒŧẇȧřḗ ŀīƈḗƞşḗ ǿř ȧ ƈǿƥẏŀḗƒŧ ŀīƈḗƞşḗ (ḗ.ɠ., ȧ Ƈǿƥẏŀḗƒŧ ŀīƈḗƞşḗ īş ȧ "
 "ɠḗƞḗřȧŀ ḿḗŧħǿḓ ƒǿř ḿȧķīƞɠ ȧ ƥřǿɠřȧḿ ǿř ǿŧħḗř ẇǿřķ ƒřḗḗ, ȧƞḓ řḗɋŭīřīƞɠ ȧŀŀ "
 "ḿǿḓīƒīḗḓ ȧƞḓ ḗẋŧḗƞḓḗḓ ṽḗřşīǿƞş ǿƒ ŧħḗ ƥřǿɠřȧḿ ŧǿ ƀḗ ƒřḗḗ ȧş ẇḗŀŀ.)"
 
@@ -14394,12 +14389,12 @@ msgid ""
 "whether the add-on is compatible or not."
 msgstr ""
 "Ȧḓḓ-ǿƞş ŀīşŧḗḓ īƞ ŧħīş ɠȧŀŀḗřẏ ǿƞŀẏ ẇǿřķ ẇīŧħ Ḿǿzīŀŀȧ-ƀȧşḗḓ ȧƥƥŀīƈȧŧīǿƞş, "
-"şŭƈħ ȧş <a href=\"%(getfirefox_url)s\">Ƒīřḗƒǿẋ</a>, <a href=\"%"
-"(getmobile_url)s\">Ƒīřḗƒǿẋ Ḿǿƀīŀḗ</a>, <a href=\"%"
-"(getseamonkey_url)s\">ŞḗȧḾǿƞķḗẏ</a>, ȧƞḓ <a href=\"%"
-"(getthunderbird_url)s\">Ŧħŭƞḓḗřƀīřḓ</a>. Ħǿẇḗṽḗř, ƞǿŧ ȧŀŀ ȧḓḓ-ǿƞş ẇǿřķ ẇīŧħ "
-"ḗȧƈħ ǿƒ ŧħǿşḗ ȧƥƥŀīƈȧŧīǿƞş ǿř ḗṽḗřẏ ṽḗřşīǿƞ ǿƒ ŧħǿşḗ ȧƥƥŀīƈȧŧīǿƞş. Ḗȧƈħ "
-"ȧḓḓ-ǿƞ şƥḗƈīƒīḗş ẇħīƈħ ȧƥƥŀīƈȧŧīǿƞş ȧƞḓ ṽḗřşīǿƞş īŧ ẇǿřķş ẇīŧħ, şŭƈħ ȧş "
+"şŭƈħ ȧş <a href=\"%(getfirefox_url)s\">Ƒīřḗƒǿẋ</a>, <a "
+"href=\"%(getmobile_url)s\">Ƒīřḗƒǿẋ Ḿǿƀīŀḗ</a>, <a "
+"href=\"%(getseamonkey_url)s\">ŞḗȧḾǿƞķḗẏ</a>, ȧƞḓ <a "
+"href=\"%(getthunderbird_url)s\">Ŧħŭƞḓḗřƀīřḓ</a>. Ħǿẇḗṽḗř, ƞǿŧ ȧŀŀ ȧḓḓ-ǿƞş "
+"ẇǿřķ ẇīŧħ ḗȧƈħ ǿƒ ŧħǿşḗ ȧƥƥŀīƈȧŧīǿƞş ǿř ḗṽḗřẏ ṽḗřşīǿƞ ǿƒ ŧħǿşḗ ȧƥƥŀīƈȧŧīǿƞş. "
+"Ḗȧƈħ ȧḓḓ-ǿƞ şƥḗƈīƒīḗş ẇħīƈħ ȧƥƥŀīƈȧŧīǿƞş ȧƞḓ ṽḗřşīǿƞş īŧ ẇǿřķş ẇīŧħ, şŭƈħ ȧş "
 "Ƒīřḗƒǿẋ 2.0 - 3.6.*. Ƒǿř Ƒīřḗƒǿẋ ȧḓḓ-ǿƞş, ŧħḗ īƞşŧȧŀŀ ƀŭŧŧǿƞş ẇīŀŀ īƞḓīƈȧŧḗ "
 "ẇħḗŧħḗř ŧħḗ ȧḓḓ-ǿƞ īş ƈǿḿƥȧŧīƀŀḗ ǿř ƞǿŧ."
 
@@ -14423,8 +14418,8 @@ msgid ""
 "more closely with social websites, and add features you see in other "
 "applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">Ḗẋŧḗƞşīǿƞş</a></strong> ȧḓḓ ƞḗẇ ƒḗȧŧŭřḗş ŧǿ "
-"%(app_name)s ǿř ḿǿḓīƒẏ ḗẋīşŧīƞɠ ƒŭƞƈŧīǿƞȧŀīŧẏ. Ŧħḗřḗ ȧřḗ ḗẋŧḗƞşīǿƞş ŧħȧŧ "
+"<strong><a href=\"%(browse_url)s\">Ḗẋŧḗƞşīǿƞş</a></strong> ȧḓḓ ƞḗẇ ƒḗȧŧŭřḗş "
+"ŧǿ %(app_name)s ǿř ḿǿḓīƒẏ ḗẋīşŧīƞɠ ƒŭƞƈŧīǿƞȧŀīŧẏ. Ŧħḗřḗ ȧřḗ ḗẋŧḗƞşīǿƞş ŧħȧŧ "
 "ȧŀŀǿẇ ẏǿŭ ŧǿ ƀŀǿƈķ ȧḓṽḗřŧīşḗḿḗƞŧş, ḓǿẇƞŀǿȧḓ ṽīḓḗǿş ƒřǿḿ ẇḗƀşīŧḗş, īƞŧḗɠřȧŧḗ "
 "ḿǿřḗ ƈŀǿşḗŀẏ ẇīŧħ şǿƈīȧŀ ẇḗƀşīŧḗş, ȧƞḓ ȧḓḓ ƒḗȧŧŭřḗş ẏǿŭ şḗḗ īƞ ǿŧħḗř "
 "ȧƥƥŀīƈȧŧīǿƞş."
@@ -14444,8 +14439,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight "
 "themes that use background images to customize your %(app_name)s toolbars."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">Ŧħḗḿḗş</a></strong> ȧřḗ ŀīɠħŧẇḗīɠħŧ ŧħḗḿḗş "
-"ŧħȧŧ ŭşḗ ƀȧƈķɠřǿŭƞḓ īḿȧɠḗş ŧǿ ƈŭşŧǿḿīzḗ ẏǿŭř %(app_name)s ŧǿǿŀƀȧřş."
+"<strong><a href=\"%(browse_url)s\">Ŧħḗḿḗş</a></strong> ȧřḗ ŀīɠħŧẇḗīɠħŧ "
+"ŧħḗḿḗş ŧħȧŧ ŭşḗ ƀȧƈķɠřǿŭƞḓ īḿȧɠḗş ŧǿ ƈŭşŧǿḿīzḗ ẏǿŭř %(app_name)s ŧǿǿŀƀȧřş."
 
 #: apps/pages/templates/pages/faq.html:66
 msgid ""
@@ -14462,8 +14457,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong>"
 " add support for additional languages to %(app_name)s."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">Ḓīƈŧīǿƞȧřīḗş & Ŀȧƞɠŭȧɠḗ Ƥȧƈķş</a></strong> "
-"ȧḓḓ şŭƥƥǿřŧ ƒǿř ȧḓḓīŧīǿƞȧŀ ŀȧƞɠŭȧɠḗş ŧǿ %(app_name)s."
+"<strong><a href=\"%(browse_url)s\">Ḓīƈŧīǿƞȧřīḗş & Ŀȧƞɠŭȧɠḗ Ƥȧƈķş</a></strong>"
+" ȧḓḓ şŭƥƥǿřŧ ƒǿř ȧḓḓīŧīǿƞȧŀ ŀȧƞɠŭȧɠḗş ŧǿ %(app_name)s."
 
 #: apps/pages/templates/pages/faq.html:77
 msgid ""
@@ -14492,10 +14487,10 @@ msgstr ""
 "Īƞ ḿǿşŧ ƈȧşḗş, ȧḓḓ-ǿƞş ƈȧƞ ƀḗ īƞşŧȧŀŀḗḓ ƀẏ şīḿƥŀẏ ƈŀīƈķīƞɠ ŧħḗ īƞşŧȧŀŀ "
 "ƀŭŧŧǿƞ ƥřǿṽīḓḗḓ. Ȧḓḓ-ǿƞş ƈȧƞ ƀḗ ḿȧƞȧɠḗḓ, ḓīşȧƀŀḗḓ, ǿř ŭƞīƞşŧȧŀŀḗḓ ƒřǿḿ ŧħḗ "
 "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř īƞ %(app_name)s. Ƒǿř ḿǿřḗ ḓḗŧȧīŀḗḓ īƞşŧřŭƈŧīǿƞş, řḗȧḓ <a "
-"href=\"%(extension_url)s\">ŧħīş ȧřŧīƈŀḗ ǿƞ ḗẋŧḗƞşīǿƞş</a> ǿř <a href=\"%"
-"(theme_url)s\">ŧħīş ǿƞḗ ƒǿř Ŧħḗḿḗş ȧƞḓ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş</a>. Īƒ ẏǿŭ ħȧṽḗ "
-"ḓīƒƒīƈŭŀŧẏ īƞşŧȧŀŀīƞɠ ȧḓḓ-ǿƞş, şḗḗ <a href=\"%"
-"(troubleshooting_url)s\">Ŧřǿŭƀŀḗşħǿǿŧīƞɠ Ḗẋŧḗƞşīǿƞş ȧƞḓ Ŧħḗḿḗş</a>."
+"href=\"%(extension_url)s\">ŧħīş ȧřŧīƈŀḗ ǿƞ ḗẋŧḗƞşīǿƞş</a> ǿř <a "
+"href=\"%(theme_url)s\">ŧħīş ǿƞḗ ƒǿř Ŧħḗḿḗş ȧƞḓ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş</a>. Īƒ ẏǿŭ "
+"ħȧṽḗ ḓīƒƒīƈŭŀŧẏ īƞşŧȧŀŀīƞɠ ȧḓḓ-ǿƞş, şḗḗ <a href=\"%(troubleshooting_url)s\">"
+"Ŧřǿŭƀŀḗşħǿǿŧīƞɠ Ḗẋŧḗƞşīǿƞş ȧƞḓ Ŧħḗḿḗş</a>."
 
 #: apps/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
@@ -14510,9 +14505,10 @@ msgid ""
 "require a restart before you can use them."
 msgstr ""
 "Īƞ Ƒīřḗƒǿẋ, ȧḓḓ-ǿƞş ḿȧřķḗḓ ẇīŧħ \"Ƞǿ řḗşŧȧřŧ řḗɋŭīřḗḓ\" ƈȧƞ ƀḗ īƞşŧȧŀŀḗḓ "
-"ẇīŧħǿŭŧ řḗşŧȧřŧīƞɠ. Ŧħḗşḗ ȧḓḓ-ǿƞş ħȧṽḗ ƀḗḗƞ ƈřḗȧŧḗḓ ŭşīƞɠ ŧħḗ <a href=\"%"
-"(sdk_url)s\">Ȧḓḓ-ǿƞ ŞḒĶ</a> ǿř <a href=\"%(bootstrap_url)s\">ƀǿǿŧşŧřȧƥƥīƞɠ</a>. "
-"Ǿŧħḗř ȧḓḓ-ǿƞş ẇīŀŀ şŧīŀŀ řḗɋŭīřḗ ȧ řḗşŧȧřŧ ƀḗƒǿřḗ ẏǿŭ ƈȧƞ ŭşḗ ŧħḗḿ."
+"ẇīŧħǿŭŧ řḗşŧȧřŧīƞɠ. Ŧħḗşḗ ȧḓḓ-ǿƞş ħȧṽḗ ƀḗḗƞ ƈřḗȧŧḗḓ ŭşīƞɠ ŧħḗ <a "
+"href=\"%(sdk_url)s\">Ȧḓḓ-ǿƞ ŞḒĶ</a> ǿř <a "
+"href=\"%(bootstrap_url)s\">ƀǿǿŧşŧřȧƥƥīƞɠ</a>. Ǿŧħḗř ȧḓḓ-ǿƞş ẇīŀŀ şŧīŀŀ "
+"řḗɋŭīřḗ ȧ řḗşŧȧřŧ ƀḗƒǿřḗ ẏǿŭ ƈȧƞ ŭşḗ ŧħḗḿ."
 
 #: apps/pages/templates/pages/faq.html:110
 msgid "How do I keep add-ons up-to-date?"
@@ -14550,8 +14546,8 @@ msgstr ""
 "Ŭƞŀḗşş ƈŀḗȧřŀẏ ḿȧřķḗḓ ǿŧħḗřẇīşḗ, ȧḓḓ-ǿƞş ȧṽȧīŀȧƀŀḗ ƒřǿḿ ŧħīş ɠȧŀŀḗřẏ ħȧṽḗ "
 "ƀḗḗƞ ƈħḗƈķḗḓ ȧƞḓ ȧƥƥřǿṽḗḓ ƀẏ Ḿǿzīŀŀȧ'ş ŧḗȧḿ ǿƒ ḗḓīŧǿřş ȧƞḓ ȧřḗ şȧƒḗ ŧǿ "
 "īƞşŧȧŀŀ. Ẇḗ řḗƈǿḿḿḗƞḓ ŧħȧŧ ẏǿŭ ǿƞŀẏ īƞşŧȧŀŀ ȧƥƥřǿṽḗḓ ȧḓḓ-ǿƞş. Īƒ ẏǿŭ ẇīşħ ŧǿ "
-"īƞşŧȧŀŀ ŭƞȧƥƥřǿṽḗḓ ȧḓḓ-ǿƞş ǿř ȧḓḓ-ǿƞş ƒřǿḿ ŧħīřḓ-ƥȧřŧẏ ẇḗƀşīŧḗş, ŭşḗ "
-"ƈȧŭŧīǿƞ ȧş ŧħḗşḗ ȧḓḓ-ǿƞş ḿȧẏ ħȧřḿ ẏǿŭř ƈǿḿƥŭŧḗř ǿř ṽīǿŀȧŧḗ ẏǿŭř ƥřīṽȧƈẏ. <a "
+"īƞşŧȧŀŀ ŭƞȧƥƥřǿṽḗḓ ȧḓḓ-ǿƞş ǿř ȧḓḓ-ǿƞş ƒřǿḿ ŧħīřḓ-ƥȧřŧẏ ẇḗƀşīŧḗş, ŭşḗ ƈȧŭŧīǿƞ "
+"ȧş ŧħḗşḗ ȧḓḓ-ǿƞş ḿȧẏ ħȧřḿ ẏǿŭř ƈǿḿƥŭŧḗř ǿř ṽīǿŀȧŧḗ ẏǿŭř ƥřīṽȧƈẏ. <a "
 "href=\"%(learnmore_url)s\">Ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ ǿŭř ȧƥƥřǿṽȧŀ ƥřǿƈḗşş</a>"
 
 #: apps/pages/templates/pages/faq.html:133
@@ -14566,11 +14562,11 @@ msgid ""
 "ons that cause large start-up performance issues will have warning messages "
 "on their details page."
 msgstr ""
-"Ḿǿşŧ ȧḓḓ-ǿƞş ḓǿ ƞǿŧ ƈȧŭşḗ ȧ ƥḗřƈḗīṽȧƀŀḗ ƥḗřƒǿřḿȧƞƈḗ ḓḗƈřḗȧşḗ īƞ %"
-"(app_name)s, ŧħǿŭɠħ īƞşŧȧŀŀīƞɠ ȧƞ ḗẋƈḗşşīṽḗ ƞŭḿƀḗř ḿȧẏ ħȧṽḗ ȧḓṽḗřşḗ ḗƒƒḗƈŧş. "
-"Īƒ ẏǿŭ şŭşƥḗƈŧ ȧƞ ȧḓḓ-ǿƞ īş ƈȧŭşīƞɠ %(app_name)s ŧǿ ƀḗ şŀǿẇ, ŧřẏ ḓīşȧƀŀīƞɠ "
-"īŧ. Ȧḓḓ-ǿƞş ŧħȧŧ ƈȧŭşḗ ŀȧřɠḗ şŧȧřŧ-ŭƥ ƥḗřƒǿřḿȧƞƈḗ īşşŭḗş ẇīŀŀ ħȧṽḗ ẇȧřƞīƞɠ "
-"ḿḗşşȧɠḗş ǿƞ ŧħḗīř ḓḗŧȧīŀş ƥȧɠḗ."
+"Ḿǿşŧ ȧḓḓ-ǿƞş ḓǿ ƞǿŧ ƈȧŭşḗ ȧ ƥḗřƈḗīṽȧƀŀḗ ƥḗřƒǿřḿȧƞƈḗ ḓḗƈřḗȧşḗ īƞ %(app_name)"
+"s, ŧħǿŭɠħ īƞşŧȧŀŀīƞɠ ȧƞ ḗẋƈḗşşīṽḗ ƞŭḿƀḗř ḿȧẏ ħȧṽḗ ȧḓṽḗřşḗ ḗƒƒḗƈŧş. Īƒ ẏǿŭ "
+"şŭşƥḗƈŧ ȧƞ ȧḓḓ-ǿƞ īş ƈȧŭşīƞɠ %(app_name)s ŧǿ ƀḗ şŀǿẇ, ŧřẏ ḓīşȧƀŀīƞɠ īŧ. Ȧḓḓ-"
+"ǿƞş ŧħȧŧ ƈȧŭşḗ ŀȧřɠḗ şŧȧřŧ-ŭƥ ƥḗřƒǿřḿȧƞƈḗ īşşŭḗş ẇīŀŀ ħȧṽḗ ẇȧřƞīƞɠ ḿḗşşȧɠḗş "
+"ǿƞ ŧħḗīř ḓḗŧȧīŀş ƥȧɠḗ."
 
 #: apps/pages/templates/pages/faq.html:142
 msgid ""
@@ -14592,8 +14588,8 @@ msgid ""
 "Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
 "Īƒ ȧƞ ȧḓḓ-ǿƞ īşƞ'ŧ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ %(app_name)s, īŧ īş "
-"ŭşŭȧŀŀẏ ḗīŧħḗř ƀḗƈȧŭşḗ ẏǿŭř ṽḗřşīǿƞ ǿƒ %(app_name)s īş ǿŭŧḓȧŧḗḓ ǿř ŧħḗ "
-"ȧḓḓ-ǿƞ ȧŭŧħǿř ħȧş ƞǿŧ ẏḗŧ ŭƥḓȧŧḗḓ ŧħḗ ȧḓḓ-ǿƞ ŧǿ ƀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ȧ ƞḗẇḗř "
+"ŭşŭȧŀŀẏ ḗīŧħḗř ƀḗƈȧŭşḗ ẏǿŭř ṽḗřşīǿƞ ǿƒ %(app_name)s īş ǿŭŧḓȧŧḗḓ ǿř ŧħḗ ȧḓḓ-"
+"ǿƞ ȧŭŧħǿř ħȧş ƞǿŧ ẏḗŧ ŭƥḓȧŧḗḓ ŧħḗ ȧḓḓ-ǿƞ ŧǿ ƀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ȧ ƞḗẇḗř "
 "ṽḗřşīǿƞ ẏǿŭ ȧřḗ ŭşīƞɠ. Ḿǿzīŀŀȧ ḓǿḗş ƞǿŧ řḗƈǿḿḿḗƞḓ ŧřẏīƞɠ ŧǿ ƈīřƈŭḿṽḗƞŧ ŧħḗşḗ "
 "ƈǿḿƥȧŧīƀīŀīŧẏ ƈħḗƈķş, ȧş ŧħḗẏ ƈȧƞ ŀḗȧḓ ŧǿ ƀřǿẇşḗř īƞşŧȧƀīŀīŧẏ ǿř īƞ şǿḿḗ "
 "ƈȧşḗş ŀǿşş ǿƒ ḓȧŧȧ. Ƒǿř ŭşḗřş ẇħǿ ȧřḗ ŧḗşŧīƞɠ ǿŭŧ ȧŀƥħȧ ǿř ƀḗŧȧ ṽḗřşīǿƞş ǿƒ "
@@ -14617,8 +14613,8 @@ msgstr ""
 "şǿ ŧħḗ ƀḗşŧ ẇȧẏ ŧǿ ɠḗŧ ħḗŀƥ ẇīŧħ ȧƞ ȧḓḓ-ǿƞ īş ŧǿ ŀǿǿķ ƒǿř şŭƥƥǿřŧ ŀīƞķş ǿƞ "
 "ŧħḗ ȧḓḓ-ǿƞ'ş ħǿḿḗƥȧɠḗ ǿř ƈǿƞŧȧƈŧ ŧħḗ ḓḗṽḗŀǿƥḗř. Īƒ ẏǿŭ ȧřḗ ħȧṽīƞɠ īşşŭḗş "
 "ẇīŧħ %(app_name)s ŧħȧŧ ẏǿŭ şŭşƥḗƈŧ ȧřḗ řḗŀȧŧḗḓ ŧǿ ȧḓḓ-ǿƞş ẏǿŭ ħȧṽḗ "
-"īƞşŧȧŀŀḗḓ, <a href=\"%(troubleshooting_url)s\">ṽīşīŧ ŧħīş şŭƥƥǿřŧ ȧřŧīƈŀḗ</a> "
-"ƒǿř ŧřǿŭƀŀḗşħǿǿŧīƞɠ ŧīƥş."
+"īƞşŧȧŀŀḗḓ, <a href=\"%(troubleshooting_url)s\">ṽīşīŧ ŧħīş şŭƥƥǿřŧ ȧřŧīƈŀḗ</a>"
+" ƒǿř ŧřǿŭƀŀḗşħǿǿŧīƞɠ ŧīƥş."
 
 #: apps/pages/templates/pages/faq.html:170
 msgid "Add-on Gallery"
@@ -14640,9 +14636,9 @@ msgstr ""
 "Ŧħḗřḗ ȧřḗ ǿƒŧḗƞ şḗṽḗřȧŀ ȧḓḓ-ǿƞş ŧħȧŧ ħȧṽḗ şīḿīŀȧř ƒḗȧŧŭřḗş. Ŧǿ ƒīɠŭřḗ ǿŭŧ "
 "ẇħīƈħ īş řīɠħŧ ƒǿř ẏǿŭ, řḗȧḓ ŧħḗ ḗƞŧīřḗ ḓḗşƈřīƥŧīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ȧƞḓ ṽīḗẇ "
 "īŧş şƈřḗḗƞşħǿŧş. Īƒ ŧħḗřḗ ȧřḗ şŧīŀŀ şḗṽḗřȧŀ īƞ ŧħḗ řŭƞƞīƞɠ, řḗȧḓ ŧħřǿŭɠħ ŧħḗ "
-"ȧḓḓ-ǿƞ'ş řȧŧīƞɠş, ŭşḗř řḗṽīḗẇş, ȧƞḓ şŧȧŧīşŧīƈş ŧǿ şḗḗ ẇħīƈħ īş ḿǿşŧ ŀīķḗḓ "
-"ƀẏ ǿŧħḗř ŭşḗřş. Řḗḿḗḿƀḗř ŧħȧŧ ẏǿŭ ƈȧƞ ȧŀşǿ ĵŭşŧ ŧřẏ ǿŭŧ ƀǿŧħ ȧƞḓ şḗḗ ẇħīƈħ "
-"ẏǿŭ ŀīķḗ ƀḗŧŧḗř."
+"ȧḓḓ-ǿƞ'ş řȧŧīƞɠş, ŭşḗř řḗṽīḗẇş, ȧƞḓ şŧȧŧīşŧīƈş ŧǿ şḗḗ ẇħīƈħ īş ḿǿşŧ ŀīķḗḓ ƀẏ "
+"ǿŧħḗř ŭşḗřş. Řḗḿḗḿƀḗř ŧħȧŧ ẏǿŭ ƈȧƞ ȧŀşǿ ĵŭşŧ ŧřẏ ǿŭŧ ƀǿŧħ ȧƞḓ şḗḗ ẇħīƈħ ẏǿŭ "
+"ŀīķḗ ƀḗŧŧḗř."
 
 #: apps/pages/templates/pages/faq.html:181
 msgid "What if I can't find an add-on I'm looking for?"
@@ -14657,8 +14653,8 @@ msgid ""
 msgstr ""
 "Ẇīŧħ ŧħǿŭşȧƞḓş ǿƒ ȧḓḓ-ǿƞş ȧṽȧīŀȧƀŀḗ, ŧħḗřḗ'ş şǿḿḗŧħīƞɠ ƒǿř ḗṽḗřẏǿƞḗ. Ɓŭŧ īƒ "
 "ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř ȧ ƥȧřŧīƈŭŀȧř ȧḓḓ-ǿƞ ȧƞḓ ƈȧƞ'ŧ ƒīƞḓ īŧ, ẏǿŭ ḿīɠħŧ ŧřẏ "
-"şḗȧřƈħīƞɠ ǿƞ ǿŧħḗř şīŧḗş ǿř ƥǿşŧīƞɠ ȧƀǿŭŧ īŧ īƞ ǿŭř <a href=\"%"
-"(forum_url)s\">Ȧḓḓ-ǿƞ Īḓḗȧş</a> ƒǿřŭḿ."
+"şḗȧřƈħīƞɠ ǿƞ ǿŧħḗř şīŧḗş ǿř ƥǿşŧīƞɠ ȧƀǿŭŧ īŧ īƞ ǿŭř <a "
+"href=\"%(forum_url)s\">Ȧḓḓ-ǿƞ Īḓḗȧş</a> ƒǿřŭḿ."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid ""
@@ -14723,8 +14719,8 @@ msgid ""
 msgstr ""
 "Şǿḿḗ ȧḓḓ-ǿƞ ȧŭŧħǿřş řḗɋŭḗşŧ ŭşḗřş ẇħǿ ḗƞĵǿẏ ȧƞ ȧḓḓ-ǿƞ ŧǿ ƈǿƞŧřīƀŭŧḗ ŧǿ īŧş "
 "ḓḗṽḗŀǿƥḿḗƞŧ ƀẏ ḿȧķīƞɠ ȧ ḿǿƞḗŧȧřẏ ƈǿƞŧřīƀŭŧīǿƞ. Ŧħḗşḗ ƈǿƞŧřīƀŭŧīǿƞş ɠǿ "
-"ḓīřḗƈŧŀẏ ŧǿ ŧħḗ ḓḗṽḗŀǿƥḗř ŭƞŀḗşş ȧ ŧħīřḓ ƥȧřŧẏ īş īƞḓīƈȧŧḗḓ, şŭƈħ ȧş ŧħḗ "
-"ƞǿƞ-ƥřǿƒīŧ Ḿǿzīŀŀȧ Ƒǿŭƞḓȧŧīǿƞ."
+"ḓīřḗƈŧŀẏ ŧǿ ŧħḗ ḓḗṽḗŀǿƥḗř ŭƞŀḗşş ȧ ŧħīřḓ ƥȧřŧẏ īş īƞḓīƈȧŧḗḓ, şŭƈħ ȧş ŧħḗ ƞǿƞ-"
+"ƥřǿƒīŧ Ḿǿzīŀŀȧ Ƒǿŭƞḓȧŧīǿƞ."
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
@@ -14750,10 +14746,11 @@ msgid ""
 "installed, all beta releases are unreviewed by Mozilla and may harm your "
 "computer."
 msgstr ""
-"Ƥŀḗȧşḗ ƞǿŧḗ ŧħȧŧ ẇħḗƞ ẏǿŭ īƞşŧȧŀŀ ȧƞ ȧḓḓ-ǿƞ ƒřǿḿ ŧħḗ \"Ɓḗŧȧ Ṽḗřşīǿƞ\" şḗƈŧīǿƞ "
-"ǿƒ ȧƞ ȧḓḓ-ǿƞ'ş ŀīşŧīƞɠ, ẏǿŭ ẇīŀŀ ƈǿƞŧīƞŭḗ ŧǿ řḗƈḗīṽḗ ŭƥḓȧŧḗş ƒǿř ŧħȧŧ ȧḓḓ-ǿƞ "
-"ȧş ŧħḗẏ ƀḗƈǿḿḗ ȧṽȧīŀȧƀŀḗ. Ŀīķḗ ŧħḗ īƞīŧīȧŀ ṽḗřşīǿƞ ẏǿŭ īƞşŧȧŀŀḗḓ, ȧŀŀ ƀḗŧȧ "
-"řḗŀḗȧşḗş ȧřḗ ŭƞřḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ ȧƞḓ ḿȧẏ ħȧřḿ ẏǿŭř ƈǿḿƥŭŧḗř."
+"Ƥŀḗȧşḗ ƞǿŧḗ ŧħȧŧ ẇħḗƞ ẏǿŭ īƞşŧȧŀŀ ȧƞ ȧḓḓ-ǿƞ ƒřǿḿ ŧħḗ \"Ɓḗŧȧ Ṽḗřşīǿƞ\" "
+"şḗƈŧīǿƞ ǿƒ ȧƞ ȧḓḓ-ǿƞ'ş ŀīşŧīƞɠ, ẏǿŭ ẇīŀŀ ƈǿƞŧīƞŭḗ ŧǿ řḗƈḗīṽḗ ŭƥḓȧŧḗş ƒǿř "
+"ŧħȧŧ ȧḓḓ-ǿƞ ȧş ŧħḗẏ ƀḗƈǿḿḗ ȧṽȧīŀȧƀŀḗ. Ŀīķḗ ŧħḗ īƞīŧīȧŀ ṽḗřşīǿƞ ẏǿŭ "
+"īƞşŧȧŀŀḗḓ, ȧŀŀ ƀḗŧȧ řḗŀḗȧşḗş ȧřḗ ŭƞřḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ ȧƞḓ ḿȧẏ ħȧřḿ ẏǿŭř "
+"ƈǿḿƥŭŧḗř."
 
 #: apps/pages/templates/pages/faq.html:230
 msgid "What does it mean when an add-on is flagged as slow?"
@@ -14812,12 +14809,12 @@ msgid ""
 "own."
 msgstr ""
 "Ŧħḗ şǿŭřƈḗ ƈǿḓḗ ŭşḗḓ ŧǿ ƈřḗȧŧḗ ȧƞ ȧḓḓ-ǿƞ īş ȧƞ ḗẋƈŀŭşīṽḗ ƈǿƥẏřīɠħŧ ǿƒ ŧħḗ "
-"ȧḓḓ-ǿƞ ȧŭŧħǿř, ŭƞŀḗşş ǿŧħḗřẇīşḗ ḓḗƈŀȧřḗḓ īƞ ȧ şǿŭřƈḗ ƈǿḓḗ ŀīƈḗƞşḗ. Ḿȧƞẏ "
-"ȧḓḓ-ǿƞş ǿƞ ŧħīş şīŧḗ ħȧṽḗ <a href=\"%(url)s\" lang=\"en\">ǿƥḗƞ şǿŭřƈḗ "
+"ȧḓḓ-ǿƞ ȧŭŧħǿř, ŭƞŀḗşş ǿŧħḗřẇīşḗ ḓḗƈŀȧřḗḓ īƞ ȧ şǿŭřƈḗ ƈǿḓḗ ŀīƈḗƞşḗ. Ḿȧƞẏ ȧḓḓ-"
+"ǿƞş ǿƞ ŧħīş şīŧḗ ħȧṽḗ <a href=\"%(url)s\" lang=\"en\">ǿƥḗƞ şǿŭřƈḗ "
 "ŀīƈḗƞşḗş</a> ŧħȧŧ ḿȧķḗ ŧħḗ şǿŭřƈḗ ƈǿḓḗ ƥŭƀŀīƈŀẏ ȧṽȧīŀȧƀŀḗ ƒǿř ƈǿƥẏ ȧƞḓ řḗŭşḗ "
 "ŭƞḓḗř ƈǿƞḓīŧīǿƞş ḓḗŧḗřḿīƞḗḓ ƀẏ ŧħḗ ȧŭŧħǿř. Ḿǿşŧ ȧŭŧħǿřş ƈħǿǿşḗ ẇīḓḗŀẏ ķƞǿẇƞ "
-"ǿƥḗƞ şǿŭřƈḗ ŀīƈḗƞşḗş ŀīķḗ ŧħḗ ƓƤĿ ǿř ƁŞḒ ŀīƈḗƞşḗş īƞşŧḗȧḓ ǿƒ ḿȧķīƞɠ ŭƥ "
-"ŧħḗīř ǿẇƞ."
+"ǿƥḗƞ şǿŭřƈḗ ŀīƈḗƞşḗş ŀīķḗ ŧħḗ ƓƤĿ ǿř ƁŞḒ ŀīƈḗƞşḗş īƞşŧḗȧḓ ǿƒ ḿȧķīƞɠ ŭƥ ŧħḗīř "
+"ǿẇƞ."
 
 #: apps/pages/templates/pages/faq.html:259
 msgid ""
@@ -14866,8 +14863,8 @@ msgid ""
 "ons area of the Add-ons Manager to see the \"Recommended for You\" box."
 msgstr ""
 "Ƒīřḗƒǿẋ řḗƈǿḿḿḗƞḓş ȧḓḓ-ǿƞş ƒǿř ẏǿŭ ƀȧşḗḓ ǿƞ ŧħḗ ȧḓḓ-ǿƞş ẏǿŭ ȧŀřḗȧḓẏ ħȧṽḗ "
-"īƞşŧȧŀŀḗḓ. Īƒ ẏǿŭ ħȧṽḗ ȧŧ ŀḗȧşŧ 3 ȧḓḓ-ǿƞş īƞşŧȧŀŀḗḓ, ĵŭşŧ ṽīşīŧ ŧħḗ Ɠḗŧ "
-"Ȧḓḓ-ǿƞş ȧřḗȧ ǿƒ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř ŧǿ şḗḗ ŧħḗ \"Řḗƈǿḿḿḗƞḓḗḓ ƒǿř Ẏǿŭ\" ƀǿẋ."
+"īƞşŧȧŀŀḗḓ. Īƒ ẏǿŭ ħȧṽḗ ȧŧ ŀḗȧşŧ 3 ȧḓḓ-ǿƞş īƞşŧȧŀŀḗḓ, ĵŭşŧ ṽīşīŧ ŧħḗ Ɠḗŧ Ȧḓḓ-"
+"ǿƞş ȧřḗȧ ǿƒ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř ŧǿ şḗḗ ŧħḗ \"Řḗƈǿḿḿḗƞḓḗḓ ƒǿř Ẏǿŭ\" ƀǿẋ."
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
@@ -14882,8 +14879,8 @@ msgid ""
 "aggregate data and displayed to you as personalized recommendations."
 msgstr ""
 "Ƒīřḗƒǿẋ şḗƞḓş īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ŧħḗ ȧḓḓ-ǿƞş ẏǿŭ ħȧṽḗ īƞşŧȧŀŀḗḓ ŧǿ Ḿǿzīŀŀȧ "
-"ǿƞƈḗ ȧ ḓȧẏ īƞ ǿřḓḗř ŧǿ ŭƥḓȧŧḗ ŧħḗ īƞƒǿřḿȧŧīǿƞ ḓīşƥŀȧẏḗḓ ŧǿ ẏǿŭ īƞ ŧħḗ "
-"Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř, ȧş ḗẋƥŀȧīƞḗḓ īƞ ǿŭř <a href=\"%(privacy_url)s\">Ƥřīṽȧƈẏ "
+"ǿƞƈḗ ȧ ḓȧẏ īƞ ǿřḓḗř ŧǿ ŭƥḓȧŧḗ ŧħḗ īƞƒǿřḿȧŧīǿƞ ḓīşƥŀȧẏḗḓ ŧǿ ẏǿŭ īƞ ŧħḗ Ȧḓḓ-"
+"ǿƞş Ḿȧƞȧɠḗř, ȧş ḗẋƥŀȧīƞḗḓ īƞ ǿŭř <a href=\"%(privacy_url)s\">Ƥřīṽȧƈẏ "
 "Ƥǿŀīƈẏ</a>. Ȧḓḓ-ǿƞş ŧħȧŧ ȧřḗ ǿƒŧḗƞ ŭşḗḓ ŧǿɠḗŧħḗř ȧřḗ ḓḗŧḗřḿīƞḗḓ ƒřǿḿ ŧħḗ "
 "ȧɠɠřḗɠȧŧḗ ḓȧŧȧ ȧƞḓ ḓīşƥŀȧẏḗḓ ŧǿ ẏǿŭ ȧş ƥḗřşǿƞȧŀīzḗḓ řḗƈǿḿḿḗƞḓȧŧīǿƞş."
 
@@ -14916,10 +14913,10 @@ msgid ""
 "ons that work with Firefox for Mobile in our <a "
 "href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Ḿǿƀīŀḗ ȧḓḓ-ǿƞş ẇǿřķ ẇīŧħ <a href=\"%(mobile_url)s\">Ƒīřḗƒǿẋ ƒǿř Ḿǿƀīŀḗ</a> ȧƞḓ "
-"ȧḓḓ ǿř ḿǿḓīƒẏ ƒŭƞƈŧīǿƞȧŀīŧẏ ĵŭşŧ ŀīķḗ ḓḗşķŧǿƥ ȧḓḓ-ǿƞş. Ẏǿŭ ƈȧƞ ƒīƞḓ ȧḓḓ-ǿƞş "
-"ŧħȧŧ ẇǿřķ ẇīŧħ Ƒīřḗƒǿẋ ƒǿř Ḿǿƀīŀḗ īƞ ǿŭř <a href=\"%"
-"(gallery_url)s\">ɠȧŀŀḗřẏ</a>."
+"Ḿǿƀīŀḗ ȧḓḓ-ǿƞş ẇǿřķ ẇīŧħ <a href=\"%(mobile_url)s\">Ƒīřḗƒǿẋ ƒǿř Ḿǿƀīŀḗ</a> "
+"ȧƞḓ ȧḓḓ ǿř ḿǿḓīƒẏ ƒŭƞƈŧīǿƞȧŀīŧẏ ĵŭşŧ ŀīķḗ ḓḗşķŧǿƥ ȧḓḓ-ǿƞş. Ẏǿŭ ƈȧƞ ƒīƞḓ ȧḓḓ-"
+"ǿƞş ŧħȧŧ ẇǿřķ ẇīŧħ Ƒīřḗƒǿẋ ƒǿř Ḿǿƀīŀḗ īƞ ǿŭř <a "
+"href=\"%(gallery_url)s\">ɠȧŀŀḗřẏ</a>."
 
 #: apps/pages/templates/pages/faq.html:316
 msgid "Developer Topics"
@@ -14931,9 +14928,9 @@ msgid ""
 "href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-"
 "related questions."
 msgstr ""
-"Ƥŀḗȧşḗ şḗḗ ǿŭř <a href=\"%(faq_url)s\">Ḓḗṽḗŀǿƥḗř ƑȦɊ</a> ȧƞḓ <a href=\"%"
-"(hub_url)s\">Ḓḗṽḗŀǿƥḗř Ħŭƀ</a> ƒǿř ȧƞşẇḗřş ŧǿ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗř-řḗŀȧŧḗḓ "
-"ɋŭḗşŧīǿƞş."
+"Ƥŀḗȧşḗ şḗḗ ǿŭř <a href=\"%(faq_url)s\">Ḓḗṽḗŀǿƥḗř ƑȦɊ</a> ȧƞḓ <a "
+"href=\"%(hub_url)s\">Ḓḗṽḗŀǿƥḗř Ħŭƀ</a> ƒǿř ȧƞşẇḗřş ŧǿ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗř-"
+"řḗŀȧŧḗḓ ɋŭḗşŧīǿƞş."
 
 #: apps/pages/templates/pages/faq.html:323
 msgid "Still have questions?"
@@ -14946,8 +14943,8 @@ msgid ""
 "href=\"%(forum_url)s\">forum</a>."
 msgstr ""
 "Ƒǿř ɠḗƞḗřȧŀ Ƒīřḗƒǿẋ şŭƥƥǿřŧ, ṽīşīŧ ǿŭř <a href=\"%(sumo_url)s\">şŭƥƥǿřŧ "
-"ẇḗƀşīŧḗ</a>. Ƒǿř ɠḗƞḗřȧŀ ȧḓḓ-ǿƞ ȧƞḓ ẇḗƀşīŧḗ ɋŭḗşŧīǿƞş, ṽīşīŧ ǿŭř <a href=\"%"
-"(forum_url)s\">ƒǿřŭḿ</a>."
+"ẇḗƀşīŧḗ</a>. Ƒǿř ɠḗƞḗřȧŀ ȧḓḓ-ǿƞ ȧƞḓ ẇḗƀşīŧḗ ɋŭḗşŧīǿƞş, ṽīşīŧ ǿŭř <a "
+"href=\"%(forum_url)s\">ƒǿřŭḿ</a>."
 
 #: apps/pages/templates/pages/review_guide.html:36
 #: apps/pages/templates/pages/review_guide.html:57
@@ -15203,9 +15200,9 @@ msgid ""
 "your detailed request to amo-editors@mozilla.org."
 msgstr ""
 "Īƞ ɠḗƞḗřȧŀ, ƞǿ. Ɓŭŧ īƒ ŧħḗ řḗṽīḗẇ ḓīḓ ƞǿŧ ḿḗḗŧ ŧħḗ řḗṽīḗẇ ɠŭīḓḗŀīƞḗş "
-"ǿŭŧŀīƞḗḓ ȧƀǿṽḗ, ẏǿŭ ƈȧƞ ƈŀīƈķ \"Řḗƥǿřŧ ŧħīş řḗṽīḗẇ\" ȧƞḓ ħȧṽḗ īŧ ḿǿḓḗřȧŧḗḓ ƀẏ "
-"ȧƞ ḗḓīŧǿř. Īƒ ȧ řḗṽīḗẇ īƞƈŀŭḓḗḓ ȧ ƈǿḿƥŀȧīƞŧ ŧħȧŧ īş ƞǿ ŀǿƞɠḗř ṽȧŀīḓ ḓŭḗ ŧǿ ȧ "
-"ƞḗẇ řḗŀḗȧşḗ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ, ẇḗ ḿȧẏ ƈǿƞşīḓḗř ḓḗŀḗŧīƞɠ ŧħḗ řḗṽīḗẇ. Şŭƀḿīŧ "
+"ǿŭŧŀīƞḗḓ ȧƀǿṽḗ, ẏǿŭ ƈȧƞ ƈŀīƈķ \"Řḗƥǿřŧ ŧħīş řḗṽīḗẇ\" ȧƞḓ ħȧṽḗ īŧ ḿǿḓḗřȧŧḗḓ "
+"ƀẏ ȧƞ ḗḓīŧǿř. Īƒ ȧ řḗṽīḗẇ īƞƈŀŭḓḗḓ ȧ ƈǿḿƥŀȧīƞŧ ŧħȧŧ īş ƞǿ ŀǿƞɠḗř ṽȧŀīḓ ḓŭḗ "
+"ŧǿ ȧ ƞḗẇ řḗŀḗȧşḗ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ, ẇḗ ḿȧẏ ƈǿƞşīḓḗř ḓḗŀḗŧīƞɠ ŧħḗ řḗṽīḗẇ. Şŭƀḿīŧ "
 "ẏǿŭř ḓḗŧȧīŀḗḓ řḗɋŭḗşŧ ŧǿ amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
@@ -15229,8 +15226,8 @@ msgid ""
 "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a "
 "href=\"%(lightning_url)s\">Lightning</a>."
 msgstr ""
-"Ẇḗ řḗƈǿḿḿḗƞḓ ŭƥɠřȧḓīƞɠ ŧǿ <a href=\"%(tb_url)s\">Ŧħŭƞḓḗřƀīřḓ</a> ȧƞḓ <a href=\""
-"%(lightning_url)s\">Ŀīɠħŧƞīƞɠ</a>."
+"Ẇḗ řḗƈǿḿḿḗƞḓ ŭƥɠřȧḓīƞɠ ŧǿ <a href=\"%(tb_url)s\">Ŧħŭƞḓḗřƀīřḓ</a> ȧƞḓ <a "
+"href=\"%(lightning_url)s\">Ŀīɠħŧƞīƞɠ</a>."
 
 #: apps/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
@@ -15357,7 +15354,7 @@ msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
 msgid "Other (please specify)"
 msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
 
-#: apps/reviews/views.py:153
+#: apps/reviews/views.py:145
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Ŧħȧƞķş; ŧħīş řḗṽīḗẇ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř ḗḓīŧǿř ȧƥƥřǿṽȧŀ."
 
@@ -15389,11 +15386,11 @@ msgstr ""
 "</li> <li> Ƥŀḗȧşḗ ḓǿ ƞǿŧ ƥǿşŧ ƀŭɠ řḗƥǿřŧş īƞ řḗṽīḗẇş. Ẇḗ ḓǿ ƞǿŧ ḿȧķḗ ẏǿŭř "
 "ḗḿȧīŀ ȧḓḓřḗşş ȧṽȧīŀȧƀŀḗ ŧǿ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗřş ȧƞḓ ŧħḗẏ ḿȧẏ ƞḗḗḓ ŧǿ ƈǿƞŧȧƈŧ "
 "ẏǿŭ ŧǿ ħḗŀƥ řḗşǿŀṽḗ ẏǿŭř īşşŭḗ. Şḗḗ ŧħḗ <a href=\"%(support)s\">şŭƥƥǿřŧ "
-"şḗƈŧīǿƞ</a> ŧǿ ƒīƞḓ ǿŭŧ ẇħḗřḗ ŧǿ ɠḗŧ ȧşşīşŧȧƞƈḗ ƒǿř ŧħīş ȧḓḓ-ǿƞ. </li> "
-"<li>Ƥŀḗȧşḗ ķḗḗƥ řḗṽīḗẇş ƈŀḗȧƞ, ȧṽǿīḓ ŧħḗ ŭşḗ ǿƒ īḿƥřǿƥḗř ŀȧƞɠŭȧɠḗ ȧƞḓ ḓǿ ƞǿŧ "
-"ƥǿşŧ ȧƞẏ ƥḗřşǿƞȧŀ īƞƒǿřḿȧŧīǿƞ. </li> </ul> <p>Ƥŀḗȧşḗ řḗȧḓ ŧħḗ <a href=\"%"
-"(guide)s\" target=\"_blank\">Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş</a> ƒǿř ḿǿřḗ ḓḗŧȧīŀ ȧƀǿŭŧ ŭşḗř "
-"ȧḓḓ-ǿƞ řḗṽīḗẇş.</p>"
+"şḗƈŧīǿƞ</a> ŧǿ ƒīƞḓ ǿŭŧ ẇħḗřḗ ŧǿ ɠḗŧ ȧşşīşŧȧƞƈḗ ƒǿř ŧħīş ȧḓḓ-ǿƞ. </li> <li>"
+"Ƥŀḗȧşḗ ķḗḗƥ řḗṽīḗẇş ƈŀḗȧƞ, ȧṽǿīḓ ŧħḗ ŭşḗ ǿƒ īḿƥřǿƥḗř ŀȧƞɠŭȧɠḗ ȧƞḓ ḓǿ ƞǿŧ "
+"ƥǿşŧ ȧƞẏ ƥḗřşǿƞȧŀ īƞƒǿřḿȧŧīǿƞ. </li> </ul> <p>Ƥŀḗȧşḗ řḗȧḓ ŧħḗ <a "
+"href=\"%(guide)s\" target=\"_blank\">Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş</a> ƒǿř ḿǿřḗ ḓḗŧȧīŀ "
+"ȧƀǿŭŧ ŭşḗř ȧḓḓ-ǿƞ řḗṽīḗẇş.</p>"
 
 #: apps/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -15438,8 +15435,8 @@ msgstr[0] ""
 "Ŧħīş ŭşḗř ħȧş ȧ <a href=\"%(user_review_url)s\">ƥřḗṽīǿŭş řḗṽīḗẇ</a> ǿƒ ŧħīş "
 "ȧḓḓ-ǿƞ."
 msgstr[1] ""
-"Ŧħīş ŭşḗř ħȧş <a href=\"%(user_review_url)s\">%(cnt)s ƥřḗṽīǿŭş řḗṽīḗẇş</a> ǿƒ "
-"ŧħīş ȧḓḓ-ǿƞ."
+"Ŧħīş ŭşḗř ħȧş <a href=\"%(user_review_url)s\">%(cnt)s ƥřḗṽīǿŭş řḗṽīḗẇş</a> "
+"ǿƒ ŧħīş ȧḓḓ-ǿƞ."
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid ""
@@ -16143,13 +16140,13 @@ msgstr ""
 "şǿŭřƈḗ ǿƞ ŧħīş ƥȧɠḗ. Ƒǿř ḗẋȧḿƥŀḗ, ŧħḗ ƒǿŀŀǿẇīƞɠ ŀīƞķş ẇǿŭŀḓ ȧƥƥḗȧř ȧş "
 "şǿŭřƈḗḓ ƀẏ ẏǿŭř ƀŀǿɠ: <dl> <dt>Ȧḓḓ-ǿƞ Ḓḗŧȧīŀş Ƥȧɠḗ</dt> "
 "<dd>https://addons.mozilla.org/addon/%(slug)s?şřƈ=<b>ḗẋŧḗřƞȧŀ-ƀŀǿɠ</b></dd> "
-"<dt>Ḓīřḗƈŧ Ƒīŀḗ Ŀīƞķ</dt> <dd>https://addons.mozilla.org/downloads/latest/%"
-"(id)s/addon-%(id)s-ŀȧŧḗşŧ.ẋƥī?şřƈ=<b>ḗẋŧḗřƞȧŀ-ƀŀǿɠ</b></dd> </dl> <p> Ǿƞŀẏ "
-"şřƈ ƥȧřȧḿḗŧḗřş ŧħȧŧ ƀḗɠīƞ ẇīŧħ \"ḗẋŧḗřƞȧŀ-\" ẇīŀŀ ƀḗ ŧřȧƈķḗḓ, ŭƥ ŧǿ 61 "
+"<dt>Ḓīřḗƈŧ Ƒīŀḗ Ŀīƞķ</dt> <dd>https://addons.mozilla.org/downloads/latest/%(i"
+"d)s/addon-%(id)s-ŀȧŧḗşŧ.ẋƥī?şřƈ=<b>ḗẋŧḗřƞȧŀ-ƀŀǿɠ</b></dd> </dl> <p> Ǿƞŀẏ şřƈ "
+"ƥȧřȧḿḗŧḗřş ŧħȧŧ ƀḗɠīƞ ẇīŧħ \"ḗẋŧḗřƞȧŀ-\" ẇīŀŀ ƀḗ ŧřȧƈķḗḓ, ŭƥ ŧǿ 61 "
 "ȧḓḓīŧīǿƞȧŀ ƈħȧřȧƈŧḗřş. Ȧƞẏ ŧḗẋŧ ȧƒŧḗř \"ḗẋŧḗřƞȧŀ-\" ƈȧƞ ƀḗ ŭşḗḓ ŧǿ ḓḗşƈřīƀḗ "
 "ŧħḗ şǿŭřƈḗ, şŭƈħ ȧş \"ḗẋŧḗřƞȧŀ-ƀŀǿɠ\", \"ḗẋŧḗřƞȧŀ-şīḓḗƀȧř\", "
-"\"ḗẋŧḗřƞȧŀ-ƈȧḿƥȧīɠƞ225\", ḗŧƈ. Ŧħḗ ƒǿŀŀǿẇīƞɠ ŬŘĿ-şȧƒḗ ƈħȧřȧƈŧḗřş ȧřḗ ȧŀŀǿẇḗḓ: "
-"<code>ȧ-z Ȧ-Ẑ - . _ ~ %% +</code>"
+"\"ḗẋŧḗřƞȧŀ-ƈȧḿƥȧīɠƞ225\", ḗŧƈ. Ŧħḗ ƒǿŀŀǿẇīƞɠ ŬŘĿ-şȧƒḗ ƈħȧřȧƈŧḗřş ȧřḗ ȧŀŀǿẇḗḓ:"
+" <code>ȧ-z Ȧ-Ẑ - . _ ~ %% +</code>"
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -16261,35 +16258,21 @@ msgstr "Ŀḗŧŧḗřş ȧƞḓ ƞŭḿƀḗřş řḗɋŭīřḗḓ."
 msgid "That password is not allowed."
 msgstr "Ŧħȧŧ ƥȧşşẇǿřḓ īş ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: apps/users/forms.py:79
-msgid ""
-"An email has been sent to the requested account with further information. If "
-"you do not receive an email then please confirm you have entered the same "
-"email address used during account registration."
-msgstr ""
-"Ȧƞ ḗḿȧīŀ ħȧş ƀḗḗƞ şḗƞŧ ŧǿ ŧħḗ řḗɋŭḗşŧḗḓ ȧƈƈǿŭƞŧ ẇīŧħ ƒŭřŧħḗř īƞƒǿřḿȧŧīǿƞ. Īƒ "
-"ẏǿŭ ḓǿ ƞǿŧ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ŧħḗƞ ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭ ħȧṽḗ ḗƞŧḗřḗḓ ŧħḗ şȧḿḗ "
-"ḗḿȧīŀ ȧḓḓřḗşş ŭşḗḓ ḓŭřīƞɠ ȧƈƈǿŭƞŧ řḗɠīşŧřȧŧīǿƞ."
-
-#: apps/users/forms.py:86
-msgid "We can't reset this account's password, please contact the support."
-msgstr "Ẇḗ ƈȧƞ'ŧ řḗşḗŧ ŧħīş ȧƈƈǿŭƞŧ'ş ƥȧşşẇǿřḓ, ƥŀḗȧşḗ ƈǿƞŧȧƈŧ ŧħḗ şŭƥƥǿřŧ."
-
-#: apps/users/forms.py:163
+#: apps/users/forms.py:161
 #: apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "Ƞḗẇ ƥȧşşẇǿřḓ"
 
-#: apps/users/forms.py:198
-#: apps/users/forms.py:364
+#: apps/users/forms.py:196
+#: apps/users/forms.py:362
 msgid "Wrong password entered!"
 msgstr "Ẇřǿƞɠ ƥȧşşẇǿřḓ ḗƞŧḗřḗḓ!"
 
-#: apps/users/forms.py:217
+#: apps/users/forms.py:215
 msgid "Usernames cannot contain only digits."
 msgstr "Ŭşḗřƞȧḿḗş ƈȧƞƞǿŧ ƈǿƞŧȧīƞ ǿƞŀẏ ḓīɠīŧş."
 
-#: apps/users/forms.py:219
+#: apps/users/forms.py:217
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
@@ -16297,32 +16280,32 @@ msgstr ""
 "Ḗƞŧḗř ȧ ṽȧŀīḓ ŭşḗřƞȧḿḗ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ŭƞḓḗřşƈǿřḗş ǿř "
 "ħẏƥħḗƞş."
 
-#: apps/users/forms.py:222
+#: apps/users/forms.py:220
 msgid "This username cannot be used."
 msgstr "Ŧħīş ŭşḗřƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
-#: apps/users/forms.py:228
+#: apps/users/forms.py:226
 msgid "This username is already in use."
 msgstr "Ŧħīş ŭşḗřƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
-#: apps/users/forms.py:239
+#: apps/users/forms.py:237
 #: apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "Ḓīşƥŀȧẏ Ƞȧḿḗ"
 
-#: apps/users/forms.py:241
+#: apps/users/forms.py:239
 #: apps/users/templates/users/edit.html:98
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Ŀǿƈȧŧīǿƞ"
 
-#: apps/users/forms.py:243
+#: apps/users/forms.py:241
 #: apps/users/templates/users/edit.html:103
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Ǿƈƈŭƥȧŧīǿƞ"
 
-#: apps/users/forms.py:267
+#: apps/users/forms.py:265
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
@@ -16330,7 +16313,7 @@ msgstr ""
 "Ŧħīş ŬŘĿ ħȧş ȧƞ īƞṽȧŀīḓ ƒǿřḿȧŧ. Ṽȧŀīḓ ŬŘĿş ŀǿǿķ ŀīķḗ "
 "http://example.com/my_page."
 
-#: apps/users/forms.py:275
+#: apps/users/forms.py:273
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
@@ -16338,16 +16321,16 @@ msgstr ""
 "Ƥŀḗȧşḗ ŭşḗ ȧƞ ḗḿȧīŀ ȧḓḓřḗşş ƒřǿḿ ȧ ḓīƒƒḗřḗƞŧ ƥřǿṽīḓḗř ŧǿ ƈǿḿƥŀḗŧḗ ẏǿŭř "
 "řḗɠīşŧřȧŧīǿƞ."
 
-#: apps/users/forms.py:291
+#: apps/users/forms.py:289
 msgid "The passwords did not match."
 msgstr "Ŧħḗ ƥȧşşẇǿřḓş ḓīḓ ƞǿŧ ḿȧŧƈħ."
 
-#: apps/users/forms.py:310
+#: apps/users/forms.py:308
 #: apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
 
-#: apps/users/forms.py:449
+#: apps/users/forms.py:447
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
@@ -16571,8 +16554,8 @@ msgid ""
 "mentioned above."
 msgstr ""
 "Īƒ ẏǿŭ ḓīḓ ƞǿŧ řḗƈḗīṽḗ ŧħḗ ƈǿƞƒīřḿȧŧīǿƞ ḗḿȧīŀ, ḿȧķḗ şŭřḗ ẏǿŭř ḗḿȧīŀ şḗřṽīƈḗ "
-"ḓīḓ ƞǿŧ ḿȧřķ īŧ ȧş \"ĵŭƞķ ḿȧīŀ\" ǿř \"şƥȧḿ\". Īƒ ẏǿŭ ƞḗḗḓ ŧǿ, ẏǿŭ ƈȧƞ ħȧṽḗ ŭş <a "
-"href=\"%s\">řḗşḗƞḓ ŧħḗ ƈǿƞƒīřḿȧŧīǿƞ ḿḗşşȧɠḗ</a> ŧǿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş "
+"ḓīḓ ƞǿŧ ḿȧřķ īŧ ȧş \"ĵŭƞķ ḿȧīŀ\" ǿř \"şƥȧḿ\". Īƒ ẏǿŭ ƞḗḗḓ ŧǿ, ẏǿŭ ƈȧƞ ħȧṽḗ "
+"ŭş <a href=\"%s\">řḗşḗƞḓ ŧħḗ ƈǿƞƒīřḿȧŧīǿƞ ḿḗşşȧɠḗ</a> ŧǿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş "
 "ḿḗƞŧīǿƞḗḓ ȧƀǿṽḗ."
 
 #: apps/users/views.py:478
@@ -16712,8 +16695,8 @@ msgid ""
 "Change your password. If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
-"Ƈħȧƞɠḗ ẏǿŭř ƥȧşşẇǿřḓ. Īƒ ẏǿŭ ƒǿřɠǿŧ ẏǿŭř ƥȧşşẇǿřḓ, ẏǿŭ ƈȧƞ <a href=\"%"
-"(reset_url)s\">ŭşḗ ŧħḗ řḗşḗŧ ƒǿřḿ</a>."
+"Ƈħȧƞɠḗ ẏǿŭř ƥȧşşẇǿřḓ. Īƒ ẏǿŭ ƒǿřɠǿŧ ẏǿŭř ƥȧşşẇǿřḓ, ẏǿŭ ƈȧƞ <a "
+"href=\"%(reset_url)s\">ŭşḗ ŧħḗ řḗşḗŧ ƒǿřḿ</a>."
 
 #: apps/users/templates/users/edit.html:64
 msgid "Old Password"
@@ -16985,8 +16968,14 @@ msgid "Send password reset link"
 msgstr "Şḗƞḓ ƥȧşşẇǿřḓ řḗşḗŧ ŀīƞķ"
 
 #: apps/users/templates/users/pwreset_sent.html:10
-msgid "The password reset link was sent to your email address."
-msgstr "Ŧħḗ ƥȧşşẇǿřḓ řḗşḗŧ ŀīƞķ ẇȧş şḗƞŧ ŧǿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş."
+msgid ""
+"An email has been sent to the requested account with further information. If "
+"you do not receive an email then please confirm you have entered the same "
+"email address used during account registration."
+msgstr ""
+"Ȧƞ ḗḿȧīŀ ħȧş ƀḗḗƞ şḗƞŧ ŧǿ ŧħḗ řḗɋŭḗşŧḗḓ ȧƈƈǿŭƞŧ ẇīŧħ ƒŭřŧħḗř īƞƒǿřḿȧŧīǿƞ. Īƒ "
+"ẏǿŭ ḓǿ ƞǿŧ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ŧħḗƞ ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭ ħȧṽḗ ḗƞŧḗřḗḓ ŧħḗ şȧḿḗ "
+"ḗḿȧīŀ ȧḓḓřḗşş ŭşḗḓ ḓŭřīƞɠ ȧƈƈǿŭƞŧ řḗɠīşŧřȧŧīǿƞ."
 
 #: apps/users/templates/users/register.html:4
 msgid "New User Registration"
@@ -17024,8 +17013,7 @@ msgstr ""
 msgid ""
 "You are an add-on developer and want to upload your add-on for hosting on AMO"
 msgstr ""
-"Ẏǿŭ ȧřḗ ȧƞ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗř ȧƞḓ ẇȧƞŧ ŧǿ ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ ƒǿř ħǿşŧīƞɠ ǿƞ "
-"ȦḾǾ"
+"Ẏǿŭ ȧřḗ ȧƞ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗř ȧƞḓ ẇȧƞŧ ŧǿ ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ ƒǿř ħǿşŧīƞɠ ǿƞ ȦḾǾ"
 
 #: apps/users/templates/users/register.html:24
 msgid ""
@@ -17043,9 +17031,9 @@ msgid ""
 "Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">"
 "Privacy Policy</a>."
 msgstr ""
-"Īƒ ẏǿŭ ŀīķḗ, ẏǿŭ ƈȧƞ řḗȧḓ ǿŭř <a href=\"%(legal)s\" title=\"Legal "
-"Notices\">Ŀḗɠȧŀ Ƞǿŧīƈḗş</a> ȧƞḓ <a href=\"%(privacy)s\" title=\"Privacy "
-"Policy\">Ƥřīṽȧƈẏ Ƥǿŀīƈẏ</a>."
+"Īƒ ẏǿŭ ŀīķḗ, ẏǿŭ ƈȧƞ řḗȧḓ ǿŭř <a href=\"%(legal)s\" title=\"Legal Notices\">"
+"Ŀḗɠȧŀ Ƞǿŧīƈḗş</a> ȧƞḓ <a href=\"%(privacy)s\" title=\"Privacy Policy\">"
+"Ƥřīṽȧƈẏ Ƥǿŀīƈẏ</a>."
 
 #: apps/users/templates/users/register.html:42
 #: apps/users/templates/users/register.html:96
@@ -17116,8 +17104,8 @@ msgid ""
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 "Ŭƞƒǿřŧŭƞȧŧḗŀẏ, ẇḗ ẇḗřḗƞ'ŧ ȧƀŀḗ ŧǿ ŭƞşŭƀşƈřīƀḗ ẏǿŭ. Ŧħḗ ŀīƞķ ẏǿŭ ƈŀīƈķḗḓ īş "
-"īƞṽȧŀīḓ. Ħǿẇḗṽḗř, ẏǿŭ ƈȧƞ ŭƞşŭƀşƈřīƀḗ şŧīŀŀ ŭƞşŭƀşƈřīƀḗ ǿƞ ẏǿŭř <a href=\"%"
-"(edit_url)s\">ḗḓīŧ ƥřǿƒīŀḗ ƥȧɠḗ</a>."
+"īƞṽȧŀīḓ. Ħǿẇḗṽḗř, ẏǿŭ ƈȧƞ ŭƞşŭƀşƈřīƀḗ şŧīŀŀ ŭƞşŭƀşƈřīƀḗ ǿƞ ẏǿŭř <a "
+"href=\"%(edit_url)s\">ḗḓīŧ ƥřǿƒīŀḗ ƥȧɠḗ</a>."
 
 #: apps/users/templates/users/vcard.html:2
 msgid "Developer Information"
@@ -17420,8 +17408,8 @@ msgid ""
 "To try the thousands of add-ons available here, download <a href=\"%(url)s\">"
 "Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr ""
-"Ŧǿ ŧřẏ ŧħḗ ŧħǿŭşȧƞḓş ǿƒ ȧḓḓ-ǿƞş ȧṽȧīŀȧƀŀḗ ħḗřḗ, ḓǿẇƞŀǿȧḓ <a href=\"%"
-"(url)s\">Ḿǿzīŀŀȧ Ƒīřḗƒǿẋ</a>, ȧ ƒȧşŧ, ƒřḗḗ ẇȧẏ ŧǿ şŭřƒ ŧħḗ Ẇḗƀ!"
+"Ŧǿ ŧřẏ ŧħḗ ŧħǿŭşȧƞḓş ǿƒ ȧḓḓ-ǿƞş ȧṽȧīŀȧƀŀḗ ħḗřḗ, ḓǿẇƞŀǿȧḓ <a href=\"%(url)s\">"
+"Ḿǿzīŀŀȧ Ƒīřḗƒǿẋ</a>, ȧ ƒȧşŧ, ƒřḗḗ ẇȧẏ ŧǿ şŭřƒ ŧħḗ Ẇḗƀ!"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:128
@@ -17445,7 +17433,8 @@ msgstr "Ǿƞ ŧħḗ ɠǿ?"
 #: templates/impala/base.html:146
 msgid ""
 "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Ƈħḗƈķ ǿŭŧ ǿŭř <a class=\"mobile-link\" href=\"#\">Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş şīŧḗ</a>."
+msgstr ""
+"Ƈħḗƈķ ǿŭŧ ǿŭř <a class=\"mobile-link\" href=\"#\">Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş şīŧḗ</a>."
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
