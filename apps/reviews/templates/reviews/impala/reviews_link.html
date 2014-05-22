@@ -1,6 +1,10 @@
-{% set base = addon.get_url_path()|urlparams('reviews') %}
-{% if collection_uuid %}
-  {% set base = base|urlparams(collection_uuid=collection_uuid) %}
+{% if link_to_list %}
+  {% set base = shared_url('reviews.list', addon) %}
+{% else %}
+  {% set base = addon.get_url_path()|urlparams('reviews') %}
+  {% if collection_uuid %}
+    {% set base = base|urlparams(collection_uuid=collection_uuid) %}
+  {% endif %}
 {% endif %}
 
 <span class="rating">
