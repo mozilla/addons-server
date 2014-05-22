@@ -50,7 +50,7 @@ class OAuthServer(oauth1.Server):
     def validate_timestamp_and_nonce(self, client_key, timestamp, nonce,
                                      request_token=None, access_token=None):
         n, created = Nonce.objects.get_or_create(
-            defaults={'key': client_key},
+            key=client_key + nonce,
             token_key=request_token,
             consumer_key=access_token)
         return created

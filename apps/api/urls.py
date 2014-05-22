@@ -58,14 +58,34 @@ class SwitchToDRF(object):
     """
     Waffle switch to move from Piston to DRF.
     """
-    def __init__(self, resource_name, with_handler=False):
+    def __init__(self, resource_name, with_handler=False, with_viewset=False,
+                 only_detail=False):
         self.resource_name = resource_name
         self.with_handler = with_handler
+        self.with_viewset = with_viewset
+        self.only_detail = only_detail
 
     def __call__(self, *args, **kwargs):
         if waffle.switch_is_active('drf'):
-            return (getattr(views_drf, self.resource_name + 'View')
-                    .as_view()(*args, **kwargs))
+            if self.with_viewset:
+                actions = {}
+                view_name = self.resource_name + 'ViewSet'
+                if self.only_detail:
+                    actions = {
+                        'get': 'retrieve',
+                        'put': 'update',
+                        'delete': 'delete',
+                    }
+                else:
+                    actions = {
+                        'get': 'retrieve',
+                        'post': 'create',
+                    }
+                return (getattr(views_drf, view_name).as_view(actions)
+                        (*args, **kwargs))
+            else:
+                view_name = self.resource_name + 'View'
+                return getattr(views_drf, view_name).as_view()(*args, **kwargs)
         else:
             if self.with_handler:
                 handler = getattr(handlers, self.resource_name + 'Handler')
@@ -90,13 +110,17 @@ for regexp in list_regexps:
     api_patterns += patterns('',
         url(regexp + '/?$', SwitchToDRF('List'), name='api.list'))
 
-addons_resource = Resource(handler=handlers.AddonsHandler, **ad)
 version_resource = Resource(handler=handlers.VersionsHandler, **ad)
 
 piston_patterns = patterns('',
     url(r'^user/$', SwitchToDRF('User', with_handler=True), name='api.user'),
-    url(r'^addons/$', addons_resource, name='api.addons'),
-    url(r'^addon/%s$' % ADDON_ID, addons_resource, name='api.addon'),
+    url(r'^addons/$',
+        SwitchToDRF('Addons', with_handler=True, with_viewset=True),
+        name='api.addons'),
+    url(r'^addon/%s$' % ADDON_ID,
+        SwitchToDRF('Addons', with_handler=True, with_viewset=True,
+                    only_detail=True),
+        name='api.addon'),
     url(r'^addon/%s/versions$' % ADDON_ID, version_resource,
         name='api.versions'),
     url(r'^addon/%s/version/(?P<version_id>\d+)$' % ADDON_ID,
