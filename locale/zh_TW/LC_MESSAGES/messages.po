@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-08 06:01+0000\n"
-"Last-Translator: Peter <petercpg@mail.moztw.org>\n"
+"PO-Revision-Date: 2014-05-22 02:21+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399528872.0\n"
+"X-POOTLE-MTIME: 1400725285.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -997,7 +997,7 @@ msgstr "管理"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:101
 msgid "Icon of {0}"
-msgstr ""
+msgstr "{0} 的圖示"
 
 #: apps/addons/templates/addons/impala/details.html:108 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
@@ -1016,7 +1016,7 @@ msgstr "了解 {0} 的誕生由來，以及這個附加元件的未來發展。"
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:165
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "附加元件畫面擷圖 #{0}"
 
 #: apps/addons/templates/addons/impala/details.html:191
 msgid "Add-on home page"
@@ -6352,7 +6352,7 @@ msgstr "附加元件必須獲得良好的使用者評論。開發者必須迅速
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "附加元件至少要有 2,000 位使用者。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
@@ -6382,7 +6382,7 @@ msgstr "附加元件名稱、URL、您是否為該附加元件的開發者"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
+msgstr "一段關於為什麼附加元件或者好評，並應該被列為精選的簡短描述"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
@@ -6393,6 +6393,8 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"提名的附加元件會由諮詢委員會每個月審核一次（佈景主題為三個月一次）。常見被拒絕的情況會是沒有很多使用者、沒有最佳的使用者體驗、有品質或安全性問題、不相容"
+"、以及與其他精選附加元件類似等情況。被拒絕的附加元件在三個月內將無法再次提名。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8258,7 +8260,7 @@ msgstr "刪除版本 {version}"
 #: apps/devhub/templates/devhub/versions/list.html:187
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
+msgstr "您即將刪除目前版本的附加元件，這樣可能會造成您的附加元件狀態有所變更，或是如果只有這一版公開的話就會被下架。"
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
@@ -12781,7 +12783,7 @@ msgstr "我所發表的評論"
 
 #: apps/users/templates/users/profile.html:110
 msgid "No add-on reviews yet."
-msgstr "無附加元件通過審核。"
+msgstr "尚無附加元件評論。"
 
 #: apps/users/templates/users/profile.html:123
 msgid "Report User"

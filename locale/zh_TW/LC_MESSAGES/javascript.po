@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-02-27 01:24+0000\n"
+"PO-Revision-Date: 2014-05-22 02:16+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1393464279.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1400724983.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -74,7 +74,7 @@ msgstr "{0} 驗證中"
 
 #: media/js/common/upload-addon.js:248
 msgid "Try again"
-msgstr ""
+msgstr "再試一次"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
@@ -106,7 +106,7 @@ msgstr "此類型的附加元件無法在某些平台上運作。"
 
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "抱歉，找不到支援的平台。"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
