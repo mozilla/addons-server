@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-21 21:26+0000\n"
-"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
+"PO-Revision-Date: 2014-05-22 20:34+0000\n"
+"Last-Translator: Andrej <ofimaestro.legenda@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400707570.0\n"
+"X-POOTLE-MTIME: 1400790841.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1042,7 +1042,7 @@ msgstr "Управљај"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:101
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Иконица од {0}"
 
 #: apps/addons/templates/addons/impala/details.html:108 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
@@ -1063,7 +1063,7 @@ msgstr "Прочитајте зашто је {0} направљен и сазн�
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:165
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Слика екрана додатка #{0}"
 
 #: apps/addons/templates/addons/impala/details.html:191
 msgid "Add-on home page"
@@ -5334,11 +5334,11 @@ msgstr "Рецензија би требала да се изврши у рок�
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review of subsequent versions within 5 days"
-msgstr ""
+msgstr "Преглед наредних верзија у року од 5 дана"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:35
 msgid "Warning-free installation and no feature limitations"
-msgstr ""
+msgstr "Инсталација без упозорења и ограничења функција"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:39
 msgid "Choose Full Review"
@@ -5382,24 +5382,24 @@ msgstr "Додајте слике"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:8
 msgid "Select a license"
-msgstr ""
+msgstr "Одаберите лиценцу"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:9
 msgid "Select a review process"
-msgstr ""
+msgstr "Одаберите процес прегледа"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:15 apps/devhub/templates/devhub/docs/policies-submission.html:3 apps/devhub/templates/devhub/docs/policies-submission.html:7
 #: apps/devhub/templates/devhub/docs/policies-submission.html:9
 msgid "Submission Process"
-msgstr ""
+msgstr "Процес подношења"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:3
 msgid "Step 1"
-msgstr ""
+msgstr "Корак 1"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:6
 msgid "Step 1. Getting Started"
-msgstr ""
+msgstr "Корак 1. Почетак"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Hosting your add-on in our gallery is the best way to expose your work to millions of Firefox users. We'll provide everything you need to distribute and update your add-on for free."
@@ -5408,14 +5408,18 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete this submission process you'll need your add-on package (.xpi, .jar, or .xml) and at least one screenshot of your add-on in action."
 msgstr ""
+"Да бисте завршили процес подношења требаће Вам пакет Вашег додатка (.xpi, "
+".jar, или .xml) и барем једна слика екрана додатка у акцији."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:24
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
 msgstr ""
+"Када сте спремни да почнете, молимо прочитајте и прихватите наш "
+"<strong>Споразум програмера</strong>:"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:34
 msgid "Printable Version"
-msgstr ""
+msgstr "Верзија за штампање"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:37
 msgid "Additional Add-on Policies"
@@ -5443,35 +5447,35 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:28 apps/devhub/templates/devhub/versions/add_file_modal.html:25
 msgid "Which desktop platforms is this file compatible with?"
-msgstr ""
+msgstr "Са којом је десктоп платформом ова датотека компатибилна?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:29
 msgid "Which mobile platforms is this file compatible with?"
-msgstr ""
+msgstr "Са којим мобилним платформама је компатибилна ова датотека?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:41 apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Административна поништавања"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:12
 msgid "StumbleUpon"
-msgstr ""
+msgstr "StumbleUpon"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:16
 msgid "Download Statusbar"
-msgstr ""
+msgstr "Преузмите статусну траку"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:20
 msgid "Cooliris"
-msgstr ""
+msgstr "Cooliris"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:44
 msgid "by <a href=\"http://www.stumbleupon.com\">StumbleUpon, Inc.</a>"
-msgstr ""
+msgstr "од <a href=\"http://www.stumbleupon.com\">StumbleUpon, Inc.</a>"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:48
 msgid "Personalized Browsing with StumbleUpon"
-msgstr ""
+msgstr "Персонализовано прегледање са StumbleUpon"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:50
 msgid "StumbleUpon is a recommendation engine that helps users discover and share great websites. With over 8 million users, it has become one of the most popular sharing services on the Web today."
@@ -5479,11 +5483,13 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:55
 msgid "Learn how StumbleUpon got its start with Firefox"
-msgstr ""
+msgstr "Сазнајте како је StumbleUpon почео са Firefox-ом"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:63
 msgid "by <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon Jensen</a>"
 msgstr ""
+"од <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon "
+"Jensen</a>"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:67
 msgid "Easy Download Management with Download Statusbar"
