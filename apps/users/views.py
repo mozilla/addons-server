@@ -4,6 +4,8 @@ from functools import partial
 from django import http
 from django.conf import settings
 from django.contrib import auth
+from django.contrib.auth.models import update_last_login, user_logged_in
+
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.db import IntegrityError, transaction
@@ -48,6 +50,7 @@ from .models import UserProfile
 from .signals import logged_out
 from .utils import autocreate_username, EmailResetCode, UnsubscribeCode
 
+user_logged_in.disconnect(update_last_login)
 
 log = commonware.log.getLogger('z.users')
 
