@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-15 10:21+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2014-05-22 08:11+0000\n"
+"Last-Translator: Jack_No1 <jack.xtx@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400149285.0\n"
+"X-POOTLE-MTIME: 1400746304.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -74,7 +74,7 @@ msgstr "正在验证 {0}"
 
 #: media/js/common/upload-addon.js:248
 msgid "Try again"
-msgstr ""
+msgstr "重试"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
@@ -104,7 +104,7 @@ msgstr "此类型的附加组件在某些平台上无法使用。"
 
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "抱歉，找不到支持的平台。"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
