@@ -11,7 +11,8 @@ from datetime import datetime
 from django import dispatch, forms
 from django.conf import settings
 from django.contrib.auth.hashers import BasePasswordHasher, mask_hash
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
+                                        update_last_login)
 from django.core import validators
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
@@ -426,6 +427,8 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
             log.debug(u"User (%s) logged in successfully" % self)
             self.failed_login_attempts = 0
             self.last_login_ip = commonware.log.get_remote_addr()
+            update_last_login(None, self)
+
         else:
             log.debug(u"User (%s) failed to log in" % self)
             if self.failed_login_attempts < 16777216:
