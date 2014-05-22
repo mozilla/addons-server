@@ -432,6 +432,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
                 self.failed_login_attempts += 1
 
         self.save(update_fields=['last_login_ip', 'last_login_attempt',
+                                 'last_login_attempt_ip',
                                  'failed_login_attempts'])
 
     def mobile_collection(self):
