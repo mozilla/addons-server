@@ -431,7 +431,8 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
             if self.failed_login_attempts < 16777216:
                 self.failed_login_attempts += 1
 
-        self.save()
+        self.save(update_fields=['last_login_ip', 'last_login_attempt',
+                                 'failed_login_attempts'])
 
     def mobile_collection(self):
         return self.special_collection(amo.COLLECTION_MOBILE,
