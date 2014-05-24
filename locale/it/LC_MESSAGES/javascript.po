@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-03-31 12:07+0000\n"
+"PO-Revision-Date: 2014-05-24 07:27+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1396267632.0\n"
+"X-POOTLE-MTIME: 1400916478.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -78,7 +78,7 @@ msgstr "Controllo in corso di {0}"
 
 #: media/js/common/upload-addon.js:248
 msgid "Try again"
-msgstr ""
+msgstr "Riprova"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
@@ -110,6 +110,7 @@ msgstr "Alcune piattaforme non sono disponibili per questo tipo di componente ag
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
 msgstr ""
+"Spiacenti, non è stato possibile trovare alcuna piattaforma compatibile."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
