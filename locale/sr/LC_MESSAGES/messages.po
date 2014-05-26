@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-22 20:34+0000\n"
-"Last-Translator: Andrej <ofimaestro.legenda@gmail.com>\n"
+"PO-Revision-Date: 2014-05-26 21:58+0000\n"
+"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400790841.0\n"
+"X-POOTLE-MTIME: 1401141495.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5317,6 +5317,11 @@ msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
+"Сви додаци смештени у нашој галерији морају бити прегледани од стране "
+"уредника пре него што се појаве међу категоријама или у резултатима "
+"претраге. Док се чека на преглед, Ваш додатак је и даље доступан преко "
+"директног URL-а. Молимо Вас да изаберете процес испод који највише одговара "
+"Вашем додатку."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
@@ -5404,6 +5409,9 @@ msgstr "Корак 1. Почетак"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Hosting your add-on in our gallery is the best way to expose your work to millions of Firefox users. We'll provide everything you need to distribute and update your add-on for free."
 msgstr ""
+"Угошћавање Вашег додатка у нашу галерију је најбољи начин за приказивање "
+"Вашег рада милионима Firefox корисника. Ми ћемо Вам омогућити све што Вам је "
+"потребно да поделите и ажурирате Ваш додатак бесплатно."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete this submission process you'll need your add-on package (.xpi, .jar, or .xml) and at least one screenshot of your add-on in action."
@@ -5444,6 +5452,9 @@ msgstr "Корак 2. Поставите додатак"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
+"Искористите поља испод да бисте отпремили Ваш пакет са додатком и одаберите "
+"било која ограничења платформе. Након постављања, низ аутоматизованих "
+"тестова за проверу ваљаности ће бити покренути на Вашој датотеци."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:28 apps/devhub/templates/devhub/versions/add_file_modal.html:25
 msgid "Which desktop platforms is this file compatible with?"
@@ -5480,6 +5491,9 @@ msgstr "Персонализовано прегледање са StumbleUpon"
 #: apps/devhub/templates/devhub/docs/case-studies.html:50
 msgid "StumbleUpon is a recommendation engine that helps users discover and share great websites. With over 8 million users, it has become one of the most popular sharing services on the Web today."
 msgstr ""
+"StumbleUpon препоручујемо јер помаже корисницима да открију и поделе одличне "
+"веб сајтове. Са преко 8 милиона корисника, постао је један од "
+"најпопуларнијих услуга данашњице за дељење преко интернета."
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:55
 msgid "Learn how StumbleUpon got its start with Firefox"
@@ -5500,28 +5514,37 @@ msgid ""
 "Download Statusbar shows the progress of current downloads right in the browser&#039;s statusbar. There&#039;s no need to open the Download Manager when downloads can be managed from anywhere in "
 "the browser."
 msgstr ""
+"Download Statusbar показује напредак тренутних преузимања у статусној траци "
+"прегледача. Нема потребе за отварањем менаџера преузимања када се преузетим "
+"датотекама може управљати било где у прегледачу."
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:75
 msgid "Read about how someone new to software development made one of the most popular Firefox add-ons"
 msgstr ""
+"Прочитајте како је неко сасвим нов у свету развијања софтвера направио један "
+"од најпопуларнијих Firefox додатака"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:83
 msgid "by <a href=\"http://www.cooliris.com\">Cooliris, Inc.</a>"
-msgstr ""
+msgstr "од стране <a href=\"http://www.cooliris.com\">Cooliris, Inc.</a>"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:87
 msgid "Immersive 3-D Experience with Cooliris"
-msgstr ""
+msgstr "Импресивно 3-D искуство са Cooliris"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:90
 msgid ""
 "Cooliris lets users browse photos and videos from the Web or local computer on an infinitely scrollable 3-D wall. Its award-winning design brings speed and elegance to searching, finding and "
 "enjoying rich content."
 msgstr ""
+"Cooliris дозвољава корисницима да прегледају слике и снимке са веба или "
+"локалног рачунара на бескрајном клизачу 3-D зида. Његов награђивани дизајн "
+"доноси брзину и елеганцију претраживања, тражења и уживања у богатом "
+"садржају."
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:95
 msgid "Find out how Cooliris re-invented photo browsing"
-msgstr ""
+msgstr "Сазнајте како је Cooliris побољшао прегледање слика"
 
 #. Localization note: this page is intended to be fun and jokes around to make add-on development sound easy for those getting started. Please feel free
 #. to translate humorous parts/metaphors into something that works in your locale, or take them out if you want. Thanks!
@@ -5531,20 +5554,33 @@ msgid ""
 "wall of pictures and video. But some of the most popular add-ons just make minor changes to Firefox through easily learned languages like JavaScript, XUL, and CSS. If you have an idea for your "
 "first add-on, start out with something simple to learn the basics of how extensions are packaged and interact with Firefox."
 msgstr ""
+"Ако сте раније користили Firefox додатаке, знате да поседују неке прилично "
+"импресивне карактеристике &mdash; од инспекције основног костура сајта до "
+"приказивања клизајућег 3-D зида слика и видео записа. Међутим, неки од "
+"најпопуларнијих додатака чине само мање измене у Firefox-у кроз лако научене "
+"језике као што су JavaScript, XUL, и CSS. Уколико имате идеју за Ваш први "
+"додатак, почните са нечим једноставним како бисте научили основе о томе како "
+"су екстензије упаковане и како комуницирају са Firefox-ом."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:24
 msgid "Learn the basics"
-msgstr ""
+msgstr "Научите основе"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:26
 msgid ""
 "The easiest way to do that is to follow along with the <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Firefox Add-ons Developer Guide</a> as it explains in detail the "
 "technologies used in extensions and walks through the creation of several basic extensions."
 msgstr ""
+"Најлакши начин да то урадите је да пратите <a "
+"href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">водич "
+"за развијање Firefox додатака</a> где је детаљно објашњена кориштена "
+"технологија у екстензијама и објашњава израду неколико основних екстензија."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:32
 msgid "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Visit the Firefox Add-ons Developer Guide</a>"
 msgstr ""
+"<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">По"
+"сетите водич за развијање Firefox додатака</a>"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:38
 msgid ""
@@ -5552,10 +5588,17 @@ msgid ""
 "Library</a> that jump straight into code. And if you have some time to spare, you may prefer a video walkthrough of extension basics: <a href=\"http://design-challenge.mozilla.com/resources/"
 "#extension_bootcamp\">Extension Bootcamp: Zero to Hello World! in 45 Minutes</a>."
 msgstr ""
+"Ако бисте радије одмах почели, постоји неколико других курсева у нашој <a "
+"href=\"%(base_docs)show-to/getting-started\">Како почети</a> секцији унутар <a "
+"href=\"%(base_docs)show-to\">Како-да библиотеке</a> која прелази одмах на "
+"код. Ако имате времена, можете погледати видео објашњење о основама "
+"екстензија: <a href=\"http://design-"
+"challenge.mozilla.com/resources/#extension_bootcamp\">Центар за учење о "
+"екстензијама: Од нуле до Здраво, свете! за 45 минута</a>."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:47
 msgid "Build your add-on"
-msgstr ""
+msgstr "Направите свој додатак"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:49
 msgid ""
@@ -5596,7 +5639,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:79
 msgid "Enter the How-to Library"
-msgstr ""
+msgstr "Приступите Како-да библиотеци"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:81
 msgid ""
@@ -5668,15 +5711,17 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:3 apps/devhub/templates/devhub/docs/how-to-extension-development.html:7
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:9 apps/devhub/templates/devhub/docs/how-to.html:17 apps/devhub/templates/devhub/docs/how-to.html:85
 msgid "Extension Development"
-msgstr ""
+msgstr "Развој екстензија"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:12 apps/devhub/templates/devhub/docs/how-to.html:88
 msgid "Once you know the basics, these guides will help you with intermediate to advanced extension development topics."
 msgstr ""
+"Када научите основе, ови водичи ће Вам помоћи са осредњим и напредним темама "
+"за развој екстензија."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:17
 msgid "Best Practices"
-msgstr ""
+msgstr "Најбоље вежбе"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:23
 msgid "Respecting the JavaScript Global Namespace"
@@ -5721,15 +5766,17 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:84
 msgid "Evaluating Code with Restricted Privileges"
-msgstr ""
+msgstr "Процена кода са ограниченим привилегијама"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:87
 msgid "This article describes the use of Components.utils.evalInSandbox, which is a way to evaluate code \"such as remote code\" without chrome privileges."
 msgstr ""
+"Овај чланак описује коришћење Components.utils.evalInSandbox, што представља "
+"начин за процењивање кода \"као што је удаљен код\" без привилегије chrome-а."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:99
 msgid "Creating Sandboxed HTTP Connections"
-msgstr ""
+msgstr "Прављење изолованих (sandboxed) HTTP конекција"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
@@ -5750,30 +5797,36 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:129
 msgid "In this blog post, Wladimir Palant gives five wrong ways to evaluate code in an extension."
 msgstr ""
+"У овој блог поруци, Wladimir Palant даје пет погрешних начина за процену "
+"кода унутар екстензије."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:136
 msgid "Localization"
-msgstr ""
+msgstr "Локализација"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:142
 msgid "Localizing Extension Descriptions"
-msgstr ""
+msgstr "Превођење описа екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:145
 msgid "Learn how to localize the names and descriptions in extension install manifests."
 msgstr ""
+"Научите како да преводите имена и описе у инсталационом манифесту "
+"екстензије."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:155
 msgid "Localization and Plurals"
-msgstr ""
+msgstr "Локализација и множине"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:158
 msgid "This article explains how to properly localize strings with plurals."
 msgstr ""
+"Овај чланак објашњава како се на исправан начин преводе стрингови са "
+"множинама."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:170
 msgid "BabelZilla overview"
-msgstr ""
+msgstr "Преглед BabelZilla-е"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:173
 msgid "Learn how the BabelZilla localization community works."
@@ -6645,29 +6698,33 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:109
 msgid "inclusion of third-party software"
-msgstr ""
+msgstr "укључење софтвера трећих лица"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:110
 msgid "errors generated in the Error Console"
-msgstr ""
+msgstr "грешке настале у Конзоли грешака"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:111
 msgid "memory leaks"
-msgstr ""
+msgstr "цурење меморије"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:112
 msgid "possible conflicts with other add-ons"
-msgstr ""
+msgstr "могући сукоби са другим додацима"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:113
 msgid "application start-up or page load performance degradation"
-msgstr ""
+msgstr "покретање апликације или деградација учитавања странице"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:117
 msgid ""
 "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain "
 "conditions outlined below."
 msgstr ""
+"За информације како да заобиђете ове проблеме, погледајте нашу <a href=\"%"
+"(link_howto)s\">Како-да библиотеку</a>. Неке од ових вежби, као што су "
+"бинарни или засенчен код, су дозвољени под одређеним условима наведеним у "
+"наставку."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:123
 msgid ""
