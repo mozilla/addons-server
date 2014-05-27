@@ -16,6 +16,7 @@ LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
 
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
+CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
 
 ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
@@ -70,9 +71,6 @@ PAYPAL_CGI_AUTH = { 'USER': private_addons.PAYPAL_CGI_AUTH_USER,
 PAYPAL_CHAINS = (
     (30, private_addons.PAYPAL_CHAINS_EMAIL),
 )
-
-
-CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
