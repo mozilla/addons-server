@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-08 07:54+0000\n"
+"PO-Revision-Date: 2014-05-27 15:09+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399535646.0\n"
+"X-POOTLE-MTIME: 1401203388.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -80,7 +80,7 @@ msgstr "Probíhá kontrola {0}"
 
 #: media/js/common/upload-addon.js:248
 msgid "Try again"
-msgstr ""
+msgstr "Zkusit znovu"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
@@ -112,7 +112,7 @@ msgstr "Některé platformy nejsou pro tento typ doplňků dostupné."
 
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Omlouváme se, ale nebyla nalezena podporovaná platforma."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
