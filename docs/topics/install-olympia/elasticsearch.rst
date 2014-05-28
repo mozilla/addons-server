@@ -28,6 +28,10 @@ For running Marketplace you must install the
 See the `ICU Github Page <https://github.com/elasticsearch/elasticsearch-analysis-icu>`_
 for instructions on installing this plugin.
 
+On an Ubuntu box, this would mean running::
+
+    sudo /usr/share/elasticsearch/bin/plugin -install elasticsearch/elasticsearch-analysis-icu/1.13.0
+
 Settings
 --------
 
