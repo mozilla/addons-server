@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-28 11:54+0000\n"
-"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
+"PO-Revision-Date: 2014-05-28 12:25+0000\n"
+"Last-Translator: Marko <smrzlicm@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401278093.0\n"
+"X-POOTLE-MTIME: 1401279909.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7979,7 +7979,7 @@ msgstr "Попуните поља испод да почнете питати к
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:11
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Ко ће примити доприносе за овај додатак?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:16
 msgid "What is the name of the organization?"
@@ -8003,23 +8003,25 @@ msgstr "Пријавите се за PayPal"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
-msgstr ""
+msgstr "Шта је Ваш предложен допринос?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:35
 msgid "(Example: 3.99)"
-msgstr ""
+msgstr "(Пример: 3.99)"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:39
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "Када би корисници требали бити питани за доприносе?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:44
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Пошаљите поруку захвалности?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:47
 msgid "We'll automatically email users who contribute to your add-on with this message."
 msgstr ""
+"Аутоматски ћемо послати е-пошту корисницима који доприносе Вашем додатку са "
+"овом поруком."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:49
 msgid ""
@@ -8056,7 +8058,7 @@ msgstr "Изаберите категорију која најбоље опис
 
 #: apps/devhub/templates/devhub/personas/edit.html:95 apps/devhub/templates/devhub/personas/submit.html:44
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Додајте неке ознаке да опишете Вашу тему.                "
 
 #: apps/devhub/templates/devhub/personas/edit.html:106 apps/devhub/templates/devhub/personas/submit.html:54
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
@@ -8064,7 +8066,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:122 apps/devhub/templates/devhub/personas/submit.html:68
 msgid "Theme License"
-msgstr ""
+msgstr "Лиценца теме"
 
 #: apps/devhub/templates/devhub/personas/edit.html:126 apps/devhub/templates/devhub/personas/submit.html:72
 msgid "Can others share your Theme, as long as you're given credit?"
@@ -8268,7 +8270,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:27
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Поравнато на доле-лево"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:32
 msgid "Select a different footer image"
@@ -8308,7 +8310,7 @@ msgstr "Датотеке"
 
 #: apps/devhub/templates/devhub/versions/edit.html:38
 msgid "Upload Another File"
-msgstr ""
+msgstr "Постави још једну датотеку"
 
 #: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:99
 msgid "Version Notes"
@@ -8322,11 +8324,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
-msgstr ""
+msgstr "Статус дозволе"
 
 #: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:109
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Подаци за прегледаче"
 
 #: apps/devhub/templates/devhub/versions/edit.html:114
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
@@ -8419,12 +8421,12 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: apps/devhub/templates/devhub/versions/list.html:108 apps/devhub/templates/devhub/versions/list.html:129 apps/devhub/templates/devhub/versions/list.html:149
 #: apps/editors/templates/editors/review.html:71
 msgid "Validation"
-msgstr ""
+msgstr "Провера исправности"
 
 #: apps/devhub/templates/devhub/versions/list.html:110 apps/devhub/templates/devhub/versions/list.html:131 apps/devhub/templates/devhub/versions/list.html:151
 #: apps/editors/templates/editors/base.html:60 apps/editors/templates/editors/performance.html:6
@@ -8433,15 +8435,15 @@ msgstr "Перформансе"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Следећа верзија овог додатка"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
-msgstr ""
+msgstr "Старије верзије"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Постави нову верзију"
 
 #: apps/devhub/templates/devhub/versions/list.html:186
 msgid "Delete Version {version}"
@@ -8492,7 +8494,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to disable your add-on?"
-msgstr ""
+msgstr "Да ли сте сигурни да желите да искључите ваш додатак?"
 
 #: apps/devhub/templates/devhub/versions/list.html:256
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
@@ -8504,11 +8506,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:269
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Да ли сте сигурни да желите да прекинете ваш захтев за преглед?"
 
 #: apps/discovery/modules.py:137
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Куповина учињена једноставном"
 
 #: apps/discovery/modules.py:138
 msgid "Save on your favorite items from the comfort of your browser."
@@ -8532,11 +8534,13 @@ msgstr ""
 
 #: apps/discovery/modules.py:166
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Преведи садржај на мрежи са и на преко 40 језика."
 
 #: apps/discovery/modules.py:168
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr ""
+"Једноставно се повежите на ваше друштвене мреже, и делите или коментаришите "
+"на страницама које посећујете."
 
 #: apps/discovery/modules.py:170
 msgid "A quick view to compare prices when you shop online or search for flights."
@@ -8544,7 +8548,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:180
 msgid "Firefox 4 Collection"
-msgstr ""
+msgstr "Firefox 4 колекција"
 
 #: apps/discovery/modules.py:181
 msgid "Here are some great add-ons for Firefox 4."
@@ -8568,7 +8572,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:209
 msgid "Thunderbird Collection"
-msgstr ""
+msgstr "Thunderbird колекција"
 
 #: apps/discovery/modules.py:210
 msgid "Here are some great add-ons for Thunderbird."
@@ -8576,11 +8580,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:218
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Седите и опустите се"
 
 #: apps/discovery/modules.py:219
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Додаци који Вам помажу на путовањима!"
 
 #: apps/discovery/modules.py:223
 msgid "Displays a country flag depicting the location of the current website's server and more."
@@ -8604,11 +8608,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:243
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Да ли би сте волели да знате којим сајтовима можете да верујете?"
 
 #: apps/discovery/modules.py:244
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks је #1 додатак за забележивање."
 
 #: apps/discovery/modules.py:245
 msgid "Web page and text translator, dictionary, and more!"
@@ -8636,7 +8640,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:287
 msgid "Get up and move!"
-msgstr ""
+msgstr "Устани и покрени се!"
 
 #: apps/discovery/modules.py:288
 msgid "Install these fitness add-ons to keep you active and healthy."
