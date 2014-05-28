@@ -110,8 +110,6 @@ for regexp in list_regexps:
     api_patterns += patterns('',
         url(regexp + '/?$', SwitchToDRF('List'), name='api.list'))
 
-version_resource = Resource(handler=handlers.VersionsHandler, **ad)
-
 piston_patterns = patterns('',
     url(r'^user/$', SwitchToDRF('User', with_handler=True), name='api.user'),
     url(r'^addons/$',
@@ -121,10 +119,13 @@ piston_patterns = patterns('',
         SwitchToDRF('Addons', with_handler=True, with_viewset=True,
                     only_detail=True),
         name='api.addon'),
-    url(r'^addon/%s/versions$' % ADDON_ID, version_resource,
+    url(r'^addon/%s/versions$' % ADDON_ID,
+        SwitchToDRF('Versions', with_handler=True, with_viewset=True),
         name='api.versions'),
     url(r'^addon/%s/version/(?P<version_id>\d+)$' % ADDON_ID,
-        version_resource, name='api.version'),
+        SwitchToDRF('Versions', with_handler=True, with_viewset=True,
+                    only_detail=True),
+        name='api.version'),
 )
 
 urlpatterns = patterns('',

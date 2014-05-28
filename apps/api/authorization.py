@@ -1,8 +1,15 @@
+"""
+This file is intentionally kept with `App` names to be as close as
+possible to the marketplace/zamboni one. It'll ease comparisons in case
+of bugs from one side or the other before we can put that in a separate
+app, see: https://bugzilla.mozilla.org/show_bug.cgi?id=984865
+"""
+
 from collections import defaultdict
 
 import commonware.log
 
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 
 log = commonware.log.getLogger('z.api')
@@ -34,6 +41,18 @@ class AnyOf(BasePermission):
         return self
 
 
+class AllowReadOnlyIfPublic(BasePermission):
+    """
+    The request does not modify the resource, and it's explicitly marked as
+    public, by answering True to obj.is_public().
+    """
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS
+
+    def has_object_permission(self, request, view, object):
+        return object.is_public() and self.has_permission(request, view)
+
+
 class AllowNone(BasePermission):
 
     def has_permission(self, request, view):
@@ -55,6 +74,15 @@ class AllowAppOwner(BasePermission):
         # Appropriately handles AnonymousUsers when `amo_user` is None.
         except AttributeError:
             return False
+
+
+class AllowRelatedAppOwner(BasePermission):
+
+    def has_permission(self, request, view):
+        return not request.user.is_anonymous()
+
+    def has_object_permission(self, request, view, obj):
+        return AllowAppOwner().has_object_permission(request, view, obj.addon)
 
 
 class ByHttpMethod(BasePermission):

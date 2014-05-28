@@ -691,19 +691,25 @@ class TestAddon(BaseOAuth):
         eq_(json.loads(r.content)['statuses'],
             [[File.objects.all()[0].pk, 1]])
 
+    @patch('api.authorization.AllowRelatedAppOwner.has_object_permission')
+    @patch('api.authorization.AllowAppOwner.has_object_permission')
+    @patch('access.acl.action_allowed')
     @patch('access.acl.check_addon_ownership')
-    def test_not_my_addon(self, acl, permission=None):
+    def test_not_my_addon(self, addon_ownership, action_allowed,
+                          app_owner, related_app_owner):
         data = self.create_addon()
         id = data['id']
         a = Addon.objects.get(pk=id)
         v = a.versions.get()
-        acl.return_value = False
-        if permission is not None:
-            permission.return_value = False
+        # The first one is for piston, the 3 next ones are for DRF.
+        addon_ownership.return_value = False
+        action_allowed.return_value = False
+        app_owner.return_value = False
+        related_app_owner.return_value = False
 
         r = oclient.put(('api.version', id, v.id), self.accepted_consumer,
                         self.token, data={}, content_type=MULTIPART_CONTENT)
-        eq_(r.status_code, 401, r.content)
+        eq_(r.status_code, self.permission_denied_http_status, r.content)
 
         r = oclient.put(('api.addon', id), self.accepted_consumer, self.token,
                         data=self.update_data)
@@ -803,9 +809,61 @@ class TestDRFAddon(TestAddon):
         super(TestDRFAddon, self).setUp()
         self.create_switch('drf')
 
-    test_not_my_addon = patch(
-        'api.authorization.AllowAppOwner.has_object_permission'
-    )(TestAddon.test_not_my_addon)
+    def _compare_dicts(self, drf_data, piston_data):
+        """
+        Given 2 dicts of data from DRF and Piston, compare keys then values.
+        """
+        eq_(sorted(drf_data.keys()), sorted(piston_data.keys()),
+            ('Keys inexistent from Piston: {0}\n'
+             'Keys inexistent from DRF: {1}').format(
+                set(piston_data) - set(drf_data),
+                set(drf_data) - set(piston_data)))
+        for drf_item, piston_item in zip(sorted(drf_data.items()),
+                                         sorted(piston_data.items())):
+            eq_(drf_item[0], piston_item[0])
+            eq_(drf_item[1], piston_item[1],
+                ('Different representations for key "{0}": DRF={1}, Piston={2}'
+                 .format(drf_item[0], drf_item[1], piston_item[1])))
+
+    def compare_output(self, url, listed=False):
+        """
+        Load responses from DRF and Piston given the `url` parameter and
+        compare returned data dicts, key by key. Useful to make sure
+        that both responses are similar.
+
+        Set `listed` to True for comparing responses as lists.
+        """
+        r = oclient.get(url, self.accepted_consumer, self.token)
+        eq_(r.status_code, 200, r.content)
+        drf_data = json.loads(r.content)
+        self.create_switch('drf', db=True, **{'active': False})
+        r = oclient.get(url, self.accepted_consumer, self.token)
+        eq_(r.status_code, 200, r.content)
+        piston_data = json.loads(r.content)
+        if listed:
+            eq_(len(drf_data), len(piston_data))
+            for items in zip(drf_data, piston_data):
+                self._compare_dicts(items[0], items[1])
+        else:
+            self._compare_dicts(drf_data, piston_data)
+
+    def test_diff_versions(self):
+        data = self.create_addon()
+        self.compare_output(('api.versions', data['id']), listed=True)
+
+    def test_diff_version(self):
+        data = self.create_addon()
+        addon = Addon.objects.get(pk=data['id'])
+        version = addon.versions.get()
+        self.compare_output(('api.version', addon.id, version.id))
+
+    def test_diff_addons(self):
+        self.create_addon()
+        self.compare_output(('api.addons'))
+
+    def test_diff_addon(self):
+        data = self.create_addon()
+        self.compare_output(('api.addon', data['id']))
 
 
 class TestPerformanceAPI(BaseOAuth):
