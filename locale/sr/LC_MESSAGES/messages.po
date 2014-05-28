@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-26 21:58+0000\n"
-"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
+"PO-Revision-Date: 2014-05-28 10:15+0000\n"
+"Last-Translator: Marko <smrzlicm@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401141495.0\n"
+"X-POOTLE-MTIME: 1401272117.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5725,32 +5725,38 @@ msgstr "Најбоље вежбе"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:23
 msgid "Respecting the JavaScript Global Namespace"
-msgstr ""
+msgstr "Поштовање JavaScript глобалног именског простора"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:27
 msgid "In this blog post, Mark Ziesemer explains how to prevevent global namespace pollution by wrapping your extension's variables."
 msgstr ""
+"У овом блогу, Mark Ziesemer објашњава како да се спречи загађење глобалног "
+"именског простора паковањем променљиве Ваше екстензије."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:36 apps/devhub/templates/devhub/docs/how-to-getting-started.html:21
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:93
 msgid "Editor's Pick:"
-msgstr ""
+msgstr "Избор уредника:"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:38
 msgid "Security Best Practices in Extensions"
-msgstr ""
+msgstr "Најбоље праксе безбедности за екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:42
 msgid "Every extension developer should know and follow the security best practices outlined in this document to keep users safe."
 msgstr ""
+"Сваку екстензију програмер треба да зна и прати најбоље праксе безбедности "
+"наведене у овом документу да би корисници били безбедни."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:53
 msgid "Localizing an Extension"
-msgstr ""
+msgstr "Локализовање екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:56
 msgid "This article explains how to localize an extension, including XUL and JavaScript strings."
 msgstr ""
+"Овај чланак објашњава како да се локализује екстезија, укључујући XUL и "
+"JavaScript стрингови."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:67
 msgid "Responsible First-run Usage"
@@ -5759,10 +5765,12 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:70
 msgid "This blog post describes what a bad first-run experience means for users, and gives tips for improving that experience."
 msgstr ""
+"Овај блог порука описује какво је лоше искусво након првог покретања за "
+"кориснике, и даје савете за унапређивање искуства."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77
 msgid "Security"
-msgstr ""
+msgstr "Сигурност"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:84
 msgid "Evaluating Code with Restricted Privileges"
@@ -5830,11 +5838,11 @@ msgstr "Преглед BabelZilla-е"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:173
 msgid "Learn how the BabelZilla localization community works."
-msgstr ""
+msgstr "Научите како BabelZilla локализациона заједница ради."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:180
 msgid "Advanced Topics"
-msgstr ""
+msgstr "Напредне теме"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:186
 msgid "Video:"
@@ -5888,14 +5896,16 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:12
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner's guides."
 msgstr ""
+"Научите основе развијања екстензије на Mozilla платформи са овом секцијом "
+"пуном почетничких водича."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:16
 msgid "The Basics"
-msgstr ""
+msgstr "Основе"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:23
 msgid "XUL School Tutorial"
-msgstr ""
+msgstr "XUL школски курс"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:26
 msgid ""
@@ -5905,7 +5915,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:36
 msgid "Setting Up an Extension Development Environment"
-msgstr ""
+msgstr "Постављање развојног окружења за екстезије"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:39
 msgid "This article gives suggestions on how to set up your Mozilla application for extension development, including setting up a profile, changing preferences, and helpful development tools."
@@ -5913,7 +5923,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
 msgid "Building an Extension"
-msgstr ""
+msgstr "Прављење екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:55
 msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Firefox browser containing the text \"Hello, World!\""
@@ -5921,7 +5931,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:65
 msgid "Extension Packaging"
-msgstr ""
+msgstr "Паковање екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:68
 msgid "Learn more details on how extensions are packaged and installed."
@@ -5967,7 +5977,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:134
 msgid "Firefox Extension Development Tutorial"
-msgstr ""
+msgstr "Firefox-ов развојни курс за екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:137
 msgid "A multi-page tutorial covering a variety of extension development topics."
@@ -6694,7 +6704,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:107
 msgid "binary components or executables"
-msgstr ""
+msgstr "бинарне компоненте или програми"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:109
 msgid "inclusion of third-party software"
@@ -6740,7 +6750,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
-msgstr ""
+msgstr "Након прегледа"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:136
 msgid ""
@@ -6768,7 +6778,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
-msgstr ""
+msgstr "Методе тестирања"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:162
 msgid ""
@@ -6786,6 +6796,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:177
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
 msgstr ""
+"Након дозвољеног прелиминарног прегледа, Mozilla може касније поново "
+"започети преглед уколико су неки други проблеми јављени од стране корисника."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:183
 msgid ""
@@ -6795,37 +6807,47 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:188
 msgid "Policies on Specific Add-on Practices"
-msgstr ""
+msgstr "Полисе за специфичне праксе додатака"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:189
 msgid "Prohibited Add-ons"
-msgstr ""
+msgstr "Забрањени додаци"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:190
 msgid "The following add-ons are not permitted in any form:"
-msgstr ""
+msgstr "Следећи додаци нису дозвољени у било ком облику:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
 msgstr ""
+"Додаци који имају уграђени <a href=\"http://en.wikipedia.org/wiki/Spyware\"> "
+"спајвер</a> или <a href=\"http://en.wikipedia.org/wiki/Malware\"> малвер</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
 "Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
 "directory assistants, child pornography finders, etc."
 msgstr ""
+"Илегални и криминални додаци, као што су <a "
+"href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> генератори, "
+"<a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> преузимања и "
+"асистенти директоријума, проналазачи дечије порнографије, итд."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
 msgstr ""
+"Додаци чија је главна намена да олакшају приступ порнографском материјалу, "
+"или укључује референце на овај материјал у својим описима"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
 msgstr ""
+"Додаци који, након инсталације, аутоматски инсталирају или покрену "
+"инсталације од програма који нису део Firefox-а"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid "Add-ons that provide their own update mechanism for code or search engines"
-msgstr ""
+msgstr "Додаци који имају сопствени механизам ажурирања за код или претраживаче"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:220
 msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
@@ -6861,14 +6883,19 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
 msgstr ""
+"Ове карактеристике се не могу увести у потпуно ажуриране додатке; изузимање "
+"у процесу промена мора бити део иницијалног прегледа."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:274
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
 msgstr ""
+"Ово су минимални захтеви и нису гаранција да ће додатак бити прихваћен. Овај "
+"одељак се односи на све додатке који су на страници, укључујући "
+"прелиминарно прегледане додатке."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
-msgstr ""
+msgstr "Приватни режим прегледања"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:282
 msgid ""
@@ -6898,7 +6925,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:11
 msgid "Criteria for Submission"
-msgstr ""
+msgstr "Критеријум за подношење"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:13
 msgid ""
@@ -6986,7 +7013,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
-msgstr ""
+msgstr "Давање дозволе"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:86
 msgid ""
@@ -7002,11 +7029,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies.html:12 apps/devhub/templates/devhub/docs/policies.html:52
 msgid "Add-on Submission"
-msgstr ""
+msgstr "Подношење додатка"
 
 #: apps/devhub/templates/devhub/docs/policies.html:18 apps/devhub/templates/devhub/docs/policies.html:78
 msgid "Maintaining Your Add-on"
-msgstr ""
+msgstr "Одржавање Вашег додатка"
 
 #: apps/devhub/templates/devhub/docs/policies.html:43
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
@@ -7015,14 +7042,20 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies.html:55
 msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
 msgstr ""
+"Сазнајте шта се очекује од додатака које ми држимо и наша полиса за "
+"специфичне праксе додатака."
 
 #: apps/devhub/templates/devhub/docs/policies.html:67
 msgid "What happens after your add-on is submitted? Learn about how our Editors review submissions."
 msgstr ""
+"Шта се деси када је Ваш додатак поднешен? Научите како наши уредници "
+"прегледавају доставе."
 
 #: apps/devhub/templates/devhub/docs/policies.html:81
 msgid "Add-on updates, transferring ownership, user reviews, and what to expect once your add-on is approved."
 msgstr ""
+"Новости за додатке, пренос власништва, прегледи корисника, и шта очекивати "
+"када је Ваш додатак дозвољен."
 
 #: apps/devhub/templates/devhub/docs/policies.html:93
 msgid "How up-and-coming add-ons become featured and what&#039;s involved in the process."
@@ -7031,6 +7064,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies.html:106
 msgid "Terms of Service for submitting your work to our site. Developers are required to accept this agreement before submission."
 msgstr ""
+"Услови услуге за пријаву Вашег рада на наш сајт. Програмери морају "
+"прихватити ове услове пре подношења."
 
 #: apps/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
@@ -7038,7 +7073,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:3 apps/devhub/templates/devhub/docs/reference.html:8
 msgid "API & Language References"
-msgstr "АПИ и језичке референце"
+msgstr "API и језичке референце"
 
 #: apps/devhub/templates/devhub/docs/reference.html:11
 msgid "API &amp; Language References"
@@ -7594,14 +7629,21 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes.html:208
 msgid "<b>Important:</b> Please be sure you have the rights to use the image in your theme!"
 msgstr ""
+"<b>Важно:</b> Молим Вас будите сигурни да имате право да користите слику на "
+"вашој теми!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:216
 msgid "<b>Upload your images</b> &mdash; make sure they are under 300 KB in size and JPG or PNG format!"
 msgstr ""
+"<b>Поставите Ваше слике</b> &mdash; побрините се да буду испод 300 КB "
+"величине и JPG или PNG формат!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:222
 msgid "<b>Select text and tab colors</b> &mdash; you can choose the tab (\"background\") color and foreground text color that work best with your header image."
 msgstr ""
+"<b>Изаберите боје текста и језичака</b> &mdash; можете да одаберете боју "
+"језичка (\"позадина\") и боју текста који навише одговара вашој слици у "
+"заглављу."
 
 #: apps/devhub/templates/devhub/docs/themes.html:229
 msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
@@ -7629,7 +7671,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
-msgstr ""
+msgstr "Молим Вас завршите Ваш додатак."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:28
 msgid "You will receive an email when the review is complete."
@@ -7650,6 +7692,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:60
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
 msgstr ""
+"Ваш додатак је приказан у нашој галерији као експериментални и корисници "
+"примају аутоматске надоградње. Неке могућности су недоступне за Ваш додатак."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:67
 msgid ""
@@ -7734,11 +7778,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:34
 msgid "Enable Add-on"
-msgstr ""
+msgstr "Омогући додатак"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:36 apps/devhub/templates/devhub/versions/list.html:224 apps/devhub/templates/devhub/versions/list.html:242
 msgid "Disable Add-on"
-msgstr ""
+msgstr "Искључи додатак"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "View Statistics Dashboard"
@@ -7831,30 +7875,36 @@ msgstr ""
 #: apps/devhub/templates/devhub/payments/payments.html:38
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
 msgstr ""
+"Додаци уписани у наш програм доприноса могу слободно да затраже финансијску "
+"подршку од корисника."
 
 #: apps/devhub/templates/devhub/payments/payments.html:40
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
+msgstr "Охрабрите кориснике да подрже Ваше додатке кроз Ваш програмерски профил"
 
 #: apps/devhub/templates/devhub/payments/payments.html:41
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Изаберите кад и како се од корисника тражи да допринесу"
 
 #: apps/devhub/templates/devhub/payments/payments.html:42
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
 msgstr ""
+"Примите доприносе на Ваш PayPal налог или их пошаљите организацији по Вашем "
+"избору"
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
 msgstr ""
+"Доприноси су доступни само за додатке са <a href=\"%(url)s\">завршеним "
+"програмерским профилом</a>."
 
 #: apps/devhub/templates/devhub/payments/payments.html:52
 msgid "Contributions are only available for fully reviewed add-ons."
-msgstr ""
+msgstr "Доприноси су доступни само за у потпуности прегледане додатке."
 
 #: apps/devhub/templates/devhub/payments/payments.html:58 apps/devhub/templates/devhub/payments/voluntary.html:2
 msgid "Set up Contributions"
-msgstr ""
+msgstr "Постави доприносе"
 
 #: apps/devhub/templates/devhub/payments/tier.html:13
 msgid "Step 2. Pricing and Availability"
@@ -7878,23 +7928,23 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:16
 msgid "What is the name of the organization?"
-msgstr ""
+msgstr "Које је име организације?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:19
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Која је URL адреса организације?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:22
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Који је PayPal ID организације?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:28
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "Који је Ваш PayPal ID?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:29
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Пријавите се за PayPal"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
@@ -7921,10 +7971,13 @@ msgid ""
 "We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
 "them to try."
 msgstr ""
+"Препоручујемо да се захвалите кориснику и да му кажете колико Вам значи "
+"његова подршка. Такође, реците им о томе шта је ново за Ваш додатак и о свим "
+"новим додацима које сте направили за њих."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
-msgstr ""
+msgstr "Активирај доприносе"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:66
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
@@ -7936,15 +7989,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:77 apps/devhub/templates/devhub/personas/submit.html:31
 msgid "Theme Details"
-msgstr ""
+msgstr "Детаљи теме"
 
 #: apps/devhub/templates/devhub/personas/edit.html:87 apps/devhub/templates/devhub/personas/submit.html:36
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Обезбеди лепу URL адресу за Вашу страницу са детаљима."
 
 #: apps/devhub/templates/devhub/personas/edit.html:92 apps/devhub/templates/devhub/personas/submit.html:41
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Изаберите категорију која најбоље описује Вашу тему."
 
 #: apps/devhub/templates/devhub/personas/edit.html:95 apps/devhub/templates/devhub/personas/submit.html:44
 msgid "Add some tags to describe your Theme."
@@ -7975,7 +8028,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
 #: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: apps/devhub/templates/devhub/personas/edit.html:141 apps/devhub/templates/devhub/personas/edit.html:162 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
@@ -7984,7 +8037,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:147 apps/devhub/templates/devhub/personas/submit.html:93
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Да ли други могу да користе Вашу тему у комерцијалне сврхе?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:168 apps/devhub/templates/devhub/personas/submit.html:114
 msgid "Can others create derivative works from your Theme?"
@@ -8008,7 +8061,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:199 apps/devhub/templates/devhub/personas/submit.html:145
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Ваша тема биће издата под следећом лиценцом:"
 
 #: apps/devhub/templates/devhub/personas/edit.html:202 apps/devhub/templates/devhub/personas/submit.html:148
 msgid "Select a different license."
@@ -8064,11 +8117,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:273 apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Ово је боја текста на језичку."
 
 #: apps/devhub/templates/devhub/personas/edit.html:275 apps/devhub/templates/devhub/personas/submit.html:172
 msgid "Background"
-msgstr ""
+msgstr "Позадина"
 
 #: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:173
 msgid "This is the color of the tabs."
@@ -8122,15 +8175,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
-msgstr ""
+msgstr "Прикључи се разговору у нашим <a href=\"%(forums_url)s\">форумима</a>."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Изаберите слику заглавља за Вашу тему."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:8
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 пиксела"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:9 apps/devhub/templates/devhub/personas/includes/theme_design.html:25
 msgid "300 KB max"
@@ -8138,7 +8191,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:10 apps/devhub/templates/devhub/personas/includes/theme_design.html:26
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG или JPG"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:11
 msgid "Aligned to top-right"
@@ -8162,11 +8215,13 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:32
 msgid "Select a different footer image"
-msgstr ""
+msgstr "Изаберите другу слику за подножје"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:7
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
 msgstr ""
+"Датотеке додате на прегледане верзије морају бити прегледане пре него буду "
+"доступне за преузимање."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:21
 msgid "Select the target platform for this file."
@@ -8182,7 +8237,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:12 apps/devhub/templates/devhub/versions/list.html:3
 msgid "Status & Versions"
-msgstr ""
+msgstr "Статус & Верзије"
 
 # {0} is the name of the collection
 #. {0} is an add-on name.
@@ -8192,7 +8247,7 @@ msgstr "Управљај са {0}"
 
 #: apps/devhub/templates/devhub/versions/edit.html:26
 msgid "Files"
-msgstr ""
+msgstr "Датотеке"
 
 #: apps/devhub/templates/devhub/versions/edit.html:38
 msgid "Upload Another File"
@@ -8230,11 +8285,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:1
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Датотека {file_id} ({platform})"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:5
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Направљено %(created)s и промењено на %(status)s дана %(status_date)s"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:9
 msgid "Created on %(created)s and changed to %(status)s"
