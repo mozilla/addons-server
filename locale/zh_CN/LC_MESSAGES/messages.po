@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-05-28 09:41-0700\n"
 "PO-Revision-Date: 2014-05-18 21:11+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -741,7 +741,7 @@ msgid "by {0} on {1}"
 msgstr "由 {0} 发表于 {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
-#: apps/reviews/templates/reviews/impala/reviews_link.html:12
+#: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "尚未评分"
 
@@ -1936,7 +1936,7 @@ msgid "Collections I'm Following"
 msgstr "我关注的收藏集"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:444
+#: apps/users/models.py:446
 msgid "My Favorite Add-ons"
 msgstr "我收藏的附加组件"
 
@@ -12272,7 +12272,7 @@ msgstr "您的帐号已经被限制"
 msgid "Please confirm your email address"
 msgstr "请确认您的电子邮件地址"
 
-#: apps/users/models.py:439
+#: apps/users/models.py:441
 msgid "My Mobile Add-ons"
 msgstr "我的移动版附加组件"
 

@@ -109,8 +109,7 @@ msgstr "Alcune piattaforme non sono disponibili per questo tipo di componente ag
 
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
-msgstr ""
-"Spiacenti, non è stato possibile trovare alcuna piattaforma compatibile."
+msgstr "Spiacenti, non è stato possibile trovare alcuna piattaforma compatibile."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."

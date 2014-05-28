@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-05-28 09:41-0700\n"
 "PO-Revision-Date: 2014-05-25 02:29+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -780,7 +780,7 @@ msgid "by {0} on {1}"
 msgstr "por {0} em {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
-#: apps/reviews/templates/reviews/impala/reviews_link.html:12
+#: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "Ainda sem avaliações"
 
@@ -2020,7 +2020,7 @@ msgid "Collections I'm Following"
 msgstr "Coleções que estou seguindo"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:444
+#: apps/users/models.py:446
 msgid "My Favorite Add-ons"
 msgstr "Meus complementos favoritos"
 
@@ -6613,9 +6613,7 @@ msgstr "o nome do complemento e URL e informando se você é o desenvolvedor do 
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
-"uma breve explicação de por que o complemento tem grande apelo e deve ser "
-"apresentado"
+msgstr "uma breve explicação de por que o complemento tem grande apelo e deve ser apresentado"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
@@ -6626,13 +6624,9 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Complementos candidatos são analisadas pelo Conselho Consultivo, uma vez por "
-"mês (uma vez a cada 3 meses para indicações ao tema completo). As razões "
-"mais comuns para a rejeição incluem falta de grande apelo para os "
-"consumidores, uma experiência de usuário de qualidade inferior, problemas de "
-"qualidade ou de segurança, incompatibilidade, e similaridade com outro "
-"complemento em destaque. Complementos rejeitados não podem ser renomeados no "
-"prazo de 3 meses."
+"Complementos candidatos são analisadas pelo Conselho Consultivo, uma vez por mês (uma vez a cada 3 meses para indicações ao tema completo). As razões mais comuns para a rejeição incluem falta de "
+"grande apelo para os consumidores, uma experiência de usuário de qualidade inferior, problemas de qualidade ou de segurança, incompatibilidade, e similaridade com outro complemento em destaque. "
+"Complementos rejeitados não podem ser renomeados no prazo de 3 meses."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8618,9 +8612,7 @@ msgstr "Excluir versão {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Você está prestes a apagar a versão atual do seu complemento. Isso pode "
-"fazer com o seu estado mude ou sua listagem e perca visibilidade pública, se "
-"esta é a única versão pública do seu complemento."
+"Você está prestes a apagar a versão atual do seu complemento. Isso pode fazer com o seu estado mude ou sua listagem e perca visibilidade pública, se esta é a única versão pública do seu complemento."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
@@ -12860,7 +12852,7 @@ msgstr "Sua conta foi restringida"
 msgid "Please confirm your email address"
 msgstr "Por favor, confirme seu endereço de e-mail"
 
-#: apps/users/models.py:439
+#: apps/users/models.py:441
 msgid "My Mobile Add-ons"
 msgstr "Meus complementos móveis"
 

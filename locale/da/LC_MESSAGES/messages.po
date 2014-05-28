@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-05-28 09:41-0700\n"
 "PO-Revision-Date: 2014-05-18 02:07+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -761,7 +761,7 @@ msgid "by {0} on {1}"
 msgstr "af {0} den {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
-#: apps/reviews/templates/reviews/impala/reviews_link.html:12
+#: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "Ikke bedømt endnu"
 
@@ -1967,7 +1967,7 @@ msgid "Collections I'm Following"
 msgstr "Samlinger jeg følger"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:444
+#: apps/users/models.py:446
 msgid "My Favorite Add-ons"
 msgstr "Mine favorittilføjelser"
 
@@ -12265,7 +12265,7 @@ msgstr "Din konto er blevet begrænset"
 msgid "Please confirm your email address"
 msgstr "Bekræft din mailadresse"
 
-#: apps/users/models.py:439
+#: apps/users/models.py:441
 msgid "My Mobile Add-ons"
 msgstr "Mine tilføjelser til Mobilen"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-05-28 09:41-0700\n"
 "PO-Revision-Date: 2014-04-13 17:14+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -779,7 +779,7 @@ msgid "by {0} on {1}"
 msgstr "od {0} dňa {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
-#: apps/reviews/templates/reviews/impala/reviews_link.html:12
+#: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "Nehodnotené"
 
@@ -1998,7 +1998,7 @@ msgid "Collections I'm Following"
 msgstr "Kolekcie, ktoré odberám"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:444
+#: apps/users/models.py:446
 msgid "My Favorite Add-ons"
 msgstr "Moje obľúbené doplnky"
 
@@ -12927,7 +12927,7 @@ msgstr "Váš účet byl omezen"
 msgid "Please confirm your email address"
 msgstr "Potvrďte svoju e-mailovú adresu"
 
-#: apps/users/models.py:439
+#: apps/users/models.py:441
 msgid "My Mobile Add-ons"
 msgstr "Moje mobilné doplnky"
 

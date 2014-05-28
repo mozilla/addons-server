@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-05-28 09:41-0700\n"
 "PO-Revision-Date: 2014-05-21 21:22+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -762,7 +762,7 @@ msgid "by {0} on {1}"
 msgstr "door {0} op {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
-#: apps/reviews/templates/reviews/impala/reviews_link.html:12
+#: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "Nog niet gewaardeerd"
 
@@ -1975,7 +1975,7 @@ msgid "Collections I'm Following"
 msgstr "Door mij gevolgde collecties"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:444
+#: apps/users/models.py:446
 msgid "My Favorite Add-ons"
 msgstr "Mijn favoriete add-ons"
 
@@ -6537,9 +6537,7 @@ msgstr "de add-on-naam, URL, en of u de ontwikkelaar bent"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
-"een korte uitleg waarom de add-on een breed publiek aanspreekt en zou moeten "
-"worden aanbevolen"
+msgstr "een korte uitleg waarom de add-on een breed publiek aanspreekt en zou moeten worden aanbevolen"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
@@ -6550,12 +6548,9 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Add-on-nominaties worden maandelijks door de Adviesraad beoordeeld (elk "
-"kwartaal voor nominaties van volledige thema’s). Veel voorkomende redenen "
-"van afwijzing zijn de afwezigheid van een breed publiek, een suboptimale "
-"gebruikerservaring, kwaliteits- of beveiligingsproblemen, incompatibiliteit "
-"en gelijkaardigheid met een andere aanbevolen add-on. Afgewezen add-ons "
-"kunnen niet binnen drie maanden opnieuw worden genomineerd."
+"Add-on-nominaties worden maandelijks door de Adviesraad beoordeeld (elk kwartaal voor nominaties van volledige thema’s). Veel voorkomende redenen van afwijzing zijn de afwezigheid van een breed "
+"publiek, een suboptimale gebruikerservaring, kwaliteits- of beveiligingsproblemen, incompatibiliteit en gelijkaardigheid met een andere aanbevolen add-on. Afgewezen add-ons kunnen niet binnen drie "
+"maanden opnieuw worden genomineerd."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8524,9 +8519,8 @@ msgstr "Versie {version} verwijderen"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"U staat op het punt om de huidige versie van uw add-on te verwijderen. "
-"Hierdoor kan de status van uw add-on wijzigen of, als dit de enige publieke "
-"versie van uw add-on is, de zichtbaarheid voor het publiek kan verdwijnen."
+"U staat op het punt om de huidige versie van uw add-on te verwijderen. Hierdoor kan de status van uw add-on wijzigen of, als dit de enige publieke versie van uw add-on is, de zichtbaarheid voor het "
+"publiek kan verdwijnen."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
@@ -12710,7 +12704,7 @@ msgstr "Uw account is beperkt"
 msgid "Please confirm your email address"
 msgstr "Bevestig uw e-mailadres"
 
-#: apps/users/models.py:439
+#: apps/users/models.py:441
 msgid "My Mobile Add-ons"
 msgstr "Mijn Mobiel-add-ons"
 

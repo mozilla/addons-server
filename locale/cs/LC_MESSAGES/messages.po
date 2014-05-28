@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-05-28 09:41-0700\n"
 "PO-Revision-Date: 2014-05-27 15:16+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -779,7 +779,7 @@ msgid "by {0} on {1}"
 msgstr "uživatelem {0} dne {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
-#: apps/reviews/templates/reviews/impala/reviews_link.html:12
+#: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "Nehodnoceno"
 
@@ -1994,7 +1994,7 @@ msgid "Collections I'm Following"
 msgstr "Sbírky, které sleduji"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:444
+#: apps/users/models.py:446
 msgid "My Favorite Add-ons"
 msgstr "Mé oblíbené doplňky"
 
@@ -6537,9 +6537,7 @@ msgstr "jméno doplňku, jeho URL a informaci, zda jste jeho vývojářem"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
-"krátké vysvětlení, proč je doplněk určen širokému spektru uživatelů a měl by "
-"být propagován"
+msgstr "krátké vysvětlení, proč je doplněk určen širokému spektru uživatelů a měl by být propagován"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
@@ -6550,11 +6548,8 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Nominované doplňky jsou kontrolovány skupinou Advisory Board jednou měsíčně "
-"(každé tři měsíce pro motivy). Běžné důvody pro zamítnutí zahrnují úzké "
-"zaměření doplňku, neoptimální provedení, špatnou kvalitu či bezpečnostní "
-"problémy, nekompatibilitu nebo podobnost s jiným již doporučeným doplňkem. "
-"Zamítnuté doplňky nemohou být další tři měsíce znovu nominovány."
+"Nominované doplňky jsou kontrolovány skupinou Advisory Board jednou měsíčně (každé tři měsíce pro motivy). Běžné důvody pro zamítnutí zahrnují úzké zaměření doplňku, neoptimální provedení, špatnou "
+"kvalitu či bezpečnostní problémy, nekompatibilitu nebo podobnost s jiným již doporučeným doplňkem. Zamítnuté doplňky nemohou být další tři měsíce znovu nominovány."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8505,10 +8500,7 @@ msgstr "Smazání verze {version}"
 #: apps/devhub/templates/devhub/versions/list.html:187
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
-"Chystáte se smazat aktuální verzi svého doplňku. Tato akce může provést "
-"změnu stavu vašeho doplňku nebo skrýt veřejně dostupnou stránku doplňku, "
-"pokud se jedná o jedinou jeho veřejnou verzi."
+msgstr "Chystáte se smazat aktuální verzi svého doplňku. Tato akce může provést změnu stavu vašeho doplňku nebo skrýt veřejně dostupnou stránku doplňku, pokud se jedná o jedinou jeho veřejnou verzi."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
@@ -12689,7 +12681,7 @@ msgstr "Váš účet byl omezen"
 msgid "Please confirm your email address"
 msgstr "Potvrďte prosím svou e-mailovou adresu"
 
-#: apps/users/models.py:439
+#: apps/users/models.py:441
 msgid "My Mobile Add-ons"
 msgstr "Mé mobilní doplňky"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-05-28 09:41-0700\n"
 "PO-Revision-Date: 2014-05-28 08:25+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -762,7 +762,7 @@ msgid "by {0} on {1}"
 msgstr "von {0} am {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
-#: apps/reviews/templates/reviews/impala/reviews_link.html:12
+#: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "Noch nicht bewertet"
 
@@ -1886,9 +1886,8 @@ msgstr "Hoppla"
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-"<h1>Hoppla! Ein Fehler ist aufgetreten.</h1> <p>Wir werden ihn alsbald "
-"beheben.</p> <p> Sie können versuchen, die Seite neu zu laden, oder zurück "
-"zur <a href=\"%(home)s\">Add-ons-Startseite</a> gehen.</p>"
+"<h1>Hoppla! Ein Fehler ist aufgetreten.</h1> <p>Wir werden ihn alsbald beheben.</p> <p> Sie können versuchen, die Seite neu zu laden, oder zurück zur <a href=\"%(home)s\">Add-ons-Startseite</a> "
+"gehen.</p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
@@ -1980,7 +1979,7 @@ msgid "Collections I'm Following"
 msgstr "Sammlungen, denen ich folge"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:444
+#: apps/users/models.py:446
 msgid "My Favorite Add-ons"
 msgstr "Meine bevorzugten Add-ons"
 
@@ -6551,9 +6550,7 @@ msgstr "Dem Namen des Add-ons, der URL und ob Sie der Entwickler sind"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
-"Ein kurze Erklärung, warum das Add-on viele Menschen anspricht und "
-"vorgestellt werden sollte"
+msgstr "Ein kurze Erklärung, warum das Add-on viele Menschen anspricht und vorgestellt werden sollte"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
@@ -6564,12 +6561,9 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Vorgestellte Add-ons werden jeden Monat vom Beratungsgremium überprüft (für "
-"Nominierungen vollständiger Themes alle 3 Monate). Häufige Ablehnungsgründe "
-"sind mangelnde Ansprache der Konsumenten, ein unzureichendes "
-"Benutzererlebnis, Qualitäts- oder Sicherheitsprobleme, Inkompatibilität und "
-"Ähnlichkeit zu einem anderen vorgestellten Add-on. Abgelehnte Add-ons können "
-"erst nach 3 Monaten erneut nominiert werden."
+"Vorgestellte Add-ons werden jeden Monat vom Beratungsgremium überprüft (für Nominierungen vollständiger Themes alle 3 Monate). Häufige Ablehnungsgründe sind mangelnde Ansprache der Konsumenten, ein "
+"unzureichendes Benutzererlebnis, Qualitäts- oder Sicherheitsprobleme, Inkompatibilität und Ähnlichkeit zu einem anderen vorgestellten Add-on. Abgelehnte Add-ons können erst nach 3 Monaten erneut "
+"nominiert werden."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8565,10 +8559,8 @@ msgstr "Version {version} löschen"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Sie sind dabei, die aktuelle Version Ihres Add-ons zu löschen. Dadurch kann "
-"sich der Status Ihres Add-ons ändern oder Ihr öffentlicher Listeneintrag "
-"kann verschwinden, wenn dies die einzige öffentliche Version Ihres Add-ons "
-"ist."
+"Sie sind dabei, die aktuelle Version Ihres Add-ons zu löschen. Dadurch kann sich der Status Ihres Add-ons ändern oder Ihr öffentlicher Listeneintrag kann verschwinden, wenn dies die einzige "
+"öffentliche Version Ihres Add-ons ist."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
@@ -12765,7 +12757,7 @@ msgstr "Ihr Benutzerkonto wurde eingeschränkt"
 msgid "Please confirm your email address"
 msgstr "Bitte bestätigen Sie Ihre E-Mail-Adresse"
 
-#: apps/users/models.py:439
+#: apps/users/models.py:441
 msgid "My Mobile Add-ons"
 msgstr "Meine mobile Add-ons"
 

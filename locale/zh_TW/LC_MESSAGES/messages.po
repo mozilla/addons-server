@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-05-28 09:41-0700\n"
 "PO-Revision-Date: 2014-05-22 02:21+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -740,7 +740,7 @@ msgid "by {0} on {1}"
 msgstr "作者：{0} 日期：{1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
-#: apps/reviews/templates/reviews/impala/reviews_link.html:12
+#: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "未經評分"
 
@@ -1939,7 +1939,7 @@ msgid "Collections I'm Following"
 msgstr "我訂閱的收藏集"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:444
+#: apps/users/models.py:446
 msgid "My Favorite Add-ons"
 msgstr "我最愛的附加元件"
 
@@ -6393,8 +6393,8 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"提名的附加元件會由諮詢委員會每個月審核一次（佈景主題為三個月一次）。常見被拒絕的情況會是沒有很多使用者、沒有最佳的使用者體驗、有品質或安全性問題、不相容"
-"、以及與其他精選附加元件類似等情況。被拒絕的附加元件在三個月內將無法再次提名。"
+"提名的附加元件會由諮詢委員會每個月審核一次（佈景主題為三個月一次）。常見被拒絕的情況會是沒有很多使用者、沒有最佳的使用者體驗、有品質或安全性問題、不相容、以及與其他精選附加元件類似等情況。被拒絕的附"
+"加元件在三個月內將無法再次提名。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -12311,7 +12311,7 @@ msgstr "您的帳號已被限制"
 msgid "Please confirm your email address"
 msgstr "請確認您的電子郵件"
 
-#: apps/users/models.py:439
+#: apps/users/models.py:441
 msgid "My Mobile Add-ons"
 msgstr "我的 Mobile 附加元件"
 
