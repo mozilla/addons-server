@@ -120,8 +120,8 @@ Learn about Stylus at http://learnboost.github.com/stylus/ ::
     cd olympia
     npm install
 
-In your ``settings_local.py`` (or ``settings_local_mkt.py``) ensure you are
-pointing to the correct executable for ``stylus``::
+In your ``settings_local.py`` ensure you are pointing to the correct executable
+for ``stylus``::
 
     STYLUS_BIN = path('node_modules/stylus/bin/stylus')
 
@@ -135,8 +135,8 @@ LESS at http://lesscss.org.
 
 If you already ran ``npm install`` you don't need to do anything more.
 
-In your ``settings_local.py`` (or ``settings_local_mkt.py``) ensure you are
-pointing to the correct executable for ``less``::
+In your ``settings_local.py`` ensure you are pointing to the correct executable
+for ``less``::
 
     LESS_BIN = path('node_modules/less/bin/lessc')
 

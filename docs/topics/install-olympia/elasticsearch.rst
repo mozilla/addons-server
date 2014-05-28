@@ -68,10 +68,6 @@ For AMO, this will set up all indexes and start the indexing processeses::
 
     ./manage.py reindex --settings=your_local_amo_settings
 
-For Marketplace, use this to only create the apps index and index apps::
-
-    ./manage.py reindex_mkt --settings=your_local_mkt_settings
-
 Or you could use the makefile target (using the ``settings_local.py`` file)::
 
     make reindex
@@ -112,12 +108,6 @@ object manager. ``.filter(**kwargs)`` can be run on this search object::
     query_results = list(
         MyModel.search().filter(my_field=a_str.lower())
         .values_dict('that_field'))
-
-On Marketplace, apps use ``mkt/webapps/models:WebappIndexer`` as its
-interface to Elasticsearch. Search is done a little differently using
-this and results are a list of ``WebappIndexer`` objects::
-
-    query_results = S(WebappIndexer).filter(...)
 
 Testing with Elasticsearch
 --------------------------
