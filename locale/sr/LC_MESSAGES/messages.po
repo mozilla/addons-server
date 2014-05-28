@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-05-28 10:15+0000\n"
-"Last-Translator: Marko <smrzlicm@gmail.com>\n"
+"PO-Revision-Date: 2014-05-28 11:18+0000\n"
+"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401272117.0\n"
+"X-POOTLE-MTIME: 1401275926.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6696,11 +6696,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:105
 msgid "synchronous XMLHttpRequests"
-msgstr ""
+msgstr "синхрони XMLHttpRequests"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:106
 msgid "obfuscated code"
-msgstr ""
+msgstr "засенчен код"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:107
 msgid "binary components or executables"
@@ -6741,12 +6741,21 @@ msgid ""
 "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
 "\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
+"Многа од ових ограничења су тестирана аутоматски од стране скенера "
+"екстензије који ће означити сумњиве додатке за преглед уредника. Можете "
+"прочитати више о овом скенеру у <a href=\"%(link_validation)s\">Помоћ при "
+"валидацији</a> документу."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
+"Ако је додатак специфичан за сајт, препоручује се да буде додељен тест налог "
+"током процеса прегледа. Поред тога, укључујући и детаљне инструкције за "
+"тестирање ће дозволити уреднику да боље разуме како функционише додатак и "
+"убрза процес тестирања. Ове информације могу бити смештене у пољу Белешке "
+"рецезенту када се мењају верзије у Центру за програмера."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
@@ -6769,12 +6778,20 @@ msgid ""
 "If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the "
 "action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
 msgstr ""
+"Ако верзија не испуњава критеријуме за пуну рецензију, може му бити додељена "
+"прелиминарна рецензија или онемогућен уколико постоји сигурносни проблем. "
+"Аутор ће добити е-пошту са објашњењем које су мере предузете и како да их "
+"поправи. У већини случајева, програмер може једноставно поправити проблем и "
+"поново поднети за пуну рецензију."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:155
 msgid ""
 "Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete "
 "these reviews in under 3 days."
 msgstr ""
+"Прелиминарни прегледи су прикладни за експерименталне додатке и дају начин "
+"да корисници тестирају и дају повратну информацију без проласка кроз дужи, "
+"темељнији процес ревизије. Циљамо да завршимо ревизије у року од 3 дана."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
@@ -6785,6 +6802,11 @@ msgid ""
 "When performing a preliminary review, editors will review the source code for security issues and major policy violations, but will not install the add-on to test functionality in most cases. "
 "Preliminary review will be granted unless a security vulnerability or major policy violation is discovered."
 msgstr ""
+"Када се ради прелиминарни преглед, уредници ће прегледати изворни код из "
+"сигурносних разлога и већих кршења полисе, али у већини случајева неће "
+"инсталирати додатке да би тестирали функционалност. Прелиминарни преглед ће "
+"бити одобрен осим ако је откривен сигурносни пропуст или ако има већих "
+"кршења полисе."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:171
 msgid ""
@@ -6852,10 +6874,12 @@ msgstr "Додаци који имају сопствени механизам �
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:220
 msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
 msgstr ""
+"Додаци који праве промене у веб-садржају на начин који није очигледан или "
+"тежак за праћење од стране њихових корисника"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
-msgstr ""
+msgstr "Додаци који њушкају или пресрећу саобраћај на мрежи других корисника"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
@@ -6905,7 +6929,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
-msgstr ""
+msgstr "Бинарне компоненте и затамљен код"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:289
 msgid ""
@@ -6932,6 +6956,10 @@ msgid ""
 "Add-ons hosted on Mozilla Add-ons should be of high quality and give users an improved web experience. We look for the following things when deciding whether an add-on is appropriate to be public "
 "and unrestricted:"
 msgstr ""
+"Додаци постављени на Mozilla-ином сајту за додатке би требали бити високог "
+"квалитета и да дају корисницима побољшано веб искуство. Тражимо следеће "
+"ствари када одлучујемо да ли ће додатак бити прикладан да буде јаван и без "
+"ограничења:"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:19
 msgid ""
@@ -7680,14 +7708,22 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:33 apps/devhub/templates/devhub/includes/addon_details.html:40
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
 msgstr ""
+"Добићете е-пошту кад преглед буде завршен. До тада, Ваш додатак није на "
+"листи у нашој галерији али му се може приступити директно са његове странице "
+"са детаљима."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:47
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr ""
+"Ваш додатак је приказан у нашој галерији и корисници примају аутоматске "
+"надоградње."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:53
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
 msgstr ""
+"Ваш додатак је онемогућен од стране администратора сајта и није више видљив "
+"у нашој галерији. Ако имате нека питања, молимо пошаљите нам е-пошту на "
+"marketplace-staff@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:60
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
@@ -7700,6 +7736,9 @@ msgid ""
 "You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
 "unavailable to your add-on."
 msgstr ""
+"Добићете е-пошту када пун преглед буде готов. До тада, Ваш додатак је "
+"приказан у нашој галерији као експериментални и корисници добијају "
+"аутоматске надоградње. Неке могућности нису доступне Вашем додатку."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -7908,11 +7947,11 @@ msgstr "Постави доприносе"
 
 #: apps/devhub/templates/devhub/payments/tier.html:13
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "Корак 2. Одређивање цене и доступност"
 
 #: apps/devhub/templates/devhub/payments/tier.html:18
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr ""
+msgstr "или <a href=\"%(cancel)s\">откажи</a>"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:2 apps/stats/templates/stats/addon_report_menu.html:39
 msgid "Contributions"
@@ -7920,7 +7959,7 @@ msgstr "Прилози"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:3
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr ""
+msgstr "Попуните поља испод да почнете питати кориснике за добровољни допринос."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:11
 msgid "Who will receive contributions to this add-on?"
@@ -8013,12 +8052,12 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:126 apps/devhub/templates/devhub/personas/submit.html:72
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Да ли други могу да деле Вашу тему, уколико Вама иду заслуге?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
 #: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: apps/devhub/templates/devhub/personas/edit.html:132 apps/devhub/templates/devhub/personas/edit.html:153 apps/devhub/templates/devhub/personas/submit.html:78
 #: apps/devhub/templates/devhub/personas/submit.html:99
@@ -8041,7 +8080,7 @@ msgstr "Да ли други могу да користе Вашу тему у �
 
 #: apps/devhub/templates/devhub/personas/edit.html:168 apps/devhub/templates/devhub/personas/submit.html:114
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Да ли други могу да праве изведена дела на основу Ваше теме?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:174 apps/devhub/templates/devhub/personas/submit.html:120
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
@@ -8049,7 +8088,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:182 apps/devhub/templates/devhub/personas/submit.html:128
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Да, уколико и они поделе"
 
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
@@ -8065,23 +8104,25 @@ msgstr "Ваша тема биће издата под следећом лице
 
 #: apps/devhub/templates/devhub/personas/edit.html:202 apps/devhub/templates/devhub/personas/submit.html:148
 msgid "Select a different license."
-msgstr ""
+msgstr "Изаберите другачију лиценцу."
 
 #: apps/devhub/templates/devhub/personas/edit.html:207 apps/devhub/templates/devhub/personas/submit.html:153
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Изаберите лиценцу за Вашу тему."
 
 #: apps/devhub/templates/devhub/personas/edit.html:217 apps/devhub/templates/devhub/personas/submit.html:163
 msgid "Theme Design"
-msgstr ""
+msgstr "Дизајн теме"
 
 #: apps/devhub/templates/devhub/personas/edit.html:221 apps/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
-msgstr ""
+msgstr "Поставите нови дизајн"
 
 #: apps/devhub/templates/devhub/personas/edit.html:226
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr ""
+"По поставци и слању формулара, АМО тим ће прегледати Ваш ажуриран дизајн. "
+"Ваш тренутни дизајн ће у међувремену бити јаван."
 
 #: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
@@ -8089,7 +8130,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
-msgstr ""
+msgstr "Нерешено заглавље"
 
 #: apps/devhub/templates/devhub/personas/edit.html:249
 msgid "Pending Footer"
@@ -8277,11 +8318,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:133
 msgid "Upload a new file"
-msgstr ""
+msgstr "Поставите нову датотеку"
 
 #: apps/devhub/templates/devhub/versions/edit.html:135
 msgid "Add File"
-msgstr ""
+msgstr "Додај датотеку"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:1
 msgid "File {file_id} ({platform})"
@@ -8293,11 +8334,11 @@ msgstr "Направљено %(created)s и промењено на %(status)s �
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:9
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Направљено %(created)s и промењено на %(status)s"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:16
 msgid "Show File History"
-msgstr ""
+msgstr "Прикажи историју датотека"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:28
 msgid "By %(user_name)s on %(date)s"
@@ -8305,7 +8346,7 @@ msgstr "од %(user_name)s дана %(date)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:11
 msgid "Edit this version"
-msgstr ""
+msgstr "Измени ову верзију"
 
 #: apps/devhub/templates/devhub/versions/list.html:12 apps/versions/templates/versions/version.html:6 apps/versions/templates/versions/mobile/version.html:6
 msgctxt "addon_display_header_version"
@@ -8316,13 +8357,13 @@ msgstr "Верзија {0}"
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} датотека"
+msgstr[1] "{0} датотеке"
+msgstr[2] "{0} датотека"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
-msgstr ""
+msgstr "0 датотека"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
@@ -8330,15 +8371,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
-msgstr ""
+msgstr "Није проверена исправност."
 
 #: apps/devhub/templates/devhub/versions/list.html:50
 msgid "Validate now."
-msgstr ""
+msgstr "Потврдите сада."
 
 #: apps/devhub/templates/devhub/versions/list.html:73
 msgid "Request Full Review"
-msgstr ""
+msgstr "Захтевај пуну преглед"
 
 #: apps/devhub/templates/devhub/versions/list.html:74
 msgid "Request Preliminary Review"
@@ -8406,22 +8447,24 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/list.html:199
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 msgstr ""
+"Брисање верзије која је већ била прегледана може да проузрокује значајна "
+"кашњења код прегледавања Ваше следеће надоградње."
 
 #: apps/devhub/templates/devhub/versions/list.html:202
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Да ли сте сигурни да желите обрисати ову верзију?"
 
 #: apps/devhub/templates/devhub/versions/list.html:207
 msgid "Delete Version"
-msgstr ""
+msgstr "Обриши верзију"
 
 #: apps/devhub/templates/devhub/versions/list.html:209
 msgid "Disable Version"
-msgstr ""
+msgstr "Онемогући верзију"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Add a new Version"
-msgstr ""
+msgstr "Додај нову верзију"
 
 #: apps/devhub/templates/devhub/versions/list.html:218
 msgid "Add Version"
