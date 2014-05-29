@@ -73,7 +73,3 @@ SENTRY_DSN = private_addons.SENTRY_DSN
 AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
-
-HEKA_CONF['logger'] = 'addons-landfill'
-HEKA_CONF['plugins']['raven'] = ('heka_raven.raven_plugin:config_plugin', {'dsn': private_addons.SENTRY_DSN})
-HEKA = client_from_dict_config(HEKA_CONF)
