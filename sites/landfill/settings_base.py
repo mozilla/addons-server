@@ -179,18 +179,6 @@ LESS_PREPROCESS = True
 
 XSENDFILE_HEADER  = 'X-Accel-Redirect'
 
-HEKA_CONF = {
-    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {})},
-    'stream': {
-        'class': 'heka.streams.UdpStream',
-        'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
-        'port': private.HEKA_CONF_SENDER_PORT,
-    },
-}
-
-USE_HEKA_FOR_CEF = True
-USE_HEKA_FOR_TASTYPIE = True
-
 ALLOW_SELF_REVIEWS = True
 
 AES_KEYS = private.AES_KEYS
