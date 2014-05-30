@@ -77,22 +77,4 @@ AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-HEKA_CONF = {
-    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {}),
-                'raven': (
-                    'heka_raven.raven_plugin:config_plugin', {'dsn': private_addons.SENTRY_DSN}),
-        },
-    'stream': {
-        'class': 'heka.streams.UdpStream',
-        'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
-        'port': private.HEKA_CONF_SENDER_PORT,
-    },
-    'logger': 'addons-altdev',
-}
-
-HEKA = client_from_dict_config(HEKA_CONF)
-
-USE_HEKA_FOR_CEF = True
-USE_HEKA_FOR_TASTYPIE = False
-
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
