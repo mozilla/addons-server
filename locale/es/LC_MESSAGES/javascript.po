@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-03-24 09:47+0000\n"
+"PO-Revision-Date: 2014-05-30 20:12+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395654464.0\n"
+"X-POOTLE-MTIME: 1401480747.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -77,7 +77,7 @@ msgstr "Validando {0}"
 
 #: media/js/common/upload-addon.js:248
 msgid "Try again"
-msgstr ""
+msgstr "Vuelve a intentarlo"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
@@ -104,11 +104,12 @@ msgstr "Tu complemento ha pasado la validación sin errores ni advertencias."
 
 #: media/js/common/upload-addon.js:383
 msgid "Some platforms are not available for this type of add-on."
-msgstr "Algunas plataformas no están disponibles para este tipo de complemento."
+msgstr ""
+"Algunas plataformas no están disponibles para este tipo de complementos."
 
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Lo sentimos, no se ha encontrado ninguna plataforma compatible."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."

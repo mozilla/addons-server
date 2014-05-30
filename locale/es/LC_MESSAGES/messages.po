@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:41-0700\n"
-"PO-Revision-Date: 2014-04-15 19:55+0000\n"
+"PO-Revision-Date: 2014-05-30 20:13+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397591716.0\n"
+"X-POOTLE-MTIME: 1401480821.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1036,7 +1036,7 @@ msgstr "Gestionar"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:101
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Icono de {0}"
 
 #: apps/addons/templates/addons/impala/details.html:108 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
@@ -1056,7 +1056,7 @@ msgstr "Descubre por qué se creó {0} y cuál es el futuro de este complemento.
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:165
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Captura de pantalla nº {0} del complemento"
 
 #: apps/addons/templates/addons/impala/details.html:191
 msgid "Add-on home page"
@@ -6514,7 +6514,7 @@ msgstr "El complemento debe tener excelentes valoraciones de los usuarios y cual
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "El complemento debe tener un mínimo de 2.000 usuarios."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
@@ -6547,6 +6547,8 @@ msgstr "el nombre del complemento, la URL, y si tú eres su desarrollador"
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
 msgstr ""
+"una breve explicación de por qué este complemento resulta atractivo al "
+"público en general y debe ser destacado"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
@@ -6557,6 +6559,13 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"Las nominaciones de los complementos son revisadas por la Junta de "
+"Asesoramiento un vez al mes (una vez cada 3 meses para nominaciones "
+"temáticas completas). Entre las razones más comunes para el rechazo se "
+"incluyen la falta de interés para el público en general, una experiencia de "
+"usuario poco óptima, deficiencias de calidad o seguridad, incompatibilidad, "
+"y similitud a otros complementos destacados. Los complementos rechazados no "
+"pueden volver a ser nominados hasta que pasen 3 meses."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8562,6 +8571,9 @@ msgstr "Borrar versión {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Estás a punto de eliminar la versión actual de tu complemento. Esto puede "
+"ocasionar que tu complemento cambie de estado, o pierda visibilidad pública, "
+"si esta es la única versión pública de tu complemento."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
