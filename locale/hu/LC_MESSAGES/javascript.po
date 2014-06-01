@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:44-0700\n"
-"PO-Revision-Date: 2014-02-27 16:18+0000\n"
-"Last-Translator: Gábor <kelemeng@gnome.hu>\n"
+"PO-Revision-Date: 2014-06-01 10:59+0000\n"
+"Last-Translator: Gábor <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393517910.0\n"
+"X-POOTLE-MTIME: 1401620350.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -79,7 +79,7 @@ msgstr "{0} ellenőrzése"
 
 #: media/js/common/upload-addon.js:248
 msgid "Try again"
-msgstr ""
+msgstr "Próbálja újra"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
@@ -110,7 +110,7 @@ msgstr "Néhány platformra nem érhető el ez a típusú kiegészítő."
 
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Elnézést, nem található támogatott platform."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
