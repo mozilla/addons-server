@@ -611,6 +611,19 @@ $(document).ready(function () {
                     $widget.setWidth(200);
                 $widget.setPos(ct);
                 $widget.render();
+                $widget.delegate('#ajax_collections_list li', 'click', handleToggle)
+                       .delegate('#ajax_new_collection', 'click', handleNew)
+                       .delegate('#id_name', 'keyup', slugify)
+                       .delegate('#id_name', 'blur', slugify)
+                       .delegate('#edit_slug', 'click', show_slug_edit)
+                       .delegate('#id_slug', 'change', function() {
+                           if (!$('#id_slug').val()) {
+                             $('#id_slug').attr('data-customized', 0);
+                             slugify();
+                           } else {
+                             $('#id_slug').attr('data-customized', 1);
+                           }
+                       });
             }
 
             function handleToggle(e) {
@@ -647,26 +660,14 @@ $(document).ready(function () {
                     $widget.setWidth(410);
                     $widget.setPos(ct);
                     $("#id_name").focus();
+                    $widget.delegate('#collections-new-cancel', 'click', loadList)
+                           .delegate('#add-to-collection form', 'submit', handleSubmit);
                 });
             };
 
             $widget.hideMe();
             $widget.unbind('click.popup', stopPropagation);
             $widget.bind('click.popup', stopPropagation);
-            $widget.delegate('#ajax_collections_list li', 'click', handleToggle)
-                .delegate('#ajax_new_collection', 'click', handleNew)
-                .delegate('#collections-new-cancel', 'click', loadList)
-                .delegate('#add-to-collection form', 'submit', handleSubmit)
-                .delegate('#id_name', 'keyup', slugify)
-                .delegate('#id_name', 'blur', slugify)
-                .delegate('#edit_slug', 'click', show_slug_edit)
-                .delegate('#id_slug', 'change', function() {
-                    $('#id_slug').attr('data-customized', 1);
-                    if (!$('#id_slug').val()) {
-                      $('#id_slug').attr('data-customized', 0);
-                      slugify();
-                    }
-                });
 
             loadList();
 
