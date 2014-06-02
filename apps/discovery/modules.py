@@ -346,3 +346,8 @@ class AustralisContestResults(CollectionPromo):
     collection_author, collection_slug = 'mozilla', 'australis'
     title = _('Add-ons for Australis Contest Winners')
     template = 'discovery/modules/australis-contest-results.html'
+
+
+class FootballWorldCup2014(TemplatePromo):
+    slug = 'Football WorldCup 2014'
+    template = 'discovery/modules/football-worldcup-2014.html'
