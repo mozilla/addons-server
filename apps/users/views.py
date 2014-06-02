@@ -229,7 +229,7 @@ def edit(request):
                                       'you made. Please correct them and '
                                       'resubmit.'))
     else:
-        form = forms.UserEditForm(instance=amouser)
+        form = forms.UserEditForm(instance=amouser, request=request)
     return render(request, 'users/edit.html',
                   {'form': form, 'amouser': amouser})
 
@@ -633,6 +633,7 @@ def register(request):
                 u = form.save(commit=False)
                 u.set_password(form.cleaned_data['password'])
                 u.generate_confirmationcode()
+                u.lang = request.LANG
                 u.save()
                 log.info(u'Registered new account for user (%s)', u)
                 log_cef('New Account', 5, request, username=u.username,

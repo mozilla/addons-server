@@ -176,7 +176,8 @@ class TestUserEditForm(UserFormBase):
 
     def test_no_real_name(self):
         data = {'username': 'blah',
-                'email': 'jbalogh@mozilla.com', }
+                'email': 'jbalogh@mozilla.com',
+                'lang': 'en-US'}
         r = self.client.post(self.url, data, follow=True)
         self.assertContains(r, 'Profile Updated')
 
@@ -203,7 +204,8 @@ class TestUserEditForm(UserFormBase):
                 'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'foo',
                 'password': 'longer123',
-                'password2': 'longer123', }
+                'password2': 'longer123',
+                'lang': 'en-US'}
         r = self.client.post(self.url, data, follow=True)
         self.assertContains(r, 'Profile Updated')
 
@@ -212,7 +214,8 @@ class TestUserEditForm(UserFormBase):
                 'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'foo',
                 'password': 'new',
-                'password2': 'new', }
+                'password2': 'new',
+                'lang': 'en-US'}
         for field, length in (('username', 50), ('display_name', 50),
                               ('location', 100), ('occupation', 100)):
             data[field] = 'x' * (length + 1)
@@ -226,13 +229,40 @@ class TestUserEditForm(UserFormBase):
         dummy.user = self.user
 
         data = {'username': self.user_profile.username,
-                'email': self.user_profile.email}
+                'email': self.user_profile.email,
+                'lang': 'en-US'}
         files = {'photo': get_uploaded_file('transparent.png')}
         form = UserEditForm(data, files=files, instance=self.user_profile,
                             request=dummy)
         assert form.is_valid()
         form.save()
         assert update_mock.called
+
+    def test_lang_initial(self):
+        """If no lang is set on the user, initial value is current locale."""
+        # Lang is already set: don't change it.
+        res = self.client.get(self.url)
+        form = res.context['form']
+        eq_(form.initial['lang'], 'en-US')
+
+        with self.activate('fr'):
+            res = self.client.get(reverse('users.edit'))
+            form = res.context['form']
+            eq_(form.initial['lang'], 'en-US')
+
+        # Lang isn't set yet: initial value is set to the current locale.
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        user.lang = None
+        user.save()
+
+        res = self.client.get(self.url)
+        form = res.context['form']
+        eq_(form.initial['lang'], 'en-US')
+
+        with self.activate('fr'):
+            res = self.client.get(reverse('users.edit'))
+            form = res.context['form']
+            eq_(form.initial['lang'], 'fr')
 
 
 class TestAdminUserEditForm(UserFormBase):

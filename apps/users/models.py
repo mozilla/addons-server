@@ -177,7 +177,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
     region = models.CharField(max_length=11, null=True, blank=True,
                               editable=False)
     lang = models.CharField(max_length=5, null=True, blank=True,
-                            editable=False)
+                            default=settings.LANGUAGE_CODE)
 
     class Meta:
         db_table = 'users'
@@ -469,6 +469,10 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
     def remove_locale(self, locale):
         """Remove the given locale for the user."""
         Translation.objects.remove_for(self, locale)
+
+    @classmethod
+    def get_fallback(cls):
+        return cls._meta.get_field('lang')
 
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,

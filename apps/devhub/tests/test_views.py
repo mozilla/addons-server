@@ -18,7 +18,6 @@ from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
 # Unused, but needed so that we can patch jingo.
-from waffle import helpers
 
 import amo
 import amo.tests
@@ -1053,6 +1052,15 @@ class TestSubmitStep1(TestSubmitBase):
             assert not href.startswith('%'), (
                 "Looks like link %r to %r is still a placeholder" %
                 (href, ln.text))
+
+    def test_read_dev_agreement_set(self):
+        """Store current date when the user agrees with the user agreement."""
+        response = self.client.get(reverse('devhub.submit.1'))
+        previous = response.context['user'].read_dev_agreement
+
+        response = self.client.post(reverse('devhub.submit.1'), follow=True)
+        user = response.context['user']
+        assert user.read_dev_agreement != previous
 
 
 class TestSubmitStep2(amo.tests.TestCase):
