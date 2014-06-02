@@ -68,6 +68,8 @@ newrelic==2.16.0.12
 oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
+phpserialize==1.3
+pyhs2==0.4.1
 polib==1.0.3
 protobuf==2.5.0
 pyasn1==0.1.7
@@ -88,6 +90,7 @@ recaptcha-client==1.0.6
 receipts==0.2.9
 redis==2.8.0
 requests==2.0.0
+sasl==0.1.3
 schematic==0.2
 #signing_clients==0.1.7
 six==1.4.1
@@ -95,6 +98,7 @@ slumber==0.5.3
 SQLAlchemy==0.7.5
 statsd==2.0.3
 suds==0.4
+thrift==0.9.1
 
 ## Not on pypi.
 -e git+https://github.com/mozilla/amo-validator.git@cae9bafc2db2fe7e4f25f9616945ee33479332f2#egg=amo-validator

@@ -3,6 +3,7 @@
 MAILTO=amo-developers@mozilla.org
 
 HOME=/tmp
+YESTERDAY=$(date --date="yesterday" +"%Y-%m-%d")
 
 # Every minute!
 * * * * * %(z_cron)s fast_current_version
@@ -49,6 +50,11 @@ HOME=/tmp
 
 # Collect visitor stats from Google Analytics once per day.
 50 10 * * * %(z_cron)s update_google_analytics
+
+# Update ADI metrics from HIVE.
+00 1 * * * %(z_cron)s download_metrics --date $YESTERDAY --with-updates --with-downloads --output adi_data
+00 3 * * * %(z_cron)s update_counts_from_file adi_data.updates --date $YESTERDAY
+00 4 * * * %(z_cron)s download_counts_from_file adi_data.downloads --date $YESTERDAY
 
 #Once per day after 2100 PST (after metrics is done)
 35 5 * * * %(z_cron)s update_addon_download_totals
