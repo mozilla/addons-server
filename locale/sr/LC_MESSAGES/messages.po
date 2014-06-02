@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:41-0700\n"
-"PO-Revision-Date: 2014-06-02 16:19+0000\n"
+"PO-Revision-Date: 2014-06-02 16:56+0000\n"
 "Last-Translator: Marko <smrzlicm@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401725997.0\n"
+"X-POOTLE-MTIME: 1401728186.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12313,22 +12313,23 @@ msgstr "Корисничка имена не могу да садрже само
 #: apps/users/forms.py:217
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
+"Унесите исправно корисничко име које садржи слова, бројеве, црте или цртице."
 
 #: apps/users/forms.py:220
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Ово корисничко име не може да се користи."
 
 #: apps/users/forms.py:226
 msgid "This username is already in use."
-msgstr ""
+msgstr "Ово корисничко име је већ у употреби."
 
 #: apps/users/forms.py:237 apps/users/templates/users/edit.html:93
 msgid "Display Name"
-msgstr ""
+msgstr "Приказано име"
 
 #: apps/users/forms.py:239 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
-msgstr ""
+msgstr "Локација"
 
 #: apps/users/forms.py:241 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
@@ -12373,7 +12374,7 @@ msgstr ""
 
 #: apps/users/models.py:126
 msgid "No user with that email."
-msgstr ""
+msgstr "Нема корисника са том адресом е-поште."
 
 #: apps/users/models.py:346
 msgid "Your account has been restricted"
@@ -12381,7 +12382,7 @@ msgstr ""
 
 #: apps/users/models.py:416
 msgid "Please confirm your email address"
-msgstr ""
+msgstr "Молимо Вас потврдите адресу е-поште"
 
 #: apps/users/models.py:441
 msgid "My Mobile Add-ons"
