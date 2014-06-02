@@ -215,8 +215,6 @@ class AddonManager(amo.models.ManagerBase):
 
 class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
-    LOCALES = [(translation.to_locale(k).replace('_', '-'), v) for k, v in
-               do_dictsort(settings.LANGUAGES)]
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)

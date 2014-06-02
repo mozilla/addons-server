@@ -124,6 +124,12 @@ data-default-locale="{{ request.LANG|lower }}"
               {% endif %}
               {{ form.photo.errors }}
             </li>
+            <li>
+              <label for="id_lang">{{ _('Default locale') }}</label>
+              {{ form.lang }}
+              <small class="note">{{ _('This is the default locale used to display information about you (like your description).') }}</small>
+              {{ form.lang.errors }}
+            </li>
           </ol>
         </fieldset>
         <fieldset id="profile-detail" class="c">

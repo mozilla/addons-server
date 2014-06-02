@@ -26,6 +26,7 @@ from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks as devhub_tasks
 from tags.models import Tag
+from translations import LOCALES
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
@@ -331,7 +332,7 @@ class AddonFormMedia(AddonFormBase):
 
 
 class AddonFormDetails(AddonFormBase):
-    default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)
+    default_locale = forms.TypedChoiceField(choices=LOCALES)
 
     class Meta:
         model = Addon
