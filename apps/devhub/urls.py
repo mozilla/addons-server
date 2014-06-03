@@ -23,13 +23,6 @@ submit_patterns = patterns('',
     url('^bump$', views.submit_bump, name='devhub.submit.bump'),
 )
 
-submit_apps_patterns = patterns('',
-    url('^3$', views.submit_describe, name='devhub.submit_apps.3'),
-    url('^4$', views.submit_media, name='devhub.submit_apps.4'),
-    url('^5$', views.submit_done, name='devhub.submit_apps.5'),
-    url('^bump$', views.submit_bump, name='devhub.submit_apps.bump'),
-)
-
 
 # These will all start with /theme/<slug>/
 theme_detail_patterns = patterns('',
@@ -175,12 +168,6 @@ urlpatterns = decorate(write, patterns('',
     url('^addon/submit/1$', views.submit, name='devhub.submit.1'),
     url('^addon/submit/2$', views.submit_addon, name='devhub.submit.2'),
 
-    # Web App submission
-    url('^app/submit/$',
-        lambda r: redirect('devhub.submit_apps.1', permanent=True)),
-    url('^app/submit/1$', views.submit, name='devhub.submit_apps.1'),
-    url('^app/submit/2$', views.submit_addon, name='devhub.submit_apps.2'),
-
     # Standalone validator:
     url('^addon/validate/?$', views.validate_addon,
         name='devhub.validate_addon'),
@@ -219,7 +206,6 @@ urlpatterns = decorate(write, patterns('',
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
     url('^app/%s/' % amo.APP_SLUG, include(app_detail_patterns)),
-    url('^app/%s/submit/' % ADDON_ID, include(submit_apps_patterns)),
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
