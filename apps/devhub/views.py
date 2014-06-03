@@ -632,14 +632,12 @@ def upload(request, addon_slug=None, is_standalone=False):
     else:
         tasks.validator.delay(fu.pk)
     if addon_slug:
-        response = redirect('devhub.upload_detail_for_addon',
-                            addon_slug, fu.pk)
+        return redirect('devhub.upload_detail_for_addon',
+                        addon_slug, fu.pk)
     elif is_standalone:
-        response = redirect('devhub.standalone_upload_detail', fu.pk)
+        return redirect('devhub.standalone_upload_detail', fu.pk)
     else:
-        response = redirect('devhub.upload_detail', fu.pk, 'json')
-    response.set_cookie('last-upload-url', response['location'])
-    return response
+        return redirect('devhub.upload_detail', fu.pk, 'json')
 
 
 @login_required
