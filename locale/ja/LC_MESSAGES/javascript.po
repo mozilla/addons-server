@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-06-02 17:02-0700\n"
 "PO-Revision-Date: 2013-12-07 19:48-5000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -567,7 +567,7 @@ msgstr "却下済み"
 msgid "Approved"
 msgstr "承認済み"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:728
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
 msgstr "このコレクションをフォロー"
 
@@ -1299,15 +1299,15 @@ msgstr "自分を貢献者として追加することはできません。"
 msgid "You have already added that user."
 msgstr "このユーザはすでに追加されています。"
 
-#: media/js/zamboni/collections.js:706
+#: media/js/zamboni/collections.js:707
 msgid "Add to favorites"
 msgstr "お気に入りへ追加"
 
-#: media/js/zamboni/collections.js:710
+#: media/js/zamboni/collections.js:711
 msgid "Remove from favorites"
 msgstr "お気に入りから削除"
 
-#: media/js/zamboni/collections.js:737
+#: media/js/zamboni/collections.js:738
 msgid "Stop following"
 msgstr "フォローをやめる"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-06-02 17:02-0700\n"
 "PO-Revision-Date: 2014-05-30 20:12+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,8 +104,7 @@ msgstr "Tu complemento ha pasado la validación sin errores ni advertencias."
 
 #: media/js/common/upload-addon.js:383
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
-"Algunas plataformas no están disponibles para este tipo de complementos."
+msgstr "Algunas plataformas no están disponibles para este tipo de complementos."
 
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
@@ -580,7 +579,7 @@ msgstr "Rechazadas"
 msgid "Approved"
 msgstr "Aprobadas"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:728
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
 msgstr "Seguir esta colección"
 
@@ -1314,15 +1313,15 @@ msgstr "No puedes agregarte como colaborador."
 msgid "You have already added that user."
 msgstr "Ya has agregado a ese usuario."
 
-#: media/js/zamboni/collections.js:706
+#: media/js/zamboni/collections.js:707
 msgid "Add to favorites"
 msgstr "Agregar a favoritos"
 
-#: media/js/zamboni/collections.js:710
+#: media/js/zamboni/collections.js:711
 msgid "Remove from favorites"
 msgstr "Eliminar de favoritos"
 
-#: media/js/zamboni/collections.js:737
+#: media/js/zamboni/collections.js:738
 msgid "Stop following"
 msgstr "Dejar de seguir"
 

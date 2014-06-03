@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-06-02 17:02-0700\n"
 "PO-Revision-Date: 2013-08-25 10:49+0200\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -592,7 +592,7 @@ msgstr "Odrzucono"
 msgid "Approved"
 msgstr "Zaakceptowano"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:728
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
 msgstr "Obserwuj tę kolekcję"
 
@@ -1328,15 +1328,15 @@ msgstr "Nie możesz dodać siebie jako współautora."
 msgid "You have already added that user."
 msgstr "Ten użytkownik został już dodany."
 
-#: media/js/zamboni/collections.js:706
+#: media/js/zamboni/collections.js:707
 msgid "Add to favorites"
 msgstr "Dodaj do ulubionych"
 
-#: media/js/zamboni/collections.js:710
+#: media/js/zamboni/collections.js:711
 msgid "Remove from favorites"
 msgstr "Usuń z ulubionych"
 
-#: media/js/zamboni/collections.js:737
+#: media/js/zamboni/collections.js:738
 msgid "Stop following"
 msgstr "Zaprzestań obserwacji"
 

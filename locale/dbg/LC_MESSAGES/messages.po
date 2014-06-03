@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 09:41-0700\n"
+"POT-Creation-Date: 2014-06-02 17:02-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgid "Download Now"
 msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
 
 #: apps/addons/buttons.py:187
+#: templates/global/menu_links.html:19
 msgid "Download"
 msgstr "Ḓǿẇƞŀǿȧḓ"
 
@@ -43,51 +44,51 @@ msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ"
 msgid "Add to {0}"
 msgstr "Ȧḓḓ ŧǿ {0}"
 
-#: apps/addons/forms.py:48
+#: apps/addons/forms.py:49
 msgid "This name is already in use. Please choose another."
 msgstr "Ŧħīş ƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ. Ƥŀḗȧşḗ ƈħǿǿşḗ ȧƞǿŧħḗř."
 
-#: apps/addons/forms.py:59
+#: apps/addons/forms.py:60
 msgid "This slug is already in use. Please choose another."
 msgstr "Ŧħīş şŀŭɠ īş ȧŀřḗȧḓẏ īƞ ŭşḗ. Ƥŀḗȧşḗ ƈħǿǿşḗ ȧƞǿŧħḗř."
 
-#: apps/addons/forms.py:62
+#: apps/addons/forms.py:63
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Ŧħḗ şŀŭɠ ƈȧƞƞǿŧ ƀḗ \"%s\". Ƥŀḗȧşḗ ƈħǿǿşḗ ȧƞǿŧħḗř."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:81
+#: apps/addons/forms.py:82
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Īƞṽȧŀīḓ ŧȧɠ: {0}"
 msgstr[1] "Īƞṽȧŀīḓ ŧȧɠş: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:91
+#: apps/addons/forms.py:92
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" īş ȧ řḗşḗřṽḗḓ ŧȧɠ ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 msgstr[1] "\"{0}\" ȧřḗ řḗşḗřṽḗḓ ŧȧɠş ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
-#: apps/addons/forms.py:99
+#: apps/addons/forms.py:100
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
 msgstr[1] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
 
-#: apps/addons/forms.py:104
+#: apps/addons/forms.py:105
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
 "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ %s ƈħȧřȧƈŧḗřş ǿř ŀḗşş ȧƒŧḗř īƞṽȧŀīḓ ƈħȧřȧƈŧḗřş ȧřḗ řḗḿǿṽḗḓ."
 
-#: apps/addons/forms.py:108
+#: apps/addons/forms.py:109
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř."
 msgstr[1] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş."
 
-#: apps/addons/forms.py:223
+#: apps/addons/forms.py:224
 msgid ""
 "Categories cannot be changed while your add-on is featured for this "
 "application."
@@ -96,19 +97,19 @@ msgstr ""
 "ȧƥƥŀīƈȧŧīǿƞ."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:227
+#: apps/addons/forms.py:228
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Ẏǿŭ ƈȧƞ ħȧṽḗ ǿƞŀẏ {0} ƈȧŧḗɠǿřẏ."
 msgstr[1] "Ẏǿŭ ƈȧƞ ħȧṽḗ ǿƞŀẏ {0} ƈȧŧḗɠǿřīḗş."
 
-#: apps/addons/forms.py:235
+#: apps/addons/forms.py:236
 msgid ""
 "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
 "Ŧħḗ ḿīşƈḗŀŀȧƞḗǿŭş ƈȧŧḗɠǿřẏ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ ẇīŧħ ȧḓḓīŧīǿƞȧŀ ƈȧŧḗɠǿřīḗş."
 
-#: apps/addons/forms.py:358
+#: apps/addons/forms.py:359
 msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
@@ -116,21 +117,21 @@ msgstr ""
 "Ɓḗƒǿřḗ ƈħȧƞɠīƞɠ ẏǿŭř ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ ẏǿŭ ḿŭşŧ ħȧṽḗ ȧ ƞȧḿḗ, şŭḿḿȧřẏ, ȧƞḓ "
 "ḓḗşƈřīƥŧīǿƞ īƞ ŧħȧŧ ŀǿƈȧŀḗ. Ẏǿŭ ȧřḗ ḿīşşīƞɠ %s."
 
-#: apps/addons/forms.py:471
-#: apps/addons/forms.py:560
+#: apps/addons/forms.py:472
+#: apps/addons/forms.py:561
 msgid "A license must be selected."
 msgstr "Ȧ ŀīƈḗƞşḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
-#: apps/addons/forms.py:541
+#: apps/addons/forms.py:542
 msgid "Give Your Theme a Name."
 msgstr "Ɠīṽḗ Ẏǿŭř Ŧħḗḿḗ ȧ Ƞȧḿḗ."
 
-#: apps/addons/forms.py:547
+#: apps/addons/forms.py:548
 #: apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Ḓḗşƈřīƀḗ ẏǿŭř Ŧħḗḿḗ."
 
-#: apps/addons/forms.py:688
+#: apps/addons/forms.py:689
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
@@ -157,15 +158,15 @@ msgstr "Ƞǿŧ Řḗṽīḗẇḗḓ"
 msgid "Featured"
 msgstr "Ƒḗȧŧŭřḗḓ"
 
-#: apps/addons/models.py:312
+#: apps/addons/models.py:310
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Ŭşḗřş ħȧṽḗ ŧħḗ ǿƥŧīǿƞ ǿƒ ƈǿƞŧřīƀŭŧīƞɠ ḿǿřḗ ǿř ŀḗşş ŧħȧƞ ŧħīş ȧḿǿŭƞŧ."
 
-#: apps/addons/models.py:321
+#: apps/addons/models.py:319
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ƀḗ ȧşķḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř (Ƒīřḗƒǿẋ 4 ȧƞḓ ȧƀǿṽḗ)"
 
-#: apps/addons/models.py:1894
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
@@ -337,6 +338,7 @@ msgstr ""
 #: apps/editors/templates/editors/performance.html:73
 #: apps/search/templates/search/personas.html:39
 #: templates/menu_links.html:9
+#: templates/global/menu_links.html:38
 msgid "Themes"
 msgstr "Ŧħḗḿḗş"
 
@@ -559,7 +561,7 @@ msgstr "Ȧḓḓ-ǿƞ Īƞƒǿřḿȧŧīǿƞ ƒǿř {0}"
 #: apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
 #: apps/browse/views.py:441
-#: apps/devhub/views.py:71
+#: apps/devhub/views.py:69
 msgid "Updated"
 msgstr "Ŭƥḓȧŧḗḓ"
 
@@ -616,6 +618,7 @@ msgstr "Ȧƀŭşḗ Řḗƥǿřŧş"
 #: apps/addons/templates/addons/impala/button.html:43
 #: apps/addons/templates/addons/impala/details.html:311
 #: apps/devhub/templates/devhub/includes/policy_form.html:19
+#: templates/global/copyright.html:5
 #: templates/mobile/base_addons.html:82
 #: templates/mobile/base_apps.html:71
 msgid "Privacy Policy"
@@ -1755,6 +1758,8 @@ msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ {0} Ȧḓḓ-ǿƞş ħǿḿḗƥȧɠḗ"
 #: apps/editors/templates/editors/base.html:21
 #: apps/editors/templates/editors/performance.html:72
 #: templates/menu_links.html:4
+#: templates/global/menu_links.html:33
+#: templates/global/mobile/header.html:6
 #: templates/impala/header_title.html:9
 #: templates/impala/header_title.html:11
 #: templates/impala/header_title.html:15
@@ -1888,6 +1893,7 @@ msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ŧħḗḿḗ"
 #: apps/devhub/helpers.py:100
 #: templates/footer.html:6
 #: templates/menu_links.html:14
+#: templates/global/menu_links.html:44
 msgid "Developer Hub"
 msgstr "Ḓḗṽḗŀǿƥḗř Ħŭƀ"
 
@@ -1933,6 +1939,7 @@ msgstr "Ḗƞŧḗř ȧŧ ŀḗȧşŧ ǿƞḗ ṽȧŀŭḗ."
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3
 #: apps/stats/templates/stats/stats.html:77
 #: templates/menu_links.html:12
+#: templates/global/menu_links.html:42
 msgid "Collections"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
@@ -2531,6 +2538,7 @@ msgstr "Ḗẋƥŀǿřḗ"
 #: apps/browse/templates/browse/impala/base_listing.html:37
 #: apps/constants/base.py:160
 #: templates/menu_links.html:8
+#: templates/global/menu_links.html:37
 msgid "Extensions"
 msgstr "Ḗẋŧḗƞşīǿƞş"
 
@@ -2572,6 +2580,7 @@ msgstr "Ȧḓḓ-ǿƞş ƒǿř Ḿǿƀīŀḗ"
 #: apps/browse/templates/browse/search_tools.html:3
 #: apps/constants/base.py:163
 #: templates/menu_links.html:10
+#: templates/global/menu_links.html:40
 msgid "Search Tools"
 msgstr "Şḗȧřƈħ Ŧǿǿŀş"
 
@@ -2811,7 +2820,7 @@ msgid "Icon"
 msgstr "Īƈǿƞ"
 
 #: apps/bandwagon/forms.py:152
-#: apps/users/forms.py:391
+#: apps/users/forms.py:400
 msgid "No links are allowed."
 msgstr "Ƞǿ ŀīƞķş ȧřḗ ȧŀŀǿẇḗḓ."
 
@@ -2820,13 +2829,13 @@ msgid "This url is already in use by another collection"
 msgstr "Ŧħīş ŭřŀ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/bandwagon/forms.py:174
-#: apps/devhub/views.py:1088
+#: apps/devhub/views.py:1086
 msgid "Icons must be either PNG or JPG."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
 #: apps/bandwagon/forms.py:179
-#: apps/devhub/views.py:1106
-#: apps/users/forms.py:382
+#: apps/devhub/views.py:1104
+#: apps/users/forms.py:391
 msgid "Please use images smaller than %dMB."
 msgstr "Ƥŀḗȧşḗ ŭşḗ īḿȧɠḗş şḿȧŀŀḗř ŧħȧƞ %dḾƁ."
 
@@ -2873,7 +2882,7 @@ msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 #: apps/browse/views.py:57
 #: apps/browse/views.py:68
 #: apps/browse/views.py:440
-#: apps/devhub/views.py:70
+#: apps/devhub/views.py:68
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20
 #: apps/editors/templates/editors/leaderboard.html:24
 #: apps/editors/templates/editors/themes/queue_list.html:48
@@ -3601,19 +3610,19 @@ msgid "Up & Coming"
 msgstr "Ŭƥ & Ƈǿḿīƞɠ"
 
 #: apps/browse/views.py:442
-#: apps/devhub/views.py:72
+#: apps/devhub/views.py:70
 msgid "Created"
 msgstr "Ƈřḗȧŧḗḓ"
 
 #: apps/browse/views.py:443
-#: apps/devhub/views.py:73
+#: apps/devhub/views.py:71
 #: apps/stats/templates/stats/addon_report_menu.html:8
 #: apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Ḓǿẇƞŀǿȧḓş"
 
 #: apps/browse/views.py:444
-#: apps/devhub/views.py:74
+#: apps/devhub/views.py:72
 #: apps/discovery/templates/discovery/addons/detail.html:67
 #: apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9
@@ -3639,6 +3648,7 @@ msgstr "{0}: Ƒḗȧŧŭřḗḓ Ȧḓḓ-ǿƞş"
 #: apps/discovery/modules.py:338
 #: apps/discovery/templates/discovery/pane.html:53
 #: templates/menu_links.html:7
+#: templates/global/menu_links.html:36
 msgid "Featured Add-ons"
 msgstr "Ƒḗȧŧŭřḗḓ Ȧḓḓ-ǿƞş"
 
@@ -4099,6 +4109,7 @@ msgid "No reports found."
 msgstr "Ƞǿ řḗƥǿřŧş ƒǿŭƞḓ."
 
 #: apps/constants/applications.py:18
+#: templates/global/header.html:9
 msgid "Firefox"
 msgstr "Ƒīřḗƒǿẋ"
 
@@ -4116,6 +4127,7 @@ msgid "Sunbird"
 msgstr "Şŭƞƀīřḓ"
 
 #: apps/constants/applications.py:89
+#: templates/global/menu_links.html:17
 msgid "Mobile"
 msgstr "Ḿǿƀīŀḗ"
 
@@ -4132,6 +4144,8 @@ msgid "Unknown"
 msgstr "Ŭƞķƞǿẇƞ"
 
 #: apps/constants/applications.py:154
+#: templates/global/menu_links.html:3
+#: templates/global/mobile/header.html:5
 #: templates/mobile/header.html:5
 msgid "Desktop"
 msgstr "Ḓḗşķŧǿƥ"
@@ -4220,6 +4234,8 @@ msgid "Viewer"
 msgstr "Ṽīḗẇḗř"
 
 #: apps/constants/base.py:124
+#: templates/global/menu_links.html:49
+#: templates/global/mobile/header.html:7
 #: templates/mobile/header.html:7
 msgid "Support"
 msgstr "Şŭƥƥǿřŧ"
@@ -4574,7 +4590,7 @@ msgstr "Ƥȧşşẇǿřḓ īƞƈǿřřḗƈŧ."
 
 #: apps/devhub/forms.py:114
 #: apps/devhub/templates/devhub/versions/edit.html:94
-#: apps/users/templates/users/edit.html:130
+#: apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "Ḓḗŧȧīŀş"
 
@@ -4921,84 +4937,84 @@ msgstr "Ƈǿƞƞḗƈŧīǿƞ ŧǿ \"%s\" ŧīḿḗḓ ǿŭŧ."
 msgid "Could not contact host at \"%s\"."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƈǿƞŧȧƈŧ ħǿşŧ ȧŧ \"%s\"."
 
-#: apps/devhub/views.py:172
+#: apps/devhub/views.py:170
 msgid "All My Add-ons"
 msgstr "Ȧŀŀ Ḿẏ Ȧḓḓ-ǿƞş"
 
-#: apps/devhub/views.py:199
+#: apps/devhub/views.py:197
 msgid "All Activity"
 msgstr "Ȧŀŀ Ȧƈŧīṽīŧẏ"
 
-#: apps/devhub/views.py:200
+#: apps/devhub/views.py:198
 msgid "Add-on Updates"
 msgstr "Ȧḓḓ-ǿƞ Ŭƥḓȧŧḗş"
 
-#: apps/devhub/views.py:201
+#: apps/devhub/views.py:199
 msgid "Add-on Status"
 msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş"
 
-#: apps/devhub/views.py:202
+#: apps/devhub/views.py:200
 msgid "User Collections"
 msgstr "Ŭşḗř Ƈǿŀŀḗƈŧīǿƞş"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:201
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:68
 #: apps/pages/templates/pages/dev_faq.html:39
 #: apps/pages/templates/pages/dev_faq.html:557
 msgid "User Reviews"
 msgstr "Ŭşḗř Řḗṽīḗẇş"
 
-#: apps/devhub/views.py:316
-#: apps/devhub/views.py:320
-#: apps/devhub/views.py:430
-#: apps/devhub/views.py:459
-#: apps/devhub/views.py:510
-#: apps/devhub/views.py:1178
+#: apps/devhub/views.py:314
+#: apps/devhub/views.py:318
+#: apps/devhub/views.py:428
+#: apps/devhub/views.py:457
+#: apps/devhub/views.py:508
+#: apps/devhub/views.py:1176
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: apps/devhub/views.py:323
-#: apps/devhub/views.py:1562
+#: apps/devhub/views.py:321
+#: apps/devhub/views.py:1561
 msgid "Please check the form for errors."
 msgstr "Ƥŀḗȧşḗ ƈħḗƈķ ŧħḗ ƒǿřḿ ƒǿř ḗřřǿřş."
 
-#: apps/devhub/views.py:335
+#: apps/devhub/views.py:333
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Ȧḓḓ-ǿƞ ƈȧƞƞǿŧ ƀḗ ḓḗŀḗŧḗḓ. Ḓīşȧƀŀḗ ŧħīş ȧḓḓ-ǿƞ īƞşŧḗȧḓ."
 
-#: apps/devhub/views.py:344
+#: apps/devhub/views.py:342
 msgid "Theme deleted."
 msgstr "Ŧħḗḿḗ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:344
+#: apps/devhub/views.py:342
 msgid "Add-on deleted."
 msgstr "Ȧḓḓ-ǿƞ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:347
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ŧħḗḿḗ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:353
+#: apps/devhub/views.py:351
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ȧḓḓ-ǿƞ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:465
+#: apps/devhub/views.py:463
 msgid "There were errors in your submission."
 msgstr "Ŧħḗřḗ ẇḗřḗ ḗřřǿřş īƞ ẏǿŭř şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:529
+#: apps/devhub/views.py:527
 msgid "Validate Add-on"
 msgstr "Ṽȧŀīḓȧŧḗ Ȧḓḓ-ǿƞ"
 
-#: apps/devhub/views.py:538
+#: apps/devhub/views.py:536
 msgid "Check Add-on Compatibility"
 msgstr "Ƈħḗƈķ Ȧḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ"
 
-#: apps/devhub/views.py:660
+#: apps/devhub/views.py:658
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:754
+#: apps/devhub/views.py:752
 msgid ""
 "Validation generated too many errors/warnings so %s messages were truncated. "
 "After addressing the visible messages, you'll be able to see the others."
@@ -5006,41 +5022,41 @@ msgstr ""
 "Ṽȧŀīḓȧŧīǿƞ ɠḗƞḗřȧŧḗḓ ŧǿǿ ḿȧƞẏ ḗřřǿřş/warnings şǿ %s ḿḗşşȧɠḗş ẇḗřḗ ŧřŭƞƈȧŧḗḓ. "
 "Ȧƒŧḗř ȧḓḓřḗşşīƞɠ ŧħḗ ṽīşīƀŀḗ ḿḗşşȧɠḗş, ẏǿŭ'ŀŀ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ŧħḗ ǿŧħḗřş."
 
-#: apps/devhub/views.py:1090
-#: apps/users/forms.py:377
+#: apps/devhub/views.py:1088
+#: apps/users/forms.py:386
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
-#: apps/devhub/views.py:1094
+#: apps/devhub/views.py:1092
 msgid "Icons cannot be animated."
 msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1096
+#: apps/devhub/views.py:1094
 msgid "Images cannot be animated."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1109
+#: apps/devhub/views.py:1107
 msgid "Images cannot be larger than %dKB."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ŀȧřɠḗř ŧħȧƞ %dĶƁ."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1119
+#: apps/devhub/views.py:1117
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Īḿȧɠḗ ḿŭşŧ ƀḗ ḗẋȧƈŧŀẏ {0} ƥīẋḗŀş ẇīḓḗ ȧƞḓ {1} ƥīẋḗŀş ŧȧŀŀ."
 
-#: apps/devhub/views.py:1123
+#: apps/devhub/views.py:1121
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: apps/devhub/views.py:1217
+#: apps/devhub/views.py:1215
 msgid "Version %s disabled."
 msgstr "Ṽḗřşīǿƞ %s ḓīşȧƀŀḗḓ."
 
-#: apps/devhub/views.py:1220
+#: apps/devhub/views.py:1218
 msgid "Version %s deleted."
 msgstr "Ṽḗřşīǿƞ %s ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:1230
+#: apps/devhub/views.py:1228
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
@@ -5048,11 +5064,11 @@ msgstr ""
 "Ŧħīş ŭƥŀǿȧḓ ħȧş ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ, ȧƞḓ ḿȧẏ ŀȧƈķ ƈǿḿƥŀḗŧḗ ṽȧŀīḓȧŧīǿƞ řḗşŭŀŧş. "
 "Ƥŀḗȧşḗ ŧȧķḗ ḓŭḗ ƈȧřḗ ẇħḗƞ řḗṽīḗẇīƞɠ īŧ."
 
-#: apps/devhub/views.py:1608
+#: apps/devhub/views.py:1607
 msgid "Preliminary Review Requested."
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
-#: apps/devhub/views.py:1609
+#: apps/devhub/views.py:1608
 msgid "Full Review Requested."
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
@@ -5952,7 +5968,7 @@ msgstr ""
 "ǿṽḗřřīḓḗ īŧ ẇīŧħ ȧ ŀǿƈȧŀḗ-şƥḗƈīƒīƈ ŧřȧƞşŀȧŧīǿƞ."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:60
-#: apps/users/forms.py:251
+#: apps/users/forms.py:254
 #: apps/users/templates/users/edit.html:108
 #: apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -7196,6 +7212,7 @@ msgstr ""
 "ȧƞḓ ɠīṽḗş ŧīƥş ƒǿř īḿƥřǿṽīƞɠ ŧħȧŧ ḗẋƥḗřīḗƞƈḗ."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77
+#: templates/global/menu_links.html:6
 msgid "Security"
 msgstr "Şḗƈŭřīŧẏ"
 
@@ -11173,6 +11190,7 @@ msgstr "Ṽȧŀīḓȧŧīǿƞ"
 #: apps/devhub/templates/devhub/versions/list.html:151
 #: apps/editors/templates/editors/base.html:60
 #: apps/editors/templates/editors/performance.html:6
+#: templates/global/menu_links.html:7
 msgid "Performance"
 msgstr "Ƥḗřƒǿřḿȧƞƈḗ"
 
@@ -11454,6 +11472,10 @@ msgstr ""
 "Ɠřḗȧŧ ȧḓḓ-ǿƞş ƒǿř ẇǿřķ, ƒŭƞ, ƥřīṽȧƈẏ, ƥřǿḓŭƈŧīṽīŧẏ&hellip; ĵŭşŧ ȧƀǿŭŧ "
 "ȧƞẏŧħīƞɠ!"
 
+#: apps/discovery/modules.py:347
+msgid "Add-ons for Australis Contest Winners"
+msgstr "Ȧḓḓ-ǿƞş ƒǿř Ȧŭşŧřȧŀīş Ƈǿƞŧḗşŧ Ẇīƞƞḗřş"
+
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
 msgstr "Ḓīşƈǿṽḗř Ȧḓḓ-ǿƞş"
@@ -11533,6 +11555,18 @@ msgstr "Ŀȧşŧ Ŭƥḓȧŧḗḓ"
 #: apps/discovery/templates/discovery/addons/eula.html:27
 msgid "Cancel Installation"
 msgstr "Ƈȧƞƈḗŀ Īƞşŧȧŀŀȧŧīǿƞ"
+
+#: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:4
+msgid "Football fanatic?"
+msgstr "Ƒǿǿŧƀȧŀŀ ƒȧƞȧŧīƈ?"
+
+#: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:5
+msgid "Firefox lets you keep up with all the action in Brazil."
+msgstr "Ƒīřḗƒǿẋ ŀḗŧş ẏǿŭ ķḗḗƥ ŭƥ ẇīŧħ ȧŀŀ ŧħḗ ȧƈŧīǿƞ īƞ Ɓřȧzīŀ."
+
+#: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:6
+msgid "Activate the Goal.com sidebar"
+msgstr "Ȧƈŧīṽȧŧḗ ŧħḗ Ɠǿȧŀ.ƈǿḿ şīḓḗƀȧř"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -14898,6 +14932,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:303
 #: templates/menu_links.html:13
+#: templates/global/menu_links.html:43
 #: templates/impala/header_title.html:13
 msgid "Mobile Add-ons"
 msgstr "Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş"
@@ -16246,33 +16281,33 @@ msgstr ""
 msgid "Delete Locale"
 msgstr "Ḓḗŀḗŧḗ Ŀǿƈȧŀḗ"
 
-#: apps/users/forms.py:31
+#: apps/users/forms.py:34
 msgid "Must be %s characters or more."
 msgstr "Ḿŭşŧ ƀḗ %s ƈħȧřȧƈŧḗřş ǿř ḿǿřḗ."
 
-#: apps/users/forms.py:48
+#: apps/users/forms.py:51
 msgid "Letters and numbers required."
 msgstr "Ŀḗŧŧḗřş ȧƞḓ ƞŭḿƀḗřş řḗɋŭīřḗḓ."
 
-#: apps/users/forms.py:51
+#: apps/users/forms.py:54
 msgid "That password is not allowed."
 msgstr "Ŧħȧŧ ƥȧşşẇǿřḓ īş ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: apps/users/forms.py:161
+#: apps/users/forms.py:164
 #: apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "Ƞḗẇ ƥȧşşẇǿřḓ"
 
-#: apps/users/forms.py:196
-#: apps/users/forms.py:362
+#: apps/users/forms.py:199
+#: apps/users/forms.py:371
 msgid "Wrong password entered!"
 msgstr "Ẇřǿƞɠ ƥȧşşẇǿřḓ ḗƞŧḗřḗḓ!"
 
-#: apps/users/forms.py:215
+#: apps/users/forms.py:218
 msgid "Usernames cannot contain only digits."
 msgstr "Ŭşḗřƞȧḿḗş ƈȧƞƞǿŧ ƈǿƞŧȧīƞ ǿƞŀẏ ḓīɠīŧş."
 
-#: apps/users/forms.py:217
+#: apps/users/forms.py:220
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
@@ -16280,32 +16315,32 @@ msgstr ""
 "Ḗƞŧḗř ȧ ṽȧŀīḓ ŭşḗřƞȧḿḗ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ŭƞḓḗřşƈǿřḗş ǿř "
 "ħẏƥħḗƞş."
 
-#: apps/users/forms.py:220
+#: apps/users/forms.py:223
 msgid "This username cannot be used."
 msgstr "Ŧħīş ŭşḗřƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
-#: apps/users/forms.py:226
+#: apps/users/forms.py:229
 msgid "This username is already in use."
 msgstr "Ŧħīş ŭşḗřƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
-#: apps/users/forms.py:237
+#: apps/users/forms.py:240
 #: apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "Ḓīşƥŀȧẏ Ƞȧḿḗ"
 
-#: apps/users/forms.py:239
+#: apps/users/forms.py:242
 #: apps/users/templates/users/edit.html:98
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Ŀǿƈȧŧīǿƞ"
 
-#: apps/users/forms.py:241
+#: apps/users/forms.py:244
 #: apps/users/templates/users/edit.html:103
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Ǿƈƈŭƥȧŧīǿƞ"
 
-#: apps/users/forms.py:265
+#: apps/users/forms.py:268
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
@@ -16313,7 +16348,7 @@ msgstr ""
 "Ŧħīş ŬŘĿ ħȧş ȧƞ īƞṽȧŀīḓ ƒǿřḿȧŧ. Ṽȧŀīḓ ŬŘĿş ŀǿǿķ ŀīķḗ "
 "http://example.com/my_page."
 
-#: apps/users/forms.py:273
+#: apps/users/forms.py:276
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
@@ -16321,16 +16356,21 @@ msgstr ""
 "Ƥŀḗȧşḗ ŭşḗ ȧƞ ḗḿȧīŀ ȧḓḓřḗşş ƒřǿḿ ȧ ḓīƒƒḗřḗƞŧ ƥřǿṽīḓḗř ŧǿ ƈǿḿƥŀḗŧḗ ẏǿŭř "
 "řḗɠīşŧřȧŧīǿƞ."
 
-#: apps/users/forms.py:289
+#: apps/users/forms.py:292
 msgid "The passwords did not match."
 msgstr "Ŧħḗ ƥȧşşẇǿřḓş ḓīḓ ƞǿŧ ḿȧŧƈħ."
 
-#: apps/users/forms.py:308
+#: apps/users/forms.py:311
 #: apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
 
-#: apps/users/forms.py:447
+#: apps/users/forms.py:319
+#: apps/users/templates/users/edit.html:128
+msgid "Default locale"
+msgstr "Ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ"
+
+#: apps/users/forms.py:456
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
@@ -16462,7 +16502,7 @@ msgid "Successfully verified!"
 msgstr "Şŭƈƈḗşşƒŭŀŀẏ ṽḗřīƒīḗḓ!"
 
 #: apps/users/views.py:132
-#: apps/users/views.py:648
+#: apps/users/views.py:649
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -16473,7 +16513,7 @@ msgstr ""
 "ƥřǿṽīḓḗḓ īƞ ŧħīş ḗḿȧīŀ."
 
 #: apps/users/views.py:136
-#: apps/users/views.py:652
+#: apps/users/views.py:653
 msgid "Confirmation Email Sent"
 msgstr "Ƈǿƞƒīřḿȧŧīǿƞ Ḗḿȧīŀ Şḗƞŧ"
 
@@ -16570,23 +16610,23 @@ msgstr "Ħȧṽīƞɠ Ŧřǿŭƀŀḗ?"
 msgid "You are already logged in to an account."
 msgstr "Ẏǿŭ ȧřḗ ȧŀřḗȧḓẏ ŀǿɠɠḗḓ īƞ ŧǿ ȧƞ ȧƈƈǿŭƞŧ."
 
-#: apps/users/views.py:644
+#: apps/users/views.py:645
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Ƈǿƞɠřȧŧŭŀȧŧīǿƞş! Ẏǿŭř ŭşḗř ȧƈƈǿŭƞŧ ẇȧş şŭƈƈḗşşƒŭŀŀẏ ƈřḗȧŧḗḓ."
 
-#: apps/users/views.py:668
+#: apps/users/views.py:669
 msgid "You already have an account."
 msgstr "Ẏǿŭ ȧŀřḗȧḓẏ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ."
 
-#: apps/users/views.py:678
+#: apps/users/views.py:679
 msgid "There are errors in this form"
 msgstr "Ŧħḗřḗ ȧřḗ ḗřřǿřş īƞ ŧħīş ƒǿřḿ"
 
-#: apps/users/views.py:679
+#: apps/users/views.py:680
 msgid "Please correct them and resubmit."
 msgstr "Ƥŀḗȧşḗ ƈǿřřḗƈŧ ŧħḗḿ ȧƞḓ řḗşŭƀḿīŧ."
 
-#: apps/users/views.py:694
+#: apps/users/views.py:695
 msgid "User reported."
 msgstr "Ŭşḗř řḗƥǿřŧḗḓ."
 
@@ -16734,7 +16774,15 @@ msgstr "Ƈħǿǿşḗ Ƥħǿŧǿ&hellip;"
 msgid "Delete current photo"
 msgstr "Ḓḗŀḗŧḗ ƈŭřřḗƞŧ ƥħǿŧǿ"
 
-#: apps/users/templates/users/edit.html:132
+#: apps/users/templates/users/edit.html:130
+msgid ""
+"This is the default locale used to display information about you (like your "
+"description)."
+msgstr ""
+"Ŧħīş īş ŧħḗ ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ ŭşḗḓ ŧǿ ḓīşƥŀȧẏ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ẏǿŭ (ŀīķḗ ẏǿŭř "
+"ḓḗşƈřīƥŧīǿƞ)."
+
+#: apps/users/templates/users/edit.html:138
 msgid ""
 "Introduce yourself to the community, if you like! This text will appear "
 "publicly on your user info page."
@@ -16742,31 +16790,31 @@ msgstr ""
 "Īƞŧřǿḓŭƈḗ ẏǿŭřşḗŀƒ ŧǿ ŧħḗ ƈǿḿḿŭƞīŧẏ, īƒ ẏǿŭ ŀīķḗ! Ŧħīş ŧḗẋŧ ẇīŀŀ ȧƥƥḗȧř "
 "ƥŭƀŀīƈŀẏ ǿƞ ẏǿŭř ŭşḗř īƞƒǿ ƥȧɠḗ."
 
-#: apps/users/templates/users/edit.html:141
+#: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "Ȧŀŀǿẇḗḓ ĦŦḾĿ: {0}. Ŀīƞķş ȧřḗ ƒǿřƀīḓḓḗƞ."
 
-#: apps/users/templates/users/edit.html:148
+#: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
 msgstr "Ḿīşƈḗŀŀȧƞḗǿŭş"
 
-#: apps/users/templates/users/edit.html:150
+#: apps/users/templates/users/edit.html:156
 msgid "Decide what collections should be shown in your profile."
 msgstr "Ḓḗƈīḓḗ ẇħȧŧ ƈǿŀŀḗƈŧīǿƞş şħǿŭŀḓ ƀḗ şħǿẇƞ īƞ ẏǿŭř ƥřǿƒīŀḗ."
 
-#: apps/users/templates/users/edit.html:158
+#: apps/users/templates/users/edit.html:164
 msgid "Display the collections I have created"
 msgstr "Ḓīşƥŀȧẏ ŧħḗ ƈǿŀŀḗƈŧīǿƞş Ī ħȧṽḗ ƈřḗȧŧḗḓ"
 
-#: apps/users/templates/users/edit.html:165
+#: apps/users/templates/users/edit.html:171
 msgid "Display collections I'm following"
 msgstr "Ḓīşƥŀȧẏ ƈǿŀŀḗƈŧīǿƞş Ī'ḿ ƒǿŀŀǿẇīƞɠ"
 
-#: apps/users/templates/users/edit.html:173
+#: apps/users/templates/users/edit.html:179
 msgid "Notifications"
 msgstr "Ƞǿŧīƒīƈȧŧīǿƞş"
 
-#: apps/users/templates/users/edit.html:175
+#: apps/users/templates/users/edit.html:181
 msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
@@ -16774,7 +16822,7 @@ msgstr ""
 "Ƒřǿḿ ŧīḿḗ ŧǿ ŧīḿḗ, Ḿǿzīŀŀȧ ḿȧẏ şḗƞḓ ẏǿŭ ḗḿȧīŀ ȧƀǿŭŧ ŭƥƈǿḿīƞɠ řḗŀḗȧşḗş ȧƞḓ "
 "ȧḓḓ-ǿƞ ḗṽḗƞŧş. Ƥŀḗȧşḗ şḗŀḗƈŧ ŧħḗ ŧǿƥīƈş ẏǿŭ ȧřḗ īƞŧḗřḗşŧḗḓ īƞ."
 
-#: apps/users/templates/users/edit.html:185
+#: apps/users/templates/users/edit.html:191
 msgid ""
 "Mozilla reserves the right to contact you individually about specific "
 "concerns with your hosted add-ons."
@@ -16782,15 +16830,15 @@ msgstr ""
 "Ḿǿzīŀŀȧ řḗşḗřṽḗş ŧħḗ řīɠħŧ ŧǿ ƈǿƞŧȧƈŧ ẏǿŭ īƞḓīṽīḓŭȧŀŀẏ ȧƀǿŭŧ şƥḗƈīƒīƈ "
 "ƈǿƞƈḗřƞş ẇīŧħ ẏǿŭř ħǿşŧḗḓ ȧḓḓ-ǿƞş."
 
-#: apps/users/templates/users/edit.html:195
+#: apps/users/templates/users/edit.html:201
 msgid "Admin"
 msgstr "Ȧḓḿīƞ"
 
-#: apps/users/templates/users/edit.html:227
+#: apps/users/templates/users/edit.html:233
 msgid "Delete Account"
 msgstr "Ḓḗŀḗŧḗ Ȧƈƈǿŭƞŧ"
 
-#: apps/users/templates/users/edit.html:229
+#: apps/users/templates/users/edit.html:235
 msgid "Update Account"
 msgstr "Ŭƥḓȧŧḗ Ȧƈƈǿŭƞŧ"
 
@@ -17314,15 +17362,19 @@ msgstr "ɠḗŧ ŧǿ ķƞǿẇ <b>ȧḓḓ-ǿƞş</b>"
 
 #: templates/footer.html:4
 #: templates/menu_links.html:20
+#: templates/global/menu_links.html:58
 msgid "About"
 msgstr "Ȧƀǿŭŧ"
 
 #: templates/footer.html:5
 #: templates/menu_links.html:32
+#: templates/global/menu_links.html:26
+#: templates/global/menu_links.html:69
 msgid "Blog"
 msgstr "Ɓŀǿɠ"
 
 #: templates/footer.html:7
+#: templates/global/menu_links.html:25
 msgid "FAQ"
 msgstr "ƑȦɊ"
 
@@ -17351,46 +17403,57 @@ msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Ȧḓḓ-ǿƞş"
 
 #: templates/menu_links.html:6
+#: templates/global/menu_links.html:35
 msgid "Firefox Add-ons"
 msgstr "Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş"
 
 #: templates/menu_links.html:11
+#: templates/global/menu_links.html:41
 msgid "Language Support"
 msgstr "Ŀȧƞɠŭȧɠḗ Şŭƥƥǿřŧ"
 
 #: templates/menu_links.html:22
+#: templates/global/menu_links.html:60
 msgid "About Firefox"
 msgstr "Ȧƀǿŭŧ Ƒīřḗƒǿẋ"
 
 #: templates/menu_links.html:23
+#: templates/global/menu_links.html:61
 msgid "Join Mozilla"
 msgstr "Ĵǿīƞ Ḿǿzīŀŀȧ"
 
 #: templates/menu_links.html:24
+#: templates/global/menu_links.html:62
 msgid "Participate"
 msgstr "Ƥȧřŧīƈīƥȧŧḗ"
 
 #: templates/menu_links.html:26
+#: templates/global/menu_links.html:63
 msgid "Press Center"
 msgstr "Ƥřḗşş Ƈḗƞŧḗř"
 
 #: templates/menu_links.html:27
+#: templates/global/menu_links.html:64
 msgid "Brand Toolkit"
 msgstr "Ɓřȧƞḓ Ŧǿǿŀķīŧ"
 
 #: templates/menu_links.html:28
+#: templates/global/menu_links.html:65
 msgid "Careers"
 msgstr "Ƈȧřḗḗřş"
 
 #: templates/menu_links.html:29
+#: templates/global/menu_links.html:66
 msgid "Partnerships"
 msgstr "Ƥȧřŧƞḗřşħīƥş"
 
 #: templates/menu_links.html:30
+#: templates/global/menu_links.html:67
 msgid "Legal"
 msgstr "Ŀḗɠȧŀ"
 
 #: templates/menu_links.html:31
+#: templates/global/menu_links.html:68
 msgid "Contact Us"
 msgstr "Ƈǿƞŧȧƈŧ Ŭş"
 
@@ -17402,6 +17465,122 @@ msgstr "Ẇḗŀƈǿḿḗ, {0}"
 #: templates/impala/user_login.html:26
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Řḗɠīşŧḗř</a> ǿř <a href=\"%(login)s\">Ŀǿɠ īƞ</a>"
+
+#: templates/global/copyright.html:8
+#: templates/mobile/base_addons.html:83
+#: templates/mobile/base_apps.html:72
+msgid "Legal Notices"
+msgstr "Ŀḗɠȧŀ Ƞǿŧīƈḗş"
+
+#: templates/global/copyright.html:11
+msgid "Report Trademark Abuse"
+msgstr "Řḗƥǿřŧ Ŧřȧḓḗḿȧřķ Ȧƀŭşḗ"
+
+#: templates/global/copyright.html:17
+msgid ""
+"Except where otherwise <a "
+"href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on "
+"this site is licensed under the <br /> <a "
+"href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons "
+"Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+"Ḗẋƈḗƥŧ ẇħḗřḗ ǿŧħḗřẇīşḗ <a "
+"href=\"http://www.mozilla.org/about/legal.html#site\">ƞǿŧḗḓ</a>, ƈǿƞŧḗƞŧ ǿƞ "
+"ŧħīş şīŧḗ īş ŀīƈḗƞşḗḓ ŭƞḓḗř ŧħḗ <br /> <a "
+"href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş "
+"Ȧŧŧřīƀŭŧīǿƞ Şħȧřḗ-Ȧŀīķḗ Ŀīƈḗƞşḗ ṽ3.0 </a> ǿř ȧƞẏ ŀȧŧḗř ṽḗřşīǿƞ."
+
+#: templates/global/header.html:3
+msgid "skip to navigation"
+msgstr "şķīƥ ŧǿ ƞȧṽīɠȧŧīǿƞ"
+
+#: templates/global/header.html:4
+msgid "switch language"
+msgstr "şẇīŧƈħ ŀȧƞɠŭȧɠḗ"
+
+#: templates/global/header.html:9
+msgid "Back to Mozilla.com"
+msgstr "Ɓȧƈķ ŧǿ Ḿǿzīŀŀȧ.ƈǿḿ"
+
+#: templates/global/header.html:12
+#: templates/global/minimal-header.html:2
+msgid "visit <span>mozilla.org</span>"
+msgstr "ṽīşīŧ <span>ḿǿzīŀŀȧ.ǿřɠ</span>"
+
+#: templates/global/menu_links.html:5
+#: templates/global/menu_links.html:20
+#: templates/global/mobile/header.html:4
+#: templates/mobile/header.html:4
+msgid "Features"
+msgstr "Ƒḗȧŧŭřḗş"
+
+#: templates/global/menu_links.html:8
+msgid "Customization"
+msgstr "Ƈŭşŧǿḿīzȧŧīǿƞ"
+
+#: templates/global/menu_links.html:9
+msgid "Technology"
+msgstr "Ŧḗƈħƞǿŀǿɠẏ"
+
+#: templates/global/menu_links.html:10
+#: templates/global/menu_links.html:27
+msgid "Videos"
+msgstr "Ṽīḓḗǿş"
+
+#: templates/global/menu_links.html:11
+msgid "Tour"
+msgstr "Ŧǿŭř"
+
+#: templates/global/menu_links.html:12
+#: templates/global/menu_links.html:28
+msgid "Future Releases"
+msgstr "Ƒŭŧŭřḗ Řḗŀḗȧşḗş"
+
+#: templates/global/menu_links.html:21
+msgid "Customize"
+msgstr "Ƈŭşŧǿḿīzḗ"
+
+#: templates/global/menu_links.html:22
+msgid "Sync"
+msgstr "Şẏƞƈ"
+
+#: templates/global/menu_links.html:23
+msgid "Develop"
+msgstr "Ḓḗṽḗŀǿƥ"
+
+#: templates/global/menu_links.html:24
+msgid "Get Involved"
+msgstr "Ɠḗŧ Īƞṽǿŀṽḗḓ"
+
+#: templates/global/menu_links.html:39
+msgid "Personas"
+msgstr "Ƥḗřşǿƞȧş"
+
+#: templates/global/menu_links.html:51
+msgid "Firefox Support"
+msgstr "Ƒīřḗƒǿẋ Şŭƥƥǿřŧ"
+
+#: templates/global/menu_links.html:52
+msgid "Mobile Support"
+msgstr "Ḿǿƀīŀḗ Şŭƥƥǿřŧ"
+
+#: templates/global/menu_links.html:53
+msgid "Thunderbird Support"
+msgstr "Ŧħŭƞḓḗřƀīřḓ Şŭƥƥǿřŧ"
+
+#: templates/global/mobile/header.html:3
+#: templates/mobile/header.html:3
+msgid "Mozilla Firefox"
+msgstr "Ḿǿzīŀŀȧ Ƒīřḗƒǿẋ"
+
+#: templates/global/mobile/header.html:8
+#: templates/mobile/header.html:8
+msgid "Visit Mozilla"
+msgstr "Ṽīşīŧ Ḿǿzīŀŀȧ"
+
+#: templates/global/mobile/header.html:10
+msgid "Menu"
+msgstr "Ḿḗƞŭ"
 
 #: templates/impala/base.html:117
 msgid ""
@@ -17462,11 +17641,6 @@ msgstr "Ḿǿƀīŀḗ Ħǿḿḗ"
 msgid "View full site"
 msgstr "Ṽīḗẇ ƒŭŀŀ şīŧḗ"
 
-#: templates/mobile/base_addons.html:83
-#: templates/mobile/base_apps.html:72
-msgid "Legal Notices"
-msgstr "Ŀḗɠȧŀ Ƞǿŧīƈḗş"
-
 #: templates/mobile/base_apps.html:37
 msgid "Return to the Apps homepage"
 msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ Ȧƥƥş ħǿḿḗƥȧɠḗ"
@@ -17475,21 +17649,9 @@ msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ Ȧƥƥş ħǿḿḗƥȧɠḗ"
 msgid "Apps"
 msgstr "Ȧƥƥş"
 
-#: templates/mobile/header.html:3
-msgid "Mozilla Firefox"
-msgstr "Ḿǿzīŀŀȧ Ƒīřḗƒǿẋ"
-
-#: templates/mobile/header.html:4
-msgid "Features"
-msgstr "Ƒḗȧŧŭřḗş"
-
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
 msgstr "Ȧḓḓ-Ǿƞş"
-
-#: templates/mobile/header.html:8
-msgid "Visit Mozilla"
-msgstr "Ṽīşīŧ Ḿǿzīŀŀȧ"
 
 #. a link
 #: templates/mobile/header.html:10

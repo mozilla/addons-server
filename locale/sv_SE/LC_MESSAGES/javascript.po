@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-06-02 17:02-0700\n"
 "PO-Revision-Date: 2011-03-07 09:37+0100\n"
 "Last-Translator: Pontus Freyhult <pontus_amo_translate@soua.net>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
@@ -577,7 +577,7 @@ msgstr ""
 msgid "Approved"
 msgstr ""
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:728
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
 msgstr "Följ denna samling"
 
@@ -1311,15 +1311,15 @@ msgstr ""
 msgid "You have already added that user."
 msgstr ""
 
-#: media/js/zamboni/collections.js:706
+#: media/js/zamboni/collections.js:707
 msgid "Add to favorites"
 msgstr "Lägg till i favoriter"
 
-#: media/js/zamboni/collections.js:710
+#: media/js/zamboni/collections.js:711
 msgid "Remove from favorites"
 msgstr "Ta bort från favoriter"
 
-#: media/js/zamboni/collections.js:737
+#: media/js/zamboni/collections.js:738
 msgid "Stop following"
 msgstr "Sluta följa"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:44-0700\n"
+"POT-Creation-Date: 2014-06-02 17:02-0700\n"
 "PO-Revision-Date: 2012-05-15 13:04+0200\n"
 "Last-Translator: Carlos  <lloco73@gmail.com>\n"
 "Language-Team: \n"
@@ -578,7 +578,7 @@ msgstr ""
 msgid "Approved"
 msgstr ""
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:728
+#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
 msgstr "Seguir esta coleção"
 
@@ -1312,15 +1312,15 @@ msgstr "Não se pode adicionar a si próprio como um contribuinte."
 msgid "You have already added that user."
 msgstr "Já adicionou este utilizador."
 
-#: media/js/zamboni/collections.js:706
+#: media/js/zamboni/collections.js:707
 msgid "Add to favorites"
 msgstr "Adicionar aos favoritos"
 
-#: media/js/zamboni/collections.js:710
+#: media/js/zamboni/collections.js:711
 msgid "Remove from favorites"
 msgstr "Remover dos favoritos"
 
-#: media/js/zamboni/collections.js:737
+#: media/js/zamboni/collections.js:738
 msgid "Stop following"
 msgstr "Parar o seguimento"
 

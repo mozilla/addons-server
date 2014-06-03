@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 09:41-0700\n"
+"POT-Creation-Date: 2014-06-02 17:02-0700\n"
 "PO-Revision-Date: 2014-04-15 14:42+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Download Now"
 msgstr "Shkarkojeni Tani"
 
-#: apps/addons/buttons.py:187
+#: apps/addons/buttons.py:187 templates/global/menu_links.html:19
 msgid "Download"
 msgstr "Shkarkim"
 
@@ -50,80 +50,80 @@ msgstr "Eksperimentale"
 msgid "Add to {0}"
 msgstr "Shtoje te {0}"
 
-#: apps/addons/forms.py:48
+#: apps/addons/forms.py:49
 msgid "This name is already in use. Please choose another."
 msgstr "Ky emër është i përdorur tashmë. Ju lutemi, zgjidhni një tjetër."
 
-#: apps/addons/forms.py:59
+#: apps/addons/forms.py:60
 msgid "This slug is already in use. Please choose another."
 msgstr "Ky identifikues është i përdorur tashmë. Ju lutemi, zgjidhni një tjetër."
 
-#: apps/addons/forms.py:62
+#: apps/addons/forms.py:63
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Identifikuesi nuk mund të jetë \"%s\". Ju lutemi, zgjidhni një tjetër."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:81
+#: apps/addons/forms.py:82
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Etiketë e pavlefshme: {0}"
 msgstr[1] "Etiketa të pavlefshme: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:91
+#: apps/addons/forms.py:92
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" është etiketë e rezervuar dhe nuk mund të përdoret."
 msgstr[1] "\"{0}\" janë etiketa të rezervuara dhe nuk mund të përdoren."
 
-#: apps/addons/forms.py:99
+#: apps/addons/forms.py:100
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Keni {0} etiketë të tepërt."
 msgstr[1] "Keni {0} etiketa të tepërta."
 
-#: apps/addons/forms.py:104
+#: apps/addons/forms.py:105
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "Krejt etiketat duhet të jenë %s ose më pak shenja të gjata, pas heqjes së shenjave të pavlefshme."
 
-#: apps/addons/forms.py:108
+#: apps/addons/forms.py:109
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Krejt etiketat duhet të jenë të paktën {0} shenjë."
 msgstr[1] "Krejt etiketat duhet të jenë të paktën {0} shenja."
 
-#: apps/addons/forms.py:223
+#: apps/addons/forms.py:224
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategoritë nuk mund të ndryshohen, sa kohë që shtesa juaj është zgjedhur për këtë kategori."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:227
+#: apps/addons/forms.py:228
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Mund të keni vetëm {0} kategori."
 msgstr[1] "Mund të keni vetëm {0} kategori."
 
-#: apps/addons/forms.py:235
+#: apps/addons/forms.py:236
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategoria Të ndryshme nuk mund të ndërthuret me të tjera kategori."
 
-#: apps/addons/forms.py:358
+#: apps/addons/forms.py:359
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Para se të ndryshoni vendoren parazgjedhje duhet të keni një emër, një përmbledhje dhe një përshkrim në gjuhën e vendores. Ju mungon %s."
 
-#: apps/addons/forms.py:471 apps/addons/forms.py:560
+#: apps/addons/forms.py:472 apps/addons/forms.py:561
 msgid "A license must be selected."
 msgstr "Duhet përzgjedhur një licencë."
 
-#: apps/addons/forms.py:541
+#: apps/addons/forms.py:542
 msgid "Give Your Theme a Name."
 msgstr "Vërini një Emër Temës Suaj."
 
-#: apps/addons/forms.py:547 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:548 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Përshkruani Temën tuaj."
 
-#: apps/addons/forms.py:688
+#: apps/addons/forms.py:689
 msgid "Enter a new author's email address"
 msgstr "Jepni një adresë të re email të autorit"
 
@@ -138,16 +138,16 @@ msgstr "E pashqyrtuar"
 msgid "Featured"
 msgstr "Të zgjedhura"
 
-#: apps/addons/models.py:312
+#: apps/addons/models.py:310
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Përdoruesit kanë mundësi të caktojnë kontribut më shumë ose më pak se sa kjo sasi."
 
-#: apps/addons/models.py:321
+#: apps/addons/models.py:319
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Përdoruesit do të pyeten nga Përgjegjësi i Shtesave (Firefox 4 e më tej)"
 
 # Column name in a table.
-#: apps/addons/models.py:1894
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "E pranishme"
 
@@ -266,7 +266,7 @@ msgstr "<strong>Mbi 5000 ekstra falas</strong>, që ju lejojnë të përshtatni 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:166 apps/devhub/templates/devhub/nav.html:45
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7 apps/devhub/templates/devhub/docs/themes.html:28
 #: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
-#: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
+#: apps/search/templates/search/personas.html:39 templates/menu_links.html:9 templates/global/menu_links.html:38
 msgid "Themes"
 msgstr "Tema"
 
@@ -425,7 +425,7 @@ msgid "Add-on Information for {0}"
 msgstr "Të dhëna Shtese për {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:441 apps/devhub/views.py:71
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:441 apps/devhub/views.py:69
 msgid "Updated"
 msgstr "Përditësuar"
 
@@ -468,7 +468,8 @@ msgstr "Raportime Abuzimesh"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:82 templates/mobile/base_apps.html:71
+#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/global/copyright.html:5 templates/mobile/base_addons.html:82
+#: templates/mobile/base_apps.html:71
 msgid "Privacy Policy"
 msgstr "Rregulla Privatësie"
 
@@ -1318,8 +1319,8 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Kthehuni te faqja hyrëse e Shtesave {0}"
 
 #: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
-#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
-#: templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:47
+#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/global/menu_links.html:33 templates/global/mobile/header.html:6
+#: templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:47
 msgid "Add-ons"
 msgstr "Shtesa"
 
@@ -1407,7 +1408,7 @@ msgid "Submit a New Theme"
 msgstr "Parashtroni Temë të Re"
 
 #: apps/amo/context_processors.py:95 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:66 apps/devhub/helpers.py:100 templates/footer.html:6
-#: templates/menu_links.html:14
+#: templates/menu_links.html:14 templates/global/menu_links.html:44
 msgid "Developer Hub"
 msgstr "Qendër Zhvilluesish"
 
@@ -1437,7 +1438,7 @@ msgstr "Jepni të paktën një vlerë."
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:24 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2 apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3 apps/stats/templates/stats/stats.html:77
-#: templates/menu_links.html:12
+#: templates/menu_links.html:12 templates/global/menu_links.html:42
 msgid "Collections"
 msgstr "Koleksione"
 
@@ -1956,7 +1957,7 @@ msgstr "Eksploroni"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
-#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:160 templates/menu_links.html:8
+#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:160 templates/menu_links.html:8 templates/global/menu_links.html:37
 msgid "Extensions"
 msgstr "Zgjerime"
 
@@ -1987,6 +1988,7 @@ msgid "Add-ons for Mobile"
 msgstr "Shtesa për Celular"
 
 #: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:163 templates/menu_links.html:10
+#: templates/global/menu_links.html:40
 msgid "Search Tools"
 msgstr "Mjete Kërkimi"
 
@@ -2173,7 +2175,7 @@ msgstr "Privatësi:"
 msgid "Icon"
 msgstr "Ikonë"
 
-#: apps/bandwagon/forms.py:152 apps/users/forms.py:391
+#: apps/bandwagon/forms.py:152 apps/users/forms.py:400
 msgid "No links are allowed."
 msgstr "Nuk lejohen lidhje."
 
@@ -2181,11 +2183,11 @@ msgstr "Nuk lejohen lidhje."
 msgid "This url is already in use by another collection"
 msgstr "Kjo url përdoret tashmë nga një tjetër koleksion"
 
-#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1088
+#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1086
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonat duhet të jenë ose PNG. ose JPG."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1106 apps/users/forms.py:382
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1104 apps/users/forms.py:391
 msgid "Please use images smaller than %dMB."
 msgstr "Ju lutemi, përdorni figura më të vogla se %dMB."
 
@@ -2226,7 +2228,7 @@ msgstr "E parapëlqyer"
 msgid "Remove from favorites"
 msgstr "Hiqe prej të parapëlqyerave"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:70
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:68
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
 #: apps/search/forms.py:93 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2809,15 +2811,15 @@ msgstr "Shumica e Përdoruesve"
 msgid "Up & Coming"
 msgstr "Premtuese"
 
-#: apps/browse/views.py:442 apps/devhub/views.py:72
+#: apps/browse/views.py:442 apps/devhub/views.py:70
 msgid "Created"
 msgstr "U krijua"
 
-#: apps/browse/views.py:443 apps/devhub/views.py:73 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:443 apps/devhub/views.py:71 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Shkarkime"
 
-#: apps/browse/views.py:444 apps/devhub/views.py:74 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:444 apps/devhub/views.py:72 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Vlerësim"
@@ -2830,7 +2832,7 @@ msgstr "{0}: Shtesa të Zgjedhura"
 #: apps/browse/templates/browse/creatured.html:12 apps/browse/templates/browse/featured.html:4 apps/browse/templates/browse/featured.html:12 apps/browse/templates/browse/featured.html:13
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:3 apps/devhub/templates/devhub/docs/policies-recommended.html:7 apps/devhub/templates/devhub/docs/policies-recommended.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:338 apps/discovery/templates/discovery/pane.html:53
-#: templates/menu_links.html:7
+#: templates/menu_links.html:7 templates/global/menu_links.html:36
 msgid "Featured Add-ons"
 msgstr "Shtesa të Zgjedhura"
 
@@ -3224,7 +3226,7 @@ msgstr "Problem"
 msgid "No reports found."
 msgstr "S'u gjetën raportime."
 
-#: apps/constants/applications.py:18
+#: apps/constants/applications.py:18 templates/global/header.html:9
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3240,7 +3242,7 @@ msgstr "SeaMonkey"
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: apps/constants/applications.py:89
+#: apps/constants/applications.py:89 templates/global/menu_links.html:17
 msgid "Mobile"
 msgstr "Celular"
 
@@ -3256,7 +3258,7 @@ msgstr "Mozilla"
 msgid "Unknown"
 msgstr "E panjohur"
 
-#: apps/constants/applications.py:154 templates/mobile/header.html:5
+#: apps/constants/applications.py:154 templates/global/menu_links.html:3 templates/global/mobile/header.html:5 templates/mobile/header.html:5
 msgid "Desktop"
 msgstr "Desktop"
 
@@ -3341,7 +3343,7 @@ msgstr "Zhvillues"
 msgid "Viewer"
 msgstr "Parës"
 
-#: apps/constants/base.py:124 templates/mobile/header.html:7
+#: apps/constants/base.py:124 templates/global/menu_links.html:49 templates/global/mobile/header.html:7 templates/mobile/header.html:7
 msgid "Support"
 msgstr "Asistencë"
 
@@ -3680,7 +3682,7 @@ msgstr "Autori mund të tregohet vetëm një herë."
 msgid "Password incorrect."
 msgstr "Fjalëkalim i pasaktë."
 
-#: apps/devhub/forms.py:114 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:130
+#: apps/devhub/forms.py:114 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "Hollësi"
 
@@ -3984,121 +3986,121 @@ msgstr "Lidhjes me \"%s\" i mbaroi koha."
 msgid "Could not contact host at \"%s\"."
 msgstr "Nuk u lidh dot me strehën te \"%s\"."
 
-#: apps/devhub/views.py:172
+#: apps/devhub/views.py:170
 msgid "All My Add-ons"
 msgstr "Krejt Shtesat e Mia"
 
-#: apps/devhub/views.py:199
+#: apps/devhub/views.py:197
 msgid "All Activity"
 msgstr "Krejt Veprimtaria"
 
-#: apps/devhub/views.py:200
+#: apps/devhub/views.py:198
 msgid "Add-on Updates"
 msgstr "Përditësime Shtese"
 
-#: apps/devhub/views.py:201
+#: apps/devhub/views.py:199
 msgid "Add-on Status"
 msgstr "Gjendje Shtese"
 
-#: apps/devhub/views.py:202
+#: apps/devhub/views.py:200
 msgid "User Collections"
 msgstr "Koleksione Përdoruesi"
 
-#: apps/devhub/views.py:203 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
+#: apps/devhub/views.py:201 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
 msgid "User Reviews"
 msgstr "Shqyrtime Përdoruesi"
 
-#: apps/devhub/views.py:316 apps/devhub/views.py:320 apps/devhub/views.py:430 apps/devhub/views.py:459 apps/devhub/views.py:510 apps/devhub/views.py:1178
+#: apps/devhub/views.py:314 apps/devhub/views.py:318 apps/devhub/views.py:428 apps/devhub/views.py:457 apps/devhub/views.py:508 apps/devhub/views.py:1176
 msgid "Changes successfully saved."
 msgstr "Ndryshimet u ruajtën me sukses."
 
-#: apps/devhub/views.py:323 apps/devhub/views.py:1562
+#: apps/devhub/views.py:321 apps/devhub/views.py:1561
 msgid "Please check the form for errors."
 msgstr "Ju lutemi, kontrolloni formularin për gabime."
 
-#: apps/devhub/views.py:335
+#: apps/devhub/views.py:333
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Shtesa nuk mund të fshihet. Në vend të kësaj, çaktivizojeni."
 
-#: apps/devhub/views.py:344
+#: apps/devhub/views.py:342
 msgid "Theme deleted."
 msgstr "Tema u fshi."
 
-#: apps/devhub/views.py:344
+#: apps/devhub/views.py:342
 msgid "Add-on deleted."
 msgstr "Shtesa u fshi."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:347
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Fjalëkalimi qe i pasaktë. Tema nuk u fshi."
 
-#: apps/devhub/views.py:353
+#: apps/devhub/views.py:351
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Fjalëkalimi qe i pasaktë. Shtesa nuk u fshi."
 
-#: apps/devhub/views.py:465
+#: apps/devhub/views.py:463
 msgid "There were errors in your submission."
 msgstr "Pati gabime me parashtrimin tuaj."
 
-#: apps/devhub/views.py:529
+#: apps/devhub/views.py:527
 msgid "Validate Add-on"
 msgstr "Vleftëso Shtesën"
 
-#: apps/devhub/views.py:538
+#: apps/devhub/views.py:536
 msgid "Check Add-on Compatibility"
 msgstr "Kontrolloni Përputhshmëri Shtese"
 
-#: apps/devhub/views.py:660
+#: apps/devhub/views.py:658
 msgid "There was an error with the submission."
 msgstr "Pati një gabim me parashtrimin."
 
-#: apps/devhub/views.py:754
+#: apps/devhub/views.py:752
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Vleftësimi prodhoi shumë gabime/sinjalizime, ndaj %s e mesazheve u prenë. Pasi të trajtoni mesazhet që duken, do të jeni në gjendje të shihni të tjerët."
 
-#: apps/devhub/views.py:1090 apps/users/forms.py:377
+#: apps/devhub/views.py:1088 apps/users/forms.py:386
 msgid "Images must be either PNG or JPG."
 msgstr "Pamjet duhet të jenë ose PNG, ose JPG."
 
-#: apps/devhub/views.py:1094
+#: apps/devhub/views.py:1092
 msgid "Icons cannot be animated."
 msgstr "Ikonat nuk mund të jenë të animuara."
 
-#: apps/devhub/views.py:1096
+#: apps/devhub/views.py:1094
 msgid "Images cannot be animated."
 msgstr "Figurat nuk mund të jenë të animuara."
 
-#: apps/devhub/views.py:1109
+#: apps/devhub/views.py:1107
 msgid "Images cannot be larger than %dKB."
 msgstr "Figurat nuk mund të jenë më të mëdha se %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1119
+#: apps/devhub/views.py:1117
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Figura duhet të jetë saktësisht {0} piksela e gjerë dhe {1} piksela e lartë."
 
-#: apps/devhub/views.py:1123
+#: apps/devhub/views.py:1121
 msgid "There was an error uploading your preview."
 msgstr "Pati një gabim gjatë ngarkimit të paraparjes suaj."
 
-#: apps/devhub/views.py:1217
+#: apps/devhub/views.py:1215
 msgid "Version %s disabled."
 msgstr "Versioni %s u çaktivizua."
 
 # %s is the version number, e.g. 3.2.
-#: apps/devhub/views.py:1220
+#: apps/devhub/views.py:1218
 msgid "Version %s deleted."
 msgstr "Versioni %s u fshi."
 
-#: apps/devhub/views.py:1230
+#: apps/devhub/views.py:1228
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ky ngarkim nuk arriti të vleftësohej, dhe mund t'i mungojnë përfundimet e plota të vleftësimit. Ju lutemi, tregoni kujdesin e duhur, teksa e shqyrtoni."
 
-#: apps/devhub/views.py:1608
+#: apps/devhub/views.py:1607
 msgid "Preliminary Review Requested."
 msgstr "U kërkua Shqyrtim Paraprak."
 
-#: apps/devhub/views.py:1609
+#: apps/devhub/views.py:1608
 msgid "Full Review Requested."
 msgstr "U kërkua Shqyrtim i Plotë."
 
@@ -4751,7 +4753,7 @@ msgstr "Gjuhë Parazgjedhje"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "Të dhënat rreth shtesës suaj shfaqen nën këtë vendore, veç në e anashkalofshi me një përkthim në një vendore të dhënë."
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:251 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:254 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Faqe Hyrëse"
@@ -5728,7 +5730,7 @@ msgid "This blog post describes what a bad first-run experience means for users,
 msgstr "Ky postim blogu përshkruan ç'do të thotë për përdoruesit përshtypje të këqija gjatë herës së parë, dhe jep ndihmëza rreth përmirësimit të këtij rasti."
 
 # This is the name/category for a group of tests
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77
+#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77 templates/global/menu_links.html:6
 msgid "Security"
 msgstr "Siguri"
 
@@ -8502,7 +8504,7 @@ msgid "Validation"
 msgstr "Vleftësim"
 
 #: apps/devhub/templates/devhub/versions/list.html:110 apps/devhub/templates/devhub/versions/list.html:131 apps/devhub/templates/devhub/versions/list.html:151
-#: apps/editors/templates/editors/base.html:60 apps/editors/templates/editors/performance.html:6
+#: apps/editors/templates/editors/base.html:60 apps/editors/templates/editors/performance.html:6 templates/global/menu_links.html:7
 msgid "Performance"
 msgstr "Suksesshmëri"
 
@@ -8737,6 +8739,10 @@ msgstr "Mbroni, me shtesat e këtij koleksioni, privatësinë tuaj në linjë."
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "Shtesa të fuqishme për punë, dëfrim, privatësi, prodhueshmëri&hellip; për gjithçhka!"
 
+#: apps/discovery/modules.py:347
+msgid "Add-ons for Australis Contest Winners"
+msgstr ""
+
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
 msgstr "Zbuloni Shtesat"
@@ -8807,6 +8813,18 @@ msgstr "Përditësuar Së Fundmi"
 #: apps/discovery/templates/discovery/addons/eula.html:27
 msgid "Cancel Installation"
 msgstr "Anulo Instalimin"
+
+#: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:4
+msgid "Football fanatic?"
+msgstr ""
+
+#: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:5
+msgid "Firefox lets you keep up with all the action in Brazil."
+msgstr ""
+
+#: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:6
+msgid "Activate the Goal.com sidebar"
+msgstr ""
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -11448,7 +11466,7 @@ msgstr "Si mund të përzgjedh mosinteresimin për këto këshillime?"
 msgid "Please see <a href=\"%(support_url)s\">this support article</a> for instructions on how to opt out."
 msgstr "Për udhëzime se si të liheni jashtë, ju lutemi, shihni <a href=\"%(support_url)s\">këtë artikull asistence</a>."
 
-#: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13 templates/impala/header_title.html:13
+#: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13 templates/global/menu_links.html:43 templates/impala/header_title.html:13
 msgid "Mobile Add-ons"
 msgstr "Shtesa për Celular"
 
@@ -12621,71 +12639,75 @@ msgstr "Jeni i sigurt se doni të hiqen krejt përkthimet për <b>{0}</b>? Kjo n
 msgid "Delete Locale"
 msgstr "Fshije Vendoren"
 
-#: apps/users/forms.py:31
+#: apps/users/forms.py:34
 msgid "Must be %s characters or more."
 msgstr "Duhet të jetë %s ose më tepër shenja."
 
-#: apps/users/forms.py:48
+#: apps/users/forms.py:51
 msgid "Letters and numbers required."
 msgstr "Lypsen shkronja dhe numra."
 
-#: apps/users/forms.py:51
+#: apps/users/forms.py:54
 msgid "That password is not allowed."
 msgstr "Ky fjalëkalim nuk lejohet."
 
-#: apps/users/forms.py:161 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:164 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "Fjalëkalim i ri"
 
-#: apps/users/forms.py:196 apps/users/forms.py:362
+#: apps/users/forms.py:199 apps/users/forms.py:371
 msgid "Wrong password entered!"
 msgstr "U dha fjalëkalim i gabuar!"
 
-#: apps/users/forms.py:215
+#: apps/users/forms.py:218
 msgid "Usernames cannot contain only digits."
 msgstr "Emri i përdoruesit nuk mundet të përmbajë vetëm shifra."
 
-#: apps/users/forms.py:217
+#: apps/users/forms.py:220
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Jepni një emër të vlefshëm përdoruesi, të përbërë nga shkronja, numra, nënvija ose vija ndarëse."
 
-#: apps/users/forms.py:220
+#: apps/users/forms.py:223
 msgid "This username cannot be used."
 msgstr "Ky emër përdoruesi nuk përdoret dot."
 
-#: apps/users/forms.py:226
+#: apps/users/forms.py:229
 msgid "This username is already in use."
 msgstr "Ky emër përdoruesi është tashmë në përdorim."
 
-#: apps/users/forms.py:237 apps/users/templates/users/edit.html:93
+#: apps/users/forms.py:240 apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "Emër në Ekran"
 
-#: apps/users/forms.py:239 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:242 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Vend"
 
-#: apps/users/forms.py:241 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:244 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Punësim"
 
-#: apps/users/forms.py:265
+#: apps/users/forms.py:268
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Kjo URL ka format të pavlefshëm. URL-të e vlefshme kanë pamje si kjo http://shembull.com/faqja_ime."
 
-#: apps/users/forms.py:273
+#: apps/users/forms.py:276
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Ju lutemi, që të plotësohet regjistrimi juaj, përdorni një adresë email nga një tjetër mundësues."
 
-#: apps/users/forms.py:289
+#: apps/users/forms.py:292
 msgid "The passwords did not match."
 msgstr "Fjalëkalimet nuk u përputhën."
 
-#: apps/users/forms.py:308 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:311 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Foto Profili"
 
-#: apps/users/forms.py:447
+#: apps/users/forms.py:319 apps/users/templates/users/edit.html:128
+msgid "Default locale"
+msgstr ""
+
+#: apps/users/forms.py:456
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Për anonimizim, jepni një arsye për ndryshimin, por mos ndryshoni ndonjë fushë tjetër."
 
@@ -12811,11 +12833,11 @@ msgid "Successfully verified!"
 msgstr "Verifikuar me sukses!"
 
 # %1 is the user's email address
-#: apps/users/views.py:132 apps/users/views.py:648
+#: apps/users/views.py:132 apps/users/views.py:649
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Ju është dërguar email te adresa juaj {0} që të ripohoni llogarinë tuaj. Përpara se të hyni, duhet ta aktivizoni llogarinë tuaj, duke klikuar mbi lidhjen e dhënë në këtë email."
 
-#: apps/users/views.py:136 apps/users/views.py:652
+#: apps/users/views.py:136 apps/users/views.py:653
 msgid "Confirmation Email Sent"
 msgstr "Email-i Për Ripohim u Dërgua"
 
@@ -12900,23 +12922,23 @@ msgstr "Po keni Probleme?"
 msgid "You are already logged in to an account."
 msgstr "Jeni i futur tashmë te një llogari."
 
-#: apps/users/views.py:644
+#: apps/users/views.py:645
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Përgëzime! Llogaria juaj e përdoruesit u krijua me sukses."
 
-#: apps/users/views.py:668
+#: apps/users/views.py:669
 msgid "You already have an account."
 msgstr "Keni tashmë një llogari."
 
-#: apps/users/views.py:678
+#: apps/users/views.py:679
 msgid "There are errors in this form"
 msgstr "Në këtë formular ka gabime"
 
-#: apps/users/views.py:679
+#: apps/users/views.py:680
 msgid "Please correct them and resubmit."
 msgstr "Ju lutemi, ndreqini dhe riparashtrojeni."
 
-#: apps/users/views.py:694
+#: apps/users/views.py:695
 msgid "User reported."
 msgstr "Përdoruesi u raportua."
 
@@ -13033,51 +13055,55 @@ msgstr "Zgjidhni Foto&hellip;"
 msgid "Delete current photo"
 msgstr "Fshije foton e tanishme"
 
-#: apps/users/templates/users/edit.html:132
+#: apps/users/templates/users/edit.html:130
+msgid "This is the default locale used to display information about you (like your description)."
+msgstr ""
+
+#: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Paraqiteni veten te bashkësia, po deshët! Ky tekst do të duket publikisht te faqja juaj e të dhënave të përdoruesit."
 
-#: apps/users/templates/users/edit.html:141
+#: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "HTML e lejuar: {0}. Lidhjet janë të ndaluara."
 
-#: apps/users/templates/users/edit.html:148
+#: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
 msgstr "Të ndryshme"
 
-#: apps/users/templates/users/edit.html:150
+#: apps/users/templates/users/edit.html:156
 msgid "Decide what collections should be shown in your profile."
 msgstr "Vendosni cilat koleksione do të duhej të shfaqeshin te profili juaj."
 
-#: apps/users/templates/users/edit.html:158
+#: apps/users/templates/users/edit.html:164
 msgid "Display the collections I have created"
 msgstr "Shfaq koleksionet që kam krijuar"
 
-#: apps/users/templates/users/edit.html:165
+#: apps/users/templates/users/edit.html:171
 msgid "Display collections I'm following"
 msgstr "Shfaq koleksionet që ndjek unë"
 
-#: apps/users/templates/users/edit.html:173
+#: apps/users/templates/users/edit.html:179
 msgid "Notifications"
 msgstr "Njoftime"
 
-#: apps/users/templates/users/edit.html:175
+#: apps/users/templates/users/edit.html:181
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
 msgstr "Mozilla mund t'ju dërgojë, herë pas here, email rreth versionesh të ardhshëm dhe veprimtari që lidhen me shtesat. Ju lutemi, përzgjidhni më poshtë temat që ju interesojnë."
 
-#: apps/users/templates/users/edit.html:185
+#: apps/users/templates/users/edit.html:191
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
 msgstr "Mozilla ruan të drejtën të lidhet me ju veçmas, lidhur me çështje të caktuara te shtesat që keni strehuar këtu."
 
-#: apps/users/templates/users/edit.html:195
+#: apps/users/templates/users/edit.html:201
 msgid "Admin"
 msgstr "Admin"
 
-#: apps/users/templates/users/edit.html:227
+#: apps/users/templates/users/edit.html:233
 msgid "Delete Account"
 msgstr "Fshi Llogari"
 
-#: apps/users/templates/users/edit.html:229
+#: apps/users/templates/users/edit.html:235
 msgid "Update Account"
 msgstr "Përditësoni Llogarinë"
 
@@ -13509,17 +13535,17 @@ msgstr "Shihni Sajtin për Celular"
 msgid "get to know <b>add-ons</b>"
 msgstr "njihuni me <b>shtesat</b>"
 
-#: templates/footer.html:4 templates/menu_links.html:20
+#: templates/footer.html:4 templates/menu_links.html:20 templates/global/menu_links.html:58
 msgid "About"
 msgstr "Rreth"
 
 # Link text to the AMO blog.
-#: templates/footer.html:5 templates/menu_links.html:32
+#: templates/footer.html:5 templates/menu_links.html:32 templates/global/menu_links.html:26 templates/global/menu_links.html:69
 msgid "Blog"
 msgstr "Blog"
 
 # Link text to the Frequently Asked Questions page.
-#: templates/footer.html:7
+#: templates/footer.html:7 templates/global/menu_links.html:25
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -13547,47 +13573,47 @@ msgstr "Shtesa për <img alt=\"SeaMonkey\" src=\"{0}\">"
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Shtesa"
 
-#: templates/menu_links.html:6
+#: templates/menu_links.html:6 templates/global/menu_links.html:35
 msgid "Firefox Add-ons"
 msgstr "Shtesa Firefox-i"
 
-#: templates/menu_links.html:11
+#: templates/menu_links.html:11 templates/global/menu_links.html:41
 msgid "Language Support"
 msgstr "Mbulim Gjuhësh"
 
-#: templates/menu_links.html:22
+#: templates/menu_links.html:22 templates/global/menu_links.html:60
 msgid "About Firefox"
 msgstr "Rreth Firefox-it"
 
-#: templates/menu_links.html:23
+#: templates/menu_links.html:23 templates/global/menu_links.html:61
 msgid "Join Mozilla"
 msgstr "Bashkojuni Mozilla-s"
 
-#: templates/menu_links.html:24
+#: templates/menu_links.html:24 templates/global/menu_links.html:62
 msgid "Participate"
 msgstr "Merrni pjesë"
 
-#: templates/menu_links.html:26
+#: templates/menu_links.html:26 templates/global/menu_links.html:63
 msgid "Press Center"
 msgstr "Qendra e Shtypit"
 
-#: templates/menu_links.html:27
+#: templates/menu_links.html:27 templates/global/menu_links.html:64
 msgid "Brand Toolkit"
 msgstr "Grup Mjetesh për Markën"
 
-#: templates/menu_links.html:28
+#: templates/menu_links.html:28 templates/global/menu_links.html:65
 msgid "Careers"
 msgstr "Karrierë"
 
-#: templates/menu_links.html:29
+#: templates/menu_links.html:29 templates/global/menu_links.html:66
 msgid "Partnerships"
 msgstr "Bashkëpunime"
 
-#: templates/menu_links.html:30
+#: templates/menu_links.html:30 templates/global/menu_links.html:67
 msgid "Legal"
 msgstr "Ligjore"
 
-#: templates/menu_links.html:31
+#: templates/menu_links.html:31 templates/global/menu_links.html:68
 msgid "Contact Us"
 msgstr "Lidhuni me Ne"
 
@@ -13599,6 +13625,104 @@ msgstr "Mirë se vini, {0}"
 #: templates/user_login.html:41 templates/impala/user_login.html:26
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Regjistrohuni</a> ose <a href=\"%(login)s\">Hyni</a>"
+
+#: templates/global/copyright.html:8 templates/mobile/base_addons.html:83 templates/mobile/base_apps.html:72
+msgid "Legal Notices"
+msgstr "Shënime Ligjore"
+
+#: templates/global/copyright.html:11
+msgid "Report Trademark Abuse"
+msgstr ""
+
+#: templates/global/copyright.html:17
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+
+#: templates/global/header.html:3
+msgid "skip to navigation"
+msgstr ""
+
+#: templates/global/header.html:4
+msgid "switch language"
+msgstr ""
+
+#: templates/global/header.html:9
+msgid "Back to Mozilla.com"
+msgstr ""
+
+#: templates/global/header.html:12 templates/global/minimal-header.html:2
+msgid "visit <span>mozilla.org</span>"
+msgstr ""
+
+#: templates/global/menu_links.html:5 templates/global/menu_links.html:20 templates/global/mobile/header.html:4 templates/mobile/header.html:4
+msgid "Features"
+msgstr "Veçori"
+
+#: templates/global/menu_links.html:8
+msgid "Customization"
+msgstr ""
+
+#: templates/global/menu_links.html:9
+msgid "Technology"
+msgstr ""
+
+#: templates/global/menu_links.html:10 templates/global/menu_links.html:27
+msgid "Videos"
+msgstr ""
+
+#: templates/global/menu_links.html:11
+msgid "Tour"
+msgstr ""
+
+#: templates/global/menu_links.html:12 templates/global/menu_links.html:28
+msgid "Future Releases"
+msgstr ""
+
+#: templates/global/menu_links.html:21
+msgid "Customize"
+msgstr ""
+
+#: templates/global/menu_links.html:22
+msgid "Sync"
+msgstr ""
+
+#: templates/global/menu_links.html:23
+msgid "Develop"
+msgstr ""
+
+#: templates/global/menu_links.html:24
+msgid "Get Involved"
+msgstr ""
+
+#: templates/global/menu_links.html:39
+msgid "Personas"
+msgstr ""
+
+#: templates/global/menu_links.html:51
+msgid "Firefox Support"
+msgstr ""
+
+#: templates/global/menu_links.html:52
+msgid "Mobile Support"
+msgstr ""
+
+#: templates/global/menu_links.html:53
+msgid "Thunderbird Support"
+msgstr ""
+
+#: templates/global/mobile/header.html:3 templates/mobile/header.html:3
+msgid "Mozilla Firefox"
+msgstr "Mozilla Firefox"
+
+#: templates/global/mobile/header.html:8 templates/mobile/header.html:8
+msgid "Visit Mozilla"
+msgstr "Vizitoni Mozilla-n"
+
+#: templates/global/mobile/header.html:10
+msgid "Menu"
+msgstr ""
 
 #: templates/impala/base.html:117
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -13649,10 +13773,6 @@ msgstr "Kreu për Celular"
 msgid "View full site"
 msgstr "Shihni sajtin e plotë"
 
-#: templates/mobile/base_addons.html:83 templates/mobile/base_apps.html:72
-msgid "Legal Notices"
-msgstr "Shënime Ligjore"
-
 #: templates/mobile/base_apps.html:37
 msgid "Return to the Apps homepage"
 msgstr "Rikthehuni te faqja hyrëse e Zbatimeve"
@@ -13661,21 +13781,9 @@ msgstr "Rikthehuni te faqja hyrëse e Zbatimeve"
 msgid "Apps"
 msgstr "Zbatime"
 
-#: templates/mobile/header.html:3
-msgid "Mozilla Firefox"
-msgstr "Mozilla Firefox"
-
-#: templates/mobile/header.html:4
-msgid "Features"
-msgstr "Veçori"
-
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
 msgstr "Shtesa"
-
-#: templates/mobile/header.html:8
-msgid "Visit Mozilla"
-msgstr "Vizitoni Mozilla-n"
 
 #. a link
 #: templates/mobile/header.html:10

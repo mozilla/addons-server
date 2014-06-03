@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 09:41-0700\n"
+"POT-Creation-Date: 2014-06-02 17:02-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -670,7 +670,7 @@ msgid "Approved"
 msgstr "Ȧƥƥřǿṽḗḓ"
 
 #: media/js/impala/collections.js:10
-#: media/js/zamboni/collections.js:728
+#: media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
 msgstr "Ƒǿŀŀǿẇ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
 
@@ -1452,15 +1452,15 @@ msgstr "Ẏǿŭ ƈȧƞƞǿŧ ȧḓḓ ẏǿŭřşḗŀƒ ȧş ȧ ƈǿƞŧřīƀ�
 msgid "You have already added that user."
 msgstr "Ẏǿŭ ħȧṽḗ ȧŀřḗȧḓẏ ȧḓḓḗḓ ŧħȧŧ ŭşḗř."
 
-#: media/js/zamboni/collections.js:706
+#: media/js/zamboni/collections.js:707
 msgid "Add to favorites"
 msgstr "Ȧḓḓ ŧǿ ƒȧṽǿřīŧḗş"
 
-#: media/js/zamboni/collections.js:710
+#: media/js/zamboni/collections.js:711
 msgid "Remove from favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 
-#: media/js/zamboni/collections.js:737
+#: media/js/zamboni/collections.js:738
 msgid "Stop following"
 msgstr "Şŧǿƥ ƒǿŀŀǿẇīƞɠ"
 
