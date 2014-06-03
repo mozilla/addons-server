@@ -486,7 +486,6 @@ DOMAIN_METHODS = {
         ('media/js/common/**.js', 'javascript'),
         ('media/js/impala/**.js', 'javascript'),
         ('media/js/zamboni/**.js', 'javascript'),
-        ('media/js/devreg/**.js', 'javascript'),
     ],
 }
 
