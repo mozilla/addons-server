@@ -12,7 +12,6 @@ from django.utils.http import urlsafe_base64_encode
 
 from mock import ANY, Mock, patch
 from nose.tools import eq_
-from nose import SkipTest
 
 # Unused, but needed so that we can patch jingo.
 from waffle import helpers  # NOQA
@@ -188,18 +187,6 @@ class TestEdit(UserViewBase):
         self.client.post(self.url, data, follow=True)
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject.find('Please confirm your email'), 0)
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_email_cant_change(self):
-        data = {'username': 'jbalogh',
-                'email': 'jbalogh.changed@mozilla.com',
-                'display_name': 'DJ SurfNTurf',
-                'lang': 'en-US'}
-
-        res = self.client.post(self.url, data, follow=True)
-        eq_(res.status_code, 200)
-        eq_(len(pq(res.content)('div.error')), 1)
-        eq_(len(mail.outbox), 0)
 
     def test_edit_bio(self):
         eq_(self.get_profile().bio, None)
@@ -511,16 +498,6 @@ class TestLogin(UserViewBase):
         doc = pq(r.content)('header')
         eq_(doc('nav').length, 1)
         eq_(doc('#home').length, 1)
-        eq_(doc('#auth-nav li.login').length, 0)
-
-    @amo.tests.mobile_test
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_mobile_login_apps_preview(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)('header')
-        eq_(doc('nav').length, 1)
-        eq_(doc('#home').length, 0)
         eq_(doc('#auth-nav li.login').length, 0)
 
     def test_login_ajax(self):

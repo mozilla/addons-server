@@ -125,7 +125,6 @@ class TestDashboard(HubTest):
     def setUp(self):
         super(TestDashboard, self).setUp()
         self.url = reverse('devhub.addons')
-        self.apps_url = reverse('devhub.apps')
         self.themes_url = reverse('devhub.themes')
         eq_(self.client.get(self.url).status_code, 200)
 

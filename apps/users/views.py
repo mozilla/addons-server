@@ -10,10 +10,9 @@ from django.db import IntegrityError, transaction
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
 from django.template import Context, loader
-from django.utils.http import base36_to_int, is_safe_url
+from django.utils.http import is_safe_url, urlsafe_base64_decode
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.http import urlsafe_base64_decode, is_safe_url
 
 import commonware.log
 import waffle
@@ -186,13 +185,6 @@ def edit(request):
         if form.is_valid():
             messages.success(request, _('Profile Updated'))
             if amouser.email != original_email:
-                # Temporarily block email changes.
-                if settings.APP_PREVIEW:
-                    messages.error(request, 'Error',
-                                   'You cannot change your email on the '
-                                   'developer preview site.')
-                    return render(request, 'users/edit.html',
-                                  {'form': form, 'amouser': amouser})
 
                 l = {'user': amouser,
                      'mail1': original_email,
@@ -613,7 +605,7 @@ def themes(request, user, category=None):
 @anonymous_csrf
 def register(request):
 
-    if settings.APP_PREVIEW and waffle.switch_is_active('browserid-login'):
+    if waffle.switch_is_active('browserid-login'):
         messages.error(request,
                        loc('Registrations must be through browserid.'))
         form = None

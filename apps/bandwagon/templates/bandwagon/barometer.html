@@ -14,11 +14,9 @@
         <p>
           {{ _('To rate collections, you must have an add-ons account.') }}
         </p>
-        {% if not settings.APP_PREVIEW %}
         <p class="register-button">
           <a class="button" href="{{ url('users.register') }}">{{ _('Create an Add-ons Account') }}</a>
         </p>
-        {% endif %}
         <p>
           {% trans login=login_link() %}
             or <a href="{{ login }}">log in to your current account</a>

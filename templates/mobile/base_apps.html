@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1">
 
-    <title>{% block title %}{{ loc('Apps Developer Preview') if settings.APP_PREVIEW else loc('Mozilla Apps') }}{% endblock %}</title>
+    <title>{% block title %}{{ loc('Mozilla Apps') }}{% endblock %}</title>
 
     {% block rss_feed %}{% endblock %}
 
@@ -61,10 +61,8 @@
       </section>
     </div>
     <footer id="footer">
-      {% if not settings.APP_PREVIEW %}
-        {# TODO(apps): When Marketplace is localized, show language switcher. #}
-        {% include "includes/lang_switcher.html" %}
-      {% endif %}
+      {# TODO(apps): When Marketplace is localized, show language switcher. #}
+      {% include "includes/lang_switcher.html" %}
       {% block footer %}
         <a class="desktop-link" href="#">{{ _('View full site') }}</a>
         <p id="footer-links">
@@ -78,9 +76,6 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      {% if settings.APP_PREVIEW %}
-        <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
-      {% endif %}
       {% if waffle.switch('browserid-login') %}
         <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>
       {% endif %}

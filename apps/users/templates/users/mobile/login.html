@@ -10,13 +10,6 @@
   {% endif %}
 {% endblock %}
 
-{% block back_link %}
-  {# Hide the "Home" button on Apps Preview, since login is required. #}
-  {% if not settings.APP_PREVIEW %}
-    {{ super() }}
-  {% endif %}
-{% endblock %}
-
 {% block page %}
 
 <div class="primary" role="main">
@@ -73,16 +66,13 @@
     {% endif %}
   </section>
 
-  {# TODO(gkoberger): This is a temp change; fix properly #}
-  {% if not settings.APP_PREVIEW %}
   <div id="login-help" class="article">
     <h2>{{ _('Login Problems?') }}</h2>
     <ul class="listview">
-      {% if not settings.APP_PREVIEW %}<li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>{% endif %}
+      <li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>
       <li><a href="{{ url('password_reset_form') }}">{{ _("I forgot my password.") }}</a></li>
     </ul>
   </div>
-  {% endif %}
 
 </div>{# .primary #}
 

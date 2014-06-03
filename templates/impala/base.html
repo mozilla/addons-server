@@ -6,7 +6,7 @@
       <meta name="robots" content="noindex">
     {% endif %}
     {% block extrameta %}{% endblock %}
-    <title>{% block title %}{% if settings.APP_PREVIEW %}{{ _('Firefox Marketplace') }}{% else %}{{ _('Mozilla Add-ons') }}{% endif %}{% endblock %}</title>
+    <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
           href="{{ MEDIA_URL}}img/favicon.ico">
@@ -203,9 +203,6 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      {% if settings.APP_PREVIEW %}
-        <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
-      {% endif %}
       {% if waffle.switch('browserid-login') %}
         <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>
       {% endif %}

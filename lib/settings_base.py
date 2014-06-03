@@ -1379,10 +1379,6 @@ CSRF_FAILURE_VIEW = 'amo.views.csrf_failure'
 # Testing responsiveness without rate limits.
 CELERY_DISABLE_RATE_LIMITS = True
 
-# Temporary variables for the app-preview server, set this to True
-# if you want to experience app-preview.mozilla.org.
-APP_PREVIEW = False
-
 # Super temporary. Or Not.
 MARKETPLACE = False
 
