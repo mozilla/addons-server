@@ -6,7 +6,6 @@ import happyforms
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo import helpers
 from search.utils import floor_version
 
 collection_sort_by = (
@@ -41,8 +40,6 @@ class SimpleSearchForm(forms.Form):
         return self.data.get('cat', 'all')
 
     def placeholder(self, txt=None):
-        if settings.APP_PREVIEW:
-            return self.choices['apps']
         return self.choices.get(txt or self.clean_cat(), self.choices['all'])
 
 

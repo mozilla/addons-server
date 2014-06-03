@@ -23,13 +23,6 @@ submit_patterns = patterns('',
     url('^bump$', views.submit_bump, name='devhub.submit.bump'),
 )
 
-submit_apps_patterns = patterns('',
-    url('^3$', views.submit_describe, name='devhub.submit_apps.3'),
-    url('^4$', views.submit_media, name='devhub.submit_apps.4'),
-    url('^5$', views.submit_done, name='devhub.submit_apps.5'),
-    url('^bump$', views.submit_bump, name='devhub.submit_apps.bump'),
-)
-
 
 # These will all start with /theme/<slug>/
 theme_detail_patterns = patterns('',
@@ -44,21 +37,6 @@ theme_detail_patterns = patterns('',
     url('^rmlocale$', views.remove_locale, name='devhub.themes.remove-locale'),
 )
 
-# These will all start with /app/<app_slug>/
-app_detail_patterns = patterns('',
-    url('^edit$', views.edit, name='devhub.apps.edit'),
-    url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
-        views.addons_section, name='devhub.apps.section'),
-    url('^ownership$', views.ownership, name='devhub.apps.owner'),
-    url('^enable$', views.enable, name='devhub.apps.enable'),
-    url('^delete$', views.delete, name='devhub.apps.delete'),
-    url('^disable$', views.disable, name='devhub.apps.disable'),
-    url('^status$', views.version_list, name='devhub.apps.versions'),
-    url('^profile$', views.profile, name='devhub.apps.profile'),
-    url('^profile/remove$', views.remove_profile,
-        name='devhub.apps.profile.remove'),
-    url('^rmlocale$', views.remove_locale, name='devhub.apps.remove-locale'),
-)
 
 # These will all start with /addon/<addon_id>/
 detail_patterns = patterns('',
@@ -175,12 +153,6 @@ urlpatterns = decorate(write, patterns('',
     url('^addon/submit/1$', views.submit, name='devhub.submit.1'),
     url('^addon/submit/2$', views.submit_addon, name='devhub.submit.2'),
 
-    # Web App submission
-    url('^app/submit/$',
-        lambda r: redirect('devhub.submit_apps.1', permanent=True)),
-    url('^app/submit/1$', views.submit, name='devhub.submit_apps.1'),
-    url('^app/submit/2$', views.submit_addon, name='devhub.submit_apps.2'),
-
     # Standalone validator:
     url('^addon/validate/?$', views.validate_addon,
         name='devhub.validate_addon'),
@@ -200,7 +172,6 @@ urlpatterns = decorate(write, patterns('',
     url('^addons$', views.dashboard, name='devhub.addons'),
     url('^themes$', views.dashboard, name='devhub.themes',
         kwargs={'theme': True}),
-    url('^apps$', views.dashboard, name='devhub.apps'),
     url('^feed$', views.feed, name='devhub.feed_all'),
     # TODO: not necessary when devhub homepage is moved out of remora
     url('^feed/all$', lambda r: redirect('devhub.feed_all', permanent=True)),
@@ -218,8 +189,6 @@ urlpatterns = decorate(write, patterns('',
 
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
-    url('^app/%s/' % amo.APP_SLUG, include(app_detail_patterns)),
-    url('^app/%s/submit/' % ADDON_ID, include(submit_apps_patterns)),
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 

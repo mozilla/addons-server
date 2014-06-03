@@ -8,10 +8,7 @@
       <li class="login"><a href="{{ login_link() }}">
         {{ loc('Log in / Register')  }}</a></li>
     {% else %}
-      {% if not settings.APP_PREVIEW %}
-        <li class="register"><a href="{{ url('users.register') }}">
-          {{ _('Register') }}</a></li>
-      {% endif %}
+      <li class="register"><a href="{{ url('users.register') }}">{{ _('Register') }}</a></li>
       <li class="login"><a href="{{ login_link() }}">{{ _('Log in')  }}</a></li>
     {% endif %}
   {% endif %}

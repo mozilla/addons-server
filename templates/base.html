@@ -6,7 +6,7 @@
         <meta name="robots" content="noindex">
       {% endif %}
     {% block extrameta %}{% endblock %}
-    <title>{% block title %}{% if settings.APP_PREVIEW %}{{ _('Firefox Marketplace') }}{% else %}{{ _('Mozilla Add-ons') }}{% endif %}{% endblock %}</title>
+    <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
           href="{{ MEDIA_URL}}img/favicon.ico">

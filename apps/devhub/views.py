@@ -86,9 +86,6 @@ def addon_listing(request, default='name', theme=False):
 
 
 def index(request):
-    if settings.APP_PREVIEW:
-        # This can be a permanent redirect when we finalize devhub for apps.
-        return redirect('devhub.apps')
 
     ctx = {'blog_posts': _get_posts()}
     if request.amo_user:

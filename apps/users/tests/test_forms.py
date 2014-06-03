@@ -355,12 +355,6 @@ class TestUserLoginForm(UserFormBase):
         self.assertContains(r, "A link to activate your user account")
         self.assertContains(r, "If you did not receive the confirmation")
 
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_no_register(self):
-        res = self.client.get(self._get_login_url())
-        assert not res.content in 'Create an Add-ons Account'
-
-    @patch.object(settings, 'APP_PREVIEW', False)
     def test_yes_register(self):
         res = self.client.get(self._get_login_url())
         self.assertContains(res, 'Create an Add-ons Account')

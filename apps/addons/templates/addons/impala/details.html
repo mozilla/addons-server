@@ -79,11 +79,9 @@
   {% endif %}
 
   <div class="widgets">
-    {% if not settings.APP_PREVIEW %}
-      {{ favorites_widget(addon) }}
-      {% include 'addons/includes/collection_add_widget.html' %}
-      {{ sharing_widget(addon) }}
-    {% endif %}
+    {{ favorites_widget(addon) }}
+    {% include 'addons/includes/collection_add_widget.html' %}
+    {{ sharing_widget(addon) }}
   </div>
   {% if is_author %}
     <p><a href="{{ addon.get_dev_url() }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
