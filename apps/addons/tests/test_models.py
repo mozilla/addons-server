@@ -868,7 +868,7 @@ class TestAddonModels(amo.tests.TestCase):
 
         parsed = self.newlines_helper(before)
 
-        eq_(parsed, '<a rel="nofollow" href="http://google.com">test</a>')
+        assert 'rel="nofollow"' in parsed
 
     def test_newlines_attribute_singlequote(self):
         before = "<abbr title='laugh out loud'>lol</abbr>"

@@ -13,6 +13,7 @@ import multidb
 from mock import patch
 from nose import SkipTest
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 from test_utils import trans_eq, TestCase
 
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
@@ -279,19 +280,23 @@ class TranslationTestCase(TestCase):
         # underlying bleach library to have full tests.
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m = FancyModel.objects.create(purified=s)
-        eq_(m.purified.localized_string_clean,
-            '<a rel="nofollow" href="http://xxx.com">yay</a> '
-            '<i><a rel="nofollow" href="http://yyy.com">'
-            'http://yyy.com</a></i>')
+
+        doc = pq(m.purified.localized_string_clean)
+        assert doc('a[href="http://xxx.com"][rel="nofollow"]')[0].text == 'yay'
+        assert doc('a[href="http://yyy.com"][rel="nofollow"]')[0].text == (
+            'http://yyy.com')
         eq_(m.purified.localized_string, s)
 
     def test_new_linkified_field(self):
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m = FancyModel.objects.create(linkified=s)
-        eq_(m.linkified.localized_string_clean,
-            '<a rel="nofollow" href="http://xxx.com">yay</a> '
-            '&lt;i&gt;<a rel="nofollow" href="http://yyy.com">'
-            'http://yyy.com</a>&lt;/i&gt;')
+
+        doc = pq(m.linkified.localized_string_clean)
+        assert doc('a[href="http://xxx.com"][rel="nofollow"]')[0].text == 'yay'
+        assert doc('a[href="http://yyy.com"][rel="nofollow"]')[0].text == (
+            'http://yyy.com')
+        assert not doc('i')
+        assert '&lt;i&gt;' in m.linkified.localized_string_clean
         eq_(m.linkified.localized_string, s)
 
     def test_update_purified_field(self):
@@ -299,10 +304,11 @@ class TranslationTestCase(TestCase):
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m.purified = s
         m.save()
-        eq_(m.purified.localized_string_clean,
-            '<a rel="nofollow" href="http://xxx.com">yay</a> '
-            '<i><a rel="nofollow" href="http://yyy.com">'
-            'http://yyy.com</a></i>')
+
+        doc = pq(m.purified.localized_string_clean)
+        assert doc('a[href="http://xxx.com"][rel="nofollow"]')[0].text == 'yay'
+        assert doc('a[href="http://yyy.com"][rel="nofollow"]')[0].text == (
+            'http://yyy.com')
         eq_(m.purified.localized_string, s)
 
     def test_update_linkified_field(self):
@@ -310,23 +316,32 @@ class TranslationTestCase(TestCase):
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m.linkified = s
         m.save()
-        eq_(m.linkified.localized_string_clean,
-            '<a rel="nofollow" href="http://xxx.com">yay</a> '
-            '&lt;i&gt;<a rel="nofollow" href="http://yyy.com">'
-            'http://yyy.com</a>&lt;/i&gt;')
+
+        doc = pq(m.linkified.localized_string_clean)
+        assert doc('a[href="http://xxx.com"][rel="nofollow"]')[0].text == 'yay'
+        assert doc('a[href="http://yyy.com"][rel="nofollow"]')[0].text == (
+            'http://yyy.com')
+        assert '&lt;i&gt;' in m.linkified.localized_string_clean
         eq_(m.linkified.localized_string, s)
 
     def test_purified_field_str(self):
         m = FancyModel.objects.get(id=1)
-        eq_(u'%s' % m.purified,
-            '<i>x</i> '
-            '<a rel="nofollow" href="http://yyy.com">http://yyy.com</a>')
+        stringified = u'%s' % m.purified
+
+        doc = pq(stringified)
+        assert doc('a[href="http://yyy.com"][rel="nofollow"]')[0].text == (
+            'http://yyy.com')
+        assert doc('i')[0].text == 'x'
 
     def test_linkified_field_str(self):
         m = FancyModel.objects.get(id=1)
-        eq_(u'%s' % m.linkified,
-            '&lt;i&gt;x&lt;/i&gt; '
-            '<a rel="nofollow" href="http://yyy.com">http://yyy.com</a>')
+        stringified = u'%s' % m.linkified
+
+        doc = pq(stringified)
+        assert doc('a[href="http://yyy.com"][rel="nofollow"]')[0].text == (
+            'http://yyy.com')
+        assert not doc('i')
+        assert '&lt;i&gt;' in stringified
 
     def test_purifed_linkified_fields_in_template(self):
         m = FancyModel.objects.get(id=1)
@@ -341,17 +356,25 @@ class TranslationTestCase(TestCase):
         Make sure linkified field is properly bounced off our outgoing URL
         redirector.
         """
-        settings.REDIRECT_URL = 'http://example.com/'
-
         s = 'I like http://example.org/awesomepage.html .'
-        m = FancyModel.objects.create(linkified=s)
-        eq_(m.linkified.localized_string_clean,
-            'I like <a rel="nofollow" href="http://example.com/'
-            '40979175e3ef6d7a9081085f3b99f2f05447b22ba790130517dd62b7ee59ef94/'
-            'http%3A//example.org/'
-            'awesomepage.html">http://example.org/awesomepage'
-            '.html</a> .')
-        eq_(m.linkified.localized_string, s)
+        with self.settings(REDIRECT_URL='http://example.com/'):
+            m = FancyModel.objects.create(linkified=s)
+            """
+            eq_(m.linkified.localized_string_clean,
+                'I like <a rel="nofollow" href="http://example.com/'
+                '40979175e3ef6d7a9081085f3b99f2f05447b22ba790130517dd62b7ee59ef94/'
+                'http%3A//example.org/'
+                'awesomepage.html">http://example.org/awesomepage'
+                '.html</a> .')
+            """
+            doc = pq(m.linkified.localized_string_clean)
+            link = doc('a')[0]
+            assert link.attrib['href'] == (
+                "http://example.com/40979175e3ef6d7a9081085f3b99f2f05447b22ba7"
+                "90130517dd62b7ee59ef94/http%3A//example.org/awesomepage.html")
+            assert link.attrib['rel'] == "nofollow"
+            assert link.text == "http://example.org/awesomepage.html"
+            eq_(m.linkified.localized_string, s)
 
     def test_require_locale(self):
         obj = TranslatedModel.objects.get(id=1)
@@ -500,27 +523,30 @@ class PurifiedTranslationTest(TestCase):
     def test_internal_link(self):
         s = u'<b>markup</b> <a href="http://addons.mozilla.org/foo">bar</a>'
         x = PurifiedTranslation(localized_string=s)
-        eq_(x.__html__(),
-            u'<b>markup</b> <a rel="nofollow" '
-            u'href="http://addons.mozilla.org/foo">bar</a>')
+        doc = pq(x.__html__())
+        links = doc('a[href="http://addons.mozilla.org/foo"][rel="nofollow"]')
+        assert links[0].text == 'bar'
+        assert doc('b')[0].text == 'markup'
 
     @patch('amo.urlresolvers.get_outgoing_url')
     def test_external_link(self, get_outgoing_url_mock):
         get_outgoing_url_mock.return_value = 'http://external.url'
         s = u'<b>markup</b> <a href="http://example.com">bar</a>'
         x = PurifiedTranslation(localized_string=s)
-        eq_(x.__html__(),
-            u'<b>markup</b> <a rel="nofollow" '
-            u'href="http://external.url">bar</a>')
+        doc = pq(x.__html__())
+        links = doc('a[href="http://external.url"][rel="nofollow"]')
+        assert links[0].text == 'bar'
+        assert doc('b')[0].text == 'markup'
 
     @patch('amo.urlresolvers.get_outgoing_url')
     def test_external_text_link(self, get_outgoing_url_mock):
         get_outgoing_url_mock.return_value = 'http://external.url'
         s = u'<b>markup</b> http://example.com'
         x = PurifiedTranslation(localized_string=s)
-        eq_(x.__html__(),
-            u'<b>markup</b> <a rel="nofollow" '
-            u'href="http://external.url">http://example.com</a>')
+        doc = pq(x.__html__())
+        links = doc('a[href="http://external.url"][rel="nofollow"]')
+        assert links[0].text == 'http://example.com'
+        assert doc('b')[0].text == 'markup'
 
 
 class LinkifiedTranslationTest(TestCase):
@@ -530,8 +556,9 @@ class LinkifiedTranslationTest(TestCase):
         get_outgoing_url_mock.return_value = 'http://external.url'
         s = u'<a href="http://example.com">bar</a>'
         x = LinkifiedTranslation(localized_string=s)
-        eq_(x.__html__(),
-            u'<a rel="nofollow" href="http://external.url">bar</a>')
+        doc = pq(x.__html__())
+        links = doc('a[href="http://external.url"][rel="nofollow"]')
+        assert links[0].text == 'bar'
 
     def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script> <b>bold</b>'
