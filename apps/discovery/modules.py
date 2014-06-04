@@ -351,3 +351,19 @@ class AustralisContestResults(CollectionPromo):
 class FootballWorldCup2014(TemplatePromo):
     slug = 'Football WorldCup 2014'
     template = 'discovery/modules/football-worldcup-2014.html'
+
+    def context(self):
+        default = 'en-US'
+        locales = {
+            'de': 'de',
+            'fr': 'fr',
+            'it': 'it',
+            'ja': 'ja',
+            'id': 'id',
+            'es': 'es-ES',
+            'pt': 'pt-BR'
+        }
+        # Make sure that all "es" or "pt" sublanguages match too.
+        locale = locales.get(self.request.LANG[:2], default)
+        url = "https://activations.cdn.mozilla.net/%s/goal.html" % locale
+        return {'url': url}
