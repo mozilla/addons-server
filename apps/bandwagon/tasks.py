@@ -10,6 +10,7 @@ from celeryutils import task
 
 import amo
 from amo.decorators import set_modified_on
+from amo.helpers import storage_path
 from amo.utils import attach_trans_dict, resize_image
 from tags.models import Tag
 from lib.es.utils import index_objects
@@ -56,7 +57,7 @@ def resize_icon(src, dst, locally=False, **kw):
 def delete_icon(dst, **kw):
     log.info('[1@None] Deleting icon: %s.' % dst)
 
-    if not dst.startswith(settings.COLLECTIONS_ICON_PATH):
+    if not dst.startswith(storage_path('collection_icons')):
         log.error("Someone tried deleting something they shouldn't: %s" % dst)
         return
 

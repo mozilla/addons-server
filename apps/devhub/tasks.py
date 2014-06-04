@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import base64
 import json
 import logging
 import os
@@ -8,7 +7,6 @@ import sys
 import tempfile
 import traceback
 import urllib2
-import uuid
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -21,7 +19,7 @@ from tower import ugettext as _
 
 import amo
 from amo.decorators import write, set_modified_on
-from amo.utils import remove_icons, resize_image, send_html_mail_jinja
+from amo.utils import resize_image, send_html_mail_jinja
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion

@@ -42,3 +42,5 @@ media/commbadge
 media/marketplace-stats
 *.signed.zip
 *.po~
+site-static/*
+storage/*

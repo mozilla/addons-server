@@ -38,7 +38,6 @@ from translations.query import order_by_translation
 log = commonware.log.getLogger('z.users')
 
 
-
 class SHA512PasswordHasher(BasePasswordHasher):
     """
     The SHA2 password hashing algorithm, 512 bits.
@@ -128,8 +127,10 @@ class UserEmailField(forms.EmailField):
         return {'class': 'email-autocomplete',
                 'data-src': lazy_reverse('users.ajax')}
 
+
 class UserManager(BaseUserManager, amo.models.ManagerBase):
     pass
+
 
 AbstractBaseUser._meta.get_field('password').max_length = 255
 class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUser):
@@ -260,8 +261,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
 
     @property
     def picture_dir(self):
+        from amo.helpers import storage_path
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
-        return os.path.join(settings.USERPICS_PATH, split_id.group(2) or '0',
+        return os.path.join(storage_path('userpics'), split_id.group(2) or '0',
                             split_id.group(1) or '0')
 
     @property
@@ -270,13 +272,18 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
 
     @property
     def picture_url(self):
+        from amo.helpers import storage_url
         if not self.picture_type:
-            return settings.MEDIA_URL + '/img/zamboni/anon_user.png'
+            return settings.STATIC_URL + '/img/zamboni/anon_user.png'
         else:
             split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
-            return settings.USERPICS_URL % (
-                split_id.group(2) or 0, split_id.group(1) or 0, self.id,
-                int(time.mktime(self.modified.timetuple())))
+            modified = int(time.mktime(self.modified.timetuple()))
+            path = "/".join([
+                split_id.group(2) or '0',
+                split_id.group(1) or '0',
+                "%s.png?modified=%s" % (self.id, modified)
+            ])
+            return storage_url('userpics') + path
 
     @amo.cached_property
     def is_developer(self):

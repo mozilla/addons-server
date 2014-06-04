@@ -6,6 +6,7 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test.utils import override_settings
 from django.utils import encoding
 
 import jingo
@@ -475,4 +476,28 @@ def test_inline_css():
     env = jingo.env
     t = env.from_string("{{ inline_css('zamboni/mobile', debug=True) }}")
     s = t.render()
-    ok_('background-image: url(/media/img/icons/stars.png);' in s)
+    ok_('background-image: url(/static/img/icons/stars.png);' in s)
+
+
+class TestStoragePath(amo.tests.TestCase):
+
+    @override_settings(ADDONS_PATH=None, MEDIA_ROOT="/path/")
+    def test_without_settings(self):
+        del settings.ADDONS_PATH
+        path = helpers.storage_path('addons')
+        eq_(path, '/path/addons')
+
+    @override_settings(ADDONS_PATH="/another/path/")
+    def test_with_settings(self):
+        path = helpers.storage_path('addons')
+        eq_(path, '/another/path/')
+
+
+class TestMediaUrl(amo.tests.TestCase):
+
+    @override_settings(USERPICS_URL=None)
+    def test_without_settings(self):
+        del settings.USERPICS_URL
+        settings.MEDIA_URL = '/mediapath/'
+        url = helpers.storage_url('userpics')
+        eq_(url, '/mediapath/userpics/')

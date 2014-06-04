@@ -6,8 +6,8 @@ from urlparse import urlparse
 
 from django import forms
 from django.conf import settings
-from django.contrib.auth.hashers import (is_password_usable,
-    check_password, make_password, identify_hasher)
+from django.contrib.auth.hashers import (is_password_usable, check_password,
+                                         make_password, identify_hasher)
 from django.core import mail
 from django.utils import encoding, translation
 

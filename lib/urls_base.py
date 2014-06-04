@@ -1,9 +1,7 @@
-import os
-
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.views.i18n import javascript_catalog
 from django.views.decorators.cache import cache_page
 
@@ -191,24 +189,7 @@ if settings.TEMPLATE_DEBUG:
             url(r'^__debug__/', include(debug_toolbar.urls)),
         )
 
-        # We're not using the staticfiles app, like every good Django citizen
-        # should, so we have to cope with this weirdness.
-        ddt_folder = os.path.dirname(debug_toolbar.__file__)
-        ddt_static_path = os.path.join(ddt_folder, 'static')
-        urlpatterns += patterns('',
-            (r'^%s/(?P<path>debug_toolbar/.*)$' % media_url,
-             'django.views.static.serve',
-             {'document_root': ddt_static_path}),
-        )
-
     urlpatterns += patterns('',
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
-    )
-
-
-if settings.SERVE_TMP_PATH and settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^tmp/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': settings.TMP_PATH}),
     )

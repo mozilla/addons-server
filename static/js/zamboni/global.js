@@ -439,7 +439,7 @@ function modalFromURL(url, settings) {
 
 function load_unicode() {
     var $body = $(document.body);
-    $body.append("<script src='" + $body.attr('data-media-url') + "/js/zamboni/unicode.js'></script>");
+    $body.append("<script src='" + $body.attr('data-static-url') + "/js/zamboni/unicode.js'></script>");
 }
 
 function makeslug(s, delimiter) {

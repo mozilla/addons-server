@@ -1,6 +1,5 @@
 from datetime import datetime
 import os
-import re
 
 from django import forms
 from django.conf import settings

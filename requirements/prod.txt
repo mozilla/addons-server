@@ -107,7 +107,7 @@ thrift==0.9.1
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 
 # Temporary fork.
--e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify
+-e git+https://github.com/yohanboniface/jingo-minify.git@da0e4f4c0c29e7081d2aaf0bccfce8b101254724#egg=jingo_minify
 -e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
 -e git+https://github.com/washort/test-utils.git@4917197a64b6d0f2068c9ad1bfea0427c3e412e1#egg=test-utils
 -e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details

@@ -68,17 +68,14 @@ CELERYD_PREFETCH_MULTIPLIER = 1
 NETAPP_STORAGE = private.NETAPP_STORAGE_ROOT + '/shared_storage'
 MIRROR_STAGE_PATH = private.NETAPP_STORAGE_ROOT + '/public-staging'
 GUARDED_ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/guarded-addons'
-UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
-USERPICS_PATH = UPLOADS_PATH + '/userpics'
-ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
-COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
-IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
-REVIEWER_ATTACHMENTS_PATH = UPLOADS_PATH + '/reviewer_attachment'
-PREVIEWS_PATH = UPLOADS_PATH + '/previews'
-SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed_apps'
-SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
-PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
-PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
+MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
+
+# Must be forced in settings because name => path can't be dyncamically
+# computed: reviewer_attachmentS VS reviewer_attachment.
+# TODO: rename folder on file system.
+# (One can also just rename the setting, but this will not be consistent
+# with the naming scheme.)
+REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
 HERA = []
 LOGGING['loggers'].update({

@@ -155,24 +155,23 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_unhide_disabled_file_mirroring(self):
         tmp = tempfile.mkdtemp()
         self.addCleanup(lambda: shutil.rmtree(tmp))
-        with mock.patch.object(settings, 'MIRROR_STAGE_PATH', tmp):
-            fo = File.objects.get(pk=67442)
-            with storage.open(fo.file_path, 'wb') as fp:
-                fp.write('<pretend this is an xpi>')
-            with storage.open(fo.mirror_file_path, 'wb') as fp:
-                fp.write('<pretend this is an xpi>')
-            fo.status = amo.STATUS_DISABLED
-            fo.save()
-            assert not storage.exists(fo.file_path), 'file not hidden'
-            assert not storage.exists(fo.mirror_file_path), (
-                'file not removed from mirror')
+        fo = File.objects.get(pk=67442)
+        with storage.open(fo.file_path, 'wb') as fp:
+            fp.write('<pretend this is an xpi>')
+        with storage.open(fo.mirror_file_path, 'wb') as fp:
+            fp.write('<pretend this is an xpi>')
+        fo.status = amo.STATUS_DISABLED
+        fo.save()
+        assert not storage.exists(fo.file_path), 'file not hidden'
+        assert not storage.exists(fo.mirror_file_path), (
+                        'file not removed from mirror')
 
-            fo = File.objects.get(pk=67442)
-            fo.status = amo.STATUS_PUBLIC
-            fo.save()
-            assert storage.exists(fo.file_path), 'file not un-hidden'
-            assert storage.exists(fo.mirror_file_path), (
-                'file not copied back to mirror')
+        fo = File.objects.get(pk=67442)
+        fo.status = amo.STATUS_PUBLIC
+        fo.save()
+        assert storage.exists(fo.file_path), 'file not un-hidden'
+        assert storage.exists(fo.mirror_file_path), (
+                        'file not copied back to mirror')
 
     @mock.patch('files.models.File.copy_to_mirror')
     def test_copy_to_mirror_on_status_change(self, copy_mock):

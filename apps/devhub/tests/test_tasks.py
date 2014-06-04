@@ -13,6 +13,7 @@ from PIL import Image
 import amo
 import amo.tests
 from addons.models import Addon
+from amo.helpers import storage_path
 from amo.tests.test_helpers import get_image_path
 from devhub import tasks
 from files.models import FileUpload
@@ -68,8 +69,10 @@ def _uploader(resize_size, final_size):
     eq_(src_image.size, original_size)
 
     if isinstance(final_size, list):
+        uploadto = storage_path('addon_icons')
+        os.makedirs(uploadto)
         for rsize, fsize in zip(resize_size, final_size):
-            dest_name = str(path.path(settings.ADDON_ICONS_PATH) / '1234')
+            dest_name = str(path.path(uploadto) / '1234')
 
             tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
             dest_image = Image.open(open('%s-%s.png' % (dest_name, rsize)))
