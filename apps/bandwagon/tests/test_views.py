@@ -391,6 +391,19 @@ class TestCRUD(amo.tests.TestCase):
         r = self.client.post(self.add_url, self.data, follow=True)
         eq_(r.status_code, 403)
 
+    def test_no_xss_in_edit_page(self):
+        name = '"><script>alert(/XSS/);</script>'
+        self.create_collection(name=name)
+        collection = Collection.objects.latest()
+        eq_(collection.name, name)
+        url = reverse('collections.edit', args=['admin', collection.slug, ])
+        r = self.client.get(url)
+        self.assertContains(
+            r,
+            '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
+        )
+        assert name not in r.content
+
     def test_listing_xss(self):
         c = Collection.objects.get(id=80)
         assert self.client.login(username='clouserw@gmail.com',
