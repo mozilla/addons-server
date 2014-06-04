@@ -25,9 +25,6 @@ PREVIEW_FULL_URL = (STATIC_URL +
         'img/uploads/previews/full/%s/%d.png?modified=%d')
 NEW_PERSONAS_IMAGE_URL = STATIC_URL + 'img/uploads/themes/%(id)d/%(file)s'
 
-# paths for uploaded extensions
-FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
-
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
@@ -36,8 +33,6 @@ COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s
 NEW_PERSONAS_IMAGE_URL = STATIC_URL + 'img/uploads/themes/%(id)d/%(file)s'
 
 MEDIA_URL = STATIC_URL + 'media/'
-ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/addon-icons'
-ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 
 
 CACHE_PREFIX = 'altdev.%s' % CACHE_PREFIX

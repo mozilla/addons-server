@@ -1492,7 +1492,7 @@ class TestMobileDetails(TestPersonas, TestMobile):
         # Get the url from a real page so it includes the build id.
         client = test.Client()
         doc = pq(client.get('/', follow=True).content)
-        js_url = absolutify(reverse('addons.buttons.js'))
+        js_url = reverse('addons.buttons.js')
         url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
         response = client.get(url_with_build, follow=True)

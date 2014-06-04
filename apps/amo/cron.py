@@ -11,6 +11,7 @@ import commonware.log
 
 import amo
 from amo.utils import chunked
+from amo.helpers import storage_path
 from bandwagon.models import Collection
 from constants.base import VALID_STATUSES
 from devhub.models import ActivityLog
@@ -68,8 +69,8 @@ def gc(test_result=True):
 
     log.debug('Cleaning up test results extraction cache.')
     # lol at check for '/'
-    if settings.NETAPP_STORAGE and settings.NETAPP_STORAGE != '/':
-        cmd = ('find', settings.NETAPP_STORAGE, '-maxdepth', '1', '-name',
+    if settings.MEDIA_ROOT and settings.MEDIA_ROOT != '/':
+        cmd = ('find', settings.MEDIA_ROOT, '-maxdepth', '1', '-name',
                'validate-*', '-mtime', '+7', '-type', 'd',
                '-exec', 'rm', '-rf', "{}", ';')
 
@@ -79,7 +80,7 @@ def gc(test_result=True):
             log.debug(line)
 
     else:
-        log.warning('NETAPP_STORAGE not defined.')
+        log.warning('MEDIA_ROOT not defined.')
 
     if settings.PACKAGER_PATH:
         log.debug('Cleaning up old packaged add-ons.')
@@ -92,10 +93,10 @@ def gc(test_result=True):
         for line in output.split("\n"):
             log.debug(line)
 
-    if settings.COLLECTIONS_ICON_PATH:
+    if storage_path('collection_icons'):
         log.debug('Cleaning up uncompressed icons.')
 
-        cmd = ('find', settings.COLLECTIONS_ICON_PATH,
+        cmd = ('find', storage_path('collection_icons'),
                '-name', '*__unconverted', '-mtime', '+1', '-type', 'f',
                '-exec', 'rm', '{}', ';')
         output = Popen(cmd, stdout=PIPE).communicate()[0]
@@ -103,10 +104,11 @@ def gc(test_result=True):
         for line in output.split("\n"):
             log.debug(line)
 
-    if settings.USERPICS_PATH:
+    USERPICS_PATH = storage_path('userpics')
+    if USERPICS_PATH:
         log.debug('Cleaning up uncompressed userpics.')
 
-        cmd = ('find', settings.USERPICS_PATH,
+        cmd = ('find', USERPICS_PATH,
                '-name', '*__unconverted', '-mtime', '+1', '-type', 'f',
                '-exec', 'rm', '{}', ';')
         output = Popen(cmd, stdout=PIPE).communicate()[0]

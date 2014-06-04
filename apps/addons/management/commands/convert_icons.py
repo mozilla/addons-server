@@ -2,7 +2,6 @@ import os
 import stat
 from optparse import make_option
 
-from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.files.storage import default_storage as storage
 
@@ -10,6 +9,7 @@ from addons.models import Addon
 
 import amo
 from amo.decorators import write
+from amo.helpers import storage_path
 from amo.storage_utils import walk_storage
 from amo.utils import resize_image, chunked
 
@@ -63,5 +63,5 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
-        start_dir = settings.ADDON_ICONS_PATH
+        start_dir = storage_path('addon_icons')
         convert(start_dir, delete=options.get('delete'))

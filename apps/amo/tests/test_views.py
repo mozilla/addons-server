@@ -270,7 +270,7 @@ class TestOtherStuff(amo.tests.TestCase):
         # Get the url from a real page so it includes the build id.
         client = test.Client()
         doc = pq(client.get('/', follow=True).content)
-        js_url = absolutify(reverse('jsi18n'))
+        js_url = reverse('jsi18n')
         url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
         response = client.get(url_with_build, follow=True)

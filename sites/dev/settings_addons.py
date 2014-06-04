@@ -11,35 +11,16 @@ SERVER_EMAIL = 'zdev@addons.mozilla.org'
 
 SITE_URL = getattr(private_addons, 'SITE_URL', 'https://' + DOMAIN)
 SERVICES_URL = SITE_URL
-STATIC_URL = getattr(private_addons, 'STATIC_URL', 'https://addons-dev-cdn.allizom.org/')
-LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
-MIRROR_URL = STATIC_URL + 'storage/public-staging'
+STATIC_URL = getattr(private_addons, 'STATIC_URL', 'https://addons-dev-cdn.allizom.org/static/')
+MEDIA_URL = getattr(private_addons, 'MEDIA_URL', 'https://addons-dev-cdn.allizom.org/storage/')
+
+LOCAL_MIRROR_URL = '%s_files' % MEDIA_URL
+MIRROR_URL = MEDIA_URL + 'public-staging'
 
 CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://sandbox.paypal.com",)
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
-
-ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = (
-    STATIC_URL +
-    'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (
-    STATIC_URL +
-    'img/uploads/previews/full/%s/%d.png?modified=%d')
-NEW_PERSONAS_IMAGE_URL = STATIC_URL + 'img/uploads/themes/%(id)d/%(file)s'
-
-# paths for uploaded extensions
-FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
+CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (MEDIA_URL[:-1],)
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
-
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
-
-NEW_PERSONAS_IMAGE_URL = STATIC_URL + 'img/uploads/themes/%(id)d/%(file)s'
-
-MEDIA_URL = STATIC_URL + 'media/'
-ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/addon-icons'
-ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 
 
 CACHE_PREFIX = 'dev.olympia.%s' % CACHE_PREFIX

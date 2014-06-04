@@ -2,6 +2,7 @@ import json
 
 from django import test
 from django.core.cache import cache
+from django.test.utils import override_settings
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -12,7 +13,7 @@ import amo.tests
 from amo.tests import addon_factory
 import addons.signals
 from amo.urlresolvers import reverse
-from addons.models import (Addon, AddonDependency, AddonUpsell, CompatOverride,
+from addons.models import (Addon, AddonDependency, CompatOverride,
                            CompatOverrideRange, Preview)
 from applications.models import Application, AppVersion
 from bandwagon.models import MonthlyPick, SyncedCollection
@@ -365,6 +366,7 @@ class TestPane(amo.tests.TestCase):
         eq_(h2.text(), 'See all Featured Themes')
         eq_(h2.find('a.all').attr('href'), reverse('browse.personas'))
 
+    @override_settings(MEDIA_URL='/media/', STATIC_URL='/static/')
     def test_featured_personas(self):
         addon = Addon.objects.get(id=15679)
         r = self.client.get(self.url)
@@ -374,8 +376,8 @@ class TestPane(amo.tests.TestCase):
         eq_(featured.length, 1)
 
         # Look for all images that are not icon uploads.
-        imgs = doc('img:not([src*="/uploads/"])')
-        imgs_ok = (pq(img).attr('src').startswith('/media/img/')
+        imgs = doc('img:not([src*="/media/"])')
+        imgs_ok = (pq(img).attr('src').startswith('/static/')
                    for img in imgs)
         assert all(imgs_ok), 'Images must be prefixed with MEDIA_URL!'
 

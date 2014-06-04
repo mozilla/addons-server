@@ -9,6 +9,7 @@ import commonware.log
 import happyforms
 
 import amo
+from amo.helpers import storage_path
 from addons.models import Addon, AddonUser
 from files.models import File
 from files.utils import parse_addon
@@ -76,7 +77,7 @@ class XPIForm(happyforms.Form):
                  size=xpi.size)
 
         filename = f.generate_filename()
-        path = os.path.join(settings.ADDONS_PATH, str(version.addon.id))
+        path = os.path.join(storage_path('addons'), str(version.addon.id))
         with storage.open(os.path.join(path, filename), 'wb') as destination:
             for chunk in xpi.chunks():
                 hash.update(chunk)

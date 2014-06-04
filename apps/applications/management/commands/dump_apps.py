@@ -16,7 +16,7 @@ log = commonware.log.getLogger('z.cron')
 class Command(BaseCommand):
     help = 'Dump a json file containing AMO apps and versions.'
 
-    JSON_PATH = os.path.join(settings.NETAPP_STORAGE, 'apps.json')
+    JSON_PATH = os.path.join(settings.MEDIA_ROOT, 'apps.json')
 
     def handle(self, *args, **kw):
         apps = {}

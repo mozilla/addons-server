@@ -9,6 +9,7 @@ import commonware.log
 from PIL import Image
 
 import amo.search
+from amo.helpers import storage_path
 from applications.management.commands import dump_apps
 
 monitor_log = commonware.log.getLogger('z.monitor')
@@ -105,16 +106,17 @@ def elastic():
 def path():
     # Check file paths / permissions
     rw = (settings.TMP_PATH,
-          settings.NETAPP_STORAGE,
-          settings.UPLOADS_PATH,
-          settings.ADDONS_PATH,
-          settings.MIRROR_STAGE_PATH,
-          settings.GUARDED_ADDONS_PATH,
-          settings.ADDON_ICONS_PATH,
-          settings.COLLECTIONS_ICON_PATH,
+          settings.MEDIA_ROOT,
+          storage_path('addons'),
+          storage_path('uploads'),
+          storage_path('guarded_addons'),
+          storage_path('mirror_stage'),
+          storage_path('addon_icons'),
+          storage_path('collection_icons'),
           settings.PACKAGER_PATH,
-          settings.PREVIEWS_PATH,
-          settings.USERPICS_PATH,
+          storage_path('previews'),
+          storage_path('userpics'),
+          storage_path('reviewer_attachments'),
           settings.REVIEWER_ATTACHMENTS_PATH,
           dump_apps.Command.JSON_PATH,)
     r = [os.path.join(settings.ROOT, 'locale'),

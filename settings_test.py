@@ -30,18 +30,8 @@ def _polite_tmpdir():
 
 # See settings.py for documentation:
 IN_TEST_SUITE = True
-NETAPP_STORAGE = _polite_tmpdir()
-ADDONS_PATH = _polite_tmpdir()
-GUARDED_ADDONS_PATH = _polite_tmpdir()
-SIGNED_APPS_PATH = _polite_tmpdir()
-SIGNED_APPS_REVIEWER_PATH = _polite_tmpdir()
-UPLOADS_PATH = _polite_tmpdir()
-MIRROR_STAGE_PATH = _polite_tmpdir()
+MEDIA_ROOT = _polite_tmpdir()
 TMP_PATH = _polite_tmpdir()
-COLLECTIONS_ICON_PATH = _polite_tmpdir()
-PACKAGER_PATH = _polite_tmpdir()
-REVIEWER_ATTACHMENTS_PATH = _polite_tmpdir()
-DUMPED_APPS_PATH = _polite_tmpdir()
 
 # Don't call out to persona in tests.
 AUTHENTICATION_BACKENDS = (
@@ -62,19 +52,8 @@ PAYPAL_PERMISSIONS_URL = ''
 ENABLE_API_ERROR_SERVICE = False
 
 SITE_URL = 'http://testserver'
-STATIC_URL = SITE_URL + '/'
+LOCAL_MIRROR_URL = SITE_URL
 MOBILE_SITE_URL = ''
-MEDIA_URL = '/media/'
-# Reset these URLs to the defaults so your settings_local doesn't clobber them:
-ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
-ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-ADDON_ICON_URL = (STATIC_URL +
-                  'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-                         'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-                    'img/uploads/previews/full/%s/%d.%s?modified=%d')
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 
 CACHES = {
     'default': {

@@ -9,7 +9,7 @@
     <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ media('img/favicon.ico') }}">
+          href="{{ static('img/favicon.ico') }}">
 
     {% block rss_feed %}{% endblock %}
 
@@ -30,6 +30,7 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        data-static-url="{{ STATIC_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
     <div id="page">
@@ -39,7 +40,7 @@
             <h1 class="site-title">
               {% set appicon = 'firefox' if request.APP in (amo.MOBILE, amo.ANDROID) else request.APP.short %}
               <a href="{{ url('home') }}">
-                <img src="{{ media('img/zamboni/app_icons/' + appicon + '.png') }}" alt="">{{ _('Add-ons') }}
+                <img src="{{ static('img/zamboni/app_icons/' + appicon + '.png') }}" alt="">{{ _('Add-ons') }}
               </a>
             </h1>
           </hgroup>
@@ -82,7 +83,7 @@
     {% endblock %}
     {# js #}
     {% block site_js %}
-      <script src="{{ static(url('jsi18n')) }}"></script>
+      <script src="{{ cache_buster(url('jsi18n')) }}"></script>
       {{ js('zamboni/mobile') }}
       {% if waffle.switch('browserid-login') %}
         <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>

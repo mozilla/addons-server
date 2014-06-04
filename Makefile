@@ -2,7 +2,7 @@
 DJANGO = python manage.py
 SETTINGS = settings_local
 
-.PHONY: help docs test test_force_db tdd test_failed update_code update_deps update_db update_landfill full_update reindex
+.PHONY: help docs test test_force_db tdd test_failed update_code update_deps update_db update_assets update_landfill full_update reindex
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -47,7 +47,11 @@ update_deps:
 update_db:
 	schematic migrations
 
-full_update: update_code update_deps update_db
+update_assets:
+	$(DJANGO) compress_assets
+	$(DJANGO) collectstatic --noinput
+
+full_update: update_code update_deps update_db update_assets
 
 update_landfill:
 	$(DJANGO) install_landfill --settings=$(SETTINGS) $(ARGS)

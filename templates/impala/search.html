@@ -16,7 +16,7 @@
     {{ search_form.platform }}
   {% endif %}
   <button class="search-button" type="submit" title="{{ _('Search') }}"
-         src="{{ media('img/zamboni/global/btn-search.png') }}"></button>
+         src="{{ static('img/zamboni/global/btn-search.png') }}"></button>
   {% if search_cat != 'collections' %}
     <div id="site-search-suggestions"
          data-cat="{{ search_placeholder or search_cat }}"

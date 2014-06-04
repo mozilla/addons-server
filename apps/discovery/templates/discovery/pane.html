@@ -19,7 +19,7 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
   <header{% if user.is_authenticated() %} class="auth"{% endif %}>
     <section id="intro">
       <h1>
-        <img src="{{ media('img/zamboni/discovery_pane/logo-addons.png') }}" width="87" height="82" alt="">
+        <img src="{{ static('img/zamboni/discovery_pane/logo-addons.png') }}" width="87" height="82" alt="">
         <span class="translate" data-trans="title">
           {{ _('What are Add-ons?') }}
         </span>
@@ -125,5 +125,5 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
   {% if request.LANG == 'en-US' %}
     {{ js('zamboni/discovery-video', defer=True) }}
   {% endif %}
-  <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
+  <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
 {% endblock %}

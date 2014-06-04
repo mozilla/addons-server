@@ -1,11 +1,11 @@
 [submodule "templates/global"]
 	path = templates/global
 	url = https://github.com/mozilla/django-moz-header.git
-[submodule "media/css/global"]
-	path = media/css/global
+[submodule "static/css/global"]
+	path = static/css/global
 	url = https://github.com/mozilla/django-moz-header.git
-[submodule "media/js/global"]
-	path = media/js/global
+[submodule "static/js/global"]
+	path = static/js/global
 	url = https://github.com/mozilla/django-moz-header.git
 [submodule "vendor"]
 	path = vendor

@@ -307,12 +307,11 @@ Persona
 -------
 
 We use `Persona <https://login.persona.org/>`_ to log in and create accounts.
-In order for this to work you need to set ``SITE_URL`` and ``STATIC_URL`` in
+In order for this to work you need to set ``SITE_URL`` in
 your local settings file based on how you run your dev server. Here is an
 example::
 
     SITE_URL = 'http://localhost:8000'
-    STATIC_URL = SITE_URL + '/'  # STATIC_URL must have a trailing slash.
 
 
 Create an Admin User
