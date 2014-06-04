@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Max, Q, signals as dbsignals
@@ -2084,6 +2085,21 @@ class Preview(amo.models.ModelBase):
 
 dbsignals.pre_save.connect(save_signal, sender=Preview,
                            dispatch_uid='preview_translations')
+
+
+def delete_preview_files(sender, instance, **kw):
+    """On delete of the Preview object from the database, unlink the image
+    and thumb on the file system """
+    for filename in [instance.image_path, instance.thumbnail_path]:
+        if storage.exists(filename):
+            log.info('Removing filename: %s for preview: %s'
+                     % (filename, instance.pk))
+            storage.delete(filename)
+
+
+models.signals.post_delete.connect(delete_preview_files,
+                                   sender=Preview,
+                                   dispatch_uid='delete_preview_files')
 
 
 class AppSupport(amo.models.ModelBase):
