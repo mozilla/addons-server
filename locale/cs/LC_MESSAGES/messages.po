@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2014-05-27 15:16+0000\n"
+"PO-Revision-Date: 2014-06-05 09:52+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401203768.0\n"
+"X-POOTLE-MTIME: 1401961921.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -8714,7 +8714,7 @@ msgstr "Skvělé doplňky o práci, zábavě, soukromí, produktivitě&hellip; z
 
 #: apps/discovery/modules.py:347
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Vítězné doplňky v Australis Contest"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -8789,15 +8789,15 @@ msgstr "Přerušit instalaci"
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:4
 msgid "Football fanatic?"
-msgstr ""
+msgstr "Jste fotbalový fanatik?"
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:5
 msgid "Firefox lets you keep up with all the action in Brazil."
-msgstr ""
+msgstr "Firefox vám umožňuje mít přehled o všem, co se v Brazílii děje."
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:6
 msgid "Activate the Goal.com sidebar"
-msgstr ""
+msgstr "Aktivujte si lištu Goal.com"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -12668,7 +12668,7 @@ msgstr "Profilové foto"
 
 #: apps/users/forms.py:319 apps/users/templates/users/edit.html:128
 msgid "Default locale"
-msgstr ""
+msgstr "Výchozí jazyk"
 
 #: apps/users/forms.py:456
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -13020,6 +13020,8 @@ msgstr "Smazat aktuální fotku"
 #: apps/users/templates/users/edit.html:130
 msgid "This is the default locale used to display information about you (like your description)."
 msgstr ""
+"Výchozí jazyk pro zobrazení informací o vás (jako jsou například informace o "
+"vás)."
 
 #: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
@@ -13595,29 +13597,33 @@ msgstr "Právní omezení"
 
 #: templates/global/copyright.html:11
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Nahlásit zneužití ochranné známky"
 
 #: templates/global/copyright.html:17
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Pokud není <a href=\"http://www.mozilla.org/about/legal.html#site\">řečeno "
+"jinak</a>, je obsah tohoto webu licencován pod <br /> <a "
+"href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons "
+"Attribution Share-Alike License v3.0 </a> nebo pozdější verzí."
 
 #: templates/global/header.html:3
 msgid "skip to navigation"
-msgstr ""
+msgstr "přeskočit na navigaci"
 
 #: templates/global/header.html:4
 msgid "switch language"
-msgstr ""
+msgstr "změnit jazyk"
 
 #: templates/global/header.html:9
 msgid "Back to Mozilla.com"
-msgstr ""
+msgstr "Zpět na Mozilla.com"
 
 #: templates/global/header.html:12 templates/global/minimal-header.html:2
 msgid "visit <span>mozilla.org</span>"
-msgstr ""
+msgstr "navštívit <span>mozilla.org</span>"
 
 #: templates/global/menu_links.html:5 templates/global/menu_links.html:20 templates/global/mobile/header.html:4 templates/mobile/header.html:4
 msgid "Features"
@@ -13625,55 +13631,55 @@ msgstr "Vlastnosti"
 
 #: templates/global/menu_links.html:8
 msgid "Customization"
-msgstr ""
+msgstr "Přizpůsobení"
 
 #: templates/global/menu_links.html:9
 msgid "Technology"
-msgstr ""
+msgstr "Technologie"
 
 #: templates/global/menu_links.html:10 templates/global/menu_links.html:27
 msgid "Videos"
-msgstr ""
+msgstr "Videa"
 
 #: templates/global/menu_links.html:11
 msgid "Tour"
-msgstr ""
+msgstr "Prohlídka"
 
 #: templates/global/menu_links.html:12 templates/global/menu_links.html:28
 msgid "Future Releases"
-msgstr ""
+msgstr "Budoucí verze"
 
 #: templates/global/menu_links.html:21
 msgid "Customize"
-msgstr ""
+msgstr "Přizpůsobení"
 
 #: templates/global/menu_links.html:22
 msgid "Sync"
-msgstr ""
+msgstr "Synchronizace"
 
 #: templates/global/menu_links.html:23
 msgid "Develop"
-msgstr ""
+msgstr "Vývoj"
 
 #: templates/global/menu_links.html:24
 msgid "Get Involved"
-msgstr ""
+msgstr "Zapojte se"
 
 #: templates/global/menu_links.html:39
 msgid "Personas"
-msgstr ""
+msgstr "Personas"
 
 #: templates/global/menu_links.html:51
 msgid "Firefox Support"
-msgstr ""
+msgstr "Podpora Firefoxu"
 
 #: templates/global/menu_links.html:52
 msgid "Mobile Support"
-msgstr ""
+msgstr "Podpora mobilní verze"
 
 #: templates/global/menu_links.html:53
 msgid "Thunderbird Support"
-msgstr ""
+msgstr "Podpora Thunderbirdu"
 
 #: templates/global/mobile/header.html:3 templates/mobile/header.html:3
 msgid "Mozilla Firefox"
@@ -13685,7 +13691,7 @@ msgstr "Navštívit Mozillu"
 
 #: templates/global/mobile/header.html:10
 msgid "Menu"
-msgstr ""
+msgstr "Nabídka"
 
 #: templates/impala/base.html:117
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
