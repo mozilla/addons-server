@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2014-05-21 21:22+0000\n"
+"PO-Revision-Date: 2014-06-05 19:08+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400707346.0\n"
+"X-POOTLE-MTIME: 1401995339.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -8736,7 +8736,7 @@ msgstr "Geweldige add-ons voor werk, plezier, privacy, productiviteit… vrijwel
 
 #: apps/discovery/modules.py:347
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Winnaars Add-ons voor Australis-wedstijd"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -8811,15 +8811,15 @@ msgstr "Installatie annuleren"
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:4
 msgid "Football fanatic?"
-msgstr ""
+msgstr "Voetbalfanaat?"
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:5
 msgid "Firefox lets you keep up with all the action in Brazil."
-msgstr ""
+msgstr "Met Firefox blijft u op de hoogte van alle actie in Brazilië."
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:6
 msgid "Activate the Goal.com sidebar"
-msgstr ""
+msgstr "Activeer de Goal.com-zijbalk"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -12691,7 +12691,7 @@ msgstr "Profielfoto"
 
 #: apps/users/forms.py:319 apps/users/templates/users/edit.html:128
 msgid "Default locale"
-msgstr ""
+msgstr "Standaardlocale"
 
 #: apps/users/forms.py:456
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -13043,6 +13043,8 @@ msgstr "Huidige foto verwijderen"
 #: apps/users/templates/users/edit.html:130
 msgid "This is the default locale used to display information about you (like your description)."
 msgstr ""
+"Dit is de locale die standaard wordt gebruikt om informatie over u (zoals uw "
+"beschrijving) weer te geven."
 
 #: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
@@ -13618,29 +13620,34 @@ msgstr "Juridische kennisgevingen"
 
 #: templates/global/copyright.html:11
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Misbruik van handelsmerk melden"
 
 #: templates/global/copyright.html:17
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Behalve waar anders <a "
+"href=\"http://www.mozilla.org/about/legal.html#site\">aangegeven</a>, wordt de "
+"inhoud van deze website uitgegeven onder de <br /> <a "
+"href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons "
+"Attribution Share-Alike Licence v3.0 </a> of een latere versie."
 
 #: templates/global/header.html:3
 msgid "skip to navigation"
-msgstr ""
+msgstr "overslaan naar navigatie"
 
 #: templates/global/header.html:4
 msgid "switch language"
-msgstr ""
+msgstr "taal wisselen"
 
 #: templates/global/header.html:9
 msgid "Back to Mozilla.com"
-msgstr ""
+msgstr "Terug naar Mozilla.com"
 
 #: templates/global/header.html:12 templates/global/minimal-header.html:2
 msgid "visit <span>mozilla.org</span>"
-msgstr ""
+msgstr "bezoek <span>mozilla.org</span>"
 
 #: templates/global/menu_links.html:5 templates/global/menu_links.html:20 templates/global/mobile/header.html:4 templates/mobile/header.html:4
 msgid "Features"
@@ -13648,55 +13655,55 @@ msgstr "Functies"
 
 #: templates/global/menu_links.html:8
 msgid "Customization"
-msgstr ""
+msgstr "Aanpassing"
 
 #: templates/global/menu_links.html:9
 msgid "Technology"
-msgstr ""
+msgstr "Technologie"
 
 #: templates/global/menu_links.html:10 templates/global/menu_links.html:27
 msgid "Videos"
-msgstr ""
+msgstr "Video’s"
 
 #: templates/global/menu_links.html:11
 msgid "Tour"
-msgstr ""
+msgstr "Rondleiding"
 
 #: templates/global/menu_links.html:12 templates/global/menu_links.html:28
 msgid "Future Releases"
-msgstr ""
+msgstr "Toekomstige uitgaven"
 
 #: templates/global/menu_links.html:21
 msgid "Customize"
-msgstr ""
+msgstr "Aanpassen"
 
 #: templates/global/menu_links.html:22
 msgid "Sync"
-msgstr ""
+msgstr "Sync"
 
 #: templates/global/menu_links.html:23
 msgid "Develop"
-msgstr ""
+msgstr "Ontwikkelen"
 
 #: templates/global/menu_links.html:24
 msgid "Get Involved"
-msgstr ""
+msgstr "Meedoen"
 
 #: templates/global/menu_links.html:39
 msgid "Personas"
-msgstr ""
+msgstr "Persona’s"
 
 #: templates/global/menu_links.html:51
 msgid "Firefox Support"
-msgstr ""
+msgstr "Ondersteuning voor Firefox"
 
 #: templates/global/menu_links.html:52
 msgid "Mobile Support"
-msgstr ""
+msgstr "Ondersteuning voor Mobiel"
 
 #: templates/global/menu_links.html:53
 msgid "Thunderbird Support"
-msgstr ""
+msgstr "Ondersteuning voor Thunderbird"
 
 #: templates/global/mobile/header.html:3 templates/mobile/header.html:3
 msgid "Mozilla Firefox"
@@ -13708,7 +13715,7 @@ msgstr "Bezoek Mozilla"
 
 #: templates/global/mobile/header.html:10
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 #: templates/impala/base.html:117
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
