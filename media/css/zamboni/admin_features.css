@@ -152,7 +152,7 @@ th {
 }
 .featured-app .icon {
     display: inline-block;
-    background: url(../../img/mkt/icons/mkt-reviewer-icons.png) no-repeat 0 0;
+    background: url(../../img/impala/reviewer-icons.png) no-repeat 0 0;
     height: 16px;
     width: 16px;
 }
@@ -206,7 +206,7 @@ a.remove {
     text-indent: -99999px;
     width: 22px;
     height: 22px;
-    background: #999 url(../../img/mkt/header-icons.png) no-repeat -1px -26px;
+    background: #999 url(../../img/impala/header-icons.png) no-repeat -1px -26px;
     border-radius: 50%;
 }
 a.remove:last-child {
@@ -236,7 +236,7 @@ ul.ui-autocomplete {
     display: inline-block;
     width: 23px;
     height: 23px;
-    background: url(../../img/mkt/icons/settings.png) no-repeat 0 -24px;
+    background: url(../../img/impala/settings.png) no-repeat 0 -24px;
 }
 .localepicker {
     height: 150px;
