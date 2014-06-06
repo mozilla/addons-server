@@ -408,12 +408,12 @@ class TestTranslate(ReviewTest):
 
     def test_unicode_call(self):
         review = Review.objects.create(addon=self.addon, user=self.user,
-                                       title='or', body=u'héhé')
+                                       title='or', body=u'héhé 3%')
         url = shared_url('reviews.translate', review.addon, review.id, 'fr')
         r = self.client.get(url)
         eq_(r.status_code, 302)
         eq_(r.get('Location'),
-            'https://translate.google.com/#auto/fr/h%C3%A9h%C3%A9')
+            'https://translate.google.com/#auto/fr/h%C3%A9h%C3%A9%203%25')
 
     @mock.patch('reviews.views.requests')
     def test_ajax_call(self, requests):
