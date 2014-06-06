@@ -51,11 +51,11 @@ class TemplatePromo(PromoModule):
     abstract = True
     template = None
 
-    def context(self):
+    def context(self, **kwargs):
         return {}
 
     def render(self, **kw):
-        c = dict(self.context())
+        c = dict(self.context(**kw))
         c.update(kw)
         r = jingo.render_to_string(self.request, self.template, c)
         return jinja2.Markup(r)
@@ -65,7 +65,7 @@ class MonthlyPick(TemplatePromo):
     slug = 'Monthly Pick'
     template = 'discovery/modules/monthly.html'
 
-    def context(self):
+    def context(self, **kwargs):
         try:
             pick = MP.objects.filter(locale=self.request.LANG)[0]
         except IndexError:
@@ -352,8 +352,7 @@ class FootballWorldCup2014(TemplatePromo):
     slug = 'Football WorldCup 2014'
     template = 'discovery/modules/football-worldcup-2014.html'
 
-    def context(self):
-        default = 'en-US'
+    def context(self, **kwargs):
         locales = {
             'de': 'de',
             'fr': 'fr',
@@ -361,9 +360,19 @@ class FootballWorldCup2014(TemplatePromo):
             'ja': 'ja',
             'id': 'id',
             'es': 'es-ES',
-            'pt': 'pt-BR'
+            'pt': 'pt-BR',
+            'en': 'en-US',
         }
         # Make sure that all "es" or "pt" sublanguages match too.
-        locale = locales.get(self.request.LANG[:2], default)
-        url = "https://activations.cdn.mozilla.net/%s/goal.html" % locale
+        key = self.request.LANG[:2]
+        # Make sure the key is a supported one before using it.
+        key = key if key in locales else 'en'
+        locale = locales[key]
+        source = kwargs.get('module_context', 'home')
+        source = "AMOhome" if source == "home" else "addonmanager"
+        url = (
+            "https://activations.cdn.mozilla.net/{}/goal.html"
+            "?utm_source={}&utm_medium=banner&utm_content=goalcom{}"
+            "&utm_campaign=WC2014".format(locale, source, key)
+        )
         return {'url': url}
