@@ -2,8 +2,7 @@ import logging
 
 from django.shortcuts import render
 
-from pyes.exceptions import ElasticSearchException
-from pyes.urllib3.connectionpool import HTTPError
+from elasticsearch import TransportError
 
 
 log = logging.getLogger('z.es')
@@ -12,7 +11,6 @@ log = logging.getLogger('z.es')
 class ElasticsearchExceptionMiddleware(object):
 
     def process_exception(self, request, exception):
-        if (issubclass(exception.__class__, (ElasticSearchException,
-                                             HTTPError))):
+        if issubclass(exception.__class__, TransportError):
             log.error(u'Elasticsearch error: %s' % exception)
             return render(request, 'search/down.html', status=503)

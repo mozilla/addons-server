@@ -26,7 +26,6 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
-from addons.search import setup_mapping
 from applications.models import AppVersion
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
@@ -199,7 +198,7 @@ class TestAddonManager(amo.tests.TestCase):
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
         eq_(len(q.all()), 4)
 
-        # Pick one of the listed addons.
+        # Pick one of the listed addons.
         addon = Addon.objects.get(pk=2464)
         assert addon in q.all()
 
@@ -1353,11 +1352,11 @@ class TestAddonModels(amo.tests.TestCase):
         addon = Addon.objects.create(type=1)
         version = Version.objects.create(addon=addon)
         File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        # Cheating date to make sure we don't have a date on the same second
-        # the code we test is running.
+        # Cheating date to make sure we don't have a date on the same second
+        # the code we test is running.
         past = self.days_ago(1)
         version.update(nomination=past, created=past, modified=past)
-        # This is a preliminary review.
+        # This is a preliminary review.
         addon.update(status=amo.STATUS_UNREVIEWED)
         current_nomination = addon.versions.latest().nomination
         assert current_nomination
@@ -1372,11 +1371,11 @@ class TestAddonModels(amo.tests.TestCase):
         addon = Addon.objects.create(type=1)
         version = Version.objects.create(addon=addon)
         File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        # Cheating date to make sure we don't have a date on the same second
-        # the code we test is running.
+        # Cheating date to make sure we don't have a date on the same second
+        # the code we test is running.
         past = self.days_ago(1)
         version.update(nomination=past, created=past, modified=past)
-        # This is a preliminary review.
+        # This is a preliminary review.
         addon.update(status=amo.STATUS_UNREVIEWED)
         current_nomination = addon.versions.latest().nomination
         assert current_nomination
@@ -1393,8 +1392,8 @@ class TestAddonModels(amo.tests.TestCase):
         File.objects.create(status=amo.STATUS_LITE, version=version)
         # The addon has been prelimarily reviewed.
         addon.update(status=amo.STATUS_LITE)
-        # Cheating to make sure we don't have a date on the same second
-        # of the running code.
+        # Cheating to make sure we don't have a date on the same second
+        # of the running code.
         past = self.days_ago(1)
         version.update(nomination=past, created=past, modified=past)
         old_nomination = addon.versions.latest().nomination
@@ -1419,8 +1418,8 @@ class TestAddonModels(amo.tests.TestCase):
         File.objects.create(status=amo.STATUS_PUBLIC, version=version)
         # The addon has been fully reviewed.
         addon.update(status=amo.STATUS_PUBLIC)
-        # Cheating to make sure we don't have a date on the same second
-        # of the running code.
+        # Cheating to make sure we don't have a date on the same second
+        # of the running code.
         past = self.days_ago(1)
         version.update(nomination=past, created=past, modified=past)
         old_nomination = addon.versions.latest().nomination
@@ -2170,12 +2169,10 @@ class TestSearchSignals(amo.tests.ESTestCase):
 
     def setUp(self):
         super(TestSearchSignals, self).setUp()
-        setup_mapping()
         self.addCleanup(self.cleanup)
 
     def cleanup(self):
-        for index in settings.ES_INDEXES.values():
-            self.es.delete_index_if_exists(index)
+        self.empty_index('default')
 
     def test_no_addons(self):
         eq_(Addon.search().count(), 0)

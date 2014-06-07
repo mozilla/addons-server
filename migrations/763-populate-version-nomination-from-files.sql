@@ -1,6 +1,6 @@
 # Set nomination to every Version that's linked to an
 # addon UNDER_REVIEW and which nomination is NULL
-# See bug 717495
+# See bug 717495
 
 UPDATE `versions`
 INNER JOIN `addons` ON ( `versions`.`addon_id` = addons.`id` )

@@ -1054,7 +1054,7 @@ CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 # Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
 # The task can catch that and recover but should exit ASAP. Note that there is
 # a separate, shorter timeout for validation tasks.
-CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 2
+CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 ## Fixture Magic
 CUSTOM_DUMPS = {
@@ -1097,7 +1097,7 @@ LOGGING = {
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
         'caching': {'level': logging.WARNING},
-        'pyes': {'handlers': ['null']},
+        'elasticsearch': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
@@ -1277,12 +1277,11 @@ BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
 ## elasticsearch
 ES_HOSTS = ['127.0.0.1:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ES_INDEXES = {'default': 'addons',
-              'update_counts': 'addons_stats',
-              'download_counts': 'addons_stats',
-              'stats_contributions': 'addons_stats',
-              'stats_collections_counts': 'addons_stats',
-              'users_install': 'addons_stats'}
+ES_INDEXES = {
+    'default': 'addons',
+    'stats': 'addons_stats',
+}
+
 ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_DEFAULT_NUM_SHARDS = 5
@@ -1393,10 +1392,10 @@ ALLOW_SELF_REVIEWS = False
 MOBILE_USER_AGENTS = ('mozilla.+mobile|android|fennec|iemobile|'
                       'iphone|opera (?:mini|mobi)')
 
-#Credentials for accessing Google Analytics stats.
+# Credentials for accessing Google Analytics stats.
 GOOGLE_ANALYTICS_CREDENTIALS = {}
 
-#Which domain to access GA stats for. If not set, defaults to DOMAIN.
+# Which domain to access GA stats for. If not set, defaults to DOMAIN.
 GOOGLE_ANALYTICS_DOMAIN = None
 
 # Used for general web API access.
@@ -1460,7 +1459,7 @@ WHITELISTED_CLIENTS_EMAIL_API = []
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
 
-# Add on used to collect stats (!technical dept around!)
+# Add on used to collect stats (!technical dept around!)
 ADDON_COLLECTOR_ID = 11950
 
 # Connection to the hive server.

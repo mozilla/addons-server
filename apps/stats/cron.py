@@ -85,14 +85,14 @@ def addon_total_contributions():
 
 
 @cronjobs.register
-def index_latest_stats(index=None, aliased=True):
+def index_latest_stats(index=None):
     raise_if_reindex_in_progress('amo')
+    fmt = lambda d: d.strftime('%Y-%m-%d')
     latest = UpdateCount.search(index).order_by('-date').values_dict()
     if latest:
         latest = latest[0]['date']
     else:
-        latest = datetime.date.today() - datetime.timedelta(days=1)
-    fmt = lambda d: d.strftime('%Y-%m-%d')
-    date_range = '%s:%s' % (fmt(latest), fmt(datetime.date.today()))
+        latest = fmt(datetime.date.today() - datetime.timedelta(days=1))
+    date_range = '%s:%s' % (latest, fmt(datetime.date.today()))
     cron_log.info('index_stats --date=%s' % date_range)
     call_command('index_stats', addons=None, date=date_range)
