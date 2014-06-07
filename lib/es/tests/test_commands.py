@@ -12,8 +12,9 @@ import amo.search
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from es.management.commands.reindex import call_es
 from lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
+
+ES = amo.search.get_es()
 
 
 class TestIndexCommand(amo.tests.ESTestCase):
@@ -26,13 +27,13 @@ class TestIndexCommand(amo.tests.ESTestCase):
         self.url = reverse('search.search')
 
         # Any index created during the test will be deleted.
-        self.indices = call_es('_status').json()['indices'].keys()
+        self.indices = ES.indices.status()['indices'].keys()
 
     def tearDown(self):
-        current_indices = call_es('_status').json()['indices'].keys()
+        current_indices = ES.indices.status()['indices'].keys()
         for index in current_indices:
             if index not in self.indices:
-                call_es(index, method='DELETE')
+                ES.indices.delete(index, ignore=404)
 
     def check_results(self, expected):
         """Make sure the expected addons are listed in a standard search."""
@@ -55,7 +56,7 @@ class TestIndexCommand(amo.tests.ESTestCase):
 
     def get_indices_aliases(self):
         """Return the test indices with an alias."""
-        indices = call_es('_aliases').json()
+        indices = ES.indices.get_aliases()
         items = [(index, aliases['aliases'].keys()[0])
                  for index, aliases in indices.items()
                  if len(aliases['aliases']) > 0 and index.startswith('test')]
@@ -102,7 +103,7 @@ class TestIndexCommand(amo.tests.ESTestCase):
             wanted.append(amo.tests.addon_factory())
             connection._commit()
             connection.clean_savepoints()
-            amo.search.get_es().refresh()
+            self.refresh()
             self.check_results(wanted)
 
         if len(wanted) == old_addons_count:
@@ -117,7 +118,7 @@ class TestIndexCommand(amo.tests.ESTestCase):
         # The reindexation is done, let's double check we have all our docs.
         connection._commit()
         connection.clean_savepoints()
-        amo.search.get_es().refresh()
+        self.refresh()
         self.check_results(wanted)
 
         # New indices have been created, and aliases now point to them.
