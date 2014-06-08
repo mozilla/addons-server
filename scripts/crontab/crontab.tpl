@@ -35,7 +35,6 @@ HOME=/tmp
 
 #once per day
 30 9 * * * %(z_cron)s update_user_ratings
-50 9 * * * %(z_cron)s gc
 30 12 * * * %(z_cron)s cleanup_synced_collections
 30 13 * * * %(z_cron)s expired_resetcode
 30 14 * * * %(z_cron)s category_totals
@@ -44,6 +43,7 @@ HOME=/tmp
 #30 16 * * * %(z_cron)s personas_adu
 30 17 * * * %(z_cron)s share_count_totals
 30 18 * * * %(z_cron)s recs
+0 22 * * * %(z_cron)s gc
 30 6 * * * %(z_cron)s deliver_hotness
 45 7 * * * %(django)s dump_apps
 
