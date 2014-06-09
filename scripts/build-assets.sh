@@ -1,6 +1,13 @@
 # This script builds assets in Jenkins to make sure there are no
 # less compilation errors
 
+if [ ! -z $SET_PY_27 ]; then
+    source /opt/rh/python27/enable
+fi
+
+# Echo the python version used in this build.
+python --version
+
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
 VENDOR=$WORKSPACE/vendor

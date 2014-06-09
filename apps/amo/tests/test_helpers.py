@@ -291,11 +291,13 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
 
     # With nofollow (default).
     res = urlresolvers.linkify_with_outgoing('a text http://example.com link')
-    eq_(res, 'a text <a rel="nofollow" href="bar">http://example.com</a> link')
+    # Use PyQuery because the attributes could be rendered in any order.
+    doc = PyQuery(res)
+    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
 
     res = urlresolvers.linkify_with_outgoing('a text http://example.com link',
                                              nofollow=True)
-    eq_(res, 'a text <a rel="nofollow" href="bar">http://example.com</a> link')
+    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
 
 
 @patch('amo.helpers.urlresolvers.linkify_bounce_url_callback')
@@ -315,12 +317,14 @@ def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     # With nofollow (default).
     res = urlresolvers.linkify_with_outgoing(
         'a markup <a href="http://example.com">link</a> with text')
-    eq_(res, 'a markup <a rel="nofollow" href="bar">link</a> with text')
+    # Use PyQuery because the attributes could be rendered in any order.
+    doc = PyQuery(res)
+    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
 
     res = urlresolvers.linkify_with_outgoing(
         'a markup <a href="http://example.com">link</a> with text',
         nofollow=True)
-    eq_(res, 'a markup <a rel="nofollow" href="bar">link</a> with text')
+    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
 
 
 class TestLicenseLink(amo.tests.TestCase):

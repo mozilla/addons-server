@@ -1,5 +1,11 @@
 # This script should be called from within Hudson
 
+if [ ! -z $SET_PY_27 ]; then
+    source /opt/rh/python27/enable
+fi
+
+# Echo the python version used in this build.
+python --version
 
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
