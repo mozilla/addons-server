@@ -208,13 +208,13 @@ class Version(amo.models.ModelBase):
     def all_activity(self):
         from devhub.models import VersionLog  # yucky
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
-              .select_related(depth=1).no_cache())
+              .select_related('activity_log', 'version').no_cache())
         return al
 
     @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
-        avs = self.apps.select_related(depth=1)
+        avs = self.apps.select_related('versions', 'license')
         return self._compat_map(avs)
 
     @amo.cached_property
@@ -385,7 +385,8 @@ class Version(amo.models.ModelBase):
 
         # FIXME: find out why we have no_cache() here and try to remove it.
         avs = (ApplicationsVersions.objects.filter(version__in=ids)
-               .select_related(depth=1).no_cache())
+               .select_related('application', 'apps', 'min_set', 'max_set')
+               .no_cache())
         files = File.objects.filter(version__in=ids).no_cache()
 
         def rollup(xs):
@@ -411,7 +412,7 @@ class Version(amo.models.ModelBase):
             return
 
         al = (VersionLog.objects.filter(version__in=ids).order_by('created')
-              .select_related(depth=1).no_cache())
+              .select_related('activity_log', 'version').no_cache())
 
         def rollup(xs):
             groups = amo.utils.sorted_groupby(xs, 'version_id')
