@@ -1,9 +1,4 @@
-import os
-
-from datetime import datetime
-
 from django.db import models
-from django.conf import settings
 
 import amo.models
 
@@ -22,3 +17,4 @@ class DiscoveryModule(amo.models.ModelBase):
 
     class Meta:
         db_table = 'discovery_modules'
+        unique_together = ('app', 'module')

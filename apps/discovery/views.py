@@ -166,13 +166,12 @@ def module_admin(request):
 def _sync_db_and_registry(qs, app):
     """Match up the module registry and DiscoveryModule rows in the db."""
     existing = dict((m.module, m) for m in qs)
-    add = [m for m in module_registry if m not in existing]
-    delete = [m for m in existing if m not in module_registry]
-    for m in add:
-        DiscoveryModule.objects.create(module=m, app_id=app.id)
-    for m in delete:
-        DiscoveryModule.objects.get(module=m, app=app.id).delete()
-    if add or delete:
+    to_add = [m for m in module_registry if m not in existing]
+    to_delete = [m for m in existing if m not in module_registry]
+    for m in to_add:
+        DiscoveryModule.objects.get_or_create(module=m, app_id=app.id)
+    DiscoveryModule.objects.filter(module__in=to_delete, app=app.id).delete()
+    if to_add or to_delete:
         qs._result_cache = None
 
 
