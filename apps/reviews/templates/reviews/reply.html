@@ -22,7 +22,7 @@
   <div class="primary island hero" id="reviews">
     {% include "reviews/review.html" %}
     <form method="post" class="prettyform c"
-          action="{{ shared_url('reviews.reply', addon, review.id) }}">
+          action="{{ addon.get_reviews_url('reply', args=[review.id]) }}">
       {{ csrf() }}
       <fieldset>
         <h2>{{ _('Write a Reply') }}</h2>
