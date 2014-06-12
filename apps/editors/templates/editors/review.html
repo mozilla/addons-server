@@ -22,7 +22,7 @@
     <img src="{{ addon.icon_url }}" class="icon" alt="" />
     {# L10n: "Review [add-on name]" #}
     <span>
-      {{ _('Review {0}')|f(addon.name) }}
+      {{ _('Review {0}')|fe(addon.name) }}
     </span>
     {% if version %}
       <span class="version">{{ version.version }}</span>

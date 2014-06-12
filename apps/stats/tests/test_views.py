@@ -11,6 +11,7 @@ from pyquery import PyQuery as pq
 import amo.tests
 from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
+from addons.models import Addon
 from bandwagon.models import Collection
 from stats import views, tasks
 from stats import search
@@ -904,3 +905,24 @@ class TestCollections(amo.tests.ESTestCase):
         eq_(len(content), 2)
         eq_(content[0]['date'], yesterday.strftime('%Y-%m-%d'))
         eq_(content[1]['date'], day_before.strftime('%Y-%m-%d'))
+
+
+class TestXssOnAddonName(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', ]
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.name = "<script>alert('hé')</script>"
+        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
+        self.addon.name = self.name
+        self.addon.save()
+
+    def assertNameAndNoXSS(self, url):
+        response = self.client.get(url)
+        assert self.name not in response.content
+        assert self.escaped in response.content
+
+    def test_stats_page(self):
+        url = reverse('stats.overview', args=[self.addon.slug])
+        self.client.login(username='del@icio.us', password='password')
+        self.assertNameAndNoXSS(url)

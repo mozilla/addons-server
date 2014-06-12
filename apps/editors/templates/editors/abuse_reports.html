@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<h2>{{_('Abuse Reports for {addon} ({num})')|f(addon=addon.name, num=total|numberfmt) }}</h2>
+<h2>{{_('Abuse Reports for {addon} ({num})')|fe(addon=addon.name, num=total|numberfmt) }}</h2>
 <ul>
   {% for report in reports %}
   <li>

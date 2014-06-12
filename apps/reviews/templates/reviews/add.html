@@ -1,7 +1,7 @@
 {% extends "impala/base_shared.html" %}
 {% from 'includes/forms.html' import pretty_field, required_note %}
 
-{% set title = _('Add a review for {0}')|f(addon.name) %}
+{% set title = _('Add a review for {0}')|fe(addon.name) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 
