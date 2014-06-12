@@ -3,7 +3,7 @@
 MAILTO=amo-developers@mozilla.org
 
 HOME=/tmp
-YESTERDAY=$(date --date="yesterday" +"%Y-%m-%d")
+YESTERDAY=$(date --date="yesterday" +"\%%Y-\%%m-\%%d")
 
 # Every minute!
 * * * * * %(z_cron)s fast_current_version
