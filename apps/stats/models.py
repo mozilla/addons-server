@@ -22,6 +22,19 @@ from zadmin.models import DownloadSource
 from .db import StatsDictField
 
 
+# This helps us increment counters in dicts easily, for StatsDictFields.
+def update_inc(initial, key, count):
+    """Update and increment the initial dict with "add".
+
+    If the key isn't in "initial", add the new key with a value of 1.
+    If the key is not already in "initial", increment the current value.
+
+    """
+    initial = initial or {}
+    initial[key] = count or initial.get(key, 0) + 1
+    return initial
+
+
 class AddonCollectionCount(models.Model):
     addon = models.ForeignKey('addons.Addon')
     collection = models.ForeignKey('bandwagon.Collection')
@@ -62,6 +75,17 @@ class DownloadCount(SearchMixin, models.Model):
         db_table = 'download_counts'
 
 
+# TODO: remove when the script is proven to work correctly.
+class DownloadCountTmp(SearchMixin, models.Model):
+    addon = models.ForeignKey('addons.Addon')
+    count = models.PositiveIntegerField()
+    date = models.DateField()
+    sources = StatsDictField(db_column='src', null=True)
+
+    class Meta:
+        db_table = 'download_counts_tmp'
+
+
 class UpdateCount(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
@@ -74,6 +98,21 @@ class UpdateCount(SearchMixin, models.Model):
 
     class Meta:
         db_table = 'update_counts'
+
+
+# TODO: remove when the script is proven to work correctly.
+class UpdateCountTmp(SearchMixin, models.Model):
+    addon = models.ForeignKey('addons.Addon')
+    count = models.PositiveIntegerField()
+    date = models.DateField()
+    versions = StatsDictField(db_column='version', null=True)
+    statuses = StatsDictField(db_column='status', null=True)
+    applications = StatsDictField(db_column='application', null=True)
+    oses = StatsDictField(db_column='os', null=True)
+    locales = StatsDictField(db_column='locale', null=True)
+
+    class Meta:
+        db_table = 'update_counts_tmp'
 
 
 class AddonShareCount(models.Model):
