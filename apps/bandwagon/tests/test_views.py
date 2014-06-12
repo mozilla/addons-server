@@ -716,6 +716,19 @@ class TestCRUD(amo.tests.TestCase):
         self.client.post(url, dict(sure='1'))
         eq_(len(Collection.objects.filter(slug=self.slug)), 0)
 
+    def test_no_xss_in_delete_confirm_page(self):
+        name = '"><script>alert(/XSS/);</script>'
+        self.create_collection(name=name)
+        collection = Collection.objects.latest()
+        eq_(collection.name, name)
+        url = reverse('collections.delete', args=['admin', collection.slug, ])
+        r = self.client.get(url)
+        self.assertContains(
+            r,
+            '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
+        )
+        assert name not in r.content
+
     def test_delete_breadcrumbs(self):
         c = Collection.objects.all()[0]
         r = self.client.get(reverse('collections.delete',
