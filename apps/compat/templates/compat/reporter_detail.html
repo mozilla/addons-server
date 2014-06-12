@@ -7,7 +7,7 @@
 {% block content %}
   {% set detail_url = request.path %}
   {{ impala_breadcrumbs([(url('compat.reporter'), _('Add-on Compatibility Center')),
-                         (works_properly and detail_url, _('{addon} Compatibility Reports')|f(addon=name))]) }}
+                         (works_properly and detail_url, _('{addon} Compatibility Reports')|fe(addon=name))]) }}
   <div id="reports">
     {% if works.success or works.failure %}
       <a href="{{ detail_url|urlparams(works_properly=1) }}" class="button good">
@@ -22,7 +22,7 @@
     {% endif %}
   </div>
   <header>
-    <h1>{{ _('{addon} Compatibility Reports')|f(addon=name) }}</h1>
+    <h1>{{ _('{addon} Compatibility Reports')|fe(addon=name) }}</h1>
     {% if reports.object_list %}
       <form class="go" action="" id="compat-form">
         <label>{{ _('Filter by Application') }}: {{ form.appver }}</label>

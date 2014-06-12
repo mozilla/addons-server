@@ -9,7 +9,7 @@
   {% set title = _('Thank you for installing {0}')|f(addon.name) %}
 {% else %}
   {# L10n: {0} is an add-on name. #}
-  {% set title = _('Meet the {0} Developer')|f(addon.name) %}
+  {% set title = _('Meet the {0} Developer')|fe(addon.name) %}
 {% endif %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
@@ -77,11 +77,11 @@
     <section class="primary full">
       <div id="about-addon" class="island prose">
         {% if addon.the_reason %}
-          <h3>{{ _('Why was {0} created?')|f(addon.name) }}</h3>
+          <h3>{{ _('Why was {0} created?')|fe(addon.name) }}</h3>
           <p>{{ addon.the_reason|nl2br }}</p>
         {% endif %}
         {% if addon.the_future %}
-          <h3>{{ _("What's next for {0}")|f(addon.name) }}</h3>
+          <h3>{{ _("What's next for {0}")|fe(addon.name) }}</h3>
           <p>{{ addon.the_future|nl2br }}</p>
         {% endif %}
       </div>

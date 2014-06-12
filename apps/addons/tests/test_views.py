@@ -26,7 +26,6 @@ from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons.models import Addon, AddonDependency, AddonUser, Charity
 from bandwagon.models import Collection
-from files.models import File
 from paypal.tests.test import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
@@ -1263,6 +1262,47 @@ class TestEula(amo.tests.TestCase):
 
     def test_cat_sidebar(self):
         check_cat_sidebar(self.url, self.addon)
+
+
+class TestXssOnName(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'users/test_backends', ]
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.name = "<script>alert('hé')</script>"
+        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
+        self.addon.name = self.name
+        self.addon.save()
+
+    def assertNameAndNoXSS(self, url):
+        response = self.client.get(url)
+        assert self.name not in response.content
+        assert self.escaped in response.content
+
+    def test_eula_page(self):
+        url = reverse('addons.eula', args=[self.addon.slug])
+        self.assertNameAndNoXSS(url)
+
+    def test_detail_page(self):
+        url = reverse('addons.detail', args=[self.addon.slug])
+        self.assertNameAndNoXSS(url)
+
+    def test_meet_page(self):
+        url = reverse('addons.meet', args=[self.addon.slug])
+        self.assertNameAndNoXSS(url)
+
+    def test_privacy_page(self):
+        url = reverse('addons.privacy', args=[self.addon.slug])
+        self.assertNameAndNoXSS(url)
+
+    def test_reviews_list(self):
+        url = reverse('addons.reviews.list', args=[self.addon.slug])
+        self.assertNameAndNoXSS(url)
+
+    def test_reviews_add(self):
+        url = reverse('addons.reviews.add', args=[self.addon.slug])
+        self.client.login(username='fligtar@gmail.com', password='foo')
+        self.assertNameAndNoXSS(url)
 
 
 class TestPrivacyPolicy(amo.tests.TestCase):
