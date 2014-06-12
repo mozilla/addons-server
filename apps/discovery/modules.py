@@ -371,8 +371,8 @@ class FootballWorldCup2014(TemplatePromo):
         source = kwargs.get('module_context', 'home')
         source = "AMOhome" if source == "home" else "addonmanager"
         url = (
-            "https://activations.cdn.mozilla.net/{}/goal.html"
-            "?utm_source={}&utm_medium=banner&utm_content=goalcom{}"
+            "https://activations.cdn.mozilla.net/{0}/goal.html"
+            "?utm_source={1}&utm_medium=banner&utm_content=goalcom{2}"
             "&utm_campaign=WC2014".format(locale, source, key)
         )
         return {'url': url}
