@@ -1,6 +1,6 @@
 {% set amo_user = request.amo_user if request and request.user.is_authenticated() else None %}
 {% if addon.total_reviews %}
-  <a class="listview" href="{{ shared_url('reviews.list', addon) }}">
+  <a class="listview" href="{{ addon.get_reviews_url() }}">
     <div class="icon">
       {{ addon.average_rating|stars }}
     </div>
@@ -11,6 +11,6 @@
     {% endtrans %}
   </a>
 {% elif addon.can_review(amo_user) %}
-  <a class="listview" id="add-review" href="{{ shared_url('reviews.add', addon) }}">
+  <a class="listview" id="add-review" href="{{ addon.get_reviews_url('add') }}">
     {{ _('Be the first to write a review.') }}</a>
 {% endif %}

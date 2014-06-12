@@ -1,17 +1,16 @@
+import urllib
+
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 
 from tower import ugettext as _
 
-from amo.helpers import absolutify, shared_url, url
-
 from addons.models import Addon, Review
-
-import urllib
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
 
 
 class ReviewsRss(Feed):
-
     addon = None
 
     def get_object(self, request, addon_id=None, app_slug=None):
@@ -29,21 +28,21 @@ class ReviewsRss(Feed):
 
     def link(self, addon):
         """Link for the feed"""
-        return absolutify(url('home'))
+        return absolutify(reverse('home'))
 
     def description(self, addon):
         """Description for the feed"""
         return _('Review History for this Addon')
 
     def items(self, addon):
-        """Return the Reviews for this Addon to be output as RSS <item>'s"""
-        qs = (Review.objects.valid().filter(addon=addon).order_by('-created'))
+        """Return the Reviews for this Addon to be output as RSS <item>s"""
+        qs = Review.objects.valid().filter(addon=addon).order_by('-created')
         return qs.all()[:30]
 
     def item_link(self, review):
         """Link for a particular review (<item><link>)"""
-        return absolutify(shared_url('reviews.detail', self.addon,
-                                     review.id))
+        return absolutify(
+            reverse('addons.reviews.detail', [self.addon, review.id]))
 
     def item_title(self, review):
         """Title for particular review (<item><title>)"""
@@ -61,14 +60,14 @@ class ReviewsRss(Feed):
         return review.body
 
     def item_guid(self, review):
-        """Guid for a particuar review  (<item><guid>)"""
-        guid_url = absolutify(shared_url('reviews.list', self.addon))
+        """Guid for a particuar review (<item><guid>)"""
+        guid_url = absolutify(reverse('reviews.list', [self.addon.slug]))
         return guid_url + urllib.quote(str(review.id))
 
     def item_author_name(self, review):
-        """Author for a particuar review  (<item><dc:creator>)"""
+        """Author for a particuar review (<item><dc:creator>)"""
         return review.user.name
 
     def item_pubdate(self, review):
-        """Pubdate for a particuar review  (<item><pubDate>)"""
+        """Pubdate for a particuar review (<item><pubDate>)"""
         return review.created

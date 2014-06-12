@@ -49,7 +49,7 @@
       {% endtrans %}
     </fieldset>
     <form method="post" class="review-form" id="review-form"
-          action="{{ shared_url('reviews.add', addon) }}">
+          action="{{ addon.get_reviews_url('add') }}">
       {{ csrf() }}
       <fieldset>
         <ul>

@@ -23,7 +23,7 @@
     {% endfor %}
     {% if addon %}
       <p>
-        <a class="more-info" href="{{ shared_url('reviews.list', addon) }}">
+        <a class="more-info" href="{{ addon.get_reviews_url() }}">
           {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
             See all reviews of this add-on
           {% pluralize %}

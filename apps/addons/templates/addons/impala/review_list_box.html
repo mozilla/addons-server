@@ -16,11 +16,11 @@
           {% endtrans %}
           &middot;
           <a class="permalink"
-             href="{{ shared_url('reviews.detail', addon, review.id) }}">{{ _('permalink') }}</a>
+             href="{{ addon.get_reviews_url('detail', args=[review.id]) }}">{{ _('permalink') }}</a>
           {% if waffle.switch('reviews-translate') %}
             &middot;
             <a class="translate" rel="nofollow" target="_blank"
-               href="{{ shared_url('reviews.translate', addon, review.id, LANG) }}">{{ _('translate') }}</a>
+               href="{{ addon.get_reviews_url('translate', args=[review.id, LANG]) }}">{{ _('translate') }}</a>
           {% endif %}
         </p>
         <p class="description">{{ review.body|nl2br }}</p>
@@ -46,7 +46,7 @@
       <h3>
         {{ _('This add-on has not yet been reviewed.') }}
         {% if addon.can_review(amo_user) %}
-          <a id="add-first-review" href="{{ shared_url('reviews.add', addon) }}">
+          <a id="add-first-review" href="{{ addon.get_reviews_url('add') }}">
             {{ _('Be the first!') }}
           </a>
         {% endif %}

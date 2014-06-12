@@ -10,11 +10,12 @@ from mobility.decorators import mobile_template
 from waffle.decorators import waffle_switch
 
 import amo
+import amo.utils
 from amo import messages
 from amo.decorators import (json_view, login_required, post_required,
                             restricted_content)
-from amo.helpers import absolutify, shared_url
-import amo.utils
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
 from access import acl
 from addons.decorators import addon_view_factory
 from addons.models import Addon
@@ -193,8 +194,8 @@ def reply(request, addon, review_id):
         log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
 
         if new:
-            reply_url = shared_url('reviews.detail', addon, review.id,
-                                   add_prefix=False)
+            reply_url = reverse('addons.reviews.detail',
+                                [addon.slug, review.id], add_prefix=False)
             data = {'name': addon.name,
                     'reply_title': reply.title,
                     'reply': reply.body,
@@ -204,7 +205,7 @@ def reply(request, addon, review_id):
             send_mail('reviews/emails/reply_review.ltxt',
                       sub, emails, Context(data), 'reply')
 
-        return redirect(shared_url('reviews.detail', addon, review_id))
+        return redirect(reverse('addons.reviews.detail', [addon, review_id]))
     ctx = dict(review=review, form=form, addon=addon)
     return render(request, 'reviews/reply.html', ctx)
 
@@ -231,8 +232,8 @@ def add(request, addon, template=None):
         amo.log(amo.LOG.ADD_REVIEW, addon, review)
         log.debug('New review: %s' % review.id)
 
-        reply_url = shared_url('reviews.reply', addon, review.id,
-                               add_prefix=False)
+        reply_url = reverse('addons.reviews.reply',
+                            [addon.slug, review.id], add_prefix=False)
         data = {'name': addon.name,
                 'rating': '%s out of 5 stars' % details['rating'],
                 'review': details['body'],
@@ -243,7 +244,7 @@ def add(request, addon, template=None):
                   u'Mozilla Add-on User Review: %s' % addon.name,
                   emails, Context(data), 'new_review')
 
-        return redirect(shared_url('reviews.list', addon))
+        return redirect(addon.reviews_url)
     return render(request, template, dict(addon=addon, form=form))
 
 

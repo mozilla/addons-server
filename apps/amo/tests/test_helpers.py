@@ -206,25 +206,6 @@ def test_urlparams_unicode():
     utils.urlparams(url)
 
 
-class TestSharedURL(amo.tests.TestCase):
-
-    def setUp(self):
-        self.addon = Mock()
-        self.addon.type = amo.ADDON_EXTENSION
-        self.addon.slug = 'addon'
-
-    def test_addonurl(self):
-        expected = '/en-US/firefox/addon/addon/'
-        eq_(helpers.shared_url('addons.detail', self.addon), expected)
-        eq_(helpers.shared_url('apps.detail', self.addon), expected)
-        eq_(helpers.shared_url('detail', self.addon), expected)
-        eq_(helpers.shared_url('detail', self.addon, add_prefix=False),
-            '/addon/addon/')
-        eq_(helpers.shared_url('reviews.detail', self.addon, 1,
-                               add_prefix=False),
-            '/addon/addon/reviews/1/')
-
-
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})

@@ -102,32 +102,6 @@ def url(viewname, *args, **kwargs):
 
 
 @register.function
-def shared_url(viewname, addon, *args, **kwargs):
-    """
-    Helper specifically for addons or apps to get urls. Requires
-    the viewname, addon (or app). It's assumed that we'll pass the
-    slug into the args and we'll look up the right slug (addon or app)
-    for you.
-
-    Viewname should be a normal view eg: `addons.details` or `apps.details`.
-    `addons.details` becomes `apps.details`, if we've passed an app, etc.
-
-    A viewname such as `details` becomes `addons.details` or `apps.details`,
-    depending on the add-on type.
-    """
-    namespace, dot, latter = viewname.partition('.')
-
-    # If `viewname` is prefixed with `addons.` but we're linking to a
-    # webapp, the `viewname` magically gets prefixed with `apps.`.
-    if namespace in ('addons', 'apps'):
-        viewname = latter
-
-    # Otherwise, we just slap the appropriate prefix in front of `viewname`.
-    viewname = '.'.join(['addons', viewname])
-    return url(viewname, *([addon.slug] + list(args)), **kwargs)
-
-
-@register.function
 def services_url(viewname, *args, **kwargs):
     """Helper for ``url`` with host=SERVICES_URL."""
     kwargs.update({'host': settings.SERVICES_URL})

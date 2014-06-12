@@ -1339,16 +1339,16 @@ class TestReportAbuse(amo.tests.TestCase):
         assert AbuseReport.objects.get(addon=addon)
 
     def test_abuse_persona(self):
-        shared_url = reverse('addons.detail', args=['a15663'])
-        r = self.client.get(shared_url)
+        addon_url = reverse('addons.detail', args=['a15663'])
+        r = self.client.get(addon_url)
         doc = pq(r.content)
-        assert doc("fieldset.abuse")
+        assert doc('fieldset.abuse')
 
         # and now just test it works
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.post(reverse('addons.abuse', args=['a15663']),
                              {'text': 'spammy'})
-        self.assertRedirects(r, shared_url)
+        self.assert3xx(r, addon_url)
         eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
         assert AbuseReport.objects.get(addon=15663)
