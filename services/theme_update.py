@@ -38,6 +38,9 @@ class ThemeUpdate(object):
 
     def base64_icon(self, addon_id):
         path = self.image_path('icon.jpg')
+        if not os.path.isfile(path):
+            return ''
+
         try:
             with open(path, 'r') as f:
                 return base64.b64encode(f.read())
