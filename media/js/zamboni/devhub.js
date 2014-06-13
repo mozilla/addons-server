@@ -687,7 +687,7 @@ function initVersions() {
             files.text(format(ngettext('{files} file', '{files} files',
                                        version.files),
                               version));
-            reviews.text(format(ngettext('{reviews} review', '{reviews} user reviews',
+            reviews.text(format(ngettext('{reviews} user review', '{reviews} user reviews',
                                          version.reviews),
                                 version));
             $('.version_id', this).val(version.id);
