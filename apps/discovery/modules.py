@@ -375,4 +375,5 @@ class FootballWorldCup2014(TemplatePromo):
             "?utm_source={1}&utm_medium=banner&utm_content=goalcom{2}"
             "&utm_campaign=WC2014".format(locale, source, key)
         )
-        return {'url': url}
+        cssClass = 'multiline' if key in ['en', 'fr', 'es', 'it', 'pt', ] else 'oneline'
+        return {'url': url, 'cssClass': cssClass}
