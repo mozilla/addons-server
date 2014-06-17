@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2014-06-17 03:38+0100\n"
+"PO-Revision-Date: 2014-06-17 04:16+0100\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -127,7 +127,7 @@ msgstr "Tem de ser seleccionada uma licença."
 
 #: apps/addons/forms.py:542
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Dê um nome ao seu tema."
 
 #: apps/addons/forms.py:548
 #: apps/devhub/templates/devhub/personas/submit.html:53
@@ -928,7 +928,7 @@ msgstr "Mais deste artista"
 #: apps/addons/templates/addons/persona_detail.html:54
 #: apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Ver todos os temas deste artista"
 
 #: apps/addons/templates/addons/persona_detail.html:73
 #: apps/addons/templates/addons/mobile/home.html:38
@@ -1072,6 +1072,8 @@ msgid ""
 "To install this Theme, <b>get Thunderbird</b>, a free and open source email "
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
+"Para instalar este tema <b>obtenha o Thunderbird</b>, um cliente de correio "
+"gratuito e de código aberto da Mozilla, e instale o extra Personas Plus."
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
@@ -1659,11 +1661,11 @@ msgstr "Histórico da análise"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Desculpe, mas este tema está pendente. Por favor volte mais tarde."
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Este tema está pendente. Não é visível a mais ninguém a não ser você."
 
 #: apps/addons/templates/addons/listing/items.html:31
 msgid "Collector's Note"
@@ -2560,7 +2562,7 @@ msgstr "Extensões"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Quer mais personalização? Tente <b>Temas completos</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:88
 msgid "Most Followers"
@@ -2722,6 +2724,11 @@ msgid ""
 "behalf.</li> <li> Learning personal information about you, such as your "
 "username and email address (but not your password). </li> </ul>"
 msgstr ""
+"<p> O %(consumer)s quer ser autorizado a agir em sem nome. Isto pode "
+"incluir: </p> <ul> <li>Enviar, alterar ou remover extras em seu nome.</li> "
+"<li>Enviar, alterar ou remover extras por si.</li> <li> Obter informação "
+"pessoal sobre si, tais como o nome de utilizador e endereço de correio "
+"eletróncio (mas não a sua senha). </li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
@@ -2815,7 +2822,7 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Descreva a sua coleção (não são permitidas ligações)"
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -3013,7 +3020,7 @@ msgstr "Sobre esta colecção"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:68
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Extras sincronizados com o meu Firefox para dispositivos móveis"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:77
 msgid "Make this Collection Private"
@@ -3043,8 +3050,8 @@ msgstr "Eliminar colecção"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s tema nesta coleção"
+msgstr[1] "%(num)s temas nesta coleção"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
@@ -3821,11 +3828,11 @@ msgstr "Procurar temas para <b>{0}</b>"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Temas completos por nome"
 
 #: apps/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Temas completos por transferências semanais"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 #, fuzzy
@@ -3878,7 +3885,7 @@ msgstr "Criar teu próprio tema"
 
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "O seu navegador, o seu estilo! Vista-o com um design seu!"
 
 #: apps/browse/templates/browse/personas/base.html:51
 msgid "Learn more"
@@ -3905,6 +3912,9 @@ msgid ""
 "Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start "
 "exploring</a>"
 msgstr ""
+"Mais de 300000 aparências para personalizar o seu navegador! Desloque o rato "
+"sobre um tema de fundo para o experimentar. <a href=\"%(url)s\" class=\"more-"
+"info\">Comece a explorar</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 #, fuzzy
@@ -3918,6 +3928,9 @@ msgid ""
 "window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" "
 "class=\"more-info\">Start exploring</a>"
 msgstr ""
+"Os temas completos transformam a aparência do seu navegador com estilos para "
+"a moldura da janela, barra de endereço, botões, separadores e menus. <a href="
+"\"%(url)s\" class=\"more-info\">Comece a explorar</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
@@ -4481,7 +4494,7 @@ msgstr "Imagens de violência, guerras ou bélicas"
 
 #: apps/constants/editors.py:26
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Conteúdo nazi ou outro conteúdo odioso"
 
 #: apps/constants/editors.py:27
 #, fuzzy
@@ -4577,7 +4590,7 @@ msgstr "Política de privacidade para {0}"
 
 #: apps/devhub/feeds.py:37
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Alterações recentes aos meus extras"
 
 #: apps/devhub/forms.py:70
 msgid "Must have at least one owner."
@@ -4614,11 +4627,13 @@ msgstr "É necessário o texto da licença ao escolher Outro."
 
 #: apps/devhub/forms.py:209
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Este extra tem um acordo de licença para o utilizador final"
 
 #: apps/devhub/forms.py:211
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
+"Por favor, especifique o acordo de licença para o utilizador final para o "
+"extra:"
 
 #: apps/devhub/forms.py:214
 msgid "This add-on has a Privacy Policy"
@@ -4699,7 +4714,7 @@ msgstr "Revisão preliminar"
 
 #: apps/devhub/forms.py:498
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "Por favor, escolha um tipo de nomeação para a revisão"
 
 #: apps/devhub/forms.py:513
 msgid "Version %s already exists"
@@ -4972,7 +4987,7 @@ msgstr "Alterações guardadas com sucesso."
 
 #: apps/devhub/views.py:321 apps/devhub/views.py:1561
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Por favor, verifique se o formulário tem erros."
 
 #: apps/devhub/views.py:333
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -5752,11 +5767,10 @@ msgstr "Actividade antiga para os meus extras"
 
 #. {0} is an integer.
 #: apps/devhub/templates/devhub/addons/dashboard.html:76
-#, fuzzy
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] "Tema"
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> tema"
+msgstr[1] "<b>{0}</b> temas"
 
 #: apps/devhub/templates/devhub/addons/edit.html:3
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -6402,7 +6416,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:30
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Transferir propriedade"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 #, fuzzy
@@ -11016,11 +11030,10 @@ msgstr "Versão {0}"
 
 #. {0} is the number of files
 #: apps/devhub/templates/devhub/versions/list.html:22
-#, fuzzy
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] "Subir o ficheiro"
-msgstr[1] ""
+msgstr[0] "{0} ficheiro"
+msgstr[1] "{0} ficheiros"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -12543,25 +12556,22 @@ msgid "There are currently no reviews."
 msgstr "Atualmente não há revisões."
 
 #: apps/editors/templates/editors/themes/home.html:19
-#, fuzzy
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} análise de aplicação pendente"
-msgstr[1] ""
+msgstr[0] "{num} tema a aguardar revisão"
+msgstr[1] "{num} temas a aguardar revisão"
 
 #: apps/editors/templates/editors/themes/home.html:27
-#, fuzzy
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "Marcado para análise"
-msgstr[1] ""
+msgstr[0] "{num} marcação para análise"
+msgstr[1] "{num} marcações para análise"
 
 #: apps/editors/templates/editors/themes/home.html:34
-#, fuzzy
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] "{num} revisão da atualização"
-msgstr[1] ""
+msgstr[0] "{num} atualização"
+msgstr[1] "{num} atualizações"
 
 #: apps/editors/templates/editors/themes/home.html:49
 msgid "{num} unreviewed theme submission this week."
@@ -16987,11 +16997,10 @@ msgid "{0} add-ons"
 msgstr "{0} extras"
 
 #: apps/users/templates/users/vcard.html:62
-#, fuzzy
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] "Tema completo"
-msgstr[1] ""
+msgstr[0] "%(num)s tema"
+msgstr[1] "%(num)s temas"
 
 #: apps/users/templates/users/vcard.html:68
 msgid "%(num)s add-on"
