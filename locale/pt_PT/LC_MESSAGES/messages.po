@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2014-06-18 04:17+0100\n"
+"PO-Revision-Date: 2014-06-18 06:50+0100\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -9779,11 +9779,13 @@ msgstr "O que são extras?"
 msgid ""
 "What kind of computers and operating systems do Background Themes work with?"
 msgstr ""
+"Com que tipo de computadores e sistemas operativos funcionam os Temas de "
+"fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:18
 #: apps/devhub/templates/devhub/docs/themes-faq.html:68
 msgid "What's the difference between Background Themes and Complete Themes?"
-msgstr ""
+msgstr "Qual é a diferença entre temas de fundo e temas completos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:21
 #: apps/devhub/templates/devhub/docs/themes-faq.html:85
@@ -9794,12 +9796,12 @@ msgstr "Procurar temas para <b>{0}</b>"
 #: apps/devhub/templates/devhub/docs/themes-faq.html:23
 #: apps/devhub/templates/devhub/docs/themes-faq.html:88
 msgid "How do I add Background Themes to my Firefox?"
-msgstr ""
+msgstr "Como adiciono temas de fundo ao meu Firefox?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:24
 #: apps/devhub/templates/devhub/docs/themes-faq.html:103
 msgid "Are Background Themes free?"
-msgstr ""
+msgstr "Os temas de fundo são gratuitos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:27
 #: apps/devhub/templates/devhub/docs/themes-faq.html:112
@@ -9810,18 +9812,18 @@ msgstr "Procurar temas para <b>{0}</b>"
 #: apps/devhub/templates/devhub/docs/themes-faq.html:29
 #: apps/devhub/templates/devhub/docs/themes-faq.html:115
 msgid "How do I change my current Background Theme?"
-msgstr ""
+msgstr "Como altero o meu tema de fundo atual?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:30
 #: apps/devhub/templates/devhub/docs/themes-faq.html:140
 msgid ""
 "If I have a Complete Theme installed, will Background Themes still work?"
-msgstr ""
+msgstr "Se eu tiver tema completo instalado, os temas de fundo vão funcionar?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:31
 #: apps/devhub/templates/devhub/docs/themes-faq.html:150
 msgid "How do I undo a Background Theme?"
-msgstr ""
+msgstr "Como cancelo um tema de fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:32
 #: apps/devhub/templates/devhub/docs/themes-faq.html:161
@@ -9831,31 +9833,31 @@ msgstr "Como funcionam os pagamentos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:35
 msgid "Creating Your Own Background Themes"
-msgstr ""
+msgstr "Criar os seus próprios temas de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:37
 msgid "Can I create my own Background Theme?"
-msgstr ""
+msgstr "Como crio o meu próprio tema de fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:38
 #: apps/devhub/templates/devhub/docs/themes-faq.html:184
 msgid "Are there any content guidelines?"
-msgstr ""
+msgstr "Existem diretrizes de conteúdo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:39
 #: apps/devhub/templates/devhub/docs/themes-faq.html:250
 msgid "Do I still retain ownership over artwork that I upload?"
-msgstr ""
+msgstr "Mantenho a propriedade sobre os trabalhos artísticos que enviar?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:40
 #: apps/devhub/templates/devhub/docs/themes-faq.html:258
 msgid "After creating a Background Theme, can I edit the design?"
-msgstr ""
+msgstr "Depois de criar um tema de fundo, posso editar o design?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:41
 #: apps/devhub/templates/devhub/docs/themes-faq.html:266
 msgid "What's the maximum file size allowable for my Background Theme?"
-msgstr ""
+msgstr "Qual o tamanho máximo permitido para o ficheiro do meu tema de fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:47
 #, fuzzy
@@ -9869,18 +9871,27 @@ msgid ""
 "designed themes to choose from, with more added every day. <a href="
 "\"%(browse_url)s\">Start looking here for designs that fit your style.</a>"
 msgstr ""
+"Os temas de fundo são capas fáceis de instalar e de utilizar que modificação "
+"a aparência do seu navegador web, o Firefox. Existem centenas de milhar de "
+"temas desenhados pela comunidade que pode escolher, com mais sendo "
+"adicionados todos os dias. <a href=\"%(browse_url)s\">Comece a procurar por "
+"designs que se adequam ao seu estilo.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:61
 msgid ""
 "Background Themes work with any type of computer that has Firefox installed. "
 "This includes Mac, Linux, Windows, and Android platforms."
 msgstr ""
+"Os temas de fundo funcionam com qualquer tipo de computador que tenha o "
+"Firefox instalado. Isto inclui Linux, Mac, Windows e plataformas Android."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:70
 msgid ""
 "Complete Themes transform the look of your browser with styles for the "
 "window frame, address bar, buttons, tabs, and menus."
 msgstr ""
+"Os temas completos transformam a aparência do seu navegador com estilos para "
+"a moldura da janela, barra de endereço, botões, separadores e menus."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:76
 msgid ""
@@ -9888,6 +9899,9 @@ msgid ""
 "You can instantly preview a design and install it in one click without "
 "needing to restart."
 msgstr ""
+"Os temas de fundo apenas alteram as áreas de cabeçalho e de rodapé do seu "
+"navegador. Pode pré-visualizar imediatamente um design e fazer a sua "
+"instalação com um clique sem necessidade de reiniciar o navegador."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:90
 msgid ""
@@ -9899,20 +9913,31 @@ msgid ""
 "disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-"
 "ons</code> menu and click on the <code>Appearance</code> tab."
 msgstr ""
+"Em apenas alguns segundos, podem instalar um tema e transformar a aparência "
+"do seu Firefox. Pré-visualize qualquer tema colocando o rato sobre o mesmo; "
+"o design aparece no cabeçalho do seu navegador para que \"o possa "
+"experimentar\". Quando estiver pronto, clique apenas no botão verde "
+"<code>Adicionar ao Firefox</code>. Após um tema estar instalado, é guardado "
+"no Gestor de extras, onde pode ativar ou desativar temas que quiser. "
+"Simplesmente vá ao menu <code>Ferramentas</code> &gt; <code>Extras</code> e "
+"clique no separador <code>Aparência</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:105
 msgid "Yes. Themes are free to download and free to use."
-msgstr ""
+msgstr "Sim. Os temas podem ser transferidos e utilizados gratuitamente."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:117
 msgid "There are two easy ways to change your theme. You can either:"
-msgstr ""
+msgstr "Existem duas formas fáceis de alterar o seu tema. Pode:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:123
 msgid ""
 "Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite "
 "theme, and click on your choice to instantly change the look of your browser."
 msgstr ""
+"Visitar a <a href=\"%(gallery_url)s\">galeria</a>, escolher o seu tema "
+"favorito e clicar na sua escolha para alterar imediatamente a aparência do "
+"seu navegador."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:130
 msgid ""
@@ -9920,6 +9945,10 @@ msgid ""
 "enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; "
 "<code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
 msgstr ""
+"Após um tema estar instalado, é guardado no Gestor de extras, onde pode "
+"ativar ou desativar temas que quiser. Simplesmente vá ao menu "
+"<code>Ferramentas</code> &gt; <code>Extras</code> e clique no separador "
+"<code>Aparência</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:142
 msgid ""
@@ -9927,6 +9956,9 @@ msgid ""
 "automatically switch to a default theme in order to allow you to use your "
 "choice of Background Theme designs."
 msgstr ""
+"Sim. Se tiver tema completo instalado diferente dos temas por omissão, o "
+"Firefox irá automaticamente selecionar um dos temas por omissão no sentido "
+"de permitir a utilização da sua escolha de tema de fundo."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:152
 msgid ""
@@ -9935,6 +9967,10 @@ msgid ""
 "tab. Next to the theme you want to undo, click the <code>Disable</code> "
 "button."
 msgstr ""
+"Para cancelar o design que selecionou mais recentemente, aceda a "
+"<code>Ferramentas</code> &gt; <code>Extras</code> na barra de menu e "
+"selecione <code>Aparência</code>. Junto ao tema que pretende cancelar, "
+"clique no botão <code>Desativar</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:163
 msgid ""
@@ -9942,6 +9978,9 @@ msgid ""
 "you think. Visit the <a href=\"%(forum_url)s\">themes forum</a> to send us "
 "your feedback."
 msgstr ""
+"Estamos sempre à procura de formas de melhorar os temas e adoraríamos saber "
+"o que pensa. Visite o <a href=\"%(forum_url)s\">fórum de temas</a> e envie-"
+"nos a sua opinião."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:170
 #, fuzzy
@@ -9950,7 +9989,7 @@ msgstr "Criar teu próprio tema"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:173
 msgid "Can I create my own Theme?"
-msgstr ""
+msgstr "Posso criar o meu próprio tema?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:175
 msgid ""
@@ -9958,6 +9997,9 @@ msgid ""
 "graphics editing program (e.g., Photoshop). To get started <a href="
 "\"%(tutorial_url)s\">read more about how to create a theme</a>."
 msgstr ""
+"Absolutamente! Tudo o que precisa é de criar dois ficheiros gráficos no seu "
+"programa favorito de edição de imagem (por exemplo, Photoshop). Para "
+"começar, <a href=\"%(tutorial_url)s\">leia mais sobre como criar um tema</a>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:186
 msgid ""
@@ -9967,6 +10009,11 @@ msgid ""
 "and complete language, but the following gives you an overview of the "
 "requirements:"
 msgstr ""
+"Sim. Nós somos grande fãs da criatividade, mas queremos garantir que a arte "
+"que é apresentada na galeria de temas cumpre um conjunto básico de "
+"diretrizes. Por favor consulte os <a href=\"%(tos_url)s\">Termos do Serviço</"
+"a> para uma linguagem completa e oficial, mas próximos pontos dão uma vista "
+"geral dos requisitos:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:196
 msgid ""
@@ -9974,10 +10021,13 @@ msgid ""
 "worldwide to reproduce and distribute them (and allow others to do so) by "
 "the owner or the law."
 msgstr ""
+"Deve ser proprietário de todos os elementos do seu design OU estar "
+"mundialmente autorizado a reproduzir e distribuir esses elementos (e "
+"permitir a outros que o façam) pelo proprietário ou por lei."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:203
 msgid "Your design does not contain sexually explicit or offensive content."
-msgstr ""
+msgstr "O seu design não contém conteúdo sexual ou ofensivo."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:208
 msgid ""
@@ -9985,22 +10035,29 @@ msgid ""
 "person(s) other than yourself or individuals who have given you permission "
 "to do so."
 msgstr ""
+"O seu design não contem elementos identificáveis de qualquer outra pessoa "
+"que não seja celebridade, para além de si ou de indivíduos que lhe deram "
+"permissão para tal."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:215
 msgid ""
 "Your design does not depict violence or Nazi imagery, nor is it "
 "discriminatory or hateful."
 msgstr ""
+"O seu design não retrata violência ou imagens Nazi, nem é discriminatório ou "
+"odioso."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:221
 msgid "Your design does not relate to gambling."
-msgstr ""
+msgstr "O seu design não está relacionado com jogo."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:226
 msgid ""
 "Your design does not violate any applicable law or regulation or the rights "
 "of any person or entity."
 msgstr ""
+"O seu design não viola qualquer lei aplicável ou regulamento ou os direitos "
+"de qualquer pessoa ou entidade."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:231
 msgid ""
@@ -10011,16 +10068,25 @@ msgid ""
 "In some cases, this is necessary for legal reasons, but it also allows us to "
 "maintain the integrity of the site."
 msgstr ""
+"Também, note que o seu design tem de ser apropriado para o formato de temas "
+"de fundo (ver diretrizes), ter uma qualidade utilizável e não ser um "
+"duplicado de uma submissão anterior. Finalmente, apesar da Mozilla fornecer "
+"diretrizes para submissões, a Mozilla reserva-se ao direito de rejeitar ou "
+"remover os designs por qualquer motivo. Em alguns casos, isto é necessário "
+"por questões legais, mas também permite manter a integridade do site."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:242
 msgid ""
 "<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme "
 "designs.</a>"
 msgstr ""
+"<a href=\"%(tutorial_url)s\">Aprenda a criar designs engraçados para temas.</"
+"a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:252
 msgid "Yes. Your artwork will always be <em>your</em> artwork."
 msgstr ""
+"Sim. O seu trabalho artístico será sempre o <em>seu</em> trabalho artístico."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:260
 msgid ""
@@ -10030,22 +10096,31 @@ msgid ""
 "your current designs. By clicking on each, you can make changes to each "
 "design's settings."
 msgstr ""
+"Sim. Se em algum momento precisar de editar ou eliminar o design do seu tema "
+"após a sua submissão para a galeria, pode aceder ao mesmo a partir do <a "
+"href=\"%(dashboard_url)s\">Painel de Submissões</a>. Daqui pode ver os seus "
+"designs atuais. Ao clicar em cada um pode fazer alterações a cada uma das "
+"definições do design."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:268
 msgid ""
 "The theme you upload may not exceed 300 KB for the header or the footer "
 "image."
 msgstr ""
+"O tema que enviar não pode exceder os 300 KB para a imagem de cabeçalho ou "
+"de rodapé."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:276
 msgid ""
 "Couldn't find the answer you're looking for? Consider visiting the <a href="
 "\"%(support_url)s\">Firefox support</a> website for more help."
 msgstr ""
+"Não conseguiu encontrar o que procurava? Considere visitar o site web do <a "
+"href=\"%(support_url)s\">suporte do Firefox</a> para mais ajuda."
 
 #: apps/devhub/templates/devhub/docs/themes.html:3
 msgid "How to Create Your Own Background Theme"
-msgstr ""
+msgstr "Como criar o seu próprio tema de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes.html:4
 #, fuzzy
@@ -10067,12 +10142,16 @@ msgid ""
 "Themes are made up of two graphic image files&mdash;a \"header\" image and a "
 "\"footer\" image&mdash;which skin the default Firefox UI background."
 msgstr ""
+"Os temas são feitos a partir de duas imagens gráficas&mdash;uma imagem de "
+"\"cabeçalho\" e uma imagem de \"rodapé\"&mdash;que se sobrepõem ao fundo por "
+"omissão do interface do Firefox."
 
 #: apps/devhub/templates/devhub/docs/themes.html:41
 msgid ""
 "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!"
 "</a>"
 msgstr ""
+"<a href=\"%(submit_url)s\">Terminou o seu design? Pode submetê-lo agora!</a>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:46
 #, fuzzy
@@ -10086,10 +10165,14 @@ msgid ""
 "strip. It will be <b>anchored to the top-right corner</b> of the browser "
 "window."
 msgstr ""
+"A imagem de cabeçalho é apresentada como fundo no topo da janela do "
+"navegador, atrás das barras de ferramentas, barra de endereço, barra de "
+"pesquisa e faixa de separadores. Será <b>ancorada ao canto superior direito</"
+"b> da janela do navegador."
 
 #: apps/devhub/templates/devhub/docs/themes.html:57
 msgid "View a sample Theme Header here."
-msgstr ""
+msgstr "Ver um exemplo de um cabeçalho de tema aqui."
 
 #: apps/devhub/templates/devhub/docs/themes.html:59
 #: apps/devhub/templates/devhub/docs/themes.html:130
@@ -10100,6 +10183,7 @@ msgstr "Requisitos modificados"
 #: apps/devhub/templates/devhub/docs/themes.html:62
 msgid "Dimensions should be <b>3000px wide &times; 200px high</b>"
 msgstr ""
+"As dimensões devem ser <b>3000px de largura &times; 200px de altura</b>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:67
 #: apps/devhub/templates/devhub/docs/themes.html:138
@@ -10110,12 +10194,12 @@ msgstr "Os ícones devem ser PNG ou JPG."
 #: apps/devhub/templates/devhub/docs/themes.html:72
 #: apps/devhub/templates/devhub/docs/themes.html:143
 msgid "Image must be no larger than 300 KB in file size"
-msgstr ""
+msgstr "A imagem não pode ser um ficheiro com um tamanho superior a 300 KB"
 
 #: apps/devhub/templates/devhub/docs/themes.html:77
 #: apps/devhub/templates/devhub/docs/themes.html:148
 msgid "Tips"
-msgstr ""
+msgstr "Dicas"
 
 #: apps/devhub/templates/devhub/docs/themes.html:80
 #: apps/devhub/templates/devhub/docs/themes.html:151
@@ -10123,12 +10207,16 @@ msgid ""
 "Subtle, soft contrast images and gradients work best; highly detailed images "
 "will compete with the browser UI."
 msgstr ""
+"Imagens e gradientes subtis e suaves funcionam melhor; imagens altamente "
+"detalhadas irão competir com o interface do navegador."
 
 #: apps/devhub/templates/devhub/docs/themes.html:86
 msgid ""
 "Firefox may reveal more of the lower portion of the image if another toolbar "
 "or other UI element is added to the top of the window."
 msgstr ""
+"O Firefox pode revelar mais da parte inferior da imagem se outra barra de "
+"ferramentas ou outro elemento de interface for adicionado no topo da janela."
 
 #: apps/devhub/templates/devhub/docs/themes.html:93
 msgid ""
@@ -11209,9 +11297,8 @@ msgid "Next version of this add-on"
 msgstr "Enviar uma nova versão deste extra."
 
 #: apps/devhub/templates/devhub/versions/list.html:141
-#, fuzzy
 msgid "Older versions"
-msgstr "Versões da aplicação"
+msgstr "Versões mais antigas"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
@@ -11253,9 +11340,8 @@ msgid "Delete Version"
 msgstr "Eliminar versão"
 
 #: apps/devhub/templates/devhub/versions/list.html:209
-#, fuzzy
 msgid "Disable Version"
-msgstr "Notas da versão"
+msgstr "Desativar versão"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Add a new Version"
@@ -11301,9 +11387,8 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tem a certeza que deseja cancelar o seu pedido de revisão?"
 
 #: apps/discovery/modules.py:137
-#, fuzzy
 msgid "Shopping Made Easy"
-msgstr "Extras do Firefox fáceis de fazer"
+msgstr "Compras mais fáceis"
 
 #: apps/discovery/modules.py:138
 msgid "Save on your favorite items from the comfort of your browser."
@@ -11436,9 +11521,8 @@ msgid "Add some romance to your Firefox."
 msgstr "Adicione romance ao seu Firefox."
 
 #: apps/discovery/modules.py:277
-#, fuzzy
 msgid "Put a Theme on It!"
-msgstr "Você está a experimentá-lo!"
+msgstr "Ponha um tema nisso!"
 
 #: apps/discovery/modules.py:278
 msgid ""
@@ -11447,27 +11531,24 @@ msgid ""
 msgstr ""
 
 #: apps/discovery/modules.py:287
-#, fuzzy
 msgid "Get up and move!"
-msgstr "Brevemente na página inicial"
+msgstr "Levante-se e mexa-se!"
 
 #: apps/discovery/modules.py:288
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
 
 #: apps/discovery/modules.py:296
-#, fuzzy
 msgid "New &amp; Now"
-msgstr "Experimentar o Builder agora"
+msgstr "Novo e recente"
 
 #: apps/discovery/modules.py:297
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
 
 #: apps/discovery/modules.py:329
-#, fuzzy
 msgid "Worry-free browsing"
-msgstr "Modo de navegação privada"
+msgstr "Navegação sem preocupações"
 
 #: apps/discovery/modules.py:330
 msgid "Protect your privacy online with the add-ons in this collection."
@@ -11524,9 +11605,8 @@ msgid "Browse all add-ons"
 msgstr "Navegar em todos os extras"
 
 #: apps/discovery/templates/discovery/pane.html:108
-#, fuzzy
 msgid "See all complete themes"
-msgstr "Ver todos os temas deste artista"
+msgstr "Ver todos os temas completos"
 
 #: apps/discovery/templates/discovery/pane.html:114
 msgid "Close Video"
@@ -11755,9 +11835,8 @@ msgstr "O ficheiro %s não tem uma revisão pendente."
 
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:336
-#, fuzzy
 msgid "theme name"
-msgstr "Nome do seu tema"
+msgstr "nome do tema"
 
 #: apps/editors/forms.py:362
 msgid "Someone else is reviewing this theme."
@@ -11777,7 +11856,6 @@ msgid "Pending Full Review"
 msgstr "Aguarda análise completa"
 
 #: apps/editors/helpers.py:54
-#, fuzzy
 msgid "Rejected or Unreviewed"
 msgstr "Rejeitado ou não revisto"
 
@@ -11806,20 +11884,17 @@ msgid "Fast Track"
 msgstr "Fast Track"
 
 #: apps/editors/helpers.py:115
-#, fuzzy
 msgid "Pending Themes"
-msgstr "Temas completos"
+msgstr "Temas pendentes"
 
 #: apps/editors/helpers.py:116
 #: apps/editors/templates/editors/themes/queue.html:4
-#, fuzzy
 msgid "Flagged Themes"
-msgstr "Temas completos"
+msgstr "Temas marcados"
 
 #: apps/editors/helpers.py:117
-#, fuzzy
 msgid "Update Themes"
-msgstr "Temas completos"
+msgstr "Atualizar temas"
 
 #: apps/editors/helpers.py:143
 msgid "Fast Track ({0})"
@@ -12022,9 +12097,8 @@ msgid "add-on"
 msgstr "extra"
 
 #: apps/editors/helpers.py:783 apps/editors/helpers.py:803
-#, fuzzy
 msgid "Flagged"
-msgstr "Marcado para análise"
+msgstr "Marcado"
 
 # 85%
 #: apps/editors/helpers.py:787 apps/editors/helpers.py:806
@@ -12040,9 +12114,8 @@ msgid "Jetpack Add-on"
 msgstr "Extra Jetpack"
 
 #: apps/editors/models.py:176
-#, fuzzy
 msgid "Restartless Add-on"
-msgstr "Construtor de extras"
+msgstr "Extra sem necessidade de reinicio"
 
 #: apps/editors/models.py:177
 msgid "More Information Requested"
@@ -12053,9 +12126,8 @@ msgid "Contains Editor Comment"
 msgstr "Contém comentários do editor"
 
 #: apps/editors/tasks.py:68
-#, fuzzy
 msgid "Duplicate Submission"
-msgstr "Data de submissão"
+msgstr "Submissão duplicada"
 
 #: apps/editors/tasks.py:80
 msgid "Thanks for submitting your Theme"
@@ -12070,9 +12142,8 @@ msgid "Theme submission flagged for review"
 msgstr "Envio de tema marcado para revisão"
 
 #: apps/editors/tasks.py:95
-#, fuzzy
 msgid "A question about your Theme submission"
-msgstr "Um problema com o envio do seu tema"
+msgstr "Uma questão sobre a submissão do seu tema"
 
 #: apps/editors/views.py:122
 msgid "New Add-ons (Under 5 days)"
@@ -12087,9 +12158,8 @@ msgid "Overdue (Over 10 days)"
 msgstr "Antigos (mais de 10 dias)"
 
 #: apps/editors/views.py:453
-#, fuzzy
 msgid "An unknown error occurred"
-msgstr "Houve um erro ao salvar essa mensagem."
+msgstr "Ocorreu um erro desconhecido"
 
 #: apps/editors/views.py:489
 msgid "Self-reviews are not allowed."
@@ -12277,9 +12347,8 @@ msgstr "Novos editores"
 
 #: apps/editors/templates/editors/home.html:80
 #: apps/editors/templates/editors/home.html:95
-#, fuzzy
 msgid "You're #{0} with {1} reviews"
-msgstr "Você está a experimentá-lo!"
+msgstr "Você está na posição #{0} com {1} revisões"
 
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:125
@@ -12290,7 +12359,6 @@ msgstr[1] "Revisões moderadas ({num})"
 
 #: apps/editors/templates/editors/leaderboard.html:3
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:56
-#, fuzzy
 msgid "Reviewer Leaderboard"
 msgstr "Tabela de classificações dos revisores"
 
@@ -12305,7 +12373,6 @@ msgid "Rank"
 msgstr "Classificação"
 
 #: apps/editors/templates/editors/leaderboard.html:25
-#, fuzzy
 msgid "Score"
 msgstr "Pontuação"
 
@@ -12352,9 +12419,8 @@ msgid "This Month"
 msgstr "Este mês"
 
 #: apps/editors/templates/editors/performance.html:48
-#, fuzzy
 msgid "This Year"
-msgstr "O que é isto?"
+msgstr "Este ano"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -12374,12 +12440,10 @@ msgid "Month"
 msgstr "Mês"
 
 #: apps/editors/templates/editors/performance.html:86
-#, fuzzy
 msgid "Year"
 msgstr "Ano"
 
 #: apps/editors/templates/editors/performance.html:93
-#, fuzzy
 msgid "All-Time"
 msgstr "Desde sempre"
 
@@ -12599,7 +12663,6 @@ msgid "Top Reviewers (past 7 days)"
 msgstr "Principais editores (últimos 7 dias)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
-#, fuzzy
 msgid "No top reviewers yet."
 msgstr "Ainda sem revisores principais."
 
@@ -12618,19 +12681,16 @@ msgstr "Você possui <span>{0}</span> pontos."
 #: apps/editors/templates/editors/themes/queue_list.html:49
 #: apps/editors/templates/editors/themes/single.html:26
 #: apps/editors/templates/editors/themes/themes.html:45
-#, fuzzy
 msgid "Reviewer"
 msgstr "Revisor"
 
 #: apps/editors/templates/editors/themes/deleted.html:4
-#, fuzzy
 msgid "Deleted Themes"
-msgstr "Temas completos"
+msgstr "Temas eliminados"
 
 #: apps/editors/templates/editors/themes/deleted.html:17
-#, fuzzy
 msgid "Date Deleted"
-msgstr "Aplicação eliminada."
+msgstr "Data da eliminação"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
@@ -12687,9 +12747,8 @@ msgid "Theme Review Log"
 msgstr "Registro de revisões do tema"
 
 #: apps/editors/templates/editors/themes/queue.html:6
-#, fuzzy
 msgid "Theme Review Queue"
-msgstr "Fila de revisão para {region}"
+msgstr "Fila de revisão de tema"
 
 #: apps/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
@@ -12720,26 +12779,22 @@ msgid "Your Review History"
 msgstr "Seu histórico de revisões"
 
 #: apps/editors/templates/editors/themes/queue.html:87
-#, fuzzy
 msgid "Commit Review"
-msgstr "Revisão solicitada"
+msgstr "Submeter análise"
 
 #: apps/editors/templates/editors/themes/queue.html:89
-#, fuzzy
 msgid "Commit Reviews"
-msgstr "Re-revisões"
+msgstr "Submeter análises"
 
 #: apps/editors/templates/editors/themes/queue.html:93
-#, fuzzy
 msgid "{0} out of {1} reviewed"
-msgstr "Não revisto"
+msgstr "{0} de {1} revisto"
 
 #: apps/editors/templates/editors/themes/queue.html:101
 msgid "There are currently no Themes to review."
 msgstr "Atualmente não há temas para revisão."
 
 #: apps/editors/templates/editors/themes/queue_list.html:15
-#, fuzzy
 msgid "Clear Search"
 msgstr "Limpar pesquisa"
 
@@ -12748,9 +12803,8 @@ msgid "Release My Theme Locks"
 msgstr ""
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
-#, fuzzy
 msgid "Interactive Theme Queue"
-msgstr "Fila de revisão para {region}"
+msgstr "Fila interativa de tema"
 
 # 88%
 #: apps/editors/templates/editors/themes/queue_list.html:79
@@ -12758,38 +12812,32 @@ msgid "There are currently no items of this type to review."
 msgstr "Atualmente não há itens deste tipo para analisar."
 
 #: apps/editors/templates/editors/themes/queue_list.html:92
-#, fuzzy
 msgid "Reviewers' Guide"
-msgstr "Guia dos Revisores"
+msgstr "Guia dos revisores"
 
 #: apps/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
 msgstr "Revisão do tema para {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:16
-#, fuzzy
 msgid "(Probable Duplicate Submission)"
-msgstr "Submissão da aplicação incompleta"
+msgstr "(Provavelmente uma submissão duplicada)"
 
 #: apps/editors/templates/editors/themes/themes.html:66
-#, fuzzy
 msgid "Past Review Notes"
-msgstr "Notas para revisores"
+msgstr "Notas de revisão antigas"
 
 #: apps/editors/templates/editors/themes/themes.html:72
-#, fuzzy
 msgid "More Info Requested: {0}"
-msgstr "Solicitadas mais informações"
+msgstr "Solicitadas mais informações: {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:74
-#, fuzzy
 msgid "Flagged: {0}"
-msgstr "Marcado para análise"
+msgstr "Marcado: {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:95
-#, fuzzy
 msgid "Approve Theme"
-msgstr "Tema completo"
+msgstr "Aprovar tema"
 
 #: apps/editors/templates/editors/themes/themes.html:102
 msgid "Field required"
@@ -12816,7 +12864,6 @@ msgid "Describe your reason for flagging"
 msgstr "Descreva o motivo da sua marcação"
 
 #: apps/files/forms.py:88
-#, fuzzy
 msgid "Cannot diff a version against itself"
 msgstr "Não é possível comparar uma versão consigo própria"
 
@@ -12858,12 +12905,10 @@ msgid "Could not parse uploaded file."
 msgstr "Não foi possível analisar o ficheiro carregado."
 
 #: apps/files/utils.py:225
-#, fuzzy
 msgid "Invalid file name in archive: {0}"
 msgstr "Nome de ficheiro inválido no arquivo: {0}"
 
 #: apps/files/utils.py:233
-#, fuzzy
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 
@@ -13029,9 +13074,8 @@ msgstr "Quadro do tradutor"
 #: apps/localizers/templates/localizers/categories.html:5
 #: apps/localizers/templates/localizers/dashboard.html:5
 #: apps/localizers/templates/localizers/dashboard.html:13
-#, fuzzy
 msgid "Localization Summary for {0}"
-msgstr "Tradução de categorias para {0}"
+msgstr "Resumo de tradução para {0}"
 
 #: apps/localizers/templates/localizers/categories.html:11
 #: apps/localizers/templates/localizers/dashboard.html:11
@@ -13139,14 +13183,12 @@ msgstr "Nome do idioma"
 
 #: apps/pages/templates/pages/about.lhtml:3
 #: apps/pages/templates/pages/about.lhtml:10
-#, fuzzy
 msgid "About Mozilla Add-ons"
-msgstr "Tradução do Mozilla Extras"
+msgstr "Sobre os Extras da Mozilla"
 
 #: apps/pages/templates/pages/about.lhtml:12
-#, fuzzy
 msgid "What is this website?"
-msgstr "Esta é uma atualização paga de"
+msgstr "O que é este site web?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
@@ -13247,9 +13289,8 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:66
-#, fuzzy
 msgid "I have a question"
-msgstr "Faça uma pergunta ao autor"
+msgstr "Eu tenho uma questão"
 
 #: apps/pages/templates/pages/about.lhtml:67
 msgid ""
@@ -13265,9 +13306,8 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:76
-#, fuzzy
 msgid "Who works on this website?"
-msgstr "Esta aplicação funciona em dispositivos Tarako."
+msgstr "Quem trabalha neste site web?"
 
 #: apps/pages/templates/pages/about.lhtml:77
 msgid ""
@@ -13774,9 +13814,8 @@ msgstr "#amo (para suporte relacionado à hospedagem do seu extra no AMO)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:254
-#, fuzzy
 msgid "Mailing List"
-msgstr "Listar aplicação"
+msgstr "Lista de correio"
 
 #. Label for a link to the extension developers newsgroup
 #: apps/pages/templates/pages/dev_faq.html:258
@@ -13816,9 +13855,8 @@ msgstr ""
 "Mozilla não oferece recomendações de desenvolvedores."
 
 #: apps/pages/templates/pages/dev_faq.html:284
-#, fuzzy
 msgid "Can I host my own add-on?"
-msgstr "A Mozilla pode hospedar o meu extra?"
+msgstr "Posso alojar o meu próprio extra?"
 
 #: apps/pages/templates/pages/dev_faq.html:286
 msgid ""
@@ -14114,9 +14152,8 @@ msgstr ""
 "seu extra ativamente desde a data de envio do extra para o AMO."
 
 #: apps/pages/templates/pages/dev_faq.html:485
-#, fuzzy
 msgid "How do I submit an update for my add-on?"
-msgstr "Como eu envio meu extra para análise?"
+msgstr "Como submeto uma atualização para o meu extra?"
 
 #: apps/pages/templates/pages/dev_faq.html:487
 msgid ""
@@ -14958,9 +14995,8 @@ msgstr ""
 "essas regras gerais."
 
 #: apps/pages/templates/pages/review_guide.html:59
-#, fuzzy
 msgid "Do:"
-msgstr "Dinamarca"
+msgstr "Fazer:"
 
 #: apps/pages/templates/pages/review_guide.html:62
 msgid ""
@@ -15463,9 +15499,8 @@ msgid "Rated {0} out of 5 stars"
 msgstr "Avaliado em {0} de 5 estrelas"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
-#, fuzzy
 msgid "Rated %(rating)s out of 5 stars"
-msgstr "Avaliado em %(rating)s de 5 estrelas"
+msgstr "Classificado com %(rating)s de 5 estrelas"
 
 # 75%
 #: apps/reviews/templates/reviews/mobile/add_form.html:3
@@ -15526,9 +15561,8 @@ msgid "search for collections"
 msgstr "pesquisar coleções"
 
 #: apps/search/forms.py:27
-#, fuzzy
 msgid "search for themes"
-msgstr "Procurar temas para <b>{0}</b>"
+msgstr "procurar por temas"
 
 #: apps/search/forms.py:28
 msgid "search for apps"
@@ -15627,14 +15661,12 @@ msgstr ""
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
-#, fuzzy
 msgid "Themes Search Results for {0}"
-msgstr "Resultados da pesquisa de coleções para {0}"
+msgstr "Resultados da pesquisa por temas para {0}"
 
 #: apps/search/templates/search/personas.html:11
-#, fuzzy
 msgid "Themes Search Results"
-msgstr "Resultados da pesquisa para \"{0}\""
+msgstr "Resultados da pesquisa por temas"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -15834,9 +15866,8 @@ msgid "Ratings"
 msgstr "Avaliações"
 
 #: apps/stats/templates/stats/dashboard.html:3
-#, fuzzy
 msgid "Add-on Statistics"
-msgstr "Construtor de extras"
+msgstr "Estatísticas de extras"
 
 #: apps/stats/templates/stats/global_report_menu.html:6
 msgid "Add-ons in Use"
@@ -15852,19 +15883,16 @@ msgid "Add-ons Downloaded"
 msgstr "Extras transferidos"
 
 #: apps/stats/templates/stats/global_report_menu.html:18
-#, fuzzy
 msgid "Add-ons Updated"
 msgstr "Extras atualizados"
 
 #: apps/stats/templates/stats/global_report_menu.html:22
-#, fuzzy
 msgid "Collections Created"
 msgstr "Coleções criadas"
 
 #: apps/stats/templates/stats/global_report_menu.html:26
-#, fuzzy
 msgid "Reviews Written"
-msgstr "Revisões escritas"
+msgstr "Análises escritas"
 
 #: apps/stats/templates/stats/global_report_menu.html:30
 msgid "User Signups"
@@ -15897,9 +15925,8 @@ msgid "{0} :: Statistics Dashboard"
 msgstr "{0} :: Painel de estatísticas"
 
 #: apps/stats/templates/stats/stats.html:22
-#, fuzzy
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "{0} ::Quadro de estatísticas :: Extras para o {1}"
+msgstr "Painel de estatísticas :: Extras para {1}"
 
 #: apps/stats/templates/stats/stats.html:30
 msgid "Controls:"
@@ -15956,7 +15983,6 @@ msgid "Statistics for {0}"
 msgstr "Estatísticas para {0}"
 
 #: apps/stats/templates/stats/stats.html:94
-#, fuzzy
 msgid "Statistics Dashboard"
 msgstr "Painel de estatísticas"
 
@@ -15980,28 +16006,24 @@ msgid "Contribution stats are currently <b>private</b>."
 msgstr ""
 
 #: apps/stats/templates/stats/stats.html:174
-#, fuzzy
 msgid "This dashboard is currently <b>private</b>."
-msgstr "Este quadro de momento é <b>público</b>."
+msgstr "Este painel de momento é <b>privado</b>."
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
 msgstr "Alterar definições."
 
 #: apps/stats/templates/stats/reports/addons_created.html:3
-#, fuzzy
 msgid "Add-ons Created by Date"
-msgstr "Extras atualizados por Data"
+msgstr "Extras criados por data"
 
 #: apps/stats/templates/stats/reports/addons_downloaded.html:3
-#, fuzzy
 msgid "Add-ons Downloaded by Date"
-msgstr "Extras atualizados por Data"
+msgstr "Extras transferidos por data"
 
 #: apps/stats/templates/stats/reports/addons_in_use.html:3
-#, fuzzy
 msgid "Add-ons in Use by Date"
-msgstr "Extras em uso, últimos {0} dias"
+msgstr "Extras em utilização por data"
 
 #: apps/stats/templates/stats/reports/addons_updated.html:3
 msgid "Add-ons Updated by Date"
@@ -16012,23 +16034,20 @@ msgid "Application usage by Date"
 msgstr "Utilização da aplicação por data"
 
 #: apps/stats/templates/stats/reports/collections_created.html:3
-#, fuzzy
 msgid "Collections Created by Date"
-msgstr "por %(user)s em %(date)s"
+msgstr "Coleções criadas por data"
 
 #: apps/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
 msgstr "Contribuições por data"
 
 #: apps/stats/templates/stats/reports/downloads.html:3
-#, fuzzy
 msgid "Downloaded by Date"
-msgstr "Contribuições por data"
+msgstr "Transferências por data"
 
 #: apps/stats/templates/stats/reports/downloads.html:6
-#, fuzzy
 msgid "How are downloads counted?"
-msgstr "Como é que as recomendações personalizadas são determinadas?"
+msgstr "Como é que as transferências são contabilizadas?"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -16087,9 +16106,8 @@ msgid "Ratings by Date"
 msgstr "Avaliações por Data"
 
 #: apps/stats/templates/stats/reports/reviews_created.html:3
-#, fuzzy
 msgid "Reviews Created by Date"
-msgstr "por %(user)s em %(date)s"
+msgstr "Análise criadas por data"
 
 #: apps/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
@@ -16121,9 +16139,8 @@ msgid "Add-on Status by Date"
 msgstr "EStado do extra por data"
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
-#, fuzzy
 msgid "Subscribers by Date"
-msgstr "Contribuições por data"
+msgstr "Subscritores por data"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
