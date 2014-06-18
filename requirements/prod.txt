@@ -64,7 +64,7 @@ mozilla-logger==0.2
 mozpay==2.0.0
 m2secret==0.1.1
 ndg-httpsclient==0.3.2
-newrelic==2.16.0.12
+newrelic==2.20.1.18
 oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
