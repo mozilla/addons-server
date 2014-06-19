@@ -2155,6 +2155,7 @@ class CompatOverride(amo.models.ModelBase):
 
     class Meta:
         db_table = 'compat_override'
+        unique_together = ('addon', 'guid')
 
     def save(self, *args, **kw):
         if not self.addon:
