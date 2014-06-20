@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2014-06-18 06:50+0100\n"
+"PO-Revision-Date: 2014-06-20 05:28+0100\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -919,7 +919,7 @@ msgstr "Temas completos"
 #: apps/addons/templates/addons/mobile/persona_detail.html:66
 #, fuzzy
 msgid "See all {0} Themes"
-msgstr "Ver todas as revisões"
+msgstr "Ver todos os temas completos"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -3957,7 +3957,7 @@ msgstr "Temas completos"
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
 #, fuzzy
 msgid "&laquo; All Themes"
-msgstr "Procurar temas para <b>{0}</b>"
+msgstr "Ver todos os temas completos"
 
 #: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43
 msgid "All"
@@ -9767,12 +9767,12 @@ msgstr "Dúvidas comuns sobre análises"
 #: apps/devhub/templates/devhub/docs/themes-faq.html:44
 #, fuzzy
 msgid "Introducing Background Themes"
-msgstr "Procurar temas para <b>{0}</b>"
+msgstr "Os temas de fundo são gratuitos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:16
 #, fuzzy
 msgid "What Are Background Themes?"
-msgstr "O que são extras?"
+msgstr "Os temas de fundo são gratuitos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:17
 #: apps/devhub/templates/devhub/docs/themes-faq.html:59
@@ -9791,7 +9791,7 @@ msgstr "Qual é a diferença entre temas de fundo e temas completos?"
 #: apps/devhub/templates/devhub/docs/themes-faq.html:85
 #, fuzzy
 msgid "Installing Background Themes"
-msgstr "Procurar temas para <b>{0}</b>"
+msgstr "Os temas de fundo são gratuitos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:23
 #: apps/devhub/templates/devhub/docs/themes-faq.html:88
@@ -9807,7 +9807,7 @@ msgstr "Os temas de fundo são gratuitos?"
 #: apps/devhub/templates/devhub/docs/themes-faq.html:112
 #, fuzzy
 msgid "Using Background Themes"
-msgstr "Procurar temas para <b>{0}</b>"
+msgstr "Os temas de fundo são gratuitos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:29
 #: apps/devhub/templates/devhub/docs/themes-faq.html:115
@@ -9862,7 +9862,7 @@ msgstr "Qual o tamanho máximo permitido para o ficheiro do meu tema de fundo?"
 #: apps/devhub/templates/devhub/docs/themes-faq.html:47
 #, fuzzy
 msgid "What are Background Themes?"
-msgstr "O que são extras?"
+msgstr "Os temas de fundo são gratuitos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:49
 msgid ""
@@ -9985,7 +9985,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:170
 #, fuzzy
 msgid "Creating Your Own Themes"
-msgstr "Criar teu próprio tema"
+msgstr "Criar os seus próprios temas de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:173
 msgid "Can I create my own Theme?"
@@ -10224,22 +10224,30 @@ msgid ""
 "information&mdash;as a user increases the width of the browser window, the "
 "browser reveals more of the left-hand side of the image."
 msgstr ""
+"O canto superior direito da imagem deve ter a informação mais "
+"importante&mdash;à medida que o utilizador aumenta a largura da janela do "
+"navegador, este mostra mais da parte esquerda da imagem."
 
 #: apps/devhub/templates/devhub/docs/themes.html:100
 msgid "Online Image Editor Resources"
-msgstr ""
+msgstr "Recursos do editor de imagem online"
 
 #: apps/devhub/templates/devhub/docs/themes.html:103
 msgid ""
 "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr offers professional and "
 "easy-to-use tools for creating and editing images within a browser."
 msgstr ""
+"<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; O Pixlr oferece ferramentas "
+"profissionais e fáceis de utilizar para criar e editar imagens no navegador."
 
 #: apps/devhub/templates/devhub/docs/themes.html:110
 msgid ""
 "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Tweak, rotate and touch "
 "up photos with Photoshop&reg; Express, a free online photo editor."
 msgstr ""
+"<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Melhore, rode e retoque "
+"fotografias com o Photoshop&reg; Express, um editor de fotografias online "
+"gratuito."
 
 #: apps/devhub/templates/devhub/docs/themes.html:118
 #, fuzzy
@@ -10252,20 +10260,27 @@ msgid ""
 "window, behind the add-on and find bars. It will be anchored to the bottom-"
 "left corner of the browser window."
 msgstr ""
+"A imagem de rodapé é apresentada como fundo na parte inferior da janela do "
+"navegador, atrás das barras de extras e de pesquisa. Será ancorada ao canto "
+"inferior esquerdo da janela do navegador."
 
 #: apps/devhub/templates/devhub/docs/themes.html:128
 msgid "View a sample Theme Footer here."
-msgstr ""
+msgstr "Ver um exemplo de rodapé do tema aqui."
 
 #: apps/devhub/templates/devhub/docs/themes.html:133
 msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
 msgstr ""
+"As dimensões devem ser <b>3000px de largura &times; 100px de altura</b>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:157
 msgid ""
 "Firefox may reveal more of the upper portion of the image if the find bar is "
 "open or if an extension adds more height to the bottom of the window."
 msgstr ""
+"O Firefox pode revelar mais da parte superior da imagem se a barra de "
+"pesquisa estiver aberta ou se uma extensão aumentar a altura do rodapé da "
+"janela."
 
 #: apps/devhub/templates/devhub/docs/themes.html:164
 msgid ""
@@ -10273,6 +10288,9 @@ msgid ""
 "information&mdash;as a user increases the width of the browser window, the "
 "browser reveals more of the right-hand side of the image."
 msgstr ""
+"A zona esquerda da imagem deve ter a informação mais importante&mdash;à "
+"medida que o utilizador aumenta a largura da janela do navegador, este "
+"mostra mais da parte direita da imagem."
 
 #: apps/devhub/templates/devhub/docs/themes.html:171
 #, fuzzy
@@ -10282,6 +10300,8 @@ msgstr "Obrigado por enviar seu tema"
 #: apps/devhub/templates/devhub/docs/themes.html:173
 msgid "To get started submitting your images, go to the Theme Submission page:"
 msgstr ""
+"Para começar a submeter as suas imagens, visite a página de submissão do "
+"tema:"
 
 #: apps/devhub/templates/devhub/docs/themes.html:179
 msgid ""
@@ -10289,6 +10309,9 @@ msgid ""
 "names are not allowed, so you may need to try a few times to find a unique "
 "name."
 msgstr ""
+"<b>Dê um nome ao seu tema</b> &mdash; escolha um nome único para o seu tema. "
+"Nomes duplicados não são permitidos, pelo que pode precisar de tentar "
+"algumas vezes até encontrar um nome único."
 
 #: apps/devhub/templates/devhub/docs/themes.html:186
 msgid ""
@@ -10297,6 +10320,10 @@ msgid ""
 "your theme if it is obvious that your category and/or tags are unrelated to "
 "your theme."
 msgstr ""
+"<b>Escolha uma categoria e as etiquetas</b> &mdash; selecione uma categoria "
+"e introduza algumas etiquetas que melhor descrevem o seu tema. Tenha em "
+"atenção que um revisor pode rejeitar o seu tema se for óbvio que a sua "
+"categoria e/ou etiquetas não tem relação com o seu tema."
 
 #: apps/devhub/templates/devhub/docs/themes.html:194
 msgid ""
@@ -10304,6 +10331,9 @@ msgid ""
 "Keep in mind that a reviewer may reject your theme if your description is "
 "not an accurate representation of your theme."
 msgstr ""
+"<b>Descreva o seu tema</b> &mdash; escreva uma descrição curta do seu tema. "
+"Tenha em atenção que um revisor pode rejeitar o seu tema se a sua descrição "
+"não for representativa do seu tema."
 
 #: apps/devhub/templates/devhub/docs/themes.html:201
 msgid ""
@@ -10311,18 +10341,25 @@ msgid ""
 "for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative "
 "Common licenses.</a>"
 msgstr ""
+"<b>Selecione uma licença para o seu tema</b> &mdash; escolha a licença de "
+"direitos de autor para o seu trabalho. <a href=\"%(cc_url)s\">Leia mais "
+"sobre os tipos de licença Creative Common.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:208
 msgid ""
 "<b>Important:</b> Please be sure you have the rights to use the image in "
 "your theme!"
 msgstr ""
+"<b>Importante:</b> Confirme se tem os direitos para utilizar a imagem no seu "
+"tema!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:216
 msgid ""
 "<b>Upload your images</b> &mdash; make sure they are under 300 KB in size "
 "and JPG or PNG format!"
 msgstr ""
+"<b>Envie as suas imagens</b> &mdash; confirme que se estas têm um tamanho "
+"inferior a 300 KB e estão no formato JPG ou PNG!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:222
 msgid ""
@@ -10330,6 +10367,9 @@ msgid ""
 "(\"background\") color and foreground text color that work best with your "
 "header image."
 msgstr ""
+"<b>Escolha as cores para o texto e separador</b> &mdash; pode escolher a cor "
+"de (\"fundo\") do separador e a cor do texto de primeiro plano que funciona "
+"melhor com a sua imagem de cabeçalho."
 
 #: apps/devhub/templates/devhub/docs/themes.html:229
 msgid ""
@@ -10337,6 +10377,9 @@ msgid ""
 "mouse over the image above the Submit Theme button, and see how it looks "
 "instantly."
 msgstr ""
+"<b>Pré-visualize o seu tema</b> &mdash; está pronto para pré-visualizar o "
+"seu tema! Coloque o rato sob a imagem sob o botão Submeter tema e vejo "
+"imediatamente como fica."
 
 #: apps/devhub/templates/devhub/docs/themes.html:236
 msgid ""
@@ -10344,12 +10387,17 @@ msgid ""
 "Theme button and you're done! You can see all the themes you've authored on "
 "your profile page."
 msgstr ""
+"<b>Submeta o seu tema</b> &mdash; se tudo lhe parece bem, clique no botão "
+"Submeter tema e está feito! Pode ver todos os temas que construiu na sua "
+"página de perfil."
 
 #: apps/devhub/templates/devhub/docs/themes.html:243
 msgid ""
 "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure "
 "it complies with the content guidelines and terms of service!"
 msgstr ""
+"<b>Dica:</b> para garantir que o seu tema é aprovado para a galeria, tenha a "
+"certeza que este cumpre as diretrizes de conteúdo e os termos do serviço!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:254
 #, fuzzy
@@ -10366,6 +10414,8 @@ msgid ""
 "Your add-on's listing is disabled and is not showing anywhere in our gallery "
 "or update service."
 msgstr ""
+"A apresentação do seu extra em listas está desativada e não será apresentado "
+"em qualquer área da nossa galeria ou serviço de atualização."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -10401,6 +10451,9 @@ msgid ""
 "our gallery. If you have any questions, please email marketplace-"
 "staff@mozilla.org."
 msgstr ""
+"O seu extra foi desativado por um administrador do site e não será mais "
+"apresentado na nossa galeria. Se tiver quaisquer questões, por favor envie "
+"uma mensagem de correio eletrónico para marketplace-staff@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:60
 msgid ""
@@ -10428,6 +10481,9 @@ msgid ""
 "wish to continue hosting your add-on, please click to select a review "
 "process."
 msgstr ""
+"Todos os extras alojados na nossa galeria deve ser revistos por um editor. "
+"Se quiser continuar a alojar o seu extra, por favor clique para selecionar "
+"um processo de revisão."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 #, fuzzy
@@ -10439,6 +10495,8 @@ msgid ""
 "This is the version of your add-on that will be installed if someone clicks "
 "the Install button on addons.mozilla.org."
 msgstr ""
+"Esta é a versão do extra que será instalada se alguém clicar no botão "
+"Instalar em addons.mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 #, fuzzy
@@ -10449,7 +10507,7 @@ msgstr "Criado em:"
 #: apps/devhub/templates/devhub/includes/addon_details.html:97
 #: apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%e de %b, %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 #, fuzzy
@@ -10465,11 +10523,13 @@ msgstr "Notas da versão"
 msgid ""
 "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
+"Esta é a versão mas recente que foi enviada, mas que ainda não foi "
+"disponibilizada no site."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118
 #: apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "As filas não são revistas numa ordem rigorosa"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -10787,7 +10847,7 @@ msgstr "Detalhes do Tema"
 #: apps/devhub/templates/devhub/personas/edit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:36
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Forneça uma URL amigável para a sua página de detalhe."
 
 # 86%
 #: apps/devhub/templates/devhub/personas/edit.html:92
@@ -10798,7 +10858,7 @@ msgstr "Selecione a categoria que descreva melhor o teu Tema."
 #: apps/devhub/templates/devhub/personas/edit.html:95
 #: apps/devhub/templates/devhub/personas/submit.html:44
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Adicione algumas etiquetas para descrever o seu tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:106
 #: apps/devhub/templates/devhub/personas/submit.html:54
@@ -10942,10 +11002,12 @@ msgid ""
 "Upon upload and form submission, the AMO Team will review your updated "
 "design. Your current design will still be public in the meantime."
 msgstr ""
+"Após envio e submissão do formulário, a equipa do AMO irá rever o seu design "
+"atualizado. Durante este processo o design atual continuará a ser público."
 
 #: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "O seu design anteriormente resubmetido e que aguarda revisão."
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
 #, fuzzy
@@ -10959,7 +11021,7 @@ msgstr "A aguardar aprovação"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Pode atualizar aqui o design do seu tema após este ter sido aprovado."
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 #, fuzzy
@@ -10968,7 +11030,7 @@ msgstr "Gráfico de cabeçalho"
 
 #: apps/devhub/templates/devhub/personas/edit.html:266
 msgid "Footer"
-msgstr ""
+msgstr "Rodapé"
 
 #: apps/devhub/templates/devhub/personas/edit.html:270
 #: apps/devhub/templates/devhub/personas/submit.html:167
@@ -11022,6 +11084,9 @@ msgid ""
 "Submit your own design below, or <a href=\"%(submit_url)s\">learn how to "
 "create one</a>!"
 msgstr ""
+"Os temas de fundo permitem-lhe personalizar facilmente a aparência do seu "
+"Firefox. Submeta o seu próprio design em baixo, ou <a href=\"%(submit_url)s"
+"\">aprenda a criar um</a>!"
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
 #, fuzzy
@@ -11035,6 +11100,10 @@ msgid ""
 "according to the standards established in the <a href=\"%(guidelines_url)s\" "
 "target=\"_blank\">Review Guidelines</a>."
 msgstr ""
+"Ao submeter o seu tema, concorda com os <a href=\"%(tos_url)s\" target="
+"\"_blank\">termos do serviço de temas</a>. O seu tema está sujeito a "
+"aprovação de acordo com as normas estabelecidas nas <a href="
+"\"%(guidelines_url)s\" target=\"_blank\">diretrizes de revisão</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -11045,22 +11114,28 @@ msgid ""
 "Your theme has been submitted to the Review Queue. You'll receive an email "
 "once it has been reviewed, typically within 24 hours."
 msgstr ""
+"O seu tema foi submetido para a fila de revisão. Irá receber um email assim "
+"que este estiver revisto, tipicamente num período de 24 horas."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:19
 msgid ""
 "Provide more details about your theme by <a href=\"%(edit_url)s\">editing "
 "its listing</a>."
 msgstr ""
+"Forneça mais detalhes sobre o seu tema <a href=\"%(edit_url)s\">editando a "
+"sua listagem</a>."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid ""
 "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</"
 "a> to stay updated on reviews, collections, and more."
 msgstr ""
+"Veja e subscreva ao <a href=\"%(feed_url)s\">registo de atividade</a> do seu "
+"tema para se manter a par das revisões, coleções e muito mais."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
-msgstr ""
+msgstr "Junte-se à conversa nos nossos <a href=\"%(forums_url)s\">fóruns</a>."
 
 # 82%
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
@@ -11120,7 +11195,7 @@ msgstr "Seleccione a plataforma de destino para este ficheiro."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Para que tipo de revisão gostaria de nomear?"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -11314,6 +11389,9 @@ msgid ""
 "your add-on status to change, or your listing to lose public visibility, if "
 "this is the only public version of your add-on."
 msgstr ""
+"Está a eliminar a versão atual deste extra. Isto pode fazer com que o estado "
+"do seu extra mude ou que a sua listagem perca visibilidade pública, se esta "
+"for a única versão pública do seu extra."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
@@ -11324,12 +11402,16 @@ msgid ""
 "<strong>Important:</strong> Once a version has been deleted, you may not "
 "upload a new version with the same version number."
 msgstr ""
+"<strong>Importante:</strong> Assim que uma versão for eliminada, não poderá "
+"enviar uma nova versão com o mesmo número de versão."
 
 #: apps/devhub/templates/devhub/versions/list.html:199
 msgid ""
 "Deleting a version which has already been reviewed may also cause a "
 "significant delay in the review of your next update."
 msgstr ""
+"Eliminar uma versão que já foi revista pode também causar um atraso "
+"significativo na revisão da sua próxima atualização."
 
 #: apps/devhub/templates/devhub/versions/list.html:202
 msgid "Are you sure you wish to delete this version?"
@@ -11392,7 +11474,7 @@ msgstr "Compras mais fáceis"
 
 #: apps/discovery/modules.py:138
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Guarde os seus itens favoritos no conforto do seu navegador."
 
 #: apps/discovery/modules.py:146
 msgid "Build the perfect website"
@@ -11438,7 +11520,7 @@ msgstr "Aqui estão alguns grandes extras para o Firefox 4."
 
 #: apps/discovery/modules.py:190
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Temas do dia de São Patrício"
 
 #: apps/discovery/modules.py:191
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
@@ -11529,6 +11611,9 @@ msgid ""
 "Visit addons.mozilla.org from Firefox for Android and dress up your mobile "
 "browser to match your style, mood, or the season."
 msgstr ""
+"Visite addons.mozilla.org no Firefox para Android e altere a aparência do "
+"seu navegador móvel para combinar com o seu estilo, estado de espírito ou "
+"estação."
 
 #: apps/discovery/modules.py:287
 msgid "Get up and move!"
@@ -11536,7 +11621,7 @@ msgstr "Levante-se e mexa-se!"
 
 #: apps/discovery/modules.py:288
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Instale estes extras de fitness para o manter saudável e ativo."
 
 #: apps/discovery/modules.py:296
 msgid "New &amp; Now"
@@ -11544,7 +11629,7 @@ msgstr "Novo e recente"
 
 #: apps/discovery/modules.py:297
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Obtenha os últimos extras do momento, que não vai querer perder."
 
 #: apps/discovery/modules.py:329
 msgid "Worry-free browsing"
@@ -11552,17 +11637,19 @@ msgstr "Navegação sem preocupações"
 
 #: apps/discovery/modules.py:330
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Proteja a sua privacidade online com os extras desta coleção."
 
 #: apps/discovery/modules.py:339
 msgid ""
 "Great add-ons for work, fun, privacy, productivity&hellip; just about "
 "anything!"
 msgstr ""
+"Ótimos extras para trabalho, diversão, privacidade, produtividade&hellip; "
+"enfim, extras para quase tudo!"
 
 #: apps/discovery/modules.py:347
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Extras para vencedores do concurso Australis"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -11648,15 +11735,15 @@ msgstr "Cancelar Instalação"
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:4
 msgid "Football fanatic?"
-msgstr ""
+msgstr "Fanático por futebol?"
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:5
 msgid "Firefox lets you keep up with all the action in Brazil."
-msgstr ""
+msgstr "O Firefox permite que acompanhe toda a ação no Brasil."
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:6
 msgid "Activate the Goal.com sidebar"
-msgstr ""
+msgstr "Ative a barra lateral Goal.com"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -11679,27 +11766,31 @@ msgstr "Obter extras do Mobile"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
-msgstr ""
+msgstr "Faça compras inteligentes nesta época festiva"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
-msgstr ""
+msgstr "Encontre ótimos extras para o ajudar com todas as suas compras."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:13
 msgid ""
 "Install the Amazon Browser Apps and receive special Amazon features right at "
 "your fingertips."
 msgstr ""
+"Instale o navegador de aplicações da Amazon e tenha funcionalidades "
+"especiais da Amazon na ponta dos seus dedos."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
 msgid ""
 "Keep an eye on your eBay activity wherever you are on the web when you "
 "install the eBay Sidebar for Firefox."
 msgstr ""
+"Acompanhe a sua atividade no eBay sempre que estiver na web quando instalar "
+"a barra lateral do eBay para o Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
-msgstr ""
+msgstr "Ver a coleção completa de extras para compras em épocas festivas."
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -12006,7 +12097,7 @@ msgstr "Permitir revisão preliminar"
 
 #: apps/editors/helpers.py:421
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "Isto irá marcar os ficheiros como preliminarmente revistos."
 
 #: apps/editors/helpers.py:423
 msgid ""
@@ -12199,7 +12290,9 @@ msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
+"{0} revisão de tema processada com sucesso (+{1} pontos, {2} total)."
 msgstr[1] ""
+"{0} revisões de temas processadas com sucesso (+{1} pontos, {2} total)."
 
 #: apps/editors/views_themes.py:342
 msgid ""
@@ -12207,6 +12300,9 @@ msgid ""
 "review those released themes. You may have to refresh the page to see the "
 "changes reflected in the table below."
 msgstr ""
+"Os bloqueios ao seu tema foram libertados com sucesso. Outros revisores "
+"podem agora rever os temas libertados. Pode ter de atualizar a página para "
+"ver as alterações refletidas na tabela em baixo."
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
@@ -12694,7 +12790,7 @@ msgstr "Data da eliminação"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Não foram encontrados temas eliminados para este período."
 
 #: apps/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
@@ -12739,8 +12835,8 @@ msgstr[1] "{num} atualizações"
 #: apps/editors/templates/editors/themes/home.html:49
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} submissão de tema não revista esta semana."
+msgstr[1] "{num} submissões de tema não revistas esta semana."
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
@@ -12799,8 +12895,9 @@ msgid "Clear Search"
 msgstr "Limpar pesquisa"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
+#, fuzzy
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Posso criar o meu próprio tema?"
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
@@ -12845,7 +12942,7 @@ msgstr "Campo requerido"
 
 #: apps/editors/templates/editors/themes/themes.html:106
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Introduza o ID ou a URL do duplicado"
 
 #: apps/editors/templates/editors/themes/themes.html:112
 msgid "Select a reason for rejection"
@@ -13198,10 +13295,16 @@ msgid ""
 "or application works. Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, geralmente conhecido como \"AMO\", é o site oficial da "
+"Mozilla para extras do software da Mozilla, tais como o Firefox, Thunderbird "
+"e SeaMonkey. Os extras permitem adicionar novas funcionalidades e alterar a "
+"forma como o seu navegador ou aplicação funcionam. Dê uma vista de olhos e "
+"explore as milhares de formas para personalizar o modo como faz as coisas "
+"online."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Quem cria estes extras?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
@@ -13211,48 +13314,63 @@ msgid ""
 "released. Add-ons marked as Experimental have not been reviewed and should "
 "only be installed with caution."
 msgstr ""
+"Os extras listados aqui foram criados por milhares de programadores da nossa "
+"comunidade, que vão desde indivíduos a grandes empresas. Todos os extras "
+"publicamente listados são revistos por uma equipa de editores antes de serem "
+"lançados. Extras marcados como experimentais não foram revistos e devem ser "
+"instalados com precaução."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Como posso acompanhar o que se está a passar com o AMO?"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid ""
 "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
+"Existem várias formas de saber as últimas notícias do mundo dos extras:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid ""
 "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with "
 "information for both add-on enthusiasts and developers."
 msgstr ""
+"O nosso <a href=\"%(url)s\">blogue de extras</a> é atualizado regularmente "
+"com informação para entusiastas e programadores de extras."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid ""
 "We often post news, tips, and tricks to our Twitter account, <a href="
 "\"%(url)s\">mozamo</a>"
 msgstr ""
+"Muitas vezes publicamos notícias, truques e dicas na nossa conta <a href="
+"\"%(url)s\">mozamo</a> no Twitter."
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid ""
 "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-"
 "ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Os nosso <a href=\"%(url)s\">fóruns</a> são um ótimo sítio para interagir "
+"com a comunidade de extras e discutir as futuras alterações ao AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Isto parece ótimo! Como posso envolver-me?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Existem várias formas de se envolver. Se estiver no lado técnico:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid ""
 "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and "
 "update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Faça o seu próprio extra</a>. Nós fornecemos serviços de "
+"alojamento e atualização gratuitos e podemos ajudá-lo a atingir uma maior "
+"audiência de utilizadores."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid ""
@@ -13260,6 +13378,9 @@ msgid ""
 "editor</a>! Our editors are add-on fans with a technical background who "
 "review add-ons for code quality and stability."
 msgstr ""
+"Se tiver experiência no desenvolvimento de extras, <a href=\"%(url)s\">torne-"
+"se num editor</a>! Os nossos editores são fãs de extras com experiência "
+"técnica que revêm a qualidade e estabilidade de extras."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid ""
@@ -13267,26 +13388,33 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our "
 "current bugs."
 msgstr ""
+"Ajude-nos a melhorar este site web. É código aberto e pode reportar bugs e "
+"submeter correções. O <a href=\"%(url)s\"> Bugzilla</a> contem todos os "
+"nossos bugs atuais."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid ""
 "If you're interested in add-ons but not quite as technical, there are still "
 "ways to help:"
 msgstr ""
+"Se estiver interessado em extras mas não de uma forma tão técnica, existem "
+"outras formas de ajudar:"
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Diga aos seus amigos! Partilhe com o mundo os extras que utiliza."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Participe nos nossos <a href=\"%(url)s\">fóruns</a>."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid ""
 "Review add-ons on the site. Add-on authors are more likely to improve their "
 "add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Reveja extras no site. Os autores de extras tenderão a melhorar os seus "
+"extras e escrever novos quando sabem que as pessoas apreciam o seu trabalho."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
@@ -13298,12 +13426,18 @@ msgid ""
 "\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer "
 "there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"Um bom sítio para começar é na nossa página de <a href=\"%(faq_url)s"
+"\">perguntas frequentes (<abbr title=\"Frequently Asked Questions\" lang=\"en"
+"\">FAQ</abbr>)</a>. Se não encontrar uma resposta aqui pode <a href="
+"\"%(forum_url)s\">perguntar nos nossos fóruns</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid ""
 "If you really need to contact someone from the Mozilla team, please see our "
 "<a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"Se precisar mesmo de contactar alguém na equipa da Mozilla, por favor visite "
+"a nossa página de <a href=\"%(url)s\">informações de contacto</a>"
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
@@ -13316,6 +13450,10 @@ msgid ""
 "significant contributors can be found on our <a href=\"%(url)s\"> Site "
 "Credits</a> page."
 msgstr ""
+"Ao longo dos anos, muitas pessoas contribuíram para este site web, incluindo "
+"voluntários da comunidade e uma equipa dedicada do AMO. Uma lista dos "
+"colaboradores mais significativos pode ser encontrada na nossa página de <a "
+"href=\"%(url)s\">créditos do site</a>"
 
 # 93%
 #: apps/pages/templates/pages/acr_firstrun.html:4
@@ -13659,6 +13797,13 @@ msgid ""
 "with, how it should be updated, and so on. The format of the Install "
 "Manifest is RDF/XML."
 msgstr ""
+"Este ficheiro, denominado por <a href=\"%(url)s\">manifesto de instalação</"
+"a>, é utilizado por aplicações de gestão de extras baseados em XUL para "
+"obter informações sobre um extra enquanto este é instalado. Contem meta-"
+"dados que identificam o extra, fornecendo informação sobre quem o criou, "
+"onde pode ser encontrada mais informação sobre ele, com que versões e "
+"aplicações é compatível, como deve ser atualizado, etc. O formato do "
+"manifesto de instalação é RDF/XML."
 
 #: apps/pages/templates/pages/dev_faq.html:147
 msgid "What does \"maxVersion\" mean?"
@@ -13707,6 +13852,15 @@ msgid ""
 "on. Developers need to be very, very careful with using them. Mozilla does "
 "not offer documentation on using them to build add-ons."
 msgstr ""
+"Sim. É possível, mas alguma da funcionalidade fornecida por estas "
+"bibliotecas estão disponíveis através de XPCOM, XUL e JS 1.8. Para além "
+"disto, os autores devem ter em atenção se as bibliotecas modificam tipos de "
+"objetos primitivos (String.prototype, Date.prototype, etc.) e/ou definem "
+"funções globais (por exemplo, a função $). Estas são propícias a criar "
+"conflitos com outros extras, em particular se diferentes extras utilizam "
+"diferentes versão de bibliotecas, entre outros. Os programadores devem ter "
+"imenso cuidado ao utilizá-las. A Mozilla não fornece documentação sobre como "
+"as utilizar para construir extras."
 
 #: apps/pages/templates/pages/dev_faq.html:180
 msgid "How do I test my add-on?"
@@ -13790,6 +13944,11 @@ msgid ""
 "\"%(bz_url)s\">The BabelZilla project</a> is also a great resource for "
 "learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Sim. Detalhes sobre como traduzir o seu extra podem ser encontrados no "
+"tutorial <a href=\"%(ext_url)s\">Construir uma Extensão</a> bem como na <a "
+"href=\"%(l10n_url)s\">página de tradução na central de programadores da "
+"Mozilla</a>. <a href=\"%(bz_url)s\">O projeto BabelZilla</a> é também um "
+"ótimo recurso para aprender a traduzir e ajudar na tradução de extras."
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -13900,6 +14059,11 @@ msgid ""
 "tools and infrastructure necessary to manage, host and expose your add-on to "
 "a massive base of Mozilla users."
 msgstr ""
+"O AMO da Mozilla (<a href=\"https://addons.mozilla.org\">https://addons."
+"mozilla.org</a>) é a incubadora que ajuda os programadores a construir, "
+"distribuir e suportar produtos fantásticos de consumo potenciados pela "
+"Mozilla. Fornece as ferramentas e infraestrutura necessária para gerir, "
+"alojar e expor o seu extra a uma base massiva de utilizadores Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:316
 msgid "Does Mozilla keep my account information private?"
