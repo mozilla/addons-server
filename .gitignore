@@ -1,3 +1,4 @@
+.env
 settings_local.py*
 settings_local_*.py
 shellng_local.py
