@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2014-06-20 05:28+0100\n"
+"PO-Revision-Date: 2014-06-21 07:26+0100\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -14203,7 +14203,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:404
 msgid "Why must my add-on be reviewed?"
-msgstr ""
+msgstr "Porque é que o meu extra tem de ser revisto?"
 
 #: apps/pages/templates/pages/dev_faq.html:406
 msgid ""
@@ -14212,6 +14212,11 @@ msgid ""
 "reviewed using the guidelines outlined in the <a href=\"%(url)s\">Editors "
 "Reviewing Guide</a>."
 msgstr ""
+"Todos os extras submetidos, sejam novos ou atualizações, são revistos para "
+"assegurar que os utilizadores da Mozilla têm uma experiência estável e "
+"segura. Todas as submissões de extras são revistas de acordo com as "
+"diretrizes descritas no <a href=\"%(url)s\">guia de revisão para editores</"
+"a>."
 
 #: apps/pages/templates/pages/dev_faq.html:414
 msgid "Who reviews my add-on?"
@@ -14226,6 +14231,13 @@ msgid ""
 "hard to ensure that your add-on is set up correctly and follows the "
 "guidelines outlined in the <a href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Os extras são revistos pelos editores AMO, um grupo de talentosos "
+"programadores que se voluntariam para ajudar no projeto Mozilla revendo "
+"extras para garantir uma experiência estável e segura para os utilizadores "
+"da Mozilla. Quando comunicar com os editores, por favor seja cordial, "
+"paciente e respeitador pois eles estão a trabalhar arduamente para garantir "
+"que o seu extra está corretamente construído e segue as diretrizes descritas "
+"no <a href=\"%(url)s\">guia de revisão para editores</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -14289,7 +14301,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Como posso ver quantas vezes o meu extra foi transferido?"
 
 #: apps/pages/templates/pages/dev_faq.html:469
 msgid ""
@@ -14304,6 +14316,7 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:476
 msgid "How can I see how many active users are using my add-on?"
 msgstr ""
+"Como posso ver quantos utilizadores ativos estão a utilizar o meu extra?"
 
 #: apps/pages/templates/pages/dev_faq.html:478
 msgid ""
@@ -14367,6 +14380,18 @@ msgid ""
 "recognize the achievements of individual add-on authors and the work they’ve "
 "produced."
 msgstr ""
+"As listas de recomendações são uma parte importante para apresentar aos "
+"visitantes do AMO extras úteis e interessantes numa lista pequena e focada. "
+"Permite-nos destacar extras que fizeram um bom trabalho criando uma única e/"
+"ou excitante melhoria ao software da Mozilla, aumentando o reconhecimento de "
+"milhares de extensões disponibilizadas no AMO. As listas são divididas em "
+"duas categorias; Recomendadas e Recomendas por categoria. A primeira é "
+"apresentada na página inicial do AMO e é tipicamente limitada a 40 extras em "
+"destaque. A segunda são listas de extras que são recomendadas ao nível da "
+"categoria. A única distinção entre as duas listas está relacionada com o "
+"facto de as listas de extras recomendados em categorias não serem destacadas "
+"na página inicial. À parte disto, ambas as listas têm como objetivo destacar "
+"as conquistas de autores individuais de extras e o trabalho que produziram."
 
 #: apps/pages/templates/pages/dev_faq.html:526
 msgid "What is a Featured add-on?"
@@ -14382,6 +14407,13 @@ msgid ""
 "increased visibility to users. Featured add-ons are rotated regularly to "
 "prevent staleness."
 msgstr ""
+"A página principal do AMO bem como a página principal para cada categoria "
+"contem três espaços que são utilizados para mostrar um conjunto de extras em "
+"destaque. Estes extras são obtidos respetivamente das listas de Recomendados "
+"e Recomendados por categorias e são trocados periodicamente tal como é "
+"descrito na <a href=\"%(url)s\">FAQ de extras em destaque</a> para permitir "
+"que extras recomendados tenham hipótese de uma visibilidade acrescida. Os "
+"extras em destaque são trocados regularmente para impedir estagnação."
 
 #: apps/pages/templates/pages/dev_faq.html:540
 msgid "How can my add-on be listed as Recommended?"
@@ -14393,6 +14425,8 @@ msgid ""
 "<a href=\"%(url)s\">This page</a> describes the process by which the "
 "Recommended lists are managed."
 msgstr ""
+"<a href=\"%(url)s\">Esta página</a> descreve o processo pelo qual as listas "
+"de recomendados são geridas."
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -14488,6 +14522,16 @@ msgid ""
 "guarantees nor is responsible for the content of these sites or your "
 "reliance on such content."
 msgstr ""
+"Precisa de mais informação sobre os vários tipos de licença de código "
+"aberto? Não sabe qual a licença que deve escolher? Que direitos uma licença "
+"especifica garante? Apesar de nada substituir a leitura de todos os termos "
+"de uma licença, em baixo estão alguns sites que contêm informação sobre "
+"algumas das licenças chave de código aberto, que podem ajudar a encontrar as "
+"diferenças entre as várias licenças. Estes sites são fornecidos apenas para "
+"sua conveniência e como uma referência para uso pessoal. Estes recursos não "
+"constituem aconselhamento legal nem devem ser utilizados como substituto "
+"desse aconselhamento. A Mozilla não garante nem é responsável pelo conteúdo "
+"destes sites ou pela sua confiança neste conteúdo."
 
 #: apps/pages/templates/pages/dev_faq.html:618
 msgid ""
@@ -14620,12 +14664,18 @@ msgid ""
 "entire appearance of %(app_name)s, usually including icons, colors, dialogs, "
 "and other visual styles."
 msgstr ""
+"Os <strong><a href=\"%(browse_url)s\">temas completos</a></strong> alteram "
+"completamente a aparência do %(app_name)s, o que geralmente inclui ícones, "
+"cores, janelas e outros estilos visuais."
 
 #: apps/pages/templates/pages/faq.html:61
 msgid ""
 "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight "
 "themes that use background images to customize your %(app_name)s toolbars."
 msgstr ""
+"Os <strong><a href=\"%(browse_url)s\">temas</a></strong> são temas mais "
+"simples que utilizam imagens de fundo para personalizar as barras de "
+"ferramentas do seu %(app_name)s."
 
 #: apps/pages/templates/pages/faq.html:66
 msgid ""
@@ -14669,6 +14719,13 @@ msgid ""
 "difficulty installing add-ons, see <a href=\"%(troubleshooting_url)s"
 "\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
+"Na maioria dos casos, extras podem ser instalados simplesmente ao clicar no "
+"botão instalar fornecido. Os extras podem ser geridos, desativados ou "
+"removidos no gestor de extras do %(app_name)s. Para instruções mais "
+"detalhadas, leia <a href=\"%(extension_url)s\">este artigo sobre extensões</"
+"a> ou <a href=\"%(theme_url)s\">este para temas e temas completos</a>. Se "
+"tiver dificuldades a instalar extras, consulte <a href="
+"\"%(troubleshooting_url)s\">resolver problemas com extensões e temas</a>."
 
 #: apps/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
@@ -15166,6 +15223,8 @@ msgstr "Fazer:"
 msgid ""
 "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
+"Escreva como se estivesse a partilhar com um amigo a sua experiência com o "
+"extra."
 
 #: apps/pages/templates/pages/review_guide.html:67
 msgid "Keep reviews concise and easy to understand."
@@ -15233,7 +15292,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:108
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "Escreva análises para extras que não utilizou pessoalmente."
 
 #: apps/pages/templates/pages/review_guide.html:113
 msgid ""
@@ -15254,6 +15313,7 @@ msgstr ""
 msgid ""
 "Make false statements, disparage add-on authors or personally insult them."
 msgstr ""
+"Faça afirmações falsas, rebaixe autores de extras ou insulte-os pessoalmente."
 
 #: apps/pages/templates/pages/review_guide.html:131
 msgid ""
@@ -15266,10 +15326,14 @@ msgstr ""
 #: apps/pages/templates/pages/review_guide.html:137
 msgid "Include your own email, phone number, or other personal details."
 msgstr ""
+"Inclua o seu próprio endereço de email, número de contacto telefónico ou "
+"outros detalhes pessoais."
 
 #: apps/pages/templates/pages/review_guide.html:142
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr ""
+"Publicar análises para um extra que você ou a sua organização escreveu ou "
+"representa."
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid ""
@@ -15277,6 +15341,10 @@ msgid ""
 "and usefulness. Don't just give it 5 stars if you like it or 1 star if you "
 "hate it. Consistent grading is an important part of any review."
 msgstr ""
+"As análises de extras devem ser justas e dar uma boa indicação da qualidade "
+"e utilidade geral. Não dê apenas 5 estrelas de adorou ou 1 estrela se "
+"detestou. Uma classificação consistente é uma parte importante de qualquer "
+"análise."
 
 #: apps/pages/templates/pages/review_guide.html:162
 msgid ""
@@ -16485,15 +16553,15 @@ msgstr "outros"
 
 #: apps/users/models.py:66
 msgid "algorithm"
-msgstr ""
+msgstr "algoritmo"
 
 #: apps/users/models.py:67
 msgid "salt"
-msgstr ""
+msgstr "salt"
 
 #: apps/users/models.py:68
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: apps/users/models.py:126
 msgid "No user with that email."
@@ -17590,7 +17658,7 @@ msgstr "Personalização"
 
 #: templates/global/menu_links.html:9
 msgid "Technology"
-msgstr ""
+msgstr "Tecnologia"
 
 #: templates/global/menu_links.html:10 templates/global/menu_links.html:27
 msgid "Videos"
@@ -17598,19 +17666,19 @@ msgstr "Vídeos"
 
 #: templates/global/menu_links.html:11
 msgid "Tour"
-msgstr ""
+msgstr "Visita"
 
 #: templates/global/menu_links.html:12 templates/global/menu_links.html:28
 msgid "Future Releases"
-msgstr ""
+msgstr "Lançamentos futuros"
 
 #: templates/global/menu_links.html:21
 msgid "Customize"
-msgstr ""
+msgstr "Personalizar"
 
 #: templates/global/menu_links.html:22
 msgid "Sync"
-msgstr ""
+msgstr "Sync"
 
 #: templates/global/menu_links.html:23
 msgid "Develop"
@@ -17622,7 +17690,7 @@ msgstr "Envolver-se"
 
 #: templates/global/menu_links.html:39
 msgid "Personas"
-msgstr ""
+msgstr "Personas"
 
 #: templates/global/menu_links.html:51
 msgid "Firefox Support"
