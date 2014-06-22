@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2014-06-21 07:26+0100\n"
+"PO-Revision-Date: 2014-06-22 02:13+0100\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -51,12 +51,10 @@ msgid "This name is already in use. Please choose another."
 msgstr "Este nome já está em uso. Por favor, escolha outro."
 
 #: apps/addons/forms.py:60
-#, fuzzy
 msgid "This slug is already in use. Please choose another."
 msgstr "Este identificador já está a ser utilizado. Por favor escolha outro."
 
 #: apps/addons/forms.py:63
-#, fuzzy
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "O identificador não pode ser \"%s\". Por favor escolha outro."
 
@@ -135,9 +133,8 @@ msgid "Describe your Theme."
 msgstr "Descreva seu tema."
 
 #: apps/addons/forms.py:689
-#, fuzzy
 msgid "Enter a new author's email address"
-msgstr "Escreva o novo enderço de correio do autor"
+msgstr "Introduza o novo endereço de email do autor"
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
@@ -245,9 +242,8 @@ msgstr "Ver a política de privacidade"
 #: apps/addons/templates/addons/details_box.html:124
 #: apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
-#, fuzzy
 msgid "View End-User License Agreement"
-msgstr "Ver Contrato de licenciamento para o utilizador final"
+msgstr "Ver Acordo de licenciamento para o utilizador final"
 
 #: apps/addons/templates/addons/button.html:92
 #: apps/addons/templates/addons/impala/button.html:54
@@ -910,16 +906,14 @@ msgstr ""
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
-#, fuzzy
 msgid "More {0} Themes"
-msgstr "Temas completos"
+msgstr "Mais {0} temas"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41
 #: apps/addons/templates/addons/mobile/persona_detail.html:66
-#, fuzzy
 msgid "See all {0} Themes"
-msgstr "Ver todos os temas completos"
+msgstr "Ver todos os {0} temas"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -966,9 +960,8 @@ msgid "License"
 msgstr "Licença"
 
 #: apps/addons/templates/addons/persona_preview.html:12
-#, fuzzy
 msgid "Awaiting Review"
-msgstr "A aguardar análise preliminar"
+msgstr "A aguardar análise"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178
 #: apps/constants/base.py:38 apps/editors/helpers.py:50
@@ -1080,13 +1073,12 @@ msgid "Learn more about Thunderbird"
 msgstr "Saber mais sobre o Thunderbird"
 
 #: apps/addons/templates/addons/popups.html:48
-#, fuzzy
 msgid ""
 "To install this Theme and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
-"Para instalar este extra e muitos mais, <b>obtenha o Firefox</b>, o "
-"navegador grátis da Mozilla."
+"Para instalar este tema e muitos mais, <b>obtenha o Firefox</b>, um "
+"navegador web grátis e aberto da Mozilla."
 
 #: apps/addons/templates/addons/popups.html:60
 msgid "This add-on has not been updated to work with your version of %(app)s."
@@ -1413,9 +1405,8 @@ msgstr "Gerir"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:101
-#, fuzzy
 msgid "Icon of {0}"
-msgstr "Ícone"
+msgstr "Ícone de {0}"
 
 #: apps/addons/templates/addons/impala/details.html:108
 #: apps/addons/templates/addons/impala/listing/items.html:14
@@ -1437,9 +1428,8 @@ msgstr ""
 
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:165
-#, fuzzy
 msgid "Add-on screenshot #{0}"
-msgstr "Construtor de extras"
+msgstr "Captura de ecrã número {0} do extra"
 
 #: apps/addons/templates/addons/impala/details.html:191
 msgid "Add-on home page"
@@ -1598,7 +1588,6 @@ msgstr "permalink"
 #: apps/addons/templates/addons/impala/review_list_box.html:23
 #: apps/editors/templates/editors/queue.html:98
 #: apps/reviews/templates/reviews/review.html:44
-#, fuzzy
 msgid "translate"
 msgstr "traduzir"
 
@@ -1636,18 +1625,16 @@ msgstr "Os meus Extras"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6
 #: apps/amo/context_processors.py:66
-#, fuzzy
 msgid "My Themes"
-msgstr "Os meus temas mais populares"
+msgstr "Os meus temas"
 
 #: apps/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
 msgstr "Adicionar ao Firefox"
 
 #: apps/addons/templates/addons/includes/persona.html:19
-#, fuzzy
 msgid "Edit Theme"
-msgstr "Tema completo"
+msgstr "Editar tema"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
@@ -1655,7 +1642,6 @@ msgstr "Aprovar / Rejeitar"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 #: apps/editors/templates/editors/themes/single.html:43
-#, fuzzy
 msgid "Review History"
 msgstr "Histórico da análise"
 
@@ -1832,9 +1818,8 @@ msgid "Try it on!"
 msgstr "Experimentar!"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:11
-#, fuzzy
 msgid "Theme Info &raquo;"
-msgstr "Solicitadas mais informações"
+msgstr "Informações do tema &raquo;"
 
 #: apps/amo/context_processors.py:55 apps/devhub/templates/devhub/nav.html:49
 msgid "Tools"
@@ -1914,7 +1899,6 @@ msgid "This must be a valid hex color code, such as #000000."
 msgstr "Tem de ser um código hex de cor válido, tal como #000000."
 
 #: apps/amo/fields.py:97
-#, fuzzy
 msgid "Enter at least one value."
 msgstr "Insira pelo menos um valor."
 
@@ -2186,7 +2170,6 @@ msgstr ""
 "Mensagem de correio enviada aos autores sobre a compatibilidade da {version}."
 
 #: apps/amo/log.py:362
-#, fuzzy
 msgid "Email sent to Author about add-on compatibility."
 msgstr ""
 "Mensagem de correio eletrónico enviada ao autor sobre a compatibilidade do "
@@ -2273,13 +2256,11 @@ msgid "Device(s) Added"
 msgstr "Dispositivo(s) adicionado(s)"
 
 #: apps/amo/log.py:455
-#, fuzzy
 msgid "{addon} device support manually changed by reviewer."
 msgstr ""
-"Suporte a dispositivo de {addon} foi modificado manualmente pelo revisor."
+"Suporte de {addon} ao dispositivo foi modificado manualmente pelo revisor."
 
 #: apps/amo/log.py:456
-#, fuzzy
 msgid "Device(s) Changed by Reviewer"
 msgstr "Dispositivo(s) modificado(s) pelo revisor"
 
@@ -2317,60 +2298,49 @@ msgid "{review} for {addon} updated."
 msgstr "{review} do {addon} atualizado."
 
 #: apps/amo/log.py:522
-#, fuzzy
 msgid "{addon} reviewed."
-msgstr "{addon} revista."
+msgstr "{addon} revisto."
 
 #: apps/amo/log.py:528
-#, fuzzy
 msgid "User {0.name} added to {group}."
 msgstr "Utilizador {0.name} adicionado ao {group}."
 
 #: apps/amo/log.py:536
-#, fuzzy
 msgid "User {0.name} removed from {group}."
 msgstr "Utilizador {0.name} removido de {group}."
 
 #: apps/amo/log.py:543
-#, fuzzy
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "Requisitos mínimos de {addon} modificados manualmente pelo revisor."
 
 #: apps/amo/log.py:544
-#, fuzzy
 msgid "Requirements Changed by Reviewer"
 msgstr "Requisitos modificados pelo revisor"
 
 #: apps/amo/log.py:551
-#, fuzzy
 msgid "{addon} minimum requirements manually changed."
 msgstr "Requisitos mínimos de {addon} modificados manualmente."
 
 #: apps/amo/log.py:552
-#, fuzzy
 msgid "Requirements Changed"
 msgstr "Requisitos modificados"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:560
-#, fuzzy
 msgid "{version} status changed to {0}."
 msgstr "Estado de {version} alterado para {0}."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:567
-#, fuzzy
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr ""
 "Utilizador {0.name} {0.id} eliminado através de ferramenta de pesquisa."
 
 #: apps/amo/log.py:573
-#, fuzzy
 msgid "{addon} content rating changed to Adult."
 msgstr "Classificação de conteúdo de {addon} alterada para Adulto."
 
 #: apps/amo/log.py:579
-#, fuzzy
 msgid "{addon} content rating changed."
 msgstr "Classificação de conteúdo de {addon} alterada."
 
@@ -2443,7 +2413,6 @@ msgstr ""
 "inicial Extras</a>. </p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
-#, fuzzy
 msgid "marketplace-staff@mozilla.org"
 msgstr "marketplace-staff@mozilla.org"
 
@@ -2453,7 +2422,6 @@ msgstr "Alguns direitos reservados"
 
 #: apps/amo/templates/amo/no_results.html:1
 #: apps/editors/templates/editors/includes/search_results_themes.html:26
-#, fuzzy
 msgid "No results found"
 msgstr "Não foram encontrados resultados"
 
@@ -2523,7 +2491,6 @@ msgid "Are you human?"
 msgstr "Você é humano?"
 
 #: apps/amo/templates/amo/recaptcha.html:8
-#, fuzzy
 msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a "
 "space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id="
@@ -2533,8 +2500,8 @@ msgstr ""
 "<p> Por favor introduza <strong>ambas as palavras</strong> em baixo, "
 "<strong>separadas por um espaço</strong>. </p> <p> Se for difícil de ler, "
 "pode <a href=\"#\" id=\"recaptcha_different\">tentar palavras diferentes</a> "
-"ou, em alternativa, <a href=\"#\" id=\"recaptcha_audio\">tentar um tipo de "
-"desafio diferente</a>. </p>"
+"ou <a href=\"#\" id=\"recaptcha_audio\">tentar um tipo de desafio diferente</"
+"a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4
 #: apps/amo/templates/amo/side_nav.html:12
@@ -2833,9 +2800,8 @@ msgid "Icon"
 msgstr "Ícone"
 
 #: apps/bandwagon/forms.py:152 apps/users/forms.py:400
-#, fuzzy
 msgid "No links are allowed."
-msgstr "Descreva a sua coleção (não são permitidas ligações)"
+msgstr "Não são permitidas ligações."
 
 #: apps/bandwagon/forms.py:164
 msgid "This url is already in use by another collection"
@@ -3773,7 +3739,6 @@ msgstr ""
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:161
-#, fuzzy
 msgid "Complete Themes"
 msgstr "Temas completos"
 
@@ -3807,24 +3772,20 @@ msgstr "Próximas extensões"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
-#, fuzzy
 msgid "Featured Complete Themes"
-msgstr "Temas completos por nome"
+msgstr "Temas completos em destaque"
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
-#, fuzzy
 msgid "Most Popular Complete Themes"
-msgstr "Os meus temas mais populares"
+msgstr "Temas completos mais populares"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
-#, fuzzy
 msgid "Top-Rated Complete Themes"
-msgstr "Temas completos por nome"
+msgstr "Temas completos melhor classificados"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
-#, fuzzy
 msgid "Newest Complete Themes"
-msgstr "Temas completos por nome"
+msgstr "Temas completos mais recentes"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
@@ -3835,14 +3796,12 @@ msgid "Complete Themes by Weekly Downloads"
 msgstr "Temas completos por transferências semanais"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
-#, fuzzy
 msgid "Recently Updated Complete Themes"
-msgstr "Temas completos por nome"
+msgstr "Temas completos atualizados recentemente"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
-#, fuzzy
 msgid "Up & Coming Complete Themes"
-msgstr "Temas completos por nome"
+msgstr "Temas completos a chegar"
 
 #: apps/browse/templates/browse/impala/category_landing.html:44
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -3869,14 +3828,12 @@ msgstr "{0} Temas"
 #: apps/browse/templates/browse/personas/base.html:15
 #: apps/browse/templates/browse/personas/base.html:40
 #: apps/browse/templates/browse/personas/grid.html:8
-#, fuzzy
 msgid "{0}'s Themes"
-msgstr "Temas"
+msgstr "Temas {0}"
 
 #: apps/browse/templates/browse/personas/base.html:37
-#, fuzzy
 msgid "View Profile"
-msgstr "O meu perfil"
+msgstr "Ver perfil"
 
 #: apps/browse/templates/browse/personas/base.html:44
 #: apps/devhub/templates/devhub/docs/themes.html:9
@@ -3917,9 +3874,8 @@ msgstr ""
 "info\">Comece a explorar</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
-#, fuzzy
 msgid "Want more personalization?"
-msgstr "Mais informação solicitada"
+msgstr "Quer mais personalização?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/personas/category_landing.html:50
@@ -3941,23 +3897,20 @@ msgid "View All Up & Coming"
 msgstr "Ver todos "
 
 #: apps/browse/templates/browse/personas/grid.html:26
-#, fuzzy
 msgid "No themes found"
-msgstr "Não foram encontrados resultados"
+msgstr "Não foram encontrados temas"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
 msgstr "Temas de fácil utilização do Firefox"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:61
-#, fuzzy
 msgid "More Themes"
-msgstr "Temas completos"
+msgstr "Mais temas"
 
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
-#, fuzzy
 msgid "&laquo; All Themes"
-msgstr "Ver todos os temas completos"
+msgstr "&laquo; Todos os temas"
 
 #: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43
 msgid "All"
@@ -4135,7 +4088,6 @@ msgid "Mobile"
 msgstr "Mobile"
 
 #: apps/constants/applications.py:104
-#, fuzzy
 msgid "Firefox for Android"
 msgstr "Firefox para o Android"
 
@@ -4211,7 +4163,6 @@ msgid "Deleted"
 msgstr "Excluído"
 
 #: apps/constants/base.py:41
-#, fuzzy
 msgid "Flagged for further review"
 msgstr "Sinalizado para uma análise mais aprofundada"
 
@@ -4251,7 +4202,6 @@ msgid "Extension"
 msgstr "Extensão"
 
 #: apps/constants/base.py:149
-#, fuzzy
 msgid "Complete Theme"
 msgstr "Tema completo"
 
@@ -4378,7 +4328,6 @@ msgid "Updated Language Pack Review"
 msgstr "Análise atualizada do pacote de idioma"
 
 #: apps/constants/base.py:414
-#, fuzzy
 msgid "Theme Review"
 msgstr "Análise do tema"
 
@@ -4395,57 +4344,46 @@ msgid "Updated Search Provider Review"
 msgstr "Análise atualizada do mecanismo de pesquisa"
 
 #: apps/constants/base.py:418
-#, fuzzy
 msgid "Complete Theme Review"
 msgstr "Análise do tema completo"
 
 #: apps/constants/base.py:419
-#, fuzzy
 msgid "Preliminary Complete Theme Review"
 msgstr "Análise preliminar do tema completo"
 
 #: apps/constants/base.py:420
-#, fuzzy
 msgid "Updated Complete Theme Review"
 msgstr "Análise de tema completo atualizada"
 
 #: apps/constants/base.py:421
-#, fuzzy
 msgid "Moderated Addon Review"
 msgstr "Análise de extra moderada"
 
 #: apps/constants/base.py:422
-#, fuzzy
 msgid "Moderated App Review"
 msgstr "Análise de aplicação moderada"
 
 #: apps/constants/base.py:467
-#, fuzzy
 msgid "Level 1"
 msgstr "Nível 1"
 
 #: apps/constants/base.py:468
-#, fuzzy
 msgid "Level 2"
 msgstr "Nível 2"
 
 #: apps/constants/base.py:469
-#, fuzzy
 msgid "Level 3"
 msgstr "Nível 3"
 
 #: apps/constants/base.py:470
-#, fuzzy
 msgid "Level 4"
 msgstr "Nível 4"
 
 #: apps/constants/base.py:471
-#, fuzzy
 msgid "Level 5"
 msgstr "Nível 5"
 
 #: apps/constants/base.py:472
-#, fuzzy
 msgid "Level 6"
 msgstr "Nível 6"
 
@@ -4458,9 +4396,8 @@ msgstr "Solicitar mais informações"
 #: apps/constants/editors.py:15
 #: apps/editors/templates/editors/themes/queue.html:74
 #: apps/editors/templates/editors/themes/themes.html:89
-#, fuzzy
 msgid "Flag"
-msgstr "Etiqueta do Admin"
+msgstr "Sinalizar"
 
 #: apps/constants/editors.py:16
 #: apps/editors/templates/editors/themes/queue.html:72
@@ -4476,7 +4413,6 @@ msgstr "Rejeitar"
 
 #: apps/constants/editors.py:18
 #: apps/editors/templates/editors/themes/queue.html:70
-#, fuzzy
 msgid "Approve"
 msgstr "Aprovar"
 
@@ -4497,19 +4433,16 @@ msgid "Nazi or other hate content"
 msgstr "Conteúdo nazi ou outro conteúdo odioso"
 
 #: apps/constants/editors.py:27
-#, fuzzy
 msgid "Defamatory content"
-msgstr "Conteúdo sexual"
+msgstr "Conteúdo difamatório"
 
 #: apps/constants/editors.py:28
-#, fuzzy
 msgid "Online gambling"
-msgstr "Apostas reais"
+msgstr "Jogo online"
 
 #: apps/constants/editors.py:29
-#, fuzzy
 msgid "Spam content"
-msgstr "Conteúdo sexual"
+msgstr "Conteúdo Spam"
 
 #: apps/constants/editors.py:30
 msgid "Low-quality, stretched, or blank image"
@@ -4584,9 +4517,8 @@ msgid "Maemo"
 msgstr "Maemo"
 
 #: apps/devhub/feeds.py:35
-#, fuzzy
 msgid "Recent Changes for %s"
-msgstr "Actividade recente para {0}"
+msgstr "Alterações recentes para %s"
 
 #: apps/devhub/feeds.py:37
 msgid "Recent Changes for My Add-ons"
@@ -4692,9 +4624,8 @@ msgid "There was an error with your upload. Please try again."
 msgstr "Houve um erro com o seu carregamento. Por favor, tente novamente."
 
 #: apps/devhub/forms.py:447
-#, fuzzy
 msgid "Override failed validation"
-msgstr "A aplicação falhou a validação."
+msgstr "Sobrepor avaliação falhada"
 
 #: apps/devhub/forms.py:486
 msgid "Need at least one platform."
@@ -4914,7 +4845,6 @@ msgid "Add-on Documentation :: Developer Hub"
 msgstr "Documentação do extra :: Hub do desenvolvedor"
 
 #: apps/devhub/helpers.py:67
-#, fuzzy
 msgid "My Submissions"
 msgstr "As minhas submissões"
 
@@ -4994,18 +4924,16 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "O extra não pode ser eliminado. Em alternativa desativar este extra."
 
 #: apps/devhub/views.py:342
-#, fuzzy
 msgid "Theme deleted."
-msgstr "Aplicação eliminada."
+msgstr "Tema eliminado."
 
 #: apps/devhub/views.py:342
 msgid "Add-on deleted."
 msgstr "Extra eliminado."
 
 #: apps/devhub/views.py:347
-#, fuzzy
 msgid "Password was incorrect. Theme was not deleted."
-msgstr "A senha estava incorreta. A aplicação não foi eliminada."
+msgstr "A senha estava incorreta. O tema não foi eliminado."
 
 #: apps/devhub/views.py:351
 msgid "Password was incorrect. Add-on was not deleted."
@@ -5062,9 +4990,8 @@ msgid "There was an error uploading your preview."
 msgstr "Houve um erro ao carregar a sua pré-visualização."
 
 #: apps/devhub/views.py:1215
-#, fuzzy
 msgid "Version %s disabled."
-msgstr "{addon} desativado."
+msgstr "Versão %s desativada."
 
 #: apps/devhub/views.py:1218
 msgid "Version %s deleted."
@@ -5099,23 +5026,20 @@ msgstr "SDK dos extras"
 
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
-#, fuzzy
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr "<strong>Builder e SDK:</strong> Crie extras rápida e facilmente"
+msgstr "<strong>SDK de extras:</strong> Crie extras rápida e facilmente"
 
 #: apps/devhub/templates/devhub/builder.html:16
-#, fuzzy
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-"
 "ons for Firefox using HTML, CSS and JavaScript. When your add-on is "
 "complete, we make it easy to share it with over 400 million Firefox users "
 "world wide."
 msgstr ""
-"O construtor de extras e o SDK de extras fornecem poderosas APIs e "
-"ferramentas que permitem aos programadores a criação de extras para o "
-"Firefox utilizando HTML, CSS e JavaScript. Quando o seu extra estiver "
-"concluído, nós faremos com que seja fácil partilhá-lo com mais de 400 "
-"milhões de utilizadores do Firefox."
+"O SDK de extras fornece poderosas APIs que permitem aos programadores a "
+"criação de extras para o Firefox utilizando HTML, CSS e JavaScript. Quando o "
+"seu extra estiver concluído, nós faremos com que seja fácil partilhá-lo com "
+"mais de 400 milhões de utilizadores mundiais do Firefox."
 
 #: apps/devhub/templates/devhub/builder.html:32
 msgid ""
@@ -5255,9 +5179,8 @@ msgid "View all add-ons ►"
 msgstr "Ver todos os extras ►"
 
 #: apps/devhub/templates/devhub/index.html:83
-#, fuzzy
 msgid "AMO Reviewers"
-msgstr "Guia dos Revisores"
+msgstr "Revisores AMO"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid ""
@@ -5267,9 +5190,8 @@ msgstr ""
 "depressa."
 
 #: apps/devhub/templates/devhub/index.html:88
-#, fuzzy
 msgid "Become an AMO Reviewer"
-msgstr "Pontos do manual de análises"
+msgstr "Torne-se num revisor AMO"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
@@ -5952,7 +5874,6 @@ msgstr[1] "Separado por vírgulas, mínimo de {0} caracteres."
 #: apps/devhub/templates/devhub/addons/edit/basic.html:131
 #: apps/devhub/templates/devhub/personas/edit.html:100
 #: apps/devhub/templates/devhub/personas/submit.html:49
-#, fuzzy
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr "Exemplo: escuro, cinema, preto. Limite 20."
 
@@ -6032,13 +5953,12 @@ msgstr ""
 "adicionadas múltiplas traduções neste campo."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:44
-#, fuzzy
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If "
 "your website is localized into other languages, multiple translations of "
 "this field can be added."
 msgstr ""
-"Se o seu Extra tem suporte para um site Web ou um fórum, especifique o seu "
+"Se o seu Extra tem um site Web ou um fórum de suporte, especifique o seu "
 "endereço aqui. Se o seu site Web estiver disponível em vários idiomas, "
 "múltiplas traduções deste campo podem ser adicionadas."
 
@@ -6285,9 +6205,8 @@ msgstr "Topo"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: apps/devhub/templates/devhub/personas/edit.html:63
-#, fuzzy
 msgid "Delete Theme"
-msgstr "Tema completo"
+msgstr "Eliminar tema"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:40
@@ -6315,9 +6234,8 @@ msgid "Enter your password to confirm your decision:"
 msgstr "Escreva a sua senha para confirmar a sua decisão:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
-#, fuzzy
 msgid "Please tell us why you are deleting your theme:"
-msgstr "Por favor, diga-nos porque está a eliminar a sua aplicação"
+msgstr "Por favor, diga-nos porque está a eliminar o seu tema:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:35
 msgid "Please tell us why you are deleting your add-on:"
@@ -6394,7 +6312,6 @@ msgid "Delete this app."
 msgstr "Eliminar esta app."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:24
-#, fuzzy
 msgid "Edit details about this app's listing."
 msgstr "Editar a página de detalhes da aplicação."
 
@@ -6411,9 +6328,8 @@ msgid "View App Listing"
 msgstr "Ver listagem de App"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
-#, fuzzy
 msgid "Edit details about this theme's listing."
-msgstr "Editar os detalhes da listagem pública deste extra."
+msgstr "Editar os detalhes da listagem pública deste tema."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:13
 msgid "View this theme's public listing page."
@@ -6432,9 +6348,8 @@ msgid "Transfer Ownership"
 msgstr "Transferir propriedade"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
-#, fuzzy
 msgid "Delete this theme."
-msgstr "Eliminar esta aplicação."
+msgstr "Eliminar este tema."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid ""
@@ -6446,17 +6361,14 @@ msgstr ""
 
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
-#, fuzzy
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
-"<strong>Domínio IDN!</strong> versão do punycode: %(punycode_app_domain)s"
+msgstr "<strong>Última versão:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
 msgstr "Desactivado"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:48
-#, fuzzy
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
 msgstr "<b>Posição na fila:</b> %(pos)s de %(total)s"
 
@@ -6594,11 +6506,9 @@ msgid "Get Ahead in the Review Queue!"
 msgstr "Passar à frente na fila de revisão!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
-#, fuzzy
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
-"Força! Torne-se um revisor AMO hoje e tenha os seus extras revistos mais "
-"depressa."
+"Torne-se hoje num revisor AMO e tenha os seus extras revistos mais depressa."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -6824,9 +6734,8 @@ msgstr "Com que plataformas móveis é este ficheiro compatível?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:41
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:42
-#, fuzzy
 msgid "Administrative overrides"
-msgstr "Ações administrativas"
+msgstr "Sobreposições administrativas"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:12
 msgid "StumbleUpon"
@@ -7645,9 +7554,8 @@ msgstr ""
 "Este documentação da API Jetpack é importante para trabalhar no seu Jetpack."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
-#, fuzzy
 msgid "How to Create Themes"
-msgstr "Como criar um tema para o Firefox"
+msgstr "Como criar temas"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
 msgid ""
@@ -8030,9 +7938,8 @@ msgid "Add-on Security Vulnerabilities"
 msgstr "Vulnerabilidades de segurança do extra"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
-#, fuzzy
 msgid "marketplace-staff at mozilla dot org"
-msgstr "amo-editors at mozilla dot org"
+msgstr "marketplace-staff at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -8580,9 +8487,8 @@ msgstr ""
 "próximo período de candidatura começa."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:131
-#, fuzzy
 msgid "Last updated: January 31, 2013"
-msgstr "Última actualização: 13 de Janeiro de 2011"
+msgstr "Última atualização: 31 de Janeiro de 2013"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:3
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:7
@@ -9759,20 +9665,17 @@ msgid "Frequently Asked Questions"
 msgstr "Perguntas frequentes"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:4
-#, fuzzy
 msgid "Frequently Asked Questions | Themes"
-msgstr "Dúvidas comuns sobre análises"
+msgstr "Questões frequentes | Temas"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:14
 #: apps/devhub/templates/devhub/docs/themes-faq.html:44
-#, fuzzy
 msgid "Introducing Background Themes"
-msgstr "Os temas de fundo são gratuitos?"
+msgstr "Introdução aos temas de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:16
-#, fuzzy
 msgid "What Are Background Themes?"
-msgstr "Os temas de fundo são gratuitos?"
+msgstr "O que são temas de fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:17
 #: apps/devhub/templates/devhub/docs/themes-faq.html:59
@@ -9789,9 +9692,8 @@ msgstr "Qual é a diferença entre temas de fundo e temas completos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:21
 #: apps/devhub/templates/devhub/docs/themes-faq.html:85
-#, fuzzy
 msgid "Installing Background Themes"
-msgstr "Os temas de fundo são gratuitos?"
+msgstr "Instalar temas de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:23
 #: apps/devhub/templates/devhub/docs/themes-faq.html:88
@@ -9805,9 +9707,8 @@ msgstr "Os temas de fundo são gratuitos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:27
 #: apps/devhub/templates/devhub/docs/themes-faq.html:112
-#, fuzzy
 msgid "Using Background Themes"
-msgstr "Os temas de fundo são gratuitos?"
+msgstr "Utilizar temas de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:29
 #: apps/devhub/templates/devhub/docs/themes-faq.html:115
@@ -9827,9 +9728,8 @@ msgstr "Como cancelo um tema de fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:32
 #: apps/devhub/templates/devhub/docs/themes-faq.html:161
-#, fuzzy
 msgid "How do I provide feedback?"
-msgstr "Como funcionam os pagamentos?"
+msgstr "Como posso dar feedback?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:35
 msgid "Creating Your Own Background Themes"
@@ -9860,9 +9760,8 @@ msgid "What's the maximum file size allowable for my Background Theme?"
 msgstr "Qual o tamanho máximo permitido para o ficheiro do meu tema de fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:47
-#, fuzzy
 msgid "What are Background Themes?"
-msgstr "Os temas de fundo são gratuitos?"
+msgstr "O que são temas de fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:49
 msgid ""
@@ -9983,9 +9882,8 @@ msgstr ""
 "nos a sua opinião."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:170
-#, fuzzy
 msgid "Creating Your Own Themes"
-msgstr "Criar os seus próprios temas de fundo"
+msgstr "Criar os seus próprios temas"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:173
 msgid "Can I create my own Theme?"
@@ -10123,19 +10021,16 @@ msgid "How to Create Your Own Background Theme"
 msgstr "Como criar o seu próprio tema de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes.html:4
-#, fuzzy
 msgid "Getting Started | Themes"
-msgstr "Passo 1. Como começar"
+msgstr "Começar | Temas"
 
 #: apps/devhub/templates/devhub/docs/themes.html:12
-#, fuzzy
 msgid "How to create a theme"
-msgstr "Como criar um tema para o Firefox"
+msgstr "Como criar um tema"
 
 #: apps/devhub/templates/devhub/docs/themes.html:15
-#, fuzzy
 msgid "Submit your theme"
-msgstr "Nome do seu tema"
+msgstr "Submeter o seu tema"
 
 #: apps/devhub/templates/devhub/docs/themes.html:35
 msgid ""
@@ -10154,9 +10049,8 @@ msgstr ""
 "<a href=\"%(submit_url)s\">Terminou o seu design? Pode submetê-lo agora!</a>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:46
-#, fuzzy
 msgid "Creating a Theme Header Image"
-msgstr "Selecione uma imagem para o cabeçalho do seu tema."
+msgstr "Criar uma imagem de cabeçalho para um tema"
 
 #: apps/devhub/templates/devhub/docs/themes.html:48
 msgid ""
@@ -10176,9 +10070,8 @@ msgstr "Ver um exemplo de um cabeçalho de tema aqui."
 
 #: apps/devhub/templates/devhub/docs/themes.html:59
 #: apps/devhub/templates/devhub/docs/themes.html:130
-#, fuzzy
 msgid "Image Requirements"
-msgstr "Requisitos modificados"
+msgstr "Requisitos da imagem"
 
 #: apps/devhub/templates/devhub/docs/themes.html:62
 msgid "Dimensions should be <b>3000px wide &times; 200px high</b>"
@@ -10187,9 +10080,8 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:67
 #: apps/devhub/templates/devhub/docs/themes.html:138
-#, fuzzy
 msgid "PNG or JPG file format"
-msgstr "Os ícones devem ser PNG ou JPG."
+msgstr "Formato de ficheiro PNG ou JPG"
 
 #: apps/devhub/templates/devhub/docs/themes.html:72
 #: apps/devhub/templates/devhub/docs/themes.html:143
@@ -10250,9 +10142,8 @@ msgstr ""
 "gratuito."
 
 #: apps/devhub/templates/devhub/docs/themes.html:118
-#, fuzzy
 msgid "Creating a Theme Footer Image"
-msgstr "Selecione uma imagem para o rodapé do seu tema."
+msgstr "Criar uma imagem de rodapé para um tema"
 
 #: apps/devhub/templates/devhub/docs/themes.html:120
 msgid ""
@@ -10293,9 +10184,8 @@ msgstr ""
 "mostra mais da parte direita da imagem."
 
 #: apps/devhub/templates/devhub/docs/themes.html:171
-#, fuzzy
 msgid "Submitting your Theme Images"
-msgstr "Obrigado por enviar seu tema"
+msgstr "Submeter as imagens do seu tema"
 
 #: apps/devhub/templates/devhub/docs/themes.html:173
 msgid "To get started submitting your images, go to the Theme Submission page:"
@@ -10400,14 +10290,12 @@ msgstr ""
 "certeza que este cumpre as diretrizes de conteúdo e os termos do serviço!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:254
-#, fuzzy
 msgid "Submit Your Theme Now"
-msgstr "Criar teu próprio tema"
+msgstr "Submeter o seu tema agora"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
-#, fuzzy
 msgid "You have disabled this add-on"
-msgstr "Porque é que fez este extra?"
+msgstr "Desativou este extra"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid ""
@@ -10422,7 +10310,6 @@ msgid "Please complete your add-on."
 msgstr "Por favor, complete o seu extra."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:28
-#, fuzzy
 msgid "You will receive an email when the review is complete."
 msgstr "Você receberá um email quando a análise estiver completa."
 
@@ -10486,9 +10373,8 @@ msgstr ""
 "um processo de revisão."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
-#, fuzzy
 msgid "Current Version:"
-msgstr "Versão máx. actual"
+msgstr "Versão atual:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid ""
@@ -10499,9 +10385,8 @@ msgstr ""
 "Instalar em addons.mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
-#, fuzzy
 msgid "Created:"
-msgstr "Criado em:"
+msgstr "Criado:"
 
 #. {0} is a date. dennis-ignore: E201
 #: apps/devhub/templates/devhub/includes/addon_details.html:97
@@ -10510,14 +10395,12 @@ msgid "%b %e, %Y"
 msgstr "%e de %b, %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
-#, fuzzy
 msgid "Last Updated:"
-msgstr "Última actualização"
+msgstr "Última atualização:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
-#, fuzzy
 msgid "Next Version:"
-msgstr "Notas da versão"
+msgstr "Próxima versão:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid ""
@@ -10580,7 +10463,6 @@ msgid ""
 msgstr "Dizer aos seus utilizadores o que aí vem irá dar-lhes algo para ver."
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:22
-#, fuzzy
 msgid "View All"
 msgstr "Ver todas"
 
@@ -10835,9 +10717,8 @@ msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
 msgstr "ou <a id=\"setup-cancel\" href=\"#\">Cancelar</a>"
 
 #: apps/devhub/templates/devhub/personas/edit.html:28
-#, fuzzy
 msgid "Transfer ownership"
-msgstr "Transferência de propriedade"
+msgstr "Transferir propriedade"
 
 #: apps/devhub/templates/devhub/personas/edit.html:77
 #: apps/devhub/templates/devhub/personas/submit.html:31
@@ -10862,15 +10743,14 @@ msgstr "Adicione algumas etiquetas para descrever o seu tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:106
 #: apps/devhub/templates/devhub/personas/submit.html:54
-#, fuzzy
 msgid ""
 "A short explanation of your theme's basic functionality that is displayed in "
 "search and browse listings, as well as at the top of your theme's details "
 "page."
 msgstr ""
-"Uma explicação pequena das funcionalidades principais do seu extra é "
-"apresentada nas listagens de pesquisa e navegação, assim como no início da "
-"págian do seu extra."
+"Uma explicação curta das funcionalidades básicas do seu tema é apresentada "
+"nas listagens de pesquisa e de navegação, assim como no início da página de "
+"detalhes do seu tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:122
 #: apps/devhub/templates/devhub/personas/submit.html:68
@@ -10981,21 +10861,18 @@ msgstr "Seleccione uma licença diferente."
 
 #: apps/devhub/templates/devhub/personas/edit.html:207
 #: apps/devhub/templates/devhub/personas/submit.html:153
-#, fuzzy
 msgid "Select a license for your Theme."
-msgstr "Selecione uma imagem para o cabeçalho do seu tema."
+msgstr "Selecione uma licença para o seu tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:217
 #: apps/devhub/templates/devhub/personas/submit.html:163
-#, fuzzy
 msgid "Theme Design"
-msgstr "Fundamentos de Design"
+msgstr "Design do tema"
 
 #: apps/devhub/templates/devhub/personas/edit.html:221
 #: apps/devhub/templates/devhub/personas/edit.html:224
-#, fuzzy
 msgid "Upload New Design"
-msgstr "Enviar uma nova versão"
+msgstr "Enviar um novo design"
 
 #: apps/devhub/templates/devhub/personas/edit.html:226
 msgid ""
@@ -11010,23 +10887,20 @@ msgid "Your previously resubmitted design, which is under pending review."
 msgstr "O seu design anteriormente resubmetido e que aguarda revisão."
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
-#, fuzzy
 msgid "Pending Header"
-msgstr "Gráfico de cabeçalho"
+msgstr "Cabeçalho em espera"
 
 #: apps/devhub/templates/devhub/personas/edit.html:249
-#, fuzzy
 msgid "Pending Footer"
-msgstr "A aguardar aprovação"
+msgstr "Rodapé em espera"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
 msgstr "Pode atualizar aqui o design do seu tema após este ter sido aprovado."
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
-#, fuzzy
 msgid "Header"
-msgstr "Gráfico de cabeçalho"
+msgstr "Cabeçalho"
 
 #: apps/devhub/templates/devhub/personas/edit.html:266
 msgid "Footer"
@@ -11034,9 +10908,8 @@ msgstr "Rodapé"
 
 #: apps/devhub/templates/devhub/personas/edit.html:270
 #: apps/devhub/templates/devhub/personas/submit.html:167
-#, fuzzy
 msgid "Select colors for your Theme."
-msgstr "Selecione uma imagem para o cabeçalho do seu tema."
+msgstr "Selecione as cores para o seu tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:272
 #: apps/devhub/templates/devhub/personas/submit.html:169
@@ -11074,9 +10947,8 @@ msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 msgstr "por <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 
 #: apps/devhub/templates/devhub/personas/submit.html:7
-#, fuzzy
 msgid "Create a New Theme"
-msgstr "Enviar um Tema Novo"
+msgstr "Criar um novo tema"
 
 #: apps/devhub/templates/devhub/personas/submit.html:18
 msgid ""
@@ -11089,7 +10961,6 @@ msgstr ""
 "\">aprenda a criar um</a>!"
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
-#, fuzzy
 msgid "Give your Theme a name."
 msgstr "Dê um nome ao seu tema."
 
@@ -11304,9 +11175,8 @@ msgid "0 files"
 msgstr "0 ficheiros"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
-#, fuzzy
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr "<b>Posição na fila:</b> %(pos)s de %(total)s"
+msgstr "Posição na fila: %(pos)s de %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -11337,9 +11207,8 @@ msgid "Cancel Review Request"
 msgstr "Cancelar pedido de revisão"
 
 #: apps/devhub/templates/devhub/versions/list.html:106
-#, fuzzy
 msgid "Currently on AMO"
-msgstr "Idiomas existentes na AMO"
+msgstr "Atualmente no AMO"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 #: apps/devhub/templates/devhub/versions/list.html:128
@@ -11367,9 +11236,8 @@ msgid "Performance"
 msgstr "Desempenho"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
-#, fuzzy
 msgid "Next version of this add-on"
-msgstr "Enviar uma nova versão deste extra."
+msgstr "Próxima versão deste extra"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
@@ -12895,9 +12763,8 @@ msgid "Clear Search"
 msgstr "Limpar pesquisa"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
-#, fuzzy
 msgid "Release My Theme Locks"
-msgstr "Posso criar o meu próprio tema?"
+msgstr "Libertar os bloqueios do meu tema"
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
@@ -15352,6 +15219,9 @@ msgid ""
 "significantly more useful than many other add-ons. This add-on is likely to "
 "be one you use often and you highly recommend it."
 msgstr ""
+"<b>5 estrelas: Excelente.</b> Não só faz tudo o que promete, mas é "
+"significantemente mais útil do que muitos outros extras. Este extra será "
+"aquele que utilizará com mais frequência e que recomenda."
 
 #: apps/pages/templates/pages/review_guide.html:170
 msgid ""
@@ -15359,6 +15229,9 @@ msgid ""
 "special. This add-on is recommended but may be more suited for some people "
 "over others."
 msgstr ""
+"<b>4 estrelas: Bom.</b> Útil e fácil de utilizar, mas não é necessariamente "
+"especial. Este extra é recomendável mas pode ser mais adequado a algumas "
+"pessoas do que a outras."
 
 #: apps/pages/templates/pages/review_guide.html:177
 msgid ""
@@ -15367,6 +15240,11 @@ msgid ""
 "and some people may still find it useful. Recommended for those who need it "
 "and are willing to give it a try."
 msgstr ""
+"<b>3 estrelas: Aceitável.</b> Pode ter alguns problemas de design e/ou "
+"algumas funcionalidades em falta. Apesar dos problemas, estes não são "
+"drásticos o suficiente para não a recomendar e pode ainda ser útil para "
+"algumas pessoas. Recomendável para quem precisa dela e estão dispostos a dar-"
+"lhe uma oportunidade."
 
 #: apps/pages/templates/pages/review_guide.html:185
 msgid ""
@@ -15374,6 +15252,9 @@ msgid ""
 "do what it says it should. You are recommending against this add-on, while "
 "noting that it might have some redeeming value for a few people."
 msgstr ""
+"<b>2 estrelas: Pobre.</b> Este extra tem uma fraca qualidade, usabilidade ou "
+"apenas não faz o que diz fazer. Está a desaconselhar este extra, embora "
+"aceitando que pode ter algum valor residual para algumas pessoas."
 
 #: apps/pages/templates/pages/review_guide.html:193
 msgid ""
@@ -15381,6 +15262,9 @@ msgid ""
 "useless. You can't think of any significant reason why someone should give "
 "it a try and are recommending that it be avoided completely."
 msgstr ""
+"<b>1 estrela: Mau.</b> O extra ou não funciona corretamente ou é "
+"completamente inútil. Não consegue encontrar nenhum motivo pelo qual alguém "
+"lhe daria uma oportunidade e não recomenda de nenhuma forma a sua utilização."
 
 #: apps/pages/templates/pages/review_guide.html:203
 msgid ""
@@ -15388,6 +15272,9 @@ msgid ""
 "just please indicate why you are doing so. The stars mean nothing if you "
 "don't tell us why."
 msgstr ""
+"Não existe nada de errado em dar uma classificação perfeita ou horrível a um "
+"extra; apenas nos diga porquê. As estrelas não significam nada se não nos "
+"disser porquê."
 
 #: apps/pages/templates/pages/review_guide.html:212
 msgid "How can I report a problematic review?"
@@ -15415,10 +15302,15 @@ msgid ""
 "discussions or followup should be moved to a support forum or discussion "
 "group."
 msgstr ""
+"Sim, os autores dos extras podem fornecer uma única resposta para uma "
+"análise. Discussões adicionais devem ser movidas para um fórum de suporte ou "
+"um grupo de discussão."
 
 #: apps/pages/templates/pages/review_guide.html:231
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr ""
+"Eu sou um autor de um extra, posso eliminar análises ou classificações "
+"desfavoráveis?"
 
 #: apps/pages/templates/pages/review_guide.html:233
 msgid ""
@@ -15428,6 +15320,12 @@ msgid ""
 "to a new release of your add-on, we may consider deleting the review. Submit "
 "your detailed request to amo-editors@mozilla.org."
 msgstr ""
+"No geral, não. Mas se uma análise não seguiu as diretrizes de análise "
+"apresentadas em baixo, pode clicar em \"Reportar esta análise\" para que a "
+"mesma seja moderada por um editor. Se uma análise incluiu uma queixa que não "
+"é mais válida devido ao lançamento de uma nova versão do seu extra, podemos "
+"considerar eliminar a análise. Submeta o seu pedido detalhado para amo-"
+"editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -15463,15 +15361,16 @@ msgstr "Houve um erro ao comunicar com o PayPal. Por favor, tente mais tarde."
 
 #: apps/paypal/__init__.py:50
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "Existiu um erro com esta moeda."
 
 #: apps/paypal/__init__.py:67
 msgid "The amount is too small for conversion into the receiver's currency."
 msgstr ""
+"A quantidade é muito pequena para a conversão para a moeda do destinatário."
 
 #: apps/paypal/__init__.py:69
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "O comprador e o vendedor têm de ter contas PayPal diferentes."
 
 #. L10n: {0} is the currency.
 #: apps/paypal/__init__.py:72
@@ -15601,6 +15500,21 @@ msgid ""
 "\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about "
 "user add-on reviews.</p>"
 msgstr ""
+"<h2>Tenha em consideração estas dicas:</h2> <ul> <li> Escreva como se "
+"estivesse a partilhar com um amigo a sua experiência com um extra. Forneça "
+"detalhes específicos e úteis, tais como as funcionalidade que gostou e/ou "
+"não gostou, quão simples era de utilizar e quaisquer desvantagens que esta "
+"tenha. Evite linguagem genérica, como dizer que era \"Fantástica\" ou \"Má\" "
+"a menos que fundamente a sua opinião com razões para a sua apreciação. </li> "
+"<li> Por favor, não coloque relatórios de falha nas análises. Nós não "
+"disponibilizamos o seu endereço de email aos programadores do extra e estes "
+"podem precisar de entrar em contacto consigo para o ajudar a resolver o seu "
+"problema. Consulte a <a href=\"%(support)s\">secção de suporte</a> para "
+"saber onde pode obter apoio para este extra. </li> <li>Por favor mantenha as "
+"análises limpas, evite utilizar linguagem imprópria e não publique qualquer "
+"informação pessoal. </li> </ul> <p>Por favor leia as <a href=\"%(guide)s\" "
+"target=\"_blank\">diretrizes de análise</a> para mais detalhes sobre "
+"análises de utilizadores de extras.</p>"
 
 #: apps/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -16235,7 +16149,7 @@ msgstr "Este quadro de momento é <b>público</b>."
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "As estatísticas de contribuição são atualmente <b>privadas</b>."
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
@@ -16287,6 +16201,10 @@ msgid ""
 "evening and only include original add-on downloads, not updates. Downloads "
 "can be broken down by the specific source referring the download. </p>"
 msgstr ""
+"<h2>Como são contabilizadas as transferências?</h2> <p> O número de "
+"transferências é atualizado todas as noites e apenas incluem transferências "
+"originais de extras e não atualizações. As transferências podem ser "
+"decompostas pela fonte específica que referenciou a transferência. </p>"
 
 #: apps/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
@@ -16365,6 +16283,20 @@ msgid ""
 "campaign225\", etc. The following URL-safe characters are allowed: <code>a-z "
 "A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Monitorização de fontes externas</h2> <p> Se ligou a página de detalhes "
+"do extra ou diretamente o seu ficheiro a partir de um site externo, tail "
+"como o seu blogue ou site web, pode adicionar um parâmetro para ser "
+"referenciado como uma fonte adicional da transferência nesta página. Por "
+"exemplo, as ligações seguintes iriam aparecer classificadas como o seu "
+"blogue: <dl> <dt>Página de detalhes do extra</dt> <dd>https://addons.mozilla."
+"org/addon/%(slug)s?src=<b>external-blogue</b></dd> <dt>Ligação direta ao "
+"ficheiro</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-"
+"%(id)s-latest.xpi?src=<b>external-blogue</b></dd> </dl> <p> Apenas os "
+"parâmetros src que começam com \"external-\" serão monitorizados, até 61 "
+"carateres adicionais. Qualquer texto depois de \"external-\" pode ser "
+"utilizado para descrever a fonte, tais como \"external-blogue\", \"external-"
+"barra-lateral\", \"external-campanha225\", etc. Os seguintes caracteres, "
+"seguros para URLs, são permitidos: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -16389,6 +16321,10 @@ msgid ""
 "Active Daily Users, or the total number of people using your theme by day. </"
 "p>"
 msgstr ""
+"<h2>O que são utilizadores diários?</h2> <p> Os temas instalados a partir "
+"deste site procuram por atualizações diariamente. O número total destas "
+"verificações por atualizações são conhecidas como utilizadores diários "
+"ativos, ou o número de pessoas a utilizar o tema por dia. </p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid ""
@@ -16397,6 +16333,11 @@ msgid ""
 "Active Daily Users. Daily users can be broken down by add-on version, "
 "operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>O que são utilizadores diários?</h2> <p> Os extras instalados a partir "
+"deste site procuram por atualizações diariamente. O número total destas "
+"verificações por atualizações são conhecidas como utilizadores diários "
+"ativos. Os utilizadores diários podem ser decompostos por versão do extra, "
+"sistema operativo, estado do extra, aplicação e idioma. </p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
@@ -16828,16 +16769,20 @@ msgid ""
 "By clicking \"delete\" your account is going to be <strong>permanently "
 "removed</strong>. That means:"
 msgstr ""
+"Ao clicar \"eliminar\", a sua conta será <strong>permanentemente removida</"
+"strong>. Isto significa:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Deixará de conseguir iniciar sessão em %(site)s."
 
 #: apps/users/templates/users/delete.html:40
 msgid ""
 "Your reviews and ratings will not be deleted, but they will no longer be "
 "associated with you."
 msgstr ""
+"As suas análises e classificações não serão eliminadas, mas deixaram de "
+"estar associadas a si."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -16934,7 +16879,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Este endereço só será visível se for um programador."
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
@@ -16949,6 +16894,8 @@ msgid ""
 "This is the default locale used to display information about you (like your "
 "description)."
 msgstr ""
+"Este é o idioma por omissão utilizado para apresentar informações sobre si "
+"(como por exemplo, a descrição)."
 
 #: apps/users/templates/users/edit.html:138
 msgid ""
@@ -16960,7 +16907,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "HTML permitido: {0}. Ligações são proibidas."
 
 #: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
@@ -17043,7 +16990,7 @@ msgstr "Endereço de correio"
 #: apps/users/templates/users/login_form.html:44
 #: apps/users/templates/users/mobile/login.html:59
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Memorizar-me neste dispositivo"
 
 #: apps/users/templates/users/login_form.html:54
 #: apps/users/templates/users/pwreset_complete.html:15
@@ -17212,25 +17159,31 @@ msgid ""
 "Registration on AMO is <strong>not required</strong> if you simply want to "
 "download and install public add-ons."
 msgstr ""
+"O registo no AMO <strong>não é obrigatório</strong> se apenas quiser "
+"transferir e instalar extras públicos."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Só precisa de se registar se:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Quiser submeter análises para extras"
 
 #: apps/users/templates/users/register.html:20
 msgid ""
 "You want to keep track of your favorite add-on collections or create one "
 "yourself"
 msgstr ""
+"Quiser manter um registo das suas coleções favoritas de extras ou criar uma "
+"nova coleção"
 
 #: apps/users/templates/users/register.html:21
 msgid ""
 "You are an add-on developer and want to upload your add-on for hosting on AMO"
 msgstr ""
+"Se for um programador de extras e quiser enviar o seu extra para ser "
+"disponibilizado no AMO"
 
 #: apps/users/templates/users/register.html:24
 msgid ""
@@ -17238,6 +17191,9 @@ msgid ""
 "address you provided. Please follow the instructions there to confirm your "
 "account."
 msgstr ""
+"Após um registo bem sucedido, será enviada uma mensagem de correio "
+"eletrónico de confirmação para o endereço que forneceu. Por favor, siga as "
+"instruções dessa mensagem para confirmar a sua conta."
 
 #: apps/users/templates/users/register.html:31
 msgid ""
@@ -17245,6 +17201,9 @@ msgid ""
 "\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy"
 "\">Privacy Policy</a>."
 msgstr ""
+"Se quiser, pode ler os nossos <a href=\"%(legal)s\" title=\"Avisos legais"
+"\">Avisos legais</a> e <a href=\"%(privacy)s\" title=\"Política de "
+"privacidade\">Política de privacidade</a>."
 
 #: apps/users/templates/users/register.html:42
 #: apps/users/templates/users/register.html:96
@@ -17630,6 +17589,10 @@ msgid ""
 "\"http://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons "
 "Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Exceto onde <a href=\"http://www.mozilla.org/about/legal.html#site"
+"\">especificado</a>, o conteúdo deste site é licenciado sob a <br /> <a href="
+"\"http://creativecommons.org/licenses/by-sa/3.0/\">Licença Creative Commons "
+"Atribuição-CompartilhaIgual v3.0</a> ou qualquer versão mais recente."
 
 #: templates/global/header.html:3
 msgid "skip to navigation"
@@ -17778,7 +17741,7 @@ msgstr "Ver o sítio completo"
 
 #: templates/mobile/base_apps.html:37
 msgid "Return to the Apps homepage"
-msgstr "Voltar à página inicial das Apps"
+msgstr "Voltar à página inicial das aplicações"
 
 #: templates/mobile/base_apps.html:38
 msgid "Apps"
