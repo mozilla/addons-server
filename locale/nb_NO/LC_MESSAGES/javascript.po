@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2013-10-25 19:48+0000\n"
-"Last-Translator: Håvard <havard.mork@gmail.com>\n"
+"PO-Revision-Date: 2014-06-23 10:02+0000\n"
+"Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1382730508.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1403517753.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -77,7 +77,7 @@ msgstr "Validerer {0}"
 
 #: media/js/common/upload-addon.js:248
 msgid "Try again"
-msgstr ""
+msgstr "Prøv igjen"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
@@ -96,7 +96,9 @@ msgstr "Fullførte validering av {0}"
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] ""
+"Ditt programtillegg passerte valideringen med ingen feil og {0} melding."
 msgstr[1] ""
+"Ditt programtillegg passerte valideringen med ingen feil og {0} meldinger."
 
 #: media/js/common/upload-addon.js:332
 msgid "Your add-on passed validation with no errors or warnings."
@@ -108,7 +110,7 @@ msgstr "Noen plattformer er ikke tilgjengelig for denne typen utvidelse."
 
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Beklager, ingen støttet plattform har blitt funnet."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -344,7 +346,13 @@ msgstr "Oppdaget: {0}"
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
+"Advarsel: sletting av betalingskonto \"{0}\" vil flytte den tilhørende appen "
+"til en ufullstendig status, og den vil ikke lenger være tilgjengelig for "
+"salg:"
 msgstr[1] ""
+"Advarsel: sletting av betalingskonto \"{0}\" vil flytte de tilhørende appene "
+"til en ufullstendig status, og de vil ikke lenger være tilgjengelig for "
+"salg:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -480,7 +488,7 @@ msgstr "Velg en applikasjon først"
 
 #: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "Feil ved lasting av oversettelse"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
@@ -540,11 +548,11 @@ msgstr "Alle"
 
 #: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Godkjent app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Avvist app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
