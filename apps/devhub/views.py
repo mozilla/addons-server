@@ -44,6 +44,7 @@ from devhub import perf
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
+from devhub.utils import hide_traceback, make_validation_results
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -653,10 +654,12 @@ def upload_manifest(request):
         error_text = _('There was an error with the submission.')
         if 'manifest' in form.errors:
             error_text = ' '.join(form.errors['manifest'])
-        error_message = {'type': 'error', 'message': error_text, 'tier': 1}
+        error_message = {'type': 'error',
+                         'message': escape_all(error_text),
+                         'tier': 1}
 
         v = {'errors': 1, 'success': False, 'messages': [error_message]}
-        return make_validation_result(dict(validation=v, error=error_text))
+        return {'validation': v, 'error': error_text}
 
 
 @login_required
@@ -684,82 +687,6 @@ def upload_for_addon(request, addon_id, addon):
 def upload_detail_for_addon(request, addon_id, addon, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
     return json_upload_detail(request, upload, addon_slug=addon.slug)
-
-
-def make_validation_result(data, is_compatibility=False):
-    """Safe wrapper around JSON dict containing a validation result.
-
-    Keyword Arguments
-
-    **is_compatibility=False**
-        When True, errors will be summarized as if they were in a regular
-        validation result.
-    """
-    if not settings.EXPOSE_VALIDATOR_TRACEBACKS:
-        if data['error']:
-            # Just expose the message, not the traceback
-            data['error'] = data['error'].strip().split('\n')[-1].strip()
-    if data['validation']:
-        lim = settings.VALIDATOR_MESSAGE_LIMIT
-        if lim:
-            del (data['validation']['messages']
-                 [settings.VALIDATOR_MESSAGE_LIMIT:])
-        ending_tier = data['validation'].get('ending_tier', 0)
-        for msg in data['validation']['messages']:
-            if msg['tier'] > ending_tier:
-                ending_tier = msg['tier']
-            if msg['tier'] == 0:
-                # We can't display a message if it's on tier 0.
-                # Should get fixed soon in bug 617481
-                msg['tier'] = 1
-            for k, v in msg.items():
-                msg[k] = escape_all(v)
-        if lim:
-            compatibility_count = 0
-            if data['validation'].get('compatibility_summary'):
-                cs = data['validation']['compatibility_summary']
-                compatibility_count = (cs['errors']
-                                     + cs['warnings']
-                                     + cs['notices'])
-            else:
-                cs = {}
-            leftover_count = (data['validation'].get('errors', 0)
-                            + data['validation'].get('warnings', 0)
-                            + data['validation'].get('notices', 0)
-                            + compatibility_count
-                            - lim)
-            if leftover_count > 0:
-                msgtype = 'notice'
-                if is_compatibility:
-                    if cs.get('errors'):
-                        msgtype = 'error'
-                    elif cs.get('warnings'):
-                        msgtype = 'warning'
-                else:
-                    if data['validation']['errors']:
-                        msgtype = 'error'
-                    elif data['validation']['warnings']:
-                        msgtype = 'warning'
-
-                data['validation']['messages'].append(
-                    {'tier': 1,
-                     'type': msgtype,
-                     'message': (_('Validation generated too many errors/'
-                                   'warnings so %s messages were truncated. '
-                                   'After addressing the visible messages, '
-                                   "you'll be able to see the others.")
-                                 % (leftover_count,)),
-                     'compatibility_type': None
-                     })
-        if is_compatibility:
-            compat = data['validation']['compatibility_summary']
-            for k in ('errors', 'warnings', 'notices'):
-                data['validation'][k] = compat[k]
-            for msg in data['validation']['messages']:
-                if msg['compatibility_type']:
-                    msg['type'] = msg['compatibility_type']
-        data['validation']['ending_tier'] = ending_tier
-    return data
 
 
 @dev_required(allow_editors=True)
@@ -821,14 +748,12 @@ def json_file_validation(request, addon_id, addon, file_id):
         except Exception, exc:
             log.error('file_validator(%s): %s' % (file.id, exc))
             error = "\n".join(traceback.format_exception(*sys.exc_info()))
-            return make_validation_result({'validation': '',
-                                           'error': error})
+            return make_validation_results({'validation': '', 'error': error})
     else:
         v_result = file.validation
-    validation = json.loads(v_result.validation)
 
-    return make_validation_result(dict(validation=validation,
-                                       error=None))
+    validation = json.loads(v_result.validation)
+    return make_validation_results({'validation': validation, 'error': None})
 
 
 @json_view
@@ -839,11 +764,12 @@ def json_bulk_compat_result(request, addon_id, addon, result_id):
     qs = ValidationResult.objects.exclude(completed=None)
     result = get_object_or_404(qs, pk=result_id)
     if result.task_error:
-        return make_validation_result({'validation': '',
-                                       'error': result.task_error})
+        return make_validation_results({'validation': '',
+                                        'error': result.task_error})
     else:
         validation = json.loads(result.validation)
-        return make_validation_result(dict(validation=validation, error=None))
+        return make_validation_results({'validation': validation,
+                                        'error': None})
 
 
 @json_view
@@ -865,12 +791,14 @@ def json_upload_detail(request, upload, addon_slug=None):
                 # it as such
                 result['validation']['messages'].insert(
                     i, {'type': 'error',
-                        'message': msg, 'tier': 1,
+                        'message': escape_all(msg), 'tier': 1,
                         'fatal': True})
+                if result['validation']['ending_tier'] < 1:
+                    result['validation']['ending_tier'] = 1
                 result['validation']['errors'] += 1
 
             if not errors_before:
-                return json_view.error(make_validation_result(result))
+                return json_view.error(result)
         else:
             app_ids = set([a.id for a in pkg.get('apps', [])])
             supported_platforms = []
@@ -890,7 +818,7 @@ def json_upload_detail(request, upload, addon_slug=None):
 
 
 def upload_validation_context(request, upload, addon_slug=None, addon=None,
-                                       url=None):
+                              url=None):
     if addon_slug and not addon:
         addon = get_object_or_404(Addon, slug=addon_slug)
     if not settings.VALIDATE_ADDONS:
@@ -900,7 +828,8 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
                                         'warnings': 0})
         upload.save()
 
-    validation = json.loads(upload.validation) if upload.validation else ""
+    validation = upload.escaped_validation(
+        is_compatibility=upload.compat_with_app)
     if not url:
         if addon:
             url = reverse('devhub.upload_detail_for_addon',
@@ -909,11 +838,11 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
             url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
 
-    return make_validation_result(dict(upload=upload.uuid,
-                                       validation=validation,
-                                       error=upload.task_error, url=url,
-                                       full_report_url=full_report_url),
-                                  is_compatibility=upload.compat_with_app)
+    return {'upload': upload.uuid,
+            'validation': validation,
+            'error': hide_traceback(upload.task_error),
+            'url': url,
+            'full_report_url': full_report_url}
 
 
 @login_required

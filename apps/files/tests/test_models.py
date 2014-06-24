@@ -10,6 +10,7 @@ from datetime import datetime
 from django import forms
 from django.core.files.storage import default_storage as storage
 from django.conf import settings
+from django.test.utils import override_settings
 
 import mock
 import path
@@ -164,14 +165,14 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
             fo.save()
             assert not storage.exists(fo.file_path), 'file not hidden'
             assert not storage.exists(fo.mirror_file_path), (
-                            'file not removed from mirror')
+                'file not removed from mirror')
 
             fo = File.objects.get(pk=67442)
             fo.status = amo.STATUS_PUBLIC
             fo.save()
             assert storage.exists(fo.file_path), 'file not un-hidden'
             assert storage.exists(fo.mirror_file_path), (
-                            'file not copied back to mirror')
+                'file not copied back to mirror')
 
     @mock.patch('files.models.File.copy_to_mirror')
     def test_copy_to_mirror_on_status_change(self, copy_mock):
@@ -441,7 +442,7 @@ class TestParseXpi(amo.tests.TestCase):
     def test_unsupported_version_only(self):
         guid = '{aa3c5121-dab2-40e2-81ca-7ea25febc110}'
         android = Application.objects.get(guid=guid)
-        # Make sure supported application and version exist.
+        # Make sure supported application and version exist.
         AppVersion.objects.create(application=android, version="30.0")
         AppVersion.objects.create(application=android, version="32.0")
         android.update(supported=True)
@@ -469,7 +470,7 @@ class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
         exp = {'guid': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
                'name': 'Delicious Bookmarks',
                'summary': 'Access your bookmarks wherever you go and keep '
-                              'them organized no matter how many you have.',
+                          'them organized no matter how many you have.',
                'homepage': 'http://delicious.com',
                'type': amo.ADDON_EXTENSION,
                'version': '2.1.106'}
@@ -525,7 +526,7 @@ class TestFileUpload(UploadTest):
 
     def test_save_with_validation(self):
         f = FileUpload.objects.create(
-                                validation='{"errors": 0, "metadata": {}}')
+            validation='{"errors": 0, "metadata": {}}')
         assert f.valid
 
         f = FileUpload.objects.create(validation='wtf')
@@ -620,6 +621,166 @@ class TestFileUpload(UploadTest):
         plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
         file_ = File.from_upload(upload, version, plat)
         eq_(file_.requires_chrome, True)
+
+    def test_escaped_validation_is_set_on_save(self):
+        upload = FileUpload.objects.create()
+        assert not upload.validation
+        assert not upload._escaped_validation
+        validation = '{"the": "validation"}'
+        escaped_validation = '{"the": "validation", "ending_tier": 0}'
+        upload.validation = validation
+        upload.save()
+        eq_(upload.validation, validation)
+        eq_(upload._escaped_validation, escaped_validation)
+
+    def test_escaped_validation_is_escaped(self):
+        validation = '''{"the": "valid<script>alert('owned')</script>ation"}'''
+        escaped_validation = ('''{"the": "valid&lt;script&gt;alert('owned')'''
+                              '''&lt;/script&gt;ation", "ending_tier": 0}''')
+        upload = FileUpload.objects.create(validation=validation)
+        eq_(upload._escaped_validation, escaped_validation)
+
+    def test_escaped_validation_ignores_bad_json(self):
+        upload = FileUpload(validation='wtf')
+        assert not upload._escaped_validation
+        upload.save()
+        assert not upload._escaped_validation
+        eq_(upload.task_error.strip().split('\n')[-1],
+            'ValueError: No JSON object could be decoded')
+
+    def test_escaped_validation_will_escape_validation(self):
+        upload = FileUpload(validation='{"messages": [{"the": "validation"}]}')
+        assert not upload._escaped_validation
+        upload.escaped_validation()
+        eq_(upload._escaped_validation,
+            '{"ending_tier": 0, "messages": [{"the": "validation"}]}')
+
+    @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
+    def test_limit_validator_warnings(self):
+        data = {
+            "errors": 0,
+            "success": True,
+            "warnings": 500,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [{
+                "context": ["<code>", None],
+                "description": ["Something something, see "
+                                "https://bugzilla.mozilla.org/"],
+                "column": 0,
+                "line": 1,
+                "file": "chrome/content/down.html",
+                "tier": 2,
+                "message": "Some warning",
+                "type": "warning",
+                "id": [],
+                "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                }] * 12,
+            "metadata": {}
+        }
+        upload = FileUpload(validation=json.dumps(data))
+        validation = upload.escaped_validation()
+        eq_(len(validation['messages']), 11)
+        assert 'truncated' in validation['messages'][-1]['message']
+        eq_(validation['messages'][-1]['type'], 'warning')
+
+    @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
+    def test_limit_validator_compat_errors(self):
+        data = {
+            "errors": 0,
+            "success": True,
+            "warnings": 100,
+            "notices": 0,
+            "message_tree": {},
+            "compatibility_summary": {"errors": 100,
+                                      "warnings": 0,
+                                      "notices": 0},
+            "messages": [
+                {
+                    "context": ["<code>", None],
+                    "description": ["Something something, see "
+                                    "https://bugzilla.mozilla.org/"],
+                    "column": 0,
+                    "line": 1,
+                    "file": "chrome/content/down.html",
+                    "tier": 2,
+                    "message": "Some warning",
+                    "type": "warning",
+                    "compatibility_type": "warning",
+                    "id": [],
+                    "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                },
+                {
+                    "context": ["<code>", None],
+                    "description": ["Something something, see "
+                                    "https://bugzilla.mozilla.org/"],
+                    "column": 0,
+                    "line": 1,
+                    "file": "chrome/content/down.html",
+                    "tier": 2,
+                    "message": "Some error",
+                    "type": "warning",
+                    "compatibility_type": "warning",
+                    "id": [],
+                    "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                }
+            ] * 50,
+            "metadata": {}
+        }
+        upload = FileUpload(validation=json.dumps(data))
+        validation = upload.escaped_validation()
+        eq_(len(validation['messages']), 11)
+        assert 'truncated' in validation['messages'][-1]['message']
+        eq_(validation['messages'][-1]['type'], 'warning')
+
+        validation = upload.escaped_validation(is_compatibility=True)
+        eq_(len(validation['messages']), 11)
+        assert 'truncated' in validation['messages'][-1]['message']
+        eq_(validation['messages'][-1]['type'], 'error')
+
+    @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
+    def test_limit_validator_errors(self):
+        data = {
+            "errors": 100,
+            "success": True,
+            "warnings": 100,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [
+                {
+                    "context": ["<code>", None],
+                    "description": ["Something something, see "
+                                    "https://bugzilla.mozilla.org/"],
+                    "column": 0,
+                    "line": 1,
+                    "file": "chrome/content/down.html",
+                    "tier": 2,
+                    "message": "Some warning",
+                    "type": "warning",
+                    "id": [],
+                    "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                },
+                {
+                    "context": ["<code>", None],
+                    "description": ["Something something, see "
+                                    "https://bugzilla.mozilla.org/"],
+                    "column": 0,
+                    "line": 1,
+                    "file": "chrome/content/down.html",
+                    "tier": 2,
+                    "message": "Some error",
+                    "type": "error",
+                    "id": [],
+                    "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                }
+            ] * 50,
+            "metadata": {}
+        }
+        upload = FileUpload(validation=json.dumps(data))
+        validation = upload.escaped_validation()
+        eq_(len(validation['messages']), 11)
+        assert 'truncated' in validation['messages'][-1]['message']
+        eq_(validation['messages'][-1]['type'], 'error')
 
 
 class TestFileFromUpload(UploadTest):
