@@ -525,7 +525,7 @@ class TestFileUpload(UploadTest):
 
     def test_save_with_validation(self):
         f = FileUpload.objects.create(
-                                validation='{"errors": 0, "metadata": {}}')
+            validation='{"errors": 0, "metadata": {}}')
         assert f.valid
 
         f = FileUpload.objects.create(validation='wtf')
@@ -620,6 +620,49 @@ class TestFileUpload(UploadTest):
         plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
         file_ = File.from_upload(upload, version, plat)
         eq_(file_.requires_chrome, True)
+
+    def test_escaped_validation_is_set_on_save(self):
+        upload = FileUpload.objects.create()
+        assert not upload.validation
+        assert not upload._escaped_validation
+        validation = '{"the": "validation"}'
+        escaped_validation = '{"the": "validation", "ending_tier": 0}'
+        upload.validation = validation
+        upload.save()
+        eq_(upload.validation, validation)
+        eq_(upload._escaped_validation, escaped_validation)
+
+    def test_escaped_validation_is_escaped(self):
+        validation = '''{"the": "valid<script>alert('owned')</script>ation"}'''
+        escaped_validation = ('''{"the": "valid&lt;script&gt;alert('owned')'''
+                              '''&lt;/script&gt;ation", "ending_tier": 0}''')
+        upload = FileUpload.objects.create(validation=validation)
+        eq_(upload._escaped_validation, escaped_validation)
+
+    def test_escaped_validation_ignores_bad_json(self):
+        upload = FileUpload(validation='wtf')
+        assert not upload._escaped_validation
+        upload.save()
+        assert not upload._escaped_validation
+        eq_(upload.task_error, 'Error saving validation')
+
+    def test_escaped_validation_will_escape_validation(self):
+        upload = FileUpload(validation='{"messages": [{"the": "validation"}]}')
+        assert not upload._escaped_validation
+        upload.escaped_validation()
+        eq_(upload._escaped_validation,
+            '{"ending_tier": 0, "messages": [{"the": "validation"}]}')
+
+    def test_escaped_validation_save_the_escaped_validation(self):
+        upload = FileUpload.objects.create()
+        upload.validation = '{"messages": [{"the": "validation"}]}'
+        assert not upload._escaped_validation
+        upload.escaped_validation()
+        eq_(upload._escaped_validation,
+            '{"ending_tier": 0, "messages": [{"the": "validation"}]}')
+        other_upload = FileUpload.objects.get(uuid=upload.uuid)
+        eq_(other_upload._escaped_validation,
+            '{"ending_tier": 0, "messages": [{"the": "validation"}]}')
 
 
 class TestFileFromUpload(UploadTest):

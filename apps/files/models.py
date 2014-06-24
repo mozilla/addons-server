@@ -21,6 +21,7 @@ import commonware
 from cache_nuggets.lib import memoize
 from django_statsd.clients import statsd
 from uuidfield.fields import UUIDField
+from tower import ugettext as _
 
 import amo
 import amo.models
@@ -544,10 +545,12 @@ class FileUpload(amo.models.ModelBase):
     valid = models.BooleanField(default=False)
     is_webapp = models.BooleanField(default=False)
     validation = models.TextField(null=True)
-    compat_with_app = models.ForeignKey(Application, null=True,
-                                    related_name='uploads_compat_for_app')
-    compat_with_appver = models.ForeignKey(AppVersion, null=True,
-                                    related_name='uploads_compat_for_appver')
+    _escaped_validation = models.TextField(
+        null=True, db_column='escaped_validation')
+    compat_with_app = models.ForeignKey(
+        Application, null=True, related_name='uploads_compat_for_app')
+    compat_with_appver = models.ForeignKey(
+        AppVersion, null=True, related_name='uploads_compat_for_appver')
     task_error = models.TextField(null=True)
 
     objects = amo.models.UncachedManagerBase()
@@ -565,6 +568,7 @@ class FileUpload(amo.models.ModelBase):
                     self.valid = True
             except Exception:
                 log.error('Invalid validation json: %r' % self)
+            self.escape_validation()
         super(FileUpload, self).save()
 
     def add_file(self, chunks, filename, size):
@@ -593,6 +597,79 @@ class FileUpload(amo.models.ModelBase):
     @property
     def processed(self):
         return bool(self.valid or self.validation)
+
+    def escaped_validation(self, is_compatibility=False):
+        if self.validation and not self._escaped_validation:
+            self.escape_validation()
+            self.save()
+        if not self._escaped_validation:
+            return ''
+        escaped_validation = json.loads(self._escaped_validation)
+        lim = settings.VALIDATOR_MESSAGE_LIMIT
+        if lim:
+            del (escaped_validation['messages']
+                 [settings.VALIDATOR_MESSAGE_LIMIT:])
+            if escaped_validation.get('compatibility_summary'):
+                cs = escaped_validation['compatibility_summary']
+                compatibility_count = (
+                    cs['errors'] + cs['warnings'] + cs['notices'])
+            else:
+                cs = {}
+                compatibility_count = 0
+            leftover_count = (escaped_validation.get('errors', 0)
+                              + escaped_validation.get('warnings', 0)
+                              + escaped_validation.get('notices', 0)
+                              + compatibility_count
+                              - lim)
+            if leftover_count > 0:
+                msgtype = 'notice'
+                if is_compatibility:
+                    if cs.get('errors'):
+                        msgtype = 'error'
+                    elif cs.get('warnings'):
+                        msgtype = 'warning'
+                else:
+                    if escaped_validation['errors']:
+                        msgtype = 'error'
+                    elif escaped_validation['warnings']:
+                        msgtype = 'warning'
+                escaped_validation['messages'].append({
+                    'tier': 1,
+                    'type': msgtype,
+                    'message': (_('Validation generated too many errors/'
+                                  'warnings so %s messages were truncated. '
+                                  'After addressing the visible messages, '
+                                  "you'll be able to see the others.")
+                                % (leftover_count,)),
+                    'compatibility_type': None,
+                    })
+        if is_compatibility:
+            compat = escaped_validation['compatibility_summary']
+            for k in ('errors', 'warnings', 'notices'):
+                escaped_validation[k] = compat[k]
+            for msg in escaped_validation['messages']:
+                if msg['compatibility_type']:
+                    msg['type'] = msg['compatibility_type']
+        return escaped_validation
+
+    def escape_validation(self):
+        try:
+            validation = json.loads(self.validation)
+        except ValueError:
+            self.task_error = 'Error saving validation'
+            return
+        ending_tier = validation.get('ending_tier', 0)
+        for msg in validation.get('messages', []):
+            tier = msg.get('tier', -1)  # Use -1 so we know it isn't 0.
+            if tier > ending_tier:
+                ending_tier = tier
+            if tier == 0:
+                # We can't display a message if it's on tier 0.
+                # Should get fixed soon in bug 617481
+                msg['tier'] = 1
+        validation['ending_tier'] = ending_tier
+        escaped_validation = amo.utils.escape_all(validation)
+        self._escaped_validation = json.dumps(escaped_validation)
 
 
 class FileValidation(amo.models.ModelBase):
