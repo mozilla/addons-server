@@ -7,28 +7,28 @@
 
 {% block title %}{{ page_title('Add Blacklisted Usernames') }}{% endblock %}
 
-{% block bodyclass %}users-blacklistedusername change-form{% endblock %}
+{% block bodyclass %}users-blacklistedname change-form{% endblock %}
 
 {% block content %}
 
 <div class="breadcrumbs">
   <a href="{{ url('admin:index') }}">Home</a> &rsaquo;
   <a href="{{ url('admin:app_list', app_label='users') }}">Users</a> &rsaquo;
-  <a href="{{ url('admin:users_blacklistedusername_changelist') }}">Blacklisted usernames</a> &rsaquo;
+  <a href="{{ url('admin:users_blacklistedname_changelist') }}">Blacklisted names</a> &rsaquo;
   Add
 </div>
 <div id="content" class="colM">
-  <h2>Add Blacklisted Usernames</h2>
+  <h2>Add Blacklisted Names</h2>
   <div id="content-main">
 
     {% if form %}
       <form method="post" action="">
         {{ csrf() }}
-        <p>Enter one username per line.</p>
+        <p>Enter one name per line.</p>
         <div class="form-row">
-          {{ form.usernames.errors }}
-          <label for="id_usernames">Blacklisted Usernames {{ required() }}</label>
-          {{ form.usernames }}
+          {{ form.names.errors }}
+          <label for="id_names">Blacklisted Names {{ required() }}</label>
+          {{ form.names }}
         </div>
         <div class="submit-row">
           <input type="submit" name="_save" class="default" value="Save">

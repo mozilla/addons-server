@@ -9,7 +9,6 @@ from django.conf import settings
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -462,6 +461,16 @@ class TestUserRegisterForm(UserFormBase):
         self.assertFormError(r, 'form', 'username',
                              'This username cannot be used.')
 
+    def test_blacklisted_display_name(self):
+        data = {'email': 'testo@example.com',
+                'password': 'xxxlonger',
+                'password2': 'xxxlonger',
+                'username': 'valid',
+                'display_name': 'IE6Fan', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'display_name',
+                             'This display name cannot be used.')
+
     def test_alldigit_username(self):
         data = {'email': 'testo@example.com',
                 'password': 'xxxlonger',
@@ -562,20 +571,20 @@ class TestUserRegisterForm(UserFormBase):
             self.assertFormError(r, 'form', field, err % (length, length + 1))
 
 
-class TestBlacklistedUsernameAdminAddForm(UserFormBase):
+class TestBlacklistedNameAdminAddForm(UserFormBase):
 
     def test_no_usernames(self):
         self.client.login(username='testo@example.com', password='foo')
-        url = reverse('admin:users_blacklistedusername_add')
-        data = {'usernames': "\n\n", }
+        url = reverse('admin:users_blacklistedname_add')
+        data = {'names': "\n\n", }
         r = self.client.post(url, data)
-        msg = 'Please enter at least one username to blacklist.'
-        self.assertFormError(r, 'form', 'usernames', msg)
+        msg = 'Please enter at least one name to blacklist.'
+        self.assertFormError(r, 'form', 'names', msg)
 
     def test_add(self):
         self.client.login(username='testo@example.com', password='foo')
-        url = reverse('admin:users_blacklistedusername_add')
-        data = {'usernames': "IE6Fan\nfubar\n\n", }
+        url = reverse('admin:users_blacklistedname_add')
+        data = {'names': "IE6Fan\nfubar\n\n", }
         r = self.client.post(url, data)
         msg = '1 new values added to the blacklist. '
         msg += '1 duplicates were ignored.'

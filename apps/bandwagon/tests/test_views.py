@@ -4,7 +4,6 @@ import urlparse
 
 from django.core.cache import cache
 from django.forms import ValidationError
-from django.shortcuts import render
 import django.test
 from django.utils.datastructures import MultiValueDict
 from django.utils import encoding
@@ -1189,7 +1188,7 @@ class TestMobileCollections(TestMobile):
 
 
 class TestCollectionForm(amo.tests.TestCase):
-    fixtures = ['base/collection_57181']
+    fixtures = ['base/collection_57181', 'users/test_backends']
 
     @patch('amo.models.ModelBase.update')
     def test_icon(self, update_mock):
@@ -1206,6 +1205,13 @@ class TestCollectionForm(amo.tests.TestCase):
         assert form.is_valid()
         form.save()
         assert update_mock.called
+
+    def test_blacklisted_name(self):
+        form = forms.CollectionForm()
+        form.cleaned_data = {'name': 'IE6Fan'}
+        with self.assertRaisesRegexp(ValidationError,
+                                     'This name cannot be used.'):
+            form.clean_name()
 
     def test_clean_description(self):
         # No links, no problems.

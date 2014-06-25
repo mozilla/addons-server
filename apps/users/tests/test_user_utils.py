@@ -5,7 +5,7 @@ from nose.tools import eq_
 from django.conf import settings
 
 import amo.tests
-from users.models import BlacklistedUsername
+from users.models import BlacklistedName
 from users.utils import EmailResetCode, autocreate_username
 
 
@@ -36,7 +36,7 @@ class TestAutoCreateUsername(amo.tests.TestCase):
         assert len(un) and not un.startswith('.+'), 'Unexpected: %s' % un
 
     def test_blacklisted(self):
-        BlacklistedUsername.objects.create(username='firefox')
+        BlacklistedName.objects.create(name='firefox')
         un = autocreate_username('firefox')
         assert un != 'firefox', 'Unexpected: %s' % un
 
