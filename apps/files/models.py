@@ -607,8 +607,7 @@ class FileUpload(amo.models.ModelBase):
         escaped_validation = json.loads(self._escaped_validation)
         lim = settings.VALIDATOR_MESSAGE_LIMIT
         if lim:
-            del (escaped_validation['messages']
-                 [settings.VALIDATOR_MESSAGE_LIMIT:])
+            del escaped_validation['messages'][lim:]
             if escaped_validation.get('compatibility_summary'):
                 cs = escaped_validation['compatibility_summary']
                 compatibility_count = (
