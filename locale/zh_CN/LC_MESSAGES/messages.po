@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2014-05-18 21:11+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2014-06-27 02:46+0000\n"
+"Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400447497.0\n"
+"X-POOTLE-MTIME: 1403837186.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -999,7 +999,7 @@ msgstr "管理"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:101
 msgid "Icon of {0}"
-msgstr ""
+msgstr "{0} 的图标"
 
 #: apps/addons/templates/addons/impala/details.html:108 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
@@ -1018,7 +1018,7 @@ msgstr "了解开发 {0} 的缘由和这个附加组件的下一步计划。"
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:165
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "附加组件截图 #{0}"
 
 #: apps/addons/templates/addons/impala/details.html:191
 msgid "Add-on home page"
@@ -6343,7 +6343,7 @@ msgstr "附加组件必须获得优良的用户评论，并且开发者必须及
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "附加组件至少要有2000名用户。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
@@ -6373,7 +6373,7 @@ msgstr "附加组件的名称、网址以及您是否为此附加组件的开发
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
+msgstr "一段有关为何附加组件广受好评并且应当被列入精选的简短描述"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
@@ -6384,6 +6384,8 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"顾问委员会每月审核一次附加组件提名（完整主题每三个月一次）。常见的拒绝原因包括仅适合少数用户的需求，不佳的用户体验，质量或者安全问题，兼容性问题，以及与"
+"其他精选附加组件相似。被拒绝的附加组件三个月内不能再次获得提名。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8239,7 +8241,7 @@ msgstr "删除版本 {version}"
 #: apps/devhub/templates/devhub/versions/list.html:187
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
+msgstr "您准备删除附加组件的当前版本，如果这是唯一的公开发布版本，将会导致附加组件状态改变，或者公众在列表中看不到您的作品。"
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
@@ -8451,7 +8453,7 @@ msgstr "助力工作、娱乐、隐私和工作效率等各个方面的优秀附
 
 #: apps/discovery/modules.py:347
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Australis 挑战赛获奖者作品"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -8524,15 +8526,15 @@ msgstr "放弃安装"
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:4
 msgid "Football fanatic?"
-msgstr ""
+msgstr "是足球迷？"
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:5
 msgid "Firefox lets you keep up with all the action in Brazil."
-msgstr ""
+msgstr "Firefox 让您可以随时了解巴西的动态。"
 
 #: apps/discovery/templates/discovery/modules/football-worldcup-2014.html:6
 msgid "Activate the Goal.com sidebar"
-msgstr ""
+msgstr "开启 Goal.com 侧栏"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -12259,7 +12261,7 @@ msgstr "个人资料照片"
 
 #: apps/users/forms.py:319 apps/users/templates/users/edit.html:128
 msgid "Default locale"
-msgstr ""
+msgstr "默认语种"
 
 #: apps/users/forms.py:456
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -12604,7 +12606,7 @@ msgstr "删除当前照片"
 
 #: apps/users/templates/users/edit.html:130
 msgid "This is the default locale used to display information about you (like your description)."
-msgstr ""
+msgstr "这是用于现实您的资料（例如描述信息）的默认语种。"
 
 #: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
@@ -13174,29 +13176,32 @@ msgstr "法律声明"
 
 #: templates/global/copyright.html:11
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "报告商标滥用"
 
 #: templates/global/copyright.html:17
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"除非另有<a href=\"http://www.mozilla.org/about/legal.html#site\">说明</a>，本站内容使用<br "
+"/><a href=\"http://creativecommons.org/licenses/by-sa/3.0/\">知识共享 "
+"署名-相同方式共享(CC) v3.0 </a>或者更新版本许可协议。"
 
 #: templates/global/header.html:3
 msgid "skip to navigation"
-msgstr ""
+msgstr "跳转到导航"
 
 #: templates/global/header.html:4
 msgid "switch language"
-msgstr ""
+msgstr "切换语言"
 
 #: templates/global/header.html:9
 msgid "Back to Mozilla.com"
-msgstr ""
+msgstr "回到 Mozilla.com"
 
 #: templates/global/header.html:12 templates/global/minimal-header.html:2
 msgid "visit <span>mozilla.org</span>"
-msgstr ""
+msgstr "查看 <span>mozilla.org</span>"
 
 #: templates/global/menu_links.html:5 templates/global/menu_links.html:20 templates/global/mobile/header.html:4 templates/mobile/header.html:4
 msgid "Features"
@@ -13204,55 +13209,55 @@ msgstr "特性"
 
 #: templates/global/menu_links.html:8
 msgid "Customization"
-msgstr ""
+msgstr "自定义"
 
 #: templates/global/menu_links.html:9
 msgid "Technology"
-msgstr ""
+msgstr "技术"
 
 #: templates/global/menu_links.html:10 templates/global/menu_links.html:27
 msgid "Videos"
-msgstr ""
+msgstr "视频"
 
 #: templates/global/menu_links.html:11
 msgid "Tour"
-msgstr ""
+msgstr "导览"
 
 #: templates/global/menu_links.html:12 templates/global/menu_links.html:28
 msgid "Future Releases"
-msgstr ""
+msgstr "未来版本"
 
 #: templates/global/menu_links.html:21
 msgid "Customize"
-msgstr ""
+msgstr "自定义"
 
 #: templates/global/menu_links.html:22
 msgid "Sync"
-msgstr ""
+msgstr "同步"
 
 #: templates/global/menu_links.html:23
 msgid "Develop"
-msgstr ""
+msgstr "开发"
 
 #: templates/global/menu_links.html:24
 msgid "Get Involved"
-msgstr ""
+msgstr "参与"
 
 #: templates/global/menu_links.html:39
 msgid "Personas"
-msgstr ""
+msgstr "炫彩风格"
 
 #: templates/global/menu_links.html:51
 msgid "Firefox Support"
-msgstr ""
+msgstr "Firefox 技术支持"
 
 #: templates/global/menu_links.html:52
 msgid "Mobile Support"
-msgstr ""
+msgstr "移动版技术支持"
 
 #: templates/global/menu_links.html:53
 msgid "Thunderbird Support"
-msgstr ""
+msgstr "Thunderbird 技术支持"
 
 #: templates/global/mobile/header.html:3 templates/mobile/header.html:3
 msgid "Mozilla Firefox"
@@ -13264,7 +13269,7 @@ msgstr "访问 Mozilla"
 
 #: templates/global/mobile/header.html:10
 msgid "Menu"
-msgstr ""
+msgstr "菜单"
 
 #: templates/impala/base.html:117
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
