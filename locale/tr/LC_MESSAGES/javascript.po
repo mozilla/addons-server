@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-02 17:02-0700\n"
-"PO-Revision-Date: 2013-12-10 07:52+0000\n"
-"Last-Translator: Menekşe <menekse.celik@gmail.com>\n"
+"PO-Revision-Date: 2014-06-29 11:19+0000\n"
+"Last-Translator: Selim <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386661961.0\n"
+"X-POOTLE-MTIME: 1404040746.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -74,7 +74,7 @@ msgstr "{0} doğrulanıyor"
 
 #: media/js/common/upload-addon.js:248
 msgid "Try again"
-msgstr ""
+msgstr "Tekrar deneyin"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
@@ -92,7 +92,7 @@ msgstr "{0} doğrulaması tamamlandı"
 #: media/js/common/upload-addon.js:327
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "Eklentiniz hatasız ve {0} mesajla doğrulamayı geçti."
 
 #: media/js/common/upload-addon.js:332
 msgid "Your add-on passed validation with no errors or warnings."
@@ -104,7 +104,7 @@ msgstr "Bu eklenti türü bazı platformlarda kullanılamaz."
 
 #: media/js/common/upload-addon.js:385
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Üzgünüz, desteklenen platform bulunamadı."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -142,7 +142,7 @@ msgstr "Uygulamanız hatasız ve uyarısız olarak doğrulamayı geçti."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Bildirim verilen konumda bulunamadı."
 
 #: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
@@ -154,15 +154,15 @@ msgstr ""
 
 #: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Uygulama bildirimi geçersiz."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "Uygulama zaten yüklü."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "İç sunucu hatası."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
@@ -170,7 +170,7 @@ msgstr ""
 
 #: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Yükleme başarısız oldu. Lütfen daha sonra tekrar deneyin."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
@@ -244,7 +244,7 @@ msgstr ""
 
 #: media/js/devreg/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "Tüm sonuçları göster"
 
 #: media/js/devreg/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
@@ -252,7 +252,7 @@ msgstr ""
 
 #: media/js/devreg/manifest.js:46
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "İstenen İzinler:"
 
 #: media/js/devreg/manifest.js:54
 msgid "Certified"
@@ -272,7 +272,7 @@ msgstr ""
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "Tamam"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
@@ -370,7 +370,7 @@ msgstr "<b>{0}</b> için eklentileri ara"
 #: media/js/devreg/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
+msgstr[0] "{0} karakter kaldı."
 
 #: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
@@ -420,15 +420,15 @@ msgstr "İç sunucu hatası"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
-msgstr ""
+msgstr "Satın alınıyor"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr ""
+msgstr "Satın alındı"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "Başlat"
 
 #: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
@@ -492,11 +492,11 @@ msgstr "Şimdilik atla"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr ""
+msgstr "Ödeme başarısız. Lütfen daha sonra tekrar deneyin."
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "Packaged App"
-msgstr ""
+msgstr "Paket Uygulama"
 
 #: media/js/devreg/reviewers/reviewers.js:108
 msgid "Privileged App"
@@ -504,11 +504,11 @@ msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "More Information Requested"
-msgstr ""
+msgstr "Daha Fazla Bilgi İstendi"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Editör Yorumu İçerir"
 
 #: media/js/devreg/reviewers/reviewers.js:118
 msgid "Premium App"
@@ -520,7 +520,7 @@ msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:126
 msgid "Free"
-msgstr ""
+msgstr "Ücretsiz"
 
 #: media/js/devreg/reviewers/reviewers.js:234
 msgid "Any"
@@ -528,32 +528,32 @@ msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Onaylı uygulama: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Reddedilen uygulama: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Uygulama onaylama hatası: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Uygulama reddetme hatası: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "{1} tarihinde {0} tarafından"
 
 #: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
-msgstr ""
+msgstr "İstenen Bilgi"
 
 #: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
 msgid "Flagged"
-msgstr ""
+msgstr "İşaretlendi"
 
 #: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
 msgid "Duplicate"
@@ -561,11 +561,11 @@ msgstr ""
 
 #: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
 msgid "Rejected"
-msgstr ""
+msgstr "Reddedildi"
 
 #: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
 msgid "Approved"
-msgstr ""
+msgstr "Onaylandı"
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
