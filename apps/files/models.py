@@ -610,7 +610,10 @@ class FileUpload(amo.models.ModelBase):
         """
         if self.validation and not self._escaped_validation:
             self._escape_validation()
-            self.save()
+            # Save the changes to _escaped_validation.
+            (FileUpload.objects
+                       .filter(pk=self.pk)
+                       .update(_escaped_validation=self._escaped_validation))
         if not self._escaped_validation:
             return ''
         escaped_validation = json.loads(self._escaped_validation)
