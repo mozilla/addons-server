@@ -658,7 +658,7 @@ def upload_manifest(request):
                          'tier': 1}
 
         v = {'errors': 1, 'success': False, 'messages': [error_message]}
-        return dict(validation=v, error=error_text)
+        return {'validation': v, 'error': error_text}
 
 
 @login_required
@@ -691,11 +691,11 @@ def upload_detail_for_addon(request, addon_id, addon, uuid):
 def hide_traceback(error):
     """Safe wrapper around JSON dict containing a validation result.
     """
-    if not settings.EXPOSE_VALIDATOR_TRACEBACKS:
-        if error:
-            # Just expose the message, not the traceback
-            return error.strip().split('\n')[-1].strip()
-    return error
+    if not settings.EXPOSE_VALIDATOR_TRACEBACKS and error:
+        # Just expose the message, not the traceback
+        return error.strip().split('\n')[-1].strip()
+    else:
+        return error
 
 
 @dev_required(allow_editors=True)
@@ -762,7 +762,7 @@ def json_file_validation(request, addon_id, addon, file_id):
         v_result = file.validation
     validation = json.loads(v_result.validation)
 
-    return dict(validation=validation, error=None)
+    return {'validation': validation, 'error': None}
 
 
 @json_view
@@ -775,7 +775,7 @@ def json_bulk_compat_result(request, addon_id, addon, result_id):
     if result.task_error:
         return {'validation': '', 'error': hide_traceback(result.task_error)}
     else:
-        validation = result.escaped_validation
+        validation = result.escaped_validation()
         return {'validation': validation, 'error': None}
 
 
@@ -843,11 +843,11 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
             url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
 
-    return dict(upload=upload.uuid,
-                validation=validation,
-                error=hide_traceback(upload.task_error),
-                url=url,
-                full_report_url=full_report_url)
+    return {'upload': upload.uuid,
+            'validation': validation,
+            'error': hide_traceback(upload.task_error),
+            'url': url,
+            'full_report_url': full_report_url}
 
 
 @login_required

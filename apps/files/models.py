@@ -568,7 +568,7 @@ class FileUpload(amo.models.ModelBase):
                     self.valid = True
             except Exception:
                 log.error('Invalid validation json: %r' % self)
-            self.escape_validation()
+            self._escape_validation()
         super(FileUpload, self).save()
 
     def add_file(self, chunks, filename, size):
@@ -599,8 +599,17 @@ class FileUpload(amo.models.ModelBase):
         return bool(self.valid or self.validation)
 
     def escaped_validation(self, is_compatibility=False):
+        """
+        The HTML-escaped validation results limited to a message count of
+        `settings.VALIDATOR_MESSAGE_LIMIT` and optionally prepared for a
+        compatibility report if `is_compatibility` is `True`.
+
+        If `_escaped_validation` is set it will be used, otherwise
+        `_escape_validation` will be called to escape the validation results
+        and they will be saved to the database.
+        """
         if self.validation and not self._escaped_validation:
-            self.escape_validation()
+            self._escape_validation()
             self.save()
         if not self._escaped_validation:
             return ''
@@ -651,7 +660,8 @@ class FileUpload(amo.models.ModelBase):
                     msg['type'] = msg['compatibility_type']
         return escaped_validation
 
-    def escape_validation(self):
+    def _escape_validation(self):
+        """HTML-escape `validation` to `_escaped_validation`."""
         try:
             validation = json.loads(self.validation)
         except ValueError:
