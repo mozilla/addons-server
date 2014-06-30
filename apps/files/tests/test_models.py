@@ -645,7 +645,8 @@ class TestFileUpload(UploadTest):
         assert not upload._escaped_validation
         upload.save()
         assert not upload._escaped_validation
-        eq_(upload.task_error, 'Error saving validation')
+        eq_(upload.task_error.strip().split('\n')[-1],
+            'ValueError: No JSON object could be decoded')
 
     def test_escaped_validation_will_escape_validation(self):
         upload = FileUpload(validation='{"messages": [{"the": "validation"}]}')

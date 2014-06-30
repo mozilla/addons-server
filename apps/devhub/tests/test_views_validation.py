@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import copy
 import json
 import sys
 import traceback

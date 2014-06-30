@@ -44,6 +44,7 @@ from devhub import perf
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
+from devhub.utils import limit_validation_results, escape_validation
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -760,9 +761,11 @@ def json_file_validation(request, addon_id, addon, file_id):
             return {'validation': '', 'error': hide_traceback(error)}
     else:
         v_result = file.validation
-    validation = json.loads(v_result.validation)
 
-    return {'validation': validation, 'error': None}
+    validation = json.loads(v_result.validation)
+    escaped_validation = escape_validation(validation)
+    final_validation = limit_validation_results(escaped_validation)
+    return {'validation': final_validation, 'error': None}
 
 
 @json_view
@@ -775,8 +778,10 @@ def json_bulk_compat_result(request, addon_id, addon, result_id):
     if result.task_error:
         return {'validation': '', 'error': hide_traceback(result.task_error)}
     else:
-        validation = result.escaped_validation()
-        return {'validation': validation, 'error': None}
+        raw_validation = json.loads(result.validation)
+        escaped_validation = escape_validation(raw_validation)
+        final_validation = limit_validation_results(escaped_validation)
+        return {'validation': final_validation, 'error': None}
 
 
 @json_view
@@ -800,6 +805,8 @@ def json_upload_detail(request, upload, addon_slug=None):
                     i, {'type': 'error',
                         'message': escape_all(msg), 'tier': 1,
                         'fatal': True})
+                if result['validation']['ending_tier'] < 1:
+                    result['validation']['ending_tier'] = 1
                 result['validation']['errors'] += 1
 
             if not errors_before:

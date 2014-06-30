@@ -3,7 +3,9 @@ import json
 import os
 import posixpath
 import re
+import sys
 import time
+import traceback
 import unicodedata
 import uuid
 import zipfile
@@ -21,7 +23,6 @@ import commonware
 from cache_nuggets.lib import memoize
 from django_statsd.clients import statsd
 from uuidfield.fields import UUIDField
-from tower import ugettext as _
 
 import amo
 import amo.models
@@ -31,6 +32,7 @@ from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 import devhub.signals
+from devhub.utils import limit_validation_results, escape_validation
 from files.utils import SafeUnzip
 from tags.models import Tag
 from versions.compare import version_int as vint
@@ -616,72 +618,22 @@ class FileUpload(amo.models.ModelBase):
                        .update(_escaped_validation=self._escaped_validation))
         if not self._escaped_validation:
             return ''
-        escaped_validation = json.loads(self._escaped_validation)
-        lim = settings.VALIDATOR_MESSAGE_LIMIT
-        if lim:
-            del escaped_validation['messages'][lim:]
-            if escaped_validation.get('compatibility_summary'):
-                cs = escaped_validation['compatibility_summary']
-                compatibility_count = (
-                    cs['errors'] + cs['warnings'] + cs['notices'])
-            else:
-                cs = {}
-                compatibility_count = 0
-            leftover_count = (escaped_validation.get('errors', 0)
-                              + escaped_validation.get('warnings', 0)
-                              + escaped_validation.get('notices', 0)
-                              + compatibility_count
-                              - lim)
-            if leftover_count > 0:
-                msgtype = 'notice'
-                if is_compatibility:
-                    if cs.get('errors'):
-                        msgtype = 'error'
-                    elif cs.get('warnings'):
-                        msgtype = 'warning'
-                else:
-                    if escaped_validation['errors']:
-                        msgtype = 'error'
-                    elif escaped_validation['warnings']:
-                        msgtype = 'warning'
-                escaped_validation['messages'].append({
-                    'tier': 1,
-                    'type': msgtype,
-                    'message': (_('Validation generated too many errors/'
-                                  'warnings so %s messages were truncated. '
-                                  'After addressing the visible messages, '
-                                  "you'll be able to see the others.")
-                                % (leftover_count,)),
-                    'compatibility_type': None,
-                    })
-        if is_compatibility:
-            compat = escaped_validation['compatibility_summary']
-            for k in ('errors', 'warnings', 'notices'):
-                escaped_validation[k] = compat[k]
-            for msg in escaped_validation['messages']:
-                if msg['compatibility_type']:
-                    msg['type'] = msg['compatibility_type']
-        return escaped_validation
+        return limit_validation_results(json.loads(self._escaped_validation),
+                                        is_compatibility=is_compatibility)
 
     def _escape_validation(self):
-        """HTML-escape `validation` to `_escaped_validation`."""
+        """
+        HTML-escape `validation` to `_escaped_validation`. This will raise a
+        ValueError if `validation` is not valid JSON.
+        """
         try:
             validation = json.loads(self.validation)
         except ValueError:
-            self.task_error = 'Error saving validation'
-            return
-        ending_tier = validation.get('ending_tier', 0)
-        for msg in validation.get('messages', []):
-            tier = msg.get('tier', -1)  # Use -1 so we know it isn't 0.
-            if tier > ending_tier:
-                ending_tier = tier
-            if tier == 0:
-                # We can't display a message if it's on tier 0.
-                # Should get fixed soon in bug 617481
-                msg['tier'] = 1
-        validation['ending_tier'] = ending_tier
-        escaped_validation = amo.utils.escape_all(validation)
-        self._escaped_validation = json.dumps(escaped_validation)
+            tb = traceback.format_exception(*sys.exc_info())
+            self.update(task_error=''.join(tb))
+        else:
+            escaped_validation = escape_validation(validation)
+            self._escaped_validation = json.dumps(escaped_validation)
 
 
 class FileValidation(amo.models.ModelBase):
