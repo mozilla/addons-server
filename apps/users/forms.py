@@ -323,7 +323,7 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
         self.request = kwargs.pop('request', None)
         super(UserEditForm, self).__init__(*args, **kwargs)
 
-        if not self.instance.lang:
+        if not self.instance.lang and self.request:
             self.initial['lang'] = self.request.LANG
 
         if self.instance:

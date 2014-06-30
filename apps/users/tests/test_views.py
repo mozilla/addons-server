@@ -311,6 +311,12 @@ class TestEditAdmin(UserViewBase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
 
+    def test_edit_without_user_lang(self):
+        self.regular.lang = None
+        self.regular.save()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+
     def test_edit_forbidden(self):
         self.client.logout()
         self.client.login(username='editor@mozilla.com', password='password')
