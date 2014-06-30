@@ -1288,15 +1288,15 @@ class TestThemeEdit(amo.tests.TestCase):
         doc = pq(r.content)
         assert doc('a.reupload')
 
-    def test_color_input_is_hidden_at_creation(self):
+    def test_color_input_is_empty_at_creation(self):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.get(reverse('devhub.themes.submit'))
         doc = pq(r.content)
         el = doc('input.color-picker')
-        assert el.attr('type') == 'hidden'
+        assert el.attr('type') == 'text'
         assert not el.attr('value')
 
-    def test_color_input_is_hidden_at_edit(self):
+    def test_color_input_is_not_empty_at_edit(self):
         color = "123456"
         self.addon.persona.accentcolor = color
         self.addon.persona.save()
@@ -1305,5 +1305,5 @@ class TestThemeEdit(amo.tests.TestCase):
         r = self.client.get(url)
         doc = pq(r.content)
         el = doc('input#id_accentcolor')
-        assert el.attr('type') == 'hidden'
+        assert el.attr('type') == 'text'
         assert el.attr('value') == "#" + color
