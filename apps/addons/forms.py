@@ -479,11 +479,11 @@ class ThemeForm(ThemeFormBase):
     # See bugs 1005206 and 1003575.
     accentcolor = ColorField(
         required=False,
-        widget=forms.HiddenInput(attrs={'class': 'color-picker'}),
+        widget=forms.TextInput(attrs={'class': 'color-picker'}),
     )
     textcolor = ColorField(
         required=False,
-        widget=forms.HiddenInput(attrs={'class': 'color-picker'}),
+        widget=forms.TextInput(attrs={'class': 'color-picker'}),
     )
     agreed = forms.BooleanField()
     # This lets us POST the data URIs of the unsaved previews so we can still
@@ -549,11 +549,11 @@ class EditThemeForm(AddonFormBase):
     tags = forms.CharField(required=False)
     accentcolor = ColorField(
         required=False,
-        widget=forms.HiddenInput(attrs={'class': 'color-picker'}),
+        widget=forms.TextInput(attrs={'class': 'color-picker'}),
     )
     textcolor = ColorField(
         required=False,
-        widget=forms.HiddenInput(attrs={'class': 'color-picker'}),
+        widget=forms.TextInput(attrs={'class': 'color-picker'}),
     )
     license = forms.TypedChoiceField(
         choices=amo.PERSONA_LICENSES_CHOICES, coerce=int, empty_value=None,
